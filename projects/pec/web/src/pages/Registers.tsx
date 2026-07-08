@@ -21,6 +21,7 @@ const TABS = [
   ['risks', 'Risks'],
   ['interfaces', 'Interfaces'],
   ['holds', 'Holds'],
+  ['schedule', 'Schedule'],
   ['tracker', 'Tracker'],
 ] as const
 
@@ -43,6 +44,7 @@ export function RegistersPage(): JSX.Element {
       {tab === 'risks' && <RisksTab />}
       {tab === 'interfaces' && <InterfacesTab />}
       {tab === 'holds' && <HoldsTab />}
+      {tab === 'schedule' && <ScheduleTab />}
       {tab === 'tracker' && <TrackerTab />}
     </div>
   )
@@ -324,10 +326,13 @@ function DecisionsTab(): JSX.Element {
     { key: 'title', label: 'Title', render: (r) => r.title },
     // kind chip: standalone / approval_outcome / waiver — one judgment record (OM-6)
     { key: 'kind', label: 'Kind', render: (r) => <span className="state">{r.kind.replaceAll('_', ' ')}</span> },
+    { key: 'source', label: 'Source', render: (r) => r.source ? <span className="small">{r.source}</span> : <span className="muted small">—</span>, csv: (r) => r.source ?? '' },
+    { key: 'area', label: 'Area', render: (r) => r.area ?? <span className="muted small">—</span>, csv: (r) => r.area ?? '' },
     { key: 'statement', label: 'Decision needed', render: (r) => <span className="small">{r.statement}</span> },
     { key: 'preparer', label: 'Preparer', render: (r) => <span className="small">{person(r.preparerId)}</span> },
     { key: 'authority', label: 'Authority', render: (r) => <span className="small">{person(r.authorityId)}</span> },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
+    { key: 'opened', label: 'Opened', render: (r) => <span className="nowrap">{fmtDate(r.openDate)}</span> },
     {
       // PEC-DEC-002: overdue undecided decisions flagged
       key: 'overdue', label: 'Overdue (d)', render: (r) => r.overdueDays > 0
@@ -631,10 +636,14 @@ function RisksTab(): JSX.Element {
 
   const pxi = (r: any): number | null =>
     r.probability == null || r.impact == null ? null : r.probability * r.impact
+  const rpxi = (r: any): number | null =>
+    r.residualProbability == null || r.residualImpact == null ? null : r.residualProbability * r.residualImpact
 
   const cols: Array<Col<any>> = [
     { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
     { key: 'title', label: 'Title', render: (r) => r.title },
+    { key: 'category', label: 'Category', render: (r) => r.category ? <span className="small">{r.category}</span> : <span className="muted small">—</span>, csv: (r) => r.category ?? '' },
+    { key: 'type', label: 'Type', render: (r) => r.riskType ? <span className="small">{r.riskType}</span> : <span className="muted small">—</span>, csv: (r) => r.riskType ?? '' },
     { key: 'cause', label: 'Cause', render: (r) => <span className="small">{r.cause}</span> },
     { key: 'consequence', label: 'Consequence', render: (r) => <span className="small">{r.consequence}</span> },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{person(r.ownerId)}</span> },
@@ -647,7 +656,17 @@ function RisksTab(): JSX.Element {
         return <b className={v >= 15 ? 'badge red' : ''}>{v}</b>
       },
     },
+    { key: 'rp', label: 'RP', render: (r) => r.residualProbability ?? <span className="muted">—</span> },
+    { key: 'ri', label: 'RI', render: (r) => r.residualImpact ?? <span className="muted">—</span> },
+    {
+      key: 'rpxi', label: 'RP×I', csv: (r) => rpxi(r), render: (r) => {
+        const v = rpxi(r)
+        if (v == null) return <span className="muted">—</span>
+        return <b className={v >= 15 ? 'badge red' : ''}>{v}</b>
+      },
+    },
     { key: 'mitigation', label: 'Mitigation', render: (r) => <span className="small">{r.mitigation}</span> },
+    { key: 'treatment', label: 'Treatment', render: (r) => r.treatment ? <span className="small">{r.treatment}</span> : <span className="muted small">—</span>, csv: (r) => r.treatment ?? '' },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
     { key: 'state', label: 'State', render: (r) => <StateTag s={r.state} /> },
   ]
@@ -944,6 +963,7 @@ function TrackerTab(): JSX.Element {
     { key: 'packageName', label: 'Package name', render: (r) => r.packageName },
     { key: 'discipline', label: 'Discipline', render: (r) => <span className="small">{r.discipline}</span> },
     { key: 'area', label: 'Area', render: (r) => <span className="small">{r.area}</span> },
+    { key: 'typeApproved', label: 'Approved type', render: (r) => <span className="small">{r.packageTypeApproved}</span>, csv: (r) => r.packageTypeApproved },
     { key: 'typeProposed', label: 'Proposed type', render: (r) => <span className="small">{r.packageTypeProposed}</span>, csv: (r) => r.packageTypeProposed },
     { key: 'vendorsEngaged', label: 'Vendors engaged', render: (r) => <span className="small">{r.vendorsEngaged}</span>, csv: (r) => r.vendorsEngaged },
     { key: 'vendorAwarded', label: 'Awarded', render: (r) => <span className="small">{r.vendorAwarded}</span>, csv: (r) => r.vendorAwarded },
@@ -970,6 +990,49 @@ function TrackerTab(): JSX.Element {
       </p>
       <RegisterTable cols={cols} rows={data} exportName="tracker-register.csv"
         highlightRef={hl} rowRef={(r) => pkgCode(r.packageId) ?? ''} />
+    </div>
+  )
+}
+
+// ================================================================ schedule
+
+/** Schedule register (D-PEC-23) — read-only: rows are import-owned (tracker-tab precedent);
+ *  the only write path is the schedule import. */
+function ScheduleTab(): JSX.Element {
+  const { pid } = useApp()
+  const { data, error } = useLoad(() => api.get(p(pid, 'schedule')), [pid])
+  if (error) return <ErrorBox error={{ message: error }} />
+  if (!data) return <p className="muted">loading…</p>
+
+  const cols: Array<Col<any>> = [
+    { key: 'activity', label: 'Activity', render: (r) => <span className="mono">{r.activityId}</span> },
+    {
+      key: 'description', label: 'Description', csv: (r) => r.description,
+      render: (r) => (
+        <span style={{ paddingLeft: (r.outlineLevel ?? 0) * 14, fontWeight: r.rowType === 'summary' ? 'bold' : undefined }}>
+          {r.rowType === 'milestone' ? '◆ ' : ''}{r.description}
+        </span>
+      ),
+    },
+    { key: 'type', label: 'Type', render: (r) => <span className="small">{r.rowType}</span> },
+    { key: 'start', label: 'Start', render: (r) => <span className="nowrap">{fmtDate(r.startDate)}</span> },
+    { key: 'finish', label: 'Finish', render: (r) => <span className="nowrap">{fmtDate(r.finishDate)}</span> },
+    { key: 'baselineFinish', label: 'Baseline finish', render: (r) => <span className="nowrap">{fmtDate(r.baselineFinish)}</span> },
+    { key: 'days', label: 'Days', render: (r) => r.durationDays ?? <span className="muted">—</span> },
+    {
+      key: 'pct', label: '% done', csv: (r) => r.percentComplete,
+      render: (r) => r.percentComplete != null ? <span className="mono">{r.percentComplete}%</span> : <span className="muted">—</span>,
+    },
+    { key: 'package', label: 'Package', render: (r) => r.package ? <span className="mono">{r.package}</span> : <span className="muted small">—</span>, csv: (r) => r.package ?? '' },
+  ]
+
+  return (
+    <div>
+      <p className="section-note">
+        Schedule activities — import-owned and read-only here: rows update only via the
+        schedule import; there is no in-app edit (tracker-tab precedent).
+      </p>
+      <RegisterTable cols={cols} rows={data as any[]} exportName="schedule-register.csv" />
     </div>
   )
 }

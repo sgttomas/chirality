@@ -140,6 +140,10 @@ export interface Package {
   leadId: number | null
   description: string | null
   milestone: string | null
+  /** project area the package belongs to (§16 mdl optional column, D-PEC-23) */
+  area: string | null
+  /** package classification, e.g. Standard vs FEED (§16 mdl optional column, D-PEC-23) */
+  packageType: string | null
   version: number
 }
 
@@ -211,6 +215,8 @@ export interface IntakeItem {
   disposition: IntakeDisposition | null
   dispositionNote: string | null
   mergedIntoIntakeId: number | null
+  /** source-log area context (§16 rail optional column, D-PEC-23) */
+  area: string | null
   version: number
 }
 
@@ -247,6 +253,8 @@ export interface WorkItem {
   closedBy: number | null
   closedAt: string | null
   cancelReason: string | null
+  /** source-log area context (§16 rail optional column, D-PEC-23) */
+  area: string | null
   createdBy: number
   createdAt: string
   version: number
@@ -427,6 +435,12 @@ export interface Decision {
   supersededById: number | null
   packageId: number | null // decisions tracked at package level (PRD §4.2)
   log: Log
+  /** date the decision was opened in the source log (§16 optional column, D-PEC-23) */
+  openDate: string | null // YYYY-MM-DD
+  /** project area context (§16 optional column, D-PEC-23) */
+  area: string | null
+  /** where the decision arose, e.g. a workshop or the client RAIL (§16 optional column, D-PEC-23) */
+  source: string | null
   createdAt: string
   version: number
 }
@@ -462,6 +476,13 @@ export interface Risk {
   mitigation: string | null
   needBy: string | null
   state: RiskState
+  /** risk-log classification (§16 optional columns, D-PEC-23) */
+  category: string | null
+  riskType: string | null
+  treatment: string | null
+  /** post-mitigation residual scoring pair (§16 optional columns, D-PEC-23) */
+  residualProbability: number | null // 1-5
+  residualImpact: number | null // 1-5
   version: number
 }
 
@@ -697,6 +718,11 @@ export interface CapacityEntry {
   version: number
 }
 
+/** Schedule row classification from the source export (§16 optional column, D-PEC-23);
+ *  unrecognized values reject the row. */
+export const SCHEDULE_ROW_TYPES = ['task', 'summary', 'milestone'] as const
+export type ScheduleRowType = (typeof SCHEDULE_ROW_TYPES)[number]
+
 /** Imported schedule row feeding the lookahead (§16 P2, D-04). */
 export interface ScheduleActivity {
   id: number
@@ -707,6 +733,14 @@ export interface ScheduleActivity {
   finishDate: string
   packageId: number | null
   deliverableId: number | null
+  /** WBS shape from the source schedule export (§16 optional columns, D-PEC-23) */
+  rowType: ScheduleRowType | null
+  outlineLevel: number | null
+  parentActivityId: string | null
+  percentComplete: number | null // 0-100
+  durationDays: number | null
+  baselineStart: string | null // YYYY-MM-DD
+  baselineFinish: string | null // YYYY-MM-DD
   version: number
 }
 

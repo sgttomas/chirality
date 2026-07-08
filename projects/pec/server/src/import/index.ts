@@ -13,7 +13,7 @@
 
 import type { Deliverable, Hold, IntakeItem, InterfaceItem, Log, PackageTracker, Revision, Risk, WorkItem } from '@pec/core'
 import {
-  HOLD_CAUSES, LOGS, TRACKER_STAGE_STATES, ageWorkingDays, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead, visibleLogs,
+  HOLD_CAUSES, LOGS, SCHEDULE_ROW_TYPES, TRACKER_STAGE_STATES, ageWorkingDays, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead, visibleLogs,
 } from '@pec/core'
 import { badRequest } from '../errors.ts'
 import { nowIso, snakeToCamel } from '../repo.ts'
@@ -82,6 +82,11 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
   const missing = required.filter((h) => !headers.includes(h))
   if (missing.length > 0) throw badRequest(`MDL import missing required columns: ${missing.join(', ')} (§16)`)
 
+  // §16 optional package-attribute columns (D-PEC-23): present headers refresh the
+  // auto-created package record; processed once per package per run
+  const hasPkgAttrs = ['package_name', 'area', 'package_type'].some((h) => headers.includes(h))
+  const pkgAttrsApplied = new Set<number>()
+
   rows.forEach((row, i) => {
     const rowNo = i + 2
     const errors: string[] = []
@@ -96,12 +101,33 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
     if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
 
     // package: auto-create on first sight (adoption bridge)
-    let pkg = sx.db.prepare('SELECT id FROM package WHERE project_id = ? AND code = ?')
-      .get(sx.projectId, row.package ?? '') as { id: number } | undefined
+    let pkg = sx.db.prepare('SELECT id, name, area, package_type FROM package WHERE project_id = ? AND code = ?')
+      .get(sx.projectId, row.package ?? '') as { id: number; name: string; area: string | null; package_type: string | null } | undefined
     if (!pkg) {
-      const pkgId = sx.repo.insert('package', { projectId: sx.projectId, code: row.package, name: row.package })
+      const pkgId = sx.repo.insert('package', {
+        projectId: sx.projectId, code: row.package,
+        name: row.package_name || row.package,
+        area: row.area || null, packageType: row.package_type || null,
+      })
       importHistory(sx, 'package', pkgId, `package ${row.package} created by MDL import`)
-      pkg = { id: pkgId }
+      pkg = { id: pkgId, name: row.package_name || row.package!, area: row.area || null, package_type: row.package_type || null }
+      pkgAttrsApplied.add(pkgId)
+    } else if (hasPkgAttrs && !pkgAttrsApplied.has(pkg.id)) {
+      // optional columns update only when present (§16, schedule/tracker precedent) —
+      // and only through the same import-ownership guard as every other record
+      const attrs: Record<string, unknown> = {}
+      if (headers.includes('package_name') && row.package_name && row.package_name !== pkg.name) attrs.name = row.package_name
+      if (headers.includes('area') && (row.area || null) !== pkg.area) attrs.area = row.area || null
+      if (headers.includes('package_type') && (row.package_type || null) !== pkg.package_type) attrs.packageType = row.package_type || null
+      if (Object.keys(attrs).length > 0) {
+        if (!lastChangeIsImport(sx, 'package', pkg.id) && !force) {
+          report.conflicts.push({ row: rowNo, key: row.package!, reason: 'package edited in-app since last import; attributes not updated (deliverable row still processed); use force=true' })
+        } else {
+          sx.repo.systemUpdate('package', sx.projectId, pkg.id, attrs)
+          importHistory(sx, 'package', pkg.id, `package ${row.package} attributes refreshed by MDL import`)
+        }
+      }
+      pkgAttrsApplied.add(pkg.id)
     }
 
     const existing = sx.db.prepare('SELECT id, version FROM deliverable WHERE project_id = ? AND doc_no = ?')
@@ -203,6 +229,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
       if (table === 'work_item') {
         sx.repo.systemUpdate('work_item', sx.projectId, existing.id, {
           statement: row.statement, needBy: row.need_by || null, state: wiState,
+          ...(headers.includes('area') ? { area: row.area || null } : {}),
           ...(wiState === 'closed' ? { closedAt: row.closed_date ? `${row.closed_date}T00:00:00Z` : nowIso() } : {}),
         })
       }
@@ -236,6 +263,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
         sx.repo.systemUpdate('intake_item', sx.projectId, priorIntake.id, {
           needBy: row.need_by || null, suggestedOwnerId: ownerId,
           anchorSuggestion: row.deliverable_ref || row.package || null, log,
+          ...(headers.includes('area') ? { area: row.area || null } : {}),
         })
         importHistory(sx, 'intake_item', priorIntake.id, `updated from RAIL row ${row.item_id} (still unanchored)`)
         report.updated++
@@ -251,7 +279,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
         needBy: row.need_by || null, suggestedOwnerId: ownerId,
         log, raisedBy: raisedBy ?? sx.session.personId,
         raisedAt: row.raised_date ? `${row.raised_date}T00:00:00Z` : nowIso(),
-        state: 'raised',
+        state: 'raised', area: row.area || null,
       })
       importHistory(sx, 'intake_item', id, `${ref} created unanchored from RAIL row ${row.item_id} (anchor "${row.deliverable_ref ?? ''}" unmatched)`)
       report.intakeCreated++
@@ -302,7 +330,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
       projectId: sx.projectId, ref: wiRef, title: row.statement!.slice(0, 140),
       statement: row.statement, kind: type === 'task' ? 'action' : type, log,
       anchorType: 'deliverable', anchorId: deliverable!.id, packageId: pkgId,
-      ownerId: ownerId!, needBy: row.need_by, state: wiState,
+      ownerId: ownerId!, needBy: row.need_by, state: wiState, area: row.area || null,
       ...(wiState === 'closed' ? { closedAt: row.closed_date ? `${row.closed_date}T00:00:00Z` : nowIso(), closingStatement: row.notes || null } : {}),
       createdBy: raisedBy ?? sx.session.personId,
       createdAt: row.raised_date ? `${row.raised_date}T00:00:00Z` : nowIso(),
@@ -336,7 +364,13 @@ function importDecisions(sx: Sx, csv: string, force: boolean): ImportReport {
     const authorityId = personByNameOrEmail(sx, row.authority ?? '')
     if (row.authority && authorityId == null) errors.push(`authority "${row.authority}" matches no person`)
     if (state === 'decided' && !row.outcome) errors.push('decided rows require outcome')
+    if (row.open_date && !DATE_RE.test(row.open_date)) errors.push(`open_date must be YYYY-MM-DD, got "${row.open_date}"`)
     if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+    // §16 optional columns (D-PEC-23): update only when the header is present
+    const optCols: Record<string, unknown> = {}
+    if (headers.includes('open_date')) optCols.openDate = row.open_date || null
+    if (headers.includes('area')) optCols.area = row.area || null
+    if (headers.includes('source')) optCols.source = row.source || null
 
     const existing = sx.db.prepare('SELECT id FROM decision WHERE project_id = ? AND ref = ?')
       .get(sx.projectId, row.decision_id ?? '') as { id: number } | undefined
@@ -348,6 +382,7 @@ function importDecisions(sx: Sx, csv: string, force: boolean): ImportReport {
       sx.repo.systemUpdate('decision', sx.projectId, existing.id, {
         title: row.title, statement: row.statement, needBy: row.need_by || null, state,
         outcome: row.outcome ? normState(row.outcome) : null, rationale: row.rationale || null,
+        ...optCols,
       })
       importHistory(sx, 'decision', existing.id, `${row.decision_id} updated by decision-log import`)
       report.updated++
@@ -362,7 +397,7 @@ function importDecisions(sx: Sx, csv: string, force: boolean): ImportReport {
       authorityId: authorityId!, needBy: row.need_by || null, state,
       outcome: row.outcome ? normState(row.outcome) : null, rationale: row.rationale || null,
       decidedAt: row.decided_date ? `${row.decided_date}T00:00:00Z` : null,
-      kind: 'standalone', log: 'internal', createdAt: nowIso(),
+      kind: 'standalone', log: 'internal', createdAt: nowIso(), ...optCols,
     })
     importHistory(sx, 'decision', id, `${ref} created from decision-log row ${row.decision_id} at state ${state} (seeding)`)
     for (const affected of (row.affected_refs ?? '').split(';').map((s) => s.trim()).filter(Boolean)) {
@@ -392,7 +427,7 @@ function importRisks(sx: Sx, csv: string, force: boolean): ImportReport {
     if (row.status && !state) errors.push(`unrecognized status "${row.status}"`)
     const ownerId = row.owner ? personByNameOrEmail(sx, row.owner) : null
     if (row.owner && ownerId == null) errors.push(`owner "${row.owner}" matches no person`)
-    for (const n of ['probability', 'impact'] as const) {
+    for (const n of ['probability', 'impact', 'residual_probability', 'residual_impact'] as const) {
       if (row[n] && !/^[1-5]$/.test(row[n]!)) errors.push(`${n} must be 1-5`)
     }
     if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
@@ -405,13 +440,19 @@ function importRisks(sx: Sx, csv: string, force: boolean): ImportReport {
       : undefined
     const existing = sx.db.prepare('SELECT id FROM risk WHERE project_id = ? AND ref = ?')
       .get(sx.projectId, row.risk_id ?? '') as { id: number } | undefined
-    const fields = {
+    const fields: Record<string, unknown> = {
       title: row.title, cause: row.cause || null, consequence: row.consequence || null,
       packageId: pkg?.id ?? null, deliverableId: del?.id ?? null, ownerId,
       probability: row.probability ? Number(row.probability) : null,
       impact: row.impact ? Number(row.impact) : null,
       mitigation: row.mitigation || null, needBy: row.need_by || null, state,
     }
+    // §16 optional columns (D-PEC-23): update only when the header is present
+    if (headers.includes('category')) fields.category = row.category || null
+    if (headers.includes('risk_type')) fields.riskType = row.risk_type || null
+    if (headers.includes('treatment')) fields.treatment = row.treatment || null
+    if (headers.includes('residual_probability')) fields.residualProbability = row.residual_probability ? Number(row.residual_probability) : null
+    if (headers.includes('residual_impact')) fields.residualImpact = row.residual_impact ? Number(row.residual_impact) : null
     if (existing) {
       if (!lastChangeIsImport(sx, 'risk', existing.id) && !force) {
         report.conflicts.push({ row: rowNo, key: row.risk_id!, reason: 'edited in-app since last import; use force=true' })
@@ -451,6 +492,20 @@ function importSchedule(sx: Sx, csv: string, _force: boolean): ImportReport {
     if (row.start && row.finish && DATE_RE.test(row.start) && DATE_RE.test(row.finish) && row.finish < row.start) {
       errors.push('finish is before start')
     }
+    // §16 optional WBS columns (D-PEC-23): validated when present, never silently coerced
+    const rowType = row.row_type ? normState(row.row_type) : null
+    if (rowType && !(SCHEDULE_ROW_TYPES as readonly string[]).includes(rowType)) {
+      errors.push(`unrecognized row_type "${row.row_type}" (accepted: ${SCHEDULE_ROW_TYPES.join(', ')})`)
+    }
+    if (row.outline_level && !/^\d+$/.test(row.outline_level)) errors.push(`outline_level must be a non-negative integer, got "${row.outline_level}"`)
+    if (row.percent_complete && !/^\d+$/.test(row.percent_complete)) errors.push(`percent_complete must be an integer 0-100, got "${row.percent_complete}"`)
+    if (row.percent_complete && /^\d+$/.test(row.percent_complete) && Number(row.percent_complete) > 100) {
+      errors.push(`percent_complete must be an integer 0-100, got "${row.percent_complete}"`)
+    }
+    if (row.duration_days && !/^\d+(\.\d+)?$/.test(row.duration_days)) errors.push(`duration_days must be a number, got "${row.duration_days}"`)
+    for (const col of ['baseline_start', 'baseline_finish'] as const) {
+      if (row[col] && !DATE_RE.test(row[col]!)) errors.push(`${col} must be YYYY-MM-DD, got "${row[col]}"`)
+    }
     // package/deliverable mapping is optional, but a stated mapping must resolve —
     // silently dropping it would be a silent drop of data (§16)
     const pkg = row.package
@@ -472,6 +527,13 @@ function importSchedule(sx: Sx, csv: string, _force: boolean): ImportReport {
     }
     if (headers.includes('package')) fields.packageId = pkg?.id ?? null
     if (headers.includes('deliverable_ref')) fields.deliverableId = del?.id ?? null
+    if (headers.includes('row_type')) fields.rowType = rowType
+    if (headers.includes('outline_level')) fields.outlineLevel = row.outline_level ? Number(row.outline_level) : null
+    if (headers.includes('parent_activity_id')) fields.parentActivityId = row.parent_activity_id || null
+    if (headers.includes('percent_complete')) fields.percentComplete = row.percent_complete ? Number(row.percent_complete) : null
+    if (headers.includes('duration_days')) fields.durationDays = row.duration_days ? Number(row.duration_days) : null
+    if (headers.includes('baseline_start')) fields.baselineStart = row.baseline_start || null
+    if (headers.includes('baseline_finish')) fields.baselineFinish = row.baseline_finish || null
     const existing = sx.db.prepare('SELECT id FROM schedule_activity WHERE project_id = ? AND activity_id = ?')
       .get(sx.projectId, row.activity_id ?? '') as { id: number } | undefined
     if (existing) {
@@ -610,25 +672,28 @@ export function exportRegister(sx: Sx, register: string): string {
   switch (register) {
     case 'mdl': {
       const headers = ['doc_no', 'title', 'package', 'discipline', 'owner', 'current_rev', 'state', 'due_date',
-        'milestone', 'issue_purpose_plan', 'edms_ref', 'client_no', 'remarks', 'deliverable_type']
+        'milestone', 'issue_purpose_plan', 'edms_ref', 'client_no', 'remarks', 'deliverable_type',
+        'package_name', 'area', 'package_type']
       const rows = snap.deliverables.map((d) => {
         const revs = snap.revisions.filter((r) => r.deliverableId === d.id && r.state !== 'superseded').sort((a, b) => b.id - a.id)
         const cur = revs[0]
+        const pkg = snap.packages.find((p) => p.id === d.packageId)
         return [d.docNo, d.title, pkgCode(d.packageId), d.discipline, personName(sx, d.ownerId),
           cur?.revCode ?? '', cur?.state ?? '', d.dueDate, d.milestone, d.issuePurposePlan,
-          d.dcRef, d.clientNo, d.remarks, d.deliverableType]
+          d.dcRef, d.clientNo, d.remarks, d.deliverableType,
+          pkg?.name ?? '', pkg?.area ?? '', pkg?.packageType ?? '']
       })
       return toCsv(headers, rows)
     }
     case 'rail': {
       const headers = ['item_id', 'statement', 'type', 'log', 'owner', 'need_by', 'status', 'raised_by', 'raised_date',
-        'package', 'deliverable_ref', 'hold_cause', 'closed_date', 'notes', 'anchor_status']
+        'package', 'deliverable_ref', 'hold_cause', 'closed_date', 'notes', 'anchor_status', 'area']
       const rows: Array<Array<string | null>> = []
       for (const w of snap.workItems as WorkItem[]) {
         rows.push([w.ref, w.statement ?? w.title, w.kind, w.log, personName(sx, w.ownerId), w.needBy, w.state,
           personName(sx, w.createdBy), w.createdAt.slice(0, 10),
           pkgCode(w.packageId), w.anchorType === 'deliverable' ? docNo(w.anchorId) : '', '',
-          w.closedAt?.slice(0, 10) ?? '', w.closingStatement ?? '', 'anchored'])
+          w.closedAt?.slice(0, 10) ?? '', w.closingStatement ?? '', 'anchored', w.area ?? ''])
       }
       for (const h of snap.holds as Hold[]) {
         if (h.state === 'withdrawn') continue
@@ -637,40 +702,44 @@ export function exportRegister(sx: Sx, register: string): string {
           : link?.targetType === 'revision' ? docNo(snap.revisions.find((r) => r.id === link.targetId)?.deliverableId ?? null) : ''
         rows.push([h.ref, h.statement ?? h.title, 'hold', h.log, personName(sx, h.ownerId), h.needBy,
           h.state === 'active' ? 'open' : 'closed', personName(sx, h.raisedBy), h.raisedAt.slice(0, 10),
-          '', anchor, h.cause, h.resolvedAt?.slice(0, 10) ?? '', h.resolutionNote ?? '', 'anchored'])
+          '', anchor, h.cause, h.resolvedAt?.slice(0, 10) ?? '', h.resolutionNote ?? '', 'anchored', ''])
       }
       for (const i of snap.interfaces as InterfaceItem[]) {
         if (i.state === 'cancelled' || i.state === 'closed') continue
         rows.push([i.ref, i.title, 'interface', i.log, '', i.needBy, i.state, '', '',
-          pkgCode(i.givingPackageId), '', '', '', i.requiredInfo ?? '', 'anchored'])
+          pkgCode(i.givingPackageId), '', '', '', i.requiredInfo ?? '', 'anchored', ''])
       }
       // non-converted intake rows, flagged unanchored (round-trip completeness)
       for (const t of snap.intakeItems as IntakeItem[]) {
         if (t.state === 'dispositioned') continue
         rows.push([t.ref, t.statementVerbatim, t.quickType, t.log, personName(sx, t.suggestedOwnerId), t.needBy,
           'raised', personName(sx, t.raisedBy), t.raisedAt.slice(0, 10),
-          '', t.anchorSuggestion ?? '', '', '', '', 'unanchored'])
+          '', t.anchorSuggestion ?? '', '', '', '', 'unanchored', t.area ?? ''])
       }
       return toCsv(headers, rows)
     }
     case 'decisions': {
       const headers = ['decision_id', 'title', 'statement', 'authority', 'need_by', 'status',
-        'preparer', 'outcome', 'rationale', 'decided_date', 'affected_refs']
+        'preparer', 'outcome', 'rationale', 'decided_date', 'affected_refs', 'open_date', 'area', 'source']
       const rows = snap.decisions.map((d) => [
         d.ref, d.title, d.statement, personName(sx, d.authorityId), d.needBy, d.state,
         personName(sx, d.preparerId), d.outcome ?? '', d.rationale ?? '', d.decidedAt?.slice(0, 10) ?? '',
         snap.decisionLinks.filter((l) => l.decisionId === d.id && l.recordType === 'deliverable')
           .map((l) => docNo(l.recordId)).filter(Boolean).join(';'),
+        d.openDate ?? '', d.area ?? '', d.source ?? '',
       ])
       return toCsv(headers, rows)
     }
     case 'risks': {
       const headers = ['risk_id', 'title', 'cause', 'consequence', 'owner', 'status',
-        'package', 'deliverable_ref', 'probability', 'impact', 'mitigation', 'need_by']
+        'package', 'deliverable_ref', 'probability', 'impact', 'mitigation', 'need_by',
+        'category', 'risk_type', 'treatment', 'residual_probability', 'residual_impact']
       const rows = (snap.risks as Risk[]).map((r) => [
         r.ref, r.title, r.cause, r.consequence, personName(sx, r.ownerId), r.state,
         pkgCode(r.packageId), docNo(r.deliverableId), r.probability?.toString() ?? '',
         r.impact?.toString() ?? '', r.mitigation, r.needBy,
+        r.category ?? '', r.riskType ?? '', r.treatment ?? '',
+        r.residualProbability?.toString() ?? '', r.residualImpact?.toString() ?? '',
       ])
       return toCsv(headers, rows)
     }
@@ -758,10 +827,15 @@ export function exportRegister(sx: Sx, register: string): string {
     }
     case 'schedule': {
       // mirrors the §16 P2 schedule import for round-trip
-      const headers = ['activity_id', 'description', 'start', 'finish', 'package', 'deliverable_ref']
+      const headers = ['activity_id', 'description', 'start', 'finish', 'package', 'deliverable_ref',
+        'row_type', 'outline_level', 'parent_activity_id', 'percent_complete', 'duration_days',
+        'baseline_start', 'baseline_finish']
       const rows = snap.scheduleActivities.map((a) => [
         a.activityId, a.description, a.startDate, a.finishDate,
         pkgCode(a.packageId), docNo(a.deliverableId),
+        a.rowType ?? '', a.outlineLevel?.toString() ?? '', a.parentActivityId ?? '',
+        a.percentComplete?.toString() ?? '', a.durationDays?.toString() ?? '',
+        a.baselineStart ?? '', a.baselineFinish ?? '',
       ])
       return toCsv(headers, rows)
     }

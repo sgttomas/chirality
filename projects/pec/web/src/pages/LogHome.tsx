@@ -46,6 +46,7 @@ interface LogRow {
   ref: string
   title: string
   log: string
+  area: string | null
   packageId: number | null
   ownerId: number | null
   state: string
@@ -61,6 +62,7 @@ function OpenItemsTab(): JSX.Element {
   const person = usePerson()
   const [log, setLog] = useState('')
   const [type, setType] = useState('')
+  const [area, setArea] = useState('')
   const [owner, setOwner] = useState('')
   const [cause, setCause] = useState('')
   const [overdue, setOverdue] = useState(false)
@@ -72,12 +74,13 @@ function OpenItemsTab(): JSX.Element {
     const q = new URLSearchParams()
     if (log) q.set('log', log)
     if (type) q.set('type', type)
+    if (area) q.set('area', area)
     if (owner) q.set('owner', owner)
     if (cause) q.set('cause', cause)
     if (overdue) q.set('overdue', 'true')
     if (anchored) q.set('anchored', anchored)
     return q.toString()
-  }, [log, type, owner, cause, overdue, anchored])
+  }, [log, type, area, owner, cause, overdue, anchored])
   const { data, error } = useLoad<LogRow[]>(() => api.get(p(pid, qs ? `log?${qs}` : 'log')), [pid, qs])
   // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
   usePublishScreenContext((data ?? []).map((r) => ({ recordType: r.recordType, ref: r.ref, id: r.id })))
@@ -88,6 +91,7 @@ function OpenItemsTab(): JSX.Element {
     { key: 'type', label: 'Type', render: (r) => <span className="small">{r.recordType.replaceAll('_', ' ')}</span> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'log', label: 'Log', render: (r) => <span className="small muted">{r.log}</span> },
+    { key: 'area', label: 'Area', render: (r) => r.area ?? <span className="muted small">—</span>, csv: (r) => r.area ?? '' },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{person(r.ownerId)}</span> },
     { key: 'age', label: 'Age (wd)', render: (r) => r.ageWd },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}</span> },
@@ -131,6 +135,7 @@ function OpenItemsTab(): JSX.Element {
           <option value="interface_item">interface item</option>
           <option value="intake_item">intake item</option>
         </select>
+        <input placeholder="area" value={area} onChange={(e) => setArea(e.target.value)} />
         <select value={owner} onChange={(e) => setOwner(e.target.value)}>
           <option value="">any owner</option>
           {people.map((pp) => <option key={pp.id} value={pp.id}>{pp.name}</option>)}

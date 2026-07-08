@@ -41,7 +41,7 @@ export function snapshot(over: Partial<ProjectSnapshot> = {}): ProjectSnapshot {
 
 export function pkg(over: Partial<Package> = {}): Package {
   const n = id()
-  return { id: n, projectId: 1, code: `PKG-${n}`, name: 'Package', leadId: null, description: null, milestone: null, version: 1, ...over }
+  return { id: n, projectId: 1, code: `PKG-${n}`, name: 'Package', leadId: null, description: null, milestone: null, area: null, packageType: null, version: 1, ...over }
 }
 
 export function deliverable(over: Partial<Deliverable> = {}): Deliverable {
@@ -69,7 +69,7 @@ export function workItem(over: Partial<WorkItem> = {}): WorkItem {
     needBy: null, priority: null, priorityProvenance: null, state: 'open',
     committedWeek: null, commitSource: null,
     sourceType: null, sourceId: null, closingStatement: null, closedBy: null, closedAt: null,
-    cancelReason: null, createdBy: 1, createdAt: '2026-07-01T00:00:00Z', version: 1, ...over,
+    cancelReason: null, area: null, createdBy: 1, createdAt: '2026-07-01T00:00:00Z', version: 1, ...over,
   }
 }
 
@@ -124,6 +124,7 @@ export function decision(over: Partial<Decision> = {}): Decision {
     rationale: null, optionsConsidered: null, recommendation: null, decidedAt: null,
     decidedBy: null, kind: 'standalone', approvalRecordId: null, conditionId: null,
     supersededById: null, packageId: null, log: 'internal',
+    openDate: null, area: null, source: null,
     createdAt: '2026-07-01T00:00:00Z', version: 1, ...over,
   }
 }
@@ -145,7 +146,8 @@ export function risk(over: Partial<Risk> = {}): Risk {
   return {
     id: n, projectId: 1, ref: `RSK-${n}`, title: 'Risk', cause: null, consequence: null,
     packageId: null, deliverableId: null, ownerId: null, probability: null, impact: null,
-    mitigation: null, needBy: null, state: 'open', version: 1, ...over,
+    mitigation: null, needBy: null, state: 'open', category: null, riskType: null,
+    treatment: null, residualProbability: null, residualImpact: null, version: 1, ...over,
   }
 }
 
@@ -164,7 +166,8 @@ export function intake(over: Partial<IntakeItem> = {}): IntakeItem {
     id: n, projectId: 1, ref: `INTK-${n}`, statementVerbatim: 'Concern as raised',
     quickType: 'action', anchorSuggestion: null, needBy: null, suggestedOwnerId: null,
     log: 'internal', raisedBy: 1, raisedAt: '2026-07-10T00:00:00Z', state: 'raised',
-    disposition: null, dispositionNote: null, mergedIntoIntakeId: null, version: 1, ...over,
+    disposition: null, dispositionNote: null, mergedIntoIntakeId: null, area: null,
+    version: 1, ...over,
   }
 }
 
@@ -206,6 +209,8 @@ export function scheduleActivity(over: Partial<ScheduleActivity> = {}): Schedule
   return {
     id: n, projectId: 1, activityId: `ACT-${n}`, description: 'Activity',
     startDate: '2026-07-13', finishDate: '2026-07-24', packageId: null, deliverableId: null,
+    rowType: null, outlineLevel: null, parentActivityId: null, percentComplete: null,
+    durationDays: null, baselineStart: null, baselineFinish: null,
     version: 1, ...over,
   }
 }

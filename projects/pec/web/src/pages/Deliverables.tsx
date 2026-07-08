@@ -32,6 +32,7 @@ export function DeliverablesPage(): JSX.Element {
   const person = usePerson()
   const [pkgF, setPkgF] = useState('')
   const [discF, setDiscF] = useState('')
+  const [areaF, setAreaF] = useState('')
   const [stateF, setStateF] = useState('')
   const [viewF, setViewF] = useState('active')
 
@@ -41,11 +42,12 @@ export function DeliverablesPage(): JSX.Element {
   const qs = new URLSearchParams()
   if (pkgF) qs.set('package', pkgF)
   if (discF) qs.set('discipline', discF)
+  if (areaF) qs.set('area', areaF)
   if (stateF) qs.set('state', stateF)
   qs.set('view', viewF)
   const { data, error } = useLoad<any[]>(
     () => api.get(p(pid, `deliverables?${qs.toString()}`)),
-    [pid, pkgF, discF, stateF, viewF],
+    [pid, pkgF, discF, areaF, stateF, viewF],
   )
   // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
   usePublishScreenContext((data ?? []).map((r: any) => ({ recordType: 'deliverable', ref: r.docNo, id: r.id })))
@@ -58,7 +60,9 @@ export function DeliverablesPage(): JSX.Element {
     { key: 'docNo', label: 'Doc no', render: (r) => <Link className="mono" to={`/p/${pid}/deliverables/${r.id}`}>{r.docNo}</Link>, csv: (r) => r.docNo },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'pkg', label: 'Package', render: (r) => <span className="mono">{pkgCode(r.packageId)}</span> },
+    { key: 'area', label: 'Area', render: (r) => r.area ?? '—' },
     { key: 'disc', label: 'Discipline', render: (r) => r.discipline ?? '—' },
+    { key: 'type', label: 'Type', render: (r) => r.deliverableType ?? '—' },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{person(r.ownerId)}</span> },
     { key: 'rev', label: 'Rev', render: (r) => <span className="mono">{r.revCode ?? '—'}</span>, csv: (r) => r.revCode ?? '' },
     { key: 'status', label: 'Status (workflow)', render: (r) => <WorkflowStages workflow={r.workflow} />, csv: (r) => `${r.workflow.label} (${r.workflow.gatesClosed}/${r.workflow.gatesTotal})` },
@@ -75,6 +79,7 @@ export function DeliverablesPage(): JSX.Element {
           {(pkgs ?? []).map((x: any) => <option key={x.id} value={x.id}>{x.code} — {x.name}</option>)}
         </select>
         <input placeholder="discipline" value={discF} onChange={(e) => setDiscF(e.target.value)} />
+        <input placeholder="area" value={areaF} onChange={(e) => setAreaF(e.target.value)} />
         <select value={stateF} onChange={(e) => setStateF(e.target.value)}>
           <option value="">any state</option>
           {REVISION_STATES.map((s) => <option key={s} value={s}>{s.replaceAll('_', ' ')}</option>)}

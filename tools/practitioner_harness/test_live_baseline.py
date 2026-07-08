@@ -132,6 +132,12 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # PILOT.md adds one project-surface REVIEW; old profile-path historical
     # refs in D-T0-11/D-T0-12 add three WARNs; projects/pec adds one pointer
     # NOT_APPLICABLE row.
+    # D-PEC-23 (2026-07-07): the TOU West Doe packet + Receipt 54 quote the
+    # owner's launcher steer, whose one machine-absolute input path is
+    # transcribed `~`-prefixed per the loop's abs-path convention (Receipt-50
+    # precedent) — so NO new ABS_PATH_IN_PROJECT_SURFACE hit; the baseline
+    # holds at 28. (An earlier draft left the raw absolute path in and pinned
+    # 29; normalizing to `~` restored the baseline.)
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None

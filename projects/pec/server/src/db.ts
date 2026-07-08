@@ -113,6 +113,8 @@ CREATE TABLE IF NOT EXISTS package (
   lead_id INTEGER REFERENCES person(id),
   description TEXT,
   milestone TEXT,
+  area TEXT,                       -- §16 mdl optional column (D-PEC-23)
+  package_type TEXT,               -- §16 mdl optional column (D-PEC-23)
   version INTEGER NOT NULL DEFAULT 1,
   UNIQUE(project_id, code)
 );
@@ -167,6 +169,7 @@ CREATE TABLE IF NOT EXISTS intake_item (
   disposition TEXT,
   disposition_note TEXT,
   merged_into_intake_id INTEGER,
+  area TEXT,                       -- §16 rail optional column (D-PEC-23)
   version INTEGER NOT NULL DEFAULT 1
 );
 CREATE INDEX IF NOT EXISTS idx_intake_project ON intake_item(project_id, state);
@@ -202,6 +205,7 @@ CREATE TABLE IF NOT EXISTS work_item (
   closed_by INTEGER,
   closed_at TEXT,
   cancel_reason TEXT,
+  area TEXT,                       -- §16 rail optional column (D-PEC-23)
   created_by INTEGER NOT NULL,
   created_at TEXT NOT NULL,
   version INTEGER NOT NULL DEFAULT 1
@@ -343,6 +347,9 @@ CREATE TABLE IF NOT EXISTS decision (
   superseded_by_id INTEGER,
   package_id INTEGER,
   log TEXT NOT NULL DEFAULT 'internal',
+  open_date TEXT,                  -- §16 decisions optional column (D-PEC-23)
+  area TEXT,                       -- §16 decisions optional column (D-PEC-23)
+  source TEXT,                     -- §16 decisions optional column (D-PEC-23)
   created_at TEXT NOT NULL,
   version INTEGER NOT NULL DEFAULT 1
 );
@@ -372,6 +379,11 @@ CREATE TABLE IF NOT EXISTS risk (
   mitigation TEXT,
   need_by TEXT,
   state TEXT NOT NULL DEFAULT 'open',
+  category TEXT,                   -- §16 risks optional column (D-PEC-23)
+  risk_type TEXT,                  -- §16 risks optional column (D-PEC-23)
+  treatment TEXT,                  -- §16 risks optional column (D-PEC-23)
+  residual_probability INTEGER,    -- §16 risks optional column (D-PEC-23)
+  residual_impact INTEGER,         -- §16 risks optional column (D-PEC-23)
   version INTEGER NOT NULL DEFAULT 1
 );
 
@@ -575,6 +587,13 @@ CREATE TABLE IF NOT EXISTS schedule_activity (
   finish_date TEXT NOT NULL,
   package_id INTEGER,
   deliverable_id INTEGER,
+  row_type TEXT,                   -- §16 schedule optional columns (D-PEC-23)
+  outline_level INTEGER,
+  parent_activity_id TEXT,
+  percent_complete INTEGER,
+  duration_days REAL,
+  baseline_start TEXT,
+  baseline_finish TEXT,
   version INTEGER NOT NULL DEFAULT 1,
   UNIQUE(project_id, activity_id)
 );
@@ -691,6 +710,26 @@ export function openDb(path: string): Db {
   // P2 columns on P1 tables (existing databases predate the CREATE TABLE defaults)
   ensureColumn(db, 'notification', 'severity', "TEXT NOT NULL DEFAULT 'info'")
   ensureColumn(db, 'work_item', 'commit_source', 'TEXT')
+  // D-PEC-23 §16 optional-column additions (additive; inert until an import populates them)
+  ensureColumn(db, 'package', 'area', 'TEXT')
+  ensureColumn(db, 'package', 'package_type', 'TEXT')
+  ensureColumn(db, 'work_item', 'area', 'TEXT')
+  ensureColumn(db, 'intake_item', 'area', 'TEXT')
+  ensureColumn(db, 'decision', 'open_date', 'TEXT')
+  ensureColumn(db, 'decision', 'area', 'TEXT')
+  ensureColumn(db, 'decision', 'source', 'TEXT')
+  ensureColumn(db, 'risk', 'category', 'TEXT')
+  ensureColumn(db, 'risk', 'risk_type', 'TEXT')
+  ensureColumn(db, 'risk', 'treatment', 'TEXT')
+  ensureColumn(db, 'risk', 'residual_probability', 'INTEGER')
+  ensureColumn(db, 'risk', 'residual_impact', 'INTEGER')
+  ensureColumn(db, 'schedule_activity', 'row_type', 'TEXT')
+  ensureColumn(db, 'schedule_activity', 'outline_level', 'INTEGER')
+  ensureColumn(db, 'schedule_activity', 'parent_activity_id', 'TEXT')
+  ensureColumn(db, 'schedule_activity', 'percent_complete', 'INTEGER')
+  ensureColumn(db, 'schedule_activity', 'duration_days', 'REAL')
+  ensureColumn(db, 'schedule_activity', 'baseline_start', 'TEXT')
+  ensureColumn(db, 'schedule_activity', 'baseline_finish', 'TEXT')
   // D-PEC-13 owner amendment: the tracker key moved from tracking_no to the resolved package.
   // Old-shape tables (nullable package_id, UNIQUE on tracking_no) exist only on scratch
   // instances and hold import-owned, reproducible rows — rebuild at the new shape; the next

@@ -204,3 +204,58 @@ row is reported either way, nothing silent.
   (both rows key on their distinct packages) but remains a workbook oddity
   the owner may fix; `Package #` column 0/65 populated (unmapped until
   populated).
+
+## §D-PEC-23 — optional-column extensions (2026-07-07, directed by owner steer)
+
+The five non-tracker contracts gained OPTIONAL columns; absent headers change
+no behavior, and a file without them never wipes previously imported values
+(§16: update only when the header is present). Import validation and the
+mirrored register exports are in `server/src/import/index.ts`; tests in
+`server/test/import-dpec23.test.ts`.
+
+| Contract | New optional columns | Lands on |
+|---|---|---|
+| `mdl` | `package_name`, `area`, `package_type` | the auto-created `package` record (refreshed once per run under the import-ownership guard) |
+| `rail` | `area` | `work_item.area` / `intake_item.area` |
+| `decisions` | `open_date` (YYYY-MM-DD), `area`, `source` | `decision` columns of the same names |
+| `risks` | `category`, `risk_type`, `treatment`, `residual_probability` (1–5), `residual_impact` (1–5) | `risk` columns of the same names |
+| `schedule` | `row_type` (`task\|summary\|milestone`), `outline_level` (int), `parent_activity_id`, `percent_complete` (0–100), `duration_days`, `baseline_start`, `baseline_finish` | `schedule_activity` columns; rendered by the read-only Schedule register tab (`GET /api/projects/:pid/schedule`) |
+
+## §TOU-West-Doe — workbook → template mapping (2026-07-07 run)
+
+Same workbook family as the 26020 pilot (the six files at
+`pilot-scratch/input/`, SHA-256 pinned in
+`../TRANCHE_2026-07-07_D-PEC-23_tou_west_doe_demo.md`), mapped for the new
+demo project **TOU West Doe** with the D-PEC-23 optional columns now carried
+first-class instead of folded into composites:
+
+- **MDL** (457 → 457): as the 2026-07-05 run, except `Package Name` →
+  `package_name`, `Area #` → `area`, `Package Type` → `package_type` (no
+  longer packed into `remarks`; remarks keeps only Priority/Hold Type when
+  populated). `current_rev=A` fill and `Not Set → in_work` unchanged (ruled).
+- **RAIL** (332 → 272 mapped + 60 `Decision` rows routed to decisions.csv):
+  as the 2026-07-05 run, plus `AREA` → `area` (also still copied to
+  `package` as the ruled anchor-suggestion fill). 18 expected rejects: 17
+  blank need-by + 1 literal `Ongoing` (passed through verbatim, never
+  invented). `raised_date` fill tagged in-row.
+- **decisions** (62 → 62): as the 2026-07-05 run, plus `Open Date` →
+  `open_date`, `Area` → `area`, `Source` → `source` (rationale keeps only
+  Comments). Excel serial dates converted (e.g. 46086 → 2026-03-05).
+  `decision_id` kept verbatim (`1`…`62`, the ruled convention). 10 expected
+  rejects (8 authority `None`, 2 blank rows) — `None` is deliberately NOT a
+  placeholder.
+- **risks**: scaffold still unpopulated — nothing to import; the crosswalk
+  for when populated now includes `CATEGORY` → `category`, `TYPE` →
+  `risk_type`, `RISK TREATMENT` → `treatment`, `PROB2`/`IMP3` →
+  `residual_probability`/`residual_impact`.
+- **schedule** (127 → 127): `id` → `SCH-{id}`, ISO date columns, plus
+  `row_type`/`outline_level`/`parent_id → parent_activity_id (SCH-{id})`/
+  `percent_complete`/`duration_days`/`baseline_*_date_iso` → the new columns.
+  Description no longer tagged `[Summary]`/`[Milestone]` (row_type is
+  first-class).
+- **tracker** (65 → 54 resolvable + 11 package-key data gaps): unchanged
+  §tracker mapping; `package` resolved from Package Name → MDL Package ID.
+
+Import-ready CSVs + per-run mapping report:
+`pilot-scratch/import-ready/tou-west-doe/` (gitignored, per the standing
+capture rules).
