@@ -215,7 +215,7 @@ function packageIssueRows(sx: Sx, snap: ProjectSnapshot, pkg: Package): PackageI
     ...openInterfaces.map((i) => ({
       type: 'interface' as const, recordType: 'interface_item', ref: i.ref, id: i.id, title: i.title,
       ownerId: null, needBy: i.needBy, state: i.state, overdue: overdue(i.needBy),
-      ageWd: null, overdueWd: overdueWd(i.needBy), detail: `${i.givingParty} -> ${i.receivingParty}`,
+      ageWd: null, overdueWd: overdueWd(i.needBy), detail: `${i.givingParty} → ${i.receivingParty}`,
     })),
     ...openDecisions.map((d) => ({
       type: 'decision' as const, recordType: 'decision', ref: d.ref, id: d.id, title: d.title,

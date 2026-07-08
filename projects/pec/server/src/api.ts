@@ -422,12 +422,14 @@ export function buildRouter(db: Db): Router {
   r.get('/api/projects/:pid/config', authed((c) => {
     const row = c.sx.repo.get<Record<string, unknown>>('project', null, c.sx.projectId)
     const overrides = (row.thresholds as Record<string, unknown> | null) ?? {}
+    const effective = { ...DEFAULT_THRESHOLDS, ...overrides }
     return {
       ...row,
       thresholds: {
+        ...effective,
         defaults: DEFAULT_THRESHOLDS,
         overrides,
-        effective: { ...DEFAULT_THRESHOLDS, ...overrides },
+        effective,
       },
     }
   }))
