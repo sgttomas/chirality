@@ -204,3 +204,9 @@ user — built-in filesystem/shell tools would let the model read the real
 and the D-T0-20/21 residency basis, with everything read egressing to the
 model provider. Widening THAT is a residency/mutation-basis decision — its
 own future tier-0-companion row if the owner wants it, not a default.
+
+*Dated pointer (2026-07-07, same day, later steer):* the owner directed
+exactly that widening as an opt-in profile — ruled and executed under
+tier-0 `D-T0-22` + pec-local `D-PEC-22` (owner direction verbatim in the
+D-T0-22 packet); the hermetic session above remains the default,
+unchanged.

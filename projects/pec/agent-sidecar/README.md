@@ -36,6 +36,10 @@ PEC_AGENT_PASSWORD=...         # local env only; never committed, never echoed
 PEC_AGENT_URL=...              # server-side: where the proxy finds the sidecar (default http://127.0.0.1:4812)
 PEC_AGENT_MAX_ACTS=8           # per-turn act budget (owner knob, D-PEC-21 widening direction)
 PEC_AGENT_MODEL=...            # model for the SDK engine (default: the SDK's default model)
+PEC_AGENT_SESSION=hermetic|open   # default hermetic (the D-PEC-21 session exactly as ruled);
+                               # open = the harness's built-in tools + user/project/local
+                               # setting sources load — an owner act per launch for
+                               # limit-testing (D-T0-22/D-PEC-22); disclosed in /agent/health
 ```
 
 Unconfigured credentials are non-fatal: the sidecar starts, `/agent/health`
@@ -84,11 +88,17 @@ The SDK engine runs the SDK's own agentic loop: the bounded acts are exposed
 as in-process MCP tools (nothing accept/apply-shaped exists to expose), each
 handler dispatches through the same guarded acts layer, and the model reads →
 sees results → reads again (8-act budget per turn) before answering. The
-session is hermetic (`tools: []` disables every built-in tool — the
-load-bearing restrictor; `settingSources: []` keeps `~/.claude`
+session is hermetic BY DEFAULT (`tools: []` disables every built-in tool —
+the load-bearing restrictor; `settingSources: []` keeps `~/.claude`
 settings/skills/MCP servers out; pec-tools-only `allowedTools` +
 `canUseTool` deny, belt-and-braces) — no filesystem, shell, or other tool
-reaches the model.
+reaches the model. `PEC_AGENT_SESSION=open` (owner per-launch env act,
+D-T0-22/D-PEC-22) lifts exactly those two restrictors — built-in tools and
+user/project/local setting sources load, and the model can read machine
+content as the owner's OS user, egressing to the model provider — for
+limit-testing only, never a default. The pec bounded-acts surface, act
+budget, access clamp, and human-act boundary are identical in both
+profiles.
 Conversation memory rides the REQUEST (`history: [{who, text}]`, ≤ 40 entries
 ≤ 8 KiB each, sent by the panel): the sidecar stores nothing between
 requests. The stub engine keeps its deterministic single-directive routing

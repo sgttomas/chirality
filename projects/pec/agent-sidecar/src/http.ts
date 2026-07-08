@@ -120,6 +120,8 @@ export function createSidecarHttpServer(deps: SidecarHttpDeps): Server {
           egress: deps.engine.egress,
           // D-T0-21 O-B disclosure: the active access basis is always stated
           access: deps.cfg.access,
+          // D-T0-22 disclosure: the active session profile is always stated
+          session: deps.cfg.session,
           configured: deps.configured,
           agent: me ? { name: me.name, email: me.email } : null,
         })

@@ -60,7 +60,7 @@ after(async () => { await new Promise<void>((r) => server.close(() => r())) })
 
 function cfg(over: Partial<SidecarConfig> = {}): SidecarConfig {
   return {
-    engine: 'stub', access: 'enumerated', pecBaseUrl: base, port: 0,
+    engine: 'stub', access: 'enumerated', session: 'hermetic', pecBaseUrl: base, port: 0,
     agentEmail: 'agent@t.co', agentPassword: 'secret', ...over,
   }
 }

@@ -14,12 +14,15 @@
  * expose. query() drives read → result → next act natively, bounded by an
  * in-handler act budget plus maxTurns; the conversation history rides the
  * request (port.ts HistoryEntry — the sidecar stores nothing between
- * requests). The session is hermetic: `tools: []` disables EVERY built-in
- * tool (in this SDK `allowedTools` only auto-approves, it does not restrict —
- * adversarial-verification finding), settingSources [] keeps user/project
- * settings, hooks, skills, and ~/.claude MCP servers out, and canUseTool
- * re-denies anything outside the pec whitelist — the model gets no
- * filesystem, shell, or network tool.
+ * requests). The session is hermetic BY DEFAULT: `tools: []` disables EVERY
+ * built-in tool (in this SDK `allowedTools` only auto-approves, it does not
+ * restrict — adversarial-verification finding), settingSources [] keeps
+ * user/project settings, hooks, skills, and ~/.claude MCP servers out, and
+ * canUseTool re-denies anything outside the pec whitelist — the model gets
+ * no filesystem, shell, or network tool. The owner may select the 'open'
+ * profile per launch (PEC_AGENT_SESSION=open, D-T0-22/D-PEC-22) which lifts
+ * exactly those two restrictors for limit-testing; the pec bounded-acts
+ * surface and human-act boundary are identical in both profiles.
  *
  * The dynamic imports are typed over `unknown` behind narrow structural
  * interfaces, so typecheck never depends on the SDK's types. zod is imported
@@ -29,7 +32,8 @@
  */
 
 import type { AgentEnginePort, AgentEvent, AgentTurnInput, BoundActs, ActResult } from './port.ts'
-import type { SidecarConfig } from '../config.ts'
+import type { SidecarConfig, SessionProfile } from '../config.ts'
+import { parseSessionProfile } from '../config.ts'
 
 export const SDK_ABSENT_MSG =
   "engine 'sdk' selected but @anthropic-ai/claude-agent-sdk is not installed. "
@@ -65,7 +69,14 @@ export function turnLimitsFromEnv(env: Record<string, string | undefined> = proc
   return { maxActs, maxTurns: maxActs + 4 }
 }
 
-function systemPromptOf(maxActs: number): string {
+function systemPromptOf(maxActs: number, session: SessionProfile = 'hermetic'): string {
+  const openLines = session === 'open' ? [
+    'This launch runs the OPEN session profile: the harness\'s built-in tools',
+    '(files, shell, web, and any configured settings/skills/MCP servers) are',
+    'available IN ADDITION to the pec tools, for the owner\'s limit-testing.',
+    'pec record acts still go ONLY through the pec tools, and accept, apply,',
+    'reject-of-others, and force remain human acts in Admin regardless.',
+  ] : []
   return [
     'You are the pec project agent. You act ONLY through the pec tools provided.',
     'Accept, apply, reject-of-others, and force are human acts you must direct',
@@ -77,6 +88,7 @@ function systemPromptOf(maxActs: number): string {
     `around it. You have ${maxActs} tool calls per turn; a wrong or`,
     'empty read may be followed by a better one. Finish every turn with a plain',
     'concise answer for the owner.',
+    ...openLines,
   ].join('\n')
 }
 
@@ -257,12 +269,21 @@ export function buildPecTools(
 }
 
 /**
- * The hermetic query options (exported so tests pin the shape — adversarial
- * finding: this object IS the session's capability boundary):
- * `tools: []` disables every built-in tool (allowedTools alone does NOT
- * restrict in this SDK); settingSources [] keeps the user's ~/.claude out;
- * allowedTools auto-approves exactly the pec tools; canUseTool re-denies
- * everything else, belt-and-braces.
+ * The query options (exported so tests pin the shape — adversarial finding:
+ * this object IS the session's capability boundary). Profile-keyed
+ * (D-T0-22/D-PEC-22, `PEC_AGENT_SESSION`, default 'hermetic'):
+ *
+ * - hermetic (default, the ruled D-PEC-21 shape unchanged): `tools: []`
+ *   disables every built-in tool (allowedTools alone does NOT restrict in
+ *   this SDK); settingSources [] keeps the user's ~/.claude out;
+ *   allowedTools auto-approves exactly the pec tools; canUseTool re-denies
+ *   everything else, belt-and-braces.
+ * - open (owner-selected per launch, D-T0-22 direction): the `tools`
+ *   restrictor is omitted so the SDK's built-in tool set loads;
+ *   settingSources carries the harness's normal user/project/local surface;
+ *   the pec tools stay auto-approved and canUseTool allows the rest. The
+ *   pec bounded-acts surface, budget, clamp, and human-act boundary are
+ *   IDENTICAL in both profiles.
  */
 export function buildQueryOptions(
   server: unknown,
@@ -270,18 +291,19 @@ export function buildQueryOptions(
 ): Record<string, unknown> {
   const allowed = PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`)
   const { maxActs, maxTurns } = turnLimitsFromEnv(env)
+  const session = parseSessionProfile(env.PEC_AGENT_SESSION)
   // PEC_AGENT_MODEL: owner-selected per launch (default: the SDK's default model)
   const model = env.PEC_AGENT_MODEL?.trim()
   return {
-    systemPrompt: systemPromptOf(maxActs),
+    systemPrompt: systemPromptOf(maxActs, session),
     maxTurns,
     ...(model ? { model } : {}),
-    tools: [],
+    ...(session === 'hermetic' ? { tools: [] } : {}),
     mcpServers: { pec: server },
-    settingSources: [],
+    settingSources: session === 'hermetic' ? [] : ['user', 'project', 'local'],
     allowedTools: allowed,
     canUseTool: async (toolName: string, toolInput: unknown) =>
-      allowed.includes(toolName)
+      allowed.includes(toolName) || session === 'open'
         ? { behavior: 'allow', updatedInput: toolInput }
         : { behavior: 'deny', message: `outside the pec act surface: ${toolName}` },
   }
@@ -303,6 +325,7 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
   }
   if (!process.env.ANTHROPIC_API_KEY) throw new Error(KEY_ABSENT_MSG)
   turnLimitsFromEnv() // invalid PEC_AGENT_MAX_ACTS fails at startup, never mid-turn
+  parseSessionProfile(process.env.PEC_AGENT_SESSION) // invalid PEC_AGENT_SESSION likewise
 
   const sdk = mod as SdkModuleLike
   const z = (zmod as { z?: ZodLike }).z
