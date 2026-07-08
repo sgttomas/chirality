@@ -19,6 +19,16 @@ Owner ruling of record (verbatim, 2026-07-05, in-session, Ryan Tufts):
 > rides my 2026-07-05 basis and a materially new data source needs fresh confirmation of
 > capture limits.
 
+## v1.3 (2026-07-07)
+
+Owner adoption of B-2 part 1 of the workflow-simplification brief
+(`_DomainEngines/proposals/pec/BRIEF_2026-07-07_workflow_simplification.md`):
+the standing-rules text superseded in-file by v1.2 step 5 is replaced by a
+dated note, and step 5's discharged "until D-PEC-15 rules a convention"
+condition now points at the 2026-07-07 ruling (interim rule stands). B-2
+part 2 was declined — the v1.1 per-drop loop below remains current. No
+import behavior changed.
+
 ## The loop (per file drop)
 
 1. **Drop.** Owner places the file under
@@ -44,9 +54,10 @@ Owner ruling of record (verbatim, 2026-07-05, in-session, Ryan Tufts):
 
 - `force=true` never without a separate owner ruling; conflicts are reported,
   not overridden.
-- **Never re-import a full RAIL file** — unanchored rows duplicate as intake
-  (seam behavior, evidence-03). Re-import only rejected/changed rows, or rows
-  whose `item_id` matches an existing work-item/hold/interface ref.
+- *(v1.3, 2026-07-07)* The v1.1 "never re-import a full RAIL file" rule that
+  stood here was superseded in-file by v1.2 step 5 (below), which governs RAIL
+  re-imports; the superseded text is in git history. The v1.1 per-drop loop
+  above stays current at owner direction (2026-07-07, B-2 part 2 declined).
 - MDL and decisions re-imports are evidenced idempotent by their ID columns.
   Risks and schedule are code-implied idempotent but not yet evidenced as
   re-imports; report that status before proposing a whole-file re-import.
@@ -89,8 +100,9 @@ rehearsed: `_DomainEngines/pec/PEC_2026-07-05_DPEC10-rehearsal-01/`):
    full RAIL re-import updates un-dispositioned intake items in place (no
    duplication) and reports a changed statement as an OM-3 conflict; rows
    whose intake items are already **dispositioned** re-land as NEW intake
-   items — until D-PEC-15 rules a convention, drop dispositioned `item_id`s
-   from the weekly export or expect and triage the re-landed rows.
+   items — drop dispositioned `item_id`s from the weekly export or expect and
+   triage the re-landed rows. *(Standing per the 2026-07-07 D-PEC-15 ruling —
+   indefinitely postponed; the interim rule stands.)*
 6. **Capture.** Evidence per the L3-evidence convention when the run is a
    governed rung; routine weekly cycles log through the app's own history —
    the append-only record separates agent acts from the owner's by person.

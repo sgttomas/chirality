@@ -1,7 +1,8 @@
-# CANDIDATE brief — PEC workflow simplification (under the 2026-07-07 owner priority)
+# ADOPTED brief — PEC workflow simplification (under the 2026-07-07 owner priority)
 
-> **Epistemic status: CANDIDATE brief — not authority; adoption is the owner's
-> act (K-AUTH-1; D-GOV-04).** Prepared 2026-07-07 by the PEC work loop under
+> **Epistemic status: ADOPTED brief (per-item, 2026-07-07 — see the Human
+> ruling section); prepared as CANDIDATE. Adoption was the owner's act
+> (K-AUTH-1; D-GOV-04).** Prepared 2026-07-07 by the PEC work loop under
 > the standing plan's 2026-07-07 owner-intent addendum (owner verbatim,
 > `_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 51): *"My intention now is to
 > simplify workflows and reinforce only reporting on what is factual and has a
@@ -165,6 +166,19 @@ flip to ADOPTED with the ruling verbatim; checks per the docs-only precedent
 belt-and-braces not triggered — no pec source touched). Silence or decline
 parks the item(s) with nothing to undo.
 
-## Human ruling
+## Human ruling (2026-07-07)
 
-*(open — the owner's act)*
+Owner ruling of record (verbatim, 2026-07-07, in-session, Ryan Tufts):
+
+> B-1: approved.
+> B-2, part-1: approved.
+> B-2, part-2: no keep the per-drop loop.
+> B-3: approved.
+
+Recorded interpretation: B-1, B-2 part 1, and B-3 ADOPTED and executed
+doc-only per the on-adoption mechanism above
+(`projects/pec/execution/_Coordination/LAUNCH_RUNBOOK.md`;
+`FILE_DROP_RUNBOOK.md` v1.3 with the v1.1 per-drop loop retained;
+`projects/pec/execution/_Coordination/REPORT_BASIS.md`). B-2 part 2
+DECLINED — the v1.1 per-drop loop stays current. Nothing else was authorized
+by this ruling.
