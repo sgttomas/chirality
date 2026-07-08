@@ -18,7 +18,22 @@ export interface AgentProxyTarget {
 /** 6 MiB payload cap (attachment ≤ the 5 MiB RV-14 proposal cap rides inside) */
 const MAX_PAYLOAD_BYTES = 6 * 1024 * 1024
 const STATUS_TIMEOUT_MS = 800
-const MESSAGE_TIMEOUT_MS = 60_000
+/** D-PEC-21 item 4: agentic multi-act turns outlive the old 60 s constant */
+const DEFAULT_MESSAGE_TIMEOUT_MS = 300_000
+
+/**
+ * Message timeout: PEC_AGENT_MESSAGE_TIMEOUT_MS (default 300 000). Read
+ * per-request like agentTargetFromEnv, so tests can repoint it.
+ */
+export function messageTimeoutFromEnv(env: Record<string, string | undefined> = process.env): number {
+  const raw = env.PEC_AGENT_MESSAGE_TIMEOUT_MS?.trim()
+  if (!raw) return DEFAULT_MESSAGE_TIMEOUT_MS
+  const ms = Number(raw)
+  if (!Number.isInteger(ms) || ms <= 0) {
+    throw new AppError(500, 'AGENT_MISCONFIGURED', 'PEC_AGENT_MESSAGE_TIMEOUT_MS must be a positive integer (milliseconds)')
+  }
+  return ms
+}
 
 /**
  * Where the proxy finds the sidecar: PEC_AGENT_URL (must be loopback) or
@@ -102,5 +117,5 @@ export function agentStatus(target: AgentProxyTarget): Promise<unknown> {
 
 /** POST /agent/messages — JSON body only; the caller injects the server-side pid */
 export function agentMessage(target: AgentProxyTarget, payload: unknown): Promise<unknown> {
-  return forward(target, 'POST', '/agent/messages', payload, MESSAGE_TIMEOUT_MS)
+  return forward(target, 'POST', '/agent/messages', payload, messageTimeoutFromEnv())
 }

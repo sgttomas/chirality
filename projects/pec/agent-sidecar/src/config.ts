@@ -16,10 +16,31 @@ export type EngineName = 'stub' | 'sdk'
  */
 export type AccessBasis = 'enumerated' | 'broad'
 
+/**
+ * SDK session profile (D-T0-22 owner direction, dual profile): 'hermetic'
+ * (default) — the D-PEC-21 session exactly as ruled (`tools: []`,
+ * `settingSources: []`); 'open' — the harness's built-in tools and setting
+ * sources load (owner-selected per launch for limit-testing; the pec
+ * human-act boundary and D-T0-21 access clamp are unchanged in either
+ * profile).
+ */
+export type SessionProfile = 'hermetic' | 'open'
+
+/** Shared validator — config load and SDK-engine startup both refuse invalid values. */
+export function parseSessionProfile(raw: string | undefined): SessionProfile {
+  const v = (raw ?? 'hermetic').trim()
+  if (v !== 'hermetic' && v !== 'open') {
+    throw new Error(`PEC_AGENT_SESSION must be 'hermetic' or 'open' — got '${v}'`)
+  }
+  return v
+}
+
 export interface SidecarConfig {
   engine: EngineName
   /** D-T0-21 O-B access basis; default 'enumerated' — never widened silently */
   access: AccessBasis
+  /** D-T0-22 session profile; default 'hermetic' — never widened silently */
+  session: SessionProfile
   /** pec server base URL — loopback only (127.0.0.1 / ::1 / localhost). */
   pecBaseUrl: string
   /** port the sidecar's own loopback HTTP surface listens on */
@@ -56,6 +77,7 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
   if (accessRaw !== 'enumerated' && accessRaw !== 'broad') {
     throw new Error(`PEC_AGENT_ACCESS must be 'enumerated' or 'broad' — got '${accessRaw}'`)
   }
+  const session = parseSessionProfile(env.PEC_AGENT_SESSION)
   const pecBaseUrl = (env.PEC_BASE_URL ?? 'http://127.0.0.1:4810').trim().replace(/\/+$/, '')
   assertLoopbackBaseUrl(pecBaseUrl)
   const port = Number(env.PEC_AGENT_PORT ?? 4812)
@@ -64,5 +86,5 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
   }
   const agentEmail = env.PEC_AGENT_EMAIL?.trim() || null
   const agentPassword = env.PEC_AGENT_PASSWORD || null
-  return { engine: engineRaw, access: accessRaw, pecBaseUrl, port, agentEmail, agentPassword }
+  return { engine: engineRaw, access: accessRaw, session, pecBaseUrl, port, agentEmail, agentPassword }
 }

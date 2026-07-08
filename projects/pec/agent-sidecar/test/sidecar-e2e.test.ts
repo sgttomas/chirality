@@ -49,7 +49,7 @@ before(async () => {
       .run(env.projectId, agentPersonId, 'coordinator')
   })
   sidecar = await startSidecar({
-    engine: 'stub', access: 'enumerated', pecBaseUrl: env.base, port: 0,
+    engine: 'stub', access: 'enumerated', session: 'hermetic', pecBaseUrl: env.base, port: 0,
     agentEmail: AGENT_EMAIL, agentPassword: AGENT_PASSWORD,
   })
 })
@@ -188,7 +188,7 @@ test('RBAC pin: the agent\'s direct accept attempt is refused 403 by the server 
 
 test('unconfigured sidecar starts, reports unconfigured, and refuses messages with 503 AGENT_NOT_CONFIGURED', async () => {
   const bare = await startSidecar({
-    engine: 'stub', access: 'enumerated', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null,
+    engine: 'stub', access: 'enumerated', session: 'hermetic', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null,
   })
   try {
     const health = await fetch(`http://127.0.0.1:${bare.port}/agent/health`)
@@ -215,10 +215,41 @@ test('engine sdk without its prerequisites fails at startup with a documented dr
   delete process.env.ANTHROPIC_API_KEY
   try {
     await assert.rejects(
-      startSidecar({ engine: 'sdk', access: 'enumerated', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null }),
+      startSidecar({ engine: 'sdk', access: 'enumerated', session: 'hermetic', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null }),
       (e: unknown) => e instanceof Error && (e.message === SDK_ABSENT_MSG || e.message === KEY_ABSENT_MSG),
     )
   } finally {
     if (savedKey !== undefined) process.env.ANTHROPIC_API_KEY = savedKey
   }
+})
+
+test('history validation (D-PEC-21): shape, entry cap, and per-entry byte cap are enforced; valid history passes', async () => {
+  const post = (body: unknown) => fetch(`http://127.0.0.1:${sidecar.port}/agent/messages`, {
+    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body),
+  })
+  const badCases: Array<[string, unknown]> = [
+    ['non-array', { pid: env.projectId, message: 'status', history: 'earlier' }],
+    ['wrong who', { pid: env.projectId, message: 'status', history: [{ who: 'model', text: 'hi' }] }],
+    ['missing text', { pid: env.projectId, message: 'status', history: [{ who: 'you' }] }],
+    ['over the entry cap', {
+      pid: env.projectId, message: 'status',
+      history: Array.from({ length: 41 }, () => ({ who: 'you', text: 'x' })),
+    }],
+    ['oversized entry', {
+      pid: env.projectId, message: 'status',
+      history: [{ who: 'you', text: 'x'.repeat(8 * 1024 + 1) }],
+    }],
+  ]
+  for (const [label, body] of badCases) {
+    const res = await post(body)
+    assert.equal(res.status, 400, `history case must be refused: ${label}`)
+    const parsed = await res.json() as { error: { code: string } }
+    assert.equal(parsed.error.code, 'BAD_REQUEST', label)
+  }
+  // valid history passes validation end to end (the stub ignores it by design — disclosed in D-PEC-21)
+  const ok = await post({
+    pid: env.projectId, message: 'status',
+    history: [{ who: 'you', text: 'earlier question' }, { who: 'agent', text: '[read.register] earlier read' }],
+  })
+  assert.equal(ok.status, 200)
 })
