@@ -62,12 +62,44 @@ spine, refusing invented data), and the Log becomes **a dashboard, not a
 heavier task manager**. D-PEC-14/15/19 stay postponed; nothing here reopens
 import-refinement or the tracker edit path as objectives.
 
+*Reconciliation note (2026-07-08):* the 2026-07-07 direction that "importing
+should be indefinitely postponed" (Receipt 51) is **selectively narrowed** by
+the newer 2026-07-08 reporting-first direction (a newer specific steer governs
+— LOOP_INIT §7, the D-PEC-23 precedent): the import lane reactivates **only**
+as the agent-adaptive, proposal-gated document-upload path (the
+D-PEC-08/D-PEC-22 pattern: agent maps → import proposal → human accept/apply;
+no direct writes). The D-PEC-14/15/19 rulings otherwise stand — no
+live-evidence obligation reopens, the FILE_DROP_RUNBOOK v1.2 step-5 interim
+re-import rule stands, and the tracker stays import-owned/read-only.
+
 **Synthesis direction (2026-07-08, owner launcher steer — this plan's mandate,
 verbatim in Receipt 57):** the owner directed that the two candidate proposals
 be read in full, the strongest of each be taken, and the result be authored as
 the newest-sorting `WORKPLAN_*.md` superseding `WORKPLAN_2026-07-04_pec_loop.md`,
 with protocol/fences/gate carried unchanged, conflicts decided on the merits
 and recorded, and each source tranche remaining future owner-ruled.
+
+**Addendum (2026-07-08, owner direction of record — verbatim in the adopting
+receipt (Receipt 60); this phase's north star):**
+
+> "Good.  Now My intention for this continuing development phase is to
+> produce an effective reporting tool for project status, according to
+> issues tracked at a package level and completeness tracked at a
+> deliverable level.  I don't need this to be task management or planning
+> or scheduling platform at this time.  It can possibly grow into those
+> functions but to begin with I want to be able to upload documents that
+> allow the issues and status to be updated, and the for the agent to
+> produce reports (both standard reports and novel user-defined)."
+
+With four same-day owner clarification selections: (1) defer D-PEC-28/28b,
+keep the F2 fix on an earlier tranche; (2) upload = agent-adaptive
+structured files via the proposal-gated D-PEC-08/22 pattern; (3) reporting
+= drill-backed exported documents from Explain-shaped server data,
+user-defined via agent prompt; (4) this landed as a reviewed amendment
+(`_DomainEngines/proposals/pec/PLAN_AMENDMENT_2026-07-08_reporting_first.md`).
+The UI/UX redesign continues **in service of** reporting-first: the drill
+spine, factual-correctness fixes, and package/deliverable surfaces are what
+make reports interrogable.
 
 ## Provenance (pointer index — the full design detail lives here)
 
@@ -273,6 +305,13 @@ rows), so the highest-value redesign is largely UI re-wiring and re-composition
 10. **Preserve the guarantees** enumerated in the fences corollary above; a
     redesign never regresses them.
 
+*Scope note (2026-07-08 direction):* task management, planning, and
+scheduling functions are **explicitly out of scope for this phase**. The
+owner's direction allows that the tool "can possibly grow into those
+functions" — that growth is a possible future phase behind its own owner
+direction, and principle 6 ("Dashboards, not task managers") governs until
+then.
+
 ## Data-readiness tiers (honest cost basis for sequencing)
 
 - **Tier U — UI only** (zero new deps, no server change): drill re-wiring,
@@ -311,25 +350,42 @@ dependencies, verification plan, and the owner gate. Effort S/M/L/XL.
 | P0 | **D-PEC-25 · Drill-to-source spine** | Shared `<RecordRef>` rendering `.reflink` + routing via `refRoute` with `?ref=`; fix `issueHref` misroute; wire Log rows, package cockpit + "Needs the lead", deliverable-detail cross-record tables, My Week waiting/notifications, Plan doc-nos, Registers reference cells; graceful null-route handling (`work_item`/drawer-only records — completed by D-PEC-33) | `web/src/shared.tsx`, `web/src/pages/*` | D-PEC-24 | U | M |
 | P0 | **D-PEC-26 · Admin → operations console** | Route-tabbed Admin (Registers `registers/:tab` pattern): Import (proposals-first with import-history feed; direct/force import demoted behind a labeled, confirm-gated danger boundary) · Exports & data exchange (grouped, described) · Thresholds (grouped by signal family, warn/escalate adjacency, "drives: <signal>" links, validation in client AND server PUT, override-vs-default visibility) · People (real role pills + role→capability matrix; rename honestly to "People directory" unless slate item 2 rules the assignment route) · Activity/system evidence (audit trail via `HistoryTrail` + app/version/DB-basis notice). Gate write forms on server `can/:action` probes; replace `window.prompt` with Drawer forms | `web/src/pages/Admin.tsx`, `web/src/main.tsx`; `server/src/api.ts` (validation, overrides) | D-PEC-24/25 | U+S (role route = O) | L |
 | P0 | **D-PEC-27 · Action & Hold Log → issue dashboard** | Server `logSummaryView` emitting `Explain`-shaped aggregates; KPI band (Open-by-type · Overdue · Aging>5wd · Untriaged intake + oldest · Active holds — each click-to-explain); pure-CSS aging strip (click-to-filter); group-by none/owner/package/cause over loaded rows; quick-view URL presets (Overdue · Aging>5 · Holds-by-cause · Untriaged · Mine — peer's saved-view vocabulary, zero-infra); color-typed Type column; render `state`, drop redundant Anchor column; default sort overdue-first; widen view to decisions + risks; fix hold `packageId` (via widened attribution as ruled) + interface `ageWd`; area filter becomes a select. Triage disposition workflow retained unchanged, surfaced as a queue KPI deep-link; split-pane row workbench only if slate item 3 rules it in. No board, no inline status edits, no bulk mutation | `server/src/services/views.ts`, `server/src/api.ts`, `web/src/pages/LogHome.tsx`, `web/src/shared.tsx` | D-PEC-24/25 | U+S | L |
-| P1 | **D-PEC-28 · Plan → planning control board** | Readiness header (week, commit status, planned hours, capacity coverage, unplanned eligible records, schedule coverage, blockers); planning intake/backlog rail (eligible-but-unplanned records grouped by source/owner/package/due; empty lanes route here); click-to-explain on every capacity % and lookahead cell (server Explain over existing `planItemIds`/detail); discipline × week capacity heatmap with per-cell drill; native week/discipline pickers; horizon rollups + "fits capacity?" chip; wire the existing PUT for plan-item edit + add remove; confirm + preview before raise-risk (honest "may create"); week-selectable commit with readiness checklist (what stamps into My Week, what's excluded); "needs my review" shift surface with reject-reason; lookahead legend, distinct check/work, sticky first column, current-week highlight | `web/src/pages/Plan.tsx`, `web/src/shared.tsx`; `server/src/services/plan.ts`, `server/src/api.ts` | D-PEC-24/25 | U+S | L |
-| P1 | **D-PEC-28b · Schedule WBS view (optional)** | Join imported schedule WBS rows into `/plan`; read-first CSS tree-table / week-grid (baseline vs actual, % complete, variance-days). No Gantt library, no critical path, no drag-to-mutate | `server/src/services/plan.ts`, `web/src/pages/Plan.tsx`, `web/src/shared.tsx` | D-PEC-28 | S | XL |
+| P0 | **D-PEC-34 · Plan factual-correctness fix (F2) — minimal** | Raise-risk stops fabricating `probability: 4, impact: 3` (Plan.tsx:65): create call sends no scores unless a human enters them (nullable per core/src/types.ts:474-475); confirm drawer previews the week/discipline/load basis verbatim and says "may create"; duplicate-guard per spec §12 F2 acceptance via the existing `GET /api/projects/:pid/risks` (api.ts:275, already client-consumed at Registers.tsx:629 — read, not a fence write). No other Plan change | `web/src/pages/Plan.tsx` | T0 | U | S |
 | P1 | **D-PEC-29 · Packages/Deliverables issue linkage** | Risks surfaced on deliverable detail (server: add to `openItems` — data exists); register-level issue context (issue mix / worst-issue chips beside the count); breadcrumbs both detail pages; MDL Package cell → link/filter; cockpit group toggles + count chips; optional Related-records panel from server link edges | `server/src/services/views.ts`, `web/src/pages/{Packages,Deliverables}.tsx`, `web/src/shared.tsx` | D-PEC-25 | U+S | M |
 | P2 | **D-PEC-30 · Registers consistency** | Unify row-actionability signal; `role="tablist"` + read-only tab grouping/marking; overflow container + sticky Ref column on wide registers; withdraw `window.prompt` → Drawer; Schedule tab parity (agent context, deep-link, highlight); optional per-tab summary strip; fresh docstring | `web/src/pages/Registers.tsx`, `web/src/shared.tsx` | D-PEC-24/25 | U | M |
 | P2 | **D-PEC-31 · Overview & My Week polish** | Drill-fixes; affirmative all-clear empty states; consistent CSV export; sponsor-brief as a real labeled action, not a KPI look-alike; unify severity vocabulary (green/amber/red); remove dead import; (owner) decisions/approvals-owed on My Week | `web/src/pages/{Overview,MyWeek}.tsx` | D-PEC-25 | U | S–M |
+| PR | **D-PEC-35 · Upload lane — agent-adaptive structured-file ingestion** | Extend D-PEC-08/22: agent accepts registers/MDLs/trackers in arbitrary structured schemas (CSV/XLSX-derived/tabular), proposes a schema mapping to the §16/tracker contracts (extending `IMPORT_MAPPING.md` per FILE_DROP_RUNBOOK step 2), files an import proposal; human accept/apply always; **no direct writes, ever**; unmappable rows are questions or rejects with reasons, never guesses. Runbook rules (RV-7 approval-follows-proposal, v1.2 step-5 re-import interim rule) carry unchanged | `projects/pec/agent-sidecar/**`, `execution/_Coordination/IMPORT_TEMPLATES/**`; `server/src/api.ts` only if a new upload endpoint is needed (else none) | D-PEC-08/22 (landed); D-PEC-26 improves the accept/apply surface but is not a hard dep | S | M |
+| PR | **D-PEC-36 · Reporting lane — standard report set** | Agent composes drill-backed **exported documents** from Explain-shaped server data (spec E-rows + P1/P7/P6 as landed): weekly project status (overviewView basis), package issue summary (packageDetailView.issues[] / logSummaryView), deliverable completeness/MDL status (deliverablesView + openItems/facts) — the owner's three named examples. Every figure carries its rule-id/register basis per REPORT_BASIS.md ("names its basis by pointer"); **factual-or-absent** — reports contain only what records support; export-what-is-displayed / no-invented-data guarantees apply; export format/egress stays inside the profile's ruled `data_residency` basis (F-PEC-3) | `projects/pec/agent-sidecar/**`; `server/src/services/views.ts` + `server/src/api.ts` only for named read-only report payloads | D-PEC-25 (drill-backs); D-PEC-27 enriches the issue summary (soft) | S | M |
+| PR | **D-PEC-37 · Reporting lane — user-defined reports** | Novel reports via a prompt to the agent (the D-PEC-21 agentic-turn-loop vehicle, already RULED O-A: read acts → compose → export); same factual-or-absent constraint — a figure the records don't support is absent and said to be absent, never synthesized; in-app viewing of reports is explicitly **optional later**, not in scope | `projects/pec/agent-sidecar/**` | D-PEC-36 (report composition conventions), D-PEC-21 (landed) | S+O (any new export egress route is an owner call) | M |
 | P3 | **D-PEC-32 · Issue-model completeness (owner-gated)** | `Risk.log` field + migration + register/visibility parity; interface/decision deliverable FKs; widen `isInPackage` beyond 3 of 10 hold target types | `core/src/types.ts`, `server/src/*`, `web/src/*` | D-PEC-27/29 | M | L |
 | P3 | **D-PEC-33 · Deep-linkable drawer records** | Stable URLs (e.g. `?open=check:123`) for check/work_item/comment/revision; completes the traceability the spine starts | `web/src/shared.tsx`, `web/src/pages/*` | D-PEC-25 | M | M |
 
-**Sequencing rationale.** D-PEC-24/25 are force-multipliers — nearly every page
-defect is an instance of "value doesn't drill" or "control isn't accessible" —
-and both touch `shared.tsx`, so they run **sequentially, never in parallel**
-(as does every later tranche that touches `shared.tsx`: 27/28/29/30). The
-owner's three named pains (Admin, Log, Plan) come next as P0/P1. Linkage,
-register, and overview polish (P2) inherit the spine cheaply. Model
-completeness (P3) is last and owner-gated: it is the only schema-migration work
-and the one place the "factual basis" value needs an explicit owner call. Each
-tranche is independently shippable behind its own PR; the peer proposal's
-regression-evidence pass rides every tranche as the step-4 visual check rather
-than landing as a separate tranche.
+**Sequencing rationale (reporting-first).** Default order:
+**24 → 25 → 27 → 29 → 26 → 30/31 → upload/reporting lanes (35/36/37) as
+their packets are ruled → deferred planning phase (28/28b) last**, with
+**D-PEC-34** riding early in parallel (Plan.tsx only — no `shared.tsx`
+contention) so no surface reports invented data. 24/25 stay first as
+force-multipliers; 27 and 29 rise because issues-at-package-level and
+completeness-at-deliverable-level are the direction's two named axes; 26
+follows (Admin is the upload lane's accept/apply surface and carries F3);
+30/31 inherit the spine cheaply and polish the report drill targets. The
+`shared.tsx` constraint is unchanged: tranches touching it (24/25/27/29/30)
+run sequentially, never in parallel. P3 (32/33) remains owner-gated where
+it sits; F1 stays on 27, F3 on 26, F2 on 34. Each tranche is independently
+shippable behind its own PR; the peer proposal's regression-evidence pass
+rides every tranche as the step-4 visual check rather than landing as a
+separate tranche.
+
+**Deferred (planning-phase) — owner clarification 1, 2026-07-08.**
+D-PEC-28 (Plan → planning control board) and D-PEC-28b (Schedule WBS view)
+are deferred, not deleted: the direction of record needs a reporting tool,
+not a planning/scheduling platform, "at this time." Their full scope stays
+specified in the T0 design spec (§8, §11B P5/P9/P10) and reactivates only
+by owner direction, as the last phase. The Plan page is otherwise left
+as-is, except fix F2, which is re-homed to **D-PEC-34** (above) so no
+surface reports invented data while D-PEC-28 sleeps. Spec projections P5
+and P9/P10 sleep with their packets; spec §3 M3.11 and §5 M5.8 cell-explains
+("once D-PEC-28 lands") defer accordingly.
 
 ## Open owner decisions (the redesign slate — rule any time; none defaulted)
 
@@ -343,9 +399,10 @@ than landing as a separate tranche.
    in D-PEC-27 as specified, and does a split-pane row workbench (peer
    proposal) ride it or stay out as task-manager creep? *Recommend: full band,
    workbench out for now — drill-through covers it.*
-4. **Plan schedule view (D-PEC-28b)** — pursue the read-first WBS view from the
-   imported schedule now, later, or not? (Highest-value reuse of unrendered
-   imported data, but XL.)
+4. **Plan schedule view (D-PEC-28b)** — ~~open~~ **ANSWERED 2026-07-08:
+   effectively ruled "defer"** by owner clarification 1 ("Defer both; keep
+   F2 fix") under the reporting-first direction; lives in the Deferred
+   (planning-phase) section.
 5. **Issue-model completeness (D-PEC-32)** — pursue the schema migration, or
    accept the documented under-counts? *The one item touching data shape —
    squarely an owner call.*
