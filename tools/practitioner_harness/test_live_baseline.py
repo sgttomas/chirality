@@ -138,6 +138,12 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # precedent) — so NO new ABS_PATH_IN_PROJECT_SURFACE hit; the baseline
     # holds at 28. (An earlier draft left the raw absolute path in and pinned
     # 29; normalizing to `~` restored the baseline.)
+    # WARN 5->6 on 2026-07-08: the superseded PEC workplan was retired into
+    # `_DomainEngines/pec/.archive/` at owner direction (Receipt 58), so the
+    # ruled D-T0-15 packet's historical citation of
+    # `_DomainEngines/pec/WORKPLAN_2026-07-04_pec_loop.md` no longer resolves
+    # — retained unedited in the packet per the D-T0-11/D-T0-12 historical-ref
+    # precedent above; the archived copy carries the forward pointer.
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
@@ -145,7 +151,7 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
             "INFO": 15,
         "NOT_APPLICABLE": 2,
         "REVIEW": 28,
-        "WARN": 5,
+        "WARN": 6,
     }
 
 
