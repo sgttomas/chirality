@@ -6,7 +6,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { api } from './api.ts'
 import type { Explain, Health, Me, ProjectRef } from './api.ts'
 
@@ -163,29 +163,96 @@ export function HealthBadge({ explain, label }: { explain: Explain<Health> | Exp
 export function KpiCard({ label, value, explain }: { label: string; value: ReactNode; explain: Explain }): JSX.Element {
   const show = useExplain()
   return (
-    <div className="card kpi" onClick={() => show(label, explain)} title={`${explain.ruleId} — click to drill down`}>
+    <button className="card kpi" onClick={() => show(label, explain)} title={`${explain.ruleId} - drill down`}>
       <b>{value}</b>
       <span>{label}</span>
-    </div>
+    </button>
   )
 }
 
 // ---------- drawer ----------
 
 export function Drawer({ title, onClose, children }: { title: ReactNode; onClose(): void; children: ReactNode }): JSX.Element {
+  const drawerRef = useRef<HTMLElement | null>(null)
+  const previouslyFocused = useRef<HTMLElement | null>(null)
+
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    previouslyFocused.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',')
+    const focusFirst = () => {
+      const first = drawerRef.current?.querySelector<HTMLElement>(focusableSelector)
+      ;(first ?? drawerRef.current)?.focus()
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
+        return
+      }
+      if (e.key !== 'Tab' || !drawerRef.current) return
+      const focusable = Array.from(drawerRef.current.querySelectorAll<HTMLElement>(focusableSelector))
+        .filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null)
+      if (focusable.length === 0) {
+        e.preventDefault()
+        drawerRef.current.focus()
+        return
+      }
+      const first = focusable[0]!
+      const last = focusable[focusable.length - 1]!
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    window.setTimeout(focusFirst, 0)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      previouslyFocused.current?.focus()
+    }
   }, [onClose])
   return (
     <>
       <div className="drawer-veil" onClick={onClose} />
-      <aside className="drawer">
+      <aside
+        ref={drawerRef}
+        className="drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="drawer-title"
+        tabIndex={-1}
+      >
         <h1>{title}<button className="closex" onClick={onClose} aria-label="close">✕</button></h1>
+        <span id="drawer-title" className="sr-only">{textOf(title)}</span>
         {children}
       </aside>
     </>
+  )
+}
+
+export function Breadcrumb({ items }: {
+  items: Array<{ label: ReactNode; to?: string }>
+}): JSX.Element {
+  return (
+    <nav className="breadcrumb" aria-label="breadcrumb">
+      <ol>
+        {items.map((item, i) => (
+          <li key={i} aria-current={i === items.length - 1 ? 'page' : undefined}>
+            {item.to && i !== items.length - 1 ? <Link to={item.to}>{item.label}</Link> : <span>{item.label}</span>}
+          </li>
+        ))}
+      </ol>
+    </nav>
   )
 }
 

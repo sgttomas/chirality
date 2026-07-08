@@ -6,7 +6,7 @@
 import { StrictMode, useCallback, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
-  BrowserRouter, NavLink, Navigate, Outlet, Route, Routes, useNavigate, useParams,
+  BrowserRouter, NavLink, Navigate, Outlet, Route, Routes, useLocation, useNavigate, useParams,
 } from 'react-router-dom'
 import './styles.css'
 import { api, p } from './api.ts'
@@ -55,6 +55,7 @@ function LoginPage({ onLogin }: { onLogin(me: Me, projects: ProjectRef[]): void 
 function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onLogout(): void }): JSX.Element {
   const { pid } = useParams()
   const navigate = useNavigate()
+  const location = useLocation()
   const [people, setPeople] = useState<AppContextPeople>([])
   const [refreshKey, setRefreshKey] = useState(0)
   const [toastMsg, setToastMsg] = useState<string | null>(null)
@@ -80,6 +81,11 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
 
   if (!project) return <Navigate to="/" replace />
 
+  const switchProject = (nextProjectId: string) => {
+    const nextPath = location.pathname.replace(/^\/p\/[^/]+/, `/p/${nextProjectId}`)
+    navigate(`${nextPath}${location.search}${location.hash}`)
+  }
+
   return (
     <AppContext.Provider value={{
       me, projects, pid: projectId, people,
@@ -93,17 +99,23 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
             <div className="brand">
               PEC<small>{project.code} — {project.name}</small>
             </div>
-            <nav>
-              <NavLink to={`/p/${projectId}/overview`}>Overview</NavLink>
-              <NavLink to={`/p/${projectId}/packages`}>Packages</NavLink>
-              <NavLink to={`/p/${projectId}/deliverables`}>Deliverables</NavLink>
-              <NavLink to={`/p/${projectId}/plan`}>Plan</NavLink>
-              <NavLink to={`/p/${projectId}/log`}>Action &amp; Hold Log</NavLink>
-              <NavLink to={`/p/${projectId}/my-week`}>
-                My Week{unread > 0 && <span className="notif-dot">{unread}</span>}
-              </NavLink>
-              <NavLink to={`/p/${projectId}/registers`}>Registers</NavLink>
-              <NavLink to={`/p/${projectId}/admin`}>Admin</NavLink>
+            <nav aria-label="Primary">
+              <div className="nav-group">
+                <div className="nav-label">Work lenses</div>
+                <NavLink to={`/p/${projectId}/overview`}>Overview</NavLink>
+                <NavLink to={`/p/${projectId}/packages`}>Packages</NavLink>
+                <NavLink to={`/p/${projectId}/deliverables`}>Deliverables</NavLink>
+                <NavLink to={`/p/${projectId}/plan`}>Plan</NavLink>
+                <NavLink to={`/p/${projectId}/log`}>Action &amp; Hold Log</NavLink>
+                <NavLink to={`/p/${projectId}/my-week`}>
+                  My Week{unread > 0 && <span className="notif-dot">{unread}</span>}
+                </NavLink>
+              </div>
+              <div className="nav-group nav-group-controls">
+                <div className="nav-label">Control surfaces</div>
+                <NavLink to={`/p/${projectId}/registers`}>Registers</NavLink>
+                <NavLink to={`/p/${projectId}/admin`}>Admin</NavLink>
+              </div>
             </nav>
             <div className="grow" />
             <div className="userbox">
@@ -111,13 +123,13 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
               {projects.length > 1 && (
                 <select
                   value={projectId}
-                  onChange={(e) => navigate(`/p/${e.target.value}/overview`)}
-                  style={{ width: '100%', marginTop: '.3rem' }}
+                  onChange={(e) => switchProject(e.target.value)}
+                  aria-label="Project"
                 >
                   {projects.map((pr) => <option key={pr.id} value={pr.id}>{pr.code}</option>)}
                 </select>
               )}
-              <a href="#" onClick={(e) => { e.preventDefault(); onLogout() }} style={{ color: '#9fb3c4' }}>Sign out</a>
+              <button className="signout" type="button" onClick={onLogout}>Sign out</button>
             </div>
           </aside>
           <main className="main">
