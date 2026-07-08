@@ -93,6 +93,19 @@ the owner's per-launch env act at his screen.
 Single revert of the tranche commit; without `PEC_AGENT_SESSION` set the
 sidecar is hermetic-default and behaviorally identical to pre-tranche.
 
+## Live exercise (2026-07-07, dated evidence note)
+
+The owner's first `open` launch ran the same evening (demo instance,
+`broad` basis): health disclosed `"session":"open"`; a built-in disk read
+succeeded; the boundary probe refused identically to the hermetic launch;
+and an owner limit-test (62-row non-canonical `.xlsx` outside the repo →
+§16 `decisions` mapping with elicited confirmations) demonstrated the
+widened capability before hitting the default harness ceilings
+(proxy 300 s timeout / `maxTurns` 12) on the final build-and-propose turn
+— both ceilings are existing per-launch owner knobs; no new mechanism
+implied. Evidence: `_DomainEngines/pec/PEC_2026-07-07_DPEC22-evidence-01/`
+(owner-capture provenance in its MANIFEST).
+
 ## Human ruling
 
 **RULED — 2026-07-07** by the owner direction quoted verbatim in
