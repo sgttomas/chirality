@@ -7,7 +7,8 @@
 > (LOOP_INIT §2) for the redesign phase: it carries new owner intent + a
 > roadmap; it inherits the loop **protocol, fences F-PEC-1..4, and gate**
 > unchanged from `WORKPLAN_2026-07-04_pec_loop.md` and `LOOP_INIT.md`. On owner
-> adoption it can be promoted to `_DomainEngines/pec/WORKPLAN_2026-07-08_pec_uiux_redesign.md`.
+> adoption it can be promoted into `_DomainEngines/pec/` as the newest
+> `WORKPLAN_*.md` (the file the loop reads as its standing plan, LOOP_INIT §2).
 > Every factual claim below cites the live tree at authoring; sources govern on
 > any disagreement. The per-tranche source work is NOT authorized here — each
 > roadmap item lands as its own owner-ruled D-PEC source-tranche (the D-PEC-08 /
