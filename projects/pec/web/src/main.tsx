@@ -199,6 +199,7 @@ function Root(): JSX.Element {
           <Route path="registers" element={<RegistersPage />} />
           <Route path="registers/:tab" element={<RegistersPage />} />
           <Route path="admin" element={<AdminPage />} />
+          <Route path="admin/:section" element={<AdminPage />} />
           <Route index element={<Navigate to="overview" replace />} />
         </Route>
       </Routes>

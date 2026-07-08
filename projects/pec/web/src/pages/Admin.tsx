@@ -6,18 +6,40 @@
  */
 
 import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PecApiError, api, p } from '../api.ts'
-import { ErrorBox, useApp, useLoad } from '../shared.tsx'
+import { Drawer, ErrorBox, RecordRef, useApp, useLoad, usePerson } from '../shared.tsx'
 
 export function AdminPage(): JSX.Element {
+  const { pid } = useApp()
+  const nav = useNavigate()
+  const params = useParams()
+  const section = params.section ?? 'import'
+  const sections = [
+    ['import', 'Import'],
+    ['exports', 'Exports & data exchange'],
+    ['thresholds', 'Thresholds'],
+    ['people', 'People directory'],
+    ['activity', 'Activity / system evidence'],
+  ] as const
   return (
     <div>
       <h1>Admin</h1>
-      <ProposalsSection />
-      <ImportSection />
-      <ExportSection />
-      <ThresholdsSection />
-      <PeopleSection />
+      <div className="filters" role="tablist" aria-label="Admin sections">
+        {sections.map(([key, label]) => (
+          <button key={key} role="tab" aria-selected={section === key}
+            className={`btn small ${section === key ? '' : 'secondary'}`}
+            onClick={() => nav(`/p/${pid}/admin/${key}`)}>{label}</button>
+        ))}
+      </div>
+      {section === 'import' && <>
+        <ProposalsSection />
+        <ImportSection />
+      </>}
+      {section === 'exports' && <ExportSection />}
+      {section === 'thresholds' && <ThresholdsSection />}
+      {section === 'people' && <PeopleSection />}
+      {section === 'activity' && <ActivitySection />}
     </div>
   )
 }
@@ -140,6 +162,7 @@ function ProposalRow({ row, busy, act }: {
 }): JSX.Element {
   const { pid } = useApp()
   const [open, setOpen] = useState(false)
+  const [rejecting, setRejecting] = useState(false)
   const base = p(pid, `import-proposals/${row.id}`)
   const report = row.state === 'applied' ? row.applyReport : row.dryRunReport
   const summary = report == null ? '—'
@@ -173,10 +196,7 @@ function ProposalRow({ row, busy, act }: {
           {(row.state === 'draft' || row.state === 'ready_for_review' || row.state === 'accepted') && (
             <>{' '}
               <button className="btn small secondary" disabled={busy}
-                onClick={() => {
-                  const reason = window.prompt('Reject reason?')
-                  if (reason) void act(() => api.post(`${base}/reject`, { version: row.version, reason }), `${row.ref} rejected`)
-                }}>Reject</button>
+                onClick={() => setRejecting(true)}>Reject</button>
             </>
           )}
         </td>
@@ -184,7 +204,33 @@ function ProposalRow({ row, busy, act }: {
       {open && report != null && !('error' in report && report.error) && (
         <tr><td colSpan={6}><ImportReportView report={report as ImportReport} /></td></tr>
       )}
+      {rejecting && <RejectProposalDrawer row={row} onClose={() => setRejecting(false)}
+        onReject={(reason) => act(() => api.post(`${base}/reject`, { version: row.version, reason }), `${row.ref} rejected`)} />}
     </>
+  )
+}
+
+function RejectProposalDrawer({ row, onClose, onReject }: {
+  row: ImportProposalRow
+  onClose(): void
+  onReject(reason: string): Promise<void>
+}): JSX.Element {
+  const [reason, setReason] = useState('')
+  return (
+    <Drawer title={<>Reject <span className="mono">{row.ref}</span></>} onClose={onClose}>
+      <form className="stack" onSubmit={(e) => {
+        e.preventDefault()
+        void onReject(reason.trim()).then(onClose)
+      }}>
+        <label>Reason
+          <textarea required value={reason} onChange={(e) => setReason(e.target.value)} />
+        </label>
+        <div className="row">
+          <button className="btn danger" disabled={!reason.trim()}>Reject proposal</button>
+          <button type="button" className="btn secondary" onClick={onClose}>Cancel</button>
+        </div>
+      </form>
+    </Drawer>
   )
 }
 
@@ -260,13 +306,12 @@ function ImportSection(): JSX.Element {
 
   return (
     <div>
-      <h2>Import (PRD §16)</h2>
+      <h2>Direct import (high-risk)</h2>
       <p className="section-note">
-        Idempotent by key (doc_no / item_id / decision_id / risk_id). Rows edited in-app
-        since the last import are reported as conflicts unless force is set — force
-        overwrites and writes history (SPEC §8).
+        Use proposed imports above for normal upload/accept/apply. Direct import is retained
+        as an admin-only recovery lane; it writes immediately after confirmation.
       </p>
-      <form className="stack card" style={{ maxWidth: 640 }} onSubmit={submit}>
+      <form className="stack card agent-card-warn" style={{ maxWidth: 640 }} onSubmit={submit}>
         <div className="row">
           <label>Contract
             <select value={contract} onChange={(e) => setContract(e.target.value)}>
@@ -287,7 +332,10 @@ function ImportSection(): JSX.Element {
         </label>
         <ErrorBox error={error} />
         <div className="row">
-          <button className="btn" disabled={busy || !csv.trim()}>Import</button>
+          <button className="btn danger" disabled={busy || !csv.trim()}
+            onClick={(e) => {
+              if (!window.confirm('Direct import writes immediately. Use only when proposal apply is not the right tool.')) e.preventDefault()
+            }}>Run direct import</button>
         </div>
       </form>
       {report && <ImportReportView report={report} />}
@@ -358,21 +406,32 @@ const EXPORTS = [
 
 function ExportSection(): JSX.Element {
   const { pid } = useApp()
+  const groups = [
+    ['Registers', EXPORTS.slice(0, 8)],
+    ['Reporting', EXPORTS.slice(8)],
+  ] as const
   return (
     <div>
-      <h2>Export</h2>
+      <h2>Exports &amp; data exchange</h2>
       <p className="section-note">
         Exports mirror the import schemas so a register round-trips (SPEC §8); the RAIL
         export includes non-converted intake items flagged unanchored. Commitments is the
         individual weekly commitments report (PRD §15).
       </p>
+      {groups.map(([label, rows]) => (
+        <div key={label}>
+          <h3>{label}</h3>
+          <div className="filters">
+            {rows.map(([name, text]) => (
+              <button key={name} className="btn small secondary"
+                onClick={() => window.open(p(pid, `export/${name}.csv`))}>{text} (.csv)</button>
+            ))}
+          </div>
+        </div>
+      ))}
       <div className="filters">
-        {EXPORTS.map(([name, label]) => (
-          <button key={name} className="btn small secondary"
-            onClick={() => window.open(p(pid, `export/${name}.csv`))}>{label} (.csv)</button>
-        ))}
         <button className="btn small secondary" title="print-friendly HTML; print to PDF (ADR-010)"
-          onClick={() => window.open(p(pid, 'reports/sponsor-brief'))}>⎙ Sponsor brief</button>
+          onClick={() => window.open(p(pid, 'reports/sponsor-brief'))}>Sponsor brief</button>
       </div>
     </div>
   )
@@ -419,7 +478,7 @@ function ThresholdsSection(): JSX.Element {
 
 function ThresholdsForm({ project }: { project: any }): JSX.Element {
   const { pid, refresh, toast } = useApp()
-  const [th, setTh] = useState<Record<string, number>>({ ...project.thresholds })
+  const [th, setTh] = useState<Record<string, number>>({ ...project.thresholds.overrides })
   const [error, setError] = useState<any>(null)
   const [busy, setBusy] = useState(false)
 
@@ -439,7 +498,11 @@ function ThresholdsForm({ project }: { project: any }): JSX.Element {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: '.5rem .8rem' }}>
         {THRESHOLD_KEYS.map(([k, label]) => (
           <label key={k}>{label}
-            <input type="number" value={th[k] ?? 0}
+            <span className="small muted">
+              default {project.thresholds.defaults[k]} · effective {th[k] ?? project.thresholds.effective[k]}
+            </span>
+            <input type="number" min={0} value={th[k] ?? ''}
+              placeholder={String(project.thresholds.defaults[k])}
               onChange={(e) => setTh({ ...th, [k]: Number(e.target.value) })} />
           </label>
         ))}
@@ -460,27 +523,91 @@ function ThresholdsForm({ project }: { project: any }): JSX.Element {
 // ================================================================ people
 
 function PeopleSection(): JSX.Element {
-  const { people } = useApp()
+  const { pid } = useApp()
+  const { data, error } = useLoad<any[]>(() => api.get(p(pid, 'admin/people')), [pid])
+  const roleCapabilities = [
+    ['admin', 'config, imports, agent direction'],
+    ['pm', 'decisions, planning, triage, reports'],
+    ['coordinator', 'triage, log hygiene, agent direction'],
+    ['package_lead', 'package decisions, holds, plan proposals'],
+    ['discipline_lead', 'discipline work and checks'],
+    ['engineer_of_record', 'deliverable work and risk updates'],
+    ['planner', 'plan/capacity management'],
+    ['document_controller', 'issue events and import proposals'],
+    ['viewer', 'read-only'],
+  ]
   return (
     <div>
-      <h2>People &amp; roles</h2>
+      <h2>People directory</h2>
+      {error && <ErrorBox error={{ message: error }} />}
+      {!data && !error && <p className="muted">loading…</p>}
       <table className="reg" style={{ maxWidth: 640 }}>
-        <thead><tr><th>Name</th><th>Email</th><th>Discipline</th></tr></thead>
+        <thead><tr><th>Name</th><th>Email</th><th>Discipline</th><th>Project roles</th></tr></thead>
         <tbody>
-          {people.map((pp) => (
+          {(data ?? []).map((pp) => (
             <tr key={pp.id}>
               <td>{pp.name}</td>
               <td className="mono">{pp.email}</td>
               <td className="small">{pp.discipline ?? <span className="muted">—</span>}</td>
+              <td>{pp.roles.length === 0
+                ? <span className="muted small">not assigned</span>
+                : pp.roles.map((r: string) => <span key={r} className="state" style={{ marginRight: '.25rem' }}>{r}</span>)}</td>
             </tr>
           ))}
-          {people.length === 0 && <tr><td colSpan={3} className="muted small">no people</td></tr>}
+          {data?.length === 0 && <tr><td colSpan={4} className="muted small">no people</td></tr>}
+        </tbody>
+      </table>
+      <h3>Role capability matrix</h3>
+      <table className="reg" style={{ maxWidth: 760 }}>
+        <tbody>
+          {roleCapabilities.map(([role, caps]) => (
+            <tr key={role}>
+              <td><span className="state">{role}</span></td>
+              <td className="small">{caps}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <p className="section-note">
-        Firm directory, read-only here. Project role assignments are managed by an instance
-        admin (SPEC §2.1); every role check is enforced server-side per route (PEC-NFR-005).
+        Read-only project people and role visibility. Role assignment is not authorized in
+        D-PEC-26 O-A; every permission check remains server-enforced per route.
       </p>
+    </div>
+  )
+}
+
+function ActivitySection(): JSX.Element {
+  const { pid } = useApp()
+  const person = usePerson()
+  const { data, error } = useLoad<any>(() => api.get(p(pid, 'admin/activity')), [pid])
+  if (error) return <ErrorBox error={{ message: error }} />
+  if (!data) return <p className="muted">loading…</p>
+  return (
+    <div>
+      <h2>Activity / system evidence</h2>
+      <div className="card">
+        <b>{data.evidence.project.code}</b> {data.evidence.project.name}
+        <div className="small muted">
+          project #{data.evidence.project.id} · version {data.evidence.project.version} · {data.evidence.database}
+        </div>
+        <div className="section-note">{data.evidence.note}</div>
+      </div>
+      <h3>Recent activity</h3>
+      <table className="reg">
+        <thead><tr><th>At</th><th>Source</th><th>Actor</th><th>Action</th><th>Record</th></tr></thead>
+        <tbody>
+          {data.events.map((e: any) => (
+            <tr key={`${e.source}-${e.id}`}>
+              <td className="mono nowrap small">{String(e.at).slice(0, 16).replace('T', ' ')}</td>
+              <td><span className="state">{e.source}</span></td>
+              <td className="small">{person(Number(e.actorId))}</td>
+              <td className="small">{e.action}</td>
+              <td><RecordRef recordType={String(e.recordType)} id={Number(e.recordId)} ref={`${e.recordType}#${e.recordId}`} /></td>
+            </tr>
+          ))}
+          {data.events.length === 0 && <tr><td colSpan={5} className="muted small">no activity yet</td></tr>}
+        </tbody>
+      </table>
     </div>
   )
 }

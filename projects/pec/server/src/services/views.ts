@@ -853,3 +853,41 @@ export function checkDetailView(sx: Sx, id: number): unknown {
     history: sx.repo.historyFor(sx.projectId, 'check', id, 100),
   }
 }
+
+export function adminPeopleView(sx: Sx): unknown {
+  const people = sx.repo.db.prepare(
+    `SELECT p.id, p.name, p.email, p.discipline, GROUP_CONCAT(pr.role) AS roles
+     FROM person p
+     LEFT JOIN project_role pr ON pr.person_id = p.id AND pr.project_id = ?
+     GROUP BY p.id
+     ORDER BY p.name`,
+  ).all(sx.projectId) as Array<{ id: number; name: string; email: string; discipline: string | null; roles: string | null }>
+  return people.map((p) => ({ ...p, roles: p.roles ? p.roles.split(',') : [] }))
+}
+
+export function adminActivityView(sx: Sx): unknown {
+  const project = sx.repo.get<Project>('project', null, sx.projectId)
+  const audit = sx.repo.db.prepare(
+    `SELECT id, at, actor_id AS actorId, action, record_type AS recordType, record_id AS recordId
+     FROM audit_event WHERE project_id = ? ORDER BY id DESC LIMIT 40`,
+  ).all(sx.projectId) as Array<Record<string, unknown>>
+  const history = sx.repo.db.prepare(
+    `SELECT id, at, actor_id AS actorId, kind AS action, record_type AS recordType, record_id AS recordId
+     FROM history_entry WHERE project_id = ? ORDER BY id DESC LIMIT 40`,
+  ).all(sx.projectId) as Array<Record<string, unknown>>
+  const eventsRaw: Array<Record<string, unknown> & { source: string }> = [
+    ...audit.map((e) => ({ ...e, source: 'audit' })),
+    ...history.map((e) => ({ ...e, source: 'history' })),
+  ]
+  const events = eventsRaw
+    .sort((a, b) => String(b.at).localeCompare(String(a.at)))
+    .slice(0, 60)
+  return {
+    evidence: {
+      project: { id: project.id, code: project.code, name: project.name, version: project.version },
+      database: 'active PEC project database',
+      note: 'Read-only operational evidence; DB files and migrations are not mutated by this view.',
+    },
+    events,
+  }
+}
