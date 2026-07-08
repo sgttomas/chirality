@@ -1,6 +1,6 @@
 # D-PEC-34 - PROPOSAL: Plan factual-correctness fix (minimal F2)
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-08 (O-A).
 **Date prepared:** 2026-07-08
 **Decision ID:** D-PEC-34
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -103,5 +103,18 @@ dependency rollback is needed.
 
 ## Human ruling
 
-AWAITING_RULING. No source implementation is authorized by this packet until
-the owner records a ruling.
+**RULED - 2026-07-08** (owner in-session, Ryan Tufts, verbatim slate ruling
+covering D-PEC-24, D-PEC-25, D-PEC-26, D-PEC-27, D-PEC-29, and D-PEC-34):
+
+> I rule O-A for D-PEC-24, D-PEC-25, D-PEC-26, D-PEC-27, D-PEC-29, and
+> D-PEC-34. Execution must respect packet dependencies and fences. D-PEC-24
+> executes before D-PEC-25; D-PEC-26 and D-PEC-27 execute after D-PEC-24/25;
+> D-PEC-29 executes after D-PEC-25; D-PEC-34 may execute as the independent
+> minimal Plan factual-correctness fix. No source work outside the ruled
+> packet fences is authorized.
+>
+> You may merge the PR when complete.
+
+Recorded interpretation: O-A is affirmed for this packet. Source
+implementation is authorized inside this packet's fence only. This tranche may
+execute independently as the minimal Plan factual-correctness fix.
