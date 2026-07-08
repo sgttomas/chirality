@@ -730,3 +730,11 @@
   - Gate outcome: packet preparation only; STOP at owner rulings. No PEC source change, no D-PEC-24/25/27/29/34 implementation, no server/core/profile/DB mutation, no D-PEC-26/30/31/35/36/37 packet.
   - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=6; coord-check on `origin/main..HEAD` pass/no findings; `git diff --check` pass; no `tools/**` or PEC source change, so full harness pytest and PEC belt-and-braces not run.
   - Parked lanes: owner rulings D-PEC-24/25/27/29/34; D-PEC-26/30/31 and upload/reporting-lane packets remain possible future coordination prep; slate items 1/2/3/5/6; D-PEC-23 import-approval gate; P4 weekly rehearsal; deferred D-PEC-28/28b planning phase.
+
+- **2026-07-08 — Receipt 64** (D-PEC-26 Admin operations-console packet added to PR #115; first reporting-foundation slate complete).
+  - Start: same branch `codex/pec-dpec24-dpec34-packets` stacked on Receipts 62-63; pre-existing dirty piping audit JSONs and `pec-demo.db*` left untouched.
+  - Live-surface selection: after D-PEC-27/29, D-PEC-26 remained the next high-value reporting-first coordination packet because Admin is the owner-named pain point and upload accept/apply control surface; execution dependencies and slate item 2 are stated in-packet.
+  - Executed pointers: `D-PEC-26_admin_operations_console.md`; PEC register row D-PEC-26 set `AWAITING_RULING`; PR #115 updated in place.
+  - Gate outcome: packet preparation only; STOP at owner rulings for the first reporting-foundation slate D-PEC-24/25/26/27/29/34. No PEC source change, no implementation, no server/core/profile/DB mutation, no D-PEC-30/31/35/36/37 packet.
+  - Checks: self-check pass at INFO=15/NOT_APPLICABLE=2/REVIEW=28/WARN=6; coord-check on `origin/main..HEAD` pass/no findings; `git diff --check` pass; no `tools/**` or PEC source change, so full harness pytest and PEC belt-and-braces not run.
+  - Parked lanes: owner rulings D-PEC-24/25/26/27/29/34; after that slate, D-PEC-30/31 polish and D-PEC-35/36/37 upload/reporting lanes sequence behind the ruled foundation; slate items 1/2/3/5/6; D-PEC-23 import-approval gate; P4 weekly rehearsal; deferred D-PEC-28/28b planning phase.
