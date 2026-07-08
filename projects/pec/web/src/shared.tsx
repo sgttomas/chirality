@@ -47,6 +47,7 @@ export function usePerson(): (id: number | null | undefined) => string {
 export function refRoute(pid: number | string, recordType: string, id: number, ref: string): string | null {
   const reg = (tab: string): string => `/p/${pid}/registers/${tab}?ref=${encodeURIComponent(ref)}`
   switch (recordType) {
+    case 'package': return `/p/${pid}/packages/${id}`
     case 'deliverable': return `/p/${pid}/deliverables/${id}`
     case 'hold': return reg('holds')
     case 'decision': return reg('decisions')
@@ -57,6 +58,41 @@ export function refRoute(pid: number | string, recordType: string, id: number, r
     case 'plan_item': return `/p/${pid}/plan`
     default: return null
   }
+}
+
+export function RecordRef({ recordType, id, ref: recordRef, label, onNavigate, stopPropagation = true }: {
+  recordType: string
+  id: number | null | undefined
+  ref: string
+  label?: ReactNode
+  onNavigate?: () => void
+  stopPropagation?: boolean
+}): JSX.Element {
+  const { pid } = useApp()
+  const nav = useNavigate()
+  const route = id == null ? null : refRoute(pid, recordType, id, recordRef)
+  const content = label ?? recordRef
+  if (!route) {
+    return (
+      <span className="mono muted" title={`${recordType.replaceAll('_', ' ')} has no routed source yet`}>
+        {content}
+      </span>
+    )
+  }
+  return (
+    <button
+      type="button"
+      className="reflink mono"
+      title={`Open ${recordType.replaceAll('_', ' ')} ${recordRef}`}
+      onClick={(e) => {
+        if (stopPropagation) e.stopPropagation()
+        onNavigate?.()
+        nav(route)
+      }}
+    >
+      {content}
+    </button>
+  )
 }
 
 /** The `?ref=` deep-link target from the current URL, used to flash+scroll a landed row. */
@@ -103,8 +139,6 @@ export function useExplain(): (title: string, e: Explain) => void {
 
 export function ExplainProvider({ children }: { children: ReactNode }): JSX.Element {
   const [state, setState] = useState<ExplainState | null>(null)
-  const { pid } = useApp()
-  const nav = useNavigate()
   const close = () => setState(null)
   return (
     <ExplainCtx.Provider value={{ show: (title, explain) => setState({ title, explain }) }}>
@@ -124,11 +158,9 @@ export function ExplainProvider({ children }: { children: ReactNode }): JSX.Elem
           <table className="reg">
             <tbody>
               {state.explain.contributing.map((c, i) => {
-                const route = refRoute(pid, c.recordType, c.id, c.ref)
                 return (
-                  <tr key={i} className={route ? 'clickable' : undefined}
-                    onClick={route ? () => { close(); nav(route) } : undefined}>
-                    <td className="mono nowrap">{route ? <a className="reflink">{c.ref}</a> : c.ref}</td>
+                  <tr key={i}>
+                    <td className="nowrap"><RecordRef recordType={c.recordType} id={c.id} ref={c.ref} onNavigate={close} /></td>
                     <td className="small muted">{c.recordType.replaceAll('_', ' ')}</td>
                     <td className="small">{c.why}</td>
                   </tr>

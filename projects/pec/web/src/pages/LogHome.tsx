@@ -10,7 +10,7 @@ import { useMemo, useRef, useState } from 'react'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  Drawer, ErrorBox, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
+  Drawer, ErrorBox, RecordRef, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -87,7 +87,7 @@ function OpenItemsTab(): JSX.Element {
   const hl = useHighlightRef()
 
   const cols: Array<Col<LogRow>> = [
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span> },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} ref={r.ref} /> },
     { key: 'type', label: 'Type', render: (r) => <span className="small">{r.recordType.replaceAll('_', ' ')}</span> },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'log', label: 'Log', render: (r) => <span className="small muted">{r.log}</span> },

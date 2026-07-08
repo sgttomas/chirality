@@ -11,7 +11,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  ErrorBox, HealthBadge, RegisterTable, StateTag, WorkflowStages, fmtDate, useApp, useLoad, usePerson,
+  ErrorBox, HealthBadge, RecordRef, RegisterTable, StateTag, WorkflowStages, fmtDate, useApp,
+  useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
@@ -75,17 +76,10 @@ export function PackageDetailPage(): JSX.Element {
   const s = data.summary
   const holdsByCause = Object.entries(s.holdsByCause as Record<string, number>)
 
-  // link an issue row to its record's home (deliverables/log/registers)
-  const issueHref = (r: any): string => {
-    if (r.type === 'action') return `/p/${pid}/log`
-    if (r.type === 'interface') return `/p/${pid}/registers`
-    return `/p/${pid}/log`
-  }
-
   // The issues cockpit (PEC-PKG-002/006/007): every open issue, urgency-first.
   const issueCols: Array<Col<any>> = [
     { key: 'type', label: 'Type', render: (r) => <span className={`itype itype-${r.type}`}>{ISSUE_LABEL[r.type] ?? r.type}</span>, csv: (r) => r.type },
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span>, csv: (r) => r.ref },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} ref={r.ref} />, csv: (r) => r.ref },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'detail', label: 'Detail', render: (r) => <span className="small muted">{r.detail}</span>, csv: (r) => r.detail },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{r.ownerId != null ? person(r.ownerId) : '—'}</span>, csv: (r) => r.ownerId != null ? person(r.ownerId) : '' },
@@ -97,7 +91,7 @@ export function PackageDetailPage(): JSX.Element {
   // "Needs the lead this week" (PEC-PKG-005)
   const needsCols: Array<Col<any>> = [
     { key: 'kind', label: 'What', render: (r) => NEED_KIND_LABEL[r.kind] ?? r.kind, csv: (r) => NEED_KIND_LABEL[r.kind] ?? r.kind },
-    { key: 'ref', label: 'Ref', render: (r) => <span className="mono">{r.ref}</span>, csv: (r) => r.ref },
+    { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} ref={r.ref} />, csv: (r) => r.ref },
     { key: 'title', label: 'Title', render: (r) => r.title },
     { key: 'due', label: 'Due', render: (r) => <span className="nowrap">{fmtDate(r.due)}</span>, csv: (r) => r.due },
   ]
@@ -171,8 +165,7 @@ export function PackageDetailPage(): JSX.Element {
       <h2>Open issues</h2>
       {data.issues.length === 0
         ? <p className="muted small">No open issues in this package.</p>
-        : <RegisterTable cols={issueCols} rows={data.issues} exportName={`${pkg.code}-issues.csv`}
-            onRowClick={(r) => nav(issueHref(r))} />}
+        : <RegisterTable cols={issueCols} rows={data.issues} exportName={`${pkg.code}-issues.csv`} />}
 
       {/* PEC-PKG-005: the lead's personal action queue */}
       <h2>Needs the lead this week</h2>
