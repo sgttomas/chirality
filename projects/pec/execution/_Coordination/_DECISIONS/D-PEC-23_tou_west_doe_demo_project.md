@@ -9,9 +9,13 @@
 
 ## Owner direction of record (2026-07-07, launcher steer, Ryan Tufts, verbatim)
 
+The steer's one machine-absolute path (a `~`-relative home path under the
+owner's user directory) is transcribed with a `~`-prefix per the loop's
+abs-path convention (Receipt-50 precedent); the words are otherwise verbatim.
+
 > I want to create a new demo project in PEC from these files.  Import the
 > data in them and change the ui and ux to fit the schemas therein.
-> `/Users/ryan/ai-env/projects/chirality/projects/pec/pilot-scratch/input/`
+> `~/ai-env/projects/chirality/projects/pec/pilot-scratch/input/`
 > call the project `TOU West Doe`
 
 ## Recorded interpretation (agent, 2026-07-07 — the ruling is the text above)
