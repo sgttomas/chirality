@@ -49,6 +49,20 @@ codes/names.
 - **Revision explain** (`api.ts:178-181`; `explainTransition`,
   `core/src/conditions.ts:277`): the gate's conditions with the contributing
   records — the basis payload itself.
+- **Standard reports** (`GET /api/projects/:pid/reports/standard/:report`;
+  `server/src/reports/standard.ts`): JSON payloads plus a Markdown draft
+  string for sidecar use. Names: `weekly-project-status`,
+  `package-issue-summary`, `deliverable-completeness`. Weekly status supports
+  `groupBy=package` and `groupBy=discipline`; all payloads carry `basis[]`
+  pointers and `absent[]` entries for unsupported figures. Period-scoped
+  issuances, percent complete, week-over-week deltas, client/internal needs
+  typing, and `.docx` output stay absent until their ruled tranches land.
+- **User-defined reports** (sidecar D-PEC-37 mode,
+  `agent-sidecar/src/user-report.ts`): prompt requests are routed only to
+  bounded PEC read/report acts. The sidecar may draft over the standard report
+  payloads above, but it refuses professional/go-live/issuance claims, hidden
+  data requests, unsupported forecasts, and mutations. Unsupported requested
+  figures are reported as absent rather than synthesized.
 
 ## The rule this page reinforces
 

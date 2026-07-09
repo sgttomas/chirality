@@ -1,9 +1,9 @@
 /**
- * Registers — approvals (the authorization basis register, PRD §12.7), decisions
- * (PRD §12.9), risks (§12.10), interfaces (PEC-INT-001), and holds. Five server-truth
- * registers behind one tab bar. The web layer renders what the server returns and posts
- * events back (SPEC §1): every guard (signatory-only, authority-only, hold veto,
- * conditions) is enforced server-side and surfaced here via ErrorBox.
+ * Registers — approvals, decisions, risks, interfaces, holds, Schedule, and Package
+ * Tracker. Seven server-truth registers behind one tab bar. The web layer renders what
+ * the server returns and posts events back (SPEC §1): every guard (signatory-only,
+ * authority-only, hold veto, conditions) is enforced server-side and surfaced here via
+ * ErrorBox. Schedule and Tracker are import-owned, read-only register views.
  */
 
 import { useState } from 'react'
@@ -16,13 +16,13 @@ import {
 import type { Col } from '../shared.tsx'
 
 const TABS = [
-  ['approvals', 'Approvals'],
-  ['decisions', 'Decisions'],
-  ['risks', 'Risks'],
-  ['interfaces', 'Interfaces'],
-  ['holds', 'Holds'],
-  ['schedule', 'Schedule'],
-  ['tracker', 'Tracker'],
+  ['approvals', 'Approvals', false],
+  ['decisions', 'Decisions', false],
+  ['risks', 'Risks', false],
+  ['interfaces', 'Interfaces', false],
+  ['holds', 'Holds', false],
+  ['schedule', 'Schedule', true],
+  ['tracker', 'Tracker', true],
 ] as const
 
 export function RegistersPage(): JSX.Element {
@@ -33,19 +33,25 @@ export function RegistersPage(): JSX.Element {
   return (
     <div>
       <h1>Registers</h1>
-      <div className="filters">
-        {TABS.map(([k, label]) => (
-          <button key={k} className={`btn small ${tab === k ? '' : 'secondary'}`}
-            onClick={() => nav(`/p/${pid}/registers/${k}`)}>{label}</button>
+      <div className="filters" role="tablist" aria-label="Registers">
+        {TABS.map(([k, label, readOnly]) => (
+          <button key={k} type="button" role="tab" aria-selected={tab === k}
+            aria-controls={`register-tab-${k}`}
+            className={`btn small ${tab === k ? '' : 'secondary'}`}
+            onClick={() => nav(`/p/${pid}/registers/${k}`)}>
+            {label}{readOnly && <span className="muted small"> read-only</span>}
+          </button>
         ))}
       </div>
-      {tab === 'approvals' && <ApprovalsTab />}
-      {tab === 'decisions' && <DecisionsTab />}
-      {tab === 'risks' && <RisksTab />}
-      {tab === 'interfaces' && <InterfacesTab />}
-      {tab === 'holds' && <HoldsTab />}
-      {tab === 'schedule' && <ScheduleTab />}
-      {tab === 'tracker' && <TrackerTab />}
+      <div id={`register-tab-${tab}`} role="tabpanel" aria-label={`${tab} register`}>
+        {tab === 'approvals' && <ApprovalsTab />}
+        {tab === 'decisions' && <DecisionsTab />}
+        {tab === 'risks' && <RisksTab />}
+        {tab === 'interfaces' && <InterfacesTab />}
+        {tab === 'holds' && <HoldsTab />}
+        {tab === 'schedule' && <ScheduleTab />}
+        {tab === 'tracker' && <TrackerTab />}
+      </div>
     </div>
   )
 }
@@ -952,7 +958,12 @@ function TrackerTab(): JSX.Element {
   const cols: Array<Col<any>> = [
     {
       // the key column (owner amendment): one tracker row per package
-      key: 'package', label: 'Package', render: (r) => <span className="mono">{pkgCode(r.packageId)}</span>,
+      key: 'package', label: 'Package', render: (r) => {
+        const code = pkgCode(r.packageId)
+        return code && r.packageId
+          ? <RecordRef recordType="package" id={r.packageId} recordRef={code} />
+          : <span className="muted small">—</span>
+      },
       csv: (r) => pkgCode(r.packageId),
     },
     {
@@ -989,7 +1000,7 @@ function TrackerTab(): JSX.Element {
         CoA tracking number is carried verbatim as data.
       </p>
       <RegisterTable cols={cols} rows={data} exportName="tracker-register.csv"
-        highlightRef={hl} rowRef={(r) => pkgCode(r.packageId) ?? ''} />
+        highlightRef={hl} rowRef={(r) => pkgCode(r.packageId) ?? ''} wide stickyFirstColumn />
     </div>
   )
 }
@@ -1001,6 +1012,9 @@ function TrackerTab(): JSX.Element {
 function ScheduleTab(): JSX.Element {
   const { pid } = useApp()
   const { data, error } = useLoad(() => api.get(p(pid, 'schedule')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'schedule_activity', ref: r.activityId, id: r.id })))
+  const hl = useHighlightRef()
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
 
@@ -1023,7 +1037,12 @@ function ScheduleTab(): JSX.Element {
       key: 'pct', label: '% done', csv: (r) => r.percentComplete,
       render: (r) => r.percentComplete != null ? <span className="mono">{r.percentComplete}%</span> : <span className="muted">—</span>,
     },
-    { key: 'package', label: 'Package', render: (r) => r.package ? <span className="mono">{r.package}</span> : <span className="muted small">—</span>, csv: (r) => r.package ?? '' },
+    {
+      key: 'package', label: 'Package', render: (r) => r.package && r.packageId
+        ? <RecordRef recordType="package" id={r.packageId} recordRef={r.package} />
+        : <span className="muted small">—</span>,
+      csv: (r) => r.package ?? '',
+    },
   ]
 
   return (
@@ -1032,7 +1051,8 @@ function ScheduleTab(): JSX.Element {
         Schedule activities — import-owned and read-only here: rows update only via the
         schedule import; there is no in-app edit (tracker-tab precedent).
       </p>
-      <RegisterTable cols={cols} rows={data as any[]} exportName="schedule-register.csv" />
+      <RegisterTable cols={cols} rows={data as any[]} exportName="schedule-register.csv"
+        highlightRef={hl} rowRef={(r) => r.activityId ?? ''} wide stickyFirstColumn />
     </div>
   )
 }
@@ -1057,20 +1077,10 @@ function HoldsTab(): JSX.Element {
   const hl = useHighlightRef()
   const [raising, setRaising] = useState(false)
   const [resolving, setResolving] = useState<any>(null)
+  const [withdrawing, setWithdrawing] = useState<any>(null)
   const [actionError, setActionError] = useState<any>(null)
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
-
-  const withdraw = async (r: any) => {
-    const reason = window.prompt(`Withdraw ${r.ref} — reason (recorded):`)
-    if (!reason) return
-    setActionError(null)
-    try {
-      await api.post(p(pid, `holds/${r.id}/withdraw`), { version: r.version, reason })
-      toast(`${r.ref} withdrawn — blocked records released`)
-      refresh()
-    } catch (err) { setActionError(err) }
-  }
 
   const cols: Array<Col<any>> = [
     { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType="hold" id={r.id} recordRef={r.ref} /> },
@@ -1094,7 +1104,7 @@ function HoldsTab(): JSX.Element {
         ? (
           <span className="nowrap">
             <button className="btn small" onClick={() => setResolving(r)}>Resolve</button>{' '}
-            <button className="btn small secondary" onClick={() => withdraw(r)}>Withdraw</button>
+            <button className="btn small secondary" onClick={() => setWithdrawing(r)}>Withdraw</button>
           </span>
         )
         : null,
@@ -1115,6 +1125,7 @@ function HoldsTab(): JSX.Element {
         highlightRef={hl} rowRef={(r) => r.ref} />
       {raising && <RaiseHoldDrawer onClose={() => setRaising(false)} />}
       {resolving && <ResolveHoldDrawer row={resolving} onClose={() => setResolving(null)} />}
+      {withdrawing && <WithdrawHoldDrawer row={withdrawing} onClose={() => setWithdrawing(null)} />}
     </div>
   )
 }
@@ -1227,6 +1238,42 @@ function ResolveHoldDrawer({ row, onClose }: { row: any; onClose(): void }): JSX
         <ErrorBox error={error} />
         <div className="row">
           <button className="btn" disabled={busy}>Resolve</button>
+          <button type="button" className="btn secondary" onClick={onClose}>Cancel</button>
+        </div>
+      </form>
+    </Drawer>
+  )
+}
+
+function WithdrawHoldDrawer({ row, onClose }: { row: any; onClose(): void }): JSX.Element {
+  const { pid, refresh, toast } = useApp()
+  const [reason, setReason] = useState('')
+  const [error, setError] = useState<any>(null)
+  const [busy, setBusy] = useState(false)
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setBusy(true); setError(null)
+    try {
+      await api.post(p(pid, `holds/${row.id}/withdraw`), { version: row.version, reason })
+      toast(`${row.ref} withdrawn — blocked records released`)
+      refresh(); onClose()
+    } catch (err) { setError(err) } finally { setBusy(false) }
+  }
+
+  return (
+    <Drawer title={<>Withdraw — <span className="mono">{row.ref}</span></>} onClose={onClose}>
+      <p className="section-note">
+        Withdrawal keeps the hold record visible and releases blocked records through the
+        same server-enforced event path as the former prompt action.
+      </p>
+      <form className="stack" onSubmit={submit}>
+        <label>Reason *
+          <textarea required value={reason} onChange={(e) => setReason(e.target.value)} />
+        </label>
+        <ErrorBox error={error} />
+        <div className="row">
+          <button className="btn" disabled={busy || !reason}>Withdraw</button>
           <button type="button" className="btn secondary" onClick={onClose}>Cancel</button>
         </div>
       </form>

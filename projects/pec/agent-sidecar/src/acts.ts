@@ -25,8 +25,8 @@ import type { PecAgentClient, ProposalSummary, ProposalView } from './pec-client
 import { AgentClientError } from './pec-client.ts'
 import type { AccessBasis } from './config.ts'
 import type { ActResult, BoundActs, EgressClass, ScreenContextRecord } from './engine/port.ts'
-import { detectContract } from './contract-detect.ts'
 import { CONTRACTS } from './contract-detect.ts'
+import { adaptStructuredFile, mappingSummaryText } from './structured-file.ts'
 
 export interface ActContext {
   pid: number
@@ -100,7 +100,7 @@ function reportCounts(p: ProposalView | ProposalSummary): string {
     + `${r.intakeCreated ?? 0} to intake`
 }
 
-function proposalPayload(pid: number, p: ProposalView | ProposalSummary): unknown {
+function proposalPayload(pid: number, p: ProposalView | ProposalSummary): Record<string, unknown> {
   return {
     id: p.id, ref: p.ref, contract: p.contract, state: p.state, version: p.version,
     sourceName: p.sourceName, report: p.dryRunReport, adminLink: adminLink(pid),
@@ -121,33 +121,21 @@ export function bindActs(ctx: ActContext): BoundActs {
   return {
     whoami: () => ctx.client.whoami(),
 
-    // detect → propose → dry-run summary + deep link
+    // detect/map → propose → dry-run summary + deep link
     async proposeCsv({ csv, filename, contract }) {
-      let chosen = contract
-      if (!chosen) {
-        const det = detectContract(csv)
-        if ('ambiguous' in det) {
-          return refused('import.propose',
-            `the CSV headers match more than one contract (${det.ambiguous.join(', ')}) — name the contract (one of: ${CONTRACTS.join(', ')})`)
-        }
-        if ('unknown' in det) {
-          return refused('import.propose',
-            `the CSV headers match no §16 contract — name the contract (one of: ${CONTRACTS.join(', ')})`)
-        }
-        chosen = det.contract
+      const mapped = adaptStructuredFile(csv, { filename, contract })
+      if (!mapped.ok) {
+        return refused('import.propose', `${mapped.reason} (one of: ${CONTRACTS.join(', ')})`)
       }
-      if (!(CONTRACTS as readonly string[]).includes(chosen)) {
-        return refused('import.propose', `unknown contract '${chosen}' (one of: ${CONTRACTS.join(', ')})`)
-      }
-      const r = await ctx.client.propose(ctx.pid, chosen, csv, filename)
+      const r = await ctx.client.propose(ctx.pid, mapped.contract, mapped.csv, mapped.filename ?? filename)
       if (!r.ok) {
         return refused('import.propose', r.kind === 'forbidden' ? r.message : 'proposal filing came back stale')
       }
       const p = r.value
       return result('import.propose', true,
         `${p.ref} proposed (${p.contract}${p.sourceName ? `, ${p.sourceName}` : ''}) — ${p.state}; ${reportCounts(p)}. `
-        + `Accept/apply are human acts in Admin: ${adminLink(ctx.pid)}`,
-        proposalPayload(ctx.pid, p))
+        + `${mappingSummaryText(mapped.summary)}. Accept/apply are human acts in Admin: ${adminLink(ctx.pid)}`,
+        { ...proposalPayload(ctx.pid, p), mapping: mapped.summary })
     },
 
     async refreshProposal({ ref }) {
@@ -371,7 +359,20 @@ export function bindActs(ctx: ActContext): BoundActs {
         if (!r.ok) return refused('read.report', r.kind === 'forbidden' ? r.message : 'report unavailable (stale)')
         return result('read.report', true, `package pack read (package #${id})`, r.value)
       }
-      return refused('read.report', `unknown report '${report}' (one of: sponsor-brief, package-pack <id>)`)
+      if (name === 'weekly-project-status' || name === 'weekly-project-status-by-discipline') {
+        const r = await ctx.client.standardReport(ctx.pid, 'weekly-project-status',
+          name.endsWith('discipline') ? 'discipline' : 'package')
+        if (!r.ok) return refused('read.report', r.kind === 'forbidden' ? r.message : 'report unavailable (stale)')
+        return result('read.report', true, `${name} report read`, r.value)
+      }
+      if (name === 'package-issue-summary' || name === 'deliverable-completeness') {
+        const r = await ctx.client.standardReport(ctx.pid, name)
+        if (!r.ok) return refused('read.report', r.kind === 'forbidden' ? r.message : 'report unavailable (stale)')
+        return result('read.report', true, `${name} report read`, r.value)
+      }
+      return refused('read.report',
+        `unknown report '${report}' (one of: sponsor-brief, package-pack <id>, weekly-project-status, `
+        + `weekly-project-status-by-discipline, package-issue-summary, deliverable-completeness)`)
     },
   }
 }

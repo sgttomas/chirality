@@ -363,7 +363,9 @@ export interface Col<T> {
   csv?(row: T): string | number | null
 }
 
-export function RegisterTable<T>({ cols, rows, exportName, onRowClick, highlightRef, rowRef }: {
+export function RegisterTable<T>({
+  cols, rows, exportName, onRowClick, highlightRef, rowRef, wide, stickyFirstColumn,
+}: {
   cols: Array<Col<T>>
   rows: T[]
   exportName?: string
@@ -372,6 +374,10 @@ export function RegisterTable<T>({ cols, rows, exportName, onRowClick, highlight
   highlightRef?: string
   /** how to read a row's ref for highlight matching */
   rowRef?(row: T): string
+  /** contain wide register tables inside their region instead of widening the page */
+  wide?: boolean
+  /** keep the first identifying column visible while horizontally scrolling wide registers */
+  stickyFirstColumn?: boolean
 }): JSX.Element {
   const flashRow = useRef<HTMLTableRowElement | null>(null)
   useEffect(() => {
@@ -402,8 +408,13 @@ export function RegisterTable<T>({ cols, rows, exportName, onRowClick, highlight
           <button className="btn secondary small" onClick={exportCsv}>Export CSV ({rows.length} rows)</button>
         </div>
       )}
-      <table className="reg">
-        <thead><tr>{cols.map((c) => <th key={c.key}>{c.label}</th>)}</tr></thead>
+      <div style={wide ? { overflowX: 'auto', maxWidth: '100%' } : undefined}>
+      <table className="reg" style={wide ? { minWidth: '980px' } : undefined}>
+        <thead><tr>{cols.map((c, idx) => (
+          <th key={c.key} style={stickyFirstColumn && idx === 0 ? {
+            left: 0, zIndex: 3, minWidth: '9rem',
+          } : undefined}>{c.label}</th>
+        ))}</tr></thead>
         <tbody>
           {rows.map((r, i) => {
             const hit = highlightRef != null && rowRef?.(r) === highlightRef
@@ -420,13 +431,18 @@ export function RegisterTable<T>({ cols, rows, exportName, onRowClick, highlight
                     onRowClick(r)
                   }
                 } : undefined}>
-                {cols.map((c) => <td key={c.key}>{c.render(r)}</td>)}
+                {cols.map((c, idx) => (
+                  <td key={c.key} style={stickyFirstColumn && idx === 0 ? {
+                    position: 'sticky', left: 0, zIndex: 1, background: 'var(--surface)', minWidth: '9rem',
+                  } : undefined}>{c.render(r)}</td>
+                ))}
               </tr>
             )
           })}
           {rows.length === 0 && <tr><td colSpan={cols.length} className="muted small">no records</td></tr>}
         </tbody>
       </table>
+      </div>
     </div>
   )
 }

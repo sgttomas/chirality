@@ -16,7 +16,7 @@ import type { AgentEnginePort, AgentTurnInput } from './engine/port.ts'
 import { bindActs } from './acts.ts'
 
 const MAX_BODY_BYTES = 6 * 1024 * 1024
-/** RV-14: CSV only, mirroring the server's proposal cap */
+/** D-PEC-35 O-A: CSV/TSV/plain tabular text only; normalized to CSV before proposal filing. */
 const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
 /** D-PEC-21 item 2: request-borne conversation history caps */
 const MAX_HISTORY_ENTRIES = 40
@@ -91,9 +91,11 @@ function validateTurn(body: unknown): AgentTurnInput {
   if (b.attachment != null) {
     const a = b.attachment as Record<string, unknown>
     if (typeof a.name !== 'string' || typeof a.text !== 'string') bad('attachment must be { name, text }')
-    if (!/\.csv$/i.test(a.name as string)) bad('attachment must be a .csv file (RV-14: CSV-only v1)')
+    if (!/\.(csv|tsv|tab|txt)$/i.test(a.name as string)) {
+      bad('attachment must be a CSV/TSV/plain text tabular file (D-PEC-35 O-A)')
+    }
     if (Buffer.byteLength(a.text as string, 'utf8') > MAX_ATTACHMENT_BYTES) {
-      bad('attachment exceeds the 5 MiB CSV cap (RV-14)')
+      bad('attachment exceeds the 5 MiB structured-file cap (D-PEC-35 O-A)')
     }
     turn.attachment = { name: a.name as string, text: a.text as string }
   }
