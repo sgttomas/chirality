@@ -1,5 +1,19 @@
 # PEC Work Loop — standing plan (UI/UX redesign phase)
 
+> **SUPERSEDED (2026-07-09) — RETIRED into `.archive/` (2026-07-09, owner
+> direction, Receipt 70):** this file is no longer the loop's standing plan.
+> The owner-directed successor is
+> `_DomainEngines/pec/WORKPLAN_2026-07-09_pec_reporting_product.md` (the
+> newest — and now only — `WORKPLAN_*.md` in the loop directory, which
+> LOOP_INIT §2 reads as the standing plan), authored from the 2026-07-08
+> product-direction interview whose findings of record live in
+> `_DomainEngines/proposals/pec/FINDINGS_2026-07-09_pec_product_interview.md`;
+> see `LOOP_RECEIPTS.md` Receipts 69–70. The owner-intent quotes, loop
+> protocol, and fences F-PEC-1..4 are carried forward into the successor; the
+> ruled in-flight packets (D-PEC-30/31/35/36/37) execute on their own rulings
+> and are carried as pointers there. This file is retained unedited below for
+> the record.
+
 > **Epistemic status: agent-authored plan — not authority.** Authored 2026-07-08
 > at owner direction (Ryan Tufts, K-AUTH-1) as the owner-directed **synthesis of
 > the two colocated CANDIDATE redesign proposals** in
