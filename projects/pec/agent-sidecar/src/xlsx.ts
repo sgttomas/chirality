@@ -276,7 +276,13 @@ function parseSheetGrid(xml: string, shared: string[], dateStyles: boolean[]): C
   const sparse = new Map<number, Map<number, CellValue>>()
   let maxRow = -1
   let maxCol = -1
-  const rowRe = /<(?:\w+:)?row(?:\s[^>]*)?(?:\/>|>([\s\S]*?)<\/(?:\w+:)?row>)/g
+  // Self-closing tags MUST match the first alternative: with the greedy form
+  // `(?:\s[^>]*)?(?:\/>|>…)`, `[^>]*` eats the trailing slash of `<row …/>` and the
+  // `>` branch then swallows everything up to the NEXT element's close tag —
+  // real Excel files write empty styled rows/cells self-closing, so an empty
+  // row absorbed its successor and every later value shifted (TWD live-file
+  // defect, 2026-07-09; synthetic fixtures never emitted self-closing tags).
+  const rowRe = /<(?:\w+:)?row\b[^>]*?\/>|<(?:\w+:)?row(?:\s[^>]*)?>([\s\S]*?)<\/(?:\w+:)?row>/g
   let rowMatch: RegExpExecArray | null
   let rowCursor = -1
   while ((rowMatch = rowRe.exec(xml)) !== null) {
@@ -289,7 +295,7 @@ function parseSheetGrid(xml: string, shared: string[], dateStyles: boolean[]): C
     rowCursor = rowIdx
     const body = rowMatch[1] ?? ''
     const cells = new Map<number, CellValue>()
-    const cellRe = /<(?:\w+:)?c(?:\s[^>]*)?(?:\/>|>([\s\S]*?)<\/(?:\w+:)?c>)/g
+    const cellRe = /<(?:\w+:)?c\b[^>]*?\/>|<(?:\w+:)?c(?:\s[^>]*)?>([\s\S]*?)<\/(?:\w+:)?c>/g
     let cellMatch: RegExpExecArray | null
     let colCursor = -1
     while ((cellMatch = cellRe.exec(body)) !== null) {
