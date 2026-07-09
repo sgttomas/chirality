@@ -297,6 +297,7 @@ function recordingActs(): { acts: BoundActs; calls: string[] } {
       recordHistory: (i) => hit(`recordHistory:${i.recordType}:${i.id}`),
       explainRevision: (i) => hit(`explainRevision:${i.id}`),
       readReport: (i) => hit(`readReport:${i.report}:${i.id ?? ''}`),
+      draftDocx: (i) => hit(`draftDocx:${i.periodStart ?? ''}:${i.periodEnd ?? ''}`),
     },
   }
 }
@@ -315,6 +316,7 @@ test('stub routes the new read intents deterministically and leaves the old inte
     ['explain revision 3', 'explainRevision:3'],
     ['sponsor brief', 'readReport:sponsor-brief:'],
     ['package pack 2', 'readReport:package-pack:2'],
+    ['generate a docx discipline status report period 2026-07-01 to 2026-07-07', 'draftDocx:2026-07-01:2026-07-07'],
     // pre-existing intents keep their meaning (regression)
     ['status', 'proposalStatus'],
     ['proposals', 'proposalStatus'],

@@ -102,6 +102,7 @@ export interface BoundActs {
   recordHistory(input: { recordType: string; id: number }): Promise<ActResult>
   explainRevision(input: { id: number }): Promise<ActResult>
   readReport(input: { report: string; id?: number }): Promise<ActResult>
+  draftDocx(input: { periodStart?: string; periodEnd?: string }): Promise<ActResult>
 }
 
 export interface AgentEnginePort {

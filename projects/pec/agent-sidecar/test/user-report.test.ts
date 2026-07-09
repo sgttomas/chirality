@@ -36,6 +36,7 @@ function acts(): { acts: BoundActs; calls: string[] } {
       recordHistory: async () => ({ kind: 'refused', act: 'read.history', reason: 'not used' }),
       explainRevision: async () => ({ kind: 'refused', act: 'read.explain', reason: 'not used' }),
       readReport: (input) => hit(input.report),
+      draftDocx: async () => ({ kind: 'refused', act: 'report.draftDocx', reason: 'not used' }),
     },
   }
 }

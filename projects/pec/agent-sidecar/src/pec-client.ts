@@ -381,9 +381,37 @@ export class PecAgentClient {
     return this.toResult(await this.request('GET', `/api/projects/${pid}/reports/package-pack/${id}`))
   }
 
-  async standardReport(pid: number, report: string, groupBy?: string): Promise<ApiResult<unknown>> {
-    const qs = groupBy ? `?groupBy=${encodeURIComponent(groupBy)}` : ''
+  async standardReport(pid: number, report: string, groupBy?: string, period?: { start: string; end: string }): Promise<ApiResult<unknown>> {
+    const q = new URLSearchParams()
+    if (groupBy) q.set('groupBy', groupBy)
+    if (period) {
+      q.set('period_start', period.start)
+      q.set('period_end', period.end)
+    }
+    const qs = q.size > 0 ? `?${q}` : ''
     return this.toResult(await this.request('GET', `/api/projects/${pid}/reports/standard/${report}${qs}`))
+  }
+
+  async packages(pid: number): Promise<ApiResult<unknown[]>> {
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/packages`))
+  }
+
+  async packageDetail(pid: number, id: number): Promise<ApiResult<unknown>> {
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/packages/${id}`))
+  }
+
+  async disciplines(pid: number): Promise<ApiResult<unknown[]>> {
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/disciplines`))
+  }
+
+  async disciplineDetail(pid: number, name: string, period?: { start: string; end: string }): Promise<ApiResult<unknown>> {
+    const q = new URLSearchParams()
+    if (period) {
+      q.set('period_start', period.start)
+      q.set('period_end', period.end)
+    }
+    const qs = q.size > 0 ? `?${q}` : ''
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/disciplines/${encodeURIComponent(name)}${qs}`))
   }
 
   async can(pid: number, action: string): Promise<{ allowed: boolean; reason: string }> {

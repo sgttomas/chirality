@@ -69,6 +69,21 @@ codes/names.
   payloads above, but it refuses professional/go-live/issuance claims, hidden
   data requests, unsupported forecasts, and mutations. Unsupported requested
   figures are reported as absent rather than synthesized.
+- **Discipline status `.docx` draft** (sidecar D-PEC-44 mode,
+  `agent-sidecar/src/docx-report.ts`; output under gitignored
+  `pilot-scratch/reports/`): zero-dependency draft package assembled from
+  read-only server/report payloads. Per-discipline Activities use `DISC-ACT`
+  and `DISC-PCT`; period Issuances use only an explicitly prompted
+  `period_start`/`period_end` and otherwise state no period declared; package
+  Needs & Issues use the D-PEC-48 split (holds + risks + action items,
+  including imported RAIL rows whose verbatim `source_issue_type` is not
+  "Action"); Decisions and Interfaces stay separate labels. The composition
+  clarification of record is: "Needs and issues are tracked and reported by
+  package. This includes decisions, risks, action items, clarifications, needs
+  for information and resources etc. Status (i.e. working status, such as in
+  progress or complete) and % complete are tracked by deliverable. Period
+  declaration can happen in the agent sidecar via prompt. Yes I accept the
+  honest absences."
 
 ## Coverage declarations & period basis (D-PEC-39)
 

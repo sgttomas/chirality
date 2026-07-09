@@ -12,6 +12,7 @@ import type { AgentEnginePort, AgentEvent, AgentTurnInput, BoundActs, ActResult 
 import { CONTRACTS } from '../contract-detect.ts'
 import type { Contract } from '../contract-detect.ts'
 import { isUserDefinedReportRequest, runUserDefinedReport } from '../user-report.ts'
+import { parseDeclaredPeriod } from '../docx-report.ts'
 
 const CAPABILITIES = [
   'I can, in this project:',
@@ -29,6 +30,7 @@ const CAPABILITIES = [
   '- explain revision <id> — a revision\'s readiness explanation',
   '- sponsor brief / package pack <id> — report payloads',
   '- weekly project status / discipline status / package issue summary / deliverable completeness — standard report payloads',
+  '- generate a .docx discipline status report draft into pilot-scratch/reports/ (declare period YYYY-MM-DD to YYYY-MM-DD, or I state no period declared)',
   '- custom/user-defined reports over those bounded report reads; unsupported figures are called absent',
   '- describe what you are looking at (when the panel sends screen context)',
   '(reads outside the enumerated surface follow the launch-selected access basis — D-T0-21)',
@@ -79,7 +81,14 @@ export function createStubEngine(): AgentEnginePort {
       const msg = input.message.replace(/\s+/g, ' ').trim()
       const lower = msg.toLowerCase()
 
-      // 0. user-defined reporting mode (D-PEC-37): bounded reads only, factual-or-absent.
+      // 0. D-PEC-44 `.docx` draft generation: sidecar-side writer, declared period only.
+      if (/\b(docx|word)\b/i.test(lower) && /\b(discipline|status)\b/i.test(lower) && /\breport\b/i.test(lower)) {
+        const period = parseDeclaredPeriod(input.message)
+        const r = await acts.draftDocx({ periodStart: period?.start, periodEnd: period?.end })
+        return toEvents(r)
+      }
+
+      // 0b. user-defined reporting mode (D-PEC-37): bounded reads only, factual-or-absent.
       if (isUserDefinedReportRequest(input.message)) {
         return runUserDefinedReport({ pid: input.pid, message: input.message }, acts)
       }

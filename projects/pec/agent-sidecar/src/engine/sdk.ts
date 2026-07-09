@@ -92,6 +92,10 @@ function systemPromptOf(maxActs: number, session: SessionProfile = 'hermetic'): 
     'results. Cite the report/read basis, state unsupported figures as absent,',
     'and refuse professional opinions, go-live/issuance claims, hidden data',
     'requests, and mutations.',
+    'For .docx discipline status report drafts, use draft_docx_report. Periods',
+    'must be explicitly declared by the owner as YYYY-MM-DD to YYYY-MM-DD; do',
+    'not infer dates. The generated file is a draft only and is written to the',
+    'gitignored pilot-scratch/reports folder.',
     ...openLines,
   ].join('\n')
 }
@@ -175,7 +179,7 @@ export function promptOf(input: AgentTurnInput): string {
 export const PEC_TOOL_NAMES = [
   'propose_csv', 'refresh_proposal', 'withdraw_proposal', 'proposal_status',
   'triage_item', 'intake_summary', 'read_screen_context', 'project_overview',
-  'read_register', 'record_history', 'explain_revision', 'read_report',
+  'read_register', 'record_history', 'explain_revision', 'read_report', 'draft_docx_report',
 ] as const
 
 const s = (v: unknown): string => String(v ?? '')
@@ -278,6 +282,10 @@ export function buildPecTools(
       'Report payloads: sponsor-brief, package-pack with an id, or standard report names.',
       { report: z.string(), id: z.number().optional() },
       (a) => acts.readReport({ report: s(a.report), id: a.id != null ? Number(a.id) : undefined })),
+    bounded('draft_docx_report',
+      'Generate a .docx discipline status report draft in pilot-scratch/reports. Pass period_start/period_end only when the owner explicitly declared both dates; never infer dates.',
+      { period_start: z.string().optional(), period_end: z.string().optional() },
+      (a) => acts.draftDocx({ periodStart: opt(a.period_start), periodEnd: opt(a.period_end) })),
   ]
 }
 

@@ -43,6 +43,7 @@ function makeActs(overrides: Partial<BoundActs> = {}): BoundActs {
     recordHistory: never('recordHistory'),
     explainRevision: never('explainRevision'),
     readReport: never('readReport'),
+    draftDocx: never('draftDocx'),
     ...overrides,
   }
 }
@@ -97,6 +98,24 @@ test('read-then-feedback: the handler dispatches through BoundActs, mirrors the 
   assert.equal(sink.events.length, 1)
   assert.equal(sink.events[0]!.type, 'act:result')
   assert.equal(sink.actsUsed, 1)
+})
+
+test('draft_docx_report dispatches through the sidecar writer act with explicit period dates', async () => {
+  const acts = makeActs({
+    draftDocx: async ({ periodStart, periodEnd }) => {
+      assert.equal(periodStart, '2026-07-01')
+      assert.equal(periodEnd, '2026-07-07')
+      return { kind: 'result', act: 'report.draftDocx', ok: true, summary: 'draft written', payload: { filename: 'synthetic.docx' } }
+    },
+  })
+  const { tools, sink } = build(acts)
+  const fed = textOf(await toolByName(tools, 'draft_docx_report').handler({
+    period_start: '2026-07-01',
+    period_end: '2026-07-07',
+  }, {}))
+  assert.equal(fed.act, 'report.draftDocx')
+  assert.deepEqual(fed.payload, { filename: 'synthetic.docx' })
+  assert.equal(sink.events[0]!.type, 'act:result')
 })
 
 test('refusal feedback: a basis refusal reaches the model verbatim and the panel as act:refused', async () => {
