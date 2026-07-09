@@ -1,6 +1,6 @@
 # D-PEC-38 - PROPOSAL: Reporting-foundation fix-forward tranche
 
-**Status:** AWAITING_RULING (STOP: the ruling act is the owner's).
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-08
 **Decision ID:** D-PEC-38
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -156,6 +156,11 @@ rollback is needed; the new test file reverts with it.
 
 ## Human ruling
 
-**OPEN — STOP.** No source execution until the owner rules O-A, O-B, or O-C
-(K-AUTH-1; D-GOV-04). The ruling and any owner amendment will be recorded
-here verbatim.
+**RULED 2026-07-09 — O-A.** Owner ruling of record (Ryan Tufts, in-session,
+verbatim): "D-PEC-38 fix-forward packet prepared (AWAITING_RULING).  My
+ruling is O-A so proceed accordingly. Then continue pursuing the inherent
+goals of the loop beyond just completing this immediate task."
+
+Effect: authorize O-A items 1-7 exactly as itemized above, inside the exact
+fence above and the verification plan above. O-B optional hardening is not
+authorized by this ruling. O-C is declined.

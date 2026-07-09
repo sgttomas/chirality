@@ -478,7 +478,9 @@ function ThresholdsSection(): JSX.Element {
 
 function ThresholdsForm({ project }: { project: any }): JSX.Element {
   const { pid, refresh, toast } = useApp()
-  const [th, setTh] = useState<Record<string, number>>({ ...project.thresholds.overrides })
+  const [th, setTh] = useState<Record<string, string>>(
+    Object.fromEntries(Object.entries(project.thresholds.overrides as Record<string, number>).map(([k, v]) => [k, String(v)])),
+  )
   const [error, setError] = useState<any>(null)
   const [busy, setBusy] = useState(false)
 
@@ -486,8 +488,30 @@ function ThresholdsForm({ project }: { project: any }): JSX.Element {
     e.preventDefault()
     setBusy(true); setError(null)
     try {
+      const next: Record<string, number> = {}
+      for (const [key, raw] of Object.entries(th)) {
+        if (raw === '') continue
+        const val = Number(raw)
+        if (!Number.isFinite(val) || val < 0) throw new Error(`threshold ${key} must be a non-negative number`)
+        next[key] = val
+      }
+      const effective = { ...project.thresholds.defaults, ...next } as Record<string, number>
+      const pairs = [
+        ['holdAgeWarnWd', 'holdAgeRedWd'],
+        ['decisionOverdueWarnD', 'decisionOverdueRedD'],
+        ['approvalLatencyWarnWd', 'approvalLatencyRedWd'],
+        ['commentAgeWarnWd', 'commentAgeRedWd'],
+        ['untriagedWarnWd', 'untriagedRedWd'],
+        ['unanchoredWarnCount', 'unanchoredRedCount'],
+        ['schedulePressureWarnD', 'schedulePressureRedD'],
+        ['interfaceOverdueWarnWd', 'interfaceOverdueRedWd'],
+        ['capacityWarnPct', 'capacityRedPct'],
+      ] as const
+      for (const [warn, red] of pairs) {
+        if ((effective[warn] ?? 0) > (effective[red] ?? 0)) throw new Error(`${warn} must be <= ${red}`)
+      }
       // optimistic concurrency on the project row (PEC-NFR-004); 403 for non-admins renders below
-      await api.put(p(pid, 'config'), { version: project.version, thresholds: th })
+      await api.put(p(pid, 'config'), { version: project.version, thresholds: next })
       toast('Thresholds saved — audit event written (PEC-NFR-001)')
       refresh()
     } catch (err) { setError(err) } finally { setBusy(false) }
@@ -499,11 +523,18 @@ function ThresholdsForm({ project }: { project: any }): JSX.Element {
         {THRESHOLD_KEYS.map(([k, label]) => (
           <label key={k}>{label}
             <span className="small muted">
-              default {project.thresholds.defaults[k]} · effective {th[k] ?? project.thresholds.effective[k]}
+              default {project.thresholds.defaults[k]} · effective {th[k] === '' || th[k] == null ? project.thresholds.defaults[k] : th[k]}
             </span>
             <input type="number" min={0} value={th[k] ?? ''}
               placeholder={String(project.thresholds.defaults[k])}
-              onChange={(e) => setTh({ ...th, [k]: Number(e.target.value) })} />
+              onChange={(e) => setTh({ ...th, [k]: e.target.value })} />
+            {Object.prototype.hasOwnProperty.call(th, k) && (
+              <button type="button" className="btn secondary small" onClick={() => {
+                const next = { ...th }
+                delete next[k]
+                setTh(next)
+              }}>Remove override</button>
+            )}
           </label>
         ))}
       </div>
@@ -524,18 +555,9 @@ function ThresholdsForm({ project }: { project: any }): JSX.Element {
 
 function PeopleSection(): JSX.Element {
   const { pid } = useApp()
-  const { data, error } = useLoad<any[]>(() => api.get(p(pid, 'admin/people')), [pid])
-  const roleCapabilities = [
-    ['admin', 'config, imports, agent direction'],
-    ['pm', 'decisions, planning, triage, reports'],
-    ['coordinator', 'triage, log hygiene, agent direction'],
-    ['package_lead', 'package decisions, holds, plan proposals'],
-    ['discipline_lead', 'discipline work and checks'],
-    ['engineer_of_record', 'deliverable work and risk updates'],
-    ['planner', 'plan/capacity management'],
-    ['document_controller', 'issue events and import proposals'],
-    ['viewer', 'read-only'],
-  ]
+  const { data, error } = useLoad<any>(() => api.get(p(pid, 'admin/people')), [pid])
+  const people = data?.people ?? []
+  const roleCapabilities = data?.roleCapabilities ?? []
   return (
     <div>
       <h2>People directory</h2>
@@ -544,7 +566,7 @@ function PeopleSection(): JSX.Element {
       <table className="reg" style={{ maxWidth: 640 }}>
         <thead><tr><th>Name</th><th>Email</th><th>Discipline</th><th>Project roles</th></tr></thead>
         <tbody>
-          {(data ?? []).map((pp) => (
+          {people.map((pp: any) => (
             <tr key={pp.id}>
               <td>{pp.name}</td>
               <td className="mono">{pp.email}</td>
@@ -554,16 +576,16 @@ function PeopleSection(): JSX.Element {
                 : pp.roles.map((r: string) => <span key={r} className="state" style={{ marginRight: '.25rem' }}>{r}</span>)}</td>
             </tr>
           ))}
-          {data?.length === 0 && <tr><td colSpan={4} className="muted small">no people</td></tr>}
+          {people.length === 0 && <tr><td colSpan={4} className="muted small">no people</td></tr>}
         </tbody>
       </table>
       <h3>Role capability matrix</h3>
       <table className="reg" style={{ maxWidth: 760 }}>
         <tbody>
-          {roleCapabilities.map(([role, caps]) => (
-            <tr key={role}>
-              <td><span className="state">{role}</span></td>
-              <td className="small">{caps}</td>
+          {roleCapabilities.map((row: any) => (
+            <tr key={row.role}>
+              <td><span className="state">{row.role}</span></td>
+              <td className="small">{row.capabilities.map((c: any) => c.action).join(', ') || 'none'}</td>
             </tr>
           ))}
         </tbody>

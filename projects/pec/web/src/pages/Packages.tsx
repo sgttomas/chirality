@@ -41,10 +41,10 @@ export function PackagesPage(): JSX.Element {
     {
       key: 'mix', label: 'Issue mix', render: (r) => (
         <span className="small">
-          {Object.entries(r.issueMix?.counts ?? {}).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
+          {Object.entries(r.issueMix?.value?.byType ?? {}).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
             <span key={k} className={`itype itype-${k}`} style={{ marginRight: '.2rem' }}>{k} {String(n)}</span>
           ))}
-          {r.issueMix?.worst && <span className="muted"> worst {r.issueMix.worst.ref}</span>}
+          {r.issueMix?.value?.worst && <span className="muted"> worst {r.issueMix.value.worst.ref}</span>}
         </span>
       ),
     },
@@ -97,7 +97,15 @@ export function PackageDetailPage(): JSX.Element {
     { key: 'detail', label: 'Detail', render: (r) => <span className="small muted">{r.detail}</span>, csv: (r) => r.detail },
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{r.ownerId != null ? person(r.ownerId) : '—'}</span>, csv: (r) => r.ownerId != null ? person(r.ownerId) : '' },
     { key: 'needBy', label: 'Need by', render: (r) => <span className="nowrap">{fmtDate(r.needBy)}{r.overdue && <span className="badge red" style={{ marginLeft: '.35rem' }}>overdue</span>}</span>, csv: (r) => r.needBy },
-    { key: 'age', label: 'Age (wd)', render: (r) => <span className="mono">{r.ageWd}</span>, csv: (r) => r.ageWd },
+    {
+      key: 'basis', label: 'Age / need-by basis',
+      render: (r) => r.ageWd != null
+        ? <span className="mono">{r.ageWd} wd old</span>
+        : r.overdueWd != null
+          ? <span className={r.overdueWd > 0 ? 'badge amber' : 'mono'}>{r.overdueWd} wd overdue</span>
+          : <span className="muted small">—</span>,
+      csv: (r) => r.ageWd != null ? `${r.ageWd} wd old` : r.overdueWd != null ? `${r.overdueWd} wd overdue` : '',
+    },
     { key: 'state', label: 'State', render: (r) => <StateTag s={r.state} />, csv: (r) => r.state },
   ]
 
@@ -144,7 +152,7 @@ export function PackageDetailPage(): JSX.Element {
             {s.openHolds} holds · {s.openInterfaces} interfaces · {s.openDecisions} decisions · {s.openRisks} risks · {s.openActionItems} actions
           </div>
           <div style={{ marginTop: '.35rem' }}>
-            {Object.entries(s.issueMix.counts).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
+            {Object.entries(s.issueMix.value.byType).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
               <button key={k} className={`itype itype-${k}`} style={{ marginRight: '.25rem', border: 'none', cursor: 'pointer' }}
                 onClick={() => setIssueFilter(issueFilter === k ? '' : k)}>
                 {k} {String(n)}

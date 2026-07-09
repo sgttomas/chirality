@@ -10,7 +10,7 @@ import type {
   Package, PackageTracker, Project, ProjectSnapshot, ReviewComment, Revision, Risk, WorkItem,
 } from '@pec/core'
 import {
-  activeHoldsFor, ageWorkingDays, capacityView, commentIsOpen, currentRevision, daysOverdue,
+  activeHoldsFor, ageWorkingDays, can, capacityView, commentIsOpen, currentRevision, daysOverdue,
   deliverableStatus, explainTransition, isoWeekOf, isoWeeksFrom, localDate, myWeek,
   packageStatus, projectStatus, resolvePlanItem, transitionsFrom, visibleLogs, waitingOnYou,
   workflowCompleteness, workingDaysOverdue,
@@ -166,6 +166,14 @@ function isInPackage(snap: ProjectSnapshot, targetType: string, targetId: number
   }
 }
 
+function holdPackageId(snap: ProjectSnapshot, holdId: number): number | null {
+  for (const link of snap.holdLinks.filter((l) => l.holdId === holdId)) {
+    const pkg = snap.packages.find((p) => isInPackage(snap, link.targetType, link.targetId, p.id))
+    if (pkg) return pkg.id
+  }
+  return null
+}
+
 type IssueKind = 'hold' | 'interface' | 'decision' | 'risk' | 'action'
 
 interface PackageIssue {
@@ -241,10 +249,20 @@ function packageIssueRows(sx: Sx, snap: ProjectSnapshot, pkg: Package): PackageI
     || (a.needBy ?? '9999').localeCompare(b.needBy ?? '9999'))
 }
 
-function issueMix(issues: PackageIssue[]): { counts: Record<IssueKind, number>; worst: PackageIssue | null } {
+function issueMix(issues: PackageIssue[]): Explain<{ byType: Record<IssueKind, number>; worst: PackageIssue | null }> {
   const counts: Record<IssueKind, number> = { hold: 0, interface: 0, decision: 0, risk: 0, action: 0 }
   for (const issue of issues) counts[issue.type] += 1
-  return { counts, worst: issues[0] ?? null }
+  return {
+    value: { byType: counts, worst: issues[0] ?? null },
+    ruleId: 'PKG-ISSUE-MIX',
+    detail: 'Open package issues grouped by typed source record; worst is the first urgency-sorted row.',
+    contributing: issues.map((issue) => ({
+      recordType: issue.recordType as ContributingRef['recordType'],
+      id: issue.id,
+      ref: issue.ref,
+      why: issue.type,
+    })),
+  }
 }
 
 // ---------- Packages (PEC-PKG-*) ----------
@@ -363,7 +381,7 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
       openInterfaces: openInterfaces.length,
       openDecisions: openDecisions.length,
       openRisks: pkgRisks.length,
-      openActionItems: mix.counts.action,
+      openActionItems: mix.value.byType.action,
       issueMix: mix,
     },
     capacity: { week: currentWeek, rows: pkgLoad },
@@ -536,6 +554,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
   const logs = logsFor(sx, snap)
   const cal = snap.project.calendar
   const today = snap.today
+  const overdueWd = (needBy: string | null): number | null => needBy ? workingDaysOverdue(needBy, today, cal) : null
 
   interface Row {
     recordType: string; id: number; ref: string; title: string; log: Log
@@ -551,7 +570,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'work_item', id: w.id, ref: w.ref, title: w.title, log: w.log,
       packageId: w.packageId, ownerId: w.ownerId, state: w.state,
-      ageWd: ageWorkingDays(w.createdAt, today, cal), overdueWd: workingDaysOverdue(w.needBy, today, cal), needBy: w.needBy,
+      ageWd: ageWorkingDays(w.createdAt, today, cal), overdueWd: overdueWd(w.needBy), needBy: w.needBy,
       overdue: daysOverdue(w.needBy, today) > 0, holdCause: null, anchorStatus: 'anchored',
       area: w.area,
     })
@@ -560,8 +579,8 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     if (h.state !== 'active') continue
     rows.push({
       recordType: 'hold', id: h.id, ref: h.ref, title: h.title, log: h.log,
-      packageId: null, ownerId: h.ownerId, state: h.state,
-      ageWd: ageWorkingDays(h.raisedAt, today, cal), overdueWd: workingDaysOverdue(h.needBy, today, cal), needBy: h.needBy,
+      packageId: holdPackageId(snap, h.id), ownerId: h.ownerId, state: h.state,
+      ageWd: ageWorkingDays(h.raisedAt, today, cal), overdueWd: overdueWd(h.needBy), needBy: h.needBy,
       overdue: daysOverdue(h.needBy, today) > 0, holdCause: h.cause, anchorStatus: 'anchored',
       area: null,
     })
@@ -571,7 +590,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'interface_item', id: i.id, ref: i.ref, title: i.title, log: i.log,
       packageId: i.givingPackageId ?? i.receivingPackageId, ownerId: null, state: i.state,
-      ageWd: null, overdueWd: workingDaysOverdue(i.needBy, today, cal), needBy: i.needBy, overdue: daysOverdue(i.needBy, today) > 0,
+      ageWd: null, overdueWd: overdueWd(i.needBy), needBy: i.needBy, overdue: daysOverdue(i.needBy, today) > 0,
       holdCause: null, anchorStatus: 'anchored', area: null,
     })
   }
@@ -580,7 +599,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'decision', id: d.id, ref: d.ref, title: d.title, log: d.log,
       packageId: d.packageId, ownerId: d.authorityId, state: d.state,
-      ageWd: ageWorkingDays(d.createdAt, today, cal), overdueWd: workingDaysOverdue(d.needBy, today, cal), needBy: d.needBy,
+      ageWd: ageWorkingDays(d.createdAt, today, cal), overdueWd: overdueWd(d.needBy), needBy: d.needBy,
       overdue: daysOverdue(d.needBy, today) > 0, holdCause: null, anchorStatus: 'anchored',
       area: d.area,
     })
@@ -590,7 +609,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'risk', id: r.id, ref: r.ref, title: r.title, log: 'package',
       packageId: r.packageId, ownerId: r.ownerId, state: r.state,
-      ageWd: null, overdueWd: workingDaysOverdue(r.needBy, today, cal), needBy: r.needBy,
+      ageWd: null, overdueWd: overdueWd(r.needBy), needBy: r.needBy,
       overdue: daysOverdue(r.needBy, today) > 0, holdCause: null, anchorStatus: 'anchored',
       area: null,
     })
@@ -600,7 +619,7 @@ export function logRegisterView(sx: Sx, f: LogFilters): unknown {
     rows.push({
       recordType: 'intake_item', id: t.id, ref: t.ref, title: t.statementVerbatim.slice(0, 120), log: t.log,
       packageId: null, ownerId: t.suggestedOwnerId, state: t.state,
-      ageWd: ageWorkingDays(t.raisedAt, today, cal), overdueWd: workingDaysOverdue(t.needBy, today, cal), needBy: t.needBy,
+      ageWd: ageWorkingDays(t.raisedAt, today, cal), overdueWd: overdueWd(t.needBy), needBy: t.needBy,
       overdue: daysOverdue(t.needBy, today) > 0, holdCause: null,
       anchorStatus: 'unanchored', // I-2: flagged until triaged; excluded from plans/rollups
       area: t.area,
@@ -635,6 +654,9 @@ export function logSummaryView(sx: Sx): unknown {
   }, {})
   const overdueRows = rows.filter((r) => r.overdue)
   const untriaged = rows.filter((r) => r.recordType === 'intake_item')
+  const oldestUntriagedWd = untriaged.reduce<number | null>((max, r) => (
+    r.ageWd == null ? max : max == null ? r.ageWd : Math.max(max, r.ageWd)
+  ), null)
   const holdCause = rows.filter((r) => r.recordType === 'hold').reduce<Record<string, number>>((acc, r) => {
     const cause = r.holdCause ?? 'other'
     acc[cause] = (acc[cause] ?? 0) + 1
@@ -672,7 +694,7 @@ export function logSummaryView(sx: Sx): unknown {
       contributing: refs(aged, (r) => `${r.ageWd} working days old`),
     },
     untriagedIntake: {
-      value: untriaged.length,
+      value: { count: untriaged.length, oldestWd: oldestUntriagedWd },
       ruleId: 'LOG-SUMMARY-UNTRIAGED',
       detail: 'Intake rows still awaiting disposition.',
       contributing: refs(untriaged, (r) => r.state),
@@ -862,7 +884,26 @@ export function adminPeopleView(sx: Sx): unknown {
      GROUP BY p.id
      ORDER BY p.name`,
   ).all(sx.projectId) as Array<{ id: number; name: string; email: string; discipline: string | null; roles: string | null }>
-  return people.map((p) => ({ ...p, roles: p.roles ? p.roles.split(',') : [] }))
+  const roles = [
+    'admin', 'pm', 'coordinator', 'package_lead', 'discipline_lead', 'engineer_of_record',
+    'planner', 'document_controller', 'viewer',
+  ] as const
+  const actions = [
+    'config.manage', 'import.propose', 'import.accept', 'agent.direct', 'intake.triage',
+    'decision.create', 'decision.outcome', 'risk.create', 'interface.create',
+    'plan.manage', 'plan.commit', 'project.read',
+  ] as const
+  const roleCapabilities = roles.map((role) => ({
+    role,
+    capabilities: actions
+      .map((action) => ({ action, result: can(action, { roles: [role], isInstanceAdmin: false }) }))
+      .filter((row) => row.result.allowed)
+      .map((row) => ({ action: row.action, reason: row.result.reason })),
+  }))
+  return {
+    people: people.map((p) => ({ ...p, roles: p.roles ? p.roles.split(',') : [] })),
+    roleCapabilities,
+  }
 }
 
 export function adminActivityView(sx: Sx): unknown {
