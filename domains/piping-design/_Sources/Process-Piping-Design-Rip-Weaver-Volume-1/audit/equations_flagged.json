@@ -1,0 +1,30 @@
+{
+  "126:72623cec851b": {
+    "page": 126,
+    "hash": "72623cec851b",
+    "kind": "equations",
+    "description": "Z = R + \\frac{\\text{ O.D. Of Ell}} {2}",
+    "flagged_at": "2026-07-08"
+  },
+  "126:7c61f9a34e44": {
+    "page": 126,
+    "hash": "7c61f9a34e44",
+    "kind": "equations",
+    "description": "S={1/2} \\  \\text I.D. Nozzle",
+    "flagged_at": "2026-07-08"
+  },
+  "126:58a6194ad729": {
+    "page": 126,
+    "hash": "58a6194ad729",
+    "kind": "equations",
+    "description": "Z^2 - (R + S)^2 = Y^2",
+    "flagged_at": "2026-07-08"
+  },
+  "126:4fbfc6122e7a": {
+    "page": 126,
+    "hash": "4fbfc6122e7a",
+    "kind": "equations",
+    "description": "R - Y = X",
+    "flagged_at": "2026-07-08"
+  }
+}
