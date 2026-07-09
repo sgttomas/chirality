@@ -391,8 +391,11 @@ export function buildRouter(db: Db): Router {
   r.post('/api/projects/:pid/import-proposals', tx((c) => {
     sameOrigin(c)
     const csv = typeof c.body === 'string' ? c.body : String((c.body as Record<string, unknown>)?.csv ?? '')
+    // D-PEC-41: JSON bodies may carry verbatim non-tabular source content ({ csv, extras })
+    const extras = typeof c.body === 'object' && c.body != null
+      ? (c.body as Record<string, unknown>).extras as Record<string, unknown> | undefined : undefined
     return proposals.createProposal(c.sx, String(c.query.get('contract') ?? ''), csv, c.query.get('filename'),
-      { start: c.query.get('coverage_start'), end: c.query.get('coverage_end') })
+      { start: c.query.get('coverage_start'), end: c.query.get('coverage_end') }, extras ?? null)
   }))
   r.get('/api/projects/:pid/import-proposals', authed((c) => proposals.listProposals(c.sx)))
   r.get('/api/projects/:pid/import-proposals/:id', authed((c) => proposals.getProposal(c.sx, idOf(c))))

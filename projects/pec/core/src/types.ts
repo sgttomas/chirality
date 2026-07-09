@@ -144,6 +144,10 @@ export interface Package {
   area: string | null
   /** package classification, e.g. Standard vs FEED (§16 mdl optional column, D-PEC-23) */
   packageType: string | null
+  /** attested package discipline from contract v2 imports (D-PEC-41) */
+  discipline: string | null
+  /** full-fidelity capture of unmapped source columns, verbatim JSON (D-PEC-41) */
+  sourcePayload: Record<string, string> | null
   version: number
 }
 
@@ -162,8 +166,30 @@ export interface Deliverable {
   dueDate: string | null // local date YYYY-MM-DD
   issuePurposePlan: string | null
   remarks: string | null
+  /** Contract v2 (D-PEC-41) PE-attested import fields. Never in-app editable, never
+   * derived in-app (workplan reconciliation 1) — import is their only writer. */
+  projectPhase: string | null
+  targetCompleteness: string | null
+  workingStatus: string | null
+  /** attested percent complete, integer 0..100; null when unattested or marker-valued */
+  percentComplete: number | null
+  /** attested non-numeric percent marker (e.g. "Next Phase"), verbatim; excluded from rollups */
+  percentCompleteVerbatim: string | null
+  /** full-fidelity capture of unmapped source columns, verbatim JSON (D-PEC-41) */
+  sourcePayload: Record<string, string> | null
   version: number
 }
+
+/** Contract v2 attested working-status vocabulary (TWD template Lists sheet; D-PEC-41). */
+export const MDL_WORKING_STATUSES = [
+  'Not Set', 'Not Started', 'In Progress', 'On Hold', 'Complete', 'Cancelled',
+] as const
+
+/** Contract v2 RAIL issue-type vocabulary (TWD template Lists sheet; D-PEC-41). */
+export const RAIL_V2_ISSUE_TYPES = [
+  'Decision', 'Information', 'Clarification', 'Approval',
+  'Action', 'Opportunity', 'Risk', 'Resources',
+] as const
 
 export const REVISION_STATES = [
   'in_work', 'in_check', 'check_accepted', 'ready_for_approval',
@@ -255,6 +281,12 @@ export interface WorkItem {
   cancelReason: string | null
   /** source-log area context (§16 rail optional column, D-PEC-23) */
   area: string | null
+  /** attested responsible discipline/function, verbatim from RAIL v2 (D-PEC-41) */
+  responsibleParty: string | null
+  /** attested RAIL v2 issue type, verbatim (D-PEC-41) */
+  sourceIssueType: string | null
+  /** full-fidelity capture of unmapped source columns, verbatim JSON (D-PEC-41) */
+  sourcePayload: Record<string, string> | null
   createdBy: number
   createdAt: string
   version: number

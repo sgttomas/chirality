@@ -1,0 +1,5 @@
+package,deliverable_type,area,project_phase,discipline,package_type,package_name,deliverable_id,target_completeness,working_status,percent_complete
+26020-PKG-001,Scope of Work,01,30%,Civil,Equipment,Earthworks for foundations,,IFQ,In Progress,25
+26020-PKG-001,Technical Datasheet,01,30%,Civil,Equipment,Earthworks for foundations,,IFQ,Not Set,Next Phase
+26020-PKG-016,RFQ,01,30%,Electrical,Equipment,Transformer TXP-8300-1,,IFQ,Not Started,0
+26020-PKG-016,RFQ,01,30%,Electrical,Equipment,Transformer TXP-8200-1,,IFQ,On Hold,10

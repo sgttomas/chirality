@@ -103,11 +103,26 @@ plus a factual-or-absent metric band.
 | open needs / needs aging | `DISC-NEEDS` / `DISC-NEEDS-AGE` | open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log; internal-vs-client typing absent until its ruled tranche |
 | open risks | `DISC-RISK` | open risks with a deliverable in the discipline — package-only risks carry no discipline basis and are not counted |
 | issued this period / issuance delta | `DISC-ISSUED` / `DISC-ISSUED-DELTA` | issue events on discipline revisions within an explicitly requested window; detail names the `PER-COV` coverage basis; absent when no period is declared |
+| % complete | `DISC-PCT` | PE-attested percent (contract v2 import, D-PEC-41; never derived or edited in-app): equal-weight mean over deliverable types with ≥1 attested document, each type the mean of its attested documents; detail names attested coverage (n/m) and excludes verbatim markers (e.g. "Next Phase"); absent when nothing is attested |
 
-Absent by construction in v1: % complete by deliverable kind and its deltas
-(Tier-P contract v2), stalled-activity flags (no ruled definition without a
-period snapshot model). No CSV export on this surface (D-PEC-40 O-B not
-authorized); no mutation machinery ever ("dashboards, not task managers").
+Absent by construction: week-over-week % delta and stalled-activity flags
+(both need a period snapshot model, not ruled). No CSV export on this surface
+(D-PEC-40 O-B not authorized); no mutation machinery ever ("dashboards, not
+task managers").
+
+## Contract v2 attested facts & caught signals (D-PEC-41)
+
+Contract v2 imports (revised TWD templates; mapping of record in
+`IMPORT_TEMPLATES/IMPORT_MAPPING.md` §contract-v2) carry PE-attested facts:
+`percent_complete` (with verbatim non-numeric markers), `working_status`,
+`target_completeness`, `project_phase`, RAIL `responsible_party` and verbatim
+`issue_type`. Attested facts are import-only: never in-app editable, never
+derived in-app (workplan reconciliation 1). Unmapped columns are captured
+verbatim per the owner's fidelity direction (Receipt 75). Import dry-run/apply
+reports carry caught review signals (`mdl-on-hold`, `rail-on-hold`,
+`phase-cancelled`, `percent-marker`, vocabulary deviations) — surfaced for
+PE/agent review, never silently coerced, never schema-blocked. Round-trip
+registers: `mdl-v2`, `rail-v2` (export-what-was-provided parity).
 
 ## The rule this page reinforces
 

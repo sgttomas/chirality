@@ -51,7 +51,11 @@ const JSON_COLS: Record<string, string[]> = {
   audit_event: ['prior_value', 'new_value'],
   plan_shift: ['affected_package_ids'],
   supersession_link: ['affected'],
-  import_proposal: ['dry_run_report', 'apply_report'],
+  import_proposal: ['dry_run_report', 'apply_report', 'source_extras'],
+  // D-PEC-41 full-fidelity capture columns (verbatim unmapped source columns)
+  package: ['source_payload'],
+  deliverable: ['source_payload'],
+  work_item: ['source_payload'],
 }
 
 const BOOL_COLS: Record<string, string[]> = {

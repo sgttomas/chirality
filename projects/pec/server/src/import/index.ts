@@ -28,6 +28,12 @@ export interface ImportReport {
   conflicts: Array<{ row: number; key: string; reason: string }>
   rejected: Array<{ row: number; errors: string[] }>
   intakeCreated: number
+  /** Contract v2 (D-PEC-41): caught review signals — surfaced to the PE/agent via the
+   * proposal dry-run/apply reports, never silently coerced and never schema-blocked. */
+  signals?: Array<{ row: number; key: string; kind: string; detail: string }>
+  /** Contract v2 RAIL: package-universe rows (package identity, no issue content) —
+   * they refresh package attributes and create no issue record (factual-or-absent). */
+  packageRows?: number
 }
 
 // ---------- shared helpers ----------
@@ -73,14 +79,55 @@ function importHistory(sx: Sx, recordType: string, recordId: number, summary: st
   })
 }
 
+// ---------- contract v2 shared helpers (D-PEC-41) ----------
+
+/** Deterministic identity slug for derived doc numbers (recorded rule, IMPORT_MAPPING §v2). */
+function idSlug(s: string): string {
+  return s.toUpperCase().replace(/[^A-Z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60)
+}
+
+/** Verbatim capture of columns the contract does not map (owner fidelity direction,
+ * Receipt 75: "importing all the data I'm providing"). Empty cells are omitted. */
+function unmappedPayload(headers: string[], row: Record<string, string>, mapped: readonly string[]): Record<string, string> | null {
+  const extra: Record<string, string> = {}
+  for (const h of headers) {
+    if (!mapped.includes(h) && row[h]) extra[h] = row[h]!
+  }
+  return Object.keys(extra).length > 0 ? extra : null
+}
+
+function pushSignal(report: ImportReport, row: number, key: string, kind: string, detail: string): void {
+  (report.signals ??= []).push({ row, key, kind, detail })
+}
+
+/** Attested percent complete: 0..100 integer, or a verbatim non-numeric marker
+ * (e.g. "Next Phase"). Out-of-range numerics are contract violations. */
+function parsePercent(raw: string): { pct: number | null; verbatim: string | null; error?: string } {
+  if (!raw) return { pct: null, verbatim: null }
+  if (/^-?\d+(\.\d+)?$/.test(raw)) {
+    const n = Number(raw)
+    if (!Number.isInteger(n) || n < 0 || n > 100) {
+      return { pct: null, verbatim: null, error: `percent_complete must be an integer 0..100, got "${raw}"` }
+    }
+    return { pct: n, verbatim: null }
+  }
+  return { pct: null, verbatim: raw }
+}
+
 // ---------- MDL ----------
 
 function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
+  const { headers } = parseTable(csv)
+  // Shape detection: v2 (TWD revised template, D-PEC-41) has no doc_no column and keys on
+  // package + deliverable_type. v1 keeps working unchanged (additive contract).
+  if (!headers.includes('doc_no') && headers.includes('package') && headers.includes('deliverable_type')) {
+    return importMdlV2(sx, csv, force)
+  }
   const report: ImportReport = { contract: 'mdl', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
-  const { headers, rows } = parseTable(csv)
+  const { rows } = parseTable(csv)
   const required = ['doc_no', 'title', 'package', 'discipline', 'owner', 'current_rev', 'state', 'due_date']
   const missing = required.filter((h) => !headers.includes(h))
-  if (missing.length > 0) throw badRequest(`MDL import missing required columns: ${missing.join(', ')} (§16)`)
+  if (missing.length > 0) throw badRequest(`MDL import missing required columns: ${missing.join(', ')} (§16; or provide the v2 shape: package + deliverable_type without doc_no)`)
 
   // §16 optional package-attribute columns (D-PEC-23): present headers refresh the
   // auto-created package record; processed once per package per run
@@ -176,14 +223,153 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
   return report
 }
 
+// ---------- MDL v2 (D-PEC-41: TWD revised template) ----------
+
+const MDL_V2_MAPPED = [
+  'package', 'deliverable_type', 'area', 'project_phase', 'discipline', 'package_type',
+  'package_name', 'deliverable_id', 'target_completeness', 'working_status', 'percent_complete',
+] as const
+
+const MDL_WORKING_STATUS_NORMS = new Set(
+  ['not set', 'not started', 'in progress', 'on hold', 'complete', 'cancelled'])
+
+/**
+ * Contract v2 MDL (D-PEC-41 O-A). Differences from v1, all template-driven:
+ * - identity: provided deliverable_id wins; else doc_no is DERIVED deterministically from
+ *   package + deliverable_type, qualified by a package_name slug inside within-file
+ *   collision groups (recorded rule). Identical residual duplicates are conflicts.
+ * - no owner/rev/state/due-date columns exist; no revision record is created (absent
+ *   revision facts stay absent — factual-or-absent).
+ * - percent_complete / working_status / target_completeness / project_phase are
+ *   PE-attested import fields (never in-app editable; reconciliation 1).
+ * - every unmapped column is captured verbatim (owner fidelity direction).
+ */
+function importMdlV2(sx: Sx, csv: string, force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'mdl', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
+  const { headers, rows } = parseTable(csv)
+
+  // Identity derivation: a PURE per-row function of provided content — never dependent on
+  // file-local structure, so the same row derives the same identity in any file (the
+  // template legitimately repeats package + deliverable_type across distinct items that
+  // differ only by package_name, e.g. one RFQ per transformer tag).
+  const docNoOf = (row: Record<string, string>): string => {
+    if (row.deliverable_id) return row.deliverable_id
+    const base = `${row.package}-${idSlug(row.deliverable_type!)}`
+    return row.package_name ? `${base}-${idSlug(row.package_name)}` : base
+  }
+  const seenDocNos = new Set<string>()
+
+  const hasPkgAttrs = ['package_name', 'area', 'package_type'].some((h) => headers.includes(h))
+  const pkgAttrsApplied = new Set<number>()
+
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    if (!row.package) errors.push('package is required')
+    if (!row.deliverable_type) errors.push('deliverable_type is required')
+    const pct = parsePercent(row.percent_complete ?? '')
+    if (pct.error) errors.push(pct.error)
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    const docNo = docNoOf(row)
+    if (seenDocNos.has(docNo)) {
+      report.conflicts.push({
+        row: rowNo, key: docNo,
+        reason: 'duplicate identity within file (same package + deliverable_type' +
+          (row.package_name ? ' + package_name' : '') + '); first occurrence processed, this row skipped',
+      })
+      return
+    }
+    seenDocNos.add(docNo)
+
+    // package: auto-create on first sight; refresh attributes once per package per run
+    let pkg = sx.db.prepare('SELECT id, name, area, package_type FROM package WHERE project_id = ? AND code = ?')
+      .get(sx.projectId, row.package ?? '') as { id: number; name: string; area: string | null; package_type: string | null } | undefined
+    if (!pkg) {
+      const pkgId = sx.repo.insert('package', {
+        projectId: sx.projectId, code: row.package,
+        name: row.package_name || row.package,
+        area: row.area || null, packageType: row.package_type || null,
+      })
+      importHistory(sx, 'package', pkgId, `package ${row.package} created by MDL v2 import`)
+      pkg = { id: pkgId, name: row.package_name || row.package!, area: row.area || null, package_type: row.package_type || null }
+      pkgAttrsApplied.add(pkgId)
+    } else if (hasPkgAttrs && !pkgAttrsApplied.has(pkg.id)) {
+      const attrs: Record<string, unknown> = {}
+      if (headers.includes('package_name') && row.package_name && row.package_name !== pkg.name) attrs.name = row.package_name
+      if (headers.includes('area') && (row.area || null) !== pkg.area) attrs.area = row.area || null
+      if (headers.includes('package_type') && (row.package_type || null) !== pkg.package_type) attrs.packageType = row.package_type || null
+      if (Object.keys(attrs).length > 0) {
+        if (!lastChangeIsImport(sx, 'package', pkg.id) && !force) {
+          report.conflicts.push({ row: rowNo, key: row.package!, reason: 'package edited in-app since last import; attributes not updated (deliverable row still processed); use force=true' })
+        } else {
+          sx.repo.systemUpdate('package', sx.projectId, pkg.id, attrs)
+          importHistory(sx, 'package', pkg.id, `package ${row.package} attributes refreshed by MDL v2 import`)
+        }
+      }
+      pkgAttrsApplied.add(pkg.id)
+    }
+
+    // caught review signals — surfaced, never coerced or blocked
+    if (row.working_status && !MDL_WORKING_STATUS_NORMS.has(row.working_status.toLowerCase())) {
+      pushSignal(report, rowNo, docNo, 'working-status-vocab',
+        `working_status "${row.working_status}" is outside the template vocabulary; captured verbatim`)
+    }
+    if (row.working_status?.toLowerCase() === 'on hold') {
+      pushSignal(report, rowNo, docNo, 'mdl-on-hold',
+        'MDL working_status is On Hold — verify a matching RAIL hold-shaped issue exists (MDL↔RAIL consistency)')
+    }
+    if (pct.verbatim) {
+      pushSignal(report, rowNo, docNo, 'percent-marker',
+        `percent_complete "${pct.verbatim}" is a non-numeric attested marker; captured verbatim, excluded from rollups`)
+    }
+
+    const fields = {
+      packageId: pkg.id,
+      title: row.package_name ? `${row.deliverable_type} — ${row.package_name}` : `${row.deliverable_type} — ${row.package}`,
+      discipline: row.discipline || null,
+      deliverableType: row.deliverable_type || null,
+      projectPhase: row.project_phase || null,
+      targetCompleteness: row.target_completeness || null,
+      workingStatus: row.working_status || null,
+      percentComplete: pct.pct,
+      percentCompleteVerbatim: pct.verbatim,
+      sourcePayload: unmappedPayload(headers, row, MDL_V2_MAPPED),
+    }
+    const existing = sx.db.prepare('SELECT id, version FROM deliverable WHERE project_id = ? AND doc_no = ?')
+      .get(sx.projectId, docNo) as { id: number; version: number } | undefined
+    if (existing) {
+      if (!lastChangeIsImport(sx, 'deliverable', existing.id) && !force) {
+        report.conflicts.push({ row: rowNo, key: docNo, reason: 'edited in-app since last import; re-run with force=true to overwrite (PEC-NFR-004)' })
+        return
+      }
+      sx.repo.systemUpdate('deliverable', sx.projectId, existing.id, fields)
+      importHistory(sx, 'deliverable', existing.id, `${docNo} updated by MDL v2 import`)
+      report.updated++
+    } else {
+      const id = sx.repo.insert('deliverable', { projectId: sx.projectId, docNo, ...fields })
+      importHistory(sx, 'deliverable', id,
+        `${docNo} created by MDL v2 import (${row.deliverable_id ? 'provided deliverable_id' : 'derived identity'}; no revision facts — none seeded)`)
+      report.accepted++
+    }
+  })
+  return report
+}
+
 // ---------- RAIL ----------
 
 function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
+  const { headers } = parseTable(csv)
+  // Shape detection: v2 (TWD revised template, D-PEC-41) has no item_id column and keys on
+  // package + issue_no. v1 keeps working unchanged (additive contract).
+  if (!headers.includes('item_id') && headers.includes('package') && headers.includes('issue_no')) {
+    return importRailV2(sx, csv, force)
+  }
   const report: ImportReport = { contract: 'rail', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
-  const { headers, rows } = parseTable(csv)
+  const { rows } = parseTable(csv)
   const required = ['item_id', 'statement', 'type', 'log', 'owner', 'need_by', 'status', 'raised_by', 'raised_date']
   const missing = required.filter((h) => !headers.includes(h))
-  if (missing.length > 0) throw badRequest(`RAIL import missing required columns: ${missing.join(', ')} (§16)`)
+  if (missing.length > 0) throw badRequest(`RAIL import missing required columns: ${missing.join(', ')} (§16; or provide the v2 shape: package + issue_no without item_id)`)
 
   const WI_KINDS = new Set(['action', 'coordination', 'risk_treatment', 'rework', 'other', 'task'])
 
@@ -337,6 +523,167 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
     })
     importHistory(sx, 'work_item', wid, `${wiRef} created from RAIL row ${row.item_id} at state ${wiState} (seeding)`)
     report.accepted++
+  })
+  return report
+}
+
+// ---------- RAIL v2 (D-PEC-41: TWD packages-RAIL template) ----------
+
+const RAIL_V2_MAPPED = [
+  'package', 'issue_no', 'discipline', 'area', 'phase', 'coa_tracking_number', 'package_type',
+  'package_name', 'issue_type', 'statement', 'updates', 'responsible_party', 'status',
+  'priority', 'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date',
+] as const
+
+/** v2 STATUS vocabulary → work-item lifecycle state. On Hold has no work-item state:
+ * it maps to open and is CAUGHT as a review signal, never coerced silently. */
+const RAIL_V2_STATES = new Map<string, WorkItem['state']>([
+  ['not_set', 'open'], ['not_started', 'open'], ['in_progress', 'in_work'],
+  ['on_hold', 'open'], ['complete', 'closed'], ['cancelled', 'cancelled'],
+])
+
+const RAIL_V2_ISSUE_TYPE_NORMS = new Set(
+  ['decision', 'information', 'clarification', 'approval', 'action', 'opportunity', 'risk', 'resources'])
+
+/**
+ * Contract v2 RAIL (D-PEC-41 O-A). Template-driven mapping, recorded in IMPORT_MAPPING:
+ * - identity: package + issue_no → ref "PKG#N". No item_id exists in the template.
+ * - package placeholder rows (no issue_type AND no statement) are package-universe facts:
+ *   they refresh package attributes and create NO issue record (factual-or-absent).
+ * - responsible_party is a discipline/function, captured verbatim; owner_id resolves only
+ *   on an exact person match, else the importing session person holds custody (v1
+ *   raised-by fallback precedent) — no fabricated persons.
+ * - every issue row lands as a package-anchored work item with its verbatim issue type
+ *   attested (source_issue_type); the reporting vocabulary reads the attested type.
+ * - source status/phase/dates are captured verbatim in the payload; Phase=Cancelled with a
+ *   non-cancelled status and On Hold statuses are caught review signals.
+ */
+function importRailV2(sx: Sx, csv: string, force: boolean): ImportReport {
+  const report: ImportReport = { contract: 'rail', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0, packageRows: 0 }
+  const { headers, rows } = parseTable(csv)
+  const pkgAttrsApplied = new Set<number>()
+  const seenRefs = new Set<string>()
+
+  const ensurePackage = (row: Record<string, string>, rowNo: number): { id: number } => {
+    let pkg = sx.db.prepare('SELECT id, name, area, package_type, discipline FROM package WHERE project_id = ? AND code = ?')
+      .get(sx.projectId, row.package ?? '') as { id: number; name: string; area: string | null; package_type: string | null; discipline: string | null } | undefined
+    if (!pkg) {
+      const pkgId = sx.repo.insert('package', {
+        projectId: sx.projectId, code: row.package,
+        name: row.package_name || row.package,
+        area: row.area || null, packageType: row.package_type || null,
+        discipline: row.discipline || null,
+      })
+      importHistory(sx, 'package', pkgId, `package ${row.package} created by RAIL v2 import`)
+      pkgAttrsApplied.add(pkgId)
+      return { id: pkgId }
+    }
+    if (!pkgAttrsApplied.has(pkg.id)) {
+      const attrs: Record<string, unknown> = {}
+      if (row.package_name && row.package_name !== pkg.name) attrs.name = row.package_name
+      if (headers.includes('area') && row.area && row.area !== pkg.area) attrs.area = row.area
+      if (headers.includes('package_type') && row.package_type && row.package_type !== pkg.package_type) attrs.packageType = row.package_type
+      if (headers.includes('discipline') && row.discipline && row.discipline !== pkg.discipline) attrs.discipline = row.discipline
+      if (Object.keys(attrs).length > 0) {
+        if (!lastChangeIsImport(sx, 'package', pkg.id) && !force) {
+          report.conflicts.push({ row: rowNo, key: row.package!, reason: 'package edited in-app since last import; attributes not updated; use force=true' })
+        } else {
+          sx.repo.systemUpdate('package', sx.projectId, pkg.id, attrs)
+          importHistory(sx, 'package', pkg.id, `package ${row.package} attributes refreshed by RAIL v2 import`)
+        }
+      }
+      pkgAttrsApplied.add(pkg.id)
+    }
+    return { id: pkg.id }
+  }
+
+  rows.forEach((row, i) => {
+    const rowNo = i + 2
+    const errors: string[] = []
+    if (!row.package) errors.push('package is required')
+    if (!row.issue_no) errors.push('issue_no is required')
+    for (const col of ['assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date'] as const) {
+      if (row[col] && !DATE_RE.test(row[col]!)) errors.push(`${col} must be YYYY-MM-DD, got "${row[col]}"`)
+    }
+    const isPlaceholder = !row.issue_type && !row.statement
+    const state = isPlaceholder ? undefined : RAIL_V2_STATES.get(normState(row.status ?? '')) ?? (row.status ? undefined : 'open')
+    if (!isPlaceholder && row.status && state === undefined) {
+      errors.push(`unrecognized status "${row.status}" (template vocabulary: Not Set, Not Started, In Progress, On Hold, Complete, Cancelled)`)
+    }
+    if (!isPlaceholder && !row.statement) errors.push('statement (issue description) is required on issue rows')
+    if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
+
+    const pkg = ensurePackage(row, rowNo)
+    if (isPlaceholder) { report.packageRows!++; return }
+
+    const ref = `${row.package}#${row.issue_no}`
+    if (seenRefs.has(ref)) {
+      report.conflicts.push({ row: rowNo, key: ref, reason: 'duplicate package + issue_no within file; first occurrence processed, this row skipped' })
+      return
+    }
+    seenRefs.add(ref)
+
+    if (row.issue_type && !RAIL_V2_ISSUE_TYPE_NORMS.has(row.issue_type.toLowerCase())) {
+      pushSignal(report, rowNo, ref, 'issue-type-vocab',
+        `issue_type "${row.issue_type}" is outside the template vocabulary; captured verbatim`)
+    }
+    if (row.status?.toLowerCase() === 'on hold') {
+      pushSignal(report, rowNo, ref, 'rail-on-hold',
+        'RAIL issue status is On Hold — verify the MDL working_status agrees (MDL↔RAIL consistency)')
+    }
+    if (row.phase?.toLowerCase() === 'cancelled' && state !== 'cancelled') {
+      pushSignal(report, rowNo, ref, 'phase-cancelled',
+        `phase is "Cancelled" but issue status is "${row.status || '(empty)'}" — review with the PE`)
+    }
+
+    const ownerId = personByNameOrEmail(sx, row.responsible_party ?? '')
+    const payload = {
+      ...(unmappedPayload(headers, row, RAIL_V2_MAPPED) ?? {}),
+      // verbatim source facts the first-class columns cannot carry losslessly
+      ...(row.status ? { status: row.status } : {}),
+      ...(row.phase ? { phase: row.phase } : {}),
+      ...(row.updates ? { updates: row.updates } : {}),
+      ...(row.coa_tracking_number ? { coa_tracking_number: row.coa_tracking_number } : {}),
+      ...(row.assigned_date ? { assigned_date: row.assigned_date } : {}),
+      ...(row.original_target_date ? { original_target_date: row.original_target_date } : {}),
+      ...(row.actual_completion_date ? { actual_completion_date: row.actual_completion_date } : {}),
+    }
+    const fields = {
+      title: row.statement!.slice(0, 140), statement: row.statement,
+      kind: (row.issue_type?.toLowerCase() === 'action' ? 'action' : 'other') as WorkItem['kind'],
+      needBy: row.current_target_date || row.original_target_date || null,
+      priority: row.priority || null, state: state!, area: row.area || null,
+      responsibleParty: row.responsible_party || null,
+      sourceIssueType: row.issue_type || null,
+      sourcePayload: Object.keys(payload).length > 0 ? payload : null,
+      ...(state === 'closed' ? { closedAt: row.actual_completion_date ? `${row.actual_completion_date}T00:00:00Z` : nowIso() } : {}),
+    }
+
+    const existing = sx.db.prepare('SELECT id, version FROM work_item WHERE project_id = ? AND ref = ?')
+      .get(sx.projectId, ref) as { id: number; version: number } | undefined
+    if (existing) {
+      if (!lastChangeIsImport(sx, 'work_item', existing.id) && !force) {
+        report.conflicts.push({ row: rowNo, key: ref, reason: 'edited in-app since last import; use force=true' })
+        return
+      }
+      sx.repo.systemUpdate('work_item', sx.projectId, existing.id, fields)
+      importHistory(sx, 'work_item', existing.id, `${ref} updated by RAIL v2 import`)
+      report.updated++
+    } else {
+      const wid = sx.repo.insert('work_item', {
+        projectId: sx.projectId, ref, log: 'package' as Log,
+        anchorType: 'package', anchorId: pkg.id, packageId: pkg.id,
+        // custody: exact person match on responsible_party, else the importing PE holds
+        // the record (no fabricated persons); the attested party stays verbatim above.
+        ownerId: ownerId ?? sx.session.personId,
+        createdBy: sx.session.personId,
+        createdAt: row.assigned_date ? `${row.assigned_date}T00:00:00Z` : nowIso(),
+        ...fields,
+      })
+      importHistory(sx, 'work_item', wid,
+        `${ref} created from RAIL v2 row (${row.issue_type || 'untyped'} → ${fields.kind}, state ${state} seeding)`)
+      report.accepted++
+    }
   })
   return report
 }
@@ -716,6 +1063,47 @@ export function exportRegister(sx: Sx, register: string): string {
           'raised', personName(sx, t.raisedBy), t.raisedAt.slice(0, 10),
           '', t.anchorSuggestion ?? '', '', '', '', 'unanchored', t.area ?? ''])
       }
+      return toCsv(headers, rows)
+    }
+    // contract v2 round-trip exports (D-PEC-41): reproduce the provided v2 columns,
+    // including verbatim payload columns (full-fidelity parity) and attested markers.
+    case 'mdl-v2': {
+      const base = ['package', 'deliverable_type', 'area', 'project_phase', 'discipline', 'package_type',
+        'package_name', 'deliverable_id', 'target_completeness', 'working_status', 'percent_complete']
+      const extraKeys = [...new Set(snap.deliverables.flatMap((d) => Object.keys(d.sourcePayload ?? {})))]
+        .filter((k) => !base.includes(k)).sort()
+      const headers = [...base, ...extraKeys]
+      const rows = snap.deliverables.map((d) => {
+        const pkg = snap.packages.find((p) => p.id === d.packageId)
+        return [pkgCode(d.packageId), d.deliverableType, pkg?.area ?? '', d.projectPhase ?? '',
+          d.discipline, pkg?.packageType ?? '', pkg?.name ?? '', d.docNo,
+          d.targetCompleteness ?? '', d.workingStatus ?? '',
+          d.percentComplete != null ? String(d.percentComplete) : d.percentCompleteVerbatim ?? '',
+          ...extraKeys.map((k) => d.sourcePayload?.[k] ?? '')]
+      })
+      return toCsv(headers, rows)
+    }
+    case 'rail-v2': {
+      const base = ['package', 'issue_no', 'discipline', 'area', 'phase', 'coa_tracking_number', 'package_type',
+        'package_name', 'issue_type', 'statement', 'updates', 'responsible_party', 'status',
+        'priority', 'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date']
+      const v2Items = (snap.workItems as WorkItem[]).filter((w) => w.ref.includes('#'))
+      const extraKeys = [...new Set(v2Items.flatMap((w) => Object.keys(w.sourcePayload ?? {})))]
+        .filter((k) => !base.includes(k) &&
+          !['status', 'phase', 'updates', 'coa_tracking_number', 'assigned_date', 'original_target_date', 'actual_completion_date'].includes(k))
+        .sort()
+      const headers = [...base, ...extraKeys]
+      const rows = v2Items.map((w) => {
+        const pkg = snap.packages.find((p) => p.id === w.packageId)
+        const pay = w.sourcePayload ?? {}
+        const hash = w.ref.lastIndexOf('#')
+        return [w.ref.slice(0, hash), w.ref.slice(hash + 1), pkg?.discipline ?? '', w.area ?? '',
+          pay.phase ?? '', pay.coa_tracking_number ?? '', pkg?.packageType ?? '', pkg?.name ?? '',
+          w.sourceIssueType ?? '', w.statement ?? w.title, pay.updates ?? '', w.responsibleParty ?? '',
+          pay.status ?? w.state, w.priority ?? '', pay.assigned_date ?? '', pay.original_target_date ?? '',
+          w.needBy ?? '', pay.actual_completion_date ?? (w.closedAt?.slice(0, 10) ?? ''),
+          ...extraKeys.map((k) => pay[k] ?? '')]
+      })
       return toCsv(headers, rows)
     }
     case 'decisions': {

@@ -1,0 +1,3 @@
+package,issue_no,discipline,area,phase,coa_tracking_number,package_type,package_name,issue_type,statement,updates,responsible_party,status,priority,assigned_date,original_target_date,current_target_date,actual_completion_date
+26020-PKG-001,1,Civil,01,30%,26020-01-PT-12-001,Equipment,Earthworks for foundations,Decision,Confirm grading basis for pond berms,Awaiting client survey,Project Management,Not Started,Now,2026-07-07,2026-07-14,2026-07-14,
+26020-PKG-002,1,Civil,01,30%,,Equipment,Site grading,,,,,,,,,,

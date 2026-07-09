@@ -1130,11 +1130,44 @@ export function disciplineDetailView(sx: Sx, discipline: string, periodStart?: s
     }
   }
 
+  // % complete (D-PEC-41): PE-attested via contract v2 import; never derived in-app.
+  // Rollup rule (owner interview, findings §5): each deliverable type contributes equally,
+  // split across its document count; deliverables without an attested numeric % (including
+  // verbatim markers like "Next Phase") are excluded and the coverage is named.
+  const disciplineDels = snap.deliverables.filter((d) => d.discipline === discipline)
+  const attested = disciplineDels.filter((d) => d.percentComplete != null)
+  if (attested.length > 0) {
+    const byType = new Map<string, { att: typeof attested; total: number }>()
+    for (const d of disciplineDels) {
+      const t = d.deliverableType ?? '(untyped)'
+      const g = byType.get(t) ?? { att: [], total: 0 }
+      g.total++
+      if (d.percentComplete != null) g.att.push(d)
+      byType.set(t, g)
+    }
+    const typed = [...byType.entries()].filter(([, g]) => g.att.length > 0)
+    const typeAvg = (g: { att: Array<{ percentComplete: number | null }> }): number =>
+      g.att.reduce((s, d) => s + (d.percentComplete ?? 0), 0) / g.att.length
+    const pct = typed.reduce((s, [, g]) => s + typeAvg(g), 0) / typed.length
+    const markers = disciplineDels.filter((d) => d.percentCompleteVerbatim != null)
+    band.percentComplete = {
+      value: Math.round(pct * 10) / 10, ruleId: 'DISC-PCT',
+      detail: `PE-attested % complete (contract v2 import; never derived in-app): equal-weight mean of ${typed.length}/${byType.size} deliverable types, each type the mean of its attested documents; attested ${attested.length}/${disciplineDels.length} deliverables` +
+        (markers.length > 0 ? `; ${markers.length} marker-valued (e.g. "${markers[0]!.percentCompleteVerbatim}") excluded` : ''),
+      contributing: attested.map((d) => delRef(d, `attested ${d.percentComplete}%`)),
+    }
+  }
+
   const absent: Array<{ figure: string; reason: string; needed: string }> = [
+    ...(attested.length > 0 ? [] : [{
+      figure: '% complete by deliverable kind',
+      reason: 'no deliverable in this discipline carries a PE-attested percent value (attested via contract v2 import, D-PEC-41; never derived in-app)',
+      needed: 'an applied MDL v2 import with percent_complete for this discipline',
+    }]),
     {
-      figure: '% complete by deliverable kind (and its week-over-week delta)',
-      reason: 'PE-attested percent-complete ingestion is not ruled or implemented yet',
-      needed: 'MDL/RAIL contract v2 packet (Tier-P revised templates)',
+      figure: 'week-over-week % complete delta',
+      reason: 'attested % is a point-in-time fact; no period snapshot model exists to difference against',
+      needed: 'future period-snapshot tranche if ruled',
     },
     {
       figure: 'stalled-activity flags',
