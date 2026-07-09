@@ -1,6 +1,6 @@
 # D-PEC-44 - PROPOSAL: Discipline status report (.docx) generation
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-A)
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-44
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -112,5 +112,11 @@ working files.
 
 ## Human ruling
 
-**OPEN — decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D;
-an O-B ruling names the dependency and version basis.
+**RULED: O-A** (owner in-session, Ryan Tufts, 2026-07-09, verbatim):
+
+> D-PEC-44: O-A. Report drafts only from imported/reportable facts; no issuing
+> workflow, no task management.
+
+Execution rider: the `.docx` act produces report drafts only from imported
+and reportable facts. It must not add an issuing workflow or task-management
+behavior.

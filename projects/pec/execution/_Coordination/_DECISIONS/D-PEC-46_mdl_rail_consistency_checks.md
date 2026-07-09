@@ -1,6 +1,6 @@
 # D-PEC-46 - PROPOSAL: MDL-RAIL consistency checks
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-B first increment)
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-46
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -106,4 +106,15 @@ auditable if created before rollback.
 
 ## Human ruling
 
-**OPEN - decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D.
+**RULED: O-B as first increment** (owner in-session, Ryan Tufts, 2026-07-09,
+verbatim):
+
+> D-PEC-46: O-B as the first increment — surface MDL-RAIL discrepancies in
+> reports/check output only, no intake/review/disposition records yet. The
+> findings' disposition-trail requirement stands and returns as its own later
+> packet.
+
+Execution rider: this tranche may add checker/report output only. It must not
+create intake items, review records, disposition trails, or state-changing
+workflow. The disposition-trail requirement remains accepted product intent
+and is reserved to a later packet.

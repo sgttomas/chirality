@@ -1,6 +1,6 @@
 # D-PEC-48 - PROPOSAL: Reporting-vocabulary alignment
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-A)
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-48
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -112,4 +112,15 @@ field names return to the prior wording; no data migration involved.
 
 ## Human ruling
 
-**OPEN - decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D.
+**RULED: O-A** (owner in-session, Ryan Tufts, 2026-07-09, verbatim):
+
+> D-PEC-48: O-A with the vocabulary: client-facing "issues" = action items +
+> risks + holds; decisions segregated as decisions; interfaces their own
+> relationship/status category; internal cockpit keeps typed operational
+> labels. Supersedes-by-extension of findings §4.5, recorded in the packet.
+
+Execution rider: this ruling supersedes-by-extension the narrower findings
+§4.5 vocabulary. Client-facing "issues" means action items + risks + holds.
+Decisions are segregated as decisions. Interfaces are their own relationship
+and later status category. Internal cockpit/workbench surfaces keep typed
+operational labels and must not hide source categories.

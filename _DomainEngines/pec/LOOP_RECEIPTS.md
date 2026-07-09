@@ -914,3 +914,11 @@
   - Delta found (live tree wins): current report/web surfaces still use broad "issues" wording for holds/interfaces/decisions/risks/actions; D-PEC-48 frames a display/reporting vocabulary tranche only, preserving ADR-011 and the operational union.
   - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
   - Gate outcome: packet preparation only; STOP at owner rulings. Parked lanes: D-PEC-43/44/46/47/48 rulings; carried slate items; D-PEC-32/33; D-PEC-23 import-approval gate; P4 weekly rehearsal; D-PEC-28/28b.
+
+- **2026-07-09 — Receipt 86** (D-PEC-43/44/46/47/48 rulings recorded; D-PEC-49 packet prepared; PR #130 merge approved).
+  - Owner direction/ruling of record (2026-07-09, in-session, Ryan Tufts): "I approve merge of PR #130." D-PEC-43 O-A limited; D-PEC-44 O-A; D-PEC-46 O-B first increment; D-PEC-47 O-A limited to items 1/2/4/5; D-PEC-48 O-A with issues = action items + risks + holds; full verbatim rulings live in the packets.
+  - Executed pointers: ruling sections and register rows for D-PEC-43/44/46/47/48; new packet `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-49_week_over_week_deliverable_progress.md` + register row AWAITING_RULING.
+  - Gate accounting: D-PEC-43 interface status vocabulary reserved to later packet; D-PEC-46 disposition-trail requirement reserved to later packet; D-PEC-47 in-app triage path not authorized; D-PEC-48 supersedes-by-extension findings §4.5; D-PEC-49 source execution not authorized yet.
+  - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
+  - Merge direction: PR #130 merge approved; merge executes after this ruling-accounting commit is pushed and harness is green.
+  - Gate outcome after merge: source execution authorized for D-PEC-43/44/46/47/48 inside their ruled fences; D-PEC-49 awaits owner ruling; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.

@@ -1,6 +1,6 @@
 # D-PEC-47 - PROPOSAL: Needs internal-client typing
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-A limited)
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-47
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -99,4 +99,15 @@ before rollback.
 
 ## Human ruling
 
-**OPEN - decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D.
+**RULED: O-A, limited to items 1, 2, 4, and 5** (owner in-session,
+Ryan Tufts, 2026-07-09, verbatim):
+
+> D-PEC-47: O-A limited to items 1, 2, 4, 5 — model field, import mapping,
+> report/discipline split, round-trip export; no in-app triage path. I will
+> provide the internal/client classification column in the next input document.
+
+Execution rider: the authorized scope is the nullable model field, import
+mapping for an explicit source column, report/discipline split, and
+round-trip export. The in-app triage path in item 3 is not authorized.
+Existing rows stay absent/unclassified until an explicit imported value is
+provided.
