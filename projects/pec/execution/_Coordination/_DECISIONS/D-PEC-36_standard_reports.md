@@ -1,6 +1,6 @@
 # D-PEC-36 - PROPOSAL: Standard report set
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-09 (O-A with rider).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-36
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -44,7 +44,8 @@ Whether to authorize one source tranche implementing D-PEC-36:
 
 1. Define and implement a standard report set:
    - weekly project status, based on `overviewView`, Log summary, and package
-     rollups;
+     rollups, with payload support for grouping by discipline as well as by
+     package;
    - package issue summary, based on `packageDetailView.issues[]`,
      `packagesView.issueMix`, and `logSummaryView`;
    - deliverable completeness / MDL status, based on `deliverablesView`,
@@ -62,7 +63,8 @@ Whether to authorize one source tranche implementing D-PEC-36:
 
 **Not in scope:** user-defined prompt reports (D-PEC-37); in-app report editor;
 new charting/PDF/docx dependencies; importing/uploading; professional
-certification; claims not supported by server records.
+certification; claims not supported by server records; `.docx` generation;
+percent-complete ingestion; reporting period/snapshot semantics.
 
 ## Fence (exact; STOP outside it)
 
@@ -113,4 +115,24 @@ dependency, or runtime rollback is needed.
 
 ## Human ruling
 
-AWAITING_RULING.
+O-A affirmed 2026-07-09, with rider.
+
+Build the standard report machinery and the three named reports. The weekly
+project status report payload must support grouping by discipline as well as by
+package. Rationale: the owner's actual recurring weekly report is
+discipline-oriented, the deliverable discipline field already exists, and
+supporting this grouping now prevents the report foundation from hardening
+around package as the only axis.
+
+O-B is rejected for now. Do not add a web Reports index or in-app report
+viewer/editor: under the PE/PD operating model, reports are drafted by the
+sidecar, vetted by the PE, then edited and issued outside the app. In-app
+storage is a convenience at most, and a viewer may return as its own later
+packet.
+
+Explicit exclusions for this packet, even though related to reporting: `.docx`
+generation/template conformance, percent-complete ingestion, reporting
+period/snapshot semantics, first-class discipline view, interfaces import
+contract, MDL-to-RAIL consistency checks in intake/triage, and internal/client
+typing of needs. These await a workplan amendment and the owner's revised MDL
+and RAIL templates; do not pre-build them and do not build against them.

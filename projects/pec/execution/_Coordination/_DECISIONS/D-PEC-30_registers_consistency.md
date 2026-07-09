@@ -1,6 +1,6 @@
 # D-PEC-30 - PROPOSAL: Registers consistency
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-30
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -115,4 +115,18 @@ runtime rollback is needed.
 
 ## Human ruling
 
-AWAITING_RULING.
+O-A affirmed 2026-07-09.
+
+Owner context/rationale: Registers are where PD drill-downs terminate in the
+PE/PD operating model, so the accessibility, consistency, read-only signaling,
+and drill-down work directly supports the in-app consumption path. The PE
+curates/uploads/vets data and prepares reporting with the sidecar; the PD
+consumes dashboards and drill-downs in-app.
+
+O-B is rejected. Do not add per-tab summary strips: a future discipline view is
+expected to be the summary layer, and this packet must not create a second
+summary surface.
+
+Execution rider: this packet touches `web/src/shared.tsx`; per the standing
+sequencing rule, tranches touching `shared.tsx` must not run in parallel with
+each other.

@@ -1,6 +1,6 @@
 # D-PEC-35 - PROPOSAL: Upload lane - agent-adaptive structured files
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-09 (O-A with rider).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-35
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -121,4 +121,21 @@ only and must not be committed as tracked instance data.
 
 ## Human ruling
 
-AWAITING_RULING.
+O-A affirmed 2026-07-09, with rider.
+
+Build the CSV/TSV/plain tabular adaptive mapping lane as specified. This is an
+interim lane: the owner's real recurring source files are XLSX workbooks, and
+binary workbook/XLSX parsing is expected to return as a follow-on packet once
+the owner provides the revised MDL and RAIL templates.
+
+The follow-on packet must name its parsing approach and any dependency
+explicitly for its own ruling. Do not design or begin binary workbook parsing
+before the revised templates exist, because those templates define the target
+columns and vocabulary, including status vocabulary, PE-attested percent
+complete, and coverage dates.
+
+Explicit exclusions for this packet: reporting periods/snapshots, percent
+complete ingestion, first-class discipline view, `.docx` template conformance,
+interfaces import contract, MDL-to-RAIL consistency checks in intake/triage,
+and internal/client typing of needs. These await a workplan amendment and the
+owner's revised templates; do not pre-build them and do not build against them.

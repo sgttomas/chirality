@@ -1,6 +1,6 @@
 # D-PEC-31 - PROPOSAL: Overview and My Week polish
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-31
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -119,4 +119,12 @@ runtime rollback is needed.
 
 ## Human ruling
 
-AWAITING_RULING.
+O-A affirmed 2026-07-09.
+
+Owner context/rationale: O-B's `myWeekView` widening is rejected as
+task-management gravity on a surface that is peripheral to the PE/PD operating
+model. The standing direction remains that PEC is not a task-management
+platform at this time.
+
+O-B may return only as its own future packet. D-PEC-31 execution must stay in
+the O-A web-only fence and must not widen the server `myWeekView`.

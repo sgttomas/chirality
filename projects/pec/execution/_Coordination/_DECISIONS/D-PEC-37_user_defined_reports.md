@@ -1,6 +1,6 @@
 # D-PEC-37 - PROPOSAL: User-defined reports
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-09 (O-A; execution gated on D-PEC-36).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-37
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -112,4 +112,12 @@ dependency, or runtime rollback is needed.
 
 ## Human ruling
 
-AWAITING_RULING.
+O-A affirmed 2026-07-09.
+
+Execution remains gated on D-PEC-36, as the packet already states. D-PEC-37
+must reuse the D-PEC-36 conventions after they land.
+
+O-B is rejected for now. Do not add an in-app viewer/export surface: under the
+PE/PD operating model, reports are drafted by the sidecar, vetted by the PE,
+then edited and issued outside the app. A viewer may return as its own later
+packet.
