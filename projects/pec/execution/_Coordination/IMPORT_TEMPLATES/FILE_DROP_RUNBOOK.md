@@ -55,6 +55,24 @@ weekly standard report under `period_start`/`period_end`) name the applied
 coverage declarations they rest on (PER-COV); a window no declaration covers
 says so.
 
+## v1.6 (2026-07-09, D-PEC-42 O-A)
+
+The embedded sidecar now also accepts `.xlsx` workbooks natively (base64
+attachment bytes; zero-dependency parser in the agent sidecar — pec
+server/web runtime untouched). The parser reads sheets/cells (shared and
+inline strings including rich-text runs, numbers, booleans, cached formula
+values only — never formula evaluation, and 1900-system date serials emitted
+as ISO dates), scans each sheet for a contract-shaped header row (title and
+metadata rows above the header are tolerated), and feeds the matching sheet
+into the same mapping → CSV proposal route as v1.4. All sheets — including
+non-tabular ones (Rules of Credit, Data Dictionary, Lists, metadata blocks)
+— are carried verbatim in the proposal result's workbook payload for the
+D-PEC-41 full-fidelity capture; nothing is dropped. Anything the parser
+cannot faithfully read (encrypted archives, zip64, unsupported compression,
+the 1904 date system, malformed workbooks) is refused with a reported basis —
+never guessed through. The approval boundary is unchanged: the agent files or
+refreshes proposals; the owner reviews, accepts, and applies in Admin.
+
 ## The loop (per file drop)
 
 1. **Drop.** Owner places the file under
@@ -100,8 +118,11 @@ says so.
 - Rows the agent cannot map without inventing meaning are proposed as
   questions or left to reject with reasons — never silently guessed; test-data
   fills happen only under an explicit owner ruling and are tagged in-row.
-- Binary workbook/XLSX parsing is not part of the current lane; convert to
-  CSV/TSV/plain tabular text or wait for the separate XLSX follow-on ruling.
+- *(v1.6, 2026-07-09)* Binary `.xlsx` workbooks are now accepted on the
+  sidecar lane under D-PEC-42 O-A (the v1.4-era "convert to CSV/TSV or wait"
+  rule is discharged). Workbook features the parser cannot faithfully read
+  are refused with a reported basis; `.xlsm` macros are never executed
+  (captured only as file provenance, per the D-PEC-42 scope).
 
 ## v1.2 — the weekly agent intake+triage cycle (D-PEC-10 O-A, ruled 2026-07-05)
 

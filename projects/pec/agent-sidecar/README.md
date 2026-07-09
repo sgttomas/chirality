@@ -7,7 +7,10 @@ Zero runtime dependencies (mirrors `@pec/server`, ADR-002 posture).
 
 ## What it can and cannot do
 
-- Can: file CSV import proposals, refresh/withdraw its own proposals, triage
+- Can: file CSV/TSV/plain-tabular and `.xlsx` import proposals (D-PEC-42 O-A:
+  zero-dependency workbook parser in `src/xlsx.ts`; unreadable/unsupported
+  workbooks refuse with a stated basis; all sheets ride the proposal payload
+  verbatim), refresh/withdraw its own proposals, triage
   intake items **with grounds** (`parked` / `duplicate` / `rejected` only),
   report status, read the enumerated surfaces — and, on the owner-selected
   `broad` access basis (D-T0-21 O-B), read everything the agent person's own
