@@ -269,3 +269,31 @@ test('multiline cell values survive the workbook → CSV → mapping round-trip 
   assert.ok(dataRecord.includes('Not Started'), dataRecord)
   assert.equal(hdr.includes('responsible_party'), true)
 })
+
+test('self-closing empty cells and rows never swallow their successors (TWD live-file pin)', () => {
+  // Real Excel writes empty styled cells (<c r="G3" s="3"/>) and empty rows
+  // self-closing. The greedy tag regex previously merged them with the next
+  // element: H3's shared string surfaced at column G as an unresolved raw
+  // index, and an empty row absorbed the whole row after it.
+  const xmldecl = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+  const ns = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'
+  const shared = `${xmldecl}<sst xmlns="${ns}" count="2" uniqueCount="2"><si><t>alpha</t></si><si><t>beta</t></si></sst>`
+  const sheet = `${xmldecl}<worksheet xmlns="${ns}"><sheetData>`
+    + `<row r="1"><c r="A1" t="s"><v>0</v></c><c r="B1" s="3"/><c r="C1" t="s"><v>1</v></c></row>`
+    + `<row r="2" ht="39.95" customHeight="1"/>`
+    + `<row r="3"><c r="A3"><v>7</v></c></row>`
+    + `</sheetData></worksheet>`
+  const zip = buildZip([
+    { name: 'xl/workbook.xml', data: `${xmldecl}<workbook xmlns="${ns}"><sheets><sheet name="S" sheetId="1" r:id="rId1"/></sheets></workbook>` },
+    { name: 'xl/_rels/workbook.xml.rels', data: `${xmldecl}<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>` },
+    { name: 'xl/worksheets/sheet1.xml', data: sheet },
+    { name: 'xl/sharedStrings.xml', data: shared },
+  ])
+  const wb = parseXlsxWorkbook(zip)
+  const rows = wb.sheets[0]!.rows
+  // C1 stays 'beta' at index 2 — not planted at B1 as a raw shared-string index
+  assert.deepEqual(rows[0], ['alpha', null, 'beta'])
+  // the self-closing row 2 is blank; row 3 survives with its own value
+  assert.deepEqual(rows[1], [null, null, null])
+  assert.deepEqual(rows[2], [7, null, null])
+})
