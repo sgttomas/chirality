@@ -1,6 +1,6 @@
 # D-PEC-39 - PROPOSAL: Reporting periods and coverage declarations
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-39
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -127,4 +127,9 @@ must stay scratch-only and uncommitted.
 
 ## Human ruling
 
-OPEN — owner ruling required.
+**RULED: O-A** (owner in-session 2026-07-09, Ryan Tufts, verbatim): "I rule
+O-A on both D-PEC-39 and D-PEC-40 but I'm not ready to provide those needed
+MDL/RAIL templates." — Source execution authorized inside this packet's O-A
+fence only (no web surface). The Tier-P revised MDL/RAIL templates remain
+withheld: contract v2 and all template-dependent rows stay parked; nothing in
+this tranche may guess template columns (K-INVENT-1).

@@ -218,12 +218,16 @@ export function buildPecTools(
 
   return [
     bounded('propose_csv',
-      'File CSV/TSV/plain tabular text as an import proposal (dry-run only; accept/apply stay human, in Admin).',
-      { csv: z.string().optional(), filename: z.string().optional(), contract: z.string().optional() },
+      'File CSV/TSV/plain tabular text as an import proposal (dry-run only; accept/apply stay human, in Admin). '
+      + 'Pass the PE\'s declared coverage dates (coverage_start/coverage_end, YYYY-MM-DD) when stated — never infer them (D-PEC-39).',
+      { csv: z.string().optional(), filename: z.string().optional(), contract: z.string().optional(),
+        coverage_start: z.string().optional(), coverage_end: z.string().optional() },
       (a) => acts.proposeCsv({
         csv: typeof a.csv === 'string' ? a.csv : input.attachment?.text ?? '',
         filename: opt(a.filename) ?? input.attachment?.name,
         contract: opt(a.contract),
+        coverageStart: opt(a.coverage_start),
+        coverageEnd: opt(a.coverage_end),
       })),
     bounded('refresh_proposal',
       'Recompute an import proposal dry-run (voids any prior acceptance; a human re-reviews).',

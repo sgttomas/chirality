@@ -17,7 +17,7 @@ import {
 } from '@pec/core'
 import type { Sx } from './shared.ts'
 import { snapshot } from './shared.ts'
-import { notFound } from '../errors.ts'
+import { badRequest, notFound } from '../errors.ts'
 
 function logsFor(sx: Sx, snap: ProjectSnapshot): Log[] {
   return visibleLogs(sx.roles, snap.project.config.logVisibility)
@@ -930,5 +930,234 @@ export function adminActivityView(sx: Sx): unknown {
       note: 'Read-only operational evidence; DB files and migrations are not mutated by this view.',
     },
     events,
+  }
+}
+
+// ---------- Discipline view v1 (D-PEC-40) ----------
+// The live, drillable mirror of the weekly discipline status report (findings §5):
+// four report-shaped sections over existing data plus a factual-or-absent metric
+// band. Read-only projection; % complete and period-scoped tiles degrade honestly
+// until their tranches land ("absent and said to be absent").
+
+const UNSPECIFIED_DISCIPLINE = 'Unspecified'
+
+function disciplineOf(d: Deliverable): string {
+  return d.discipline ?? UNSPECIFIED_DISCIPLINE
+}
+
+interface DisciplineData {
+  discipline: string
+  deliverables: Deliverable[]
+  delIds: Set<number>
+  revIds: Set<number>
+}
+
+function disciplineData(snap: ProjectSnapshot, discipline: string): DisciplineData {
+  const deliverables = snap.deliverables.filter((d) => disciplineOf(d) === discipline)
+  const delIds = new Set(deliverables.map((d) => d.id))
+  const revIds = new Set(snap.revisions.filter((r) => delIds.has(r.deliverableId)).map((r) => r.id))
+  return { discipline, deliverables, delIds, revIds }
+}
+
+/** Open needs-shaped records tied to the discipline via its deliverables/revisions:
+ *  RAIL-borne actions and active holds. Internal/client typing is NOT derived here —
+ *  it stays absent until its own ruled tranche (D-PEC-40 scope note). */
+function disciplineNeeds(sx: Sx, snap: ProjectSnapshot, dd: DisciplineData): {
+  actions: WorkItem[]
+  holds: Hold[]
+} {
+  const actions = visibleByLog(sx, snap, snap.workItems.filter((w) =>
+    (w.state === 'open' || w.state === 'in_work')
+    && ((w.anchorType === 'deliverable' && dd.delIds.has(w.anchorId))
+      || (w.anchorType === 'revision' && dd.revIds.has(w.anchorId)))))
+  const holds = visibleByLog(sx, snap, snap.holds.filter((h) => h.state === 'active'
+    && snap.holdLinks.some((l) => l.holdId === h.id
+      && ((l.targetType === 'deliverable' && dd.delIds.has(l.targetId))
+        || (l.targetType === 'revision' && dd.revIds.has(l.targetId))))))
+  return { actions, holds }
+}
+
+function disciplineRisks(snap: ProjectSnapshot, dd: DisciplineData): Risk[] {
+  // deliverable-attributed only: a package-only risk has no factual discipline basis
+  return (snap.risks as Risk[]).filter((r) =>
+    r.state !== 'closed' && r.deliverableId != null && dd.delIds.has(r.deliverableId))
+}
+
+function disciplineIssueEvents(snap: ProjectSnapshot, dd: DisciplineData): Array<{
+  id: number; ref: string; issuedAt: string; purpose: string; transmittalRef: string
+  deliverableId: number; docNo: string
+}> {
+  return snap.issueEvents
+    .filter((e) => dd.revIds.has(e.revisionId))
+    .map((e) => {
+      const rev = snap.revisions.find((r) => r.id === e.revisionId)!
+      const del = snap.deliverables.find((d) => d.id === rev.deliverableId)!
+      return {
+        id: e.id, ref: e.ref, issuedAt: e.issuedAt, purpose: e.purpose,
+        transmittalRef: e.transmittalRef, deliverableId: del.id, docNo: del.docNo,
+      }
+    })
+    .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt))
+}
+
+export function disciplinesView(sx: Sx): unknown {
+  const snap = snapshot(sx)
+  const names = [...new Set(snap.deliverables.map(disciplineOf))].sort()
+  return names.map((discipline) => {
+    const dd = disciplineData(snap, discipline)
+    const inWork = dd.deliverables.filter((d) => workflowCompleteness(snap, d).currentState !== 'issued')
+    const needs = disciplineNeeds(sx, snap, dd)
+    return {
+      discipline,
+      deliverables: dd.deliverables.length,
+      inWork: inWork.length,
+      issueEvents: disciplineIssueEvents(snap, dd).length,
+      openNeeds: needs.actions.length + needs.holds.length,
+      openRisks: disciplineRisks(snap, dd).length,
+    }
+  })
+}
+
+const PERIOD_DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+
+export function disciplineDetailView(sx: Sx, discipline: string, periodStart?: string | null, periodEnd?: string | null): unknown {
+  const snap = snapshot(sx)
+  const names = new Set(snap.deliverables.map(disciplineOf))
+  if (!names.has(discipline)) throw notFound(`discipline "${discipline}"`)
+  // empty-string params are half/no declarations, not a period — same 400 as /period-status
+  periodStart = periodStart || null
+  periodEnd = periodEnd || null
+  if ((periodStart == null) !== (periodEnd == null)) {
+    throw badRequest('a period requires both start and end (YYYY-MM-DD)')
+  }
+  const period = periodStart && periodEnd ? { start: periodStart, end: periodEnd } : null
+  if (period && (!PERIOD_DATE_RE.test(period.start) || !PERIOD_DATE_RE.test(period.end) || period.end < period.start)) {
+    throw badRequest('period start/end must be ordered YYYY-MM-DD dates')
+  }
+
+  const dd = disciplineData(snap, discipline)
+  const cal = snap.project.calendar
+  const today = snap.today
+
+  // §Activities: in-work deliverables grouped by deliverable type/kind (the rollup unit)
+  const inWork = dd.deliverables.filter((d) => workflowCompleteness(snap, d).currentState !== 'issued')
+  const byType = [...new Set(inWork.map((d) => d.deliverableType ?? 'unspecified'))].sort().map((type) => ({
+    type,
+    deliverables: inWork.filter((d) => (d.deliverableType ?? 'unspecified') === type).map((d) => ({
+      id: d.id, docNo: d.docNo, title: d.title, ownerId: d.ownerId, dueDate: d.dueDate,
+      workflow: workflowCompleteness(snap, d),
+    })),
+  }))
+
+  // §Issuances: recorded issue events only (factual); period-filtered when declared
+  const allIssued = disciplineIssueEvents(snap, dd)
+  const inPeriod = (ts: string): boolean => period != null && ts.slice(0, 10) >= period.start && ts.slice(0, 10) <= period.end
+  const issuances = period ? allIssued.filter((e) => inPeriod(e.issuedAt)) : allIssued
+
+  // §Needs and §Risks
+  const needs = disciplineNeeds(sx, snap, dd)
+  const needRows = [
+    ...needs.holds.map((h) => ({
+      type: 'hold' as const, recordType: 'hold', id: h.id, ref: h.ref, title: h.title,
+      ownerId: h.ownerId, needBy: h.needBy, state: h.state, log: h.log,
+      ageWd: ageWorkingDays(h.raisedAt, today, cal),
+      overdue: h.needBy != null && daysOverdue(h.needBy, today) > 0,
+    })),
+    ...needs.actions.map((w) => ({
+      type: 'action' as const, recordType: 'work_item', id: w.id, ref: w.ref, title: w.title,
+      ownerId: w.ownerId, needBy: w.needBy, state: w.state, log: w.log,
+      ageWd: ageWorkingDays(w.createdAt, today, cal),
+      overdue: w.needBy != null && daysOverdue(w.needBy, today) > 0,
+    })),
+  ].sort((a, b) => Number(b.overdue) - Number(a.overdue) || b.ageWd - a.ageWd)
+  const risks = disciplineRisks(snap, dd).map((r) => ({
+    id: r.id, ref: r.ref, title: r.title, state: r.state, ownerId: r.ownerId,
+    probability: r.probability, impact: r.impact, needBy: r.needBy,
+    deliverableId: r.deliverableId,
+  }))
+
+  // metric band — every tile drills (I-4) or is absent and said to be absent
+  const delRef = (d: { id: number; docNo: string }, why: string): ContributingRef =>
+    ({ recordType: 'deliverable', id: d.id, ref: d.docNo, why })
+  const band: Record<string, Explain<number>> = {
+    activitiesInWork: {
+      value: inWork.length, ruleId: 'DISC-ACT',
+      detail: `deliverables of discipline ${discipline} whose workflow has not reached issued`,
+      contributing: inWork.map((d) => delRef(d, 'in-work deliverable in this discipline')),
+    },
+    openNeeds: {
+      value: needRows.length, ruleId: 'DISC-NEEDS',
+      detail: 'open RAIL-borne actions and active holds anchored to this discipline\'s deliverables/revisions; internal-vs-client typing is absent until its ruled tranche',
+      contributing: redactRefs(sx, snap, needRows.map((n) => ({ recordType: n.recordType as ContributingRef['recordType'], id: n.id, ref: n.ref, why: `open ${n.type}` }))),
+    },
+    needsAging: {
+      value: needRows.length > 0 ? Math.max(...needRows.map((n) => n.ageWd)) : 0, ruleId: 'DISC-NEEDS-AGE',
+      detail: needRows.length > 0 ? 'age in working days of the oldest open need in this discipline' : 'no open needs in this discipline',
+      contributing: redactRefs(sx, snap, needRows.slice(0, 1).map((n) => ({ recordType: n.recordType as ContributingRef['recordType'], id: n.id, ref: n.ref, why: 'oldest open need' }))),
+    },
+    openRisks: {
+      value: risks.length, ruleId: 'DISC-RISK',
+      detail: 'open risks attributed to this discipline\'s deliverables (package-only risks carry no discipline basis and are not counted)',
+      contributing: risks.map((r) => ({ recordType: 'risk' as const, id: r.id, ref: r.ref, why: 'open discipline risk' })),
+    },
+  }
+  if (period) {
+    const prevSpan = Math.round((Date.parse(`${period.end}T00:00:00Z`) - Date.parse(`${period.start}T00:00:00Z`)) / 86400000) + 1
+    const prevEnd = new Date(Date.parse(`${period.start}T00:00:00Z`) - 86400000).toISOString().slice(0, 10)
+    const prevStart = new Date(Date.parse(`${prevEnd}T00:00:00Z`) - (prevSpan - 1) * 86400000).toISOString().slice(0, 10)
+    const issuedPrev = allIssued.filter((e) => e.issuedAt.slice(0, 10) >= prevStart && e.issuedAt.slice(0, 10) <= prevEnd)
+    // coverage basis: applied declarations intersecting the requested window (D-PEC-39, PER-COV)
+    const covRows = sx.db.prepare(
+      `SELECT id, ref, contract, coverage_start, coverage_end FROM import_proposal
+       WHERE project_id = ? AND state = 'applied' AND coverage_start IS NOT NULL
+         AND coverage_start <= ? AND coverage_end >= ? ORDER BY id`,
+    ).all(sx.projectId, period.end, period.start) as Array<{ id: number; ref: string; contract: string; coverage_start: string; coverage_end: string }>
+    const covNote = covRows.length === 0
+      ? 'no applied import coverage declaration intersects this window (PER-COV); imported-register facts may be incomplete'
+      : `coverage basis (PER-COV): ${covRows.map((c) => `${c.ref} (${c.contract} ${c.coverage_start}..${c.coverage_end})`).join(', ')}`
+    band.issuedInPeriod = {
+      value: issuances.length, ruleId: 'DISC-ISSUED',
+      detail: `issue events recorded ${period.start}..${period.end} on this discipline's revisions; ${covNote}`,
+      contributing: issuances.map((e) => ({ recordType: 'issue_event' as const, id: e.id, ref: e.ref, why: `${e.docNo} issued ${e.issuedAt.slice(0, 10)}` })),
+    }
+    band.issuanceDelta = {
+      value: issuances.length - issuedPrev.length, ruleId: 'DISC-ISSUED-DELTA',
+      detail: `issuances ${period.start}..${period.end} (${issuances.length}) minus the preceding equal window ${prevStart}..${prevEnd} (${issuedPrev.length}); timestamped records, not a snapshot model`,
+      contributing: [
+        ...issuances.map((e) => ({ recordType: 'issue_event' as const, id: e.id, ref: e.ref, why: 'issued in the requested window' })),
+        ...issuedPrev.map((e) => ({ recordType: 'issue_event' as const, id: e.id, ref: e.ref, why: 'issued in the preceding window' })),
+      ],
+    }
+  }
+
+  const absent: Array<{ figure: string; reason: string; needed: string }> = [
+    {
+      figure: '% complete by deliverable kind (and its week-over-week delta)',
+      reason: 'PE-attested percent-complete ingestion is not ruled or implemented yet',
+      needed: 'MDL/RAIL contract v2 packet (Tier-P revised templates)',
+    },
+    {
+      figure: 'stalled-activity flags',
+      reason: 'no ruled definition of stalled exists without a period snapshot model',
+      needed: 'future period-snapshot tranche if ruled',
+    },
+    ...(period ? [] : [{
+      figure: 'issuances this period and issuance delta',
+      reason: 'no period declared for this view; period-scoped figures are computed only for an explicitly requested window',
+      needed: 'pass start/end (YYYY-MM-DD) — coverage declarations arrive per uploaded document (D-PEC-39)',
+    }]),
+  ]
+
+  return {
+    discipline,
+    period,
+    band,
+    absent,
+    sections: {
+      activities: { groups: byType, basis: 'deliverable.discipline + workflowCompleteness (DISC-ACT)' },
+      issuances: { rows: issuances, basis: 'issue_event records on this discipline\'s revisions (DISC-ISSUED)' },
+      needs: { rows: needRows, basis: 'open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log (DISC-NEEDS)' },
+      risks: { rows: risks, basis: 'open risks with a deliverable in this discipline (DISC-RISK)' },
+    },
   }
 }

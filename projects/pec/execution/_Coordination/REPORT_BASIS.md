@@ -64,6 +64,51 @@ codes/names.
   data requests, unsupported forecasts, and mutations. Unsupported requested
   figures are reported as absent rather than synthesized.
 
+## Coverage declarations & period basis (D-PEC-39)
+
+Coverage is DECLARED by the PE per uploaded document on the import-proposal
+lane (`coverage_start`/`coverage_end` on `POST .../import-proposals`;
+`server/src/services/proposals.ts`) and never inferred. Read side in
+`server/src/services/periods.ts`:
+
+| Figure | Rule id | Basis |
+|---|---|---|
+| coverage review signals | `COV-OVERLAP` / `COV-GAP` / `COV-UNDECLARED` (`GET /api/projects/:pid/coverage`) | applied import proposals' declared windows, per contract; caught for PE/agent review, never schema-prevented |
+| period coverage basis | `PER-COV` (`GET /api/projects/:pid/period-status?start&end`) | applied coverage declarations intersecting the explicitly requested window; an uncovered window says so |
+| issuances in period | `PER-ISSUED` | `issue_event.issued_at` within the window |
+| issuance delta | `PER-ISSUED-DELTA` | issuances in the window minus the preceding equal-length window — timestamped records, not a snapshot model |
+| work closed / holds raised / holds resolved / decisions decided / intake raised in period | `PER-CLOSED` / `PER-HOLD-RAISED` / `PER-HOLD-RESOLVED` / `PER-DECIDED` / `PER-INTAKE` | record timestamps within the window, visibility-filtered per log |
+
+The weekly standard report accepts `period_start`/`period_end` (both or
+neither; other standard reports refuse a period rather than ignore it);
+under a declared period it carries `issuancesThisPeriod`, `issuanceDelta`,
+and the `PER-COV` coverage basis, and its absent list keeps percent complete
+(Tier-P contract v2) and non-issuance deltas absent. Periods are request
+parameters or per-document declarations — never silently inferred. Window
+membership convention: the UTC calendar day of the stored timestamp
+(`ts.slice(0,10)`) is compared to the declared dates, matching the repo-wide
+date convention.
+
+## Discipline view v1 (D-PEC-40)
+
+Routes `GET /api/projects/:pid/disciplines` and `GET .../disciplines/:name`
+(`server/src/services/views.ts`, discipline section; web page
+`web/src/pages/Disciplines.tsx`). Read-only mirror of the weekly discipline
+report: Activities grouped by deliverable type · Issuances · Needs · Risks,
+plus a factual-or-absent metric band.
+
+| Figure | Rule id | Basis |
+|---|---|---|
+| activities in work | `DISC-ACT` | discipline deliverables whose workflow has not reached issued |
+| open needs / needs aging | `DISC-NEEDS` / `DISC-NEEDS-AGE` | open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log; internal-vs-client typing absent until its ruled tranche |
+| open risks | `DISC-RISK` | open risks with a deliverable in the discipline — package-only risks carry no discipline basis and are not counted |
+| issued this period / issuance delta | `DISC-ISSUED` / `DISC-ISSUED-DELTA` | issue events on discipline revisions within an explicitly requested window; detail names the `PER-COV` coverage basis; absent when no period is declared |
+
+Absent by construction in v1: % complete by deliverable kind and its deltas
+(Tier-P contract v2), stalled-activity flags (no ruled definition without a
+period snapshot model). No CSV export on this surface (D-PEC-40 O-B not
+authorized); no mutation machinery ever ("dashboards, not task managers").
+
 ## The rule this page reinforces
 
 An answer about project state — the owner's, a report's, or the agent's —

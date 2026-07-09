@@ -1,6 +1,6 @@
 # D-PEC-40 - PROPOSAL: Discipline view v1
 
-**Status:** AWAITING_RULING.
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-40
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -122,4 +122,10 @@ runtime rollback is needed under O-A/O-B/O-C.
 
 ## Human ruling
 
-OPEN — owner ruling required.
+**RULED: O-A** (owner in-session 2026-07-09, Ryan Tufts, verbatim): "I rule
+O-A on both D-PEC-39 and D-PEC-40 but I'm not ready to provide those needed
+MDL/RAIL templates." — Source execution authorized inside this packet's O-A
+fence only: read-only discipline view v1, server projection, web route/page,
+factual-or-absent metric band, drill links. O-B display CSV export not
+authorized. % complete and period-scoped tiles degrade honestly until their
+tranches land; the withheld Tier-P templates gate none of this packet.

@@ -2,6 +2,8 @@ import { projectStatus, visibleLogs, workflowCompleteness } from '@pec/core'
 import type { ContributingRef, Deliverable, Explain, Log, ProjectSnapshot } from '@pec/core'
 import { badRequest } from '../errors.ts'
 import type { Sx } from '../services/shared.ts'
+import { periodStatusView } from '../services/periods.ts'
+import type { PeriodStatusView } from '../services/periods.ts'
 
 export type StandardReportName = 'weekly-project-status' | 'package-issue-summary' | 'deliverable-completeness'
 export type WeeklyGroupBy = 'package' | 'discipline'
@@ -78,8 +80,8 @@ function redact<T>(sx: Sx, snap: ProjectSnapshot, explain: Explain<T>): Explain<
 const baseAbsent = [
   {
     figure: 'issued this period',
-    reason: 'no reporting-period/coverage declaration model is ruled or implemented yet',
-    needed: 'future reporting periods packet',
+    reason: 'no period was declared for this report; period-scoped figures are computed only for an explicitly requested window (D-PEC-39)',
+    needed: 'pass period_start/period_end (YYYY-MM-DD) — coverage declarations arrive per uploaded document',
   },
   {
     figure: 'percent complete',
@@ -133,7 +135,29 @@ function issueCountsForPackage(sx: Sx, snap: ProjectSnapshot, packageId: number)
   }
 }
 
-function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
+/**
+ * D-PEC-39: a weekly report may carry an explicitly declared period. The period is a
+ * request parameter (never inferred); the payload then includes period-scoped issuance
+ * figures computed from timestamped issue events, and names the applied coverage
+ * declarations intersecting the window (PER-COV). Without a period, the period-scoped
+ * absent entries stand unchanged.
+ */
+export interface ReportPeriodInput {
+  start?: string | null
+  end?: string | null
+}
+
+function resolvePeriod(period: ReportPeriodInput | undefined): { start: string; end: string } | null {
+  const start = period?.start || null
+  const end = period?.end || null
+  if (start == null && end == null) return null
+  if (start == null || end == null) {
+    throw badRequest('a report period requires both period_start and period_end (D-PEC-39)')
+  }
+  return { start, end } // shape/order validation happens in periodStatusView
+}
+
+function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy, period: { start: string; end: string } | null): StandardReport {
   const snap = sx.repo.snapshot(sx.projectId)
   const status = projectStatus(snap)
   const activeHolds = visibleByLog(sx, snap, snap.holds).filter((h) => h.state === 'active')
@@ -177,11 +201,19 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
         },
       }
     })
+  // period enrichment: only where a factual period basis exists (D-PEC-39)
+  const periodStatus: PeriodStatusView | null = period ? periodStatusView(sx, period.start, period.end) : null
   const sections = {
     groupBy,
     projectHealth: redact(sx, snap, status.health),
     kpis,
     groups,
+    ...(periodStatus ? {
+      period: periodStatus.period,
+      periodCoverage: periodStatus.coverageBasis,
+      issuancesThisPeriod: periodStatus.figures.issuances,
+      issuanceDelta: periodStatus.figures.issuanceDelta,
+    } : {}),
     totals: {
       deliverables: snap.deliverables.length,
       activeHolds: activeHolds.length,
@@ -201,15 +233,34 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
         ...openRisks.map((r) => ref('risk', r.id, r.ref, 'open risk counted in weekly status')),
         ...openActions.map((w) => ref('work_item', w.id, w.ref, 'open action counted in weekly status')),
       ] },
+      ...(periodStatus ? [{
+        route: `/api/projects/${sx.projectId}/period-status?start=${periodStatus.period.start}&end=${periodStatus.period.end}`,
+        source: 'periodStatusView (PER-ISSUED / PER-ISSUED-DELTA); coverage basis PER-COV',
+        ruleId: 'PER-COV',
+        contributing: periodStatus.coverageBasis.declared.contributing,
+      }] : []),
     ],
-    absent: baseAbsent,
+    absent: periodStatus
+      ? [
+        baseAbsent[1]!, // percent complete: still absent until contract v2
+        {
+          figure: 'week-over-week deltas beyond issuances',
+          reason: 'no period snapshot model exists; only the issuance delta computable from timestamped issue events (PER-ISSUED-DELTA) is provided',
+          needed: 'future period-snapshot tranche if ruled',
+        },
+      ]
+      : baseAbsent,
     sections,
     markdown: [
       `# Weekly project status (${groupBy})`,
+      ...(periodStatus ? [`Period: ${periodStatus.period.start} to ${periodStatus.period.end} — ${periodStatus.coverageBasis.declared.detail}`] : []),
       `Project health: ${status.health.value} (${status.health.ruleId}) - ${status.health.detail}`,
       `Totals: ${snap.deliverables.length} deliverables; ${activeHolds.length} active holds; ${openDecisions.length} open decisions; ${openRisks.length} open risks.`,
+      ...(periodStatus ? [`Issuances this period: ${periodStatus.figures.issuances.value} (${periodStatus.figures.issuances.ruleId}); delta vs preceding equal window: ${periodStatus.figures.issuanceDelta.value >= 0 ? '+' : ''}${periodStatus.figures.issuanceDelta.value} (${periodStatus.figures.issuanceDelta.ruleId}).`] : []),
       ...groups.map((g) => `## ${g.label}\nActivities in work: ${g.activities.length}\nIssues: holds ${g.issues.holds}, decisions ${g.issues.decisions}, risks ${g.issues.risks}, actions ${g.issues.actions}`),
-      'Absent: period-scoped issuances, percent complete, and week-over-week deltas are not available until their ruled tranches land.',
+      periodStatus
+        ? 'Absent: percent complete and week-over-week deltas beyond issuances are not available until their ruled tranches land.'
+        : 'Absent: period-scoped issuances, percent complete, and week-over-week deltas are not available until their ruled tranches land.',
     ].join('\n\n'),
   }
 }
@@ -283,13 +334,19 @@ function deliverableCompleteness(sx: Sx): StandardReport {
   }
 }
 
-export function standardReport(sx: Sx, name: string, groupByRaw?: string | null): StandardReport {
+export function standardReport(sx: Sx, name: string, groupByRaw?: string | null, periodRaw?: ReportPeriodInput): StandardReport {
   if (!(REPORTS as readonly string[]).includes(name)) {
     throw badRequest(`unknown standard report: ${name} (${REPORTS.join(', ')})`)
   }
   const groupBy = groupByRaw === 'discipline' ? 'discipline' : 'package'
+  const period = resolvePeriod(periodRaw)
+  if (period && name !== 'weekly-project-status') {
+    // refuse rather than accept-and-ignore: a caller passing a period must not
+    // believe an unscoped report was period-scoped (period honesty, D-PEC-39)
+    throw badRequest(`report ${name} does not support a period; only weekly-project-status is period-scopable`)
+  }
   switch (name as StandardReportName) {
-    case 'weekly-project-status': return weeklyProjectStatus(sx, groupBy)
+    case 'weekly-project-status': return weeklyProjectStatus(sx, groupBy, period)
     case 'package-issue-summary': return packageIssueSummary(sx)
     case 'deliverable-completeness': return deliverableCompleteness(sx)
   }

@@ -641,6 +641,8 @@ CREATE TABLE IF NOT EXISTS import_proposal (
   source_sha256 TEXT NOT NULL,
   source_bytes INTEGER NOT NULL,
   source_csv TEXT NOT NULL,
+  coverage_start TEXT,             -- D-PEC-39: PE-declared coverage, per uploaded document
+  coverage_end TEXT,               -- D-PEC-39: declared, never inferred; null = undeclared
   state TEXT NOT NULL DEFAULT 'draft',
   basis_history_id INTEGER,
   dry_run_report TEXT,
@@ -730,6 +732,9 @@ export function openDb(path: string): Db {
   ensureColumn(db, 'schedule_activity', 'duration_days', 'REAL')
   ensureColumn(db, 'schedule_activity', 'baseline_start', 'TEXT')
   ensureColumn(db, 'schedule_activity', 'baseline_finish', 'TEXT')
+  // D-PEC-39 coverage declarations (additive; existing proposals read as undeclared)
+  ensureColumn(db, 'import_proposal', 'coverage_start', 'TEXT')
+  ensureColumn(db, 'import_proposal', 'coverage_end', 'TEXT')
   // D-PEC-13 owner amendment: the tracker key moved from tracking_no to the resolved package.
   // Old-shape tables (nullable package_id, UNIQUE on tracking_no) exist only on scratch
   // instances and hold import-owned, reproducible rows — rebuild at the new shape; the next

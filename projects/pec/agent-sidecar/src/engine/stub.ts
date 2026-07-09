@@ -64,6 +64,12 @@ function namedContract(message: string): Contract | undefined {
   return m ? (m[1]!.toLowerCase() as Contract) : undefined
 }
 
+/** D-PEC-39: a coverage declaration stated with the upload, e.g. "covering 2026-06-29 to 2026-07-05". */
+function namedCoverage(message: string): { coverageStart: string; coverageEnd: string } | undefined {
+  const m = /\bcover(?:ing|age|s)?\s+(\d{4}-\d{2}-\d{2})\s*(?:\.\.|to|through|-|–)\s*(\d{4}-\d{2}-\d{2})\b/i.exec(message)
+  return m ? { coverageStart: m[1]!, coverageEnd: m[2]! } : undefined
+}
+
 export function createStubEngine(): AgentEnginePort {
   return {
     subject: 'stub',
@@ -86,6 +92,7 @@ export function createStubEngine(): AgentEnginePort {
           csv,
           filename: input.attachment?.name,
           contract: namedContract(msg),
+          ...namedCoverage(msg),
         })
         if (r.kind === 'refused' && /name the contract/.test(r.reason)) {
           // ambiguous/unknown headers → ask (detection failure degrades to asking, never mis-files)
