@@ -35,6 +35,19 @@ model); new aggregates (DISC-PCT already computed server-side per SPEC §1).
 `projects/pec/web/src/**` only (display of already-served payload fields).
 No server/core/sidecar changes, no new dependencies, no tracked DB files.
 
+*Amendment (2026-07-09, owner-directed — dated addition, original text above
+kept for the record):* the fence additionally names
+`projects/pec/server/src/services/views.ts`, **read-side surfacing only** of
+the D-PEC-41 attested fields (`percentComplete`/`percentCompleteVerbatim`)
+into the `deliverablesView` and `disciplineDetailView` payloads — nothing
+else in `server/**`. This regularizes the executed diff (PR #128) inside this
+packet's own fence: the original fence rested on an "already-served" premise
+that was wrong for the per-deliverable rows (Execution note below). The
+no-new-dependencies / no-tracked-DB-files / no-mutation-surface terms are
+unchanged. Owner direction of record (2026-07-09, in-session, Ryan Tufts,
+verbatim): "Fix the governance delta you identified. Then commit under the
+same PR and you may merge when ready."
+
 ## Verification plan
 
 pec belt-and-braces; visual pass on Disciplines detail + Deliverables at
@@ -57,7 +70,10 @@ when you're done, on this authority I'm giving you now."
 "already-served" premise was wrong for the per-deliverable rows —
 `deliverablesView` and `disciplineDetailView` did not emit
 `percentComplete`/`percentCompleteVerbatim`. The 4-line read-side additions in
-`server/src/services/views.ts` execute under the **D-PEC-41 O-A fence**
-(`server/src/**` "read-side only where v2 fields must surface in existing
-explain/report payloads"), not this packet's `web/src/**` fence. The DISC-PCT
-band tile was already served as the packet stated.
+`server/src/services/views.ts` were executed citing the **D-PEC-41 O-A
+fence** (`server/src/**` "read-side only where v2 fields must surface in
+existing explain/report payloads"), not this packet's `web/src/**` fence. The
+DISC-PCT band tile was already served as the packet stated. *Resolved by the
+2026-07-09 owner-directed fence amendment above: the executed diff now sits
+inside this packet's own fence, and the D-PEC-41 citation is no longer
+load-bearing.*

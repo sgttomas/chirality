@@ -890,3 +890,10 @@
   - Discovery delta: demo DB now carries applied TWD % data (182 attested / 3 markers) — the Receipt-81 "await accept/apply" state advanced by an owner act between sessions.
   - Checks at final tree: typecheck clean; core 74 / server 164 / sidecar 97; build + drill pass; visual pass on scratch DB copy at 1280px + 375px (TWD Deliverables column, Process detail tile 28.8% + Explain drill with DISC-PCT basis + contributing refs, "Next Phase" markers verbatim, AUR honest-degrade tile-absent, keyboard-operable button tile, no overflow, console clean); self-check unchanged baseline; coord-check pass; `git diff --check` pass; scope ⊆ D-PEC-45 ∪ D-PEC-41 fences; live `pec-demo.db` churn left uncommitted.
   - Gate outcome: executed + merged under the in-steer merge authority. Parked (unchanged): D-PEC-43/44 rulings; carried slate items; R-phase packets per the standing plan.
+
+- **2026-07-09 — Receipt 83** (D-PEC-45 fence delta regularized, owner-directed).
+  - Owner direction of record (2026-07-09, in-session, Ryan Tufts, verbatim): "Fix the governance delta you identified. Then commit under the same PR and you may merge when ready."
+  - Executed pointers: dated fence amendment in `D-PEC-45_percent_complete_display.md` naming the `server/src/services/views.ts` read-side surfacing (original fence text kept for the record; execution note marked resolved); register row note updated. The Receipt-82 diff now sits inside the packet's own fence; the D-PEC-41 citation is no longer load-bearing.
+  - Deviation from the direction's letter, honoring its intent: PR #128 was already merged, so "the same PR" could not receive the commit — landed as follow-on PR (number in the merge commit), merged under the same in-session authority.
+  - Checks: coordination-surface change only; self-check unchanged baseline; coord-check on branch diff; `git diff --check` pass.
+  - Gate outcome: executed + merged. Parked (unchanged): D-PEC-43/44 rulings; carried slate items; R-phase packets.
