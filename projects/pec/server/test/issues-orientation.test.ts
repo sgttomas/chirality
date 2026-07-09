@@ -108,7 +108,8 @@ test('PEC-NFR-005: the register openIssues count is log-scoped and matches the c
   const P = `/api/projects/${env.projectId}`
   try {
     withTx(env.db, () => {
-      // one internal-log action (hidden from the viewer) + one package-log action (visible to all)
+      // one internal-log action (hidden from the viewer), one package-log action, and one
+      // RAIL-v2-style package issue imported as kind='other' (visible to all).
       for (const [ref, log] of [['WI-INT', 'internal'], ['WI-PKG', 'package']] as const) {
         env.repo.insert('work_item', {
           projectId: env.projectId, ref, title: `${log} action`, statement: null, kind: 'action', log,
@@ -117,21 +118,33 @@ test('PEC-NFR-005: the register openIssues count is log-scoped and matches the c
           createdBy: env.people['lead@t.co'], createdAt: nowIso(),
         })
       }
+      env.repo.insert('work_item', {
+        projectId: env.projectId, ref: 'WI-OTH', title: 'source clarification needed', statement: null,
+        kind: 'other', log: 'package', anchorType: 'package', anchorId: env.packageId, packageId: env.packageId,
+        ownerId: env.people['eor@t.co'], needBy: FUTURE, state: 'open', sourceIssueType: 'Clarification',
+        createdBy: env.people['lead@t.co'], createdAt: nowIso(),
+      })
     })
 
-    // lead sees all logs → both actions; register count matches the cockpit
+    // lead sees all logs → both actions + the RAIL-v2 kind='other' row; register, detail,
+    // and package-issue-summary counts stay identical.
     const lead = await env.as('lead@t.co')
     const leadReg = (await lead.get(`${P}/packages`)).body.find((p: any) => p.id === env.packageId)
     const leadDetail = await lead.get(`${P}/packages/${env.packageId}`)
     assert.equal(leadReg.openIssues, leadDetail.body.summary.openIssues, 'lead: register count == client-facing issue count')
-    assert.equal(leadReg.openIssues, 2)
+    const leadReport = await lead.get(`${P}/reports/standard/package-issue-summary`)
+    const leadReportRow = leadReport.body.sections.packages.find((p: any) => p.package.id === env.packageId)
+    assert.equal(leadReportRow.clientIssues, leadReg.openIssues, 'lead: package-issue-summary count == register count')
+    assert.equal(leadReg.openIssues, 3)
+    const otherRow = leadDetail.body.issues.find((i: any) => i.ref === 'WI-OTH')
+    assert.equal(otherRow?.detail, 'Clarification', 'cockpit row prefers the verbatim source issue type')
 
-    // viewer does not see the internal log → only the package action, and the count agrees
+    // viewer does not see the internal log → only package-visible rows, and the count agrees
     const viewer = await env.as('viewer@t.co')
     const vReg = (await viewer.get(`${P}/packages`)).body.find((p: any) => p.id === env.packageId)
     const vDetail = await viewer.get(`${P}/packages/${env.packageId}`)
     assert.equal(vReg.openIssues, vDetail.body.summary.openIssues, 'viewer: register count == client-facing issue count')
-    assert.equal(vReg.openIssues, 1, 'viewer sees only the package-log action, not the internal one')
+    assert.equal(vReg.openIssues, 2, 'viewer sees only package-log rows, not the internal one')
     assert.ok(!JSON.stringify(vDetail.body.issues).includes('internal action'), 'internal-log title not leaked to viewer')
   } finally { await env.close() }
 })

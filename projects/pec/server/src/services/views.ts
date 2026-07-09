@@ -191,6 +191,10 @@ interface PackageIssue {
   detail: string
 }
 
+function isClientWorkItemKind(w: WorkItem): boolean {
+  return w.kind === 'action' || w.kind === 'coordination' || w.kind === 'other'
+}
+
 function packageIssueRows(sx: Sx, snap: ProjectSnapshot, pkg: Package): PackageIssue[] {
   const cal = snap.project.calendar
   const today = snap.today
@@ -212,7 +216,7 @@ function packageIssueRows(sx: Sx, snap: ProjectSnapshot, pkg: Package): PackageI
   const pkgRisks = (snap.risks as Risk[]).filter((r) =>
     (r.packageId === pkg.id || (r.deliverableId != null && pkgDelIds.has(r.deliverableId))) && r.state !== 'closed')
   const actionItems = visibleByLog(sx, snap, snap.workItems.filter((w) =>
-    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination') && workItemInPkg(w)))
+    (w.state === 'open' || w.state === 'in_work') && isClientWorkItemKind(w) && workItemInPkg(w)))
   return [
     ...visHolds.map((h) => ({
       type: 'hold' as const, recordType: 'hold', ref: h.ref, id: h.id, title: h.title,
@@ -240,7 +244,7 @@ function packageIssueRows(sx: Sx, snap: ProjectSnapshot, pkg: Package): PackageI
       type: 'action' as const, recordType: 'work_item', ref: w.ref, id: w.id, title: w.title,
       ownerId: w.ownerId, needBy: w.needBy, state: w.state, overdue: overdue(w.needBy),
       ageWd: ageWorkingDays(w.createdAt, today, cal), overdueWd: overdueWd(w.needBy),
-      detail: w.kind.replaceAll('_', ' '),
+      detail: w.sourceIssueType ?? w.kind.replaceAll('_', ' '),
     })),
   ].sort((a, b) =>
     Number(b.overdue) - Number(a.overdue)
@@ -283,7 +287,7 @@ function clientIssueCount(sx: Sx, snap: ProjectSnapshot, pkg: Package): number {
   const risks = (snap.risks as Risk[]).filter((r) =>
     (r.packageId === pkg.id || (r.deliverableId != null && delIds.has(r.deliverableId))) && r.state !== 'closed').length
   const actions = snap.workItems.filter((w) =>
-    (w.state === 'open' || w.state === 'in_work') && (w.kind === 'action' || w.kind === 'coordination') && sees(w.log)
+    (w.state === 'open' || w.state === 'in_work') && isClientWorkItemKind(w) && sees(w.log)
     && (w.packageId === pkg.id
       || (w.anchorType === 'deliverable' && delIds.has(w.anchorId))
       || (w.anchorType === 'revision' && revIds.has(w.anchorId)))).length
