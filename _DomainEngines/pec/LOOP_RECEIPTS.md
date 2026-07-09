@@ -897,3 +897,28 @@
   - Deviation from the direction's letter, honoring its intent: PR #128 was already merged, so "the same PR" could not receive the commit — landed as follow-on PR (number in the merge commit), merged under the same in-session authority.
   - Checks: coordination-surface change only; self-check unchanged baseline; coord-check on branch diff; `git diff --check` pass.
   - Gate outcome: executed + merged. Parked (unchanged): D-PEC-43/44 rulings; carried slate items; R-phase packets.
+
+- **2026-07-09 — Receipt 84** (R2 packets D-PEC-46/47 prepared; loop parks at owner rulings).
+  - Start: `afd9a542cf` (`main`) -> branch `codex/pec-dpec46-47-packets`; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.
+  - Owner direction of record: "Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`. Read `{REPO_ROOT}/_DomainEngines/pec/LOOP_INIT.md` and follow it: pursue the loop's inherent goals — recorded in its standing plan — as far as live authority permits. Steer (this run): None."
+  - Live gates checked: no tier-0 ruling newer than D-T0-22; PEC-local register ends with D-PEC-43/44 AWAITING_RULING and D-PEC-45 RULED; standing plan R2 rows unprepared and unblocked by D-PEC-41/42/45 landing.
+  - Executed pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-46_mdl_rail_consistency_checks.md`; `D-PEC-47_needs_internal_client_typing.md`; register rows D-PEC-46/47 AWAITING_RULING.
+  - Delta found (live tree wins): the live TWD RAIL workbook has no explicit internal/client classification column, so D-PEC-47 preserves an unclassified/absent state and forbids inference from weak evidence.
+  - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
+  - Gate outcome: packet preparation only; STOP at D-PEC-46/47 owner rulings. Parked lanes: D-PEC-43/44 rulings; D-PEC-46/47 rulings; carried slate items; R3 packet after applicable prerequisites; D-PEC-32/33; D-PEC-23 import-approval gate; P4 weekly rehearsal; D-PEC-28/28b.
+
+- **2026-07-09 — Receipt 85** (R3 D-PEC-48 reporting-vocabulary packet prepared; loop parks at owner rulings).
+  - Start: continuing branch `codex/pec-dpec46-47-packets`; PR #130 open; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.
+  - Live gates checked: no new owner ruling in tier-0 or PEC-local register; D-PEC-43/44/46/47 remain AWAITING_RULING; D-PEC-45 remains RULED.
+  - Executed pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-48_reporting_vocabulary_alignment.md`; register row D-PEC-48 AWAITING_RULING.
+  - Delta found (live tree wins): current report/web surfaces still use broad "issues" wording for holds/interfaces/decisions/risks/actions; D-PEC-48 frames a display/reporting vocabulary tranche only, preserving ADR-011 and the operational union.
+  - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
+  - Gate outcome: packet preparation only; STOP at owner rulings. Parked lanes: D-PEC-43/44/46/47/48 rulings; carried slate items; D-PEC-32/33; D-PEC-23 import-approval gate; P4 weekly rehearsal; D-PEC-28/28b.
+
+- **2026-07-09 — Receipt 86** (D-PEC-43/44/46/47/48 rulings recorded; D-PEC-49 packet prepared; PR #130 merge approved).
+  - Owner direction/ruling of record (2026-07-09, in-session, Ryan Tufts): "I approve merge of PR #130." D-PEC-43 O-A limited; D-PEC-44 O-A; D-PEC-46 O-B first increment; D-PEC-47 O-A limited to items 1/2/4/5; D-PEC-48 O-A with issues = action items + risks + holds; full verbatim rulings live in the packets.
+  - Executed pointers: ruling sections and register rows for D-PEC-43/44/46/47/48; new packet `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-49_week_over_week_deliverable_progress.md` + register row AWAITING_RULING.
+  - Gate accounting: D-PEC-43 interface status vocabulary reserved to later packet; D-PEC-46 disposition-trail requirement reserved to later packet; D-PEC-47 in-app triage path not authorized; D-PEC-48 supersedes-by-extension findings §4.5; D-PEC-49 source execution not authorized yet.
+  - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
+  - Merge direction: PR #130 merge approved; merge executes after this ruling-accounting commit is pushed and harness is green.
+  - Gate outcome after merge: source execution authorized for D-PEC-43/44/46/47/48 inside their ruled fences; D-PEC-49 awaits owner ruling; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.

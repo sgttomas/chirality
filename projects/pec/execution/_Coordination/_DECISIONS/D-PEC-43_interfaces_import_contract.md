@@ -1,6 +1,6 @@
 # D-PEC-43 - PROPOSAL: Interfaces import contract (TWD packages-interfaces workbook)
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-A, limited)
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-43
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -117,4 +117,16 @@ ordinary rollback.
 
 ## Human ruling
 
-**OPEN — decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D.
+**RULED: O-A, limited** (owner in-session, Ryan Tufts, 2026-07-09,
+verbatim):
+
+> D-PEC-43: O-A, limited to importing/displaying interface relationships as
+> attested facts now; no invented interface status unless the source document
+> explicitly carries it. Later packet reserved for interface status vocabulary:
+> unknown / not started / in progress / spec created / incorporated in scope /
+> complete.
+
+Execution rider: O-A is affirmed for attested interface relationship import
+and display/report use. Interface status vocabulary/modeling is explicitly
+not authorized here unless the source document itself carries the status. A
+future packet owns the interface status vocabulary named above.
