@@ -246,3 +246,26 @@ test('D-PEC-42 stub engine routes a base64 .xlsx attachment through the same pro
   assert.ok(actResult, 'expected an act:result event')
   assert.match((actResult as { summary: string }).summary, /IPR-0009 proposed \(mdl/)
 })
+
+test('multiline cell values survive the workbook → CSV → mapping round-trip intact (fix-forward pin)', () => {
+  // an Excel Alt+Enter newline inside UPDATES must stay cell CONTENT — the naive
+  // line-split truncated the row and silently shifted every later column
+  const grid: Array<Array<string | number | null>> = [
+    ['Package ID', 'Issue #', 'Package Discipline', 'PACKAGE', 'ISSUE TYPE', 'ISSUE DESCRIPTION', 'UPDATES', 'Responsible Party', 'STATUS', 'PRIORITY'],
+    ['ML-PKG-1', 1, 'Electrical', 'Controls', 'Decision', 'Decide I/O', 'line one\nline two', 'Project Management', 'Not Started', 'Now'],
+  ]
+  const wb = { sheets: [{ name: 'RAIL', rows: grid }] }
+  const adapted = adaptWorkbook(wb as never, { filename: 'ml.xlsx' })
+  assert.equal(adapted.ok, true, JSON.stringify(adapted))
+  if (!adapted.ok) return
+  assert.equal(adapted.contract, 'rail')
+  const records = adapted.csv.split('\r\n')
+  // header + one data record — the newline stays inside the quoted cell
+  assert.equal(adapted.summary.rowCount, 1)
+  assert.match(adapted.csv, /"line one\nline two"/)
+  const hdr = records[0]!.split(',')
+  const dataRecord = adapted.csv.slice(records[0]!.length + 2)
+  assert.ok(dataRecord.includes('Project Management'), dataRecord)
+  assert.ok(dataRecord.includes('Not Started'), dataRecord)
+  assert.equal(hdr.includes('responsible_party'), true)
+})

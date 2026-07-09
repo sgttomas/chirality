@@ -100,7 +100,10 @@ test('mdl v2: derived identity, attested capture, verbatim payload, no revisions
   assert.equal(sow.percent_complete, 25)
   assert.equal(sow.project_phase, '30%')
   assert.equal(sow.target_completeness, 'IFQ')
-  assert.deepEqual(JSON.parse(sow.source_payload as string), { custom_note: 'vendor pending' })
+  // dual capture: unmapped columns AND the per-row values that map first-row-wins
+  // onto the package record (nothing dropped, fidelity direction)
+  assert.deepEqual(JSON.parse(sow.source_payload as string),
+    { area: '01', custom_note: 'vendor pending', package_name: 'Inlet separator', package_type: 'Equipment' })
   // factual-or-absent: no revision facts in v2 → no revision records
   const revCount = env.db.prepare(
     "SELECT COUNT(*) AS n FROM revision r JOIN deliverable d ON d.id = r.deliverable_id WHERE d.project_id = ? AND d.doc_no LIKE 'V2-%'",
@@ -293,4 +296,83 @@ test('v1 mdl/rail shapes keep working unchanged (additive contract)', async () =
     'SELECT COUNT(*) AS n FROM revision r JOIN deliverable d ON d.id = r.deliverable_id WHERE d.doc_no = ?',
   ).get('V1-DOC-1') as { n: number }
   assert.equal(n.n, 1)
+})
+
+// ---------------------------------------------------------------------------
+// adversarial-review fix-forward pins (2026-07-09)
+// ---------------------------------------------------------------------------
+
+test('mdl v2: a later provided deliverable_id ADOPTS the derived-identity record (no duplicate register)', async () => {
+  const admin = await env.as('admin@t.co')
+  const base = 'MIG-PKG-1,Scope of Work,01,30%,Process,Equipment,Separator,'
+  const first = [MDL_V2_HDR, `${base},IFQ,In Progress,10,`].join('\r\n')
+  const r1 = await admin.postCsv(`${P}/import/mdl`, first)
+  assert.equal(r1.body.accepted, 1)
+  const withId = [MDL_V2_HDR,
+    'MIG-PKG-1,Scope of Work,01,30%,Process,Equipment,Separator,MIG-SOW-001,IFQ,In Progress,20,'].join('\r\n')
+  const r2 = await admin.postCsv(`${P}/import/mdl`, withId)
+  assert.equal(r2.body.updated, 1, JSON.stringify(r2.body))
+  assert.equal(r2.body.accepted, 0)
+  const rows = env.db.prepare("SELECT doc_no, percent_complete FROM deliverable WHERE project_id = ? AND doc_no LIKE 'MIG-%'")
+    .all(env.projectId) as Array<{ doc_no: string; percent_complete: number }>
+  assert.equal(rows.length, 1)
+  assert.equal(rows[0]!.doc_no, 'MIG-SOW-001')
+  assert.equal(rows[0]!.percent_complete, 20)
+})
+
+test('rail v2: reopening a completed issue sheds the stale closure timestamp', async () => {
+  const admin = await env.as('admin@t.co')
+  const closed = [RAIL_V2_HDR,
+    'RO-PKG-1,1,Electrical,,30%,,Equipment,UPS,Action,Issue vendor query,,Electrical,Complete,Now,2026-07-01,2026-07-03,2026-07-03,2026-07-04'].join('\r\n')
+  await admin.postCsv(`${P}/import/rail`, closed)
+  const reopened = [RAIL_V2_HDR,
+    'RO-PKG-1,1,Electrical,,30%,,Equipment,UPS,Action,Issue vendor query,,Electrical,In Progress,Now,2026-07-01,2026-07-03,2026-07-10,'].join('\r\n')
+  const r = await admin.postCsv(`${P}/import/rail`, reopened)
+  assert.equal(r.body.updated, 1, JSON.stringify(r.body))
+  const wi = env.db.prepare('SELECT state, closed_at FROM work_item WHERE project_id = ? AND ref = ?')
+    .get(env.projectId, 'RO-PKG-1#1') as { state: string; closed_at: string | null }
+  assert.equal(wi.state, 'in_work')
+  assert.equal(wi.closed_at, null)
+  // the parity export no longer reports an actual completion date for it
+  const rail = await admin.get(`${P}/export/rail-v2.csv`)
+  const line = String(rail.body).split('\r\n').find((l: string) => l.startsWith('RO-PKG-1,1'))!
+  assert.ok(!line.includes('2026-07-04'), line)
+})
+
+test('rail v2: placeholder rows with a blank issue_no still refresh the package', async () => {
+  const admin = await env.as('admin@t.co')
+  const csv = [RAIL_V2_HDR, 'BL-PKG-1,,Civil,,30%,,Equipment,Culverts,,,,,,,,,,'].join('\r\n')
+  const r = await admin.postCsv(`${P}/import/rail`, csv)
+  assert.equal(r.body.packageRows, 1, JSON.stringify(r.body))
+  assert.equal(r.body.rejected.length, 0)
+  const pkg = env.db.prepare('SELECT discipline FROM package WHERE project_id = ? AND code = ?')
+    .get(env.projectId, 'BL-PKG-1') as { discipline: string }
+  assert.equal(pkg.discipline, 'Civil')
+})
+
+test('a malformed v1 mdl file (doc_no dropped, current_rev present) fails loudly as v1, never silently imports as v2', async () => {
+  const admin = await env.as('admin@t.co')
+  const csv = [
+    'title,package,discipline,owner,current_rev,state,due_date,deliverable_type',
+    'Sheet,PKG-A,Process,eor@t.co,A,in_work,2027-01-31,Scope of Work',
+  ].join('\r\n')
+  const res = await admin.postCsv(`${P}/import/mdl`, csv)
+  assert.equal(res.status, 400, JSON.stringify(res.body))
+})
+
+test('rail-v2 export emits only verbatim source values in source-faithful columns', async () => {
+  const admin = await env.as('admin@t.co')
+  // an issue with ONLY an original target and no source status beyond vocabulary
+  const csv = [RAIL_V2_HDR,
+    'VB-PKG-1,1,Civil,,30%,,Equipment,Culverts,Action,Confirm culvert sizing,,Civil,Not Started,Now,,2026-08-01,,'].join('\r\n')
+  await admin.postCsv(`${P}/import/rail`, csv)
+  const rail = await admin.get(`${P}/export/rail-v2.csv`)
+  const text = String(rail.body)
+  const hdr = text.split('\r\n')[0]!.split(',')
+  const line = text.split('\r\n').find((l: string) => l.startsWith('VB-PKG-1,1'))!.split(',')
+  const col = (name: string): string => line[hdr.indexOf(name)] ?? ''
+  assert.equal(col('original_target_date'), '2026-08-01')
+  assert.equal(col('current_target_date'), '') // need_by fallback is NOT presented as a provided current target
+  assert.equal(col('status'), 'Not Started')   // verbatim vocabulary, never the app state token
+  assert.equal(col('actual_completion_date'), '')
 })

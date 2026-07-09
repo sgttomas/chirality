@@ -57,8 +57,9 @@ const REQUIRED_V2: Partial<Record<Contract, string[]>> = {
   mdl: ['package', 'deliverable_type'],
   rail: ['package', 'issue_no'],
 }
-/** the v1 key column whose PRESENCE means the file is v1-shaped, not v2 */
-const V1_KEY: Partial<Record<Contract, string>> = { mdl: 'doc_no', rail: 'item_id' }
+/** v1 key columns whose PRESENCE means the file is v1-shaped, not v2 (both listed so a
+ * malformed v1 file missing just its id column still fails loudly as v1) */
+const V1_KEYS: Partial<Record<Contract, string[]>> = { mdl: ['doc_no', 'current_rev'], rail: ['item_id', 'raised_by'] }
 const OPTIONAL_V2: Partial<Record<Contract, string[]>> = {
   mdl: ['area', 'project_phase', 'discipline', 'package_type', 'package_name',
     'deliverable_id', 'target_completeness', 'working_status', 'percent_complete'],
@@ -69,7 +70,7 @@ const OPTIONAL_V2: Partial<Record<Contract, string[]>> = {
 
 function isV2Shape(contract: Contract, headers: Set<string>): boolean {
   const req = REQUIRED_V2[contract]
-  return req != null && !headers.has(V1_KEY[contract]!) && req.every((h) => headers.has(h))
+  return req != null && !V1_KEYS[contract]!.some((k) => headers.has(k)) && req.every((h) => headers.has(h))
 }
 
 const HEADER_ALIASES: Record<string, string> = {
@@ -173,6 +174,27 @@ function disambiguatePackageId(headers: string[]): string[] {
       : h === 'package' && !headers.includes('package_name') ? 'package_name' : h)
 }
 
+/**
+ * Split text into records, honoring RFC 4180 quoting: a newline inside a
+ * double-quoted field is cell CONTENT, not a record boundary. Multiline cells
+ * are routine in workbook exports (Excel Alt+Enter in UPDATES/description
+ * columns) and in the CSV this module itself emits from parsed workbooks —
+ * naive line-splitting silently truncated such rows and shifted every later
+ * column (adversarial review 2026-07-09, defect 1).
+ */
+function splitRecords(text: string): string[] {
+  const records: string[] = []
+  let cur = ''
+  let inQuotes = false
+  for (const ch of text) {
+    if (ch === '"') inQuotes = !inQuotes
+    if (ch === '\n' && !inQuotes) { records.push(cur); cur = ''; continue }
+    cur += ch
+  }
+  records.push(cur)
+  return records
+}
+
 function nearestContracts(headers: Set<string>): string {
   return CONTRACTS.map((contract) => {
     const missing = REQUIRED[contract].filter((h) => !headers.has(h))
@@ -184,10 +206,15 @@ export function adaptStructuredFile(
   text: string,
   opts: { filename?: string; contract?: string } = {},
 ): StructuredFileResult {
-  const rawLines = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n')
+  const normalized = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+  const firstLine = normalized.slice(0, normalized.indexOf('\n') < 0 ? normalized.length : normalized.indexOf('\n'))
+  const { delimiter, format } = chooseDelimiter(firstLine)
+  // quote-aware record splitting only where RFC 4180 quoting is the convention (comma
+  // CSV, incl. the CSV this module emits from workbooks); other delimiters keep physical
+  // lines so a stray unbalanced quote in TSV/pipe content cannot swallow rows
+  const rawLines = format === 'csv' ? splitRecords(normalized) : normalized.split('\n')
   const lines = rawLines.filter((line) => line.trim().length > 0)
   if (lines.length < 2) return { ok: false, reason: 'structured file needs a header row and at least one data row' }
-  const { delimiter, format } = chooseDelimiter(lines[0]!)
   const sourceHeaders = splitLine(lines[0]!, delimiter)
   const canonicalHeaders = disambiguatePackageId(sourceHeaders.map(canonicalHeader))
   const headerSet = new Set(canonicalHeaders)

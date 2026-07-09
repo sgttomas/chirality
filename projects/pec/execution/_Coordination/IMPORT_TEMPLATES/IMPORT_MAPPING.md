@@ -312,9 +312,25 @@ Recorded mapping rules (v2):
   `rail-on-hold` (MDL↔RAIL consistency seeds), `phase-cancelled` (RAIL phase
   says Cancelled, status does not), `percent-marker`, `working-status-vocab`
   / `issue-type-vocab` (value outside the template Lists vocabulary).
+- **Identity adoption**: when the PE later populates `Deliverable ID` for a
+  row previously imported under a derived identity, the existing record
+  adopts the provided id (no register duplication); the migration honors the
+  import-ownership guard.
 - **Round-trip**: registers `mdl-v2` and `rail-v2` export the v2 columns
   plus any captured verbatim payload columns (full-fidelity parity; attested
-  markers round-trip as provided).
+  markers round-trip as provided). Source-faithful columns emit ONLY
+  verbatim-provided values — never app state tokens, the need-by fallback, or
+  app-generated closure timestamps. `deliverable_id` exports the record
+  identity (provided or derived), so feeding an export back re-imports
+  against the same identity.
+- **Fix-forward pins (adversarial review 2026-07-09)**: multiline cell values
+  survive the workbook→CSV→mapping path intact (quote-aware record
+  splitting); MDL `area`/`package_name`/`package_type` are dual-captured
+  (package record first-row-wins AND per-row verbatim payload); RAIL
+  placeholder rows may leave `Issue #` blank; reopening a completed RAIL
+  issue clears its stale closure timestamp; v2 shape detection also requires
+  the absence of v1's other key column (`current_rev`/`raised_by`) so a
+  malformed v1 file fails loudly as v1.
 - **Non-tabular sheets** (Rules of Credit, Data Dictionary, Lists, RAIL
   metadata block): the proposal API accepts a JSON body `{ csv, extras }`;
   `extras` is stored verbatim on the proposal (`source_extras`, size-capped

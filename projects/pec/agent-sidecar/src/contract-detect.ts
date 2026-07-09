@@ -51,9 +51,9 @@ function headerColumns(csv: string): string[] {
 }
 
 /** Contract v2 shapes (D-PEC-41): same contract ids, keyed without doc_no/item_id. */
-const FINGERPRINTS_V2: Partial<Record<Contract, { has: string[]; hasNot: string }>> = {
-  mdl: { has: ['package', 'deliverable_type'], hasNot: 'doc_no' },
-  rail: { has: ['package', 'issue_no'], hasNot: 'item_id' },
+const FINGERPRINTS_V2: Partial<Record<Contract, { has: string[]; hasNot: string[] }>> = {
+  mdl: { has: ['package', 'deliverable_type'], hasNot: ['doc_no', 'current_rev'] },
+  rail: { has: ['package', 'issue_no'], hasNot: ['item_id', 'raised_by'] },
 }
 
 export function detectContract(csv: string): Detection {
@@ -61,7 +61,7 @@ export function detectContract(csv: string): Detection {
   const matches = CONTRACTS.filter((c) => {
     if (FINGERPRINTS[c].every((col) => headers.has(col))) return true
     const v2 = FINGERPRINTS_V2[c]
-    return v2 != null && !headers.has(v2.hasNot) && v2.has.every((col) => headers.has(col))
+    return v2 != null && !v2.hasNot.some((col) => headers.has(col)) && v2.has.every((col) => headers.has(col))
   })
   if (matches.length === 1) return { contract: matches[0]! }
   if (matches.length > 1) return { ambiguous: matches }

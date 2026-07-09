@@ -120,7 +120,11 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
   const { headers } = parseTable(csv)
   // Shape detection: v2 (TWD revised template, D-PEC-41) has no doc_no column and keys on
   // package + deliverable_type. v1 keeps working unchanged (additive contract).
-  if (!headers.includes('doc_no') && headers.includes('package') && headers.includes('deliverable_type')) {
+  // (also requires the absence of v1's other key column so a malformed v1 file — doc_no
+  // accidentally dropped but current_rev present — still fails loudly as v1, adversarial
+  // review 2026-07-09 defect 7)
+  if (!headers.includes('doc_no') && !headers.includes('current_rev')
+    && headers.includes('package') && headers.includes('deliverable_type')) {
     return importMdlV2(sx, csv, force)
   }
   const report: ImportReport = { contract: 'mdl', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
@@ -230,6 +234,11 @@ const MDL_V2_MAPPED = [
   'package_name', 'deliverable_id', 'target_completeness', 'working_status', 'percent_complete',
 ] as const
 
+/** Payload exclusions are narrower than the mapped set: area/package_name/package_type map
+ * to the package record first-row-wins, so their per-row values are ALSO kept verbatim
+ * (fidelity direction — nothing dropped). */
+const MDL_V2_PAYLOAD_EXCLUDED = MDL_V2_MAPPED.filter((h) => !['area', 'package_name', 'package_type'].includes(h))
+
 const MDL_WORKING_STATUS_NORMS = new Set(
   ['not set', 'not started', 'in progress', 'on hold', 'complete', 'cancelled'])
 
@@ -334,10 +343,29 @@ function importMdlV2(sx: Sx, csv: string, force: boolean): ImportReport {
       workingStatus: row.working_status || null,
       percentComplete: pct.pct,
       percentCompleteVerbatim: pct.verbatim,
-      sourcePayload: unmappedPayload(headers, row, MDL_V2_MAPPED),
+      // area/package_name/package_type also land row-verbatim here (dual capture): the
+      // package record keeps first-row-wins attributes, but no per-row value is lost
+      sourcePayload: unmappedPayload(headers, row, MDL_V2_PAYLOAD_EXCLUDED),
     }
-    const existing = sx.db.prepare('SELECT id, version FROM deliverable WHERE project_id = ? AND doc_no = ?')
+    let existing = sx.db.prepare('SELECT id, version FROM deliverable WHERE project_id = ? AND doc_no = ?')
       .get(sx.projectId, docNo) as { id: number; version: number } | undefined
+    if (!existing && row.deliverable_id) {
+      // Identity adoption (recorded rule): when the PE starts populating Deliverable ID,
+      // the record previously known by the DERIVED identity adopts the provided id
+      // instead of duplicating the register (adversarial review 2026-07-09 defect 2).
+      const derived = `${row.package}-${idSlug(row.deliverable_type!)}` + (row.package_name ? `-${idSlug(row.package_name)}` : '')
+      const prior = sx.db.prepare('SELECT id, version FROM deliverable WHERE project_id = ? AND doc_no = ?')
+        .get(sx.projectId, derived) as { id: number; version: number } | undefined
+      if (prior) {
+        if (!lastChangeIsImport(sx, 'deliverable', prior.id) && !force) {
+          report.conflicts.push({ row: rowNo, key: docNo, reason: `record ${derived} was edited in-app since last import; identity not migrated to ${docNo}; use force=true` })
+          return
+        }
+        sx.repo.systemUpdate('deliverable', sx.projectId, prior.id, { docNo })
+        importHistory(sx, 'deliverable', prior.id, `${derived} adopted provided deliverable_id ${docNo} (identity migration, MDL v2)`)
+        existing = prior
+      }
+    }
     if (existing) {
       if (!lastChangeIsImport(sx, 'deliverable', existing.id) && !force) {
         report.conflicts.push({ row: rowNo, key: docNo, reason: 'edited in-app since last import; re-run with force=true to overwrite (PEC-NFR-004)' })
@@ -362,7 +390,8 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
   const { headers } = parseTable(csv)
   // Shape detection: v2 (TWD revised template, D-PEC-41) has no item_id column and keys on
   // package + issue_no. v1 keeps working unchanged (additive contract).
-  if (!headers.includes('item_id') && headers.includes('package') && headers.includes('issue_no')) {
+  if (!headers.includes('item_id') && !headers.includes('raised_by')
+    && headers.includes('package') && headers.includes('issue_no')) {
     return importRailV2(sx, csv, force)
   }
   const report: ImportReport = { contract: 'rail', accepted: 0, updated: 0, conflicts: [], rejected: [], intakeCreated: 0 }
@@ -600,12 +629,14 @@ function importRailV2(sx: Sx, csv: string, force: boolean): ImportReport {
   rows.forEach((row, i) => {
     const rowNo = i + 2
     const errors: string[] = []
+    const isPlaceholder = !row.issue_type && !row.statement
     if (!row.package) errors.push('package is required')
-    if (!row.issue_no) errors.push('issue_no is required')
+    // placeholder rows carry only package identity — a blank Issue # is fine there
+    // (adversarial review 2026-07-09 defect 5); issue rows require it
+    if (!isPlaceholder && !row.issue_no) errors.push('issue_no is required on issue rows')
     for (const col of ['assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date'] as const) {
       if (row[col] && !DATE_RE.test(row[col]!)) errors.push(`${col} must be YYYY-MM-DD, got "${row[col]}"`)
     }
-    const isPlaceholder = !row.issue_type && !row.statement
     const state = isPlaceholder ? undefined : RAIL_V2_STATES.get(normState(row.status ?? '')) ?? (row.status ? undefined : 'open')
     if (!isPlaceholder && row.status && state === undefined) {
       errors.push(`unrecognized status "${row.status}" (template vocabulary: Not Set, Not Started, In Progress, On Hold, Complete, Cancelled)`)
@@ -646,6 +677,9 @@ function importRailV2(sx: Sx, csv: string, force: boolean): ImportReport {
       ...(row.coa_tracking_number ? { coa_tracking_number: row.coa_tracking_number } : {}),
       ...(row.assigned_date ? { assigned_date: row.assigned_date } : {}),
       ...(row.original_target_date ? { original_target_date: row.original_target_date } : {}),
+      // current target is mapped to need_by; kept verbatim too so the export never
+      // presents the original-target fallback as a provided current target
+      ...(row.current_target_date ? { current_target_date: row.current_target_date } : {}),
       ...(row.actual_completion_date ? { actual_completion_date: row.actual_completion_date } : {}),
     }
     const fields = {
@@ -656,7 +690,10 @@ function importRailV2(sx: Sx, csv: string, force: boolean): ImportReport {
       responsibleParty: row.responsible_party || null,
       sourceIssueType: row.issue_type || null,
       sourcePayload: Object.keys(payload).length > 0 ? payload : null,
-      ...(state === 'closed' ? { closedAt: row.actual_completion_date ? `${row.actual_completion_date}T00:00:00Z` : nowIso() } : {}),
+      // a reopened item sheds its stale closure timestamp (adversarial review defect 3)
+      ...(state === 'closed'
+        ? { closedAt: row.actual_completion_date ? `${row.actual_completion_date}T00:00:00Z` : nowIso() }
+        : { closedAt: null }),
     }
 
     const existing = sx.db.prepare('SELECT id, version FROM work_item WHERE project_id = ? AND ref = ?')
@@ -1075,6 +1112,8 @@ export function exportRegister(sx: Sx, register: string): string {
       const headers = [...base, ...extraKeys]
       const rows = snap.deliverables.map((d) => {
         const pkg = snap.packages.find((p) => p.id === d.packageId)
+        // deliverable_id exports the record identity (provided or derived) — feeding the
+        // export back re-imports against the same identity (recorded rule, IMPORT_MAPPING)
         return [pkgCode(d.packageId), d.deliverableType, pkg?.area ?? '', d.projectPhase ?? '',
           d.discipline, pkg?.packageType ?? '', pkg?.name ?? '', d.docNo,
           d.targetCompleteness ?? '', d.workingStatus ?? '',
@@ -1087,21 +1126,26 @@ export function exportRegister(sx: Sx, register: string): string {
       const base = ['package', 'issue_no', 'discipline', 'area', 'phase', 'coa_tracking_number', 'package_type',
         'package_name', 'issue_type', 'statement', 'updates', 'responsible_party', 'status',
         'priority', 'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date']
-      const v2Items = (snap.workItems as WorkItem[]).filter((w) => w.ref.includes('#'))
+      // v2 items are the package-anchored '#' refs — v1 RAIL items always anchor to a
+      // deliverable, so a v1 item_id containing '#' is not swept in (review defect 6)
+      const v2Items = (snap.workItems as WorkItem[]).filter((w) => w.anchorType === 'package' && w.ref.includes('#'))
       const extraKeys = [...new Set(v2Items.flatMap((w) => Object.keys(w.sourcePayload ?? {})))]
         .filter((k) => !base.includes(k) &&
-          !['status', 'phase', 'updates', 'coa_tracking_number', 'assigned_date', 'original_target_date', 'actual_completion_date'].includes(k))
+          !['status', 'phase', 'updates', 'coa_tracking_number', 'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date'].includes(k))
         .sort()
       const headers = [...base, ...extraKeys]
       const rows = v2Items.map((w) => {
         const pkg = snap.packages.find((p) => p.id === w.packageId)
         const pay = w.sourcePayload ?? {}
         const hash = w.ref.lastIndexOf('#')
+        // source-faithful columns emit ONLY verbatim-provided values — never the app
+        // state token, the need_by fallback, or an app-generated closure timestamp
+        // (review defect 4: derived values must not present as attested source facts)
         return [w.ref.slice(0, hash), w.ref.slice(hash + 1), pkg?.discipline ?? '', w.area ?? '',
           pay.phase ?? '', pay.coa_tracking_number ?? '', pkg?.packageType ?? '', pkg?.name ?? '',
           w.sourceIssueType ?? '', w.statement ?? w.title, pay.updates ?? '', w.responsibleParty ?? '',
-          pay.status ?? w.state, w.priority ?? '', pay.assigned_date ?? '', pay.original_target_date ?? '',
-          w.needBy ?? '', pay.actual_completion_date ?? (w.closedAt?.slice(0, 10) ?? ''),
+          pay.status ?? '', w.priority ?? '', pay.assigned_date ?? '', pay.original_target_date ?? '',
+          pay.current_target_date ?? '', pay.actual_completion_date ?? '',
           ...extraKeys.map((k) => pay[k] ?? '')]
       })
       return toCsv(headers, rows)
