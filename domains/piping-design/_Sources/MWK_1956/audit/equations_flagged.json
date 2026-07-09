@@ -33,5 +33,1384 @@
     "kind": "equations",
     "description": "M_{zC} = -212,000 \\times .0289 = -6120 \\text{ ft-lb}",
     "flagged_at": "2026-07-05"
+  },
+  "7:224a4e44e662": {
+    "page": 7,
+    "hash": "224a4e44e662",
+    "kind": "equations",
+    "description": "l_0/l = 1/(1 + \\epsilon)",
+    "flagged_at": "2026-07-06"
+  },
+  "7:af2ac3b6d6bd": {
+    "page": 7,
+    "hash": "af2ac3b6d6bd",
+    "kind": "equations",
+    "description": "S_u = \\sigma_m \\frac{1}{1 + \\epsilon_u}\n",
+    "flagged_at": "2026-07-06"
+  },
+  "7:dc3be01d4d09": {
+    "page": 7,
+    "hash": "dc3be01d4d09",
+    "kind": "equations",
+    "description": "\\epsilon^* = \\log_e (1+\\epsilon)\\tag{1.19}",
+    "flagged_at": "2026-07-06"
+  },
+  "7:d5e28746bf21": {
+    "page": 7,
+    "hash": "d5e28746bf21",
+    "kind": "equations",
+    "description": "d\\epsilon^* = \\frac{d\\epsilon}{1+\\epsilon}",
+    "flagged_at": "2026-07-06"
+  },
+  "7:de7ecb3f193f": {
+    "page": 7,
+    "hash": "de7ecb3f193f",
+    "kind": "equations",
+    "description": "2rp = 2t\\sigma",
+    "flagged_at": "2026-07-06"
+  },
+  "7:df4f73a3f7cf": {
+    "page": 7,
+    "hash": "df4f73a3f7cf",
+    "kind": "equations",
+    "description": "F = lt\\sigma \\tag{1.27}",
+    "flagged_at": "2026-07-06"
+  },
+  "7:0cade7f78cfd": {
+    "page": 7,
+    "hash": "0cade7f78cfd",
+    "kind": "equations",
+    "description": "F = \\sigma t^2 \\pi/4 = C_4 t^2 \\sigma \\tag{1.29}",
+    "flagged_at": "2026-07-06"
+  },
+  "8:a79c8a102a99": {
+    "page": 8,
+    "hash": "a79c8a102a99",
+    "kind": "equations",
+    "description": "nt^{n-1}\\,\\sigma dt + t^n\\,d\\sigma = 0",
+    "flagged_at": "2026-07-06"
+  },
+  "8:b3bbbb2442b5": {
+    "page": 8,
+    "hash": "b3bbbb2442b5",
+    "kind": "equations",
+    "description": "n(dt/t) = -d\\sigma/\\sigma",
+    "flagged_at": "2026-07-06"
+  },
+  "8:9c9bfd48c517": {
+    "page": 8,
+    "hash": "9c9bfd48c517",
+    "kind": "equations",
+    "description": "d\\sigma/d\\epsilon^* = n \\sigma \\tag{1.31}",
+    "flagged_at": "2026-07-06"
+  },
+  "8:8a2883595693": {
+    "page": 8,
+    "hash": "8a2883595693",
+    "kind": "equations",
+    "description": "d\\sigma/d\\epsilon^* = (3/2)\\sigma",
+    "flagged_at": "2026-07-06"
+  },
+  "8:05e4d2add6df": {
+    "page": 8,
+    "hash": "05e4d2add6df",
+    "kind": "equations",
+    "description": "d\\sigma/d\\epsilon^* = 2\\sigma",
+    "flagged_at": "2026-07-06"
+  },
+  "8:49d79c515675": {
+    "page": 8,
+    "hash": "49d79c515675",
+    "kind": "equations",
+    "description": "d\\sigma/d\\epsilon^* = (1/2)\\sigma",
+    "flagged_at": "2026-07-06"
+  },
+  "8:5218db0d9ddd": {
+    "page": 8,
+    "hash": "5218db0d9ddd",
+    "kind": "equations",
+    "description": "d\\sigma/d\\epsilon^* = \\sigma",
+    "flagged_at": "2026-07-06"
+  },
+  "10:cd512f131283": {
+    "page": 10,
+    "hash": "cd512f131283",
+    "kind": "equations",
+    "description": "d\\gamma/dt = f(\\tau)",
+    "flagged_at": "2026-07-06"
+  },
+  "10:bf78bc807aca": {
+    "page": 10,
+    "hash": "bf78bc807aca",
+    "kind": "equations",
+    "description": "\\tau = \\eta \\frac{d\\gamma}{dt}",
+    "flagged_at": "2026-07-06"
+  },
+  "10:f19f9619e159": {
+    "page": 10,
+    "hash": "f19f9619e159",
+    "kind": "equations",
+    "description": "Y = Y_0 + C\\sqrt[3]{t} \\quad (t = \\text{time}). \\quad (1.34)",
+    "flagged_at": "2026-07-06"
+  },
+  "10:8696ae92c4b4": {
+    "page": 10,
+    "hash": "8696ae92c4b4",
+    "kind": "equations",
+    "description": "Y = Y_0 + C\\log t \\quad (1.35)",
+    "flagged_at": "2026-07-06"
+  },
+  "11:390571f47fc6": {
+    "page": 11,
+    "hash": "390571f47fc6",
+    "kind": "equations",
+    "description": "d\\gamma/dt = A\\tau^n  \\text{Norton [14]}",
+    "flagged_at": "2026-07-06"
+  },
+  "11:0ee3ad6a3f54": {
+    "page": 11,
+    "hash": "0ee3ad6a3f54",
+    "kind": "equations",
+    "description": "d\\gamma/dt = A(e^{a\\tau} - 1) \\text{Soderberg [15]}",
+    "flagged_at": "2026-07-06"
+  },
+  "11:1f1f0fcb851a": {
+    "page": 11,
+    "hash": "1f1f0fcb851a",
+    "kind": "equations",
+    "description": "d\\gamma/dt = A \\sinh(a\\tau) \\text{Nádai [16]} \\qquad (1.38)",
+    "flagged_at": "2026-07-06"
+  },
+  "11:6d996695be62": {
+    "page": 11,
+    "hash": "6d996695be62",
+    "kind": "equations",
+    "description": "d\\gamma/dt = Ce^{-A/kT}",
+    "flagged_at": "2026-07-06"
+  },
+  "11:c290f89b8bc8": {
+    "page": 11,
+    "hash": "c290f89b8bc8",
+    "kind": "equations",
+    "description": "f/100t = d\\gamma/dt",
+    "flagged_at": "2026-07-06"
+  },
+  "12:04c530f0d8b2": {
+    "page": 12,
+    "hash": "04c530f0d8b2",
+    "kind": "equations",
+    "description": "\\dot{\\gamma}_{\\text{eff}} = \\frac{1}{\\sqrt{2}} \\sqrt{(\\dot{\\epsilon}_1 - \\dot{\\epsilon}_2)^2 + (\\dot{\\epsilon}_2 - \\dot{\\epsilon}_3)^2 + (\\dot{\\epsilon}_3 - \\dot{\\epsilon}_1)^2}",
+    "flagged_at": "2026-07-06"
+  },
+  "12:6468227bcf5c": {
+    "page": 12,
+    "hash": "6468227bcf5c",
+    "kind": "equations",
+    "description": "\\dot{\\epsilon}_1 + \\dot{\\epsilon}_2 + \\dot{\\epsilon}_3 = 0",
+    "flagged_at": "2026-07-06"
+  },
+  "12:23525071662c": {
+    "page": 12,
+    "hash": "23525071662c",
+    "kind": "equations",
+    "description": "\\tau_{\\text{eff}} = f(\\dot{\\gamma}_{\\text{eff}})",
+    "flagged_at": "2026-07-06"
+  },
+  "12:d286bec68f23": {
+    "page": 12,
+    "hash": "d286bec68f23",
+    "kind": "equations",
+    "description": "\\dot{\\epsilon}_1 = C[\\sigma_1 - \\frac{1}{2}(\\sigma_2 + \\sigma_3)]",
+    "flagged_at": "2026-07-06"
+  },
+  "12:e3f597f09804": {
+    "page": 12,
+    "hash": "e3f597f09804",
+    "kind": "equations",
+    "description": "\\dot{\\epsilon}_2 = C[\\sigma_2 - \\frac{1}{2}(\\sigma_3 + \\sigma_1)]",
+    "flagged_at": "2026-07-06"
+  },
+  "12:a6201c4598ef": {
+    "page": 12,
+    "hash": "a6201c4598ef",
+    "kind": "equations",
+    "description": "\\dot{\\epsilon}_3 = C[\\sigma_3 - \\frac{1}{2}(\\sigma_1 + \\sigma_2)]",
+    "flagged_at": "2026-07-06"
+  },
+  "15:1b2c1e2d1788": {
+    "page": 15,
+    "hash": "1b2c1e2d1788",
+    "kind": "equations",
+    "description": "\\sigma_{m} = 0.25E \\text{ to } 0.5E \\tag{1.45}",
+    "flagged_at": "2026-07-06"
+  },
+  "19:1ce34550a29c": {
+    "page": 19,
+    "hash": "1ce34550a29c",
+    "kind": "equations",
+    "description": "\\sigma \\approx \\sqrt{Ep/c}",
+    "flagged_at": "2026-07-06"
+  },
+  "25:53e74e04f3f2": {
+    "page": 25,
+    "hash": "53e74e04f3f2",
+    "kind": "equations",
+    "description": "S = S_0 \\left(1 - \\frac{s}{s_P}\\right) \\quad (1.51)",
+    "flagged_at": "2026-07-06"
+  },
+  "36:2753d417b2fd": {
+    "page": 36,
+    "hash": "2753d417b2fd",
+    "kind": "equations",
+    "description": "\\sigma_l = B(\\epsilon^*_l)^n",
+    "flagged_at": "2026-07-06"
+  },
+  "37:9bd3c6154442": {
+    "page": 37,
+    "hash": "9bd3c6154442",
+    "kind": "equations",
+    "description": "(\\text{S.F.}_{\\text{vessel}}) = Q \\times (\\text{S.F.}_{\\text{tension}}) \\quad (2.5)",
+    "flagged_at": "2026-07-06"
+  },
+  "39:6e10b3fbafbb": {
+    "page": 39,
+    "hash": "6e10b3fbafbb",
+    "kind": "equations",
+    "description": "\\epsilon_1 = e \\frac{L}{L_1} - \\epsilon_e \\frac{A_1L_2}{A_2L_1}",
+    "flagged_at": "2026-07-06"
+  },
+  "40:badbb3c2d383": {
+    "page": 40,
+    "hash": "badbb3c2d383",
+    "kind": "equations",
+    "description": "= \\frac{S_{yc}}{E_c} + \\frac{S_{yh}}{E_h}",
+    "flagged_at": "2026-07-06"
+  },
+  "40:c8c7e4474223": {
+    "page": 40,
+    "hash": "c8c7e4474223",
+    "kind": "equations",
+    "description": "\\epsilon_c = \\frac{e \\frac{L}{L_1}}{1 + \\frac{A_1L_2}{A_2L_1}}",
+    "flagged_at": "2026-07-06"
+  },
+  "40:07ca9257b48a": {
+    "page": 40,
+    "hash": "07ca9257b48a",
+    "kind": "equations",
+    "description": "\\beta_e = 1 + \\frac{A_1 L_2}{A_2 L_1} \\left[ 1 - \\frac{\\epsilon_e}{\\epsilon_{c}} \\right] \\quad (2.9)",
+    "flagged_at": "2026-07-06"
+  },
+  "44:f788a6c90f12": {
+    "page": 44,
+    "hash": "f788a6c90f12",
+    "kind": "equations",
+    "description": "N = (K/S_R)^n",
+    "flagged_at": "2026-07-06"
+  },
+  "44:8716100fc5de": {
+    "page": 44,
+    "hash": "8716100fc5de",
+    "kind": "equations",
+    "description": "N_e = \\left(\\frac{S_1}{S_A}\\right)^n N_1 + \\left(\\frac{S_2}{S_A}\\right)^n N_2 + \\cdots \\left(\\frac{S_D}{S_A}\\right)^n N_D \\quad (2.10)",
+    "flagged_at": "2026-07-06"
+  },
+  "46:06ea90977d25": {
+    "page": 46,
+    "hash": "06ea90977d25",
+    "kind": "equations",
+    "description": "S_{cx} = \\frac{p[1 - \\log_e (r_o/r)]}{\\log_e (r_o/r_i)} \\quad (2.12)",
+    "flagged_at": "2026-07-06"
+  },
+  "46:6dff9e562832": {
+    "page": 46,
+    "hash": "6dff9e562832",
+    "kind": "equations",
+    "description": "S_{rx} = \\frac{-p[\\log_e (r_o/r)]}{\\log_e (r_o/r_i)} \\quad (2.13)",
+    "flagged_at": "2026-07-06"
+  },
+  "46:4f5ee0690d27": {
+    "page": 46,
+    "hash": "4f5ee0690d27",
+    "kind": "equations",
+    "description": "2S_s= S_{cx} - S_{rx} = \\frac{p}{\\log_e (r_o/r_i)} \\quad \\text{(independent of } r\\text{)} \\quad (2.14)",
+    "flagged_at": "2026-07-06"
+  },
+  "49:f69cd23cc551": {
+    "page": 49,
+    "hash": "f69cd23cc551",
+    "kind": "equations",
+    "description": "S_1 = 0.5(S_L + S_p + \\sqrt{4S_t^2 + (S_L - S_p)^2}]",
+    "flagged_at": "2026-07-06"
+  },
+  "50:16e31aea5986": {
+    "page": 50,
+    "hash": "16e31aea5986",
+    "kind": "equations",
+    "description": "R_c = CR_r \\text{ or} \\quad (2.20)",
+    "flagged_at": "2026-07-06"
+  },
+  "54:88be2adeb6e5": {
+    "page": 54,
+    "hash": "88be2adeb6e5",
+    "kind": "equations",
+    "description": "k = 1 + \\frac{9}{12h^2 + 1}",
+    "flagged_at": "2026-07-06"
+  },
+  "54:062a55bd554f": {
+    "page": 54,
+    "hash": "062a55bd554f",
+    "kind": "equations",
+    "description": "k = 1 + \\frac{9 + 0.255/h^2}{12h^2 + 1.3400 + 0.00750/h^2}",
+    "flagged_at": "2026-07-06"
+  },
+  "54:a807c4a50f51": {
+    "page": 54,
+    "hash": "a807c4a50f51",
+    "kind": "equations",
+    "description": "k = 1 + \\frac{9 + 0.3003/h^2 + 0.0010587/h^4}{12h^2 + 1.4004 + 0.013946/h^2 + 0.00001276/h^4}",
+    "flagged_at": "2026-07-06"
+  },
+  "54:9a3dac6883b8": {
+    "page": 54,
+    "hash": "9a3dac6883b8",
+    "kind": "equations",
+    "description": "k = 1 + \\frac{9}{12h^2 + 1 - j}",
+    "flagged_at": "2026-07-06"
+  },
+  "55:5005ad8e5516": {
+    "page": 55,
+    "hash": "5005ad8e5516",
+    "kind": "equations",
+    "description": "k = 1.65/h \\qquad (3.5)^4",
+    "flagged_at": "2026-07-06"
+  },
+  "55:9c10ca2ef7cc": {
+    "page": 55,
+    "hash": "9c10ca2ef7cc",
+    "kind": "equations",
+    "description": "\\text{In-plane bending} \\begin{cases} \\text{Longitudinal} & \\beta_i = 0.84/h^{\\frac{2}{3}} \\quad (3.6) \\\\ \\text{Circumferential} & \\gamma_i = 1.80/h^{\\frac{2}{3}} \\quad (3.7)^5\\end{cases}",
+    "flagged_at": "2026-07-06"
+  },
+  "55:5f35d8f0eeef": {
+    "page": 55,
+    "hash": "5f35d8f0eeef",
+    "kind": "equations",
+    "description": "\\gamma_i = \\frac{1.80}{h^{\\frac{2}{3}}} (1 - \\nu^2)^{-\\frac{1}{2}}",
+    "flagged_at": "2026-07-06"
+  },
+  "55:e3383b5e886c": {
+    "page": 55,
+    "hash": "e3383b5e886c",
+    "kind": "equations",
+    "description": "\\text{Out-of-plane bending} \\begin{cases} \\text{Longitudinal} & \\beta_o = 1.08/h^{\\frac{2}{3}} \\quad (3.8) \\\\ \\text{Circumferential} & \\gamma_o = 1.50/h^{\\frac{2}{3}} \\quad (3.9) \\end{cases}",
+    "flagged_at": "2026-07-06"
+  },
+  "58:be7b309549e8": {
+    "page": 58,
+    "hash": "be7b309549e8",
+    "kind": "equations",
+    "description": "\\beta_i = 1.2/h^{\\frac{2}{3}} \\tag{3.12}",
+    "flagged_at": "2026-07-06"
+  },
+  "58:f98c34c8fa50": {
+    "page": 58,
+    "hash": "f98c34c8fa50",
+    "kind": "equations",
+    "description": "\\gamma_i = 1.07/h^{0.78} \\tag{3.13}",
+    "flagged_at": "2026-07-06"
+  },
+  "60:caf299d4fbf5": {
+    "page": 60,
+    "hash": "caf299d4fbf5",
+    "kind": "equations",
+    "description": "\\sigma_l = \\frac{r_m p}{2t}",
+    "flagged_at": "2026-07-06"
+  },
+  "7:307ab88ffa73": {
+    "page": 7,
+    "hash": "307ab88ffa73",
+    "kind": "equations",
+    "description": "pr^2\\pi= 2\\pi rt\\sigma \\tag{1.21}",
+    "flagged_at": "2026-07-06"
+  },
+  "60:83a35c273b7e": {
+    "page": 60,
+    "hash": "83a35c273b7e",
+    "kind": "equations",
+    "description": "\\sigma_c = \\frac{2R + r_m \\sin \\alpha}{2(R + r_m \\sin \\alpha)} \\frac{r_m p}{t}",
+    "flagged_at": "2026-07-06"
+  },
+  "61:94504c958973": {
+    "page": 61,
+    "hash": "94504c958973",
+    "kind": "equations",
+    "description": "k = 1.52/h^{5/6} \\geq 1.0 \\quad (3.19)",
+    "flagged_at": "2026-07-06"
+  },
+  "65:7e1a2b09a95f": {
+    "page": 65,
+    "hash": "7e1a2b09a95f",
+    "kind": "equations",
+    "description": "\\frac{H}{t} = \\frac{1 + t_n/R}{t_n/R} \\qquad \\text{for } R/t_n \\leq \\tfrac{1}{2}",
+    "flagged_at": "2026-07-06"
+  },
+  "65:37a50499693d": {
+    "page": 65,
+    "hash": "37a50499693d",
+    "kind": "equations",
+    "description": "\\frac{H}{t} = \\frac{1 + t_n/R}{\\sqrt{1 + 2(t_n/R)^2} - 1} \\qquad \\text{for } R/t_n \\geq \\tfrac{1}{2} \\qquad (3.20)",
+    "flagged_at": "2026-07-06"
+  },
+  "67:afc62853a8bd": {
+    "page": 67,
+    "hash": "afc62853a8bd",
+    "kind": "equations",
+    "description": "h = \\left(\\frac{t_e}{t}\\right)^{2.5} \\frac{t}{r_m}",
+    "flagged_at": "2026-07-06"
+  },
+  "67:3d00ec32c54d": {
+    "page": 67,
+    "hash": "3d00ec32c54d",
+    "kind": "equations",
+    "description": "h = \\left(\\frac{t_e}{t}\\right)^{2.5} \\frac{t}{r_m} \\left(1 + \\frac{r_c}{r_m}\\right)",
+    "flagged_at": "2026-07-06"
+  },
+  "68:7b0e4bafaaa2": {
+    "page": 68,
+    "hash": "7b0e4bafaaa2",
+    "kind": "equations",
+    "description": "t_H = \\frac{p_H R_H}{S + 0.4 p_H}",
+    "flagged_at": "2026-07-06"
+  },
+  "68:7a80cd003c42": {
+    "page": 68,
+    "hash": "7a80cd003c42",
+    "kind": "equations",
+    "description": "A_R = 2(t_H - t_1)(R_B - t_B) + 5t_B(t_B - t_2) + w^2",
+    "flagged_at": "2026-07-06"
+  },
+  "68:5c7d86ddcc1b": {
+    "page": 68,
+    "hash": "5c7d86ddcc1b",
+    "kind": "equations",
+    "description": "\\frac{p}{p_H} = \\frac{\\frac{R_H}{t_H} - 0.4}{\\frac{0.8R_H(R_B - t_B) + R_B t_B}{0.4t_H(R_B - t_B) + t_B^2 + 0.2w^2} - 0.4}",
+    "flagged_at": "2026-07-06"
+  },
+  "82:bb7215c86743": {
+    "page": 82,
+    "hash": "bb7215c86743",
+    "kind": "equations",
+    "description": "C_2 = \\frac{1}{C_4}\\left[ C_5\\left( \\sqrt{n \\cos \\alpha} + \\frac{1}{n^2} \\right) + C_6\\left( n^2 + 1 + \\frac{2}{\\sqrt{n \\cos \\alpha}} \\right) \\right]",
+    "flagged_at": "2026-07-06"
+  },
+  "83:09c54dcb477f": {
+    "page": 83,
+    "hash": "09c54dcb477f",
+    "kind": "equations",
+    "description": "C_3 = \\frac{1}{n^2 C_4} [C_5(\\sqrt{n} \\cos \\alpha + 1) + C_6(n^2 - 1)]",
+    "flagged_at": "2026-07-06"
+  },
+  "83:2cb24813f72f": {
+    "page": 83,
+    "hash": "2cb24813f72f",
+    "kind": "equations",
+    "description": "C_4 = n^2 + \\frac{1}{n^2} + 2 \\left( \\sqrt{n} \\cos \\alpha + 1 + \\frac{1}{\\sqrt{n} \\cos \\alpha} \\right)",
+    "flagged_at": "2026-07-06"
+  },
+  "83:4841d6ad1538": {
+    "page": 83,
+    "hash": "4841d6ad1538",
+    "kind": "equations",
+    "description": "C_5 = 2.57 \\frac{\\sqrt{R}}{t^{1.5}} \\left[ \\frac{pR}{2} + \\frac{F}{2\\pi R} + \\frac{M}{\\pi R^2} \\right] \\tan \\alpha",
+    "flagged_at": "2026-07-06"
+  },
+  "83:227e18590b05": {
+    "page": 83,
+    "hash": "227e18590b05",
+    "kind": "equations",
+    "description": "\\text{Cone}\\begin{cases}\ns_{l1} = \\mp 3.63 C_7 \\cos^2 \\alpha + (pR/2t) \\\\\ns_{c1} = -(1 + \\cos^2 \\alpha \\pm 1.089 \\cos^2 \\alpha) C_7 + (pR/t)\n\\end{cases}",
+    "flagged_at": "2026-07-06"
+  },
+  "83:dba2cbba6102": {
+    "page": 83,
+    "hash": "dba2cbba6102",
+    "kind": "equations",
+    "description": "\\text{Cyl.}\\begin{cases}\ns_l = \\mp 3.63 C_7 + (pR/2t) \\\\\ns_c = -(1 + \\cos^2 \\alpha \\pm 1.089) C_7 + (pR/t)\n\\end{cases}",
+    "flagged_at": "2026-07-06"
+  },
+  "83:42051da6f47e": {
+    "page": 83,
+    "hash": "42051da6f47e",
+    "kind": "equations",
+    "description": "= \\frac{2.57 \\sin \\alpha \\cos \\alpha}{1 + 6 \\cos^2 \\alpha + \\cos^4 \\alpha} \\left[ \\frac{\\sqrt{R}}{t^{1.5}} \\right] \\left[ \\frac{pR}{2} + \\frac{F}{2\\pi R} + \\frac{M}{\\pi R^2} \\right]",
+    "flagged_at": "2026-07-06"
+  },
+  "86:c40dbd7f69cd": {
+    "page": 86,
+    "hash": "c40dbd7f69cd",
+    "kind": "equations",
+    "description": "S = \\left( 1.17 \\sqrt{R} \\frac{t_n}{t^{1.5}} \\right) \\times \\frac{M}{\\pi R_n^2 t_n}",
+    "flagged_at": "2026-07-06"
+  },
+  "86:316cdb21973f": {
+    "page": 86,
+    "hash": "316cdb21973f",
+    "kind": "equations",
+    "description": "\\phi = \\frac{2.46M}{E} \\left[ \\frac{R}{r_m^2 t} \\right]^{3/2}",
+    "flagged_at": "2026-07-06"
+  },
+  "86:44669ea434ae": {
+    "page": 86,
+    "hash": "44669ea434ae",
+    "kind": "equations",
+    "description": "L = 0.017 I (R/r_m^2 t)^{3/2}",
+    "flagged_at": "2026-07-06"
+  },
+  "93:dcacb0af84b6": {
+    "page": 93,
+    "hash": "dcacb0af84b6",
+    "kind": "equations",
+    "description": "R' = 1.68",
+    "flagged_at": "2026-07-06"
+  },
+  "96:ba54aa4ec04e": {
+    "page": 96,
+    "hash": "ba54aa4ec04e",
+    "kind": "equations",
+    "description": "10^5(I\\Delta/L^3) = 761 \\quad \\text{and} \\quad 10^5(I\\Delta/L^2) = 16,740",
+    "flagged_at": "2026-07-06"
+  },
+  "96:d19aa86fd01f": {
+    "page": 96,
+    "hash": "d19aa86fd01f",
+    "kind": "equations",
+    "description": "M_{zA} = 5780 \\text{ ft-lb}",
+    "flagged_at": "2026-07-06"
+  },
+  "96:509970df2108": {
+    "page": 96,
+    "hash": "509970df2108",
+    "kind": "equations",
+    "description": "M_{zC} = -18,800 \\text{ ft-lb}",
+    "flagged_at": "2026-07-06"
+  },
+  "96:519d513c3c3f": {
+    "page": 96,
+    "hash": "519d513c3c3f",
+    "kind": "equations",
+    "description": "I \\Delta / L^3 = 372.8 \\times 1/3375 = .1105",
+    "flagged_at": "2026-07-06"
+  },
+  "97:c23c73c635c0": {
+    "page": 97,
+    "hash": "c23c73c635c0",
+    "kind": "equations",
+    "description": "F_{yA} = -F_{yC} = 12,700 \\text{ lb}",
+    "flagged_at": "2026-07-06"
+  },
+  "97:5267714d0175": {
+    "page": 97,
+    "hash": "5267714d0175",
+    "kind": "equations",
+    "description": "\\frac{L^2 S_A}{10^7 D \\Delta} = .0531",
+    "flagged_at": "2026-07-06"
+  },
+  "97:a8d5b0f0faf4": {
+    "page": 97,
+    "hash": "a8d5b0f0faf4",
+    "kind": "equations",
+    "description": "M_{zA} = -M_{zB} = +273{,}000 \\times .86 = 235{,}000 \\text{ ft-lb}",
+    "flagged_at": "2026-07-06"
+  },
+  "98:de8ca84b0497": {
+    "page": 98,
+    "hash": "de8ca84b0497",
+    "kind": "equations",
+    "description": "\\delta_x = \\frac{L^3}{\\Sigma L^3 - \\Sigma L_x^3} \\Delta_x",
+    "flagged_at": "2026-07-06"
+  },
+  "118:f4a4c56a781c": {
+    "page": 118,
+    "hash": "f4a4c56a781c",
+    "kind": "equations",
+    "description": "A F_x + B F_y + D F_z = -EI\\Delta_x",
+    "flagged_at": "2026-07-06"
+  },
+  "127:287f5e2633fe": {
+    "page": 127,
+    "hash": "287f5e2633fe",
+    "kind": "equations",
+    "description": "u_{oo} + v_{oo} + S; \\quad s_{bb} + c^2 u + V; \\quad s_{aa} + c^2 v + U;",
+    "flagged_at": "2026-07-07"
+  },
+  "127:899f18e80731": {
+    "page": 127,
+    "hash": "899f18e80731",
+    "kind": "equations",
+    "description": "s_{ab} + c^2 q + W",
+    "flagged_at": "2026-07-07"
+  },
+  "129:4ccdc17680c2": {
+    "page": 129,
+    "hash": "4ccdc17680c2",
+    "kind": "equations",
+    "description": "M_{b} = M'_{z}",
+    "flagged_at": "2026-07-07"
+  },
+  "129:ed48930b36ac": {
+    "page": 129,
+    "hash": "ed48930b36ac",
+    "kind": "equations",
+    "description": "M'_{b} = M'_{z} \\cos \\alpha - M'_{y} \\sin \\alpha",
+    "flagged_at": "2026-07-07"
+  },
+  "129:1d1e252abf14": {
+    "page": 129,
+    "hash": "1d1e252abf14",
+    "kind": "equations",
+    "description": "M_{t} = M'_{y} \\cos \\alpha + M'_{z} \\sin \\alpha",
+    "flagged_at": "2026-07-07"
+  },
+  "129:f53563ec5216": {
+    "page": 129,
+    "hash": "f53563ec5216",
+    "kind": "equations",
+    "description": "M'_{b} = M'_{x} \\cos \\alpha - M'_{z} \\sin \\alpha",
+    "flagged_at": "2026-07-07"
+  },
+  "129:1d1a8718be72": {
+    "page": 129,
+    "hash": "1d1a8718be72",
+    "kind": "equations",
+    "description": "M_{t} = M'_{z} \\cos \\alpha + M'_{z} \\sin \\alpha",
+    "flagged_at": "2026-07-07"
+  },
+  "12:4981fc48722c": {
+    "page": 12,
+    "hash": "4981fc48722c",
+    "kind": "equations",
+    "description": "\\log(100t/f) + \\log C = 0.434 A/kT \\quad (1.39b)",
+    "flagged_at": "2026-07-07"
+  },
+  "12:90e6292065ea": {
+    "page": 12,
+    "hash": "90e6292065ea",
+    "kind": "equations",
+    "description": "\\tau_{\\text{eff}} = \\frac{1}{2\\sqrt{2}} \\sqrt{(\\sigma_1 - \\sigma_2)^2 + (\\sigma_2 - \\sigma_3)^2 + (\\sigma_3 - \\sigma_1)^2}(1.40)",
+    "flagged_at": "2026-07-07"
+  },
+  "60:6b471e78c2a6": {
+    "page": 60,
+    "hash": "6b471e78c2a6",
+    "kind": "equations",
+    "description": "k = 1.65\\h (3.5)",
+    "flagged_at": "2026-07-07"
+  },
+  "264:f6d1712c731f": {
+    "page": 264,
+    "hash": "f6d1712c731f",
+    "kind": "equations",
+    "description": "= \\frac{0.13}{L^2} \\sqrt{\\frac{EI}{\\tfrac{1}{4} w_y + \\frac{P}{L}}}",
+    "flagged_at": "2026-07-07"
+  },
+  "264:775d1ef8e9e7": {
+    "page": 264,
+    "hash": "775d1ef8e9e7",
+    "kind": "equations",
+    "description": "= \\frac{0.525}{L^2} \\sqrt{\\frac{EI}{\\tfrac{1}{2} w_y + \\frac{P}{L}}}",
+    "flagged_at": "2026-07-07"
+  },
+  "264:c6478cdf05b9": {
+    "page": 264,
+    "hash": "c6478cdf05b9",
+    "kind": "equations",
+    "description": "= \\frac{1.03}{L^2} \\sqrt{\\frac{EI}{\\tfrac{3}{8} w_y + \\frac{P}{L}}}",
+    "flagged_at": "2026-07-07"
+  },
+  "265:a4c8b4b64d57": {
+    "page": 265,
+    "hash": "a4c8b4b64d57",
+    "kind": "equations",
+    "description": "f_n \\approx 0.13 \\sqrt{\\frac{EI_b/W_{\\text{eff}}L_b{}^3}{1 + \\frac{I_b}{I_a}\\left(\\frac{L_a}{L_b}\\right) + 3\\frac{EI_b}{GJ_a}\\left(\\frac{L_a}{L_b}\\right)}}",
+    "flagged_at": "2026-07-07"
+  },
+  "265:10be7665e945": {
+    "page": 265,
+    "hash": "10be7665e945",
+    "kind": "equations",
+    "description": "\\approx \\frac{0.13}{L_b^2} \\sqrt{\\frac{\\frac{EI_b}{\\frac{1}{4}w_{ya}\\left(\\frac{L_a}{L_b}\\right) + \\frac{1}{2}w_{yb} + \\frac{P}{L_b}}}{1 + \\frac{I_b}{I_a}\\left(\\frac{L_a}{L_b}\\right)^3 + 3\\frac{EI_b}{GJ_a}\\left(\\frac{L_a}{L_b}\\right)}}",
+    "flagged_at": "2026-07-07"
+  },
+  "265:b3ad199a5d23": {
+    "page": 265,
+    "hash": "b3ad199a5d23",
+    "kind": "equations",
+    "description": "f_n \\approx 0.13 \\sqrt{\\frac{\\frac{2EI_b}{[P + \\frac{3}{8}W_a + W_b]L_b^3}}{1 + \\frac{1}{32}\\frac{I_b}{I_a}\\left(\\frac{L_a}{L_b}\\right)^3 + \\frac{3EI_b}{2GJ_a}\\left(\\frac{L_a}{L_b}\\right)}}",
+    "flagged_at": "2026-07-07"
+  },
+  "265:c267495e1099": {
+    "page": 265,
+    "hash": "c267495e1099",
+    "kind": "equations",
+    "description": "\\approx \\frac{0.13}{L_b^2} \\sqrt{\\frac{\\frac{2EI_b}{\\frac{P}{L_b} + \\frac{3}{8}w_{ya}\\left(\\frac{L_a}{L_b}\\right) + w_{yb}}}{1 + \\frac{1}{32}\\frac{I_b}{I_a}\\left(\\frac{L_a}{L_b}\\right)^3 + \\frac{3EI_b}{2GJ_a}\\left(\\frac{L_a}{L_b}\\right)}}",
+    "flagged_at": "2026-07-07"
+  },
+  "266:5a3574149a11": {
+    "page": 266,
+    "hash": "5a3574149a11",
+    "kind": "equations",
+    "description": "y_o = \\frac{48/EI}{\\frac{1/L_1^3}{1 - \\frac{\\frac{3}{4}}{1 + (EI/GJ)(L_2/L_1)}} + \\frac{1/L_2^3}{1 - \\frac{\\frac{3}{4}}{1 + (EI/GJ)(L_1/L_2)}}}",
+    "flagged_at": "2026-07-07"
+  },
+  "267:6087e7533a1a": {
+    "page": 267,
+    "hash": "6087e7533a1a",
+    "kind": "equations",
+    "description": "f_n = 23.3 \\frac{t}{r} \\sqrt{\\frac{Et}{P}}",
+    "flagged_at": "2026-07-07"
+  },
+  "267:c04afea0caa4": {
+    "page": 267,
+    "hash": "c04afea0caa4",
+    "kind": "equations",
+    "description": "W_{\\text{eff}} \\approx \\frac{1}{8}W",
+    "flagged_at": "2026-07-07"
+  },
+  "267:6145ba24e126": {
+    "page": 267,
+    "hash": "6145ba24e126",
+    "kind": "equations",
+    "description": "W_{\\text{eff}} \\approx \\tfrac{1}{8}W \\tag{9.30}",
+    "flagged_at": "2026-07-07"
+  },
+  "267:5b5814295dfa": {
+    "page": 267,
+    "hash": "5b5814295dfa",
+    "kind": "equations",
+    "description": "f_n \\approx \\frac{6.25}{D}\\sqrt{\\frac{E}{\\rho}} \\tag{9.33}",
+    "flagged_at": "2026-07-07"
+  },
+  "267:bbfe1164d990": {
+    "page": 267,
+    "hash": "bbfe1164d990",
+    "kind": "equations",
+    "description": "f_n \\approx \\frac{50,000}{D} \\times \\frac{t}{D}\n",
+    "flagged_at": "2026-07-07"
+  },
+  "268:707ced5bfa65": {
+    "page": 268,
+    "hash": "707ced5bfa65",
+    "kind": "equations",
+    "description": "\\lambda^2 + (c\\lambda/m) + \\omega_n^2 = 0, \\quad \\omega_n^2 = k/m, \\quad m \\neq 0 ",
+    "flagged_at": "2026-07-07"
+  },
+  "271:272b5dc6b44e": {
+    "page": 271,
+    "hash": "272b5dc6b44e",
+    "kind": "equations",
+    "description": "F_S = kR_0 \\frac{|1 - (\\omega/\\omega_n)^2|}{\\sqrt{1 + \\left[ \\frac{1 - (\\omega/\\omega_n)^2}{2n\\zeta \\omega/\\omega_n} \\right]^2}}",
+    "flagged_at": "2026-07-07"
+  },
+  "273:f4f5190c5ee3": {
+    "page": 273,
+    "hash": "f4f5190c5ee3",
+    "kind": "equations",
+    "description": "\\text{Period (sec)} = \\frac{2L}{C}; \\ \\frac{1}{2}\\frac{2L}{C}; \\ \\frac{1}{3}\\frac{2L}{C} \\text{ etc.} \\dots",
+    "flagged_at": "2026-07-08"
+  },
+  "273:cf2cfa692cd3": {
+    "page": 273,
+    "hash": "cf2cfa692cd3",
+    "kind": "equations",
+    "description": "f_n = \\frac{C}{4L}; \\ \\frac{3C}{4L}; \\ \\frac{5C}{4L}; \\ \\text{etc.} \\dots",
+    "flagged_at": "2026-07-08"
+  },
+  "273:ada60e07cead": {
+    "page": 273,
+    "hash": "ada60e07cead",
+    "kind": "equations",
+    "description": "f_n = \\frac{C}{2\\pi} \\sqrt{\\frac{\\mu}{V}}",
+    "flagged_at": "2026-07-08"
+  },
+  "274:3b7d73178eb3": {
+    "page": 274,
+    "hash": "3b7d73178eb3",
+    "kind": "equations",
+    "description": "\\mu = \\frac{A}{L + \\frac{1}{2}\\sqrt{\\pi A}} \\quad (9.69a)",
+    "flagged_at": "2026-07-08"
+  },
+  "274:e736fe701955": {
+    "page": 274,
+    "hash": "e736fe701955",
+    "kind": "equations",
+    "description": "f_n = \\frac{C}{2\\pi} \\sqrt{\\frac{2}{V} \\sqrt{\\frac{A}{\\pi}}}",
+    "flagged_at": "2026-07-08"
+  },
+  "274:04f41f13ce13": {
+    "page": 274,
+    "hash": "04f41f13ce13",
+    "kind": "equations",
+    "description": "f_n = \\frac{C}{2\\pi D} \\sqrt{\\frac{6}{\\pi} \\frac{d}{D}} = 0.22 \\frac{C}{D} \\sqrt{\\frac{d}{D}}",
+    "flagged_at": "2026-07-08"
+  },
+  "274:4d4afbeea8bc": {
+    "page": 274,
+    "hash": "4d4afbeea8bc",
+    "kind": "equations",
+    "description": "\\mu_1 = \\frac{A_1}{L_1 + \\frac{1}{2}\\sqrt{\\pi A_1}}, \\quad \\mu_3 = \\frac{A_3}{L_3 + \\frac{1}{2}\\sqrt{\\pi A_3}}",
+    "flagged_at": "2026-07-08"
+  },
+  "274:e1b25c38a75a": {
+    "page": 274,
+    "hash": "e1b25c38a75a",
+    "kind": "equations",
+    "description": "\\mu_2 = \\frac{A_2}{L_2 + \\frac{1}{2}\\sqrt{\\pi A_2}} ,",
+    "flagged_at": "2026-07-08"
+  },
+  "275:6b76cc61c352": {
+    "page": 275,
+    "hash": "6b76cc61c352",
+    "kind": "equations",
+    "description": "f_1 \\approx \\frac{C}{2\\pi} \\sqrt{\\frac{\\mu_1}{V_1}}, \\quad f_2 \\approx \\frac{C}{2\\pi} \\sqrt{\\frac{\\mu_2}{V_2}}",
+    "flagged_at": "2026-07-08"
+  },
+  "279:73c6d6d5bc28": {
+    "page": 279,
+    "hash": "73c6d6d5bc28",
+    "kind": "equations",
+    "description": "\\zeta = \\bar{\\zeta} \\left(\\frac{\\omega}{\\omega_n}\\right)^2",
+    "flagged_at": "2026-07-08"
+  },
+  "279:f03c7655468d": {
+    "page": 279,
+    "hash": "f03c7655468d",
+    "kind": "equations",
+    "description": "\\bar{\\zeta} = \\frac{1}{4\\pi} \\sqrt{\\frac{\\mu^3}{V}} = \\frac{\\mu}{2} \\frac{f_n}{C} = \\frac{1}{2} \\frac{\\mu}{\\lambda}",
+    "flagged_at": "2026-07-08"
+  },
+  "282:14bec6f0ccea": {
+    "page": 282,
+    "hash": "14bec6f0ccea",
+    "kind": "equations",
+    "description": "\\frac{2\\pi f L}{C} = n \\frac{\\pi}{2} \\quad \\text{or} \\quad f = \\frac{n}{4} \\frac{C}{L} \\quad (n = 1, 3, 5, \\dots)",
+    "flagged_at": "2026-07-08"
+  },
+  "282:de45ff0e7207": {
+    "page": 282,
+    "hash": "de45ff0e7207",
+    "kind": "equations",
+    "description": "f = \\frac{n}{2} \\frac{c}{L} \\quad (n = 1, 2, 3, 4, \\dots)",
+    "flagged_at": "2026-07-08"
+  },
+  "282:276ff0f68bd0": {
+    "page": 282,
+    "hash": "276ff0f68bd0",
+    "kind": "equations",
+    "description": "\\text{A.F.} = \\frac{1}{2} \\frac{A}{a} \\quad \\text{or} \\quad \\frac{A}{a} = 2 (\\text{A.F.})",
+    "flagged_at": "2026-07-08"
+  },
+  "284:88a9a9ee976d": {
+    "page": 284,
+    "hash": "88a9a9ee976d",
+    "kind": "equations",
+    "description": "\\Delta p = (\\Delta p)_{\\max} = \\frac{2\\rho L_r U}{t} = \\frac{2\\rho L U}{t_n} = \\frac{2\\rho L U}{2L/C} = \\rho U C",
+    "flagged_at": "2026-07-08"
+  },
+  "285:371ec63dbf91": {
+    "page": 285,
+    "hash": "371ec63dbf91",
+    "kind": "equations",
+    "description": "\\approx 2075 \\text{ ft/sec.}",
+    "flagged_at": "2026-07-08"
+  },
+  "286:b795cc4d59ec": {
+    "page": 286,
+    "hash": "b795cc4d59ec",
+    "kind": "equations",
+    "description": "f_n \\approx 1.27 \\sqrt{\\frac{113 \\times 10^6}{18 \\times 10.25 \\times (18)^3}} = 13.0 \\text{ cps}",
+    "flagged_at": "2026-07-08"
+  },
+  "286:a597ce1f6ce9": {
+    "page": 286,
+    "hash": "a597ce1f6ce9",
+    "kind": "equations",
+    "description": "f_n \\approx 0.13 \\sqrt{\\frac{113 \\times 10^6}{[\\frac{1}{4}(8 \\times 10.25) + 184.5][(8)^3]}}",
+    "flagged_at": "2026-07-08"
+  },
+  "286:408c859ea564": {
+    "page": 286,
+    "hash": "408c859ea564",
+    "kind": "equations",
+    "description": "f_n \\approx 0.13 \\sqrt{\\frac{\\frac{113 \\times 10^6}{230.6 \\times (8)^3}}{1 + \\frac{2^3}{8} + 3 \\cdot \\frac{2}{8}}} \\approx 3 \\text{ cps} \\approx 180 \\text{ cpm}",
+    "flagged_at": "2026-07-08"
+  },
+  "287:062548c2b8d2": {
+    "page": 287,
+    "hash": "062548c2b8d2",
+    "kind": "equations",
+    "description": "f \\approx 0.18 \\frac{U}{D_0} = 0.18 \\frac{U}{3.5/12} = 0.617 U",
+    "flagged_at": "2026-07-08"
+  },
+  "288:c9921f4f8dff": {
+    "page": 288,
+    "hash": "c9921f4f8dff",
+    "kind": "equations",
+    "description": "\\tan\\left( \\frac{\\pi}{2} \\frac{f}{f_0} \\frac{20}{33} + \\beta \\right) + \\tan\\left( \\frac{\\pi}{2} \\frac{f}{f_0} \\frac{10}{33} + \\beta \\right) = \\tan\\left( \\frac{10\\pi}{33} \\frac{f}{f_0} + \\beta \\right)",
+    "flagged_at": "2026-07-08"
+  },
+  "288:f1eca0bf70da": {
+    "page": 288,
+    "hash": "f1eca0bf70da",
+    "kind": "equations",
+    "description": "\\underbrace{\\hspace{2em}}_{\\text{Branch } ABCD} \\quad \\underbrace{\\hspace{2em}}_{\\text{Branch } GHD} \\quad \\underbrace{\\hspace{2em}}_{\\text{Branch } DEF}",
+    "flagged_at": "2026-07-08"
+  },
+  "288:97ae145226f0": {
+    "page": 288,
+    "hash": "97ae145226f0",
+    "kind": "equations",
+    "description": "\\tan\\left( \\frac{10\\pi}{33} \\frac{f_1}{f_0} + \\beta_1 \\right) = \\tan\\left( \\frac{10\\pi}{33} \\frac{f_1}{f_0} \\right) + \\tan\\left( \\frac{5\\pi}{33} \\frac{f_1}{f_0} \\right)",
+    "flagged_at": "2026-07-08"
+  },
+  "289:406325bfcb2c": {
+    "page": 289,
+    "hash": "406325bfcb2c",
+    "kind": "equations",
+    "description": "V = \\frac{\\pi}{4} \\times 1^2 \\times 2 = 1.57 \\text{ ft}^3 ;",
+    "flagged_at": "2026-07-08"
+  },
+  "289:eb29c67f22de": {
+    "page": 289,
+    "hash": "eb29c67f22de",
+    "kind": "equations",
+    "description": "A = \\frac{\\pi}{4} \\times \\left(\\frac{3.5}{12}\\right)^2 = 0.07 \\text{ ft}^2;",
+    "flagged_at": "2026-07-08"
+  },
+  "289:0c1933d928f2": {
+    "page": 289,
+    "hash": "0c1933d928f2",
+    "kind": "equations",
+    "description": "\\mu = 2\\sqrt{\\frac{A}{\\pi}} = \\sqrt{\\frac{D^2}{\\pi}} = D = \\frac{3.5}{12} = 0.29 \\text{ ft};",
+    "flagged_at": "2026-07-08"
+  },
+  "289:0e62c310d380": {
+    "page": 289,
+    "hash": "0e62c310d380",
+    "kind": "equations",
+    "description": "\\mu = \\frac{0.07}{3 - \\tfrac{1}{2}\\sqrt{0.07\\pi}} \\approx 0.022 \\text{ ft.}",
+    "flagged_at": "2026-07-08"
+  },
+  "289:73a409f228b8": {
+    "page": 289,
+    "hash": "73a409f228b8",
+    "kind": "equations",
+    "description": "\\zeta = \\tfrac{1}{2} \\frac{0.022}{52} \\approx 2 \\times 10^{-4}.",
+    "flagged_at": "2026-07-08"
+  },
+  "289:8562c12cec7a": {
+    "page": 289,
+    "hash": "8562c12cec7a",
+    "kind": "equations",
+    "description": "\\mu \\text{ (per neck)} = 0.022 \\text{ ft.}",
+    "flagged_at": "2026-07-08"
+  },
+  "289:d2c679554b95": {
+    "page": 289,
+    "hash": "d2c679554b95",
+    "kind": "equations",
+    "description": "f = \\frac{2075}{2\\pi} \\sqrt{\\frac{2 \\times .022}{4.5}} = 32 \\text{ cps}",
+    "flagged_at": "2026-07-08"
+  },
+  "290:e0a37a37b6ef": {
+    "page": 290,
+    "hash": "e0a37a37b6ef",
+    "kind": "equations",
+    "description": "\\zeta \\approx 3.5 \\times 10^{-5}",
+    "flagged_at": "2026-07-08"
+  },
+  "290:21f3a93d4586": {
+    "page": 290,
+    "hash": "21f3a93d4586",
+    "kind": "equations",
+    "description": "\\frac{\\rho_{\\text{discharge}}}{\\rho_{\\text{intake}}} = \\frac{1100}{\\frac{415 + 665}{2}} \\times \\frac{100 + 460}{220 + 460} = 1.7",
+    "flagged_at": "2026-07-08"
+  },
+  "290:9d888bfe9eb8": {
+    "page": 290,
+    "hash": "9d888bfe9eb8",
+    "kind": "equations",
+    "description": "\\sqrt{1 + \\left(2\\pi \\times \\frac{0.03}{0.75 - 0.485}\\right)^2} = 3",
+    "flagged_at": "2026-07-08"
+  },
+  "291:e50151ff2a85": {
+    "page": 291,
+    "hash": "e50151ff2a85",
+    "kind": "equations",
+    "description": "A \\approx 5 \\times 10^{-8} \\text{ ft}^2 = 7 \\times 10^{-6} \\text{ in.}^2",
+    "flagged_at": "2026-07-08"
+  },
+  "291:8c59e623b503": {
+    "page": 291,
+    "hash": "8c59e623b503",
+    "kind": "equations",
+    "description": "\\frac{\\pi D^2}{4} = 7 \\times 10^{-6}; \\quad D \\approx 0.003 \\text{ in.}",
+    "flagged_at": "2026-07-08"
+  },
+  "300:d6740ec0c9a6": {
+    "page": 300,
+    "hash": "d6740ec0c9a6",
+    "kind": "equations",
+    "description": "U = \\int_{0}^{l} k \\frac{{M_b}^2}{2EI} \\, dl + \\int_{0}^{l} k \\frac{{M'_b}^2}{2EI} \\, dl + \\int_{0}^{l} \\frac{1.3 {M_t}^2}{2EI} \\, dl",
+    "flagged_at": "2026-07-08"
+  },
+  "300:1557079013df": {
+    "page": 300,
+    "hash": "1557079013df",
+    "kind": "equations",
+    "description": "\\theta_p = \\frac{1}{EI} \\left[ \\int_{0}^{l} k M_b \\frac{\\partial M_b}{\\partial M_p} Q \\, dl + \\int_{0}^{l} k M'_b \\frac{\\partial M'_b}{\\partial M_p} Q \\, dl + \\int_{0}^{l} 1.3 M_t \\frac{\\partial M_t}{\\partial M_p} Q \\, dl \\right]",
+    "flagged_at": "2026-07-08"
+  },
+  "301:6ddc536ee608": {
+    "page": 301,
+    "hash": "6ddc536ee608",
+    "kind": "equations",
+    "description": "\\delta_p = \\frac{1}{EI} \\left[ \\int_{0}^{l} k M_b \\frac{\\partial M_b}{\\partial F_p} Q \\, dl + \\int_{0}^{l} k M'_b \\frac{\\partial M'_b}{\\partial F_p} Q \\, dl + \\int_{0}^{l} 1.3 M_t \\frac{\\partial M_t}{\\partial F_p} Q \\, dl \\right]",
+    "flagged_at": "2026-07-08"
+  },
+  "302:8f9f911ae76c": {
+    "page": 302,
+    "hash": "8f9f911ae76c",
+    "kind": "equations",
+    "description": "\\begin{aligned}\nM_b &= M'_z - F_x(y_A - y) + F_y(x_A - x) - w_x l(\\bar{y}' - y) + w_y l(\\bar{x}' - x) \\\\[10pt]\nM'_b &= [M'_y - F_z(x_A - x) + F_x(z_A - z) - w_z l(\\bar{x}' - x)] \\cos\\psi \\\\\n&\\quad - [M'_x - F_y(z_A - z) + F_z(y_A - y) + w_z l(\\bar{y}' - y)] \\sin\\psi \\\\[10pt]\nM_t &= [M'_x - F_y(z_A - z) + F_z(y_A - y) + w_z l(\\bar{y}' - y)] \\cos\\psi \\\\\n&\\quad + [M'_y - F_z(x_A - x) + F_x(z_A - z) - w_z l(\\bar{x}' - x)] \\sin\\psi\n\\end{aligned}",
+    "flagged_at": "2026-07-08"
+  },
+  "302:a85593bddce5": {
+    "page": 302,
+    "hash": "a85593bddce5",
+    "kind": "equations",
+    "description": "\\begin{aligned}\nM_b &= M'_z - F_x(y_A - y) + F_y(x_A - x) - w_x L(\\bar{y} - y) + w_y L(\\bar{x} - x) \\\\[10pt]\nM'_b &= [M'_y - F_z(x_A - x) + F_x(z_A - z) + w_x L(\\bar{z} - z) - w_z L(\\bar{x} - x)] \\cos\\psi \\\\\n&\\quad - [M'_x - F_y(z_A - z) + F_z(y_A - y) - w_y L(\\bar{z} - z) + w_z L(\\bar{y} - y)] \\sin\\psi \\\\[10pt]\nM_t &= [M'_x - F_y(z_A - z) + F_z(y_A - y) - w_y L(\\bar{z} - z) + w_z L(\\bar{y} - y)] \\cos\\psi \\\\\n&\\quad + [M'_y - F_z(x_A - x) + F_x(z_A - z) + w_x L(\\bar{z} - z) - w_z L(\\bar{x} - x)] \\sin\\psi\n\\end{aligned}",
+    "flagged_at": "2026-07-08"
+  },
+  "305:96d79530b398": {
+    "page": 305,
+    "hash": "96d79530b398",
+    "kind": "equations",
+    "description": "EI\\delta_y =",
+    "flagged_at": "2026-07-08"
+  },
+  "305:29755182cdd8": {
+    "page": 305,
+    "hash": "29755182cdd8",
+    "kind": "equations",
+    "description": "+ M'_z \\int_{A}^{O'} k(x_A - x)Q \\, dl",
+    "flagged_at": "2026-07-08"
+  },
+  "326:2a5354a3fd98": {
+    "page": 326,
+    "hash": "2a5354a3fd98",
+    "kind": "equations",
+    "description": "M_{x_N} = F_{z_N} y_N - F_{y_N} z_N",
+    "flagged_at": "2026-07-08"
+  },
+  "326:5f881b5ff1bb": {
+    "page": 326,
+    "hash": "5f881b5ff1bb",
+    "kind": "equations",
+    "description": "M_{y_N} = F_{x_N} z_N - F_{z_N} x_N",
+    "flagged_at": "2026-07-08"
+  },
+  "326:63af86a82819": {
+    "page": 326,
+    "hash": "63af86a82819",
+    "kind": "equations",
+    "description": "M_{z_N} = F_{y_N} x_N - F_{x_N} y_N",
+    "flagged_at": "2026-07-08"
+  },
+  "330:ffc1b34e2ee3": {
+    "page": 330,
+    "hash": "ffc1b34e2ee3",
+    "kind": "equations",
+    "description": "+ \\frac{\\mu_1 \\cdot \\mu_3 + \\mu_2 \\cdot \\mu_3 + (\\mu_1 \\cdot \\mu_3)}{V_1 V_2} = 0",
+    "flagged_at": "2026-07-08"
+  },
+  "312:6496133eda7a": {
+    "page": 312,
+    "hash": "6496133eda7a",
+    "kind": "equations",
+    "description": "s = \\int kQ \\, dl",
+    "flagged_at": "2026-07-08"
+  },
+  "165:443bad0d4406": {
+    "page": 165,
+    "hash": "443bad0d4406",
+    "kind": "equations",
+    "description": "\\theta_x, \\, \\theta_y, \\, \\theta_z, \\, \\delta_x, \\, \\delta_y, \\, \\delta_z, \\, \\theta'_x, \\, \\theta'_y, \\, \\theta'_z, \\, \\delta^*_x, \\, \\delta^*_y, \\, \\delta^*_z",
+    "flagged_at": "2026-07-08"
+  },
+  "221:6f63837cd7f6": {
+    "page": 221,
+    "hash": "6f63837cd7f6",
+    "kind": "equations",
+    "description": "N \\propto \\frac{1}{\\epsilon^n}",
+    "flagged_at": "2026-07-08"
+  },
+  "221:8f7d492b3ff1": {
+    "page": 221,
+    "hash": "8f7d492b3ff1",
+    "kind": "equations",
+    "description": "N = \\left(\\frac{1,600,000}{S_R}\\right)^{3.5} \\tag{7.1}",
+    "flagged_at": "2026-07-08"
+  },
+  "221:98b227623b90": {
+    "page": 221,
+    "hash": "98b227623b90",
+    "kind": "equations",
+    "description": "N_S = \\left(\\frac{800,000}{S_R}\\right)^{3.5} \\tag{7.2}",
+    "flagged_at": "2026-07-08"
+  },
+  "123:ec22487c362a": {
+    "page": 123,
+    "hash": "ec22487c362a",
+    "kind": "equations",
+    "description": "\\phantom{s_a = kQR\\Phi \\qquad s_{ab}} + (s'_b \\times a) + s'_{ab}",
+    "flagged_at": "2026-07-08"
+  },
+  "123:5e7f0382a24f": {
+    "page": 123,
+    "hash": "5e7f0382a24f",
+    "kind": "equations",
+    "description": "s_a = (s \\times a) + s'_a \\qquad s_{aa} = (s \\times a^2) + (s'_a \\times 2a) + s'_{aa}",
+    "flagged_at": "2026-07-08"
+  },
+  "123:8e33a6165117": {
+    "page": 123,
+    "hash": "8e33a6165117",
+    "kind": "equations",
+    "description": "s_b = (s \\times b) + s'_b \\qquad s_{bb} = (s \\times b^2) + (s'_b \\times 2b) + s'_{bb}",
+    "flagged_at": "2026-07-08"
+  },
+  "123:50af599426b4": {
+    "page": 123,
+    "hash": "50af599426b4",
+    "kind": "equations",
+    "description": "s'_b = k Q R^2 c_b \\qquad s'_{aa} = k Q R^3 c_{aa}",
+    "flagged_at": "2026-07-08"
+  },
+  "123:413b923d7e24": {
+    "page": 123,
+    "hash": "413b923d7e24",
+    "kind": "equations",
+    "description": "s'_{bb} = k Q R^3 c_{bb}",
+    "flagged_at": "2026-07-08"
+  },
+  "123:d1d48acf6751": {
+    "page": 123,
+    "hash": "d1d48acf6751",
+    "kind": "equations",
+    "description": "c_{ab} = 0.25 [ \\cos 2(\\alpha + \\Phi) - \\cos 2\\alpha ]",
+    "flagged_at": "2026-07-08"
+  },
+  "123:2848e97ce76c": {
+    "page": 123,
+    "hash": "2848e97ce76c",
+    "kind": "equations",
+    "description": "c_{aa} = 0.5\\Phi - 0.25 [ \\sin 2(\\alpha + \\Phi) - \\sin 2\\alpha ]",
+    "flagged_at": "2026-07-08"
+  },
+  "123:81c43371af4a": {
+    "page": 123,
+    "hash": "81c43371af4a",
+    "kind": "equations",
+    "description": "c_{bb} = 0.5\\Phi + 0.25 [ \\sin 2(\\alpha + \\Phi) - \\sin 2\\alpha ]",
+    "flagged_at": "2026-07-08"
+  },
+  "134:bf56fbbe1fe8": {
+    "page": 134,
+    "hash": "bf56fbbe1fe8",
+    "kind": "equations",
+    "description": "F_x (x_B s_{bb} - y_B s_{ab}) + F_y (y_B s_{aa} - x_B s_{ab}) = EI^* (x_B \\Delta_x + y_B \\Delta_y)",
+    "flagged_at": "2026-07-08"
+  },
+  "134:d88bfd64a92d": {
+    "page": 134,
+    "hash": "d88bfd64a92d",
+    "kind": "equations",
+    "description": "F_x = \\frac{EI^*(x_B^2 \\Delta_x + x_B y_B \\Delta_y)}{x_B^2 s_{bb} - 2x_B y_B s_{ab} + y_B^2 s_{aa}}",
+    "flagged_at": "2026-07-08"
+  },
+  "134:6b274c2d995a": {
+    "page": 134,
+    "hash": "6b274c2d995a",
+    "kind": "equations",
+    "description": "F_y = \\frac{EI^*(y_B^2 \\Delta_y + x_B y_B \\Delta_x)}{x_B^2 s_{bb} - 2x_B y_B s_{ab} + y_B^2 s_{aa}}",
+    "flagged_at": "2026-07-08"
+  },
+  "135:41defa782e90": {
+    "page": 135,
+    "hash": "41defa782e90",
+    "kind": "equations",
+    "description": "L = 0.017 \\frac{I}{r_m^3} \\left( \\frac{R}{t} \\right)^{3/2}",
+    "flagged_at": "2026-07-08"
+  },
+  "146:e6a096d0c29e": {
+    "page": 146,
+    "hash": "e6a096d0c29e",
+    "kind": "equations",
+    "description": "M_{x_R} = -z_R F_{y_R} + y_R F_{z_R} \\qquad \\text{for } F_y \\text{ and } F_z \\text{ stops}",
+    "flagged_at": "2026-07-08"
+  },
+  "146:8b4e50a18844": {
+    "page": 146,
+    "hash": "8b4e50a18844",
+    "kind": "equations",
+    "description": "M_{y_R} = -x_R F_{z_R} + z_R F_{x_R} \\qquad \\text{for } F_z \\text{ and } F_x \\text{ stops}",
+    "flagged_at": "2026-07-08"
+  },
+  "165:bbf44cd8f923": {
+    "page": 165,
+    "hash": "bbf44cd8f923",
+    "kind": "equations",
+    "description": "\\delta^*_x = \\delta'_x - z \\theta'_y + y \\theta'_z",
+    "flagged_at": "2026-07-08"
+  },
+  "175:2f55fbe97782": {
+    "page": 175,
+    "hash": "2f55fbe97782",
+    "kind": "equations",
+    "description": "w_b = -kQ\\frac{L^3}{6}\\sin\\alpha",
+    "flagged_at": "2026-07-08"
+  },
+  "175:97cf2fc7b863": {
+    "page": 175,
+    "hash": "97cf2fc7b863",
+    "kind": "equations",
+    "description": "w'_{ba} = -kQ\\frac{L^4}{24}\\sin\\alpha\\cos\\alpha",
+    "flagged_at": "2026-07-08"
+  },
+  "175:92d88425bc08": {
+    "page": 175,
+    "hash": "92d88425bc08",
+    "kind": "equations",
+    "description": "w'_{bb} = +kQ\\frac{L^4}{24}\\sin^2\\alpha",
+    "flagged_at": "2026-07-08"
+  },
+  "175:147e42efcb94": {
+    "page": 175,
+    "hash": "147e42efcb94",
+    "kind": "equations",
+    "description": "w_{ba} = w'_{ba} + aw_b",
+    "flagged_at": "2026-07-08"
+  },
+  "176:ba7c10475275": {
+    "page": 176,
+    "hash": "ba7c10475275",
+    "kind": "equations",
+    "description": "w_b = -Q k R^3 \\{ \\Phi [ \\sin(\\alpha + \\Phi) + \\sin\\alpha ] + 2 [ \\cos(\\alpha + \\Phi) - \\cos\\alpha ] \\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:b1d9a9c15508": {
+    "page": 176,
+    "hash": "b1d9a9c15508",
+    "kind": "equations",
+    "description": "w'_{ba} = -Q k R^4 \\left\\{ \\frac{\\Phi}{2} \\left[ 1 + \\frac{\\cos 2(\\alpha + \\Phi)}{2} \\right] - \\frac{3}{8} [ \\sin 2(\\alpha + \\Phi) - \\sin 2\\alpha ] + [ \\cos(\\alpha + \\Phi) - \\cos \\alpha ] \\sin \\alpha \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:ffef4fcf4d01": {
+    "page": 176,
+    "hash": "ffef4fcf4d01",
+    "kind": "equations",
+    "description": "w'_{bb} = +Q k R^4 \\left\\{ \\frac{\\Phi}{4} [ \\phi + \\sin 2(\\alpha + \\Phi) ] + \\frac{3}{8} [ \\cos 2(\\alpha + \\Phi) - \\cos 2\\alpha ] + [ \\sin(\\alpha + \\Phi) - \\sin \\alpha ] \\sin \\alpha \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:d33ee29c2e07": {
+    "page": 176,
+    "hash": "d33ee29c2e07",
+    "kind": "equations",
+    "description": "w_b = +Q k R^3 \\{ \\Phi [ \\sin(\\alpha - \\Phi) + \\sin \\alpha ] - 2 [ \\cos(\\alpha - \\Phi) - \\cos \\alpha ] \\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:d1678f9d4aa0": {
+    "page": 176,
+    "hash": "d1678f9d4aa0",
+    "kind": "equations",
+    "description": "w'_{ba} = +Q k R^4 \\left\\{ \\frac{\\Phi}{2} \\left[ 1 + \\frac{\\cos 2(\\alpha - \\Phi)}{2} \\right] + \\frac{3}{8} [ \\sin 2(\\alpha - \\Phi) - \\sin 2\\alpha ] - [ \\cos(\\alpha - \\Phi) - \\cos \\alpha ] \\sin \\alpha \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:136521d43a9a": {
+    "page": 176,
+    "hash": "136521d43a9a",
+    "kind": "equations",
+    "description": "w'_{bb} = +Q k R^4 \\left\\{ \\frac{\\Phi}{4} [ \\Phi - \\sin 2(\\alpha - \\Phi) ] + \\frac{3}{8} [ \\cos 2(\\alpha - \\Phi) - \\cos 2\\alpha ] + [ \\sin(\\alpha - \\Phi) - \\sin \\alpha ] \\sin \\alpha \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:30fe8a43d449": {
+    "page": 176,
+    "hash": "30fe8a43d449",
+    "kind": "equations",
+    "description": "w_u = -Q R^3 \\left\\{ 1.3 \\left[ \\Phi \\cos(\\alpha + \\Phi) + \\frac{\\Phi}{2} \\cos \\alpha - \\sin(\\alpha + \\Phi) + 1.25 \\sin \\alpha - 0.25 \\sin(\\alpha + 2\\Phi) \\right] \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:f5d1911277fe": {
+    "page": 176,
+    "hash": "f5d1911277fe",
+    "kind": "equations",
+    "description": "w_v = +Q R^3 \\left\\{ 1.3 \\left[ \\Phi \\sin(\\alpha + \\Phi) + \\frac{\\Phi}{2} \\sin \\alpha + \\cos(\\alpha + \\Phi) - 1.25 \\cos \\alpha + 0.25 \\cos(\\alpha + 2\\Phi) \\right] \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:56fee8d2de6c": {
+    "page": 176,
+    "hash": "56fee8d2de6c",
+    "kind": "equations",
+    "description": "w_u = +Q R^3 \\left\\{ 1.3 \\left[ \\Phi \\cos(\\alpha - \\Phi) + \\frac{\\Phi}{2} \\cos \\alpha + \\sin(\\alpha - \\Phi) - 1.25 \\sin \\alpha + 0.25 \\sin(\\alpha - 2\\Phi) \\right] \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:9b0135cde470": {
+    "page": 176,
+    "hash": "9b0135cde470",
+    "kind": "equations",
+    "description": "w_v = -Q R^3 \\left\\{ 1.3 \\left[ \\Phi \\sin(\\alpha - \\Phi) + \\frac{\\Phi}{2} \\sin \\alpha - \\cos(\\alpha - \\Phi) + 1.25 \\cos \\alpha - 0.25 \\cos(\\alpha - 2\\Phi) \\right] \\right\\}",
+    "flagged_at": "2026-07-08"
+  },
+  "176:a75eef542574": {
+    "page": 176,
+    "hash": "a75eef542574",
+    "kind": "equations",
+    "description": "w'_{uv} = +1.3QR^4 \\left(\\frac{\\Phi^2}{2} - 1 + \\cos\\Phi\\right)",
+    "flagged_at": "2026-07-08"
+  },
+  "200:14445dc15335": {
+    "page": 200,
+    "hash": "14445dc15335",
+    "kind": "equations",
+    "description": "\\frac{F_p}{F_m} = \\frac{E_p I_p}{E_m I_m} \\frac{\\Delta_p}{\\Delta_m} \\frac{L_m^3}{L_p^3}",
+    "flagged_at": "2026-07-08"
+  },
+  "221:a51d96041207": {
+    "page": 221,
+    "hash": "a51d96041207",
+    "kind": "equations",
+    "description": "S_R = \\frac{3 E t \\Delta}{w^2 N_d} + \\frac{p w^2}{2 t^2}",
+    "flagged_at": "2026-07-08"
+  },
+  "221:2028fd21c0cc": {
+    "page": 221,
+    "hash": "2028fd21c0cc",
+    "kind": "equations",
+    "description": "S_R = \\frac{1.5 E t \\Delta}{h^{0.5} w^{1.5} N_d} + \\frac{p w^2}{2 t^2}",
+    "flagged_at": "2026-07-08"
+  },
+  "222:68e8bace8ba5": {
+    "page": 222,
+    "hash": "68e8bace8ba5",
+    "kind": "equations",
+    "description": "\\Delta = \\frac{3 D h_r}{L + l [(l/L) + 1]}",
+    "flagged_at": "2026-07-08"
+  },
+  "222:429ed87de201": {
+    "page": 222,
+    "hash": "429ed87de201",
+    "kind": "equations",
+    "description": "F = \\frac{\\pi E D t^3 \\Delta}{w^3 N_d} \\quad (7.11)",
+    "flagged_at": "2026-07-08"
   }
 }

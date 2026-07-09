@@ -1,0 +1,16 @@
+{
+  "12:7b39f7aa7cf7": {
+    "page": 12,
+    "hash": "7b39f7aa7cf7",
+    "kind": "equations",
+    "description": "= \\frac{3000 \\times 0.62 \\times 425}{3960 \\times 0.90}",
+    "flagged_at": "2026-07-08"
+  },
+  "164:6a1a51d4fc69": {
+    "page": 164,
+    "hash": "6a1a51d4fc69",
+    "kind": "equations",
+    "description": "= \\frac{3.24}{.324}",
+    "flagged_at": "2026-07-08"
+  }
+}

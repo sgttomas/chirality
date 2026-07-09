@@ -119,3 +119,7 @@ exports/*/latest/
 
 # Practitioner harness generated views (rebuildable; D-GOV-01)
 _harness_generated/
+
+# SQLite transient WAL sidecars (rebuilt at runtime; not canonical)
+*.db-shm
+*.db-wal
