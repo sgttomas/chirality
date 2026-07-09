@@ -34,7 +34,7 @@ prerequisite has now landed or been resolved:
 | The workplan reserves the `.docx` approach + dependency + placement to its own packet; zero-new-dependency posture governs pec runtime/web (ADR-002). | `_DomainEngines/pec/WORKPLAN_2026-07-09_pec_reporting_product.md` (phase corollaries; R1 row) |
 | A completed exemplar of the owner's report exists: `projects/pec/pilot-scratch/input/2026-07-08-Status_Report_completed.docx` (gitignored, owner-held). **Delta vs the findings:** the findings cite `2026-07-08-Disciplines_Status_Report.docx`, which is not in the tree; the live exemplar governs. | live tree; `_DomainEngines/proposals/pec/FINDINGS_2026-07-09_pec_product_interview.md` §3 |
 | Exemplar structure: one `Heading1` per discipline; `Subtitle` sections Activities · Issuances this week · Needs · Risks; bullet `ListParagraph` items (narrative prose with inline % values); **no tables**. Section titles vary slightly (e.g. "Mechanical Needs", "Piping Needs"). | exemplar `word/document.xml` (structure inspected 2026-07-09) |
-| Weekly report payloads, period figures, and DISC-PCT already exist server-side in the `Explain` shape with basis pointers. | `projects/pec/server/src/reports/standard.ts`; `services/periods.ts`; `services/views.ts`; `REPORT_BASIS.md` |
+| Weekly report payloads, period figures, and DISC-PCT already exist server-side in the `Explain` shape with basis pointers. | `projects/pec/server/src/reports/standard.ts`; `projects/pec/server/src/services/periods.ts`; `projects/pec/server/src/services/views.ts`; `projects/pec/execution/_Coordination/REPORT_BASIS.md` |
 | Reports are edited and issued outside the app; in-app storage is at most a convenience. | findings §2 (owner verbatim) |
 
 ## Decision to rule
