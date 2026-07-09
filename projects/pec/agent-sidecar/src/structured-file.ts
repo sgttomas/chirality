@@ -1,5 +1,6 @@
 import { CONTRACTS } from './contract-detect.ts'
 import type { Contract } from './contract-detect.ts'
+import type { CellValue, ParsedWorkbook } from './xlsx.ts'
 
 export interface MappingSummary {
   sourceFormat: string
@@ -49,6 +50,29 @@ const OPTIONAL: Record<Contract, string[]> = {
   tracker: ['vendors_engaged', 'vendor_awarded', 'expected_delivery_date', 'comments'],
 }
 
+// Contract v2 shapes (D-PEC-41): the SAME contract ids accept the revised TWD template
+// shapes — MDL keys on package + deliverable_type (no doc_no), RAIL on package + issue_no
+// (no item_id). Source of truth: server/src/import/index.ts v2 importers (2026-07-09).
+const REQUIRED_V2: Partial<Record<Contract, string[]>> = {
+  mdl: ['package', 'deliverable_type'],
+  rail: ['package', 'issue_no'],
+}
+/** v1 key columns whose PRESENCE means the file is v1-shaped, not v2 (both listed so a
+ * malformed v1 file missing just its id column still fails loudly as v1) */
+const V1_KEYS: Partial<Record<Contract, string[]>> = { mdl: ['doc_no', 'current_rev'], rail: ['item_id', 'raised_by'] }
+const OPTIONAL_V2: Partial<Record<Contract, string[]>> = {
+  mdl: ['area', 'project_phase', 'discipline', 'package_type', 'package_name',
+    'deliverable_id', 'target_completeness', 'working_status', 'percent_complete'],
+  rail: ['discipline', 'area', 'phase', 'coa_tracking_number', 'package_type', 'package_name',
+    'issue_type', 'statement', 'updates', 'responsible_party', 'status', 'priority',
+    'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date'],
+}
+
+function isV2Shape(contract: Contract, headers: Set<string>): boolean {
+  const req = REQUIRED_V2[contract]
+  return req != null && !V1_KEYS[contract]!.some((k) => headers.has(k)) && req.every((h) => headers.has(h))
+}
+
 const HEADER_ALIASES: Record<string, string> = {
   docno: 'doc_no',
   document_no: 'doc_no',
@@ -79,6 +103,14 @@ const HEADER_ALIASES: Record<string, string> = {
   percent_done: 'percent_complete',
   pct_complete: 'percent_complete',
   duration: 'duration_days',
+  // contract v2 (D-PEC-41): the revised TWD template headers, canonicalized
+  complete: 'percent_complete',          // "% Complete" canonicalizes to "complete"
+  issue: 'issue_no',                     // "Issue #"
+  package_discipline: 'discipline',      // RAIL "Package Discipline"
+  issue_description: 'statement',        // RAIL "ISSUE DESCRIPTION"
+  original_target_completion_date: 'original_target_date',
+  current_target_completion_date: 'current_target_date',
+  package_id: 'package_id',              // disambiguated contextually below
 }
 
 function canonicalHeader(raw: string): string {
@@ -125,7 +157,42 @@ function csvEscape(v: string): string {
 }
 
 function contractMatches(headers: Set<string>): Contract[] {
-  return CONTRACTS.filter((contract) => REQUIRED[contract].every((h) => headers.has(h)))
+  return CONTRACTS.filter((contract) =>
+    REQUIRED[contract].every((h) => headers.has(h)) || isV2Shape(contract, headers))
+}
+
+/**
+ * The TWD templates carry BOTH a "Package ID" (the code) and a "PACKAGE"/"Package Name"
+ * column. "Package ID" canonicalizes to package_id and, when present, IS the contract's
+ * `package` column; a plain `package` column alongside it is the package NAME. v1 files
+ * have no package_id header, so this pass never touches them.
+ */
+function disambiguatePackageId(headers: string[]): string[] {
+  if (!headers.includes('package_id')) return headers
+  return headers.map((h) =>
+    h === 'package_id' ? 'package'
+      : h === 'package' && !headers.includes('package_name') ? 'package_name' : h)
+}
+
+/**
+ * Split text into records, honoring RFC 4180 quoting: a newline inside a
+ * double-quoted field is cell CONTENT, not a record boundary. Multiline cells
+ * are routine in workbook exports (Excel Alt+Enter in UPDATES/description
+ * columns) and in the CSV this module itself emits from parsed workbooks —
+ * naive line-splitting silently truncated such rows and shifted every later
+ * column (adversarial review 2026-07-09, defect 1).
+ */
+function splitRecords(text: string): string[] {
+  const records: string[] = []
+  let cur = ''
+  let inQuotes = false
+  for (const ch of text) {
+    if (ch === '"') inQuotes = !inQuotes
+    if (ch === '\n' && !inQuotes) { records.push(cur); cur = ''; continue }
+    cur += ch
+  }
+  records.push(cur)
+  return records
 }
 
 function nearestContracts(headers: Set<string>): string {
@@ -139,12 +206,17 @@ export function adaptStructuredFile(
   text: string,
   opts: { filename?: string; contract?: string } = {},
 ): StructuredFileResult {
-  const rawLines = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n')
+  const normalized = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+  const firstLine = normalized.slice(0, normalized.indexOf('\n') < 0 ? normalized.length : normalized.indexOf('\n'))
+  const { delimiter, format } = chooseDelimiter(firstLine)
+  // quote-aware record splitting only where RFC 4180 quoting is the convention (comma
+  // CSV, incl. the CSV this module emits from workbooks); other delimiters keep physical
+  // lines so a stray unbalanced quote in TSV/pipe content cannot swallow rows
+  const rawLines = format === 'csv' ? splitRecords(normalized) : normalized.split('\n')
   const lines = rawLines.filter((line) => line.trim().length > 0)
   if (lines.length < 2) return { ok: false, reason: 'structured file needs a header row and at least one data row' }
-  const { delimiter, format } = chooseDelimiter(lines[0]!)
   const sourceHeaders = splitLine(lines[0]!, delimiter)
-  const canonicalHeaders = sourceHeaders.map(canonicalHeader)
+  const canonicalHeaders = disambiguatePackageId(sourceHeaders.map(canonicalHeader))
   const headerSet = new Set(canonicalHeaders)
   let contract: Contract | undefined
   if (opts.contract) {
@@ -166,11 +238,14 @@ export function adaptStructuredFile(
       }
     }
   }
-  const missing = REQUIRED[contract].filter((h) => !headerSet.has(h))
+  const v2 = isV2Shape(contract, headerSet)
+  const requiredCols = v2 ? REQUIRED_V2[contract]! : REQUIRED[contract]
+  const missing = requiredCols.filter((h) => !headerSet.has(h))
   if (missing.length > 0) {
+    const alt = REQUIRED_V2[contract] ? ` (v2 shape needs: ${REQUIRED_V2[contract]!.join(', ')})` : ''
     return {
       ok: false,
-      reason: `${contract} mapping is missing required columns: ${missing.join(', ')} — ask the owner for these fields or name a different contract`,
+      reason: `${contract} mapping is missing required columns: ${missing.join(', ')}${alt} — ask the owner for these fields or name a different contract`,
       summary: { sourceFormat: format, sourceHeaders, canonicalHeaders },
     }
   }
@@ -178,12 +253,14 @@ export function adaptStructuredFile(
   const normalizedRows = rows.map((row) => canonicalHeaders.map((_, i) => row[i] ?? ''))
   const requiredEmptyRows: Array<{ row: number; column: string }> = []
   for (const [idx, row] of normalizedRows.entries()) {
-    for (const col of REQUIRED[contract]) {
+    for (const col of requiredCols) {
       const pos = canonicalHeaders.indexOf(col)
       if (pos >= 0 && !row[pos]?.trim()) requiredEmptyRows.push({ row: idx + 2, column: col })
     }
   }
-  const recognized = new Set([...REQUIRED[contract], ...OPTIONAL[contract]])
+  const recognized = new Set(v2
+    ? [...REQUIRED_V2[contract]!, ...OPTIONAL_V2[contract]!]
+    : [...REQUIRED[contract], ...OPTIONAL[contract]])
   const omittedSourceHeaders = canonicalHeaders.filter((h) => !recognized.has(h))
   const csv = [
     canonicalHeaders.map(csvEscape).join(','),
@@ -210,6 +287,106 @@ export function adaptStructuredFile(
           : 'all required cells are non-empty at mapping time',
       ],
     },
+  }
+}
+
+// ---------------------------------------------------------------------------
+// D-PEC-42: workbook (.xlsx) → the same tabular mapping the CSV/TSV lane runs
+// ---------------------------------------------------------------------------
+
+export type WorkbookAdaptResult =
+  | {
+      ok: true
+      csv: string
+      contract: Contract
+      filename?: string
+      summary: MappingSummary
+      /** which sheet mapped, and the zero-based header-row offset inside it */
+      sheetName: string
+      headerRowIndex: number
+    }
+  | { ok: false; reason: string }
+
+/** how deep into a sheet the mapper scans for a contract-shaped header row */
+const MAX_HEADER_SCAN_ROWS = 30
+
+const cellText = (v: CellValue): string => (v == null ? '' : typeof v === 'number' ? String(v) : v)
+
+function gridToCsv(rows: CellValue[][]): string {
+  // an all-blank grid row becomes an empty line, so the CSV lane skips it
+  // exactly as it skips blank lines in a dropped CSV/TSV file
+  return rows.map((row) =>
+    row.every((v) => cellText(v).trim() === '') ? '' : row.map((v) => csvEscape(cellText(v))).join(','),
+  ).join('\r\n')
+}
+
+/** does this grid row, read as headers, satisfy a contract's required set? */
+function headerRowContract(row: CellValue[], named?: Contract): Contract | undefined {
+  const canonical = new Set(disambiguatePackageId(row.map((v) => canonicalHeader(cellText(v)))))
+  if (named) {
+    return REQUIRED[named].every((h) => canonical.has(h)) || isV2Shape(named, canonical) ? named : undefined
+  }
+  const matches = contractMatches(canonical)
+  return matches.length === 1 ? matches[0] : undefined
+}
+
+/**
+ * Map a parsed workbook onto an import contract through the SAME
+ * adaptStructuredFile lane CSV/TSV files run today. The parser returned the
+ * raw grid; header detection happens HERE: each sheet is scanned (top rows
+ * only) for a row whose canonicalized headers satisfy a contract — this is
+ * what tolerates title/metadata rows above the real header. The first
+ * (sheet, header-row) hit wins; sheets that never match are non-tabular for
+ * mapping purposes and ride only the verbatim workbook capture.
+ */
+export function adaptWorkbook(
+  workbook: ParsedWorkbook,
+  opts: { filename?: string; contract?: string; sheet?: string } = {},
+): WorkbookAdaptResult {
+  let named: Contract | undefined
+  if (opts.contract) {
+    const lowered = opts.contract.toLowerCase()
+    if (!(CONTRACTS as readonly string[]).includes(lowered)) {
+      return { ok: false, reason: `unknown contract '${opts.contract}' (one of: ${CONTRACTS.join(', ')})` }
+    }
+    named = lowered as Contract
+  }
+  const candidates = opts.sheet
+    ? workbook.sheets.filter((s) => s.name.toLowerCase() === opts.sheet!.toLowerCase())
+    : workbook.sheets
+  if (opts.sheet && candidates.length === 0) {
+    return {
+      ok: false,
+      reason: `the workbook has no sheet named '${opts.sheet}' (sheets: ${workbook.sheets.map((s) => s.name).join(', ')})`,
+    }
+  }
+  for (const sheet of candidates) {
+    const scanLimit = Math.min(sheet.rows.length, MAX_HEADER_SCAN_ROWS)
+    for (let headerRowIndex = 0; headerRowIndex < scanLimit; headerRowIndex++) {
+      const contract = headerRowContract(sheet.rows[headerRowIndex]!, named)
+      if (!contract) continue
+      const csv = gridToCsv(sheet.rows.slice(headerRowIndex))
+      const mapped = adaptStructuredFile(csv, { filename: opts.filename, contract })
+      if (!mapped.ok) return { ok: false, reason: `sheet '${sheet.name}': ${mapped.reason}` }
+      mapped.summary.sourceFormat = `xlsx sheet '${sheet.name}'`
+      mapped.summary.notes.push(
+        headerRowIndex === 0
+          ? `header row is the sheet's first row`
+          : `header row found at sheet row ${headerRowIndex + 1} (rows above it are title/metadata, carried in the verbatim workbook capture)`,
+      )
+      const nonTabular = workbook.sheets.filter((s) => s !== sheet).map((s) => s.name)
+      if (nonTabular.length > 0) {
+        mapped.summary.notes.push(`unmapped sheet(s) carried verbatim in the workbook capture: ${nonTabular.join(', ')}`)
+      }
+      return { ...mapped, sheetName: sheet.name, headerRowIndex }
+    }
+  }
+  const scanned = candidates.map((s) => s.name).join(', ')
+  return {
+    ok: false,
+    reason: named
+      ? `no sheet in the workbook (${scanned}) carries the ${named} contract's required headers within the first ${MAX_HEADER_SCAN_ROWS} rows — name a different contract or check the file`
+      : `no sheet in the workbook (${scanned}) carries a header row matching exactly one import contract within the first ${MAX_HEADER_SCAN_ROWS} rows — name the contract`,
   }
 }
 

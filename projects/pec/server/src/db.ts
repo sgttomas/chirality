@@ -115,6 +115,8 @@ CREATE TABLE IF NOT EXISTS package (
   milestone TEXT,
   area TEXT,                       -- §16 mdl optional column (D-PEC-23)
   package_type TEXT,               -- §16 mdl optional column (D-PEC-23)
+  discipline TEXT,                 -- contract v2 (D-PEC-41): attested package discipline
+  source_payload TEXT,             -- D-PEC-41 full-fidelity capture: verbatim unmapped columns (JSON)
   version INTEGER NOT NULL DEFAULT 1,
   UNIQUE(project_id, code)
 );
@@ -134,6 +136,14 @@ CREATE TABLE IF NOT EXISTS deliverable (
   due_date TEXT,
   issue_purpose_plan TEXT,
   remarks TEXT,
+  -- Contract v2 (D-PEC-41): PE-attested import fields — never in-app editable, never
+  -- derived (reconciliation 1); absent from the updateDeliverable editable whitelist.
+  project_phase TEXT,
+  target_completeness TEXT,
+  working_status TEXT,
+  percent_complete INTEGER,        -- attested 0..100 integer, or NULL
+  percent_complete_verbatim TEXT,  -- attested non-numeric marker (e.g. "Next Phase"), verbatim
+  source_payload TEXT,             -- full-fidelity capture: verbatim unmapped columns (JSON)
   version INTEGER NOT NULL DEFAULT 1,
   UNIQUE(project_id, doc_no)
 );
@@ -206,6 +216,9 @@ CREATE TABLE IF NOT EXISTS work_item (
   closed_at TEXT,
   cancel_reason TEXT,
   area TEXT,                       -- §16 rail optional column (D-PEC-23)
+  responsible_party TEXT,          -- contract v2 (D-PEC-41): attested discipline/function, verbatim
+  source_issue_type TEXT,          -- contract v2: attested RAIL issue type, verbatim
+  source_payload TEXT,             -- D-PEC-41 full-fidelity capture: verbatim unmapped columns (JSON)
   created_by INTEGER NOT NULL,
   created_at TEXT NOT NULL,
   version INTEGER NOT NULL DEFAULT 1
@@ -643,6 +656,7 @@ CREATE TABLE IF NOT EXISTS import_proposal (
   source_csv TEXT NOT NULL,
   coverage_start TEXT,             -- D-PEC-39: PE-declared coverage, per uploaded document
   coverage_end TEXT,               -- D-PEC-39: declared, never inferred; null = undeclared
+  source_extras TEXT,              -- D-PEC-41 full-fidelity capture: verbatim non-tabular source sheets (JSON)
   state TEXT NOT NULL DEFAULT 'draft',
   basis_history_id INTEGER,
   dry_run_report TEXT,
@@ -735,6 +749,19 @@ export function openDb(path: string): Db {
   // D-PEC-39 coverage declarations (additive; existing proposals read as undeclared)
   ensureColumn(db, 'import_proposal', 'coverage_start', 'TEXT')
   ensureColumn(db, 'import_proposal', 'coverage_end', 'TEXT')
+  // D-PEC-41 contract v2 (additive; inert until a v2 import populates them)
+  ensureColumn(db, 'package', 'discipline', 'TEXT')
+  ensureColumn(db, 'package', 'source_payload', 'TEXT')
+  ensureColumn(db, 'deliverable', 'project_phase', 'TEXT')
+  ensureColumn(db, 'deliverable', 'target_completeness', 'TEXT')
+  ensureColumn(db, 'deliverable', 'working_status', 'TEXT')
+  ensureColumn(db, 'deliverable', 'percent_complete', 'INTEGER')
+  ensureColumn(db, 'deliverable', 'percent_complete_verbatim', 'TEXT')
+  ensureColumn(db, 'deliverable', 'source_payload', 'TEXT')
+  ensureColumn(db, 'work_item', 'responsible_party', 'TEXT')
+  ensureColumn(db, 'work_item', 'source_issue_type', 'TEXT')
+  ensureColumn(db, 'work_item', 'source_payload', 'TEXT')
+  ensureColumn(db, 'import_proposal', 'source_extras', 'TEXT')
   // D-PEC-13 owner amendment: the tracker key moved from tracking_no to the resolved package.
   // Old-shape tables (nullable package_id, UNIQUE on tracking_no) exist only on scratch
   // instances and hold import-owned, reproducible rows — rebuild at the new shape; the next

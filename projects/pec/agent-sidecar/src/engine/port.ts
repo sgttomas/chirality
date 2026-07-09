@@ -44,10 +44,15 @@ export interface AgentTurnInput {
     route: string
     records: ScreenContextRecord[]
   }
-  /** CSV/TSV/plain tabular text only (D-PEC-35 O-A), ≤ 5 MiB of UTF-8 text */
+  /**
+   * CSV/TSV/plain tabular text (D-PEC-35 O-A) as `text`, or a `.xlsx`
+   * workbook (D-PEC-42 O-A) as `base64` — exactly one of the two; ≤ 5 MiB
+   * (UTF-8 text, or decoded workbook bytes)
+   */
   attachment?: {
     name: string
-    text: string
+    text?: string
+    base64?: string
   }
   /** prior turns, newest last (D-PEC-21: ≤ 40 entries, each ≤ 8 KiB — http.ts validates) */
   history?: HistoryEntry[]
@@ -72,7 +77,17 @@ export type ActResult =
 export interface BoundActs {
   /** the agent person's identity for WF-8 attribution lines; null when not logged in */
   whoami(): { personId: number; name: string; email: string } | null
-  proposeCsv(input: { csv: string; filename?: string; contract?: string; coverageStart?: string; coverageEnd?: string }): Promise<ActResult>
+  proposeCsv(input: {
+    csv?: string
+    /** base64 `.xlsx` bytes (D-PEC-42 O-A) — parsed zero-dep, mapped through the same lane */
+    xlsxBase64?: string
+    /** restrict workbook mapping to one named sheet (all sheets still ride the verbatim capture) */
+    sheet?: string
+    filename?: string
+    contract?: string
+    coverageStart?: string
+    coverageEnd?: string
+  }): Promise<ActResult>
   refreshProposal(input: { ref: string }): Promise<ActResult>
   withdrawProposal(input: { ref: string; reason: string }): Promise<ActResult>
   proposalStatus(): Promise<ActResult>

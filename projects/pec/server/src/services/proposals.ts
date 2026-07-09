@@ -34,6 +34,8 @@ export interface ImportProposal {
   sourceCsv: string
   coverageStart: string | null
   coverageEnd: string | null
+  /** D-PEC-41 full-fidelity capture: verbatim non-tabular source sheets/metadata (JSON) */
+  sourceExtras: Record<string, unknown> | null
   state: 'draft' | 'ready_for_review' | 'accepted' | 'rejected' | 'applied'
   basisHistoryId: number | null
   dryRunReport: ImportReport | { error: string } | null
@@ -113,7 +115,7 @@ function validateCoverage(coverage: CoverageDeclarationInput | undefined): { sta
 }
 
 export function createProposal(sx: Sx, contract: string, csv: string, sourceName: string | null,
-  coverage?: CoverageDeclarationInput): ImportProposal {
+  coverage?: CoverageDeclarationInput, extras?: Record<string, unknown> | null): ImportProposal {
   requireCan(sx, 'import.propose', {})
   if (!(CONTRACTS as readonly string[]).includes(contract)) {
     throw badRequest(`unknown import contract: ${contract} (${CONTRACTS.join(', ')})`)
@@ -121,13 +123,19 @@ export function createProposal(sx: Sx, contract: string, csv: string, sourceName
   if (!csv.trim()) throw badRequest('CSV body required')
   const bytes = Buffer.byteLength(csv, 'utf8')
   if (bytes > MAX_CSV_BYTES) throw badRequest(`CSV exceeds the ${MAX_CSV_BYTES / 1024 / 1024} MiB proposal cap (RV-14)`)
+  // D-PEC-41: verbatim capture of non-tabular source content (workbook sheets/metadata) —
+  // stored against the proposal, size-capped like the CSV; display stays selective.
+  const extrasJson = extras && Object.keys(extras).length > 0 ? extras : null
+  if (extrasJson != null && Buffer.byteLength(JSON.stringify(extrasJson), 'utf8') > MAX_CSV_BYTES) {
+    throw badRequest(`source extras exceed the ${MAX_CSV_BYTES / 1024 / 1024} MiB proposal cap (RV-14)`)
+  }
   const cov = validateCoverage(coverage)
 
   const ref = sx.repo.nextRef(sx.projectId, 'import_proposal')
   const id = sx.repo.insert('import_proposal', {
     projectId: sx.projectId, ref, contract,
     sourceName, sourceSha256: sha256(csv), sourceBytes: bytes, sourceCsv: csv,
-    coverageStart: cov.start, coverageEnd: cov.end,
+    coverageStart: cov.start, coverageEnd: cov.end, sourceExtras: extrasJson,
     state: 'draft', createdBy: sx.session.personId, createdAt: nowIso(),
   })
   history(sx, id, 'created', `${ref} proposed (${contract}, ${bytes} bytes, sha256 ${sha256(csv).slice(0, 12)}…, `

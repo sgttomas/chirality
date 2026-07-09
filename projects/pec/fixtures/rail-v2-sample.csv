@@ -1,0 +1,4 @@
+package,issue_no,discipline,area,phase,coa_tracking_number,package_type,package_name,issue_type,statement,updates,responsible_party,status,priority,assigned_date,original_target_date,current_target_date,actual_completion_date
+26020-PKG-008,1,Electrical,,30%,,Documentation,Controls system integration,Decision,Decide remote I/O approach for high-density packages,Need client control-system philosophy,Project Management,Not Started,Now,2026-07-07,2026-07-14,2026-07-14,
+26020-PKG-013,1,Electrical,,30%,,Equipment,Uninterruptible power supply,,,,,,,,,,
+26020-PKG-009,1,Electrical,,Cancelled,,Documentation,Controls system integration,Risk,Remote I/O rework risk if philosophy changes,,Electrical,On Hold,Next,2026-07-07,2026-07-21,2026-07-28,

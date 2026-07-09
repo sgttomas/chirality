@@ -41,7 +41,7 @@ export function snapshot(over: Partial<ProjectSnapshot> = {}): ProjectSnapshot {
 
 export function pkg(over: Partial<Package> = {}): Package {
   const n = id()
-  return { id: n, projectId: 1, code: `PKG-${n}`, name: 'Package', leadId: null, description: null, milestone: null, area: null, packageType: null, version: 1, ...over }
+  return { id: n, projectId: 1, code: `PKG-${n}`, name: 'Package', leadId: null, description: null, milestone: null, area: null, packageType: null, discipline: null, sourcePayload: null, version: 1, ...over }
 }
 
 export function deliverable(over: Partial<Deliverable> = {}): Deliverable {
@@ -49,7 +49,9 @@ export function deliverable(over: Partial<Deliverable> = {}): Deliverable {
   return {
     id: n, projectId: 1, packageId: 0, docNo: `DOC-${n}`, title: 'Deliverable',
     discipline: null, deliverableType: null, ownerId: null, dcRef: null, clientNo: null,
-    milestone: null, dueDate: null, issuePurposePlan: null, remarks: null, version: 1, ...over,
+    milestone: null, dueDate: null, issuePurposePlan: null, remarks: null,
+    projectPhase: null, targetCompleteness: null, workingStatus: null,
+    percentComplete: null, percentCompleteVerbatim: null, sourcePayload: null, version: 1, ...over,
   }
 }
 
@@ -69,7 +71,8 @@ export function workItem(over: Partial<WorkItem> = {}): WorkItem {
     needBy: null, priority: null, priorityProvenance: null, state: 'open',
     committedWeek: null, commitSource: null,
     sourceType: null, sourceId: null, closingStatement: null, closedBy: null, closedAt: null,
-    cancelReason: null, area: null, createdBy: 1, createdAt: '2026-07-01T00:00:00Z', version: 1, ...over,
+    cancelReason: null, area: null, responsibleParty: null, sourceIssueType: null, sourcePayload: null,
+    createdBy: 1, createdAt: '2026-07-01T00:00:00Z', version: 1, ...over,
   }
 }
 

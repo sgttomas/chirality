@@ -91,3 +91,51 @@ test('D-PEC-35 act refuses unmappable text before any proposal call', async () =
   assert.equal(called, false)
   assert.match((result as { reason: string }).reason, /match no import contract/)
 })
+
+// ---------------------------------------------------------------------------
+// Contract v2 shapes (D-PEC-41): same contract ids, revised TWD template headers
+// ---------------------------------------------------------------------------
+
+test('D-PEC-41 mdl v2 shape detects and maps with the TWD verbatim headers', () => {
+  const text = [
+    'Area #\tProject Phase\tDiscipline\tPackage ID\tPackage Type\tPackage Name\tDeliverable ID\tDeliverable Type\tTarget Completeness\tWorking Status\t% Complete',
+    '01\t30%\tElectrical\t26020-PKG-019\tEquipment\t4160V Switchgear\t\tRFQ\tIFQ\tIn Progress\t5',
+  ].join('\n')
+  const mapped = adaptStructuredFile(text, { filename: 'Deliverables_Status.tsv' })
+  assert.equal(mapped.ok, true, JSON.stringify(mapped))
+  if (mapped.ok) {
+    assert.equal(mapped.contract, 'mdl')
+    assert.match(mapped.csv, /^area,project_phase,discipline,package,package_type,package_name,deliverable_id,deliverable_type,target_completeness,working_status,percent_complete/)
+    assert.match(mapped.csv, /26020-PKG-019/)
+    assert.equal(mapped.summary.omittedSourceHeaders.length, 0)
+  }
+})
+
+test('D-PEC-41 rail v2 shape maps Package ID vs PACKAGE (name) without collision', () => {
+  const text = [
+    'Package ID\tIssue #\tPackage Discipline\tArea\tPhase\tCoA Tracking Number\tPackage Type\tPACKAGE\tISSUE TYPE\tISSUE DESCRIPTION\tUPDATES\tResponsible Party\tSTATUS\tPRIORITY\tASSIGNED DATE\tORIGINAL TARGET COMPLETION DATE\tCURRENT TARGET COMPLETION DATE\tACTUAL COMPLETION DATE',
+    '26020-PKG-008\t1\tElectrical\t\t30%\t\tDocumentation\tControls integration\tDecision\tDecide remote I/O approach\tNeed philosophy\tProject Management\tNot Started\tNow\t2026-07-07\t2026-07-14\t2026-07-14\t',
+  ].join('\n')
+  const mapped = adaptStructuredFile(text, { filename: 'RAIL_Packages.tsv' })
+  assert.equal(mapped.ok, true, JSON.stringify(mapped))
+  if (mapped.ok) {
+    assert.equal(mapped.contract, 'rail')
+    const hdr = mapped.csv.split('\r\n')[0]!
+    assert.match(hdr, /(^|,)package(,|$)/)
+    assert.match(hdr, /package_name/)
+    assert.match(hdr, /issue_no/)
+    assert.match(hdr, /original_target_date/)
+    assert.match(hdr, /percent_complete|statement/) // statement mapped from ISSUE DESCRIPTION
+    assert.equal(mapped.summary.omittedSourceHeaders.length, 0)
+  }
+})
+
+test('D-PEC-41 v1 shapes still map unchanged (additive)', () => {
+  const text = [
+    'doc_no,title,package,discipline,owner,current_rev,state,due_date',
+    'D-1,Sheet,P-1,Mech,pe@example.test,A,in_work,2027-01-01',
+  ].join('\n')
+  const mapped = adaptStructuredFile(text)
+  assert.equal(mapped.ok, true)
+  if (mapped.ok) assert.equal(mapped.contract, 'mdl')
+})

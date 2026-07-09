@@ -301,9 +301,9 @@ export function periodStatusView(sx: Sx, startRaw: string, endRaw: string): Peri
     },
     absent: [
       {
-        figure: 'percent complete (period-scoped or otherwise)',
-        reason: 'PE-attested percent-complete ingestion is not ruled or implemented yet',
-        needed: 'MDL/RAIL contract v2 packet (Tier-P revised templates)',
+        figure: 'percent complete, period-scoped',
+        reason: 'attested % complete (contract v2 import, D-PEC-41) is a point-in-time fact; a period-scoped % or its delta needs a snapshot model — the point-in-time value lives on the discipline view (DISC-PCT)',
+        needed: 'future period-snapshot tranche if ruled',
       },
       {
         figure: 'week-over-week deltas beyond issuances',

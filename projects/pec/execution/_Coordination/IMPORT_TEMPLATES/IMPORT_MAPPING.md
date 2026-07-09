@@ -259,3 +259,79 @@ first-class instead of folded into composites:
 Import-ready CSVs + per-run mapping report:
 `pilot-scratch/import-ready/tou-west-doe/` (gitignored, per the standing
 capture rules).
+
+## §contract-v2 — MDL/RAIL v2 from the owner's revised TWD templates (2026-07-09, D-PEC-41 O-A)
+
+The revised templates (owner-provided 2026-07-09; structure of record in
+`../_DECISIONS/D-PEC-41_mdl_rail_contract_v2.md`) have no `doc_no`/`item_id`.
+Both v2 shapes ride the SAME contract ids (`mdl`, `rail`); the importer
+detects the shape from the header set. v1 files keep working unchanged.
+Owner fidelity direction (Receipt 75, verbatim in the packet): every provided
+column and sheet is captured losslessly; display stays selective — unmapped
+columns land verbatim in the record's `source_payload`, non-tabular workbook
+sheets land verbatim in the proposal's `source_extras`.
+
+| Contract | v2 detection | Required | Optional (mapped) |
+|---|---|---|---|
+| `mdl` | no `doc_no`, has `package` + `deliverable_type` | package✱, deliverable_type✱ | area, project_phase, discipline, package_type, package_name, deliverable_id, target_completeness, working_status, percent_complete |
+| `rail` | no `item_id`, has `package` + `issue_no` | package✱, issue_no✱ | discipline, area, phase, coa_tracking_number, package_type, package_name, issue_type, statement, updates, responsible_party, status, priority, assigned_date, original_target_date, current_target_date, actual_completion_date |
+
+Recorded mapping rules (v2):
+
+- **MDL identity**: a populated `deliverable_id` wins; otherwise `doc_no` is
+  derived deterministically as
+  `<package>-<slug(deliverable_type)>[-<slug(package_name)>]` — a pure
+  per-row function of provided content (never file-structure-dependent), the
+  name segment present whenever `package_name` is (the template legitimately
+  repeats package + type across items distinguished only by name). Identical
+  duplicate rows: first processed, later rows reported as conflicts.
+  Re-imports are idempotent for unchanged content; a changed distinguishing
+  name is a new identity (the stale record stays visible — never silently
+  deleted).
+- **MDL attested fields**: `percent_complete` (0–100 integer; non-numeric
+  markers such as `Next Phase` are captured verbatim and excluded from
+  rollups; out-of-range numerics are row rejections), `working_status`,
+  `target_completeness`, `project_phase` are PE-attested import fields —
+  never in-app editable, never derived in-app (reconciliation 1). No revision
+  is created (the v2 template carries no revision facts).
+- **MDL title**: derived for display as `<deliverable_type> — <package_name>`
+  (recorded rule; the template has no title column).
+- **RAIL identity**: `<package>#<issue_no>`. Package placeholder rows (no
+  issue_type and no statement) refresh package attributes only and create no
+  issue record (factual-or-absent); they are counted as `packageRows` in the
+  import report.
+- **RAIL records**: every issue row is a package-anchored work item; the
+  verbatim issue type is attested on `source_issue_type` (`Action` maps to
+  kind `action`, all other types to `other` — the reporting vocabulary reads
+  the attested type). `responsible_party` is a discipline/function captured
+  verbatim; `owner_id` resolves only on an exact person match, else the
+  importing PE holds custody. `current_target_date` maps to `need_by`;
+  verbatim status/phase/updates/CoA/dates ride `source_payload`.
+- **Caught review signals** (returned in dry-run/apply reports, persisted on
+  the proposal; never coerced, never schema-blocked): `mdl-on-hold` /
+  `rail-on-hold` (MDL↔RAIL consistency seeds), `phase-cancelled` (RAIL phase
+  says Cancelled, status does not), `percent-marker`, `working-status-vocab`
+  / `issue-type-vocab` (value outside the template Lists vocabulary).
+- **Identity adoption**: when the PE later populates `Deliverable ID` for a
+  row previously imported under a derived identity, the existing record
+  adopts the provided id (no register duplication); the migration honors the
+  import-ownership guard.
+- **Round-trip**: registers `mdl-v2` and `rail-v2` export the v2 columns
+  plus any captured verbatim payload columns (full-fidelity parity; attested
+  markers round-trip as provided). Source-faithful columns emit ONLY
+  verbatim-provided values — never app state tokens, the need-by fallback, or
+  app-generated closure timestamps. `deliverable_id` exports the record
+  identity (provided or derived), so feeding an export back re-imports
+  against the same identity.
+- **Fix-forward pins (adversarial review 2026-07-09)**: multiline cell values
+  survive the workbook→CSV→mapping path intact (quote-aware record
+  splitting); MDL `area`/`package_name`/`package_type` are dual-captured
+  (package record first-row-wins AND per-row verbatim payload); RAIL
+  placeholder rows may leave `Issue #` blank; reopening a completed RAIL
+  issue clears its stale closure timestamp; v2 shape detection also requires
+  the absence of v1's other key column (`current_rev`/`raised_by`) so a
+  malformed v1 file fails loudly as v1.
+- **Non-tabular sheets** (Rules of Credit, Data Dictionary, Lists, RAIL
+  metadata block): the proposal API accepts a JSON body `{ csv, extras }`;
+  `extras` is stored verbatim on the proposal (`source_extras`, size-capped
+  like the CSV). The XLSX lane (D-PEC-42) populates it.

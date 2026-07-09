@@ -1,7 +1,7 @@
 /**
  * The sidecar's own loopback-only HTTP surface (D-PEC-17):
  *   GET  /agent/health   → { ok, engine, egress, configured, agent }
- *   POST /agent/messages → { events: AgentEvent[] }  (body: AgentTurnInput, ≤ 6 MiB)
+ *   POST /agent/messages → { events: AgentEvent[] }  (body: AgentTurnInput, ≤ 8 MiB)
  *
  * Bound to 127.0.0.1 only. Turn errors map to turn:error EVENTS, not 5xx —
  * transport errors stay transport errors. Unconfigured credentials → 503
@@ -15,8 +15,13 @@ import type { PecAgentClient } from './pec-client.ts'
 import type { AgentEnginePort, AgentTurnInput } from './engine/port.ts'
 import { bindActs } from './acts.ts'
 
-const MAX_BODY_BYTES = 6 * 1024 * 1024
-/** D-PEC-35 O-A: CSV/TSV/plain tabular text only; normalized to CSV before proposal filing. */
+/** holds a 5 MiB attachment even base64-encoded (×4/3) plus JSON overhead */
+const MAX_BODY_BYTES = 8 * 1024 * 1024
+/**
+ * D-PEC-35 O-A: CSV/TSV/plain tabular text, normalized to CSV before proposal
+ * filing; D-PEC-42 O-A adds `.xlsx` workbooks as base64 bytes (decoded size
+ * capped here), parsed zero-dep in the sidecar onto the same lane.
+ */
 const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
 /** D-PEC-21 item 2: request-borne conversation history caps */
 const MAX_HISTORY_ENTRIES = 40
@@ -90,14 +95,32 @@ function validateTurn(body: unknown): AgentTurnInput {
   }
   if (b.attachment != null) {
     const a = b.attachment as Record<string, unknown>
-    if (typeof a.name !== 'string' || typeof a.text !== 'string') bad('attachment must be { name, text }')
-    if (!/\.(csv|tsv|tab|txt)$/i.test(a.name as string)) {
-      bad('attachment must be a CSV/TSV/plain text tabular file (D-PEC-35 O-A)')
+    if (typeof a.name !== 'string') bad('attachment must be { name, text } or { name, base64 }')
+    const name = a.name as string
+    if (/\.xlsx$/i.test(name)) {
+      // D-PEC-42 O-A: .xlsx workbooks arrive as base64 bytes
+      if (typeof a.base64 !== 'string' || (a.base64 as string).length === 0) {
+        bad('a .xlsx attachment must be { name, base64 } (base64-encoded workbook bytes — D-PEC-42 O-A)')
+      }
+      const base64 = a.base64 as string
+      const bytes = Buffer.from(base64, 'base64')
+      if (bytes.length === 0 || bytes.toString('base64').replace(/=+$/, '') !== base64.replace(/[\r\n\s]/g, '').replace(/=+$/, '')) {
+        bad('a .xlsx attachment carries invalid base64')
+      }
+      if (bytes.length > MAX_ATTACHMENT_BYTES) {
+        bad('attachment exceeds the 5 MiB structured-file cap (D-PEC-35 O-A)')
+      }
+      turn.attachment = { name, base64 }
+    } else {
+      if (typeof a.text !== 'string') bad('attachment must be { name, text }')
+      if (!/\.(csv|tsv|tab|txt)$/i.test(name)) {
+        bad('attachment must be a CSV/TSV/plain text tabular file (D-PEC-35 O-A) or a .xlsx workbook (D-PEC-42 O-A)')
+      }
+      if (Buffer.byteLength(a.text as string, 'utf8') > MAX_ATTACHMENT_BYTES) {
+        bad('attachment exceeds the 5 MiB structured-file cap (D-PEC-35 O-A)')
+      }
+      turn.attachment = { name, text: a.text as string }
     }
-    if (Buffer.byteLength(a.text as string, 'utf8') > MAX_ATTACHMENT_BYTES) {
-      bad('attachment exceeds the 5 MiB structured-file cap (D-PEC-35 O-A)')
-    }
-    turn.attachment = { name: a.name as string, text: a.text as string }
   }
   return turn
 }

@@ -218,12 +218,17 @@ export function buildPecTools(
 
   return [
     bounded('propose_csv',
-      'File CSV/TSV/plain tabular text as an import proposal (dry-run only; accept/apply stay human, in Admin). '
+      'File CSV/TSV/plain tabular text — or the attached .xlsx workbook (D-PEC-42; leave csv empty, optionally name a sheet) — '
+      + 'as an import proposal (dry-run only; accept/apply stay human, in Admin). '
       + 'Pass the PE\'s declared coverage dates (coverage_start/coverage_end, YYYY-MM-DD) when stated — never infer them (D-PEC-39).',
-      { csv: z.string().optional(), filename: z.string().optional(), contract: z.string().optional(),
+      { csv: z.string().optional(), sheet: z.string().optional(), filename: z.string().optional(), contract: z.string().optional(),
         coverage_start: z.string().optional(), coverage_end: z.string().optional() },
       (a) => acts.proposeCsv({
-        csv: typeof a.csv === 'string' ? a.csv : input.attachment?.text ?? '',
+        // a .xlsx attachment rides as base64 workbook bytes unless the model pasted csv itself
+        ...(typeof a.csv !== 'string' && input.attachment?.base64 != null
+          ? { xlsxBase64: input.attachment.base64 }
+          : { csv: typeof a.csv === 'string' ? a.csv : input.attachment?.text ?? '' }),
+        sheet: opt(a.sheet),
         filename: opt(a.filename) ?? input.attachment?.name,
         contract: opt(a.contract),
         coverageStart: opt(a.coverage_start),

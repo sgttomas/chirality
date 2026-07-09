@@ -26,7 +26,9 @@ import { AgentClientError } from './pec-client.ts'
 import type { AccessBasis } from './config.ts'
 import type { ActResult, BoundActs, EgressClass, ScreenContextRecord } from './engine/port.ts'
 import { CONTRACTS } from './contract-detect.ts'
-import { adaptStructuredFile, mappingSummaryText } from './structured-file.ts'
+import { adaptStructuredFile, adaptWorkbook, mappingSummaryText } from './structured-file.ts'
+import { parseXlsxWorkbook, WorkbookError } from './xlsx.ts'
+import type { ParsedWorkbook } from './xlsx.ts'
 
 export interface ActContext {
   pid: number
@@ -122,8 +124,27 @@ export function bindActs(ctx: ActContext): BoundActs {
     whoami: () => ctx.client.whoami(),
 
     // detect/map → propose → dry-run summary + deep link
-    async proposeCsv({ csv, filename, contract, coverageStart, coverageEnd }) {
-      const mapped = adaptStructuredFile(csv, { filename, contract })
+    // D-PEC-42 O-A: a .xlsx attachment arrives as base64, is parsed by the
+    // zero-dep sidecar reader, and feeds the SAME mapping/proposal lane; the
+    // FULL parsed workbook (every sheet, verbatim grid) rides the result
+    // payload so non-tabular sheets are carried, not dropped. Unreadable or
+    // unsupported workbooks refuse with the parser's stated basis.
+    async proposeCsv({ csv, xlsxBase64, sheet, filename, contract, coverageStart, coverageEnd }) {
+      let mapped: ReturnType<typeof adaptStructuredFile> | ReturnType<typeof adaptWorkbook>
+      let workbook: ParsedWorkbook | undefined
+      if (xlsxBase64 != null) {
+        try {
+          workbook = parseXlsxWorkbook(Buffer.from(xlsxBase64, 'base64'))
+        } catch (e) {
+          if (e instanceof WorkbookError) {
+            return refused('import.propose', `${filename ?? 'the workbook'} was not filed — ${e.message}`)
+          }
+          throw e
+        }
+        mapped = adaptWorkbook(workbook, { filename, contract, sheet })
+      } else {
+        mapped = adaptStructuredFile(csv ?? '', { filename, contract })
+      }
       if (!mapped.ok) {
         return refused('import.propose', `${mapped.reason} (one of: ${CONTRACTS.join(', ')})`)
       }
@@ -133,7 +154,16 @@ export function bindActs(ctx: ActContext): BoundActs {
         return refused('import.propose', 'a coverage declaration needs both start and end dates (YYYY-MM-DD), e.g. "covering 2026-06-29 to 2026-07-05"')
       }
       const r = await ctx.client.propose(ctx.pid, mapped.contract, mapped.csv, mapped.filename ?? filename,
-        coverageStart && coverageEnd ? { start: coverageStart, end: coverageEnd } : undefined)
+        coverageStart && coverageEnd ? { start: coverageStart, end: coverageEnd } : undefined,
+        // D-PEC-41: the FULL workbook (every sheet verbatim, incl. title/metadata rows the
+        // mapped CSV necessarily drops) persists on the proposal as source_extras
+        workbook && 'sheetName' in mapped
+          ? {
+              sourceName: filename ?? null,
+              sheets: workbook.sheets,
+              mappedSheet: { name: mapped.sheetName, headerRowIndex: mapped.headerRowIndex },
+            }
+          : undefined)
       if (!r.ok) {
         return refused('import.propose', r.kind === 'forbidden' ? r.message : 'proposal filing came back stale')
       }
@@ -144,7 +174,20 @@ export function bindActs(ctx: ActContext): BoundActs {
       return result('import.propose', true,
         `${p.ref} proposed (${p.contract}${p.sourceName ? `, ${p.sourceName}` : ''}) — ${p.state}; ${reportCounts(p)}. `
         + `${covNote} ${mappingSummaryText(mapped.summary)}. Accept/apply are human acts in Admin: ${adminLink(ctx.pid)}`,
-        { ...proposalPayload(ctx.pid, p), coverage: { start: p.coverageStart ?? null, end: p.coverageEnd ?? null }, mapping: mapped.summary })
+        {
+          ...proposalPayload(ctx.pid, p),
+          coverage: { start: p.coverageStart ?? null, end: p.coverageEnd ?? null },
+          mapping: mapped.summary,
+          // D-PEC-42: the FULL parsed workbook rides the result verbatim (every
+          // sheet, tabular or not) for the D-PEC-41 full-fidelity capture — the
+          // proposal CSV alone would drop the non-tabular sheets.
+          ...(workbook && 'sheetName' in mapped
+            ? {
+                workbook: { sourceName: filename ?? null, sheets: workbook.sheets },
+                mappedSheet: { name: mapped.sheetName, headerRowIndex: mapped.headerRowIndex },
+              }
+            : {}),
+        })
     },
 
     async refreshProposal({ ref }) {

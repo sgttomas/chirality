@@ -15,8 +15,8 @@ import { isUserDefinedReportRequest, runUserDefinedReport } from '../user-report
 
 const CAPABILITIES = [
   'I can, in this project:',
-  '- file a CSV/TSV/plain tabular file as an import proposal (drop/paste tabular text; name the contract or let me detect it: '
-    + CONTRACTS.join(', ') + ')',
+  '- file a CSV/TSV/plain tabular file or a .xlsx workbook as an import proposal (drop the file or paste tabular text; '
+    + 'name the contract or let me detect it: ' + CONTRACTS.join(', ') + ')',
   '- refresh IPR-<n> (recompute a proposal\'s dry-run)',
   '- withdraw IPR-<n> because <reason> (my own proposals only)',
   '- triage INTK-<n> as parked|duplicate|rejected: <grounds> (also: open triage INTK-<n>)',
@@ -84,12 +84,14 @@ export function createStubEngine(): AgentEnginePort {
         return runUserDefinedReport({ pid: input.pid, message: input.message }, acts)
       }
 
-      // 1. propose: attachment present, or fenced/pasted CSV block in the message
+      // 1. propose: attachment present (tabular text, or a base64 .xlsx
+      //    workbook — D-PEC-42), or fenced/pasted CSV block in the message
       const pastedCsv = extractCsv(input.message)
       if (input.attachment || pastedCsv) {
-        const csv = input.attachment?.text ?? pastedCsv!
         const r = await acts.proposeCsv({
-          csv,
+          ...(input.attachment?.base64 != null
+            ? { xlsxBase64: input.attachment.base64 }
+            : { csv: input.attachment?.text ?? pastedCsv! }),
           filename: input.attachment?.name,
           contract: namedContract(msg),
           ...namedCoverage(msg),
