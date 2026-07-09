@@ -254,6 +254,9 @@ export type WorkItemState = (typeof WORK_ITEM_STATES)[number]
 export const WORK_ITEM_KINDS = ['action', 'coordination', 'risk_treatment', 'rework', 'other'] as const
 export type WorkItemKind = (typeof WORK_ITEM_KINDS)[number]
 
+export const NEEDS_AUDIENCES = ['internal', 'client'] as const
+export type NeedsAudience = (typeof NEEDS_AUDIENCES)[number]
+
 export interface WorkItem {
   id: number
   projectId: number
@@ -281,6 +284,8 @@ export interface WorkItem {
   cancelReason: string | null
   /** source-log area context (§16 rail optional column, D-PEC-23) */
   area: string | null
+  /** Explicit imported needs-side classification (D-PEC-47); null means unclassified, never inferred. */
+  needsAudience: NeedsAudience | null
   /** attested responsible discipline/function, verbatim from RAIL v2 (D-PEC-41) */
   responsibleParty: string | null
   /** attested RAIL v2 issue type, verbatim (D-PEC-41) */
@@ -327,6 +332,8 @@ export interface Hold {
   resolvingRefType: RecordType | null
   resolvingRefId: number | null
   log: Log
+  /** Explicit imported needs-side classification (D-PEC-47); null means unclassified, never inferred. */
+  needsAudience: NeedsAudience | null
   version: number
 }
 

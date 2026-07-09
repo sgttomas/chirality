@@ -96,11 +96,15 @@ const baseAbsent = [
 ]
 
 function issueCountsForPackage(sx: Sx, snap: ProjectSnapshot, packageId: number): {
+  clientIssues: number
   holds: number
+  interfaces: number
   decisions: number
   risks: number
   actions: number
+  needsSplit: { internal: number; client: number; unclassified: number }
   contributing: ContributingRef[]
+  operationalContributing: ContributingRef[]
 } {
   const deliverableIds = new Set(snap.deliverables.filter((d) => d.packageId === packageId).map((d) => d.id))
   const revisionIds = new Set(snap.revisions.filter((r) => deliverableIds.has(r.deliverableId)).map((r) => r.id))
@@ -117,22 +121,83 @@ function issueCountsForPackage(sx: Sx, snap: ProjectSnapshot, packageId: number)
       || (l.targetType === 'work_item' && workIds.has(l.targetId)))))
   const decisions = visibleByLog(sx, snap, snap.decisions).filter((d) => d.packageId === packageId
     && d.state !== 'decided' && d.state !== 'superseded')
+  const interfaces = visibleByLog(sx, snap, snap.interfaces).filter((i) =>
+    (i.givingPackageId === packageId || i.receivingPackageId === packageId) && (i.state === 'open' || i.state === 'agreed'))
   const risks = snap.risks.filter((r) => (r.packageId === packageId || (r.deliverableId != null && deliverableIds.has(r.deliverableId)))
     && r.state !== 'closed')
   const actions = visibleByLog(sx, snap, snap.workItems).filter((w) => w.packageId === packageId
     && (w.state === 'open' || w.state === 'in_work'))
+  const clientContributing = [
+    ...holds.map((h) => ref('hold', h.id, h.ref, 'active hold linked to this package')),
+    ...risks.map((r) => ref('risk', r.id, r.ref, 'open package risk')),
+    ...actions.map((w) => ref('work_item', w.id, w.ref, 'open package action')),
+  ]
+  const needRows = [...holds, ...actions]
   return {
+    clientIssues: holds.length + risks.length + actions.length,
     holds: holds.length,
+    interfaces: interfaces.length,
     decisions: decisions.length,
     risks: risks.length,
     actions: actions.length,
-    contributing: [
-      ...holds.map((h) => ref('hold', h.id, h.ref, 'active hold linked to this package')),
+    needsSplit: {
+      internal: needRows.filter((r) => r.needsAudience === 'internal').length,
+      client: needRows.filter((r) => r.needsAudience === 'client').length,
+      unclassified: needRows.filter((r) => r.needsAudience == null).length,
+    },
+    contributing: clientContributing,
+    operationalContributing: [
+      ...clientContributing,
+      ...interfaces.map((i) => ref('interface_item', i.id, i.ref, 'open package interface relationship')),
       ...decisions.map((d) => ref('decision', d.id, d.ref, 'open package decision')),
-      ...risks.map((r) => ref('risk', r.id, r.ref, 'open package risk')),
-      ...actions.map((w) => ref('work_item', w.id, w.ref, 'open package action')),
     ],
   }
+}
+
+function isOnHoldText(v: unknown): boolean {
+  return typeof v === 'string' && v.trim().toLowerCase().replaceAll(' ', '_').replaceAll('-', '_') === 'on_hold'
+}
+
+function mdlRailHoldDiscrepancies(sx: Sx, snap: ProjectSnapshot): Array<{
+  key: string
+  package: string
+  direction: 'mdl_without_rail' | 'rail_without_mdl'
+  detail: string
+  contributing: ContributingRef[]
+}> {
+  const logs = logsFor(sx, snap)
+  const mdl = snap.deliverables.filter((d) => isOnHoldText(d.workingStatus))
+  const rail = visibleByLog(sx, snap, snap.workItems).filter((w) => isOnHoldText(w.sourcePayload?.status))
+  const mdlByPkg = new Map<number, Deliverable[]>()
+  for (const d of mdl) mdlByPkg.set(d.packageId, [...(mdlByPkg.get(d.packageId) ?? []), d])
+  const railByPkg = new Map<number, typeof rail>()
+  for (const w of rail) {
+    if (w.packageId == null || !logs.includes(w.log)) continue
+    railByPkg.set(w.packageId, [...(railByPkg.get(w.packageId) ?? []), w])
+  }
+  const pkgLabel = (id: number): string => snap.packages.find((p) => p.id === id)?.code ?? `package#${id}`
+  const rows: ReturnType<typeof mdlRailHoldDiscrepancies> = []
+  for (const [pkgId, dels] of mdlByPkg) {
+    if ((railByPkg.get(pkgId) ?? []).length > 0) continue
+    rows.push({
+      key: `${pkgLabel(pkgId)}:mdl-on-hold-without-rail`,
+      package: pkgLabel(pkgId),
+      direction: 'mdl_without_rail',
+      detail: `${dels.length} MDL deliverable(s) have working_status On Hold, but no visible RAIL v2 package issue has source status On Hold.`,
+      contributing: dels.map((d) => ref('deliverable', d.id, d.docNo, 'MDL working_status is On Hold')),
+    })
+  }
+  for (const [pkgId, items] of railByPkg) {
+    if ((mdlByPkg.get(pkgId) ?? []).length > 0) continue
+    rows.push({
+      key: `${pkgLabel(pkgId)}:rail-on-hold-without-mdl`,
+      package: pkgLabel(pkgId),
+      direction: 'rail_without_mdl',
+      detail: `${items.length} RAIL v2 issue(s) have source status On Hold, but no MDL deliverable in the package has working_status On Hold.`,
+      contributing: items.map((w) => ref('work_item', w.id, w.ref, 'RAIL source status is On Hold')),
+    })
+  }
+  return rows
 }
 
 /**
@@ -164,6 +229,8 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy, period: { start: st
   const openRisks = snap.risks.filter((r) => r.state !== 'closed')
   const openActions = visibleByLog(sx, snap, snap.workItems).filter((w) => w.state === 'open' || w.state === 'in_work')
   const openDecisions = visibleByLog(sx, snap, snap.decisions).filter((d) => d.state !== 'decided' && d.state !== 'superseded')
+  const visibleInterfaces = visibleByLog(sx, snap, snap.interfaces).filter((i) => i.state === 'open' || i.state === 'agreed')
+  const consistency = mdlRailHoldDiscrepancies(sx, snap)
   const kpis = {
     pctOnPlan: redact(sx, snap, status.kpis.pctOnPlan),
     holdsByCause: redact(sx, snap, status.kpis.holdsByCause),
@@ -186,17 +253,27 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy, period: { start: st
     : [...new Set(snap.deliverables.map((d) => d.discipline ?? 'Unspecified'))].sort().map((discipline) => {
       const deliverables = snap.deliverables.filter((d) => (d.discipline ?? 'Unspecified') === discipline)
       const delIds = new Set(deliverables.map((d) => d.id))
+      const disciplineHolds = activeHolds.filter((h) => snap.holdLinks.some((l) => l.holdId === h.id && l.targetType === 'deliverable' && delIds.has(l.targetId)))
+      const disciplineActions = openActions.filter((w) => w.anchorType === 'deliverable' && delIds.has(w.anchorId))
+      const needRows = [...disciplineHolds, ...disciplineActions]
       return {
         key: discipline,
         label: discipline,
         activities: deliverables.filter((d) => workflowCompleteness(snap, d).currentState !== 'issued')
           .map((d) => ({ docNo: d.docNo, title: d.title, type: d.deliverableType, workflow: workflowCompleteness(snap, d).label })),
         issues: {
-          holds: activeHolds.filter((h) => snap.holdLinks.some((l) => l.holdId === h.id && l.targetType === 'deliverable' && delIds.has(l.targetId))).length,
+          holds: disciplineHolds.length,
           decisions: openDecisions.filter((d) => d.packageId != null
             && snap.deliverables.some((del) => del.packageId === d.packageId && delIds.has(del.id))).length,
+          interfaces: visibleInterfaces.filter((i) =>
+            snap.deliverables.some((del) => delIds.has(del.id) && (del.packageId === i.givingPackageId || del.packageId === i.receivingPackageId))).length,
           risks: openRisks.filter((r) => r.deliverableId != null && delIds.has(r.deliverableId)).length,
-          actions: openActions.filter((w) => w.anchorType === 'deliverable' && delIds.has(w.anchorId)).length,
+          actions: disciplineActions.length,
+          needsSplit: {
+            internal: needRows.filter((r) => r.needsAudience === 'internal').length,
+            client: needRows.filter((r) => r.needsAudience === 'client').length,
+            unclassified: needRows.filter((r) => r.needsAudience == null).length,
+          },
           contributing: deliverableRefs(deliverables, 'discipline report group source deliverable'),
         },
       }
@@ -220,6 +297,15 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy, period: { start: st
       openRisks: openRisks.length,
       openActions: openActions.length,
       openDecisions: openDecisions.length,
+      openInterfaces: visibleInterfaces.length,
+    },
+    consistencyChecks: {
+      mdlRailHoldDiscrepancies: {
+        count: consistency.length,
+        ruleId: 'CONSIST-MDL-RAIL-HOLD',
+        detail: 'Report-only check: compares MDL working_status On Hold against visible RAIL v2 source status On Hold by package; no intake or disposition records are created.',
+        rows: consistency,
+      },
     },
   }
   return {
@@ -239,6 +325,12 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy, period: { start: st
         ruleId: 'PER-COV',
         contributing: periodStatus.coverageBasis.declared.contributing,
       }] : []),
+      ...(consistency.length > 0 ? [{
+        route: `/api/projects/${sx.projectId}/reports/standard/weekly-project-status`,
+        source: 'report-only MDL working_status On Hold vs RAIL v2 source status On Hold comparison by package',
+        ruleId: 'CONSIST-MDL-RAIL-HOLD',
+        contributing: consistency.flatMap((r) => r.contributing),
+      }] : []),
     ],
     absent: periodStatus
       ? [
@@ -255,9 +347,12 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy, period: { start: st
       `# Weekly project status (${groupBy})`,
       ...(periodStatus ? [`Period: ${periodStatus.period.start} to ${periodStatus.period.end} — ${periodStatus.coverageBasis.declared.detail}`] : []),
       `Project health: ${status.health.value} (${status.health.ruleId}) - ${status.health.detail}`,
-      `Totals: ${snap.deliverables.length} deliverables; ${activeHolds.length} active holds; ${openDecisions.length} open decisions; ${openRisks.length} open risks.`,
+      `Totals: ${snap.deliverables.length} deliverables; ${activeHolds.length + openRisks.length + openActions.length} client-facing issues; ${activeHolds.length} active holds; ${openDecisions.length} open decisions; ${visibleInterfaces.length} open interfaces.`,
       ...(periodStatus ? [`Issuances this period: ${periodStatus.figures.issuances.value} (${periodStatus.figures.issuances.ruleId}); delta vs preceding equal window: ${periodStatus.figures.issuanceDelta.value >= 0 ? '+' : ''}${periodStatus.figures.issuanceDelta.value} (${periodStatus.figures.issuanceDelta.ruleId}).`] : []),
-      ...groups.map((g) => `## ${g.label}\nActivities in work: ${g.activities.length}\nIssues: holds ${g.issues.holds}, decisions ${g.issues.decisions}, risks ${g.issues.risks}, actions ${g.issues.actions}`),
+      ...groups.map((g) => `## ${g.label}\nActivities in work: ${g.activities.length}\nIssues: holds ${g.issues.holds}, risks ${g.issues.risks}, actions ${g.issues.actions}\nNeeds split: internal ${g.issues.needsSplit.internal}, client ${g.issues.needsSplit.client}, unclassified ${g.issues.needsSplit.unclassified}\nDecisions: ${g.issues.decisions}${'interfaces' in g.issues ? `\nInterfaces: ${g.issues.interfaces}` : ''}`),
+      consistency.length > 0
+        ? `MDL/RAIL hold discrepancies (${consistency.length}): ${consistency.map((r) => r.key).join(', ')}`
+        : 'MDL/RAIL hold discrepancies: none surfaced by the report-only check.',
       periodStatus
         ? 'Absent: percent complete and week-over-week deltas beyond issuances are not available until their ruled tranches land.'
         : 'Absent: period-scoped issuances, percent complete, and week-over-week deltas are not available until their ruled tranches land.',
@@ -270,22 +365,22 @@ function packageIssueSummary(sx: Sx): StandardReport {
   const rows = snap.packages.map((pkg) => ({ package: { id: pkg.id, code: pkg.code, name: pkg.name }, ...issueCountsForPackage(sx, snap, pkg.id) }))
   return {
     name: 'package-issue-summary',
-    title: 'Package issue summary',
+    title: 'Package issues, decisions, and interfaces summary',
     generatedForProject: projectInfo(snap),
     basis: [{
       route: `/api/projects/${sx.projectId}/packages`,
-      source: 'packageDetailView issue categories plus logSummaryView-compatible snapshot filters',
-      contributing: rows.flatMap((r) => r.contributing),
+      source: 'packageDetailView client-facing issue categories plus segregated decisions/interfaces',
+      contributing: rows.flatMap((r) => r.operationalContributing),
     }],
-    absent: [{
-      figure: 'client/internal needs split',
-      reason: 'needs typing is not ruled or implemented yet',
-      needed: 'future needs internal/client typing packet',
-    }],
+    absent: rows.some((r) => r.needsSplit.unclassified > 0) ? [{
+      figure: 'fully classified internal/client needs split',
+      reason: 'some open hold/action issue rows do not carry an explicit imported needs_audience value',
+      needed: 'an imported internal/client classification column for each open need row',
+    }] : [],
     sections: { packages: rows },
     markdown: [
-      '# Package issue summary',
-      ...rows.map((r) => `${r.package.code}: holds ${r.holds}, decisions ${r.decisions}, risks ${r.risks}, actions ${r.actions}`),
+      '# Package issues, decisions, and interfaces summary',
+      ...rows.map((r) => `${r.package.code}: issues ${r.clientIssues} (holds ${r.holds}, risks ${r.risks}, actions ${r.actions}); needs internal ${r.needsSplit.internal}, client ${r.needsSplit.client}, unclassified ${r.needsSplit.unclassified}; decisions ${r.decisions}; interfaces ${r.interfaces}`),
     ].join('\n'),
   }
 }

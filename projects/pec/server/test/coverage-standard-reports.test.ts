@@ -41,7 +41,10 @@ test('D-PEC-36: package issue summary and deliverable completeness name basis an
     assert.equal(pkg.body.name, 'package-issue-summary')
     assert.ok(Array.isArray(pkg.body.sections.packages))
     assert.ok(pkg.body.basis[0].source.includes('packageDetailView'))
-    assert.ok(pkg.body.absent.some((a: any) => /needs/.test(a.figure)))
+    assert.ok(pkg.body.sections.packages.every((r: any) => r.needsSplit
+      && typeof r.needsSplit.internal === 'number'
+      && typeof r.needsSplit.client === 'number'
+      && typeof r.needsSplit.unclassified === 'number'))
 
     const mdl = await lead.get(`${P(env)}/reports/standard/deliverable-completeness`)
     assert.equal(mdl.status, 200)

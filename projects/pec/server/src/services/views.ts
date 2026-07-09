@@ -108,8 +108,8 @@ export function overviewView(sx: Sx): unknown {
         && appliesPackage(snap, a.appliesToType, a.appliesToId) === p.pkg.id).length,
       openDecisions: snap.decisions.filter((d) => d.packageId === p.pkg.id
         && (d.state === 'identified' || d.state === 'in_progress' || d.state === 'pending')).length,
-      // same log-scoped count the Packages register and cockpit show (ADR-012, PEC-NFR-005)
-      openIssues: openIssueCount(sx, snap, p.pkg),
+      // same client-facing issue count the Packages register shows (D-PEC-48)
+      openIssues: clientIssueCount(sx, snap, p.pkg),
     })),
     // rows are self-scoped (items awaiting this caller's own signature/decision), but the
     // `blocks` refs can name records in logs the caller can't see — redact those (SPEC §2.2)
@@ -267,19 +267,19 @@ function issueMix(issues: PackageIssue[]): Explain<{ byType: Record<IssueKind, n
 
 // ---------- Packages (PEC-PKG-*) ----------
 
-/** Count of the package's open issues (holds, interfaces, decisions, risks, action items),
- *  scoped to the caller's visible logs so it matches the drill-down cockpit (PEC-NFR-005). */
-function openIssueCount(sx: Sx, snap: ProjectSnapshot, pkg: Package): number {
+function isClientFacingIssue(issue: PackageIssue): boolean {
+  return issue.type === 'hold' || issue.type === 'risk' || issue.type === 'action'
+}
+
+/** Client-facing issue count (holds, risks, action items), scoped to the caller's visible
+ *  logs. Decisions and interfaces stay segregated per D-PEC-48. */
+function clientIssueCount(sx: Sx, snap: ProjectSnapshot, pkg: Package): number {
   const logs = logsFor(sx, snap)
   const sees = (l: Log): boolean => logs.length === 3 || logs.includes(l)
   const delIds = new Set(snap.deliverables.filter((d) => d.packageId === pkg.id).map((d) => d.id))
   const revIds = new Set(snap.revisions.filter((r) => delIds.has(r.deliverableId)).map((r) => r.id))
   const holds = snap.holds.filter((h) => h.state === 'active' && sees(h.log)
     && snap.holdLinks.some((l) => l.holdId === h.id && isInPackage(snap, l.targetType, l.targetId, pkg.id))).length
-  const interfaces = snap.interfaces.filter((i) => sees(i.log)
-    && (i.givingPackageId === pkg.id || i.receivingPackageId === pkg.id) && (i.state === 'open' || i.state === 'agreed')).length
-  const decisions = snap.decisions.filter((d) => sees(d.log)
-    && d.packageId === pkg.id && d.state !== 'decided' && d.state !== 'superseded').length
   const risks = (snap.risks as Risk[]).filter((r) =>
     (r.packageId === pkg.id || (r.deliverableId != null && delIds.has(r.deliverableId))) && r.state !== 'closed').length
   const actions = snap.workItems.filter((w) =>
@@ -287,7 +287,7 @@ function openIssueCount(sx: Sx, snap: ProjectSnapshot, pkg: Package): number {
     && (w.packageId === pkg.id
       || (w.anchorType === 'deliverable' && delIds.has(w.anchorId))
       || (w.anchorType === 'revision' && revIds.has(w.anchorId)))).length
-  return holds + interfaces + decisions + risks + actions
+  return holds + risks + actions
 }
 
 export function packagesView(sx: Sx): unknown {
@@ -299,7 +299,8 @@ export function packagesView(sx: Sx): unknown {
       id: p.id, code: p.code, name: p.name, leadId: p.leadId, milestone: p.milestone,
       area: p.area, packageType: p.packageType,
       health: redact(sx, snap, st.health), onPlan: st.onPlanCount, total: st.totalCount,
-      openIssues: issues.length,
+      openIssues: clientIssueCount(sx, snap, p),
+      operationalItems: issues.length,
       issueMix: issueMix(issues),
     }
   })
@@ -336,6 +337,7 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
   const pkgRisks = (snap.risks as Risk[]).filter((r) =>
     (r.packageId === pkg.id || (r.deliverableId != null && pkgDelIds.has(r.deliverableId))) && r.state !== 'closed')
   const issues = packageIssueRows(sx, snap, pkg)
+  const clientIssues = issues.filter(isClientFacingIssue)
   const mix = issueMix(issues)
 
   // "Needs the lead this week" (PEC-PKG-005) — the lead's personal action queue
@@ -374,8 +376,9 @@ export function packageDetailView(sx: Sx, packageId: number): unknown {
     health: redact(sx, snap, st.health),
     summary: {
       deliverablesOnPlan: `${st.onPlanCount}/${st.totalCount}`,
-      openIssues: issues.length,
-      overdueIssues: issues.filter((i) => i.overdue).length,
+      openIssues: clientIssues.length,
+      overdueIssues: clientIssues.filter((i) => i.overdue).length,
+      openOperationalItems: issues.length,
       holdsByCause,
       openHolds: visHolds.length,
       openInterfaces: openInterfaces.length,
@@ -669,7 +672,7 @@ export function logSummaryView(sx: Sx): unknown {
     total: {
       value: rows.length,
       ruleId: 'LOG-SUMMARY-TOTAL',
-      detail: 'Open log-visible issue rows: work items, holds, interfaces, decisions, risks, and intake.',
+      detail: 'Open log-visible operational rows: work items, holds, interfaces, decisions, risks, and intake.',
       contributing: refs(rows, (r) => r.state),
     },
     byType: {
@@ -967,6 +970,7 @@ function disciplineData(snap: ProjectSnapshot, discipline: string): DisciplineDa
 function disciplineNeeds(sx: Sx, snap: ProjectSnapshot, dd: DisciplineData): {
   actions: WorkItem[]
   holds: Hold[]
+  split: { internal: number; client: number; unclassified: number }
 } {
   const actions = visibleByLog(sx, snap, snap.workItems.filter((w) =>
     (w.state === 'open' || w.state === 'in_work')
@@ -976,7 +980,16 @@ function disciplineNeeds(sx: Sx, snap: ProjectSnapshot, dd: DisciplineData): {
     && snap.holdLinks.some((l) => l.holdId === h.id
       && ((l.targetType === 'deliverable' && dd.delIds.has(l.targetId))
         || (l.targetType === 'revision' && dd.revIds.has(l.targetId))))))
-  return { actions, holds }
+  const rows = [...actions, ...holds]
+  return {
+    actions,
+    holds,
+    split: {
+      internal: rows.filter((r) => r.needsAudience === 'internal').length,
+      client: rows.filter((r) => r.needsAudience === 'client').length,
+      unclassified: rows.filter((r) => r.needsAudience == null).length,
+    },
+  }
 }
 
 function disciplineRisks(snap: ProjectSnapshot, dd: DisciplineData): Risk[] {
@@ -1015,6 +1028,7 @@ export function disciplinesView(sx: Sx): unknown {
       inWork: inWork.length,
       issueEvents: disciplineIssueEvents(snap, dd).length,
       openNeeds: needs.actions.length + needs.holds.length,
+      needsSplit: needs.split,
       openRisks: disciplineRisks(snap, dd).length,
     }
   })
@@ -1064,12 +1078,14 @@ export function disciplineDetailView(sx: Sx, discipline: string, periodStart?: s
     ...needs.holds.map((h) => ({
       type: 'hold' as const, recordType: 'hold', id: h.id, ref: h.ref, title: h.title,
       ownerId: h.ownerId, needBy: h.needBy, state: h.state, log: h.log,
+      needsAudience: h.needsAudience,
       ageWd: ageWorkingDays(h.raisedAt, today, cal),
       overdue: h.needBy != null && daysOverdue(h.needBy, today) > 0,
     })),
     ...needs.actions.map((w) => ({
       type: 'action' as const, recordType: 'work_item', id: w.id, ref: w.ref, title: w.title,
       ownerId: w.ownerId, needBy: w.needBy, state: w.state, log: w.log,
+      needsAudience: w.needsAudience,
       ageWd: ageWorkingDays(w.createdAt, today, cal),
       overdue: w.needBy != null && daysOverdue(w.needBy, today) > 0,
     })),
@@ -1091,7 +1107,7 @@ export function disciplineDetailView(sx: Sx, discipline: string, periodStart?: s
     },
     openNeeds: {
       value: needRows.length, ruleId: 'DISC-NEEDS',
-      detail: 'open RAIL-borne actions and active holds anchored to this discipline\'s deliverables/revisions; internal-vs-client typing is absent until its ruled tranche',
+      detail: `open RAIL-borne actions and active holds anchored to this discipline's deliverables/revisions; needs audience split internal ${needs.split.internal}, client ${needs.split.client}, unclassified ${needs.split.unclassified}`,
       contributing: redactRefs(sx, snap, needRows.map((n) => ({ recordType: n.recordType as ContributingRef['recordType'], id: n.id, ref: n.ref, why: `open ${n.type}` }))),
     },
     needsAging: {
@@ -1193,7 +1209,7 @@ export function disciplineDetailView(sx: Sx, discipline: string, periodStart?: s
     sections: {
       activities: { groups: byType, basis: 'deliverable.discipline + workflowCompleteness (DISC-ACT)' },
       issuances: { rows: issuances, basis: 'issue_event records on this discipline\'s revisions (DISC-ISSUED)' },
-      needs: { rows: needRows, basis: 'open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log (DISC-NEEDS)' },
+      needs: { rows: needRows, split: needs.split, basis: 'open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log; needsAudience is imported explicitly only (DISC-NEEDS)' },
       risks: { rows: risks, basis: 'open risks with a deliverable in this discipline (DISC-RISK)' },
     },
   }

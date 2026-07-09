@@ -220,6 +220,46 @@ test('rail v2: re-import updates idempotently under the import-ownership guard',
   assert.equal(JSON.parse(wi.source_payload).updates, 'Client philosophy received')
 })
 
+test('rail v2: explicit needs_audience imports, rejects invalid values, and round-trips', async () => {
+  const admin = await env.as('admin@t.co')
+  const csv = [
+    `${RAIL_V2_HDR},needs_audience`,
+    'V2-PKG-8,1,Electrical,,30%,26020-01-PT-1,Documentation,Controls integration,Decision,Decide remote I/O approach,Client philosophy received,Project Management,In Progress,Now,2026-07-07,2026-07-14,2026-07-21,,client',
+    'V2-PKG-8,4,Electrical,,30%,,Documentation,Controls integration,Action,Classify this incorrectly,,Electrical,Not Started,Now,2026-07-07,2026-07-14,2026-07-21,,external',
+  ].join('\r\n')
+  const res = await admin.postCsv(`${P}/import/rail`, csv)
+  assert.equal(res.status, 200, JSON.stringify(res.body))
+  assert.equal(res.body.updated, 1)
+  assert.equal(res.body.rejected.length, 1)
+  assert.match(res.body.rejected[0].errors[0], /needs_audience must be internal or client/)
+
+  const wi = env.db.prepare('SELECT needs_audience FROM work_item WHERE project_id = ? AND ref = ?')
+    .get(env.projectId, 'V2-PKG-8#1') as { needs_audience: string }
+  assert.equal(wi.needs_audience, 'client')
+
+  const pkg = await admin.get(`${P}/reports/standard/package-issue-summary`)
+  const row = pkg.body.sections.packages.find((r: any) => r.package.code === 'V2-PKG-8')
+  assert.ok(row.needsSplit.client >= 1, JSON.stringify(row.needsSplit))
+
+  const rail = await admin.get(`${P}/export/rail-v2.csv`)
+  assert.match(String(rail.body).split('\r\n')[0]!, /needs_audience/)
+  assert.match(String(rail.body), /client/)
+})
+
+test('standard report surfaces MDL-RAIL hold discrepancies without intake records', async () => {
+  const admin = await env.as('admin@t.co')
+  const weekly = await admin.get(`${P}/reports/standard/weekly-project-status`)
+  assert.equal(weekly.status, 200, JSON.stringify(weekly.body))
+  const check = weekly.body.sections.consistencyChecks.mdlRailHoldDiscrepancies
+  assert.equal(check.ruleId, 'CONSIST-MDL-RAIL-HOLD')
+  assert.ok(check.count >= 2, JSON.stringify(check))
+  assert.match(weekly.body.markdown, /MDL\/RAIL hold discrepancies/)
+  const intake = env.db.prepare(
+    "SELECT COUNT(*) AS n FROM intake_item WHERE project_id = ? AND statement_verbatim LIKE '%CONSIST-MDL-RAIL-HOLD%'",
+  ).get(env.projectId) as { n: number }
+  assert.equal(intake.n, 0)
+})
+
 test('discipline view: % complete is attested-only, equal-weight by type, absent when unattested (DISC-PCT)', async () => {
   const admin = await env.as('admin@t.co')
   const detail = await admin.get(`${P}/disciplines/${encodeURIComponent('Process')}`)

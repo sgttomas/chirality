@@ -1,9 +1,9 @@
 /**
  * Regression tests for the 2026-07-04 issues reorientation:
  *   - a deliverable's summary status is workflow completeness (gates closed), not issue health;
- *   - the package detail is an issues cockpit: a unified, urgency-sorted list of holds,
+ *   - the package detail is an operational cockpit: a unified, urgency-sorted list of holds,
  *     interfaces, decisions, risks, and rolled-up action items, plus a workflow deliverable rollup;
- *   - the package register's openIssues count is log-visibility-scoped so it matches the cockpit.
+ *   - the package register's openIssues count is client-facing (holds, risks, actions) and log-scoped.
  */
 
 import { test } from 'node:test'
@@ -48,7 +48,7 @@ test('deliverableDetailView carries workflow; deliverable detail still shows tie
   } finally { await env.close() }
 })
 
-test('packageDetailView: the issues cockpit unifies record types, urgency-first, with a workflow deliverable rollup', async () => {
+test('packageDetailView: the operational cockpit unifies record types, urgency-first, with a workflow deliverable rollup', async () => {
   const env = await createTestEnv()
   const P = `/api/projects/${env.projectId}`
   try {
@@ -89,9 +89,10 @@ test('packageDetailView: the issues cockpit unifies record types, urgency-first,
     for (const t of ['hold', 'interface', 'decision', 'risk', 'action']) {
       assert.ok(types.has(t), `cockpit includes a ${t} issue`)
     }
-    assert.equal(detail.body.summary.openIssues, issues.length)
-    assert.equal(detail.body.summary.overdueIssues, 2, 'the past-dated decision and interface are overdue')
-    // urgency-first: overdue issues sort ahead of non-overdue
+    assert.equal(detail.body.summary.openIssues, 3, 'client-facing issues are holds, risks, and actions')
+    assert.equal(detail.body.summary.openOperationalItems, issues.length)
+    assert.equal(detail.body.summary.overdueIssues, 0, 'the past-dated decision and interface are segregated, not client-facing issues')
+    // urgency-first: overdue operational records sort ahead of non-overdue
     const firstNonOverdue = issues.findIndex((i) => !i.overdue)
     const lastOverdue = issues.map((i) => i.overdue).lastIndexOf(true)
     assert.ok(firstNonOverdue === -1 || lastOverdue < firstNonOverdue, 'all overdue issues precede non-overdue')
@@ -122,14 +123,14 @@ test('PEC-NFR-005: the register openIssues count is log-scoped and matches the c
     const lead = await env.as('lead@t.co')
     const leadReg = (await lead.get(`${P}/packages`)).body.find((p: any) => p.id === env.packageId)
     const leadDetail = await lead.get(`${P}/packages/${env.packageId}`)
-    assert.equal(leadReg.openIssues, leadDetail.body.issues.length, 'lead: register count == cockpit rows')
+    assert.equal(leadReg.openIssues, leadDetail.body.summary.openIssues, 'lead: register count == client-facing issue count')
     assert.equal(leadReg.openIssues, 2)
 
     // viewer does not see the internal log → only the package action, and the count agrees
     const viewer = await env.as('viewer@t.co')
     const vReg = (await viewer.get(`${P}/packages`)).body.find((p: any) => p.id === env.packageId)
     const vDetail = await viewer.get(`${P}/packages/${env.packageId}`)
-    assert.equal(vReg.openIssues, vDetail.body.issues.length, 'viewer: register count == cockpit rows')
+    assert.equal(vReg.openIssues, vDetail.body.summary.openIssues, 'viewer: register count == client-facing issue count')
     assert.equal(vReg.openIssues, 1, 'viewer sees only the package-log action, not the internal one')
     assert.ok(!JSON.stringify(vDetail.body.issues).includes('internal action'), 'internal-log title not leaked to viewer')
   } finally { await env.close() }

@@ -39,13 +39,13 @@ codes/names.
 
 - **Sponsor brief** (`api.ts:333-336`; payload in
   `server/src/services/views.ts`, sponsor section): summary counts —
-  `deliverablesOnPlan` as `onPlanCount/totalCount`, open issues (with overdue
-  split), holds by cause, open interfaces / decisions / risks / action items —
-  plus current-week capacity rows. Counts come from the same snapshot the
-  registers export.
+  `deliverablesOnPlan` as `onPlanCount/totalCount`, client-facing open issues
+  (holds + risks + action items, with overdue split), holds by cause, and
+  segregated open interfaces / decisions — plus current-week capacity rows.
+  Counts come from the same snapshot the registers export.
 - **Package pack** (`api.ts:337-340`): package health (same rule basis as
-  the overview rollup), the open-issue cockpit, and per-deliverable workflow
-  status.
+  the overview rollup), the operational package rows, and per-deliverable
+  workflow status.
 - **Revision explain** (`api.ts:178-181`; `explainTransition`,
   `core/src/conditions.ts:277`): the gate's conditions with the contributing
   records — the basis payload itself.
@@ -54,9 +54,15 @@ codes/names.
   string for sidecar use. Names: `weekly-project-status`,
   `package-issue-summary`, `deliverable-completeness`. Weekly status supports
   `groupBy=package` and `groupBy=discipline`; all payloads carry `basis[]`
-  pointers and `absent[]` entries for unsupported figures. Period-scoped
-  issuances, percent complete, week-over-week deltas, client/internal needs
-  typing, and `.docx` output stay absent until their ruled tranches land.
+  pointers and `absent[]` entries for unsupported figures. Package and weekly
+  reports use the D-PEC-48 vocabulary: client-facing "issues" are holds +
+  risks + action items; decisions and interfaces are separate buckets. Open
+  needs carry an explicit imported `needs_audience` split
+  (`internal`/`client`/unclassified, D-PEC-47). The weekly report also carries
+  `CONSIST-MDL-RAIL-HOLD`, a report-only MDL working-status vs RAIL source
+  status check that creates no intake/review/disposition records (D-PEC-46
+  O-B). Period-scoped issuances, week-over-week deliverable-progress deltas,
+  and `.docx` output stay absent until their ruled tranches land.
 - **User-defined reports** (sidecar D-PEC-37 mode,
   `agent-sidecar/src/user-report.ts`): prompt requests are routed only to
   bounded PEC read/report acts. The sidecar may draft over the standard report
@@ -100,7 +106,7 @@ plus a factual-or-absent metric band.
 | Figure | Rule id | Basis |
 |---|---|---|
 | activities in work | `DISC-ACT` | discipline deliverables whose workflow has not reached issued |
-| open needs / needs aging | `DISC-NEEDS` / `DISC-NEEDS-AGE` | open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log; internal-vs-client typing absent until its ruled tranche |
+| open needs / needs aging | `DISC-NEEDS` / `DISC-NEEDS-AGE` | open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log; `needs_audience` split is explicit-import only (`internal` / `client` / unclassified), never inferred |
 | open risks | `DISC-RISK` | open risks with a deliverable in the discipline — package-only risks carry no discipline basis and are not counted |
 | issued this period / issuance delta | `DISC-ISSUED` / `DISC-ISSUED-DELTA` | issue events on discipline revisions within an explicitly requested window; detail names the `PER-COV` coverage basis; absent when no period is declared |
 | % complete | `DISC-PCT` | PE-attested percent (contract v2 import, D-PEC-41; never derived or edited in-app): equal-weight mean over deliverable types with ≥1 attested document, each type the mean of its attested documents; detail names attested coverage (n/m) and excludes verbatim markers (e.g. "Next Phase"); absent when nothing is attested |
@@ -115,14 +121,15 @@ task managers").
 Contract v2 imports (revised TWD templates; mapping of record in
 `IMPORT_TEMPLATES/IMPORT_MAPPING.md` §contract-v2) carry PE-attested facts:
 `percent_complete` (with verbatim non-numeric markers), `working_status`,
-`target_completeness`, `project_phase`, RAIL `responsible_party` and verbatim
-`issue_type`. Attested facts are import-only: never in-app editable, never
-derived in-app (workplan reconciliation 1). Unmapped columns are captured
-verbatim per the owner's fidelity direction (Receipt 75). Import dry-run/apply
-reports carry caught review signals (`mdl-on-hold`, `rail-on-hold`,
-`phase-cancelled`, `percent-marker`, vocabulary deviations) — surfaced for
-PE/agent review, never silently coerced, never schema-blocked. Round-trip
-registers: `mdl-v2`, `rail-v2` (export-what-was-provided parity).
+`target_completeness`, `project_phase`, RAIL `responsible_party`, verbatim
+`issue_type`, and explicit `needs_audience` when a source column provides it.
+Attested facts are import-only: never in-app editable, never derived in-app
+(workplan reconciliation 1). Unmapped columns are captured verbatim per the
+owner's fidelity direction (Receipt 75). Import dry-run/apply reports carry
+caught review signals (`mdl-on-hold`, `rail-on-hold`, `phase-cancelled`,
+`percent-marker`, vocabulary deviations) — surfaced for PE/agent review, never
+silently coerced, never schema-blocked. Round-trip registers: `mdl-v2`,
+`rail-v2` (export-what-was-provided parity).
 
 ## The rule this page reinforces
 

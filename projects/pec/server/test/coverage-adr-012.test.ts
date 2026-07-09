@@ -1,7 +1,7 @@
 /**
- * ADR-012 — Overview adopts the issues framing (PEC-OV-003) without breaking PEC-NFR-005:
- * the package rollup's openIssues is the same log-scoped count the Packages register and the
- * drill-down cockpit show, per caller. Also covers the explanation carry-through end to end:
+ * ADR-012 — Overview adopts the client-facing issues framing without breaking PEC-NFR-005:
+ * the package rollup's openIssues is the same log-scoped holds+risks+actions count the
+ * Packages register shows, per caller. Also covers the explanation carry-through end to end:
  * a package-health drill-down reaches the underlying hold record, not just a deliverable label.
  */
 
@@ -15,7 +15,7 @@ test('ADR-012: overview packageRollup.openIssues matches the packages register, 
     const P = `/api/projects/${env.projectId}`
     const lead = await env.as('lead@t.co')
 
-    // Three issues in three logs: an internal hold, an internal package decision,
+    // Three operational rows in three logs: an internal hold, an internal package decision,
     // and a client-log action item. Viewer sees package+client logs only.
     const hold = await lead.post(`${P}/holds`, {
       title: 'Vendor data outstanding', cause: 'vendor_data', ownerId: env.people['lead@t.co'],
@@ -46,12 +46,13 @@ test('ADR-012: overview packageRollup.openIssues matches the packages register, 
         `${email}: Overview and Packages must show the same openIssues count`)
     }
 
-    // pm sees all three logs; viewer defaults to package+client → the two internal issues drop out.
+    // pm sees the internal hold + client action as issues; the decision is segregated.
+    // viewer defaults to package+client → the internal hold drops out.
     const pmView = await (await env.as('pm@t.co')).get(`${P}/overview`)
     const viewerView = await (await env.as('viewer@t.co')).get(`${P}/overview`)
     const pmCount = pmView.body.packageRollup.find((r: any) => r.id === env.packageId).openIssues
     const viewerCount = viewerView.body.packageRollup.find((r: any) => r.id === env.packageId).openIssues
-    assert.equal(pmCount, 3, 'pm sees hold + decision + client action item')
+    assert.equal(pmCount, 2, 'pm issue count includes hold + client action item; decision is segregated')
     assert.equal(viewerCount, 1, 'viewer sees only the client-log action item')
   } finally {
     await env.close()
