@@ -123,6 +123,15 @@ test('overlaps, gaps, and undeclared applied imports are caught as review signal
   const overlapItem = res.body.reviewItems.find((i: { kind: string }) => i.kind === 'overlap')
   assert.match(overlapItem.detail, /retroactive correction/)
 
+  // the coverage view exposes APPLIED declarations only, and never widens the
+  // proposal lane's read gate: a viewer (no import.propose) reads the applied
+  // reporting basis here but cannot list proposals
+  const viewer = await env.as('viewer@t.co')
+  const vcov = await viewer.get(`${P}/coverage`)
+  assert.equal(vcov.status, 200)
+  assert.ok(vcov.body.declarations.every((d: { state: string }) => d.state === 'applied'))
+  assert.equal((await viewer.get(`${P}/import-proposals`)).status, 403)
+
   // no destructive mutation: the earlier declaration is untouched by the later overlap
   const a = await admin.get(`${P}/import-proposals/${idA}`)
   assert.equal(a.body.coverageStart, '2026-06-01')
@@ -195,8 +204,13 @@ test('weekly report: absent-honest without a period; issuance figures only under
   const admin = await env.as('admin@t.co')
   const bare = await admin.get(`${P}/reports/standard/weekly-project-status`)
   assert.equal(bare.status, 200)
-  assert.ok(bare.body.absent.some((a: { figure: string }) => a.figure === 'issued this period'))
+  const issuedAbsent = bare.body.absent.find((a: { figure: string }) => a.figure === 'issued this period')
+  assert.ok(issuedAbsent)
+  assert.match(issuedAbsent.reason, /no period was declared/, 'absent reason states the true, current reason')
   assert.equal(bare.body.sections.issuancesThisPeriod, undefined)
+
+  // non-period-scopable reports refuse a period rather than accept-and-ignore it
+  assert.equal((await admin.get(`${P}/reports/standard/package-issue-summary?period_start=2026-06-01&period_end=2026-06-07`)).status, 400)
 
   const withPeriod = await admin.get(`${P}/reports/standard/weekly-project-status?groupBy=discipline&period_start=2026-06-01&period_end=2026-06-07`)
   assert.equal(withPeriod.status, 200, JSON.stringify(withPeriod.body))

@@ -80,11 +80,14 @@ lane (`coverage_start`/`coverage_end` on `POST .../import-proposals`;
 | work closed / holds raised / holds resolved / decisions decided / intake raised in period | `PER-CLOSED` / `PER-HOLD-RAISED` / `PER-HOLD-RESOLVED` / `PER-DECIDED` / `PER-INTAKE` | record timestamps within the window, visibility-filtered per log |
 
 The weekly standard report accepts `period_start`/`period_end` (both or
-neither); under a declared period it carries `issuancesThisPeriod`,
-`issuanceDelta`, and the `PER-COV` coverage basis, and its absent list keeps
-percent complete (Tier-P contract v2) and non-issuance deltas absent. Periods
-are request parameters or per-document declarations — never silently
-inferred.
+neither; other standard reports refuse a period rather than ignore it);
+under a declared period it carries `issuancesThisPeriod`, `issuanceDelta`,
+and the `PER-COV` coverage basis, and its absent list keeps percent complete
+(Tier-P contract v2) and non-issuance deltas absent. Periods are request
+parameters or per-document declarations — never silently inferred. Window
+membership convention: the UTC calendar day of the stored timestamp
+(`ts.slice(0,10)`) is compared to the declared dates, matching the repo-wide
+date convention.
 
 ## Discipline view v1 (D-PEC-40)
 

@@ -146,6 +146,8 @@ test('detail with declared period: issuance tiles appear, scoped and coverage-ba
 
   assert.equal((await admin.get(`${P}/disciplines/Electrical?start=2026-06-01`)).status, 400)
   assert.equal((await admin.get(`${P}/disciplines/Electrical?start=2026-06-07&end=2026-06-01`)).status, 400)
+  assert.equal((await admin.get(`${P}/disciplines/Electrical?start=&end=2026-06-07`)).status, 400,
+    'an empty-string bound is a half declaration, not a no-period view')
 })
 
 test('log visibility: the viewer sees package-log needs but not internal ones (PEC-NFR-005)', async () => {

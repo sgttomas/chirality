@@ -80,8 +80,8 @@ function redact<T>(sx: Sx, snap: ProjectSnapshot, explain: Explain<T>): Explain<
 const baseAbsent = [
   {
     figure: 'issued this period',
-    reason: 'no reporting-period/coverage declaration model is ruled or implemented yet',
-    needed: 'future reporting periods packet',
+    reason: 'no period was declared for this report; period-scoped figures are computed only for an explicitly requested window (D-PEC-39)',
+    needed: 'pass period_start/period_end (YYYY-MM-DD) — coverage declarations arrive per uploaded document',
   },
   {
     figure: 'percent complete',
@@ -340,6 +340,11 @@ export function standardReport(sx: Sx, name: string, groupByRaw?: string | null,
   }
   const groupBy = groupByRaw === 'discipline' ? 'discipline' : 'package'
   const period = resolvePeriod(periodRaw)
+  if (period && name !== 'weekly-project-status') {
+    // refuse rather than accept-and-ignore: a caller passing a period must not
+    // believe an unscoped report was period-scoped (period honesty, D-PEC-39)
+    throw badRequest(`report ${name} does not support a period; only weekly-project-status is period-scopable`)
+  }
   switch (name as StandardReportName) {
     case 'weekly-project-status': return weeklyProjectStatus(sx, groupBy, period)
     case 'package-issue-summary': return packageIssueSummary(sx)

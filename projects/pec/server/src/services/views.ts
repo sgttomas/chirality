@@ -1024,6 +1024,9 @@ export function disciplineDetailView(sx: Sx, discipline: string, periodStart?: s
   const snap = snapshot(sx)
   const names = new Set(snap.deliverables.map(disciplineOf))
   if (!names.has(discipline)) throw notFound(`discipline "${discipline}"`)
+  // empty-string params are half/no declarations, not a period — same 400 as /period-status
+  periodStart = periodStart || null
+  periodEnd = periodEnd || null
   if ((periodStart == null) !== (periodEnd == null)) {
     throw badRequest('a period requires both start and end (YYYY-MM-DD)')
   }

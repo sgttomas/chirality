@@ -79,11 +79,13 @@ const nextDay = (isoDate: string): string => shiftDay(isoDate, 1)
 
 /**
  * Coverage declarations + caught review signals (COV- rules). Read-only over
- * import_proposal metadata (no CSV content); any project member may read the
- * reporting basis, matching the report surfaces it explains.
+ * import_proposal metadata (no CSV content). Any project member may read the
+ * APPLIED reporting basis — exactly what period figures cite — but draft/
+ * rejected/pending proposal metadata stays behind the proposal lane's own
+ * read gate (RV-16/RV-19): this view never widens it.
  */
 export function coverageView(sx: Sx): CoverageView {
-  const rows = proposalRows(sx)
+  const rows = proposalRows(sx).filter((p) => p.state === 'applied')
   const declarations: CoverageDeclarationRow[] = rows.map((p) => ({
     proposalId: p.id, ref: p.ref, contract: p.contract, sourceName: p.source_name,
     state: p.state, coverageStart: p.coverage_start, coverageEnd: p.coverage_end,
