@@ -30,8 +30,11 @@ Accepted vocabularies (import normalizes case/spaces/hyphens):
 - RAIL `type`: `action, coordination, risk_treatment, rework, other, task,
   hold, interface` (hold rows also need `hold_cause`: `information, decision,
   approval, resource, client_input, interface, vendor_data, other`).
-- RAIL `log`: `package, internal, client`. RAIL `status`: `open, in_work,
-  in_progress/started, closed/complete/completed/done, cancelled`.
+- RAIL `log`: `package, internal, client`. RAIL work-item `status`: `open,
+  in_work, in_progress/started, closed/complete/completed/done, cancelled`.
+  RAIL interface rows use the interface-state vocabulary only:
+  `open, agreed, delivered, closed, cancelled`. Blank status rejects as a
+  missing required source fact; no interface status is invented.
 - decisions `status`: `identified, in_progress, pending, decided, superseded`;
   `decided` rows require an `outcome` from `select, approve, reject, defer,
   conditionally_accept, confirm_basis, waive, supersede`.

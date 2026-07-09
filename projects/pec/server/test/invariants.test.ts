@@ -484,3 +484,23 @@ test('§16: RAIL import anchors on doc_no match, else lands as unanchored intake
   const rail = await lead.get(`${P}/export/rail.csv`)
   assert.match(rail.body, /A-002.*unanchored|unanchored.*A-002/s, 'unanchored intake row round-trips in the export')
 })
+
+test('§16: RAIL interface rows require an explicit valid interface status', async () => {
+  const admin = await env.as('admin@t.co')
+  const csv = [
+    'item_id,statement,type,log,owner,need_by,status,raised_by,raised_date,package,deliverable_ref,hold_cause',
+    'I-001,Process to mechanical data,interface,package,eor@t.co,2027-05-01,open,lead@t.co,2026-06-01,PKG-M,TST-ME-001,',
+    'I-002,Invalid workflow status,interface,package,eor@t.co,2027-05-01,in_work,lead@t.co,2026-06-01,PKG-M,TST-ME-001,',
+    'I-003,Missing interface status,interface,package,eor@t.co,2027-05-01,,lead@t.co,2026-06-01,PKG-M,TST-ME-001,',
+  ].join('\n')
+  const res = await admin.postCsv(`${P}/import/rail`, csv)
+  assert.equal(res.status, 200)
+  assert.equal(res.body.accepted, 1)
+  assert.equal(res.body.rejected.length, 2)
+  assert.match(res.body.rejected[0].errors.join(' '), /interface status must be one of/)
+  assert.match(res.body.rejected[1].errors.join(' '), /status is required/)
+
+  const reg = await admin.get(`${P}/interfaces`)
+  const row = (reg.body as any[]).find((i) => i.ref === 'I-001')
+  assert.equal(row.state, 'open')
+})

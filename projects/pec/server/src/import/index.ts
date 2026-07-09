@@ -439,8 +439,8 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
     const interfaceState = isInterface ? normState(row.status ?? '') : null
     const needsAudience = explicitNeedsAudience(headers, row)
     if (!isHold && !isInterface && row.status && !wiState) errors.push(`unrecognized status "${row.status}"`)
-    if (isInterface && !INTERFACE_STATES.includes(interfaceState as never)) {
-      errors.push(`interface status must be one of ${INTERFACE_STATES.join(', ')} when source status is supplied; got "${row.status}"`)
+    if (isInterface && row.status && !INTERFACE_STATES.includes(interfaceState as never)) {
+      errors.push(`interface status must be one of ${INTERFACE_STATES.join(', ')}; got "${row.status}"`)
     }
     if (needsAudience.error) errors.push(needsAudience.error)
     if (isHold && !row.hold_cause) errors.push('hold rows require hold_cause (I-3)')
