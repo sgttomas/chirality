@@ -906,3 +906,11 @@
   - Delta found (live tree wins): the live TWD RAIL workbook has no explicit internal/client classification column, so D-PEC-47 preserves an unclassified/absent state and forbids inference from weak evidence.
   - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
   - Gate outcome: packet preparation only; STOP at D-PEC-46/47 owner rulings. Parked lanes: D-PEC-43/44 rulings; D-PEC-46/47 rulings; carried slate items; R3 packet after applicable prerequisites; D-PEC-32/33; D-PEC-23 import-approval gate; P4 weekly rehearsal; D-PEC-28/28b.
+
+- **2026-07-09 — Receipt 85** (R3 D-PEC-48 reporting-vocabulary packet prepared; loop parks at owner rulings).
+  - Start: continuing branch `codex/pec-dpec46-47-packets`; PR #130 open; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.
+  - Live gates checked: no new owner ruling in tier-0 or PEC-local register; D-PEC-43/44/46/47 remain AWAITING_RULING; D-PEC-45 remains RULED.
+  - Executed pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-48_reporting_vocabulary_alignment.md`; register row D-PEC-48 AWAITING_RULING.
+  - Delta found (live tree wins): current report/web surfaces still use broad "issues" wording for holds/interfaces/decisions/risks/actions; D-PEC-48 frames a display/reporting vocabulary tranche only, preserving ADR-011 and the operational union.
+  - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
+  - Gate outcome: packet preparation only; STOP at owner rulings. Parked lanes: D-PEC-43/44/46/47/48 rulings; carried slate items; D-PEC-32/33; D-PEC-23 import-approval gate; P4 weekly rehearsal; D-PEC-28/28b.
