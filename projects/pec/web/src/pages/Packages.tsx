@@ -1,8 +1,8 @@
 /**
  * Packages — "What's stuck in my scope?" (Package Lead home, PRD §12.2).
- * The package is where ISSUES live: holds, interfaces, decisions, risks, and rolled-up
- * action items (deliverable tasks stay on the Deliverables page as workflow status).
- * Register with health + open-issue count (PEC-PKG-001); detail leads with the issues cockpit
+ * The package is where client-facing issues live: holds, risks, and rolled-up
+ * action items. Decisions and interfaces stay segregated relationship/governance records.
+ * Register with health + open-issue count (PEC-PKG-001); detail leads with the operational cockpit
  * (PEC-PKG-002/006/007), then the lead's action queue (PEC-PKG-005), then deliverables carrying
  * their workflow status (PEC-PKG-004). Pure projection of the server view — no rules here (SPEC §1).
  */
@@ -39,7 +39,7 @@ export function PackagesPage(): JSX.Element {
     { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={`package ${r.code}`} />, csv: (r) => String(r.health.value) },
     { key: 'issues', label: 'Open issues', render: (r) => r.openIssues > 0 ? <span className="badge amber">{r.openIssues}</span> : <span className="muted">0</span>, csv: (r) => r.openIssues },
     {
-      key: 'mix', label: 'Issue mix', render: (r) => (
+      key: 'mix', label: 'Operational mix', render: (r) => (
         <span className="small">
           {Object.entries(r.issueMix?.value?.byType ?? {}).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
             <span key={k} className={`itype itype-${k}`} style={{ marginRight: '.2rem' }}>{k} {String(n)}</span>
@@ -89,7 +89,7 @@ export function PackageDetailPage(): JSX.Element {
   const holdsByCause = Object.entries(s.holdsByCause as Record<string, number>)
   const issues = issueFilter ? data.issues.filter((r: any) => r.type === issueFilter) : data.issues
 
-  // The issues cockpit (PEC-PKG-002/006/007): every open issue, urgency-first.
+  // The operational cockpit (PEC-PKG-002/006/007): every open package record, urgency-first.
   const issueCols: Array<Col<any>> = [
     { key: 'type', label: 'Type', render: (r) => <span className={`itype itype-${r.type}`}>{ISSUE_LABEL[r.type] ?? r.type}</span>, csv: (r) => r.type },
     { key: 'ref', label: 'Ref', render: (r) => <RecordRef recordType={r.recordType} id={r.id} recordRef={r.ref} />, csv: (r) => r.ref },
@@ -143,13 +143,14 @@ export function PackageDetailPage(): JSX.Element {
         </button>
       </h1>
 
-      {/* Summary: issues first — this is an issue-management view (PEC-PKG-002) */}
+      {/* Summary: client-facing issues first; decisions/interfaces remain segregated. */}
       <div className="cards">
         <div className="card kpi" style={{ cursor: 'default' }}>
           <b>{s.openIssues}</b>
           <span>open issues{s.overdueIssues > 0 && <> · <span className="badge red">{s.overdueIssues} overdue</span></>}</span>
           <div className="small muted" style={{ marginTop: '.25rem' }}>
-            {s.openHolds} holds · {s.openInterfaces} interfaces · {s.openDecisions} decisions · {s.openRisks} risks · {s.openActionItems} actions
+            {s.openHolds} holds · {s.openRisks} risks · {s.openActionItems} actions
+            {' '}· {s.openDecisions} decisions · {s.openInterfaces} interfaces
           </div>
           <div style={{ marginTop: '.35rem' }}>
             {Object.entries(s.issueMix.value.byType).filter(([, n]) => Number(n) > 0).map(([k, n]) => (
@@ -194,12 +195,12 @@ export function PackageDetailPage(): JSX.Element {
         </div>
       </div>
 
-      {/* The cockpit: every open issue, urgency-first */}
-      <h2>Open issues</h2>
+      {/* The cockpit: every open operational row, urgency-first */}
+      <h2>Open operational records</h2>
       {issueFilter && <p className="section-note">Filtered to {issueFilter}. <button className="btn secondary small" onClick={() => setIssueFilter('')}>clear</button></p>}
       {issues.length === 0
-        ? <p className="muted small">No open issues in this package.</p>
-        : <RegisterTable cols={issueCols} rows={issues} exportName={`${pkg.code}-issues.csv`} />}
+        ? <p className="muted small">No open operational records in this package.</p>
+        : <RegisterTable cols={issueCols} rows={issues} exportName={`${pkg.code}-operational-records.csv`} />}
 
       {/* PEC-PKG-005: the lead's personal action queue */}
       <h2>Needs the lead this week</h2>
@@ -220,7 +221,7 @@ export function PackageDetailPage(): JSX.Element {
       </details>
 
       <p className="section-note">
-        Issues (holds, interfaces, decisions, risks, action items) are tracked at the package level.
+        Client-facing issues are holds, risks, and action items. Decisions and interfaces are tracked as segregated operational records at the package level.
         Deliverable status is workflow completeness — the gates a document has closed — shown on the
         Deliverables page. Health and ordering are server-derived (I-4); each table exports what is displayed.
       </p>

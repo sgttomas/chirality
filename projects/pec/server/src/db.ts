@@ -216,6 +216,7 @@ CREATE TABLE IF NOT EXISTS work_item (
   closed_at TEXT,
   cancel_reason TEXT,
   area TEXT,                       -- §16 rail optional column (D-PEC-23)
+  needs_audience TEXT,             -- D-PEC-47 explicit source classification: internal | client | NULL
   responsible_party TEXT,          -- contract v2 (D-PEC-41): attested discipline/function, verbatim
   source_issue_type TEXT,          -- contract v2: attested RAIL issue type, verbatim
   source_payload TEXT,             -- D-PEC-41 full-fidelity capture: verbatim unmapped columns (JSON)
@@ -252,6 +253,7 @@ CREATE TABLE IF NOT EXISTS hold (
   resolving_ref_type TEXT,
   resolving_ref_id INTEGER,
   log TEXT NOT NULL DEFAULT 'internal',
+  needs_audience TEXT,             -- D-PEC-47 explicit source classification: internal | client | NULL
   version INTEGER NOT NULL DEFAULT 1
 );
 CREATE INDEX IF NOT EXISTS idx_hold_project ON hold(project_id, state);
@@ -730,7 +732,9 @@ export function openDb(path: string): Db {
   ensureColumn(db, 'package', 'area', 'TEXT')
   ensureColumn(db, 'package', 'package_type', 'TEXT')
   ensureColumn(db, 'work_item', 'area', 'TEXT')
+  ensureColumn(db, 'work_item', 'needs_audience', 'TEXT')
   ensureColumn(db, 'intake_item', 'area', 'TEXT')
+  ensureColumn(db, 'hold', 'needs_audience', 'TEXT')
   ensureColumn(db, 'decision', 'open_date', 'TEXT')
   ensureColumn(db, 'decision', 'area', 'TEXT')
   ensureColumn(db, 'decision', 'source', 'TEXT')

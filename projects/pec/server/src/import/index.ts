@@ -13,7 +13,7 @@
 
 import type { Deliverable, Hold, IntakeItem, InterfaceItem, Log, PackageTracker, Revision, Risk, WorkItem } from '@pec/core'
 import {
-  HOLD_CAUSES, LOGS, SCHEDULE_ROW_TYPES, TRACKER_STAGE_STATES, ageWorkingDays, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead, visibleLogs,
+  HOLD_CAUSES, INTERFACE_STATES, LOGS, SCHEDULE_ROW_TYPES, TRACKER_STAGE_STATES, ageWorkingDays, daysOverdue, isoWeekOf, isoWeeksFrom, lookahead, visibleLogs,
 } from '@pec/core'
 import { badRequest } from '../errors.ts'
 import { nowIso, snakeToCamel } from '../repo.ts'
@@ -112,6 +112,23 @@ function parsePercent(raw: string): { pct: number | null; verbatim: string | nul
     return { pct: n, verbatim: null }
   }
   return { pct: null, verbatim: raw }
+}
+
+const NEEDS_AUDIENCE_COLUMNS = [
+  'needs_audience', 'need_audience', 'needs_classification',
+  'internal_client', 'internal_client_classification', 'client_internal',
+] as const
+
+function explicitNeedsAudience(headers: string[], row: Record<string, string>): {
+  value: 'internal' | 'client' | null
+  column: string | null
+  error?: string
+} {
+  const column = NEEDS_AUDIENCE_COLUMNS.find((h) => headers.includes(h) && row[h]) ?? null
+  if (!column) return { value: null, column: null }
+  const v = normState(row[column]!)
+  if (v === 'internal' || v === 'client') return { value: v, column }
+  return { value: null, column, error: `${column} must be internal or client, got "${row[column]}"` }
 }
 
 // ---------- MDL ----------
@@ -419,7 +436,13 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
     const raisedBy = personByNameOrEmail(sx, row.raised_by ?? '') ?? ownerId
     if (row.need_by && !DATE_RE.test(row.need_by)) errors.push('need_by must be YYYY-MM-DD')
     const wiState = isHold || isInterface ? null : WI_STATES.get(normState(row.status ?? ''))
+    const interfaceState = isInterface ? normState(row.status ?? '') : null
+    const needsAudience = explicitNeedsAudience(headers, row)
     if (!isHold && !isInterface && row.status && !wiState) errors.push(`unrecognized status "${row.status}"`)
+    if (isInterface && !INTERFACE_STATES.includes(interfaceState as never)) {
+      errors.push(`interface status must be one of ${INTERFACE_STATES.join(', ')} when source status is supplied; got "${row.status}"`)
+    }
+    if (needsAudience.error) errors.push(needsAudience.error)
     if (isHold && !row.hold_cause) errors.push('hold rows require hold_cause (I-3)')
     if (isHold && row.hold_cause && !HOLD_CAUSES.includes(normState(row.hold_cause) as never)) {
       errors.push(`hold_cause must be one of ${HOLD_CAUSES.join(', ')}`)
@@ -445,6 +468,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
         sx.repo.systemUpdate('work_item', sx.projectId, existing.id, {
           statement: row.statement, needBy: row.need_by || null, state: wiState,
           ...(headers.includes('area') ? { area: row.area || null } : {}),
+          ...(needsAudience.column ? { needsAudience: needsAudience.value } : {}),
           ...(wiState === 'closed' ? { closedAt: row.closed_date ? `${row.closed_date}T00:00:00Z` : nowIso() } : {}),
         })
       }
@@ -514,7 +538,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
         raisedBy: raisedBy ?? sx.session.personId,
         raisedAt: row.raised_date ? `${row.raised_date}T00:00:00Z` : nowIso(),
         state: normState(row.status ?? '') === 'closed' ? 'resolved' : 'active',
-        log,
+        log, needsAudience: needsAudience.value,
       })
       sx.repo.insert('hold_link', {
         holdId,
@@ -530,7 +554,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
       const iid = sx.repo.insert('interface_item', {
         projectId: sx.projectId, ref: iref, title: row.statement!.slice(0, 140),
         givingParty: row.package ?? 'unknown', receivingParty: row.deliverable_ref ?? 'unknown',
-        requiredInfo: row.statement, needBy: row.need_by || null, state: 'open', log,
+        requiredInfo: row.statement, needBy: row.need_by || null, state: interfaceState, log,
       })
       importHistory(sx, 'interface_item', iid, `${iref} created from RAIL row ${row.item_id}`)
       report.accepted++
@@ -546,6 +570,7 @@ function importRail(sx: Sx, csv: string, force: boolean): ImportReport {
       statement: row.statement, kind: type === 'task' ? 'action' : type, log,
       anchorType: 'deliverable', anchorId: deliverable!.id, packageId: pkgId,
       ownerId: ownerId!, needBy: row.need_by, state: wiState, area: row.area || null,
+      needsAudience: needsAudience.value,
       ...(wiState === 'closed' ? { closedAt: row.closed_date ? `${row.closed_date}T00:00:00Z` : nowIso(), closingStatement: row.notes || null } : {}),
       createdBy: raisedBy ?? sx.session.personId,
       createdAt: row.raised_date ? `${row.raised_date}T00:00:00Z` : nowIso(),
@@ -562,6 +587,7 @@ const RAIL_V2_MAPPED = [
   'package', 'issue_no', 'discipline', 'area', 'phase', 'coa_tracking_number', 'package_type',
   'package_name', 'issue_type', 'statement', 'updates', 'responsible_party', 'status',
   'priority', 'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date',
+  ...NEEDS_AUDIENCE_COLUMNS,
 ] as const
 
 /** v2 STATUS vocabulary → work-item lifecycle state. On Hold has no work-item state:
@@ -638,9 +664,11 @@ function importRailV2(sx: Sx, csv: string, force: boolean): ImportReport {
       if (row[col] && !DATE_RE.test(row[col]!)) errors.push(`${col} must be YYYY-MM-DD, got "${row[col]}"`)
     }
     const state = isPlaceholder ? undefined : RAIL_V2_STATES.get(normState(row.status ?? '')) ?? (row.status ? undefined : 'open')
+    const needsAudience = explicitNeedsAudience(headers, row)
     if (!isPlaceholder && row.status && state === undefined) {
       errors.push(`unrecognized status "${row.status}" (template vocabulary: Not Set, Not Started, In Progress, On Hold, Complete, Cancelled)`)
     }
+    if (!isPlaceholder && needsAudience.error) errors.push(needsAudience.error)
     if (!isPlaceholder && !row.statement) errors.push('statement (issue description) is required on issue rows')
     if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
 
@@ -687,6 +715,7 @@ function importRailV2(sx: Sx, csv: string, force: boolean): ImportReport {
       kind: (row.issue_type?.toLowerCase() === 'action' ? 'action' : 'other') as WorkItem['kind'],
       needBy: row.current_target_date || row.original_target_date || null,
       priority: row.priority || null, state: state!, area: row.area || null,
+      needsAudience: needsAudience.value,
       responsibleParty: row.responsible_party || null,
       sourceIssueType: row.issue_type || null,
       sourcePayload: Object.keys(payload).length > 0 ? payload : null,
@@ -1071,13 +1100,13 @@ export function exportRegister(sx: Sx, register: string): string {
     }
     case 'rail': {
       const headers = ['item_id', 'statement', 'type', 'log', 'owner', 'need_by', 'status', 'raised_by', 'raised_date',
-        'package', 'deliverable_ref', 'hold_cause', 'closed_date', 'notes', 'anchor_status', 'area']
+        'package', 'deliverable_ref', 'hold_cause', 'closed_date', 'notes', 'anchor_status', 'area', 'needs_audience']
       const rows: Array<Array<string | null>> = []
       for (const w of snap.workItems as WorkItem[]) {
         rows.push([w.ref, w.statement ?? w.title, w.kind, w.log, personName(sx, w.ownerId), w.needBy, w.state,
           personName(sx, w.createdBy), w.createdAt.slice(0, 10),
           pkgCode(w.packageId), w.anchorType === 'deliverable' ? docNo(w.anchorId) : '', '',
-          w.closedAt?.slice(0, 10) ?? '', w.closingStatement ?? '', 'anchored', w.area ?? ''])
+          w.closedAt?.slice(0, 10) ?? '', w.closingStatement ?? '', 'anchored', w.area ?? '', w.needsAudience ?? ''])
       }
       for (const h of snap.holds as Hold[]) {
         if (h.state === 'withdrawn') continue
@@ -1086,19 +1115,19 @@ export function exportRegister(sx: Sx, register: string): string {
           : link?.targetType === 'revision' ? docNo(snap.revisions.find((r) => r.id === link.targetId)?.deliverableId ?? null) : ''
         rows.push([h.ref, h.statement ?? h.title, 'hold', h.log, personName(sx, h.ownerId), h.needBy,
           h.state === 'active' ? 'open' : 'closed', personName(sx, h.raisedBy), h.raisedAt.slice(0, 10),
-          '', anchor, h.cause, h.resolvedAt?.slice(0, 10) ?? '', h.resolutionNote ?? '', 'anchored', ''])
+          '', anchor, h.cause, h.resolvedAt?.slice(0, 10) ?? '', h.resolutionNote ?? '', 'anchored', '', h.needsAudience ?? ''])
       }
       for (const i of snap.interfaces as InterfaceItem[]) {
         if (i.state === 'cancelled' || i.state === 'closed') continue
         rows.push([i.ref, i.title, 'interface', i.log, '', i.needBy, i.state, '', '',
-          pkgCode(i.givingPackageId), '', '', '', i.requiredInfo ?? '', 'anchored', ''])
+          pkgCode(i.givingPackageId), '', '', '', i.requiredInfo ?? '', 'anchored', '', ''])
       }
       // non-converted intake rows, flagged unanchored (round-trip completeness)
       for (const t of snap.intakeItems as IntakeItem[]) {
         if (t.state === 'dispositioned') continue
         rows.push([t.ref, t.statementVerbatim, t.quickType, t.log, personName(sx, t.suggestedOwnerId), t.needBy,
           'raised', personName(sx, t.raisedBy), t.raisedAt.slice(0, 10),
-          '', t.anchorSuggestion ?? '', '', '', '', 'unanchored', t.area ?? ''])
+          '', t.anchorSuggestion ?? '', '', '', '', 'unanchored', t.area ?? '', ''])
       }
       return toCsv(headers, rows)
     }
@@ -1125,7 +1154,8 @@ export function exportRegister(sx: Sx, register: string): string {
     case 'rail-v2': {
       const base = ['package', 'issue_no', 'discipline', 'area', 'phase', 'coa_tracking_number', 'package_type',
         'package_name', 'issue_type', 'statement', 'updates', 'responsible_party', 'status',
-        'priority', 'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date']
+        'priority', 'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date',
+        'needs_audience']
       // v2 items are the package-anchored '#' refs — v1 RAIL items always anchor to a
       // deliverable, so a v1 item_id containing '#' is not swept in (review defect 6)
       const v2Items = (snap.workItems as WorkItem[]).filter((w) => w.anchorType === 'package' && w.ref.includes('#'))
@@ -1145,7 +1175,7 @@ export function exportRegister(sx: Sx, register: string): string {
           pay.phase ?? '', pay.coa_tracking_number ?? '', pkg?.packageType ?? '', pkg?.name ?? '',
           w.sourceIssueType ?? '', w.statement ?? w.title, pay.updates ?? '', w.responsibleParty ?? '',
           pay.status ?? '', w.priority ?? '', pay.assigned_date ?? '', pay.original_target_date ?? '',
-          pay.current_target_date ?? '', pay.actual_completion_date ?? '',
+          pay.current_target_date ?? '', pay.actual_completion_date ?? '', w.needsAudience ?? '',
           ...extraKeys.map((k) => pay[k] ?? '')]
       })
       return toCsv(headers, rows)

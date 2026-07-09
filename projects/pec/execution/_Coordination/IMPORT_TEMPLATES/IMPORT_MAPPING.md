@@ -274,7 +274,7 @@ sheets land verbatim in the proposal's `source_extras`.
 | Contract | v2 detection | Required | Optional (mapped) |
 |---|---|---|---|
 | `mdl` | no `doc_no`, has `package` + `deliverable_type` | package✱, deliverable_type✱ | area, project_phase, discipline, package_type, package_name, deliverable_id, target_completeness, working_status, percent_complete |
-| `rail` | no `item_id`, has `package` + `issue_no` | package✱, issue_no✱ | discipline, area, phase, coa_tracking_number, package_type, package_name, issue_type, statement, updates, responsible_party, status, priority, assigned_date, original_target_date, current_target_date, actual_completion_date |
+| `rail` | no `item_id`, has `package` + `issue_no` | package✱, issue_no✱ | discipline, area, phase, coa_tracking_number, package_type, package_name, issue_type, statement, updates, responsible_party, status, priority, assigned_date, original_target_date, current_target_date, actual_completion_date, needs_audience |
 
 Recorded mapping rules (v2):
 
@@ -307,6 +307,11 @@ Recorded mapping rules (v2):
   verbatim; `owner_id` resolves only on an exact person match, else the
   importing PE holds custody. `current_target_date` maps to `need_by`;
   verbatim status/phase/updates/CoA/dates ride `source_payload`.
+  `needs_audience` (also accepted under explicit aliases
+  `need_audience`, `needs_classification`, `internal_client`,
+  `internal_client_classification`, `client_internal`) maps only when provided
+  and must be `internal` or `client`; blank remains unclassified. The app does
+  not infer this value from text, party, log, or issue type.
 - **Caught review signals** (returned in dry-run/apply reports, persisted on
   the proposal; never coerced, never schema-blocked): `mdl-on-hold` /
   `rail-on-hold` (MDL↔RAIL consistency seeds), `phase-cancelled` (RAIL phase
@@ -320,9 +325,9 @@ Recorded mapping rules (v2):
   plus any captured verbatim payload columns (full-fidelity parity; attested
   markers round-trip as provided). Source-faithful columns emit ONLY
   verbatim-provided values — never app state tokens, the need-by fallback, or
-  app-generated closure timestamps. `deliverable_id` exports the record
-  identity (provided or derived), so feeding an export back re-imports
-  against the same identity.
+  app-generated closure timestamps. `needs_audience` round-trips when
+  explicitly imported. `deliverable_id` exports the record identity (provided
+  or derived), so feeding an export back re-imports against the same identity.
 - **Fix-forward pins (adversarial review 2026-07-09)**: multiline cell values
   survive the workbook→CSV→mapping path intact (quote-aware record
   splitting); MDL `area`/`package_name`/`package_type` are dual-captured

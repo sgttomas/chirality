@@ -71,7 +71,7 @@ export function workItem(over: Partial<WorkItem> = {}): WorkItem {
     needBy: null, priority: null, priorityProvenance: null, state: 'open',
     committedWeek: null, commitSource: null,
     sourceType: null, sourceId: null, closingStatement: null, closedBy: null, closedAt: null,
-    cancelReason: null, area: null, responsibleParty: null, sourceIssueType: null, sourcePayload: null,
+    cancelReason: null, area: null, needsAudience: null, responsibleParty: null, sourceIssueType: null, sourcePayload: null,
     createdBy: 1, createdAt: '2026-07-01T00:00:00Z', version: 1, ...over,
   }
 }
@@ -82,7 +82,7 @@ export function hold(over: Partial<Hold> = {}): Hold {
     id: n, projectId: 1, ref: `HLD-${n}`, title: 'Hold', cause: 'information', statement: null,
     ownerId: 1, needBy: null, raisedBy: 1, raisedAt: '2026-07-10T00:00:00Z', state: 'active',
     resolutionKind: null, resolutionNote: null, resolvedAt: null, resolvingRefType: null,
-    resolvingRefId: null, log: 'internal', version: 1, ...over,
+    resolvingRefId: null, log: 'internal', needsAudience: null, version: 1, ...over,
   }
 }
 

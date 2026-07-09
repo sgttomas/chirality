@@ -922,3 +922,10 @@
   - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
   - Merge direction: PR #130 merge approved; merge executes after this ruling-accounting commit is pushed and harness is green.
   - Gate outcome after merge: source execution authorized for D-PEC-43/44/46/47/48 inside their ruled fences; D-PEC-49 awaits owner ruling; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.
+
+- **2026-07-09 — Receipt 87** (first source tranche from D-PEC-46/47/48 plus D-PEC-43 status correction).
+  - Start: `b66c3f925` (`origin/main` after PR #130 merge) -> branch `codex/pec-reporting-rulings-impl`; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.
+  - Executed pointers: D-PEC-48 client-facing vocabulary in reports/package views (`issues` = holds + risks + action items; decisions and interfaces segregated; operational cockpit rows preserved); D-PEC-47 nullable explicit `needs_audience` model/import/export/report split (`internal` / `client` / unclassified, no in-app triage path); D-PEC-46 O-B report-only `CONSIST-MDL-RAIL-HOLD` weekly-report output (no intake/review/disposition records); D-PEC-43 correction that v1 RAIL interface imports accept only an explicit source status matching the existing interface-state vocabulary rather than inventing `open`.
+  - Not executed in this tranche: D-PEC-43 full interfaces workbook contract, D-PEC-44 `.docx` generation, D-PEC-49 week-over-week progress (awaiting ruling), D-PEC-46 disposition trail (reserved later), D-PEC-47 in-app triage (not authorized).
+  - Basis docs updated: `REPORT_BASIS.md` and `IMPORT_MAPPING.md` now record the vocabulary split, explicit needs-audience mapping/round-trip, and report-only consistency check.
+  - Checks: typecheck clean for core/server/web; targeted server tests for standard reports, import-v2, registers, and issue orientation passed. Full belt-and-braces and PR/harness checks run before merge.
