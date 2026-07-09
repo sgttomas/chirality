@@ -105,7 +105,7 @@ except under O-B; any professional or go-live claim.
 - `projects/pec/web/src/shared.tsx`
 - `projects/pec/web/src/styles.css`
 - `projects/pec/server/src/services/views.ts`
-- `projects/pec/server/test/coverage-reporting-foundation.test.ts` (new)
+- one new server test file matching `projects/pec/server/test/coverage-reporting-*.test.ts` (house `coverage-*` naming; exact name fixed at execution — glob per the coord-check future-ref precedent)
 
 O-B additionally adds `projects/pec/web/src/pages/Plan.tsx`. No
 `server/src/api.ts` (finding in item 6), no `core/**`, no database files, no
