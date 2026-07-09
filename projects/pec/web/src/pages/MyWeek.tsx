@@ -273,104 +273,108 @@ function WorkItemDrawer({ id, week, onClose }: { id: number; week: string; onClo
 
   const w = data?.workItem
   return (
-    <Drawer
-      title={w ? <><span className="mono">{w.ref}</span> {w.title}</> : `work item #${id}`}
-      onClose={onClose}
-    >
-      {error && <ErrorBox error={{ message: error }} />}
-      {!data && !error && <p className="muted">loading…</p>}
-      {data && (
-        <>
-          <p>
-            <StateTag s={w.state} />{' '}
-            <span className="small muted">
-              anchor {String(w.anchorType).replaceAll('_', ' ')} #{w.anchorId}
-              {' '}· owner {person(w.ownerId)}
-              {' '}· priority {w.priority ?? '—'}{w.priorityProvenance ? ` (${w.priorityProvenance})` : ''}
-              {' '}· need-by {fmtDate(w.needBy)}
-            </span>
-          </p>
-          {w.statement && <p className="small">{w.statement}</p>}
+    <>
+      <Drawer
+        title={w ? <><span className="mono">{w.ref}</span> {w.title}</> : `work item #${id}`}
+        onClose={() => {
+          if (!transitionEvent) onClose()
+        }}
+      >
+        {error && <ErrorBox error={{ message: error }} />}
+        {!data && !error && <p className="muted">loading…</p>}
+        {data && (
+          <>
+            <p>
+              <StateTag s={w.state} />{' '}
+              <span className="small muted">
+                anchor {String(w.anchorType).replaceAll('_', ' ')} #{w.anchorId}
+                {' '}· owner {person(w.ownerId)}
+                {' '}· priority {w.priority ?? '—'}{w.priorityProvenance ? ` (${w.priorityProvenance})` : ''}
+                {' '}· need-by {fmtDate(w.needBy)}
+              </span>
+            </p>
+            {w.statement && <p className="small">{w.statement}</p>}
 
-          {/* Actions without navigation (PEC-MW-004): server-offered transitions only */}
-          <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap' }}>
-            {data.offeredTransitions.map((ev: string) => (
-              <button key={ev} disabled={busy}
-                className={`btn small ${ev === 'cancel' ? 'danger' : ev === 'close' ? '' : 'secondary'}`}
-                onClick={() => setTransitionEvent(ev)}>
-                {ev}
-              </button>
-            ))}
-            {/* PEC-MW-007: manual commit toggle */}
-            <button className="btn secondary small" disabled={busy} onClick={toggleCommit}>
-              {w.committedWeek === week ? `uncommit from ${week}` : `commit to ${week}`}
-            </button>
-          </div>
-          {w.committedWeek && w.committedWeek !== week && (
-            <p className="small muted">committed week: {w.committedWeek}</p>
-          )}
-          <div style={{ marginTop: '.5rem' }}>
-            <ErrorBox error={actionError} />
-          </div>
-
-          {data.blockedBy.length > 0 && (
-            <>
-              <h2>Blocked by</h2>
-              {data.blockedBy.map((h: any) => (
-                <div key={h.ref} className="cond blocked_by_hold">
-                  <span className="badge hold">hold</span>{' '}
-                  <span className="mono">{h.ref}</span> {h.title}{' '}
-                  <span className="muted small">
-                    ({String(h.cause).replaceAll('_', ' ')}, owner {person(h.ownerId)}, need-by {fmtDate(h.needBy)})
-                  </span>
-                </div>
+            {/* Actions without navigation (PEC-MW-004): server-offered transitions only */}
+            <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap' }}>
+              {data.offeredTransitions.map((ev: string) => (
+                <button key={ev} disabled={busy}
+                  className={`btn small ${ev === 'cancel' ? 'danger' : ev === 'close' ? '' : 'secondary'}`}
+                  onClick={() => setTransitionEvent(ev)}>
+                  {ev}
+                </button>
               ))}
-            </>
-          )}
-
-          <ConditionsPanel ex={data.closureConditions} title="Closure conditions" />
-
-          <h2>Progress</h2>
-          <form className="row" onSubmit={addProgress}>
-            <input value={note} onChange={(e) => setNote(e.target.value)}
-              placeholder="progress note — becomes history + evidence trail (PEC-DEL-005)"
-              style={{ font: 'inherit', padding: '.38rem .5rem', border: '1px solid var(--line)', borderRadius: 4 }} />
-            <button className="btn small" disabled={busy || !note.trim()} style={{ flex: 'none' }}>Add note</button>
-          </form>
-
-          <h2>Evidence</h2>
-          {data.evidence.length === 0 && <p className="muted small">none attached</p>}
-          {data.evidence.map((ev: any) => (
-            <div key={ev.id} className="small">
-              <span className="state">{ev.kind}</span> <b>{ev.label}</b>
-              {ev.content && <span className="muted"> — {ev.content}</span>}
-              <span className="muted"> · {person(ev.addedBy)} {fmtDate(ev.addedAt)}</span>
+              {/* PEC-MW-007: manual commit toggle */}
+              <button className="btn secondary small" disabled={busy} onClick={toggleCommit}>
+                {w.committedWeek === week ? `uncommit from ${week}` : `commit to ${week}`}
+              </button>
             </div>
-          ))}
-          <form className="row" style={{ marginTop: '.4rem' }} onSubmit={addEvidence}>
-            <input value={evLabel} onChange={(e) => setEvLabel(e.target.value)} placeholder="label *"
-              style={{ font: 'inherit', padding: '.38rem .5rem', border: '1px solid var(--line)', borderRadius: 4 }} />
-            <input value={evContent} onChange={(e) => setEvContent(e.target.value)} placeholder="content / reference"
-              style={{ font: 'inherit', padding: '.38rem .5rem', border: '1px solid var(--line)', borderRadius: 4 }} />
-            <button className="btn small" disabled={busy || !evLabel.trim()} style={{ flex: 'none' }}>Attach</button>
-          </form>
+            {w.committedWeek && w.committedWeek !== week && (
+              <p className="small muted">committed week: {w.committedWeek}</p>
+            )}
+            <div style={{ marginTop: '.5rem' }}>
+              <ErrorBox error={actionError} />
+            </div>
 
-          <h2>History</h2>
-          <HistoryTrail entries={data.history} />
-          {transitionEvent && (
-            <WorkItemTransitionDrawer
-              item={w}
-              event={transitionEvent}
-              onClose={() => setTransitionEvent(null)}
-              onDone={() => {
-                setTransitionEvent(null)
-                refresh()
-              }}
-            />
-          )}
-        </>
+            {data.blockedBy.length > 0 && (
+              <>
+                <h2>Blocked by</h2>
+                {data.blockedBy.map((h: any) => (
+                  <div key={h.ref} className="cond blocked_by_hold">
+                    <span className="badge hold">hold</span>{' '}
+                    <span className="mono">{h.ref}</span> {h.title}{' '}
+                    <span className="muted small">
+                      ({String(h.cause).replaceAll('_', ' ')}, owner {person(h.ownerId)}, need-by {fmtDate(h.needBy)})
+                    </span>
+                  </div>
+                ))}
+              </>
+            )}
+
+            <ConditionsPanel ex={data.closureConditions} title="Closure conditions" />
+
+            <h2>Progress</h2>
+            <form className="row" onSubmit={addProgress}>
+              <input value={note} onChange={(e) => setNote(e.target.value)}
+                placeholder="progress note — becomes history + evidence trail (PEC-DEL-005)"
+                style={{ font: 'inherit', padding: '.38rem .5rem', border: '1px solid var(--line)', borderRadius: 4 }} />
+              <button className="btn small" disabled={busy || !note.trim()} style={{ flex: 'none' }}>Add note</button>
+            </form>
+
+            <h2>Evidence</h2>
+            {data.evidence.length === 0 && <p className="muted small">none attached</p>}
+            {data.evidence.map((ev: any) => (
+              <div key={ev.id} className="small">
+                <span className="state">{ev.kind}</span> <b>{ev.label}</b>
+                {ev.content && <span className="muted"> — {ev.content}</span>}
+                <span className="muted"> · {person(ev.addedBy)} {fmtDate(ev.addedAt)}</span>
+              </div>
+            ))}
+            <form className="row" style={{ marginTop: '.4rem' }} onSubmit={addEvidence}>
+              <input value={evLabel} onChange={(e) => setEvLabel(e.target.value)} placeholder="label *"
+                style={{ font: 'inherit', padding: '.38rem .5rem', border: '1px solid var(--line)', borderRadius: 4 }} />
+              <input value={evContent} onChange={(e) => setEvContent(e.target.value)} placeholder="content / reference"
+                style={{ font: 'inherit', padding: '.38rem .5rem', border: '1px solid var(--line)', borderRadius: 4 }} />
+              <button className="btn small" disabled={busy || !evLabel.trim()} style={{ flex: 'none' }}>Attach</button>
+            </form>
+
+            <h2>History</h2>
+            <HistoryTrail entries={data.history} />
+          </>
+        )}
+      </Drawer>
+      {transitionEvent && w && (
+        <WorkItemTransitionDrawer
+          item={w}
+          event={transitionEvent}
+          onClose={() => setTransitionEvent(null)}
+          onDone={() => {
+            setTransitionEvent(null)
+            refresh()
+          }}
+        />
       )}
-    </Drawer>
+    </>
   )
 }
 

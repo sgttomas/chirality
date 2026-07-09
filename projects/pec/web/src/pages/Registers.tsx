@@ -1012,6 +1012,8 @@ function TrackerTab(): JSX.Element {
 function ScheduleTab(): JSX.Element {
   const { pid } = useApp()
   const { data, error } = useLoad(() => api.get(p(pid, 'schedule')), [pid])
+  // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
+  usePublishScreenContext(((data ?? []) as any[]).map((r) => ({ recordType: 'schedule_activity', ref: r.activityId, id: r.id })))
   const hl = useHighlightRef()
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
@@ -1035,7 +1037,12 @@ function ScheduleTab(): JSX.Element {
       key: 'pct', label: '% done', csv: (r) => r.percentComplete,
       render: (r) => r.percentComplete != null ? <span className="mono">{r.percentComplete}%</span> : <span className="muted">—</span>,
     },
-    { key: 'package', label: 'Package', render: (r) => r.package ? <span className="mono">{r.package}</span> : <span className="muted small">—</span>, csv: (r) => r.package ?? '' },
+    {
+      key: 'package', label: 'Package', render: (r) => r.package && r.packageId
+        ? <RecordRef recordType="package" id={r.packageId} recordRef={r.package} />
+        : <span className="muted small">—</span>,
+      csv: (r) => r.package ?? '',
+    },
   ]
 
   return (

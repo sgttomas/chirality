@@ -1,5 +1,5 @@
-import { projectStatus, workflowCompleteness } from '@pec/core'
-import type { ContributingRef, Deliverable, ProjectSnapshot } from '@pec/core'
+import { projectStatus, visibleLogs, workflowCompleteness } from '@pec/core'
+import type { ContributingRef, Deliverable, Explain, Log, ProjectSnapshot } from '@pec/core'
 import { badRequest } from '../errors.ts'
 import type { Sx } from '../services/shared.ts'
 
@@ -41,6 +41,40 @@ function deliverableRefs(rows: Deliverable[], why: string): ContributingRef[] {
   return rows.map((d) => ref('deliverable', d.id, d.docNo, why))
 }
 
+function logsFor(sx: Sx, snap: ProjectSnapshot): Log[] {
+  return visibleLogs(sx.roles, snap.project.config.logVisibility)
+}
+
+function visibleByLog<T extends { log: Log }>(sx: Sx, snap: ProjectSnapshot, rows: T[]): T[] {
+  const logs = logsFor(sx, snap)
+  if (logs.length === 3) return rows
+  return rows.filter((r) => logs.includes(r.log))
+}
+
+function redactRefs(sx: Sx, snap: ProjectSnapshot, refs: ContributingRef[]): ContributingRef[] {
+  const logs = logsFor(sx, snap)
+  if (logs.length === 3) return refs
+  const holder = (rt: string, id: number): { log?: Log } | undefined => {
+    switch (rt) {
+      case 'work_item': return snap.workItems.find((x) => x.id === id)
+      case 'hold': return snap.holds.find((x) => x.id === id)
+      case 'intake_item': return snap.intakeItems.find((x) => x.id === id)
+      case 'interface_item': return snap.interfaces.find((x) => x.id === id)
+      case 'decision': return snap.decisions.find((x) => x.id === id)
+      case 'review_comment': return snap.reviewComments.find((x) => x.id === id)
+      default: return undefined
+    }
+  }
+  return refs.map((c) => {
+    const rec = holder(c.recordType, c.id)
+    return rec?.log && !logs.includes(rec.log) ? { ...c, why: '[restricted log]' } : c
+  })
+}
+
+function redact<T>(sx: Sx, snap: ProjectSnapshot, explain: Explain<T>): Explain<T> {
+  return { ...explain, contributing: redactRefs(sx, snap, explain.contributing) }
+}
+
 const baseAbsent = [
   {
     figure: 'issued this period',
@@ -59,7 +93,7 @@ const baseAbsent = [
   },
 ]
 
-function issueCountsForPackage(snap: ProjectSnapshot, packageId: number): {
+function issueCountsForPackage(sx: Sx, snap: ProjectSnapshot, packageId: number): {
   holds: number
   decisions: number
   risks: number
@@ -68,17 +102,22 @@ function issueCountsForPackage(snap: ProjectSnapshot, packageId: number): {
 } {
   const deliverableIds = new Set(snap.deliverables.filter((d) => d.packageId === packageId).map((d) => d.id))
   const revisionIds = new Set(snap.revisions.filter((r) => deliverableIds.has(r.deliverableId)).map((r) => r.id))
-  const workIds = new Set(snap.workItems.filter((w) => w.packageId === packageId || deliverableIds.has(w.anchorId)).map((w) => w.id))
-  const holds = snap.holds.filter((h) => h.state === 'active'
+  const workIds = new Set(visibleByLog(sx, snap, snap.workItems)
+    .filter((w) => w.packageId === packageId
+      || (w.anchorType === 'deliverable' && deliverableIds.has(w.anchorId))
+      || (w.anchorType === 'revision' && revisionIds.has(w.anchorId)))
+    .map((w) => w.id))
+  const holds = visibleByLog(sx, snap, snap.holds).filter((h) => h.state === 'active'
     && snap.holdLinks.some((l) =>
-      (l.targetType === 'deliverable' && deliverableIds.has(l.targetId))
+      l.holdId === h.id && (
+        (l.targetType === 'deliverable' && deliverableIds.has(l.targetId))
       || (l.targetType === 'revision' && revisionIds.has(l.targetId))
-      || (l.targetType === 'work_item' && workIds.has(l.targetId))))
-  const decisions = snap.decisions.filter((d) => d.packageId === packageId
+      || (l.targetType === 'work_item' && workIds.has(l.targetId)))))
+  const decisions = visibleByLog(sx, snap, snap.decisions).filter((d) => d.packageId === packageId
     && d.state !== 'decided' && d.state !== 'superseded')
   const risks = snap.risks.filter((r) => (r.packageId === packageId || (r.deliverableId != null && deliverableIds.has(r.deliverableId)))
     && r.state !== 'closed')
-  const actions = snap.workItems.filter((w) => w.packageId === packageId
+  const actions = visibleByLog(sx, snap, snap.workItems).filter((w) => w.packageId === packageId
     && (w.state === 'open' || w.state === 'in_work'))
   return {
     holds: holds.length,
@@ -97,14 +136,21 @@ function issueCountsForPackage(snap: ProjectSnapshot, packageId: number): {
 function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
   const snap = sx.repo.snapshot(sx.projectId)
   const status = projectStatus(snap)
-  const activeHolds = snap.holds.filter((h) => h.state === 'active')
+  const activeHolds = visibleByLog(sx, snap, snap.holds).filter((h) => h.state === 'active')
   const openRisks = snap.risks.filter((r) => r.state !== 'closed')
-  const openActions = snap.workItems.filter((w) => w.state === 'open' || w.state === 'in_work')
-  const openDecisions = snap.decisions.filter((d) => d.state !== 'decided' && d.state !== 'superseded')
+  const openActions = visibleByLog(sx, snap, snap.workItems).filter((w) => w.state === 'open' || w.state === 'in_work')
+  const openDecisions = visibleByLog(sx, snap, snap.decisions).filter((d) => d.state !== 'decided' && d.state !== 'superseded')
+  const kpis = {
+    pctOnPlan: redact(sx, snap, status.kpis.pctOnPlan),
+    holdsByCause: redact(sx, snap, status.kpis.holdsByCause),
+    openDecisions: redact(sx, snap, status.kpis.openDecisions),
+    approvalsInFlight: redact(sx, snap, status.kpis.approvalsInFlight),
+    scheduleForecastWd: redact(sx, snap, status.kpis.scheduleForecastWd),
+  }
   const groups = groupBy === 'package'
     ? snap.packages.map((pkg) => {
       const deliverables = snap.deliverables.filter((d) => d.packageId === pkg.id)
-      const issues = issueCountsForPackage(snap, pkg.id)
+      const issues = issueCountsForPackage(sx, snap, pkg.id)
       return {
         key: pkg.code,
         label: `${pkg.code} - ${pkg.name}`,
@@ -122,7 +168,7 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
         activities: deliverables.filter((d) => workflowCompleteness(snap, d).currentState !== 'issued')
           .map((d) => ({ docNo: d.docNo, title: d.title, type: d.deliverableType, workflow: workflowCompleteness(snap, d).label })),
         issues: {
-          holds: activeHolds.filter((h) => snap.holdLinks.some((l) => l.targetType === 'deliverable' && delIds.has(l.targetId))).length,
+          holds: activeHolds.filter((h) => snap.holdLinks.some((l) => l.holdId === h.id && l.targetType === 'deliverable' && delIds.has(l.targetId))).length,
           decisions: openDecisions.filter((d) => d.packageId != null
             && snap.deliverables.some((del) => del.packageId === d.packageId && delIds.has(del.id))).length,
           risks: openRisks.filter((r) => r.deliverableId != null && delIds.has(r.deliverableId)).length,
@@ -133,8 +179,8 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
     })
   const sections = {
     groupBy,
-    projectHealth: status.health,
-    kpis: status.kpis,
+    projectHealth: redact(sx, snap, status.health),
+    kpis,
     groups,
     totals: {
       deliverables: snap.deliverables.length,
@@ -149,7 +195,7 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
     title: `Weekly project status (${groupBy})`,
     generatedForProject: projectInfo(snap),
     basis: [
-      { route: `/api/projects/${sx.projectId}/overview`, source: 'projectStatus(snap)', ruleId: status.health.ruleId, contributing: status.health.contributing },
+      { route: `/api/projects/${sx.projectId}/overview`, source: 'projectStatus(snap)', ruleId: status.health.ruleId, contributing: redactRefs(sx, snap, status.health.contributing) },
       { route: `/api/projects/${sx.projectId}/log-summary`, source: 'active holds/actions/risks from project snapshot', contributing: [
         ...activeHolds.map((h) => ref('hold', h.id, h.ref, 'active hold counted in weekly status')),
         ...openRisks.map((r) => ref('risk', r.id, r.ref, 'open risk counted in weekly status')),
@@ -170,7 +216,7 @@ function weeklyProjectStatus(sx: Sx, groupBy: WeeklyGroupBy): StandardReport {
 
 function packageIssueSummary(sx: Sx): StandardReport {
   const snap = sx.repo.snapshot(sx.projectId)
-  const rows = snap.packages.map((pkg) => ({ package: { id: pkg.id, code: pkg.code, name: pkg.name }, ...issueCountsForPackage(snap, pkg.id) }))
+  const rows = snap.packages.map((pkg) => ({ package: { id: pkg.id, code: pkg.code, name: pkg.name }, ...issueCountsForPackage(sx, snap, pkg.id) }))
   return {
     name: 'package-issue-summary',
     title: 'Package issue summary',
