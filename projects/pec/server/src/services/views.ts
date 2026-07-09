@@ -455,6 +455,8 @@ export function deliverablesView(sx: Sx, f: DeliverableFilters): unknown {
     revCode: rev?.revCode ?? null,
     state: rev?.state ?? 'no_revision', dueDate: d.dueDate, milestone: d.milestone,
     dcRef: d.dcRef, area: pkgById.get(d.packageId)?.area ?? null, workflow,
+    // D-PEC-41 read-side surfacing: PE-attested values, display-only (reconciliation 1)
+    percentComplete: d.percentComplete, percentCompleteVerbatim: d.percentCompleteVerbatim,
   }))
 }
 
@@ -1046,6 +1048,8 @@ export function disciplineDetailView(sx: Sx, discipline: string, periodStart?: s
     deliverables: inWork.filter((d) => (d.deliverableType ?? 'unspecified') === type).map((d) => ({
       id: d.id, docNo: d.docNo, title: d.title, ownerId: d.ownerId, dueDate: d.dueDate,
       workflow: workflowCompleteness(snap, d),
+      // D-PEC-41 read-side surfacing: PE-attested values, display-only (reconciliation 1)
+      percentComplete: d.percentComplete, percentCompleteVerbatim: d.percentCompleteVerbatim,
     })),
   }))
 

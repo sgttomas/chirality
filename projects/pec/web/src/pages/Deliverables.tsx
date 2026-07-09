@@ -70,6 +70,8 @@ export function DeliverablesPage(): JSX.Element {
     { key: 'owner', label: 'Owner', render: (r) => <span className="small">{person(r.ownerId)}</span> },
     { key: 'rev', label: 'Rev', render: (r) => <span className="mono">{r.revCode ?? '—'}</span>, csv: (r) => r.revCode ?? '' },
     { key: 'status', label: 'Status (workflow)', render: (r) => <WorkflowStages workflow={r.workflow} />, csv: (r) => `${r.workflow.label} (${r.workflow.gatesClosed}/${r.workflow.gatesTotal})` },
+    // D-PEC-45: PE-attested % (contract v2 import), display-only; markers verbatim; blank when unattested
+    { key: 'pct', label: '% complete', render: (r) => <span className="nowrap">{r.percentComplete != null ? `${r.percentComplete}%` : r.percentCompleteVerbatim ?? '—'}</span>, csv: (r) => r.percentComplete ?? r.percentCompleteVerbatim ?? '' },
     { key: 'due', label: 'Due', render: (r) => <span className="nowrap">{fmtDate(r.dueDate)}</span> },
     { key: 'milestone', label: 'Milestone', render: (r) => r.milestone ?? '—' },
   ]

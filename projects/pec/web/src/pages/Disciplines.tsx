@@ -135,6 +135,7 @@ export function DisciplineDetailPage(): JSX.Element {
         <KpiCard label="open needs" value={band.openNeeds!.value} explain={band.openNeeds as any} />
         <KpiCard label="oldest need (wd)" value={band.needsAging!.value} explain={band.needsAging as any} />
         <KpiCard label="open risks" value={band.openRisks!.value} explain={band.openRisks as any} />
+        {band.percentComplete && <KpiCard label="% complete (attested)" value={`${band.percentComplete.value}%`} explain={band.percentComplete as any} />}
         {band.issuedInPeriod && <KpiCard label="issued this period" value={band.issuedInPeriod.value} explain={band.issuedInPeriod as any} />}
         {band.issuanceDelta && <KpiCard label="issuance delta" value={`${band.issuanceDelta.value >= 0 ? '+' : ''}${band.issuanceDelta.value}`} explain={band.issuanceDelta as any} />}
       </div>
@@ -161,6 +162,8 @@ export function DisciplineDetailPage(): JSX.Element {
               { key: 'title', label: 'Title', render: (r: any) => r.title },
               { key: 'owner', label: 'Owner', render: (r: any) => <span className="small">{person(r.ownerId)}</span>, csv: (r: any) => person(r.ownerId) },
               { key: 'workflow', label: 'Workflow', render: (r: any) => <WorkflowStages workflow={r.workflow} />, csv: (r: any) => r.workflow.label },
+              // D-PEC-45: PE-attested % (contract v2 import), display-only; markers verbatim
+              { key: 'pct', label: '% complete', render: (r: any) => <span className="nowrap">{r.percentComplete != null ? `${r.percentComplete}%` : r.percentCompleteVerbatim ?? '—'}</span>, csv: (r: any) => r.percentComplete ?? r.percentCompleteVerbatim ?? '' },
               { key: 'due', label: 'Due', render: (r: any) => <span className="nowrap">{fmtDate(r.dueDate)}</span>, csv: (r: any) => r.dueDate },
             ] as Array<Col<any>>}
             rows={g.deliverables}

@@ -1,6 +1,6 @@
 # D-PEC-45 - PROPOSAL: % complete display (deliverables + discipline tile)
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-45
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -48,5 +48,16 @@ Single revert.
 
 ## Human ruling
 
-**OPEN — decision is the owner's (K-AUTH-1).** Rule O-A (both surfaces) /
-O-B (discipline tile only) / O-C (defer).
+**RULED: O-A** (owner launcher steer 2026-07-09, Ryan Tufts, verbatim): "I
+ruled O-A on D-PEC-45. The work was mostly implemented but not tested before
+it was interrupted. Resume and complete this. You can commit and merge the PR
+when you're done, on this authority I'm giving you now."
+
+**Execution note (fence delta, recorded per live-tree-wins):** this packet's
+"already-served" premise was wrong for the per-deliverable rows —
+`deliverablesView` and `disciplineDetailView` did not emit
+`percentComplete`/`percentCompleteVerbatim`. The 4-line read-side additions in
+`server/src/services/views.ts` execute under the **D-PEC-41 O-A fence**
+(`server/src/**` "read-side only where v2 fields must surface in existing
+explain/report payloads"), not this packet's `web/src/**` fence. The DISC-PCT
+band tile was already served as the packet stated.
