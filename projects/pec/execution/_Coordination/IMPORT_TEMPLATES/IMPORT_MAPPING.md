@@ -263,7 +263,7 @@ capture rules).
 ## §contract-v2 — MDL/RAIL v2 from the owner's revised TWD templates (2026-07-09, D-PEC-41 O-A)
 
 The revised templates (owner-provided 2026-07-09; structure of record in
-`_DECISIONS/D-PEC-41_mdl_rail_contract_v2.md`) have no `doc_no`/`item_id`.
+`../_DECISIONS/D-PEC-41_mdl_rail_contract_v2.md`) have no `doc_no`/`item_id`.
 Both v2 shapes ride the SAME contract ids (`mdl`, `rail`); the importer
 detects the shape from the header set. v1 files keep working unchanged.
 Owner fidelity direction (Receipt 75, verbatim in the packet): every provided
