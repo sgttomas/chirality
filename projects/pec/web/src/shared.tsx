@@ -410,7 +410,16 @@ export function RegisterTable<T>({ cols, rows, exportName, onRowClick, highlight
             const cls = [onRowClick ? 'clickable' : '', hit ? 'row-flash' : ''].filter(Boolean).join(' ')
             return (
               <tr key={i} ref={hit ? flashRow : undefined} className={cls || undefined}
-                onClick={onRowClick ? () => onRowClick(r) : undefined}>
+                role={onRowClick ? 'button' : undefined}
+                tabIndex={onRowClick ? 0 : undefined}
+                onClick={onRowClick ? () => onRowClick(r) : undefined}
+                onKeyDown={onRowClick ? (e) => {
+                  if (e.target !== e.currentTarget) return
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    onRowClick(r)
+                  }
+                } : undefined}>
                 {cols.map((c) => <td key={c.key}>{c.render(r)}</td>)}
               </tr>
             )

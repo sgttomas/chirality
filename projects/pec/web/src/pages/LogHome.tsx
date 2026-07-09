@@ -65,11 +65,12 @@ function OpenItemsTab(): JSX.Element {
   const [log, setLog] = useState('')
   const [type, setType] = useState('')
   const [area, setArea] = useState('')
+  const [packageId, setPackageId] = useState('')
   const [owner, setOwner] = useState('')
   const [cause, setCause] = useState('')
   const [overdue, setOverdue] = useState(false)
   const [anchored, setAnchored] = useState('')
-  const [groupBy, setGroupBy] = useState<'none' | 'type' | 'owner'>('none')
+  const [groupBy, setGroupBy] = useState<'none' | 'type' | 'owner' | 'package' | 'cause'>('none')
 
   // PEC-AHL-001: the union of open work items, active holds, open interfaces, and
   // untriaged intake items is composed server-side; filters are query params only.
@@ -78,14 +79,16 @@ function OpenItemsTab(): JSX.Element {
     if (log) q.set('log', log)
     if (type) q.set('type', type)
     if (area) q.set('area', area)
+    if (packageId) q.set('package', packageId)
     if (owner) q.set('owner', owner)
     if (cause) q.set('cause', cause)
     if (overdue) q.set('overdue', 'true')
     if (anchored) q.set('anchored', anchored)
     return q.toString()
-  }, [log, type, area, owner, cause, overdue, anchored])
+  }, [log, type, area, packageId, owner, cause, overdue, anchored])
   const { data, error } = useLoad<LogRow[]>(() => api.get(p(pid, qs ? `log?${qs}` : 'log')), [pid, qs])
   const { data: summary } = useLoad<any>(() => api.get(p(pid, 'log-summary')), [pid])
+  const { data: packages } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
   // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
   usePublishScreenContext((data ?? []).map((r) => ({ recordType: r.recordType, ref: r.ref, id: r.id })))
   const hl = useHighlightRef()
@@ -122,10 +125,19 @@ function OpenItemsTab(): JSX.Element {
   ]
 
   const rows = data ?? []
+  const pkgLabel = (id: number | null): string => {
+    const pkg = packages?.find((pp) => pp.id === id)
+    return pkg ? pkg.code : id == null ? 'No package' : `Package #${id}`
+  }
+  const csvName = (label: string): string =>
+    `action-hold-log-${groupBy}-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'group'}.csv`
   const grouped = groupBy === 'none'
     ? [['', rows] as const]
     : Object.entries(rows.reduce<Record<string, LogRow[]>>((acc, row) => {
-      const key = groupBy === 'type' ? row.recordType : person(row.ownerId)
+      const key = groupBy === 'type' ? row.recordType
+        : groupBy === 'owner' ? person(row.ownerId)
+          : groupBy === 'package' ? pkgLabel(row.packageId)
+            : row.holdCause?.replaceAll('_', ' ') ?? 'No hold cause'
       ;(acc[key] ??= []).push(row)
       return acc
     }, {}))
@@ -140,10 +152,25 @@ function OpenItemsTab(): JSX.Element {
         <div className="cards">
           <KpiCard label="open issue rows" value={summary.total.value} explain={summary.total} />
           <KpiCard label="overdue rows" value={summary.overdue.value} explain={summary.overdue} />
-          <KpiCard label="untriaged intake" value={summary.untriagedIntake.value} explain={summary.untriagedIntake} />
+          <KpiCard
+            label="open by type"
+            value={Object.entries(summary.byType.value).map(([k, n]) => `${k.replace('_item', '')} ${n}`).join(' · ')}
+            explain={summary.byType}
+          />
+          <KpiCard
+            label="untriaged intake"
+            value={summary.untriagedIntake.value.count}
+            explain={summary.untriagedIntake}
+          />
+          <KpiCard label="older than 5 wd" value={summary.agingBuckets.value.gt5} explain={summary.agingBuckets} />
+          <KpiCard
+            label="holds by cause"
+            value={Object.entries(summary.holdsByCause.value).length}
+            explain={summary.holdsByCause}
+          />
           <div className="card kpi" style={{ cursor: 'default' }}>
-            <b>{summary.agingBuckets.value.gt5}</b>
-            <span>older than 5 wd</span>
+            <b>{summary.untriagedIntake.value.oldestWd ?? '—'}</b>
+            <span>oldest untriaged wd</span>
             <div className="small muted" style={{ marginTop: '.25rem' }}>
               {summary.agingBuckets.value.le2} &lt;=2 · {summary.agingBuckets.value.d3to5} 3-5 · {summary.agingBuckets.value.absent} age absent
             </div>
@@ -168,6 +195,10 @@ function OpenItemsTab(): JSX.Element {
           <option value="risk">risk</option>
         </select>
         <input placeholder="area" value={area} onChange={(e) => setArea(e.target.value)} />
+        <select value={packageId} onChange={(e) => setPackageId(e.target.value)}>
+          <option value="">any package</option>
+          {(packages ?? []).map((pkg) => <option key={pkg.id} value={pkg.id}>{pkg.code}</option>)}
+        </select>
         <select value={owner} onChange={(e) => setOwner(e.target.value)}>
           <option value="">any owner</option>
           {people.map((pp) => <option key={pp.id} value={pp.id}>{pp.name}</option>)}
@@ -188,6 +219,8 @@ function OpenItemsTab(): JSX.Element {
           <option value="none">no grouping</option>
           <option value="type">group by type</option>
           <option value="owner">group by owner</option>
+          <option value="package">group by package</option>
+          <option value="cause">group by hold cause</option>
         </select>
       </div>
       <p className="section-note">
@@ -199,7 +232,7 @@ function OpenItemsTab(): JSX.Element {
       {data && grouped.map(([label, group]) => (
         <div key={label || 'all'}>
           {label && <h3>{label} <span className="muted small">({group.length})</span></h3>}
-          <RegisterTable cols={cols} rows={group} exportName={label ? undefined : 'action-hold-log.csv'}
+          <RegisterTable cols={cols} rows={group} exportName={label ? csvName(label) : 'action-hold-log.csv'}
             highlightRef={hl} rowRef={(r) => r.ref} />
         </div>
       ))}
@@ -441,7 +474,7 @@ function TriageDrawer({ item, others, onClose }: {
   return (
     <Drawer title={`Triage ${item.ref}`} onClose={onClose}>
       {/* OM-3: the concern as raised stays visible verbatim while building records */}
-      <div className="card" style={{ marginBottom: '.7rem', background: '#fbfcfd' }}>
+      <div className="card" style={{ marginBottom: '.7rem', background: 'var(--surface-subtle)' }}>
         <div className="small muted">
           {item.quickType.replaceAll('_', ' ')} · raised by {person(item.raisedBy)} · {fmtDate(item.raisedAt)}
           {' '}· need-by {fmtDate(item.needBy)} · suggested owner {person(item.suggestedOwnerId)}
