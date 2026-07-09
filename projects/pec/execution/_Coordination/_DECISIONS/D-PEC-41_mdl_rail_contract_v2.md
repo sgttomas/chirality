@@ -1,6 +1,6 @@
 # D-PEC-41 - PROPOSAL: MDL/RAIL import contract v2 (TWD revised templates)
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-41
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -240,6 +240,18 @@ scratch-only and uncommitted.
 
 ## Human ruling
 
-**OPEN — decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D,
-with any rider (e.g., identity-derivation rule preference, or which v2 fields
-should additionally surface in existing views).
+**RULED: O-A** (owner in-session 2026-07-09, Ryan Tufts, verbatim): "I rule
+O-A on both D-PEC-41 and D-PEC-42. Place report files in
+`projects/pec/pilot-scratch/reports/` a new folder you need to create. and I
+just added `26020-Packages_Interfaces.3.xlsx` in the `inputs/` folder. You
+can merge PR #122 when you see fit and any follow-up PR related to this work
+I'm approving, is also approved to merge once ready without my review."
+(Quote note: the owner gave the reports path absolute; recorded here
+repo-relative per coordination-file conventions. Live folder is
+`pilot-scratch/input/`.) — Source execution authorized inside this packet's
+O-A fence. Riders recorded: report-file placement = gitignored
+`projects/pec/pilot-scratch/reports/` (Tier-P "report template file
+placement" row resolved); the interfaces document format arrived
+(`pilot-scratch/input/26020-Packages_Interfaces.3.xlsx`) — its import
+contract remains its own decision packet; PR merges for this ruled work are
+pre-approved once checks are green.

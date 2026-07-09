@@ -1,6 +1,6 @@
 # D-PEC-42 - PROPOSAL: XLSX upload follow-on (the D-PEC-35 rider)
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-09 (O-A).
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-42
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -115,5 +115,8 @@ manifest change.
 
 ## Human ruling
 
-**OPEN — decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D;
-an O-B ruling names the dependency and version basis.
+**RULED: O-A** (owner in-session 2026-07-09, Ryan Tufts — the ruling
+statement is quoted verbatim in D-PEC-41's Human ruling section and Receipt
+76; it rules O-A on both packets). Zero-dependency sidecar parser authorized
+inside this packet's fence; execution sequenced with/after D-PEC-41 per
+Dependencies.
