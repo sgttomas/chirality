@@ -60,6 +60,8 @@ export interface ProposalView {
   createdBy: number
   sourceName: string | null
   sourceSha256: string
+  coverageStart?: string | null
+  coverageEnd?: string | null
   dryRunReport: {
     accepted?: number
     updated?: number
@@ -255,10 +257,14 @@ export class PecAgentClient {
 
   // ---------- proposal family (import.propose authority) ----------
 
-  async propose(pid: number, contract: string, csv: string, filename?: string): Promise<ApiResult<ProposalView>> {
+  async propose(pid: number, contract: string, csv: string, filename?: string,
+    coverage?: { start?: string; end?: string }): Promise<ApiResult<ProposalView>> {
     await this.assertNotAcceptCapable(pid)
     const qs = new URLSearchParams({ contract })
     if (filename) qs.set('filename', filename)
+    // D-PEC-39: the PE's declared coverage rides the proposal verbatim; never inferred here
+    if (coverage?.start) qs.set('coverage_start', coverage.start)
+    if (coverage?.end) qs.set('coverage_end', coverage.end)
     return this.toResult(await this.request('POST', `/api/projects/${pid}/import-proposals?${qs}`, csv))
   }
 

@@ -32,6 +32,8 @@ export interface ImportProposal {
   sourceSha256: string
   sourceBytes: number
   sourceCsv: string
+  coverageStart: string | null
+  coverageEnd: string | null
   state: 'draft' | 'ready_for_review' | 'accepted' | 'rejected' | 'applied'
   basisHistoryId: number | null
   dryRunReport: ImportReport | { error: string } | null
@@ -83,7 +85,35 @@ function dryRun(sx: Sx, contract: string, csv: string): ImportReport {
   }
 }
 
-export function createProposal(sx: Sx, contract: string, csv: string, sourceName: string | null): ImportProposal {
+const COVERAGE_DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+
+/**
+ * D-PEC-39: coverage is DECLARED by the PE per uploaded document, never inferred.
+ * Validation is shape-only (two well-formed, ordered dates); overlaps, gaps, and
+ * retroactive corrections are review signals caught downstream (services/periods.ts),
+ * never schema-prevented — retro-corrections are a normal part of the PE workflow.
+ */
+export interface CoverageDeclarationInput {
+  start?: string | null
+  end?: string | null
+}
+
+function validateCoverage(coverage: CoverageDeclarationInput | undefined): { start: string | null; end: string | null } {
+  const start = coverage?.start || null
+  const end = coverage?.end || null
+  if (start == null && end == null) return { start: null, end: null }
+  if (start == null || end == null) {
+    throw badRequest('coverage declaration requires both coverage_start and coverage_end (D-PEC-39)')
+  }
+  for (const [name, v] of [['coverage_start', start], ['coverage_end', end]] as const) {
+    if (!COVERAGE_DATE_RE.test(v)) throw badRequest(`${name} must be YYYY-MM-DD, got "${v}"`)
+  }
+  if (end < start) throw badRequest(`coverage_end ${end} is before coverage_start ${start}`)
+  return { start, end }
+}
+
+export function createProposal(sx: Sx, contract: string, csv: string, sourceName: string | null,
+  coverage?: CoverageDeclarationInput): ImportProposal {
   requireCan(sx, 'import.propose', {})
   if (!(CONTRACTS as readonly string[]).includes(contract)) {
     throw badRequest(`unknown import contract: ${contract} (${CONTRACTS.join(', ')})`)
@@ -91,14 +121,17 @@ export function createProposal(sx: Sx, contract: string, csv: string, sourceName
   if (!csv.trim()) throw badRequest('CSV body required')
   const bytes = Buffer.byteLength(csv, 'utf8')
   if (bytes > MAX_CSV_BYTES) throw badRequest(`CSV exceeds the ${MAX_CSV_BYTES / 1024 / 1024} MiB proposal cap (RV-14)`)
+  const cov = validateCoverage(coverage)
 
   const ref = sx.repo.nextRef(sx.projectId, 'import_proposal')
   const id = sx.repo.insert('import_proposal', {
     projectId: sx.projectId, ref, contract,
     sourceName, sourceSha256: sha256(csv), sourceBytes: bytes, sourceCsv: csv,
+    coverageStart: cov.start, coverageEnd: cov.end,
     state: 'draft', createdBy: sx.session.personId, createdAt: nowIso(),
   })
-  history(sx, id, 'created', `${ref} proposed (${contract}, ${bytes} bytes, sha256 ${sha256(csv).slice(0, 12)}…)`)
+  history(sx, id, 'created', `${ref} proposed (${contract}, ${bytes} bytes, sha256 ${sha256(csv).slice(0, 12)}…, `
+    + `${cov.start ? `coverage ${cov.start}..${cov.end}` : 'no coverage declared'})`)
 
   // Dry-run immediately; a non-contract-shaped CSV keeps the proposal in draft with the
   // error recorded — never silently dropped (§16 posture).

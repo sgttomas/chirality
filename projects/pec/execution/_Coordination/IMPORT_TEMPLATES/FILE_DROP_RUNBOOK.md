@@ -40,11 +40,28 @@ out of scope until its own owner ruling after the revised MDL/RAIL templates.
 The approval boundary is unchanged: the agent files or refreshes proposals;
 the owner reviews, accepts, and applies in Admin.
 
+## v1.5 (2026-07-09, D-PEC-39 O-A)
+
+Every uploaded document may — and for period reporting should — carry a
+PE-declared **coverage date range** (`coverage_start`/`coverage_end`,
+YYYY-MM-DD, both or neither). Coverage rides the import proposal verbatim
+(query params on the proposal route; "covering 2026-06-29 to 2026-07-05" to
+the sidecar) and is never inferred from file content or timestamps. Overlaps,
+gaps, and applied-without-declaration imports are CAUGHT as review signals on
+`GET /api/projects/:pid/coverage` (COV-OVERLAP / COV-GAP / COV-UNDECLARED)
+for agent/PE resolution — retroactive corrections are normal and are never
+schema-blocked. Period-scoped read figures (`GET .../period-status`, and the
+weekly standard report under `period_start`/`period_end`) name the applied
+coverage declarations they rest on (PER-COV); a window no declaration covers
+says so.
+
 ## The loop (per file drop)
 
 1. **Drop.** Owner places the file under
    `projects/pec/pilot-scratch/input/` (gitignored; never committed) and
-   tells the loop agent, naming the target contract if ambiguous.
+   tells the loop agent, naming the target contract if ambiguous and the
+   covered dates (v1.5: "covering YYYY-MM-DD to YYYY-MM-DD") for period
+   reporting.
 2. **Map.** Agent SHA-256s the file, maps it to the §16/tracker contract per
    `IMPORT_MAPPING.md` (extending that doc for any new source shape), and
    writes the import-ready CSV under `pilot-scratch/import-ready/` for loop-run

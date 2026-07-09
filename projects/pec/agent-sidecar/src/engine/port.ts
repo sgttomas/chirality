@@ -72,7 +72,7 @@ export type ActResult =
 export interface BoundActs {
   /** the agent person's identity for WF-8 attribution lines; null when not logged in */
   whoami(): { personId: number; name: string; email: string } | null
-  proposeCsv(input: { csv: string; filename?: string; contract?: string }): Promise<ActResult>
+  proposeCsv(input: { csv: string; filename?: string; contract?: string; coverageStart?: string; coverageEnd?: string }): Promise<ActResult>
   refreshProposal(input: { ref: string }): Promise<ActResult>
   withdrawProposal(input: { ref: string; reason: string }): Promise<ActResult>
   proposalStatus(): Promise<ActResult>

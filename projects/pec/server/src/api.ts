@@ -25,6 +25,7 @@ import { sweepProject } from './services/sweep.ts'
 import * as plan from './services/plan.ts'
 import { exportRegister, importContract } from './import/index.ts'
 import * as proposals from './services/proposals.ts'
+import * as periods from './services/periods.ts'
 import { agentMessage, agentStatus, agentTargetFromEnv } from './agent-proxy.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
 import { packagePack } from './reports/package-pack.ts'
@@ -372,7 +373,13 @@ export function buildRouter(db: Db): Router {
     return packagePack(c.sx, idOf(c))
   }))
   r.get('/api/projects/:pid/reports/standard/:report', authed((c) =>
-    standardReport(c.sx, String(c.params.report), c.query.get('groupBy'))))
+    standardReport(c.sx, String(c.params.report), c.query.get('groupBy'),
+      { start: c.query.get('period_start'), end: c.query.get('period_end') })))
+
+  // ---------- reporting periods & coverage declarations (D-PEC-39, read-only) ----------
+  r.get('/api/projects/:pid/coverage', authed((c) => periods.coverageView(c.sx)))
+  r.get('/api/projects/:pid/period-status', authed((c) =>
+    periods.periodStatusView(c.sx, String(c.query.get('start') ?? ''), String(c.query.get('end') ?? ''))))
 
   // ---------- import proposals (D-PEC-08: propose → human accept → apply) ----------
   const sameOrigin = (c: ReqCtx): void => proposals.requireSameOrigin(
@@ -380,7 +387,8 @@ export function buildRouter(db: Db): Router {
   r.post('/api/projects/:pid/import-proposals', tx((c) => {
     sameOrigin(c)
     const csv = typeof c.body === 'string' ? c.body : String((c.body as Record<string, unknown>)?.csv ?? '')
-    return proposals.createProposal(c.sx, String(c.query.get('contract') ?? ''), csv, c.query.get('filename'))
+    return proposals.createProposal(c.sx, String(c.query.get('contract') ?? ''), csv, c.query.get('filename'),
+      { start: c.query.get('coverage_start'), end: c.query.get('coverage_end') })
   }))
   r.get('/api/projects/:pid/import-proposals', authed((c) => proposals.listProposals(c.sx)))
   r.get('/api/projects/:pid/import-proposals/:id', authed((c) => proposals.getProposal(c.sx, idOf(c))))

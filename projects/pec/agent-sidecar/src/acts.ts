@@ -122,20 +122,29 @@ export function bindActs(ctx: ActContext): BoundActs {
     whoami: () => ctx.client.whoami(),
 
     // detect/map → propose → dry-run summary + deep link
-    async proposeCsv({ csv, filename, contract }) {
+    async proposeCsv({ csv, filename, contract, coverageStart, coverageEnd }) {
       const mapped = adaptStructuredFile(csv, { filename, contract })
       if (!mapped.ok) {
         return refused('import.propose', `${mapped.reason} (one of: ${CONTRACTS.join(', ')})`)
       }
-      const r = await ctx.client.propose(ctx.pid, mapped.contract, mapped.csv, mapped.filename ?? filename)
+      // D-PEC-39: coverage is the PE's declaration, carried verbatim — half a declaration
+      // is refused here rather than surfacing as a server 400 mid-proposal
+      if ((coverageStart == null) !== (coverageEnd == null)) {
+        return refused('import.propose', 'a coverage declaration needs both start and end dates (YYYY-MM-DD), e.g. "covering 2026-06-29 to 2026-07-05"')
+      }
+      const r = await ctx.client.propose(ctx.pid, mapped.contract, mapped.csv, mapped.filename ?? filename,
+        coverageStart && coverageEnd ? { start: coverageStart, end: coverageEnd } : undefined)
       if (!r.ok) {
         return refused('import.propose', r.kind === 'forbidden' ? r.message : 'proposal filing came back stale')
       }
       const p = r.value
+      const covNote = p.coverageStart
+        ? `Declared coverage ${p.coverageStart}..${p.coverageEnd}.`
+        : 'No coverage declared — declare the covered dates per uploaded document to support period reporting (D-PEC-39).'
       return result('import.propose', true,
         `${p.ref} proposed (${p.contract}${p.sourceName ? `, ${p.sourceName}` : ''}) — ${p.state}; ${reportCounts(p)}. `
-        + `${mappingSummaryText(mapped.summary)}. Accept/apply are human acts in Admin: ${adminLink(ctx.pid)}`,
-        { ...proposalPayload(ctx.pid, p), mapping: mapped.summary })
+        + `${covNote} ${mappingSummaryText(mapped.summary)}. Accept/apply are human acts in Admin: ${adminLink(ctx.pid)}`,
+        { ...proposalPayload(ctx.pid, p), coverage: { start: p.coverageStart ?? null, end: p.coverageEnd ?? null }, mapping: mapped.summary })
     },
 
     async refreshProposal({ ref }) {

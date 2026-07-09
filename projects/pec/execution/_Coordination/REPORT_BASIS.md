@@ -64,6 +64,28 @@ codes/names.
   data requests, unsupported forecasts, and mutations. Unsupported requested
   figures are reported as absent rather than synthesized.
 
+## Coverage declarations & period basis (D-PEC-39)
+
+Coverage is DECLARED by the PE per uploaded document on the import-proposal
+lane (`coverage_start`/`coverage_end` on `POST .../import-proposals`;
+`server/src/services/proposals.ts`) and never inferred. Read side in
+`server/src/services/periods.ts`:
+
+| Figure | Rule id | Basis |
+|---|---|---|
+| coverage review signals | `COV-OVERLAP` / `COV-GAP` / `COV-UNDECLARED` (`GET /api/projects/:pid/coverage`) | applied import proposals' declared windows, per contract; caught for PE/agent review, never schema-prevented |
+| period coverage basis | `PER-COV` (`GET /api/projects/:pid/period-status?start&end`) | applied coverage declarations intersecting the explicitly requested window; an uncovered window says so |
+| issuances in period | `PER-ISSUED` | `issue_event.issued_at` within the window |
+| issuance delta | `PER-ISSUED-DELTA` | issuances in the window minus the preceding equal-length window — timestamped records, not a snapshot model |
+| work closed / holds raised / holds resolved / decisions decided / intake raised in period | `PER-CLOSED` / `PER-HOLD-RAISED` / `PER-HOLD-RESOLVED` / `PER-DECIDED` / `PER-INTAKE` | record timestamps within the window, visibility-filtered per log |
+
+The weekly standard report accepts `period_start`/`period_end` (both or
+neither); under a declared period it carries `issuancesThisPeriod`,
+`issuanceDelta`, and the `PER-COV` coverage basis, and its absent list keeps
+percent complete (Tier-P contract v2) and non-issuance deltas absent. Periods
+are request parameters or per-document declarations — never silently
+inferred.
+
 ## The rule this page reinforces
 
 An answer about project state — the owner's, a report's, or the agent's —
