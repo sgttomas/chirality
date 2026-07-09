@@ -897,3 +897,12 @@
   - Deviation from the direction's letter, honoring its intent: PR #128 was already merged, so "the same PR" could not receive the commit — landed as follow-on PR (number in the merge commit), merged under the same in-session authority.
   - Checks: coordination-surface change only; self-check unchanged baseline; coord-check on branch diff; `git diff --check` pass.
   - Gate outcome: executed + merged. Parked (unchanged): D-PEC-43/44 rulings; carried slate items; R-phase packets.
+
+- **2026-07-09 — Receipt 84** (R2 packets D-PEC-46/47 prepared; loop parks at owner rulings).
+  - Start: `afd9a542cf` (`main`) -> branch `codex/pec-dpec46-47-packets`; pre-existing dirty `projects/pec/pec-demo.db` left untouched/uncommitted.
+  - Owner direction of record: "Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`. Read `{REPO_ROOT}/_DomainEngines/pec/LOOP_INIT.md` and follow it: pursue the loop's inherent goals — recorded in its standing plan — as far as live authority permits. Steer (this run): None."
+  - Live gates checked: no tier-0 ruling newer than D-T0-22; PEC-local register ends with D-PEC-43/44 AWAITING_RULING and D-PEC-45 RULED; standing plan R2 rows unprepared and unblocked by D-PEC-41/42/45 landing.
+  - Executed pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-46_mdl_rail_consistency_checks.md`; `D-PEC-47_needs_internal_client_typing.md`; register rows D-PEC-46/47 AWAITING_RULING.
+  - Delta found (live tree wins): the live TWD RAIL workbook has no explicit internal/client classification column, so D-PEC-47 preserves an unclassified/absent state and forbids inference from weak evidence.
+  - Checks: self-check pass at unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check on branch diff; `git diff --check`; coordination-surface change only.
+  - Gate outcome: packet preparation only; STOP at D-PEC-46/47 owner rulings. Parked lanes: D-PEC-43/44 rulings; D-PEC-46/47 rulings; carried slate items; R3 packet after applicable prerequisites; D-PEC-32/33; D-PEC-23 import-approval gate; P4 weekly rehearsal; D-PEC-28/28b.
