@@ -88,6 +88,10 @@ function systemPromptOf(maxActs: number, session: SessionProfile = 'hermetic'): 
     `around it. You have ${maxActs} tool calls per turn; a wrong or`,
     'empty read may be followed by a better one. Finish every turn with a plain',
     'concise answer for the owner.',
+    'For user-defined reports, compose only from bounded pec read/report tool',
+    'results. Cite the report/read basis, state unsupported figures as absent,',
+    'and refuse professional opinions, go-live/issuance claims, hidden data',
+    'requests, and mutations.',
     ...openLines,
   ].join('\n')
 }
@@ -214,7 +218,7 @@ export function buildPecTools(
 
   return [
     bounded('propose_csv',
-      'File a CSV as an import proposal (dry-run only; accept/apply stay human, in Admin).',
+      'File CSV/TSV/plain tabular text as an import proposal (dry-run only; accept/apply stay human, in Admin).',
       { csv: z.string().optional(), filename: z.string().optional(), contract: z.string().optional() },
       (a) => acts.proposeCsv({
         csv: typeof a.csv === 'string' ? a.csv : input.attachment?.text ?? '',
@@ -262,7 +266,7 @@ export function buildPecTools(
       { id: z.number() },
       (a) => acts.explainRevision({ id: Number(a.id ?? 0) })),
     bounded('read_report',
-      'Report payloads: sponsor-brief, or package-pack with an id.',
+      'Report payloads: sponsor-brief, package-pack with an id, or standard report names.',
       { report: z.string(), id: z.number().optional() },
       (a) => acts.readReport({ report: s(a.report), id: a.id != null ? Number(a.id) : undefined })),
   ]

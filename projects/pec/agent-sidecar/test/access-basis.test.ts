@@ -146,6 +146,7 @@ test('read acts pass under model-provider + broad over the existing GET routes',
     if (p === '/api/projects/1/revisions/3/explain') return { status: 200, body: { ready: false } }
     if (p === '/api/projects/1/reports/sponsor-brief') return { status: 200, body: { headline: 'ok' } }
     if (p === '/api/projects/1/reports/package-pack/2') return { status: 200, body: { package: 'PKG-0002' } }
+    if (p === '/api/projects/1/reports/standard/weekly-project-status?groupBy=discipline') return { status: 200, body: { name: 'weekly-project-status' } }
     if (p === '/api/projects/1/history/deliverable/7') return { status: 200, body: [{ event: 'created' }] }
     return null
   }
@@ -162,6 +163,8 @@ test('read acts pass under model-provider + broad over the existing GET routes',
   assert.equal(brief.kind, 'result')
   const pack = await acts.readReport({ report: 'package-pack', id: 2 })
   assert.equal(pack.kind, 'result')
+  const weekly = await acts.readReport({ report: 'weekly-project-status-by-discipline' })
+  assert.equal(weekly.kind, 'result')
   // read-only by construction: every call the server saw was a GET
   assert.ok(seen.length > 0)
   assert.ok(seen.every((s) => s.method === 'GET'), 'broad reads never mutate')

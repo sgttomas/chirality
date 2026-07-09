@@ -372,6 +372,11 @@ export class PecAgentClient {
     return this.toResult(await this.request('GET', `/api/projects/${pid}/reports/package-pack/${id}`))
   }
 
+  async standardReport(pid: number, report: string, groupBy?: string): Promise<ApiResult<unknown>> {
+    const qs = groupBy ? `?groupBy=${encodeURIComponent(groupBy)}` : ''
+    return this.toResult(await this.request('GET', `/api/projects/${pid}/reports/standard/${report}${qs}`))
+  }
+
   async can(pid: number, action: string): Promise<{ allowed: boolean; reason: string }> {
     const r = this.toResult<{ allowed: boolean; reason: string }>(
       await this.request('GET', `/api/projects/${pid}/can/${action}`))

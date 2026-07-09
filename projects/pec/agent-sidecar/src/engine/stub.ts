@@ -11,10 +11,11 @@
 import type { AgentEnginePort, AgentEvent, AgentTurnInput, BoundActs, ActResult } from './port.ts'
 import { CONTRACTS } from '../contract-detect.ts'
 import type { Contract } from '../contract-detect.ts'
+import { isUserDefinedReportRequest, runUserDefinedReport } from '../user-report.ts'
 
 const CAPABILITIES = [
   'I can, in this project:',
-  '- file a CSV as an import proposal (drop/paste a CSV; name the contract or let me detect it: '
+  '- file a CSV/TSV/plain tabular file as an import proposal (drop/paste tabular text; name the contract or let me detect it: '
     + CONTRACTS.join(', ') + ')',
   '- refresh IPR-<n> (recompute a proposal\'s dry-run)',
   '- withdraw IPR-<n> because <reason> (my own proposals only)',
@@ -27,6 +28,8 @@ const CAPABILITIES = [
   '- history <recordType> <id> — a record\'s history events',
   '- explain revision <id> — a revision\'s readiness explanation',
   '- sponsor brief / package pack <id> — report payloads',
+  '- weekly project status / discipline status / package issue summary / deliverable completeness — standard report payloads',
+  '- custom/user-defined reports over those bounded report reads; unsupported figures are called absent',
   '- describe what you are looking at (when the panel sends screen context)',
   '(reads outside the enumerated surface follow the launch-selected access basis — D-T0-21)',
   'Accept, apply, and reject-of-others happen in Admin, by you — never by me.',
@@ -49,10 +52,10 @@ function signed(acts: BoundActs, pid: number, text: string): AgentEvent {
 
 const reply = (text: string): AgentEvent => ({ type: 'agent:reply', text })
 
-/** a fenced ``` block, or raw pasted CSV (a comma-bearing header + ≥1 data line) */
+/** a fenced tabular block (CSV/TSV/plain text, normalized in the acts layer) */
 function extractCsv(message: string): string | null {
-  const fence = /```(?:csv)?\r?\n([\s\S]*?)```/.exec(message)
-  if (fence?.[1] && fence[1].includes(',')) return fence[1].trim()
+  const fence = /```(?:csv|tsv|text)?\r?\n([\s\S]*?)```/.exec(message)
+  if (fence?.[1] && /[,\t|;]|\S\s{2,}\S/.test(fence[1])) return fence[1].trim()
   return null
 }
 
@@ -69,6 +72,11 @@ export function createStubEngine(): AgentEnginePort {
     async runTurn(input: AgentTurnInput, acts: BoundActs): Promise<AgentEvent[]> {
       const msg = input.message.replace(/\s+/g, ' ').trim()
       const lower = msg.toLowerCase()
+
+      // 0. user-defined reporting mode (D-PEC-37): bounded reads only, factual-or-absent.
+      if (isUserDefinedReportRequest(input.message)) {
+        return runUserDefinedReport({ pid: input.pid, message: input.message }, acts)
+      }
 
       // 1. propose: attachment present, or fenced/pasted CSV block in the message
       const pastedCsv = extractCsv(input.message)
@@ -169,6 +177,18 @@ export function createStubEngine(): AgentEnginePort {
       const pack = /\bpackage\s+pack\s+#?(\d+)\b/i.exec(msg)
       if (pack) {
         return toEvents(await acts.readReport({ report: 'package-pack', id: Number(pack[1]) }))
+      }
+      if (/\bdiscipline\s+(status|report)\b/i.test(lower)) {
+        return toEvents(await acts.readReport({ report: 'weekly-project-status-by-discipline' }))
+      }
+      if (/\bweekly\s+project\s+status\b/i.test(lower)) {
+        return toEvents(await acts.readReport({ report: 'weekly-project-status' }))
+      }
+      if (/\bpackage\s+issue\s+summary\b/i.test(lower)) {
+        return toEvents(await acts.readReport({ report: 'package-issue-summary' }))
+      }
+      if (/\bdeliverable\s+(completeness|mdl\s+status)\b/i.test(lower)) {
+        return toEvents(await acts.readReport({ report: 'deliverable-completeness' }))
       }
       const named = /\bregister\s+([a-z-]+(?:\s+week)?)\b/i.exec(msg)
       const bare = /^(deliverables|packages|plan|my[- ]week|holds|approvals|decisions|risks|tracker|interfaces|log)$/.exec(lower)

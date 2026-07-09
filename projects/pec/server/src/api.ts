@@ -28,6 +28,7 @@ import * as proposals from './services/proposals.ts'
 import { agentMessage, agentStatus, agentTargetFromEnv } from './agent-proxy.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
 import { packagePack } from './reports/package-pack.ts'
+import { standardReport } from './reports/standard.ts'
 import { DEFAULT_THRESHOLDS, can, explainTransition } from '@pec/core'
 import type { PermissionAction } from '@pec/core'
 import { pctx } from './services/shared.ts'
@@ -370,6 +371,8 @@ export function buildRouter(db: Db): Router {
     c.res.setHeader('content-type', 'text/html; charset=utf-8')
     return packagePack(c.sx, idOf(c))
   }))
+  r.get('/api/projects/:pid/reports/standard/:report', authed((c) =>
+    standardReport(c.sx, String(c.params.report), c.query.get('groupBy'))))
 
   // ---------- import proposals (D-PEC-08: propose → human accept → apply) ----------
   const sameOrigin = (c: ReqCtx): void => proposals.requireSameOrigin(

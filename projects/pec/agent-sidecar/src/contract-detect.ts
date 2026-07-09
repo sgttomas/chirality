@@ -8,7 +8,7 @@
  * validation into `draft` state with the error recorded).
  */
 
-export const CONTRACTS = ['mdl', 'rail', 'decisions', 'risks', 'schedule'] as const
+export const CONTRACTS = ['mdl', 'rail', 'decisions', 'risks', 'schedule', 'tracker'] as const
 export type Contract = (typeof CONTRACTS)[number]
 
 /**
@@ -22,6 +22,7 @@ const FINGERPRINTS: Record<Contract, string[]> = {
   decisions: ['decision_id', 'authority'],
   risks: ['risk_id', 'consequence'],
   schedule: ['activity_id', 'start', 'finish'],
+  tracker: ['tracking_no', 'package_name', 'package'],
 }
 
 export type Detection =

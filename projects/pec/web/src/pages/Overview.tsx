@@ -1,5 +1,5 @@
 /**
- * Overview — "Is the project coherent?" (Sponsor / PM home, PRD §12.1).
+ * Overview — "Is the project coherent?" (project reporting home, PRD §12.1).
  * KPIs with drill-down (PEC-OV-001/002), package rollup (PEC-OV-003),
  * Waiting-on-you split by threshold breach (PEC-OV-004, SPEC §6.5),
  * typed top blockers (PEC-OV-005), sponsor brief export (PEC-OV-006).
@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import type { Explain } from '../api.ts'
 import {
-  ErrorBox, HealthBadge, KpiCard, RecordRef, RegisterTable, StateTag, fmtDate, refRoute, useApp,
+  ErrorBox, HealthBadge, KpiCard, RecordRef, RegisterTable, fmtDate, refRoute, useApp,
   useExplain, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
@@ -95,9 +95,14 @@ export function OverviewPage(): JSX.Element {
         <KpiCard label="open decisions" value={data.kpis.openDecisions.value} explain={data.kpis.openDecisions} />
         <KpiCard label="approvals in flight" value={data.kpis.approvalsInFlight.value} explain={data.kpis.approvalsInFlight} />
         <KpiCard label="worst forecast slip (wd)" value={data.kpis.scheduleForecastWd.value} explain={data.kpis.scheduleForecastWd} />
-        <div className="card kpi" onClick={() => window.open(p(pid, 'reports/sponsor-brief'), '_blank')} title="print-friendly HTML; print to PDF (ADR-010)">
-          <b>⎙</b><span>sponsor brief</span>
-        </div>
+      </div>
+
+      <div className="row" style={{ justifyContent: 'flex-end', marginTop: '.5rem' }}>
+        <button className="btn secondary small" type="button"
+          onClick={() => window.open(p(pid, 'reports/sponsor-brief'), '_blank')}
+          title="print-friendly HTML; print to PDF (ADR-010)">
+          Open sponsor brief
+        </button>
       </div>
 
       <h2>Governance signals (§8.4)</h2>
@@ -107,7 +112,7 @@ export function OverviewPage(): JSX.Element {
             title={`${s.id} — click to drill down to contributing records`}
             onClick={() => explain(s.label, signalToExplain(s))}>
             <span className={`badge ${s.level === 'red' ? 'red' : s.level === 'warn' ? 'amber' : 'green'}`}>
-              {s.level === 'none' ? 'ok' : s.level}
+              {s.level === 'none' ? 'green' : s.level === 'warn' ? 'amber' : s.level}
             </span>{' '}
             <b className="small">{s.label}</b>
             <div className="small muted">{s.detail}</div>
@@ -180,7 +185,7 @@ export function OverviewPage(): JSX.Element {
       <p className="section-note">
         Every value on this page drills down to its contributing records and the rule that
         classified it — click any badge or KPI (I-4). Registers: <Link to={`/p/${pid}/registers`}>approvals,
-        decisions, risks, interfaces, intake</Link>.
+        decisions, risks, interfaces, holds, Schedule, and Tracker</Link>.
       </p>
     </div>
   )

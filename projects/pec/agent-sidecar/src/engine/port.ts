@@ -44,7 +44,7 @@ export interface AgentTurnInput {
     route: string
     records: ScreenContextRecord[]
   }
-  /** CSV only (RV-14), ≤ 5 MiB of UTF-8 text */
+  /** CSV/TSV/plain tabular text only (D-PEC-35 O-A), ≤ 5 MiB of UTF-8 text */
   attachment?: {
     name: string
     text: string

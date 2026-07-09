@@ -29,14 +29,27 @@ condition now points at the 2026-07-07 ruling (interim rule stands). B-2
 part 2 was declined — the v1.1 per-drop loop below remains current. No
 import behavior changed.
 
+## v1.4 (2026-07-09, D-PEC-35 O-A)
+
+The embedded sidecar may now accept CSV, TSV, pipe/semicolon-delimited text,
+or fixed-gap plain tabular text attachments. It canonicalizes safe header
+variants, normalizes the content to the existing CSV proposal route, and
+reports the selected contract, mapped headers, omitted source columns, and
+required-cell gaps in the proposal result. Binary workbook parsing remains
+out of scope until its own owner ruling after the revised MDL/RAIL templates.
+The approval boundary is unchanged: the agent files or refreshes proposals;
+the owner reviews, accepts, and applies in Admin.
+
 ## The loop (per file drop)
 
 1. **Drop.** Owner places the file under
    `projects/pec/pilot-scratch/input/` (gitignored; never committed) and
    tells the loop agent, naming the target contract if ambiguous.
-2. **Map.** Agent SHA-256s the file, maps it to the §16 contract per
+2. **Map.** Agent SHA-256s the file, maps it to the §16/tracker contract per
    `IMPORT_MAPPING.md` (extending that doc for any new source shape), and
-   writes the import-ready CSV under `pilot-scratch/import-ready/`.
+   writes the import-ready CSV under `pilot-scratch/import-ready/` for loop-run
+   captures. In the embedded sidecar path, CSV/TSV/plain tabular attachments
+   are normalized in memory to the same CSV proposal route before filing.
 3. **Propose.** Agent presents: contract, row count, mapping/deltas, any
    fills (tagged in-row), expected accepted/reject profile, and which rows
    will land as unanchored intake.
@@ -70,6 +83,8 @@ import behavior changed.
 - Rows the agent cannot map without inventing meaning are proposed as
   questions or left to reject with reasons — never silently guessed; test-data
   fills happen only under an explicit owner ruling and are tagged in-row.
+- Binary workbook/XLSX parsing is not part of the current lane; convert to
+  CSV/TSV/plain tabular text or wait for the separate XLSX follow-on ruling.
 
 ## v1.2 — the weekly agent intake+triage cycle (D-PEC-10 O-A, ruled 2026-07-05)
 

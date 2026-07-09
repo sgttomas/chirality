@@ -186,16 +186,24 @@ export function MyWeekPage(): JSX.Element {
         Booked work owed to someone else — kept distinct from your own items (PEC-MW-002).
       </p>
       <h3>Checks to perform</h3>
-      <RegisterTable cols={checkCols} rows={data.checksOwed} />
+      {data.checksOwed.length === 0
+        ? <p className="muted small">No checks are owed by you right now.</p>
+        : <RegisterTable cols={checkCols} rows={data.checksOwed} />}
       <h3>Comment responses due</h3>
-      <RegisterTable cols={commentCols} rows={data.commentsOwed} />
+      {data.commentsOwed.length === 0
+        ? <p className="muted small">No comment responses are due from you right now.</p>
+        : <RegisterTable cols={commentCols} rows={data.commentsOwed} />}
 
       {/* PEC-MW-003: waiting on others — chase-able, not commitments */}
       <h2>Waiting on others</h2>
-      <RegisterTable cols={waitingCols} rows={data.waitingOnOthers} />
+      {data.waitingOnOthers.length === 0
+        ? <p className="muted small">No current waits on other people are blocking your week.</p>
+        : <RegisterTable cols={waitingCols} rows={data.waitingOnOthers} />}
 
       <h2>Notifications</h2>
-      <RegisterTable cols={notifCols} rows={notifs ?? []} />
+      {(notifs ?? []).length === 0
+        ? <p className="muted small">No notifications are waiting for you.</p>
+        : <RegisterTable cols={notifCols} rows={notifs ?? []} />}
 
       {/* PEC-MW-004: the work item drawer — act in place, no navigation */}
       {drawerItem != null && (
@@ -217,6 +225,7 @@ function WorkItemDrawer({ id, week, onClose }: { id: number; week: string; onClo
   const [note, setNote] = useState('')
   const [evLabel, setEvLabel] = useState('')
   const [evContent, setEvContent] = useState('')
+  const [transitionEvent, setTransitionEvent] = useState<string | null>(null)
 
   const run = async (fn: () => Promise<void>, msg: string) => {
     setBusy(true)
@@ -231,27 +240,6 @@ function WorkItemDrawer({ id, week, onClose }: { id: number; week: string; onClo
     } finally {
       setBusy(false)
     }
-  }
-
-  const transition = (event: string) => {
-    const w = data.workItem
-    let reason: string | undefined
-    let closingStatement: string | undefined
-    if (event === 'close') {
-      const cs = window.prompt('Closing statement (optional — leave blank if none):', '')
-      if (cs === null) return
-      closingStatement = cs.trim() || undefined
-    }
-    if (event === 'cancel' || event === 'reopen') {
-      const r = window.prompt(`Reason for ${event} (required):`, '')
-      if (r === null) return
-      if (!r.trim()) { setActionError({ message: `a reason is required to ${event}` }); return }
-      reason = r.trim()
-    }
-    void run(async () => {
-      await api.post(p(pid, `work-items/${id}/transition`),
-        { event, version: w.version, reason, closingStatement })
-    }, `${w.ref}: ${event} recorded`)
   }
 
   // PEC-MW-007: P1 manual commit-to-week toggle
@@ -309,7 +297,7 @@ function WorkItemDrawer({ id, week, onClose }: { id: number; week: string; onClo
             {data.offeredTransitions.map((ev: string) => (
               <button key={ev} disabled={busy}
                 className={`btn small ${ev === 'cancel' ? 'danger' : ev === 'close' ? '' : 'secondary'}`}
-                onClick={() => transition(ev)}>
+                onClick={() => setTransitionEvent(ev)}>
                 {ev}
               </button>
             ))}
@@ -369,8 +357,76 @@ function WorkItemDrawer({ id, week, onClose }: { id: number; week: string; onClo
 
           <h2>History</h2>
           <HistoryTrail entries={data.history} />
+          {transitionEvent && (
+            <WorkItemTransitionDrawer
+              item={w}
+              event={transitionEvent}
+              onClose={() => setTransitionEvent(null)}
+              onDone={() => {
+                setTransitionEvent(null)
+                refresh()
+              }}
+            />
+          )}
         </>
       )}
+    </Drawer>
+  )
+}
+
+function WorkItemTransitionDrawer({
+  item, event, onClose, onDone,
+}: { item: any; event: string; onClose(): void; onDone(): void }): JSX.Element {
+  const { pid, toast } = useApp()
+  const [reason, setReason] = useState('')
+  const [closingStatement, setClosingStatement] = useState('')
+  const [error, setError] = useState<any>(null)
+  const [busy, setBusy] = useState(false)
+  const reasonRequired = event === 'cancel' || event === 'reopen'
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (reasonRequired && !reason.trim()) {
+      setError({ message: `a reason is required to ${event}` })
+      return
+    }
+    setBusy(true); setError(null)
+    try {
+      await api.post(p(pid, `work-items/${item.id}/transition`), {
+        event,
+        version: item.version,
+        reason: reasonRequired ? reason.trim() : undefined,
+        closingStatement: event === 'close' && closingStatement.trim() ? closingStatement.trim() : undefined,
+      })
+      toast(`${item.ref}: ${event} recorded`)
+      onDone()
+    } catch (err) { setError(err) } finally { setBusy(false) }
+  }
+
+  return (
+    <Drawer title={<>{event} — <span className="mono">{item.ref}</span></>} onClose={onClose}>
+      <p className="section-note">{item.title}</p>
+      <form className="stack" onSubmit={submit}>
+        {event === 'close' && (
+          <label>Closing statement
+            <textarea value={closingStatement} onChange={(e) => setClosingStatement(e.target.value)}
+              placeholder="optional" />
+          </label>
+        )}
+        {reasonRequired && (
+          <label>Reason *
+            <textarea required value={reason} onChange={(e) => setReason(e.target.value)} />
+          </label>
+        )}
+        {!reasonRequired && event !== 'close' && (
+          <p className="section-note">This transition records the server-offered event without additional fields.</p>
+        )}
+        <ErrorBox error={error} />
+        <div className="row">
+          <button className="btn" disabled={busy || (reasonRequired && !reason.trim())}>{event}</button>
+          <button type="button" className="btn secondary" onClick={onClose}>Cancel</button>
+        </div>
+      </form>
     </Drawer>
   )
 }
