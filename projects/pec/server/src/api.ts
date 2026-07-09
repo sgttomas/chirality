@@ -168,6 +168,10 @@ export function buildRouter(db: Db): Router {
   })))
   r.get('/api/projects/:pid/log-summary', authed((c) => views.logSummaryView(c.sx)))
   r.get('/api/projects/:pid/my-week', authed((c) => views.myWeekView(c.sx)))
+  // discipline view v1 (D-PEC-40, read-only): the drillable mirror of the weekly report
+  r.get('/api/projects/:pid/disciplines', authed((c) => views.disciplinesView(c.sx)))
+  r.get('/api/projects/:pid/disciplines/:name', authed((c) => views.disciplineDetailView(
+    c.sx, String(c.params.name ?? ''), c.query.get('start'), c.query.get('end'))))
 
   // ---------- Plan module (P2 — PRD §12.4) ----------
   r.get('/api/projects/:pid/plan', authed((c) => plan.planView(

@@ -17,6 +17,7 @@ import { ScreenContextProvider } from './agent/context.tsx'
 import { AgentDock } from './agent/AgentPanel.tsx'
 import { OverviewPage } from './pages/Overview.tsx'
 import { PackagesPage, PackageDetailPage } from './pages/Packages.tsx'
+import { DisciplinesPage, DisciplineDetailPage } from './pages/Disciplines.tsx'
 import { DeliverablesPage, DeliverableDetailPage } from './pages/Deliverables.tsx'
 import { LogPage } from './pages/LogHome.tsx'
 import { MyWeekPage } from './pages/MyWeek.tsx'
@@ -104,6 +105,7 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
                 <div className="nav-label">Work lenses</div>
                 <NavLink to={`/p/${projectId}/overview`}>Overview</NavLink>
                 <NavLink to={`/p/${projectId}/packages`}>Packages</NavLink>
+                <NavLink to={`/p/${projectId}/disciplines`}>Disciplines</NavLink>
                 <NavLink to={`/p/${projectId}/deliverables`}>Deliverables</NavLink>
                 <NavLink to={`/p/${projectId}/plan`}>Plan</NavLink>
                 <NavLink to={`/p/${projectId}/log`}>Action &amp; Hold Log</NavLink>
@@ -191,6 +193,8 @@ function Root(): JSX.Element {
           <Route path="overview" element={<OverviewPage />} />
           <Route path="packages" element={<PackagesPage />} />
           <Route path="packages/:id" element={<PackageDetailPage />} />
+          <Route path="disciplines" element={<DisciplinesPage />} />
+          <Route path="disciplines/:name" element={<DisciplineDetailPage />} />
           <Route path="deliverables" element={<DeliverablesPage />} />
           <Route path="deliverables/:id" element={<DeliverableDetailPage />} />
           <Route path="plan" element={<PlanPage />} />

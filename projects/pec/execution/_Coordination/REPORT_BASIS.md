@@ -86,6 +86,26 @@ percent complete (Tier-P contract v2) and non-issuance deltas absent. Periods
 are request parameters or per-document declarations — never silently
 inferred.
 
+## Discipline view v1 (D-PEC-40)
+
+Routes `GET /api/projects/:pid/disciplines` and `GET .../disciplines/:name`
+(`server/src/services/views.ts`, discipline section; web page
+`web/src/pages/Disciplines.tsx`). Read-only mirror of the weekly discipline
+report: Activities grouped by deliverable type · Issuances · Needs · Risks,
+plus a factual-or-absent metric band.
+
+| Figure | Rule id | Basis |
+|---|---|---|
+| activities in work | `DISC-ACT` | discipline deliverables whose workflow has not reached issued |
+| open needs / needs aging | `DISC-NEEDS` / `DISC-NEEDS-AGE` | open work items + active holds anchored to discipline deliverables/revisions, visibility-filtered per log; internal-vs-client typing absent until its ruled tranche |
+| open risks | `DISC-RISK` | open risks with a deliverable in the discipline — package-only risks carry no discipline basis and are not counted |
+| issued this period / issuance delta | `DISC-ISSUED` / `DISC-ISSUED-DELTA` | issue events on discipline revisions within an explicitly requested window; detail names the `PER-COV` coverage basis; absent when no period is declared |
+
+Absent by construction in v1: % complete by deliverable kind and its deltas
+(Tier-P contract v2), stalled-activity flags (no ruled definition without a
+period snapshot model). No CSV export on this surface (D-PEC-40 O-B not
+authorized); no mutation machinery ever ("dashboards, not task managers").
+
 ## The rule this page reinforces
 
 An answer about project state — the owner's, a report's, or the agent's —
