@@ -258,14 +258,17 @@ export class PecAgentClient {
   // ---------- proposal family (import.propose authority) ----------
 
   async propose(pid: number, contract: string, csv: string, filename?: string,
-    coverage?: { start?: string; end?: string }): Promise<ApiResult<ProposalView>> {
+    coverage?: { start?: string; end?: string }, extras?: Record<string, unknown>): Promise<ApiResult<ProposalView>> {
     await this.assertNotAcceptCapable(pid)
     const qs = new URLSearchParams({ contract })
     if (filename) qs.set('filename', filename)
     // D-PEC-39: the PE's declared coverage rides the proposal verbatim; never inferred here
     if (coverage?.start) qs.set('coverage_start', coverage.start)
     if (coverage?.end) qs.set('coverage_end', coverage.end)
-    return this.toResult(await this.request('POST', `/api/projects/${pid}/import-proposals?${qs}`, csv))
+    // D-PEC-41 full-fidelity capture: verbatim non-tabular source content (e.g. every
+    // workbook sheet) rides the proposal as JSON { csv, extras } → source_extras
+    const body = extras && Object.keys(extras).length > 0 ? { csv, extras } : csv
+    return this.toResult(await this.request('POST', `/api/projects/${pid}/import-proposals?${qs}`, body))
   }
 
   async refresh(pid: number, id: number, version: number): Promise<ApiResult<ProposalView>> {

@@ -50,6 +50,28 @@ const OPTIONAL: Record<Contract, string[]> = {
   tracker: ['vendors_engaged', 'vendor_awarded', 'expected_delivery_date', 'comments'],
 }
 
+// Contract v2 shapes (D-PEC-41): the SAME contract ids accept the revised TWD template
+// shapes — MDL keys on package + deliverable_type (no doc_no), RAIL on package + issue_no
+// (no item_id). Source of truth: server/src/import/index.ts v2 importers (2026-07-09).
+const REQUIRED_V2: Partial<Record<Contract, string[]>> = {
+  mdl: ['package', 'deliverable_type'],
+  rail: ['package', 'issue_no'],
+}
+/** the v1 key column whose PRESENCE means the file is v1-shaped, not v2 */
+const V1_KEY: Partial<Record<Contract, string>> = { mdl: 'doc_no', rail: 'item_id' }
+const OPTIONAL_V2: Partial<Record<Contract, string[]>> = {
+  mdl: ['area', 'project_phase', 'discipline', 'package_type', 'package_name',
+    'deliverable_id', 'target_completeness', 'working_status', 'percent_complete'],
+  rail: ['discipline', 'area', 'phase', 'coa_tracking_number', 'package_type', 'package_name',
+    'issue_type', 'statement', 'updates', 'responsible_party', 'status', 'priority',
+    'assigned_date', 'original_target_date', 'current_target_date', 'actual_completion_date'],
+}
+
+function isV2Shape(contract: Contract, headers: Set<string>): boolean {
+  const req = REQUIRED_V2[contract]
+  return req != null && !headers.has(V1_KEY[contract]!) && req.every((h) => headers.has(h))
+}
+
 const HEADER_ALIASES: Record<string, string> = {
   docno: 'doc_no',
   document_no: 'doc_no',
@@ -80,6 +102,14 @@ const HEADER_ALIASES: Record<string, string> = {
   percent_done: 'percent_complete',
   pct_complete: 'percent_complete',
   duration: 'duration_days',
+  // contract v2 (D-PEC-41): the revised TWD template headers, canonicalized
+  complete: 'percent_complete',          // "% Complete" canonicalizes to "complete"
+  issue: 'issue_no',                     // "Issue #"
+  package_discipline: 'discipline',      // RAIL "Package Discipline"
+  issue_description: 'statement',        // RAIL "ISSUE DESCRIPTION"
+  original_target_completion_date: 'original_target_date',
+  current_target_completion_date: 'current_target_date',
+  package_id: 'package_id',              // disambiguated contextually below
 }
 
 function canonicalHeader(raw: string): string {
@@ -126,7 +156,21 @@ function csvEscape(v: string): string {
 }
 
 function contractMatches(headers: Set<string>): Contract[] {
-  return CONTRACTS.filter((contract) => REQUIRED[contract].every((h) => headers.has(h)))
+  return CONTRACTS.filter((contract) =>
+    REQUIRED[contract].every((h) => headers.has(h)) || isV2Shape(contract, headers))
+}
+
+/**
+ * The TWD templates carry BOTH a "Package ID" (the code) and a "PACKAGE"/"Package Name"
+ * column. "Package ID" canonicalizes to package_id and, when present, IS the contract's
+ * `package` column; a plain `package` column alongside it is the package NAME. v1 files
+ * have no package_id header, so this pass never touches them.
+ */
+function disambiguatePackageId(headers: string[]): string[] {
+  if (!headers.includes('package_id')) return headers
+  return headers.map((h) =>
+    h === 'package_id' ? 'package'
+      : h === 'package' && !headers.includes('package_name') ? 'package_name' : h)
 }
 
 function nearestContracts(headers: Set<string>): string {
@@ -145,7 +189,7 @@ export function adaptStructuredFile(
   if (lines.length < 2) return { ok: false, reason: 'structured file needs a header row and at least one data row' }
   const { delimiter, format } = chooseDelimiter(lines[0]!)
   const sourceHeaders = splitLine(lines[0]!, delimiter)
-  const canonicalHeaders = sourceHeaders.map(canonicalHeader)
+  const canonicalHeaders = disambiguatePackageId(sourceHeaders.map(canonicalHeader))
   const headerSet = new Set(canonicalHeaders)
   let contract: Contract | undefined
   if (opts.contract) {
@@ -167,11 +211,14 @@ export function adaptStructuredFile(
       }
     }
   }
-  const missing = REQUIRED[contract].filter((h) => !headerSet.has(h))
+  const v2 = isV2Shape(contract, headerSet)
+  const requiredCols = v2 ? REQUIRED_V2[contract]! : REQUIRED[contract]
+  const missing = requiredCols.filter((h) => !headerSet.has(h))
   if (missing.length > 0) {
+    const alt = REQUIRED_V2[contract] ? ` (v2 shape needs: ${REQUIRED_V2[contract]!.join(', ')})` : ''
     return {
       ok: false,
-      reason: `${contract} mapping is missing required columns: ${missing.join(', ')} — ask the owner for these fields or name a different contract`,
+      reason: `${contract} mapping is missing required columns: ${missing.join(', ')}${alt} — ask the owner for these fields or name a different contract`,
       summary: { sourceFormat: format, sourceHeaders, canonicalHeaders },
     }
   }
@@ -179,12 +226,14 @@ export function adaptStructuredFile(
   const normalizedRows = rows.map((row) => canonicalHeaders.map((_, i) => row[i] ?? ''))
   const requiredEmptyRows: Array<{ row: number; column: string }> = []
   for (const [idx, row] of normalizedRows.entries()) {
-    for (const col of REQUIRED[contract]) {
+    for (const col of requiredCols) {
       const pos = canonicalHeaders.indexOf(col)
       if (pos >= 0 && !row[pos]?.trim()) requiredEmptyRows.push({ row: idx + 2, column: col })
     }
   }
-  const recognized = new Set([...REQUIRED[contract], ...OPTIONAL[contract]])
+  const recognized = new Set(v2
+    ? [...REQUIRED_V2[contract]!, ...OPTIONAL_V2[contract]!]
+    : [...REQUIRED[contract], ...OPTIONAL[contract]])
   const omittedSourceHeaders = canonicalHeaders.filter((h) => !recognized.has(h))
   const csv = [
     canonicalHeaders.map(csvEscape).join(','),
@@ -246,8 +295,10 @@ function gridToCsv(rows: CellValue[][]): string {
 
 /** does this grid row, read as headers, satisfy a contract's required set? */
 function headerRowContract(row: CellValue[], named?: Contract): Contract | undefined {
-  const canonical = new Set(row.map((v) => canonicalHeader(cellText(v))))
-  if (named) return REQUIRED[named].every((h) => canonical.has(h)) ? named : undefined
+  const canonical = new Set(disambiguatePackageId(row.map((v) => canonicalHeader(cellText(v)))))
+  if (named) {
+    return REQUIRED[named].every((h) => canonical.has(h)) || isV2Shape(named, canonical) ? named : undefined
+  }
   const matches = contractMatches(canonical)
   return matches.length === 1 ? matches[0] : undefined
 }

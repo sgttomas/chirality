@@ -154,7 +154,16 @@ export function bindActs(ctx: ActContext): BoundActs {
         return refused('import.propose', 'a coverage declaration needs both start and end dates (YYYY-MM-DD), e.g. "covering 2026-06-29 to 2026-07-05"')
       }
       const r = await ctx.client.propose(ctx.pid, mapped.contract, mapped.csv, mapped.filename ?? filename,
-        coverageStart && coverageEnd ? { start: coverageStart, end: coverageEnd } : undefined)
+        coverageStart && coverageEnd ? { start: coverageStart, end: coverageEnd } : undefined,
+        // D-PEC-41: the FULL workbook (every sheet verbatim, incl. title/metadata rows the
+        // mapped CSV necessarily drops) persists on the proposal as source_extras
+        workbook && 'sheetName' in mapped
+          ? {
+              sourceName: filename ?? null,
+              sheets: workbook.sheets,
+              mappedSheet: { name: mapped.sheetName, headerRowIndex: mapped.headerRowIndex },
+            }
+          : undefined)
       if (!r.ok) {
         return refused('import.propose', r.kind === 'forbidden' ? r.message : 'proposal filing came back stale')
       }
