@@ -64,8 +64,8 @@ content.
 ### MDL — `Deliverables_Status` workbook
 
 Four sheets: **Master Deliverables List** (title row 1, header row 2, data
-from row 3), **Rules of Credit** (two rule sets: "Engineering & Design" and
-"Engineering Only", each stage → % value), **Data Dictionary**
+from row 3), **Rules of Credit** (two rule sets: `ENGINEERING & DESIGN` and
+`ENGINEERING ONLY`, each stage → % value), **Data Dictionary**
 (topic/detail assumptions + column definitions), **Lists** (validation
 vocabularies).
 
@@ -87,17 +87,19 @@ Observed template facts that bind the contract design:
   As Built / Issue Internally / Squad Check / None; Project Phase = Prelim /
   FEED / 30% / 60% / 90% / IFC / As Built; Package Type = Equipment /
   Documentation / Internal (observed data also carries `FEED Deliverable` and
-  `Internal Deliverable`); Deliverable Type = 17-item vocabulary (observed
-  data adds compound values, e.g. "Technical Datasheet / Specs"); a
-  `Hold Type` vocabulary (Decision / Information / Clarification / Resources /
-  Risk of Change / Approval) exists in Lists with **no corresponding MDL
-  column** — captured as vocabulary only.
+  `Internal Deliverable`); Deliverable Type = 16-item vocabulary (observed
+  data adds compound values, e.g. "Technical Datasheet / Specs"); and two
+  vocabularies exist in Lists with **no corresponding MDL column**, captured
+  as vocabulary only: `Hold Type` (Decision / Information / Clarification /
+  Resources / Risk of Change / Approval) and `Priority` (Now / Next / Later /
+  After).
 
 ### RAIL — `RAIL_Packages` workbook
 
-Two sheets: **RAIL** (metadata block rows 1–6: `DATE / VERSION` ·
-`PROJECT NAME` · `PROJECT NO.` · `DOC NO.`; header row 7; data from row 8)
-and **Lists** (vocabularies).
+Two sheets: **RAIL** (row 1 sheet title `PACKAGES RAIL`; metadata-label
+block rows 2–5: `DATE / VERSION:` · `PROJECT NAME:` · `PROJECT NO.:` ·
+`DOC NO.:`; row 6 blank; header row 7; data from row 8) and **Lists**
+(vocabularies).
 
 RAIL columns: `Package ID` · `Issue #` · `Package Discipline` · `Area` ·
 `Phase` · `CoA Tracking Number` · `Package Type` · `PACKAGE` (name) ·
