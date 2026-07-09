@@ -931,3 +931,113 @@
   - Basis docs updated: `REPORT_BASIS.md` and `IMPORT_MAPPING.md` now record the vocabulary split, explicit needs-audience mapping/round-trip, and report-only consistency check.
   - Review closeout before merge: D-PEC-43 v1 RAIL interface-status behavior pinned in code/docs/tests (blank status rejects as missing source fact; `in_work` rejects as non-interface vocabulary); narrow TWD visual pass covered Packages register/detail and Overview with no console errors or page-level horizontal overflow.
   - Checks: typecheck clean for core/server/web; targeted server tests for standard reports, import-v2, registers, and issue orientation passed. Full belt-and-braces and PR/harness checks run before merge.
+
+- **2026-07-09 — Receipt 88** (pre-demo backup, D-PEC-48 issue-count fix, D-PEC-44 `.docx` draft, and full TWD demo rehearsal).
+  - Steer of record (2026-07-09, launcher steer, Ryan Tufts, verbatim):
+    ```
+    Steer (this run): Final preparations for tomorrow's sponsor demo. Execute the
+    four items below tonight, in this order. Branch-first + PR per the standing
+    plan; you may merge each PR on green under this steer. Quote this steer
+    verbatim in the receipts.
+
+    1. FIRST: back up the demo database (before touching anything else).
+       On this steer you are authorized for this one write under projects/pec/
+       outside the coordination carve-out: create a WAL-safe backup of
+       projects/pec/pec-demo.db using the rehearsed VACUUM INTO path (the same
+       mechanism tools/backup.ts drills), to a timestamped file, e.g.
+         sqlite3 projects/pec/pec-demo.db "VACUUM INTO 'projects/pec/backups/pec-demo-2026-07-09-predemo.db'"
+       Verify the backup opens read-only and its deliverable/work_item/
+       import_proposal counts match the live file. Confirm the backup path is
+       gitignored — do not commit it. Record the act and the verified counts in
+       the receipt.
+
+    2. Fix the issue-count inconsistency (defect-fix-forward, D-PEC-48 fence).
+       Defect (verified 2026-07-09 against the live demo DB at main 6eba87431):
+       the RAIL v2 import maps any issue_type other than "Action" to work-item
+       kind 'other'; packageIssueRows() and clientIssueCount() in
+       projects/pec/server/src/services/views.ts filter actions to kind
+       'action'|'coordination'. Result: 25 of TWD's 26 imported RAIL issues are
+       invisible on the Packages register, the package-detail cockpit, and
+       Overview, while package-issue-summary and the Action & Hold Log show all
+       26. This violates D-PEC-48's own verification bar ("no record category is
+       hidden") — fix it under the D-PEC-48 ruled fence.
+       Fix: include open kind='other' work items in both packageIssueRows()'s
+       actionItems filter and clientIssueCount()'s actions filter, so register ==
+       cockpit == overview == report == 26 on the TWD data. Where the cockpit row
+       shows detail, prefer the verbatim sourceIssueType over the literal 'other'
+       when present. Do NOT reopen the weekly report's discipline-group anchoring.
+       Tests: extend the PEC-NFR-005 / ADR-012 pins so a package-anchored
+       kind='other' item counts identically in register, detail summary, and
+       package-issue-summary; belt-and-braces (typecheck, test, build, drill) at
+       the final SHA; visual pass on Packages register + a package detail +
+       Overview at ~1280px and narrow, against a scratch copy of the demo DB
+       confirming the counts read 26.
+
+    3. Execute D-PEC-44 (.docx discipline status report) — RULED O-A, needed for
+       tomorrow. Execute the packet as ruled (O-A: zero-dependency writer,
+       sidecar-side only, output to gitignored pilot-scratch/reports/, drafts
+       only — no issuing workflow). Composition basis, owner direction of record
+       (2026-07-09, verbatim — record in the packet as the composition
+       clarification):
+         "Needs and issues are tracked and reported by package. This includes
+       decisions, risks, action items, clarifications, needs for information
+       and resources etc. Status (i.e. working status, such as in progress or
+       complete) and % complete are tracked by deliverable. Period declaration
+       can happen in the agent sidecar via prompt. Yes I accept the honest
+       absences."
+       Therefore compose the draft as:
+       - Per discipline: Activities — in-work deliverables grouped by deliverable
+         type, with attested % complete and verbatim markers (deliverable basis,
+         DISC-ACT / DISC-PCT).
+       - By package: Needs & Issues — the package-level rows (holds, risks,
+         action items, and imported RAIL issues incl. kind='other', consistent
+         with the item-2 fix), with Decisions and Interfaces as segregated labels
+         per the D-PEC-48 vocabulary. Do not force package-anchored issues into
+         discipline buckets.
+       - Issuances this period: from the declared period only. The period is
+         declared in the sidecar prompt at generation time (start/end dates),
+         never inferred. With no period declared, the section states that
+         honestly.
+       - Every figure carries its strippable rule-id basis note; sections with no
+         supporting records render "None recorded (basis: <rule-id>)". The owner
+         accepts these honest absences for tomorrow (verbatim above) — do not
+         extend server surfaces to fill them; fence is agent-sidecar/** +
+         REPORT_BASIS.md only.
+       Timebox: a correct, openable weekly draft from the live TWD data beats
+       completeness — defer aggregate/multi-week polish if time is short.
+       Verify: sidecar suite incl. template-conformance and golden-file tests
+       (synthetic fixtures only, no TWD content in the repo); belt-and-braces;
+       generate a draft against the demo DB (read-only) via a sidecar prompt that
+       declares a period; confirm the .docx opens clean in Word/Pages and its
+       figures match the in-app report payload for the same data.
+
+    4. Full demo rehearsal (after 2 and 3 are merged, at merged main).
+       Launch exactly as the demo will: projects/pec/pilot-scratch/run-demo.sh
+       (it sets PEC_DB to the demo DB, exports agent credentials, sequences
+       server before sidecar). Then walk the demo path end to end as the sponsor
+       will see it, on TWD (never AUR — it's the sparse seed):
+       Overview → Packages register → drill one package with issues (counts must
+       agree everywhere post-fix) → Disciplines → Process detail (28.8% tile
+       drills to DISC-PCT basis; "Next Phase" markers verbatim) → Deliverables
+       register (% column) → weekly-project-status report by discipline and by
+       package (consistency check reads "none surfaced") → generate the .docx
+       draft via a sidecar prompt with a declared period, open it, and KEEP this
+       known-good file as the demo safety copy → Action & Hold Log.
+       Check: no console errors; desktop + narrow viewports on each page above;
+       sign-in works for the personas the demo will use. Do NOT run any import,
+       accept/apply, or mutation against the demo DB — rehearse any upload-flow
+       demonstration on a scratch copy only. Report rehearsal outcome (pass/
+       issues found) in the receipt and leave the demo DB churn uncommitted as
+       always.
+
+    Stop after item 4: no further tranches tonight regardless of open lanes —
+    present anything found during rehearsal as findings, not fixes, unless it is
+    demo-blocking and inside an already-ruled fence.
+    ```
+  - Item 1 backup: before source edits, created WAL-safe VACUUM backup `projects/pec/backups/pec-demo-2026-07-09-151741-predemo.db`. Verified read-only open and `pragma quick_check=ok`; counts matched live at backup time: `deliverable=1011`, `work_item=33`, `import_proposal=9`. `projects/pec/backups/` is gitignored by `projects/pec/.gitignore`; no backup file committed.
+  - Item 2 D-PEC-48 fix: branch `codex/pec-dpec48-issue-count-fix`, PR #132, commit `104d96215`, merged to `main` as `8f363d15b`. `packageIssueRows()` and `clientIssueCount()` now include open `kind='other'` client work items; package cockpit detail prefers verbatim `sourceIssueType`. Tests extended the PEC-NFR-005 / ADR-012 package-count pin for package-anchored `kind='other'`. Verification: PEC belt-and-braces pass (`npm run typecheck && npm test && npm run build && npm run drill`); scratch TWD visual/API pass showed Overview total open issues `26`, Packages register total `26`, package-issue-summary total `26`, package `26020-PKG-126` cockpit/report `3`, and no browser console errors or horizontal overflow at ~1280px and narrow. Governance closeout: self-check unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check clean; `git diff --check` clean; practitioner harness pytest `264 passed`; remote `harness` green.
+  - Item 3 D-PEC-44 execution: branch `codex/pec-dpec44-docx-report`, PR #133, commit `aec083bb6`, merged to `main` as `0804911b8`. Added sidecar-only zero-dependency `.docx` writer (`agent-sidecar/src/docx-report.ts`), bounded `draftDocx` act, stub/SDK routing, period parser, report-basis note, and synthetic template/golden tests. Output lane fixed to repo `projects/pec/pilot-scratch/reports/` regardless of workspace cwd. Verification: sidecar typecheck/tests pass (101 sidecar tests); full PEC belt-and-braces pass (core 74 / server 167 / sidecar 101; build; drill PASS); scratch sidecar prompt generated `TWD-discipline-status-2026-07-01_to_2026-07-09.docx` with `disciplines=10`, `inWorkDeliverables=997`, `issuancesThisPeriod=0`, `packageIssueRows=26`, `packageDecisionRows=0`, `packageInterfaceRows=0`; report payload checks matched `weeklyGroups=10`, `packageReportTotal=26`; `unzip -t` and macOS `textutil` parse passed. Governance closeout: self-check unchanged baseline INFO=15/NA=2/REVIEW=28/WARN=6; coord-check clean; `git diff --check` clean; practitioner harness pytest `264 passed`; remote `harness` green.
+  - Item 4 rehearsal: after #132 and #133 were merged, launched exactly via `projects/pec/pilot-scratch/run-demo.sh` from merged `main` (`0804911b8`). Existing stale pre-merge launchers on ports 4810/4812 were stopped first because they predated merged main and web port 4811 was not listening. Run-demo started with `PEC_DB=projects/pec/pec-demo.db`, projects `AUR, TWD`, agent credentials loaded, stub engine, server `:4810`, web `:4811`, sidecar `:4812`; sidecar health reported configured agent `pec-agent@chirality.local`.
+  - Rehearsal path result: PASS. Browser walkthrough on TWD covered Overview, Packages register, package `26020-PKG-126` detail, Disciplines, Process detail, Deliverables register, and Action & Hold Log at desktop `1280x800` and narrow `390x844`. No browser console errors; no page-level horizontal overflow; all screenshots nonblank. Payload checks: Overview package rollup open issues total `26`; Packages register open issues total `26`; package `26020-PKG-126` cockpit `openIssues=3`, `openActionItems=3`, details `Resources`, `Risk`, `Information`; package-issue-summary total `26`; Action & Hold Log payload `work_item=26` and includes the three `26020-PKG-126` rows; Process detail API band `percentComplete.value=28.8`, `ruleId=DISC-PCT`, detail names the `"Next Phase"` marker exclusion; weekly-project-status by discipline and by package both reported consistency `"none surfaced"`. Human demo persona sign-ins via the demo login endpoint passed for `admin@aurora.dev`, `pm@aurora.dev`, `dc@aurora.dev`, and `sponsor@aurora.dev` with password `pilot`.
+  - Demo safety copy: live sidecar prompt generated `projects/pec/pilot-scratch/reports/TWD-discipline-status-2026-07-01_to_2026-07-09.docx` with the same figures (`10` disciplines, `997` in-work deliverables, `26` package issue rows, package report payload total `26`). The file is gitignored, retained as the known-good demo copy, `unzip -t` clean, macOS `textutil` parse clean, and an `open -a Pages` request launched Pages for the document.
+  - Churn/accounting: no import, accept/apply, or upload mutation was run during rehearsal. Demo DB churn from normal launch/login/session/sweep remains uncommitted as directed; generated backup and report outputs remain gitignored. Stop condition honored: after item 4, no further tranches executed.
