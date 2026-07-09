@@ -36,6 +36,7 @@ function fakeActs(overrides: Partial<Record<string, ActResult>> = {}): { acts: B
     recordHistory: record('read.history') as BoundActs['recordHistory'],
     explainRevision: record('read.explain') as BoundActs['explainRevision'],
     readReport: record('read.report') as BoundActs['readReport'],
+    draftDocx: record('report.draftDocx') as BoundActs['draftDocx'],
   }
   return { acts, calls }
 }

@@ -22,6 +22,8 @@
  */
 
 import type { PecAgentClient, ProposalSummary, ProposalView } from './pec-client.ts'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { AgentClientError } from './pec-client.ts'
 import type { AccessBasis } from './config.ts'
 import type { ActResult, BoundActs, EgressClass, ScreenContextRecord } from './engine/port.ts'
@@ -29,6 +31,9 @@ import { CONTRACTS } from './contract-detect.ts'
 import { adaptStructuredFile, adaptWorkbook, mappingSummaryText } from './structured-file.ts'
 import { parseXlsxWorkbook, WorkbookError } from './xlsx.ts'
 import type { ParsedWorkbook } from './xlsx.ts'
+import { buildDisciplineStatusDocx, writeDraftDocx } from './docx-report.ts'
+
+const PEC_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
 export interface ActContext {
   pid: number
@@ -92,6 +97,7 @@ const result = (act: string, ok: boolean, summary: string, payload?: unknown): A
   ({ kind: 'result', act, ok, summary, payload })
 
 const adminLink = (pid: number): string => `/p/${pid}/admin`
+const reportsDir = (): string => join(PEC_ROOT, 'pilot-scratch', 'reports')
 
 function reportCounts(p: ProposalView | ProposalSummary): string {
   const r = p.dryRunReport
@@ -425,6 +431,68 @@ export function bindActs(ctx: ActContext): BoundActs {
       return refused('read.report',
         `unknown report '${report}' (one of: sponsor-brief, package-pack <id>, weekly-project-status, `
         + `weekly-project-status-by-discipline, package-issue-summary, deliverable-completeness)`)
+    },
+
+    async draftDocx({ periodStart, periodEnd }) {
+      const act = 'report.draftDocx'
+      const gate = broadReadRefusal(ctx, act, 'the .docx discipline status draft inputs')
+      if (gate) return gate
+      if ((periodStart == null) !== (periodEnd == null)) {
+        return refused(act, 'a declared period needs both start and end dates (YYYY-MM-DD); no date is inferred')
+      }
+      const period = periodStart && periodEnd ? { start: periodStart, end: periodEnd } : null
+      if (period && (!/^\d{4}-\d{2}-\d{2}$/.test(period.start) || !/^\d{4}-\d{2}-\d{2}$/.test(period.end) || period.end < period.start)) {
+        return refused(act, 'period start/end must be ordered YYYY-MM-DD dates')
+      }
+
+      const overview = await ctx.client.overview(ctx.pid)
+      if (!overview.ok) return refused(act, overview.kind === 'forbidden' ? overview.message : 'overview unavailable (stale)')
+      const project = (overview.value as { project?: { code?: string; name?: string } }).project
+      if (!project?.code || !project.name) return refused(act, 'overview did not include the project identity needed for the draft')
+
+      const disciplines = await ctx.client.disciplines(ctx.pid)
+      if (!disciplines.ok) return refused(act, disciplines.kind === 'forbidden' ? disciplines.message : 'discipline list unavailable (stale)')
+      const disciplineRows = disciplines.value as Array<{ discipline?: string }>
+      const disciplineDetails: unknown[] = []
+      for (const d of disciplineRows) {
+        if (!d.discipline) continue
+        const detail = await ctx.client.disciplineDetail(ctx.pid, d.discipline, period ?? undefined)
+        if (!detail.ok) return refused(act, detail.kind === 'forbidden' ? detail.message : `discipline ${d.discipline} unavailable (stale)`)
+        disciplineDetails.push(detail.value)
+      }
+
+      const packageRows = await ctx.client.packages(ctx.pid)
+      if (!packageRows.ok) return refused(act, packageRows.kind === 'forbidden' ? packageRows.message : 'packages unavailable (stale)')
+      const packageDetails: unknown[] = []
+      for (const p of packageRows.value as Array<{ id?: number; openIssues?: number; operationalItems?: number }>) {
+        if (!p.id || ((p.openIssues ?? 0) === 0 && (p.operationalItems ?? 0) === 0)) continue
+        const detail = await ctx.client.packageDetail(ctx.pid, p.id)
+        if (!detail.ok) return refused(act, detail.kind === 'forbidden' ? detail.message : `package #${p.id} unavailable (stale)`)
+        packageDetails.push(detail.value)
+      }
+
+      const weekly = await ctx.client.standardReport(ctx.pid, 'weekly-project-status', 'discipline', period ?? undefined)
+      if (!weekly.ok) return refused(act, weekly.kind === 'forbidden' ? weekly.message : 'weekly status payload unavailable (stale)')
+      const packageSummary = await ctx.client.standardReport(ctx.pid, 'package-issue-summary')
+      if (!packageSummary.ok) return refused(act, packageSummary.kind === 'forbidden' ? packageSummary.message : 'package issue summary payload unavailable (stale)')
+
+      const draft = buildDisciplineStatusDocx({
+        project: { code: project.code, name: project.name },
+        period,
+        generatedAt: new Date().toISOString(),
+        compositionClarification: 'Needs and issues are tracked and reported by package. This includes decisions, risks, action items, clarifications, needs for information and resources etc. Status (i.e. working status, such as in progress or complete) and % complete are tracked by deliverable. Period declaration can happen in the agent sidecar via prompt. Yes I accept the honest absences.',
+        disciplines: disciplineDetails as Parameters<typeof buildDisciplineStatusDocx>[0]['disciplines'],
+        packageDetails: packageDetails as Parameters<typeof buildDisciplineStatusDocx>[0]['packageDetails'],
+      })
+      const path = await writeDraftDocx(reportsDir(), draft)
+      const weeklyGroups = ((weekly.value as { sections?: { groups?: unknown[] } }).sections?.groups ?? []).length
+      const packageReportTotal = ((packageSummary.value as { sections?: { packages?: Array<{ clientIssues?: number }> } }).sections?.packages ?? [])
+        .reduce((sum, r) => sum + (r.clientIssues ?? 0), 0)
+      return result(act, true,
+        `${draft.filename} written to pilot-scratch/reports from imported/reportable facts; `
+        + `${draft.figures.disciplines} discipline section(s), ${draft.figures.packageIssueRows} package issue row(s), `
+        + `declared period ${period ? `${period.start}..${period.end}` : 'absent'}.`,
+        { path, filename: draft.filename, figures: draft.figures, reportPayloadChecks: { weeklyGroups, packageReportTotal } })
     },
   }
 }
