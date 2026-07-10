@@ -107,7 +107,7 @@ REPORTED = re-verify per §3.1 before executing.
 | ORN-01 | Wire CI to enforce the gates (typecheck + vitest + instruction-root integrity + release-quality wrapper); resolve the stable-summary path conflict | DEL-09-01/05 | validation/CI | M | HIGH | VERIFIED | BLOCKED (root-workflow authority) |
 | ORN-02 | Sanitize the blocked-URL log at `electron/main.ts:119` (no raw `details.url`) | DEL-09-06 | code/security | S | MEDIUM | VERIFIED | DONE |
 | ORN-03 | Restore/realign the UI-polish acceptance source (`docs/ui/UI_POLISH_EXECUTION_PLAN.md` absent → DEL-02-04 REQ-014) | DEL-02-04 | docs/UI | S | MEDIUM | VERIFIED | DONE |
-| ORN-04 | Mirror the read-path symlink guard on the dependency write path (defense-in-depth) | DEL-07-05 | code | S | LOW/MED | CORRECTED | READY |
+| ORN-04 | Mirror the read-path symlink guard on the dependency write path (defense-in-depth) | DEL-07-05 | code | S | LOW/MED | CORRECTED | DONE |
 | ORN-05 | Working-root `/api/working-root/validate` parity + route tests | DEL-07-01 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
 | ORN-06 | Permission-invariant test: SDK options always include `canUseTool` + `hooks` where write/shell tools exposed | DEL-06-01 | test | S | MEDIUM | VERIFIED | DROPPED (already closed) |
 | ORN-07 | Register retire-vs-delete diff vs `previousRows` in `register-writer.ts` | DEL-07-05 | code/test | M | MEDIUM | REPORTED | READY (verify first) |

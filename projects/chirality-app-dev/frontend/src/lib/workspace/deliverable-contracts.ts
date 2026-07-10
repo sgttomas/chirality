@@ -1,4 +1,4 @@
-import { readFile, realpath, stat } from 'node:fs/promises';
+import { lstat, readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { writeTextFileAtomically } from '../atomic-write';
 import { readDependencyRegister } from '../dependencies/register-reader';
@@ -137,6 +137,36 @@ async function isRegularFilePresent(filePath: string): Promise<boolean> {
       filePath,
       errnoCode
     });
+  }
+}
+
+async function assertDependencyWriteLeafIsNotSymlink(filePath: string): Promise<void> {
+  try {
+    const fileStat = await lstat(filePath);
+    if (fileStat.isSymbolicLink()) {
+      throw new WorkspaceOperationError(
+        'SYMLINK_WRITE_DENIED',
+        403,
+        'Writes to a symbolic-link Dependencies.csv are not allowed',
+        { file: 'Dependencies.csv' }
+      );
+    }
+  } catch (error) {
+    if (error instanceof WorkspaceOperationError) {
+      throw error;
+    }
+
+    const errnoCode = getErrnoCode(error);
+    if (errnoCode === 'ENOENT') {
+      return;
+    }
+
+    throw new WorkspaceOperationError(
+      'WORKSPACE_FILE_INSPECTION_FAILED',
+      500,
+      'Unable to inspect Dependencies.csv before writing',
+      { file: 'Dependencies.csv', errnoCode }
+    );
   }
 }
 
@@ -476,6 +506,7 @@ export async function writeDeliverableDependencies(
   );
   const dependenciesFilePath = path.join(deliverablePath, 'Dependencies.csv');
   const dependenciesSummaryPath = path.join(deliverablePath, '_DEPENDENCIES.md');
+  await assertDependencyWriteLeafIsNotSymlink(dependenciesFilePath);
   const secondarySummaryPresent = await isRegularFilePresent(dependenciesSummaryPath);
   const hostDeliverableId = getDeliverableIdFromPath(deliverablePath);
 

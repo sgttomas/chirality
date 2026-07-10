@@ -29,6 +29,12 @@ The verify-first pass dropped `ORN-06` as already closed: the SDK options builde
 installs both `canUseTool` and hooks, with existing tests covering the invariant and `Write` + `Bash` in
 `workspaceWrite`. Other `ORN-05`..`ORN-13` dispositions remain in the active queue.
 
+Completed `ORN-04`: dependency-register writes now inspect the `Dependencies.csv` leaf before reading
+or writing it, allow an absent leaf, and reject both live and dangling symlinks with a typed 403. Direct
+PUT regressions prove the link is preserved and external state remains unchanged. The generic atomic
+writer remains policy-neutral; this is the queue's recorded defense-in-depth repair, not an external-write
+escape claim.
+
 Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
 passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
 paths exist; `git diff --check` passed. No release, distribution, issuance, provider expansion,
