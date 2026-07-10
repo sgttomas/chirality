@@ -34,8 +34,27 @@ type RendererEgressPolicyDecision =
   | { allowed: true }
   | { allowed: false; category: 'INVALID_URL' | 'NETWORK_POLICY_VIOLATION'; reason: string };
 
+type RendererRequestDestination = {
+  hostname: string;
+  port: string | null;
+  protocol: string;
+};
+
 function isAllowedLoopbackHostname(hostname: string): boolean {
   return ALLOWED_LOOPBACK_HOSTNAMES.has(hostname.toLowerCase());
+}
+
+function summarizeRendererRequestDestination(rawUrl: string): RendererRequestDestination | null {
+  try {
+    const parsed = new URL(rawUrl);
+    return {
+      hostname: parsed.hostname,
+      port: parsed.port || null,
+      protocol: parsed.protocol
+    };
+  } catch {
+    return null;
+  }
 }
 
 function parsePositiveInteger(raw: string | undefined, fallback: number): number {
@@ -116,7 +135,7 @@ function registerRendererEgressPolicy(window: BrowserWindow): void {
         category: decision.category,
         policy: RUNTIME_NETWORK_POLICY_ID,
         reason: decision.reason,
-        url: details.url,
+        destination: summarizeRendererRequestDestination(details.url),
         method: details.method,
         resourceType: details.resourceType,
         webContentsId: details.webContentsId

@@ -6,6 +6,27 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-10 - Inspection-orphan queue resumed (`ORN-01`, `ORN-02`, `ORN-06`)
+
+The live monorepo recheck blocked `ORN-01` rather than making a non-functional edit: GitHub executes
+repo-root `.github/workflows/harness-premerge.yml`, while the nested app-dev workflow is inert and the
+D-APP-39 queue discipline permits staging only `projects/chirality-app-dev/**`. The active root workflow
+also records the newer owner-directed manual-only secret-safety posture at `48f622c93`. `ORN-01` now
+awaits explicit root-workflow write/staging direction. Its summary-path conflict is resolved as three
+distinct artifacts: Section 8 premerge, release-quality, and instruction-root-integrity summaries.
+
+Completed `ORN-02`: Electron renderer-egress diagnostics now retain only protocol, hostname, and port
+for blocked destinations. Raw URL userinfo, path, query, and fragment are no longer logged. The existing
+network-policy source regression pins the bounded diagnostic and rejects `url: details.url`.
+
+The verify-first pass dropped `ORN-06` as already closed: the SDK options builder unconditionally
+installs both `canUseTool` and hooks, with existing tests covering the invariant and `Write` + `Bash` in
+`workspaceWrite`. Other `ORN-05`..`ORN-13` dispositions remain in the active queue.
+
+Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
+passed; `git diff --check` passed. No release, distribution, issuance, provider expansion, live-binding,
+or professional claim was made.
+
 ## 2026-06-22 - PKG-10 domain-engine canon conformance completed
 
 Completed a doc-only PKG-10 governance-conformance tranche under D-APP-45. Added framework
