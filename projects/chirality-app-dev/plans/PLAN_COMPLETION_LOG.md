@@ -35,6 +35,11 @@ PUT regressions prove the link is preserved and external state remains unchanged
 writer remains policy-neutral; this is the queue's recorded defense-in-depth repair, not an external-write
 escape claim.
 
+Completed `ORN-05` after live verification: `/api/working-root/validate` now reuses the same
+read/write-access and instruction-root-overlap validator as session creation, along with the same typed
+harness error contract. Route regressions cover valid, instruction-root-conflicting, missing, and
+relative project roots; the route performs no write probe or project mutation.
+
 Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
 passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
 paths exist; `git diff --check` passed. No release, distribution, issuance, provider expansion,

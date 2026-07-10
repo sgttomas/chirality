@@ -108,7 +108,7 @@ REPORTED = re-verify per §3.1 before executing.
 | ORN-02 | Sanitize the blocked-URL log at `electron/main.ts:119` (no raw `details.url`) | DEL-09-06 | code/security | S | MEDIUM | VERIFIED | DONE |
 | ORN-03 | Restore/realign the UI-polish acceptance source (`docs/ui/UI_POLISH_EXECUTION_PLAN.md` absent → DEL-02-04 REQ-014) | DEL-02-04 | docs/UI | S | MEDIUM | VERIFIED | DONE |
 | ORN-04 | Mirror the read-path symlink guard on the dependency write path (defense-in-depth) | DEL-07-05 | code | S | LOW/MED | CORRECTED | DONE |
-| ORN-05 | Working-root `/api/working-root/validate` parity + route tests | DEL-07-01 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
+| ORN-05 | Working-root `/api/working-root/validate` parity + route tests | DEL-07-01 | code/test | M | MEDIUM | VERIFIED | DONE |
 | ORN-06 | Permission-invariant test: SDK options always include `canUseTool` + `hooks` where write/shell tools exposed | DEL-06-01 | test | S | MEDIUM | VERIFIED | DROPPED (already closed) |
 | ORN-07 | Register retire-vs-delete diff vs `previousRows` in `register-writer.ts` | DEL-07-05 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
 | ORN-08 | Runtime error-taxonomy ownership (PKG-03/04/05) + `api-key-settings` render test | DEL-02-05 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
@@ -129,6 +129,10 @@ REPORTED = re-verify per §3.1 before executing.
 - `ORN-06`: current `sdk-options-builder.ts` installs `canUseTool` and hooks unconditionally, and
   `sdk-options-builder.test.ts` already pins both fields including `Write` + `Bash` in
   `workspaceWrite`; no residual implementation remains.
+- `ORN-05`: the validation route used only workspace path normalization while session creation also
+  required read/write access and rejected instruction-root overlap. The route now reuses the exact
+  session-creation validator and error contract, with route tests for valid, conflicting, missing, and
+  relative roots.
 
 The agent re-derives readiness at selection time (recompute; do not trust this table if the filesystem
 disagrees). Items excluded from this tranche (issuance, dependency rows, R7, provider/release posture,

@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import {
-  normalizeProjectRoot,
-  workspaceErrorPayload
-} from '../../../../lib/workspace/filesystem';
+import { errorResponse, readJsonBody, requireNonEmptyString } from '../../../../lib/harness/http';
+import { assertProjectRootAccessible } from '../../../../lib/harness/session-manager';
 
 type ValidateRequest = {
   projectRoot: string;
@@ -10,11 +8,11 @@ type ValidateRequest = {
 
 export async function POST(request: Request): Promise<Response> {
   try {
-    const body = (await request.json()) as ValidateRequest;
-    const projectRoot = await normalizeProjectRoot(body.projectRoot);
+    const body = await readJsonBody<ValidateRequest>(request);
+    const requestedProjectRoot = requireNonEmptyString(body.projectRoot, 'projectRoot');
+    const projectRoot = await assertProjectRootAccessible(requestedProjectRoot);
     return NextResponse.json({ ok: true, projectRoot }, { status: 200 });
   } catch (error) {
-    const payload = workspaceErrorPayload(error);
-    return NextResponse.json(payload.body, { status: payload.status });
+    return errorResponse(error);
   }
 }
