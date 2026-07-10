@@ -8,6 +8,7 @@
  */
 
 import { request as httpRequest } from 'node:http'
+import type { ServerResponse } from 'node:http'
 import { AppError } from './errors.ts'
 
 export interface AgentProxyTarget {
@@ -118,4 +119,75 @@ export function agentStatus(target: AgentProxyTarget): Promise<unknown> {
 /** POST /agent/messages — JSON body only; the caller injects the server-side pid */
 export function agentMessage(target: AgentProxyTarget, payload: unknown): Promise<unknown> {
   return forward(target, 'POST', '/agent/messages', payload, messageTimeoutFromEnv())
+}
+
+/**
+ * Stream the app-dev harness-compatible SSE turn without buffering. The human
+ * request headers (especially pec_session) are never forwarded; only a fresh
+ * JSON body and the explicit SSE Accept header cross the loopback seam.
+ */
+export function agentMessageStream(
+  target: AgentProxyTarget,
+  payload: unknown,
+  downstream: ServerResponse,
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const body = JSON.stringify(payload)
+    if (Buffer.byteLength(body, 'utf8') > MAX_PAYLOAD_BYTES) {
+      reject(new AppError(413, 'PAYLOAD_TOO_LARGE', 'agent message exceeds the 6 MiB cap'))
+      return
+    }
+    const unavailable = (why: string): AppError =>
+      new AppError(503, 'AGENT_UNAVAILABLE', `the agent sidecar is not reachable (${why}); start it with npm run dev:agent`)
+    const req = httpRequest({
+      host: target.host,
+      port: target.port,
+      method: 'POST',
+      path: '/agent/messages',
+      headers: {
+        accept: 'text/event-stream',
+        'content-type': 'application/json',
+        'content-length': Buffer.byteLength(body, 'utf8'),
+      },
+      timeout: messageTimeoutFromEnv(),
+    }, (upstream) => {
+      const status = upstream.statusCode ?? 502
+      if (status < 200 || status >= 300) {
+        const chunks: Buffer[] = []
+        upstream.on('data', (chunk: Buffer) => chunks.push(chunk))
+        upstream.on('end', () => {
+          const text = Buffer.concat(chunks).toString('utf8')
+          let parsed: { error?: { code?: string; message?: string } } = {}
+          try { parsed = JSON.parse(text) as typeof parsed } catch { /* use status fallback */ }
+          reject(new AppError(status, parsed.error?.code ?? 'AGENT_ERROR', parsed.error?.message ?? `agent sidecar returned HTTP ${status}`))
+        })
+        return
+      }
+      downstream.writeHead(200, {
+        'content-type': 'text/event-stream; charset=utf-8',
+        'cache-control': 'no-cache, no-transform',
+        connection: 'keep-alive',
+        'x-accel-buffering': 'no',
+        'x-content-type-options': 'nosniff',
+      })
+      downstream.flushHeaders()
+      upstream.on('data', (chunk: Buffer) => {
+        if (!downstream.destroyed && !downstream.writableEnded) downstream.write(chunk)
+      })
+      upstream.on('end', () => {
+        if (!downstream.writableEnded) downstream.end()
+        resolve()
+      })
+      upstream.on('error', (error) => {
+        if (!downstream.writableEnded) downstream.end()
+        reject(unavailable(error.message))
+      })
+      downstream.on('close', () => {
+        if (!upstream.complete) req.destroy()
+      })
+    })
+    req.on('timeout', () => req.destroy(new Error('timeout')))
+    req.on('error', (error) => reject(error instanceof AppError ? error : unavailable(error.message)))
+    req.end(body)
+  })
 }

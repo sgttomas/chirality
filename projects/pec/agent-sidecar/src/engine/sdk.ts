@@ -31,7 +31,7 @@
  * sources, hardcodes, or fabricates a key or model output.
  */
 
-import type { AgentEnginePort, AgentEvent, AgentTurnInput, BoundActs, ActResult } from './port.ts'
+import type { AgentEnginePort, AgentEvent, AgentStreamSink, AgentTurnInput, BoundActs, ActResult } from './port.ts'
 import type { SidecarConfig, SessionProfile } from '../config.ts'
 import { parseSessionProfile } from '../config.ts'
 
@@ -126,6 +126,8 @@ export interface ToolCallResult {
 export interface TurnSink {
   events: AgentEvent[]
   actsUsed: number
+  maxActs?: number
+  emit?: AgentStreamSink
   /** the panel is told ONCE when the budget starts refusing (the owner sees the whole chain) */
   budgetNoticed?: boolean
 }
@@ -140,6 +142,71 @@ function assistantTextOf(message: unknown): string {
       .map((b) => b.text).join('')
   }
   return ''
+}
+
+function systemInitOf(message: unknown): { model: string; sessionId?: string } | null {
+  if (message == null || typeof message !== 'object') return null
+  const m = message as { type?: string; subtype?: string; model?: unknown; session_id?: unknown }
+  if (m.type !== 'system' || m.subtype !== 'init' || typeof m.model !== 'string') return null
+  return { model: m.model, sessionId: typeof m.session_id === 'string' ? m.session_id : undefined }
+}
+
+/** SDK partial-message text, matching app-dev's stream-event mapper. */
+function partialTextOf(message: unknown): string {
+  if (message == null || typeof message !== 'object') return ''
+  const m = message as { type?: string; event?: unknown }
+  if (m.type !== 'stream_event' || m.event == null || typeof m.event !== 'object') return ''
+  const e = m.event as { type?: string; delta?: unknown }
+  if (e.type !== 'content_block_delta' || e.delta == null || typeof e.delta !== 'object') return ''
+  const delta = e.delta as { type?: string; text?: unknown }
+  return delta.type === 'text_delta' && typeof delta.text === 'string' ? delta.text : ''
+}
+
+interface ObservedToolUse { id: string; name: string }
+
+export function toolUsesOf(message: unknown): ObservedToolUse[] {
+  if (message == null || typeof message !== 'object') return []
+  const m = message as { type?: string; event?: unknown; message?: { content?: unknown } }
+  let blocks: unknown[] = []
+  if (m.type === 'stream_event' && m.event != null && typeof m.event === 'object') {
+    const event = m.event as { type?: string; content_block?: unknown }
+    if (event.type === 'content_block_start') blocks = [event.content_block]
+  } else if (m.type === 'assistant' && Array.isArray(m.message?.content)) {
+    blocks = m.message!.content as unknown[]
+  }
+  return blocks.flatMap((block) => {
+    if (block == null || typeof block !== 'object') return []
+    const b = block as { type?: string; id?: unknown; name?: unknown }
+    if ((b.type !== 'tool_use' && b.type !== 'server_tool_use')
+      || typeof b.id !== 'string' || typeof b.name !== 'string') return []
+    return [{ id: b.id, name: b.name }]
+  })
+}
+
+export function toolResultOf(
+  message: unknown,
+  names: Map<string, string>,
+): { id: string; name: string; failed: boolean } | null {
+  if (message == null || typeof message !== 'object') return null
+  const m = message as { type?: string; parent_tool_use_id?: unknown; tool_use_result?: unknown }
+  if (m.type !== 'user' || m.tool_use_result === undefined) return null
+  const result = m.tool_use_result
+  const resultRecord = result != null && typeof result === 'object' ? result as Record<string, unknown> : {}
+  const id = typeof m.parent_tool_use_id === 'string' ? m.parent_tool_use_id
+    : typeof resultRecord.tool_use_id === 'string' ? resultRecord.tool_use_id
+      : ''
+  if (!id) return null
+  const name = names.get(id) ?? 'tool'
+  const failed = resultRecord.is_error === true || resultRecord.error != null
+  return { id, name, failed }
+}
+
+function permissionDeniedOf(message: unknown): { id: string; name: string; reason: string } | null {
+  if (message == null || typeof message !== 'object') return null
+  const m = message as { type?: string; subtype?: string; tool_use_id?: unknown; tool_name?: unknown; message?: unknown }
+  if (m.type !== 'system' || m.subtype !== 'permission_denied'
+    || typeof m.tool_use_id !== 'string' || typeof m.tool_name !== 'string') return null
+  return { id: m.tool_use_id, name: m.tool_name, reason: typeof m.message === 'string' ? m.message : 'permission denied' }
 }
 
 function toEvents(r: ActResult): AgentEvent[] {
@@ -205,18 +272,32 @@ export function buildPecTools(
     name: string, description: string, schema: Record<string, unknown>,
     exec: (args: Record<string, unknown>) => Promise<ActResult>,
   ): unknown =>
-    toolFn(name, description, schema, async (args) => {
+    toolFn(name, description, schema, async (args, extra) => {
+      const extraRecord = extra != null && typeof extra === 'object' ? extra as Record<string, unknown> : {}
+      const toolUseId = typeof extraRecord.toolUseId === 'string'
+        ? extraRecord.toolUseId
+        : `${name}-${sink.actsUsed + 1}`
       if (sink.actsUsed >= maxActs) {
         const reason = `act budget exhausted (${maxActs} acts this turn) — answer now from the results you already have`
+        const budget = { used: sink.actsUsed, max: maxActs, remaining: 0 }
         if (!sink.budgetNoticed) {
           sink.budgetNoticed = true
           sink.events.push({ type: 'act:refused', act: name, reason })
+          sink.emit?.({ type: 'tool.failed', data: { toolName: name, toolUseId, act: name, refused: true, reason, actBudget: budget } })
         }
         return { content: [{ type: 'text' as const, text: JSON.stringify({ refused: true, reason }) }] }
       }
       sink.actsUsed += 1
+      sink.emit?.({
+        type: 'tool.started',
+        data: { toolName: name, toolUseId, act: name, actBudget: { used: sink.actsUsed, max: maxActs, remaining: maxActs - sink.actsUsed } },
+      })
       const r = await exec(args)
       sink.events.push(...toEvents(r))
+      const budget = { used: sink.actsUsed, max: maxActs, remaining: maxActs - sink.actsUsed }
+      sink.emit?.(r.kind === 'result'
+        ? { type: r.ok ? 'tool.completed' : 'tool.failed', data: { toolName: name, toolUseId, act: r.act, ok: r.ok, summary: r.summary, payload: r.payload, actBudget: budget } }
+        : { type: 'tool.failed', data: { toolName: name, toolUseId, act: r.act, refused: true, reason: r.reason, actBudget: budget } })
       return { content: [{ type: 'text' as const, text: JSON.stringify(feedbackOf(r)) }] }
     })
 
@@ -309,6 +390,7 @@ export function buildPecTools(
 export function buildQueryOptions(
   server: unknown,
   env: Record<string, string | undefined> = process.env,
+  runtime: { hooks?: Record<string, unknown> } = {},
 ): Record<string, unknown> {
   const allowed = PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`)
   const { maxActs, maxTurns } = turnLimitsFromEnv(env)
@@ -318,6 +400,8 @@ export function buildQueryOptions(
   return {
     systemPrompt: systemPromptOf(maxActs, session),
     maxTurns,
+    includePartialMessages: true,
+    ...(runtime.hooks ? { hooks: runtime.hooks } : {}),
     ...(model ? { model } : {}),
     ...(session === 'hermetic' ? { tools: [] } : {}),
     mcpServers: { pec: server },
@@ -355,22 +439,134 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
     throw new Error('the installed @anthropic-ai/claude-agent-sdk does not expose query/tool/createSdkMcpServer; check its version')
   }
 
+  let resolvedModel = process.env.PEC_AGENT_MODEL?.trim() || null
   return {
     subject: 'sdk',
     egress: 'model-provider',
+    resolvedModel: () => resolvedModel,
 
-    async runTurn(input: AgentTurnInput, acts: BoundActs): Promise<AgentEvent[]> {
-      const sink: TurnSink = { events: [], actsUsed: 0 }
+    async runTurn(input: AgentTurnInput, acts: BoundActs, emit?: AgentStreamSink): Promise<AgentEvent[]> {
       const { maxActs } = turnLimitsFromEnv()
+      const sink: TurnSink = { events: [], actsUsed: 0, maxActs, emit }
       const server = sdk.createSdkMcpServer!({
         name: 'pec', version: '1.0.0',
         tools: buildPecTools(sdk.tool!, z, { input, acts, sink, maxActs }),
       })
       let text = ''
+      let streamedText = ''
+      const toolNames = new Map<string, string>()
+      const observedToolStarts = new Set<string>()
+      const observedToolTerminals = new Set<string>()
+      const startObservedTool = (raw: unknown): void => {
+        if (raw == null || typeof raw !== 'object') return
+        const hook = raw as { tool_name?: unknown; tool_use_id?: unknown }
+        if (typeof hook.tool_name !== 'string' || typeof hook.tool_use_id !== 'string'
+          || hook.tool_name.startsWith('mcp__pec__')) return
+        toolNames.set(hook.tool_use_id, hook.tool_name)
+        if (observedToolStarts.has(hook.tool_use_id)) return
+        observedToolStarts.add(hook.tool_use_id)
+        emit?.({ type: 'tool.started', data: { toolName: hook.tool_name, toolUseId: hook.tool_use_id, source: 'sdk-hook' } })
+      }
+      const finishObservedTool = (raw: unknown, failed: boolean): void => {
+        if (raw == null || typeof raw !== 'object') return
+        const hook = raw as { tool_name?: unknown; tool_use_id?: unknown; error?: unknown; duration_ms?: unknown }
+        if (typeof hook.tool_name !== 'string' || typeof hook.tool_use_id !== 'string'
+          || hook.tool_name.startsWith('mcp__pec__')) return
+        startObservedTool(raw)
+        if (observedToolTerminals.has(hook.tool_use_id)) return
+        observedToolTerminals.add(hook.tool_use_id)
+        emit?.({
+          type: failed ? 'tool.failed' : 'tool.completed',
+          data: {
+            toolName: hook.tool_name,
+            toolUseId: hook.tool_use_id,
+            source: 'sdk-hook',
+            ok: !failed,
+            summary: `${hook.tool_name} ${failed ? 'failed' : 'completed'}`,
+            ...(typeof hook.duration_ms === 'number' ? { durationMs: hook.duration_ms } : {}),
+            ...(failed && typeof hook.error === 'string' ? { reason: hook.error } : {}),
+          },
+        })
+      }
+      const hooks = {
+        PreToolUse: [{ hooks: [async (hook: unknown) => { startObservedTool(hook); return { continue: true } }] }],
+        PostToolUse: [{ hooks: [async (hook: unknown) => { finishObservedTool(hook, false); return { continue: true } }] }],
+        PostToolUseFailure: [{ hooks: [async (hook: unknown) => { finishObservedTool(hook, true); return { continue: true } }] }],
+      }
+      emit?.({ type: 'model.request.started', data: { maxActs } })
       for await (const message of sdk.query!({
         prompt: promptOf(input),
-        options: buildQueryOptions(server),
+        options: buildQueryOptions(server, process.env, { hooks }),
       })) {
+        const init = systemInitOf(message)
+        if (init) {
+          resolvedModel = init.model
+          emit?.({ type: 'adapter.initialized', data: { engine: 'sdk', model: init.model, engineSessionId: init.sessionId } })
+        }
+        const delta = partialTextOf(message)
+        if (delta) {
+          streamedText += delta
+          emit?.({ type: 'model.delta', data: { text: delta } })
+        }
+        for (const toolUse of toolUsesOf(message)) {
+          toolNames.set(toolUse.id, toolUse.name)
+          // PEC MCP tools emit richer events in their bounded handler,
+          // including the act budget and refusal payload. The generic SDK
+          // observer covers open-profile built-ins without duplicating PEC.
+          if (!toolUse.name.startsWith('mcp__pec__') && !observedToolStarts.has(toolUse.id)) {
+            observedToolStarts.add(toolUse.id)
+            emit?.({ type: 'tool.started', data: { toolName: toolUse.name, toolUseId: toolUse.id, source: 'sdk' } })
+          }
+        }
+        if (message != null && typeof message === 'object') {
+          const observed = message as {
+            type?: string; tool_use_id?: unknown; tool_name?: unknown
+            preceding_tool_use_ids?: unknown; summary?: unknown
+          }
+          if (observed.type === 'tool_progress'
+            && typeof observed.tool_use_id === 'string' && typeof observed.tool_name === 'string') {
+            startObservedTool({ tool_use_id: observed.tool_use_id, tool_name: observed.tool_name })
+          }
+          // app-dev uses SDK tool_use_summary as the terminal evidence for
+          // server/built-in tools that do not produce a normal user result.
+          if (observed.type === 'tool_use_summary' && Array.isArray(observed.preceding_tool_use_ids)) {
+            for (const id of observed.preceding_tool_use_ids) {
+              if (typeof id !== 'string' || observedToolTerminals.has(id)) continue
+              const name = toolNames.get(id) ?? 'tool'
+              if (name.startsWith('mcp__pec__')) continue
+              observedToolTerminals.add(id)
+              emit?.({
+                type: 'tool.completed',
+                data: {
+                  toolName: name,
+                  toolUseId: id,
+                  source: 'sdk-summary',
+                  ok: true,
+                  summary: typeof observed.summary === 'string' ? observed.summary : `${name} completed`,
+                },
+              })
+            }
+          }
+        }
+        const toolResult = toolResultOf(message, toolNames)
+        if (toolResult && !toolResult.name.startsWith('mcp__pec__') && !observedToolTerminals.has(toolResult.id)) {
+          observedToolTerminals.add(toolResult.id)
+          emit?.({
+            type: toolResult.failed ? 'tool.failed' : 'tool.completed',
+            data: {
+              toolName: toolResult.name,
+              toolUseId: toolResult.id,
+              source: 'sdk',
+              ok: !toolResult.failed,
+              summary: `${toolResult.name} ${toolResult.failed ? 'failed' : 'completed'}`,
+            },
+          })
+        }
+        const denied = permissionDeniedOf(message)
+        if (denied && !observedToolTerminals.has(denied.id)) {
+          observedToolTerminals.add(denied.id)
+          emit?.({ type: 'tool.failed', data: { toolName: denied.name, toolUseId: denied.id, source: 'sdk', refused: true, reason: denied.reason } })
+        }
         const t = assistantTextOf(message)
         if (t) text = t
       }
@@ -380,6 +576,10 @@ export async function createSdkEngine(_cfg: SidecarConfig): Promise<AgentEngineP
           message: 'the model session ended without a reply — try again or narrow the question',
         }]
       }
+      // The result message is authoritative. Partial deltas are presentation;
+      // message.completed lets the UI reconcile without duplicating them.
+      emit?.({ type: 'model.completed', data: { actsUsed: sink.actsUsed, maxActs } })
+      emit?.({ type: 'message.completed', data: { role: 'assistant', source: 'model', text, streamed: streamedText.length > 0 } })
       return [...sink.events, { type: 'agent:reply', text }]
     },
   }

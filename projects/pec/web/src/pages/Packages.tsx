@@ -26,6 +26,7 @@ export function PackagesPage(): JSX.Element {
   const [search, setSearch] = useState('')
   const [area, setArea] = useState('')
   const [type, setType] = useState('')
+  const [discipline, setDiscipline] = useState('')
   const [issueView, setIssueView] = useState('all')
   const { data, error } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
   // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
@@ -36,16 +37,19 @@ export function PackagesPage(): JSX.Element {
 
   const areas = [...new Set(data.map((r) => r.area).filter(Boolean))].sort()
   const types = [...new Set(data.map((r) => r.packageType).filter(Boolean))].sort()
+  const disciplines = [...new Set(data.flatMap((r) => r.disciplines ?? []))].sort()
   const query = search.trim().toLowerCase()
-  const visible = data.filter((r) => (!query || `${r.code} ${r.name} ${r.area ?? ''} ${r.packageType ?? ''}`.toLowerCase().includes(query))
+  const visible = data.filter((r) => (!query || `${r.code} ${r.name} ${r.area ?? ''} ${r.packageType ?? ''} ${(r.disciplines ?? []).join(' ')}`.toLowerCase().includes(query))
     && (!area || r.area === area)
     && (!type || r.packageType === type)
+    && (!discipline || (r.disciplines ?? []).includes(discipline))
     && (issueView === 'all' || (issueView === 'issues' ? r.openIssues > 0 : r.openIssues === 0)))
 
   const cols: Array<Col<any>> = [
     { key: 'code', label: 'Package', render: (r) => <><b>{r.code}</b> <span className="muted small">{r.name}</span></>, csv: (r) => `${r.code} ${r.name}` },
     { key: 'area', label: 'Area', render: (r) => r.area ?? <span className="muted">—</span>, csv: (r) => r.area },
     { key: 'type', label: 'Type', render: (r) => r.packageType ?? <span className="muted">—</span>, csv: (r) => r.packageType },
+    { key: 'discipline', label: 'Disciplines', render: (r) => (r.disciplines ?? []).length > 0 ? (r.disciplines ?? []).join(' + ') : <span className="muted">—</span>, csv: (r) => (r.disciplines ?? []).join(' + '), sortValue: (r) => (r.disciplines ?? []).join(' + ') },
     { key: 'lead', label: 'Lead', render: (r) => <span className="small">{person(r.leadId)}</span>, csv: (r) => person(r.leadId) },
     { key: 'milestone', label: 'Milestone', render: (r) => r.milestone ?? <span className="muted">—</span>, csv: (r) => r.milestone },
     { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={`package ${r.code}`} />, csv: (r) => String(r.health.value), sortValue: (r) => String(r.health.value) },
@@ -70,6 +74,7 @@ export function PackagesPage(): JSX.Element {
         <label>Find package<input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="code or name" /></label>
         <label>Area<select value={area} onChange={(e) => setArea(e.target.value)}><option value="">all areas</option>{areas.map((v) => <option key={v} value={v}>{v}</option>)}</select></label>
         <label>Type<select value={type} onChange={(e) => setType(e.target.value)}><option value="">all types</option>{types.map((v) => <option key={v} value={v}>{v}</option>)}</select></label>
+        <label>Discipline<select value={discipline} onChange={(e) => setDiscipline(e.target.value)}><option value="">all disciplines</option>{disciplines.map((v) => <option key={v} value={v}>{v}</option>)}</select></label>
         <label>Issues<select value={issueView} onChange={(e) => setIssueView(e.target.value)}><option value="all">all packages</option><option value="issues">open issues only</option><option value="clear">no open issues</option></select></label>
         <span className="small muted">{visible.length} of {data.length}</span>
       </div>
@@ -154,6 +159,7 @@ export function PackageDetailPage(): JSX.Element {
       ]} />
       <h1>
         <span className="mono">{pkg.code}</span> {pkg.name}{' '}
+        {(pkg.disciplines ?? []).length > 0 && <span className="badge plain">{pkg.disciplines.join(' + ')}</span>}{' '}
         <span className="muted small">lead {person(pkg.leadId)}</span>{' '}
         <HealthBadge explain={data.health} label={`package ${pkg.code}`} />{' '}
         <button className="btn secondary small" title="print-friendly HTML; print to PDF (ADR-010)"

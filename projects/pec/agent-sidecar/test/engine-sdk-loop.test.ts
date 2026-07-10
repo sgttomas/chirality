@@ -16,10 +16,11 @@ import { tool } from '@anthropic-ai/claude-agent-sdk'
 import { z } from 'zod'
 import {
   buildPecTools, feedbackOf, promptOf,
-  MAX_ACTS_PER_TURN, MAX_FEEDBACK_PAYLOAD_BYTES, PEC_TOOL_NAMES,
+  MAX_ACTS_PER_TURN, MAX_FEEDBACK_PAYLOAD_BYTES, PEC_TOOL_NAMES, toolResultOf, toolUsesOf,
 } from '../src/engine/sdk.ts'
 import type { TurnSink, ToolCallResult } from '../src/engine/sdk.ts'
 import type { AgentTurnInput, BoundActs, ActResult } from '../src/engine/port.ts'
+import type { AgentStreamEvent } from '../src/engine/port.ts'
 
 const INPUT: AgentTurnInput = { pid: 1, message: 'what % of deliverables are on plan?' }
 
@@ -98,6 +99,42 @@ test('read-then-feedback: the handler dispatches through BoundActs, mirrors the 
   assert.equal(sink.events.length, 1)
   assert.equal(sink.events[0]!.type, 'act:result')
   assert.equal(sink.actsUsed, 1)
+})
+
+test('D-PEC-53: bounded tools emit starting/completed evidence with live act budget', async () => {
+  const live: AgentStreamEvent[] = []
+  const sink: TurnSink = { events: [], actsUsed: 0, emit: (event) => live.push(event) }
+  const tools = buildPecTools(
+    tool as Parameters<typeof buildPecTools>[0],
+    z as Parameters<typeof buildPecTools>[1],
+    {
+      input: INPUT,
+      acts: makeActs({ projectOverview: async () => ({ kind: 'result', act: 'read.overview', ok: true, summary: 'overview read' }) }),
+      sink,
+      maxActs: 3,
+    },
+  ) as BuiltTool[]
+  await toolByName(tools, 'project_overview').handler({}, { toolUseId: 'tool-17' })
+  assert.deepEqual(live.map((event) => event.type), ['tool.started', 'tool.completed'])
+  assert.equal(live[0]!.data.toolUseId, 'tool-17')
+  assert.deepEqual(live[0]!.data.actBudget, { used: 1, max: 3, remaining: 2 })
+  assert.equal(live[1]!.data.summary, 'overview read')
+})
+
+test('D-PEC-53: SDK built-in tool use/result messages map to one lifecycle identity', () => {
+  const assistant = {
+    type: 'assistant',
+    message: { content: [{ type: 'tool_use', id: 'builtin-2', name: 'Read', input: { file_path: '/tmp/result' } }] },
+  }
+  const uses = toolUsesOf(assistant)
+  assert.deepEqual(uses, [{ id: 'builtin-2', name: 'Read' }])
+  const names = new Map(uses.map((use) => [use.id, use.name]))
+  assert.deepEqual(toolResultOf({
+    type: 'user', parent_tool_use_id: 'builtin-2', tool_use_result: { content: 'done' },
+  }, names), { id: 'builtin-2', name: 'Read', failed: false })
+  assert.deepEqual(toolResultOf({
+    type: 'user', parent_tool_use_id: 'builtin-2', tool_use_result: { is_error: true, error: 'denied' },
+  }, names), { id: 'builtin-2', name: 'Read', failed: true })
 })
 
 test('draft_docx_report dispatches through the sidecar writer act with explicit period dates', async () => {
@@ -221,6 +258,7 @@ test('hermetic session options (adversarial finding): tools [] disables built-in
   assert.deepEqual(opts.allowedTools, PEC_TOOL_NAMES.map((n) => `mcp__pec__${n}`))
   assert.deepEqual(opts.mcpServers, { pec: { marker: 'server' } })
   assert.equal(opts.maxTurns, MAX_ACTS_PER_TURN + 4)
+  assert.equal(opts.includePartialMessages, true, 'live model.delta requires SDK partial messages')
   assert.equal('model' in opts, false, 'no model pin unless the owner selects one')
   const canUseTool = opts.canUseTool as (name: string, input: unknown) => Promise<{ behavior: string; message?: string }>
   assert.equal((await canUseTool('mcp__pec__read_register', { register: 'plan' })).behavior, 'allow')

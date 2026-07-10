@@ -146,6 +146,8 @@ export interface Package {
   packageType: string | null
   /** attested package discipline from contract v2 imports (D-PEC-41) */
   discipline: string | null
+  /** complete distinct attested discipline set (D-PEC-51); never inferred */
+  disciplines: string[]
   /** full-fidelity capture of unmapped source columns, verbatim JSON (D-PEC-41) */
   sourcePayload: Record<string, string> | null
   version: number

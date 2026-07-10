@@ -86,6 +86,27 @@ test('health reports the stub engine, no-egress class, and the agent identity (W
   assert.deepEqual(h.agent, { name: 'PEC Agent', email: AGENT_EMAIL })
 })
 
+test('D-PEC-53: sidecar streams app-dev harness turn/tool/final lifecycle as SSE', async () => {
+  const res = await fetch(`http://127.0.0.1:${sidecar.port}/agent/messages`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', accept: 'text/event-stream' },
+    body: JSON.stringify({ pid: env.projectId, message: 'status' }),
+  })
+  assert.equal(res.status, 200)
+  assert.match(res.headers.get('content-type') ?? '', /^text\/event-stream/)
+  const stream = await res.text()
+  const accepted = stream.indexOf('event: turn.accepted')
+  const started = stream.indexOf('event: turn.started')
+  const tool = stream.indexOf('event: tool.completed')
+  const final = stream.indexOf('event: message.completed')
+  const completed = stream.indexOf('event: turn.completed')
+  assert.ok(accepted >= 0 && accepted < started)
+  assert.ok(started < tool)
+  assert.ok(tool < final)
+  assert.ok(final < completed)
+  assert.match(stream, /event: message\.completed\ndata: .*"text":"the agent has no proposals/)
+})
+
 test('full turn: CSV attachment ⇒ proposal created, attributed to the agent person, with a dry-run report', async () => {
   const events = await turn('please file this register', {
     attachment: { name: 'mdl-agent.csv', text: MDL_CSV },

@@ -33,8 +33,13 @@ before(async () => {
     let body: unknown = Buffer.concat(chunks).toString('utf8')
     try { body = JSON.parse(body as string) } catch { /* raw */ }
     sidecarSeen.push({ method: req.method ?? '', path: req.url ?? '', headers: { ...req.headers }, body })
-    res.writeHead(fakeReply.status, { 'content-type': 'application/json' })
-    res.end(JSON.stringify(fakeReply.body))
+    if (fakeReply.status >= 200 && fakeReply.status < 300 && typeof fakeReply.body === 'string') {
+      res.writeHead(fakeReply.status, { 'content-type': 'text/event-stream; charset=utf-8' })
+      res.end(fakeReply.body)
+    } else {
+      res.writeHead(fakeReply.status, { 'content-type': 'application/json' })
+      res.end(JSON.stringify(fakeReply.body))
+    }
   })
   await new Promise<void>((resolve) => fake.listen(0, '127.0.0.1', resolve))
   const addr = fake.address()
@@ -110,16 +115,26 @@ test('503 AGENT_UNAVAILABLE when no sidecar listens', async () => {
   assert.equal(msg.body.error.code, 'AGENT_UNAVAILABLE')
 })
 
-test('forwarding: body relayed, human cookie stripped, server-side pid overwrites the client pid', async () => {
+test('forwarding: harness SSE streams, body is relayed, cookie stripped, and server pid wins', async () => {
   pointAtFake()
-  fakeReply = { status: 200, body: { events: [{ type: 'agent:reply', text: 'ok' }] } }
+  fakeReply = { status: 200, body: 'event: turn.started\ndata: {"engine":"sdk"}\n\nevent: model.delta\ndata: {"text":"ok"}\n\nevent: turn.completed\ndata: {}\n\n' }
   sidecarSeen.length = 0
-  const pm = await env.as('pm@t.co')
-  const res = await pm.post(`${P}/agent/messages`, {
-    message: 'status', pid: 424242, context: { route: '/p/1/overview', records: [] },
+  const login = await fetch(`${env.base}/api/auth/login`, {
+    method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ email: 'pm@t.co', password: 'pilot' }),
+  })
+  const cookie = (login.headers.get('set-cookie') ?? '').split(';')[0]!
+  const res = await fetch(`${env.base}${P}/agent/messages`, {
+    method: 'POST',
+    headers: { cookie, origin: env.base, 'content-type': 'application/json', accept: 'text/event-stream' },
+    body: JSON.stringify({ message: 'status', pid: 424242, context: { route: '/p/1/overview', records: [] } }),
   })
   assert.equal(res.status, 200)
-  assert.deepEqual(res.body, { events: [{ type: 'agent:reply', text: 'ok' }] })
+  assert.match(res.headers.get('content-type') ?? '', /^text\/event-stream/)
+  const stream = await res.text()
+  assert.match(stream, /event: turn\.started/)
+  assert.match(stream, /event: model\.delta/)
+  assert.match(stream, /event: turn\.completed/)
 
   assert.equal(sidecarSeen.length, 1)
   const seen = sidecarSeen[0]!
@@ -132,6 +147,7 @@ test('forwarding: body relayed, human cookie stripped, server-side pid overwrite
   // NO cookie header reached the fake sidecar — the human session never leaves the server
   assert.equal(seen.headers.cookie, undefined, 'cookie stripped')
   assert.equal(seen.headers.authorization, undefined)
+  assert.equal(seen.headers.accept, 'text/event-stream')
 })
 
 test('sidecar non-2xx JSON is relayed with its status', async () => {
