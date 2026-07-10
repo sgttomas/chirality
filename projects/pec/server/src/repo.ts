@@ -268,10 +268,27 @@ export class Repo {
       'SELECT dl.* FROM decision_link dl JOIN decision d ON d.id = dl.decision_id WHERE d.project_id = ?',
     ).all(projectId) as Row[])
       .map((r) => fromRow('decision_link', r) as unknown as ProjectSnapshot['decisionLinks'][number])
+    const packageRows = all<ProjectSnapshot['packages'][number]>('package')
+    const packageDisciplineRows = this.db.prepare(
+      `SELECT package_id, discipline FROM package_discipline
+       WHERE project_id = ? GROUP BY package_id, discipline
+       ORDER BY discipline`,
+    ).all(projectId) as Array<{ package_id: number; discipline: string }>
+    const disciplinesByPackage = new Map<number, string[]>()
+    for (const row of packageDisciplineRows) {
+      const values = disciplinesByPackage.get(row.package_id) ?? []
+      values.push(row.discipline)
+      disciplinesByPackage.set(row.package_id, values)
+    }
+    const packages = packageRows.map((pkg) => ({
+      ...pkg,
+      disciplines: disciplinesByPackage.get(pkg.id)
+        ?? (pkg.discipline ? [pkg.discipline] : []),
+    }))
 
     return {
       project: project as ProjectSnapshot['project'],
-      packages: all('package'),
+      packages,
       deliverables: all('deliverable'),
       revisions: all('revision'),
       workItems: all('work_item'),

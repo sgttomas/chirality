@@ -259,6 +259,17 @@ first-class instead of folded into composites:
 - **tracker** (65 → 54 resolvable + 11 package-key data gaps): unchanged
   §tracker mapping; `package` resolved from Package Name → MDL Package ID.
 
+## §D-PEC-51 — package discipline cardinality (2026-07-09)
+
+Package discipline is a source-attested many-to-many association, not a
+single-valued package attribute. Every nonblank package/discipline pair from
+MDL and RAIL v2 is retained with its source contract; repeated imports are
+idempotent. The legacy scalar `package.discipline` remains compatibility data
+only. Existing populated databases are upgraded additively from both that
+scalar and the disciplines already retained on deliverables. Read surfaces
+return the complete distinct set, and the Packages register exposes that set
+for display, search, filter, sort, and CSV export. No discipline is inferred.
+
 Import-ready CSVs + per-run mapping report:
 `pilot-scratch/import-ready/tou-west-doe/` (gitignored, per the standing
 capture rules).

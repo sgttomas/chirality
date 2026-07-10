@@ -56,7 +56,85 @@ test('migration: a pre-D-PEC-41 database gains the v2 columns additively', () =>
   }
   const ipCols = (db.prepare('PRAGMA table_info(import_proposal)').all() as Array<{ name: string }>).map((c) => c.name)
   assert.ok(ipCols.includes('source_extras'), 'import_proposal.source_extras missing')
+  const pdCols = (db.prepare('PRAGMA table_info(package_discipline)').all() as Array<{ name: string }>).map((c) => c.name)
+  for (const c of ['project_id', 'package_id', 'discipline', 'source_contract']) {
+    assert.ok(pdCols.includes(c), `package_discipline.${c} missing after migration`)
+  }
   db.close()
+})
+
+test('D-PEC-51 migration reconstructs package disciplines from populated deliverables', () => {
+  const path = join(tmpdir(), `pec-v2-discipline-backfill-${randomBytes(8).toString('hex')}.db`)
+  const db = openDb(path)
+  db.prepare("INSERT INTO project (id, code, name) VALUES (1, 'BACKFILL', 'Backfill')").run()
+  db.prepare("INSERT INTO package (id, project_id, code, name) VALUES (10, 1, 'PKG-10', 'Package 10')").run()
+  db.prepare(`
+    INSERT INTO deliverable (id, project_id, package_id, doc_no, title, discipline, version)
+    VALUES
+      (100, 1, 10, 'DOC-100', 'Process document', 'Process', 1),
+      (101, 1, 10, 'DOC-101', 'Piping document', 'Piping', 1)
+  `).run()
+  db.close()
+
+  const migrated = openDb(path)
+  const rows = migrated.prepare(`
+    SELECT discipline, source_contract
+    FROM package_discipline
+    WHERE project_id = 1 AND package_id = 10
+    ORDER BY discipline
+  `).all() as Array<{ discipline: string; source_contract: string }>
+  assert.deepEqual(rows.map((row) => ({ ...row })), [
+    { discipline: 'Piping', source_contract: 'mdl-backfill' },
+    { discipline: 'Process', source_contract: 'mdl-backfill' },
+  ])
+  migrated.close()
+})
+
+test('D-PEC-51: MDL and RAIL preserve and surface multiple package disciplines', async () => {
+  const admin = await env.as('admin@t.co')
+  const mdl = [
+    MDL_V2_HDR,
+    'V2-PKG-MULTI,Diagram,01,30%,Process-Multi,Documentation,P&IDs,,IFR,In Progress,30,',
+    'V2-PKG-MULTI,Drawings,01,30%,Piping-Multi,Documentation,Plot plans,,IFR,In Progress,25,',
+  ].join('\r\n')
+  const mdlRes = await admin.postCsv(`${P}/import/mdl`, mdl)
+  assert.equal(mdlRes.status, 200, JSON.stringify(mdlRes.body))
+  assert.equal(mdlRes.body.accepted, 2)
+
+  const rail = [
+    RAIL_V2_HDR,
+    'V2-PKG-MULTI,,Process-Multi,01,30%,,Documentation,P&IDs,,,,,,,,,,',
+    'V2-PKG-MULTI,,Piping-Multi,01,30%,,Documentation,P&IDs,,,,,,,,,,',
+  ].join('\r\n')
+  const railRes = await admin.postCsv(`${P}/import/rail`, rail)
+  assert.equal(railRes.status, 200, JSON.stringify(railRes.body))
+  assert.equal(railRes.body.packageRows, 2)
+
+  const pkg = env.db.prepare('SELECT id FROM package WHERE project_id = ? AND code = ?')
+    .get(env.projectId, 'V2-PKG-MULTI') as { id: number }
+  const rows = env.db.prepare(
+    'SELECT discipline, source_contract FROM package_discipline WHERE project_id = ? AND package_id = ? ORDER BY discipline, source_contract',
+  ).all(env.projectId, pkg.id) as Array<{ discipline: string; source_contract: string }>
+  assert.deepEqual(rows.map((row) => ({ ...row })), [
+    { discipline: 'Piping-Multi', source_contract: 'mdl' },
+    { discipline: 'Piping-Multi', source_contract: 'rail' },
+    { discipline: 'Process-Multi', source_contract: 'mdl' },
+    { discipline: 'Process-Multi', source_contract: 'rail' },
+  ])
+
+  const packages = await admin.get(`${P}/packages`)
+  const projected = packages.body.find((candidate: { code: string }) => candidate.code === 'V2-PKG-MULTI')
+  assert.deepEqual(projected.disciplines, ['Piping-Multi', 'Process-Multi'])
+
+  const detail = await admin.get(`${P}/packages/${pkg.id}`)
+  assert.deepEqual(detail.body.package.disciplines, ['Piping-Multi', 'Process-Multi'])
+
+  const again = await admin.postCsv(`${P}/import/mdl`, mdl)
+  assert.equal(again.status, 200, JSON.stringify(again.body))
+  const count = env.db.prepare(
+    'SELECT COUNT(*) AS n FROM package_discipline WHERE project_id = ? AND package_id = ?',
+  ).get(env.projectId, pkg.id) as { n: number }
+  assert.equal(count.n, 4, 're-import must not duplicate package-discipline associations')
 })
 
 test('mdl v2: derived identity, attested capture, verbatim payload, no revisions, signals', async () => {

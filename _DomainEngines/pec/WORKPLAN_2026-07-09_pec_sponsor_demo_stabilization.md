@@ -40,6 +40,12 @@ risks, and holds; decisions and interfaces remain segregated. Reports are
 drafted in PEC and issued outside it. Task management, planning, scheduling,
 and professional approval claims remain out of scope.
 
+Package discipline is also source-attested and may be multi-valued. The import
+lane preserves every distinct MDL/RAIL association, and Packages must display
+the complete set with direct discipline filter/sort/search controls. The
+owner accepts the existing package action-item superset; that record model is
+not narrowed for the demo.
+
 ## Loop protocol
 
 0. **Discover.** Resolve the repo root, inspect git/receipts/registers/profile,
@@ -84,7 +90,7 @@ and professional approval claims remain out of scope.
 | S1 | Dated-input-only demo rebuild | Populated TWD content from the dated MDL/RAIL workbooks plus blank TBL with matching demo roles; re-import is update-only/idempotent; no legacy seed content |
 | S2 | Report composition | Generated DOCX follows the exemplar's concise hierarchy and page furniture, summarizes rather than dumps rows, renders cleanly, and exposes a browser download |
 | S3 | PE full workflow | XLSX attach -> mapped proposal -> Admin review/accept/apply -> live views -> report draft/download works without shell/CLI intervention |
-| S4 | PD/sponsor UX | Strict read-only navigation; real drills; sortable/filterable reporting tables; no irrelevant mutation/admin/planning controls |
+| S4 | PD/sponsor UX | Strict read-only navigation; real drills; sortable/filterable reporting tables including complete multi-discipline package values; no irrelevant mutation/admin/planning controls |
 | S5 | Sponsor rehearsal | Desktop and narrow passes, no console errors, consistent counts, known-good backup/report safety copies retained |
 
 ## Parked work

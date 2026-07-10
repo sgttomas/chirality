@@ -301,7 +301,7 @@ export function packagesView(sx: Sx): unknown {
     const issues = packageIssueRows(sx, snap, p)
     return {
       id: p.id, code: p.code, name: p.name, leadId: p.leadId, milestone: p.milestone,
-      area: p.area, packageType: p.packageType,
+      area: p.area, packageType: p.packageType, disciplines: p.disciplines,
       health: redact(sx, snap, st.health), onPlan: st.onPlanCount, total: st.totalCount,
       openIssues: clientIssueCount(sx, snap, p),
       operationalItems: issues.length,
