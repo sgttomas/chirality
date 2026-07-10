@@ -146,6 +146,50 @@ describe('dependency register reader/writer', () => {
     );
   });
 
+  it('rejects silent deletion of a previous dependency row', () => {
+    const retained = makeRow({ DependencyID: 'DEP-05-03-011' });
+    const deleted = makeRow({ DependencyID: 'DEP-05-03-012' });
+
+    expect(() =>
+      serializeDependencyRegister([retained], {
+        previousRows: [retained, deleted]
+      })
+    ).toThrowError(
+      expect.objectContaining({
+        code: 'MISSING_RETIRED_ROW',
+        details: {
+          missingDependencyIds: ['DEP-05-03-012']
+        }
+      }) satisfies Partial<DependencyContractError>
+    );
+  });
+
+  it('accepts retained rows when a removed dependency is represented as RETIRED', () => {
+    const retained = makeRow({ DependencyID: 'DEP-05-03-013' });
+    const previousActive = makeRow({ DependencyID: 'DEP-05-03-014' });
+    const retired = makeRow({
+      DependencyID: 'DEP-05-03-014',
+      SatisfactionStatus: 'NOT_APPLICABLE',
+      Status: 'RETIRED'
+    });
+
+    const result = serializeDependencyRegister([retained, retired], {
+      previousRows: [retained, previousActive]
+    });
+
+    expect(result.rows).toEqual([
+      expect.objectContaining({
+        DependencyID: 'DEP-05-03-013',
+        Status: 'ACTIVE'
+      }),
+      expect.objectContaining({
+        DependencyID: 'DEP-05-03-014',
+        SatisfactionStatus: 'NOT_APPLICABLE',
+        Status: 'RETIRED'
+      })
+    ]);
+  });
+
   it('enforces satisfaction status transition rules against previous rows', () => {
     const previous = makeRow({
       DependencyID: 'DEP-05-03-009',

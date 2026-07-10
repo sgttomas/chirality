@@ -40,6 +40,11 @@ read/write-access and instruction-root-overlap validator as session creation, al
 harness error contract. Route regressions cover valid, instruction-root-conflicting, missing, and
 relative project roots; the route performs no write probe or project mutation.
 
+Completed `ORN-07` after live verification: dependency serialization now compares the next register
+against `previousRows` and rejects silent disappearance with the precise `MISSING_RETIRED_ROW` error,
+listing every omitted dependency ID. Existing rows remain writable when explicitly retained as
+`Status=RETIRED`, matching the established v3.1 schema and DEL-07-05 contract.
+
 Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
 passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
 paths exist; `git diff --check` passed. No release, distribution, issuance, provider expansion,
