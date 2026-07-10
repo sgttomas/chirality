@@ -16,6 +16,7 @@ import { adaptWorkbook } from '../agent-sidecar/src/structured-file.ts'
 import { hashPassword } from '../server/src/auth.ts'
 import { openDb, withTx } from '../server/src/db.ts'
 import { parseTable } from '../server/src/import/csv.ts'
+import { importContract } from '../server/src/import/index.ts'
 import { Repo, nowIso } from '../server/src/repo.ts'
 import { acceptProposal, applyProposal, createProposal } from '../server/src/services/proposals.ts'
 import type { Sx } from '../server/src/services/shared.ts'
@@ -185,26 +186,79 @@ for (const input of inputs) {
   })
 }
 
+// Re-import verification uses the real contracts inside rolled-back savepoints:
+// zero creates/conflicts/rejects proves the same source updates in place.
+for (const input of inputs) {
+  db.exec('SAVEPOINT demo_reimport_check')
+  try {
+    const report = importContract(sx('admin'), input.contract, input.csv, false)
+    if (report.accepted !== 0 || report.conflicts.length > 0 || report.rejected.length > 0) {
+      throw new Error(`${input.filename}: re-import is not update-only (${report.accepted} creates, ${report.updated} updates, ${report.conflicts.length} conflicts, ${report.rejected.length} rejected)`)
+    }
+    const result = results.find((candidate) => candidate.filename === input.filename)!
+    result.reimport = { created: report.accepted, updated: report.updated, packageRows: report.packageRows ?? 0 }
+  } finally {
+    db.exec('ROLLBACK TO demo_reimport_check')
+    db.exec('RELEASE demo_reimport_check')
+  }
+}
+
 db.exec('PRAGMA wal_checkpoint(TRUNCATE)')
 const counts = Object.fromEntries(['project', 'package', 'deliverable', 'work_item', 'import_proposal'].map((table) => [
   table,
   (db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get() as { n: number }).n,
 ]))
+const rebuiltQuickCheck = (db.prepare('PRAGMA quick_check').get() as { quick_check: string }).quick_check
+if (rebuiltQuickCheck !== 'ok') throw new Error(`Rebuilt database quick_check failed: ${rebuiltQuickCheck}`)
 db.close()
+
+function inspectDatabase(path: string): { quickCheck: string; counts: Record<string, number> } {
+  const inspected = new DatabaseSync(path, { readOnly: true })
+  try {
+    const quickCheck = (inspected.prepare('PRAGMA quick_check').get() as { quick_check: string }).quick_check
+    const inspectedCounts = Object.fromEntries(['project', 'package', 'deliverable', 'work_item', 'import_proposal'].map((table) => [
+      table,
+      (inspected.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get() as { n: number }).n,
+    ]))
+    return { quickCheck, counts: inspectedCounts }
+  } finally {
+    inspected.close()
+  }
+}
 
 mkdirSync(dirname(dbPath), { recursive: true })
 let backupPath: string | null = null
+let backupVerification: ReturnType<typeof inspectDatabase> | null = null
 if (existsSync(dbPath)) {
   const live = new DatabaseSync(dbPath)
   live.exec('PRAGMA wal_checkpoint(TRUNCATE)')
   live.close()
+  const liveVerification = inspectDatabase(dbPath)
   const stamp = new Date().toISOString().replace(/[:.]/g, '-').replace('T', '_').replace('Z', '')
   const backupDir = join(dirname(dbPath), 'pilot-scratch', 'backups')
   mkdirSync(backupDir, { recursive: true })
   backupPath = join(backupDir, `${basename(dbPath, '.db')}-pre-rebuild-${stamp}.db`)
   copyFileSync(dbPath, backupPath)
+  backupVerification = inspectDatabase(backupPath)
+  if (backupVerification.quickCheck !== 'ok' || JSON.stringify(backupVerification.counts) !== JSON.stringify(liveVerification.counts)) {
+    throw new Error(`Pre-rebuild backup verification failed: ${backupPath}`)
+  }
 }
 for (const path of [dbPath, `${dbPath}-wal`, `${dbPath}-shm`]) rmSync(path, { force: true })
 renameSync(rebuildPath, dbPath)
+const rebuiltVerification = inspectDatabase(dbPath)
+if (rebuiltVerification.quickCheck !== 'ok' || JSON.stringify(rebuiltVerification.counts) !== JSON.stringify(counts)) {
+  throw new Error(`Installed demo database verification failed: ${dbPath}`)
+}
 
-console.log(JSON.stringify({ ok: true, dbPath, backupPath, inputDir, coverage, inputs: results, counts }, null, 2))
+console.log(JSON.stringify({
+  ok: true,
+  dbPath,
+  backupPath,
+  backupVerification,
+  rebuiltVerification,
+  inputDir,
+  coverage,
+  inputs: results,
+  counts,
+}, null, 2))
