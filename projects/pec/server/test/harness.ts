@@ -96,6 +96,7 @@ export async function createTestEnv(): Promise<TestEnv> {
         params: match.params, query: url.searchParams, body,
         cookies: parseCookies(req.headers.cookie),
       })
+      if (res.writableEnded) return
       if (!res.headersSent) {
         if (typeof result === 'string' && res.getHeader('content-type')) res.end(result)
         else sendJson(res, 200, result ?? { ok: true })
