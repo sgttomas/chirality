@@ -74,3 +74,55 @@
   - Gate outcome: executed within R5/E2 draft-evidence fence; no DEL-09-04
     lifecycle transition; remaining E2 public benchmark thresholds, clean-env
     demonstration, and R5-exit decisions remain parked/human-gated.
+
+- **2026-07-09 — Receipt 2** (orientation + physical-model evaluation, owner-steered).
+  - Start: `origin/main` at the PR #135 merge (`18334da97`); piping tree
+    unchanged since Receipt 1; work on `codex/piping-physical-model-eval`.
+  - Owner steer of record (2026-07-09, launcher `Steer` line, Ryan Tufts):
+    "Report back on the current state of development and what, if anything,
+    is currently planned.  Then provide a focused evaluation of the physical
+    model, both in terms of using the appropriate methods and also
+    comprehensive coverage of the domain being modelled.  You can use
+    research subagents if warranted."
+  - Step 0: no register rulings newer than `DEC-065`; open gates `D-12`,
+    `D-07b` AWAITING_RULING, `D-06b` NOT_PREPARED; status summary run
+    (ISSUED=1, CHECKING=8, IN_PROGRESS=92); self-check exit 0.
+  - Artifact: `plans/ASSESSMENT_2026-07-09_physical_model_evaluation.md`
+    (dated map; candidate follow-ups CAND-1..5 in its final section).
+  - Gate outcome: reporting tranche only — no lifecycle transition, no
+    register change, no deliverable code work; CAND-1..5 parked for owner
+    ruling/adoption.
+
+- **2026-07-09 — Receipt 3** (physical-model program adoption, same session as Receipt 2).
+  - Owner directions of record (2026-07-09, in-session, Ryan Tufts): "I want
+    to introduce flexibility factors and bend flexibility together and now
+    properly solve those elements.  I approve CAND-2 and want to include the
+    flexibility factors rather than disclosing that there are none.  I agree
+    with your other candidates.  More importantly I want to fold this into
+    the loop instruction documentation - in whatever the most appropriate
+    form is for that.  What's your proposal?" — then, over the proposed
+    five-part shape: "this shape is approved.  Proceed accordingly."
+  - Artifacts: `plans/PLAN_2026-07-09_physical_model_mechanics.md`; register
+    rows `D-34`–`D-37` + packet `D-34_bend_flexibility_stiffness_realization.md`
+    + ruling records `D-35/36/37_RULING_2026-07-09.md`; codifications
+    `DEC-066`–`DEC-069` in `SOFTWARE_DECOMP.md` §12; WORKPLAN owner-intent
+    addendum + tactical pointer-index line (this directory).
+  - Deltas: assessment CAND-1 superseded by implementation (dated map not
+    edited, per rule 4).
+  - Checks: self-check exit 0; harness pytest pass.
+  - Gate outcome: governance/docs tranche executed at owner direction;
+    `D-34` method fork AWAITING_RULING (O-A recommended) — P1 implementation
+    starts on that ruling; no lifecycle transition, no code change.
+
+- **2026-07-10 — Receipt 4** (D-34 ruling, same session).
+  - Owner ruling of record (2026-07-10, in-session, Ryan Tufts): the D-34
+    packet options were presented in-session with O-A recommended; owner
+    selected **"O-B: curved-bend macro-element"** via structured selection.
+  - Artifacts: packet §7 disposition filled
+    (`D-34_bend_flexibility_stiffness_realization.md`); register row `D-34`
+    → RULED; codification `DEC-070` in `SOFTWARE_DECOMP.md` §12.
+  - Checks: self-check exit 0; harness pytest pass (this branch).
+  - Gate outcome: ruling recorded; P1 (curved-bend macro-element) is now
+    lawful bounded-tranche work under the mechanics plan once PR #141
+    merges — O-B noted as the larger tranche, splittable formulation →
+    assembly → recovery → benchmark; no code change under this receipt.
