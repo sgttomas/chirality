@@ -1,8 +1,8 @@
 # PEC — P1 Traceability
 
 > **Prototype-baseline map.** This file maps the historical PRD v0.4 preserved at
-> `7e8312172:projects/pec/docs/PRD.md`. It does not claim conformance to the current
-> candidate PRD v1.0 and must be rebaselined after that candidate is adopted and
+> `7e8312172:projects/pec/docs/PRD.md`. It does not claim conformance to PRD v1.0
+> (adopted 2026-07-10, `D-PEC-55`) and must be rebaselined under the T0 tranche
 > before the next product implementation.
 
 Requirement → implementation → test map promised by the historical SPEC §10. Covers

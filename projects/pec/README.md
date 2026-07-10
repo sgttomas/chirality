@@ -1,8 +1,10 @@
 # PEC — 9-Domains: Project Execution Control
 
 Web-based, multi-user system of record for multidisciplinary engineering execution control: role homes,
-controlled records, condition-gated transitions, and derived (always explainable) status. Implements
-`docs/PRD.md` (v0.4), Phase 1 scope.
+controlled records, condition-gated transitions, and derived (always explainable) status. The code
+implements the historical PRD v0.4 prototype baseline (preserved at `7e8312172:projects/pec/docs/PRD.md`),
+Phase 1 + P2 scope. The adopted `docs/PRD.md` v1.0 (team information hub, `D-PEC-55` 2026-07-10) defines
+the target product; rebaseline pending.
 
 **New here? Start with [`docs/STATUS.md`](docs/STATUS.md)** — current state, what's next, and the read-order for the rest of the docs.
 
@@ -11,7 +13,7 @@ controlled records, condition-gated transitions, and derived (always explainable
 | Path | Contents |
 |---|---|
 | `docs/STATUS.md` | **Status & handoff** — where the project is, what remains; read this first |
-| `docs/PRD.md` | Product requirements (basis document, v0.4) |
+| `docs/PRD.md` | Product requirements (adopted v1.0; code currently implements the historical v0.4 baseline) |
 | `docs/SPEC.md` | Implementation specification: data model, lifecycles, conditions engine, derived status, API, RBAC |
 | `docs/adr/ADR.md` | Architecture decision records (implementer-level; PRD OM-*/D-* taken as given) |
 | `docs/TRACEABILITY.md` | P1 requirement → module + test mapping |

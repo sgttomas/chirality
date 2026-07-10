@@ -6,20 +6,23 @@
 |---|---|
 | Version | 1.0 |
 | Date | 2026-07-09 |
-| Status | Candidate for owner review; product direction is owner-provided, exact requirements not yet adopted |
+| Status | **Adopted 2026-07-10** by owner ruling (`D-PEC-55`); product definition of record |
 | Product stage | Working demo exists; team product is not yet implemented |
-| Intended supersession | PRD v0.4 product framing upon adoption |
+| Supersession | PRD v0.4 product framing deprecated and superseded 2026-07-10 (catalogue preserved at `7e8312172`) |
 | Conceptual basis | Chirality thesis and the owner clarifications recorded in this PRD |
 
-This document proposes the product PEC is to become. It intentionally resets the
+This document defines the product PEC is to become. It intentionally resets the
 centre of gravity of PRD v0.4. The existing application remains useful prototype
 evidence, but task management, planning, and report generation are supporting
 capabilities rather than the product thesis.
 
 The historical v0.4 requirement catalogue remains available in Git at commit
 `7e8312172`. `SPEC.md` and `TRACEABILITY.md` describe that implemented prototype
-baseline. They do not establish conformance to this candidate, and remain the
-implementation basis unless and until v1.0 is adopted and rebaselined.
+baseline. They do not establish conformance to this PRD, and remain the
+implementation basis until the post-adoption T0 rebaseline (see
+`_DomainEngines/pec/WORKPLAN_2026-07-09_pec_team_information_hub.md`) replaces
+them. Adoption does not convert any requirement below into an implementation
+mandate; tranches remain individually owner-gated.
 
 ---
 

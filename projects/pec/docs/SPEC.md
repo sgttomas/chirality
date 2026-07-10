@@ -4,8 +4,10 @@
 `7e8312172:projects/pec/docs/PRD.md`. This SPEC translates that prototype baseline's
 P1 scope into buildable contracts: data model, state machines, conditions engine,
 derived status, API, permissions, and import/export. The current `docs/PRD.md` v1.0
-is a candidate to supersede that product framing but has not been adopted or
-translated into a replacement implementation specification. Requirement IDs
+was adopted 2026-07-10 (`D-PEC-55`) and supersedes that product framing, but has
+not yet been translated into a replacement implementation specification; this SPEC
+remains the implemented prototype baseline until the T0 rebaseline replaces it and
+makes no claim of v1.0 conformance. Requirement IDs
 (`PEC-*`), invariants (`I-*`), object-model decisions (`OM-*`), and defaults (`D-*`)
 in this file therefore refer to the historical v0.4 baseline unless explicitly
 stated otherwise.
