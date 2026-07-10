@@ -1097,3 +1097,8 @@
   - Product delta: the maintained shared project state is the core product; reports/tasks are derivative/supporting. Planning foregrounds decision gaps, explicit consequences, and placement/verification of change in relied-upon artifacts.
   - Gate outcome: authoring executed; exact PRD adoption and runtime rebaseline/implementation remain owner acts. Runtime work is parked; no source code, dependency, database, demo input, or report changed.
   - Checks: 87 unique v1 requirement IDs; owner five-question coverage and Chirality/historical links pass; `git diff --check` pass; self-check unchanged at INFO=15/NA=2/REVIEW=28/WARN=6; coord-check carries only the pre-existing gitignored reports-path finding.
+
+- **2026-07-10 — Receipt 97** (PRD v1.0 adopted; v0.4 product framing deprecated).
+  - Owner direction (verbatim): “adopt the v1.0 candidate PRD now and deprecate the v0.4 PRD in the manner intended.” D-PEC-55 records the adoption act and its documentation-only fence.
+  - Executed pointers: `docs/PRD.md` header flipped to Adopted 2026-07-10 with the v0.4 supersession stated; historical-basis notices updated in `SPEC.md`, `TRACEABILITY.md`, `STATUS.md`, and `README.md`; D-PEC-55 packet + register row; standing-plan gate 1 marked satisfied with T0 named as the next owner gate.
+  - Gate outcome: the D-PEC-54 adoption gate is closed. The v0.4 catalogue remains preserved at `7e8312172:projects/pec/docs/PRD.md`. SPEC/TRACEABILITY remain the prototype baseline with no v1.0-conformance claim; the T0 rebaseline and all runtime implementation remain owner-gated. No source code, dependency, database, demo input, or report changed.

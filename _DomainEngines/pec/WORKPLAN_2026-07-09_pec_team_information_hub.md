@@ -36,8 +36,9 @@ human-authorized.
 0. **Discover.** Resolve the repo root; inspect git, receipts, registers,
    profile, candidate PRD, current SPEC/traceability status, and live checks.
    Verify every inherited claim against the live tree.
-1. **Review the product gate.** The v1.0 PRD remains CANDIDATE until the owner
-   adopts it or directs revisions. Do not infer adoption from its presence.
+1. **Review the product gate.** GATE SATISFIED: the owner adopted PRD v1.0 and
+   deprecated the v0.4 framing on 2026-07-10 (`D-PEC-55`). The next owner gate
+   is direction to execute the T0 rebaseline.
 2. **Rebaseline before building.** After adoption, prepare an implementation
    rebaseline that classifies current prototype capability as retain,
    repurpose, retire, or build and names exact migration/data consequences.
@@ -65,8 +66,9 @@ human-authorized.
 
 ## Parked work and owner gates
 
-- Runtime implementation is parked until the owner reviews/adopts the candidate
-  PRD and directs the rebaseline.
+- PRD v1.0 is adopted (`D-PEC-55`, 2026-07-10). Runtime implementation remains
+  parked until the owner directs the T0 rebaseline; T0 requires its own
+  owner-ruled packet.
 - The product decisions in PRD §20 remain open and must not be guessed where they
   materially affect the first production architecture or workflow.
 - D-PEC-49 remains an unresolved legacy row. It is not an implementation mandate
@@ -75,7 +77,7 @@ human-authorized.
 
 ## Live pointers
 
-- Candidate product definition: `projects/pec/docs/PRD.md`
+- Adopted product definition: `projects/pec/docs/PRD.md` (v1.0, `D-PEC-55`)
 - Current prototype specification: `projects/pec/docs/SPEC.md`
 - Current prototype traceability: `projects/pec/docs/TRACEABILITY.md`
 - Current implementation handoff: `projects/pec/docs/STATUS.md`

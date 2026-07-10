@@ -5,11 +5,12 @@ then read deeper docs only as your task requires (read-order below). Keep this f
 substantial work — durable state lives in repo files, not in chat history.
 
 _Implementation history last updated: 2026-07-04 (after the B/C/D pass:
-pilot-readiness tooling, ADR-012, and the P2 build). Candidate product direction
-authored 2026-07-09 in `docs/PRD.md` v1.0; owner review/adoption remains open._
+pilot-readiness tooling, ADR-012, and the P2 build). Product direction authored
+2026-07-09 in `docs/PRD.md` v1.0 and **adopted 2026-07-10** (`D-PEC-55`); the
+v0.4 product framing is deprecated. The T0 rebaseline is the next owner gate._
 
 > **Product-direction note:** the current application is a working prototype. The
-> candidate PRD v1.0 redefines the target as a team information hub centred on
+> adopted PRD v1.0 defines the target as a team information hub centred on
 > recurring discipline declarations, leadership decision support, and
 > decision-consequence placement into relied-upon documentation. The implementation
 > account below describes the prototype and is not a claim of v1.0 conformance.
@@ -40,9 +41,9 @@ npm run seed && npm run dev   # demo project AUR at http://localhost:4811 (all u
 
 1. **`README.md`** — layout + run commands.
 2. **This file** — state + next work.
-3. **`docs/PRD.md`** — the candidate target product definition (v1.0).
+3. **`docs/PRD.md`** — the adopted target product definition (v1.0, `D-PEC-55`).
    `SPEC.md` and `TRACEABILITY.md` retain the historical v0.4 prototype basis until
-   owner adoption and rebaselining.
+   the T0 rebaseline.
 4. **`docs/TRACEABILITY.md`** — requirement → code → test map, with a **"P2"** section and an honest **"Known P1 gaps"** section. This is the most useful map when picking up a specific requirement.
 5. **`docs/adr/ADR.md`** — the *why* behind implementer choices (ADR-001..013). ADR-011/012 explain the status/issues split and why the health derivation stands; ADR-013 the P2 planning choices.
 6. **`docs/SPEC.md`** — deep data-model / lifecycle / conditions / API detail; consult per subsystem.
