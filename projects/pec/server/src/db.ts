@@ -121,6 +121,18 @@ CREATE TABLE IF NOT EXISTS package (
   UNIQUE(project_id, code)
 );
 
+-- D-PEC-51: one package may carry multiple attested disciplines, and the
+-- association is source-qualified so MDL and RAIL can coexist losslessly.
+CREATE TABLE IF NOT EXISTS package_discipline (
+  project_id INTEGER NOT NULL REFERENCES project(id),
+  package_id INTEGER NOT NULL REFERENCES package(id),
+  discipline TEXT NOT NULL,
+  source_contract TEXT NOT NULL,
+  PRIMARY KEY (project_id, package_id, discipline, source_contract)
+);
+CREATE INDEX IF NOT EXISTS idx_package_discipline_package
+  ON package_discipline(project_id, package_id);
+
 CREATE TABLE IF NOT EXISTS deliverable (
   id INTEGER PRIMARY KEY,
   project_id INTEGER NOT NULL REFERENCES project(id),
@@ -756,6 +768,7 @@ export function openDb(path: string): Db {
   // D-PEC-41 contract v2 (additive; inert until a v2 import populates them)
   ensureColumn(db, 'package', 'discipline', 'TEXT')
   ensureColumn(db, 'package', 'source_payload', 'TEXT')
+  ensureColumn(db, 'deliverable', 'discipline', 'TEXT')
   ensureColumn(db, 'deliverable', 'project_phase', 'TEXT')
   ensureColumn(db, 'deliverable', 'target_completeness', 'TEXT')
   ensureColumn(db, 'deliverable', 'working_status', 'TEXT')
@@ -766,6 +779,23 @@ export function openDb(path: string): Db {
   ensureColumn(db, 'work_item', 'source_issue_type', 'TEXT')
   ensureColumn(db, 'work_item', 'source_payload', 'TEXT')
   ensureColumn(db, 'import_proposal', 'source_extras', 'TEXT')
+  // D-PEC-51 additive migration: preserve any previously imported scalar
+  // package discipline and reconstruct the MDL associations already attested
+  // on deliverables. This upgrades populated projects without a rebuild while
+  // future contract imports continue to record source-qualified associations.
+  db.exec(`
+    INSERT OR IGNORE INTO package_discipline
+      (project_id, package_id, discipline, source_contract)
+    SELECT project_id, id, trim(discipline), 'legacy'
+    FROM package
+    WHERE discipline IS NOT NULL AND trim(discipline) <> '';
+
+    INSERT OR IGNORE INTO package_discipline
+      (project_id, package_id, discipline, source_contract)
+    SELECT project_id, package_id, trim(discipline), 'mdl-backfill'
+    FROM deliverable
+    WHERE discipline IS NOT NULL AND trim(discipline) <> '';
+  `)
   // D-PEC-13 owner amendment: the tracker key moved from tracking_no to the resolved package.
   // Old-shape tables (nullable package_id, UNIQUE on tracking_no) exist only on scratch
   // instances and hold import-owned, reproducible rows — rebuild at the new shape; the next

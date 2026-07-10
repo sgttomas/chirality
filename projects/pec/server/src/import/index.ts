@@ -79,6 +79,17 @@ function importHistory(sx: Sx, recordType: string, recordId: number, summary: st
   })
 }
 
+/** D-PEC-51: preserve every distinct attested package-discipline association. */
+function recordPackageDiscipline(sx: Sx, packageId: number, discipline: string | undefined, sourceContract: 'mdl' | 'rail'): void {
+  const value = discipline?.trim()
+  if (!value) return
+  sx.db.prepare(`
+    INSERT OR IGNORE INTO package_discipline
+      (project_id, package_id, discipline, source_contract)
+    VALUES (?, ?, ?, ?)
+  `).run(sx.projectId, packageId, value, sourceContract)
+}
+
 // ---------- contract v2 shared helpers (D-PEC-41) ----------
 
 /** Deterministic identity slug for derived doc numbers (recorded rule, IMPORT_MAPPING §v2). */
@@ -152,7 +163,7 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
 
   // §16 optional package-attribute columns (D-PEC-23): present headers refresh the
   // auto-created package record; processed once per package per run
-  const hasPkgAttrs = ['package_name', 'area', 'package_type'].some((h) => headers.includes(h))
+  const hasPkgAttrs = ['package_name', 'area', 'package_type', 'discipline'].some((h) => headers.includes(h))
   const pkgAttrsApplied = new Set<number>()
 
   rows.forEach((row, i) => {
@@ -169,16 +180,17 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
     if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
 
     // package: auto-create on first sight (adoption bridge)
-    let pkg = sx.db.prepare('SELECT id, name, area, package_type FROM package WHERE project_id = ? AND code = ?')
-      .get(sx.projectId, row.package ?? '') as { id: number; name: string; area: string | null; package_type: string | null } | undefined
+    let pkg = sx.db.prepare('SELECT id, name, area, package_type, discipline FROM package WHERE project_id = ? AND code = ?')
+      .get(sx.projectId, row.package ?? '') as { id: number; name: string; area: string | null; package_type: string | null; discipline: string | null } | undefined
     if (!pkg) {
       const pkgId = sx.repo.insert('package', {
         projectId: sx.projectId, code: row.package,
         name: row.package_name || row.package,
         area: row.area || null, packageType: row.package_type || null,
+        discipline: row.discipline || null,
       })
       importHistory(sx, 'package', pkgId, `package ${row.package} created by MDL import`)
-      pkg = { id: pkgId, name: row.package_name || row.package!, area: row.area || null, package_type: row.package_type || null }
+      pkg = { id: pkgId, name: row.package_name || row.package!, area: row.area || null, package_type: row.package_type || null, discipline: row.discipline || null }
       pkgAttrsApplied.add(pkgId)
     } else if (hasPkgAttrs && !pkgAttrsApplied.has(pkg.id)) {
       // optional columns update only when present (§16, schedule/tracker precedent) —
@@ -187,6 +199,7 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
       if (headers.includes('package_name') && row.package_name && row.package_name !== pkg.name) attrs.name = row.package_name
       if (headers.includes('area') && (row.area || null) !== pkg.area) attrs.area = row.area || null
       if (headers.includes('package_type') && (row.package_type || null) !== pkg.package_type) attrs.packageType = row.package_type || null
+      if (headers.includes('discipline') && row.discipline && !pkg.discipline) attrs.discipline = row.discipline
       if (Object.keys(attrs).length > 0) {
         if (!lastChangeIsImport(sx, 'package', pkg.id) && !force) {
           report.conflicts.push({ row: rowNo, key: row.package!, reason: 'package edited in-app since last import; attributes not updated (deliverable row still processed); use force=true' })
@@ -197,6 +210,7 @@ function importMdl(sx: Sx, csv: string, force: boolean): ImportReport {
       }
       pkgAttrsApplied.add(pkg.id)
     }
+    recordPackageDiscipline(sx, pkg.id, row.discipline, 'mdl')
 
     const existing = sx.db.prepare('SELECT id, version FROM deliverable WHERE project_id = ? AND doc_no = ?')
       .get(sx.projectId, row.doc_no ?? '') as { id: number; version: number } | undefined
@@ -285,7 +299,7 @@ function importMdlV2(sx: Sx, csv: string, force: boolean): ImportReport {
   }
   const seenDocNos = new Set<string>()
 
-  const hasPkgAttrs = ['package_name', 'area', 'package_type'].some((h) => headers.includes(h))
+  const hasPkgAttrs = ['package_name', 'area', 'package_type', 'discipline'].some((h) => headers.includes(h))
   const pkgAttrsApplied = new Set<number>()
 
   rows.forEach((row, i) => {
@@ -309,22 +323,24 @@ function importMdlV2(sx: Sx, csv: string, force: boolean): ImportReport {
     seenDocNos.add(docNo)
 
     // package: auto-create on first sight; refresh attributes once per package per run
-    let pkg = sx.db.prepare('SELECT id, name, area, package_type FROM package WHERE project_id = ? AND code = ?')
-      .get(sx.projectId, row.package ?? '') as { id: number; name: string; area: string | null; package_type: string | null } | undefined
+    let pkg = sx.db.prepare('SELECT id, name, area, package_type, discipline FROM package WHERE project_id = ? AND code = ?')
+      .get(sx.projectId, row.package ?? '') as { id: number; name: string; area: string | null; package_type: string | null; discipline: string | null } | undefined
     if (!pkg) {
       const pkgId = sx.repo.insert('package', {
         projectId: sx.projectId, code: row.package,
         name: row.package_name || row.package,
         area: row.area || null, packageType: row.package_type || null,
+        discipline: row.discipline || null,
       })
       importHistory(sx, 'package', pkgId, `package ${row.package} created by MDL v2 import`)
-      pkg = { id: pkgId, name: row.package_name || row.package!, area: row.area || null, package_type: row.package_type || null }
+      pkg = { id: pkgId, name: row.package_name || row.package!, area: row.area || null, package_type: row.package_type || null, discipline: row.discipline || null }
       pkgAttrsApplied.add(pkgId)
     } else if (hasPkgAttrs && !pkgAttrsApplied.has(pkg.id)) {
       const attrs: Record<string, unknown> = {}
       if (headers.includes('package_name') && row.package_name && row.package_name !== pkg.name) attrs.name = row.package_name
       if (headers.includes('area') && (row.area || null) !== pkg.area) attrs.area = row.area || null
       if (headers.includes('package_type') && (row.package_type || null) !== pkg.package_type) attrs.packageType = row.package_type || null
+      if (headers.includes('discipline') && row.discipline && !pkg.discipline) attrs.discipline = row.discipline
       if (Object.keys(attrs).length > 0) {
         if (!lastChangeIsImport(sx, 'package', pkg.id) && !force) {
           report.conflicts.push({ row: rowNo, key: row.package!, reason: 'package edited in-app since last import; attributes not updated (deliverable row still processed); use force=true' })
@@ -335,6 +351,7 @@ function importMdlV2(sx: Sx, csv: string, force: boolean): ImportReport {
       }
       pkgAttrsApplied.add(pkg.id)
     }
+    recordPackageDiscipline(sx, pkg.id, row.discipline, 'mdl')
 
     // caught review signals — surfaced, never coerced or blocked
     if (row.working_status && !MDL_WORKING_STATUS_NORMS.has(row.working_status.toLowerCase())) {
@@ -673,6 +690,7 @@ function importRailV2(sx: Sx, csv: string, force: boolean): ImportReport {
     if (errors.length > 0) { report.rejected.push({ row: rowNo, errors }); return }
 
     const pkg = ensurePackage(row, rowNo)
+    recordPackageDiscipline(sx, pkg.id, row.discipline, 'rail')
     if (isPlaceholder) { report.packageRows!++; return }
 
     const ref = `${row.package}#${row.issue_no}`

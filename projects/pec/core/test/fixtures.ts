@@ -41,7 +41,7 @@ export function snapshot(over: Partial<ProjectSnapshot> = {}): ProjectSnapshot {
 
 export function pkg(over: Partial<Package> = {}): Package {
   const n = id()
-  return { id: n, projectId: 1, code: `PKG-${n}`, name: 'Package', leadId: null, description: null, milestone: null, area: null, packageType: null, discipline: null, sourcePayload: null, version: 1, ...over }
+  return { id: n, projectId: 1, code: `PKG-${n}`, name: 'Package', leadId: null, description: null, milestone: null, area: null, packageType: null, discipline: null, disciplines: [], sourcePayload: null, version: 1, ...over }
 }
 
 export function deliverable(over: Partial<Deliverable> = {}): Deliverable {
