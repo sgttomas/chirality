@@ -22,3 +22,4 @@
 
 - TASK runs should ground draft content in accessible source slices from the corpus above.
 - Missing or conflicting source evidence must be labeled `TBD`, `ASSUMPTION`, or `PROPOSAL`; it must not be treated as accepted project truth.
+- `docs/ui/UI_POLISH_EXECUTION_PLAN.md` is a non-authoritative evidence-routing checklist derived from REF-006 FR-006, D-APP-36, and the current loop-first design.

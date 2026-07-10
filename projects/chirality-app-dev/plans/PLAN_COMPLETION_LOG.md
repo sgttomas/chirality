@@ -19,13 +19,20 @@ Completed `ORN-02`: Electron renderer-egress diagnostics now retain only protoco
 for blocked destinations. Raw URL userinfo, path, query, and fragment are no longer logged. The existing
 network-policy source regression pins the bounded diagnostic and rejects `url: details.url`.
 
+Completed `ORN-03`: recreated `docs/ui/UI_POLISH_EXECUTION_PLAN.md` as a concise, non-authoritative
+evidence checklist grounded in PRD FR-006, D-APP-36, and the current loop-first/right-sidebar design.
+The live DEL-02-04 kit now routes REQ-014 verification to that checklist and removes false missing-source
+and stale REF-006 mismatch wording. Checklist restoration makes the requirement verifiable; it does not
+mark REQ-014 passed without current component/render and risk-based browser evidence.
+
 The verify-first pass dropped `ORN-06` as already closed: the SDK options builder unconditionally
 installs both `canUseTool` and hooks, with existing tests covering the invariant and `Write` + `Bash` in
 `workspaceWrite`. Other `ORN-05`..`ORN-13` dispositions remain in the active queue.
 
 Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
-passed; `git diff --check` passed. No release, distribution, issuance, provider expansion, live-binding,
-or professional claim was made.
+passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
+paths exist; `git diff --check` passed. No release, distribution, issuance, provider expansion,
+live-binding, or professional claim was made.
 
 ## 2026-06-22 - PKG-10 domain-engine canon conformance completed
 

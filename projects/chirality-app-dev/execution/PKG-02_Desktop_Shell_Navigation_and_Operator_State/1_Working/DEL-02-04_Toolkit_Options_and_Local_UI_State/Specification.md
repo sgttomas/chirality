@@ -46,7 +46,7 @@ Sources: `_CONTEXT.md`; `docs/PRD.md` Sections 8.1, 8.4, 8.7; `execution/_Decomp
 | Chirality Directive | Human authority, evidence posture, and non-authoritative convenience state. | Accessible: `docs/DIRECTIVE.md` |
 | Chirality Contract | Binding invariants for hidden memory, SDK/settings posture, permissions, and tool exposure. | Accessible: `docs/CONTRACT.md` |
 | Chirality Spec | Runtime configuration state, working-root truth, option visibility, and unknown-option behavior. | Accessible: `docs/SPEC.md` |
-| Chirality PRD | Product requirements for desktop shell, runtime options, Toolkit, and local UI state. | Accessible with source warning: hash mismatch recorded in `_REFERENCES.md` REF-006 |
+| Chirality PRD | Product requirements for desktop shell, runtime options, Toolkit, and local UI state. | Accessible: `_REFERENCES.md` REF-006 is reconciled and records `MATCH`. |
 | Active SOFTWARE_DECOMP v3.2 | DEL-02-04 scope, SOW coverage, objective mapping, and package boundary. | Accessible: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
 
 ## Verification
@@ -59,7 +59,7 @@ Sources: `_CONTEXT.md`; `docs/PRD.md` Sections 8.1, 8.4, 8.7; `execution/_Decomp
 | DEL-02-04-REQ-006, DEL-02-04-REQ-007, DEL-02-04-REQ-008 | Local-storage tests for root/persona/mode keying, malformed-record discard, and storage-failure warning behavior. |
 | DEL-02-04-REQ-009, DEL-02-04-REQ-010 | Policy-mode integration tests once the permission policy engine exists; until then, mark enforcement wiring as TBD and avoid false claims. |
 | DEL-02-04-REQ-011, DEL-02-04-REQ-012 | Option-handoff tests confirming deterministic fallback display/submit behavior and warnings for unknown keys; test records must show that unknown keys are warned, ignored, and do not silently mutate runtime behavior. |
-| DEL-02-04-REQ-014 | UI review against the accepted polish plan referenced by PRD FR-006. The referenced path `docs/ui/UI_POLISH_EXECUTION_PLAN.md` is not present in the accessible source tree for this run, so the exact checklist location remains TBD. |
+| DEL-02-04-REQ-014 | Review against `docs/ui/UI_POLISH_EXECUTION_PLAN.md`, including D-APP-36 component/render evidence and browser or screenshot evidence where layout risk warrants it. The checklist makes verification repeatable; REQ-014 remains unproven until current evidence is recorded. |
 
 ## Documentation
 
