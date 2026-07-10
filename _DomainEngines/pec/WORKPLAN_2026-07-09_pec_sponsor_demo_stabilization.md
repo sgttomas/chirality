@@ -28,6 +28,12 @@ Undated legacy input files and old seed records do not enter the rebuilt TWD
 demo database. System principals, project membership, and configuration needed
 to operate the app are infrastructure, not project-source content.
 
+The same demo database also carries a blank `TBL` project for rehearsing the
+complete import workflow without disturbing populated TWD. TBL shares TWD's
+demo people and role grants but begins with no packages, deliverables, work
+items, proposals, or other project records. TWD remains the populated sponsor
+view; TBL is the disposable workflow-demonstration target.
+
 Reporting remains factual-or-absent. Percent complete is imported PE-attested
 data, never an in-app edit or derivation. Issues are package-level action items,
 risks, and holds; decisions and interfaces remain segregated. Reports are
@@ -75,7 +81,7 @@ and professional approval claims remain out of scope.
 | Order | Tranche | Completion test |
 |---|---|---|
 | S0 | Governance and backup | D-PEC-50 recorded; existing demo DB backed up and verified before replacement |
-| S1 | Dated-input-only demo rebuild | Fresh TWD-only project content from the dated MDL/RAIL workbooks; re-import is update-only/idempotent; no legacy AUR/TWD seed content |
+| S1 | Dated-input-only demo rebuild | Populated TWD content from the dated MDL/RAIL workbooks plus blank TBL with matching demo roles; re-import is update-only/idempotent; no legacy seed content |
 | S2 | Report composition | Generated DOCX follows the exemplar's concise hierarchy and page furniture, summarizes rather than dumps rows, renders cleanly, and exposes a browser download |
 | S3 | PE full workflow | XLSX attach -> mapped proposal -> Admin review/accept/apply -> live views -> report draft/download works without shell/CLI intervention |
 | S4 | PD/sponsor UX | Strict read-only navigation; real drills; sortable/filterable reporting tables; no irrelevant mutation/admin/planning controls |

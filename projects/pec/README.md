@@ -42,11 +42,13 @@ Demo logins are printed by the seed script (all share password `pilot`) — e.g.
 
 ### Rebuild the sponsor demo from dated inputs
 
-`rebuild:demo` creates a fresh TWD-only database from date-prefixed `.xlsx`
-files in `pilot-scratch/input`. It uses the same workbook mapper and governed
-proposal → accept → apply services as the UI, retains the full workbook capture,
-and makes a WAL-safe backup before replacing an existing demo database. Coverage
-is mandatory and never inferred.
+`rebuild:demo` creates a populated TWD project from date-prefixed `.xlsx`
+files in `pilot-scratch/input` plus a blank TBL workflow-demonstration project.
+Both projects receive the same demo people and role assignments; only TWD
+receives the rebuilt source records. The command uses the same workbook mapper
+and governed proposal → accept → apply services as the UI, retains the full
+workbook capture, and makes a WAL-safe backup before replacing an existing demo
+database. Coverage is mandatory and never inferred.
 
 ```bash
 export PEC_DB="$PWD/pec-demo.db"
@@ -55,9 +57,11 @@ export PEC_DEMO_COVERAGE_END=YYYY-MM-DD     # PE-declared
 npm run rebuild:demo
 ```
 
-The rebuild fails loudly if a dated input has rejected rows or identity
-conflicts; resolve the source/mapping decision rather than silently dropping or
-inventing project records. Operational demo personas use password `pilot`.
+The rebuild also fails unless TBL remains empty of packages, deliverables, work
+items, and import proposals. It fails loudly if a dated input has rejected rows
+or identity conflicts; resolve the source/mapping decision rather than silently
+dropping or inventing project records. Operational demo personas use password
+`pilot`.
 
 ## Principles the code must keep (from the PRD)
 

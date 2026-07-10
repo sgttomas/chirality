@@ -125,6 +125,7 @@ const db = openDb(rebuildPath)
 const repo = new Repo(db)
 const personIds = new Map<string, number>()
 let projectId = 0
+let blankProjectId = 0
 
 withTx(db, () => {
   for (const person of people) {
@@ -142,9 +143,16 @@ withTx(db, () => {
     name: 'TWD Project',
     timezone: 'America/Edmonton',
   })
+  blankProjectId = repo.insert('project', {
+    code: 'TBL',
+    name: 'TBL Workflow Demo',
+    timezone: 'America/Edmonton',
+  })
   for (const person of people) {
-    for (const role of person.roles) {
-      repo.insert('project_role', { projectId, personId: personIds.get(person.key)!, role })
+    for (const targetProjectId of [projectId, blankProjectId]) {
+      for (const role of person.roles) {
+        repo.insert('project_role', { projectId: targetProjectId, personId: personIds.get(person.key)!, role })
+      }
     }
   }
 })
@@ -208,6 +216,18 @@ const counts = Object.fromEntries(['project', 'package', 'deliverable', 'work_it
   table,
   (db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get() as { n: number }).n,
 ]))
+const projectCounts = (db.prepare(`
+  SELECT p.code,
+    (SELECT COUNT(*) FROM package x WHERE x.project_id = p.id) AS packages,
+    (SELECT COUNT(*) FROM deliverable x WHERE x.project_id = p.id) AS deliverables,
+    (SELECT COUNT(*) FROM work_item x WHERE x.project_id = p.id) AS workItems,
+    (SELECT COUNT(*) FROM import_proposal x WHERE x.project_id = p.id) AS importProposals
+  FROM project p ORDER BY p.code
+`).all() as Array<Record<string, unknown>>)
+const tblCounts = projectCounts.find((candidate) => candidate.code === 'TBL')
+if (!tblCounts || ['packages', 'deliverables', 'workItems', 'importProposals'].some((key) => tblCounts[key] !== 0)) {
+  throw new Error(`TBL blank-project verification failed: ${JSON.stringify(tblCounts ?? null)}`)
+}
 const rebuiltQuickCheck = (db.prepare('PRAGMA quick_check').get() as { quick_check: string }).quick_check
 if (rebuiltQuickCheck !== 'ok') throw new Error(`Rebuilt database quick_check failed: ${rebuiltQuickCheck}`)
 db.close()
@@ -259,6 +279,7 @@ console.log(JSON.stringify({
   rebuiltVerification,
   inputDir,
   coverage,
+  projectCounts,
   inputs: results,
   counts,
 }, null, 2))
