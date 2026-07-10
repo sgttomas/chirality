@@ -361,6 +361,9 @@ export interface Col<T> {
   label: string
   render(row: T): ReactNode
   csv?(row: T): string | number | null
+  /** Value used by the direct table sort control; falls back to CSV/display text. */
+  sortValue?(row: T): string | number | null | undefined
+  sortable?: boolean
 }
 
 export function RegisterTable<T>({
@@ -380,6 +383,26 @@ export function RegisterTable<T>({
   stickyFirstColumn?: boolean
 }): JSX.Element {
   const flashRow = useRef<HTMLTableRowElement | null>(null)
+  const [sortKey, setSortKey] = useState<string | null>(null)
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
+  const sortedRows = useMemo(() => {
+    if (!sortKey) return rows
+    const col = cols.find((candidate) => candidate.key === sortKey)
+    if (!col) return rows
+    const value = (row: T): string | number | null | undefined => col.sortValue?.(row)
+      ?? col.csv?.(row) ?? textOf(col.render(row))
+    const compare = (a: T, b: T): number => {
+      const av = value(a)
+      const bv = value(b)
+      if (av == null || av === '') return bv == null || bv === '' ? 0 : 1
+      if (bv == null || bv === '') return -1
+      if (typeof av === 'number' && typeof bv === 'number') return av - bv
+      return String(av).localeCompare(String(bv), undefined, { numeric: true, sensitivity: 'base' })
+    }
+    return rows.map((row, index) => ({ row, index }))
+      .sort((a, b) => (compare(a.row, b.row) || a.index - b.index) * (sortDirection === 'asc' ? 1 : -1))
+      .map(({ row }) => row)
+  }, [cols, rows, sortDirection, sortKey])
   useEffect(() => {
     if (highlightRef && flashRow.current) {
       flashRow.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
@@ -392,7 +415,7 @@ export function RegisterTable<T>({
     }
     const lines = [
       cols.map((c) => esc(c.label)).join(','),
-      ...rows.map((r) => cols.map((c) => esc(c.csv ? c.csv(r) : textOf(c.render(r)))).join(',')),
+      ...sortedRows.map((r) => cols.map((c) => esc(c.csv ? c.csv(r) : textOf(c.render(r)))).join(',')),
     ]
     const blob = new Blob([lines.join('\r\n')], { type: 'text/csv' })
     const a = document.createElement('a')
@@ -405,18 +428,29 @@ export function RegisterTable<T>({
     <div>
       {exportName && (
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '.35rem' }}>
-          <button className="btn secondary small" onClick={exportCsv}>Export CSV ({rows.length} rows)</button>
+          <button className="btn secondary small" onClick={exportCsv}>Export CSV ({sortedRows.length} rows)</button>
         </div>
       )}
       <div style={wide ? { overflowX: 'auto', maxWidth: '100%' } : undefined}>
       <table className="reg" style={wide ? { minWidth: '980px' } : undefined}>
-        <thead><tr>{cols.map((c, idx) => (
-          <th key={c.key} style={stickyFirstColumn && idx === 0 ? {
+        <thead><tr>{cols.map((c, idx) => {
+          const active = sortKey === c.key
+          const sortable = c.sortable !== false
+          return (
+          <th key={c.key} aria-sort={active ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={stickyFirstColumn && idx === 0 ? {
             left: 0, zIndex: 3, minWidth: '9rem',
-          } : undefined}>{c.label}</th>
-        ))}</tr></thead>
+          } : undefined}>{sortable ? (
+            <button type="button" className={`table-sort${active ? ' active' : ''}`} onClick={() => {
+              if (active) setSortDirection((direction) => direction === 'asc' ? 'desc' : 'asc')
+              else { setSortKey(c.key); setSortDirection('asc') }
+            }}>
+              {c.label}<span aria-hidden="true">{active ? (sortDirection === 'asc' ? ' ▲' : ' ▼') : ' ⇅'}</span>
+            </button>
+          ) : c.label}</th>
+          )
+        })}</tr></thead>
         <tbody>
-          {rows.map((r, i) => {
+          {sortedRows.map((r, i) => {
             const hit = highlightRef != null && rowRef?.(r) === highlightRef
             const cls = [onRowClick ? 'clickable' : '', hit ? 'row-flash' : ''].filter(Boolean).join(' ')
             return (

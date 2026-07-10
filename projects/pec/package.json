@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "seed": "node --disable-warning=ExperimentalWarning tools/seed.ts",
+    "rebuild:demo": "node --disable-warning=ExperimentalWarning tools/rebuild-demo.ts",
     "drill": "node --disable-warning=ExperimentalWarning tools/pilot-drill.ts",
     "dev": "npm run dev --workspace server & npm run dev --workspace agent-sidecar & npm run dev --workspace web & wait",
     "dev:server": "npm run dev --workspace server",

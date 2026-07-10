@@ -61,15 +61,17 @@ codes/names.
   (`internal`/`client`/unclassified, D-PEC-47). The weekly report also carries
   `CONSIST-MDL-RAIL-HOLD`, a report-only MDL working-status vs RAIL source
   status check that creates no intake/review/disposition records (D-PEC-46
-  O-B). Period-scoped issuances, week-over-week deliverable-progress deltas,
-  and `.docx` output stay absent until their ruled tranches land.
+  O-B). Period-scoped issuances appear only for an explicit period; unsupported
+  week-over-week deliverable-progress deltas remain honestly absent. The web
+  agent result renders a compact report preview with live drill links rather
+  than exposing the JSON payload as a data dump (D-PEC-50).
 - **User-defined reports** (sidecar D-PEC-37 mode,
   `agent-sidecar/src/user-report.ts`): prompt requests are routed only to
   bounded PEC read/report acts. The sidecar may draft over the standard report
   payloads above, but it refuses professional/go-live/issuance claims, hidden
   data requests, unsupported forecasts, and mutations. Unsupported requested
   figures are reported as absent rather than synthesized.
-- **Discipline status `.docx` draft** (sidecar D-PEC-44 mode,
+- **Discipline status `.docx` draft** (sidecar D-PEC-44/D-PEC-50 mode,
   `agent-sidecar/src/docx-report.ts`; output under gitignored
   `pilot-scratch/reports/`): zero-dependency draft package assembled from
   read-only server/report payloads. Per-discipline Activities use `DISC-ACT`
@@ -78,12 +80,13 @@ codes/names.
   Needs & Issues use the D-PEC-48 split (holds + risks + action items,
   including imported RAIL rows whose verbatim `source_issue_type` is not
   "Action"); Decisions and Interfaces stay separate labels. The composition
-  clarification of record is: "Needs and issues are tracked and reported by
-  package. This includes decisions, risks, action items, clarifications, needs
-  for information and resources etc. Status (i.e. working status, such as in
-  progress or complete) and % complete are tracked by deliverable. Period
-  declaration can happen in the agent sidecar via prompt. Yes I accept the
-  honest absences."
+  composition clarification of record is enforced in the structure, not dumped
+  into sponsor prose. The draft summarizes each discipline by deliverable type
+  and attested progress, consolidates repeated package issue statements, uses
+  restrained basis prose, and carries real Word headings, bullets, header, and
+  `Page X of Y` footer. The browser act result includes figures and a direct
+  `.docx` download; the filesystem safety copy remains under
+  `pilot-scratch/reports/`.
 
 ## Coverage declarations & period basis (D-PEC-39)
 

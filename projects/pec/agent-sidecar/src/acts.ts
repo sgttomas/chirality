@@ -492,7 +492,13 @@ export function bindActs(ctx: ActContext): BoundActs {
         `${draft.filename} written to pilot-scratch/reports from imported/reportable facts; `
         + `${draft.figures.disciplines} discipline section(s), ${draft.figures.packageIssueRows} package issue row(s), `
         + `declared period ${period ? `${period.start}..${period.end}` : 'absent'}.`,
-        { path, filename: draft.filename, figures: draft.figures, reportPayloadChecks: { weeklyGroups, packageReportTotal } })
+        {
+          path,
+          filename: draft.filename,
+          downloadBase64: draft.bytes.toString('base64'),
+          figures: draft.figures,
+          reportPayloadChecks: { weeklyGroups, packageReportTotal },
+        })
     },
   }
 }

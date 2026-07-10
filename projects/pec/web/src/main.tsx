@@ -61,6 +61,7 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
   const [refreshKey, setRefreshKey] = useState(0)
   const [toastMsg, setToastMsg] = useState<string | null>(null)
   const [unread, setUnread] = useState(0)
+  const [navOpen, setNavOpen] = useState(false)
 
   const projectId = Number(pid)
   const project = projects.find((x) => x.id === projectId)
@@ -81,6 +82,8 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
   }, [])
 
   if (!project) return <Navigate to="/" replace />
+  const roles = (project.roles ?? '').split(',').map((role) => role.trim()).filter(Boolean)
+  const sponsorOnly = roles.length === 1 && roles[0] === 'sponsor'
 
   const switchProject = (nextProjectId: string) => {
     const nextPath = location.pathname.replace(/^\/p\/[^/]+/, `/p/${nextProjectId}`)
@@ -100,24 +103,27 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
             <div className="brand">
               PEC<small>{project.code} — {project.name}</small>
             </div>
-            <nav aria-label="Primary">
+            <button type="button" className="nav-toggle" aria-expanded={navOpen} onClick={() => setNavOpen((open) => !open)}>
+              {navOpen ? 'Close menu' : 'Menu'}
+            </button>
+            <nav aria-label="Primary" className={navOpen ? 'open' : undefined} onClick={() => setNavOpen(false)}>
               <div className="nav-group">
-                <div className="nav-label">Work lenses</div>
+                <div className="nav-label">Project status</div>
                 <NavLink to={`/p/${projectId}/overview`}>Overview</NavLink>
                 <NavLink to={`/p/${projectId}/packages`}>Packages</NavLink>
                 <NavLink to={`/p/${projectId}/disciplines`}>Disciplines</NavLink>
                 <NavLink to={`/p/${projectId}/deliverables`}>Deliverables</NavLink>
-                <NavLink to={`/p/${projectId}/plan`}>Plan</NavLink>
                 <NavLink to={`/p/${projectId}/log`}>Action &amp; Hold Log</NavLink>
-                <NavLink to={`/p/${projectId}/my-week`}>
-                  My Week{unread > 0 && <span className="notif-dot">{unread}</span>}
-                </NavLink>
+                {!sponsorOnly && <NavLink to={`/p/${projectId}/plan`}>Plan</NavLink>}
+                {!sponsorOnly && <NavLink to={`/p/${projectId}/my-week`}>
+                    My Week{unread > 0 && <span className="notif-dot">{unread}</span>}
+                  </NavLink>}
               </div>
-              <div className="nav-group nav-group-controls">
+              {!sponsorOnly && <div className="nav-group nav-group-controls">
                 <div className="nav-label">Control surfaces</div>
                 <NavLink to={`/p/${projectId}/registers`}>Registers</NavLink>
                 <NavLink to={`/p/${projectId}/admin`}>Admin</NavLink>
-              </div>
+              </div>}
             </nav>
             <div className="grow" />
             <div className="userbox">
@@ -135,13 +141,13 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
             </div>
           </aside>
           <main className="main">
-            <div className="topbar">
+            {!sponsorOnly && <div className="topbar">
               <div className="spacer" />
               {/* D-PEC-17: agent panel toggle — renders only when can('agent.direct') */}
               <AgentDock />
               <RaiseItemButton />
-            </div>
-            <Outlet />
+            </div>}
+            <SponsorRouteGuard sponsorOnly={sponsorOnly}><Outlet /></SponsorRouteGuard>
           </main>
           {toastMsg && <div className="toast">{toastMsg}</div>}
         </div>
@@ -149,6 +155,15 @@ function Shell({ me, projects, onLogout }: { me: Me; projects: ProjectRef[]; onL
       </ExplainProvider>
     </AppContext.Provider>
   )
+}
+
+function SponsorRouteGuard({ sponsorOnly, children }: { sponsorOnly: boolean; children: JSX.Element }): JSX.Element {
+  const location = useLocation()
+  if (sponsorOnly && !/^\/p\/\d+\/(?:overview|packages(?:\/\d+)?|disciplines(?:\/[^/]+)?|deliverables(?:\/\d+)?|log)\/?$/.test(location.pathname)) {
+    const pid = location.pathname.split('/')[2]
+    return <Navigate to={`/p/${pid}/overview`} replace />
+  }
+  return children
 }
 
 type AppContextPeople = Array<{ id: number; name: string; email: string; discipline: string | null }>

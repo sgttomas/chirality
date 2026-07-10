@@ -22,11 +22,14 @@ import type { Col } from '../shared.tsx'
 export function DisciplinesPage(): JSX.Element {
   const { pid } = useApp()
   const nav = useNavigate()
+  const [search, setSearch] = useState('')
   const { data, error } = useLoad<any[]>(() => api.get(p(pid, 'disciplines')), [pid])
   usePublishScreenContext([])
 
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
+  const query = search.trim().toLowerCase()
+  const visible = data.filter((row) => !query || row.discipline.toLowerCase().includes(query))
 
   const cols: Array<Col<any>> = [
     { key: 'discipline', label: 'Discipline', render: (r) => <b>{r.discipline}</b>, csv: (r) => r.discipline },
@@ -44,7 +47,8 @@ export function DisciplinesPage(): JSX.Element {
         Each row mirrors the weekly discipline status story. Open a discipline to drill its
         activities, issuances, needs, and risks; declare a period there for period-scoped figures.
       </p>
-      <RegisterTable cols={cols} rows={data}
+      <div className="filters"><label>Find discipline<input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="discipline name" /></label><span className="small muted">{visible.length} of {data.length}</span></div>
+      <RegisterTable cols={cols} rows={visible}
         onRowClick={(r) => nav(`/p/${pid}/disciplines/${encodeURIComponent(r.discipline)}`)} />
     </div>
   )

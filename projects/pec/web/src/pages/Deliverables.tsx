@@ -35,6 +35,7 @@ export function DeliverablesPage(): JSX.Element {
   const [areaF, setAreaF] = useState('')
   const [stateF, setStateF] = useState('')
   const [viewF, setViewF] = useState('active')
+  const [searchF, setSearchF] = useState('')
 
   const { data: pkgs } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
 
@@ -54,6 +55,8 @@ export function DeliverablesPage(): JSX.Element {
 
   const pkgCode = (id: number | null) =>
     pkgs?.find((x: any) => x.id === id)?.code ?? (id != null ? `#${id}` : '—')
+  const query = searchF.trim().toLowerCase()
+  const visible = (data ?? []).filter((row) => !query || `${row.docNo} ${row.title} ${row.discipline ?? ''} ${row.area ?? ''}`.toLowerCase().includes(query))
 
   // Status = workflow completeness (which gates are closed). Issues live at the package level.
   const cols: Array<Col<any>> = [
@@ -80,26 +83,28 @@ export function DeliverablesPage(): JSX.Element {
     <div>
       <h1>Deliverables — the master deliverable list</h1>
       <div className="filters">
-        <select value={pkgF} onChange={(e) => setPkgF(e.target.value)}>
+        <label>Find deliverable<input type="search" value={searchF} onChange={(e) => setSearchF(e.target.value)} placeholder="document number or title" /></label>
+        <label>Package<select value={pkgF} onChange={(e) => setPkgF(e.target.value)}>
           <option value="">all packages</option>
           {(pkgs ?? []).map((x: any) => <option key={x.id} value={x.id}>{x.code} — {x.name}</option>)}
-        </select>
-        <input placeholder="discipline" value={discF} onChange={(e) => setDiscF(e.target.value)} />
-        <input placeholder="area" value={areaF} onChange={(e) => setAreaF(e.target.value)} />
-        <select value={stateF} onChange={(e) => setStateF(e.target.value)}>
+        </select></label>
+        <label>Discipline<input placeholder="all disciplines" value={discF} onChange={(e) => setDiscF(e.target.value)} /></label>
+        <label>Area<input placeholder="all areas" value={areaF} onChange={(e) => setAreaF(e.target.value)} /></label>
+        <label>Workflow state<select value={stateF} onChange={(e) => setStateF(e.target.value)}>
           <option value="">any state</option>
           {REVISION_STATES.map((s) => <option key={s} value={s}>{s.replaceAll('_', ' ')}</option>)}
           <option value="no_revision">no revision</option>
-        </select>
-        <select value={viewF} onChange={(e) => setViewF(e.target.value)}>
+        </select></label>
+        <label>View<select value={viewF} onChange={(e) => setViewF(e.target.value)}>
           <option value="active">active</option>
           <option value="master">master</option>
           <option value="issued">issued</option>
-        </select>
+        </select></label>
+        {data && <span className="small muted">{visible.length} of {data.length}</span>}
       </div>
       {error && <ErrorBox error={{ message: error }} />}
       {!data ? <p className="muted">loading…</p> : (
-        <RegisterTable cols={cols} rows={data} exportName="mdl-view.csv"
+        <RegisterTable cols={cols} rows={visible} exportName="mdl-view.csv" wide stickyFirstColumn
           onRowClick={(r) => nav(`/p/${pid}/deliverables/${r.id}`)} />
       )}
     </div>

@@ -6,6 +6,7 @@
  */
 
 import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { api, p } from '../api.ts'
 import type { Explain } from '../api.ts'
 import {
@@ -27,7 +28,9 @@ function signalToExplain(s: any): Explain {
 }
 
 export function OverviewPage(): JSX.Element {
-  const { pid } = useApp()
+  const { pid, projects } = useApp()
+  const [packageSearch, setPackageSearch] = useState('')
+  const [packageView, setPackageView] = useState('issues')
   const nav = useNavigate()
   const person = usePerson()
   const explain = useExplain()
@@ -38,6 +41,11 @@ export function OverviewPage(): JSX.Element {
 
   const holdsTotal = Object.values(data.kpis.holdsByCause.value as Record<string, number>)
     .reduce((a, b) => a + b, 0)
+  const roles = (projects.find((project) => project.id === pid)?.roles ?? '').split(',').filter(Boolean)
+  const sponsorOnly = roles.length === 1 && roles[0] === 'sponsor'
+  const query = packageSearch.trim().toLowerCase()
+  const visiblePackages = data.packageRollup.filter((row: any) => (!query || `${row.code} ${row.name}`.toLowerCase().includes(query))
+    && (packageView === 'all' || (packageView === 'issues' ? row.openIssues > 0 : row.openIssues === 0)))
 
   // navigate a row that carries its own record identity (recordType/id/ref) to its source
   const rowToSource = (r: any) => {
@@ -122,17 +130,21 @@ export function OverviewPage(): JSX.Element {
       </div>
 
       <h2>Package rollup</h2>
-      <RegisterTable cols={rollupCols} rows={data.packageRollup} exportName="package-rollup.csv"
+      <div className="filters">
+        <label>Find package<input type="search" value={packageSearch} onChange={(e) => setPackageSearch(e.target.value)} placeholder="code or name" /></label>
+        <label>View<select value={packageView} onChange={(e) => setPackageView(e.target.value)}><option value="issues">open issues only</option><option value="all">all packages</option><option value="clear">no open issues</option></select></label>
+        <span className="small muted">{visiblePackages.length} of {data.packageRollup.length}</span>
+      </div>
+      <RegisterTable cols={rollupCols} rows={visiblePackages} exportName="package-rollup.csv"
         onRowClick={(r) => nav(`/p/${pid}/packages/${r.id}`)} />
 
       <h2>Schedule pressure — lookahead load vs capacity (PEC-OV-008)</h2>
       {data.schedulePressure.every((w: any) => w.loadH === 0 && w.capacityH === 0)
-        ? <p className="muted small">No planned load or capacity yet — set both on the <Link to={`/p/${pid}/plan`}>Plan</Link> page.</p>
+        ? <p className="muted small">No planned load or capacity yet{!sponsorOnly && <> — set both on the <Link to={`/p/${pid}/plan`}>Plan</Link> page</>}.</p>
         : (
           <div className="cards">
-            {data.schedulePressure.map((w: any) => (
-              <Link key={w.week} to={`/p/${pid}/plan`} className="card" style={{ minWidth: 150, color: 'inherit' }}
-                title="open the Plan page — load, capacity, and shifts by week">
+            {data.schedulePressure.map((w: any) => {
+              const content = <>
                 <b className="small">{w.week}</b>
                 <div>{w.loadH} h / {w.capacityH} h</div>
                 {w.pct != null
@@ -141,8 +153,11 @@ export function OverviewPage(): JSX.Element {
                 {w.breaches.map((b: any) => (
                   <div key={b.discipline} className="small muted">{b.discipline} {b.pct != null ? `${b.pct}%` : 'over'}</div>
                 ))}
-              </Link>
-            ))}
+              </>
+              return sponsorOnly
+                ? <div key={w.week} className="card" style={{ minWidth: 150 }}>{content}</div>
+                : <Link key={w.week} to={`/p/${pid}/plan`} className="card" style={{ minWidth: 150, color: 'inherit' }} title="open the Plan page — load, capacity, and shifts by week">{content}</Link>
+            })}
           </div>
         )}
 
@@ -184,8 +199,8 @@ export function OverviewPage(): JSX.Element {
       />
       <p className="section-note">
         Every value on this page drills down to its contributing records and the rule that
-        classified it — click any badge or KPI (I-4). Registers: <Link to={`/p/${pid}/registers`}>approvals,
-        decisions, risks, interfaces, holds, Schedule, and Tracker</Link>.
+        classified it — click any badge or KPI (I-4). {!sponsorOnly && <>Registers: <Link to={`/p/${pid}/registers`}>approvals,
+        decisions, risks, interfaces, holds, Schedule, and Tracker</Link>.</>}
       </p>
     </div>
   )

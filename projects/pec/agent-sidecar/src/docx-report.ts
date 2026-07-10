@@ -85,6 +85,9 @@ const CONTENT_TYPES = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <Default Extension="xml" ContentType="application/xml"/>
   <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
   <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
+  <Override PartName="/word/numbering.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml"/>
+  <Override PartName="/word/header1.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml"/>
+  <Override PartName="/word/footer1.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml"/>
 </Types>`
 
 const ROOT_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -93,16 +96,35 @@ const ROOT_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </Relationships>`
 
 const DOC_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"/>`
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering" Target="numbering.xml"/>
+  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/header" Target="header1.xml"/>
+  <Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer" Target="footer1.xml"/>
+</Relationships>`
 
 const STYLES = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-  <w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style>
-  <w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:rPr><w:b/><w:sz w:val="32"/></w:rPr></w:style>
-  <w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:rPr><w:b/><w:sz w:val="28"/></w:rPr></w:style>
-  <w:style w:type="paragraph" w:styleId="Subtitle"><w:name w:val="Subtitle"/><w:basedOn w:val="Normal"/><w:rPr><w:i/><w:sz w:val="24"/></w:rPr></w:style>
-  <w:style w:type="paragraph" w:styleId="ListParagraph"><w:name w:val="List Paragraph"/><w:basedOn w:val="Normal"/><w:pPr><w:ind w:left="720"/></w:pPr></w:style>
+  <w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Aptos" w:hAnsi="Aptos"/><w:sz w:val="21"/><w:color w:val="262626"/></w:rPr></w:rPrDefault></w:docDefaults>
+  <w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:pPr><w:spacing w:after="120" w:line="276" w:lineRule="auto"/></w:pPr></w:style>
+  <w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:before="0" w:after="180"/></w:pPr><w:rPr><w:b/><w:color w:val="0F4761"/><w:sz w:val="40"/></w:rPr></w:style>
+  <w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:keepNext/><w:pPr><w:spacing w:before="260" w:after="100"/></w:pPr><w:rPr><w:b/><w:color w:val="0F4761"/><w:sz w:val="30"/></w:rPr></w:style>
+  <w:style w:type="paragraph" w:styleId="Subtitle"><w:name w:val="Subtitle"/><w:basedOn w:val="Normal"/><w:keepNext/><w:pPr><w:spacing w:before="140" w:after="70"/></w:pPr><w:rPr><w:b/><w:color w:val="595959"/><w:sz w:val="24"/></w:rPr></w:style>
+  <w:style w:type="paragraph" w:styleId="ListParagraph"><w:name w:val="List Paragraph"/><w:basedOn w:val="Normal"/><w:pPr><w:numPr><w:ilvl w:val="0"/><w:numId w:val="1"/></w:numPr><w:ind w:left="540" w:hanging="270"/><w:spacing w:after="70"/></w:pPr></w:style>
+  <w:style w:type="paragraph" w:styleId="BasisNote"><w:name w:val="Basis Note"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:after="100"/></w:pPr><w:rPr><w:i/><w:color w:val="737373"/><w:sz w:val="18"/></w:rPr></w:style>
 </w:styles>`
+
+const NUMBERING = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:numbering xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:abstractNum w:abstractNumId="0"><w:multiLevelType w:val="singleLevel"/><w:lvl w:ilvl="0"><w:start w:val="1"/><w:numFmt w:val="bullet"/><w:lvlText w:val="•"/><w:lvlJc w:val="left"/><w:pPr><w:tabs><w:tab w:val="num" w:pos="540"/></w:tabs><w:ind w:left="540" w:hanging="270"/></w:pPr><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/></w:rPr></w:lvl></w:abstractNum>
+  <w:num w:numId="1"><w:abstractNumId w:val="0"/></w:num>
+</w:numbering>`
+
+const HEADER = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:hdr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:p><w:pPr><w:jc w:val="right"/></w:pPr><w:r><w:rPr><w:color w:val="737373"/><w:sz w:val="18"/></w:rPr><w:t>Weekly Status Update</w:t></w:r></w:p></w:hdr>`
+
+const FOOTER = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:ftr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:color w:val="737373"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">Page </w:t></w:r><w:fldSimple w:instr="PAGE"><w:r><w:rPr><w:color w:val="737373"/><w:sz w:val="18"/></w:rPr><w:t>1</w:t></w:r></w:fldSimple><w:r><w:rPr><w:color w:val="737373"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve"> of </w:t></w:r><w:fldSimple w:instr="NUMPAGES"><w:r><w:rPr><w:color w:val="737373"/><w:sz w:val="18"/></w:rPr><w:t>1</w:t></w:r></w:fldSimple></w:p></w:ftr>`
 
 const CRC_TABLE = (() => {
   const table = new Uint32Array(256)
@@ -198,19 +220,30 @@ function pct(d: { percentComplete?: number | null; percentCompleteVerbatim?: str
   return 'percent absent'
 }
 
-function activityLines(discipline: DisciplineDetail): string[] {
+function hasMeaningfulProgress(d: { percentComplete?: number | null; percentCompleteVerbatim?: string | null }): boolean {
+  if (d.percentComplete != null) return d.percentComplete > 0
+  const marker = text(d.percentCompleteVerbatim).toLowerCase()
+  return marker !== '' && marker !== '0' && marker !== '0%' && marker !== 'n/a' && marker !== '-'
+}
+
+function activityLines(discipline: DisciplineDetail): { lines: string[]; count: number; omitted: number } {
   const groups = discipline.sections?.activities?.groups ?? []
   const lines: string[] = []
+  let count = 0
+  let omitted = 0
   for (const group of groups) {
-    const deliverables = group.deliverables ?? []
+    const deliverables = (group.deliverables ?? []).filter(hasMeaningfulProgress)
     if (deliverables.length === 0) continue
-    lines.push(`${group.type} (basis: DISC-ACT):`)
-    for (const d of deliverables) {
-      const basis = d.percentComplete != null || d.percentCompleteVerbatim ? 'DISC-ACT; DISC-PCT' : 'DISC-ACT'
-      lines.push(`- ${d.docNo} - ${text(d.title)}; ${d.workflow?.label ?? d.workflow?.currentState ?? 'workflow recorded'}; % ${pct(d)} (basis: ${basis})`)
-    }
+    count += deliverables.length
+    const byProgress = new Map<string, number>()
+    for (const d of deliverables) byProgress.set(pct(d), (byProgress.get(pct(d)) ?? 0) + 1)
+    const distribution = [...byProgress.entries()].map(([value, n]) => `${n} at ${value}`).join('; ')
+    const examples = deliverables.slice(0, 4).map((d) => `${d.docNo} — ${text(d.title)}`).join('; ')
+    const remaining = Math.max(0, deliverables.length - 4)
+    omitted += remaining
+    lines.push(`${group.type}: ${deliverables.length} active (${distribution}). ${examples}${remaining ? `; plus ${remaining} other${remaining === 1 ? '' : 's'}` : ''}.`)
   }
-  return lines.length > 0 ? lines : ['None recorded (basis: DISC-ACT)']
+  return { lines: lines.length > 0 ? lines : ['No attested progress recorded.'], count, omitted }
 }
 
 function issuanceLines(discipline: DisciplineDetail, period: ReportPeriod | null): string[] {
@@ -221,24 +254,32 @@ function issuanceLines(discipline: DisciplineDetail, period: ReportPeriod | null
     `- ${r.ref}${r.docNo ? ` / ${r.docNo}` : ''}; ${r.issuedAt?.slice(0, 10) ?? 'date recorded'}; ${r.purpose ?? 'purpose recorded'} (basis: DISC-ISSUED)`)
 }
 
-function packageLines(pkg: PackageDetail, kind: 'issues' | 'decisions' | 'interfaces'): string[] {
-  const code = pkg.package?.code ?? 'package'
-  if (kind === 'issues') {
-    const rows = (pkg.issues ?? []).filter((i) => i.type === 'hold' || i.type === 'risk' || i.type === 'action')
-    return rows.length > 0
-      ? rows.map((i) => `- ${code}: ${i.ref} ${text(i.title)}; ${i.detail ?? i.type}; ${i.state ?? 'state recorded'}${i.needBy ? `; need-by ${i.needBy}` : ''} (basis: PKG-ISSUE-MIX)`)
-      : [`${code}: None recorded (basis: PKG-ISSUE-MIX)`]
+function consolidatedPackageLines(packages: PackageDetail[], kind: 'issues' | 'decisions' | 'interfaces'): string[] {
+  const grouped = new Map<string, { description: string; packages: string[]; refs: string[] }>()
+  for (const pkg of packages) {
+    const code = pkg.package?.code ?? 'package'
+    const rows = kind === 'issues'
+      ? (pkg.issues ?? []).filter((i) => i.type === 'hold' || i.type === 'risk' || i.type === 'action')
+      : kind === 'decisions' ? (pkg.decisions ?? []) : (pkg.interfaces ?? [])
+    for (const row of rows) {
+      const issue = row as PackageIssue
+      const decision = row as { ref: string; title: string; state?: string; needBy?: string | null }
+      const iface = row as { ref: string; title: string; state?: string; giving?: string; receiving?: string; needBy?: string | null }
+      const detail = kind === 'issues' ? (issue.detail ?? issue.type)
+        : kind === 'interfaces' ? `${iface.giving ?? '?'} → ${iface.receiving ?? '?'}` : ''
+      const description = `${text(row.title)}${detail ? ` — ${detail}` : ''}; ${row.state ?? 'state recorded'}${row.needBy ? `; need-by ${row.needBy}` : ''}`
+      const key = `${kind}|${description.toLowerCase()}`
+      const current = grouped.get(key) ?? { description, packages: [], refs: [] }
+      if (!current.packages.includes(code)) current.packages.push(code)
+      current.refs.push(decision.ref)
+      grouped.set(key, current)
+    }
   }
-  if (kind === 'decisions') {
-    const rows = pkg.decisions ?? []
-    return rows.length > 0
-      ? rows.map((d) => `- ${code}: ${d.ref} ${text(d.title)}; ${d.state ?? 'state recorded'}${d.needBy ? `; need-by ${d.needBy}` : ''} (basis: PKG-DEC)`)
-      : [`${code}: None recorded (basis: PKG-DEC)`]
-  }
-  const rows = pkg.interfaces ?? []
-  return rows.length > 0
-    ? rows.map((i) => `- ${code}: ${i.ref} ${text(i.title)}; ${i.giving ?? '?'} -> ${i.receiving ?? '?'}; ${i.state ?? 'state recorded'}${i.needBy ? `; need-by ${i.needBy}` : ''} (basis: PKG-INT)`)
-    : [`${code}: None recorded (basis: PKG-INT)`]
+  return [...grouped.values()].map((g) => {
+    const packageLabel = g.packages.length <= 4 ? g.packages.join(', ') : `${g.packages.slice(0, 4).join(', ')} +${g.packages.length - 4} others`
+    const refLabel = g.refs.length === 1 ? g.refs[0] : `${g.refs.length} records`
+    return `${packageLabel}: ${refLabel} — ${g.description}`
+  })
 }
 
 export function buildDisciplineStatusDocx(input: DraftDocxInput): DraftDocxResult {
@@ -246,66 +287,69 @@ export function buildDisciplineStatusDocx(input: DraftDocxInput): DraftDocxResul
   const add = (style: string | null, line: string): void => {
     docLines.push({ style, text: line })
   }
-  add('Title', `${input.project.code} Discipline Status Report Draft`)
-  add(null, `Project: ${input.project.name} (basis: project record)`)
+  add('Title', `${input.project.code} Weekly Status Update`)
+  add('Subtitle', input.project.name)
   add(null, input.period
-    ? `Declared period: ${input.period.start} to ${input.period.end} (basis: sidecar prompt; PER-COV)`
-    : 'Declared period: none. Period-scoped sections state absence honestly (basis: D-PEC-39).')
-  add(null, `Generated: ${input.generatedAt}`)
-  add(null, `Composition clarification: ${input.compositionClarification}`)
+    ? `Reporting period: ${input.period.start} to ${input.period.end}`
+    : 'Reporting period: not declared; period-scoped figures are shown as unavailable.')
+  add('BasisNote', 'Prepared from the live PEC records. Deliverable status and attested progress are reported by discipline; needs, issues, decisions, and interfaces are reported by package.')
 
   let inWorkDeliverables = 0
   let issuancesThisPeriod: number | null = input.period ? 0 : null
   for (const discipline of input.disciplines) {
     add('Heading1', discipline.discipline)
-    add('Subtitle', 'Activities')
-    for (const line of activityLines(discipline)) {
-      if (line.startsWith('- ')) inWorkDeliverables += 1
-      add(line.startsWith('- ') ? 'ListParagraph' : null, line)
-    }
     const pctBand = discipline.band?.percentComplete
-    if (pctBand) add(null, `Discipline % complete: ${pctBand.value}% (basis: ${pctBand.ruleId})`)
-    else add(null, 'Discipline % complete: None recorded (basis: DISC-PCT)')
+    add(null, pctBand
+      ? `Attested discipline progress: ${pctBand.value}%`
+      : 'Attested discipline progress: unavailable')
+    add('Subtitle', 'Activities')
+    const activities = activityLines(discipline)
+    inWorkDeliverables += activities.count
+    for (const line of activities.lines) add(line === 'No attested progress recorded.' ? null : 'ListParagraph', line)
 
     add('Subtitle', 'Issuances this period')
     const issued = issuanceLines(discipline, input.period)
     if (input.period) issuancesThisPeriod! += issued.filter((l) => l.startsWith('- ')).length
-    for (const line of issued) add(line.startsWith('- ') ? 'ListParagraph' : null, line)
+    for (const line of issued.slice(0, 8)) add(line.startsWith('- ') ? 'ListParagraph' : null, line.replace(/^- /, '').replace(/ \(basis: DISC-ISSUED.*\)$/, ''))
+    if (issued.length > 8) add('BasisNote', `${issued.length - 8} additional issuance records are available in PEC.`)
   }
 
   add('Heading1', 'By Package')
   add('Subtitle', 'Needs & Issues')
   const issuePackages = input.packageDetails.filter((p) => (p.summary?.openIssues ?? 0) > 0)
-  const issueLines = issuePackages.flatMap((p) => packageLines(p, 'issues'))
-  for (const line of issueLines.length > 0 ? issueLines : ['None recorded (basis: PKG-ISSUE-MIX)']) {
-    add(line.startsWith('- ') ? 'ListParagraph' : null, line)
+  const issueLines = consolidatedPackageLines(issuePackages, 'issues')
+  for (const line of issueLines.length > 0 ? issueLines : ['None recorded.']) {
+    add(line === 'None recorded.' ? null : 'ListParagraph', line)
   }
   add('Subtitle', 'Decisions')
   const decisionPackages = input.packageDetails.filter((p) => (p.summary?.openDecisions ?? 0) > 0)
-  const decisionLines = decisionPackages.flatMap((p) => packageLines(p, 'decisions'))
-  for (const line of decisionLines.length > 0 ? decisionLines : ['None recorded (basis: PKG-DEC)']) {
-    add(line.startsWith('- ') ? 'ListParagraph' : null, line)
+  const decisionLines = consolidatedPackageLines(decisionPackages, 'decisions')
+  for (const line of decisionLines.length > 0 ? decisionLines : ['None recorded.']) {
+    add(line === 'None recorded.' ? null : 'ListParagraph', line)
   }
   add('Subtitle', 'Interfaces')
   const interfacePackages = input.packageDetails.filter((p) => (p.summary?.openInterfaces ?? 0) > 0)
-  const interfaceLines = interfacePackages.flatMap((p) => packageLines(p, 'interfaces'))
-  for (const line of interfaceLines.length > 0 ? interfaceLines : ['None recorded (basis: PKG-INT)']) {
-    add(line.startsWith('- ') ? 'ListParagraph' : null, line)
+  const interfaceLines = consolidatedPackageLines(interfacePackages, 'interfaces')
+  for (const line of interfaceLines.length > 0 ? interfaceLines : ['None recorded.']) {
+    add(line === 'None recorded.' ? null : 'ListParagraph', line)
   }
 
   const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
   <w:body>
     ${docLines.map((l) => para(l.style, l.text)).join('\n    ')}
-    <w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>
+    <w:sectPr><w:headerReference w:type="default" r:id="rId3"/><w:footerReference w:type="default" r:id="rId4"/><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1080" w:right="1080" w:bottom="1080" w:left="1080" w:header="540" w:footer="540"/></w:sectPr>
   </w:body>
-</w:document>`
+</w:document>`.replace('<w:document ', '<w:document xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" ')
   const bytes = buildZip([
     { name: '[Content_Types].xml', data: CONTENT_TYPES },
     { name: '_rels/.rels', data: ROOT_RELS },
     { name: 'word/_rels/document.xml.rels', data: DOC_RELS },
     { name: 'word/document.xml', data: documentXml },
     { name: 'word/styles.xml', data: STYLES },
+    { name: 'word/numbering.xml', data: NUMBERING },
+    { name: 'word/header1.xml', data: HEADER },
+    { name: 'word/footer1.xml', data: FOOTER },
   ])
   const safePeriod = input.period ? `${input.period.start}_to_${input.period.end}` : 'no-period'
   const filename = `${input.project.code}-discipline-status-${safePeriod}.docx`
