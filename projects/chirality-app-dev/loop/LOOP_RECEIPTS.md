@@ -52,3 +52,27 @@
     Step 0.
   - Parked lanes: owner rulings on the app-dev register's open rows (re-derive
     from `execution/_Coordination/_DECISIONS/_REGISTER.md` at Step 0).
+
+- **2026-07-10 — Receipt 1** (inspection-orphan remediation resumed).
+  - Start: clean detached `199c6d545` = `main` = `origin/main`; branch
+    `codex/app-dev-orn-remediation`; newest prior receipt Receipt 0.
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in with
+    subagents where warranted."
+  - Live gates: D-APP-01..52 all RULED; D-APP-51/52 already consumed; no open
+    app-dev register row. Active queue remains
+    `plans/PLAN_2026-06-21_inspection_orphan_remediation.md`.
+  - Executed: ORN-02 `71fff1277`; ORN-03 `ed54bbf94`; ORN-04 `658802bd5`;
+    ORN-05 `40afda52c`; ORN-07 `2eef3d09c`; ORN-08 `dc9c50ca6`; ORN-09
+    `24f40d5d8`; ORN-06 dropped as already closed.
+  - Gate outcome: ORN-01 BLOCKED — live CI is repo-root
+    `.github/workflows/harness-premerge.yml`, outside D-APP-39 app-dev-only
+    staging authority and under newer owner-directed manual-only posture
+    `48f622c93`; explicit root-workflow direction required.
+  - Deltas: `_LATEST.md` still says D-APP-45 AWAITING_RULING; live register says
+    D-APP-45..52 RULED. Standing workplan F-APP-1 wording predates D-APP-44;
+    live ruling/active queue govern.
+  - Checks: self-check pass; full practitioner-harness pytest pass; frontend
+    focused/full Vitest pass; typecheck pass; authority corpus status pass; git
+    diff check pass.
+  - Parked/next: PEC P4 requires owner-at-screen; ORN-10..13 remain VERIFIED /
+    READY; issuance/release/apply/live-binding hard fences unchanged.
