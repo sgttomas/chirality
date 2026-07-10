@@ -111,7 +111,7 @@ REPORTED = re-verify per §3.1 before executing.
 | ORN-05 | Working-root `/api/working-root/validate` parity + route tests | DEL-07-01 | code/test | M | MEDIUM | VERIFIED | DONE |
 | ORN-06 | Permission-invariant test: SDK options always include `canUseTool` + `hooks` where write/shell tools exposed | DEL-06-01 | test | S | MEDIUM | VERIFIED | DROPPED (already closed) |
 | ORN-07 | Register retire-vs-delete diff vs `previousRows` in `register-writer.ts` | DEL-07-05 | code/test | M | MEDIUM | VERIFIED | DONE |
-| ORN-08 | Runtime error-taxonomy ownership (PKG-03/04/05) + `api-key-settings` render test | DEL-02-05 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
+| ORN-08 | Runtime error-taxonomy ownership (PKG-03/04/05) + `api-key-settings` render test | DEL-02-05 | code/test | M | MEDIUM | VERIFIED | DONE |
 | ORN-09 | Client-disconnect durable cancellation persistence + accepted raw-input recovery + SSE fixture index | DEL-03-03/04 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
 | ORN-10 | Section 9 summary/manifest maturity (warnings/blockers/evidence manifest) + compaction-boundary fixtures | DEL-09-02 | validation/test | M | MEDIUM | REPORTED | READY (verify first) |
 | ORN-11 | Consolidated runtime redaction-path matrix | DEL-05-03 | security/test | M | MEDIUM | REPORTED | READY (verify first) |
@@ -136,6 +136,11 @@ REPORTED = re-verify per §3.1 before executing.
 - `ORN-07`: the v3.1 schema already defines `Status=RETIRED` and DEL-07-05 requires retained rows, but
   `previousRows` guarded only satisfaction transitions. Serialization now rejects every missing prior
   ID with `MISSING_RETIRED_ROW`; explicit retained `RETIRED` rows remain lawful.
+- `ORN-08`: current implementation owns the canonical error union and error class in
+  `@chirality/harness-contract`; runtime/adapter/session layers emit, map, and persist that product-owned
+  contract while DEL-02-05 consumes it. Reconciliation evidence records the seam without changing the
+  public union or excluded dependency rows. Seven API-key-settings render cases now satisfy the open
+  D-APP-36 evidence subpart.
 
 The agent re-derives readiness at selection time (recompute; do not trust this table if the filesystem
 disagrees). Items excluded from this tranche (issuance, dependency rows, R7, provider/release posture,

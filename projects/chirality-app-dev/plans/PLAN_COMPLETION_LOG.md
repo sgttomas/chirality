@@ -45,6 +45,13 @@ against `previousRows` and rejects silent disappearance with the precise `MISSIN
 listing every omitted dependency ID. Existing rows remain writable when explicitly retained as
 `Status=RETIRED`, matching the established v3.1 schema and DEL-07-05 contract.
 
+Completed `ORN-08` after live reconciliation: `HarnessErrorType` and `HarnessError` in
+`@chirality/harness-contract` are the canonical product-owned taxonomy; runtime, adapter, API, session,
+and UI roles are recorded in DEL-02-05 evidence without changing the public union or excluded dependency
+rows. `ApiKeySettings` now delegates rendering to a pure view, with seven component-render cases covering
+outside-Electron fallback, UI/env/none status, unavailable encryption, saving/disabled controls, visible
+error feedback, and absence of stored-key material from status output.
+
 Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
 passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
 paths exist; `git diff --check` passed. No release, distribution, issuance, provider expansion,

@@ -1,11 +1,25 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import type { ChangeEvent } from 'react';
 
-type ApiKeyStatus = {
+export type ApiKeyStatus = {
   hasKey: boolean;
   encryptionAvailable: boolean;
   source: 'ui' | 'env' | 'none';
+};
+
+export type ApiKeySettingsViewProps = {
+  keyInput: string;
+  revealed: boolean;
+  status: ApiKeyStatus | null;
+  error: string | null;
+  saving: boolean;
+  bridgeAvailable: boolean;
+  onKeyInputChange: (value: string) => void;
+  onRevealToggle: () => void;
+  onSave: () => void;
+  onRemove: () => void;
 };
 
 type ApiKeyStoreResult = {
@@ -114,6 +128,41 @@ export function ApiKeySettings(): JSX.Element {
     }
   }
 
+  return (
+    <ApiKeySettingsView
+      keyInput={keyInput}
+      revealed={revealed}
+      status={status}
+      error={error}
+      saving={saving}
+      bridgeAvailable={bridgeAvailable}
+      onKeyInputChange={(value) => {
+        setKeyInput(value);
+        if (error) {
+          setError(null);
+        }
+      }}
+      onRevealToggle={() => {
+        setRevealed(!revealed);
+      }}
+      onSave={() => void handleSave()}
+      onRemove={() => void handleRemove()}
+    />
+  );
+}
+
+export function ApiKeySettingsView({
+  keyInput,
+  revealed,
+  status,
+  error,
+  saving,
+  bridgeAvailable,
+  onKeyInputChange,
+  onRevealToggle,
+  onSave,
+  onRemove
+}: ApiKeySettingsViewProps): JSX.Element {
   const sourceLabel =
     status?.source === 'ui'
       ? 'Key configured (stored in secure storage)'
@@ -145,11 +194,8 @@ export function ApiKeySettings(): JSX.Element {
               type={revealed ? 'text' : 'password'}
               className="api-key-input"
               value={keyInput}
-              onChange={(e) => {
-                setKeyInput(e.target.value);
-                if (error) {
-                  setError(null);
-                }
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onKeyInputChange(event.target.value);
               }}
               placeholder="sk-ant-..."
               autoComplete="off"
@@ -162,15 +208,13 @@ export function ApiKeySettings(): JSX.Element {
             <button
               type="button"
               className="button-muted"
-              onClick={() => {
-                setRevealed(!revealed);
-              }}
+              onClick={onRevealToggle}
             >
               {revealed ? 'Hide' : 'Reveal'}
             </button>
             <button
               type="button"
-              onClick={() => void handleSave()}
+              onClick={onSave}
               disabled={saving || !keyInput.trim()}
             >
               {saving ? 'Saving...' : 'Save Key'}
@@ -181,7 +225,7 @@ export function ApiKeySettings(): JSX.Element {
             <button
               type="button"
               className="button-muted api-key-remove"
-              onClick={() => void handleRemove()}
+              onClick={onRemove}
             >
               Remove Stored Key
             </button>
