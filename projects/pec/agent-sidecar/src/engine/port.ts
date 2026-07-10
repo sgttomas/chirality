@@ -2,11 +2,9 @@
  * AgentEnginePort (D-PEC-17): the config-selected seam between the sidecar and
  * whatever produces agent turns. The deterministic stub is the v1 default; the
  * SDK engine is a key-droppable loader (engine/sdk.ts). The shape deliberately
- * mirrors app-dev harness-contract's agent-engine-port.ts (subject-discriminated
- * port, event stream) WITHOUT importing it — no cross-project dependency in v1;
- * convergence on a shared package is a future bridge-lane item. v1 is
- * request/response; the event array is the same schema a later SSE upgrade
- * would stream.
+ * mirrors app-dev harness-contract's lifecycle vocabulary while keeping PEC's
+ * bounded event payloads local. D-PEC-53 upgrades the transport to the same SSE
+ * shape used by app-dev: `event: <HarnessEventType>` plus JSON `data:`.
  */
 
 export type EngineSubject = 'stub' | 'sdk'
@@ -64,6 +62,20 @@ export type AgentEvent =
   | { type: 'act:refused'; act: string; reason: string }
   | { type: 'turn:error'; code: string; message: string }
 
+/**
+ * Harness-compatible live lifecycle event. This is the deliberately selected
+ * subset PEC can actually evidence; names match app-dev harness-contract
+ * exactly. The engine emits model/tool evidence and HTTP owns turn framing.
+ */
+export type AgentStreamEvent =
+  | { type: 'turn.accepted' | 'turn.started' | 'turn.completed' | 'turn.failed'; data: Record<string, unknown> }
+  | { type: 'adapter.initialized'; data: Record<string, unknown> }
+  | { type: 'model.request.started' | 'model.delta' | 'model.completed'; data: Record<string, unknown> }
+  | { type: 'message.completed'; data: Record<string, unknown> }
+  | { type: 'tool.started' | 'tool.completed' | 'tool.failed'; data: Record<string, unknown> }
+
+export type AgentStreamSink = (event: AgentStreamEvent) => void
+
 /** What one act call produced; the engine formats but never invents (F-PEC-2). */
 export type ActResult =
   | { kind: 'result'; act: string; ok: boolean; summary: string; payload?: unknown }
@@ -108,5 +120,7 @@ export interface BoundActs {
 export interface AgentEnginePort {
   readonly subject: EngineSubject
   readonly egress: EgressClass
-  runTurn(input: AgentTurnInput, acts: BoundActs): Promise<AgentEvent[]>
+  /** model selected in configuration, or the SDK-resolved model after init */
+  resolvedModel?(): string | null
+  runTurn(input: AgentTurnInput, acts: BoundActs, emit?: AgentStreamSink): Promise<AgentEvent[]>
 }

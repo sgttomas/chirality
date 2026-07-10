@@ -50,6 +50,13 @@ Every table surface provides direct drag-to-resize column controls and contains
 horizontal overflow locally. Width adjustments are presentation-only and must
 not interfere with sorting, row drills, sticky identifiers, or source truth.
 
+The agent panel uses the app-dev harness event vocabulary over a true SSE path.
+It exposes the SDK init-resolved model (never a guessed default), turn state,
+each bounded tool start/completion/refusal, live act-budget consumption,
+incremental model prose, and terminal response while the turn is running.
+Streaming changes observation only; the bounded act surface, access basis,
+session profile, and human accept/apply boundary remain unchanged.
+
 ## Loop protocol
 
 0. **Discover.** Resolve the repo root, inspect git/receipts/registers/profile,
@@ -96,6 +103,7 @@ not interfere with sorting, row drills, sticky identifiers, or source truth.
 | S3 | PE full workflow | XLSX attach -> mapped proposal -> Admin review/accept/apply -> live views -> report draft/download works without shell/CLI intervention |
 | S4 | PD/sponsor UX | Strict read-only navigation; real drills; sortable/filterable reporting tables including complete multi-discipline package values; no irrelevant mutation/admin/planning controls |
 | S5 | Sponsor rehearsal | Desktop and narrow passes, no console errors, consistent counts, known-good backup/report safety copies retained |
+| S6 | Agent transparency | A real SDK/open/broad turn visibly streams resolved model, lifecycle, tool/refusal evidence, act budget, and final prose through the app-dev-compatible event contract |
 
 ## Parked work
 

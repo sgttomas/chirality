@@ -12,7 +12,7 @@ import { createServer } from 'node:http'
 import type { IncomingMessage, Server, ServerResponse } from 'node:http'
 import type { SidecarConfig } from './config.ts'
 import type { PecAgentClient } from './pec-client.ts'
-import type { AgentEnginePort, AgentTurnInput } from './engine/port.ts'
+import type { AgentEnginePort, AgentEvent, AgentStreamEvent, AgentTurnInput } from './engine/port.ts'
 import { bindActs } from './acts.ts'
 
 /** holds a 5 MiB attachment even base64-encoded (×4/3) plus JSON overhead */
@@ -39,6 +39,32 @@ function sendJson(res: ServerResponse, status: number, data: unknown): void {
 
 const errJson = (res: ServerResponse, status: number, code: string, message: string): void =>
   sendJson(res, status, { error: { code, message } })
+
+/** app-dev harness wire shape: event type + JSON data, one SSE frame. */
+function sendSseEvent(res: ServerResponse, event: AgentStreamEvent): void {
+  if (!res.destroyed && !res.writableEnded) {
+    res.write(`event: ${event.type}\ndata: ${JSON.stringify(event.data)}\n\n`)
+  }
+}
+
+function legacyStreamEvents(event: AgentEvent): AgentStreamEvent[] {
+  switch (event.type) {
+    case 'agent:reply':
+      return [
+        { type: 'model.completed', data: {} },
+        { type: 'message.completed', data: { role: 'assistant', source: 'engine', text: event.text, streamed: false } },
+      ]
+    case 'act:result':
+      return [{
+        type: event.ok ? 'tool.completed' : 'tool.failed',
+        data: { toolName: event.act, act: event.act, ok: event.ok, summary: event.summary, payload: event.payload },
+      }]
+    case 'act:refused':
+      return [{ type: 'tool.failed', data: { toolName: event.act, act: event.act, refused: true, reason: event.reason } }]
+    case 'turn:error':
+      return [{ type: 'turn.failed', data: { code: event.code, message: event.message } }]
+  }
+}
 
 async function readJsonBody(req: IncomingMessage): Promise<unknown> {
   const chunks: Buffer[] = []
@@ -147,6 +173,9 @@ export function createSidecarHttpServer(deps: SidecarHttpDeps): Server {
           access: deps.cfg.access,
           // D-T0-22 disclosure: the active session profile is always stated
           session: deps.cfg.session,
+          // exact SDK-resolved model appears after its init event; a configured
+          // override is available before the first turn.
+          model: deps.engine.resolvedModel?.() ?? null,
           configured: deps.configured,
           agent: me ? { name: me.name, email: me.email } : null,
         })
@@ -161,6 +190,60 @@ export function createSidecarHttpServer(deps: SidecarHttpDeps): Server {
         const body = await readJsonBody(req)
         const turn = validateTurn(body)
         const acts = bindActs({ pid: turn.pid, egress: deps.engine.egress, access: deps.cfg.access, client: deps.client })
+        const wantsStream = String(req.headers.accept ?? '').includes('text/event-stream')
+        if (wantsStream) {
+          res.writeHead(200, {
+            'content-type': 'text/event-stream; charset=utf-8',
+            'cache-control': 'no-cache, no-transform',
+            connection: 'keep-alive',
+            'x-accel-buffering': 'no',
+            'x-content-type-options': 'nosniff',
+          })
+          res.flushHeaders()
+          const startedAt = Date.now()
+          sendSseEvent(res, { type: 'turn.accepted', data: { engine: deps.engine.subject } })
+          sendSseEvent(res, { type: 'turn.started', data: { engine: deps.engine.subject, access: deps.cfg.access, session: deps.cfg.session } })
+          if (deps.engine.subject !== 'sdk') {
+            sendSseEvent(res, { type: 'adapter.initialized', data: { engine: deps.engine.subject, model: null } })
+          }
+          try {
+            const events = await deps.engine.runTurn(turn, acts, (event) => sendSseEvent(res, event))
+            // The deterministic engine still returns its bounded batch. Adapt
+            // it at the boundary so both engines share one harness stream.
+            if (deps.engine.subject !== 'sdk') {
+              // Stub arrays historically place prose before act evidence;
+              // harness order is tool evidence first, terminal message second.
+              for (const event of events.filter((item) => item.type !== 'agent:reply')) {
+                for (const live of legacyStreamEvents(event)) sendSseEvent(res, live)
+              }
+              const replies = events.filter((item) => item.type === 'agent:reply')
+              for (const event of replies) {
+                for (const live of legacyStreamEvents(event)) sendSseEvent(res, live)
+              }
+              if (replies.length === 0) {
+                const last = [...events].reverse().find((item) => item.type === 'act:result' || item.type === 'act:refused')
+                const text = last?.type === 'act:result' ? last.summary
+                  : last?.type === 'act:refused' ? last.reason
+                    : ''
+                if (text) {
+                  sendSseEvent(res, { type: 'model.completed', data: {} })
+                  sendSseEvent(res, { type: 'message.completed', data: { role: 'assistant', source: 'engine', text, streamed: false } })
+                }
+              }
+            } else {
+              for (const event of events) {
+                if (event.type === 'turn:error') for (const live of legacyStreamEvents(event)) sendSseEvent(res, live)
+              }
+            }
+            const failed = events.some((event) => event.type === 'turn:error')
+            if (!failed) sendSseEvent(res, { type: 'turn.completed', data: { durationMs: Date.now() - startedAt } })
+          } catch (e) {
+            const code = (e as { code?: string }).code ?? 'TURN_FAILED'
+            sendSseEvent(res, { type: 'turn.failed', data: { code, message: e instanceof Error ? e.message : String(e) } })
+          }
+          res.end()
+          return
+        }
         try {
           const events = await deps.engine.runTurn(turn, acts)
           sendJson(res, 200, { events })

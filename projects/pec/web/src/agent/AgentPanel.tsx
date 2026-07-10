@@ -15,16 +15,17 @@ import { Link } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import { useApp } from '../shared.tsx'
 import { agentMessage, agentStatus } from './api.ts'
-import type { AgentEvent, AgentStatus } from './api.ts'
+import type { AgentStatus, AgentStreamEvent } from './api.ts'
 import { useScreenContext } from './context.tsx'
 
 /** D-PEC-50: CSV/XLSX, ≤ 5 MiB (mirrors the sidecar proposal cap). */
 const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
 
 interface Turn {
+  id: string
   who: 'you' | 'agent'
   text?: string
-  events?: AgentEvent[]
+  events?: AgentStreamEvent[]
 }
 
 /** D-PEC-21: how many prior turns ride each message (sidecar cap is 40) */
@@ -46,10 +47,13 @@ function flattenTurn(t: Turn): { who: 'you' | 'agent'; text: string } {
     ? t.text ?? ''
     : (t.events ?? []).map((e) => {
         switch (e.type) {
-          case 'agent:reply': return e.text
-          case 'act:result': return `[${e.act}] ${e.summary}`
-          case 'act:refused': return `[refused ${e.act}] ${e.reason}`
-          case 'turn:error': return `[error ${e.code}] ${e.message}`
+          case 'message.completed': return String(e.data.text ?? '')
+          case 'tool.completed': return `[${String(e.data.act ?? e.data.toolName ?? 'tool')}] ${String(e.data.summary ?? 'completed')}`
+          case 'tool.failed': return e.data.refused
+            ? `[refused ${String(e.data.act ?? e.data.toolName ?? 'tool')}] ${String(e.data.reason ?? '')}`
+            : `[failed ${String(e.data.act ?? e.data.toolName ?? 'tool')}] ${String(e.data.summary ?? e.data.reason ?? '')}`
+          case 'turn.failed': return `[error ${String(e.data.code ?? 'TURN_FAILED')}] ${String(e.data.message ?? '')}`
+          default: return ''
         }
       }).join('\n')
   return { who: t.who, text: clipUtf8(text, MAX_HISTORY_ENTRY_BYTES) }
@@ -146,8 +150,14 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
   const send = async () => {
     if (busy || (!message.trim() && !attachment)) return
     const outgoing = message.trim() || (attachment ? `(file: ${attachment.name})` : '')
+    const userTurnId = crypto.randomUUID()
+    const agentTurnId = crypto.randomUUID()
     setBusy(true)
-    setThread((t) => [...t, { who: 'you', text: outgoing + (attachment && message.trim() ? ` — ${attachment.name}` : '') }])
+    setThread((t) => [
+      ...t,
+      { id: userTurnId, who: 'you', text: outgoing + (attachment && message.trim() ? ` — ${attachment.name}` : '') },
+      { id: agentTurnId, who: 'agent', events: [] },
+    ])
     try {
       // D-PEC-21: the visible thread rides along as conversation memory
       // (thread state predates this send's own entries — exactly the prior turns)
@@ -158,16 +168,33 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
         ...(history.length > 0 ? { history } : {}),
         ...(attachment ? { attachment } : {}),
       }
-      const r = await agentMessage(pid, body)
-      setThread((t) => [...t, { who: 'agent', events: r.events }])
+      await agentMessage(pid, body, (event) => {
+        setThread((turns) => turns.map((turn) => {
+          if (turn.id !== agentTurnId) return turn
+          const events = turn.events ?? []
+          const last = events.at(-1)
+          // Preserve every lifecycle transition while coalescing adjacent text
+          // deltas so long answers do not create thousands of React nodes.
+          if (event.type === 'model.delta' && last?.type === 'model.delta') {
+            return {
+              ...turn,
+              events: [...events.slice(0, -1), {
+                type: 'model.delta',
+                data: { text: String(last.data.text ?? '') + String(event.data.text ?? '') },
+              }],
+            }
+          }
+          return { ...turn, events: [...events, event] }
+        }))
+      })
       setMessage('')
       setAttachment(null)
       loadStrip()
     } catch (e: any) {
-      setThread((t) => [...t, {
-        who: 'agent',
-        events: [{ type: 'turn:error', code: e.code ?? 'SEND_FAILED', message: e.message ?? String(e) }],
-      }])
+      setThread((turns) => turns.map((turn) => turn.id === agentTurnId ? {
+        ...turn,
+        events: [...(turn.events ?? []), { type: 'turn.failed', data: { code: e.code ?? 'SEND_FAILED', message: e.message ?? String(e) } }],
+      } : turn))
       if (e.code === 'AGENT_UNAVAILABLE' || e.code === 'AGENT_NOT_CONFIGURED') loadStatus()
     } finally {
       setBusy(false)
@@ -178,6 +205,10 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
   const agentProposals = (proposals ?? []).filter((row) => agentPersonId != null && row.createdBy === agentPersonId)
   // D-T0-21 O-B disclosure: the sidecar health field rides the proxy verbatim
   const access = status?.access ?? null
+  const latestResolvedModel = [...thread].reverse()
+    .flatMap((turn) => [...(turn.events ?? [])].reverse())
+    .find((event) => event.type === 'adapter.initialized')?.data.model
+  const resolvedModel = typeof latestResolvedModel === 'string' ? latestResolvedModel : status?.model
 
   return (
     <aside className="agent-panel" onDragOver={(e) => e.preventDefault()}
@@ -187,6 +218,8 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
           {/* WF-8: the agent renders under the agent person's name, exactly as history records it */}
           <b>{status?.agent ? status.agent.name : 'pec agent'}</b>{' '}
           <span className="badge plain">{status?.engine ?? '—'}</span>{' '}
+          {resolvedModel && <><span className="badge plain">{resolvedModel}</span>{' '}</>}
+          {status?.engine === 'sdk' && !resolvedModel && <><span className="badge plain">model resolves on turn</span>{' '}</>}
           {/* D-T0-21 O-B: the active access basis is always shown; broad is loud */}
           {access && <span className={`badge ${access === 'broad' ? 'amber' : 'plain'}`}>{access} access</span>}{' '}
           {status && !status.configured && <span className="badge amber">not configured</span>}
@@ -228,12 +261,12 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
             Accept and apply stay in Admin, done by you.
           </p>
         )}
-        {thread.map((t, i) => t.who === 'you'
-          ? <div key={i} className="agent-msg you">{t.text}</div>
+        {thread.map((t) => t.who === 'you'
+          ? <div key={t.id} className="agent-msg you">{t.text}</div>
           : (
-            <div key={i} className="agent-msg agent">
+            <div key={t.id} className="agent-msg agent">
               <div className="agent-msg-name small muted">{agentName}</div>
-              {(t.events ?? []).map((e, j) => <EventView key={j} e={e} pid={pid} />)}
+              <AgentTurnView events={t.events ?? []} pid={pid} />
             </div>
           ))}
         <div ref={endRef} />
@@ -274,7 +307,93 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
   )
 }
 
-function EventView({ e, pid }: { e: AgentEvent; pid: number }): JSX.Element {
+interface ToolSnapshot {
+  key: string
+  name: string
+  started?: AgentStreamEvent
+  terminal?: AgentStreamEvent
+}
+
+function AgentTurnView({ events, pid }: { events: AgentStreamEvent[]; pid: number }): JSX.Element {
+  if (events.length === 0) return <div className="agent-activity small"><span className="agent-pulse" /> connecting…</div>
+
+  const lifecycle = events.filter((event) => event.type.startsWith('turn.')).at(-1)
+  const init = events.filter((event) => event.type === 'adapter.initialized').at(-1)
+  const budgetEvent = events.filter((event) => event.type.startsWith('tool.') && event.data.actBudget != null).at(-1)
+  const budget = budgetEvent?.data.actBudget as { used?: number; max?: number; remaining?: number } | undefined
+  const tools: ToolSnapshot[] = []
+  for (const event of events) {
+    if (event.type !== 'tool.started' && event.type !== 'tool.completed' && event.type !== 'tool.failed') continue
+    const key = String(event.data.toolUseId ?? `${event.data.toolName ?? event.data.act ?? 'tool'}-${tools.length}`)
+    let tool = tools.find((row) => row.key === key)
+    if (!tool) {
+      tool = { key, name: String(event.data.toolName ?? event.data.act ?? 'tool') }
+      tools.push(tool)
+    }
+    if (event.type === 'tool.started') tool.started = event
+    else tool.terminal = event
+  }
+  const completed = events.filter((event) => event.type === 'message.completed').at(-1)
+  const response = completed
+    ? String(completed.data.text ?? '')
+    : events.filter((event) => event.type === 'model.delta').map((event) => String(event.data.text ?? '')).join('')
+  const failed = lifecycle?.type === 'turn.failed'
+  const stateLabel = lifecycle?.type === 'turn.completed' ? 'completed'
+    : failed ? 'failed'
+      : lifecycle?.type === 'turn.started' ? 'running'
+        : 'accepted'
+
+  return (
+    <>
+      <div className="agent-activity">
+        <div className="agent-activity-head small">
+          <span className={stateLabel === 'running' || stateLabel === 'accepted' ? 'agent-pulse' : ''} />
+          <b>Turn {stateLabel}</b>
+          {typeof init?.data.model === 'string' && <span className="badge plain">{init.data.model}</span>}
+          {budget && <span className="badge plain">acts {budget.used ?? 0}/{budget.max ?? '—'} · {budget.remaining ?? '—'} left</span>}
+        </div>
+        {tools.map((tool) => {
+          const terminal = tool.terminal
+          const refused = terminal?.data.refused === true
+          const label = terminal ? (refused ? 'refused' : terminal.type === 'tool.completed' ? 'completed' : 'failed') : 'running'
+          return (
+            <div key={tool.key} className={`agent-tool-row ${refused || label === 'failed' ? 'failed' : ''}`}>
+              <span className={!terminal ? 'agent-pulse' : ''} />
+              <span className="mono small">{tool.name}</span>
+              <span className={`badge ${terminal?.type === 'tool.completed' ? 'green' : terminal ? 'red' : 'plain'}`}>{label}</span>
+              {terminal && !refused && terminal.data.summary != null && <span className="small muted">{String(terminal.data.summary)}</span>}
+            </div>
+          )
+        })}
+      </div>
+      {tools.map((tool) => {
+        const event = tool.terminal
+        if (!event) return null
+        if (event.data.refused === true) {
+          return <div key={`${tool.key}-detail`} className="agent-card agent-card-refused"><b className="small">refused ({String(event.data.act ?? tool.name)}):</b> <span className="small">{String(event.data.reason ?? '')}</span></div>
+        }
+        if (event.data.summary == null) return null
+        return <EventView key={`${tool.key}-detail`} pid={pid} e={{
+          type: 'act:result',
+          act: String(event.data.act ?? tool.name),
+          ok: event.type === 'tool.completed' && event.data.ok !== false,
+          summary: String(event.data.summary),
+          payload: event.data.payload,
+        }} />
+      })}
+      {failed && <div className="error-box">{String(lifecycle?.data.code ?? 'TURN_FAILED')}: {String(lifecycle?.data.message ?? 'The turn failed.')}</div>}
+      {response && <div className="agent-bubble agent-response-live">{response}{!completed && <span className="agent-caret" />}</div>}
+    </>
+  )
+}
+
+type DisplayEvent =
+  | { type: 'agent:reply'; text: string }
+  | { type: 'act:result'; act: string; ok: boolean; summary: string; payload?: unknown }
+  | { type: 'act:refused'; act: string; reason: string }
+  | { type: 'turn:error'; code: string; message: string }
+
+function EventView({ e, pid }: { e: DisplayEvent; pid: number }): JSX.Element {
   switch (e.type) {
     case 'agent:reply':
       return <div className="agent-bubble">{e.text}</div>

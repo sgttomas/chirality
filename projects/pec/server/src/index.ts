@@ -37,6 +37,8 @@ const server = createServer(async (req, res) => {
         params: match.params, query: url.searchParams, body,
         cookies: parseCookies(req.headers.cookie),
       })
+      // Streaming handlers own the response lifecycle.
+      if (res.writableEnded) return
       if (!res.headersSent) {
         if (typeof result === 'string' && res.getHeader('content-type')) {
           res.end(result)

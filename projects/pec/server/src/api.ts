@@ -26,7 +26,7 @@ import * as plan from './services/plan.ts'
 import { exportRegister, importContract } from './import/index.ts'
 import * as proposals from './services/proposals.ts'
 import * as periods from './services/periods.ts'
-import { agentMessage, agentStatus, agentTargetFromEnv } from './agent-proxy.ts'
+import { agentMessageStream, agentStatus, agentTargetFromEnv } from './agent-proxy.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
 import { packagePack } from './reports/package-pack.ts'
 import { standardReport } from './reports/standard.ts'
@@ -433,7 +433,7 @@ export function buildRouter(db: Db): Router {
     sameOrigin(c) // reuse the RV-21 guard on the mutation route
     const b = body(c)
     // fresh outbound request in agent-proxy.ts: the human's cookie never reaches the sidecar
-    return agentMessage(agentTargetFromEnv(), { ...b, pid: c.sx.projectId })
+    return agentMessageStream(agentTargetFromEnv(), { ...b, pid: c.sx.projectId }, c.res)
   }))
 
   // ---------- config ----------
