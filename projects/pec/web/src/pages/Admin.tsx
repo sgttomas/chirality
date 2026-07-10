@@ -8,7 +8,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PecApiError, api, p } from '../api.ts'
-import { Drawer, ErrorBox, RecordRef, useApp, useLoad, usePerson } from '../shared.tsx'
+import { Drawer, ErrorBox, RecordRef, ResizableTable, useApp, useLoad, usePerson } from '../shared.tsx'
 
 export function AdminPage(): JSX.Element {
   const { pid } = useApp()
@@ -144,12 +144,12 @@ function ProposalsSection(): JSX.Element {
       </form>
       {listError && <ErrorBox error={{ message: listError }} />}
       {rows && rows.length > 0 && (
-        <table className="reg" style={{ marginTop: '.6rem', maxWidth: 860 }}>
+        <ResizableTable resizeKey="admin-import-proposals" style={{ marginTop: '.6rem', maxWidth: 860 }}>
           <thead><tr><th>Ref</th><th>Contract</th><th>File</th><th>State</th><th>Dry-run</th><th /></tr></thead>
           <tbody>
             {rows.map((r) => <ProposalRow key={r.id} row={r} busy={busy} act={act} />)}
           </tbody>
-        </table>
+        </ResizableTable>
       )}
     </div>
   )
@@ -354,7 +354,7 @@ function ImportReportView({ report }: { report: ImportReport }): JSX.Element {
       {report.conflicts.length > 0 && (
         <>
           <h3>Conflicts ({report.conflicts.length}) — edited in-app since last import</h3>
-          <table className="reg">
+          <ResizableTable resizeKey="admin-import-conflicts">
             <thead><tr><th>Row</th><th>Key</th><th>Reason</th></tr></thead>
             <tbody>
               {report.conflicts.map((c) => (
@@ -365,13 +365,13 @@ function ImportReportView({ report }: { report: ImportReport }): JSX.Element {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </ResizableTable>
         </>
       )}
       {report.rejected.length > 0 && (
         <>
           <h3>Rejected ({report.rejected.length}) — never silently dropped</h3>
-          <table className="reg">
+          <ResizableTable resizeKey="admin-import-rejections">
             <thead><tr><th>Row</th><th>Errors</th></tr></thead>
             <tbody>
               {report.rejected.map((r) => (
@@ -381,7 +381,7 @@ function ImportReportView({ report }: { report: ImportReport }): JSX.Element {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </ResizableTable>
         </>
       )}
     </div>
@@ -563,7 +563,7 @@ function PeopleSection(): JSX.Element {
       <h2>People directory</h2>
       {error && <ErrorBox error={{ message: error }} />}
       {!data && !error && <p className="muted">loading…</p>}
-      <table className="reg" style={{ maxWidth: 640 }}>
+      <ResizableTable resizeKey="admin-people" style={{ maxWidth: 640 }}>
         <thead><tr><th>Name</th><th>Email</th><th>Discipline</th><th>Project roles</th></tr></thead>
         <tbody>
           {people.map((pp: any) => (
@@ -578,9 +578,9 @@ function PeopleSection(): JSX.Element {
           ))}
           {people.length === 0 && <tr><td colSpan={4} className="muted small">no people</td></tr>}
         </tbody>
-      </table>
+      </ResizableTable>
       <h3>Role capability matrix</h3>
-      <table className="reg" style={{ maxWidth: 760 }}>
+      <ResizableTable resizeKey="admin-role-capabilities" style={{ maxWidth: 760 }}>
         <tbody>
           {roleCapabilities.map((row: any) => (
             <tr key={row.role}>
@@ -589,7 +589,7 @@ function PeopleSection(): JSX.Element {
             </tr>
           ))}
         </tbody>
-      </table>
+      </ResizableTable>
       <p className="section-note">
         Read-only project people and role visibility. Role assignment is not authorized in
         D-PEC-26 O-A; every permission check remains server-enforced per route.
@@ -615,7 +615,7 @@ function ActivitySection(): JSX.Element {
         <div className="section-note">{data.evidence.note}</div>
       </div>
       <h3>Recent activity</h3>
-      <table className="reg">
+      <ResizableTable resizeKey="admin-recent-activity">
         <thead><tr><th>At</th><th>Source</th><th>Actor</th><th>Action</th><th>Record</th></tr></thead>
         <tbody>
           {data.events.map((e: any) => (
@@ -629,7 +629,7 @@ function ActivitySection(): JSX.Element {
           ))}
           {data.events.length === 0 && <tr><td colSpan={5} className="muted small">no activity yet</td></tr>}
         </tbody>
-      </table>
+      </ResizableTable>
     </div>
   )
 }

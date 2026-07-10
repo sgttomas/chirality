@@ -10,7 +10,7 @@ import { useMemo, useRef, useState } from 'react'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  Drawer, ErrorBox, KpiCard, RecordRef, RegisterTable, StateTag, fmtDate, useApp, useHighlightRef,
+  Drawer, ErrorBox, KpiCard, RecordRef, RegisterTable, ResizableTable, StateTag, fmtDate, useApp, useHighlightRef,
   useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
@@ -334,7 +334,7 @@ function TriageTab(): JSX.Element {
       {/* Dispositioned trail with back-links to created records (PEC-AHL-005) */}
       <details style={{ marginTop: '1rem' }}>
         <summary className="small muted">Dispositioned ({done?.length ?? 0})</summary>
-        <table className="reg" style={{ marginTop: '.4rem' }}>
+        <ResizableTable resizeKey="log-dispositioned" style={{ marginTop: '.4rem' }}>
           <tbody>
             {(done ?? []).map((d) => (
               <tr key={d.id}>
@@ -354,7 +354,7 @@ function TriageTab(): JSX.Element {
             ))}
             {(done ?? []).length === 0 && <tr><td colSpan={5} className="muted small">no dispositioned items</td></tr>}
           </tbody>
-        </table>
+        </ResizableTable>
       </details>
 
       {triaging && (

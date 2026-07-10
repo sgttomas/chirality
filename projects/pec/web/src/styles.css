@@ -148,12 +148,26 @@ h3 { font-size: .9rem; margin: .75rem 0 .35rem; }
 .kpi b { display: block; font-size: 1.45rem; }
 .kpi span { color: var(--muted); font-size: .78rem; }
 
+.table-scroll { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
 table.reg { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 table.reg th {
   text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em;
   color: var(--muted); padding: .45rem .6rem; border-bottom: 2px solid var(--line); background: var(--palette-neutral-25);
   position: sticky; top: 0;
 }
+table.reg th::after {
+  content: ''; position: absolute; top: 0; right: -4px; width: 8px; height: 100%; z-index: 5;
+  cursor: col-resize; border-right: 1px solid var(--line);
+}
+table.reg th:hover::after { border-right-color: var(--accent); }
+table.reg th:last-child::after { right: 0; }
+table.reg .sticky-first { min-width: 9rem; }
+.table-scroll table.reg:not(:has(thead)) tbody:first-child tr:first-child > td { position: relative; }
+.table-scroll table.reg:not(:has(thead)) tbody:first-child tr:first-child > td::after {
+  content: ''; position: absolute; top: 0; right: -4px; width: 8px; height: 100%; z-index: 5;
+  cursor: col-resize; border-right: 1px solid var(--line);
+}
+.table-scroll table.reg:not(:has(thead)) tbody:first-child tr:first-child > td:hover::after { border-right-color: var(--accent); }
 .table-sort {
   display: inline-flex; align-items: center; gap: .2rem; padding: 0; border: 0; background: transparent;
   color: inherit; font: inherit; font-weight: 700; text-transform: inherit; letter-spacing: inherit; cursor: pointer;
