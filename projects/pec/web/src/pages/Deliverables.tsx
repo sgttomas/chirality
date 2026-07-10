@@ -12,7 +12,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api, p } from '../api.ts'
 import { usePublishScreenContext } from '../agent/context.tsx'
 import {
-  Breadcrumb, ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RecordRef, RegisterTable, StateTag,
+  Breadcrumb, ConditionsPanel, Drawer, ErrorBox, HistoryTrail, RecordRef, RegisterTable, ResizableTable, StateTag,
   WorkflowStages, fmtDate, useApp, useLoad, usePerson,
 } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
@@ -319,7 +319,7 @@ export function DeliverableDetailPage(): JSX.Element {
 
       {/* 6 — revision chain, oldest → newest (PEC-DEL-006); issue events (PEC-DEL-008, PEC-ARC-002) */}
       <h2>Revision chain</h2>
-      <table className="reg">
+      <ResizableTable resizeKey="deliverable-revision-chain">
         <thead><tr><th>Rev</th><th>State</th><th>Created</th><th>Superseded by</th><th>Issue events</th></tr></thead>
         <tbody>
           {data.revisionChain.map((r: any) => (
@@ -341,7 +341,7 @@ export function DeliverableDetailPage(): JSX.Element {
           ))}
           {data.revisionChain.length === 0 && <tr><td colSpan={5} className="muted small">no revisions</td></tr>}
         </tbody>
-      </table>
+      </ResizableTable>
 
       {/* 9 — evidence trail + history: one stream of record (PEC-DEL-005) */}
       <h2>Evidence</h2>

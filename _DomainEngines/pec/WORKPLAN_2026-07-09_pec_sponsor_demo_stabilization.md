@@ -46,6 +46,10 @@ the complete set with direct discipline filter/sort/search controls. The
 owner accepts the existing package action-item superset; that record model is
 not narrowed for the demo.
 
+Every table surface provides direct drag-to-resize column controls and contains
+horizontal overflow locally. Width adjustments are presentation-only and must
+not interfere with sorting, row drills, sticky identifiers, or source truth.
+
 ## Loop protocol
 
 0. **Discover.** Resolve the repo root, inspect git/receipts/registers/profile,

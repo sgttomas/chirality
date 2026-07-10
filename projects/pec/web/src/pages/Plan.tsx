@@ -10,7 +10,7 @@
 import { useState } from 'react'
 import { api, p } from '../api.ts'
 import type { PecApiError } from '../api.ts'
-import { Drawer, ErrorBox, RecordRef, RegisterTable, fmtDate, useApp, useLoad, usePerson } from '../shared.tsx'
+import { Drawer, ErrorBox, RecordRef, RegisterTable, ResizableTable, fmtDate, useApp, useLoad, usePerson } from '../shared.tsx'
 import type { Col } from '../shared.tsx'
 
 const HORIZONS = ['now', 'next', 'later'] as const
@@ -155,8 +155,7 @@ export function PlanPage(): JSX.Element {
       </div>
 
       <h2>Capacity by discipline (PEC-PLAN-003) <span className="muted small">check &amp; approval hours load capacity (I-9)</span></h2>
-      <div style={{ overflowX: 'auto' }}>
-        <table className="reg">
+      <ResizableTable resizeKey="plan-capacity">
           <thead>
             <tr>
               <th>Week</th><th>Discipline</th><th>Load (h)</th><th>Work / check / approve</th>
@@ -186,8 +185,7 @@ export function PlanPage(): JSX.Element {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+      </ResizableTable>
 
       <h2>Six-week lookahead (PEC-PLAN-002)</h2>
       <p className="section-note">
@@ -196,8 +194,7 @@ export function PlanPage(): JSX.Element {
           ? `${data.scheduleActivityCount} schedule activities imported.`
           : 'No schedule activities imported yet (Admin → Import → schedule).'}
       </p>
-      <div style={{ overflowX: 'auto' }}>
-        <table className="reg">
+      <ResizableTable resizeKey="plan-lookahead">
           <thead>
             <tr><th>Deliverable</th>{data.weeks.map((w: string) => <th key={w} className="nowrap">{w}</th>)}</tr>
           </thead>
@@ -224,8 +221,7 @@ export function PlanPage(): JSX.Element {
               <tr><td colSpan={1 + data.weeks.length} className="muted">nothing planned or scheduled in the next six weeks</td></tr>
             )}
           </tbody>
-        </table>
-      </div>
+      </ResizableTable>
 
       <h2>Plan-change log (PEC-PLAN-005/006)</h2>
       <RegisterTable cols={shiftCols} rows={data.shifts} exportName="plan-shifts.csv" />
@@ -269,7 +265,7 @@ function CapacityRiskDrawer({ cell, onClose, onConfirm }: {
         This action may create a risk from the factual capacity basis below. Probability and
         impact are not assigned unless entered by a human in a later workflow.
       </p>
-      <table className="reg">
+      <ResizableTable resizeKey="plan-capacity-risk-detail">
         <tbody>
           <tr><th>Week</th><td>{cell.week}</td></tr>
           <tr><th>Discipline</th><td>{cell.discipline}</td></tr>
@@ -279,7 +275,7 @@ function CapacityRiskDrawer({ cell, onClose, onConfirm }: {
           <tr><th>Generated title</th><td>{capacityRiskTitle(cell)}</td></tr>
           <tr><th>Generated cause</th><td>{capacityRiskCause(cell)}</td></tr>
         </tbody>
-      </table>
+      </ResizableTable>
       <div className="row" style={{ marginTop: '.8rem' }}>
         <button className="btn" onClick={onConfirm}>Create risk if no duplicate exists</button>
         <button className="btn secondary" onClick={onClose}>Cancel</button>

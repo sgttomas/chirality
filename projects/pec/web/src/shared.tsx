@@ -5,7 +5,7 @@
  */
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import type { ReactNode } from 'react'
+import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { api } from './api.ts'
 import type { Explain, Health, Me, ProjectRef } from './api.ts'
@@ -155,7 +155,7 @@ export function ExplainProvider({ children }: { children: ReactNode }): JSX.Elem
           {state.explain.threshold && <p className="small muted">Threshold: {state.explain.threshold}</p>}
           <h2>Contributing records</h2>
           {state.explain.contributing.length === 0 && <p className="muted small">none — nothing degrading this value</p>}
-          <table className="reg">
+          <ResizableTable resizeKey="explain-contributing-records">
             <tbody>
               {state.explain.contributing.map((c, i) => {
                 return (
@@ -167,7 +167,7 @@ export function ExplainProvider({ children }: { children: ReactNode }): JSX.Elem
                 )
               })}
             </tbody>
-          </table>
+          </ResizableTable>
           <p className="small muted" style={{ marginTop: '.8rem' }}>
             Derived per PRD §8 — status is computed from records, never set by hand (I-4).
             Click a contributing record to open its source.
@@ -340,7 +340,7 @@ export function ConditionsPanel({ ex, title }: { ex: TransitionExplanation; titl
 export function HistoryTrail({ entries }: { entries: Array<{ id: number; at: string; actorId: number; kind: string; summary: string }> }): JSX.Element {
   const person = usePerson()
   return (
-    <table className="reg">
+    <ResizableTable resizeKey="history-trail">
       <tbody>
         {entries.map((h) => (
           <tr key={h.id}>
@@ -350,11 +350,137 @@ export function HistoryTrail({ entries }: { entries: Array<{ id: number; at: str
           </tr>
         ))}
       </tbody>
-    </table>
+    </ResizableTable>
   )
 }
 
 // ---------- register table with export-what-is-displayed ----------
+
+const MIN_COLUMN_WIDTH = 72
+
+/**
+ * D-PEC-52: one resizing/containment primitive for every PEC table. Widths are
+ * presentation-only, saved for this browser session, and never reach the API.
+ */
+export function ResizableTable({
+  children, resizeKey, className = 'reg', style,
+}: {
+  children: ReactNode
+  resizeKey: string
+  className?: string
+  style?: CSSProperties
+}): JSX.Element {
+  const tableRef = useRef<HTMLTableElement | null>(null)
+  const suppressClick = useRef(false)
+  const storageKey = `pec:table-widths:${resizeKey}`
+
+  const headerCells = (): HTMLTableCellElement[] => {
+    const table = tableRef.current
+    const row = table?.tHead?.rows[0] ?? table?.tBodies[0]?.rows[0]
+    return row ? Array.from(row.cells) as HTMLTableCellElement[] : []
+  }
+  const applyWidths = (widths: number[]): void => {
+    const table = tableRef.current
+    const cells = headerCells()
+    if (!table || cells.length === 0 || widths.length !== cells.length) return
+    cells.forEach((cell, index) => {
+      const width = Math.max(MIN_COLUMN_WIDTH, Math.round(widths[index]))
+      cell.style.width = `${width}px`
+      cell.style.minWidth = `${width}px`
+      cell.style.maxWidth = `${width}px`
+    })
+    table.style.tableLayout = 'fixed'
+    table.style.width = `${widths.reduce((sum, width) => sum + Math.max(MIN_COLUMN_WIDTH, width), 0)}px`
+  }
+  const resetWidths = (): void => {
+    const table = tableRef.current
+    for (const cell of headerCells()) {
+      cell.style.removeProperty('width')
+      cell.style.removeProperty('min-width')
+      cell.style.removeProperty('max-width')
+    }
+    table?.style.removeProperty('table-layout')
+    table?.style.removeProperty('width')
+    try { window.sessionStorage.removeItem(storageKey) } catch { /* storage may be unavailable */ }
+  }
+
+  useEffect(() => {
+    try {
+      const saved = window.sessionStorage.getItem(storageKey)
+      if (saved) applyWidths(JSON.parse(saved) as number[])
+    } catch { /* malformed/unavailable session storage falls back to automatic sizing */ }
+  }, [storageKey])
+
+  const edgeCell = (event: ReactPointerEvent<HTMLDivElement>): HTMLTableCellElement | null => {
+    const target = event.target as HTMLElement
+    const cell = target.closest('th, td') as HTMLTableCellElement | null
+    if (!cell || !tableRef.current?.contains(cell)) return null
+    const rect = cell.getBoundingClientRect()
+    return Math.abs(event.clientX - rect.right) <= 8 ? cell : null
+  }
+  const beginResize = (event: ReactPointerEvent<HTMLDivElement>): void => {
+    if (event.button !== 0) return
+    const cell = edgeCell(event)
+    if (!cell) return
+    const cells = headerCells()
+    const index = cells.indexOf(cell)
+    if (index < 0 || !tableRef.current) return
+    event.preventDefault()
+    event.stopPropagation()
+    const initialWidths = cells.map((candidate) => candidate.getBoundingClientRect().width)
+    applyWidths(initialWidths)
+    const startX = event.clientX
+    const startWidth = initialWidths[index]
+    const startTableWidth = initialWidths.reduce((sum, width) => sum + width, 0)
+    let moved = false
+    const previousCursor = document.body.style.cursor
+    const previousSelection = document.body.style.userSelect
+    document.body.style.cursor = 'col-resize'
+    document.body.style.userSelect = 'none'
+    const move = (pointer: PointerEvent): void => {
+      const delta = pointer.clientX - startX
+      if (Math.abs(delta) > 2) moved = true
+      const width = Math.max(MIN_COLUMN_WIDTH, startWidth + delta)
+      cell.style.width = `${width}px`
+      cell.style.minWidth = `${width}px`
+      cell.style.maxWidth = `${width}px`
+      tableRef.current!.style.width = `${startTableWidth + width - startWidth}px`
+    }
+    const finish = (): void => {
+      window.removeEventListener('pointermove', move)
+      window.removeEventListener('pointerup', finish)
+      window.removeEventListener('pointercancel', finish)
+      document.body.style.cursor = previousCursor
+      document.body.style.userSelect = previousSelection
+      suppressClick.current = moved
+      window.setTimeout(() => { suppressClick.current = false }, 0)
+      const widths = headerCells().map((candidate) => candidate.getBoundingClientRect().width)
+      try { window.sessionStorage.setItem(storageKey, JSON.stringify(widths)) } catch { /* presentation still works */ }
+    }
+    window.addEventListener('pointermove', move)
+    window.addEventListener('pointerup', finish, { once: true })
+    window.addEventListener('pointercancel', finish, { once: true })
+  }
+  const resetAtEdge = (event: ReactPointerEvent<HTMLDivElement>): void => {
+    if (!edgeCell(event)) return
+    event.preventDefault()
+    event.stopPropagation()
+    resetWidths()
+  }
+
+  return (
+    <div className="table-scroll" onPointerDownCapture={beginResize}
+      onDoubleClickCapture={resetAtEdge}
+      onClickCapture={(event) => {
+        if (!suppressClick.current) return
+        suppressClick.current = false
+        event.preventDefault()
+        event.stopPropagation()
+      }}>
+      <table ref={tableRef} className={className} style={style}>{children}</table>
+    </div>
+  )
+}
 
 export interface Col<T> {
   key: string
@@ -431,14 +557,16 @@ export function RegisterTable<T>({
           <button className="btn secondary small" onClick={exportCsv}>Export CSV ({sortedRows.length} rows)</button>
         </div>
       )}
-      <div style={wide ? { overflowX: 'auto', maxWidth: '100%' } : undefined}>
-      <table className="reg" style={wide ? { minWidth: '980px' } : undefined}>
+      <ResizableTable resizeKey={`register:${exportName ?? cols.map((col) => col.key).join('|')}`}
+        style={wide ? { minWidth: '980px' } : undefined}>
         <thead><tr>{cols.map((c, idx) => {
           const active = sortKey === c.key
           const sortable = c.sortable !== false
           return (
-          <th key={c.key} aria-sort={active ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={stickyFirstColumn && idx === 0 ? {
-            left: 0, zIndex: 3, minWidth: '9rem',
+          <th key={c.key} aria-sort={active ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'}
+            className={stickyFirstColumn && idx === 0 ? 'sticky-first' : undefined}
+            style={stickyFirstColumn && idx === 0 ? {
+            left: 0, zIndex: 3,
           } : undefined}>{sortable ? (
             <button type="button" className={`table-sort${active ? ' active' : ''}`} onClick={() => {
               if (active) setSortDirection((direction) => direction === 'asc' ? 'desc' : 'asc')
@@ -466,8 +594,9 @@ export function RegisterTable<T>({
                   }
                 } : undefined}>
                 {cols.map((c, idx) => (
-                  <td key={c.key} style={stickyFirstColumn && idx === 0 ? {
-                    position: 'sticky', left: 0, zIndex: 1, background: 'var(--surface)', minWidth: '9rem',
+                  <td key={c.key} className={stickyFirstColumn && idx === 0 ? 'sticky-first' : undefined}
+                    style={stickyFirstColumn && idx === 0 ? {
+                    position: 'sticky', left: 0, zIndex: 1, background: 'var(--surface)',
                   } : undefined}>{c.render(r)}</td>
                 ))}
               </tr>
@@ -475,8 +604,7 @@ export function RegisterTable<T>({
           })}
           {rows.length === 0 && <tr><td colSpan={cols.length} className="muted small">no records</td></tr>}
         </tbody>
-      </table>
-      </div>
+      </ResizableTable>
     </div>
   )
 }
