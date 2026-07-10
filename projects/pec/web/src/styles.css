@@ -96,6 +96,7 @@ h3 { font-size: .9rem; margin: .75rem 0 .35rem; }
 .sidebar .brand { color: var(--palette-neutral-0); font-weight: 700; padding: .25rem 1rem .9rem; font-size: .95rem; letter-spacing: .02em; }
 .sidebar .brand small { display: block; font-weight: 400; color: var(--palette-blue-muted); font-size: .7rem; }
 .sidebar nav { display: flex; flex-direction: column; gap: .35rem; }
+.nav-toggle { display: none; }
 .nav-group { display: flex; flex-direction: column; gap: 1px; }
 .nav-group-controls { border-top: 1px solid var(--palette-blue-800); padding-top: .45rem; margin-top: .2rem; }
 .nav-label {
@@ -126,7 +127,9 @@ h3 { font-size: .9rem; margin: .75rem 0 .35rem; }
   .app { display: block; height: auto; min-height: 100%; }
   .sidebar { width: 100%; padding: .65rem 0 .4rem; }
   .sidebar .brand { padding-bottom: .45rem; }
-  .sidebar nav { flex-direction: row; flex-wrap: wrap; gap: .2rem .35rem; padding: 0 .65rem; }
+  .nav-toggle { display: inline-flex; position: absolute; right: .65rem; top: .65rem; padding: .3rem .6rem; border: 1px solid var(--palette-blue-muted); border-radius: var(--radius); background: transparent; color: var(--palette-neutral-0); }
+  .sidebar nav { display: none; flex-direction: row; flex-wrap: wrap; gap: .2rem .35rem; padding: 0 .65rem; }
+  .sidebar nav.open { display: flex; }
   .nav-group { flex: 1 1 180px; }
   .nav-group-controls { border-top: none; padding-top: 0; margin-top: 0; }
   .nav-label { padding: .15rem 0 .1rem; }
@@ -151,6 +154,12 @@ table.reg th {
   color: var(--muted); padding: .45rem .6rem; border-bottom: 2px solid var(--line); background: var(--palette-neutral-25);
   position: sticky; top: 0;
 }
+.table-sort {
+  display: inline-flex; align-items: center; gap: .2rem; padding: 0; border: 0; background: transparent;
+  color: inherit; font: inherit; font-weight: 700; text-transform: inherit; letter-spacing: inherit; cursor: pointer;
+}
+.table-sort span { color: var(--palette-neutral-500); font-size: .65rem; }
+.table-sort.active { color: var(--accent); }
 table.reg td { padding: .42rem .6rem; border-bottom: 1px solid var(--palette-neutral-100); vertical-align: top; }
 table.reg tr:hover td { background: var(--row-hover); }
 table.reg tr.clickable { cursor: pointer; }
@@ -260,7 +269,8 @@ form.stack textarea { min-height: 4.2rem; resize: vertical; }
 
 .section-note { color: var(--muted); font-size: .8rem; margin: .25rem 0 .6rem; }
 .filters { display: flex; gap: .5rem; margin-bottom: .6rem; flex-wrap: wrap; align-items: center; }
-.filters select, .filters input { font: inherit; padding: .28rem .45rem; border: 1px solid var(--line); border-radius: 4px; }
+.filters label { display: inline-flex; flex-direction: column; gap: .15rem; color: var(--muted); font-size: .72rem; }
+.filters select, .filters input { min-height: 2rem; font: inherit; color: var(--ink); padding: .28rem .45rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
 
 /* ---------- agent panel (D-PEC-17) ---------- */
 .agent-panel {
@@ -280,6 +290,8 @@ form.stack textarea { min-height: 4.2rem; resize: vertical; }
 .agent-bubble { background: var(--palette-neutral-50); border-radius: 10px 10px 10px 2px; padding: .4rem .6rem; white-space: pre-wrap; font-size: .84rem; }
 .agent-card { border: 1px solid var(--line); border-radius: var(--radius); padding: .45rem .6rem; display: flex; flex-direction: column; gap: .3rem; background: var(--palette-neutral-25); }
 .agent-card-warn { border-color: var(--palette-amber-100); background: var(--amber-bg); }
+.agent-report-preview { margin-top: .45rem; padding: .5rem .6rem; border-left: 3px solid var(--palette-blue-200); background: var(--surface-subtle); }
+.agent-report-preview > div + div { margin-top: .3rem; }
 .agent-card-refused { border-color: var(--palette-red-100); background: var(--red-bg); padding: .45rem .6rem; border-radius: var(--radius); border: 1px solid var(--palette-red-100); }
 .agent-attachment { display: flex; align-items: center; gap: .5rem; padding: .3rem 0; }
 .agent-compose { border-top: 1px solid var(--line); padding-top: .5rem; display: flex; flex-direction: column; gap: .4rem; }

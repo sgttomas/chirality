@@ -49,18 +49,20 @@ function syntheticDraft() {
   })
 }
 
-test('D-PEC-44: docx writer emits template-conformant WordprocessingML with basis notes', () => {
+test('D-PEC-50: docx writer emits compact template-grade WordprocessingML', () => {
   const draft = syntheticDraft()
   assert.ok(draft.bytes.subarray(0, 2).equals(Buffer.from('PK')), 'docx is a ZIP package')
   assert.match(draft.documentXml, /w:pStyle w:val="Title"/)
   assert.match(draft.documentXml, /w:pStyle w:val="Heading1"/)
   assert.match(draft.documentXml, /w:pStyle w:val="Subtitle"/)
   assert.match(draft.documentXml, /w:pStyle w:val="ListParagraph"/)
-  assert.match(draft.documentText, /SYN-PFD-001 - Process flow diagram; in work; % 50% \(basis: DISC-ACT; DISC-PCT\)/)
-  assert.match(draft.documentText, /SYN-PFD-002 - Future phase PFD; in work; % Next Phase \(basis: DISC-ACT; DISC-PCT\)/)
-  assert.match(draft.documentText, /SYN-PKG-001#1 Clarify seal plan; Clarification; open; need-by 2026-07-10 \(basis: PKG-ISSUE-MIX\)/)
-  assert.match(draft.documentText, /None recorded \(basis: DISC-ACT\)/)
-  assert.match(draft.documentText, /None recorded \(basis: DISC-ISSUED\)/)
+  assert.match(draft.documentText, /PFD: 2 active \(1 at 50%; 1 at Next Phase\)/)
+  assert.match(draft.documentText, /SYN-PFD-001 — Process flow diagram/)
+  assert.match(draft.documentText, /SYN-PKG-001: SYN-PKG-001#1 — Clarify seal plan — Clarification; open; need-by 2026-07-10/)
+  assert.match(draft.documentText, /No attested progress recorded/)
+  assert.match(draft.documentText, /None recorded/)
+  assert.match(draft.documentXml, /w:headerReference/)
+  assert.match(draft.documentXml, /w:footerReference/)
   assert.deepEqual(draft.figures, {
     disciplines: 2,
     inWorkDeliverables: 2,
@@ -71,22 +73,21 @@ test('D-PEC-44: docx writer emits template-conformant WordprocessingML with basi
   })
 })
 
-test('D-PEC-44: golden text stays factual-or-absent and package-scoped for needs/issues', () => {
+test('D-PEC-50: golden text stays factual-or-absent and package-scoped for needs/issues', () => {
   const draft = syntheticDraft()
   const goldenSubset = [
-    'SYN Discipline Status Report Draft',
-    'Declared period: 2026-07-01 to 2026-07-07 (basis: sidecar prompt; PER-COV)',
-    `Composition clarification: ${CLARIFICATION}`,
+    'SYN Weekly Status Update',
+    'Reporting period: 2026-07-01 to 2026-07-07',
     'Process',
     'Activities',
-    'Discipline % complete: 42.5% (basis: DISC-PCT)',
+    'Attested discipline progress: 42.5%',
     'By Package',
     'Needs & Issues',
-    '- SYN-PKG-001: SYN-PKG-001#1 Clarify seal plan; Clarification; open; need-by 2026-07-10 (basis: PKG-ISSUE-MIX)',
+    'SYN-PKG-001: SYN-PKG-001#1 — Clarify seal plan — Clarification; open; need-by 2026-07-10',
     'Decisions',
-    '- SYN-PKG-001: DEC-1 Select seal flush basis; pending; need-by 2026-07-11 (basis: PKG-DEC)',
+    'SYN-PKG-001: DEC-1 — Select seal flush basis; pending; need-by 2026-07-11',
     'Interfaces',
-    '- SYN-PKG-001: INT-1 Process to mechanical data; Process -> Mechanical; open (basis: PKG-INT)',
+    'SYN-PKG-001: INT-1 — Process to mechanical data — Process → Mechanical; open',
   ].join('\n')
   for (const line of goldenSubset.split('\n')) {
     assert.ok(draft.documentText.includes(line), `missing golden line: ${line}`)

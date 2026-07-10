@@ -35,7 +35,7 @@ export interface AgentHistoryEntry {
 export interface AgentMessageBody {
   message: string
   context?: { route: string; records: ScreenRecord[] }
-  attachment?: { name: string; text: string }
+  attachment?: { name: string; text: string } | { name: string; base64: string }
   history?: AgentHistoryEntry[]
 }
 

@@ -22,6 +22,21 @@ export PEC_DB="$PWD/pec-demo.db"            # absolute; must contain "scratch" o
 source ~/.secrets/pec-agent-person.env      # sets PEC_AGENT_EMAIL / PEC_AGENT_PASSWORD
 ```
 
+For a clean sponsor rehearsal, first rebuild the local demo database from the
+dated XLSX inputs. The two dates are PE declarations and must be supplied; the
+tool will not infer them. It stops on rejected source rows or identity conflicts
+and backs up an existing `pec-demo.db` before replacement.
+
+```sh
+export PEC_DEMO_COVERAGE_START=YYYY-MM-DD
+export PEC_DEMO_COVERAGE_END=YYYY-MM-DD
+npm run rebuild:demo
+```
+
+Fresh TWD demo personas use password `pilot`: `sponsor@twd.demo`,
+`pm@twd.demo`, `dc@twd.demo`, and `admin@twd.demo`. The agent email/password
+come from the sourced secret file when present.
+
 ## A — demo, stub engine (no key, no model egress)
 
 ```sh

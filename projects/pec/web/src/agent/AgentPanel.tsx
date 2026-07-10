@@ -18,8 +18,8 @@ import { agentMessage, agentStatus } from './api.ts'
 import type { AgentEvent, AgentStatus } from './api.ts'
 import { useScreenContext } from './context.tsx'
 
-/** RV-14: CSV only, ≤ 5 MiB (mirrors the server's proposal cap) */
-const MAX_CSV_BYTES = 5 * 1024 * 1024
+/** D-PEC-50: CSV/XLSX, ≤ 5 MiB (mirrors the sidecar proposal cap). */
+const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
 
 interface Turn {
   who: 'you' | 'agent'
@@ -95,7 +95,7 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
   const [statusError, setStatusError] = useState<string | null>(null)
   const [thread, setThread] = useState<Turn[]>([])
   const [message, setMessage] = useState('')
-  const [attachment, setAttachment] = useState<{ name: string; text: string } | null>(null)
+  const [attachment, setAttachment] = useState<{ name: string; text: string } | { name: string; base64: string } | null>(null)
   const [busy, setBusy] = useState(false)
   const [dropError, setDropError] = useState<string | null>(null)
   const [proposals, setProposals] = useState<ProposalRow[] | null>(null)
@@ -129,9 +129,18 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
 
   const acceptFile = async (file: File) => {
     setDropError(null)
-    if (!/\.csv$/i.test(file.name)) { setDropError('CSV only (RV-14): drop a .csv file'); return }
-    if (file.size > MAX_CSV_BYTES) { setDropError('the file exceeds the 5 MiB CSV cap (RV-14)'); return }
-    setAttachment({ name: file.name, text: await file.text() })
+    if (!/\.(csv|xlsx)$/i.test(file.name)) { setDropError('Attach a .csv or .xlsx file'); return }
+    if (file.size > MAX_ATTACHMENT_BYTES) { setDropError('The file exceeds the 5 MiB attachment cap'); return }
+    if (/\.xlsx$/i.test(file.name)) {
+      const bytes = new Uint8Array(await file.arrayBuffer())
+      let binary = ''
+      for (let i = 0; i < bytes.length; i += 0x8000) {
+        binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+      }
+      setAttachment({ name: file.name, base64: btoa(binary) })
+    } else {
+      setAttachment({ name: file.name, text: await file.text() })
+    }
   }
 
   const send = async () => {
@@ -214,7 +223,7 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
       <div className="agent-thread">
         {thread.length === 0 && (
           <p className="muted small">
-            Drop a CSV to file an import proposal, or ask: “status”, “intake”,
+            Drop a dated MDL or package workbook to file an import proposal, or ask: “status”, “intake”,
             “triage INTK-1 as parked: &lt;grounds&gt;”, “what am I looking at”.
             Accept and apply stay in Admin, done by you.
           </p>
@@ -241,7 +250,7 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
       <div className="agent-compose">
         <textarea
           value={message}
-          placeholder="Message the agent… (paste CSV text or drop a .csv here)"
+          placeholder="Message the agent… (paste CSV text or drop a .csv/.xlsx here)"
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void send() } }}
           onPaste={(e) => {
@@ -251,8 +260,8 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
         />
         <div className="agent-compose-row">
           <label className="btn small secondary agent-file">
-            attach .csv
-            <input type="file" accept=".csv,text/csv" style={{ display: 'none' }}
+            attach workbook
+            <input type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style={{ display: 'none' }}
               onChange={(e) => { const f = e.target.files?.[0]; if (f) void acceptFile(f); e.target.value = '' }} />
           </label>
           <div className="spacer" />
@@ -272,8 +281,23 @@ function EventView({ e, pid }: { e: AgentEvent; pid: number }): JSX.Element {
     case 'act:result': {
       const payload = (e.payload ?? {}) as {
         ref?: string; state?: string; contract?: string
+        filename?: string; downloadBase64?: string
+        title?: string
+        generatedForProject?: { code?: string; name?: string; today?: string }
+        absent?: Array<{ figure?: string; reason?: string }>
+        sections?: {
+          projectHealth?: { value?: string }
+          groups?: unknown[]
+          packages?: Array<{ package?: { id?: number; code?: string; name?: string }; clientIssues?: number; holds?: number; risks?: number; actions?: number }>
+          byWorkflow?: Record<string, number>
+          deliverables?: unknown[]
+        }
+        figures?: { disciplines?: number; inWorkDeliverables?: number; issuancesThisPeriod?: number | null; packageIssueRows?: number; packageDecisionRows?: number; packageInterfaceRows?: number }
         report?: { accepted?: number; updated?: number; conflicts?: unknown[]; rejected?: unknown[]; intakeCreated?: number; error?: string } | null
       }
+      const downloadHref = payload.filename && payload.downloadBase64
+        ? `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${payload.downloadBase64}`
+        : null
       return (
         <div className={`agent-card ${e.ok ? '' : 'agent-card-warn'}`}>
           <div className="small">
@@ -289,6 +313,17 @@ function EventView({ e, pid }: { e: AgentEvent; pid: number }): JSX.Element {
               {payload.report.intakeCreated ?? 0} to intake {/* RV-18: full report incl. intakeCreated */}
             </div>
           )}
+          {payload.figures && (
+            <div className="small muted">
+              {payload.figures.disciplines ?? 0} disciplines · {payload.figures.inWorkDeliverables ?? 0} active deliverables ·{' '}
+              {payload.figures.issuancesThisPeriod == null ? 'issuances unavailable' : `${payload.figures.issuancesThisPeriod} issuances`} ·{' '}
+              {payload.figures.packageIssueRows ?? 0} package issues
+            </div>
+          )}
+          {payload.title && payload.sections && <StandardReportPreview payload={payload} pid={pid} />}
+          {downloadHref && (
+            <a className="btn small" href={downloadHref} download={payload.filename}>Download {payload.filename}</a>
+          )}
           {payload.ref && (
             <Link className="small" to={`/p/${pid}/admin`}>review in Admin (accept/apply is yours)</Link>
           )}
@@ -301,4 +336,55 @@ function EventView({ e, pid }: { e: AgentEvent; pid: number }): JSX.Element {
     case 'turn:error':
       return <div className="error-box">{e.code}: {e.message}</div>
   }
+}
+
+function StandardReportPreview({ payload, pid }: {
+  payload: {
+    title?: string
+    generatedForProject?: { code?: string; name?: string; today?: string }
+    absent?: Array<{ figure?: string; reason?: string }>
+    sections?: {
+      projectHealth?: { value?: string }
+      groups?: unknown[]
+      packages?: Array<{ package?: { id?: number; code?: string; name?: string }; clientIssues?: number; holds?: number; risks?: number; actions?: number }>
+      byWorkflow?: Record<string, number>
+      deliverables?: unknown[]
+    }
+  }
+  pid: number
+}): JSX.Element {
+  const sections = payload.sections ?? {}
+  const issuePackages = (sections.packages ?? []).filter((row) => (row.clientIssues ?? 0) > 0)
+  return (
+    <div className="agent-report-preview small">
+      <b>{payload.title}</b>
+      <div className="muted">
+        {payload.generatedForProject?.code}{payload.generatedForProject?.name ? ` — ${payload.generatedForProject.name}` : ''}
+        {payload.generatedForProject?.today ? ` · ${payload.generatedForProject.today}` : ''}
+      </div>
+      {sections.projectHealth && (
+        <div>Project health: <span className={`badge ${sections.projectHealth.value === 'red' ? 'red' : sections.projectHealth.value === 'amber' ? 'amber' : 'green'}`}>{sections.projectHealth.value}</span>{' '}
+          · {sections.groups?.length ?? 0} report groups · <Link to={`/p/${pid}/overview`}>open Overview</Link>
+        </div>
+      )}
+      {issuePackages.length > 0 && (
+        <div>
+          {issuePackages.length} package{issuePackages.length === 1 ? '' : 's'} with open issues:{' '}
+          {issuePackages.slice(0, 6).map((row, index) => (
+            <span key={row.package?.id ?? index}>{index > 0 && ', '}{row.package?.id
+              ? <Link to={`/p/${pid}/packages/${row.package.id}`}>{row.package.code}</Link>
+              : row.package?.code}</span>
+          ))}
+          {issuePackages.length > 6 && ` +${issuePackages.length - 6} more`} · <Link to={`/p/${pid}/packages`}>open Packages</Link>
+        </div>
+      )}
+      {sections.byWorkflow && (
+        <div>
+          {Object.entries(sections.byWorkflow).map(([state, count]) => <span key={state} className="badge plain" style={{ marginRight: '.3rem' }}>{state} {count}</span>)}
+          <Link to={`/p/${pid}/deliverables`}>open Deliverables</Link>
+        </div>
+      )}
+      {(payload.absent?.length ?? 0) > 0 && <div className="muted">{payload.absent!.length} figure(s) unavailable; the report states each absence.</div>}
+    </div>
+  )
 }

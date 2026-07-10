@@ -23,6 +23,10 @@ export function PackagesPage(): JSX.Element {
   const { pid } = useApp()
   const nav = useNavigate()
   const person = usePerson()
+  const [search, setSearch] = useState('')
+  const [area, setArea] = useState('')
+  const [type, setType] = useState('')
+  const [issueView, setIssueView] = useState('all')
   const { data, error } = useLoad<any[]>(() => api.get(p(pid, 'packages')), [pid])
   // D-PEC-20 item 4: publish visible record ids (route + ids only, rider 5)
   usePublishScreenContext((data ?? []).map((r: any) => ({ recordType: 'package', ref: r.code, id: r.id })))
@@ -30,13 +34,21 @@ export function PackagesPage(): JSX.Element {
   if (error) return <ErrorBox error={{ message: error }} />
   if (!data) return <p className="muted">loading…</p>
 
+  const areas = [...new Set(data.map((r) => r.area).filter(Boolean))].sort()
+  const types = [...new Set(data.map((r) => r.packageType).filter(Boolean))].sort()
+  const query = search.trim().toLowerCase()
+  const visible = data.filter((r) => (!query || `${r.code} ${r.name} ${r.area ?? ''} ${r.packageType ?? ''}`.toLowerCase().includes(query))
+    && (!area || r.area === area)
+    && (!type || r.packageType === type)
+    && (issueView === 'all' || (issueView === 'issues' ? r.openIssues > 0 : r.openIssues === 0)))
+
   const cols: Array<Col<any>> = [
     { key: 'code', label: 'Package', render: (r) => <><b>{r.code}</b> <span className="muted small">{r.name}</span></>, csv: (r) => `${r.code} ${r.name}` },
     { key: 'area', label: 'Area', render: (r) => r.area ?? <span className="muted">—</span>, csv: (r) => r.area },
     { key: 'type', label: 'Type', render: (r) => r.packageType ?? <span className="muted">—</span>, csv: (r) => r.packageType },
     { key: 'lead', label: 'Lead', render: (r) => <span className="small">{person(r.leadId)}</span>, csv: (r) => person(r.leadId) },
     { key: 'milestone', label: 'Milestone', render: (r) => r.milestone ?? <span className="muted">—</span>, csv: (r) => r.milestone },
-    { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={`package ${r.code}`} />, csv: (r) => String(r.health.value) },
+    { key: 'health', label: 'Health', render: (r) => <HealthBadge explain={r.health} label={`package ${r.code}`} />, csv: (r) => String(r.health.value), sortValue: (r) => String(r.health.value) },
     { key: 'issues', label: 'Open issues', render: (r) => r.openIssues > 0 ? <span className="badge amber">{r.openIssues}</span> : <span className="muted">0</span>, csv: (r) => r.openIssues },
     {
       key: 'mix', label: 'Operational mix', render: (r) => (
@@ -54,7 +66,14 @@ export function PackagesPage(): JSX.Element {
   return (
     <div>
       <h1>Packages — what needs a call in my scope?</h1>
-      <RegisterTable cols={cols} rows={data} exportName="packages.csv"
+      <div className="filters" aria-label="Package filters">
+        <label>Find package<input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="code or name" /></label>
+        <label>Area<select value={area} onChange={(e) => setArea(e.target.value)}><option value="">all areas</option>{areas.map((v) => <option key={v} value={v}>{v}</option>)}</select></label>
+        <label>Type<select value={type} onChange={(e) => setType(e.target.value)}><option value="">all types</option>{types.map((v) => <option key={v} value={v}>{v}</option>)}</select></label>
+        <label>Issues<select value={issueView} onChange={(e) => setIssueView(e.target.value)}><option value="all">all packages</option><option value="issues">open issues only</option><option value="clear">no open issues</option></select></label>
+        <span className="small muted">{visible.length} of {data.length}</span>
+      </div>
+      <RegisterTable cols={cols} rows={visible} exportName="packages.csv"
         onRowClick={(r) => nav(`/p/${pid}/packages/${r.id}`)} />
     </div>
   )
