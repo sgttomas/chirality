@@ -112,11 +112,11 @@ REPORTED = re-verify per §3.1 before executing.
 | ORN-06 | Permission-invariant test: SDK options always include `canUseTool` + `hooks` where write/shell tools exposed | DEL-06-01 | test | S | MEDIUM | VERIFIED | DROPPED (already closed) |
 | ORN-07 | Register retire-vs-delete diff vs `previousRows` in `register-writer.ts` | DEL-07-05 | code/test | M | MEDIUM | VERIFIED | DONE |
 | ORN-08 | Runtime error-taxonomy ownership (PKG-03/04/05) + `api-key-settings` render test | DEL-02-05 | code/test | M | MEDIUM | VERIFIED | DONE |
-| ORN-09 | Client-disconnect durable cancellation persistence + accepted raw-input recovery + SSE fixture index | DEL-03-03/04 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-10 | Section 9 summary/manifest maturity (warnings/blockers/evidence manifest) + compaction-boundary fixtures | DEL-09-02 | validation/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-11 | Consolidated runtime redaction-path matrix | DEL-05-03 | security/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-12 | Failed-send retry end-to-end (draft + attachment across API failure) | DEL-09-06 | UI/test | S | MEDIUM | REPORTED | READY (verify first) |
-| ORN-13 | Refresh CODEV-001 first-adapter probe record to cite landed ADQ-04/ADQ-15 evidence (hard closure partly dependency-row-gated) | DEL-04-01/02/03 | docs/evidence | M | MEDIUM | REPORTED | READY (verify first) |
+| ORN-09 | Client-disconnect durable cancellation persistence + accepted raw-input recovery + SSE fixture index | DEL-03-03/04 | code/test | M | MEDIUM | VERIFIED | DONE |
+| ORN-10 | Section 9 summary/manifest maturity (warnings/blockers/evidence manifest) + compaction-boundary fixtures | DEL-09-02 | validation/test | M | MEDIUM | VERIFIED | READY |
+| ORN-11 | Consolidated runtime redaction-path matrix | DEL-05-03 | security/test | M | MEDIUM | VERIFIED | READY |
+| ORN-12 | Failed-send retry end-to-end (draft + attachment across API failure) | DEL-09-06 | UI/test | S | MEDIUM | VERIFIED | READY |
+| ORN-13 | Refresh CODEV-001 first-adapter probe record to cite landed ADQ-04/ADQ-15 evidence (hard closure partly dependency-row-gated) | DEL-04-01/02/03 | docs/evidence | M | MEDIUM | VERIFIED | READY |
 
 ### Live verification dispositions (2026-07-10)
 
@@ -141,6 +141,14 @@ REPORTED = re-verify per §3.1 before executing.
   contract while DEL-02-05 consumes it. Reconciliation evidence records the seam without changing the
   public union or excluded dependency rows. Seven API-key-settings render cases now satisfy the open
   D-APP-36 evidence subpart.
+- `ORN-09`: disconnect cancellation now persists `turn.cancelled`, preserves explicit user
+  `turn.interrupted`, and releases the lock; redacted `message.accepted` text is recoverable before
+  provider iteration, including with a malformed JSONL tail; the route/SSE fixture index is recorded in
+  `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/Evidence_ORN-09_Route_SSE_Fixture_Index.md`.
+- `ORN-10`..`ORN-13`: the verify-first pass confirms each retains an executable residual. `ORN-10` has
+  compaction checks but not the governed summary/manifest fields. `ORN-11` lacks a consolidated matrix,
+  `ORN-12` lacks failed-send draft+attachment integration coverage, and `ORN-13` remains a bounded
+  evidence refresh with dependency hard-closure split out.
 
 The agent re-derives readiness at selection time (recompute; do not trust this table if the filesystem
 disagrees). Items excluded from this tranche (issuance, dependency rows, R7, provider/release posture,

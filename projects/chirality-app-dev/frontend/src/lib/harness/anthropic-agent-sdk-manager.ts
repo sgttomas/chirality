@@ -12,6 +12,7 @@ import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } 
 
 type ActiveTurnState = {
   interrupted: boolean;
+  cancelled: boolean;
   abortController?: AbortController;
 };
 
@@ -682,8 +683,10 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
     type: HarnessEventType,
     data: Record<string, unknown> = {}
   ): AsyncGenerator<UIEvent> {
+    const turnId = typeof data.turnId === 'string' ? data.turnId : undefined;
     const event = createHarnessEvent({
       sessionId,
+      turnId,
       type,
       data: { provider: 'anthropic', ...data }
     });
@@ -716,14 +719,26 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
     activeTurn.abortController?.abort();
   }
 
+  async cancel(sessionId: string): Promise<void> {
+    const activeTurn = this.activeTurns.get(sessionId);
+    if (!activeTurn) {
+      return;
+    }
+
+    activeTurn.cancelled = true;
+    activeTurn.abortController?.abort();
+  }
+
   async *startTurn(
     session: SessionRecord,
     message: string,
     opts: ResolvedOpts,
-    contentBlocks?: ContentBlock[]
+    contentBlocks?: ContentBlock[],
+    suppliedTurnId?: string
   ): AsyncIterable<UIEvent> {
-    const turnState: ActiveTurnState = { interrupted: false };
+    const turnState: ActiveTurnState = { interrupted: false, cancelled: false };
     this.activeTurns.set(session.sessionId, turnState);
+    const turnId = suppliedTurnId ?? `turn_${randomUUID()}`;
 
     let timeoutHandle: NodeJS.Timeout | undefined;
     let timedOut = false;
@@ -759,6 +774,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         // Open the turn timeline (accepted -> started -> completed/cancelled/failed)
         // for real turns. session:init is already the first public UIEvent.
         yield* this.emitLifecycle(session.sessionId, 'turn.accepted', {
+          turnId,
           model: opts.model || FALLBACK_MODEL,
           persona: opts.persona,
           mode: opts.mode
@@ -782,6 +798,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
           }
         };
         yield* this.emitLifecycle(session.sessionId, 'turn.completed', {
+          turnId,
           stopReason: 'permission_denied'
         });
         yield {
@@ -857,14 +874,22 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         }
       );
 
-      yield* this.emitLifecycle(session.sessionId, 'turn.started');
+      yield* this.emitLifecycle(session.sessionId, 'turn.started', { turnId });
 
       let fullText = '';
 
       for await (const event of stream) {
+        if (turnState.cancelled) {
+          yield {
+            type: 'process:exit',
+            data: { exitCode: 130, interrupted: false }
+          };
+          return;
+        }
+
         if (turnState.interrupted) {
-          yield* this.emitLifecycle(session.sessionId, 'interruption.completed');
-          yield* this.emitLifecycle(session.sessionId, 'turn.interrupted');
+          yield* this.emitLifecycle(session.sessionId, 'interruption.completed', { turnId });
+          yield* this.emitLifecycle(session.sessionId, 'turn.interrupted', { turnId });
           yield {
             type: 'process:exit',
             data: {
@@ -896,6 +921,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
       }
 
       yield* this.emitLifecycle(session.sessionId, 'turn.completed', {
+        turnId,
         stopReason: 'end_turn',
         textLength: fullText.length
       });
@@ -916,10 +942,18 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         }
       };
     } catch (error) {
+      if (turnState.cancelled) {
+        yield {
+          type: 'process:exit',
+          data: { exitCode: 130, interrupted: false }
+        };
+        return;
+      }
+
       if (turnState.interrupted) {
         if (lifecycleOpened) {
-          yield* this.emitLifecycle(session.sessionId, 'interruption.completed');
-          yield* this.emitLifecycle(session.sessionId, 'turn.interrupted');
+          yield* this.emitLifecycle(session.sessionId, 'interruption.completed', { turnId });
+          yield* this.emitLifecycle(session.sessionId, 'turn.interrupted', { turnId });
         }
         yield {
           type: 'process:exit',
@@ -950,6 +984,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
       if (lifecycleOpened) {
         const failureMessage = failure instanceof Error ? failure.message : 'Anthropic turn failed';
         yield* this.emitLifecycle(session.sessionId, 'turn.failed', {
+          turnId,
           error: redactConfiguredApiKeys(failureMessage) ?? failureMessage
         });
       }

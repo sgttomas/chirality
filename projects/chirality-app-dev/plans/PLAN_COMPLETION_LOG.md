@@ -52,6 +52,17 @@ rows. `ApiKeySettings` now delegates rendering to a pure view, with seven compon
 outside-Electron fallback, UI/env/none status, unavailable encryption, saving/disabled controls, visible
 error feedback, and absence of stored-key material from status output.
 
+Completed `ORN-09`: transport disconnect now records non-user `turn.cancelled` with a stable turn ID,
+uses a distinct best-effort manager-cancel path, and releases the turn lock; explicit operator interrupt
+remains `turn.interrupted` under D-APP-40. Redacted `message.accepted` user text is persisted before
+provider iteration and remains replayable beside terminal state even with a malformed trailing JSONL
+record. The DEL-03-03/04 route/SSE fixture index maps current route and terminal evidence without changing
+the exported manager interface or public UI event names.
+
+The required verify-first pass is complete for every formerly REPORTED row. `ORN-10` through `ORN-13`
+remain confirmed-open READY work; their precise residuals are recorded in the active queue. No false
+positive beyond `ORN-06` was dropped in this pass.
+
 Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
 passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
 paths exist; `git diff --check` passed. No release, distribution, issuance, provider expansion,

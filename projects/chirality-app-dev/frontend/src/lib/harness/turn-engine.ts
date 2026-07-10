@@ -1,9 +1,12 @@
 import { hasUiApiKey } from './api-key-store';
+import { randomUUID } from 'node:crypto';
 import { asHarnessError, HarnessError } from '@chirality/harness-contract/errors';
 import { resolveRuntimeOptions } from './options';
 import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from '@chirality/harness-contract/sdk-version';
 import { evaluateSubagentGovernance } from './subagent-governance';
 import { resolveHarnessToolPool } from './tool-pool';
+import { appendHarnessEvent } from './session-events';
+import { createHarnessEvent } from './event-factory';
 import {
   AttachmentError,
   AttachmentFailureDetails,
@@ -59,6 +62,18 @@ type StreamTurnInput = {
   opts: ResolvedOpts;
   contentBlocks?: ContentBlock[];
   releaseTurnLock: () => void;
+  turnId: string;
+};
+
+type TurnEngineAgentSdkManager = IAgentSdkManager & {
+  cancel?(sessionId: string): Promise<void>;
+  startTurn(
+    session: SessionRecord,
+    message: string,
+    opts: ResolvedOpts,
+    contentBlocks?: ContentBlock[],
+    turnId?: string
+  ): AsyncIterable<UIEvent>;
 };
 
 function asNonEmptyString(value: string | undefined): string | undefined {
@@ -213,6 +228,7 @@ export class TurnEngine {
 
     this.activeSessionTurns.add(input.sessionId);
     let released = false;
+    let cancellationPersisted = false;
     const releaseTurnLock = (): void => {
       if (released) {
         return;
@@ -276,6 +292,26 @@ export class TurnEngine {
           ? [warningText, input.message].filter((part) => part.trim().length > 0).join('\n\n')
           : input.message;
       const turnContentBlocks = hasExecutableAttachment ? contentBlocks : undefined;
+      const turnId = `turn_${randomUUID()}`;
+
+      // Acceptance belongs to the route-independent lifecycle boundary. Persist the
+      // raw user-authored text before provider iteration starts so replay can recover
+      // an accepted message even when the provider never yields. appendHarnessEvent
+      // applies the configured secret redaction policy before writing JSONL.
+      await appendHarnessEvent(
+        createHarnessEvent({
+          sessionId: input.sessionId,
+          turnId,
+          type: 'message.accepted',
+          data: {
+            turnId,
+            role: 'user',
+            text: input.message
+          }
+        })
+      );
+
+      const agentSdkManager = this.dependencies.agentSdkManager as TurnEngineAgentSdkManager;
 
       return {
         sessionId: input.sessionId,
@@ -285,11 +321,30 @@ export class TurnEngine {
           message: turnMessage,
           opts: effectiveOpts,
           contentBlocks: turnContentBlocks,
-          releaseTurnLock
+          releaseTurnLock,
+          turnId
         }),
         cancel: async (): Promise<void> => {
+          if (cancellationPersisted) {
+            releaseTurnLock();
+            return;
+          }
+          cancellationPersisted = true;
           try {
-            await this.dependencies.agentSdkManager.interrupt(input.sessionId);
+            // A transport disconnect is not an explicit user interrupt (D-APP-40).
+            // Persist its own terminal outcome before best-effort provider shutdown.
+            await appendHarnessEvent(
+              createHarnessEvent({
+                sessionId: input.sessionId,
+                turnId,
+                type: 'turn.cancelled',
+                data: {
+                  turnId,
+                  reason: 'client_disconnect'
+                }
+              })
+            );
+            await agentSdkManager.cancel?.(input.sessionId);
           } catch {
             // Stream cancellation is best-effort; the route still needs the lock released.
           } finally {
@@ -319,11 +374,12 @@ export class TurnEngine {
 
   private async *streamTurn(input: StreamTurnInput): AsyncIterable<UIEvent> {
     try {
-      for await (const event of this.dependencies.agentSdkManager.startTurn(
+      for await (const event of (this.dependencies.agentSdkManager as TurnEngineAgentSdkManager).startTurn(
         input.session,
         input.message,
         input.opts,
-        input.contentBlocks
+        input.contentBlocks,
+        input.turnId
       )) {
         if (event.type === 'session:init') {
           const engineSessionId = event.data.engineSessionId ?? event.data.claudeSessionId;

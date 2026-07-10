@@ -1,4 +1,4 @@
-import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -1180,6 +1180,71 @@ AGENT_TYPE: 2
     expect(streamText).toContain('event: process:exit');
     expect(streamText).toContain('"interrupted":true');
     expect(streamText).toContain('"type":"turn.interrupted"');
+  });
+
+  it('persists accepted user text and non-user cancellation when the SSE reader disconnects', async () => {
+    const secret = 'sk-route-cancel-secret-fixture';
+    process.env.CHIRALITY_HARNESS_PROVIDER = 'stub';
+    process.env.ANTHROPIC_API_KEY = secret;
+    const routes = await importRouteModules();
+    const { body } = await createSession(routes, context.projectRoot);
+
+    const turnResponse = await routes.turnRoute.POST(
+      new Request('http://localhost/api/harness/turn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sessionId: body.session.sessionId,
+          message: `INTERRUPT_SIGINT_TEST recover ${secret}`
+        })
+      })
+    );
+    const reader = turnResponse.body?.getReader();
+    expect(reader).toBeTruthy();
+    expect((await reader!.read()).done).toBe(false);
+    await reader!.cancel('client disconnected');
+
+    const eventFile = path.join(
+      process.env.CHIRALITY_SESSION_ROOT!,
+      body.session.sessionId,
+      'events.jsonl'
+    );
+    await writeFile(eventFile, '{"trailing":', { encoding: 'utf8', flag: 'a' });
+
+    const replayResponse = await routes.eventsRoute.GET(
+      new Request(`http://localhost/api/harness/session/${body.session.sessionId}/events`),
+      { params: { id: body.session.sessionId } }
+    );
+    const replay = (await replayResponse.json()) as {
+      malformedLineCount: number;
+      events: Array<{
+        turnId?: string;
+        type: string;
+        data: { role?: string; text?: string };
+      }>;
+    };
+    const accepted = replay.events.find((event) => event.type === 'message.accepted');
+    const cancelled = replay.events.find((event) => event.type === 'turn.cancelled');
+
+    expect(replay.malformedLineCount).toBe(1);
+    expect(accepted).toMatchObject({
+      type: 'message.accepted',
+      data: { role: 'user', text: 'INTERRUPT_SIGINT_TEST recover [REDACTED_API_KEY]' }
+    });
+    expect(cancelled?.turnId).toBe(accepted?.turnId);
+    expect(replay.events.map((event) => event.type)).not.toContain('turn.interrupted');
+    expect(replay.events.map((event) => event.type)).not.toContain('interruption.requested');
+    expect(await readFile(eventFile, 'utf8')).not.toContain(secret);
+
+    const recovery = await routes.turnRoute.POST(
+      new Request('http://localhost/api/harness/turn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId: body.session.sessionId, message: 'after disconnect' })
+      })
+    );
+    expect(recovery.status).toBe(200);
+    await recovery.body?.cancel();
   });
 
   it('keeps turn and interrupt routes coherent across module-bundle boundaries', async () => {
