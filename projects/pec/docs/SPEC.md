@@ -1,10 +1,14 @@
 # PEC — Implementation Specification (P1 + P2)
 
-**Basis:** `docs/PRD.md` (Project Execution Control PRD v0.4). This SPEC translates the PRD's P1 scope into
-buildable contracts: data model, state machines, conditions engine, derived status, API, permissions, and
-import/export. Where the PRD leaves an implementation choice open, the choice is recorded here or in
-`docs/adr/`. Requirement IDs (`PEC-*`), invariants (`I-*`), object-model decisions (`OM-*`), and defaults
-(`D-*`) refer to the PRD.
+**Historical basis:** Project Execution Control PRD v0.4, preserved in Git at
+`7e8312172:projects/pec/docs/PRD.md`. This SPEC translates that prototype baseline's
+P1 scope into buildable contracts: data model, state machines, conditions engine,
+derived status, API, permissions, and import/export. The current `docs/PRD.md` v1.0
+is a candidate to supersede that product framing but has not been adopted or
+translated into a replacement implementation specification. Requirement IDs
+(`PEC-*`), invariants (`I-*`), object-model decisions (`OM-*`), and defaults (`D-*`)
+in this file therefore refer to the historical v0.4 baseline unless explicitly
+stated otherwise.
 
 Phase scope: **P1** (controlled tracker replacement, PRD §21 Phase 1) in §1–§13, plus the **P2 planning
 & capacity build** in §14 (2026-07-04; ADR-013). P3 headroom is noted where a schema choice would
@@ -539,4 +543,3 @@ The sweep additionally emits weekly digests — one notification per person per 
 (authorities/signatories past threshold), `digest_holds` (hold owners), `digest_comments` (responders
 past threshold). All time-driven notifications carry `severity` from the §8.4 thresholds; the web
 notification inbox badges warn/red.
-

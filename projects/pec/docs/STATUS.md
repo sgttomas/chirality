@@ -4,7 +4,15 @@ The single "where are we, what's next" file. **If you're a new agent or contribu
 then read deeper docs only as your task requires (read-order below). Keep this file current when you land
 substantial work — durable state lives in repo files, not in chat history.
 
-_Last updated: 2026-07-04 (after the B/C/D pass: pilot-readiness tooling, ADR-012, and the P2 build)._
+_Implementation history last updated: 2026-07-04 (after the B/C/D pass:
+pilot-readiness tooling, ADR-012, and the P2 build). Candidate product direction
+authored 2026-07-09 in `docs/PRD.md` v1.0; owner review/adoption remains open._
+
+> **Product-direction note:** the current application is a working prototype. The
+> candidate PRD v1.0 redefines the target as a team information hub centred on
+> recurring discipline declarations, leadership decision support, and
+> decision-consequence placement into relied-upon documentation. The implementation
+> account below describes the prototype and is not a claim of v1.0 conformance.
 
 ## Current state
 
@@ -32,7 +40,9 @@ npm run seed && npm run dev   # demo project AUR at http://localhost:4811 (all u
 
 1. **`README.md`** — layout + run commands.
 2. **This file** — state + next work.
-3. **`docs/PRD.md`** — the basis document (v0.4). Requirements are IDs like `PEC-DEL-001`; phases P1/P2/P3.
+3. **`docs/PRD.md`** — the candidate target product definition (v1.0).
+   `SPEC.md` and `TRACEABILITY.md` retain the historical v0.4 prototype basis until
+   owner adoption and rebaselining.
 4. **`docs/TRACEABILITY.md`** — requirement → code → test map, with a **"P2"** section and an honest **"Known P1 gaps"** section. This is the most useful map when picking up a specific requirement.
 5. **`docs/adr/ADR.md`** — the *why* behind implementer choices (ADR-001..013). ADR-011/012 explain the status/issues split and why the health derivation stands; ADR-013 the P2 planning choices.
 6. **`docs/SPEC.md`** — deep data-model / lifecycle / conditions / API detail; consult per subsystem.

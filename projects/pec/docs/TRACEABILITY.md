@@ -1,8 +1,14 @@
 # PEC — P1 Traceability
 
-Requirement → implementation → test map promised by SPEC §10. Covers every P1-tagged
-requirement in PRD §12, the P1 rows of §13 (data model), §15 (reporting), §16 (imports),
-§17 (NFRs), and the product invariants I-1..I-10 (PRD §5).
+> **Prototype-baseline map.** This file maps the historical PRD v0.4 preserved at
+> `7e8312172:projects/pec/docs/PRD.md`. It does not claim conformance to the current
+> candidate PRD v1.0 and must be rebaselined after that candidate is adopted and
+> before the next product implementation.
+
+Requirement → implementation → test map promised by the historical SPEC §10. Covers
+every P1-tagged requirement in v0.4 PRD §12, the P1 rows of §13 (data model), §15
+(reporting), §16 (imports), §17 (NFRs), and the product invariants I-1..I-10
+(v0.4 PRD §5).
 
 How to read the **Test** column:
 
