@@ -1,7 +1,7 @@
 # Status: DEL-00-02
 
-**Current State:** CHECKING
-**Last Updated:** 2026-07-10
+**Current State:** IN_PROGRESS
+**Last Updated:** 2026-07-11
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -18,3 +18,4 @@
 - 2026-06-16 - State set to IN_PROGRESS (HUMAN) [Human authority: active code implementation underway.]
 - 2026-06-20 - State set to CHECKING (HUMAN)
 - 2026-07-10 - Remaining section added: open scope rehomed from the D-APP-53 candidate enumeration per owner-adopted consolidation (loop Receipt 5); no state change.
+- 2026-07-11 - State set to IN_PROGRESS (HUMAN) [Owner-ruled lifecycle rebaseline D-APP-54 2026-07-11: administrative correction superseding the D-APP-19 inspection-admission convention; prior approvals and history preserved (execution/_Coordination/_DECISIONS/D-APP-54_RULING_2026-07-11.md).]
