@@ -391,3 +391,38 @@
   - Checks: practitioner pytest 263 passed/1 skipped; self-check severities
     unchanged (REVIEW 27, WARN 6); corpus status/audit clean at v6;
     git diff check pass.
+
+- **2026-07-11 — Receipt 11** (lifecycle rebaseline transcribed and executed: D-APP-54 all-53 demotion; piping D-40 PKG-00 demotion; D-39 SHA backfilled).
+  - Start: clean branch `claude/lifecycle-rebaseline-2026-07-11` off
+    `b618ab7d8` (= `main` at the PR #174 merge); newest prior receipt
+    Receipt 10. Step 3 of the owner's 2026-07-11 ruled sequence (direction
+    quoted verbatim in Receipt 10).
+  - Executed (app-dev): D-APP-54 ruling record + register row RULED,
+    transcribing the owner's in-session slate selection (verbatim, Receipt
+    7: "All 53 → IN_PROGRESS (Recommended)"); ruling received with `main`
+    at `703deb9b7`, record published by this tranche per the backfill
+    precedent. All 53 `_STATUS.md` transitions CHECKING → IN_PROGRESS as an
+    administrative correction under the amended SPEC §4.4 regime model,
+    superseding by name the D-APP-19 Option D inspection-admission
+    convention (D-APP-19 row/record immutable; approval SHA
+    `8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec` preserved twice per file;
+    all History preserved; one parser-verified History line appended per
+    file). Numbering note recorded: activation displaces to D-APP-55.
+  - Executed (piping, under the same ruled sequence): D-40 ruling record +
+    register row RULED + DEC-072 codification, transcribing the owner's
+    slate selection (verbatim, Receipt 7: "→ IN_PROGRESS now
+    (Recommended)"); the 8 PKG-00 `_STATUS.md` transitions CHECKING →
+    IN_PROGRESS with parser-verified History lines matching the 2026-07-02
+    reversal-line precedent; lock review PKG00_LOCK_REVIEW_2026-05-11_2218
+    preserved as a future declared checking basis; DEL-01-01 untouched
+    (ISSUED, change-managed). D-39 Ruling SHA backfilled to the PR #174
+    merge commit per the D-31 precedent.
+  - Gate outcome: the transitions execute an owner ruling — demotions only;
+    no CHECKING → ISSUED (F-APP-4); no concordance activation (packets are
+    step 4, AWAITING_RULING); no `## Remaining` content created or altered;
+    no fence crossed. Branch-first + PR; merge is part of the ruled
+    sequence.
+  - Checks: practitioner pytest 263 passed/1 skipped (incl. live drift
+    baselines app-dev 53/0 and piping 101/0 with the new reversal lines);
+    self-check severities unchanged (REVIEW 27, WARN 6); git diff check
+    pass.
