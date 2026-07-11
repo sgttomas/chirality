@@ -315,3 +315,36 @@
   - Checks: self-check severities match pins (REVIEW 27, WARN 6); practitioner
     pytest 263 passed/1 skipped; git diff check pass; frontend gates skipped —
     docs/plans-only tranche, no runtime source changed.
+
+- **2026-07-11 — Receipt 9** (root canon ratified out of DRAFT by owner act; PR #173 merged on direction).
+  - Owner direction (2026-07-11, in-session, Ryan Tufts), verbatim: "You can
+    now take all the `docs/` out of the DRAFT state, making them
+    authoritative.  And then merge PR #173." Scope note: the root `docs/`
+    writes in this tranche execute under that direction.
+  - Executed: `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `docs/SPEC.md`,
+    `docs/TYPES.md` status blocks flipped DRAFT → RATIFIED (owner
+    ratification 2026-07-11), each preserving its provenance and recording
+    the D-GOV-05 / D-GOV-02 / D-GOV-08 partial ratifications as subsumed
+    history; `docs/DELIVERABLE_CONCORDANCE_METHOD.md` ratified — the
+    Revision-0 self-declared R0-calibration gate superseded by the owner
+    act, post-ratification precedence recorded (kernel governs the shared
+    method; project plans govern project-specific adoption parameters;
+    conflicts surfaced, never precedence-invented); thesis appendix A's
+    present-tense DRAFT restatement updated. `docs/PLAN.md` was already
+    ACTIVE (maintainer-adopted 2026-07-01) — no change.
+  - Surfaced, not executed (outside this direction's scope): the
+    practitioner harness hardcodes the D-GOV-05 partial-basis invariant
+    labels (`harness_common.py` RATIFIED_INVARIANTS /
+    DRAFT_INVARIANTS_EXPLICIT; findings still annotate e.g. "K-CONFLICT-1
+    (DRAFT)"). Updating that map to full ratification is a small follow-up
+    tranche touching harness code + fixtures, with D-GOV-05 as the cited
+    prior authority. Also noted: ratification makes the CURRENT SPEC/TYPES
+    lifecycle text authoritative; the parked lifecycle-semantics amendment
+    now amends ratified canon (unchanged as a parked owner-gated act, and
+    both concordance plans' start gates already require it to merge first).
+  - Gate outcome: ratification is the owner's act — this tranche transcribes
+    it; no register row changed; no fence crossed. PR #173 merged on the
+    direction quoted above (merge is recorded in the PR/git history).
+  - Checks: self-check severities unchanged (REVIEW 27, WARN 6; GEN-4 facts
+    now quote the RATIFIED status lines); practitioner pytest 263 passed/1
+    skipped; git diff check pass.

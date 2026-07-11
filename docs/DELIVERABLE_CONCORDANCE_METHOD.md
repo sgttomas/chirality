@@ -2,23 +2,28 @@
 
 Chirality AI Ltd. Date: 2026-07-11. Revision 1.
 
-**Status: DRAFT pending human ratification (K-AUTH-1).** This document is not
-accepted governance and is **non-binding**: while it is DRAFT, each project's
-own concordance plan remains the self-contained operative method, and no agent
-may cite this document as authority for any act (GEN-6 discipline — draft
-basis is never binding). Ratification is gated on completion of both adopting
-projects' R0 method calibrations. Owner direction of record (2026-07-11,
-in-session, Ryan Tufts): the method is intended as part of Chirality itself,
-authored at root as a DRAFT canon-pattern document.
+**Status: RATIFIED — owner ratification 2026-07-11 (K-AUTH-1).** Owner
+direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take
+all the `docs/` out of the DRAFT state, making them authoritative." This
+document is the authoritative shared concordance method. The Revision-0
+self-declared ratification gate (completion of both adopting projects' R0
+method calibrations) is superseded by that owner act — ratification is an
+owner act and was exercised ahead of the calibrations; R0 calibration
+findings now flow in as ordinary owner-ruled amendments (§7). Earlier owner
+direction of record (2026-07-11): the method is intended as part of
+Chirality itself.
 
 **Provenance.** Distilled from the two project method plans —
 `projects/chirality-app-dev/plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md`
 and
 `projects/chirality-piping/plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md`
 — and the 2026-07-10/11 owner design session recorded in those plans and in
-`projects/chirality-app-dev/loop/LOOP_RECEIPTS.md`. This document is
-derivative of those sources; on any disagreement while DRAFT, the project
-plans govern.
+`projects/chirality-app-dev/loop/LOOP_RECEIPTS.md`. Precedence now that this
+document is ratified: it governs the shared method; each project's plan
+remains that project's operative adoption record and governs its
+project-specific parameters and divergence layers; a genuine conflict
+between the two is surfaced (`AUTHORITY_CONFLICT`), never resolved by agent
+precedence-invention.
 
 ## 1. Purpose
 
@@ -47,7 +52,7 @@ The normalized homes:
 | Lifecycle state | Deliverable-local `_STATUS.md`, human-gated |
 | Implementation truth | Source, tests, and build/validation artifacts |
 | Evidence | Immutable, dated, source-state-bound run artifacts |
-| Shared method | This document, once ratified (DRAFT until then) |
+| Shared method | This document (ratified 2026-07-11) |
 | Project adoption parameters and provenance | The project's own plan — historical record, never a work-selection surface |
 
 Executable work is never selected from the method or from plans — only from
@@ -178,9 +183,9 @@ method and adoption record. Project-local layers are expected to diverge —
 e.g. engineering validation/provenance disciplines in one project,
 inspection-assessment recency disciplines in another — and are never
 flattened into this kernel. Sibling plans are not resynchronized without
-owner direction. This kernel is amended only by owner act; at ratification,
-the project plans may thin to project-specific parameters citing this
-document as the shared method.
+owner direction. This kernel is amended only by owner act; now that it is
+ratified, the project plans may thin to project-specific parameters citing
+this document as the shared method (an owner-directed act, not required).
 
 ## Document History
 
@@ -188,3 +193,4 @@ document as the shared method.
 |---|---|---|
 | 0 (DRAFT) | 2026-07-11 | Initial distillation from the two project concordance plans and the 2026-07-10/11 owner design session. Non-binding pending ratification after both R0 calibrations. |
 | 1 (DRAFT) | 2026-07-11 | Original-author review feedback incorporated on owner direction ("Consider this feedback. Incorporate what has merit."): lifecycle reformulated as governed regimes with maturity/readiness entry conditions; CHECKING entry restructured as layered (warranted-empty universal minimum, candidate-specific basis, human declaration); canonical-authority precedence note; normalization table splits shared method / project adoption record; pinned-revision activation formulation; snapshots-as-provenance-baselines guardrail. |
+| 1 (RATIFIED) | 2026-07-11 | Owner ratification (direction of record: "You can now take all the `docs/` out of the DRAFT state, making them authoritative."), superseding the Revision-0 self-declared R0-calibration gate by owner act. Post-ratification precedence recorded in the status/provenance block. |
