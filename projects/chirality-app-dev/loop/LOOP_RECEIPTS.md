@@ -98,3 +98,22 @@
     fixture integrity pass.
   - Handoff: ORN-10..13 remain VERIFIED / READY; PEC P4 still requires
     owner-at-screen; issuance/release/apply/live-binding hard fences unchanged.
+
+- **2026-07-10 — Receipt 3** (inspection-orphan queue exhausted).
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in
+    with subagents where warranted."
+  - Start/upstream: clean synchronized `b001bd247`; Receipt 2; no open or
+    newer D-APP register row; active queue recomputed from the live plan.
+  - Executed: ORN-13 `6e3f4b5b4`; ORN-10 `da5a8f803`; ORN-11
+    `9f8f5aae4`; ORN-12 `d2f1cb7ff`; all were independently verified before
+    disjoint implementation and CHANGE closeout.
+  - Gate outcome: queue CLOSED — ORN-01..05 and ORN-07..13 DONE; ORN-06
+    DROPPED as already closed; no eligible row remains and no successor queue
+    is inferred.
+  - Checks: full frontend Vitest/typecheck pass; 16-ID Section 9 and unskipped
+    release-quality pass; secret scan pass; self-check and full practitioner
+    pytest pass; git diff check pass.
+  - Delta: `_LATEST.md` still labels the now-exhausted remediation plan ACTIVE;
+    live plan rows/status and this receipt govern discovery.
+  - Parked: PEC P4 requires owner-at-screen; issuance, release/distribution,
+    provider expansion, and live/apply integration retain their owner gates.

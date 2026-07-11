@@ -68,9 +68,32 @@ packaged integration from D-APP-18's owner-ruled, landed default-provider implem
 subprocess version, payload sequence, packaged turn parity, session/transcript acceptance, dependency
 closure, issuance, and release posture remain explicit residuals outside this evidence refresh.
 
-The required verify-first pass is complete for every formerly REPORTED row. `ORN-10` through `ORN-12`
-remain confirmed-open READY work; their precise residuals are recorded in the active queue. No false
-positive beyond `ORN-06` was dropped in this pass.
+Completed `ORN-10`: Section 9 now has a governed machine-readable manifest covering the exact 16 IDs
+in PRD/SPEC, including source references, executable evidence, warnings, and blockers. The runner
+validates that manifest, executes the previously omitted reliance-boundary and landed domain-profile
+checks, and emits a stable manifest linked from its summary. Release-quality consistency validation
+now enforces the complete inventory, metadata, and linkage. Existing mapper and session-event fixtures
+already close the compaction lifecycle/replay subpart, so no duplicate fixture was added. Section 9's
+report/evidence posture and all release, issuance, and professional-claim fences remain unchanged.
+
+Completed `ORN-11`: DEL-05-03 now carries a consolidated runtime redaction-path matrix mapping every
+live configured-key boundary to its enforcing path and exact focused fixture. New tests pin raw and
+encoded variants, overlapping keys, nested structures, and one secret-bearing SDK hook diagnostic from
+mapping through JSONL persistence, replay, and browser display. No leak or production-code repair was
+found; arbitrary-secret registries and withheld-sensitive policy remain outside this proof tranche.
+
+Completed `ORN-12`: a React component interaction test now proves failed session creation restores the
+exact draft and attachment, displays the typed error, re-enables sending, closes streaming state, and
+removes optimistic transcript rows. The production failure behavior is unchanged; only the React 18
+test renderer and its types were added to exercise the real `ChatPanel` interaction boundary.
+
+The required verify-first pass is complete for every formerly REPORTED row. No executable READY row
+remains in the inspection-orphan queue, and no false positive beyond `ORN-06` was dropped.
+
+The inspection-orphan remediation queue is exhausted and closed: twelve rows are complete and ORN-06
+was dropped as already closed. No successor queue is inferred. Further app-dev development requires a
+new owner-adopted roadmap or explicit human direction; PEC P4 and the issuance, release/distribution,
+provider-expansion, and live/apply integration gates remain parked under their owning workflows.
 
 Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
 passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
