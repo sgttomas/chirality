@@ -33,32 +33,26 @@ This docs package defines why the app exists, what must remain true, how the run
 
 Ordinary agentic work enters through:
 
-1. `/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md`;
-2. `execution/_Coordination/_COORDINATION.md`;
-3. `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`;
-4. `execution/_Coordination/_LATEST.md`;
-5. `execution/_Coordination/_DECISIONS/_REGISTER.md`.
+1. `init/init-prompt.md` → `loop/LOOP_INIT.md` → the newest `loop/WORKPLAN_*.md`
+   (the development loop instructions) → `loop/LOOP_RECEIPTS.md`;
+2. `execution/_Coordination/_DECISIONS/_REGISTER.md` (the owner-gated surface);
+3. `execution/_Coordination/_COORDINATION.md` (ruled-record stub) and
+   `execution/_Coordination/_LATEST.md` (discovery pointer).
 
-The active autonomous development queue is `plans/PLAN_2026-06-20_autonomous_development_queue.md`,
-released by D-APP-39. The D-APP-19 deliverable-inspection program
-(`plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md`) is complete, and the
-P0 governance cluster from its roadmap was applied 2026-06-20 (commit `a5ccfc591`): D-APP-37
-PKG-10 status-truth repair, D-APP-34/36 issue-readiness profiles (`docs/ISSUE_READINESS_PROFILES.md`),
-and the D-APP-38 reference-integrity model (authority-doc corpus `v1` reconciled via
-`execution/_Reconciliation/References/reconcile_authority_corpus.py`). The loop-first pivot, live
-packaged `agentSdk` read-tool proof, R6 Extensibility & MCP Boundary Maturity, Runtime Stabilization,
-and SCC-resolution plans are completed closed history. `docs/PLAN.md` remains strategic roadmap
-context, and `plans/PLAN_2026-06-13_runtime_completion.md` is retired runtime completion history.
-Current state is discovered from the authoritative surfaces named by `_COORDINATION.md`, including
-dependency/SCC snapshots under `execution/_Reconciliation/DepClosure/**`; there is no active
-`NEXT_INSTANCE_STATE.md`.
+Work is discovered from deliverable-local `_STATUS.md` `## Remaining` sections
+(owner-adopted 2026-07-10; the plans-as-queue convention is retired — `plans/` is a
+historical archive). Current state is discovered from the authoritative surfaces named
+by `_COORDINATION.md`, including dependency/SCC snapshots under
+`execution/_Reconciliation/DepClosure/**`; there is no active
+`NEXT_INSTANCE_STATE.md`, and `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` is a
+dated historical map (pre-loop session entry; never authority).
 
 ## How Agents Should Use This Package
 
 1. Use `DIRECTIVE.md`, `CONTRACT.md`, `SPEC.md`, `TYPES.md`, and `PRD.md` for governance and product authority.
 2. Use `PLAN.md` for strategic roadmap context, not ordinary tranche selection.
 3. Use `VALIDATION_STRATEGY.md`, `RELEASE_QUALITY_GATES.md`, and `BUILD_AND_RELEASE.md` to select validation and evidence expectations.
-4. Use `AGENTIC_DEVELOPMENT_WORKFLOW.md` for the agentic loop map, while following `_COORDINATION.md` for current entry protocol.
+4. Use `AGENTIC_DEVELOPMENT_WORKFLOW.md` for the agentic loop map, while following the newest `loop/WORKPLAN_*.md` for the current entry protocol (`_COORDINATION.md` is the ruled-record stub).
 5. Use `MANIFEST.json` as an index only.
 6. Treat unknowns as `TBD`, proposals as `PROPOSAL`, assumptions as `ASSUMPTION`, and human-gated decisions as unresolved until recorded in the decision register.
 
