@@ -19,15 +19,17 @@ Active coordination surfaces:
 
 Active development queue:
 
-- **None.** `plans/PLAN_2026-06-21_inspection_orphan_remediation.md` is CLOSED
-  (queue exhausted 2026-07-10; its own rows record per-item disposition).
-  Successor-queue selection is decision `D-APP-53` (AWAITING_RULING —
-  `_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md`). Do not
-  select new development work without an owner-adopted queue or ruling.
+- **None.** The most recent queue,
+  `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` (adopted by
+  the owner's D-APP-53 ruling, Option A), is CLOSED (executed 2026-07-10;
+  DRQ-01..11 DONE; its residual owner-gated rows are listed in its closure
+  report). Do not select new development work without an owner-adopted queue
+  or ruling.
 
 Queue and plan history (non-governing; each plan's own status field and
 `plans/PLAN_COMPLETION_LOG.md` govern):
 
+- `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` (CLOSED 2026-07-10)
 - `plans/PLAN_2026-06-21_inspection_orphan_remediation.md` (CLOSED 2026-07-10)
 - `plans/PLAN_2026-06-20_autonomous_development_queue.md` (exhausted/closed)
 - `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (completed)
