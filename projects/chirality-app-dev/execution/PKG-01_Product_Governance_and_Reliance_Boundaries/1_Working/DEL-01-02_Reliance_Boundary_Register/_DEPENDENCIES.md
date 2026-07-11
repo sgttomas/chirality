@@ -32,6 +32,8 @@ closure approval.
 - `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. PRD-derived rows remain active until dependency/evidence disposition, but they are no longer blocked by a PRD hash mismatch.
 - `[WARNING] OPEN_BLOCKERS`: exact implementation surfaces, SDK transcript placement, and final Section 9 validation file/test names remain `TBD` in the source documents.
 - `[WARNING] ID_FORMAT_VALIDATOR_PATTERN_MISMATCH`: `tools/validation/validate_id_format.sh` rejects accepted v3.2 IDs such as `PKG-01`, `DEL-01-02`, and `SOW-037` because its patterns expect three-digit package/deliverable and four-digit SOW formats. Authoritative IDs were preserved from the decomposition instead of rewritten to match the helper.
+- 2026-07-10 (D-APP-53 reconciliation): all 24 open rows re-verified against the live tree and moved `TBD -> SATISFIED` under `PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` (DRQ-01). Anchor targets confirmed in decomposition v3.2; REF-001..REF-007 MATCH re-verified by live SHA-256 recompute; downstream `ENABLES` targets confirmed via `docs/harness/reliance_boundary_register.md` enforcement matrix plus live enforcement-surface files and implemented Section 9 IDs. `DEP-01-02-018` `TargetLocation` literal corrected (`Append-Only` -> `Append_Only`) to match the real directory. See `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md`. This is derivative evidence only; no lifecycle transition and no issuance.
+- 2026-07-10 correction note (D-APP-53 reconciliation): the 2026-05-20 `[WARNING] OPEN_BLOCKERS` is stale for enforcement surfaces and Section 9 IDs — concrete surfaces now exist (e.g. `frontend/src/lib/harness/*`) and implemented Section 9 IDs are listed in `frontend/scripts/validate-harness-section9.mjs`; the original warning text is retained above as history.
 
 ## Extracted Dependency Register
 
@@ -81,10 +83,11 @@ Structured register: `Dependencies.csv` (`v3.1`)
 
 | SatisfactionStatus | Count |
 |---|---:|
-| TBD | 24 |
+| SATISFIED | 24 |
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | Active Rows |
 |---|---|---|---|---|---:|
 | 2026-05-20T19:24:25-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (found) | SOURCE_HASH_MISMATCH at extraction time; later reconciled by D-APP-38 corpus `v1`; OPEN_BLOCKERS; ID_FORMAT_VALIDATOR_PATTERN_MISMATCH | 24 |
+| 2026-07-10 (D-APP-53 reconciliation) | RECONCILE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (re-verified) | none; `validate_dependencies.py` PASS (24 rows, 0 errors, 0 warnings) | 24 |

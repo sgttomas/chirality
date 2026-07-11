@@ -16,9 +16,11 @@ to `WORKING_ROOT`.
 The plans-as-queue convention is retired (owner adoption 2026-07-10, verbatim in
 `loop/LOOP_RECEIPTS.md` Receipt 5): work is discovered from deliverable-local
 `_STATUS.md` `## Remaining` sections per the newest `loop/WORKPLAN_*.md`. No successor
-queue plan will be authored. Which rehomed lanes are live for execution remains the
-owner's ruling — `D-APP-53` (AWAITING_RULING; see the 2026-07-10 addendum in
-`_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md`). The prior rule
+queue plan will be authored. Which rehomed lanes are live for execution is the
+owner's ruling — `D-APP-53` (RULED Option A 2026-07-10,
+`_DECISIONS/D-APP-53_RULING_2026-07-10.md`; the ruling preceded the consolidation the
+same evening and its dependency-row reconciliation lane is already executed — see the
+packet's §7/§8 notes; Option C/D lanes were NOT unlocked). The prior rule
 this section replaces — "Do not invent a replacement queue; select new work only from
 an explicit human direction or a newly accepted plan/ruling" — survives as: never
 manufacture work outside the recorded `Remaining` scope, and honor every `(gated: ...)`

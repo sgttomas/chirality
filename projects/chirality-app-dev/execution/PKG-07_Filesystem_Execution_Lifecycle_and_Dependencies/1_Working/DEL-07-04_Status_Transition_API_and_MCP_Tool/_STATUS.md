@@ -7,7 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Add content-change SHA revalidation to the status-transition surface (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: D-APP-53)
+- Add content-change SHA revalidation to the status-transition surface (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)

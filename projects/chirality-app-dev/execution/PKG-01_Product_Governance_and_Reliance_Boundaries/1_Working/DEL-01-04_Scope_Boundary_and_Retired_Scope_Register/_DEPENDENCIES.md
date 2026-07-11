@@ -32,6 +32,7 @@ not closure approval.
   - Existing declared dependency lists remain `TBD`; no declared edges were promoted without evidence.
   - `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. This does not satisfy dependency rows.
   - `[WARNING] HUMAN_RULING_TBD`: `Guidance.md` contains conflict-table rulings with `Human ruling (TBD)`; no dependency edge depends on those unresolved rulings.
+- 2026-07-10 (D-APP-53 reconciliation): all 13 open rows re-verified against the live tree and moved `PENDING -> SATISFIED` under `PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` (DRQ-03). Anchor targets (PKG-01, SOW-065, SOW-076, SOW-077, SOW-078, OBJ-009) confirmed in decomposition v3.2 with DEL-01-04 still listed; local prerequisites and decomposition present; downstream `CONSTRAINT` content verified live (settings isolation and gated bypass in `frontend/src/lib/harness/sdk-options-builder.ts` with tests; DEL-07-06 and DEL-09-04 Specifications preserve the retired/packaging boundaries; PKG-10 remains future-amendment scope). See `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md`. Derivative evidence only; no lifecycle transition and no issuance.
 
 ## Extracted Dependency Register
 
@@ -65,12 +66,13 @@ Structured register: `Dependencies.csv` v3.1.
 | OTHER rows | 6 |
 | PREREQUISITE rows | 3 |
 | CONSTRAINT rows | 4 |
-| `SatisfactionStatus=PENDING` | 13 |
+| `SatisfactionStatus=SATISFIED` | 13 |
 
-Closure state: dependency register schema is present and all extracted rows are ACTIVE; satisfaction remains `PENDING` until downstream closure/audit workflows accept or waive the edges.
+Closure state: dependency register schema-valid and all 13 rows `SATISFIED` under the D-APP-53 reconciliation (2026-07-10). This is derivative dependency evidence, not closure approval; lifecycle state and issuance remain untouched.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE Counts |
 |---|---|---|---|---|---|
 | 2026-05-20T19:24:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH at extraction time, later reconciled by D-APP-38 corpus `v1`; HUMAN_RULING_TBD | ANCHOR=6; EXECUTION=7; TOTAL=13 |
+| 2026-07-10 (D-APP-53 reconciliation) | RECONCILE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` re-verified | none; `validate_dependencies.py` PASS (13 rows, 0 errors, 0 warnings) | ANCHOR=6; EXECUTION=7; TOTAL=13 |

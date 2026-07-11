@@ -144,3 +144,28 @@ D-APP-53)` suffixes accordingly (Option C items additionally keep their own
 decision-packet prerequisites), and (3) executes branch-first + PR unless the ruling
 grants a recorded commit discipline. This addendum amends only the mechanism; the
 options, the recommendation, and the §4 owner-gated tail are unchanged.
+
+## 8. Sequencing note (2026-07-10, recorded at the PR #159 / PR #168 merge reconciliation)
+
+The two 2026-07-10 owner acts this packet is subject to occurred in this order, in two
+concurrent sessions unaware of each other:
+
+1. **The ruling came first.** The owner ruled this packet in-session ("Option A
+   (Recommended)", no riders) from the slate presented per the original §6 mechanism.
+   The executing loop recorded `D-APP-53_RULING_2026-07-10.md`, flipped the register
+   row to RULED, authored `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md`
+   under the then-live §6 step (2), and executed it to CLOSED the same evening
+   (89/100 rows SATISFIED, 11 left open with recorded gates; accepted snapshot
+   `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`).
+2. **The consolidation came second.** The §7 addendum above was written and merged
+   (PR #168) without knowledge of the already-received ruling; its statements "row
+   stays AWAITING_RULING" and "no successor queue plan will be authored" describe the
+   state its author could see, not a revocation of the ruling.
+
+Reconciliation: the ruling stands (K-AUTH-1 — the act occurred and is recorded
+verbatim). The §6-mechanism queue plan predates the convention retirement, is CLOSED,
+and rests in `plans/` as historical archive per F-APP-5 — it is not a selection
+surface. §7's updated mechanism governs from here on: the Option A lane's rehomed
+`Remaining` items are updated to executed state with their residual gates; the
+Option C and Option D rehomed items were NOT unlocked by this ruling and keep their
+gates (now reading: requires a new owner ruling — D-APP-53 ruled Option A only).

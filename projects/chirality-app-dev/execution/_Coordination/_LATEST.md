@@ -22,9 +22,11 @@ Work discovery (owner-adopted 2026-07-10; queue convention retired):
 - Deliverable-driven: `execution/PKG-*/1_Working/DEL-*/_STATUS.md`
   `## Remaining` sections are the work surface, selected per the newest
   `loop/WORKPLAN_*.md`. No successor queue plan will be authored. Which rehomed
-  lanes are live is the owner's ruling — `D-APP-53` (AWAITING_RULING —
-  `_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md`, see its
-  2026-07-10 addendum); honor every `(gated: ...)` suffix.
+  lanes are live is the owner's ruling — `D-APP-53` (RULED Option A 2026-07-10,
+  `_DECISIONS/D-APP-53_RULING_2026-07-10.md`: the dependency-row reconciliation
+  lane, executed the same day — see the packet's §7/§8 notes and the accepted
+  DepClosure snapshot; Option C/D lanes were NOT unlocked); honor every
+  `(gated: ...)` suffix.
 
 Queue and plan history (non-governing; each plan's own status field and
 `plans/PLAN_COMPLETION_LOG.md` govern):

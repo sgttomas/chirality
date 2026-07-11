@@ -6,9 +6,6 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
-## Remaining
-- Reconcile this deliverable's unsatisfied local dependency rows against live evidence (land evidence or retire/replace per v3.1 schema) (source: D-APP-53 packet §3 Option A / insp05 addendum §5) (gated: D-APP-53)
-
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2; all four documents non-empty)
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -16,3 +13,4 @@
 - 2026-06-16 - State set to IN_PROGRESS (HUMAN) [Human authority: future-boundary contract/documentation drafting; no R7 domain-engine implementation.]
 - 2026-06-20 - State set to CHECKING (HUMAN)
 - 2026-07-10 - Remaining section added: open scope rehomed from the D-APP-53 candidate enumeration per owner-adopted consolidation (loop Receipt 5); no state change.
+- 2026-07-10 - Dependency-row reconciliation executed under the D-APP-53 Option A ruling (see Evidence_D53A_Dependency_Reconciliation_2026-07-10.md); Remaining section cleared (no open scope); no state change.

@@ -176,3 +176,45 @@
   - Checks: self-check exit 0; practitioner pytest pass; frontend gates skipped —
     governance/docs-only tranche, no runtime source changed; no authority-doc edit,
     so no D-APP-38 corpus bump.
+
+- **2026-07-10 — Receipt 6** (D-APP-53 ruled Option A; dependency-reconciliation lane executed; merged with the Receipt-5 consolidation).
+  - Start: `f5a4c3946` = `main` = `origin/main` (PR #155 merge); branch
+    `claude/app-dev-d53a-dep-reconciliation-2026-07-10`; prior receipt 4.
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in with
+    subagents where warranted. Use only `fable` models, contrary to your loop
+    instructions. Create a new worktree before you set off and start a branch
+    for your work. Your first order of business is to present the decision
+    slate to me D-APP-53." — worktree instruction rescinded in-session
+    ("sorry ignore the worktree instruction and continue in the current one").
+  - Owner ruling (2026-07-10, in-session slate selection): D-APP-53 =
+    "Option A (Recommended)", no riders — recorded in
+    `execution/_Coordination/_DECISIONS/D-APP-53_RULING_2026-07-10.md`;
+    register row RULED.
+  - Executed: queue `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md`
+    authored and run to CLOSED — DRQ-01..11 DONE; 89/100 rows SATISFIED on
+    re-verified evidence, 11 left open with recorded gates; ten
+    `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md` records; accepted
+    snapshot `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`;
+    `DepClosure/_LATEST.md` + `_Reconciliation/_LATEST.md` updated. Three-way
+    discovery + four-way execution subagent fan-out, all fable per steer.
+  - Gate outcome: owner-gated residuals surfaced, not decided — DEP-10-03-004
+    / DEP-10-04-004 (accepted-amendment judgment), DEP-10-04-006
+    (ResponsibleParty), DEP-04-01-007 (D-APP-52 live-LLM gate); evidence-gated
+    DEP-04-01-010..013, DEP-10-02-005, DEP-10-04-007/-008. No fence crossed;
+    no `_STATUS.md` transition. Branch-first + PR; no self-merge.
+  - Checks: v3.1 linter 0/0 on all ten registers; snapshot acyclic with
+    `schema_invalid = 0`; self-check pass; corpus status pass; git diff check
+    pass.
+  - Sequencing/reconciliation (recorded at the PR #159 merge with `main`):
+    the Option A ruling and this tranche's execution preceded the Receipt-5
+    consolidation's adoption the same evening; the consolidation's packet §7
+    addendum ("row stays AWAITING_RULING; no successor queue plan") was
+    written without knowledge of the already-received ruling. The ruling
+    stands (truthful attribution — the act occurred); the queue plan was
+    authored and CLOSED under the packet's then-live §6 mechanism and is now
+    historical archive per F-APP-5. Reconciled in this PR: register row RULED
+    with sequencing note; packet §8 sequencing note; ruling record sequencing
+    note; the ten Option A deliverables' `## Remaining` items updated to
+    executed state with residual gates; coordination pointers refreshed;
+    live-baseline pins re-verified post-merge.
+

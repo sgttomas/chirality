@@ -7,7 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Resolve owner-authority / ResponsibleParty TBD fields at issuance-gate sign-off (see also DEL-01-03) (source: insp05 addendum §5 separate-ruling items / D-APP-53 Option C) (gated: D-APP-53)
+- Resolve owner-authority / ResponsibleParty TBD fields at issuance-gate sign-off (see also DEL-01-03) (source: insp05 addendum §5 separate-ruling items / D-APP-53 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
 
 ## History
 - 2026-05-24 - State set to OPEN (ORCHESTRATOR / PKG-00 control-package scaffold)
