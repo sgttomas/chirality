@@ -52,12 +52,19 @@ def test_severity_cap_for_unadopted_brief():
 
 
 def test_draft_invariant_block_downgraded_unless_local_technical():
-    f = make_finding(Severity.BLOCK, "X", "d", "m", "p", invariant="K-CONFLICT-1")
+    # K-FUTURE-99 is synthetic: an uncataloged K-* ID labels DRAFT via the
+    # fail-closed startswith fallback, keeping the BLOCK->REVIEW downgrade
+    # path covered after the 2026-07-11 full ratification of the catalog.
+    f = make_finding(Severity.BLOCK, "X", "d", "m", "p", invariant="K-FUTURE-99")
     assert f.severity is Severity.REVIEW
     assert "D-GOV-05" in f.caveat
-    g = make_finding(Severity.BLOCK, "X", "d", "m", "p", invariant="K-CONFLICT-1",
+    g = make_finding(Severity.BLOCK, "X", "d", "m", "p", invariant="K-FUTURE-99",
                      local_technical=True)
     assert g.severity is Severity.BLOCK
+    # A cataloged (RATIFIED, 2026-07-11) invariant stays BLOCK.
+    h = make_finding(Severity.BLOCK, "X", "d", "m", "p", invariant="K-CONFLICT-1")
+    assert h.severity is Severity.BLOCK
+    assert h.invariant_ratification == "RATIFIED"
 
 
 def test_identity_dependent_check_with_allowlist_absent_exits_2(tmp_path, capsys):

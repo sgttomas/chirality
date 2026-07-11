@@ -218,18 +218,22 @@ OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
 | `INITIALIZED` | Document kit (Datasheet, Specification, Guidance, Procedure) has been drafted |
 | `SEMANTIC_READY` | Semantic lens (`_SEMANTIC.md`) has been generated |
 | `IN_PROGRESS` | Active human + agent work underway |
-| `CHECKING` | Under review |
-| `ISSUED` | Released for use |
+| `CHECKING` | Frozen candidate under review against a declared basis |
+| `ISSUED` | Accepted baseline; released for use — subsequent changes only via the governed scope-change process |
 
 ### 5.2 Stage Gates vs. Lifecycle
 
-**Lifecycle states** are tracked in `_STATUS.md` and represent the deliverable's production status.
+**Lifecycle states** are tracked in `_STATUS.md` and represent the deliverable's production status: they are governed production and change-control regimes with maturity/readiness entry conditions, not percentage-complete scores (see `SPEC.md` §3.4 and `DELIVERABLE_CONCORDANCE_METHOD.md` §4).
 
 **Stage gates** (30%, 60%, 90%, IFC, etc.) are human-managed milestones that represent project-level progress checkpoints. Stage gates are NOT lifecycle states and are tracked separately in coordination records.
 
 ### 5.3 Semantic Step
 
 The `INITIALIZED → SEMANTIC_READY` transition is optional. If the semantic lensing step is skipped, deliverables may transition directly from `INITIALIZED → IN_PROGRESS`.
+
+### 5.4 Change-Control Semantics
+
+Each lifecycle state defines which changes are lawful and under what control. `IN_PROGRESS` permits ordinary authorized edits and holds whenever warranted open scope exists. Entry to `CHECKING` is layered: universal minimums (a warranted-empty `## Remaining` open-scope record, where adopted, bound to a current source-state evidence basis), a candidate-specific declared checking basis, and a human declaration that freezes the candidate. A `CHECKING` candidate is frozen — review evidence appends to run/review records, and reversal to `IN_PROGRESS` is the only exit from an unsuccessful or withdrawn check. Rebaselining is asymmetric: demotion to `IN_PROGRESS` requires only the absence of a current accepted basis for the asserted state, while promotion requires a contemporary declared basis. `ISSUED` is an accepted baseline; subsequent changes flow only through the governed scope-change process. The normative statement is `SPEC.md` §3.4.
 
 ---
 
@@ -373,7 +377,7 @@ UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
 
 The deliverable lifecycle asks: *what state is this work product in?* The warrant lifecycle asks: *what state is our knowledge about this work product in?* A deliverable is ready for issuance when its warrants are sufficient — when the licensed professional has determined that the epistemic state of the claims supports authentication under professional responsibility.
 
-The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRESS` contains a mixture of warranted and unwarranted claims. The transition to `CHECKING` requires that critical claims have been warranted (all CRITICAL findings must have non-TBD human disposition; see §10.6). The transition to `ISSUED` requires that the professional has authenticated the work — the act of warranting the deliverable's claims under professional responsibility.
+The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRESS` contains a mixture of warranted and unwarranted claims. The transition to `CHECKING` requires layered entry conditions (`SPEC.md` §3.4): the universal entry minimums — that critical claims have been warranted (all CRITICAL findings must have non-TBD human disposition; see §10.6) and that the deliverable's `## Remaining` open-scope record, where adopted, is warranted-empty against a current source-state evidence basis — together with a candidate-specific declared checking basis and the human declaration that freezes the candidate. The transition to `ISSUED` requires that the professional has authenticated the work — the act of warranting the deliverable's claims under professional responsibility; post-issuance changes flow only through the governed scope-change process.
 
 ### 10.5 Enforcing Invariants
 

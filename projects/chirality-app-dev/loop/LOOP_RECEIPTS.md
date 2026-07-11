@@ -348,3 +348,46 @@
   - Checks: self-check severities unchanged (REVIEW 27, WARN 6; GEN-4 facts
     now quote the RATIFIED status lines); practitioner pytest 263 passed/1
     skipped; git diff check pass.
+
+- **2026-07-11 — Receipt 10** (lifecycle-semantics canon amendment across root, app-dev, piping; harness ratification labels; corpus v6).
+  - Start: clean branch `claude/lifecycle-canon-amendment-2026-07-11` off
+    `73a0cb79b` (= `main` at the PR #173 merge); newest prior receipt
+    Receipt 9.
+  - Owner direction (2026-07-11, in-session, Ryan Tufts), verbatim: "attend
+    to both now and resolve the issues you find as you recommended in the
+    sequence 1, 2, 3, 4 just stated.  I give you approval to edit the
+    SPEC/TYPES and just report back what you did." The ruled sequence: (1)
+    lifecycle-semantics amendment + harness label map, (2) merge to `main`,
+    (3) rebaseline transcription tranche, (4) activation packets as
+    PROPOSALs. This receipt records step 1; steps 3–4 follow as separate
+    tranches on the same direction.
+  - Executed (step 1): root `docs/SPEC.md` §3.1/§3.2/§3.3 + new §3.4 and
+    `docs/TYPES.md` §5 + new §5.4 + §10.4 (CRITICAL-findings warrant rule
+    preserved as an entry-minimums component; no renumbering — CONTRACT
+    K-STATUS-1's §3.3 pointer intact); app-dev `docs/SPEC.md` §4 (new §4.4;
+    reversal + scope-change rows; forward-only rule amended to except the
+    two human-authorized reversals) + `docs/TYPES.md` §5, followed by the
+    D-APP-38 corpus procedure — drift confirmed on exactly the two edited
+    members, v6 minted, apply reconciled 102 rows across 51 deliverable
+    files, audit clean; piping `docs/TYPES.md` §9 expanded +
+    `AGENTIC_DEVELOPMENT_WORKFLOW.md` reconciled ("allowed residual
+    issues" and maturity-milestone language removed), transcribed per
+    project convention as D-39 (RULED, in-session direction; Ruling SHA to
+    backfill per the D-31 precedent) codified DEC-071; harness
+    ratification-label map moved to the 2026-07-11 full-ratification basis
+    (all 27 K-* RATIFIED; D-GOV-05 preserved as the historical partial
+    basis; fail-closed DRAFT fallback for future uncataloged invariants;
+    GEN-4 fact repointed to `docs/CONTRACT.md`; tests consciously
+    re-pinned, including the live-baseline test that had been passing by
+    accident on the owner quote's "DRAFT" substring).
+  - Scope note: writes outside `projects/chirality-app-dev/**` (root docs,
+    piping surfaces, harness tools) execute under the owner direction
+    quoted above, which names the SPEC/TYPES edit grant and the
+    recommended sequence covering the harness map and piping canon.
+  - Gate outcome: no `_STATUS.md` transition (rebaseline is step 3, next
+    tranche); no fence crossed; piping D-39 register row RULED transcribes
+    an owner act. Branch-first + PR; merge of this PR is step 2 of the
+    ruled sequence.
+  - Checks: practitioner pytest 263 passed/1 skipped; self-check severities
+    unchanged (REVIEW 27, WARN 6); corpus status/audit clean at v6;
+    git diff check pass.

@@ -4,7 +4,7 @@
 Audits current-truth restating surfaces for contradictions (K-CONFLICT-1:
 surface, never resolve), path-anchoring leaks (SPEC §0.2.4), `Ruling SHA: TBD`
 conditionals (D-GOV-02), generated-output labeling (D-GOV-01), the
-self-declared DRAFT status of the root governance documents, (f) stale open
+self-declared status of the root governance documents, (f) stale open
 issues vs later rulings (K-STALE-2: an `open_issues` entry or an unannotated
 ruling condition asserting a state a later authoritative surface contradicts),
 and (g) draft-basis-used-as-binding (K-CLAIM-1: a `FramedBy:`/`Basis:`/
@@ -20,8 +20,9 @@ on instruction-class project surfaces; detect, never rewrite), and
 parked-lane carry-forward checks for the bridge loop (GEN-10).
 
 All checks are read-only observations. Which surface is right is a human
-call; findings are REVIEW/WARN/INFO except objective local generated-output
-labeling violations (D-GOV-05 carve-out).
+call; findings are REVIEW/WARN/INFO by these checks' own severity design
+(not a ratification cap), except objective local generated-output labeling
+violations (D-GOV-05 carve-out), which may BLOCK.
 
 Scope notes (v1):
 - DE-* checks audit `_DomainEngines/`.
@@ -566,10 +567,13 @@ def run_self_check(
             authority_status="self-declared", parse_status="PARSED" if quoted else "UNPARSEABLE",
             caveat="Quoted verbatim (truncated); the source file governs."))
     report.add_fact(SourcedFact(
-        fact_id="root_governance.partial_ratification_map",
+        fact_id="root_governance.ratification_map",
         value="; ".join(f"{k}={v}" for k, v in sorted(ratification_labels_map().items())),
-        source_path="docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md",
-        authority_status="governed_committed", parse_status="PARSED"))
+        source_path="docs/CONTRACT.md",
+        source_hint="status block (owner ratification 2026-07-11)",
+        authority_status="governed_committed", parse_status="PARSED",
+        caveat="D-GOV-05 (ruled 2026-07-01) is the record of the earlier "
+               "partial basis, subsumed by the 2026-07-11 full ratification."))
 
     # ----- GEN-5 unresolved source refs (control files only in v1) -----
     gen5_files: list[Path] = []
@@ -780,8 +784,10 @@ def run_self_check(
 
     # ----- GEN-9 agent-registry currency (K-AGENTS-1) -----
     # Runs once per invocation against the repo-root registry regardless of
-    # root_filter (same posture as GEN-4). Never BLOCK: K-AGENTS-1 is a
-    # DRAFT-track invariant (advisory per D-GOV-05).
+    # root_filter (same posture as GEN-4). Never BLOCK: this check's own
+    # severity design (registry currency is REVIEW/WARN hygiene; fix-vs-retain
+    # is a human disposition). K-AGENTS-1 itself is RATIFIED (docs/CONTRACT.md,
+    # owner ratification 2026-07-11).
     agents_index = repo_root / "AGENTS.md"
     agents_dir = repo_root / "agents"
     if not agents_index.is_file() or not agents_dir.is_dir():

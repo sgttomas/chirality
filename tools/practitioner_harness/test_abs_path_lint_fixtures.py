@@ -15,7 +15,9 @@ export-boundary idiom as `test_archive_fixture_corpus.py`.
 Severity per TYPES.md §11 / D-GOV-02: REVIEW, one finding per FILE (the
 worst live file carries 21 hit lines; per-line findings would flood human
 triage). Evidence-marker and unclassified files are counted as facts, never
-findings. SPEC §0.2.4 is a DRAFT-track basis, so BLOCK is never emitted.
+findings. BLOCK is never emitted by this check's own severity design
+(detect, never rewrite; relativization is a human disposition) — SPEC
+§0.2.4 itself is RATIFIED (docs/ owner ratification 2026-07-11).
 """
 
 from __future__ import annotations

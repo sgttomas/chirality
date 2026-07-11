@@ -184,8 +184,10 @@ OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
 | `INITIALIZED` | Document kit has been drafted or initialized. |
 | `SEMANTIC_READY` | Semantic lens or semantic placeholder has been generated. |
 | `IN_PROGRESS` | Active human and/or agent work is underway. |
-| `CHECKING` | Work is under human review. |
-| `ISSUED` | Work has been released/issued by a human. |
+| `CHECKING` | A frozen candidate is under review against a declared basis; a human declares the checking basis and freezes the candidate. |
+| `ISSUED` | Accepted baseline, approved and issued by a human; subsequent changes only via the governed scope-change process. |
+
+Lifecycle states are governed production and change-control regimes with maturity/readiness entry conditions, not percentage-complete scores. Advancing `IN_PROGRESS → CHECKING → ISSUED` carries maturity meaning while the states define which changes are lawful and under what control; entry conditions and the human-authorized reversal transitions (`CHECKING → IN_PROGRESS`; `ISSUED → IN_PROGRESS` via the governed scope-change process only) are specified in `SPEC.md`.
 
 Stage gates such as 30%, 60%, 90%, or IFC are project milestones, not lifecycle states.
 
