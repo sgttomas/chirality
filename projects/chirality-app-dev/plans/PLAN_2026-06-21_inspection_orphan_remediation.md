@@ -116,7 +116,7 @@ REPORTED = re-verify per §3.1 before executing.
 | ORN-10 | Section 9 summary/manifest maturity (warnings/blockers/evidence manifest) + compaction-boundary fixtures | DEL-09-02 | validation/test | M | MEDIUM | VERIFIED | READY |
 | ORN-11 | Consolidated runtime redaction-path matrix | DEL-05-03 | security/test | M | MEDIUM | VERIFIED | READY |
 | ORN-12 | Failed-send retry end-to-end (draft + attachment across API failure) | DEL-09-06 | UI/test | S | MEDIUM | VERIFIED | READY |
-| ORN-13 | Refresh CODEV-001 first-adapter probe record to cite landed ADQ-04/ADQ-15 evidence (hard closure partly dependency-row-gated) | DEL-04-01/02/03 | docs/evidence | M | MEDIUM | VERIFIED | READY |
+| ORN-13 | Refresh CODEV-001 first-adapter probe record to cite landed ADQ-04/ADQ-15 evidence (hard closure partly dependency-row-gated) | DEL-04-01/02/03 | docs/evidence | M | MEDIUM | VERIFIED | DONE |
 
 ### Live verification dispositions (2026-07-10)
 
@@ -146,10 +146,14 @@ REPORTED = re-verify per §3.1 before executing.
   `turn.interrupted`, and releases the lock; redacted `message.accepted` text is recoverable before
   provider iteration, including with a malformed JSONL tail; the route/SSE fixture index is recorded in
   `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/Evidence_ORN-09_Route_SSE_Fixture_Index.md`.
-- `ORN-10`..`ORN-13`: the verify-first pass confirms each retains an executable residual. `ORN-10` has
+- `ORN-10`..`ORN-12`: the verify-first pass confirms each retains an executable residual. `ORN-10` has
   compaction checks but not the governed summary/manifest fields. `ORN-11` lacks a consolidated matrix,
-  `ORN-12` lacks failed-send draft+attachment integration coverage, and `ORN-13` remains a bounded
-  evidence refresh with dependency hard-closure split out.
+  and `ORN-12` lacks failed-send draft+attachment integration coverage.
+- `ORN-13`: CODEV-001 now cross-references the landed ADQ-04 runtime reconciliation, ADQ-15 unsigned
+  local packaged subprocess evidence, and current option-shape and mapper-payload fixtures. It records
+  the D-APP-18 default-provider ruling/landing without inventing a new adoption verdict and keeps exact
+  live subprocess, payload-sequence, session/transcript, dependency-row, issuance, and release residuals
+  explicit and outside this bounded refresh.
 
 The agent re-derives readiness at selection time (recompute; do not trust this table if the filesystem
 disagrees). Items excluded from this tranche (issuance, dependency rows, R7, provider/release posture,

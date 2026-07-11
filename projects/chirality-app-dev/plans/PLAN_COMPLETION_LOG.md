@@ -61,7 +61,14 @@ provider iteration and remains replayable beside terminal state even with a malf
 record. The DEL-03-03/04 route/SSE fixture index maps current route and terminal evidence without changing
 the exported manager interface or public UI event names.
 
-The required verify-first pass is complete for every formerly REPORTED row. `ORN-10` through `ORN-13`
+Completed `ORN-13`: the CODEV-001 first-adapter probe record now points to the landed ADQ-04 runtime
+reconciliation, ADQ-15 unsigned local packaged subprocess proof, and current SDK option-shape and
+message-mapper fixtures. Stale packaging and adoption cells now distinguish proven scripted no-live
+packaged integration from D-APP-18's owner-ruled, landed default-provider implementation. Exact live
+subprocess version, payload sequence, packaged turn parity, session/transcript acceptance, dependency
+closure, issuance, and release posture remain explicit residuals outside this evidence refresh.
+
+The required verify-first pass is complete for every formerly REPORTED row. `ORN-10` through `ORN-12`
 remain confirmed-open READY work; their precise residuals are recorded in the active queue. No false
 positive beyond `ORN-06` was dropped in this pass.
 
