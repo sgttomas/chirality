@@ -1,10 +1,15 @@
 # Status: DEL-10-01
 
 **Current State:** CHECKING
-**Last Updated:** 2026-06-20
+**Last Updated:** 2026-07-10
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
+
+## Remaining
+- Reconcile this deliverable's unsatisfied local dependency rows against live evidence (land evidence or retire/replace per v3.1 schema) (source: D-APP-53 packet §3 Option A / insp05 addendum §5) (gated: D-APP-53)
+- Advance the R7 / domain-engine next step per the ADQ-17 amendment brief (plans/artifacts/adq17_future_r7_amendment_brief_2026-06-21.md; apply-class exposure excluded per D-APP-50 ruling; see also DEL-10-02..DEL-10-05) (source: D-APP-53 packet §3 Option D) (gated: D-APP-53) (stage-gated: F-APP-3 / tier-0 D-T0-08 stepwise lane)
+- Flip mcp__chirality__domain_headless_preview_run from descriptor-only to live — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping DEC-064 / TP-RUNNER-014 headless_preview_runner entrypoint + transport soundness)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents present and non-empty)
@@ -12,3 +17,4 @@
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)
 - 2026-06-16 - State set to IN_PROGRESS (HUMAN) [Human authority: future-boundary contract/documentation drafting; no R7 domain-engine implementation.]
 - 2026-06-20 - State set to CHECKING (HUMAN)
+- 2026-07-10 - Remaining section added: open scope rehomed from the D-APP-53 candidate enumeration per owner-adopted consolidation (loop Receipt 5); no state change.

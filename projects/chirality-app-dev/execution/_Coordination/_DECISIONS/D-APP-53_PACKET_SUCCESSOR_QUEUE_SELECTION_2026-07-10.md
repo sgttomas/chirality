@@ -120,3 +120,27 @@ register row to RULED, (2) authors the successor queue plan under `plans/` with 
 and the ruling as its authority basis, and (3) executes under branch-first + PR discipline
 unless the ruling grants a recorded commit discipline (e.g. D-APP-39-style autonomous
 commit+push scoped to `projects/chirality-app-dev/**`).
+
+## 7. Addendum (2026-07-10, same day — consolidation changes the on-ruling mechanism)
+
+The owner's 2026-07-10 consolidation direction (verbatim in `loop/LOOP_RECEIPTS.md`
+Receipt 5) retired the plans-as-queue convention project-wide: work is discovered from
+deliverable-local `_STATUS.md` `## Remaining` sections per the newest
+`loop/WORKPLAN_*.md`. This packet's *question* remains live — which lane(s), if any,
+are unlocked for execution — but its §6 mechanism step (2) is superseded: **no
+successor queue plan will be authored.** The enumerated candidates are now recorded as
+`Remaining` items in their owning deliverables, each suffixed `(gated: D-APP-53)`
+(Option A dependency-row reconciliation: DEL-01-02/03/04, DEL-04-01, DEL-09-03,
+DEL-10-01..05; Option C hardening items: DEL-00-02, DEL-05-03, DEL-05-05, DEL-07-04,
+DEL-08-04; Option D R7 step: DEL-10-01; the §4 conditional D-APP-50/D-APP-52 residuals:
+DEL-10-01, DEL-10-03 with their own gates). Option B (issuance program) is not rehomed —
+it is the F-APP-4 fence itself; Option E (park) needs no artifact.
+
+Updated on-ruling mechanism: an in-session owner ruling naming the live lane(s) — e.g.
+"D-APP-53: unlock the dependency-row reconciliation items", with any riders — suffices;
+the executing loop then (1) records the ruling verbatim in a `D-APP-53_RULING_*.md`
+record and flips the register row to RULED, (2) updates the named items' `(gated:
+D-APP-53)` suffixes accordingly (Option C items additionally keep their own
+decision-packet prerequisites), and (3) executes branch-first + PR unless the ruling
+grants a recorded commit discipline. This addendum amends only the mechanism; the
+options, the recommendation, and the §4 owner-gated tail are unchanged.
