@@ -129,16 +129,20 @@ No BLOCK ever attaches to the CHECKING→ISSUED judgment itself (K-GATE-1).
 Findings against a brief that is not committed + HUMAN_ADOPTED cap at REVIEW
 (D-GOV-04).
 
-## Ratification labeling (D-GOV-05 / K-CLAIM-1)
+## Ratification labeling (K-CLAIM-1)
 
 Every report labels the ratification status of each invariant it checks.
-Ratified minimal harness basis (D-GOV-05, ruled 2026-07-01): source-of-truth
-rule (DIRECTIVE §2.1/§2.3), K-AUTH-1, K-AUTH-2, generated-output rule
-(D-GOV-01), K-WRITE-2 (SPEC §0.2.3), K-PROV-1, K-STATUS-1, and the D-GOV-02
-severity taxonomy (TYPES §11). All other invariants remain DRAFT on the full
-root-ratification track; findings on DRAFT invariants are advisory (never
-BLOCK), except purely local technical checks — path containment, source-file
-existence, generated-output labeling — which may BLOCK regardless.
+Basis: full ratification of docs/CONTRACT.md by owner act on 2026-07-11
+(recorded in the docs/CONTRACT.md status block; app-dev loop Receipt 9) —
+the entire K-* Invariant Index (27 IDs) is RATIFIED, alongside the
+source-of-truth rule (DIRECTIVE §2.1/§2.3), the generated-output rule
+(D-GOV-01), and the D-GOV-02 severity taxonomy (TYPES §11). D-GOV-05
+(ruled 2026-07-01) is kept as the historical record of the earlier partial
+basis. The DRAFT-advisory downgrade rule remains in force for any future
+not-yet-ratified invariant (uncataloged K-* IDs label DRAFT fail-closed):
+findings on DRAFT invariants are advisory (never BLOCK), except purely
+local technical checks — path containment, source-file existence,
+generated-output labeling — which may BLOCK regardless.
 
 ## Identity (D-GOV-04)
 
@@ -276,7 +280,8 @@ content comparison.
    caveat).
 2. `run-validations` governed-file mutation outside declared evidence/output
    paths (`VALIDATION_MUTATED_GOVERNED_FILES`) — **unconditional**. This
-   BLOCK protects the substrate (K-WRITE-2, ratified basis per D-GOV-01/05),
+   BLOCK protects the substrate (K-WRITE-2, ratified basis per D-GOV-01/05
+   and the 2026-07-11 full ratification of docs/CONTRACT.md),
    not the fence, so the D-GOV-04 adoption cap never applies: a validation
    command must not be a backdoor write tool no matter whose brief invoked
    it (plan v3 risk table: "Backdoor writes through validation commands →
@@ -403,8 +408,9 @@ else `AGENT_FILE_UNINDEXED` (WARN). Per K-AGENTS-1, where live registries and
 narrative disagree, the live registry governs and the discrepancy is
 surfaced; fix-vs-retain is a human disposition. v1 observation boundary: file
 tokens only — role-name narrative mentions (a bare DELIVERABLE_TASK word in
-prose) are out of scope. Neither check ever BLOCKs: SPEC §0.2.4 and
-K-AGENTS-1 are DRAFT-track bases, so findings are advisory (D-GOV-05).
+prose) are out of scope. Neither check ever BLOCKs — by the checks' own
+severity design (hygiene surfacing; fix-vs-retain is a human disposition);
+SPEC §0.2.4 and K-AGENTS-1 are RATIFIED (owner ratification 2026-07-11).
 
 ## Parser: prose-bullet-v1
 

@@ -38,7 +38,8 @@ def _root_governance_lines(repo_root: Path, report: Report) -> None:
             quoted = quoted[:160] + " …[truncated]"
         report.md(f"- `docs/{name}`: {quoted or 'no self-declared Status line found'}")
     report.md("")
-    report.md("Per-invariant ratification (D-GOV-05): "
+    report.md("Per-invariant ratification (docs/CONTRACT.md, owner ratification "
+              "2026-07-11; partial basis D-GOV-05): "
               + "; ".join(f"{k}={v}" for k, v in sorted(ratification_labels_map().items())))
     report.md("")
 

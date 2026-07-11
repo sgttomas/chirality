@@ -184,6 +184,8 @@ Document kit:
 - {YYYY-MM-DD} — State set to {STATE} ({AGENT_OR_ACTOR})
 ```
 
+`_STATUS.md` MAY host a `## Remaining` section: the deliverable-local record of warranted open scope. Where adopted, `## Remaining` is the sole deliverable-local executable work surface. This project has adopted it (owner-adopted 2026-07-10, loop Receipt 5).
+
 ### 4.2 Valid States
 
 ```text
@@ -196,8 +198,8 @@ OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
 | `INITIALIZED` | Draft documents or document kit initialized. |
 | `SEMANTIC_READY` | Semantic lens or placeholder generated. |
 | `IN_PROGRESS` | Human/agent work underway. |
-| `CHECKING` | Under human review. |
-| `ISSUED` | Released/issued by a human. |
+| `CHECKING` | Frozen candidate under review against a declared basis. Entered when a human declares the checking basis and freezes the candidate; entry conditions in §4.4. |
+| `ISSUED` | Accepted baseline, approved and issued by a human. Subsequent changes only via the governed scope-change process (`execution/_ScopeChange/**` SCA records). |
 
 ### 4.3 Transition Rules
 
@@ -210,13 +212,39 @@ OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
 | `SEMANTIC_READY → IN_PROGRESS` | Human, WORKING_ITEMS |
 | `IN_PROGRESS → CHECKING` | Human |
 | `CHECKING → ISSUED` | Human |
+| `CHECKING → IN_PROGRESS` | Human (reversal — the sole exit from an unsuccessful or withdrawn check) |
+| `ISSUED → IN_PROGRESS` | Human, via the governed scope-change process only (opens a new revision cycle) |
 
 Rules:
 
 - `_STATUS.md` is the canonical lifecycle file.
-- Transitions are forward-only unless a human explicitly amends the record.
+- Transitions are forward-only except the two human-authorized reversal transitions above; any other reversal requires a human explicitly amending the record.
 - Transitions to `CHECKING` or `ISSUED` require approval SHA evidence.
 - SDK/MCP status-transition tools MUST enforce these rules.
+
+### 4.4 Lifecycle Regimes and CHECKING Entry Conditions
+
+Lifecycle states are governed production and change-control regimes with maturity/readiness entry conditions; they are not percentage-complete scores. Advancing `IN_PROGRESS → CHECKING → ISSUED` carries maturity meaning — each transition asserts readiness against declared entry conditions — while the states themselves define which changes are lawful and under what control:
+
+- `IN_PROGRESS` — ordinary authorized edits are permitted. This is the honest holding state whenever warranted open scope exists, however advanced the implementation.
+- `CHECKING` — the candidate is frozen. Review evidence appends to run/review records, never to the frozen claim surfaces. Reversal to `IN_PROGRESS` is the only edit path.
+- `ISSUED` — accepted baseline; changes only through the governed scope-change process (`execution/_ScopeChange/**` SCA records).
+
+Entry to `CHECKING` is layered, not a single trigger:
+
+1. **Universal minimums (candidacy).** The deliverable's `_STATUS.md` `## Remaining` section is warranted-empty — empty, with a current evidence basis bound to the candidate source state certifying that the emptiness is warranted.
+2. **Candidate-specific checking basis.** Satisfaction of the declared review basis appropriate to the deliverable's claims and risk. These criteria are emergent: maturity feedback from real checks hardens into reusable ruled profiles. `docs/ISSUE_READINESS_PROFILES.md` is this project's profile surface.
+3. **Human declaration.** A human declares the checking basis and freezes the candidate; entry is a human act.
+
+Rules:
+
+- There are no disclosed-deferral carve-outs: any warranted Remaining item — owner-gated included — keeps the deliverable `IN_PROGRESS`. Boundary adjustments happen through the decision register while `IN_PROGRESS` (rescope before freeze, never carve out during review).
+- A failed check exits by reversal (`CHECKING → IN_PROGRESS`); its findings become Remaining items.
+- Rebaseline asymmetry: demotion to `IN_PROGRESS` requires no criteria beyond the absence of a current, accepted basis for the asserted state; promotion requires a contemporary declared basis. Lifecycle corrections are human-authorized administrative acts recorded through the decision register; they do not invalidate prior work or evidence, which is preserved as history.
+- Entry conditions are gate preconditions, not state determinants: `_STATUS.md` remains the sole lifecycle authority, and reversals are recorded there.
+- No machine-enforced BLOCK applies to the `CHECKING → ISSUED` judgment; it remains a human gate.
+
+Reference formulation: repo-root `docs/DELIVERABLE_CONCORDANCE_METHOD.md` §4 (ratified 2026-07-11). This amendment is authorized by owner direction of record (2026-07-11): "attend to both now and resolve the issues you find as you recommended in the sequence 1, 2, 3, 4 just stated.  I give you approval to edit the SPEC/TYPES and just report back what you did."
 
 ---
 

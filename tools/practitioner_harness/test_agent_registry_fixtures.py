@@ -10,7 +10,9 @@ resolving nowhere, with and without an archived copy).
 Severity per TYPES.md §11 / D-GOV-02: REVIEW (forward direction; fix-vs-
 retain is a human disposition) and WARN (reverse direction; live-but-
 unindexed hygiene); NOT_APPLICABLE when the registry preconditions are
-absent. K-AGENTS-1 is a DRAFT-track invariant, so BLOCK is never emitted.
+absent. BLOCK is never emitted by this check's own severity design
+(registry currency is hygiene surfacing, not a gate); K-AGENTS-1 itself
+is RATIFIED (docs/CONTRACT.md, owner ratification 2026-07-11).
 v1 observation boundary: backticked file tokens only; role-name narrative
 mentions never fire either direction.
 """

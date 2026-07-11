@@ -2,7 +2,10 @@
 """Shared primitives for the practitioner harness.
 
 Severity taxonomy per D-GOV-02 (TYPES.md §11, ratified). Findings and facts
-carry per-invariant ratification labels per D-GOV-05 (K-CLAIM-1 posture).
+carry per-invariant ratification labels (K-CLAIM-1 posture); the basis is the
+owner ratification of docs/CONTRACT.md in full, 2026-07-11 (recorded in the
+docs/CONTRACT.md status block; loop Receipt 9), with D-GOV-05 (2026-07-01)
+remaining the ruling of record for the earlier partial basis.
 Every file write is contained to the declared generated root per D-GOV-01 /
 K-WRITE-2 via `ensure_generated_scope`.
 
@@ -26,7 +29,8 @@ from pathlib import Path
 TOOL_NAME = "practitioner_harness"
 REPORT_SCHEMA = "practitioner-harness-report/v1"
 CONTRACT_SOURCE = ("governance_harness_plan_v3_2026-07-01 "
-                   "+ D-GOV-01..07 @ 82a35c545 + D-GOV-08 @ 5f0f45c2b")
+                   "+ D-GOV-01..07 @ 82a35c545 + D-GOV-08 @ 5f0f45c2b "
+                   "+ docs/CONTRACT.md RATIFIED 2026-07-11")
 GENERATED_ROOT_NAME = "_harness_generated"
 HUMAN_ACTORS_RELPATH = "docs/governance_harness/human_actors.md"
 
@@ -44,40 +48,66 @@ class Severity(enum.Enum):
     NOT_APPLICABLE = "NOT_APPLICABLE"
 
 
-# --- Per-invariant ratification labels (D-GOV-05 / K-CLAIM-1) -----------------
-# RATIFIED = minimal harness basis, ruled by owner 2026-07-01 (D-GOV-05).
-# DRAFT = pending ratification on its own track; findings on DRAFT invariants
-# are advisory (never BLOCK) except purely local technical checks.
+# --- Per-invariant ratification labels (K-CLAIM-1) ----------------------------
+# RATIFIED basis: owner ratification of docs/CONTRACT.md in full, 2026-07-11
+# (recorded in the docs/CONTRACT.md status block; loop Receipt 9). D-GOV-05
+# (2026-07-01) remains the ruling of record for the earlier partial basis.
+# The full K-* catalog below mirrors the docs/CONTRACT.md "K-* Invariant
+# Index" (27 IDs); DRAFT = pending ratification on its own track; findings on
+# DRAFT invariants are advisory (never BLOCK) except purely local technical
+# checks.
 RATIFIED_INVARIANTS: dict[str, str] = {
     "SOURCE_OF_TRUTH": "RATIFIED",       # DIRECTIVE §2.1/§2.3
+    "GENERATED_OUTPUT": "RATIFIED",      # D-GOV-01
+    "SEVERITY_TAXONOMY": "RATIFIED",     # D-GOV-02 (TYPES §11)
+    # docs/CONTRACT.md K-* Invariant Index (owner ratification 2026-07-11):
+    "K-HIER-1": "RATIFIED",
+    "K-ID-1": "RATIFIED",
     "K-AUTH-1": "RATIFIED",
     "K-AUTH-2": "RATIFIED",
-    "GENERATED_OUTPUT": "RATIFIED",      # D-GOV-01
-    "K-WRITE-2": "RATIFIED",             # SPEC §0.2.3
-    "K-PROV-1": "RATIFIED",
+    "K-BIND-1": "RATIFIED",
+    "K-SEAL-1": "RATIFIED",
+    "K-GHOST-1": "RATIFIED",
+    "K-DEP-1": "RATIFIED",
+    "K-DEP-2": "RATIFIED",
     "K-STATUS-1": "RATIFIED",
-    "SEVERITY_TAXONOMY": "RATIFIED",     # D-GOV-02 (TYPES §11)
+    "K-STALE-1": "RATIFIED",
+    "K-STALE-2": "RATIFIED",
+    "K-VAL-1": "RATIFIED",
+    "K-GATE-1": "RATIFIED",
+    "K-MERGE-1": "RATIFIED",
+    "K-PROV-1": "RATIFIED",
+    "K-INVENT-1": "RATIFIED",
+    "K-CONFLICT-1": "RATIFIED",
+    "K-CLAIM-1": "RATIFIED",
+    "K-WRITE-1": "RATIFIED",
+    "K-WRITE-2": "RATIFIED",
+    "K-SNAP-1": "RATIFIED",
+    "K-AGENTS-1": "RATIFIED",
+    "K-DOMAIN-1": "RATIFIED",
+    "K-DOMAIN-2": "RATIFIED",
+    "K-DOMAIN-3": "RATIFIED",
+    "K-DOMAIN-4": "RATIFIED",
 }
 
-DRAFT_INVARIANTS_EXPLICIT = (
-    "K-GATE-1",
-    "K-CONFLICT-1",
-    "K-CLAIM-1",
-    "K-INVENT-1",
-    "K-AGENTS-1",
-    "K-DOMAIN-1",
-    "K-DOMAIN-4",
-    # K-STALE-2 (docs/CONTRACT.md §1.6, DRAFT-pending-ratification): "Stale
-    # items must be **triaged by a human** before being considered current.
-    # Resolution modes: no impact (clear flag), needs rework, or needs review."
-    "K-STALE-2",
-)
+# Empty since the 2026-07-11 full ratification of docs/CONTRACT.md; the name
+# and its use are retained so imports and `ratification_labels_map()` survive,
+# and so any future not-yet-ratified invariant can be listed here explicitly.
+DRAFT_INVARIANTS_EXPLICIT: tuple[str, ...] = ()
 
 
 def ratification_for(invariant: str) -> str:
-    """Label an invariant RATIFIED | DRAFT | N_A per D-GOV-05."""
+    """Label an invariant RATIFIED | DRAFT | N_A.
+
+    Basis: owner ratification of docs/CONTRACT.md in full, 2026-07-11
+    (docs/CONTRACT.md status block; loop Receipt 9); D-GOV-05 (2026-07-01)
+    remains the ruling of record for the earlier partial basis.
+    """
     if invariant in RATIFIED_INVARIANTS:
         return "RATIFIED"
+    # Fail-closed default: any K-* ID not in the catalog above (e.g. a future
+    # invariant added to a CONTRACT before this map is updated) labels DRAFT,
+    # keeping its findings advisory until consciously cataloged as RATIFIED.
     if invariant in DRAFT_INVARIANTS_EXPLICIT or invariant.startswith("K-"):
         return "DRAFT"
     return "N_A"

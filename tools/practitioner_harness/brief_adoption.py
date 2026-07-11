@@ -23,7 +23,9 @@ Verification semantics (`verify_adoption`):
 - CLOSED/SUPERSEDED    -> same identity + committed checks (a terminal brief
   still claims adoption), but fence inactive; INFO `BRIEF_LIFECYCLE_TERMINAL`.
 
-Nothing here BLOCKs (Phase 3 introduces no BLOCK findings; D-GOV-05). The
+Nothing here BLOCKs — by this module's own severity design (Phase 3
+introduces no BLOCK findings; adoption posture is surfaced for humans,
+never gated mechanically). The
 capping hook Phase 4 applies against anything that is not a verified fence is
 `harness_common.cap_severity_for_unadopted_brief` (re-exported here, not
 duplicated): findings referencing a brief whose fence_active is False cap at
