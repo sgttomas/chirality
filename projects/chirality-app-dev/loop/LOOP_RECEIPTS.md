@@ -426,3 +426,41 @@
     baselines app-dev 53/0 and piping 101/0 with the new reversal lines);
     self-check severities unchanged (REVIEW 27, WARN 6); git diff check
     pass.
+
+- **2026-07-11 — Receipt 12** (activation packets prepared: D-APP-55 and piping D-41, both AWAITING_RULING; bootstrap items seeded; ruled sequence complete).
+  - Start: clean branch `claude/concordance-activation-packets-2026-07-11`
+    off `6ba158933` (= `main` at the PR #175 merge); newest prior receipt
+    Receipt 11. Step 4 — the final step — of the owner's 2026-07-11 ruled
+    sequence (direction quoted verbatim in Receipt 10).
+  - Executed (app-dev): D-APP-55 PROPOSAL packet
+    (`_DECISIONS/D-APP-55_PACKET_CONCORDANCE_ACTIVATION_2026-07-11.md`) +
+    register row AWAITING_RULING. Packet records both start-gate
+    preconditions satisfied with merge SHAs (canon amendment PR #174
+    `b618ab7d8`; rebaseline D-APP-54 PR #175 `6ba158933`, corpus verified
+    53/53 IN_PROGRESS), the pinned-method-revision mechanism, the
+    merged-to-main-before-dispatch hard rule, and the on-ruling mechanism.
+    Bootstrap `## Remaining` items seeded at packet time per plan §3b into
+    all 53 deliverables (43 sections created, 10 appended), each exactly
+    the plan template with `(gated: D-APP-55)` and the `<commit SHA>`
+    placeholder the ruling supplies; seeding History note verified
+    non-state-bearing under prose-bullet-v1 (drift pins 53/0 hold).
+  - Executed (piping, under the same ruled sequence): D-41 PROPOSAL packet
+    (`_DECISIONS/D-41_concordance_activation.md`) + register row
+    AWAITING_RULING. Packet restates the named-ruling start gate verbatim
+    (the owner's 2026-07-11 suspension declaration + frozen-tree SHA, to be
+    supplied by the ruling — NOT satisfied by the packet), records the
+    satisfied canon/rebaseline preconditions with merge SHAs, and seeds
+    bootstrap items per the plan's explicit packet-time directive into all
+    100 IN_PROGRESS deliverables (74 sections created, 26 appended;
+    DEL-01-01 ISSUED excluded — scope-change-only). Census correction
+    recorded: live corpus is 101 deliverables (100 IN_PROGRESS + 1
+    ISSUED), superseding the plan's stale pre-rebaseline "92".
+  - Gate outcome: both activation rulings remain the owner's — nothing
+    dispatched, nothing selectable (every seeded item gated); the piping
+    suspension stands; no lifecycle transition; no fence crossed. With
+    this tranche the owner's four-step sequence is complete: (1) canon
+    amendment + harness labels (PR #174), (2) merged, (3) rebaseline
+    transcribed and executed (PR #175), (4) activation packets prepared
+    and landed AWAITING_RULING (this PR).
+  - Checks: practitioner pytest 263 passed/1 skipped; self-check
+    severities unchanged (REVIEW 27, WARN 6); git diff check pass.
