@@ -26,6 +26,7 @@
 | Unknown option behavior | Unknown option keys are ignored with warnings. | `docs/PRD.md` Section 8.4 FR-024; `docs/SPEC.md` runtime option rules, line 681 |
 | Local persistence scope | Toolkit settings, pane widths, chat drafts, attachment selections, and local presets are local convenience state. | `docs/PRD.md` Section 8.1 FR-005; Section 8.7 FR-042 and FR-043; `docs/DIRECTIVE.md` Section 2.6; `docs/SPEC.md` Section 1.3 |
 | Accessibility expectation | Keyboard users can resize/collapse panes; resize handles are focusable separators with arrow/Home/End behavior. | `docs/PRD.md` Section 11.4 NFR-019 |
+| UI-quality evidence | Current component/render evidence plus risk-based browser or screenshot review; checklist presence alone is not acceptance. | `docs/ui/UI_POLISH_EXECUTION_PLAN.md`; `docs/ISSUE_READINESS_PROFILES.md` Section 4 |
 
 ## Conditions
 
@@ -36,7 +37,7 @@
 | Storage failure behavior | Storage failures for chat drafts and attachment selections warn without breaking chat. | `docs/PRD.md` Section 8.7 FR-043 |
 | Malformed local records | Malformed draft/attachment records are dropped. | `docs/PRD.md` Section 8.7 FR-043 |
 | Runtime governance | Toolkit mode controls must map to permission policy modes once the policy engine exists. | `docs/PRD.md` Section 8.7 FR-044 |
-| PRD source status | Source usable with warning: `_REFERENCES.md` reports expected PRD SHA `86cb6f...` and observed SHA `fb1c73...`. | `_REFERENCES.md` REF-006 |
+| PRD source status | Reconciled: expected and actual SHA-256 values match. | `_REFERENCES.md` REF-006 |
 
 ## Construction
 
@@ -55,4 +56,5 @@
 - `docs/SPEC.md` Sections 1.2, 1.3 and runtime option rules around UI option authority and unknown keys.
 - `docs/TYPES.md` lifecycle state definitions.
 - `docs/PRD.md` Sections 8.1, 8.4, 8.7, 11.4, 15, 16.
+- `docs/ui/UI_POLISH_EXECUTION_PLAN.md` for UI-quality evidence routing.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-02-04, SOW-004, SOW-008, SOW-016, OBJ-001, OBJ-004.

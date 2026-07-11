@@ -42,6 +42,32 @@ const SECTION9_SUMMARY_PATH = path.resolve(
   'latest',
   'summary.json'
 );
+const SECTION9_MANIFEST_PATH = path.resolve(
+  process.cwd(),
+  'artifacts',
+  'harness',
+  'section9',
+  'latest',
+  'manifest.json'
+);
+const REQUIRED_SECTION9_IDS = [
+  'section9.runtime_engine_contract',
+  'section9.adapter_turn_engine_event_log',
+  'section9.adapter_message_mapper',
+  'section9.session_event_replay',
+  'section9.reliance_boundary_register',
+  'section9.settingsources_isolation',
+  'section9.sdk_session_link_resume',
+  'section9.permission_overlay_hard_deny_precedence',
+  'section9.tool_runtime_read_file',
+  'section9.chirality_mcp_status_dependencies',
+  'section9.path_containment_hook',
+  'section9.instruction_root_protection_hook',
+  'section9.tool_result_budget',
+  'section9.context_compaction_boundary',
+  'section9.subagent_governance_hook',
+  'section9.domain_profile_validation'
+];
 
 function nowIso() {
   return new Date().toISOString();
@@ -180,7 +206,7 @@ async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
 }
 
-function validateSection9Summary(summary) {
+function validateSection9Summary(summary, manifest) {
   const errors = [];
   if (!['pass', 'fail'].includes(summary.status)) {
     errors.push('Section 9 summary status must be pass or fail.');
@@ -191,6 +217,13 @@ function validateSection9Summary(summary) {
   if (!Array.isArray(summary.results)) {
     errors.push('Section 9 summary results must be an array.');
   } else {
+    const seen = new Set(summary.results.map((result) => result?.id));
+    if (
+      seen.size !== REQUIRED_SECTION9_IDS.length ||
+      REQUIRED_SECTION9_IDS.some((id) => !seen.has(id))
+    ) {
+      errors.push('Section 9 summary must contain the exact governed 16-ID inventory.');
+    }
     if (summary.results.length !== summary.testCount) {
       errors.push('Section 9 summary testCount must equal results.length.');
     }
@@ -204,6 +237,30 @@ function validateSection9Summary(summary) {
       if (!Array.isArray(result?.testFiles) || result.testFiles.length === 0) {
         errors.push(`Section 9 result ${result?.id ?? '<unknown>'} must list testFiles.`);
       }
+      for (const field of ['sourceReferences', 'evidenceFiles']) {
+        if (!Array.isArray(result?.[field]) || result[field].length === 0) {
+          errors.push(`Section 9 result ${result?.id ?? '<unknown>'} must list ${field}.`);
+        }
+      }
+      for (const field of ['warnings', 'blockers']) {
+        if (!Array.isArray(result?.[field])) {
+          errors.push(`Section 9 result ${result?.id ?? '<unknown>'} must declare ${field}.`);
+        }
+      }
+    }
+  }
+  if (summary.manifestPath !== SECTION9_MANIFEST_PATH) {
+    errors.push('Section 9 summary manifestPath must identify the stable manifest artifact.');
+  }
+  if (manifest?.schemaVersion !== 1 || !Array.isArray(manifest?.checks)) {
+    errors.push('Section 9 manifest must use schemaVersion 1 and declare checks.');
+  } else {
+    const manifestIds = new Set(manifest.checks.map((check) => check?.id));
+    if (
+      manifestIds.size !== REQUIRED_SECTION9_IDS.length ||
+      REQUIRED_SECTION9_IDS.some((id) => !manifestIds.has(id))
+    ) {
+      errors.push('Section 9 manifest must contain the exact governed 16-ID inventory.');
     }
   }
   return errors;
@@ -236,7 +293,8 @@ async function validateSummaries({ premergeSkipped }) {
 
   try {
     const section9Summary = await readJson(SECTION9_SUMMARY_PATH);
-    const errors = validateSection9Summary(section9Summary);
+    const section9Manifest = await readJson(SECTION9_MANIFEST_PATH);
+    const errors = validateSection9Summary(section9Summary, section9Manifest);
     checks.push({
       id: 'summary.section9',
       status: errors.length === 0 ? 'pass' : 'fail',
@@ -357,7 +415,8 @@ async function main() {
     artifacts: {
       releaseQualitySummary: SUMMARY_PATH,
       section8Summary: SECTION8_SUMMARY_PATH,
-      section9Summary: SECTION9_SUMMARY_PATH
+      section9Summary: SECTION9_SUMMARY_PATH,
+      section9Manifest: SECTION9_MANIFEST_PATH
     },
     boundaries: [
       'No release publication authorization.',

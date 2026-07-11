@@ -1,4 +1,4 @@
-import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { lstat, mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -486,6 +486,72 @@ describe('working-root deliverable contract routes', () => {
 
     const csv = await readFile(fixture.dependenciesFilePath, 'utf8');
     expect(csv).toContain('IN_PROGRESS');
+  });
+
+  it('rejects dependency writes to an external-target leaf symlink without replacing it', async () => {
+    const externalDependenciesPath = path.join(fixture.tmpRoot, 'external-dependencies.csv');
+    const externalBytes = 'external dependency bytes must remain unchanged\n';
+    await writeFile(externalDependenciesPath, externalBytes, 'utf8');
+    await rm(fixture.dependenciesFilePath);
+    await symlink(externalDependenciesPath, fixture.dependenciesFilePath);
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.PUT(
+      new Request('http://localhost/api/working-root/deliverable/dependencies', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          projectRoot: fixture.projectRoot,
+          deliverablePath: fixture.deliverablePath,
+          rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
+        })
+      })
+    );
+
+    expect(response.status).toBe(403);
+    expect(await response.json()).toMatchObject({
+      error: {
+        type: 'SYMLINK_WRITE_DENIED',
+        details: { file: 'Dependencies.csv' }
+      }
+    });
+    expect((await lstat(fixture.dependenciesFilePath)).isSymbolicLink()).toBe(true);
+    expect(await readFile(externalDependenciesPath, 'utf8')).toBe(externalBytes);
+  });
+
+  it('rejects dependency writes to a dangling leaf symlink without replacing it', async () => {
+    const externalDirectory = path.join(fixture.tmpRoot, 'external-dangling-target');
+    const danglingTargetPath = path.join(externalDirectory, 'missing-dependencies.csv');
+    const sentinelPath = path.join(externalDirectory, 'sentinel.txt');
+    const externalBytes = 'external sentinel bytes must remain unchanged\n';
+    await mkdir(externalDirectory, { recursive: true });
+    await writeFile(sentinelPath, externalBytes, 'utf8');
+    await rm(fixture.dependenciesFilePath);
+    await symlink(danglingTargetPath, fixture.dependenciesFilePath);
+
+    const routes = await importRouteModules();
+    const response = await routes.dependenciesRoute.PUT(
+      new Request('http://localhost/api/working-root/deliverable/dependencies', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          projectRoot: fixture.projectRoot,
+          deliverablePath: fixture.deliverablePath,
+          rows: [makeDependencyRow({ SatisfactionStatus: 'IN_PROGRESS' })]
+        })
+      })
+    );
+
+    expect(response.status).toBe(403);
+    expect(await response.json()).toMatchObject({
+      error: {
+        type: 'SYMLINK_WRITE_DENIED',
+        details: { file: 'Dependencies.csv' }
+      }
+    });
+    expect((await lstat(fixture.dependenciesFilePath)).isSymbolicLink()).toBe(true);
+    await expect(readFile(danglingTargetPath, 'utf8')).rejects.toMatchObject({ code: 'ENOENT' });
+    expect(await readFile(sentinelPath, 'utf8')).toBe(externalBytes);
   });
 
   it('serves _STATUS.md content by default when no file is requested', async () => {

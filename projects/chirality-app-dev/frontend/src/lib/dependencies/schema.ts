@@ -132,6 +132,7 @@ export type DependencyContractErrorCode =
   | 'INVALID_TARGET'
   | 'INVALID_DATE'
   | 'DUPLICATE_DEPENDENCY_ID'
+  | 'MISSING_RETIRED_ROW'
   | 'INVALID_SATISFACTION_TRANSITION';
 
 export class DependencyContractError extends Error {

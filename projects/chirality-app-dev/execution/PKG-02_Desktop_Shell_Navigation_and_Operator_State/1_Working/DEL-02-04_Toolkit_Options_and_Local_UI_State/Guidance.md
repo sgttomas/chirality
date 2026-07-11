@@ -28,8 +28,8 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 - Runtime option controls should distinguish "operator selected," "runtime defaulted," and "governance enforced" states where the source model supports that distinction. Exact UI copy and state model are TBD.
 - Local storage should degrade gracefully. A blocked quota, private-window limitation, or parse error should not make chat unusable; malformed records should be dropped and failures should warn. Source: `docs/PRD.md` Section 8.7 FR-043.
 - The Toolkit should not imply that SDK or permission modes are prompt hints only. PRD FR-044 requires runtime enforcement once the permission policy engine exists.
-- The PRD source is accessible but hash-mismatched against `_REFERENCES.md`; use it as directed by this task with warning, and avoid over-claiming details not present in the accessible text.
-- PRD FR-006 points to `docs/ui/UI_POLISH_EXECUTION_PLAN.md` for polish acceptance, but that file was not accessible in the source tree during this P3 run. Treat dense, professional interface review as required with checklist location TBD rather than substituting an invented rubric.
+- The PRD source is reconciled in `_REFERENCES.md`; avoid over-claiming details not present in the accessible text.
+- PRD FR-006 routes polish evidence through `docs/ui/UI_POLISH_EXECUTION_PLAN.md`. Treat its checklist as evidence routing, not as substitute product authority or as proof that current UI acceptance has passed.
 
 ## Trade-offs
 
@@ -47,15 +47,12 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 - Supported example: pane widths persist locally after keyboard resize. Source: `docs/PRD.md` Section 8.1 FR-005; Section 11.4 NFR-019.
 - Unsupported as project truth: a local Toolkit preset that attempts to bypass governance or override permission policy. Source: `docs/PRD.md` Section 8.7 FR-042; `docs/SPEC.md` Section 7.4.
 
-## Conflict Table (for human ruling)
+## Resolved source-state note
 
-| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-|---|---|---|---|---|---|---|
-| CONFLICT-001 | `_REFERENCES.md` records a PRD SHA mismatch while the task instructs that the mismatch is a warning, not a blocker. | `_REFERENCES.md` REF-006 | Dispatch instruction for this TASK run | All sections citing `docs/PRD.md` | Use accessible PRD text with warning for this run; require later source-hash reconciliation before closure. Closure artifact and accountable resolver are TBD. | TBD |
+The earlier REF-006 hash conflict is closed in the live `_REFERENCES.md`, where expected and actual
+PRD SHA-256 values now match. Historical run records and the dated inspection assessment retain the
+state observed when they were written.
 
 ## Rulings Needed
 
-- Human ruling needed on PRD hash reconciliation before final package closure, because `_REFERENCES.md` expected and actual PRD hashes differ.
-- Human ruling needed to name the accountable resolver and closure artifact for the PRD hash mismatch, such as an accepted reference refresh, source-snapshot ruling, or decomposition/package closure note.
 - Human ruling needed if local presets should have a specific retention duration, storage namespace, or migration policy; no accessible source defines those details.
-- Human ruling or downstream source needed for the missing UI polish checklist path referenced by PRD FR-006.

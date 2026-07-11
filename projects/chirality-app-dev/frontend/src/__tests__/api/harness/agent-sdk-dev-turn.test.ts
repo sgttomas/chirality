@@ -322,6 +322,7 @@ describe('agentSdk scripted dev turn validation', () => {
 
     const replay = await replayHarnessEvents(session.sessionId);
     expect(replay.events.map((event) => event.type)).toEqual([
+      'message.accepted',
       'turn.accepted',
       'turn.started',
       'adapter.initialized',
@@ -330,6 +331,10 @@ describe('agentSdk scripted dev turn validation', () => {
       'model.completed',
       'turn.completed'
     ]);
+    expect(replay.events[0]).toMatchObject({
+      type: 'message.accepted',
+      data: { role: 'user' }
+    });
     const serializedEvidence = JSON.stringify(replay.events);
     expect(rawSse).not.toContain(uiKey);
     expect(rawSse).not.toContain(priorEnvKey);

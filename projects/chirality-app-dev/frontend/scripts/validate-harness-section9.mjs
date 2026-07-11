@@ -5,6 +5,7 @@ import { constants as fsConstants } from 'node:fs';
 import { access, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const TMP_ROOT = path.join(
   process.env.TMPDIR ?? os.tmpdir(),
@@ -13,6 +14,8 @@ const TMP_ROOT = path.join(
 );
 const LOG_DIR = path.join(TMP_ROOT, 'logs');
 const TMP_SUMMARY_PATH = path.join(TMP_ROOT, 'summary.json');
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SOURCE_MANIFEST_PATH = path.join(SCRIPT_DIR, 'harness-section9-manifest.json');
 const STABLE_SUMMARY_PATH = path.resolve(
   process.cwd(),
   'artifacts',
@@ -21,91 +24,32 @@ const STABLE_SUMMARY_PATH = path.resolve(
   'latest',
   'summary.json'
 );
+const STABLE_MANIFEST_PATH = path.resolve(
+  process.cwd(),
+  'artifacts',
+  'harness',
+  'section9',
+  'latest',
+  'manifest.json'
+);
 
-const SECTION9_CHECKS = [
-  {
-    id: 'section9.runtime_engine_contract',
-    testFiles: ['src/__tests__/lib/engine-conformance.test.ts']
-  },
-  {
-    id: 'section9.adapter_turn_engine_event_log',
-    testFiles: ['src/__tests__/lib/turn-engine.test.ts']
-  },
-  {
-    id: 'section9.adapter_message_mapper',
-    testFiles: ['src/__tests__/lib/sdk-message-mapper.test.ts']
-  },
-  {
-    id: 'section9.session_event_replay',
-    testFiles: [
-      'src/__tests__/lib/session-events.test.ts',
-      'src/__tests__/lib/transcript-replay.test.ts'
-    ]
-  },
-  {
-    id: 'section9.sdk_session_link_resume',
-    testFiles: [
-      'src/__tests__/lib/sdk-options-builder.test.ts',
-      'src/__tests__/lib/session-manager.test.ts',
-      'src/__tests__/lib/transcript-replay.test.ts'
-    ]
-  },
-  {
-    id: 'section9.settingsources_isolation',
-    testFiles: ['src/__tests__/lib/sdk-options-builder.test.ts']
-  },
-  {
-    id: 'section9.permission_overlay_hard_deny_precedence',
-    testFiles: ['src/__tests__/lib/permission-overlay.test.ts']
-  },
-  {
-    id: 'section9.tool_runtime_read_file',
-    testFiles: ['src/__tests__/lib/chirality-read-mcp.test.ts']
-  },
-  {
-    id: 'section9.chirality_mcp_status_dependencies',
-    testFiles: [
-      'src/__tests__/lib/chirality-read-mcp.test.ts',
-      'src/__tests__/lib/dependencies-register-contract.test.ts'
-    ]
-  },
-  {
-    id: 'section9.path_containment_hook',
-    testFiles: [
-      'src/__tests__/lib/chirality-hooks.test.ts',
-      'src/__tests__/lib/permission-overlay.test.ts'
-    ]
-  },
-  {
-    id: 'section9.instruction_root_protection_hook',
-    testFiles: [
-      'src/__tests__/lib/harness-instruction-root.test.ts',
-      'src/__tests__/scripts/verify-instruction-root-integrity.test.ts'
-    ]
-  },
-  {
-    id: 'section9.tool_result_budget',
-    testFiles: [
-      'src/__tests__/lib/tool-evidence.test.ts',
-      'src/__tests__/lib/tool-result-artifacts.test.ts',
-      'src/__tests__/lib/sdk-message-mapper.test.ts',
-      'src/__tests__/lib/chirality-hooks.test.ts'
-    ]
-  },
-  {
-    id: 'section9.context_compaction_boundary',
-    testFiles: [
-      'src/__tests__/lib/sdk-message-mapper.test.ts',
-      'src/__tests__/lib/session-events.test.ts'
-    ]
-  },
-  {
-    id: 'section9.subagent_governance_hook',
-    testFiles: [
-      'src/__tests__/lib/harness-subagent-governance.test.ts',
-      'src/__tests__/lib/agent-runtime-contract.test.ts'
-    ]
-  }
+const SECTION9_IDS = [
+  'section9.runtime_engine_contract',
+  'section9.adapter_turn_engine_event_log',
+  'section9.adapter_message_mapper',
+  'section9.session_event_replay',
+  'section9.reliance_boundary_register',
+  'section9.settingsources_isolation',
+  'section9.sdk_session_link_resume',
+  'section9.permission_overlay_hard_deny_precedence',
+  'section9.tool_runtime_read_file',
+  'section9.chirality_mcp_status_dependencies',
+  'section9.path_containment_hook',
+  'section9.instruction_root_protection_hook',
+  'section9.tool_result_budget',
+  'section9.context_compaction_boundary',
+  'section9.subagent_governance_hook',
+  'section9.domain_profile_validation'
 ];
 
 function nowIso() {
@@ -128,6 +72,42 @@ async function ensureTestFilesExist(testFiles) {
   for (const testFile of testFiles) {
     await ensureReadableFile(path.resolve(process.cwd(), testFile));
   }
+}
+
+function requireNonEmptyStringArray(value, label, checkId) {
+  if (!Array.isArray(value) || value.length === 0 || value.some((item) => typeof item !== 'string' || item.length === 0)) {
+    throw new Error(`${checkId} must declare a non-empty ${label} array.`);
+  }
+}
+
+async function loadManifest() {
+  const manifest = JSON.parse(await readFile(SOURCE_MANIFEST_PATH, 'utf8'));
+  if (manifest.schemaVersion !== 1) {
+    throw new Error('Section 9 manifest schemaVersion must be 1.');
+  }
+  if (!Array.isArray(manifest.checks)) {
+    throw new Error('Section 9 manifest checks must be an array.');
+  }
+
+  const ids = manifest.checks.map((check) => check?.id);
+  if (new Set(ids).size !== ids.length) {
+    throw new Error('Section 9 manifest contains duplicate check IDs.');
+  }
+  if (ids.length !== SECTION9_IDS.length || SECTION9_IDS.some((id) => !ids.includes(id))) {
+    throw new Error('Section 9 manifest must contain the exact governed 16-ID inventory.');
+  }
+
+  for (const check of manifest.checks) {
+    requireNonEmptyStringArray(check.sourceReferences, 'sourceReferences', check.id);
+    requireNonEmptyStringArray(check.testFiles, 'testFiles', check.id);
+    requireNonEmptyStringArray(check.evidenceFiles, 'evidenceFiles', check.id);
+    if (!Array.isArray(check.warnings) || !Array.isArray(check.blockers)) {
+      throw new Error(`${check.id} must declare warnings and blockers arrays.`);
+    }
+    await ensureTestFilesExist([...check.testFiles, ...check.evidenceFiles]);
+  }
+
+  return manifest;
 }
 
 async function writeJson(filePath, value) {
@@ -192,6 +172,10 @@ async function runCheck(check) {
       status: 'fail',
       durationMs: Date.now() - startMs,
       testFiles: check.testFiles,
+      sourceReferences: check.sourceReferences,
+      evidenceFiles: check.evidenceFiles,
+      warnings: check.warnings,
+      blockers: check.blockers,
       details: {
         exitCode: 1,
         stdoutLog,
@@ -212,6 +196,10 @@ async function runCheck(check) {
     status: result.code === 0 ? 'pass' : 'fail',
     durationMs: result.durationMs,
     testFiles: check.testFiles,
+    sourceReferences: check.sourceReferences,
+    evidenceFiles: check.evidenceFiles,
+    warnings: check.warnings,
+    blockers: check.blockers,
     details: {
       exitCode: result.code,
       stdoutLog,
@@ -224,11 +212,12 @@ async function runCheck(check) {
 }
 
 async function main() {
+  const manifest = await loadManifest();
   await rm(TMP_ROOT, { recursive: true, force: true });
   await mkdir(LOG_DIR, { recursive: true });
 
   const results = [];
-  for (const check of SECTION9_CHECKS) {
+  for (const check of manifest.checks) {
     console.log(`HARNESS_SECTION9_CHECK_START=${check.id}`);
     results.push(await runCheck(check));
   }
@@ -238,6 +227,7 @@ async function main() {
     generatedAt: nowIso(),
     status,
     testCount: results.length,
+    manifestPath: STABLE_MANIFEST_PATH,
     results
   };
 
@@ -247,10 +237,13 @@ async function main() {
   JSON.parse(await readFile(TMP_SUMMARY_PATH, 'utf8'));
 
   await mkdir(path.dirname(STABLE_SUMMARY_PATH), { recursive: true });
+  await copyFile(SOURCE_MANIFEST_PATH, STABLE_MANIFEST_PATH);
   await copyFile(TMP_SUMMARY_PATH, STABLE_SUMMARY_PATH);
+  await ensureReadableFile(STABLE_MANIFEST_PATH);
   await ensureReadableFile(STABLE_SUMMARY_PATH);
 
   console.log(`HARNESS_SECTION9_SUMMARY_PATH=${STABLE_SUMMARY_PATH}`);
+  console.log(`HARNESS_SECTION9_MANIFEST_PATH=${STABLE_MANIFEST_PATH}`);
   console.log(`HARNESS_SECTION9_SOURCE_SUMMARY_PATH=${TMP_SUMMARY_PATH}`);
   console.log(`HARNESS_SECTION9_STATUS=${status}`);
   console.log(`HARNESS_SECTION9_TEST_COUNT=${results.length}`);
@@ -264,6 +257,6 @@ main().catch((error) => {
   console.log(`HARNESS_SECTION9_SUMMARY_PATH=${STABLE_SUMMARY_PATH}`);
   console.log(`HARNESS_SECTION9_SOURCE_SUMMARY_PATH=${TMP_SUMMARY_PATH}`);
   console.log('HARNESS_SECTION9_STATUS=fail');
-  console.log(`HARNESS_SECTION9_TEST_COUNT=${SECTION9_CHECKS.length}`);
+  console.log(`HARNESS_SECTION9_TEST_COUNT=${SECTION9_IDS.length}`);
   process.exitCode = 1;
 });

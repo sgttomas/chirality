@@ -1,6 +1,6 @@
 # PLAN - Inspection-Orphan Remediation Queue
 
-**Status:** ACTIVE (governing queue). Authorized by owner directive 2026-06-21.
+**Status:** CLOSED (queue exhausted 2026-07-10). Authorized by owner directive 2026-06-21.
 **Persona:** WORKING_ITEMS
 **Authority basis:** D-APP-39 (autonomous pull-and-execute, autonomous commit+push, governance
 no-self-rule gate) + the owner's 2026-06-21 directive to incorporate the inspection-orphan addendum into
@@ -104,19 +104,67 @@ REPORTED = re-verify per §3.1 before executing.
 
 | ID | Item | Source DEL | Type | Size | Severity | Verification | Status |
 |---|---|---|---:|---|---|---|---|
-| ORN-01 | Wire CI to enforce the gates (typecheck + vitest + instruction-root integrity + release-quality wrapper); resolve the stable-summary path conflict | DEL-09-01/05 | validation/CI | M | HIGH | VERIFIED | READY (do first) |
-| ORN-02 | Sanitize the blocked-URL log at `electron/main.ts:119` (no raw `details.url`) | DEL-09-06 | code/security | S | MEDIUM | VERIFIED | READY |
-| ORN-03 | Restore/realign the UI-polish acceptance source (`docs/ui/UI_POLISH_EXECUTION_PLAN.md` absent → DEL-02-04 REQ-014) | DEL-02-04 | docs/UI | S | MEDIUM | VERIFIED | READY |
-| ORN-04 | Mirror the read-path symlink guard on the dependency write path (defense-in-depth) | DEL-07-05 | code | S | LOW/MED | CORRECTED | READY |
-| ORN-05 | Working-root `/api/working-root/validate` parity + route tests | DEL-07-01 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-06 | Permission-invariant test: SDK options always include `canUseTool` + `hooks` where write/shell tools exposed | DEL-06-01 | test | S | MEDIUM | REPORTED | READY (verify first) |
-| ORN-07 | Register retire-vs-delete diff vs `previousRows` in `register-writer.ts` | DEL-07-05 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-08 | Runtime error-taxonomy ownership (PKG-03/04/05) + `api-key-settings` render test | DEL-02-05 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-09 | Client-disconnect durable cancellation persistence + accepted raw-input recovery + SSE fixture index | DEL-03-03/04 | code/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-10 | Section 9 summary/manifest maturity (warnings/blockers/evidence manifest) + compaction-boundary fixtures | DEL-09-02 | validation/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-11 | Consolidated runtime redaction-path matrix | DEL-05-03 | security/test | M | MEDIUM | REPORTED | READY (verify first) |
-| ORN-12 | Failed-send retry end-to-end (draft + attachment across API failure) | DEL-09-06 | UI/test | S | MEDIUM | REPORTED | READY (verify first) |
-| ORN-13 | Refresh CODEV-001 first-adapter probe record to cite landed ADQ-04/ADQ-15 evidence (hard closure partly dependency-row-gated) | DEL-04-01/02/03 | docs/evidence | M | MEDIUM | REPORTED | READY (verify first) |
+| ORN-01 | Wire CI to enforce the gates (typecheck + vitest + instruction-root integrity + release-quality wrapper); resolve the stable-summary path conflict | DEL-09-01/05 | validation/CI | M | HIGH | VERIFIED | DONE |
+| ORN-02 | Sanitize the blocked-URL log at `electron/main.ts:119` (no raw `details.url`) | DEL-09-06 | code/security | S | MEDIUM | VERIFIED | DONE |
+| ORN-03 | Restore/realign the UI-polish acceptance source (`docs/ui/UI_POLISH_EXECUTION_PLAN.md` absent → DEL-02-04 REQ-014) | DEL-02-04 | docs/UI | S | MEDIUM | VERIFIED | DONE |
+| ORN-04 | Mirror the read-path symlink guard on the dependency write path (defense-in-depth) | DEL-07-05 | code | S | LOW/MED | CORRECTED | DONE |
+| ORN-05 | Working-root `/api/working-root/validate` parity + route tests | DEL-07-01 | code/test | M | MEDIUM | VERIFIED | DONE |
+| ORN-06 | Permission-invariant test: SDK options always include `canUseTool` + `hooks` where write/shell tools exposed | DEL-06-01 | test | S | MEDIUM | VERIFIED | DROPPED (already closed) |
+| ORN-07 | Register retire-vs-delete diff vs `previousRows` in `register-writer.ts` | DEL-07-05 | code/test | M | MEDIUM | VERIFIED | DONE |
+| ORN-08 | Runtime error-taxonomy ownership (PKG-03/04/05) + `api-key-settings` render test | DEL-02-05 | code/test | M | MEDIUM | VERIFIED | DONE |
+| ORN-09 | Client-disconnect durable cancellation persistence + accepted raw-input recovery + SSE fixture index | DEL-03-03/04 | code/test | M | MEDIUM | VERIFIED | DONE |
+| ORN-10 | Section 9 summary/manifest maturity (warnings/blockers/evidence manifest) + compaction-boundary fixtures | DEL-09-02 | validation/test | M | MEDIUM | VERIFIED | DONE |
+| ORN-11 | Consolidated runtime redaction-path matrix | DEL-05-03 | security/test | M | MEDIUM | VERIFIED | DONE |
+| ORN-12 | Failed-send retry end-to-end (draft + attachment across API failure) | DEL-09-06 | UI/test | S | MEDIUM | VERIFIED | DONE |
+| ORN-13 | Refresh CODEV-001 first-adapter probe record to cite landed ADQ-04/ADQ-15 evidence (hard closure partly dependency-row-gated) | DEL-04-01/02/03 | docs/evidence | M | MEDIUM | VERIFIED | DONE |
+
+### Live verification dispositions (2026-07-10)
+
+- `ORN-01`: explicit owner direction on 2026-07-10 permitted the required repo-root modification.
+  The executable `.github/workflows/harness-premerge.yml` now runs on relevant pull requests with the
+  deterministic stub provider and no paid secret or Claude CLI, and enforces typecheck, full Vitest,
+  instruction-root integrity, and the release-quality wrapper. A workflow-contract regression pins
+  those gates and the external CI project-root boundary. The stable artifacts remain distinct: Section
+  8 premerge, release-quality, and instruction-root-integrity summaries; none substitutes for another
+  and this CI plumbing makes no release-readiness claim.
+- `ORN-06`: current `sdk-options-builder.ts` installs `canUseTool` and hooks unconditionally, and
+  `sdk-options-builder.test.ts` already pins both fields including `Write` + `Bash` in
+  `workspaceWrite`; no residual implementation remains.
+- `ORN-05`: the validation route used only workspace path normalization while session creation also
+  required read/write access and rejected instruction-root overlap. The route now reuses the exact
+  session-creation validator and error contract, with route tests for valid, conflicting, missing, and
+  relative roots.
+- `ORN-07`: the v3.1 schema already defines `Status=RETIRED` and DEL-07-05 requires retained rows, but
+  `previousRows` guarded only satisfaction transitions. Serialization now rejects every missing prior
+  ID with `MISSING_RETIRED_ROW`; explicit retained `RETIRED` rows remain lawful.
+- `ORN-08`: current implementation owns the canonical error union and error class in
+  `@chirality/harness-contract`; runtime/adapter/session layers emit, map, and persist that product-owned
+  contract while DEL-02-05 consumes it. Reconciliation evidence records the seam without changing the
+  public union or excluded dependency rows. Seven API-key-settings render cases now satisfy the open
+  D-APP-36 evidence subpart.
+- `ORN-09`: disconnect cancellation now persists `turn.cancelled`, preserves explicit user
+  `turn.interrupted`, and releases the lock; redacted `message.accepted` text is recoverable before
+  provider iteration, including with a malformed JSONL tail; the route/SSE fixture index is recorded in
+  `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/Evidence_ORN-09_Route_SSE_Fixture_Index.md`.
+- `ORN-10`: the live mapper fixtures already assert compaction start, success with replay implication,
+  and failure, while session-event tests pin append/replay behavior; no duplicate fixture was added.
+  The Section 9 runner now consumes and validates an exact 16-ID governed manifest, executes the landed
+  reliance-boundary and domain-profile checks, emits a stable linked manifest, and records source,
+  evidence, warning, and blocker metadata. Release-quality consistency validation pins the complete
+  inventory and linkage without changing Section 9's existing report/evidence posture.
+- `ORN-11`: DEL-05-03 now has one consolidated matrix linking configured-key ingress and every live
+  persistence, replay, browser, provider, tool, hook, child-output, and transport boundary to an exact
+  focused fixture. Dedicated helper and cross-boundary SDK diagnostic tests prove encoded/nested-key
+  handling and mapper-to-JSONL-to-replay-to-browser redaction without a production runtime change.
+- `ORN-12`: a real `ChatPanel` interaction test enters a draft, adds an attachment, forces session API
+  failure, and proves both retry inputs are restored, the error is visible, send is re-enabled, and the
+  optimistic operator/assistant rows are removed. The test uses a React 18 renderer and crosses no
+  layout or viewport risk requiring browser evidence.
+- `ORN-13`: CODEV-001 now cross-references the landed ADQ-04 runtime reconciliation, ADQ-15 unsigned
+  local packaged subprocess evidence, and current option-shape and mapper-payload fixtures. It records
+  the D-APP-18 default-provider ruling/landing without inventing a new adoption verdict and keeps exact
+  live subprocess, payload-sequence, session/transcript, dependency-row, issuance, and release residuals
+  explicit and outside this bounded refresh.
 
 The agent re-derives readiness at selection time (recompute; do not trust this table if the filesystem
 disagrees). Items excluded from this tranche (issuance, dependency rows, R7, provider/release posture,
@@ -135,3 +183,8 @@ OFF-STRATEGY.
 When the eligible queue is empty (all items `DONE`, `BLOCKED` on decisions, or dropped as already-closed),
 record closeout in `plans/PLAN_COMPLETION_LOG.md`, leave any decision/blocker queue for the owner, and
 stop. New work beyond this backlog requires a roadmap update or a human directive.
+
+Closeout 2026-07-10: `ORN-01`..`ORN-05` and `ORN-07`..`ORN-13` are `DONE`; `ORN-06` was dropped after
+live verification showed its invariant was already implemented and test-pinned. No eligible backlog row
+remains. The four hard fences and all owner-shaped acts remain unchanged; new work requires a roadmap
+update or human direction.

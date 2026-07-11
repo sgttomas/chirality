@@ -12,7 +12,8 @@ Define the operational steps to produce and verify the Toolkit Options and Local
   - `docs/SPEC.md`
   - `docs/TYPES.md`
   - `docs/PLAN.md`
-  - `docs/PRD.md` with hash mismatch warning from `_REFERENCES.md`
+  - `docs/PRD.md` with reconciled source state in `_REFERENCES.md`
+  - `docs/ui/UI_POLISH_EXECUTION_PLAN.md`
   - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - Declared upstream dependencies: `_DEPENDENCIES.md` reports no accepted human-declared upstream dependency edges outside the extracted register. The extracted register is present and lists active source prerequisites plus `DEP-02-04-014` for TBD adjacent runtime option contracts and permission policy integration points.
 - Runtime option contracts and permission policy integration points available from adjacent deliverables: TBD per `DEP-02-04-014`.
@@ -75,6 +76,7 @@ Define the operational steps to produce and verify the Toolkit Options and Local
 | Local preset authority | Presets do not write project truth and cannot override governance enforcement. |
 | Draft/attachment local persistence | Records are keyed per root/persona/mode; malformed records are dropped; storage failures warn without breaking chat. |
 | Permission-mode controls | If policy engine exists, controls map to enforced modes; if not, enforcement remains clearly TBD. |
+| UI polish evidence | Component/render tests cover changed controls and states; browser or screenshot review records route, viewport, states, and outcome where layout risk warrants it. |
 
 ## Records
 
@@ -85,4 +87,4 @@ Define the operational steps to produce and verify the Toolkit Options and Local
 - Accessibility checks for keyboard resize/collapse: TBD.
 - Local-state non-authority tests for presets, drafts, attachment selections, fallback behavior, accessibility, and storage guards: TBD.
 - Policy-mode mapping evidence after the permission policy engine exists: TBD.
-- Human ruling on PRD hash mismatch reconciliation: TBD.
+- UI polish checklist review and current component/browser evidence: TBD.

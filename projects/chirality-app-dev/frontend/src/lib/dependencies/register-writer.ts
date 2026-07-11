@@ -339,6 +339,28 @@ function validateSatisfactionTransitions(
   }
 }
 
+function validateRowRetention(
+  rows: DependencyRegisterRow[],
+  previousRows: DependencyRegisterRow[] | undefined
+): void {
+  if (!previousRows || previousRows.length === 0) {
+    return;
+  }
+
+  const nextDependencyIds = new Set(rows.map((row) => row.DependencyID));
+  const missingDependencyIds = previousRows
+    .map((row) => (row.DependencyID ?? '').trim())
+    .filter((dependencyId) => dependencyId && !nextDependencyIds.has(dependencyId));
+
+  if (missingDependencyIds.length > 0) {
+    throw new DependencyContractError(
+      'MISSING_RETIRED_ROW',
+      'Existing dependency rows must be retained and marked RETIRED instead of deleted',
+      { missingDependencyIds }
+    );
+  }
+}
+
 function collectHeaders(rows: DependencyRegisterRow[]): string[] {
   const extensionHeaders = DEPENDENCY_EXTENSION_COLUMNS.filter((column) =>
     rows.some((row) => (row[column] ?? '').trim() !== '')
@@ -394,6 +416,7 @@ export function serializeDependencyRegister(
     warnings.push('ANCHOR_IMPLEMENTS_NODE_COUNT_NOT_ONE');
   }
 
+  validateRowRetention(normalizedRows, options.previousRows);
   validateSatisfactionTransitions(normalizedRows, options.previousRows);
 
   const headers = collectHeaders(normalizedRows);

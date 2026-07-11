@@ -52,3 +52,92 @@
     Step 0.
   - Parked lanes: owner rulings on the app-dev register's open rows (re-derive
     from `execution/_Coordination/_DECISIONS/_REGISTER.md` at Step 0).
+
+- **2026-07-10 — Receipt 1** (inspection-orphan remediation resumed).
+  - Start: clean detached `199c6d545` = `main` = `origin/main`; branch
+    `codex/app-dev-orn-remediation`; newest prior receipt Receipt 0.
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in with
+    subagents where warranted."
+  - Live gates: D-APP-01..52 all RULED; D-APP-51/52 already consumed; no open
+    app-dev register row. Active queue remains
+    `plans/PLAN_2026-06-21_inspection_orphan_remediation.md`.
+  - Executed: ORN-02 `71fff1277`; ORN-03 `ed54bbf94`; ORN-04 `658802bd5`;
+    ORN-05 `40afda52c`; ORN-07 `2eef3d09c`; ORN-08 `dc9c50ca6`; ORN-09
+    `24f40d5d8`; ORN-06 dropped as already closed.
+  - Gate outcome: ORN-01 BLOCKED — live CI is repo-root
+    `.github/workflows/harness-premerge.yml`, outside D-APP-39 app-dev-only
+    staging authority and under newer owner-directed manual-only posture
+    `48f622c93`; explicit root-workflow direction required.
+  - Deltas: `_LATEST.md` still says D-APP-45 AWAITING_RULING; live register says
+    D-APP-45..52 RULED. Standing workplan F-APP-1 wording predates D-APP-44;
+    live ruling/active queue govern.
+  - Checks: self-check pass; full practitioner-harness pytest pass; frontend
+    focused/full Vitest pass; typecheck pass; authority corpus status pass; git
+    diff check pass.
+  - Parked/next: PEC P4 requires owner-at-screen; ORN-10..13 remain VERIFIED /
+    READY; issuance/release/apply/live-binding hard fences unchanged.
+
+- **2026-07-10 — Receipt 2** (`ORN-01` root-workflow authority granted and consumed).
+  - Accepted owner direction (2026-07-10, in-session, Ryan Tufts): "For ORN-01
+    you are permitted to modify repo-root as specified."
+  - Upstream: Receipt 1 and active
+    `plans/PLAN_2026-06-21_inspection_orphan_remediation.md`; derivative-package
+    status unchanged and no authority-corpus document changed.
+  - Executed: repo-root `.github/workflows/harness-premerge.yml` now runs on
+    relevant pull requests with the stub provider and no paid secret or Claude
+    CLI; it enforces typecheck, full Vitest, instruction-root integrity, and the
+    release-quality wrapper.
+  - Boundary: CI uses a temporary project root outside the immutable
+    instruction-root fixture; the workflow-contract regression pins this
+    containment requirement and the four enforced gates.
+  - Gate outcome: ORN-01 DONE. Section 8 premerge, release-quality, and
+    instruction-root-integrity summaries are verified separately; this is CI
+    plumbing and not a release-readiness claim.
+  - Checks: local release-quality wrapper pass with premerge not skipped;
+    Section 8 and Section 9 pass; workflow contract and typecheck pass; CI
+    fixture integrity pass.
+  - Handoff: ORN-10..13 remain VERIFIED / READY; PEC P4 still requires
+    owner-at-screen; issuance/release/apply/live-binding hard fences unchanged.
+
+- **2026-07-10 — Receipt 3** (inspection-orphan queue exhausted).
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in
+    with subagents where warranted."
+  - Start/upstream: clean synchronized `b001bd247`; Receipt 2; no open or
+    newer D-APP register row; active queue recomputed from the live plan.
+  - Executed: ORN-13 `6e3f4b5b4`; ORN-10 `da5a8f803`; ORN-11
+    `9f8f5aae4`; ORN-12 `d2f1cb7ff`; all were independently verified before
+    disjoint implementation and CHANGE closeout.
+  - Gate outcome: queue CLOSED — ORN-01..05 and ORN-07..13 DONE; ORN-06
+    DROPPED as already closed; no eligible row remains and no successor queue
+    is inferred.
+  - Checks: full frontend Vitest/typecheck pass; 16-ID Section 9 and unskipped
+    release-quality pass; secret scan pass; self-check and full practitioner
+    pytest pass; git diff check pass.
+  - Delta: `_LATEST.md` still labels the now-exhausted remediation plan ACTIVE;
+    live plan rows/status and this receipt govern discovery.
+  - Parked: PEC P4 requires owner-at-screen; issuance, release/distribution,
+    provider expansion, and live/apply integration retain their owner gates.
+
+- **2026-07-10 — Receipt 4** (post-closure discovery; coordination repair; D-APP-53 slate).
+  - Start: clean `61d70bdb0` = `main` = `origin/main`; worktree branch
+    `claude/app-dev-loop-post-orn-2026-07-10`; newest prior receipt Receipt 3.
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in with
+    subagents where warranted. Use only `fable` models, contrary to your loop
+    instructions. Create a new worktree before you set off and start a branch
+    for your work."
+  - Live gates: D-APP-01..52 all RULED, no open row; ORN queue CLOSED; fan-out
+    discovery confirmed every ruled tranche landed (two D-APP-50 residuals stay
+    descriptor-only per their own ruling, pending piping transport soundness).
+  - Executed (branch-first + PR #155; no self-merge): guidance-surface repair
+    per the `_COORDINATION.md` correction rule (`_LATEST.md` lean rewrite;
+    `_COORDINATION.md` queue/ceiling/intake lines; ADQ plan header aligned to
+    its own §9); D-APP-53 successor-queue PROPOSAL packet + AWAITING_RULING row.
+  - Gate outcome: all remaining development work is owner-shaped — slate is
+    D-APP-53 (Options A–E, non-binding rec. A); D-APP-52 live-LLM demo and PEC
+    P4 stay owner-gated; hard fences unchanged. Loop parks pending ruling.
+  - Checks: worktree self-check exit 0; practitioner pytest 263 passed/1
+    skipped; corpus v5 no drift; frontend gates green on main (typecheck pass;
+    Vitest 667/4 skipped); frontend untouched by this tranche.
+  - Delta (external state): uncommitted main-tree deletions of
+    `projects/chirality-governance/**` trip the live-baseline WARN pin (6→7)
+    when pytest runs there; clean-tree runs pass — not repaired by this loop.
