@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v5",
+  "current_version": "v6",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -83,6 +83,22 @@
         "docs/CONTRACT.md": "2f52a24cee9badd4ae21347195d1e7d54739bbf41929d1da535e25429d2923b4",
         "docs/SPEC.md": "2a63277adade281c0540e18c001bf607978e89e8b6876f50d00a2ea139701913",
         "docs/TYPES.md": "aed33a0f059701be171eedd25caeab6b1530b4cf7e7c1addefe14d29f01684fa",
+        "docs/PLAN.md": "6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98",
+        "docs/PRD.md": "ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd",
+        "AGENT_SOFTWARE_DECOMP.md": "4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab",
+        "AGENT_DOMAIN_ENGINE.md": "ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95"
+      }
+    },
+    {
+      "version": "v6",
+      "date": "2026-07-11",
+      "binding_commit": "a9fb1af4a50e681fdca64554007400e7349af783",
+      "reason": "Lifecycle-semantics amendment: SPEC \u00a74.2-4.4 (frozen-candidate CHECKING, reversal + governed scope-change transitions, layered entry conditions, ## Remaining definition) and TYPES \u00a75 alignment, per owner direction 2026-07-11 (loop Receipt 10)",
+      "hashes": {
+        "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
+        "docs/CONTRACT.md": "2f52a24cee9badd4ae21347195d1e7d54739bbf41929d1da535e25429d2923b4",
+        "docs/SPEC.md": "cbca612e6a4e390e36ca55da0f9381491f6b9f582e64c36232edd517dc1f8611",
+        "docs/TYPES.md": "bb4af418f577c3dff12114ab100070de50801bc7e0f94221635b0a171a736b87",
         "docs/PLAN.md": "6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98",
         "docs/PRD.md": "ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd",
         "AGENT_SOFTWARE_DECOMP.md": "4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab",
