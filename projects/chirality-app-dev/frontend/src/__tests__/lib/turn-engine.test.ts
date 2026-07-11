@@ -192,7 +192,8 @@ describe('TurnEngine', () => {
         model: 'claude-engine-test',
         delegatedSubagents: []
       }),
-      undefined
+      undefined,
+      expect.stringMatching(/^turn_/)
     );
     expect(sessionManager.save).toHaveBeenCalledWith(
       session.sessionId,
@@ -205,7 +206,9 @@ describe('TurnEngine', () => {
   });
 
   it('owns same-session turn locking outside the route', async () => {
-    const { engine } = createTurnEngine();
+    const { engine, agentSdkManager } = createTurnEngine();
+    const cancel = vi.fn(async (_sessionId: string) => undefined);
+    Object.assign(agentSdkManager, { cancel });
 
     const runningTurn = await engine.runTurn({
       sessionId: session.sessionId,
@@ -223,6 +226,8 @@ describe('TurnEngine', () => {
     });
 
     await runningTurn.cancel();
+    expect(cancel).toHaveBeenCalledWith(session.sessionId);
+    expect(agentSdkManager.interrupt).not.toHaveBeenCalled();
     const recoveryTurn = await engine.runTurn({
       sessionId: session.sessionId,
       message: 'after cancel'

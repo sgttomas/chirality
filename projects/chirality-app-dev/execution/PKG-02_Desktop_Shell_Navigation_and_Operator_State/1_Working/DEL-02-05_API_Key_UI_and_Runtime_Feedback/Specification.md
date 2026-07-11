@@ -35,7 +35,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-02-05 row; `docs/PRD
 | DEL-02-05-R07 | UI error handling must preserve browser-facing SSE compatibility for `turn:error` and `process:exit` outcomes. | P0 | `docs/SPEC.md` Section 11; `docs/TYPES.md` Section 7.4 |
 | DEL-02-05-R08 | UI surfaces must not treat API keys, runtime logs, UI state, SDK transcripts, or chat drafts as authoritative project truth. | P0 | `docs/DIRECTIVE.md` Project Truth sections; `docs/TYPES.md` Section 1.7; `docs/CONTRACT.md` K-FS-1 and K-KEY-1 |
 | DEL-02-05-R09 | Any user-facing provider/SDK error detail exposed by this UI must be redacted for secrets. | P0 | `docs/PRD.md` FR-075 and NFR-002; `docs/CONTRACT.md` K-EVENT-6 |
-| DEL-02-05-R10 | ASSUMPTION: This UI slice consumes typed runtime/provider errors produced by PKG-03/PKG-04/PKG-05 implementations rather than defining the canonical taxonomy itself. | TBD | `_CONTEXT.md` Exclusions; decomposition package boundaries |
+| DEL-02-05-R10 | This UI slice MUST consume the product-owned `HarnessErrorType` from `@chirality/harness-contract` and MUST NOT redefine the canonical runtime taxonomy; provider-native errors remain adapter metadata. | P1 | `frontend/packages/harness-contract/src/types.ts`; `frontend/packages/harness-contract/src/errors.ts`; `Evidence_ORN-08_Runtime_Error_Taxonomy_Ownership.md` |
 
 ## Standards
 
@@ -59,7 +59,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-02-05 row; `docs/PRD
 | DEL-02-05-R07 | SSE/turn UI test confirms `turn:error` and terminal `process:exit` are handled without renaming browser events. |
 | DEL-02-05-R08 | Static or integration check confirms API key UI state is local convenience state and not written to deliverable/project truth files. |
 | DEL-02-05-R09 | Redaction fixture verifies visible/logged error strings do not expose API keys. |
-| DEL-02-05-R10 | Human or architecture review confirms taxonomy ownership once PKG-03/PKG-04/PKG-05 runtime contracts are finalized. |
+| DEL-02-05-R10 | Contract/import review confirms runtime, adapter, API, and UI layers use the canonical harness-contract error type; representative error-display, route, adapter, and mapper tests remain green. |
 
 ## Documentation
 

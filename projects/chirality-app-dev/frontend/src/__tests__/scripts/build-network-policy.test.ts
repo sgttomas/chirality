@@ -47,6 +47,11 @@ describe('build network policy hardening', () => {
     expect(mainSource).toContain("'127.0.0.1'");
     expect(mainSource).toContain("'[::1]'");
     expect(mainSource).toContain('Blocked renderer outbound request by network policy');
+    expect(mainSource).toContain('destination: summarizeRendererRequestDestination(details.url)');
+    expect(mainSource).toContain('hostname: parsed.hostname');
+    expect(mainSource).toContain('port: parsed.port || null');
+    expect(mainSource).toContain('protocol: parsed.protocol');
+    expect(mainSource).not.toContain('url: details.url');
   });
 
   it('supports an explicit scripted agentSdk network proof mode without broadening egress', async () => {

@@ -27,6 +27,7 @@ type ActiveTurnState = {
   abortController: AbortController;
   query?: Query;
   interrupted: boolean;
+  cancelled: boolean;
   permissionChannel?: SessionPermissionChannel;
 };
 
@@ -108,18 +109,32 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     activeTurn.query?.close();
   }
 
+  async cancel(sessionId: string): Promise<void> {
+    const activeTurn = this.activeTurns.get(sessionId);
+    if (!activeTurn) {
+      return;
+    }
+
+    activeTurn.cancelled = true;
+    activeTurn.abortController.abort();
+    await activeTurn.query?.interrupt().catch(() => undefined);
+    activeTurn.query?.close();
+  }
+
   startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
   startTurn(
     session: SessionRecord,
     message: string,
     opts: ResolvedOpts,
-    contentBlocks?: ContentBlock[]
+    contentBlocks?: ContentBlock[],
+    suppliedTurnId?: string
   ): AsyncIterable<UIEvent>;
   async *startTurn(
     inputOrSession: AgentEngineRunInput | SessionRecord,
     message?: string,
     opts?: ResolvedOpts,
-    contentBlocks?: ContentBlock[]
+    contentBlocks?: ContentBlock[],
+    suppliedTurnId?: string
   ): AsyncIterable<UIEvent> {
     const input =
       'session' in inputOrSession
@@ -133,11 +148,12 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     const abortController = new AbortController();
     const activeTurn: ActiveTurnState = {
       abortController,
-      interrupted: false
+      interrupted: false,
+      cancelled: false
     };
     this.activeTurns.set(input.session.sessionId, activeTurn);
     let restoreSdkApiKey: (() => void) | undefined;
-    const turnId = `turn_${randomUUID()}`;
+    const turnId = suppliedTurnId ?? `turn_${randomUUID()}`;
 
     // D-APP-25 manager-lifecycle bridging. `turn.accepted` / `turn.started` are
     // emitted before the SDK reports session:init, so we hold their bridged
@@ -291,6 +307,14 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
           break;
         }
 
+        if (activeTurn.cancelled) {
+          yield {
+            type: 'process:exit',
+            data: { exitCode: 130, interrupted: false }
+          };
+          return;
+        }
+
         if (activeTurn.interrupted) {
           yield* emitAndBridge('interruption.completed', { provider: 'claude-agent-sdk' });
           yield* emitAndBridge('turn.interrupted', { provider: 'claude-agent-sdk' });
@@ -360,6 +384,14 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         };
       }
     } catch (error) {
+      if (activeTurn.cancelled) {
+        yield {
+          type: 'process:exit',
+          data: { exitCode: 130, interrupted: false }
+        };
+        return;
+      }
+
       if (activeTurn.interrupted || abortController.signal.aborted) {
         yield* emitAndBridge('interruption.completed', { provider: 'claude-agent-sdk' });
         yield* emitAndBridge('turn.interrupted', { provider: 'claude-agent-sdk' });

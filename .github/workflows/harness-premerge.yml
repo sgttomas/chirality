@@ -1,21 +1,14 @@
 name: Harness Pre-merge Validation
 
 on:
-  # Rescoped 2026-07-04 (owner-directed): manual-only. This job runs
-  # PR-authored code (npm ci, boots the app, runs the mutable harness) with
-  # ANTHROPIC_API_KEY in env, so a pull_request trigger exposes a paid key to
-  # any same-repo PR's code (exfiltration surface). It is also not a required
-  # gate (private repo, no branch protection) and its substance runs locally +
-  # under the governance-harness workflow. Two prerequisites are also unmet: no
-  # ANTHROPIC_API_KEY secret is configured, and no step installs the `claude`
-  # CLI the "Verify CI prerequisites" step requires — so any automatic run
-  # fails regardless. Restore an automatic trigger (e.g. push: branches:[main],
-  # or pull_request scoped to the frontend paths) only after wiring a protected
-  # Environment secret + a claude-CLI install step.
-  #
-  # Prior scope note (2026-07-01): the unscoped trigger + pre-monorepo paths
-  # (frontend/ at repo root) made it fail on every PR after the monorepo
-  # migration moved the frontend under projects/chirality-app-dev/.
+  pull_request:
+    paths:
+      - ".github/workflows/harness-premerge.yml"
+      - "projects/chirality-app-dev/**"
+      - "agents/**"
+      - "AGENTS.md"
+      - "README.md"
+      - "PROFESSIONAL_ENGINEERING.md"
   workflow_dispatch:
 
 permissions:
@@ -25,9 +18,11 @@ jobs:
   harness-premerge:
     name: Harness pre-merge
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       HARNESS_BASE_URL: http://127.0.0.1:3000
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      HARNESS_PROJECT_ROOT: ${{ runner.temp }}/chirality-harness-workroot
+      CHIRALITY_HARNESS_PROVIDER: stub
 
     steps:
       - name: Checkout
@@ -40,74 +35,115 @@ jobs:
           cache: npm
           cache-dependency-path: projects/chirality-app-dev/frontend/package-lock.json
 
-      - name: Verify CI prerequisites
-        run: |
-          if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
-            echo "Missing ANTHROPIC_API_KEY secret." >&2
-            exit 1
-          fi
-
-          if ! command -v claude >/dev/null 2>&1; then
-            echo "Claude CLI is required on PATH for harness validation." >&2
-            exit 1
-          fi
-
-          claude --version
-
       - name: Install frontend dependencies
+        run: npm ci
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Typecheck
+        run: npm run typecheck
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Full Vitest suite
+        run: npm run test -- --testTimeout=60000
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Prepare instruction-root integrity fixture
+        shell: bash
         run: |
-          cd projects/chirality-app-dev/frontend
-          npm ci
+          set -euo pipefail
+          REPO_ROOT="${GITHUB_WORKSPACE}"
+          FRONTEND="${REPO_ROOT}/projects/chirality-app-dev/frontend"
+          BUNDLE_ROOT="${RUNNER_TEMP}/chirality-instruction-root-fixture"
+          SDK_PLATFORM="claude-agent-sdk-linux-$(node -p 'process.arch')"
+
+          rm -rf "${BUNDLE_ROOT}"
+          mkdir -p \
+            "${BUNDLE_ROOT}/agents" \
+            "${BUNDLE_ROOT}/docs" \
+            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk" \
+            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/${SDK_PLATFORM}"
+
+          cp "${REPO_ROOT}/AGENTS.md" "${REPO_ROOT}/README.md" \
+            "${REPO_ROOT}/PROFESSIONAL_ENGINEERING.md" "${BUNDLE_ROOT}/"
+          cp "${REPO_ROOT}"/agents/AGENT_*.md "${BUNDLE_ROOT}/agents/"
+          cp \
+            "${REPO_ROOT}/projects/chirality-app-dev/docs/DIRECTIVE.md" \
+            "${REPO_ROOT}/projects/chirality-app-dev/docs/CONTRACT.md" \
+            "${REPO_ROOT}/projects/chirality-app-dev/docs/SPEC.md" \
+            "${REPO_ROOT}/projects/chirality-app-dev/docs/TYPES.md" \
+            "${REPO_ROOT}/projects/chirality-app-dev/docs/PLAN.md" \
+            "${REPO_ROOT}/projects/chirality-app-dev/docs/WHAT-IS-AN-AGENT.md" \
+            "${BUNDLE_ROOT}/docs/"
+          cp \
+            "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/package.json" \
+            "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs" \
+            "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/manifest.json" \
+            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/"
+          cp \
+            "${FRONTEND}/node_modules/@anthropic-ai/${SDK_PLATFORM}/package.json" \
+            "${FRONTEND}/node_modules/@anthropic-ai/${SDK_PLATFORM}/claude" \
+            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/${SDK_PLATFORM}/"
+
+      - name: Instruction-root integrity
+        run: >-
+          npm run instruction-root:integrity --
+          --root-files-root "${GITHUB_WORKSPACE}"
+          --agents-root "${GITHUB_WORKSPACE}/agents"
+          --docs-root "${GITHUB_WORKSPACE}/projects/chirality-app-dev/docs"
+          --bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture"
+        working-directory: projects/chirality-app-dev/frontend
 
       - name: Start frontend server
         run: |
-          cd projects/chirality-app-dev/frontend
-          nohup npm run dev -- --hostname 127.0.0.1 --port 3000 >/tmp/chirality-harness-dev.log 2>&1 &
+          mkdir -p "${HARNESS_PROJECT_ROOT}"
+          nohup npm run dev:next -- --hostname 127.0.0.1 --port 3000 \
+            >/tmp/chirality-harness-dev.log 2>&1 &
           echo $! >/tmp/chirality-harness-dev.pid
+        working-directory: projects/chirality-app-dev/frontend
 
       - name: Wait for harness API readiness
+        shell: bash
         run: |
+          set -euo pipefail
           for attempt in $(seq 1 90); do
             status="$(curl -sS -o /tmp/harness-ready.json -w "%{http_code}" --get \
-              --data-urlencode "projectRoot=${GITHUB_WORKSPACE}/projects/chirality-app-dev" \
+              --data-urlencode "projectRoot=${HARNESS_PROJECT_ROOT}" \
               "${HARNESS_BASE_URL}/api/harness/session/list" || true)"
 
             if [ "${status}" = "200" ]; then
               exit 0
             fi
-
             sleep 2
           done
 
           echo "Harness API did not become ready at ${HARNESS_BASE_URL}." >&2
-          if [ -f /tmp/chirality-harness-dev.log ]; then
-            tail -n 200 /tmp/chirality-harness-dev.log || true
-          fi
+          tail -n 200 /tmp/chirality-harness-dev.log || true
           exit 1
 
-      - name: Run harness pre-merge wrapper
-        run: |
-          cd projects/chirality-app-dev/frontend
-          npm run harness:validate:premerge
+      - name: Release-quality wrapper
+        run: npm run validate:release-quality
+        working-directory: projects/chirality-app-dev/frontend
 
-      - name: Verify stable summary artifact
+      - name: Verify stable summaries
+        shell: bash
         run: |
-          test -f projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
+          set -euo pipefail
+          node -e 'const fs=require("fs"); for (const [p,s] of [["projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json","pass"]]) { const value=JSON.parse(fs.readFileSync(p,"utf8")); if (value.status!==s) throw new Error(`${p}: expected ${s}, got ${value.status}`); }'
 
-      - name: Upload Section 8 summary artifact
+      - name: Upload validation summaries
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: harness-section8-summary
-          path: projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
-          if-no-files-found: error
+          name: harness-validation-summaries
+          path: |
+            projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
+            projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json
+            projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json
+          if-no-files-found: warn
 
       - name: Print frontend server logs on failure
         if: failure()
-        run: |
-          if [ -f /tmp/chirality-harness-dev.log ]; then
-            tail -n 200 /tmp/chirality-harness-dev.log || true
-          fi
+        run: tail -n 200 /tmp/chirality-harness-dev.log || true
 
       - name: Stop frontend server
         if: always()

@@ -6,6 +6,100 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-10 - Inspection-orphan queue resumed (`ORN-01`, `ORN-02`, `ORN-06`)
+
+The live monorepo recheck initially blocked `ORN-01` because GitHub executes repo-root
+`.github/workflows/harness-premerge.yml`, while the nested app-dev workflow is inert and the D-APP-39
+queue discipline permitted staging only `projects/chirality-app-dev/**`. Explicit owner direction on
+2026-07-10 permitted that repo-root modification. The live workflow now runs on relevant pull requests
+without a paid secret or Claude CLI, uses the deterministic stub provider and an external temporary
+project root, and enforces typecheck, full Vitest, instruction-root integrity, and the release-quality
+wrapper. Its three summaries remain distinct artifacts: Section 8 premerge, release-quality, and
+instruction-root-integrity. This closes CI plumbing only and makes no release-readiness claim.
+
+Completed `ORN-02`: Electron renderer-egress diagnostics now retain only protocol, hostname, and port
+for blocked destinations. Raw URL userinfo, path, query, and fragment are no longer logged. The existing
+network-policy source regression pins the bounded diagnostic and rejects `url: details.url`.
+
+Completed `ORN-03`: recreated `docs/ui/UI_POLISH_EXECUTION_PLAN.md` as a concise, non-authoritative
+evidence checklist grounded in PRD FR-006, D-APP-36, and the current loop-first/right-sidebar design.
+The live DEL-02-04 kit now routes REQ-014 verification to that checklist and removes false missing-source
+and stale REF-006 mismatch wording. Checklist restoration makes the requirement verifiable; it does not
+mark REQ-014 passed without current component/render and risk-based browser evidence.
+
+The verify-first pass dropped `ORN-06` as already closed: the SDK options builder unconditionally
+installs both `canUseTool` and hooks, with existing tests covering the invariant and `Write` + `Bash` in
+`workspaceWrite`. Other `ORN-05`..`ORN-13` dispositions remain in the active queue.
+
+Completed `ORN-04`: dependency-register writes now inspect the `Dependencies.csv` leaf before reading
+or writing it, allow an absent leaf, and reject both live and dangling symlinks with a typed 403. Direct
+PUT regressions prove the link is preserved and external state remains unchanged. The generic atomic
+writer remains policy-neutral; this is the queue's recorded defense-in-depth repair, not an external-write
+escape claim.
+
+Completed `ORN-05` after live verification: `/api/working-root/validate` now reuses the same
+read/write-access and instruction-root-overlap validator as session creation, along with the same typed
+harness error contract. Route regressions cover valid, instruction-root-conflicting, missing, and
+relative project roots; the route performs no write probe or project mutation.
+
+Completed `ORN-07` after live verification: dependency serialization now compares the next register
+against `previousRows` and rejects silent disappearance with the precise `MISSING_RETIRED_ROW` error,
+listing every omitted dependency ID. Existing rows remain writable when explicitly retained as
+`Status=RETIRED`, matching the established v3.1 schema and DEL-07-05 contract.
+
+Completed `ORN-08` after live reconciliation: `HarnessErrorType` and `HarnessError` in
+`@chirality/harness-contract` are the canonical product-owned taxonomy; runtime, adapter, API, session,
+and UI roles are recorded in DEL-02-05 evidence without changing the public union or excluded dependency
+rows. `ApiKeySettings` now delegates rendering to a pure view, with seven component-render cases covering
+outside-Electron fallback, UI/env/none status, unavailable encryption, saving/disabled controls, visible
+error feedback, and absence of stored-key material from status output.
+
+Completed `ORN-09`: transport disconnect now records non-user `turn.cancelled` with a stable turn ID,
+uses a distinct best-effort manager-cancel path, and releases the turn lock; explicit operator interrupt
+remains `turn.interrupted` under D-APP-40. Redacted `message.accepted` user text is persisted before
+provider iteration and remains replayable beside terminal state even with a malformed trailing JSONL
+record. The DEL-03-03/04 route/SSE fixture index maps current route and terminal evidence without changing
+the exported manager interface or public UI event names.
+
+Completed `ORN-13`: the CODEV-001 first-adapter probe record now points to the landed ADQ-04 runtime
+reconciliation, ADQ-15 unsigned local packaged subprocess proof, and current SDK option-shape and
+message-mapper fixtures. Stale packaging and adoption cells now distinguish proven scripted no-live
+packaged integration from D-APP-18's owner-ruled, landed default-provider implementation. Exact live
+subprocess version, payload sequence, packaged turn parity, session/transcript acceptance, dependency
+closure, issuance, and release posture remain explicit residuals outside this evidence refresh.
+
+Completed `ORN-10`: Section 9 now has a governed machine-readable manifest covering the exact 16 IDs
+in PRD/SPEC, including source references, executable evidence, warnings, and blockers. The runner
+validates that manifest, executes the previously omitted reliance-boundary and landed domain-profile
+checks, and emits a stable manifest linked from its summary. Release-quality consistency validation
+now enforces the complete inventory, metadata, and linkage. Existing mapper and session-event fixtures
+already close the compaction lifecycle/replay subpart, so no duplicate fixture was added. Section 9's
+report/evidence posture and all release, issuance, and professional-claim fences remain unchanged.
+
+Completed `ORN-11`: DEL-05-03 now carries a consolidated runtime redaction-path matrix mapping every
+live configured-key boundary to its enforcing path and exact focused fixture. New tests pin raw and
+encoded variants, overlapping keys, nested structures, and one secret-bearing SDK hook diagnostic from
+mapping through JSONL persistence, replay, and browser display. No leak or production-code repair was
+found; arbitrary-secret registries and withheld-sensitive policy remain outside this proof tranche.
+
+Completed `ORN-12`: a React component interaction test now proves failed session creation restores the
+exact draft and attachment, displays the typed error, re-enables sending, closes streaming state, and
+removes optimistic transcript rows. The production failure behavior is unchanged; only the React 18
+test renderer and its types were added to exercise the real `ChatPanel` interaction boundary.
+
+The required verify-first pass is complete for every formerly REPORTED row. No executable READY row
+remains in the inspection-orphan queue, and no false positive beyond `ORN-06` was dropped.
+
+The inspection-orphan remediation queue is exhausted and closed: twelve rows are complete and ORN-06
+was dropped as already closed. No successor queue is inferred. Further app-dev development requires a
+new owner-adopted roadmap or explicit human direction; PEC P4 and the issuance, release/distribution,
+provider-expansion, and live/apply integration gates remain parked under their owning workflows.
+
+Validation: focused network-policy Vitest passed; full frontend Vitest passed; frontend typecheck
+passed; authority corpus `v5` reported no drift after the doc-only ORN-03 change; referenced checklist
+paths exist; `git diff --check` passed. No release, distribution, issuance, provider expansion,
+live-binding, or professional claim was made.
+
 ## 2026-06-22 - PKG-10 domain-engine canon conformance completed
 
 Completed a doc-only PKG-10 governance-conformance tranche under D-APP-45. Added framework
