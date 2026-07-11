@@ -9,7 +9,7 @@
 ## Remaining
 - Advance the R7 / domain-engine next step per the ADQ-17 amendment brief (plans/artifacts/adq17_future_r7_amendment_brief_2026-06-21.md; apply-class exposure excluded per D-APP-50 ruling; see also DEL-10-02..DEL-10-05) (source: D-APP-53 packet §3 Option D) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only) (stage-gated: F-APP-3 / tier-0 D-T0-08 stepwise lane)
 - Flip mcp__chirality__domain_headless_preview_run from descriptor-only to live — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping DEC-064 / TP-RUNNER-014 headless_preview_runner entrypoint + transport soundness)
-- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision <commit SHA>) (gated: D-APP-55)
+- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents present and non-empty)
@@ -21,3 +21,4 @@
 - 2026-07-10 - Dependency-row reconciliation executed under the D-APP-53 Option A ruling (see Evidence_D53A_Dependency_Reconciliation_2026-07-10.md); Remaining updated to the residual gated items; no state change.
 - 2026-07-11 - State set to IN_PROGRESS (HUMAN) [Owner-ruled lifecycle rebaseline D-APP-54 2026-07-11: administrative correction superseding the D-APP-19 inspection-admission convention; prior approvals and history preserved (execution/_Coordination/_DECISIONS/D-APP-54_RULING_2026-07-11.md).]
 - 2026-07-11 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-55 packet; no state change.
+- 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
