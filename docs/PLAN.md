@@ -61,7 +61,7 @@ planning surface.
 | Theme | Status |
 |---|---|
 | Governance harness (practitioner bench tool) | RULED + FIRST PR LANDED — D-GOV-01..07 ruled 2026-07-01 (SHA-bound at publication commit 82a35c545); plan of record: `governance_harness_plan_v3_2026-07-01`; first PR merged 2026-07-01 (PR #1, commit 71a67d0b1: `tools/practitioner_harness/` + `write_status.sh` guard); next slices per plan §Roadmap Phases 2–5 at owner direction |
-| Root governance ratification | ACTIVE — sequenced per D-GOV-05 (minimal harness basis first; full DIRECTIVE/SPEC/TYPES/CONTRACT ratification on its own track) |
+| Root governance ratification | COMPLETE — owner ratification 2026-07-11 of the full root canon (DIRECTIVE/SPEC/TYPES/CONTRACT status blocks; D-GOV-09 register record), completing the track D-GOV-05 sequenced (minimal harness basis first, ruled 2026-07-01; full ratification followed on its own track); harness label propagation landed with the lifecycle-semantics amendment PR |
 | Tier-0 domain-engine integration (OpenPipeStress) | ACTIVE — profile ADOPTED (affirmed by D-GOV-06); surface-cleanup slice directed; live-build conditions per `_DomainEngines/` records |
 
 Unsplit backlog: History trailer grammar (rides D-GOV-05); domain-shape

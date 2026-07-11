@@ -19,6 +19,7 @@ the records govern.
 | D-GOV-06 | `open_pipe_stress` current truth | **RULED: affirm ADOPTED** per the 2026-06-21 Gate-2 ruling; CHANGE-published cleanup of the six contradicting surfaces directed | Resolves the drift exemplar; first live self-check fixture |
 | D-GOV-07 | Domain gate SHA binding | **RULED: as recommended** — bind to content SHA-256 *and* git SHA; existing acceptances grandfathered WARN | Deferred domain-shape verifier prerequisite |
 | D-GOV-08 | Epistemic vocabulary operationalization | **RULED: Option B** — warrant ladder audit-time diagnostic; FACT optional; TYPES §10.5 + thesis ch.5 corrections directed; review-severity enum registered | `TYPES.md` §10.5 / thesis ch. 5 corrections at ruling; registration of the review-finding severity enum; `evidence-check` semantics |
+| D-GOV-09 | Full root governance ratification | **RULED 2026-07-11: owner act transcribed** — all root `docs/` governance ratified in full (executed in PR #173, merge `73a0cb79b`); completes the D-GOV-05 "full ratification on its own track" track; D-GOV-05 subsumed, not amended | Harness ratification-label propagation (PR #174, all 27 K-* RATIFIED); removal of the automatic DRAFT advisory cap (severity still governed by D-GOV-02); amendments of ratified canon under owner direction |
 
 Note (2026-07-01): with D-GOV-08 the register extends to root-governance
 vocabulary decisions framed by the harness family; the RULED banner above
