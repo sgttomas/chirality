@@ -27,6 +27,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - [WARNING] PRD_HASH_MISMATCH: `_REFERENCES.md` reports REF-006 expected SHA does not match observed SHA. Existing source files treat this as a warning, not a blocker.
 - [WARNING] SOURCE_CONFLICT_SUPERSEDED: earlier four-document initialization text said `Dependencies.csv` must not be created yet; current human dependency-recording ruling superseded that deferral for this run.
 - Conservative extraction emitted explicit anchors and one explicit execution interface only. Implementation-surface prerequisites remain `TBD` where not directly stated as accepted dependency edges.
+- 2026-07-10 correction (D-APP-53 reconciliation): the 2026-05-20 `[WARNING] PRD_HASH_MISMATCH` above is stale and no longer describes live state — `_REFERENCES.md` line 12 now records REF-006 (`docs/PRD.md`) expected SHA `ac35fba4...` matching observed SHA, Status MATCH. The historical warning is retained above for provenance; it should not be relied on.
 
 ## Extracted Dependency Register
 
@@ -57,6 +58,7 @@ Structured register: `Dependencies.csv` v3.1
 ## Run History
 
 - 2026-05-20 21:02 MDT — `TASK + dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, decomposition found and used at `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; warnings: PRD hash mismatch, superseded dependency deferral note; ACTIVE counts: ANCHOR 12, EXECUTION 1.
+- 2026-07-10 — D-APP-53 reconciliation (DRQ-05, `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md`): all 13 rows re-verified against live evidence and moved `SatisfactionStatus` TBD -> SATISFIED; 12 stale decomposition line pointers refreshed (+6 offset; PKG-09 anchor 350->269); stale PRD_HASH_MISMATCH warning corrected with dated note. Reconciliation record: `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md`. Linter PASS (13 rows, 0 errors, 0 warnings). No lifecycle transition; `_STATUS.md` untouched.
 
 ## Lifecycle Summary
 
@@ -67,4 +69,5 @@ Structured register: `Dependencies.csv` v3.1
 
 | SatisfactionStatus | Count |
 |---|---:|
-| TBD | 13 |
+| SATISFIED | 13 |
+| TBD | 0 |

@@ -32,6 +32,7 @@ TBD - no accepted dependency edges have been extracted yet.
   - `DEP-10-01-001` (IMPLEMENTS_NODE PKG-10): anchor verified structurally intact — `_CONTEXT.md` PackageID and decomposition §7/§8 PKG-10 both live; deliverable directory present under PKG-10.
   - `DEP-10-01-002` (TRACES_TO_REQUIREMENT SOW-066, future DomainEngineProfile compatibility): supporting evidence now exists — a concrete ADOPTED tier-0 profile instance (`_DomainEngines/profiles/open_pipe_stress.yaml`, D-T0-06) conforms to the canon this draft targets.
   - `DEP-10-01-003` (TRACES_TO_REQUIREMENT SOW-067, generic domain profile contract): supporting evidence now exists — framework canon `agents/AGENT_DOMAIN_ENGINE.md` @ `77a327727` (REF-008 pin) plus the result-schema refs published 2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`, `projects/chirality-piping/schemas/rule_check_run_result.schema.json`) narrow the contract's open hooks.
+- 2026-07-10 D-APP-53 reconciliation (plan `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` DRQ-06; authority `execution/_Coordination/_DECISIONS/D-APP-53_RULING_2026-07-10.md`, Option A): the 2026-07-02 annotate-only restriction above ("satisfaction judgment is a human call") is SUPERSEDED — the owner's D-APP-53 ruling authorizes governed direct satisfaction reconciliation. All three anchor rows re-verified live and moved `TBD -> SATISFIED` (`ProposedMaturity=SEMANTIC_READY`, `LastSeen=2026-07-10`). Hygiene: stale `TargetLocation` "§11" pointers on DEP-10-01-002/-003 repaired to "§9 Scope Ledger" (live section numbering). See `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md`. No lifecycle transition; `_STATUS.md` stays CHECKING (F-APP-4).
 
 ## Extracted Dependency Register
 
@@ -53,6 +54,7 @@ Generated: 2026-05-20 21:02
 | Timestamp | Mode | Strictness | Decomposition Path | Decomposition Status | Active Anchors | Active Execution | Warnings |
 |---|---|---|---|---|---:|---:|---|
 | 2026-05-20 21:02 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | located | 3 | 0 | Semantic/P3 skipped; PRD hash mismatch preserved; future-boundary implementation inference skipped; no explicit execution edges found |
+| 2026-07-10 | RECONCILIATION (D-APP-53) | n/a | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | located; anchors re-verified | 3 | 0 | 3 rows TBD -> SATISFIED; §11 TargetLocation pointers repaired; linter PASS 0/0 |
 
 ## Lifecycle Summary
 
@@ -63,4 +65,6 @@ Generated: 2026-05-20 21:02
 
 | SatisfactionStatus | Count |
 |---|---:|
-| TBD | 3 |
+| SATISFIED | 3 |
+
+(Synced to CSV state 2026-07-10, D-APP-53 reconciliation; previously TBD 3.)

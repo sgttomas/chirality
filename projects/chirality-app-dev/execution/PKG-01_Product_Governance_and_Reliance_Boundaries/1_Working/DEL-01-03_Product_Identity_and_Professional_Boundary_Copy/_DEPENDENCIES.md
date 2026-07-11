@@ -29,6 +29,7 @@ No downstream deliverable edge is accepted in the derivative register.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; existing `_SEMANTIC.md` output is invalid evidence and was not read or consumed.
 - Conservative extraction emitted only explicit anchors and explicit upstream information-flow prerequisites. No inferred cross-deliverable execution edges were emitted.
 - `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. Row `DEP-01-03-011` remains an active prerequisite until dependency/evidence disposition, but it is no longer blocked by a PRD hash mismatch.
+- 2026-07-10 (D-APP-53 reconciliation): all 12 open rows re-verified against the live tree and moved `TBD -> SATISFIED` under `PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` (DRQ-02). Anchor targets (PKG-01, SOW-071, SOW-074, OBJ-009, OBJ-010) confirmed in decomposition v3.2 with DEL-01-03 still listed; REF-001..REF-006 MATCH re-verified by live SHA-256 recompute; decomposition prerequisite present. Responsible-party/owner-authority TBD fields remain out of this queue's scope per the plan §3.5. See `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md`. Derivative evidence only; no lifecycle transition and no issuance.
 
 ## Extracted Dependency Register
 
@@ -62,6 +63,7 @@ Structured register: `Dependencies.csv` v3.1
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE counts |
 |---|---|---|---|---|---|
 | 2026-05-20T19:24:25-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | `SOURCE_HASH_MISMATCH` for REF-006 at extraction time; later reconciled by D-APP-38 corpus `v1`; `_SEMANTIC.md` ignored by ruling | ANCHOR 5; EXECUTION 7; TOTAL 12 |
+| 2026-07-10 (D-APP-53 reconciliation) | RECONCILE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` re-verified | none; `validate_dependencies.py` PASS (12 rows, 0 errors, 0 warnings) | ANCHOR 5; EXECUTION 7; TOTAL 12 |
 
 ## Lifecycle Summary
 
@@ -72,6 +74,6 @@ Structured register: `Dependencies.csv` v3.1
 
 | SatisfactionStatus | Count |
 |---|---:|
-| TBD | 12 |
+| SATISFIED | 12 |
 
-Closure state: dependency register created and schema-valid; satisfaction lifecycle remains `TBD` pending downstream FULL_GRAPH/cycle checks and any human closure decisions.
+Closure state: dependency register schema-valid and all 12 rows `SATISFIED` under the D-APP-53 reconciliation (2026-07-10). `ProposedMaturity` mirrors each row's `RequiredMaturity` (`TBD` at extraction) per the plan's maturity rule. This is derivative dependency evidence, not lifecycle closure; issuance-gate sign-off fields remain owner-gated.

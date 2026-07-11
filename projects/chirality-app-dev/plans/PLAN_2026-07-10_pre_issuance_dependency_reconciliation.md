@@ -1,6 +1,6 @@
 # PLAN - Pre-Issuance Dependency-Row Reconciliation
 
-**Status:** ACTIVE (governing queue). Adopted by the owner's D-APP-53 ruling (Option A, 2026-07-10).
+**Status:** CLOSED (executed 2026-07-10; DRQ-01..11 DONE; 89/100 rows SATISFIED, 11 left open with recorded gates — see closure report). Adopted by the owner's D-APP-53 ruling (Option A, 2026-07-10).
 **Persona:** WORKING_ITEMS
 **Authority basis:** `execution/_Coordination/_DECISIONS/D-APP-53_RULING_2026-07-10.md` (Option A, no
 riders); packet `D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md` §3 Option A; INSP-05 roadmap
@@ -65,17 +65,17 @@ execution time (recompute; do not trust this paragraph if the filesystem disagre
 
 | ID | Deliverable | Open rows | Extra scope | Status |
 |---|---|---:|---|---|
-| DRQ-01 | DEL-01-02 Reliance Boundary Register | 24 | Fix DEP-01-02-018 TargetLocation literal (Append-Only → Append_Only) | READY |
-| DRQ-02 | DEL-01-03 Product Identity and Professional Boundary Copy | 12 | Responsible-party TBD fields stay out of scope (§3.5) | READY |
-| DRQ-03 | DEL-01-04 Scope Boundary and Retired Scope Register | 13 | — | READY |
-| DRQ-04 | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | 7 | Repair stale DEP-04-01-006 HASH_MISMATCH note; sync `_DEPENDENCIES.md` summary with CSV (DEP-04-01-008 RETIRED); update stale `TBD_PROBE_ENVIRONMENT` warning | READY |
-| DRQ-05 | DEL-09-03 Unit and Integration Test Expansion | 13 | Refresh stale decomposition line pointers (+6 offset); retire stale PRD_HASH_MISMATCH warning | READY |
-| DRQ-06 | DEL-10-01 DomainEngineProfile Contract Draft | 3 | Supersede the 2026-07-02 annotate-only note (satisfaction mutation now authorized by D-APP-53) | READY |
-| DRQ-07 | DEL-10-02 Protected Path and Proposal Path Policy | 2 | Sync `_DEPENDENCIES.md` summary (DEP-10-02-004 RETIRED); DEP-10-02-005 stays open | READY |
-| DRQ-08 | DEL-10-03 OperationProposal Record and Human Gate Workflow | 8 | DEP-10-03-004 annotate-only (§3.5) | READY |
-| DRQ-09 | DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture | 8 | DEP-10-04-004/-006 annotate-only (§3.5); repair stale REF-006 note | READY |
-| DRQ-10 | DEL-10-05 Domain Boundary Notices and Solver Truth Separation | 10 | Repair stale REF-006 note | READY |
-| DRQ-11 | Repo-wide closure: v3.1 linter over all ten registers; fresh immutable `CLOSURE_*` DepClosure snapshot via `tools/coordination/analyze_dep_closure.py`; acceptance audit; update `DepClosure/_LATEST.md` only after audit | — | Snapshot discipline per `PLAN_COMPLETION_LOG.md` 2245–2248 | READY (after DRQ-01..10) |
+| DRQ-01 | DEL-01-02 Reliance Boundary Register | 24 | Fix DEP-01-02-018 TargetLocation literal (Append-Only → Append_Only) | DONE |
+| DRQ-02 | DEL-01-03 Product Identity and Professional Boundary Copy | 12 | Responsible-party TBD fields stay out of scope (§3.5) | DONE |
+| DRQ-03 | DEL-01-04 Scope Boundary and Retired Scope Register | 13 | — | DONE |
+| DRQ-04 | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | 7 | Repair stale DEP-04-01-006 HASH_MISMATCH note; sync `_DEPENDENCIES.md` summary with CSV (DEP-04-01-008 RETIRED); update stale `TBD_PROBE_ENVIRONMENT` warning | DONE |
+| DRQ-05 | DEL-09-03 Unit and Integration Test Expansion | 13 | Refresh stale decomposition line pointers (+6 offset); retire stale PRD_HASH_MISMATCH warning | DONE |
+| DRQ-06 | DEL-10-01 DomainEngineProfile Contract Draft | 3 | Supersede the 2026-07-02 annotate-only note (satisfaction mutation now authorized by D-APP-53) | DONE |
+| DRQ-07 | DEL-10-02 Protected Path and Proposal Path Policy | 2 | Sync `_DEPENDENCIES.md` summary (DEP-10-02-004 RETIRED); DEP-10-02-005 stays open | DONE |
+| DRQ-08 | DEL-10-03 OperationProposal Record and Human Gate Workflow | 8 | DEP-10-03-004 annotate-only (§3.5) | DONE |
+| DRQ-09 | DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture | 8 | DEP-10-04-004/-006 annotate-only (§3.5); repair stale REF-006 note | DONE |
+| DRQ-10 | DEL-10-05 Domain Boundary Notices and Solver Truth Separation | 10 | Repair stale REF-006 note | DONE |
+| DRQ-11 | Repo-wide closure: v3.1 linter over all ten registers; fresh immutable `CLOSURE_*` DepClosure snapshot via `tools/coordination/analyze_dep_closure.py`; acceptance audit; update `DepClosure/_LATEST.md` only after audit | — | Snapshot discipline per `PLAN_COMPLETION_LOG.md` 2245–2248 | DONE |
 
 ## 5. Validation gates (before PR)
 

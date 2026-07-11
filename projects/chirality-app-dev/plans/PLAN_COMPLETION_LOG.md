@@ -6,6 +6,28 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-10 - Pre-issuance dependency reconciliation queue executed (`DRQ-01`..`DRQ-11`)
+
+Under the owner's D-APP-53 ruling (Option A, 2026-07-10), the queue
+`plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` reconciled all 100 open dependency
+rows across the ten INSP-05-addendum-§5 deliverables (DEL-01-02/03/04, DEL-04-01, DEL-09-03,
+DEL-10-01..05). 89 rows moved to `SATISFIED`, each on a re-verified live-evidence pointer with a
+D-APP-53 citation; 11 rows were deliberately left open — five owner-gated/annotate-only
+(DEP-04-01-007 live-subprocess residual per D-APP-52; DEP-10-03-004/DEP-10-04-004 accepted-amendment
+judgment; DEP-10-04-006 ResponsibleParty) and six evidence-gated (DEP-04-01-010..013 handover
+consumption untraced; DEP-10-02-005 no glob/hook API; DEP-10-04-007 no adapter-manifest location;
+DEP-10-04-008 dischargeable against the fresh snapshot on re-judgment). No row was added, deleted, or
+retired; no `_STATUS.md` lifecycle transition occurred.
+
+Per-deliverable `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md` records hold the per-row
+bases and hygiene repairs (stale REF-006 hash-mismatch notes corrected everywhere with dated notes,
+two `_DEPENDENCIES.md` summaries resynced with their CSVs, DEL-09-03's twelve +6-offset decomposition
+pointers refreshed, DEP-01-02-018 path literal fixed). All ten registers pass the v3.1 linter clean.
+DRQ-11 produced the accepted snapshot
+`execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` (acyclic,
+`schema_invalid = 0`, structure unchanged vs predecessor) and updated `DepClosure/_LATEST.md`.
+This is dependency-closure evidence only: no issuance, release, provider, or domain-engine act.
+
 ## 2026-07-10 - Inspection-orphan queue resumed (`ORN-01`, `ORN-02`, `ORN-06`)
 
 The live monorepo recheck initially blocked `ORN-01` because GitHub executes repo-root
