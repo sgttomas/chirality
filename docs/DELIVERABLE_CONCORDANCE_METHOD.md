@@ -1,6 +1,6 @@
 # Deliverable Concordance Method
 
-Chirality AI Ltd. Date: 2026-07-11. Revision 0.
+Chirality AI Ltd. Date: 2026-07-11. Revision 1.
 
 **Status: DRAFT pending human ratification (K-AUTH-1).** This document is not
 accepted governance and is **non-binding**: while it is DRAFT, each project's
@@ -47,7 +47,11 @@ The normalized homes:
 | Lifecycle state | Deliverable-local `_STATUS.md`, human-gated |
 | Implementation truth | Source, tests, and build/validation artifacts |
 | Evidence | Immutable, dated, source-state-bound run artifacts |
-| Method and provenance | Plans — historical, never work-selection surfaces |
+| Shared method | This document, once ratified (DRAFT until then) |
+| Project adoption parameters and provenance | The project's own plan — historical record, never a work-selection surface |
+
+Executable work is never selected from the method or from plans — only from
+the owning deliverable's `## Remaining` (see §6).
 
 ## 3. Reconciliation is an epistemic operation
 
@@ -70,15 +74,23 @@ Core controlled dispositions (projects extend, never weaken): `ALIGNED`,
 
 Fixed epistemic guardrails: discovery is read-only and separated from repair
 (never edit the audit target while determining what it means); every evidence
-citation binds to the source state it actually evaluated; conflicts between
-live normative sources are recorded (`AUTHORITY_CONFLICT`), never resolved by
-agent precedence-invention; no agent disposition is ever represented as a
-human ruling; completion is an evidence-coherence state, never issuance,
-release readiness, or professional approval.
+citation binds to the source state it actually evaluated; named snapshots and
+prior evidence artifacts are provenance baselines, not current truth — a run
+resolves the live discovery pointer and re-verifies current state before
+relying on them; conflicts between live normative sources are recorded
+(`AUTHORITY_CONFLICT`), never resolved by agent precedence-invention; no agent
+disposition is ever represented as a human ruling; completion is an
+evidence-coherence state, never issuance, release readiness, or professional
+approval.
 
 ## 4. Lifecycle model
 
-Lifecycle states are **change regimes, not maturity grades**:
+Lifecycle states are **governed production and change-control regimes with
+maturity/readiness entry conditions; they are not percentage-complete
+scores**. Advancing `IN_PROGRESS` → `CHECKING` → `ISSUED` carries maturity
+meaning — each transition asserts readiness against declared entry
+conditions — while the states themselves define which changes are lawful and
+under what control:
 
 - `IN_PROGRESS` — ordinary edits permitted. The honest holding state whenever
   warranted open scope exists, however advanced the implementation.
@@ -89,17 +101,29 @@ Lifecycle states are **change regimes, not maturity grades**:
 - `ISSUED` — accepted baseline; changes only through the governed
   scope-change process.
 
-**Entry trigger:** a deliverable becomes a CHECKING candidate when its
-`## Remaining` is **warranted-empty** — empty, and a current evidence basis
-(a concordance pass or equivalent review bound to the candidate source state)
-certifies that the emptiness is warranted. The entry act is the owner
-declaring the checking basis and freezing the candidate. There are no
-disclosed-deferral carve-outs: any warranted Remaining item — owner-gated
-included — keeps the deliverable `IN_PROGRESS`; boundary adjustments happen
-through the decision register while `IN_PROGRESS` (rescope before freeze,
-never carve out during review). A failed check exits by reversal, its
-findings becoming Remaining items. Concordance is thus the process that makes
-`## Remaining` sections warranted — the path back to `CHECKING`.
+**Entry to `CHECKING` is layered**, not a single trigger:
+
+1. **Universal minimums (candidacy).** The deliverable's `## Remaining` is
+   **warranted-empty** — empty, and a current evidence basis (a concordance
+   pass or equivalent review bound to the candidate source state) certifies
+   that the emptiness is warranted. This is a necessary prerequisite — the
+   owner formulation of record names it the *primary* trigger — never the
+   complete entry criteria.
+2. **Candidate-specific checking basis.** Satisfaction of the declared review
+   basis appropriate to the deliverable's claims and risk. These criteria are
+   emergent: maturity feedback from real checks hardens into reusable ruled
+   profiles (ruled documentation surfaces, not predetermined checklists).
+   This method does not predetermine them.
+3. **Human declaration.** The owner declares the checking basis and freezes
+   the candidate; entry is a human act.
+
+There are no disclosed-deferral carve-outs: any warranted Remaining item —
+owner-gated included — keeps the deliverable `IN_PROGRESS`; boundary
+adjustments happen through the decision register while `IN_PROGRESS` (rescope
+before freeze, never carve out during review). A failed check exits by
+reversal, its findings becoming Remaining items. Concordance is thus the
+process that makes `## Remaining` sections warranted — the path back to
+`CHECKING`.
 
 **Rebaseline asymmetry:** demotion to `IN_PROGRESS` requires no criteria —
 only the absence of a current, accepted basis for the asserted state.
@@ -107,11 +131,12 @@ Promotion requires a contemporary declared basis. Lifecycle corrections are
 human-authorized administrative acts recorded through the register; they do
 not invalidate prior work or evidence, which is preserved as history.
 
-Checking-basis criteria are **layered and emergent**: a small universal entry
-condition set, a per-candidate declared basis assembled from the deliverable's
-nature and risk, and maturity feedback from real checks hardening into
-reusable profiles — profiles are ruled documentation surfaces, not
-predetermined checklists.
+**Canonical authority precedence.** This method does not amend any project's
+canonical lifecycle authority (e.g. its `SPEC`/`TYPES` surfaces or
+decomposition codifications). An adopting project runs under this lifecycle
+model only after its own separately ruled semantics amendments have merged to
+the shared mainline; until then, the project's current canonical semantics
+govern.
 
 ## 5. Program state model
 
@@ -134,6 +159,11 @@ ways, each with an existing home:
   register flip **land on the shared mainline before any dispatch** —
   concurrent sessions are mutually blind, and an owner act that exists only
   in one session's context is a governance fork waiting to happen.
+- The project plan has **no authority to activate or select work**; the
+  activation ruling may incorporate a **pinned revision** of the plan (a
+  commit SHA on the shared mainline) as the run's execution method. Bootstrap
+  items and the ruling record cite that pinned revision; later plan edits do
+  not change the method of an in-flight run absent a new ruling.
 - Executable per-deliverable work is seeded as gated `## Remaining` items in
   the owning deliverables and unlocked by the ruling's suffix flips; run-level
   phases execute directly under the ruling as ruled-program work.
@@ -157,3 +187,4 @@ document as the shared method.
 | Revision | Date | Change |
 |---|---|---|
 | 0 (DRAFT) | 2026-07-11 | Initial distillation from the two project concordance plans and the 2026-07-10/11 owner design session. Non-binding pending ratification after both R0 calibrations. |
+| 1 (DRAFT) | 2026-07-11 | Original-author review feedback incorporated on owner direction ("Consider this feedback. Incorporate what has merit."): lifecycle reformulated as governed regimes with maturity/readiness entry conditions; CHECKING entry restructured as layered (warranted-empty universal minimum, candidate-specific basis, human declaration); canonical-authority precedence note; normalization table splits shared method / project adoption record; pinned-revision activation formulation; snapshots-as-provenance-baselines guardrail. |
