@@ -76,3 +76,25 @@
     diff check pass.
   - Parked/next: PEC P4 requires owner-at-screen; ORN-10..13 remain VERIFIED /
     READY; issuance/release/apply/live-binding hard fences unchanged.
+
+- **2026-07-10 — Receipt 2** (`ORN-01` root-workflow authority granted and consumed).
+  - Accepted owner direction (2026-07-10, in-session, Ryan Tufts): "For ORN-01
+    you are permitted to modify repo-root as specified."
+  - Upstream: Receipt 1 and active
+    `plans/PLAN_2026-06-21_inspection_orphan_remediation.md`; derivative-package
+    status unchanged and no authority-corpus document changed.
+  - Executed: repo-root `.github/workflows/harness-premerge.yml` now runs on
+    relevant pull requests with the stub provider and no paid secret or Claude
+    CLI; it enforces typecheck, full Vitest, instruction-root integrity, and the
+    release-quality wrapper.
+  - Boundary: CI uses a temporary project root outside the immutable
+    instruction-root fixture; the workflow-contract regression pins this
+    containment requirement and the four enforced gates.
+  - Gate outcome: ORN-01 DONE. Section 8 premerge, release-quality, and
+    instruction-root-integrity summaries are verified separately; this is CI
+    plumbing and not a release-readiness claim.
+  - Checks: local release-quality wrapper pass with premerge not skipped;
+    Section 8 and Section 9 pass; workflow contract and typecheck pass; CI
+    fixture integrity pass.
+  - Handoff: ORN-10..13 remain VERIFIED / READY; PEC P4 still requires
+    owner-at-screen; issuance/release/apply/live-binding hard fences unchanged.

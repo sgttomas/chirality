@@ -104,7 +104,7 @@ REPORTED = re-verify per §3.1 before executing.
 
 | ID | Item | Source DEL | Type | Size | Severity | Verification | Status |
 |---|---|---|---:|---|---|---|---|
-| ORN-01 | Wire CI to enforce the gates (typecheck + vitest + instruction-root integrity + release-quality wrapper); resolve the stable-summary path conflict | DEL-09-01/05 | validation/CI | M | HIGH | VERIFIED | BLOCKED (root-workflow authority) |
+| ORN-01 | Wire CI to enforce the gates (typecheck + vitest + instruction-root integrity + release-quality wrapper); resolve the stable-summary path conflict | DEL-09-01/05 | validation/CI | M | HIGH | VERIFIED | DONE |
 | ORN-02 | Sanitize the blocked-URL log at `electron/main.ts:119` (no raw `details.url`) | DEL-09-06 | code/security | S | MEDIUM | VERIFIED | DONE |
 | ORN-03 | Restore/realign the UI-polish acceptance source (`docs/ui/UI_POLISH_EXECUTION_PLAN.md` absent → DEL-02-04 REQ-014) | DEL-02-04 | docs/UI | S | MEDIUM | VERIFIED | DONE |
 | ORN-04 | Mirror the read-path symlink guard on the dependency write path (defense-in-depth) | DEL-07-05 | code | S | LOW/MED | CORRECTED | DONE |
@@ -120,12 +120,13 @@ REPORTED = re-verify per §3.1 before executing.
 
 ### Live verification dispositions (2026-07-10)
 
-- `ORN-01`: the executable workflow is repo-root `.github/workflows/harness-premerge.yml`; the
-  project-local copy is not discovered by GitHub Actions. D-APP-39 permits staging only
-  `projects/chirality-app-dev/**`, while the live root workflow also carries a newer owner-directed
-  manual-only secret-safety posture (`48f622c93`). Truthful CI enforcement therefore awaits explicit
-  root-workflow write/staging direction. The stable artifacts are distinct: Section 8 premerge,
-  release-quality, and instruction-root-integrity summaries; none substitutes for another.
+- `ORN-01`: explicit owner direction on 2026-07-10 permitted the required repo-root modification.
+  The executable `.github/workflows/harness-premerge.yml` now runs on relevant pull requests with the
+  deterministic stub provider and no paid secret or Claude CLI, and enforces typecheck, full Vitest,
+  instruction-root integrity, and the release-quality wrapper. A workflow-contract regression pins
+  those gates and the external CI project-root boundary. The stable artifacts remain distinct: Section
+  8 premerge, release-quality, and instruction-root-integrity summaries; none substitutes for another
+  and this CI plumbing makes no release-readiness claim.
 - `ORN-06`: current `sdk-options-builder.ts` installs `canUseTool` and hooks unconditionally, and
   `sdk-options-builder.test.ts` already pins both fields including `Write` + `Bash` in
   `workspaceWrite`; no residual implementation remains.

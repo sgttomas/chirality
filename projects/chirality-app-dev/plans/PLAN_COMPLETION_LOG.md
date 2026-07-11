@@ -8,12 +8,14 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ## 2026-07-10 - Inspection-orphan queue resumed (`ORN-01`, `ORN-02`, `ORN-06`)
 
-The live monorepo recheck blocked `ORN-01` rather than making a non-functional edit: GitHub executes
-repo-root `.github/workflows/harness-premerge.yml`, while the nested app-dev workflow is inert and the
-D-APP-39 queue discipline permits staging only `projects/chirality-app-dev/**`. The active root workflow
-also records the newer owner-directed manual-only secret-safety posture at `48f622c93`. `ORN-01` now
-awaits explicit root-workflow write/staging direction. Its summary-path conflict is resolved as three
-distinct artifacts: Section 8 premerge, release-quality, and instruction-root-integrity summaries.
+The live monorepo recheck initially blocked `ORN-01` because GitHub executes repo-root
+`.github/workflows/harness-premerge.yml`, while the nested app-dev workflow is inert and the D-APP-39
+queue discipline permitted staging only `projects/chirality-app-dev/**`. Explicit owner direction on
+2026-07-10 permitted that repo-root modification. The live workflow now runs on relevant pull requests
+without a paid secret or Claude CLI, uses the deterministic stub provider and an external temporary
+project root, and enforces typecheck, full Vitest, instruction-root integrity, and the release-quality
+wrapper. Its three summaries remain distinct artifacts: Section 8 premerge, release-quality, and
+instruction-root-integrity. This closes CI plumbing only and makes no release-readiness claim.
 
 Completed `ORN-02`: Electron renderer-egress diagnostics now retain only protocol, hostname, and port
 for blocked destinations. Raw URL userinfo, path, query, and fragment are no longer logged. The existing
