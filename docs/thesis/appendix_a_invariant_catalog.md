@@ -2,7 +2,7 @@
 
 This appendix consolidates the three layers of formally stated invariants that govern the Chirality agent instruction architecture. The invariants are organized by their layer of origin and scope of application: workflow design requirements (R1–R12) apply universally to all agents and all workflow designs; decomposition invariants (I1–I10) govern all decomposition agents; and system-wide invariants (K-*) are enforced across the full agent suite.
 
-The R- and I-series are reproduced from `AGENT_HELPS_HUMANS.md` and `AGENT_DECOMP_BASE.md` respectively. The K-* catalog and the enforcement map in §A.4 are reproduced from the live `docs/CONTRACT.md` as of 2026-07-02 (27 invariants across 12 subsections). `CONTRACT.md` is the maintained catalog and governs on any divergence; it self-declares DRAFT pending full human ratification, with a ratified minimal basis per D-GOV-05 (ruled 2026-07-01) covering the source-of-truth rule, K-AUTH-1, K-AUTH-2, the generated-output rule, K-WRITE-2, K-PROV-1, K-STATUS-1, and the D-GOV-02 finding-severity taxonomy.
+The R- and I-series are reproduced from `AGENT_HELPS_HUMANS.md` and `AGENT_DECOMP_BASE.md` respectively. The K-* catalog and the enforcement map in §A.4 are reproduced from the live `docs/CONTRACT.md` as of 2026-07-02 (27 invariants across 12 subsections). `CONTRACT.md` is the maintained catalog and governs on any divergence; it was ratified in full by the owner on 2026-07-11, having earlier carried a ratified minimal basis per D-GOV-05 (ruled 2026-07-01) covering the source-of-truth rule, K-AUTH-1, K-AUTH-2, the generated-output rule, K-WRITE-2, K-PROV-1, K-STATUS-1, and the D-GOV-02 finding-severity taxonomy.
 
 ---
 

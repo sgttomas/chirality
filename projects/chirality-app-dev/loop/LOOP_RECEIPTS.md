@@ -254,3 +254,97 @@
   - Checks: self-check severities match pins (REVIEW 27, WARN 6); practitioner
     pytest 263 passed/1 skipped; git diff check pass; frontend gates skipped —
     docs/plans-only tranche, no runtime source changed.
+
+- **2026-07-11 — Receipt 8** (original-author review feedback incorporated into both concordance plans and the DRAFT kernel; owner-quote provenance completed).
+  - Start: clean branch `claude/concordance-author-feedback-2026-07-11` off
+    `516d6de39` (= `main` at the PR #172 merge); newest prior receipt
+    Receipt 7.
+  - Owner direction (2026-07-11, in-session, Ryan Tufts), verbatim: "Consider
+    this feedback.  Incorporate what has merit." — given with the original
+    plan author's review of the PR #172 revisions. Scope note: the two writes
+    outside `projects/chirality-app-dev/**` in this tranche — the piping plan
+    and the root kernel — are exactly the documents that review addresses and
+    execute under this direction; no other outside surface touched.
+  - Provenance completion (the review's Receipt-7 finding, accepted): the
+    lifecycle propositions Receipt 7 summarized as session-settled are here
+    quoted verbatim so each carries its actual authority class.
+    - Owner-authored (2026-07-11, in-session, verbatim): "i suggest that the
+      primary trigger for checking of a deliverable is what there is no more
+      warranted ## Remaining Work."
+    - Owner-authored ruling on the three sharpenings (2026-07-11, in-session,
+      verbatim): "1. I accept this. 2. No, I disagree. Until the owner
+      conducts the review the deliverable is still IN_PROGRESS. That review
+      is internal to the claims the deliverable makes about itself. The
+      decision to move to CHECKING means no more changes to that deliverable,
+      but CHECKING can be reversed to IN_PROGRESS, whereas once something is
+      ISSUES, changes trigger a different change management process that
+      needs follow `AGENT_SCOPE_CHANGE.md` or similar. Just my thoughts, you
+      can disagree. 3. I agree."
+    - Owner acceptance of framework recommendations (2026-07-11, in-session,
+      verbatim): "So what do you recommend in the first matter? And in this
+      second matter I do indeed intend this to be part of Chirality itself,
+      and you may proceed as you recommend."
+    - Classification of record: the no-deferral-carve-out rule, the
+      CHECKING-freeze/reversal semantics, the ISSUED scope-change boundary,
+      and warranted-empty-as-primary-trigger are owner-authored (quotes
+      above). The "change regime" phrasing, the singular-trigger framing
+      (now superseded), and the three-home run-state model are agent
+      framework recommendations accepted by the owner via the third quote —
+      not owner-authored formulations. Surfaces updated accordingly.
+  - Executed (adjudication: all review corrections accepted, one with a
+    correction — the no-deferral rule was not unsupported, only unquoted;
+    remedied by this receipt rather than by downgrading the rule): both
+    plans and the kernel reformulate lifecycle as governed production and
+    change-control regimes with maturity/readiness entry conditions (not
+    percentage-complete scores; maturity meaning restored); CHECKING entry
+    restructured as layered — warranted-empty universal minimum + current
+    source-state-bound basis, candidate-specific declared basis (emergent,
+    profile-hardened), human declaration and freeze; explicit start-gate
+    precondition that the separately ruled canonical lifecycle-semantics
+    amendments merge to `main` before concordance discovery; app plan
+    "at minimum pushed" corrected to merged-to-`main` before dispatch;
+    activation rulings pin the plan revision (commit SHA) as the run's
+    execution method; DepClosure/DAG snapshots reframed as provenance
+    baselines re-verified at R0/R1; kernel normalization table splits shared
+    method from project adoption record; attribution relabeling per the
+    classification above. Two fable TASK agents (one per plan) +
+    orchestrator-authored kernel revision and this receipt.
+  - Gate outcome: no register row changed; no `_STATUS.md` transition; no
+    fence crossed. The parked owner-gated acts from Receipt 7 stand
+    unchanged. Branch-first + PR; no self-merge.
+  - Checks: self-check severities match pins (REVIEW 27, WARN 6); practitioner
+    pytest 263 passed/1 skipped; git diff check pass; frontend gates skipped —
+    docs/plans-only tranche, no runtime source changed.
+
+- **2026-07-11 — Receipt 9** (root canon ratified out of DRAFT by owner act; PR #173 merged on direction).
+  - Owner direction (2026-07-11, in-session, Ryan Tufts), verbatim: "You can
+    now take all the `docs/` out of the DRAFT state, making them
+    authoritative.  And then merge PR #173." Scope note: the root `docs/`
+    writes in this tranche execute under that direction.
+  - Executed: `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `docs/SPEC.md`,
+    `docs/TYPES.md` status blocks flipped DRAFT → RATIFIED (owner
+    ratification 2026-07-11), each preserving its provenance and recording
+    the D-GOV-05 / D-GOV-02 / D-GOV-08 partial ratifications as subsumed
+    history; `docs/DELIVERABLE_CONCORDANCE_METHOD.md` ratified — the
+    Revision-0 self-declared R0-calibration gate superseded by the owner
+    act, post-ratification precedence recorded (kernel governs the shared
+    method; project plans govern project-specific adoption parameters;
+    conflicts surfaced, never precedence-invented); thesis appendix A's
+    present-tense DRAFT restatement updated. `docs/PLAN.md` was already
+    ACTIVE (maintainer-adopted 2026-07-01) — no change.
+  - Surfaced, not executed (outside this direction's scope): the
+    practitioner harness hardcodes the D-GOV-05 partial-basis invariant
+    labels (`harness_common.py` RATIFIED_INVARIANTS /
+    DRAFT_INVARIANTS_EXPLICIT; findings still annotate e.g. "K-CONFLICT-1
+    (DRAFT)"). Updating that map to full ratification is a small follow-up
+    tranche touching harness code + fixtures, with D-GOV-05 as the cited
+    prior authority. Also noted: ratification makes the CURRENT SPEC/TYPES
+    lifecycle text authoritative; the parked lifecycle-semantics amendment
+    now amends ratified canon (unchanged as a parked owner-gated act, and
+    both concordance plans' start gates already require it to merge first).
+  - Gate outcome: ratification is the owner's act — this tranche transcribes
+    it; no register row changed; no fence crossed. PR #173 merged on the
+    direction quoted above (merge is recorded in the PR/git history).
+  - Checks: self-check severities unchanged (REVIEW 27, WARN 6; GEN-4 facts
+    now quote the RATIFIED status lines); practitioner pytest 263 passed/1
+    skipped; git diff check pass.
