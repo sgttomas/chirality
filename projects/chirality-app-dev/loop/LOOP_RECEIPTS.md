@@ -464,3 +464,38 @@
     and landed AWAITING_RULING (this PR).
   - Checks: practitioner pytest 263 passed/1 skipped; self-check
     severities unchanged (REVIEW 27, WARN 6); git diff check pass.
+
+- **2026-07-11 — Receipt 13** (ratification-propagation tranche: D-GOV-09 register record; PLAN.md roadmap currency).
+  - Start: branch `claude/ratification-propagation-2026-07-11`, rebased onto
+    `0d60b4e30` (= `main` at the PR #176 merge); newest prior receipt
+    Receipt 12. Prompted by the original author's post-sequence review;
+    owner asked "Any further action you want to take at this point?" and,
+    on the proposed tranche, directed verbatim: "merge the PR when it's
+    ready".
+  - Adjudication of the review against the landed state: the activation
+    prerequisites and harness items it lists were already discharged by
+    PRs #174–#176 (labels, README/fixtures/live-baseline re-pins,
+    deliberate severity reassessment, DRAFT_BASIS_* detectors retained,
+    suspension-reconfirmation covered by D-41's "or a successor
+    declaration" gate). Two items were genuinely outstanding and are
+    executed here.
+  - Executed: NEW `docs/governance_harness/_DECISIONS/D-GOV-09_full_root_ratification.md`
+    + register row — transcribes the owner's 2026-07-11 ratification act
+    into the root register as the durable decision home (Receipt 9 stays
+    session provenance); Ruling SHA `73a0cb79b` (the PR #173 merge, where
+    the ratified status blocks landed — corrected from the orchestrator's
+    mistyped PR #172 SHA); the direction transcribed byte-identical from
+    Receipt 9 ("...And then merge PR #173."); D-GOV-05 subsumed, not
+    amended; consequences recorded (PR #174 label propagation; severity
+    posture reassessed, no live change; DRAFT_BASIS_* detectors remain;
+    subsequent canon amendment under separate direction). Phrased so the
+    DRAFT_BASIS_RULED_CLOSED pin stays at 7 — verified, no re-pin.
+    `docs/PLAN.md` roadmap row "Root governance ratification" ACTIVE →
+    COMPLETE with provenance chain.
+  - Gate outcome: transcription of owner acts + derivative-surface
+    currency only; no severity policy change; no new checks; no fence
+    crossed. Branch-first + PR; merge per the owner direction quoted
+    above.
+  - Checks: practitioner pytest 263 passed/1 skipped; self-check
+    severities unchanged (REVIEW 27, WARN 6; zero findings reference
+    D-GOV-09); git diff check pass.
