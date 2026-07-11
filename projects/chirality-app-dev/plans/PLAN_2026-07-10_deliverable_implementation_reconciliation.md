@@ -224,44 +224,6 @@ verdict. A deliverable summary is derived from its claim rows.
 
 ## 8. Execution phases
 
-### Subagent execution contract
-
-Use subagents for parallel evidence gathering only where their scopes are
-separable. The reconciliation coordinator remains the sole owner of the
-baseline, authority map, schemas, final dispositions, shared ledgers,
-cross-package synthesis, and final run artifacts.
-
-1. **One deliverable per evidence worker.** Every sealed brief names one
-   `PackageID`, one `DeliverableID`, the baseline source-state ID, exact inputs,
-   allowed dispositions, excluded agent-workflow analysis, return schema, and
-   stop conditions. No package-wide or cross-package worker brief is allowed.
-2. **Read-only discovery.** During R0-R4 a worker does not edit live
-   deliverables, source, tests, decisions, statuses, or shared ledgers. It returns
-   a structured packet or writes only to
-   `WORKER_RETURNS/<DeliverableID>/` inside the authorized run folder.
-3. **Bounded fan-out.** R0 is single-threaded. After the method and schema are
-   frozen, dispatch small batches of independent deliverables with disjoint
-   return paths. Batch size is limited by the coordinator's ability to validate
-   every return before opening the next dependent batch.
-4. **Controlled fan-in.** The coordinator rechecks source state, rejects stale
-   or malformed returns, merges valid rows centrally, preserves conflicting
-   claims, and checks scope drift. Workers never negotiate ownership or silently
-   reconcile conflicting evidence.
-5. **Independent critic.** A read-only critic that did not author the reviewed
-   rows challenges all nontrivial dispositions and professional/product-boundary
-   claims, plus a deterministic stratified sample of `ALIGNED` claims from every
-   package. Challenges return to the coordinator; the critic does not edit rows.
-6. **Separate repair fan-out.** R5 begins only after a ruling or owner direction
-   and the accepted repair is represented in the owning deliverable's
-   `## Remaining`. Repair workers receive one deliverable and a disjoint write
-   scope. Product code, documentation, dependencies, lifecycle, and
-   agent-workflow changes remain separate tranches; normal validation, CHANGE
-   closeout, PR, and owner-merge rules apply.
-
-A worker stops only the affected claim when authority is unclear, its baseline
-changed, evidence cannot be reproduced, a human act is required, or resolution
-depends on agent-workflow interpretation. Independent claims may continue.
-
 ### R0 — Method calibration
 
 After activation is recorded on the live work surface, run the full method on
@@ -399,7 +361,6 @@ Each immutable run folder must contain:
 - `IMPLEMENTATION_SURFACES.csv`
 - `VERIFICATION_INDEX.csv`
 - `CLAIM_CONCORDANCE.csv`
-- `WORKER_RETURNS/<DeliverableID>/`
 - `PACKAGE_SUMMARIES/PKG-XX.md`
 - `UNMAPPED_IMPLEMENTATION.csv`
 - `CONFLICTS_AND_UNKNOWNS.csv`
