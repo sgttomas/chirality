@@ -499,3 +499,31 @@
   - Checks: practitioner pytest 263 passed/1 skipped; self-check
     severities unchanged (REVIEW 27, WARN 6; zero findings reference
     D-GOV-09); git diff check pass.
+
+- **2026-07-11 — Receipt 14** (D-APP-55 ruled Option A — whole-corpus concordance activation transcribed; 53 bootstrap gates flipped; pre-dispatch tranche).
+  - Start: clean branch `claude/app-dev-concordance-da0910` even with
+    `origin/main` at `551f84ef6` (= the PR #177 merge); newest prior receipt
+    Receipt 13. Program launcher entered per `init/init-prompt.md` →
+    `LOOP_INIT.md` → `WORKPLAN_2026-07-10_app_dev_loop.md`.
+  - Owner steer (2026-07-11, in-session, Ryan Tufts), verbatim: "fan out and
+    fan in with subagents where warranted; use only fable models." Session
+    scope direction: stay inside `projects/chirality-app-dev/` plus the run
+    folder under `execution/_Reconciliation/DeliverableConcordance/`; do not
+    touch chirality-piping or resynchronize the sibling plan.
+  - Owner ruling (2026-07-11, in-session slate selection): D-APP-55 =
+    "Option A (Recommended)" — whole corpus, all 53 deliverables, no riders.
+    Ruling + the on-ruling/dispatch direction transcribed verbatim in
+    `execution/_Coordination/_DECISIONS/D-APP-55_RULING_2026-07-11.md`.
+  - Executed (packet §11 mechanism): ruling record authored with pinned method
+    revision `551f84ef6` (plan content revision `ef137e025`); register row
+    RULED with run-visibility cell (run OPEN); 53 bootstrap `## Remaining`
+    items flipped — `(gated: D-APP-55)` removed, pinned SHA substituted, one
+    non-state-bearing History line each (seeding-precedent phrasing).
+  - Gate outcome: dispatch withheld pending the §6 hard rule — this tranche
+    merges to `main` first (owner launch direction, quoted in the ruling
+    record, covers the merge); R0 calibration on a small sample dispatches
+    only after the merge, and R0 findings go to the owner before R2 scaling.
+    R5 repair stays R4-gated; no lifecycle transition; no fence crossed.
+  - Checks: recorded at PR time — self-check, practitioner pytest (incl. 53/0
+    drift baseline over the new History lines), git diff check; frontend gates
+    skipped — governance/docs-only tranche, no runtime source changed.

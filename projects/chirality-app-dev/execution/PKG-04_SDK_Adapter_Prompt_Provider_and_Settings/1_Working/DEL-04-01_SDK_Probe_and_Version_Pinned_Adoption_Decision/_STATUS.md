@@ -9,7 +9,7 @@
 ## Remaining
 - Land handover-consumption evidence for DEP-04-01-010..013 or retire/replace those rows with a recorded basis (consumer mirror rows in DEL-04-02/03/05 are TBD; DEL-04-04 carries no DEL-04-01 reference at all) (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed rows 006/009)
 - Close the CODEV-001 live-environment residuals — live subprocess version, payload sequence, session/transcript placement (DEP-04-01-007) (source: ORN-13 disposition; Evidence_D53A record) (gated: D-APP-52 owner act — live-LLM demonstration)
-- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision <commit SHA>) (gated: D-APP-55)
+- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -21,3 +21,4 @@
 - 2026-07-10 - Dependency-row reconciliation executed under the D-APP-53 Option A ruling (see Evidence_D53A_Dependency_Reconciliation_2026-07-10.md); Remaining updated to the residual gated items; no state change.
 - 2026-07-11 - State set to IN_PROGRESS (HUMAN) [Owner-ruled lifecycle rebaseline D-APP-54 2026-07-11: administrative correction superseding the D-APP-19 inspection-admission convention; prior approvals and history preserved (execution/_Coordination/_DECISIONS/D-APP-54_RULING_2026-07-11.md).]
 - 2026-07-11 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-55 packet; no state change.
+- 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
