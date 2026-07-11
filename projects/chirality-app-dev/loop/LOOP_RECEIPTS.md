@@ -117,3 +117,27 @@
     live plan rows/status and this receipt govern discovery.
   - Parked: PEC P4 requires owner-at-screen; issuance, release/distribution,
     provider expansion, and live/apply integration retain their owner gates.
+
+- **2026-07-10 — Receipt 4** (post-closure discovery; coordination repair; D-APP-53 slate).
+  - Start: clean `61d70bdb0` = `main` = `origin/main`; worktree branch
+    `claude/app-dev-loop-post-orn-2026-07-10`; newest prior receipt Receipt 3.
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in with
+    subagents where warranted. Use only `fable` models, contrary to your loop
+    instructions. Create a new worktree before you set off and start a branch
+    for your work."
+  - Live gates: D-APP-01..52 all RULED, no open row; ORN queue CLOSED; fan-out
+    discovery confirmed every ruled tranche landed (two D-APP-50 residuals stay
+    descriptor-only per their own ruling, pending piping transport soundness).
+  - Executed (branch-first + PR #155; no self-merge): guidance-surface repair
+    per the `_COORDINATION.md` correction rule (`_LATEST.md` lean rewrite;
+    `_COORDINATION.md` queue/ceiling/intake lines; ADQ plan header aligned to
+    its own §9); D-APP-53 successor-queue PROPOSAL packet + AWAITING_RULING row.
+  - Gate outcome: all remaining development work is owner-shaped — slate is
+    D-APP-53 (Options A–E, non-binding rec. A); D-APP-52 live-LLM demo and PEC
+    P4 stay owner-gated; hard fences unchanged. Loop parks pending ruling.
+  - Checks: worktree self-check exit 0; practitioner pytest 263 passed/1
+    skipped; corpus v5 no drift; frontend gates green on main (typecheck pass;
+    Vitest 667/4 skipped); frontend untouched by this tranche.
+  - Delta (external state): uncommitted main-tree deletions of
+    `projects/chirality-governance/**` trip the live-baseline WARN pin (6→7)
+    when pytest runs there; clean-tree runs pass — not repaired by this loop.

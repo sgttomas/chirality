@@ -1,6 +1,6 @@
 # PLAN - Autonomous Development Queue
 
-**Status:** ACTIVE (governing queue). Released by D-APP-39 (2026-06-20).
+**Status:** CLOSED (exhausted; all ADQ rows `DONE` — see §9; header aligned to §9 on 2026-07-10). Released by D-APP-39 (2026-06-20).
 **Persona:** WORKING_ITEMS
 **Authority basis:** D-APP-39 ruling; roadmap source `plans/artifacts/insp05_development_roadmap_2026-06-21.md`.
 **Mode:** pull-and-execute. The agent selects the highest-priority eligible item whose prerequisites are
