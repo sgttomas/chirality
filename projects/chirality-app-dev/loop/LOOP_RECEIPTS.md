@@ -555,3 +555,48 @@
   - Checks: self-check severities unchanged (REVIEW 27, WARN 6); practitioner
     pytest 263 passed/1 skipped; frontend gates skipped — evidence-only
     tranche, no runtime source changed; git diff check pass.
+
+- **2026-07-11 — Receipt 16** (R0 gate ruled: R2 scaling authorized; method revisions adopted; PR #181 merged on direction).
+  - Start: `main` = `fac46e33f` (PR #181 merge; concurrent piping-loop merges
+    noted, all outside `projects/chirality-app-dev/**`); branch
+    `claude/app-dev-concordance-r1r2-2026-07-11`; newest prior receipt 15.
+    `frontend/` verified byte-identical `4c8ed8907..fac46e33f` — no
+    STALE_INPUT condition (plan §4 tail); R0 evidence bindings stand.
+  - Owner rulings (2026-07-11, in-session slate selection on the R0 report),
+    verbatim: Ruling 1 (R0 acceptance/R2 scaling) = "Go — R1 + R2 waves
+    (Recommended)"; Ruling 2 (method revisions MR-1..MR-11, report §4) =
+    "Adopt all 11 (Recommended)"; Ruling 3 (verification-binding environment)
+    = "Per-wave gate transcript (Recommended)"; Ruling 4 (PR #181) = "Merge on
+    my direction now (Recommended)". Corpus-amendment packet (report §5
+    finding 1) deferred to R4 per orchestrator recommendation, owner silent —
+    recorded as agent latitude, packet remains owed at R4.
+  - Executed: PR #181 merged per Ruling 4 (CI green); D-APP-55 register row
+    run-visibility cell updated to run OPEN, R0 COMPLETE with the four rulings
+    (pointer to this receipt for verbatim text). R1 inventory + R2 waves
+    proceed under the pinned method @ `551f84ef6` as amended run-locally by
+    the adopted MR-1..MR-11.
+  - Gate outcome: R4/R5 unchanged — still owner-gated; no lifecycle
+    transition; no fence crossed.
+
+- **2026-07-11 — Receipt 17** (R1 complete; run paused at the R1/R2 boundary on owner direction).
+  - Start: branch `claude/app-dev-concordance-r1r2-2026-07-11` at `9e1082759`
+    (R1 tranche pushed); newest prior receipt 16.
+  - Owner direction (2026-07-11, in-session), verbatim: "Pause once R1 is
+    done. Record your progress as appropriate for this task. And give me a
+    prompt to resume the work."
+  - State at pause: R1 read-only inventory landed
+    (`.../RUN_D55_CONCORDANCE_2026-07-11_1904Z/R1_INVENTORY/` — 7 CSVs +
+    R1_NOTES + W1 gate transcript, typecheck clean / Vitest 667 passed
+    4 skipped at `fac46e33f`); adopted MR-1..11 operationalized in
+    `R2_METHOD_ADDENDUM.md` (committed with this receipt). R2 Wave 1 (PKG-02:
+    DEL-02-02..05, four fable TASK agents) had been dispatched before the
+    pause direction arrived and was STOPPED mid-discovery — zero W1 artifacts
+    written, nothing discarded; W1 re-dispatch is the resume point. Wave plan
+    of record: R1_NOTES.md §"R2 wave plan" (W1 PKG-02 → W7 PKG-00).
+  - Gate outcome: paused by owner direction — not a fence stop, not a
+    decision gate; register row run-visibility cell updated (run PAUSED,
+    resume point named). R4/R5 remain owner-gated; no lifecycle transition;
+    no fence crossed.
+  - Checks: self-check severities unchanged (REVIEW 27, WARN 6); practitioner
+    pytest 263 passed/1 skipped; frontend gates skipped — evidence/docs-only
+    tranche, no runtime source changed; git diff check pass.
