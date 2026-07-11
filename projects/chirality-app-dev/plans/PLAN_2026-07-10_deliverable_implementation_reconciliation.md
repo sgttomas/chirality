@@ -2,8 +2,9 @@
 
 **Date:** 2026-07-10
 **Project:** Chirality App Dev
-**Status:** PROPOSED — non-governing until selected by the human owner
-**Prepared for:** a future autonomous reconciliation loop after the current remedial development session reaches a stable handoff
+**Status:** DESIGN PROPOSAL — historical/non-governing method record; never a work-selection surface
+**Revised:** 2026-07-10 after the owner-adopted deliverable-driven loop consolidation
+**Prepared for:** owner-authorized reconciliation executed through the current standing loop after active development reaches a stable handoff
 **Write boundary:** `projects/chirality-app-dev/**` only
 
 ## 1. Purpose
@@ -32,6 +33,13 @@ identify workflows that must be preserved or ported before any simplification or
 consolidation is attempted. This program may read those surfaces as frozen
 context where a product deliverable packages, loads, routes, or displays them;
 it may not redesign them or authorize changes to them.
+
+This file lives under `plans/` as method and provenance only. It cannot activate
+itself and must never be treated as a queue. Execution requires an explicit owner
+direction or ruling, followed by bounded reconciliation work recorded in the
+affected deliverables' `_STATUS.md` `## Remaining` sections. The newest
+`loop/WORKPLAN_*.md` governs execution; this proposal supplies only the
+reconciliation method.
 
 ## 2. Why this pass is needed
 
@@ -63,7 +71,8 @@ surfaces can disagree:
    acceptance remain human-owned. This program may recommend a lifecycle action
    but must not apply one without separate authority.
 4. **No silent conflict resolution.** Conflicting decisions, specifications, or
-   acceptance criteria enter the human decision queue.
+   acceptance criteria become draft packets for the existing human decision
+   register; they do not form a parallel queue.
 5. **No historical-plan authority.** `plans/` and archived material may explain
    provenance but do not establish current scope unless a live authority surface
    explicitly incorporates them.
@@ -76,23 +85,34 @@ surfaces can disagree:
    or skill contracts as part of this plan. Do not recommend persona
    consolidation or workflow removal from repository shape alone. A finding
    whose resolution requires an agent-instruction or agent-workflow change is
-   routed unchanged to `AGENT_WORKFLOW_HANDOFF.md` for later owner-led analysis.
+   routed unchanged to `AGENT_WORKFLOW_OBSERVATIONS.md` for later owner-led analysis.
    Product runtime behavior that loads, packages, invokes, or presents agents
    remains in scope, provided the repair does not alter the underlying workflow
    contract.
+9. **Single work surface.** This proposal, its evidence bundles, and its findings
+   never select work. Owner decisions remain in the existing decision register;
+   executable residuals and authorized repairs live only in the owning
+   deliverable's `_STATUS.md` `## Remaining`. Existing `(gated: ...)` and
+   `(stage-gated: ...)` suffixes are preserved unless their owning authority
+   changes them.
 
 ## 4. Start gate and baseline
 
 Do not begin the full sweep until the human owner identifies the remedial session
-as stable enough to inspect. At run start:
+as stable enough to inspect. Before any dispatch:
 
-1. resolve `REPO_ROOT` and `WORKING_ROOT` from the active checkout;
-2. record a source-state identifier for the reviewed tree;
-3. enumerate live packages and deliverables directly from `execution/`;
-4. record the lifecycle distribution without changing it;
-5. identify files actively changing in another session and defer their affected
+1. confirm an explicit owner direction or ruling authorizes the reconciliation
+   scope and creation of its immutable evidence run;
+2. confirm the selected reconciliation work is recorded in the affected
+   deliverables' `_STATUS.md` `## Remaining` sections; if not, stop for the
+   owner-authorized bootstrap update rather than selecting work from this plan;
+3. resolve `REPO_ROOT` and `WORKING_ROOT` from the active checkout;
+4. record a source-state identifier for the reviewed tree;
+5. enumerate live packages, deliverables, lifecycle states, and all present or
+   absent `## Remaining` sections directly from `execution/`;
+6. identify files actively changing in another session and defer their affected
    claims rather than racing them; and
-6. create an immutable run folder:
+7. create the specifically authorized immutable run folder:
    `execution/_Reconciliation/DeliverableConcordance/<RunID>/`.
 
 If the implementation or authority corpus changes materially during the sweep,
@@ -104,6 +124,8 @@ Before evaluating requirements, publish a run-local authority map. At minimum it
 must identify:
 
 - current human rulings under `execution/_Coordination/_DECISIONS/`;
+- the newest `loop/WORKPLAN_*.md`, `loop/LOOP_INIT.md`, and loop receipts as
+  execution protocol and handoff context, not product-scope authority;
 - current project contracts, PRD, specification, and decomposition;
 - each deliverable's `_CONTEXT.md`, `Specification.md`, `Datasheet.md`,
   `Procedure.md`, `Guidance.md`, and `_STATUS.md`;
@@ -112,10 +134,12 @@ must identify:
 - existing `Assessment_INSP-03_*.md`, `Evidence_*.md`, and run records; and
 - superseded, archival, or explanatory-only material.
 
-Agent instructions, matrices, and skill contracts are classified as
-`FROZEN_EXTERNAL_INPUT` for this run. They may substantiate what the current app
-does, but this plan does not judge whether their roles or workflows should be
-retained, merged, ported, or retired.
+Agent instructions, matrices, skill contracts, and agent-workflow guidance are
+classified as `FROZEN_PROCESS_INPUT` for this run. They may constrain execution
+or substantiate what the current app does, but this plan does not judge whether
+their roles or workflows should be retained, merged, ported, or retired. If an
+older workflow guide conflicts with the newest loop workplan, record the stale
+process-document fact for the separate owner-led program; do not repair it here.
 
 The authority map must distinguish these functions:
 
@@ -124,9 +148,11 @@ The authority map must distinguish these functions:
 | Normative scope | Defines what the product or deliverable is required to do |
 | Accepted decision | Changes or interprets normative scope through human authority |
 | Declared current state | Says what is presently implemented or unresolved |
+| Recorded remaining work | `_STATUS.md` `## Remaining`; the sole current work-discovery surface, including its source and gate suffixes |
 | Implementation evidence | Shows live behavior or structure |
 | Verification evidence | Demonstrates behavior at a named source state |
 | Lifecycle evidence | Records workflow state; does not by itself prove completeness |
+| Execution protocol | Constrains how selected work runs; does not create product scope or select work |
 | Historical context | Explains provenance but cannot override a live authority |
 
 If two live normative surfaces conflict and precedence is not explicit, do not
@@ -148,6 +174,10 @@ Required columns:
 | `NormativeSource` | Current authority and exact location |
 | `LatestDecision` | Applicable human ruling or `NONE_FOUND` |
 | `DeclaredState` | What current deliverable documents say |
+| `RecordedRemaining` | Exact current `_STATUS.md` residual text or `NONE_RECORDED` |
+| `RemainingSource` | Source named by the residual or `NONE_RECORDED` |
+| `RemainingGate` | Exact gate/stage suffix or `UNGATED`/`NONE_RECORDED` |
+| `SelectableUnderCurrentLoop` | `YES`, `NO`, or `UNKNOWN`, derived from current lifecycle, gate, and dependency evidence |
 | `ImplementationEvidence` | Exact source locations or `NONE_FOUND` |
 | `VerificationEvidence` | Exact tests/reviews and reviewed source state |
 | `LifecycleState` | Copied from `_STATUS.md`; never used as a completeness proxy |
@@ -180,6 +210,9 @@ Use only these reconciliation dispositions:
   difference, deferral, or transitional state.
 - `LIFECYCLE_ONLY_MISMATCH` — lifecycle wording or history conflicts with the
   evidence while scope and implementation do not.
+- `REMAINING_STATE_MISMATCH` — a landed or ruled-shut item remains recorded, an
+  evidence-backed residual is omitted, or ownership/source/gate metadata no
+  longer agrees with current authority and implementation.
 - `DEFERRED_AGENT_WORKFLOW` — resolution depends on understanding or changing an
   agent instruction, skill contract, authority allocation, or workflow that is
   reserved for the separate owner-led program.
@@ -191,10 +224,50 @@ verdict. A deliverable summary is derived from its claim rows.
 
 ## 8. Execution phases
 
+### Subagent execution contract
+
+Use subagents for parallel evidence gathering only where their scopes are
+separable. The reconciliation coordinator remains the sole owner of the
+baseline, authority map, schemas, final dispositions, shared ledgers,
+cross-package synthesis, and final run artifacts.
+
+1. **One deliverable per evidence worker.** Every sealed brief names one
+   `PackageID`, one `DeliverableID`, the baseline source-state ID, exact inputs,
+   allowed dispositions, excluded agent-workflow analysis, return schema, and
+   stop conditions. No package-wide or cross-package worker brief is allowed.
+2. **Read-only discovery.** During R0-R4 a worker does not edit live
+   deliverables, source, tests, decisions, statuses, or shared ledgers. It returns
+   a structured packet or writes only to
+   `WORKER_RETURNS/<DeliverableID>/` inside the authorized run folder.
+3. **Bounded fan-out.** R0 is single-threaded. After the method and schema are
+   frozen, dispatch small batches of independent deliverables with disjoint
+   return paths. Batch size is limited by the coordinator's ability to validate
+   every return before opening the next dependent batch.
+4. **Controlled fan-in.** The coordinator rechecks source state, rejects stale
+   or malformed returns, merges valid rows centrally, preserves conflicting
+   claims, and checks scope drift. Workers never negotiate ownership or silently
+   reconcile conflicting evidence.
+5. **Independent critic.** A read-only critic that did not author the reviewed
+   rows challenges all nontrivial dispositions and professional/product-boundary
+   claims, plus a deterministic stratified sample of `ALIGNED` claims from every
+   package. Challenges return to the coordinator; the critic does not edit rows.
+6. **Separate repair fan-out.** R5 begins only after a ruling or owner direction
+   and the accepted repair is represented in the owning deliverable's
+   `## Remaining`. Repair workers receive one deliverable and a disjoint write
+   scope. Product code, documentation, dependencies, lifecycle, and
+   agent-workflow changes remain separate tranches; normal validation, CHANGE
+   closeout, PR, and owner-merge rules apply.
+
+A worker stops only the affected claim when authority is unclear, its baseline
+changed, evidence cannot be reproduced, a human act is required, or resolution
+depends on agent-workflow interpretation. Independent claims may continue.
+
 ### R0 — Method calibration
 
-Run the full method on `PKG-02`, beginning with `DEL-02-01`, because the pilot
-already exposed stale-assessment risk there. A human or designated reviewer
+After activation is recorded on the live work surface, run the full method on
+the owner-authorized calibration deliverable(s). `DEL-02-01` remains the
+recommended first sample because the pilot already exposed stale-assessment
+risk there, but this plan does not make it selectable. A human or designated reviewer
 checks the first concordance packet for:
 
 - correct authority precedence;
@@ -214,8 +287,9 @@ Build:
 3. implementation surface index;
 4. test and validation index;
 5. decision-to-deliverable index;
-6. assessment/evidence recency index; and
-7. unmapped implementation candidate list.
+6. assessment/evidence recency index;
+7. present/absent `## Remaining` inventory with source and gate parsing; and
+8. unmapped implementation candidate list.
 
 Generated files and caches (`node_modules`, `.next`, `dist`, packaged apps, and
 runtime sessions) are evidence only when specifically needed and must not be
@@ -236,10 +310,10 @@ final ordering from the live dependency graph; the default grouping is:
 6. `PKG-10` future domain-engine boundary; and
 7. `PKG-00` control-plane closure after downstream truth is known.
 
-Each wave produces claim rows, a package summary, conflicts, unknowns, and a
-proposed decision/repair queue. It does not edit deliverable documents.
-`DEFERRED_AGENT_WORKFLOW` rows go only to the separate handoff and never enter
-this program's repair queue.
+Each wave produces claim rows, a package summary, conflicts, unknowns, and
+non-operative decision/repair findings. It does not edit deliverable documents.
+`DEFERRED_AGENT_WORKFLOW` rows go only to the evidence-only agent-workflow
+observations artifact and never enter this program's repair recommendations.
 
 ### R3 — Cross-package synthesis
 
@@ -258,7 +332,7 @@ material implementation surfaces, and every unresolved row accounted for.
 
 ### R4 — Human decision gate
 
-Present a bounded queue grouped by decision type:
+Present bounded findings and draft decision packets grouped by decision type:
 
 1. scope adoption or retirement;
 2. product-behavior ruling;
@@ -267,7 +341,7 @@ Present a bounded queue grouped by decision type:
 5. residual work acceptance or deferral; and
 6. lifecycle recommendation.
 
-Agent-workflow questions are not decision packets under this plan. They are
+Agent-workflow questions are not decision packets under this method. They are
 collected without a recommendation to merge, retire, or port a workflow, so the
 owner-led program can examine them with the missing operational context.
 
@@ -277,24 +351,29 @@ Unruled items remain explicit; they do not block unrelated repairs.
 
 ### R5 — Authorized repair tranches
 
-After dispositions are ruled, execute separate, bounded change tranches:
+After dispositions are ruled or directed and the work is recorded in the
+owning deliverable's `## Remaining`, execute separate bounded change tranches:
 
 - refresh stale specifications and datasheets;
 - supersede or annotate stale assessments without erasing historical evidence;
 - correct current-state and remaining-work declarations;
 - repair evidence pointers and verification records;
 - update dependency mappings where separately authorized; and
-- create implementation work items only for residuals that survive
-  reconciliation.
+- record surviving implementation or validation residuals only in the owning
+  deliverable's `## Remaining`, preserving applicable source and gate metadata.
 
 R5 must not edit agent instructions, agent indexes or matrices, skill contracts,
 or the authority/workflow semantics they encode. If an otherwise authorized
 deliverable repair depends on one of those changes, split the tranche: apply the
 independent product/document portion and leave the agent-workflow portion in the
-separate handoff.
+separate evidence-only observations artifact.
 
 Do not mix product implementation with document repair unless the selected
 tranche explicitly includes both and has independent acceptance criteria.
+Every completed repair follows the standing loop closeout contract: update the
+owning `_STATUS.md` `## Remaining`, `MEMORY.md`, and `_run_records/**`; append the
+minimal loop receipt and completion narrative required by current guidance; run
+applicable validation; hand off to CHANGE; open a PR; and never self-merge.
 
 ### R6 — Backcheck and closeout
 
@@ -303,6 +382,8 @@ Re-extract every changed claim and verify:
 - normative wording, declared state, implementation, and verification agree;
 - every residual is assigned or explicitly deferred;
 - no stale assessment is still presented as current truth;
+- every accepted residual is reflected on the owning deliverable's sole
+  `## Remaining` work surface and every landed item is removed there;
 - no human decision is attributed to an agent;
 - lifecycle states were unchanged unless separately authorized; and
 - the final summary distinguishes deliverable readiness from release,
@@ -318,17 +399,22 @@ Each immutable run folder must contain:
 - `IMPLEMENTATION_SURFACES.csv`
 - `VERIFICATION_INDEX.csv`
 - `CLAIM_CONCORDANCE.csv`
+- `WORKER_RETURNS/<DeliverableID>/`
 - `PACKAGE_SUMMARIES/PKG-XX.md`
 - `UNMAPPED_IMPLEMENTATION.csv`
 - `CONFLICTS_AND_UNKNOWNS.csv`
-- `AGENT_WORKFLOW_HANDOFF.md`
-- `HUMAN_DECISION_QUEUE.md`
-- `AUTHORIZED_REPAIR_QUEUE.csv`
+- `AGENT_WORKFLOW_OBSERVATIONS.md`
+- `PROPOSED_DECISION_FINDINGS.md`
+- `PROPOSED_DELIVERABLE_UPDATES.csv`
 - `COVERAGE_AND_QA.md`
 - `RUN_SUMMARY.md`
 
-`execution/_Reconciliation/DeliverableConcordance/_LATEST.md` may point to the
-latest completed run but must not replace immutable run artifacts.
+These are immutable evidence artifacts, not queues or selection surfaces.
+`AGENT_WORKFLOW_OBSERVATIONS.md` contains only affected product claims, exact
+citations, and why reconciliation cannot resolve them; it makes no workflow
+recommendation. Do not create a new `_LATEST.md`, standing pointer, register, or
+status surface unless separately ruled. Continuing state is recorded in the
+affected deliverables and existing decision register.
 
 ## 10. QA and acceptance criteria
 
@@ -341,23 +427,28 @@ The discovery program is complete only when:
 - every existing inspection assessment is classified as current, stale, or
   non-applicable at claim level;
 - every material implementation surface is mapped or listed as unmapped;
+- every live deliverable's present or absent `## Remaining` section is checked
+  against current implementation, decisions, and residual evidence;
 - every agent-file or agent-workflow implication is classified
   `DEFERRED_AGENT_WORKFLOW`, recorded without a redesign recommendation, and
-  excluded from the authorized repair queue;
+  excluded from proposed deliverable updates;
 - every conflict and unknown has an owner and smallest next action;
 - package summaries are reproducible from the claim ledger; and
 - a reviewer spot-checks all high-risk claims plus a representative sample of
   other dispositions.
 
 The repair program is complete only when ruled repairs are applied, backchecked,
-and the surviving remaining-work queue can be regenerated from current
-deliverables without consulting obsolete plans.
+and the surviving work surface is correctly represented in current deliverable
+`## Remaining` sections without consulting obsolete plans.
 
 ## 11. Autonomous-loop rules
 
-An autonomous loop iteration selects one bounded package wave or repair tranche,
-re-derives its inputs, performs the work, validates the artifact contract, and
-records closeout before selecting another item. It must stop or defer when:
+An autonomous loop iteration selects an eligible deliverable-local
+`## Remaining` item under the newest standing workplan, never a package wave or
+repair finding from this proposal. The reconciliation method governs execution
+only after that selection. Each iteration re-derives its inputs, performs the
+bounded work, validates the artifact contract, and records deliverable-local
+closeout before selection restarts. It must stop or defer when:
 
 - a human scope or acceptance decision is required;
 - another session is modifying an affected source;
