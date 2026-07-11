@@ -218,3 +218,39 @@
     executed state with residual gates; coordination pointers refreshed;
     live-baseline pins re-verified post-merge.
 
+
+- **2026-07-11 — Receipt 7** (concordance plans revised; lifecycle model settled; DRAFT kernel authored).
+  - Start: clean branch `claude/concordance-method-2026-07-11` off `703deb9b7`
+    (= `main` at the PR #159 merge); newest prior receipt Receipt 6.
+  - Owner directions (2026-07-11, in-session, Ryan Tufts), verbatim: "present
+    any rulings I'm expected to make for incorporation into these plans. I
+    will decide on them. And then you may proceed as intended, with my
+    athorization for the expanded write scope in this instance." — and, on
+    the shared method: "I do indeed intend this to be part of Chirality
+    itself, and you may proceed as you recommend." Piping suspension
+    direction quoted in the piping plan's §4 start gate.
+  - Owner rulings (2026-07-11, in-session decision slate): app-dev lifecycle
+    rebaseline = "All 53 → IN_PROGRESS (Recommended)"; piping PKG-00 =
+    "→ IN_PROGRESS now (Recommended)". Recorded in both plans' lifecycle
+    sections; register transcription + `_STATUS.md` transitions belong to a
+    dedicated rebaseline tranche that must precede concordance discovery.
+    Run-phase model (ruled-program, three state homes) and shared-kernel
+    path (DRAFT at root, ratify after both R0s) settled in the same session.
+  - Executed: both concordance plans revised in place (activation mechanics
+    with land-on-main hard rule; change-regime lifecycle model with the
+    warranted-empty CHECKING trigger; rebaseline rulings recorded; three-home
+    run-state model; sibling/kernel cross-references; census corrections;
+    pilot-claim markers); `docs/DELIVERABLE_CONCORDANCE_METHOD.md` authored
+    at repo root as DRAFT pending ratification. Scope note: two writes
+    outside `projects/chirality-app-dev/**` — the piping plan and the root
+    kernel — both under the owner grant quoted above. Two fable TASK agents
+    (one per plan) + orchestrator-authored kernel.
+  - Gate outcome: owner-gated next acts, none started — rebaseline
+    transcription tranche (both projects), canon lifecycle-semantics edit
+    (`docs/SPEC.md`/`docs/TYPES.md` + D-APP-38 corpus bump), activation
+    packets (D-APP-54; piping next-free D-XX, start-gated on the recorded
+    suspension declaration + SHA), kernel ratification after both R0s. No
+    register row changed this tranche. Branch-first + PR; no self-merge.
+  - Checks: self-check severities match pins (REVIEW 27, WARN 6); practitioner
+    pytest 263 passed/1 skipped; git diff check pass; frontend gates skipped —
+    docs/plans-only tranche, no runtime source changed.
