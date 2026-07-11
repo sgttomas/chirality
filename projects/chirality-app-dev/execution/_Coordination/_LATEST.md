@@ -17,19 +17,20 @@ Active coordination surfaces:
   (not this pointer) are the owner-gated surface; check it every session for
   rulings and open rows.
 
-Active development queue:
+Work discovery (owner-adopted 2026-07-10; queue convention retired):
 
-- **None.** The most recent queue,
-  `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` (adopted by
-  the owner's D-APP-53 ruling, Option A), is CLOSED (executed 2026-07-10;
-  DRQ-01..11 DONE; its residual owner-gated rows are listed in its closure
-  report). Do not select new development work without an owner-adopted queue
-  or ruling.
+- Deliverable-driven: `execution/PKG-*/1_Working/DEL-*/_STATUS.md`
+  `## Remaining` sections are the work surface, selected per the newest
+  `loop/WORKPLAN_*.md`. No successor queue plan will be authored. Which rehomed
+  lanes are live is the owner's ruling — `D-APP-53` (RULED Option A 2026-07-10,
+  `_DECISIONS/D-APP-53_RULING_2026-07-10.md`: the dependency-row reconciliation
+  lane, executed the same day — see the packet's §7/§8 notes and the accepted
+  DepClosure snapshot; Option C/D lanes were NOT unlocked); honor every
+  `(gated: ...)` suffix.
 
 Queue and plan history (non-governing; each plan's own status field and
 `plans/PLAN_COMPLETION_LOG.md` govern):
 
-- `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md` (CLOSED 2026-07-10)
 - `plans/PLAN_2026-06-21_inspection_orphan_remediation.md` (CLOSED 2026-07-10)
 - `plans/PLAN_2026-06-20_autonomous_development_queue.md` (exhausted/closed)
 - `plans/PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md` (completed)

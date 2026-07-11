@@ -144,13 +144,18 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # `_DomainEngines/pec/WORKPLAN_2026-07-04_pec_loop.md` no longer resolves
     # — retained unedited in the packet per the D-T0-11/D-T0-12 historical-ref
     # precedent above; the archived copy carries the forward pointer.
+    # REVIEW 28->27 on 2026-07-10: the app-dev loop consolidation (Receipt 5)
+    # rewrote docs/README.md's Coordination Pointers entry list to the loop
+    # session entry, relativizing that file's one machine-absolute path — its
+    # GEN8 ABS_PATH_IN_PROJECT_SURFACE finding cleared (the SPEC §0.2.4
+    # message routes relativization to the next touch of the file).
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
             "INFO": 15,
         "NOT_APPLICABLE": 2,
-        "REVIEW": 28,
+        "REVIEW": 27,
         "WARN": 6,
     }
 
@@ -298,7 +303,6 @@ GEN8_BASELINE_PATHS = {
     "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-08_RULING_2026-06-16.md",
     "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-16_RULING_2026-06-18.md",
     "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-17_RULING_2026-06-18.md",
-    "projects/chirality-app-dev/docs/README.md",
     "projects/chirality-app-dev/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md",
     "projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md",
     "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-05_ci_provider_workflow.md",
@@ -307,12 +311,14 @@ GEN8_BASELINE_PATHS = {
 
 
 @live
-def test_live_gen8_abs_path_25_file_baseline():
+def test_live_gen8_abs_path_24_file_baseline():
+    # 25->24 on 2026-07-10: app-dev docs/README.md relativized on touch
+    # (loop consolidation, Receipt 5) — see the severity-totals pin note.
     from harness_common import Severity
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
     assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
-    assert len(hits) == 25  # exactly one finding per FILE
+    assert len(hits) == 24  # exactly one finding per FILE
     assert all(f.severity is Severity.REVIEW for f in hits)
     # The worst file (the per-file granularity rationale): 21 hit lines.
     counts = {f.source_path:

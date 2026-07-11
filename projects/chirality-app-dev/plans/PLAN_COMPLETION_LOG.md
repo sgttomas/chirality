@@ -6,6 +6,23 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-10 - Plans-as-queue convention retired (owner-adopted consolidation)
+
+Owner-adopted consolidation (loop Receipt 5): deliverable folders are now the means of
+discovering work; the newest `loop/WORKPLAN_*.md` is the single development-loop
+instruction surface, and `execution/_Coordination/_COORDINATION.md` was reduced in
+place to a ruled-record stub. The D-APP-53 successor-queue packet's candidate
+enumeration (Options A/C/D and the §4 conditional residuals) was rehomed into
+`## Remaining` sections of 15 deliverable `_STATUS.md` files (PKG-00/01/04/05/07/08/
+09/10), each item `(gated: D-APP-53)` or carrying its own gate — see the packet's
+2026-07-10 addendum (§7): no successor queue plan will be authored; the D-APP-53
+ruling now names which rehomed lanes are live. Option B (issuance program) was not
+rehomed — it is the F-APP-4 fence; Option E (park) needs no artifact; PEC P4 stays a
+cross-project owner act; the ruling-shut UI surfaces (D-APP-21/24/26/27/29) stay shut —
+reviving any takes a new register row. No plan file had open rows at consolidation
+(the ORN queue closed 2026-07-10 with all rows DONE/DROPPED). This log remains the
+archive for landed-tranche narrative.
+
 ## 2026-07-10 - Pre-issuance dependency reconciliation queue executed (`DRQ-01`..`DRQ-11`)
 
 Under the owner's D-APP-53 ruling (Option A, 2026-07-10), the queue

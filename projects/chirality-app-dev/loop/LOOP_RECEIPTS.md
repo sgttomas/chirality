@@ -142,7 +142,42 @@
     `projects/chirality-governance/**` trip the live-baseline WARN pin (6→7)
     when pytest runs there; clean-tree runs pass — not repaired by this loop.
 
-- **2026-07-10 — Receipt 5** (D-APP-53 ruled Option A; dependency-reconciliation queue executed).
+- **2026-07-10 — Receipt 5** (loop-instruction consolidation, owner-adopted;
+  deliverables become the work-discovery surface).
+  - Start: `origin/main` at the PR #158 merge (`7f0571b19`); branch
+    `claude/chirality-app-dev-loop-consolidation`; newest prior receipt Receipt 4.
+  - Owner directions of record (2026-07-10, in-session, Ryan Tufts): the piping
+    consolidation adoption — "I really want the deliverables themselves to be the
+    means of discovering work going forward, with the loop mechanics included as the
+    development loop instructions. ... We need to simplify these instructions and
+    avoid creating unnecessary registers or plans."; "Adopted." — then, for this
+    project: "Now do the same for chirality-app-dev/  you have my permission to
+    include that project in your write scope. Use subagents (fable model) when
+    warranted."
+  - Artifacts: `WORKPLAN_2026-07-10_app_dev_loop.md` (supersedes the 2026-07-04 plan;
+    adds fence F-APP-5, single-surface rule); `_COORDINATION.md` rewritten as a
+    ruled-record stub (queue-of-record retired; correction rule, state rules, and
+    authoritative-state enumeration preserved); `## Remaining` sections in 15
+    deliverable `_STATUS.md` files (19 items rehomed from the D-APP-53 candidate
+    enumeration, each gated); D-APP-53 packet §7 addendum (no successor queue plan;
+    the ruling now names live lanes — row stays AWAITING_RULING); `_LATEST.md`
+    work-discovery lines; `NEXT_INSTANCE_PROMPT.md` internal historical banner;
+    `LOOP_INIT.md` §7 synced to the 2026-07-05 owner revision; docs entry pointers
+    aligned; `plans/PLAN_COMPLETION_LOG.md` consolidation entry. Scope note: one
+    repo-root edit outside `projects/chirality-app-dev/**` —
+    `tools/practitioner_harness/test_live_baseline.py` conscious pin update
+    (REVIEW 28→27; GEN8 25→24 files) because relativizing docs/README.md's
+    entry-list path cleared its pinned abs-path finding, per that file's
+    same-PR pin-update rule. PR from this branch, awaiting owner merge.
+  - Gate outcome: coordination/control consolidation executed at owner direction; no
+    lifecycle transition; no register-row state change (D-APP-53 remains the open
+    owner gate — its ruling now names which rehomed lanes are live); hard fences
+    F-APP-1..4 unchanged; D-APP-52 demo and PEC P4 stay owner-gated.
+  - Checks: self-check exit 0; practitioner pytest pass; frontend gates skipped —
+    governance/docs-only tranche, no runtime source changed; no authority-doc edit,
+    so no D-APP-38 corpus bump.
+
+- **2026-07-10 — Receipt 6** (D-APP-53 ruled Option A; dependency-reconciliation lane executed; merged with the Receipt-5 consolidation).
   - Start: `f5a4c3946` = `main` = `origin/main` (PR #155 merge); branch
     `claude/app-dev-d53a-dep-reconciliation-2026-07-10`; prior receipt 4.
   - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in with
@@ -170,3 +205,16 @@
   - Checks: v3.1 linter 0/0 on all ten registers; snapshot acyclic with
     `schema_invalid = 0`; self-check pass; corpus status pass; git diff check
     pass.
+  - Sequencing/reconciliation (recorded at the PR #159 merge with `main`):
+    the Option A ruling and this tranche's execution preceded the Receipt-5
+    consolidation's adoption the same evening; the consolidation's packet §7
+    addendum ("row stays AWAITING_RULING; no successor queue plan") was
+    written without knowledge of the already-received ruling. The ruling
+    stands (truthful attribution — the act occurred); the queue plan was
+    authored and CLOSED under the packet's then-live §6 mechanism and is now
+    historical archive per F-APP-5. Reconciled in this PR: register row RULED
+    with sequencing note; packet §8 sequencing note; ruling record sequencing
+    note; the ten Option A deliverables' `## Remaining` items updated to
+    executed state with residual gates; coordination pointers refreshed;
+    live-baseline pins re-verified post-merge.
+
