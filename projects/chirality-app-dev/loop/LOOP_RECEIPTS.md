@@ -141,3 +141,32 @@
   - Delta (external state): uncommitted main-tree deletions of
     `projects/chirality-governance/**` trip the live-baseline WARN pin (6→7)
     when pytest runs there; clean-tree runs pass — not repaired by this loop.
+
+- **2026-07-10 — Receipt 5** (D-APP-53 ruled Option A; dependency-reconciliation queue executed).
+  - Start: `f5a4c3946` = `main` = `origin/main` (PR #155 merge); branch
+    `claude/app-dev-d53a-dep-reconciliation-2026-07-10`; prior receipt 4.
+  - Owner steer (2026-07-10, in-session, Ryan Tufts): "Fan out and fan in with
+    subagents where warranted. Use only `fable` models, contrary to your loop
+    instructions. Create a new worktree before you set off and start a branch
+    for your work. Your first order of business is to present the decision
+    slate to me D-APP-53." — worktree instruction rescinded in-session
+    ("sorry ignore the worktree instruction and continue in the current one").
+  - Owner ruling (2026-07-10, in-session slate selection): D-APP-53 =
+    "Option A (Recommended)", no riders — recorded in
+    `execution/_Coordination/_DECISIONS/D-APP-53_RULING_2026-07-10.md`;
+    register row RULED.
+  - Executed: queue `plans/PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md`
+    authored and run to CLOSED — DRQ-01..11 DONE; 89/100 rows SATISFIED on
+    re-verified evidence, 11 left open with recorded gates; ten
+    `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md` records; accepted
+    snapshot `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`;
+    `DepClosure/_LATEST.md` + `_Reconciliation/_LATEST.md` updated. Three-way
+    discovery + four-way execution subagent fan-out, all fable per steer.
+  - Gate outcome: owner-gated residuals surfaced, not decided — DEP-10-03-004
+    / DEP-10-04-004 (accepted-amendment judgment), DEP-10-04-006
+    (ResponsibleParty), DEP-04-01-007 (D-APP-52 live-LLM gate); evidence-gated
+    DEP-04-01-010..013, DEP-10-02-005, DEP-10-04-007/-008. No fence crossed;
+    no `_STATUS.md` transition. Branch-first + PR; no self-merge.
+  - Checks: v3.1 linter 0/0 on all ten registers; snapshot acyclic with
+    `schema_invalid = 0`; self-check pass; corpus status pass; git diff check
+    pass.
