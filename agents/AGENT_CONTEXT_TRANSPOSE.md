@@ -498,7 +498,7 @@ A CONTEXT_TRANSPOSE run is compliant when:
 - PR-ready patch planning keeps work auditable, reviewable, and reversible.
 
 ### References (inputs that commonly guide this agent)
-- `AGENT_HELPS_HUMANS.md` (canonical workflow-design standard)
+- `docs/WORKFLOW_COMPONENT_STANDARD.md` (canonical workflow-component design standard)
 - Repo entrypoints + agent index (for inventory)
 - Target context vocabulary and contract constraints (human-confirmed)
 

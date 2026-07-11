@@ -176,7 +176,7 @@ Agents are classified into three types following the 0-1-2 model. See `AGENTS.md
 
 | Type | Name | Role | Scope |
 |---|---|---|---|
-| **Type 0** | Architect | Defines and maintains standards, contracts, and role boundaries | Project-wide |
+| **Type 0** | Protocol standard | Defines a canonical protocol and extension invariants consumed by conforming workflows; general governance standards may instead live directly in `docs/` | Project-wide |
 | **Type 1** | Manager | Interprets intent, decomposes work, routes to specialists, merges results | Package or project scope |
 | **Type 2** | Specialist | Executes bounded briefs with minimal context; returns outputs + evidence | Single deliverable or narrow task |
 
@@ -195,7 +195,7 @@ A `tool-root-only` scope MAY be parameterized to a registered tool root or subtr
 
 ### 4.3 Authority Model
 
-- Type 0 proposes rules (what "correct" means).
+- Normative governance documents define framework rules; Type 0 protocol standards define specialized canonical protocols and extension invariants.
 - Type 1 prepares workspaces and orchestrates (what the specialist can see).
 - Type 2 does the work (within bounded scope).
 - Human approves at gates.

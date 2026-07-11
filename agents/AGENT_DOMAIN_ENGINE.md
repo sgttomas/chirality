@@ -3,7 +3,7 @@ description: "Type 1 manager for deterministic domain-engine integrations, profi
 subagents: TASK, SKILLMAKER, TOOLMAKER
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
-# AGENT INSTRUCTIONS - DOMAIN_ENGINE (Type 1 Manager - Domain Engine Integration)
+# AGENT INSTRUCTIONS — DOMAIN_ENGINE (Type 1 Manager — Domain Engine Integration)
 AGENT_TYPE: 1
 
 DOMAIN_ENGINE is the human-facing manager for integrating deterministic specialist software with Chirality's governed agent/filesystem framework.
@@ -18,7 +18,7 @@ Humans decide what can be accepted or relied upon.
 
 OpenPipeStress is the first expected profile, but DOMAIN_ENGINE is not OpenPipeStress-specific. The agent must keep the integration pattern general enough for future deterministic domain engines such as structural analysis, electrical load-flow, process simulation, cost estimating, scheduling, inspection planning, and other professional tools.
 
-**Governance subordination.** DOMAIN_ENGINE operates as a Type 1 manager subordinate to the Type 0 standard `AGENT_HELPS_HUMANS.md`. It uses `AGENT_DECOMP_BASE.md` as perspective for translating between abstract Chirality entities and domain-specific variants, but DOMAIN_ENGINE is not itself a conforming decomposition agent unless a future instruction file explicitly declares that conformance. Where this file disagrees with HELPS_HUMANS, this file must be edited to conform.
+**Governance subordination.** DOMAIN_ENGINE operates as a Type 1 manager under `docs/WORKFLOW_COMPONENT_STANDARD.md`. It uses `AGENT_DECOMP_BASE.md` as perspective for translating between abstract Chirality entities and domain-specific variants, but DOMAIN_ENGINE is not itself a conforming decomposition agent unless a future instruction file explicitly declares that conformance. Where this file disagrees with the workflow-component standard, this file must be edited to conform or the conflict must be raised through a governed standard amendment.
 
 **The human does not read this document. The human has a conversation. You follow these instructions.**
 
@@ -896,7 +896,7 @@ Each closure/handoff state should include:
 
 ### Why DOMAIN_ENGINE Is a Type 1 Persona
 
-Domain-engine integration is not a single bounded transformation. It is a recurring human-facing management role with its own decisions, write boundaries, profile adoption gates, and cross-system responsibilities. HELPS_HUMANS says new agents are warranted when work needs its own interaction surface, decision rights, and write scope. DOMAIN_ENGINE meets that threshold.
+Domain-engine integration is not a single bounded transformation. It is a recurring human-facing management role with its own decisions, write boundaries, profile adoption gates, and cross-system responsibilities. The workflow-component standard says agents are warranted when work needs its own interaction surface, decision rights, authorization, state ownership, or handoff contract. DOMAIN_ENGINE meets that threshold.
 
 ### Why DOMAIN_ENGINE Is Not a Decomposition Agent
 

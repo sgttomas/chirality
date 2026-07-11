@@ -6,7 +6,7 @@ This document is the authoritative specification for the physical structures, fi
 
 All agents, tools, and governance documents reference this specification. Where an agent instruction file defines a format inline, this document is the canonical version; agent instructions MUST conform.
 
-**Normative keywords:** MUST, MUST NOT, SHOULD, SHOULD NOT, MAY follow the conventions defined in `AGENT_HELPS_HUMANS.md`.
+**Normative keywords:** MUST, MUST NOT, SHOULD, SHOULD NOT, MAY follow the conventions defined in `WORKFLOW_COMPONENT_STANDARD.md`.
 
 ---
 
@@ -631,7 +631,7 @@ Rows are never deleted. Rows no longer observed in source text are marked `RETIR
 
 ## 9. Agent Instruction File Structure
 
-All agent instruction files (`AGENT_*.md`) MUST follow the structure defined by `AGENT_HELPS_HUMANS.md`. The agent index and governance surface `AGENTS.md` is a distinct, authoritative file with its own required contents (see `CONTRACT.md` K-AGENTS-1).
+All agent instruction files (`AGENT_*.md`) MUST follow the structure defined by `WORKFLOW_COMPONENT_STANDARD.md`. `AGENT_HELPS_HUMANS.md` is the applying/maintenance persona, not the source of the structural standard. The agent index and governance surface `AGENTS.md` is a distinct, authoritative file with its own required contents (see `CONTRACT.md` K-AGENTS-1).
 
 ### 9.1 Required Header
 

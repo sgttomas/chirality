@@ -32,7 +32,7 @@ When both are present, `TASK` normalizes them into a single effective brief usin
 Legacy deliverable fields are compatibility metadata only:
 - `DeliverablePath` may be used by a brief or skill as a semantic input path.
 - `TaskProfile: DELIVERABLE_TASK` is accepted only as a deprecated compatibility label. It does not load a separate pathway and does not grant write authority.
-- `agents/AGENT_DELIVERABLE_TASK.md` is retained only as a deprecated compatibility pointer; this file is normative.
+- The retired deliverable-task agent file is not loaded. Compatibility behavior is defined inline here.
 
 ---
 
@@ -57,7 +57,7 @@ Supported compatibility labels:
 
 | `TaskProfile` | Meaning | Contract file |
 |---|---|---|
-| `DELIVERABLE_TASK` | Deprecated compatibility label only; no active profile behavior | `agents/AGENT_DELIVERABLE_TASK.md` |
+| `DELIVERABLE_TASK` | Deprecated compatibility label only; no active profile behavior | Inline compatibility contract in this file |
 
 If `TaskProfile` is omitted:
 - run using this file plus any declared skill.
@@ -312,7 +312,7 @@ Report in `CompanionFiles` as: `BRIEF_SCHEMA.md (found), TOOL_POLICY.md (absent)
 `TaskProfile: DELIVERABLE_TASK` is accepted only so older briefs can still be
 parsed. It does not:
 
-- load `agents/AGENT_DELIVERABLE_TASK.md`;
+- load any retired deliverable-task compatibility instruction file;
 - require or infer `DeliverablePath`;
 - load a deliverable truth set;
 - authorize `MEMORY.md`, `_STATUS.md`, production-document, dependency, or

@@ -20,7 +20,7 @@ The system enforces three distinct separations:
 
 **Source Truth vs Derived Output.** Deliverable folders (source truth) are structurally isolated from tool roots (derived outputs). Tool roots (`_Aggregation/`, `_Estimates/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) contain agent-produced analysis and snapshots. Source truth contains human-accepted deliverable content. The boundary is enforced by K-WRITE-1: every agent declares its write scope and cannot cross into another zone.
 
-**Authority vs Execution.** The Type 0/1/2 hierarchy separates standards definition from orchestration from bounded task execution. Authority flows downward (Type 0 constrains Type 1, Type 1 constrains Type 2); escalation flows upward. This is stated in `TYPES.md` §4.3 and enforced by agent instruction constraints and human gate authority.
+**Authority vs Execution.** Normative governance documents and Type 0 protocol standards constrain Type 1 orchestration, which constrains Type 2 bounded execution; escalation flows upward. This is stated in `TYPES.md` §4.3 and enforced by component contracts and human gate authority.
 
 ### 1.2 Modularity & Encapsulation
 
@@ -157,7 +157,8 @@ The write scope architecture creates formal fault containment:
 | Deliverable-local | WORKING_ITEMS, TASK, DELIVERABLE_TASK (also TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register via TASK shell) | Limited to one production unit folder |
 | Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, SCHEDULING | Limited to one tool root; source truth untouched |
 | Repo (approval-gated) | CHANGE | Requires explicit human approval token per action |
-| Read-only | HELP_HUMAN, HELPS_HUMANS, DECOMP_BASE | Zero write impact |
+| Read-only | HELP_HUMAN, DECOMP_BASE | Zero write impact |
+| Workflow-component architecture | HELPS_HUMANS | Repo-wide component-design surfaces under human-reviewed governance changes |
 
 A Type 2 agent failure cannot corrupt source truth — it writes to an isolated tool root or a single deliverable folder. The CHANGE agent's approval gate (APPROVE: / APPROVE_DESTRUCTIVE:) is the sole path from derived output to committed state.
 
@@ -263,7 +264,7 @@ The architecture defines three layers of formally stated invariants:
 
 **I1–I10 (Decomposition invariants):** Structural constraints on decomposition (flat partitions, no gaps, stable IDs, deterministic coupling, vocabulary discipline). Enforced by decomposition agents; verified by AUDIT_DECOMP.
 
-**R1–R9 (Workflow design requirements):** Behavioral constraints on all agents (human decision rights, straight-through tasks, write quarantine, immutable snapshots, provenance, no invention, conflict surfacing, brief-driven execution, hygienic publication). Enforced by agent instructions.
+**R1–R17 (Workflow-component requirements):** Stable behavioral constraints covering human decision rights, bounded execution, write quarantine, artifact-appropriate snapshots, provenance, no invention, conflict surfacing, brief-driven execution, Git/approval semantics, component boundaries, claim calibration, integration governance, registry lifecycle, path containment, and proportional design. Defined in `WORKFLOW_COMPONENT_STANDARD.md` and enforced through component contracts, validators, audits, and human review.
 
 **K-* (System-wide invariants):** 21 named, stable invariants covering hierarchy, authority, sealing, dependencies, status, staleness, gates, merge, provenance, invention, conflicts, claim strength, write scope, and snapshots. Defined in `CONTRACT.md` with enforcement points.
 

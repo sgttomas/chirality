@@ -1,6 +1,6 @@
 # AGENTS — Agent Index
 
-This file indexes the agent suite. For classification semantics, see `docs/TYPES.md` §4. For the full design basis, see `docs/DBM_Agent_Instruction_Architecture.md`.
+This file indexes the agent suite. For classification semantics, see `docs/TYPES.md` §4. For workflow-component design rules, see `docs/WORKFLOW_COMPONENT_STANDARD.md`; for the explanatory design basis, see `docs/DBM_Agent_Instruction_Architecture.md`.
 
 Use `AGENT_*` for instruction files (e.g., `AGENT_CHANGE.md`). Use the role name for the agent itself (e.g., `CHANGE`). All files are in `agents/`.
 
@@ -45,11 +45,16 @@ Other live task-family agents (AGGREGATION, DOMAIN_HYPERGRAPH) are indexed below
 
 ## Agent Index
 
-### Type 0 — Canonical Standards
+### Normative Workflow-Component Standard
+
+| Standard | File | Role |
+| --- | --- | --- |
+| Workflow-Component Design Standard | `docs/WORKFLOW_COMPONENT_STANDARD.md` | Governs classification, design, authority, lifecycle, and conformance of agents, skills, tools, briefs, and workflow packages |
+
+### Type 0 — Canonical Protocol Standards
 
 | Agent | Instruction File | Role |
 | --- | --- | --- |
-| HELPS_HUMANS | `AGENT_HELPS_HUMANS.md` | Workflow design standard governing agents, skills, and tools; all workflow components must conform |
 | DECOMP_BASE | `AGENT_DECOMP_BASE.md` | Decomposition protocol standard (7-gate, I1–I10) |
 
 ### Type 1 — Interactive Personas
@@ -57,6 +62,7 @@ Other live task-family agents (AGGREGATION, DOMAIN_HYPERGRAPH) are indexed below
 | Agent | Instruction File | Role |
 | --- | --- | --- |
 | HELP_HUMAN | `AGENT_HELP_HUMAN.md` | Operator assistance; classifies intent, drafts briefs |
+| HELPS_HUMANS | `AGENT_HELPS_HUMANS.md` | Workflow-component architect persona; applies and maintains the normative standard, classifies components, and governs migration/deprecation designs |
 | RESEARCH | `AGENT_RESEARCH.md` | Evidence-grounded inquiry over accepted domain decompositions, source catalogs, and retrieval indexes |
 | ORCHESTRATOR | `AGENT_ORCHESTRATOR.md` | Project setup, tier sequencing, control loops |
 | WORKING_ITEMS | `AGENT_WORKING_ITEMS.md` | Deliverable-scoped content production |

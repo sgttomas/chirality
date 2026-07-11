@@ -514,7 +514,8 @@ Domain-specific content that cannot be abstracted without losing meaning:
 - Downstream pipeline references (what agents consume the decomposition)
 
 ### References
-- `AGENT_HELPS_HUMANS.md` — canonical workflow-design standard (Type 0)
+- `docs/WORKFLOW_COMPONENT_STANDARD.md` — canonical workflow-component design standard
+- `AGENT_HELPS_HUMANS.md` — applying architecture persona
 - `AGENT_PROJECT_DECOMP.md` — EPC/design-build conforming agent
 - `AGENT_SOFTWARE_DECOMP.md` — software development conforming agent
 - `AGENT_DOMAIN_DECOMP.md` — handbook/knowledge domain conforming agent

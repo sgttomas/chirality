@@ -7,7 +7,8 @@ AGENT_TYPE: 2
 
 These instructions govern a **Type 2** task agent that audits **AGENT_*.md** instruction files for coherence and conformance using:
 - `docs/rubrics/AUDIT_AGENT.md` rubric (default)
-- Canonical standard: `AGENT_HELPS_HUMANS.md` (unless the invoking manager overrides)
+- Canonical standard: `docs/WORKFLOW_COMPONENT_STANDARD.md`
+- Applying persona: HELPS_HUMANS (a dispatcher/reviewer, not the canon)
 
 **The human does not read this document. The human has a conversation. You follow these instructions.**
 
@@ -41,7 +42,7 @@ These instructions govern a **Type 2** task agent that audits **AGENT_*.md** ins
 3. **STRUCTURE** — allowed artifacts and schemas (what to write)
 4. **RATIONALE** — intent / value hierarchy (how to interpret ambiguity)
 
-If a human instruction conflicts with this document, obey the human and record the override in `Decision_Log.md` inside the run snapshot.
+Human direction may narrow the run or rule on semantic findings. It does not silently waive root invariants or write boundaries; a governed exception must be recorded through the owning workflow.
 
 ---
 
@@ -84,8 +85,8 @@ Required:
 Optional:
 - `TASK_BRIEF_FILE`: optional markdown brief path (if manager wants file-based briefing)
 - `RUN_LABEL`: short label for this run (default `AGENTS`)
-- `CANON_FILE`: canonical standard path (default: `AGENT_HELPS_HUMANS.md`)
-  - If the default canon file does not exist but `AGENT_HELPS_HUMANS_UPDATED.md` exists, use that and record the substitution.
+- `CANON_FILE`: canonical standard path (default: `docs/WORKFLOW_COMPONENT_STANDARD.md`)
+- `GOVERNING_FILES`: default `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, and `AGENTS.md`
 - `RUBRIC_FILE`: default `docs/rubrics/AUDIT_AGENT.md`
 - `VERBOSITY`: `LOW` (default) | `MED` | `HIGH`
 - `OUTPUT_FORMAT`: `RUBRIC_MARKDOWN` (default) | `RUBRIC+CSV`
@@ -127,6 +128,7 @@ Pointer (overwrite allowed; pointer only):
 3) Confirm `FILES_TO_AUDIT` is non-empty.
 4) Confirm `CANON_FILE` exists.
    - If canon is missing: still run inventory + drift detection; mark canon-dependent checks as `BLOCKER`.
+5) Run `tools/validation/validate_agent_instructions.py` against the requested files and include its findings as structural evidence.
 
 ---
 
@@ -142,15 +144,9 @@ For each audited file, record:
 ### Step 2 — Apply the rubric
 
 Fill `docs/rubrics/AUDIT_AGENT.md`:
-- “Audit metadata” once (run-level),
-- “Canon extraction” once (if canon is available),
-- one worksheet per audited file.
-
-**Canon check exclusions:** The following canon sections are informational and their absence in an audited file is NOT a conformance finding:
-- `Revision` (version + date) — useful but not required for conformance.
-- `Normative keywords` (MUST/SHOULD/MAY definitions) — usage of normative keywords is sufficient; a dedicated definition section is not required.
-
-Do not flag missing exclusion-listed sections as WARNING, INFO, or any other severity.
+- audit metadata once,
+- one file card, universal check set, requalification test, and disposition per audited file,
+- suite-level synthesis when more than one file is audited.
 
 For any ⚠️/❌:
 - include evidence excerpt (≤25 words) with a location,

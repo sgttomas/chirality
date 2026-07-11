@@ -12,7 +12,7 @@ Skills are **not agents**. They do not have their own decision rights, write sco
 
 The canonical loader for these skills is [`AGENT_TASK.md`](../agents/AGENT_TASK.md).
 
-**Governed by:** SKILLMAKER (Type 1, `agents/AGENT_SKILLMAKER.md`), operating under the Type 0 standard `AGENT_HELPS_HUMANS.md` which governs workflow-component design across agents, skills, and tools. SKILLMAKER owns skill design, contract evolution, and subsystem governance; its outcomes conform to HELPS_HUMANS R10 + R12 and the "Design Outcomes for Skill Contracts" section.
+**Governed by:** SKILLMAKER (Type 1, `agents/AGENT_SKILLMAKER.md`), operating under `docs/WORKFLOW_COMPONENT_STANDARD.md`, which governs workflow-component design across agents, skills, tools, briefs, and workflow packages. SKILLMAKER owns skill design, contract evolution, and subsystem governance; its outcomes conform to standard R10 + R12 and §11.
 
 ## Why skills exist
 
@@ -45,7 +45,7 @@ The authority split between companion files:
 - **`TOOL_POLICY.md`** — the tool allowlist and preferences.
 - **`QA_CHECKS.md`** — output validity checks.
 
-The orchestrator provides runtime parameters via `RuntimeOverrides` and optional run-specific reinforcement via `CustomInstructions`. It does not duplicate the skill contract. See `AGENT_HELPS_HUMANS.md` § Skill dispatch principle.
+The orchestrator provides runtime parameters via `RuntimeOverrides` and optional run-specific reinforcement via `CustomInstructions`. It does not duplicate the skill contract. See `docs/WORKFLOW_COMPONENT_STANDARD.md` §11.
 
 ## Folder contract
 

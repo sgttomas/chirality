@@ -376,11 +376,11 @@ The AUDIT_* family (AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_HYPERGRAPH_CLOSURE, etc.) 
 
 Each gate requires a human looking at the rendered KaTeX in a browser, comparing to the page raster, and choosing. The loop iterates Flag → Backcheck → Verified, sometimes multiple times per equation. PDF2MD is the closest pattern reference: same loop semantics (phase-gated VLM-then-human-review), same per-item TASK fanout pattern, same human-driven advance through gates.
 
-Per `AGENT_HELPS_HUMANS.md` § Step 4, a new agent is justified when (a) it has a distinct write scope (`audit/equations/`), (b) its own gate cadence (Gates 0/2/5/6, iterative), (c) decision rights the human exercises through it (close vs. loop, accept fix vs. re-flag), and (d) bounded TASK skills dispatched only from this persona. All four hold for equation auditing.
+Per `docs/WORKFLOW_COMPONENT_STANDARD.md` §3–4, an agent is justified when it owns distinct human interaction, gate, decision, authorization, state, or handoff semantics that TASK plus a skill cannot safely represent. EQUATION_AUDIT currently claims that threshold through its iterative human review cadence, equation-audit write boundary, close-vs-loop decisions, and bounded downstream dispatches; the suite-wide disposition audit must verify that claim rather than grandfather it.
 
 ### Why the LLM boundary moved into a skill
 
-The legacy `process_flagged.py --interpret` flag shelled out to the `claude` CLI in Sonnet mode via `subprocess`, embedding LLM reasoning inside a deterministic tool. That pattern violated `AGENT_HELPS_HUMANS.md` R12 (skill/tool boundary). Two concrete problems followed: the tool had no `TASK` context (so `AGENT_TASK.md` invariants didn't apply), and the brief was synthesized by the tool as a Python f-string rather than rendered by a TOOLMAKER-owned brief-builder.
+The legacy `process_flagged.py --interpret` flag shelled out to the `claude` CLI in Sonnet mode via `subprocess`, embedding LLM reasoning inside a deterministic tool. That pattern violated workflow-component standard R12 (skill/tool boundary). Two concrete problems followed: the tool had no `TASK` context (so `AGENT_TASK.md` invariants didn't apply), and the brief was synthesized by the tool as a Python f-string rather than rendered by a TOOLMAKER-owned brief-builder.
 
 The new shape — `equation-flag-interpret` skill loaded by `TASK`, with a brief rendered by `build_equation_interpret_brief.py` — restores both boundaries: `process_flagged.py` becomes deterministic again, and the LLM reasoning lives inside a skill whose contract is auditable via `SKILL.md`, `BRIEF_SCHEMA.md`, `TOOL_POLICY.md`, `QA_CHECKS.md`.
 

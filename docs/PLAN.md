@@ -33,6 +33,11 @@ The established direction (reflected in `AGENTS.md` and the agent suite):
   methods via `TaskSkill: <name>`. A new bespoke task agent is not added when
   role, write scope, and interaction surface are unchanged and only the method
   differs — that is a skill.
+- **Workflow-component standards are separate from applying personas.**
+  `docs/WORKFLOW_COMPONENT_STANDARD.md` is the normative design surface;
+  HELPS_HUMANS applies and maintains it as a Type 1 persona. Existing agents
+  requalify under the same agent/skill/tool/brief boundary as new components
+  (D-GOV-10).
 - **Method logic lives in `skills/`; deterministic operations live in
   `tools/`; Type 1 personas handle human-facing orchestration.** `ORCHESTRATOR`
   is the grandfathered orchestration persona.
