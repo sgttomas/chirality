@@ -336,3 +336,38 @@
     was newly unblocked by today's merges (desktop menu + caller-side save binding
     for the report container, runner export-results payload binding, REXC-REQ-012
     breadth, E2 tolerance-record fill, arc pressure-thrust treatment).
+
+- **2026-07-10 — Receipt 12** (loop-instruction consolidation, owner-adopted;
+  deliverables become the work-discovery surface).
+  - Start: main at the PR #169 merge (3cdc265ac); PR #165 refreshed against
+    Receipts 9–10 and again against wave-3 Receipt 11 (concurrent-loop merges).
+  - Owner directions of record (2026-07-10, in-session, Ryan Tufts): "I really want
+    the deliverables themselves to be the means of discovering work going forward,
+    with the loop mechanics included as the development loop instructions. ... We
+    need to simplify these instructions and avoid creating unnecessary registers or
+    plans."; on the presented consolidation proposal: "Adopted.  Use fable subagents
+    where warranted."
+  - Artifacts (commits on PR #165): `WORKPLAN_2026-07-10_piping_loop.md`
+    (supersedes the 2026-07-04 plan; adds fence F-PIP-5); `_COORDINATION.md`
+    rewritten as a ruled-record stub (stage record, DEC-040 augmentation, H4
+    posture preserved verbatim); `## Remaining` sections in 26 deliverable
+    `_STATUS.md` files (50 open items rehomed from plans, refreshed against
+    Receipts 9–11 / PRs #152–#167: 11 landed rows dropped, 9 sharpened, 6 residuals
+    added incl. DEL-10-05, DEL-16-02; rehoming record incl.
+    deliberately-not-rehomed F3 / FR-024 / Phase-I-generator items:
+    `plans/PLAN_COMPLETION_LOG.md` 2026-07-10 entry); plan retirement banners;
+    `NEXT_INSTANCE_PROMPT.md` historical banner; `list_deliverable_status.py`
+    `RemainingItems` column + tests; `LOOP_INIT.md` §7 synced to the 2026-07-05
+    owner revision; README/docs entry pointers aligned. PR from branch
+    `claude/chirality-piping-loop-init-57a151`, awaiting owner merge.
+  - Deltas (live tree wins): the concurrent loop's waves 1–3 landed nine of the
+    originally rehomed rows while this PR was open (E2/E3/E4/E5/E6/E7/E8 slices,
+    mechanics residuals) — each drop/sharpen is cited in the affected `Remaining`
+    bullets; wave-3 newly named REXC-REQ-012 breadth and the arc pressure-thrust
+    treatment, rehomed here (DEL-12-02, DEL-04-01).
+  - Checks: self-check exit 0; harness pytest pass; coordination tests pass;
+    deliverable-status summary run (Remaining items: 50 across 26 deliverables);
+    DEC-025 clean-head sweep `SWEEP_20260711T040758Z_e648462f1d05.json` pass.
+  - Gate outcome: coordination/control consolidation executed at owner adoption;
+    no lifecycle transition, no register change; parked gates unchanged: D-12,
+    D-07b, D-38 (AWAITING_RULING), D-06b (NOT_PREPARED).
