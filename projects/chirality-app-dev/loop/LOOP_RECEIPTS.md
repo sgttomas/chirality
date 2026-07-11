@@ -527,3 +527,31 @@
   - Checks: recorded at PR time — self-check, practitioner pytest (incl. 53/0
     drift baseline over the new History lines), git diff check; frontend gates
     skipped — governance/docs-only tranche, no runtime source changed.
+
+- **2026-07-11 — Receipt 15** (D-APP-55 R0 method calibration executed; stopped at the R0 owner gate).
+  - Start: worktree branch `claude/app-dev-concordance-da0910` fast-forwarded
+    to `main` = `4c8ed8907` (PR #178 merge); newest prior receipt Receipt 14.
+    Owner relaunch direction (this session): resume the D-APP-55 run mid-R0;
+    steer verbatim, unchanged from Receipt 14: "fan out and fan in with
+    subagents where warranted; use only fable models."
+  - Executed: R0 calibration per the D-APP-55 ruling + `RUN_BASIS.md` sample —
+    three parallel fable TASK agents (DEL-02-01, DEL-03-04, DEL-10-01),
+    read-only discovery, disjoint write scopes. Run folder
+    `execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/`
+    retained from the interrupted prior session (RUN_BASIS/AUTHORITY_MAP
+    re-verified against the live tree; pinned plan re-verified byte-identical
+    at `551f84ef6`); new: `R0_CALIBRATION/` — 3 claims CSVs (77 rows,
+    §6/§7-contract-validated), 3 notes files, merged `R0_CLAIM_LEDGER.csv`,
+    `R0_CALIBRATION_REPORT.md` (findings, 11 proposed run-local method
+    revisions, R2-readiness gates).
+  - Gate outcome: STOPPED at the R0 owner gate — findings go to the owner
+    before any R2 scaling (ruling direction of record); R5 repair stays
+    R4-gated; no lifecycle transition; no fence crossed; corpus-amendment-shaped
+    findings (pre-pivot wording in RATIFIED PRD/TYPES) parked as R4 packet
+    inputs, no action taken.
+  - Incident (report §6): DEL-03-04 agent interrupted once by a provider API
+    error and resumed; transient test cache created/removed, pristine tree
+    confirmed. No evidence impact.
+  - Checks: self-check severities unchanged (REVIEW 27, WARN 6); practitioner
+    pytest 263 passed/1 skipped; frontend gates skipped — evidence-only
+    tranche, no runtime source changed; git diff check pass.
