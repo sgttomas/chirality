@@ -17,13 +17,14 @@ Active coordination surfaces:
   (not this pointer) are the owner-gated surface; check it every session for
   rulings and open rows.
 
-Active development queue:
+Work discovery (owner-adopted 2026-07-10; queue convention retired):
 
-- **None.** `plans/PLAN_2026-06-21_inspection_orphan_remediation.md` is CLOSED
-  (queue exhausted 2026-07-10; its own rows record per-item disposition).
-  Successor-queue selection is decision `D-APP-53` (AWAITING_RULING —
-  `_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md`). Do not
-  select new development work without an owner-adopted queue or ruling.
+- Deliverable-driven: `execution/PKG-*/1_Working/DEL-*/_STATUS.md`
+  `## Remaining` sections are the work surface, selected per the newest
+  `loop/WORKPLAN_*.md`. No successor queue plan will be authored. Which rehomed
+  lanes are live is the owner's ruling — `D-APP-53` (AWAITING_RULING —
+  `_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md`, see its
+  2026-07-10 addendum); honor every `(gated: ...)` suffix.
 
 Queue and plan history (non-governing; each plan's own status field and
 `plans/PLAN_COMPLETION_LOG.md` govern):
