@@ -8,6 +8,7 @@
 
 ## Remaining
 - Define and land the arbitrary-secret-registry redaction taxonomy (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
+- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision <commit SHA>) (gated: D-APP-55)
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -17,3 +18,4 @@
 - 2026-06-20 - State set to CHECKING (HUMAN)
 - 2026-07-10 - Remaining section added: open scope rehomed from the D-APP-53 candidate enumeration per owner-adopted consolidation (loop Receipt 5); no state change.
 - 2026-07-11 - State set to IN_PROGRESS (HUMAN) [Owner-ruled lifecycle rebaseline D-APP-54 2026-07-11: administrative correction superseding the D-APP-19 inspection-admission convention; prior approvals and history preserved (execution/_Coordination/_DECISIONS/D-APP-54_RULING_2026-07-11.md).]
+- 2026-07-11 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-55 packet; no state change.
