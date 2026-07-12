@@ -600,3 +600,167 @@
   - Checks: self-check severities unchanged (REVIEW 27, WARN 6); practitioner
     pytest 263 passed/1 skipped; frontend gates skipped — evidence/docs-only
     tranche, no runtime source changed; git diff check pass.
+
+- **2026-07-11 — Receipt 18** (R2 W1 re-dispatch under owner resume steer; model roster re-ruled).
+  - Start: dedicated worktree
+    `.claude/worktrees/chirality-app-dev-d-app-55-a5e6ad`, branch
+    `claude/chirality-app-dev-d-app-55-a5e6ad` at `052b3c2b2` (= `origin/main`,
+    at/past the required `052b3c2b2` base), `git status` clean, no unrelated
+    work carried; newest prior receipt 17.
+  - Account/model verification: session user `ryan@chirality.ai`; orchestrator
+    model `claude-fable-5` (harness-declared); `opus` dispatch available via
+    the TASK agent interface. Interactive `/status` is unavailable in this
+    session type; verification recorded from the harness environment
+    declaration — no model substitution.
+  - Frontend source comparison: `git diff --quiet fac46e33f..HEAD --
+    frontend/` exit 0 — `frontend/` byte-identical `fac46e33f..052b3c2b2`; the
+    existing W1 gate transcript binding
+    (`GATE-TRANSCRIPT(W1@fac46e33f)`, typecheck 0 / Vitest 667 passed
+    4 skipped) is preserved; no `STALE_INPUT` condition; no new gate clone
+    required.
+  - Resume boundary: R0 and R1 COMPLETE; run PAUSED at R2 W1 re-dispatch
+    (Receipt 17). Verified zero partial W1 artifacts: no `R2_WAVES/` directory
+    exists in the run folder — the stopped prior dispatch wrote nothing.
+  - Owner resume steer (2026-07-11), verbatim — supersedes Receipt 17's prior
+    fable W1 agent configuration: "Steer (this run, owner-ruled 2026-07-11,
+    overrides LOOP_INIT §7 defaults per its own terms): fable orchestrates;
+    opus for R2 discovery subagents in W1-W4 and W7; fable at high effort for
+    the per-wave fan-in verification pass (self-flagged + non-ALIGNED rows)
+    and for ALL discovery agents in W5 (PKG-01, enforcement-truth register)
+    and W6 (PKG-10, F-APP-3 fence-adjacent); R3 synthesis agents are fable."
+  - Dispatch: R2 W1 = PKG-02, DEL-02-02..DEL-02-05 — four `opus` TASK
+    discovery agents (the wave's single sub-batch, at the four-agent cap),
+    read-only discovery, disjoint write scopes: each writes exactly
+    `R2_WAVES/PKG-02/<DEL-ID>_claims.csv` + `<DEL-ID>_notes.md` under the
+    pinned plan @ `551f84ef6` §§6–7 as amended by `R2_METHOD_ADDENDUM.md`
+    (MR-1..MR-11). Fan-in verification per the steer: fable, high effort,
+    outcomes to wave-local `_VERIFICATION.md`; refuted rows return to their
+    owning agent or remain explicitly contested.
+  - Gate outcome: none crossed — discovery only; R4/R5 remain owner-gated; no
+    lifecycle transition; parked items (root harness-premerge workflow, R4
+    corpus-amendment packet) remain out of scope.
+
+- **2026-07-11 — Receipt 19** (R2 W1 complete: PKG-02 concordance discovery + fan-in verification; STOPPED at the W1/W2 boundary for owner merge direction).
+  - Start: branch `claude/chirality-app-dev-d-app-55-a5e6ad` at `052b3c2b2`
+    (Receipt 18 dispatch record); frontend byte-identity to `fac46e33f`
+    re-verified — `GATE-TRANSCRIPT(W1@fac46e33f)` binding stands.
+  - Executed under the Receipt 18 owner steer: four `opus` TASK discovery
+    agents (DEL-02-02..05, disjoint write scopes, single sub-batch at the
+    four-agent cap) produced `R2_WAVES/PKG-02/<DEL-ID>_claims.csv` + notes —
+    86 claim rows total under pinned plan §§6–7 @ `551f84ef6` + MR-1..MR-11.
+  - Deterministic validation: first pass caught 5 MR-5 ClaimID-format errors
+    (register rows in DEL-02-04/05) + 1 MR-10 token warning (DEL-02-02
+    ACC-002); format fixes made by the owning agents (ClaimID cells only);
+    final pass 0 errors / 0 warnings.
+  - Fan-in verification (fable, high effort, per the steer): 34 rows
+    (self-flagged ∪ non-ALIGNED) rechecked adversarially; outcomes in
+    `R2_WAVES/PKG-02/_VERIFICATION.md`. 33 confirmed; 1 refuted
+    (DEL-02-03-EXC-003 ALIGNED → STALE_SPECIFICATION per MR-8 + R0 precedent)
+    — returned to and accepted by its owning agent; 1 evidence-cell defect
+    (DEL-02-02-ACC-002 cited a nonexistent WORKSPACE_MANIFEST row) — corrected
+    by its owning agent after independent re-verification; zero contested; no
+    judgment edited by anyone but its owner.
+  - Final wave census: ALIGNED 62, STALE_SPECIFICATION 8,
+    REMAINING_STATE_MISMATCH 7, IMPLEMENTED_UNDOCUMENTED 5,
+    PARTIALLY_IMPLEMENTED 3, STALE_VERIFICATION 1; zero
+    AUTHORITY_CONFLICT/UNKNOWN/DEFERRED_AGENT_WORKFLOW. Package summary
+    derived from the claim rows (incl. DEL-02-01 R0):
+    `PACKAGE_SUMMARIES/PKG-02.md`. D-APP-55 register row run-visibility cell
+    updated (W1 complete, stopped at the wave boundary).
+  - Gate outcome: STOPPED at the W1/W2 boundary per the resume steer — owner
+    merge direction required; never self-merge. R4/R5 remain owner-gated; no
+    lifecycle transition; no fence crossed; evidence immutable and
+    source-state-bound; parked items unchanged.
+  - Checks: self-check exit 0, severities unchanged (REVIEW 27, WARN 6);
+    practitioner pytest 263 passed/1 skipped; frontend gates skipped —
+    evidence-only tranche, no runtime source changed; git diff check pass
+    (writes confined to the run folder, `loop/LOOP_RECEIPTS.md`, and the
+    D-APP-55 register cell).
+
+- **2026-07-11 — Receipt 20** (PR #185 merged on owner direction; R2 W2 dispatched).
+  - Owner direction (2026-07-11, in-session), verbatim: "Merge the PR and
+    proceed accordingly."
+  - Executed: PR #185 merged (CI `harness` pass; merge-commit mode, matching
+    repo precedent) — W1 evidence now on `main` = `1625b396a`; work branch
+    fast-forwarded to it, clean. Frontend re-verified byte-identical
+    `fac46e33f..1625b396a` (diff exit 0) — `GATE-TRANSCRIPT(W1@fac46e33f)`
+    binding holds for W2; no STALE_INPUT, no new gate clone.
+  - Dispatch: R2 W2 = PKG-03/04/05/06, 19 deliverables (DEL-03-04 already
+    covered by R0 calibration). Five sub-batches at the four-agent cap
+    (B1 03-01/03-02/03-03/04-01; B2 04-02..05; B3 05-01..04; B4
+    05-05/06-01/06-02/06-03; B5 06-04..06), each persisted and structurally
+    validated before the next launches. Roster per the Receipt 18 steer:
+    `opus` discovery; fable high-effort fan-in on self-flagged + non-ALIGNED
+    rows at wave fan-in, outcomes to package-local `_VERIFICATION.md` files;
+    refuted rows return to their owning agent or stay contested. Same read-only
+    discovery contract, pinned plan @ `551f84ef6` §§6–7 + MR-1..MR-11.
+  - Known R1 index caveats passed to agents: zero regex-scanned requirement
+    IDs for DEL-04-03/04-04/04-05/05-01/05-02/05-03/06-03 (parser gap, not
+    absence of requirements — claim sets re-derived from Specification.md).
+  - Gate outcome: none crossed — discovery only; R4/R5 owner-gated; stop at
+    the W2/W3 boundary for owner merge direction.
+
+- **2026-07-11 — Receipt 21** (R2 W2 complete: PKG-03/04/05/06 concordance discovery + fan-in; STOPPED at the W2/W3 boundary for owner merge direction).
+  - Start: branch fast-forwarded to `main` = `1625b396a` after the PR #185
+    merge (Receipt 20); frontend byte-identity to `fac46e33f` re-verified —
+    `GATE-TRANSCRIPT(W1@fac46e33f)` binding held for the whole wave.
+  - Discovery: 19 deliverables (DEL-03-04 covered at R0) in five sub-batches
+    at the four-agent cap, `opus` TASK agents per the Receipt 18 steer, each
+    sub-batch persisted and deterministically validated before the next
+    (B1 caught one transient API stall — agent resumed, no partial artifacts;
+    B3 caught one §7 vocabulary error — owner-fixed). Final: 423 claim rows,
+    0 validation errors/warnings.
+  - Fan-in (fable, high effort, one verifier per package): 137 rows rechecked
+    (self-flagged ∪ non-ALIGNED + a directed ALIGNED/relocated-evidence
+    sample in PKG-06). Outcomes in the four wave-local `_VERIFICATION.md`
+    files: 121 confirmed; 13 refuted, ALL accepted by their owning agents
+    after independent re-verification (notably: three DEL-05-01
+    ACCEPTED_DIVERGENCE rows anchored on a withheld authorization; three
+    PKG-04 unmapped-scope rows whose surfaces the decomposition already
+    assigns; two Declared-TBD register rows refuted on SPEC §5.2); 1
+    verifier-contest resolved by owner flip (DEL-04-03 REQ014 → ALIGNED); 2
+    rows remain explicitly contested by owner choice (DEL-04-05 RQ-011
+    ALIGNED-with-contest; DEL-06-02 REGISTER-2 REMAINING_STATE_MISMATCH,
+    NEW-PACKET). No judgment edited by anyone but its owner.
+  - Cross-package finding of record: inter-verifier conflict on the
+    "Declared Upstream/Downstream: TBD" register-defect class (PKG-06 refuted
+    on `docs/SPEC.md` §5.2 — orchestrator-verified; PKG-03/04/05 confirmed
+    identical rows without that fact; W1 merged rows are in the class).
+    Standing rows NOT reopened; class harmonization assigned to R3
+    (`R2_WAVES/PKG-03/_VERIFICATION.md` §3.5).
+  - Final W2 census: 423 rows — ALIGNED 339, PARTIALLY_IMPLEMENTED 29,
+    STALE_SPECIFICATION 19, REMAINING_STATE_MISMATCH 19,
+    IMPLEMENTED_UNDOCUMENTED 10, ACCEPTED_DIVERGENCE 5,
+    DOCUMENTED_UNIMPLEMENTED 1, STALE_ASSESSMENT 1; zero
+    AUTHORITY_CONFLICT/UNKNOWN/DEFERRED_AGENT_WORKFLOW. Package summaries
+    derived from the ledgers: `PACKAGE_SUMMARIES/PKG-0{3,4,5,6}.md`.
+    D-APP-55 register run-visibility cell updated (W2 complete, stopped at
+    the wave boundary).
+  - Gate outcome: STOPPED at the W2/W3 boundary per the resume steer — owner
+    merge direction required; never self-merge. R4/R5 remain owner-gated; no
+    lifecycle transition; no fence crossed; parked items unchanged. Next on
+    merge direction: W3 = PKG-07/08 (11 deliverables, opus discovery per the
+    steer).
+  - Checks: self-check exit 0, severities unchanged (REVIEW 27, WARN 6);
+    practitioner pytest 263 passed/1 skipped; frontend gates skipped —
+    evidence-only tranche, no runtime source changed; git diff check pass
+    (writes confined to the run folder, `loop/LOOP_RECEIPTS.md`, and the
+    D-APP-55 register cell).
+
+- **2026-07-11 — Receipt 22** (PR #186 merged on owner direction; run PAUSED at the W2/W3 boundary awaiting owner permission).
+  - Owner direction (2026-07-11, in-session), verbatim: "Merge the PR and
+    then wait for permission to proceed further."
+  - Executed: PR #186 merged (CI `harness` pass); W2 evidence now on `main` =
+    `7ac660761`; work branch fast-forwarded to it, clean. No further dispatch.
+  - State at pause: R0, R1, R2 W1 (PKG-02) and W2 (PKG-03/04/05/06) COMPLETE
+    and merged — 26 of 53 deliverables concordance-processed (3 R0 + 4 W1 +
+    19 W2); 27 remain across W3–W7; resume point is **W3 dispatch
+    (PKG-07/08, 11 deliverables, opus discovery per the Receipt 18 steer)**,
+    then W4 (PKG-09), W5 (PKG-01, fable), W6 (PKG-10, fable), W7 (PKG-00),
+    R3, plan §10 QA, STOP at R4. Two explicitly contested rows and the
+    Declared-TBD register-class conflict stand for R3
+    (`R2_WAVES/PKG-03/_VERIFICATION.md` §3.5).
+  - Gate outcome: paused by owner direction — not a fence stop; R4/R5 remain
+    owner-gated; no lifecycle transition; no fence crossed.
+  - Checks: none run — record-keeping receipt only; nothing but this receipt
+    changed since the merged tranche.
