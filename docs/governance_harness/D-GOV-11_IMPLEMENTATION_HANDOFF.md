@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: COMPLETE / DERIVATIVE EXPORT PENDING
+Status: COMPLETE
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -54,6 +54,8 @@ Branch: `codex/agent-governance-redesign`
   the production-distribution WASM test, and the desktop production build.
 - Path-anchor and instruction-entrypoint validators passed. `git diff --check`
   reported no whitespace errors.
+- The allowlisted public derivative regenerated successfully with 585 manifest
+  entries and zero boundary findings.
 
 ## Deferred Evolution
 
@@ -64,18 +66,16 @@ Branch: `codex/agent-governance-redesign`
 
 ## External Blockers
 
-None. Both paused concordance branches are integrated and combined validation
-has passed. Public-export regeneration follows the publication commits.
+None. Both paused concordance branches are integrated, combined validation has
+passed, and the public derivative has been regenerated.
 
 ## Required Resume Sequence
 
-1. Regenerate and validate the derivative public export.
-2. Resume project work from this accepted hierarchy and orchestration basis.
+1. Resume project work from this accepted hierarchy and orchestration basis.
 
 ## Closure Verdict
 
 Instruction tranche: COMPLETE.
 RECONCILIATION activation: COMPLETE.
 Runtime bridge: IMPLEMENTED AND VALIDATED.
-Overall D-GOV-11 implementation: COMPLETE, subject only to derivative-export
-regeneration.
+Overall D-GOV-11 implementation: COMPLETE.
