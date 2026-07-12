@@ -46,7 +46,7 @@ This specification covers the content and verification expectations for `docs/ha
 | RBR-018 | No agent, SDK, tool, runtime event, validator, or domain adapter shall claim to approve, certify, sign, seal, issue, transmit, or externally validate professional work. | REF-001 §3; REF-002 K-AUTH-1/K-PROF-1 | UI/docs copy review; human-gate checklist. |
 | RBR-019 | Runtime events, logs, tool artifacts, provider errors, and SDK interaction metadata shall redact API keys and configured secret variants. | REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075 | Redaction tests; run logger tests; artifact inspection. |
 | RBR-020 | The register shall preserve fallback criteria for SDK replacement if a product-critical boundary cannot be governed or verified. | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 | R0/R1 first-adapter probe review; fallback criteria row in register. |
-| RBR-021 | The register shall record the current D-APP-38 corpus version for authority-doc references, including REF-006 `docs/PRD.md`. | `_REFERENCES.md`; D-APP-38 | Register metadata cites corpus `v1` and current `MATCH` status. |
+| RBR-021 | The register shall record the current D-APP-38 corpus version for authority-doc references, including REF-006 `docs/PRD.md`. | `_REFERENCES.md`; D-APP-38 | Register metadata cites the current corpus snapshot and `MATCH` status. |
 | RBR-022 | The register shall distinguish current corpus-matched source support from any future drift or warning-limited source support in row-level traces where PRD content affects acceptance. | REF-001 §2.1/§2.7; REF-002 K-REF-1/K-INVENT-1; `_REFERENCES.md` REF-006 | Source trace review confirms PRD-cited rows cite REF-006 and the current corpus version, or preserve a drift warning if reconciliation later reports one. |
 | RBR-023 | Final acceptance shall include evidence that no P0 boundary is enforced only by prompt text or by opaque SDK defaults. | REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-124/FR-125 | Generated register review includes explicit `PromptOnlyAllowed=NO`, `SDKDefaultOnlyAllowed=NO`, and non-empty enforcement-surface evidence for every P0 row. |
 | RBR-024 | Exact implementation file paths, hook names, check names, and validation files shall remain `TBD` until downstream deliverables produce inspectable artifacts. | REF-002 K-INVENT-1; REF-003 §19.3; decomposition DEL-03/DEL-04/DEL-06/DEL-09 rows | Open item review confirms each `TBD` has a downstream closure path or accepted conflict entry. |
@@ -61,7 +61,7 @@ This specification covers the content and verification expectations for `docs/ha
 | `docs/SPEC.md` | Runtime structures, settings, hooks, MCP, validation IDs, and API/file contracts. |
 | `docs/TYPES.md` | Terms and target type names used in the register. |
 | `docs/PLAN.md` | Runtime roadmap and R0/R1 reliance-boundary acceptance expectations. |
-| `docs/PRD.md` | Product requirements and risk register, reconciled as REF-006 under D-APP-38 corpus `v1`. |
+| `docs/PRD.md` | Product requirements and risk register, reconciled as REF-006 under the current D-APP-38 corpus snapshot. |
 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition discipline; no-invention and scope-boundary rules. |
 
 ## Verification
@@ -92,8 +92,8 @@ The ADQ-02 work package includes:
 
 | ID | Item | Status |
 |---|---|---|
-| OI-RBR-001 | Closed by D-APP-38 corpus `v1`; REF-006 currently matches. Reopen only if a future corpus audit reports drift. | CLOSED |
+| OI-RBR-001 | Closed by the current D-APP-38 corpus snapshot; REF-006 currently matches. Reopen only if a future corpus audit reports drift. | CLOSED |
 | OI-RBR-002 | Fill exact implementation file paths for enforcement surfaces after the relevant runtime modules exist. | TBD |
 | OI-RBR-003 | Confirm SDK transcript placement decision after R1 probe. | TBD |
 | OI-RBR-004 | Current implemented Section 9 validation IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD until validator/session-linkage work lands. | PARTIAL |
-| OI-RBR-005 | Generated register rows cite D-APP-38 corpus `v1` and distinguish current corpus-matched evidence from future drift warnings. | CLOSED |
+| OI-RBR-005 | Generated register rows cite the current D-APP-38 corpus snapshot and distinguish current corpus-matched evidence from future drift warnings. | CLOSED |

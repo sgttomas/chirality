@@ -6,6 +6,14 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P38 corpus-label repair
+
+Executed the six R4-P38 proposal rows (UPD-055..UPD-060) across DEL-01-01..04.
+Current kit, checklist, and governed register wording now uses version-neutral
+D-APP-38 snapshot references, avoiding immediate relag on a future corpus bump.
+Dated evidence remains unchanged, all four deliverables remain `IN_PROGRESS`,
+and the concordance bootstrap stays open pending R6 backcheck.
+
 ## 2026-07-10 - Plans-as-queue convention retired (owner-adopted consolidation)
 
 Owner-adopted consolidation (loop Receipt 5): deliverable folders are now the means of

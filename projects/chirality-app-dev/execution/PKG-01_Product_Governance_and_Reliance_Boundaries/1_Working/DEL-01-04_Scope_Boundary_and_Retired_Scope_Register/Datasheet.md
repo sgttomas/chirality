@@ -33,7 +33,7 @@
 
 | Condition | Value | Source |
 |---|---|---|
-| Reference integrity | `docs/PRD.md` is REF-006 and matches the current D-APP-38 corpus `v1` in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
+| Reference integrity | `docs/PRD.md` is REF-006 and matches the current the current D-APP-38 corpus snapshot in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
 | Dependency extraction | Existing derivative `Dependencies.csv` is owned by the separate dependency-extract workflow; this checklist normalization does not create, edit, satisfy, or retire rows. | `_DEPENDENCIES.md`; `Dependencies.csv` |
 | Human authority | Agents and tools may draft and organize records, but humans approve, issue, sign, seal, and accept reliance. | `docs/TYPES.md` §3.3; `docs/DIRECTIVE.md` §3 |
 | Unknown values | Unknown values remain `TBD`; agents and tools must not invent scope items, dependency targets, parameters, or professional conclusions. | `docs/CONTRACT.md` §1.7 K-INVENT-1 |
@@ -75,5 +75,5 @@ accountable human records rulings or explicit deferrals.
 | REF-003 | `docs/SPEC.md` | Runtime mechanics and boundary surfaces; used only where source slices were relevant. |
 | REF-004 | `docs/TYPES.md` | Authority model and vocabulary. |
 | REF-005 | `docs/PLAN.md` | Roadmap sequencing, PKG-08 retirement notes, and future-amendment exclusions. |
-| REF-006 | `docs/PRD.md` | Current vNext product requirements and explicit non-goals; D-APP-38 corpus `v1` records a matching authority-doc hash. |
+| REF-006 | `docs/PRD.md` | Current vNext product requirements and explicit non-goals; the current D-APP-38 corpus snapshot records a matching authority-doc hash. |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method reference; no deliverable-specific requirements extracted. |

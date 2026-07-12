@@ -1312,3 +1312,18 @@
   - Checks: ruling text fidelity check; D-APP-56/register pointer checks;
     original run-folder byte-integrity check; `git diff --check`; practitioner
     self-check; frontend gates skipped because no runtime source changed.
+
+- **2026-07-12 — Receipt 37** (D-APP-56 R5 P38 / Tranche A corpus-label
+  repair complete; awaiting commit/PR merge at receipt authoring).
+  - Upstream: D-APP-56 recording landed via PR #200 at `621c8db7f`; exact
+    member set re-derived from immutable CSV: UPD-055..UPD-060 (6/6).
+  - Executed: current DEL-01-01..04 kit/checklist/register references changed
+    from hardcoded corpus v1 to version-neutral current-snapshot wording;
+    DEP-01-03-011's stale present-tense TBD note corrected to SATISFIED.
+  - Preserved: dated evidence/history, original concordance run folder, all
+    lifecycle states, and the generic concordance Remaining item pending R6.
+  - Model/roles: GPT-5 primary executed governed edits and fan-in; GPT-5
+    read-only discovery agent independently derived the P38 member/check set.
+  - Checks: CSV member coverage 6/6; targeted stale-label scan; dependency CSV
+    parse; D-APP-38 status no drift; `git diff --check`; self-check; frontend
+    gates skipped because no runtime source changed.

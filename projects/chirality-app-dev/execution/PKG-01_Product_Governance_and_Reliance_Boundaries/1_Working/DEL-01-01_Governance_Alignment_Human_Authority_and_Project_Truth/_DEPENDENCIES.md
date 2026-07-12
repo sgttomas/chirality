@@ -59,7 +59,7 @@ Structured register: `Dependencies.csv` v3.1
 - Anchor doc selection: `Datasheet.md` with `_CONTEXT.md` and decomposition cross-checks.
 - Execution doc order: `Guidance.md`, `Procedure.md`, `Specification.md`, `Datasheet.md`, `_REFERENCES.md`.
 - Conservative extraction emitted no downstream deliverable edges because the approved local documents state upstream and downstream dependencies are `TBD` and do not identify accepted downstream consumers.
-- `[RECONCILED] REF-006`: D-APP-38 corpus `v1` reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. Row `DEP-01-01-010` remains an active prerequisite until dependency/evidence disposition, but it is no longer blocked by a PRD hash mismatch.
+- `[RECONCILED] REF-006`: the current D-APP-38 corpus snapshot reconciled `docs/PRD.md`; `_REFERENCES.md` now reports `MATCH`. Row `DEP-01-01-010` remains an active prerequisite until dependency/evidence disposition, but it is no longer blocked by a PRD hash mismatch.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 
@@ -67,7 +67,7 @@ Structured register: `Dependencies.csv` v3.1
 
 | Timestamp | Mode | Strictness | Decomposition status | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
-| 2026-05-20T19:24:23-0600 | UPDATE | CONSERVATIVE | Located and read | SOURCE_HASH_MISMATCH for REF-006 at extraction time; later reconciled by D-APP-38 corpus `v1` | 12 |
+| 2026-05-20T19:24:23-0600 | UPDATE | CONSERVATIVE | Located and read | SOURCE_HASH_MISMATCH for REF-006 at extraction time; later reconciled by D-APP-38 (corpus v1 at that time; current corpus recorded in `AUTHORITY_CORPUS.json`) | 12 |
 
 ## Lifecycle Summary
 

@@ -27,7 +27,7 @@
 | Covered scope items | SOW-074; SOW-075. |
 | Supported objective | OBJ-009. |
 | Anticipated artifacts | Governance consistency notes; human-authority checklist; project-truth checklist; doc diff checklist; acceptance checklist. |
-| Reference integrity | Authority-doc references were reconciled under D-APP-38 corpus `v1`; REF-006 `docs/PRD.md` is currently `MATCH` in `_REFERENCES.md`. |
+| Reference integrity | Authority-doc references were reconciled under the current D-APP-38 corpus snapshot; REF-006 `docs/PRD.md` is currently `MATCH` in `_REFERENCES.md`. |
 
 ## Conditions
 
@@ -59,6 +59,6 @@
 | REF-003 | `docs/SPEC.md` | Execution-root layout, deliverable file contract, lifecycle states, runtime audit and engine contracts. |
 | REF-004 | `docs/TYPES.md` | Canonical vocabulary for project truth, runtime audit mirror, deliverables, stable IDs, and agent authority. |
 | REF-005 | `docs/PLAN.md` | Roadmap acceptance principles, current R0/R1 focus, SDK-governance boundaries, out-of-scope items. |
-| REF-006 | `docs/PRD.md` | Current product requirements and acceptance criteria; D-APP-38 corpus `v1` records a matching authority-doc hash. |
+| REF-006 | `docs/PRD.md` | Current product requirements and acceptance criteria; the current D-APP-38 corpus snapshot records a matching authority-doc hash. |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | SOFTWARE_DECOMP no-invention, human gate, stable-ID, bounded-deliverable method context. |
 | DEC-001 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-01-01 scope, SOW-074, SOW-075, OBJ-009, package scope, and anticipated artifacts. |

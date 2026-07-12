@@ -9,7 +9,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Prerequisite | Status |
 |---|---|
 | Deliverable-local context exists at `_CONTEXT.md`. | Available. |
-| Authoritative source pointers exist at `_REFERENCES.md`. | Available; REF-006 `docs/PRD.md` matches under D-APP-38 corpus `v1`. |
+| Authoritative source pointers exist at `_REFERENCES.md`. | Available; REF-006 `docs/PRD.md` matches under the current D-APP-38 corpus snapshot. |
 | Decomposition entry exists for DEL-01-04. | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`. |
 | Human-declared upstream dependencies. | TBD; `_DEPENDENCIES.md` declares none extracted yet. |
 | ResponsibleParty assignment. | TBD; must remain TBD until human assignment. |
@@ -75,7 +75,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Boundary review checklist | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` exists and preserves checklist completion as evidence only. |
 | Dependency extraction | This run does not create or edit `Dependencies.csv`; if present, it remains owned by the separate dependency-extract workflow. |
 | Status | `_STATUS.md` remains `CHECKING`; no `CHECKING -> ISSUED` transition occurs in this checklist normalization. |
-| Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by D-APP-38 corpus `v1`. |
+| Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by the current D-APP-38 corpus snapshot. |
 
 ## Records
 
