@@ -1595,3 +1595,28 @@
     typecheck, and full Vitest with the same 680/4 result and PASS marker;
     durable transcript:
     `execution/_Reconciliation/DeliverableConcordance/R5_FINAL_CODE_GATE_TRANSCRIPT_2026-07-12.md`.
+
+- **2026-07-12 — Receipt 49** (R6 backcheck correction for the omitted
+  P30/UPD-045 authority half; final-code PR #215 merged at `fe44e32c3`).
+  - Finding: live SPEC §17.1 still lacked the three routes authorized by
+    D-APP-56 R4-P30, and DEL-03-03 still carried the catalog amendment as
+    pending P06. The consolidated tranche correctly recorded ownership, but
+    the initial P06 corpus merge accounted only UPD-005..018 and omitted
+    UPD-045's explicitly withheld authority half.
+  - Correction: add `session/[id]/events`, `permission`, and `agents` to
+    SPEC §17.1 and remove the now-landed DEL-03-03 Remaining item through the
+    D-APP-56 P06 / D-APP-38 corpus procedure.
+  - State/boundary: DEL-03-03 remains IN_PROGRESS; original RUN_D55 artifacts
+    unchanged; documentation/corpus only, with no runtime or lifecycle change.
+  - Model/roles: GPT-5 primary orchestrator discovered and executes the
+    corrective governed edit; GPT-5 read-only R6 discovery agent independently
+    confirmed it is the sole clear landed-item/stale-Remaining mismatch.
+  - D-APP-38 sequence: initial status returned rc=1 with SPEC as the sole
+    drift; the ruled correction minted corpus v8; first apply reconciled 51
+    rows across 51 deliverable files; audit passed; final status reported eight
+    MATCH / zero drift; second apply reconciled 0 rows / 0 files and preserved
+    diff hash `35cc4ff45f76f05a317580bfe2a3e17546fbb7ba`.
+  - Checks: exact three-route catalog/path existence; corpus v8 audit/status
+    and no-op; landed Remaining removal; 53-state census; original-run
+    integrity; practitioner self-check; `git diff --check`. Frontend gates
+    skipped because this corrective tranche is documentation/corpus metadata.

@@ -852,9 +852,12 @@ Rules:
 | `/api/harness/session/boot` | POST | Boot session and persist boot metadata. |
 | `/api/harness/session/list` | GET | List sessions for normalized project root. |
 | `/api/harness/session/[id]` | GET/DELETE | Retrieve or delete session. |
+| `/api/harness/session/[id]/events` | GET | Replay the session's append-only HarnessEvent stream. |
 | `/api/harness/turn` | POST | Execute turn and stream UI events over SSE. |
 | `/api/harness/interrupt` | POST | Interrupt active turn. |
 | `/api/harness/scaffold` | POST | Scaffold execution root from decomposition markdown. |
+| `/api/harness/permission` | POST | Resolve the governed permission decision for a pending tool request. |
+| `/api/harness/agents` | GET | Return the packaged agent roster used by the runtime shell. |
 
 Existing route shapes remain stable during adapter adoption and TurnEngine extraction.
 
