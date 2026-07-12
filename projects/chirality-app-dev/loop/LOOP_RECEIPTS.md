@@ -1519,3 +1519,22 @@
     `git diff --check`; practitioner status and self-check baseline. Frontend
     runtime gates skipped because this tranche changes documentation/register
     metadata only.
+
+- **2026-07-12 — Receipt 46** (D-APP-56 R5 P05 workflow neutralization
+  complete; Receipt 45 landed via PR #212 at `114927f0c`).
+  - Authority/scope: D-APP-56 R4-P05 Option C plus the owner's explicit
+    one-file repo-root exception; no other root path was authorized or edited.
+  - Executed: `.github/workflows/desktop-release-template.yml` renamed to
+    `.github/workflows/desktop-release-template.yml.disabled`; text preserved
+    byte-for-byte (SHA-256 `c3b41f8559f870af47110c4431e1bfd44da8109c156f179e4da69dddbe778255`).
+    Active discovery now contains only `governance-harness.yml` and
+    `harness-premerge.yml`.
+  - State: all 53 deliverables remain IN_PROGRESS; original RUN_D55 artifacts
+    unchanged; no release, publication, signing, lifecycle, or runtime claim.
+  - Model/role: GPT-5 primary orchestrator performed governed execution and
+    verification; GPT-5 read-only discovery agent independently derived the
+    one-file boundary and checks. No silent model substitution occurred.
+  - Checks: source absent/reference present; byte hash identity; active-workflow
+    discovery and trigger scan; one-root-file diff fence; 53-state census;
+    original-run integrity; `git diff --check`; practitioner self-check.
+    Frontend gates skipped because no product runtime source changed.
