@@ -1,5 +1,7 @@
 # Procedure: DEL-07-06 Reference Hash and Snapshot Conventions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Use this procedure to produce or review the DEL-07-06 convention notes: snapshot/runbook notes, hash bypass convention, and CHANGE/SHA checklist.
@@ -10,7 +12,7 @@ Use this procedure to produce or review the DEL-07-06 convention notes: snapshot
 |---|---|
 | Deliverable-local context, references, dependencies, and status files are present. | `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_STATUS.md` |
 | Current lifecycle state permits drafting. | `_STATUS.md` was `OPEN` at P1/P2 start |
-| Authoritative sources are locally accessible. | `_REFERENCES.md` REF-001 through REF-007; REF-006 has HASH_MISMATCH warning |
+| Authoritative sources are locally accessible. | `_REFERENCES.md` REF-001 through REF-007; REF-006 has MATCH status — reconciled under D-APP-38 |
 | Accepted dependency edges are available. | TBD: `_DEPENDENCIES.md` declares no accepted upstream/downstream edges yet |
 | Human owner is assigned. | TBD: `_CONTEXT.md` preserves `ResponsibleParty: TBD` |
 
@@ -19,7 +21,7 @@ Use this procedure to produce or review the DEL-07-06 convention notes: snapshot
 1. Confirm source state.
    - Read `_REFERENCES.md`.
    - Record the status of each authoritative reference.
-   - Preserve the `docs/PRD.md` `HASH_MISMATCH` as a source-state warning unless a human/source-owner reconciles the hash.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 2. Confirm scope boundary.
    - Use `_CONTEXT.md` and the decomposition row for DEL-07-06.
@@ -66,7 +68,7 @@ Use this procedure to produce or review the DEL-07-06 convention notes: snapshot
 
 | Check | Acceptance |
 |---|---|
-| Source-state warning | REF-006 `docs/PRD.md` hash mismatch is visible anywhere PRD-derived requirements or examples are used. |
+| Source-state warning | REF-006 `docs/PRD.md` hash status: MATCH is visible anywhere PRD-derived requirements or examples are used. — reconciled under D-APP-38 |
 | Snapshot convention | Notes include timestamped immutable folders, optional `_LATEST.md`, and non-overwrite of accepted snapshots. |
 | Hash bypass convention | Notes include human approval, durable bypass record, and `HASH_VERIFICATION_BYPASS.jsonl` where applicable. |
 | Hash bypass evidence | If a bypass is used, review confirms explicit human approval evidence and a durable bypass record exist before accepting the bypass. |
@@ -78,7 +80,7 @@ Use this procedure to produce or review the DEL-07-06 convention notes: snapshot
 
 - `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` for DEL-07-06.
 - `_run_records/TASK_RUN_*.md` capturing the TASK run and source-state warnings.
-- Future human/source-owner record resolving or accepting the `docs/PRD.md` hash mismatch: TBD.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Future exact deterministic tool/script registry evidence: TBD unless produced by the owning implementation slice.
 - Future accepted dependency edge record source: TBD until `_DEPENDENCIES.md` or `Dependencies.csv` records accepted upstream/downstream edge availability.
 

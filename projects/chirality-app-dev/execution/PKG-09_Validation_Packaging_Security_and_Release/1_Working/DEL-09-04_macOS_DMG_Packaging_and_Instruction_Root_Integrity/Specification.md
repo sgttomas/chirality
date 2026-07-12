@@ -7,6 +7,8 @@ This deliverable covers the macOS arm64 unsigned DMG packaging path and the pack
 In scope:
 
 - `frontend/` local packaging command `npm run desktop:dist`.
+- `frontend/` app-directory packaging command `npm run desktop:pack`, which is
+  the layout exercised by the packaged probes and D-APP-18 live proof.
 - DMG output verification for macOS 15+ Apple Silicon.
 - App bundle instruction-root asset inclusion and integrity verification.
 - SDK subprocess/binary package-layout probe.
@@ -32,6 +34,7 @@ Out of scope:
 | DEL-09-04-REQ-008 | The package-layout evidence must verify that the SDK subprocess/binary can be found and executed from the app bundle/package layout without secret leakage or broader network policy. | `docs/PRD.md` NFR-030; `docs/PRD.md` KG-025; `docs/SPEC.md` Section 19.4 | Execute SDK subprocess packaging probe in packaged layout; record command, package path, expected result, observed result, and blocker state. |
 | DEL-09-04-REQ-009 | The packaged validation must preserve current shipped Anthropic network guardrails. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | Run/review network guardrail checks or document blocker. |
 | DEL-09-04-REQ-010 | Windows/Linux packaging must not be introduced by this deliverable without explicit scope amendment. | Decomposition SOW-078; `docs/PRD.md` KG-014 | Review package scripts/config changes for target creep. |
+| DEL-09-04-REQ-011 | App-directory packaging used by packaged probes must be produced through `npm run desktop:pack` from `frontend/`. | D-APP-18; D-APP-56 R4-P03; `docs/BUILD_AND_RELEASE.md` | Run or review the app-directory packaging proof. |
 
 ## Standards
 

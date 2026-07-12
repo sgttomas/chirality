@@ -32,8 +32,8 @@
 
 | Condition | Value | Source |
 |---|---|---|
-| Release scope | Domain-engine endpoints, source types, MCP tools, path hooks, and runtime domain execution are provisional future platform interfaces and must not be implemented as current-release scope. | `docs/SPEC.md` §18; D-APP-39 F3 |
-| Sequencing | Domain Engine Profiles and operation-proposal workflows are introduced only through a future governed amendment. | `docs/PLAN.md` §R7; `docs/PRD.md` §8.17 |
+| Release scope | D-APP-49 through D-APP-52 rule source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools live. Endpoints, apply, direct protected-path writes/hooks, and general domain-runtime activation remain future/gated. | `docs/SPEC.md` §18; D-APP-49 through D-APP-52 |
+| Sequencing | The ruled staged surface is live; any broader Domain Engine Profile or operation workflow proceeds only through its own governed amendment. | `docs/PLAN.md` §R7; `docs/PRD.md` §8.17 |
 | Engine-specific integration | A generic `DomainEngineProfile` contract precedes any engine-specific integration. | `docs/PRD.md` §8.17 FR-107 |
 | Protected path posture | Protected domain paths are write-quarantined; agents write proposals, summaries, and review aids only under profile-approved `agent_writable_paths`. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2; REF-008 |
 | Human gate posture | Accepted/applied proposal transitions require human approval bound to git SHA per K-AUTH-2 and domain-engine-controlled apply or external terminal acceptance records. | `docs/CONTRACT.md` §1.10 K-DOMAIN-3; REF-008 |
@@ -106,3 +106,7 @@ Source: `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727` and reflected in `
 - `docs/TYPES.md` §11
 - `docs/PLAN.md` §R7
 - `docs/PRD.md` §8.17, §10.10, §R7, KG-016 through KG-020
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-148 distinguishes supplied ruled-amendment fields (profile instances and hook-field schema references) from genuine remaining TBDs (adapters, stores, endpoints, apply tooling, and per-instance notice review).

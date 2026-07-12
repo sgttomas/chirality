@@ -15,7 +15,7 @@ This procedure describes how to produce and use product-identity and professiona
   - `docs/SPEC.md`
   - `docs/TYPES.md`
   - `docs/PLAN.md`
-  - `docs/PRD.md` under D-APP-38 corpus `v1`
+  - `docs/PRD.md` under the current D-APP-38 corpus snapshot
   - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 
 ## Steps
@@ -27,7 +27,7 @@ This procedure describes how to produce and use product-identity and professiona
 2. Establish source authority.
    - Use `docs/DIRECTIVE.md` for intent, product identity, professional responsibility, evidence posture, and source hierarchy.
    - Use `docs/CONTRACT.md` for binding invariants.
-   - Use `docs/PRD.md` for accepted vNext product requirements under the current D-APP-38 corpus `v1` reference state.
+   - Use `docs/PRD.md` for accepted vNext product requirements under the current the current D-APP-38 corpus snapshot reference state.
 
 3. Draft or review product identity copy.
    - Confirm the surface names Chirality as the product.
@@ -99,8 +99,8 @@ Create or maintain these records as applicable:
 | Release or surface set | TBD |
 | Surfaces checked | TBD |
 | Source sections used | TBD |
-| Authority-corpus treatment | REF-006 matches under D-APP-38 corpus `v1`; rerun reconciliation if authority docs change |
-| Conflict Table status | CT-001 TBD; historical CT-002 closed by D-APP-38 corpus `v1` |
+| Authority-corpus treatment | REF-006 matches under the current D-APP-38 corpus snapshot; rerun reconciliation if authority docs change |
+| Conflict Table status | CT-001 TBD; historical CT-002 closed by the current D-APP-38 corpus snapshot |
 | Overall result | TBD |
 
 ### Review Note Record Template
@@ -114,3 +114,7 @@ Create or maintain these records as applicable:
 | Proposed copy | TBD |
 | Finding | TBD |
 | Human ruling | TBD |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-103 records the post-D-APP-53 state: the dependency-reconciliation act is human-closed and the earlier INSP-03 dependency wording is historical. This does not imply every dependency is satisfied or any lifecycle transition.

@@ -305,14 +305,14 @@ Acceptance:
 ### 7.2 Navigate the Agent Matrix
 
 1. User enters PORTAL.
-2. User selects a NORMATIVE or EVALUATIVE cell and routes to WORKBENCH with agent context.
-3. User selects an OPERATIVE cell and routes to PIPELINE with category context.
+2. User selects a NORMATIVE or EVALUATIVE cell and changes the mounted loop's persona intent in place; an active turn blocks the swap.
+3. User selects an OPERATIVE cell and opens the governed PIPELINE launch form as an in-place tertiary sidebar form.
 4. If deliverables are present, user can click a deliverable row to route to PIPELINE `TASK*` with that deliverable preselected.
 
 Acceptance:
 
-- NORMATIVE and EVALUATIVE route to WORKBENCH.
-- OPERATIVE routes to PIPELINE.
+- NORMATIVE and EVALUATIVE produce loop-persona intent in the mounted loop shell.
+- OPERATIVE opens PIPELINE as a tertiary form while the live loop remains primary.
 - Disabled or unsupported variants remain visible as coming soon rather than silently disappearing.
 
 ### 7.3 Scaffold an Execution Root
@@ -476,11 +476,11 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-001 | P0 | The app shall provide a desktop shell with PORTAL, PIPELINE, and WORKBENCH navigation. | Header nav routes to `/`, `/pipeline`, and `/workbench`; active route is visually indicated. |
+| FR-001 | P0 | The app shall provide a loop-first desktop shell with sidebar-reachable PORTAL, PIPELINE, and WORKBENCH tertiary forms. | The live loop remains mounted as the primary surface; header controls do not make route surfaces primary navigation. |
 | FR-002 | P0 | The app shall expose working-root selection globally. | User can type a path, choose folder in Electron, apply, and clear root. |
 | FR-003 | P0 | The app shall validate working roots before use. | Non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths fail with typed errors. |
 | FR-004 | P0 | The app shall show a file tree for the selected working root. | Tree API skips `.git`, `.next`, `node_modules`, `dist`, `dist-electron`, and `out`; depth is bounded; inaccessible directories mark truncation. |
-| FR-005 | P1 | The shell shall support resizable/collapsible File Tree, Toolkit, and Chat panes. | Drag and keyboard resize work; Home collapses; End expands; widths are persisted locally. |
+| FR-005 | P1 | The loop-first shell shall support the primary Chat surface and a resizable/collapsible right sidebar containing File Tree, Toolkit, and tertiary forms. | Drag and keyboard resize work; Home collapses; End expands; widths are persisted locally. |
 | FR-006 | P1 | The UI shall preserve a calm, professional, dense-but-readable interface. | UI polish acceptance from `docs/ui/UI_POLISH_EXECUTION_PLAN.md` remains applicable; no regression in harness behavior. |
 
 ### 8.2 Matrix, Workbench, and Pipeline
@@ -488,7 +488,7 @@ Priority:
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
 | FR-007 | P0 | PORTAL shall render the 3x4 agent matrix using canonical rows and columns. | Rows: `NORMATIVE`, `OPERATIVE`, `EVALUATIVE`; columns: `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING`. |
-| FR-008 | P0 | Matrix routing shall follow the docs/SPEC contract. | NORMATIVE/EVALUATIVE cells open WORKBENCH; OPERATIVE cells open PIPELINE categories. |
+| FR-008 | P0 | Matrix routing shall follow the loop-first contract. | NORMATIVE/EVALUATIVE cells change mounted loop-persona intent; OPERATIVE cells open governed PIPELINE categories in a tertiary form. |
 | FR-009 | P0 | WORKBENCH shall present active agent context. | Selected agent, row, and column are shown from query params with sensible defaults. |
 | FR-010 | P1 | WORKBENCH shall consume deliverable contract APIs for read-only checks and permitted lifecycle transitions. | Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents. |
 | FR-011 | P0 | PIPELINE shall expose `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | Each category has documented options; unsupported options are visible and disabled as coming soon. |
@@ -516,7 +516,7 @@ Priority:
 | FR-023 | P0 | Runtime option fallback chains shall be deterministic. | Model: `opts.model` -> `CHIRALITY_GLOBAL_MODEL` or instruction-root frontmatter -> default; tools: `opts.tools` -> persona defaults -> runtime default; max turns: `opts.maxTurns` -> persona defaults -> default. |
 | FR-024 | P0 | Unknown option keys shall be ignored with warnings. | Unknown fields do not break turns or silently mutate behavior. |
 | FR-025 | P0 | Persona names shall resolve to `agents/AGENT_*.md`. | Missing personas return `PERSONA_NOT_FOUND`. |
-| FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> ORCHESTRATOR`, `AGGREGATE -> AGGREGATION`, `RECONCILING -> RECONCILIATION`, `AGENTS -> HELPS_HUMANS`. |
+| FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> ORCHESTRATOR`, `AGENTS -> HELPS_HUMANS`, `DEPENDENCIES -> EVALUATION`; re-pointed `REVIEW` and `RESEARCH` cells use canonical personas directly. |
 | FR-027 | P0 | Production provider mode shall support the Claude Agent SDK-hosted Anthropic path. | With no explicit `CHIRALITY_HARNESS_PROVIDER`, the runtime selects `agentSdk` when an Anthropic API key is configured and falls back to `stub` when no key is configured; explicit `stub`, `anthropic`, and `agentSdk` overrides remain available within the approved Anthropic/stub scope. |
 | FR-028 | P0 | The runtime shall compose real agent instruction context into SDK turns. | SDK requests include selected agent instruction content, global instruction context, working-root boundaries, mode, and the configured permitted tool surface. |
 | FR-029 | P1 | Boot fingerprints shall reflect actual prompt and SDK-policy inputs. | Fingerprint includes persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. |
@@ -720,7 +720,7 @@ Provisional Chirality-to-SDK permission mapping:
 
 ### 8.17 Domain Engine Future Compatibility
 
-The thesis and bigger-picture documents describe domain-engine integration, including OpenPipeStress-style protected domain artifacts and operation-proposal workflows. This PRD does not make domain engines part of the current release. It preserves future compatibility through these requirements without moving domain work ahead of the provider-adapter runtime spine.
+The thesis and bigger-picture documents describe domain-engine integration, including protected domain artifacts and operation-proposal workflows. D-APP-49 through D-APP-52 have staged a bounded surface: source types and guards, a closed profile registry, ruled read tools, and pec-scoped loopback propose/refresh/validate tools are live. Operation apply, `/api/domain/*` endpoints, direct protected-path writes/hooks, and general domain-runtime activation remain future and gated.
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
@@ -824,7 +824,7 @@ Interfaces no longer intended as standalone custom runtime primitives unless the
 
 ### 9.5 Provisional Domain Interfaces
 
-Domain-engine endpoints are provisional future platform interfaces. They should not be implemented as current-release scope and should not imply automated professional acceptance or direct protected-model writes by an agent.
+The following domain-engine endpoints remain provisional future platform interfaces. The ruled staged source-type, registry, read, and pec-scoped proposal-tool surface does not activate these endpoints and does not imply automated professional acceptance or direct protected-model writes by an agent.
 
 Candidate endpoint families:
 
@@ -1534,7 +1534,7 @@ Acceptance:
 | KG-013 | Registry ownership | Current membership belongs in source registries, not mutable count prose. | Treat root `AGENTS.md`, agent files, tools registry, MCP catalog, and generated test discovery output as active registry surfaces when present. |
 | KG-014 | Release target ambiguity | Some source references may mention Windows packaging, but current build config/runbook targets macOS 15+ Apple Silicon DMG. | Current release scope is macOS arm64 only; Windows requires explicit scope amendment. |
 | KG-015 | Professional reliance | App supports auditability but does not make outputs professionally reliable by itself. | Product copy and UI must preserve draft/decision-support posture until human review. |
-| KG-016 | Domain engine future scope | Bigger-picture docs describe domain-engine integration, but it is not current shipping scope. | Keep as future amendment; do not mix into first runtime-spine implementation. |
+| KG-016 | Domain engine staged scope | D-APP-49 through D-APP-52 authorize source types/guards, a closed registry, ruled read tools, and pec-scoped loopback propose/refresh/validate tools; broader integration remains gated. | Keep operation apply, endpoints, protected-path hooks/writes, and general domain-runtime activation under future amendment. |
 | KG-017 | Domain profile specification | No accepted generic `DomainEngineProfile` specification exists yet. | Draft and accept profile specification only after core harness stability. |
 | KG-018 | Protected domain paths | Domain-engine protected paths need runtime enforcement, not prompt-only guidance. | Add profile-driven path policy before write tools can interact with domain artifacts. |
 | KG-019 | Domain provenance | Domain summaries, manifests, and operation outputs need deterministic provenance. | Use adapter manifests, tool-result artifacts, and `OperationProposal` records. |

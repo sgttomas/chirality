@@ -16,7 +16,7 @@ In scope:
 
 Out of scope:
 
-- Current-release implementation of domain-engine endpoints, source types, MCP tools, or path hooks.
+- `/api/domain/*` endpoints, operation apply, direct protected-path writes/hooks, and general domain-runtime activation. D-APP-49 through D-APP-52 separately authorize source types/guards, a closed registry, ruled read tools, and pec-scoped loopback propose/refresh/validate tools.
 - Engine-specific integration, including OpenPipeStress-specific runtime assumptions.
 - Direct writes to protected domain-engine model paths.
 - Professional approval, code compliance, certification, sealing, authentication, external validation, or
@@ -30,7 +30,7 @@ Sources: `_CONTEXT.md`; `_REFERENCES.md` REF-008; `agents/AGENT_DOMAIN_ENGINE.md
 | ID | Requirement | Verification |
 |---|---|---|
 | DEL-10-01-REQ-001 | The contract draft MUST preserve `ResponsibleParty: TBD` until human assignment. | Inspect document identification sections. |
-| DEL-10-01-REQ-002 | The contract draft MUST state that PKG-10 is future-boundary/gated scope, not current implementation. | Inspect Scope, Conditions, and Procedure gate checks. |
+| DEL-10-01-REQ-002 | The contract draft MUST distinguish the D-APP-49 through D-APP-52 staged-live surface from the still-gated endpoints, apply, protected-path hooks/writes, and general domain runtime. | Inspect Scope, Conditions, and Procedure gate checks. |
 | DEL-10-01-REQ-003 | A generic `DomainEngineProfile` contract MUST precede any engine-specific integration. | Confirm no OpenPipeStress-specific runtime assumptions are embedded in the generic profile contract. |
 | DEL-10-01-REQ-004 | A future `DomainEngineProfile` MUST include canonical identity, status, integration-level, path-role, deterministic-tool, operation-proposal-contract, and professional-boundary fields from framework `AGENT_DOMAIN_ENGINE.md` at `77a327727`. | Validate field list against `docs/TYPES.md` §11.1 and `_REFERENCES.md` REF-008. |
 | DEL-10-01-REQ-005 | `profile_status` MUST use `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`; integrated workflows require `ADOPTED`, while `MANUAL_BRIDGE` may explicitly record no adopted profile. | Inspect `docs/TYPES.md` §11.1 and future profile records. |
@@ -74,3 +74,7 @@ Required artifacts for this deliverable:
 - Future amendment checklist: operationalized in `Procedure.md`.
 
 Existing dependency registers are not changed by this conformance tranche.
+
+## D-APP-56 ownership amendment (2026-07-12)
+
+Under R4-P27, this deliverable owns the ruled `domain-profile.ts` source-type mirror and the `domain-profile-registry.ts` registration mechanism and gate. The mechanism/content boundary is explicit: PEC entry content and fixture-validation evidence remain DEL-10-04 scope.

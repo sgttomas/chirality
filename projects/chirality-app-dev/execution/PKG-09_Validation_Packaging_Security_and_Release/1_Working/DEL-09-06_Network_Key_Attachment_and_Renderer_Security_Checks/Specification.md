@@ -1,5 +1,7 @@
 # Specification: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable defines validation checks for the security-sensitive surfaces named by DEL-09-06: renderer outbound network allowlisting, API key storage/redaction, Anthropic provider endpoint policy, and attachment validation/retry behavior.
@@ -41,7 +43,7 @@ Out of scope:
 
 | Standard / Source | Applicability | Location |
 |---|---|---|
-| Product PRD security requirements | Governs FR-030 through FR-040 and NFR-002 through NFR-004. | `docs/PRD.md` Sections 8.5, 8.6, 11.1; hash mismatch warning applies |
+| Product PRD security requirements | Governs FR-030 through FR-040 and NFR-002 through NFR-004. | `docs/PRD.md` Sections 8.5, 8.6, 11.1; hash status: MATCH status applies — reconciled under D-APP-38 |
 | Runtime/API specification | Governs attachment, key, and network mechanics. | `docs/SPEC.md` Section 16 |
 | Contract invariants | Governs security invariants for network, keys, attachments, and validation. | `docs/CONTRACT.md` K-NET-1, K-KEY-1, K-ATTACH-1, K-VALIDATE-1 |
 | SOFTWARE_DECOMP v3.2 | Defines deliverable scope and SOW/objective mapping. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-09-06 |

@@ -1,5 +1,7 @@
 # Specification: DEL-09-02 Section 9 Runtime Validation Additions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies runtime validation additions for Section 9 of the harness validation surface. It covers validation IDs, harness runner updates, and summary schema expectations for runtime boundaries related to the provider-adapter conformance, first-adapter mapper, event log, settings isolation, permissions, MCP tools, hooks, compaction, and subagents.
@@ -27,7 +29,7 @@ Excluded from this deliverable:
 | DEL-09-02-RQ-011 | Validation for subagent governance MUST confirm subagent delegation fails closed unless governance gates pass, child capabilities do not expand parent permissions, and child run records/artifact references are produced when execution is enabled. | `docs/CONTRACT.md` K-SUBAGENT-1 through K-SUBAGENT-3; `docs/PRD.md` FR-101, FR-102 |
 | DEL-09-02-RQ-012 | Harness runner updates MUST preserve existing Section 8 validation coverage while adding Section 9 IDs as runtime phases land. | `docs/PRD.md` Sections 12.3-12.4; `docs/SPEC.md` Sections 19.2-19.3 |
 | DEL-09-02-RQ-013 | The summary schema MUST identify Section 9 validation outcomes distinctly enough to support validation review. Current schema records `status`, `testCount`, and per-ID `results`; the release-quality wrapper validates consistency for that schema. | `_CONTEXT.md`; `docs/PRD.md` Section 12.4; ADQ-14 implementation evidence |
-| DEL-09-02-RQ-014 | Each Section 9 ID MUST carry an explicit status and evidence reference or blocker note; runtime phases that have not landed MUST NOT be reported as passing. Accepted status enum is TBD, but natural-language status terms MUST preserve the distinction between pass, fail, pending, skipped, blocked, and gated. | `docs/PRD.md` Section 12.4; `docs/SPEC.md` Section 19.3; `_SEMANTIC_LENSING.md` A-001/C-001/E-002 worklist |
+| DEL-09-02-RQ-014 | Section 9 remains report-only. Each landed ID MUST carry pass/fail status and evidence; no unlanded phase may be reported as passing. Pending/skipped/blocked/gated enum extension is deferred until a non-landed phase exists. | `docs/PRD.md` Section 12.4; `docs/SPEC.md` Section 19.3; D-APP-56 R4-P23 |
 | DEL-09-02-RQ-015 | The registry or manifest evidence SHOULD include each Section 9 ID, source reference, status metadata, warning/blocker notes, and evidence artifact reference when available. Current registry path is `frontend/scripts/validate-harness-section9.mjs`; richer warning/blocker metadata remains a future enhancement. | `docs/PRD.md` Section 12.4; `docs/SPEC.md` Section 19.3; `_CONTEXT.md` Anticipated Artifacts; ADQ-14 implementation evidence |
 | DEL-09-02-RQ-016 | Section 9 fixture coverage SHOULD be grouped by runtime surface: engine boundary, SDK mapper/event log/replay, settings isolation, permission overlay, tool/MCP exposure, path/instruction-root hooks, tool-result budget, compaction boundary, and subagent governance. Current fixture paths are listed in `frontend/scripts/validate-harness-section9.mjs`. | `docs/CONTRACT.md` Sections 1.4-1.6; `docs/SPEC.md` Sections 9, 10, 14, 15, 19.3; ADQ-14 implementation evidence |
 
@@ -38,7 +40,7 @@ Excluded from this deliverable:
 | `docs/CONTRACT.md` K-ENGINE, K-SDK, K-EVENT, K-PERM, K-TOOL, K-MCP, K-HOOK, K-PATH, K-SUBAGENT | Governs invariant-level validation targets. |
 | `docs/SPEC.md` Sections 9, 10, 14, 15, 19.3 | Governs event schema, runtime engine contract, MCP names, permissions/hooks, and Section 9 validation IDs. |
 | `docs/TYPES.md` Sections 7.3, 8.4, 8.5 | Governs type targets and vocabulary for events, MCP names, and hook terms. |
-| `docs/PRD.md` Sections 8.12-8.16 and 12.4 | Governs product requirements for runtime boundaries and validation additions. PRD hash mismatch warning applies. |
+| `docs/PRD.md` Sections 8.12-8.16 and 12.4 | Governs product requirements for runtime boundaries and validation additions. PRD hash status: MATCH status applies. — reconciled under D-APP-38 |
 
 ## Verification
 
@@ -72,4 +74,8 @@ Required deliverable artifacts:
 - Test fixtures for event log, permissions, MCP, hooks, compaction, and subagent governance where implementation exists.
 - Human-facing notes for any IDs marked pending because their runtime phase has not landed.
 - Section 8 preservation evidence or premerge summary reference alongside new Section 9 outcomes.
-- Warning-qualified PRD source-state note while `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-143 records the landed `harness-section9-manifest.json` and stable artifacts manifest. UPD-144 records the ruled domain-profile ID as registered and validated within the in-process read-evidence fence.

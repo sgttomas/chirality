@@ -1,5 +1,7 @@
 # Datasheet: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -36,7 +38,7 @@
 | Tool restriction boundary | `allowedTools` is not a restriction boundary by itself; restrictions require deny policy, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture. | `docs/SPEC.md` Section 14.3; `docs/CONTRACT.md` K-PERM-3 |
 | Permission overlay | Deny overrides allow, including policy, hooks, SDK deny rule, or human gate denials. | `docs/CONTRACT.md` K-PERM-1 |
 | Probe exposure | R0 acceptance requires no local tools exposed to the model during the probe outside controlled validation. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
-| Source-state warning | `docs/PRD.md` is accessible but `_REFERENCES.md` records `HASH_MISMATCH`; claims citing PRD require snapshot confirmation before closure. | `_REFERENCES.md` REF-006 |
+| Source-state warning | `docs/PRD.md` is accessible but `_REFERENCES.md` records `MATCH`; claims citing PRD require snapshot confirmation before closure. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -58,5 +60,9 @@ ASSUMPTION: The final artifact format may be Markdown under `docs/harness/` beca
 | REF-003 | `docs/SPEC.md` | MATCH | Runtime contract, session/event schema, SDK configuration, tool surface, hooks |
 | REF-004 | `docs/TYPES.md` | MATCH | Vocabulary for engine, SDK metadata, tools, hooks, MCP, events |
 | REF-005 | `docs/PLAN.md` | MATCH | R0/R1 sequencing, probe deliverables, acceptance criteria |
-| REF-006 | `docs/PRD.md` | HASH_MISMATCH | Product requirements and runtime direction; use requires source-state confirmation |
+| REF-006 | `docs/PRD.md` | MATCH | Product requirements and runtime direction; use requires source-state confirmation — reconciled under D-APP-38 |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | MATCH | Decomposition method context only |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.

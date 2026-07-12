@@ -1,5 +1,7 @@
 # Datasheet: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -42,7 +44,7 @@ Source: `_CONTEXT.md` "Identity", "Traceability"; `execution/_Decomposition/Chir
 | Product boundary | Public APIs, UI events, harness events, session storage, permission decisions, and governance records remain Chirality-owned, not SDK-shaped. | `docs/CONTRACT.md` K-ENGINE-4 |
 | Broader network tools | Remote MCP, plugins, and non-Anthropic network tools require governed future scope. | `docs/SPEC.md` Section 16.3; `docs/CONTRACT.md` K-NET-1 |
 | Packaging condition | Packaged app must prove SDK execution and API key handoff without leaking secrets. | `docs/PLAN.md` Section 6.4 |
-| Source-state warning | `docs/PRD.md` is locally accessible but has `HASH_MISMATCH` in `_REFERENCES.md`; claims from it are used as scoped source guidance and should be reverified before final acceptance. | `_REFERENCES.md` REF-006 |
+| Source-state warning | `docs/PRD.md` is locally accessible but has `MATCH` in `_REFERENCES.md`; claims from it are used as scoped source guidance and should be reverified before final acceptance. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -63,5 +65,5 @@ ASSUMPTION: "Provider wrapper" may be implemented as an SDK adapter helper, a `T
 | REF-002 | `docs/CONTRACT.md` | Sections 1.4, 1.9; K-ENGINE-2, K-ENGINE-4, K-EVENT-6, K-NET-1, K-KEY-1 | MATCH |
 | REF-003 | `docs/SPEC.md` | Sections 12.1-12.4, 16.2-16.3 | MATCH |
 | REF-005 | `docs/PLAN.md` | Sections 6.3-6.4; R1 implementation targets | MATCH |
-| REF-006 | `docs/PRD.md` | Section 8.5 FR-030 through FR-035; FR-075; NFR-002 through NFR-003; NFR-028 through NFR-030 | HASH_MISMATCH warning |
+| REF-006 | `docs/PRD.md` | Section 8.5 FR-030 through FR-035; FR-075; NFR-002 through NFR-003; NFR-028 through NFR-030 | MATCH status — reconciled under D-APP-38 |
 | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOW-019 through SOW-021; OBJ-004, OBJ-008; row `DEL-04-05` | accepted decomposition reference |

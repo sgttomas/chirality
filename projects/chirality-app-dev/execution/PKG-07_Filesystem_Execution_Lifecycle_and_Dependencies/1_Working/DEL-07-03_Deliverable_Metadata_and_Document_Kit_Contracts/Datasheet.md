@@ -1,5 +1,7 @@
 # Datasheet: DEL-07-03 Deliverable Metadata and Document Kit Contracts
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value | Source |
@@ -36,7 +38,7 @@
 | Evidence posture | Important claims and dependency evidence use source paths; assumptions, proposals, unknowns, and conflicts remain visible. | `docs/DIRECTIVE.md` / Section 2.5; `docs/CONTRACT.md` / K-CONFLICT-1 |
 | Lifecycle transition rule | `_STATUS.md` is canonical; transitions are forward-only unless a human explicitly amends the record. | `docs/SPEC.md` / Section 4.3; `docs/PRD.md` / FR-052 and FR-053 |
 | Human gate rule | `CHECKING` and `ISSUED` transitions require approval SHA evidence and cannot be authored by agents. | `docs/SPEC.md` / Section 4.3; `docs/CONTRACT.md` / K-AUTH-1, K-GATE-1 |
-| Reference hash posture | `docs/PRD.md` is locally accessible but recorded as HASH_MISMATCH in `_REFERENCES.md`; use as a source warning, not as an accepted hash match. | `_REFERENCES.md` / REF-006 |
+| Reference hash posture | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` / REF-006 — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -46,7 +48,7 @@
 | Document kit detector | Treat `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` as first-class knowledge buckets. | `docs/PRD.md` / FR-049; `docs/SPEC.md` / Section 3.1 |
 | Memory contract validator | Accept `MEMORY.md` as canonical when present and reject `_MEMORY.md` in this project profile. | `docs/SPEC.md` / Section 3.1 and Section 5.4; `docs/PRD.md` / Section 10.8 |
 | Semantic placeholder validator | Recognize `_SEMANTIC.md` as part of the PREPARATION baseline and `_SEMANTIC_LENSING.md` as optional semantic analysis narrative. | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 |
-| Test coverage | Include metadata scanner tests, document kit detection tests, and `_MEMORY.md` rejection tests. Exact test paths are TBD. | `_CONTEXT.md` / Anticipated Artifacts; decomposition / DEL-07-03 row |
+| Test coverage | Metadata scanner, document-kit detection, and `_MEMORY.md` rejection coverage lives in `frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts`; project-deliverables route integration is covered by `frontend/src/__tests__/api/project/deliverables-route.test.ts`. | `_CONTEXT.md` / Anticipated Artifacts; decomposition / DEL-07-03 row |
 
 ## References
 
@@ -57,5 +59,5 @@
 | REF-003 | `docs/SPEC.md` | Deliverable folder layout, lifecycle, context/dependency/reference/memory contracts | MATCH |
 | REF-004 | `docs/TYPES.md` | Deliverable and lifecycle vocabulary | MATCH |
 | REF-005 | `docs/PLAN.md` | Local source policy and PKG-07 roadmap context | MATCH |
-| REF-006 | `docs/PRD.md` | Filesystem requirements and deliverable folder layout | HASH_MISMATCH warning in `_REFERENCES.md` |
+| REF-006 | `docs/PRD.md` | Filesystem requirements and deliverable folder layout | MATCH status in `_REFERENCES.md` — reconciled under D-APP-38 |
 | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context | MATCH; no deliverable-specific requirements used |

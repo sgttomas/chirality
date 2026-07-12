@@ -92,3 +92,10 @@ Register: `Dependencies.csv` v3.1
 | SATISFIED | 6 |
 | PENDING | 5 |
 | NOT_APPLICABLE | 3 |
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-127
+- **Current counts:** ACTIVE 11; RETIRED 3; NOT_APPLICABLE=3; PENDING=5; SATISFIED=6.
+- **Correction:** DEP-06-01-014 now names the appendHarnessEvent call path; upstream deliverable identity remains unassigned.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

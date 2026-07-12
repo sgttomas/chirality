@@ -46,7 +46,7 @@ Counts:
 - Execution doc order: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`.
 - `[WARNING] TARGET_UNRESOLVED: Execution targets for key-status/secure-storage contracts, typed runtime/provider error taxonomy, and SSE event contract remain UNKNOWN/TBD because permitted source evidence does not assign accepted owning deliverable IDs.`
 - `[WARNING] ID_FORMAT_VALIDATOR_MISMATCH: validate_id_format.sh rejects current decomposition IDs such as DEL-02-05, PKG-02, and SOW-013 because the script expects three-digit package/deliverable and four-digit SOW formats. Decomposition v3.2 IDs were preserved as authoritative.`
-- `[WARNING] SOURCE_WARNING: _REFERENCES.md records REF-006 docs/PRD.md hash mismatch; PRD-derived statements are used only through already-authored permitted deliverable documents and with conservative target resolution.`
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - `[WARNING] TRACEABILITY_DELTA: decomposition SOW ledger also maps SOW-023 to DEL-02-05, but the DEL-02-05 decomposition row and _CONTEXT.md Traceability list only SOW-013 and SOW-019. No SOW-023 anchor row was emitted under conservative strictness.`
 - Parent anchor check: PASS - exactly one ACTIVE `IMPLEMENTS_NODE` anchor.
 
@@ -72,3 +72,14 @@ Closure state:
 - Required derivative package regenerated: `Dependencies.csv` v3.1.
 - Required dependency index refreshed: `_DEPENDENCIES.md`.
 - Remaining blockers: execution target ownership for three runtime/API contract dependencies is unresolved in permitted evidence and remains `UNKNOWN/TBD`.
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-112
+- **Current counts:** ACTIVE 7; RETIRED 0; TBD=7.
+- **Correction:** SOW-023 anchor DEP-02-05-007 added from the explicit decomposition mapping.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

@@ -25,6 +25,17 @@ Chirality separates five evidence classes:
 
 Evidence must bind to the command run, working tree state or commit, affected files, generated artifacts where applicable, and skipped checks with reasons. A skipped check is acceptable only when the tranche scope makes the skip explicit and defensible.
 
+### 2.1 Enumerated-class verification rule
+
+Under D-APP-56 R4-P17, the implementation disposition of a requirement that
+enumerates several behavior or error classes is assessed at the requirement
+level. Verification must still inspect every named class and record any class
+without direct behavioral coverage as explicit deliverable-local remaining
+work. A class-level test gap alone does not recode an otherwise implemented
+requirement, and it must not be hidden by evidence for a sibling class. Any
+proposal to change this project-local rule in the shared concordance kernel is
+separately human-gated.
+
 ## 3. Current Local Command Surface
 
 Unless a tranche specifies narrower validation, app-dev validation commands are run from `frontend/`:

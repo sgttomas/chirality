@@ -1,5 +1,7 @@
 # Guidance: DEL-05-03 Redacted RunLogger and Secret Hygiene
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-05-03 exists to prevent API keys and configured secrets from becoming runtime audit content. The runtime audit mirror is intentionally rich enough for replay and diagnosis, so this deliverable supplies the redaction control that lets Chirality keep durable event, provider, SDK, tool, and run-log records without converting key material into project truth or persistent runtime leakage.
@@ -39,7 +41,7 @@ Primary evidence:
 | SDK stderr/debug logs | Treat as potentially sensitive and route through the run logger redaction layer. | `docs/PLAN.md` Section 6.3; `docs/PRD.md` runtime notes |
 | Tool results | Do not rely on truncation alone for sensitive values. Apply redaction or withhold sensitive raw values before inline event payloads or artifact storage. | `docs/PRD.md` Section 10.5 |
 | Secret variants | The PRD names API keys and configured secret variants but does not define the configuration schema. Keep schema-specific claims as TBD until implementation is decided. | `docs/PRD.md` FR-075 |
-| PRD source state | `docs/PRD.md` has a HASH_MISMATCH in `_REFERENCES.md`; use it as accessible source context with warning, not as an unchecked sole authority. | `_REFERENCES.md`; human runtime instruction |
+| PRD source state | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; human runtime instruction — reconciled under D-APP-38 |
 
 ## Trade-offs
 
@@ -63,4 +65,4 @@ TBD: final examples should be generated from accepted fixtures after implementat
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| None | No direct source conflict found. Source-state warning remains for `docs/PRD.md` HASH_MISMATCH. | `_REFERENCES.md` | Human runtime instruction | All documents using PRD evidence | Use PRD as accessible source with warning; do not derive unsupported details from it alone. | TBD |
+| None | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` | Human runtime instruction | All documents using PRD evidence | Use PRD as accessible source with warning; do not derive unsupported details from it alone. | TBD — reconciled under D-APP-38 |

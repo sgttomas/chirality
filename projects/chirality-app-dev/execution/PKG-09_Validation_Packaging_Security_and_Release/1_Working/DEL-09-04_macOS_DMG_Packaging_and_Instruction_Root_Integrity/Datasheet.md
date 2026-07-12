@@ -1,5 +1,7 @@
 # Datasheet: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -25,7 +27,7 @@
 | Instruction-root packaged resource requirement | Packaged builds must contain required instruction-root resources and verify integrity before distribution. | `docs/CONTRACT.md` Section 1.3; `docs/SPEC.md` Section 1.1 |
 | SDK subprocess packaging posture | Packaged Electron builds must verify that the SDK subprocess/binary can be found and executed from the app bundle. | `docs/PRD.md` NFR-030 and Section 12.8; `docs/SPEC.md` Section 19.4 |
 | Source-completeness state | Required instruction-root assets may be incomplete in the current source or packaging state; this remains a P0 readiness gate. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` OI-004; `docs/PRD.md` Section 10.1 |
-| PRD source status | `HASH_MISMATCH` treated as source warning only for this run. | `_REFERENCES.md` REF-006; assignment override |
+| PRD source status | `MATCH` treated as source status for this run. | `_REFERENCES.md` REF-006; assignment override — reconciled under D-APP-38 |
 
 ## Conditions
 

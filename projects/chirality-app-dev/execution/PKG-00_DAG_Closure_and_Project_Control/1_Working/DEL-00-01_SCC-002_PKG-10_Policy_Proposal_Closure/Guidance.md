@@ -20,8 +20,8 @@ The current accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_
 
 The two source rows differ in reading:
 
-- `DEP-10-02-004` is an `INTERFACE` row from `DEL-10-02` to `DEL-10-03`, with `SatisfactionStatus` `TBD`, `Confidence` `MEDIUM`, and notes that it is future-boundary only.
-- `DEP-10-03-006` is a `PREREQUISITE` row from `DEL-10-03` to `DEL-10-02`, with `SatisfactionStatus` `PENDING`, `Confidence` `HIGH`, and notes that it is an explicit sibling-deliverable prerequisite.
+- `DEP-10-02-004` is a retained `INTERFACE` row from `DEL-10-02` to `DEL-10-03`, with `Status` `RETIRED`, `SatisfactionStatus` `NOT_APPLICABLE`, and `Confidence` `MEDIUM`.
+- `DEP-10-03-006` is a preserved `PREREQUISITE` row from `DEL-10-03` to `DEL-10-02`, with `Status` `ACTIVE`, `SatisfactionStatus` `SATISFIED`, and `Confidence` `HIGH`.
 
 Sources: PKG-10 `Dependencies.csv` rows `DEP-10-02-004` and `DEP-10-03-006`.
 
@@ -49,7 +49,8 @@ The decision authority for product-register edits remains unresolved. `E-001` is
 ## Closed-History Note
 
 The earlier lifecycle-label conflict is closed as historical context. `_STATUS.md` is the lifecycle
-authority for this deliverable and currently records `CHECKING` under the D-APP-19 inspection program.
+authority for this deliverable and currently records `IN_PROGRESS` under D-APP-54; the prior
+D-APP-19 `CHECKING` record remains historical evidence.
 `DAG_CLOSURE_CONTROL.md` and the accepted DepClosure snapshot
 `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` are dependency-closure discovery evidence only; they do
 not authorize lifecycle issuance, release readiness, professional approval, certification, sealing,

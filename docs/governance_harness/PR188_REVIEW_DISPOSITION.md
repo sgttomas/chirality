@@ -63,19 +63,18 @@ duplicate findings by remedy while preserving the source IDs for audit.
 
 ## Closure gates
 
-Current ruled-candidate evidence: 94 frontend test files pass (one skipped), 686
-frontend tests pass (four skipped), TypeScript typechecking passes, 42 targeted
-Python tests pass, the complete practitioner harness passes 264 tests, all 43
-live skills validate, all 33 agent packages validate with zero errors and
-warnings, 433 live path-anchor surfaces pass, instruction entrypoints pass,
-the 583-file public export regenerates with zero boundary findings, and
-`git diff --check origin/main` passes. The independent export staging tree
-passes all 33 agents, all 43 skills, instruction entrypoints, and 424 path
-anchors. D-GOV-13 and D-GOV-14 are bound to ruling publication commit
+Current app-integrated ruled-candidate evidence: 97 frontend test files pass
+(one skipped), 699 frontend tests pass (four skipped), TypeScript typechecking
+and generated tool-catalog identity pass, the complete practitioner harness
+passes 264 tests, all 43 live skills validate, all 33 agent packages validate
+with zero errors and warnings, 434 live path-anchor surfaces pass, instruction
+entrypoints pass, and the 584-file public export regenerates with zero boundary
+findings. Independent export validation is rerun at each integration boundary.
+D-GOV-13 and D-GOV-14 are bound to ruling publication commit
 `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
 
-1. Allow both active reconciliation proto-runs to reach stable handoffs and
-   integrate their accepted changes before rebasing PR #188.
+1. Allow the active piping reconciliation proto-run to reach a stable handoff
+   and integrate its accepted changes through a non-rewriting `main` merge.
 2. Run the complete root, app-dev, piping-sensitive, packaging, live premerge,
    export-regeneration, and independent staging validation suites.
 3. Update this record and the D-GOV-11 handoff with exact post-integration

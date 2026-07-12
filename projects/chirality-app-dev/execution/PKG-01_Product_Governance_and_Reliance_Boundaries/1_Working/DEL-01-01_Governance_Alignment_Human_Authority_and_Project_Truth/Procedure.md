@@ -9,8 +9,8 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 | Prerequisite | Status |
 |---|---|
 | Deliverable-local context files exist: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md` | Present at P3 enrichment. |
-| Current lifecycle state permits documentation reconciliation | `CHECKING`; this procedure does not perform lifecycle issuance or status regression. |
-| Authoritative references are locally accessible | Accessible; D-APP-38 corpus `v1` records REF-006 `docs/PRD.md` as `MATCH`. |
+| Current lifecycle state permits documentation reconciliation | Read from `_STATUS.md` (currently `IN_PROGRESS`); this procedure performs no lifecycle transition. |
+| Authoritative references are locally accessible | Accessible; the current D-APP-38 corpus snapshot records REF-006 `docs/PRD.md` as `MATCH`. |
 | Upstream dependencies | See derivative `Dependencies.csv`; rows remain pending unless separately disposed. |
 | Downstream dependencies | No downstream deliverable edges are accepted in this reconciliation. |
 | Human owner | `ResponsibleParty: TBD`. |
@@ -67,7 +67,7 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 | Check | Pass condition |
 |---|---|
 | Four-doc kit | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist and are non-empty. |
-| Lifecycle | `_STATUS.md` remains `Current State: CHECKING`; no issuance or regression is performed. |
+| Lifecycle | `_STATUS.md` remains the sole lifecycle authority; no transition is performed. |
 | Reference integrity | REF-006 `docs/PRD.md` is `MATCH` in `_REFERENCES.md`; historical PRD hash-warning prose is not carried forward as an active blocker. |
 | Responsible party | `ResponsibleParty` remains `TBD`. |
 | Dependency-register handling | Existing `Dependencies.csv` rows are not satisfied, retired, or otherwise mutated. |
@@ -83,7 +83,7 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 | `Specification.md` | Active local-kit artifact; reconciled to current lifecycle/reference posture. |
 | `Guidance.md` | Active local-kit artifact; preserves any unresolved conflicts as current only when still true. |
 | `Procedure.md` | Active local-kit artifact; reconciled to current lifecycle/reference posture. |
-| `_STATUS.md` | Not changed by this documentation reconciliation; current state remains `CHECKING`. |
+| `_STATUS.md` | Not changed by this documentation reconciliation; current state is read from that file. |
 | `_run_records/TASK_RUN_2026-05-20_1610.md` | Durable run record for this task. |
 | P3 run record | Records semantic-lensing dispositions, source rereads, validation results, and status policy outcome. |
 | Dependency records | Not created or updated by this P3 run. |

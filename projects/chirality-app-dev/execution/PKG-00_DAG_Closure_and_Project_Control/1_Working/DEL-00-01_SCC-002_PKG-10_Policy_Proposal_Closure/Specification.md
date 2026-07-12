@@ -24,7 +24,7 @@ Sources: `_CONTEXT.md` sections `Package Scope`, `Deliverable Scope`, and `Sourc
 
 | ID | Requirement | Source |
 |---|---|---|
-| REQ-DEL-00-01-001 | The control record MUST use the latest accepted DepClosure snapshot, `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`, as the current evidence baseline. | `_REFERENCES.md`; `DAG_CLOSURE_CONTROL.md` section `Control Status` |
+| REQ-DEL-00-01-001 | The control record MUST use the latest accepted DepClosure snapshot, `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`, as the current evidence baseline. `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains the historical first-proof snapshot for SCC-002 closure. | `_REFERENCES.md`; `DAG_CLOSURE_CONTROL.md` section `Control Status` |
 | REQ-DEL-00-01-002 | The workflow MUST inspect only source-grounded dependency rows inside SCC-002: `DEP-10-02-004` and `DEP-10-03-006`. | `DAG_CLOSURE_CONTROL.md` section `Workflow`; `SCC_Triage_Workbook.csv` row `SCC-002` |
 | REQ-DEL-00-01-003 | The workflow MUST preserve `DEP-10-03-006` unless source evidence proves it is satisfied or no longer applicable. | `SCC_Triage_Workbook.csv` row `SCC-002`; `SCC_Triage_Notes.md` section `SCC-002 Initial Reading` |
 | REQ-DEL-00-01-004 | The workflow MUST resolve `DEP-10-02-004` only if source evidence supports converting, satisfying, or retiring the opposite interface edge. | `SCC_Triage_Workbook.csv` row `SCC-002` |
@@ -38,14 +38,14 @@ Sources: `_CONTEXT.md` sections `Package Scope`, `Deliverable Scope`, and `Sourc
 | Standard or Control | Applicability | Location |
 |---|---|---|
 | PKG-00 boundary rule | PKG-00 is a meta/control package and not part of the strict deliverable dependency graph. | `README.md` section `Boundary` |
-| DepClosure evidence baseline | `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` is the current accepted snapshot for dependency-closure discovery. | `DAG_CLOSURE_CONTROL.md` section `Control Status`; `_REFERENCES.md` |
+| DepClosure evidence baseline | `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` is the current accepted snapshot for dependency-closure discovery; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical first-proof evidence. | `DAG_CLOSURE_CONTROL.md` section `Control Status`; `_REFERENCES.md` |
 | Existing dependency schema actions | Row rulings must use existing dependency schema semantics; no new dependency types are invented here. For SCC-002 this means classifying only against the current source-row fields and the DAG control workflow, then leaving unsupported row actions as `TBD`. | `DAG_CLOSURE_CONTROL.md` section `Workflow`; `SCC_Triage_Workbook.csv` row `SCC-002`; `SCC_Triage_Notes.md` section `SCC-002 Initial Reading`; surfaced by `F-003` |
 
 ## Verification
 
 | Requirement | Verification approach |
 |---|---|
-| REQ-DEL-00-01-001 | Confirm the ruling record cites `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` as the current accepted snapshot. |
+| REQ-DEL-00-01-001 | Confirm the control record cites `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` as the current accepted snapshot and preserves `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` as historical first-proof evidence. |
 | REQ-DEL-00-01-002 | Confirm the ruling record addresses exactly `DEP-10-02-004` and `DEP-10-03-006` for SCC-002. |
 | REQ-DEL-00-01-003 | Confirm any change to `DEP-10-03-006` includes source evidence proving satisfied or not applicable; otherwise it remains preserved. |
 | REQ-DEL-00-01-004 | Confirm any change to `DEP-10-02-004` includes source evidence supporting conversion, satisfaction, or retirement. |

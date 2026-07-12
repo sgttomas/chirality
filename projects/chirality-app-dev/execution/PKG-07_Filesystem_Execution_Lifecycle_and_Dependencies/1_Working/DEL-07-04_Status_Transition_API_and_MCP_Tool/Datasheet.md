@@ -1,5 +1,7 @@
 # Datasheet: DEL-07-04 Status Transition API and MCP Tool
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -35,7 +37,7 @@
 
 | Condition | Status |
 |---|---|
-| Source hash warning | `docs/PRD.md` is accessible but listed as `HASH_MISMATCH` in `_REFERENCES.md`; PRD-derived claims are used with this warning. |
+| Source hash warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | Dependency inputs | `_DEPENDENCIES.md` declares no accepted upstream or downstream edges yet. |
 | Ownership | Responsible party is `TBD`; `_CONTEXT.md` says to preserve `ResponsibleParty: TBD` until human assignment. |
 | Semantic lensing | `_SEMANTIC.md` is `NOT_GENERATED`; this P1/P2 run does not use semantic lensing. |
@@ -61,7 +63,7 @@
 | REF-003 | `docs/SPEC.md` | Sections 4, 13, 14.2 | `_STATUS.md` format, lifecycle, API and MCP names |
 | REF-004 | `docs/TYPES.md` | Sections 4.1, 8.4 | Lifecycle vocabulary and MCP tool naming |
 | REF-005 | `docs/PLAN.md` | R3 implementation targets | Status transition tool target and approval SHA gate |
-| REF-006 | `docs/PRD.md` | Sections 8.9, 8.13, API inventory | Product requirements; HASH_MISMATCH warning applies |
+| REF-006 | `docs/PRD.md` | Sections 8.9, 8.13, API inventory | Product requirements; MATCH status applies — reconciled under D-APP-38 |
 | REF-007 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | PKG-07 DEL-07-04; SOW-028 | Scope and anticipated artifacts |
 
 ## Pass 3 Disposition Notes
@@ -69,3 +71,7 @@
 | ItemID | Disposition | Evidence |
 |---|---|---|
 | E-001 | Incorporated as a normalization note distinguishing the accepted decomposition family from the runtime dispatch token. | `_CONTEXT.md` Identification; `_SEMANTIC_LENSING.md` header; `skills/four-documents/SKILL.md` runtime override values. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-132 names the landed status-transition and MCP modules while leaving ResponsibleParty assignment human-owned.

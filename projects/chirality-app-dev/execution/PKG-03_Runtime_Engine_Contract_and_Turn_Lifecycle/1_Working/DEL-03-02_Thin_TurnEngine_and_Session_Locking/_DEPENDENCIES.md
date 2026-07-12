@@ -78,3 +78,10 @@ No `[WARNING] AMBIGUOUS_ANCHOR` condition: exactly one ACTIVE `ANCHOR` / `IMPLEM
 |---|---|---|---|---:|---|
 | 2026-06-21 03:00 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 runtime taxonomy applied | 10 | TBD_IMPLEMENTATION_PATHS; ID_FORMAT_TOOL_MISMATCH |
 | 2026-05-20 19:30 | UPDATE | CONSERVATIVE | available: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | 10 | superseded source-state warning; TBD_IMPLEMENTATION_PATHS; ID_FORMAT_TOOL_MISMATCH |
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-115
+- **Current counts:** ACTIVE 10; RETIRED 0; PENDING=5; SATISFIED=5.
+- **Correction:** DEP-03-02-006 through DEP-03-02-010 are live-reverified SATISFIED.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

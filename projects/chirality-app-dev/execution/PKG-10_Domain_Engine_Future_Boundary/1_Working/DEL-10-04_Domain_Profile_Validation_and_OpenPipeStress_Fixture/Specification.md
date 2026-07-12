@@ -1,5 +1,7 @@
 # Specification: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the expected future validation posture for generic `DomainEngineProfile` records and an OpenPipeStress fixture profile. It is limited to future-boundary test-suite definition and source-grounded fixture expectations for PKG-10.
@@ -14,7 +16,7 @@ Current fixture implementation authority remains TBD. Before this deliverable ca
 
 | ID | Requirement | Source | Verification |
 |---|---|---|---|
-| DEL-10-04-REQ-001 | The validation posture shall treat `DomainEngineProfile` as a future platform contract, not current core runtime behavior. | `docs/PRD.md` Section 8.17; `docs/SPEC.md` Section 18; `docs/PLAN.md` R7 | Review fixture/test scope for absence of current-release endpoint activation. |
+| DEL-10-04-REQ-001 | The validation posture shall treat source types/guards, the closed registry, and loopback read/propose/validate tools as the D-APP-49 through D-APP-52 staged-live surface; endpoints, operation apply, protected-path hooks/writes, and general domain runtime remain gated and outside core runtime behavior. | `docs/PRD.md` Section 8.17; `docs/SPEC.md` Section 18; `docs/PLAN.md` R7 | Review fixture/test scope for the ruled staged partition and absence of endpoint/apply activation. |
 | DEL-10-04-REQ-002 | A profile validation fixture shall cover the generic profile fields: `profileId`, `engineName`, optional `engineVersion`, `protectedPaths`, `proposalPaths`, `artifactTypes`, `operations`, `manifestRules`, and `boundaryNotice`. | `docs/TYPES.md` Section 11.1; `docs/PRD.md` Section 8.17 FR-108 | Validate required/optional field coverage in the future test suite. |
 | DEL-10-04-REQ-003 | Validation shall be deterministic and shall fail invalid or incomplete profiles before runtime exposure. | `docs/PRD.md` Section 8.17 FR-109 | Future tests include deterministic negative cases for missing or invalid fields. |
 | DEL-10-04-REQ-004 | The OpenPipeStress fixture shall be represented as a fixture profile only, with OpenPipeStress-specific assumptions held in profile and adapter layers rather than Chirality core runtime. | `docs/PRD.md` Section 8.17 FR-114; `docs/TYPES.md` Section 11.3 | Inspect future fixture/test names and assertions for core-runtime coupling. |
@@ -22,7 +24,7 @@ Current fixture implementation authority remains TBD. Before this deliverable ca
 | DEL-10-04-REQ-006 | Any operation-related fixture data shall align with `OperationProposal` concepts before application: inputs, intended changes, deterministic checks, expected outputs, risks, and required human gate. | `docs/PRD.md` Section 8.17 FR-112 and FR-113; `docs/TYPES.md` Section 11.2 | Review future fixture operation descriptors against proposal fields. |
 | DEL-10-04-REQ-007 | Boundary notices shall state that Chirality does not provide professional approval, code compliance, external validation, or Chirality-owned solver truth. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4; `docs/TYPES.md` Section 11.3 | Tests or review checklist require boundary notice presence and wording coverage. |
 | DEL-10-04-REQ-008 | The fixture/test suite shall not rely on prompt-only restrictions for protected paths or domain operations. | `docs/CONTRACT.md` Section 1.6 K-PERM-2; `docs/SPEC.md` Section 14.3 | Future implementation tests verify runtime or deterministic enforcement surfaces, not prompt text alone. |
-| DEL-10-04-REQ-009 | The deliverable shall preserve the PRD hash mismatch as a source warning rather than accepted truth drift. | `_REFERENCES.md` REF-006; assignment override | Run records and documents note the warning where source status matters. |
+| DEL-10-04-REQ-009 | The deliverable shall preserve the reconciled PRD reference state: REF-006 is `MATCH` under D-APP-38. | `_REFERENCES.md` REF-006; D-APP-38 | Run records preserve the earlier warning as dated history only. |
 | DEL-10-04-REQ-010 | Future negative tests shall define deterministic expected failures, not only checklist labels. | `docs/PRD.md` Section 8.17 FR-109; `docs/TYPES.md` Sections 11.1 and 11.2 | Missing required fields, overlapping paths, incomplete operation proposals, absent boundary notices, and core-runtime-coupling cases each have expected failure evidence. |
 | DEL-10-04-REQ-011 | Future operation-descriptor fixtures shall cover inputs, intended changes, deterministic checks, expected outputs, risks, required human gate, and status before any operation can be applied. | `docs/PRD.md` Section 8.17 FR-112/FR-113; `docs/TYPES.md` Section 11.2 | Fixture review confirms each `OperationProposal` field is represented or explicitly marked TBD. |
 | DEL-10-04-REQ-012 | Future fixture validation shall produce stable evidence records for pass/fail determinations and boundary-notice wording coverage. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4; `_DEPENDENCIES.md` Extracted Dependency Register | Evidence record path and format remain TBD until future amendment assigns them. |
@@ -31,7 +33,7 @@ Current fixture implementation authority remains TBD. Before this deliverable ca
 
 | Standard / Contract | Applicability |
 |---|---|
-| `docs/PRD.md` Section 8.17 | Primary product requirements for future Domain Engine compatibility. Source warning applies because REF-006 hash mismatched the expected value. |
+| `docs/PRD.md` Section 8.17 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | `docs/TYPES.md` Section 11 | Vocabulary and target shapes for `DomainEngineProfile`, `OperationProposal`, and domain terms. |
 | `docs/CONTRACT.md` Section 1.10 | Binding invariants for domain truth ownership, protected paths, human acceptance, and professional boundaries. |
 | `docs/SPEC.md` Section 18 | Specification boundary for future domain-engine endpoints/tools and non-implementation posture. |
@@ -68,4 +70,12 @@ Required or anticipated artifacts:
 
 | Warning | Impact |
 |---|---|
-| REF-006 `docs/PRD.md` has expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. | Treated as source warning only per assignment override; requirements cite PRD sections conservatively, preserve the mismatch visibly, and require human acceptance or refreshed source metadata before closure reliance. |
+| REF-006 `docs/PRD.md` has expected SHA256 `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` and observed SHA256 `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd`. | Treated as source status per assignment override; requirements cite PRD sections conservatively, preserve the MATCH visibly, and require human acceptance or refreshed source metadata before closure reliance. — reconciled under D-APP-38 |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt `domain-engine-profile-validation/v1`, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.
+
+## D-APP-56 ownership amendment (2026-07-12)
+
+Under R4-P27, this deliverable owns the PEC fixture profile (`_DomainEngines/profiles/pec.yaml`), its v1 validation record (`_validation/pec.validation.json`), the PEC registry-entry content, and evidence from PEC-profile-scoped fixture interaction. The shared registry mechanism and gate remain DEL-10-01 scope; the generic proposal-tool surface remains DEL-10-03 scope. PEC engine status is not judged by this amendment.

@@ -85,3 +85,7 @@ The exact event payload keys inside `data` are bounded by the sourced `HarnessEv
 |---|---|---|---|---|---|---|
 | C-001 | Former PRD source-state warning resolved by D-APP-38. | `_REFERENCES.md` REF-006 | D-APP-38 current authority corpus | PRD-derived guidance and requirements | Use PRD content under the current authority corpus; keep implementation proof separate from source-state proof. | D-APP-38 accepted current authority corpus |
 | Denied allocation ruling | D-APP-40 resolves denied allocation: denials before child-run allocation may remain permission/hook evidence; after the child-run record layer is reached, create a `ChildRunRecord` with `status: denied`. | `docs/TYPES.md` Section 10 includes `denied` status | `docs/CONTRACT.md` K-SUBAGENT-1 describes fail-closed delegation gate | Denial replay, schema tests, procedure verification | Record permission denial always; create child-run `denied` record only after the child-run record layer is reached. | Ruled 2026-06-21 |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-138 records the implemented ChildRunRecord fields: remove `completedAt`; include `mode`, `capabilityPolicy`, `governance`, and `contractVersion`; examples must not invent persona/sdkAgentId/model timestamps. UPD-139 marks only artifact-policy row DEP-08-05-006 satisfied.

@@ -251,7 +251,7 @@ User confirms: "Yes, the discovered source set is the intended corpus, the per-s
 **Stage 1 — Skill: independent re-extraction (perception, nondeterministic).**
 
 - **Input**: page raster `_Sources/<book>_pdf2md_work/page_NNNN.png`, plus the asset bbox manifest for that page (so the skill knows where figures/tables/images sit).
-- **Process**: one `TASK + domain-prose-validate` (model: sonnet) per page. The skill is given the raster **only**, not the original `<book>.md`, to break confirmation bias. It transcribes the page to MD using a constrained output format:
+- **Process**: one `TASK + domain-prose-validate` (model: as specified by the user at dispatch time; requires a vision-capable mid-tier model) per page. The skill is given the raster **only**, not the original `<book>.md`, to break confirmation bias. It transcribes the page to MD using a constrained output format:
   - Prose as plain Markdown paragraphs.
   - Display equations as `$$<latex>$$` (same convention as `pdf2md-page-assets`).
   - Asset regions as placeholder syntax — `[FIGURE: <caption text as printed>]`, `[TABLE: <caption text as printed>]`, `[IMAGE: <one-line description>]` — at the position the asset appears in reading order. The skill does **not** emit asset paths or link syntax (it has no asset IDs to bind to).

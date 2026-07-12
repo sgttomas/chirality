@@ -69,3 +69,7 @@ Required or anticipated artifacts:
 - Notes for disabled coming-soon variants if implementation uses a visible option registry.
 - ADQ-13 evidence: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/Evidence_ADQ-13_UI_Specs_Render_Tests.md`.
 - Any human ruling needed for cross-package ownership of SOW-007 and matrix-routing overlap with PKG-08.
+
+## D-APP-56 PIPELINE surface amendment (2026-07-12)
+
+R4-P28 assigns the PIPELINE Execution Root Scaffold form and the co-resident deliverable-contract/lifecycle-transition panels to DEL-02-02, parallel to the WORKBENCH selection requirements. Verification must include a PIPELINE transition render test meeting the D-APP-36 bar; this records the obligation and does not assert that test as complete.

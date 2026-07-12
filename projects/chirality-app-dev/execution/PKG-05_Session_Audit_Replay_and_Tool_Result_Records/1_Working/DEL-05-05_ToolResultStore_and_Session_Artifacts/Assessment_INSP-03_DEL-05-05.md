@@ -60,3 +60,7 @@ ADQ-10 satisfies the active dependency rows for REF-006 source state, ToolResult
 ## Issuance-Gate-Process Observations
 
 ADQ-10 closes the metadata/concurrency/checksum/retention surface targeted by the autonomous queue. The gate should still treat the remaining medium-preview and sensitive-withholding notes as future output-budget policy questions rather than release or issuance acceptance.
+
+## D-APP-56 R5 P44 pointer annotation (2026-07-12)
+
+The REQ012 evidence citation above preserves the `frontend/src/lib/harness/tool-descriptor.ts` path inspected at assessment time. D-APP-48 subsequently relocated that contract to `frontend/packages/harness-contract/src/tool-descriptor.ts`. The PASS conclusion is unchanged; this is an evidence-pointer annotation only.

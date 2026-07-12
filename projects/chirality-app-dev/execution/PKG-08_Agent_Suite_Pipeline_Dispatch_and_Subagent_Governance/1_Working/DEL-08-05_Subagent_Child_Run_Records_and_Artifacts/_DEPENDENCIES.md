@@ -83,3 +83,10 @@ Extraction timestamp: 2026-05-20T20:55:00-0600
 |---|---:|
 | SATISFIED | 4 |
 | TBD | 6 |
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-139
+- **Current counts:** ACTIVE 10; RETIRED 0; SATISFIED=5; TBD=5.
+- **Correction:** DEP-08-05-006 alone is newly SATISFIED; other documentary rows remain unchanged.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

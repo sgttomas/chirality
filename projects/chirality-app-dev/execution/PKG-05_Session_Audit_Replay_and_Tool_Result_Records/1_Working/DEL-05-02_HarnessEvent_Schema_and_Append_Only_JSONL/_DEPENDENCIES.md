@@ -75,3 +75,10 @@ Source register: `Dependencies.csv` v3.1
 |---|---:|
 | NOT_APPLICABLE | 5 |
 | TBD | 7 |
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-125
+- **Current counts:** ACTIVE 11; RETIRED 1; NOT_APPLICABLE=6; TBD=6.
+- **Correction:** DEP-05-02-007 is RETIRED.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

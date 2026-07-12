@@ -58,3 +58,7 @@
 - `docs/PRD.md` Sections 8.1, 8.4, 8.7, 11.4, 15, 16.
 - `docs/ui/UI_POLISH_EXECUTION_PLAN.md` for UI-quality evidence routing.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-02-04, SOW-004, SOW-008, SOW-016, OBJ-001, OBJ-004.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-109 records the ruled loop-first layout: File Tree and Chat are the resizable panes; Tool Kit is a right-sidebar tab. UPD-111 records that the 14-row derivative dependency register exists. UPD-110 is implemented by the governed `AppShell` keyboard-resize interaction test.

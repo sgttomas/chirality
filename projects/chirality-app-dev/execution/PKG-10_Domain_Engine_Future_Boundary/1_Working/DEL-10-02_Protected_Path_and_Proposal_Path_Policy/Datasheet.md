@@ -1,5 +1,7 @@
 # Datasheet: DEL-10-02 Protected Path and Proposal Path Policy
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -39,7 +41,7 @@
 | Enforcement prerequisite | Profile validation determines what the harness may read, propose, validate, or request without guessing from prompt text. | `docs/PRD.md` §8.17 FR-108 |
 | Direct protected writes | Prohibited for agents and ordinary Chirality tools. | `docs/PRD.md` §8.17 FR-110; `docs/PRD.md` §10.10 |
 | Human acceptance | Required before application of a domain operation. | `docs/PRD.md` §8.17 FR-113; `docs/SPEC.md` §18 |
-| PRD source status | Source warning: expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. Treated as source warning only by dispatch instruction. | `_REFERENCES.md` REF-006 |
+| PRD source status | Source warning: expected SHA256 `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd`; observed SHA256 `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd`. Treated as source status by dispatch instruction. | `_REFERENCES.md` REF-006 |
 | Responsible ownership | TBD - downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership. P3 disposition: B-001 converted to closure-relevant TBD. | `_CONTEXT.md` §Source Authority |
 
 ## Construction
@@ -60,3 +62,7 @@
 - `docs/TYPES.md` §11.
 - `docs/PLAN.md` R7.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-10 and SOW-068 rows.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-149 acknowledges concrete path blocks in ADOPTED profiles while retaining accepted-glob syntax and hook API as TBD/gated.

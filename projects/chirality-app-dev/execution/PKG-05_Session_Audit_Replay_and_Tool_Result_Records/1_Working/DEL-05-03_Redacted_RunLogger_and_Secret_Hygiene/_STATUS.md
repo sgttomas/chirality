@@ -8,9 +8,9 @@
 
 ## Remaining
 - Define and land the arbitrary-secret-registry redaction taxonomy (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
-- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
+- 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)
@@ -20,3 +20,8 @@
 - 2026-07-11 - State set to IN_PROGRESS (HUMAN) [Owner-ruled lifecycle rebaseline D-APP-54 2026-07-11: administrative correction superseding the D-APP-19 inspection-admission convention; prior approvals and history preserved (execution/_Coordination/_DECISIONS/D-APP-54_RULING_2026-07-11.md).]
 - 2026-07-11 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-55 packet; no state change.
 - 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
+- 2026-07-12 - D-APP-56 R5 P40 applied UPD-070, UPD-079; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+- 2026-07-12 - D-APP-56 R5 P45 applied UPD-126; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+
+- 2026-07-12 - D-APP-56 R4-P46 reaffirmed the D-APP-53 Option-C-gated arbitrary configured-secret registry as open and unselectable; no gate was unlocked and no state change occurred.
+- 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.

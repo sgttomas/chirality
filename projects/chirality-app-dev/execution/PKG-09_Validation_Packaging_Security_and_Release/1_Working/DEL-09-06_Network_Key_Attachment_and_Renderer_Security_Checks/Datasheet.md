@@ -1,5 +1,7 @@
 # Datasheet: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -33,7 +35,7 @@
 
 | Condition | Value | Source |
 |---|---|---|
-| Source warning | PRD source is accessible but has the run-declared expected/observed hash mismatch; this run treats the mismatch as a warning only. | Assignment instruction; `_REFERENCES.md` REF-006 |
+| Source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Assignment instruction; `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 | Pass 3 source-state disposition | B-001 preserves REF-006 as warning-only source tension for all PRD-grounded security checks until a later human/source ruling records otherwise. | `_REFERENCES.md` REF-006; `Guidance.md` Conflict Table |
 | Security posture | API keys are non-project convenience state and must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts. | `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` NFR-002 |
 | Attachment trust boundary | Client attachment metadata is non-authoritative; server revalidates attachment properties. | `docs/PRD.md` Section 8.6, FR-037; `docs/CONTRACT.md` K-ATTACH-1 |
@@ -56,7 +58,7 @@
 | REF-002 | `docs/CONTRACT.md` | MATCH | Invariants K-NET-1, K-KEY-1, K-ATTACH-1, K-VALIDATE-1 |
 | REF-003 | `docs/SPEC.md` | MATCH | Section 16 attachment, API key, and network policy mechanics |
 | REF-005 | `docs/PLAN.md` | MATCH | Implementation sequencing context for key handoff and validation |
-| REF-006 | `docs/PRD.md` | HASH_MISMATCH warning | Product requirements FR-030 through FR-040 and NFR security/privacy requirements |
+| REF-006 | `docs/PRD.md` | MATCH status | Product requirements FR-030 through FR-040 and NFR security/privacy requirements — reconciled under D-APP-38 |
 | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | accessible | DEL-09-06 scope and SOW/objective mapping |
 
 ## Pass 3 Disposition Notes

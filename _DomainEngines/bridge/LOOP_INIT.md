@@ -91,8 +91,13 @@ artifacts, gate outcomes, check pass/fail) so the next iteration starts clean.
 Standing constraints and the loop protocol live in the plan — follow them as
 written. The session conventions are:
 
-- Subagent model assignments: `opus` for exploration and reporting; `fable`
-  for orchestration, planning, and implementing work.
+- Subagent model assignments: MODEL-AGNOSTIC (owner direction 2026-07-12 —
+  no named-model conventions). The owner specifies which model(s) to use in
+  their session-time or dispatch-time instructions; absent such an
+  instruction, assign by capability tier — standard capability for
+  exploration and reporting, highest available capability for orchestration,
+  planning, and implementing work — and record which model performed which
+  role in the session's receipts. Never silently substitute models mid-task.
 
 If the owner appended a steer for this run (the launcher's `Steer` line, their
 message, or a line below), honor it on top of the plan and over §5's defaults;

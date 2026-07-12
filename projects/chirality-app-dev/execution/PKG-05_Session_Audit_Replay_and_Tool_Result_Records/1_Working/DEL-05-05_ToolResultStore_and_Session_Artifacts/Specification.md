@@ -35,11 +35,16 @@ Sources: `_CONTEXT.md`; decomposition `DEL-05-05`; `docs/SPEC.md` Sections 8-9; 
 | DEL-05-05-REQ-009 | Tool result storage MUST preserve deterministic replay under concurrent SDK tool activity by relying on ordered append/write sequence metadata rather than arrival ambiguity. | Decomposition SOW-053; `docs/SPEC.md` Section 9.2 |
 | DEL-05-05-REQ-010 | Output budget tests MUST verify that large outputs do not flood chat or model context and that medium/large outputs surface usable previews or artifact links. | `docs/PRD.md` NFR-017 and R4 acceptance; decomposition anticipated artifacts |
 | DEL-05-05-REQ-011 | ASSUMPTION: The implementation should expose `ToolResultStore` through a product-owned interface/module that is not SDK-shaped, because TYPES and PRD identify it as Chirality-owned policy. | `docs/TYPES.md` Section 7/8 glossary; `docs/PRD.md` Section 9.4 |
-| DEL-05-05-REQ-012 | Output class byte thresholds, preview length, and artifact naming scheme remain the existing descriptor/artifact-writer policy; persisted artifacts MUST carry SHA-256 checksums and session-lifetime retention metadata, with no TTL, quota, daemon, or release-retention claim authorized. | `frontend/src/lib/harness/tool-descriptor.ts`; `frontend/src/lib/harness/tool-result-artifacts.ts`; D-APP-42 |
+| DEL-05-05-REQ-012 | Output class byte thresholds, preview length, and artifact naming scheme remain the existing descriptor/artifact-writer policy; persisted artifacts MUST carry SHA-256 checksums and session-lifetime retention metadata, with no TTL, quota, daemon, or release-retention claim authorized. | `frontend/packages/harness-contract/src/tool-descriptor.ts`; `frontend/src/lib/harness/tool-result-artifacts.ts`; D-APP-42 |
 | DEL-05-05-REQ-013 | The deterministic replay test for concurrent or interleaved tool-result completions MUST assert the accepted ordering signal: JSONL append/write sequence, `parentEventId` linkage where applicable, or another explicitly accepted event-ordering metadata field. | D-001; `docs/SPEC.md` Section 9.1-9.2; decomposition SOW-053 |
 | DEL-05-05-REQ-014 | Threshold-boundary verification MUST cover the current descriptor-defined byte thresholds and preview behavior; D-APP-42 does not change those thresholds. | X-001; `docs/PRD.md` NFR-017 and R4 acceptance; D-APP-42 |
 
 ## Standards
+
+The distinct medium-band preview representation remains explicitly deferred
+under D-APP-42 and D-APP-56 R4-P08 as a future output-budget policy question.
+Current small-inline and artifact-backed overflow behavior remains governed and
+must not be represented as implementing that deferred representation.
 
 | Standard / Contract | Applicability | Source |
 |---|---|---|
@@ -74,3 +79,7 @@ Required implementation artifacts for this deliverable:
 - Redaction fixtures for sensitive tool output handling: `frontend/src/__tests__/lib/tool-result-artifacts.test.ts` and `frontend/src/__tests__/lib/session-events.test.ts`.
 - Developer notes identifying that D-APP-42 chose SHA-256 plus session-lifetime retention while leaving thresholds, preview length, and naming unchanged.
 - P3 disposition record for B-001, C-001, F-001, D-001, X-001, and E-001 showing which items were retired, incorporated, or explicitly left outside ADQ-10.
+
+## D-APP-56 child-output partition note (2026-07-12)
+
+R4-P32 assigns `artifacts/subagents/` child-output storage and its 16 KiB/512 KiB thresholds to DEL-08-05. DEL-05-05 continues to own `descriptor.resultBudget`; it does not duplicate child-output artifact ownership.

@@ -92,3 +92,7 @@ Sources: `docs/PRD.md` Section 7.10; `docs/SPEC.md` Section 9.
 
 - `docs/PRD.md` is current under the D-APP-38 authority corpus; this draft uses it as PRD-derived source text while keeping implementation proof separate.
 - Exact code/module paths for interrupt tests, cancel cleanup tests, terminal event mapper, and lock-observability helpers are TBD because the authoritative source slices specify behavior and artifacts but not final file locations.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-117 names the landed observability basis: `RunningHarnessTurn.cancel`, post-terminal same-session acceptance, and lock-release/terminal-outcome tests. The former exact-hook/state-API TBD is retired.

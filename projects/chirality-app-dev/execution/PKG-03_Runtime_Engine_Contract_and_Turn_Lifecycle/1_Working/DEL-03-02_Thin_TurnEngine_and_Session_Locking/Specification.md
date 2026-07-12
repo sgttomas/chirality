@@ -19,6 +19,8 @@ Out of scope:
 - Full interrupt/cancel terminal semantics beyond the lock cleanup and cancellation-signal boundary, which overlap DEL-03-04.
 - Canonical session folder migration, assigned to PKG-05.
 - New user-visible write, bash, remote MCP, plugin, domain-operation, or subagent capability.
+- Durable terminal persistence by the deterministic UI-only stub adapter; its
+  UI-visible terminal outcomes are test scaffolding, not K-EVENT-3 parity.
 
 Sources: `_CONTEXT.md` Deliverable Scope and Package Scope; `docs/SPEC.md` Sections 10.1-10.4 and 17.1; `docs/PLAN.md` R1; `docs/PRD.md` FR-070-FR-071.
 
@@ -27,13 +29,13 @@ Sources: `_CONTEXT.md` Deliverable Scope and Package Scope; `docs/SPEC.md` Secti
 | ID | Requirement | Source | Verification |
 |---|---|---|---|
 | DEL-03-02-REQ-001 | Implement a `TurnEngine` or equivalent runtime service that owns harness turn lifecycle and can be unit-tested without HTTP. | `docs/PRD.md` FR-070; `docs/TYPES.md` Section 7.1 | Unit test `TurnEngine.runTurn()` without route invocation. |
-| DEL-03-02-REQ-002 | Invoke turn execution through `AgentEnginePort` / `RuntimeEngineContract`; SDK APIs must not define the public harness semantics. | `docs/SPEC.md` Sections 10.1-10.3; `docs/CONTRACT.md` K-ENGINE-1, K-ENGINE-4 | Engine boundary/conformance tests reject SDK-shaped public event/session/API leakage. |
+| DEL-03-02-REQ-002 | Invoke turn execution through the product-owned `IAgentSdkManager` port used by `TurnEngine`; SDK APIs must not define the public harness semantics. | `docs/SPEC.md` Sections 10.1-10.3; `docs/CONTRACT.md` K-ENGINE-1, K-ENGINE-4; D-APP-56 R4-P24 | Engine boundary/conformance tests reject SDK-shaped public event/session/API leakage. |
 | DEL-03-02-REQ-003 | Keep `/api/harness/turn` as a transport adapter responsible for request validation, session lock acquisition, forwarding input to `TurnEngine`, SSE writing, and cleanup. | `docs/SPEC.md` Section 10.4; `docs/PRD.md` FR-071 | Route integration test proves stable route behavior while lifecycle executes through `TurnEngine`. |
 | DEL-03-02-REQ-004 | Enforce one active turn per session; concurrent turn attempts for the same session return `TURN_IN_PROGRESS`. | `docs/PRD.md` FR-018; decomposition SOW-011 | Lock concurrency test covers duplicate active-turn request. |
 | DEL-03-02-REQ-005 | Ensure the session lock is released after normal completion, failure, cancellation cleanup, or route abort cleanup. | `docs/SPEC.md` Section 10.4; `docs/PRD.md` FR-019, FR-022; `docs/CONTRACT.md` K-EVENT-3 | Lock cleanup tests cover completion, failure, and cancellation/abort paths. Exact interrupt semantics TBD with DEL-03-04. |
 | DEL-03-02-REQ-006 | Bind turn input to active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` Section 10.2; `docs/PRD.md` FR-015-FR-016 | Session lifecycle tests assert `TurnInput` construction and option forwarding. |
 | DEL-03-02-REQ-007 | Preserve existing browser-facing SSE event names during SDK adoption and TurnEngine extraction. | `docs/SPEC.md` Section 11 and 17.1; `docs/PRD.md` FR-017, FR-071 | Route/SSE compatibility fixtures verify event names and stream media type. |
-| DEL-03-02-REQ-008 | Persist `turn.accepted` before SDK/model/provider execution begins. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021 | Unit/integration test asserts event write precedes engine adapter invocation. |
+| DEL-03-02-REQ-008 | Persist `turn.accepted` before SDK/model/provider execution begins; terminal persistence is adapter-side under the accepted architecture. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021; D-APP-56 R4-P24 | Unit/integration test asserts event write precedes engine adapter invocation and the product adapter persists terminal outcomes. |
 | DEL-03-02-REQ-009 | Persist durable terminal outcome events for success, failure, cancellation, and explicit user interruption; explicit user interruption uses `turn.interrupted` per D-APP-40. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-022; D-APP-40 | Tests assert one terminal outcome for each accepted turn path. |
 | DEL-03-02-REQ-010 | Keep browser `UIEvent`s separate from persisted `HarnessEvent`s; SDK messages are not the browser contract and not the canonical persisted event contract. | `docs/SPEC.md` Sections 9, 10.3, 11; `docs/CONTRACT.md` K-EVENT-1 | Event schema and mapper tests verify separation. |
 | DEL-03-02-REQ-011 | Preserve legacy session readability while this slice interacts with active sessions. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 | Session lifecycle tests include legacy-readable session metadata where current code supports it. |

@@ -1,5 +1,7 @@
 # Guidance: DEL-07-06 Reference Hash and Snapshot Conventions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable preserves the conventions that let filesystem project truth stay reviewable: reference hashes make source state explicit, snapshots preserve accepted point-in-time outputs, and approval SHA checks bind human decisions to concrete content evidence. The work is intentionally documentary and continuity-focused, not an implementation expansion.
@@ -27,7 +29,7 @@ Sources: `_CONTEXT.md`; decomposition DEL-07-06; `docs/DIRECTIVE.md` Sections 2.
 
 | Topic | Guidance | Source |
 |---|---|---|
-| PRD source warning | Treat `docs/PRD.md` as accessible but warning-qualified because REF-006 is `HASH_MISMATCH`. Prefer matching CONTRACT/SPEC/DIRECTIVE/TYPES sources where available. | `_REFERENCES.md` REF-006; task brief |
+| PRD source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
 | Tool/script registry | State that deterministic tools/scripts remain indexed and locally executable when present, but keep exact registry membership `TBD` unless verified by the owning implementation slice. | `docs/PRD.md` FR-061 with REF-006 hash warning; decomposition SOW-032 |
 | Retired scope | Do not turn reference hashes or snapshot notes into commitments for retired execution-root validator, graph generator, deliverable lock, unified pipeline run records, or staleness propagation. | `docs/PLAN.md` Section 9; `docs/PRD.md` KG-012 with REF-006 hash warning |
 | Human gate language | Use approval, issue, sign, seal, certify, and validate only for human-controlled processes; do not attribute those actions to agents or tools. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-1 |
@@ -40,22 +42,22 @@ Sources: `_CONTEXT.md`; decomposition DEL-07-06; `docs/DIRECTIVE.md` Sections 2.
 | Use warning-qualified PRD text where corroborated | Keeps the draft aligned with active vNext direction. | Requires later source-hash reconciliation before final acceptance. |
 | Keep tool registry membership `TBD` | Avoids inventing exact current script inventory from narrative sources. | Leaves implementation owner to confirm registry paths and tests. |
 | Allow mutable `_LATEST.md` pointers | Gives operators a convenient current pointer. | Review must distinguish the pointer from immutable snapshot evidence. |
-| Require durable bypass records | Makes source exceptions auditable. | Adds review overhead when a hash mismatch is intentionally accepted. |
+| Require durable bypass records | Makes source exceptions auditable. | Adds review overhead when a hash status: MATCH is intentionally accepted. — reconciled under D-APP-38 |
 
 ## Examples
 
 | Situation | Recommended Handling |
 |---|---|
-| A source file hash differs from `_REFERENCES.md`. | Record the mismatch as a source-state warning, use the source only as instructed or corroborated, and require human/source-hash reconciliation before final acceptance. |
+| REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | A workflow reruns snapshot generation. | Create a new timestamped snapshot folder and update `_LATEST.md` if the workflow owns that pointer; do not overwrite an accepted prior snapshot. |
 | CHANGE is asked to publish after edits. | Confirm approval token/SHA evidence, compare the current candidate content to the approved evidence, and recheck HEAD before approved actions. |
-| A tool needs to ignore a hash mismatch. | Require explicit human approval and append a durable bypass record, using deliverable-local `HASH_VERIFICATION_BYPASS.jsonl` when applicable. |
+| A tool needs to ignore a hash status: MATCH. | Require explicit human approval and append a durable bypass record, using deliverable-local `HASH_VERIFICATION_BYPASS.jsonl` when applicable. — reconciled under D-APP-38 |
 
 ## Conflict Table (for human ruling)
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| SOURCE-WARN-001 | `docs/PRD.md` is accessible and needed for active vNext direction, but `_REFERENCES.md` reports a hash mismatch. | `_REFERENCES.md` REF-006 | `docs/PRD.md` current accessible text | All PRD-cited requirements and examples | Continue using PRD as warning-qualified source per task brief; require hash reconciliation or explicit acceptance before closure. | TBD |
+| SOURCE-WARN-001 | `docs/PRD.md` is accessible and needed for active vNext direction, but `_REFERENCES.md` reports a hash status: MATCH. | `_REFERENCES.md` REF-006 | `docs/PRD.md` current accessible text | All PRD-cited requirements and examples | Continue using PRD as warning-qualified source per task brief; require hash reconciliation or explicit acceptance before closure. | TBD — reconciled under D-APP-38 |
 
 ## Pass 3 Disposition Notes
 

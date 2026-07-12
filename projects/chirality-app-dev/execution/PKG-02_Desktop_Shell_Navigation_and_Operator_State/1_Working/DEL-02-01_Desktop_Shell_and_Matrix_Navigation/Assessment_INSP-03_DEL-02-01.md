@@ -60,3 +60,12 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-02-01
 ## Issuance-Gate-Process Observations
 
 DEL-02-01 is functionally strong but should not be issued against unreconciled pre-pivot route wording. The gate needs a way to accept governed product pivots without marking correct newer behavior as a failure against obsolete baseline text.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The REQ-001 and REQ-011 `PARTIAL` conclusions above remain historical evidence
+at the Reviewed SHA. ADQ-13 subsequently transcribed the D-APP-28 loop-first
+shell and documented the selected stable route/matrix keys, so the former
+equal-primary-navigation and key-disposition premises are overtaken. Guidance
+CONFLICT-003 remains a separate recorded item. This annotation changes no
+assessment verdict or lifecycle state.

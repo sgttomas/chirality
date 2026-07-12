@@ -1,5 +1,10 @@
 # Runtime Engine Contract
 
+> **D-APP-56 R4-P24 architecture note (2026-07-12):** `TurnEngine` consumes
+> the product-owned `IAgentSdkManager` port. Adapter-side terminal persistence
+> is the accepted placement; `AgentEnginePort` is historical design naming,
+> not a required live interface name.
+
 ## Scope
 
 This contract defines Chirality's product-owned turn boundary for harness runtime adapters.
@@ -18,7 +23,7 @@ unless explicitly mapped into Chirality-owned records.
 
 ## AgentEnginePort
 
-The product boundary is represented by `frontend/src/lib/harness/agent-engine-port.ts`.
+The product boundary is represented by `frontend/packages/harness-contract/src/agent-engine-port.ts`.
 
 Required behavior:
 
@@ -55,7 +60,7 @@ remain browser-visible SSE terminal evidence.
 
 ## HarnessEvent Evidence
 
-`frontend/src/lib/harness/event-schema.ts` defines versioned persisted runtime evidence.
+`frontend/packages/harness-contract/src/event-schema.ts` defines versioned persisted runtime evidence.
 `frontend/src/lib/harness/session-events.ts` appends JSONL records under the configured
 Chirality session root.
 
@@ -330,3 +335,11 @@ The app-directory packaged live read-tool proof recorded under D-APP-17 supports
 D-APP-18 key-aware default. Mounted-DMG live parity, broad packaged workflow evidence,
 signing, notarization, publication, distribution, release-readiness claims, and
 professional-boundary claims remain outside this contract unless separately ruled.
+
+## Fallback criteria and reliance-register handoff
+
+Under UPD-113 / D-APP-56 R5 P45, inability to satisfy or verify a
+product-critical SDK boundary triggers the K-ENGINE-5 exit path and explicit
+residual-risk review; it is not silently accepted. The row-level enforcement,
+fallback, and validation crosswalk is maintained in
+`docs/harness/reliance_boundary_register.md` (DEL-01-02).

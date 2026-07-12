@@ -28,7 +28,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Decomposition status: available; DEL-07-04, SOW-028, OBJ-006, PKG-07, and referenced document metadata were validated against allowed evidence.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor exists.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor exists.
-- `[WARNING] PRD_HASH_MISMATCH`: `_REFERENCES.md` lists `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived acceptance details remain warned evidence.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - `[WARNING] IMPLEMENTATION_LOCATION_TBD`: allowed evidence names no implementation module path; dependency row DEP-07-04-008 preserves the target as `UNKNOWN` / `TBD`.
 
 ## Extracted Dependency Register
@@ -41,7 +41,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-07-04-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | OBJ-006 | Preserve filesystem project truth through working-root containment | ACTIVE |
 | DEP-07-04-003 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-003 | docs/SPEC.md | ACTIVE |
 | DEP-07-04-004 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-002 | docs/CONTRACT.md | ACTIVE |
-| DEP-07-04-005 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-006 | docs/PRD.md | ACTIVE |
+| DEP-07-04-005 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-006 | docs/PRD.md | RETIRED |
 | DEP-07-04-006 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-001 | docs/DIRECTIVE.md | ACTIVE |
 | DEP-07-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 | docs/TYPES.md | ACTIVE |
 | DEP-07-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN | TBD | Implementation module location | ACTIVE |
@@ -50,8 +50,8 @@ Counts:
 
 | Group | Count |
 |---|---:|
-| ACTIVE rows | 8 |
-| RETIRED rows | 0 |
+| ACTIVE rows | 7 |
+| RETIRED rows | 1 |
 | ANCHOR rows | 2 |
 | EXECUTION rows | 6 |
 | OTHER rows | 2 |
@@ -68,11 +68,22 @@ Counts:
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 8 |
-| RETIRED | 0 |
+| ACTIVE | 7 |
+| RETIRED | 1 |
 
 | SatisfactionStatus | Count |
 |---|---:|
-| NOT_APPLICABLE | 2 |
+| NOT_APPLICABLE | 3 |
 | PENDING | 4 |
-| TBD | 2 |
+| TBD | 1 |
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-132
+- **Current counts:** ACTIVE 7; RETIRED 1; NOT_APPLICABLE=3; PENDING=4; SATISFIED=1.
+- **Correction:** DEP-07-04-008 resolves to landed implementation modules and is SATISFIED; ResponsibleParty remains separate.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

@@ -1,5 +1,7 @@
 # Specification: DEL-07-06 Reference Hash and Snapshot Conventions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies documentation conventions for reference hash handling, snapshot immutability, deterministic script/tool continuity, and CHANGE/SHA approval evidence in PKG-07.
@@ -77,5 +79,5 @@ Required outputs or records for this deliverable:
 - Snapshot/runbook notes covering immutable timestamped folders and `_LATEST.md` pointer behavior.
 - Hash bypass convention covering human approval, durable bypass records, and `HASH_VERIFICATION_BYPASS.jsonl`.
 - CHANGE/SHA checklist covering candidate SHA/action list, approval evidence, and HEAD/content recheck before approved actions.
-- Source-state note carrying the `docs/PRD.md` `HASH_MISMATCH` warning.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Open-item note for exact deterministic tool/script registry membership if not verified by the owning implementation slice.

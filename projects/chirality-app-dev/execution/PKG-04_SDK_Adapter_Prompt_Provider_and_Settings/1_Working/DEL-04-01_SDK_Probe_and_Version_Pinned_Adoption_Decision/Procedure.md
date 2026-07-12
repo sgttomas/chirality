@@ -1,5 +1,7 @@
 # Procedure: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operational steps to produce and verify the first-adapter probe notes, version-pinned adoption decision, fallback criteria, and residual-risk notes for DEL-04-01.
@@ -11,7 +13,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 | Prerequisite | Status / Note | Source |
 |---|---|---|
 | Accepted decomposition row for DEL-04-01 | Present in SOFTWARE_DECOMP v3.2. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
-| Source corpus | Accessible; `docs/PRD.md` has REF-006 `HASH_MISMATCH`. | `_REFERENCES.md` |
+| Source corpus | Accessible; `docs/PRD.md` has REF-006 `MATCH`. | `_REFERENCES.md` — reconciled under D-APP-38 |
 | Upstream dependencies | TBD: no accepted dependency edges have been extracted yet. | `_DEPENDENCIES.md` |
 | first-adapter probe environment | TBD: package version, subprocess availability, Electron packaging posture, and test harness are not yet recorded. | Source gap |
 | Runtime contract expectations | Required before SDK adapter production default. | `docs/SPEC.md` Section 10; `docs/PLAN.md` R1 |
@@ -20,7 +22,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 ## Steps
 
 1. Confirm source-state before final closure.
-   - Re-check `_REFERENCES.md` and resolve or explicitly accept the REF-006 `docs/PRD.md` hash mismatch.
+   - Re-check `_REFERENCES.md` and resolve or explicitly accept the REF-006 `docs/PRD.md` hash status: MATCH. (reconciled under D-APP-38).
    - If unresolved, keep PRD-derived conclusions marked as draft/source-warning material.
 
 2. Prepare the probe matrix.
@@ -97,7 +99,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 
 | Check | Pass Criteria |
 |---|---|
-| Source-state check | REF-006 hash mismatch is resolved, accepted, or carried as a closure blocker. |
+| Source-state check | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | Probe coverage | Every required probe topic from R0 has an evidence row or `TBD` blocker. |
 | Version pin | Exact SDK package version is recorded before adoption. |
 | Version evidence location | Package manifest and lockfile evidence location is recorded once implementation begins. |
@@ -130,3 +132,7 @@ TBD records:
 - Exact Electron packaging result.
 - Exact adoption verdict.
 - Exact human approver or approving role.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.

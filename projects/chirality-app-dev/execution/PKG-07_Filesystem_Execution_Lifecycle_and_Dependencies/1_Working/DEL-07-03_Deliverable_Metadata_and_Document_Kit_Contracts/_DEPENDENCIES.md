@@ -54,7 +54,7 @@ TBD - no declared downstream dependency edges have been accepted by a human.
 - Anchor document selected: `Datasheet.md`.
 - Execution document order selected: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`.
 - Existing `Dependencies.csv`: absent before this run; created with v3.1 schema.
-- [WARNING] SOURCE_HASH_MISMATCH: `_REFERENCES.md` records `docs/PRD.md` / REF-006 as HASH_MISMATCH. Rows depending on PRD source material retain this warning in notes and use MEDIUM confidence where the PRD is the named prerequisite.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - Implementation location remains TBD in source procedure; no dependency edge was inferred from that unknown.
 - Scanner output schema remains TBD in source procedure; no dependency edge was inferred from that unknown.
 
@@ -79,3 +79,7 @@ TBD - no declared downstream dependency edges have been accepted by a human.
 |---|---:|
 | SEMANTIC_READY | 10 |
 
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

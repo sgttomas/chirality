@@ -1,5 +1,7 @@
 # Guidance: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable creates the evidence package for deciding whether Chirality can adopt the Claude Agent SDK as a version-pinned, replaceable runtime substrate for R1. The decision must preserve Chirality-owned runtime contracts, audit records, settings isolation, permission semantics, transcript canonicality, product identity, and fallback control.
@@ -28,7 +30,7 @@ Source grounding: `docs/DIRECTIVE.md` Section 2.8 through 2.11; `docs/PLAN.md` R
 
 ## Considerations
 
-- Treat `docs/PRD.md` as source-state warning material until REF-006 hash mismatch is resolved or accepted. Corroborated PRD claims may remain draft context where matching MATCH sources independently support the same control, but closure should not rely on PRD-only wording until the source-state conflict is ruled on.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - The decomposition marks this as a documentation/probe slice with no new user tool exposure. Keep implementation changes out of this deliverable and route code work to downstream DEL-04-02 through DEL-04-05.
 - Open issue OI-001 makes SDK viability, message categories, settings behavior, hooks, permissions, MCP, sessions, and packaging empirical questions. Do not convert unknown probe results into requirements that pretend the answer is already known.
 - Open issue OI-002 leaves transcript placement unresolved. The acceptable outcomes are project-controlled `SessionStore`, `CLAUDE_CONFIG_DIR`, both, or cross-reference to default path with residual risk, per the decomposition and source corpus.
@@ -75,4 +77,8 @@ Example evidence rows the final probe notes should contain:
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
-| SRC-001 | `docs/PRD.md` is authoritative in role but `_REFERENCES.md` reports `HASH_MISMATCH`; content based on PRD should not be closed without source-state confirmation. | `_REFERENCES.md` REF-006 | `docs/PRD.md` R0/R1 and KG-021 through KG-032 | Datasheet References; Specification Requirements and Verification; Guidance Considerations | Use corroborated PRD claims as draft context where they match MATCH sources; require human/source refresh before closure. | TBD |
+| SRC-001 | `docs/PRD.md` is authoritative in role but `_REFERENCES.md` reports `MATCH`; content based on PRD should not be closed without source-state confirmation. | `_REFERENCES.md` REF-006 | `docs/PRD.md` R0/R1 and KG-021 through KG-032 | Datasheet References; Specification Requirements and Verification; Guidance Considerations | Use corroborated PRD claims as draft context where they match MATCH sources; require human/source refresh before closure. | TBD — reconciled under D-APP-38 |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.

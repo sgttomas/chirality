@@ -6,6 +6,99 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-55 concordance R5/R6 closeout
+
+D-APP-56's ruled R5 work landed through PR #215, with the R6-discovered
+UPD-045 authority-catalog omission corrected through the governed P06/D-APP-38
+procedure in PR #216. R6 re-extracted 255 affected-claim references across
+151 changed proposal rows against
+`c313325b74d37da1aacc4d988046cfbd26c88bf4`, retained the ten explicit
+NO-REPAIR-NEEDED outcomes, confirmed all 53 deliverables remain `IN_PROGRESS`,
+and removed the completed generic concordance bootstrap from all 53 status
+files. The immutable derivative closeout snapshot is
+`execution/_Reconciliation/DeliverableConcordance/R6_D55_BACKCHECK_2026-07-12_1903Z/`.
+Surviving work remains deliverable-local; the separately deferred root export
+regeneration is outside this run closure.
+
+## 2026-07-12 - D-APP-56 R5 P45 residual metadata repair
+
+Executed the 54 app-dev documentation/register rows in UPD-100..UPD-157,
+excluding code rows UPD-106, UPD-110, UPD-140, and UPD-141. Thirty-five
+deliverables now carry dated current-state reconciliation on the named kit or
+register surfaces; sixteen structured dependency registers validate and their
+current markdown summaries agree with the CSVs. The six-file root public-
+export hash-pin rider is deferred in full under the owner's clarification and
+was not edited. All deliverables remain `IN_PROGRESS`; generic concordance
+Remaining items stay open for R6. Work pauses after this tranche as directed.
+
+## 2026-07-12 - D-APP-56 R5 P44 relocated-pointer docs repair
+
+Executed UPD-095, UPD-096, UPD-098, and UPD-099 plus the named PKG-05 and
+PKG-04 pointer riders across seven deliverables. Current register, kit, and
+runtime-contract citations now identify the live harness-contract package;
+dated assessments retain their original evidence with forward relocation
+annotations. UPD-097/RBR-025 is explicitly withheld for the final code tranche
+and fresh full-repository gate. All seven deliverables remain `IN_PROGRESS`;
+the generic concordance Remaining item stays open for R6.
+
+## 2026-07-12 - D-APP-56 R5 P43 noteless-INSP-03 annotation repair
+
+Executed UPD-084..UPD-094 across eleven deliverables plus the owner-ruled
+DEL-03-04 four-claim rider. Twelve historical INSP-03 assessments now carry
+append-only superseding annotations; their original matrices, gaps, evidence,
+and recommendations remain preserved. DEL-07-03 also names the realized
+scanner implementation and test paths. DEL-10-04 was reviewed as the fifth
+PKG-10 assessment but required no edit because it has no P43 proposal row or
+owner rider. All deliverables remain `IN_PROGRESS`; the generic concordance
+Remaining item stays open for R6.
+
+## 2026-07-12 - D-APP-56 R5 P42 DepClosure snapshot-pointer repair
+
+Executed UPD-081..UPD-083 across DEL-00-01 and DEL-00-02. The current
+accepted DepClosure pointer now names
+`CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`; the predecessor
+`CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains preserved as historical
+first-proof closure evidence. DEL-00-01's two SCC-002 descriptors now match
+the owning live rows. DEL-10-04 was excluded because its UPD-157 register
+repair belongs to P45. Both deliverables remain `IN_PROGRESS`; the generic
+concordance Remaining item stays open for R6.
+
+## 2026-07-12 - D-APP-56 R5 P41 reference-path metadata repair
+
+Executed UPD-080 across six deliverables, rewriting eight governed REF-007/
+REF-008 Path cells from machine-absolute paths to repo-root-relative
+`agents/AGENT_SOFTWARE_DECOMP.md` and `agents/AGENT_DOMAIN_ENGINE.md` pointers.
+Recorded hashes and `MATCH` status are unchanged. All deliverables remain
+`IN_PROGRESS`; the generic concordance Remaining item stays open for R6.
+
+## 2026-07-12 - D-APP-56 R5 P40 REF-006 current-state repair
+
+Executed UPD-068..UPD-079 across 32 deliverables. Four-document kits now
+read REF-006 `docs/PRD.md` as `MATCH` under D-APP-38; explicitly named
+INSP-03 caveats carry append-only current-state annotations. The distinct
+DEL-06-05 schema/terminal-linkage and DEL-06-06 implementation-path repairs
+now cite live implementation and test surfaces. P16=A register work preserves
+dated extraction history while reconciling ten structured rows and fifteen
+register summaries. All deliverables remain `IN_PROGRESS`; the generic
+concordance Remaining item stays open for R6.
+
+## 2026-07-12 - D-APP-56 R5 P39 lifecycle-wording repair
+
+Executed UPD-061..UPD-067 across seven deliverables, replacing duplicated
+present-tense `CHECKING` claims with `_STATUS.md`-derived lifecycle wording.
+The CQ-F5 rider was reviewed as a ruled no-action: DEL-02-01's Checking
+Approval SHA and D-APP-19 authorization basis remain preserved history. All
+eight affected deliverables remain `IN_PROGRESS`; no lifecycle transition
+occurred and the concordance bootstrap remains open pending R6.
+
+## 2026-07-12 - D-APP-56 R5 P38 corpus-label repair
+
+Executed the six R4-P38 proposal rows (UPD-055..UPD-060) across DEL-01-01..04.
+Current kit, checklist, and governed register wording now uses version-neutral
+D-APP-38 snapshot references, avoiding immediate relag on a future corpus bump.
+Dated evidence remains unchanged, all four deliverables remain `IN_PROGRESS`,
+and the concordance bootstrap stays open pending R6 backcheck.
+
 ## 2026-07-10 - Plans-as-queue convention retired (owner-adopted consolidation)
 
 Owner-adopted consolidation (loop Receipt 5): deliverable folders are now the means of

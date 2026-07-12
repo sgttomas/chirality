@@ -1,5 +1,7 @@
 # Procedure: DEL-07-04 Status Transition API and MCP Tool
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the working procedure to produce and verify the DEL-07-04 backend feature slice for status parsing, status transition enforcement, API exposure, and Chirality MCP tool exposure.
@@ -36,7 +38,7 @@ Define the working procedure to produce and verify the DEL-07-04 backend feature
 
 5. Implement human gate approval SHA checks.
    - Require approval SHA evidence for transitions to `CHECKING` or `ISSUED`.
-   - Apply the PRD Section 8.9 FR-054 acceptance detail: 7-64 character hex SHA-like token. PRD hash mismatch warning applies.
+   - Apply the PRD Section 8.9 FR-054 acceptance detail: 7-64 character hex SHA-like token. PRD hash status: MATCH status applies. (reconciled under D-APP-38).
 
 6. Implement the status API surface.
    - Provide `GET /api/working-root/deliverable/status` for read-only status snapshots.
@@ -108,6 +110,10 @@ TBD records:
 | X-002 | Incorporated as audit evidence expectations for permission, hook, path, redaction, and event logging policy on MCP status operations. | `docs/CONTRACT.md` K-MCP-1/K-PERM-1; `docs/PRD.md` FR-092, FR-093, FR-104. |
 | E-002 | Converted to explicit `TBD` success/denial payload fields until schema acceptance. | `docs/SPEC.md` API inventory; `docs/PRD.md` FR-079 and NFR-009. |
 
-## Source Warning
+## Source Status
 
-`docs/PRD.md` is listed as `HASH_MISMATCH` in `_REFERENCES.md`; reconcile the source hash before final acceptance of PRD-derived acceptance details.
+`docs/PRD.md` is listed as `MATCH` in `_REFERENCES.md`; reconcile the source hash before final acceptance of PRD-derived acceptance details. (reconciled under D-APP-38).
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-132 names the landed status-transition and MCP modules while leaving ResponsibleParty assignment human-owned.

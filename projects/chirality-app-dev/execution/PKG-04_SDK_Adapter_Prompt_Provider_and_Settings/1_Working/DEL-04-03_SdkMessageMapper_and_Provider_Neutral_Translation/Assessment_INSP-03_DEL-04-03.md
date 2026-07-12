@@ -63,3 +63,11 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. Active pe
 ## Issuance-Gate-Process Observations
 
 DEL-04-03 is close to issuance-ready on implementation evidence, but issuance should not hide the Section 9 naming drift or the remaining first-adapter-probe provenance gap.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The REQ011 `PARTIAL` conclusion and Gap 1 naming mismatch above are preserved
+historical evidence at the Reviewed SHA. ADQ-04 subsequently reconciled the
+kit and validator on `section9.adapter_message_mapper`; route/SSE
+compatibility remains test-covered. The old naming mismatch is no longer
+current. This annotation makes no assessment-verdict or lifecycle change.

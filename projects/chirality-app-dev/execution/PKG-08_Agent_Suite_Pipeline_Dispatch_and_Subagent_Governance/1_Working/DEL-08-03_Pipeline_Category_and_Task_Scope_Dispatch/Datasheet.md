@@ -41,7 +41,7 @@
 | TASK scope requirement | Scope mode is `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode. | `docs/PRD.md` FR-012 |
 | Dynamic reset | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state. | `docs/PRD.md` FR-013 |
 | Knowledge bucket detection | Datasheet, Specification, Guidance, and Procedure are supported as first-class knowledge buckets. | `docs/PRD.md` FR-049 |
-| Working-root scope API | `/api/working-root/scope` scans deliverables and knowledge types. | `docs/SPEC.md` Section 17.2 |
+| Working-root scope API | `/api/project/deliverables` scans deliverables and knowledge types for the active root. | `docs/SPEC.md` Section 17.2; D-APP-56 R4-P21 |
 
 ## Construction
 
@@ -63,7 +63,7 @@
 | Category selector component path | Confirmed frontend component or module path for PIPELINE `DECOMP`, `PREP`, `TASK`, and `AUDIT` controls. | `frontend/src/components/pipeline/pipeline-surface.tsx` |
 | Category option source | Confirmed data source or fixture for category-specific option lists. | Local option arrays in `pipeline-surface.tsx`, tested by `frontend/src/__tests__/components/pipeline-surface.test.ts`. |
 | TASK selector component path | Confirmed component or state module for task-agent selector and scope selector. | `frontend/src/components/pipeline/pipeline-surface.tsx` |
-| Scope scan integration path | Confirmed API client, hook, or mock boundary for `/api/working-root/scope`. | `pipeline-surface.tsx` consumes scan data; API mapping is covered by `frontend/src/__tests__/api/project/deliverables-route.test.ts`. |
+| Scope scan integration path | Confirmed API client, hook, or mock boundary for `/api/project/deliverables`. | `pipeline-surface.tsx` consumes scan data; API mapping is covered by `frontend/src/__tests__/api/project/deliverables-route.test.ts`. |
 | Knowledge discovery fixture path | Confirmed fixture or test-data path covering document-kit buckets and any exposed metadata buckets. | `frontend/src/__tests__/api/project/deliverables-route.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts`. |
 | Reset test fixture path | Confirmed fixture path for root-change, removed-deliverable, disabled-marker, and stale-target reset cases. | `frontend/src/__tests__/components/pipeline-surface.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts`. |
 
@@ -94,3 +94,7 @@
 |---|---|
 | B-001 | Converted to explicit implementation slots for selector, option-list, scope-scan, knowledge-discovery, reset-fixture, and test-path records. |
 | B-002 | Incorporated as a dependency edge snapshot that preserves accepted extracted rows as context while leaving closure status and downstream consumer target TBD. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-134 supersedes run-scoped dependency deferral wording: the extracted derivative register exists and is live.

@@ -53,3 +53,12 @@ No dependency rows were marked satisfied or mutated by this assessment. DEL-10-0
 ## Issuance-Gate-Process Observations
 
 This deliverable is suited to a document-quality and claims-boundary gate, not a runtime-readiness gate. It should inform the INSP-04 recommendation for how future-boundary deliverables can be checked without implying release, implementation, or professional acceptance.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The REQ004 `PARTIAL` premise that operation surfaces were wholly future/TBD is
+preserved historical evidence. D-APP-52 subsequently landed bounded proposal
+tools whose envelopes and descriptors carry the explicit human-gate language;
+D-APP-50 continues to exclude accept/apply/force exposure. The old surface-
+absence premise is superseded while the apply boundary remains intact. No
+assessment verdict or lifecycle state changes here.

@@ -59,3 +59,14 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-01-01
 ## Issuance-Gate-Process Observations
 
 DEL-01-01 is correctly admitted to `CHECKING`, but it is not issuance-ready. The assessment found useful governance coverage and clear source-warning behavior, while stale dependency/lifecycle instructions and the missing reliance register would make a future `ISSUED` gate ambiguous without reconciliation.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The REQ-006 `PARTIAL`, associated high-severity missing-register gap, and
+REQ-010 `FAIL` above remain historical findings at the Reviewed SHA. ADQ-02
+subsequently materialized and test-guarded
+`docs/harness/reliance_boundary_register.md`; ADQ-01 rewrote old REQ-010 into
+the current dependency-register discipline, under which the live register is
+permitted and remains derivative evidence. Those earlier conclusions are not
+current truth. No assessment verdict, dependency row, or lifecycle state is
+changed here.

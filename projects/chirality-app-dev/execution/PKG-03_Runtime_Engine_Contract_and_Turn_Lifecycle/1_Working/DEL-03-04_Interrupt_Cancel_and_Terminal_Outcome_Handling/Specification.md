@@ -18,6 +18,8 @@ Out of scope:
 - Broad session CRUD, boot metadata, and active-turn lock design assigned to DEL-03-02.
 - Route-shape and general SSE compatibility documentation assigned to DEL-03-03.
 - Append-only event store implementation assigned primarily to DEL-05-02, except as required to verify terminal outcomes for this slice.
+- Durable terminal persistence by the deterministic UI-only stub adapter; its
+  UI-visible terminal outcomes are test scaffolding, not K-EVENT-3 parity.
 
 Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` Sections 9 through 11; decomposition DEL-03-04 row.
 
@@ -77,3 +79,7 @@ Records to update or cross-link when implementation lands:
 - Runtime contract or mapper docs, exact path TBD.
 - Section 9 validation coverage for runtime engine event log and session replay, exact validation IDs from `docs/SPEC.md` Section 19.3.
 - Test fixtures demonstrating lock release and terminal outcome persistence.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-117 names the landed observability basis: `RunningHarnessTurn.cancel`, post-terminal same-session acceptance, and lock-release/terminal-outcome tests. The former exact-hook/state-API TBD is retired.

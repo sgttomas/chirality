@@ -1,5 +1,7 @@
 # Specification: DEL-09-05 CI Artifact and Release Verification Workflow
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the CI premerge workflow, stable artifact upload behavior, local command sequence, and manual release verification checklist for `DEL-09-05 CI Artifact and Release Verification Workflow`.
@@ -103,6 +105,14 @@ Required outputs for this deliverable:
 
 Documentation notes:
 
-- `docs/PRD.md` is usable in this run only under the dispatch ruling that its hash mismatch is a source warning.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - `ResponsibleParty` remains `TBD` until assigned by a human.
 - Any missing implementation-specific detail, including workflow path, artifact name, retention period, release evidence filename, and exact checker script path, remains `TBD`.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.
+
+## D-APP-56 CI ownership amendment (2026-07-12)
+
+R4-P37 confirms DEL-09-05 as owner of `.github/workflows/harness-premerge.yml` and its `harness-validation-summaries` artifact. DEL-09-01 retains its Section 8 wrapper-preservation interest and verification contract but does not own the workflow.

@@ -20,7 +20,7 @@ Sources: `_CONTEXT.md`; `docs/DIRECTIVE.md` Sections 2.2-2.3; `docs/SPEC.md` Sec
 - Terminal outcomes matter as much as streamed text. Accepted turns must end with a durable success, failure, cancellation, or interruption event for reliable replay. Source: `docs/CONTRACT.md` K-EVENT-2 and K-EVENT-3.
 - Session metadata can provide SDK linkage (`sdkSessionId`, `sdkTranscriptPath`, `sdkSessionStoreKey`, `sdkResumeMode`) but replay should present it as linkage metadata, not as the transcript authority. Source: `docs/SPEC.md` Sections 8.3-8.4.
 - Legacy session records are handled through the D-APP-41 eager conversion path; replay should consume the canonical folder state after conversion. Source: `docs/SPEC.md` Section 8.1; `D-APP-41`.
-- ADQ-09 assigns the concrete view model and API shape: `TranscriptView`/`TranscriptItem` in `frontend/src/lib/harness/transcript-replay.ts`, the replay API in `frontend/src/app/api/harness/session/[id]/events/route.ts`, and the sidebar component in `frontend/src/components/shell/transcript-stream-view.tsx`.
+- ADQ-09 assigns the concrete view model and API shape: `TranscriptView`/`TranscriptItem` in `frontend/packages/harness-contract/src/transcript-replay.ts`, the replay API in `frontend/src/app/api/harness/session/[id]/events/route.ts`, and the sidebar component in `frontend/src/components/shell/transcript-stream-view.tsx`.
 
 ## Trade-offs
 

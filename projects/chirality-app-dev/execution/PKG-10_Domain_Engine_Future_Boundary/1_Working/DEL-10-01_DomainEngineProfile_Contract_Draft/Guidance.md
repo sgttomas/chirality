@@ -81,3 +81,7 @@ Cross-reference (2026-07-02, agent decision under `TRB-chirality-app-dev-DEL-10-
 - `docs/TYPES.md` Section 11
 - `docs/PLAN.md` R7
 - `docs/PRD.md` Section 8.17, Section 10.10, KG-016 through KG-020
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-148 distinguishes supplied ruled-amendment fields (profile instances and hook-field schema references) from genuine remaining TBDs (adapters, stores, endpoints, apply tooling, and per-instance notice review).

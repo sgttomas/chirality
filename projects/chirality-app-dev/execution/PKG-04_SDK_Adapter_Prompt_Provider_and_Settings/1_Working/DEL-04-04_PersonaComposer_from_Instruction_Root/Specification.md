@@ -1,5 +1,7 @@
 # Specification: DEL-04-04 PersonaComposer from Instruction Root
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the backend PersonaComposer slice for replacing stub prompt behavior with source-grounded prompt composition. It covers composition from instruction-root governance, the active persona, working-root policy, current mode, and the permitted tool surface.
@@ -28,14 +30,14 @@ Sources: `_CONTEXT.md` Deliverable Scope and Anticipated Artifacts; decompositio
 | PC-REQ-001 | The composer MUST consume a validated instruction root containing the required governance and agent resources before reading persona content. | `docs/SPEC.md` Section 1.1; `docs/CONTRACT.md` K-ROOT-2 / K-PACKAGE-1 |
 | PC-REQ-002 | The composer MUST NOT write to the instruction root during ordinary runtime execution. | `docs/SPEC.md` Section 1.1; `docs/CONTRACT.md` K-ROOT-2 |
 | PC-REQ-003 | The composer MUST preserve instruction-root and working-root separation; working-root summary/policy content must not be treated as instruction-root governance. | `docs/DIRECTIVE.md` Section 2.7; `docs/SPEC.md` Sections 1.1-1.2 |
-| PC-REQ-004 | Persona names MUST resolve to canonical `agents/AGENT_<persona>.md` instruction files. Missing persona handling is `PERSONA_NOT_FOUND` per PRD, but this exact error token is PRD-derived and subject to the REF-006 hash warning. | `docs/SPEC.md` Section 13.2; `docs/PRD.md` Section 8.4 (HASH_MISMATCH warning) |
+| PC-REQ-004 | Persona names MUST resolve to canonical `agents/AGENT_<persona>.md` instruction files. Missing persona handling is `PERSONA_NOT_FOUND` per PRD, but this exact error token is PRD-derived and subject to the REF-006 hash warning. | `docs/SPEC.md` Section 13.2; `docs/PRD.md` Section 8.4 (MATCH status) — reconciled under D-APP-38 |
 | PC-REQ-005 | Persona aliases SHOULD use the canonical mappings in `docs/TYPES.md` Section 3.4 before instruction-file lookup, or delegate to an accepted alias resolver that implements those mappings. | `docs/TYPES.md` Section 3.4; decomposition SOW-017 |
-| PC-REQ-006 | The composed prompt MUST include selected agent instruction content, global/governance context, working-root boundaries, mode policy, and the configured permitted tool surface. | `docs/SPEC.md` Section 13.2; `docs/PRD.md` FR-028 (HASH_MISMATCH warning) |
+| PC-REQ-006 | The composed prompt MUST include selected agent instruction content, global/governance context, working-root boundaries, mode policy, and the configured permitted tool surface. | `docs/SPEC.md` Section 13.2; `docs/PRD.md` FR-028 (MATCH status) — reconciled under D-APP-38 |
 | PC-REQ-007 | The composed prompt MUST include professional-boundary reminders and MUST NOT imply autonomous professional approval, certification, signing, sealing, issuing, or external validation. | `docs/DIRECTIVE.md` Sections 2.8 and 4.2; `docs/CONTRACT.md` K-AUTH-1 |
 | PC-REQ-008 | Prompt text MUST NOT be treated as the enforcement boundary for filesystem writes, tool exposure, bash, subagents, or domain operations. | `docs/CONTRACT.md` K-PERM-2; `docs/SPEC.md` Sections 14.3 and 15 |
 | PC-REQ-009 | The composer MUST keep Chirality contracts provider-neutral; SDK names, transcript paths, and permission modes may appear only as adapter metadata or prompt support, not as public contract definitions. | `docs/DIRECTIVE.md` Section 2.10; `docs/CONTRACT.md` K-ENGINE-4; `docs/SPEC.md` Section 10.3 |
-| PC-REQ-010 | Boot fingerprints SHOULD include persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version when those inputs are available. The composer-owned test surface is persona content, governance preface, mode, and accepted visible tool-surface/fingerprint inputs; adjacent unresolved inputs remain `TBD` until their owning slices expose stable values. | `docs/SPEC.md` Sections 12.4 and 13.2; `docs/PRD.md` FR-029 (HASH_MISMATCH warning); `Dependencies.csv` DEP-04-04-004 and DEP-04-04-008 |
-| PC-REQ-011 | Unknown runtime option keys relevant to composition MUST be ignored with warnings rather than silently mutating prompt behavior. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-024 (HASH_MISMATCH warning) |
+| PC-REQ-010 | Boot fingerprints SHOULD include persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version when those inputs are available. The composer-owned test surface is persona content, governance preface, mode, and accepted visible tool-surface/fingerprint inputs; adjacent unresolved inputs remain `TBD` until their owning slices expose stable values. | `docs/SPEC.md` Sections 12.4 and 13.2; `docs/PRD.md` FR-029 (MATCH status); `Dependencies.csv` DEP-04-04-004 and DEP-04-04-008 — reconciled under D-APP-38 |
+| PC-REQ-011 | Unknown runtime option keys relevant to composition MUST be ignored with warnings rather than silently mutating prompt behavior. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-024 (MATCH status) — reconciled under D-APP-38 |
 | PC-REQ-012 | The composer MUST treat SDK transcripts, chat drafts, local presets, model context, API keys, and runtime caches as non-authoritative unless imported through a governed project-file process. | `docs/DIRECTIVE.md` Section 2.6; `docs/SPEC.md` Section 1.3 |
 
 ## Standards
@@ -72,3 +74,7 @@ Required traceability:
 
 - Link tests to SOW-017 and SOW-030 where the test framework supports names or comments.
 - Record any unresolved dependency on DEL-04-02, DEL-08-01, or DEL-08-02 as `TBD` or `ASSUMPTION` rather than hiding it in implementation behavior.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.

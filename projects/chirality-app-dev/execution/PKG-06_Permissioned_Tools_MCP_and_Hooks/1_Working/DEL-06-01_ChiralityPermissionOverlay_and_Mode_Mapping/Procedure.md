@@ -1,5 +1,7 @@
 # Procedure: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This procedure describes how to produce and verify the DEL-06-01 permission overlay implementation and mode mapping evidence. It is written for the deliverable artifact, not as an end-user operation runbook.
@@ -12,7 +14,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
 | Authoritative permission vocabulary | Available in `docs/TYPES.md` Section 8 |
 | Binding permission invariants | Available in `docs/CONTRACT.md` Section 1.6 |
 | Tool surface and mode mapping specification | Available in `docs/SPEC.md` Sections 14 and 15 |
-| Roadmap sequencing for R2/R3 | Available in `docs/PLAN.md`; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
+| Roadmap sequencing for R2/R3 | Available in `docs/PLAN.md`; `docs/PRD.md` is current and MATCH — reconciled under D-APP-38 |
 | Declared upstream dependencies | Available as extracted dependency records in `_DEPENDENCIES.md` and `Dependencies.csv`; human-declared upstream lists remain TBD pending closure ruling |
 | Exact implementation file paths | TBD |
 | Exact test fixture paths | TBD |
@@ -56,7 +58,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
 
 8. Record residual gaps.
    - Keep exact file paths, fixture names, and implementation ownership as `TBD` until assigned.
-   - Record the `docs/PRD.md` HASH_MISMATCH as a source-state warning in implementation notes or review evidence.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Verification
 
@@ -70,7 +72,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
 | `ask` behavior | Approval mediation persists the decision before SDK callback return. |
 | Event persistence | Governed attempts produce `tool.permission` evidence. |
 | MCP parity | Chirality MCP tool attempts pass through the same permission overlay as SDK built-ins. |
-| PRD warning | PRD-derived details remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+| PRD warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
 ## Records
 
@@ -82,7 +84,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
 - WorkspaceWrite hook-pass gating evidence: TBD, dependent on DEL-06-04 hook result interface.
 - MCP parity evidence: TBD, dependent on DEL-06-03 wrapper points or a shared overlay hook point.
 - Dependency closure ruling: TBD for human-declared upstream status; extracted rows are present in `_DEPENDENCIES.md` and `Dependencies.csv`.
-- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (reconciled under D-APP-38).
 
 ## Pass 3 Semantic Lensing Disposition
 

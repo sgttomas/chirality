@@ -64,3 +64,7 @@ Required documentation artifacts:
 - SSE compatibility fixture README describing fixture capture source, replay method, and expected event sequence.
 - Fixture coverage notes identifying the implementation baseline commit/SHA, route fixture path, SSE fixture path, order constraint status, and any payload/schema field marked compatibility-only.
 - Traceability note that PRD-derived requirements use the current D-APP-38 authority-corpus state and require corpus bump/apply after future authority-document edits.
+
+## D-APP-56 route ownership map (2026-07-12)
+
+R4-P30 assigns the three live uncataloged `/api/harness/*` routes by backing capability: `session/[id]/events` to DEL-05-02 replay ownership, permission routes to the PKG-06 permission owner, and agents routes to the PKG-08 agent-roster owner. The corresponding SPEC 17.1 catalog amendment executes only through the separately governed R4-P06 corpus tranche; this kit note does not pre-apply that corpus edit.

@@ -1,5 +1,7 @@
 # Specification: DEL-06-03 Initial Chirality MCP Read Tools
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the initial in-process Chirality MCP read-tool slice for PKG-06. It covers deterministic MCP tool descriptors, wrapper metadata, execution behavior, and tests for status read, dependency read, bounded scope scan, and scaffold preview/dry-run behavior.
@@ -80,11 +82,11 @@ Required artifacts:
 - `mcp__chirality__*` tool definitions for the read-tool slice.
 - Wrapper metadata documenting schema, permissions, read-only behavior, concurrency, interruption, execution, and summarization behavior.
 - MCP tool tests and fixtures for status read, dependency read, bounded scope scan, scaffold preview/dry-run, deterministic ordering, and denial behavior.
-- Notes documenting source-state warning for `docs/PRD.md` HASH_MISMATCH if this deliverable consumes the current PRD text during implementation.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Conflict Table
 
-No source-content conflict was identified during Pass 1/2 drafting. Source-state warning remains: `_REFERENCES.md` reports `docs/PRD.md` HASH_MISMATCH; per task brief this was treated as a warning rather than a blocker.
+REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Pass 3 Notes
 

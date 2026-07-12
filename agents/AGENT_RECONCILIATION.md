@@ -165,11 +165,21 @@ repair tranche.
 
 ### R6 — Backcheck and close
 
-Re-extract every changed claim, rerun required checks, verify decision and
-Remaining updates, reproduce package/corpus summaries, record stale or deferred
-derivatives, and produce the closure/handoff state. Closure is evidence
-coherence, not issuance, release readiness, certification, or professional
-approval.
+Create a new immutable backcheck derivative; do not rewrite the accepted
+discovery snapshot. Re-extract every changed claim reference against the final
+repaired source basis and prove multiset equality with the authorized repair
+manifest. Record authorized no-change or no-repair rows explicitly rather than
+dropping them from accounting. Rerun required checks, verify decision and
+Remaining updates, and audit project-specific riders, stale assessments, and
+other preserved conditions.
+
+Produce a corpus-wide Remaining census with every deliverable represented,
+including explicit `NONE` rows where no residual remains. Reproduce
+package/corpus summaries, record stale or deferred derivatives, and issue a
+handoff that names the accepted upstream snapshot, current derivative, exact
+repaired source basis, closure verdict, blockers, lifecycle posture, and
+material-change rerun triggers. Closure is evidence coherence, not issuance,
+release readiness, certification, or professional approval.
 
 [[END:PROTOCOL]]
 
@@ -191,8 +201,15 @@ A concordance run is valid only when:
 9. Conflicts, unknowns, stale inputs, unmapped implementation, lifecycle
    issues, and Remaining mismatches remain visible.
 10. Repairs cite the authorizing human decision and respect owning workflows.
-11. Backcheck covers every changed claim and required derivative.
-12. Closure records unresolved blockers, waivers, reruns, derivative status,
+11. Backcheck covers every changed claim reference and proves exact multiset
+    equality to the authorized repair manifest; authorized no-change rows are
+    separately and explicitly accounted for.
+12. Every deliverable appears in the final Remaining census, including an
+    explicit `NONE` row where applicable; project-specific riders and stale
+    assessments are dispositioned without historical recoding.
+13. The accepted discovery snapshot remains immutable and R6 is a new
+    source-state-bound derivative snapshot.
+14. Closure records unresolved blockers, waivers, reruns, derivative status,
     and next owner without making reliance claims.
 
 [[END:SPEC]]
@@ -218,7 +235,13 @@ A concordance run is valid only when:
   CROSS_PACKAGE_FINDINGS.csv
   DECISION_PACKETS/
   REPAIR_TRANCHES/
-  BACKCHECK/
+  BACKCHECK/<BackcheckSnapshotID>/
+    CHANGED_CLAIM_REEXTRACTION.csv
+    DETAILED_EVIDENCE.csv
+    RIDER_AND_ASSESSMENT_AUDIT.md
+    REMAINING_WORK_CENSUS.csv
+    BACKCHECK.md
+    HANDOFF.md
   HANDOFF_STATE.md
 ```
 
@@ -233,14 +256,18 @@ The canonical run root is
 `_Reconciliation/DeliverableConcordance/<RunID>/`. Historical generic audit
 subtrees are not migrated into this contract.
 
-Two active proto-runs predate this final structure:
-`RUN_D55_CONCORDANCE_2026-07-11_1904Z` in app-dev and
-`DELIVERABLE_CONCORDANCE_2026-07-11_1305` in piping. They retain their pinned
-method revisions, directory layouts, owner steers, and write surfaces through
-closure. At terminal handoff they record accepted source-state basis, closure
-state, unresolved blockers, and lessons for this contract. Their accepted
-changes integrate before PR #188 is rebased and fully revalidated; they are
-not retrofitted merely to resemble the unmerged template.
+The app-dev proto-run `RUN_D55_CONCORDANCE_2026-07-11_1904Z` is closed and
+integrated. Its R6 derivative at
+`projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/R6_D55_BACKCHECK_2026-07-12_1903Z/`
+provides the changed-claim multiset, rider/assessment audit, Remaining census,
+source-basis binding, and handoff requirements incorporated above.
+
+The active piping proto-run
+`DELIVERABLE_CONCORDANCE_2026-07-11_1305` predates this final structure. It
+retains its pinned method revision, directory layout, owner steers, and write
+surfaces through closure. At terminal handoff it records accepted source-state
+basis, closure state, unresolved blockers, and lessons for this contract. It
+is not retrofitted merely to resemble the unmerged template.
 
 [[END:STRUCTURE]]
 

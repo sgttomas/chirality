@@ -55,17 +55,19 @@ Branch: `codex/agent-governance-redesign`
 The owner-ruled, SHA-bound candidate currently has the following verified
 evidence:
 
-- App-dev runtime: the complete Vitest suite passes 94 files (one skipped),
-  686 tests (four skipped); TypeScript typechecking passes; the focused managed
-  delegation and coordination suite passes 16 tests.
+- App-dev integration checkpoint: the complete merged Vitest suite passes 97
+  files (one skipped), 699 tests (four skipped); TypeScript typechecking and
+  generated tool-catalog identity pass. The D-APP-55 R6 handoff is
+  `CLOSED / PASS` with no concordance blocker.
 - Root governance/tool checks: instruction entrypoints pass; all 43 live skills
   validate; all 33 agent packages validate with zero errors and warnings; 433
   live path-anchor surfaces pass; 42 targeted review-remediation Python tests
   pass; the complete practitioner governance harness passes 264 tests; and
   `git diff --check origin/main` reports no whitespace errors.
-- The public derivative regenerates with 583 files and zero boundary findings.
+- After app-dev integration, 434 live path-anchor surfaces pass. The public
+  derivative regenerates with 584 files and zero boundary findings.
   Its independent staging tree passes all 33 agent packages, all 43 skills,
-  canonical instruction entrypoints, and 424 exported path-anchor surfaces.
+  canonical instruction entrypoints, and the exported path-anchor validator.
 - D-GOV-13 and D-GOV-14 are bound to ruling publication commit
   `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`; the post-ruling validator no
   longer emits `TYPE2_APPROVAL_NOT_RULED`.
@@ -101,18 +103,22 @@ claim about the current unvalidated remediation tree:
 
 The owner ratified the three standards and approved D-GOV-13 through D-GOV-14,
 published at `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
-The app-dev and piping reconciliation proto-runs have resumed under their
-pinned methods. PR #188 must not merge until both produce stable terminal
-handoffs, their accepted changes integrate, this branch rebases onto that
-state, and full packaging, live-premerge, piping-sensitive, and independent
-public-staging validation passes.
+The app-dev proto-run is `CLOSED / PASS`; its accepted changes and R6 terminal
+handoff are integrated from `main`. The owner confirmed on 2026-07-12 that a
+non-rewriting merge of `main` satisfies D-GOV-14 item 8 in place of a literal
+history-rewriting rebase, preserving the SHA-bound D-GOV-13/D-GOV-14 ruling
+commits. The piping proto-run remains active under its pinned method. PR #188
+must not merge until piping produces a stable terminal handoff, its accepted
+changes integrate through the same non-rewriting method, and full packaging,
+live-premerge, piping-sensitive, and independent public-staging validation
+passes.
 
 ## Required Resume Sequence
 
-1. Allow both reconciliation proto-runs to finish under their pinned methods
+1. Allow the piping reconciliation proto-run to finish under its pinned method
    and produce the D-GOV-14 item 8 terminal evidence.
-2. Integrate their accepted changes, rebase PR #188, and resolve any instruction,
-   loop, index, runtime, or export conflicts.
+2. Integrate its accepted changes through a non-rewriting `main` merge and
+   resolve any instruction, loop, index, runtime, or export conflicts.
 3. Regenerate and validate every affected root and project surface, then merge
    PR #188 only when hosted and local acceptance evidence is green.
 
@@ -121,5 +127,5 @@ public-staging validation passes.
 Instruction tranche: OWNER-RULED; INTEGRATION HOLD ACTIVE.
 RECONCILIATION activation: COMPLETE.
 Runtime bridge: REMEDIATED; CORE TESTS PASS, FULL ACCEPTANCE PENDING.
-Overall D-GOV-11 implementation: owner-approved, pending proto-run integration,
-final rebase, full acceptance validation, and merge.
+Overall D-GOV-11 implementation: owner-approved; app-dev integrated; pending
+piping terminal integration, full acceptance validation, and merge.

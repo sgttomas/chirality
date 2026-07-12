@@ -9,7 +9,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Prerequisite | Status |
 |---|---|
 | Deliverable-local context exists at `_CONTEXT.md`. | Available. |
-| Authoritative source pointers exist at `_REFERENCES.md`. | Available; REF-006 `docs/PRD.md` matches under D-APP-38 corpus `v1`. |
+| Authoritative source pointers exist at `_REFERENCES.md`. | Available; REF-006 `docs/PRD.md` matches under the current D-APP-38 corpus snapshot. |
 | Decomposition entry exists for DEL-01-04. | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`. |
 | Human-declared upstream dependencies. | TBD; `_DEPENDENCIES.md` declares none extracted yet. |
 | ResponsibleParty assignment. | TBD; must remain TBD until human assignment. |
@@ -57,7 +57,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 9. Preserve current lifecycle state.
    - Current lifecycle state is `CHECKING`.
    - Do not perform a state regression or human-gate transition.
-   - Any future `CHECKING -> ISSUED` transition requires the governed status workflow and human approval evidence.
+   - Any future human-gate transition requires the governed status workflow and its required human approval evidence.
 
 10. Defer dependency extraction.
    - Do not create or edit `Dependencies.csv` during this four-documents run.
@@ -74,8 +74,8 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Boundary-row artifact | `Datasheet.md` includes concrete `Boundary Register Rows` with source reference, amendment trigger, current status, and human ruling fields. |
 | Boundary review checklist | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` exists and preserves checklist completion as evidence only. |
 | Dependency extraction | This run does not create or edit `Dependencies.csv`; if present, it remains owned by the separate dependency-extract workflow. |
-| Status | `_STATUS.md` remains `CHECKING`; no `CHECKING -> ISSUED` transition occurs in this checklist normalization. |
-| Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by D-APP-38 corpus `v1`. |
+| Status | Current state is read from `_STATUS.md`; no lifecycle transition occurs in this checklist normalization. |
+| Conflicts | Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by the current D-APP-38 corpus snapshot. |
 
 ## Records
 
@@ -92,3 +92,7 @@ Records produced or updated by this procedure:
 Related derivative record owned by a separate workflow:
 
 - `Dependencies.csv`
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-104 supersedes the setup-era statement that no dependency rows had been extracted: the 13-row derivative register exists and remains owned by the separate dependency workflow.

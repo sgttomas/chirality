@@ -64,3 +64,10 @@ TBD - no accepted dependency edges have been extracted yet.
 |---|---|---|---|---:|---|
 | 2026-06-21T03:00:20-0600 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 runtime taxonomy applied | 8 | none |
 | 2026-05-20T19:30:46-0600 | UPDATE | CONSERVATIVE | FOUND: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | 8 | superseded source-state warning |
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-114
+- **Current counts:** ACTIVE 7; RETIRED 1; NOT_APPLICABLE=1; PENDING=4; SATISFIED=3.
+- **Correction:** DEP-03-01-006 is RETIRED; the older active-row table is superseded.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

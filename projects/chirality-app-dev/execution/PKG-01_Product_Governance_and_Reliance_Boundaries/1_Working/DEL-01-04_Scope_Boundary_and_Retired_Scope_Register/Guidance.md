@@ -62,7 +62,7 @@ The controlling objective is OBJ-009: preserve professional boundary, product id
 |---|---|---|---|---|---|---|
 | CF-001 | Dispatch path names `PKG-01_Governance_and_Product_Boundaries`, but the only matching deliverable folder on disk is under `PKG-01_Product_Governance_and_Reliance_Boundaries`. | TASK dispatch | Filesystem path and `_CONTEXT.md` PackageName | Run record, final report | Use the located deliverable folder for this run and surface the stale path as a warning. | TBD |
 
-Closed historical conflict: `CF-002` is superseded by D-APP-38 corpus `v1`; current `_REFERENCES.md`
+Closed historical conflict: `CF-002` is superseded by the current D-APP-38 corpus snapshot; current `_REFERENCES.md`
 records REF-006 `docs/PRD.md` as `MATCH`.
 
 ## Normalized Checklist Artifact

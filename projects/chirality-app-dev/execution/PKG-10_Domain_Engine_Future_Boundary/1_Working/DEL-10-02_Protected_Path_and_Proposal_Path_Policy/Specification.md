@@ -1,5 +1,7 @@
 # Specification: DEL-10-02 Protected Path and Proposal Path Policy
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the future policy boundary separating domain-engine protected paths from agent-writable proposal paths for PKG-10. It covers SOW-068 and supports OBJ-010 by preserving future domain-engine compatibility without turning domain solvers into Chirality core.
@@ -42,7 +44,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Standard / Source | Applicability |
 |---|---|
 | `docs/CONTRACT.md` §1.10 | Binding invariants K-DOMAIN-1 through K-DOMAIN-4. |
-| `docs/PRD.md` §8.17 | Future domain compatibility requirements FR-106 through FR-115; REF-006 has a hash mismatch warning in `_REFERENCES.md`. |
+| `docs/PRD.md` §8.17 | Future domain compatibility requirements FR-106 through FR-115; REF-006 has a hash status: MATCH status in `_REFERENCES.md`. — reconciled under D-APP-38 |
 | `docs/PRD.md` §10.10 | Future domain artifact categories and protected mutation route. |
 | `docs/SPEC.md` §18 | Provisional endpoint boundary and future profile requirements. |
 | `docs/TYPES.md` §11 | Vocabulary for `DomainEngineProfile`, `OperationProposal`, protected path, proposal path, deterministic adapter, boundary notice, and OpenPipeStress fixture. |

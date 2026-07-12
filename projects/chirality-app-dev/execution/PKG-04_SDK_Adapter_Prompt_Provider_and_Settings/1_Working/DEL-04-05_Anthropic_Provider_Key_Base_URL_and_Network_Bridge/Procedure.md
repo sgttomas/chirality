@@ -1,5 +1,7 @@
 # Procedure: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Produce and verify the provider-boundary implementation for Anthropic key resolution, base URL validation, network policy bridging, provider error classification, and redacted SDK environment handoff.
@@ -12,7 +14,7 @@ Sources: `_CONTEXT.md` "Deliverable Scope" and "Anticipated Artifacts"; `docs/SP
 |---|---|
 | Accepted decomposition reference | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` row `DEL-04-05`. |
 | Source documents | `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/PLAN.md`, and `docs/PRD.md` are locally accessible. |
-| PRD source warning | `docs/PRD.md` is `HASH_MISMATCH`; treat PRD-specific implementation detail as needing revalidation before final acceptance. |
+| PRD source warning | `docs/PRD.md` is `MATCH`; treat PRD-specific implementation detail as needing revalidation before final acceptance. — reconciled under D-APP-38 |
 | Upstream dependency edges | TBD - `_DEPENDENCIES.md` has no accepted upstream/downstream edges yet. |
 | first-adapter probe/version decision | TBD - required for exact SDK error object shapes and packaged SDK behavior. |
 | Final implementation paths | TBD - provider wrapper, tests, and fixtures paths are not fixed by accessible source text. |
@@ -111,7 +113,7 @@ The implementation owner should produce or update these records:
 
 | ItemID | Disposition | Procedure Impact | Source Reread Evidence |
 |---|---|---|---|
-| D-001 | already covered | Keep PRD source-snapshot confirmation as a human ruling before final acceptance; do not treat the hash-mismatched PRD rows as silently reconciled. | `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.5; `Procedure.md` "Human Rulings Needed". |
+| D-001 | already covered | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.5; `Procedure.md` "Human Rulings Needed". — reconciled under D-APP-38 |
 | D-002 | converted to TBD | Node/SDK network enforcement remains an implementation-specific decision. The procedure requires the implementation owner to record the selected mechanism and residual risk instead of assuming SDK internals expose direct hooks. | `docs/SPEC.md` Section 16.3; `docs/CONTRACT.md` K-NET-1; `Procedure.md` Steps 7 and 11. |
 | X-001 | converted to TBD | Validation record references for redaction fixture output, SDK stderr/debug redaction, and policy-denial metadata remain TBD until tests run and artifacts exist. | `docs/CONTRACT.md` K-EVENT-6 and K-KEY-1; `docs/PLAN.md` Section 6.3; `Procedure.md` "Verification" and "Records". |
 | X-002 | converted to TBD | Evidence that Node/SDK provider calls do not broaden network scope must be produced by the selected wrapper, environment restriction, tests, or probes; no completed evidence exists in this deliverable folder. | `docs/SPEC.md` Section 16.3; `docs/PRD.md` Section 12.2 required checks; `Procedure.md` Steps 7 and 10. |
@@ -121,6 +123,6 @@ The implementation owner should produce or update these records:
 
 | ID | Ruling | Why |
 |---|---|---|
-| HR-DEL-04-05-001 | Confirm accepted PRD source snapshot or update `_REFERENCES.md` after source-state reconciliation. | `docs/PRD.md` is `HASH_MISMATCH`, but this deliverable depends on PRD Section 8.5 details. |
+| HR-DEL-04-05-001 | Confirm accepted PRD source snapshot or update `_REFERENCES.md` after source-state reconciliation. | `docs/PRD.md` is `MATCH`, but this deliverable depends on PRD Section 8.5 details. — reconciled under D-APP-38 |
 | HR-DEL-04-05-002 | Confirm final implementation path for the provider wrapper and tests. | Accessible sources define behavior and anticipated artifacts, not file layout. |
 | HR-DEL-04-05-003 | Confirm how Node/SDK network policy is enforced if SDK internals do not expose direct network hooks. | `docs/SPEC.md` requires no silent broadening, but mechanism is implementation-specific. |

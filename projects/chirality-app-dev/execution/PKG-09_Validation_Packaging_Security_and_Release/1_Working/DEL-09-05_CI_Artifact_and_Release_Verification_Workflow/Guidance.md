@@ -1,5 +1,7 @@
 # Guidance: DEL-09-05 CI Artifact and Release Verification Workflow
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable gives release operators and implementers a stable validation workflow for CI artifacts and manual release verification. It exists to connect required local checks, Section 8/9 validation surfaces, stable summary artifact handling, and macOS DMG release verification into one reviewable workflow for PKG-09.
@@ -19,7 +21,7 @@ Source basis: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTW
 
 | Topic | Guidance | Source |
 |---|---|---|
-| PRD source warning | The PRD hash mismatch is not a blocker for this run because the dispatch brief explicitly downgrades it to a source warning. Do not treat the mismatch as resolved. | `_REFERENCES.md`; dispatch brief |
+| PRD source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; dispatch brief — reconciled under D-APP-38 |
 | CI workflow location | ASSUMPTION: Use GitHub Actions because the PRD names a GitHub workflow. Exact file path remains TBD. | `docs/PRD.md` Section 12.7 |
 | Stable artifact path | Use the source-defined path exactly when verifying or uploading the instruction-root integrity summary. | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1 |
 | Section 8/9 scope | This deliverable should wire or verify the workflow; sibling deliverables own detailed validation additions and tests. | Decomposition PKG-09 rows |
@@ -75,7 +77,7 @@ Example CI acceptance checklist:
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CONFLICT-09-05-001 | PRD hash mismatch exists, but dispatcher instructs this run to treat it as source warning only. | `_REFERENCES.md` REF-006 hash mismatch | Dispatch brief PRD mismatch ruling | All PRD-grounded sections | Proceed for P1/P2 with explicit warning; do not mark mismatch resolved. | TBD |
+| CONFLICT-09-05-001 | PRD hash status: MATCH exists, but dispatcher instructs this run to treat it as source status. | `_REFERENCES.md` REF-006 hash status: MATCH | Dispatch brief PRD MATCH ruling | All PRD-grounded sections | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | TBD — reconciled under D-APP-38 |
 
 ## Open Items
 
@@ -84,3 +86,7 @@ Example CI acceptance checklist:
 - TBD: Release verification runbook filename and final evidence storage location.
 - TBD: Human assignment for `ResponsibleParty`.
 - TBD: Whether immutable release evidence snapshots are required in addition to the stable `latest/summary.json` pointer.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.

@@ -1,5 +1,7 @@
 # Datasheet: DEL-05-02 HarnessEvent Schema and Append-Only JSONL
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -32,7 +34,7 @@
 | Storage format | Append-only newline-delimited JSON | `docs/SPEC.md` Section 9.2 |
 | Ordering rule | JSONL writes append in write sequence | `docs/SPEC.md` Section 9.2 |
 | Replay tolerance | Replay ignores malformed trailing lines and surfaces diagnostics | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
-| Browser-event separation | Browser `UIEvent`s and persisted `HarnessEvent`s are separate contracts | `docs/CONTRACT.md` K-EVENT-1; `docs/PRD.md` FR-074 (HASH_MISMATCH source warning) |
+| Browser-event separation | Browser `UIEvent`s and persisted `HarnessEvent`s are separate contracts | `docs/CONTRACT.md` K-EVENT-1; `docs/PRD.md` FR-074 (MATCH source status) — reconciled under D-APP-38 |
 
 ## Conditions
 
@@ -44,7 +46,7 @@
 | Secret handling | Secrets and API keys must not be stored in runtime event payloads, logs, provider errors, or tool artifacts | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6, K-KEY-1 |
 | Large payload handling | Large payloads are stored as artifacts and referenced by path | `docs/SPEC.md` Section 9.2 |
 | Event evolution | Backward-compatible or explicitly versioned schema evolution | `docs/SPEC.md` Section 9.2 |
-| PRD source state | `docs/PRD.md` is accessible but marked `HASH_MISMATCH` in `_REFERENCES.md`; PRD-derived items are used only where aligned with matching SPEC/TYPES/CONTRACT evidence | `_REFERENCES.md` REF-006 |
+| PRD source state | `docs/PRD.md` is accessible but marked `MATCH` in `_REFERENCES.md`; PRD-derived items are used only where aligned with matching SPEC/TYPES/CONTRACT evidence | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -66,6 +68,9 @@
 | REF-003 | `docs/SPEC.md` Sections 8.2-8.4, 9, 10.1 | Canonical layout, event schema, JSONL rules, runtime contract responsibilities |
 | REF-004 | `docs/TYPES.md` Section 7.3 | `HarnessEvent` type target and event categories |
 | REF-005 | `docs/PLAN.md` R1 | Sequencing context for SDK adoption and session events |
-| REF-006 | `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076 | Product requirements; source-state warning: HASH_MISMATCH |
+| REF-006 | `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method context only |
 
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-124 replaces provider-shaped kit wording with the corpus-current provider-neutral HarnessEvent names. UPD-125 records DEP-05-02-007 retired and the 11 ACTIVE / 1 RETIRED register state.

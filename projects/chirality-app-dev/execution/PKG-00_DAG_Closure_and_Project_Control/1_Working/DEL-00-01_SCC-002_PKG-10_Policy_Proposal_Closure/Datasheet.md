@@ -19,13 +19,13 @@
 | Attribute | Value | Source |
 |---|---|---|
 | Control purpose | Resolve SCC-002 through source-grounded dependency rulings, without treating PKG-00 as a product graph package. | `_CONTEXT.md` section `Deliverable Scope`; `README.md` section `Boundary` |
-| Current closure snapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` | `_REFERENCES.md`; `DAG_CLOSURE_CONTROL.md` section `Control Status` |
+| Current closure snapshot | `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/` | `_REFERENCES.md`; `DAG_CLOSURE_CONTROL.md` section `Control Status` |
 | Strict FULL_GRAPH status | `ACYCLIC` | `DAG_CLOSURE_CONTROL.md` section `Control Status`; `Dependency_Closure_Report.md` section `Verdict` |
 | Strict SCC count | `0` | `DAG_CLOSURE_CONTROL.md` section `Control Status`; `Evidence/closure_summary.json` |
 | SCC under this deliverable | `SCC-002` | `_CONTEXT.md` section `Traceability`; `SCC_Triage_Workbook.csv` |
 | SCC nodes | `DEL-10-02`; `DEL-10-03` | `SCC_Triage_Workbook.csv`; `Evidence/scc_summary.csv` |
 | Rows to inspect | `DEP-10-02-004`; `DEP-10-03-006` | `SCC_Triage_Workbook.csv`; `SCC_Triage_Notes.md` |
-| Initial reading | Mixed hard/soft pair: `DEP-10-03-006` is the likely true sequencing prerequisite; `DEP-10-02-004` is likely opposite-direction interface evidence. | `SCC_Triage_Workbook.csv`; `SCC_Triage_Notes.md` |
+| Current row disposition | `DEP-10-03-006` is a preserved `ACTIVE` prerequisite with `SatisfactionStatus=SATISFIED`; `DEP-10-02-004` is retained as a `RETIRED` interface row with `SatisfactionStatus=NOT_APPLICABLE`. | Owning PKG-10 `Dependencies.csv` rows; D-APP-53 reconciliation |
 | Graph participation | `EXCLUDED_CONTROL_DELIVERABLE` | `_DEPENDENCIES.md` section `Dependency Tracking` |
 
 ## Conditions

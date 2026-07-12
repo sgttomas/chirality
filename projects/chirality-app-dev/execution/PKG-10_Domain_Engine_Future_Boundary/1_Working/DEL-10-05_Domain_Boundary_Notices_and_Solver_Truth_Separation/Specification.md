@@ -1,5 +1,7 @@
 # Specification: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies boundary-notice and review requirements for future domain-engine surfaces in Chirality. It covers documentation/UI/event-record copy and review checks that preserve the distinction between:
@@ -9,7 +11,7 @@ This deliverable specifies boundary-notice and review requirements for future do
 - Chirality proposals, summaries, manifests, and audit records,
 - explicit human acceptance and professional reliance decisions.
 
-This deliverable excludes activation or implementation of domain-engine endpoints, adapters, OpenPipeStress integration, protected-path mutation, or current-release domain operation execution. PKG-10 remains future-boundary/gated scope under decomposition OI-005 and DEC-006.
+This deliverable excludes `/api/domain/*` endpoints, operation apply, direct protected-path mutation/hooks, and general domain-runtime activation. D-APP-49 through D-APP-52 separately authorize the staged-live source-type/guard, closed-registry, read-tool, and pec-scoped loopback propose/refresh/validate surface; this copy/review deliverable does not own that implementation.
 
 ## Requirements
 
@@ -21,7 +23,7 @@ This deliverable excludes activation or implementation of domain-engine endpoint
 | REQ-004 | Domain operation copy MUST require explicit human acceptance before any applied operation is treated as accepted domain state. | `docs/PRD.md` FR-113; `docs/CONTRACT.md` K-DOMAIN-3 and K-GATE-1 | Operation-related copy includes human-gate language. |
 | REQ-005 | Protected domain artifact copy MUST distinguish protected paths from agent-writable proposal or summary paths. | `docs/PRD.md` FR-110, FR-111; `docs/CONTRACT.md` K-DOMAIN-2; `docs/TYPES.md` Section 11.3 | Review confirms no direct agent-write language for protected model truth. |
 | REQ-006 | OpenPipeStress examples, if used, MUST describe it as a possible fixture profile and not as Chirality core behavior. | `docs/PRD.md` FR-114; `docs/TYPES.md` Section 11.3 | Example review confirms fixture-only language. |
-| REQ-007 | Any current-release mention of domain-engine endpoints or tools MUST be marked future/provisional and MUST NOT imply implementation is active. | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016; decomposition OI-005 | Scope review confirms future-boundary/gated wording. |
+| REQ-007 | Domain-surface wording MUST distinguish the D-APP-49 through D-APP-52 staged-live types/guards, registry, read tools, and pec-scoped propose/refresh/validate tools from still-gated endpoints, apply, protected-path hooks/writes, and general runtime. | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016; D-APP-49 through D-APP-52 | Scope review confirms the staged partition without implying broader activation. |
 | REQ-008 | Unsupported domain-profile or solver-specific details MUST remain `TBD`, `ASSUMPTION`, `PROPOSAL`, or a human-ruling item. | Skill contract; `_REFERENCES.md` notes | Document review confirms no invented solver facts. |
 
 ## Standards
@@ -56,6 +58,6 @@ This deliverable produces and maintains:
 - Domain review checklist.
 - UI/documentation examples.
 - Human-ruling list for unresolved future-amendment details.
-- Source-warning note for the PRD hash mismatch recorded in `_REFERENCES.md`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Surface inventory or out-of-scope rationale for selected future surfaces.
 - OperationProposal schema citation status before operation-proposal examples are used for closure evidence.

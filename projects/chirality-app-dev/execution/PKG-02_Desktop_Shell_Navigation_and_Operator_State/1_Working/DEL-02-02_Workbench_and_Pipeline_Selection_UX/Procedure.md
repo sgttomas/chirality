@@ -82,3 +82,7 @@ Define the operational steps to produce and verify the Workbench and Pipeline Se
 - Stale selection test evidence for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets: `frontend/src/__tests__/lib/task-scope-selection.test.ts`.
 - Human rulings for conflict table entries in `Guidance.md`: TBD.
 - Dependency extraction remains deferred; `Dependencies.csv` is intentionally not produced by this run.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-107 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; dependency extraction remains outside this UX slice's product ownership.

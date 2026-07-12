@@ -1,5 +1,7 @@
 # Datasheet: DEL-05-03 Redacted RunLogger and Secret Hygiene
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -35,7 +37,7 @@
 | API key handoff | Key material is supplied to the SDK environment only as needed for active turns and redacted from logs/events. | `docs/SPEC.md` Section 12.3; `docs/PLAN.md` R1 |
 | Event payloads | `HarnessEvent.data` payloads must avoid secrets. | `docs/SPEC.md` Section 9; `docs/PRD.md` Section 10.4 |
 | SDK boundaries | SDK messages, IDs, tool names, transcript paths, and external names may appear only as adapter metadata under product-owned contracts. | `docs/SPEC.md` Section 10.3; `docs/DIRECTIVE.md` Section 4.2 |
-| Source warning | `docs/PRD.md` is locally accessible but has a HASH_MISMATCH in `_REFERENCES.md`; this run treats it as a source-state warning, not an input failure. | `_REFERENCES.md`; human runtime instruction |
+| Source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; human runtime instruction — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -64,5 +66,5 @@
 | REF-003 | `docs/SPEC.md` | Runtime event schema, SDK adapter rules, and API-key handling rules. |
 | REF-004 | `docs/TYPES.md` | `HarnessEvent`, Runtime Audit Mirror, Project Truth, and SDK transcript vocabulary. |
 | REF-005 | `docs/PLAN.md` | R1 sequencing and security/privacy acceptance notes. |
-| REF-006 | `docs/PRD.md` | Product requirements for provider error classification, runtime redaction, session events, and R1 implementation targets. HASH_MISMATCH warning recorded in `_REFERENCES.md`. |
+| REF-006 | `docs/PRD.md` | Product requirements for provider error classification, runtime redaction, session events, and R1 implementation targets. MATCH status recorded in `_REFERENCES.md`. — reconciled under D-APP-38 |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method; SECURITY_CONTROL type definition. |

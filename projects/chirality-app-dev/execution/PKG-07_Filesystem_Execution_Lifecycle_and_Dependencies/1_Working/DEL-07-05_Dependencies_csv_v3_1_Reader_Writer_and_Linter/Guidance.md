@@ -1,5 +1,7 @@
 # Guidance: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-07-05 exists to make the dependency register contract executable: `Dependencies.csv` rows must be readable, writable, lintable, and warning-producing without weakening Chirality's plain-file, deliverable-local dependency model.
@@ -25,7 +27,7 @@ Sources: `_CONTEXT.md` (Deliverable Scope); `execution/_Decomposition/Chirality_
 - Linter output should be deterministic and stable enough for tests. ASSUMPTION: warning codes or categories should be stable once selected, but the exact code vocabulary is TBD.
 - Target resolution should use stable deliverable IDs when available. If the target cannot be confidently resolved, the row should use `TargetType=UNKNOWN` rather than inventing a target.
 - Provenance validation should distinguish active extracted rows from other row origins/statuses because the explicit provenance invariant applies to active extracted dependency rows.
-- The `docs/PRD.md` source is useful but flagged `HASH_MISMATCH` in `_REFERENCES.md`; revalidate PRD-derived acceptance language during human review.
+- The `docs/PRD.md` source is useful but flagged `MATCH` in `_REFERENCES.md`; revalidate PRD-derived acceptance language during human review. (reconciled under D-APP-38).
 - Do not use this deliverable to reintroduce project-level dependency graph generation, deliverable locks, staleness propagation, or unified pipeline run records. `docs/PLAN.md` Section 9 identifies those as retired without amendment.
 
 ## Trade-offs
@@ -61,7 +63,7 @@ Source: `docs/CONTRACT.md` Section 1.7; `docs/TYPES.md` Section 6.5.
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| C-DEL-07-05-001 | `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`, but PRD Section 8.9 is the local source for FR-055 through FR-057 acceptance language. | `_REFERENCES.md` Authoritative Source Corpus | `docs/PRD.md` Section 8.9 | Datasheet Attributes; Specification Requirements; Procedure Verification | Use PRD content as a source warning for drafting, then require human review before relying on PRD-derived claims as accepted hash truth. | TBD |
+| C-DEL-07-05-001 | `_REFERENCES.md` records `docs/PRD.md` as `MATCH`, but PRD Section 8.9 is the local source for FR-055 through FR-057 acceptance language. | `_REFERENCES.md` Authoritative Source Corpus | `docs/PRD.md` Section 8.9 | Datasheet Attributes; Specification Requirements; Procedure Verification | Use PRD content as a source warning for drafting, then require human review before relying on PRD-derived claims as accepted hash truth. | TBD — reconciled under D-APP-38 |
 
 ## Pass 3 Human Rulings and Design Holds
 

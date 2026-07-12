@@ -72,3 +72,7 @@ Required or anticipated artifacts for this deliverable:
 |---|---|---|---|---|---|---|
 | C-001 | Former PRD source-state warning resolved by D-APP-38. | `_REFERENCES.md` REF-006 | D-APP-38 current authority corpus | All PRD-derived requirements | Use PRD content under the current authority corpus; keep implementation proof separate from source-state proof. | D-APP-38 accepted current authority corpus |
 | Denied allocation ruling | Resolved by D-APP-40. | `docs/TYPES.md` Section 10 includes `denied` status | `docs/CONTRACT.md` K-SUBAGENT-1 describes fail-closed delegation gate | DEL-08-05-REQ-012; replay fixtures | Record permission denial always; create child-run `denied` record only after the runtime reaches the child-run record layer. | Ruled 2026-06-21 |
+
+## D-APP-56 child-output amendment (2026-07-12)
+
+R4-P32 assigns `artifacts/subagents/` child-output storage to DEL-08-05 and makes the live thresholds normative for its child-run records: inline output is limited to 16 KiB and artifact-backed output to 512 KiB. These are distinct from DEL-05-05 `descriptor.resultBudget`.

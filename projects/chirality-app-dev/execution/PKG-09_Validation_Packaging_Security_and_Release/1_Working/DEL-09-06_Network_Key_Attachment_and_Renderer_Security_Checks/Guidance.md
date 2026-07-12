@@ -1,5 +1,7 @@
 # Guidance: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable exists to keep validation, packaging, network, key, and instruction-root checks explicit and repeatable for PKG-09 security evidence. Its security checks should demonstrate that key material remains outside project truth, renderer/network access is bounded, provider endpoint selection is constrained, and attachment handling does not rely on client-supplied metadata.
@@ -28,7 +30,7 @@ Sources: `_CONTEXT.md` Traceability; `execution/_Decomposition/Chirality_App_vNe
 
 ## Considerations
 
-- The PRD reference is accessible but has the declared expected/observed hash mismatch. Per assignment, this is a source warning only; do not treat it as a blocker for P1/P2 drafting.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Keep endpoint tests strict about credentials and ports. `https://api.anthropic.com` with credentials or a non-empty non-443 port is not equivalent to the accepted base URL.
 - Prefer negative tests for sensitive paths: denied network URL, unsupported extension, symlink, directory, over-budget file, unreadable file, and redaction of realistic key-shaped strings.
 - Avoid treating `allowedTools` or SDK permissions alone as sufficient. Chirality-owned overlays remain required for professional safety.
@@ -58,7 +60,7 @@ Sources: `_CONTEXT.md` Traceability; `execution/_Decomposition/Chirality_App_vNe
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| TBD | No source-content conflict identified during P1/P2. PRD hash mismatch remains a source warning only. | `_REFERENCES.md` REF-006 | Assignment instruction | All PRD-grounded sections | Treat PRD content as usable with warning for this run. | TBD |
+| TBD | No source-content conflict identified during P1/P2. PRD hash status: MATCH remains a source status. | `_REFERENCES.md` REF-006 | Assignment instruction | All PRD-grounded sections | Treat PRD content as usable with warning for this run. | TBD — reconciled under D-APP-38 |
 
 ## Pass 3 Disposition Notes
 

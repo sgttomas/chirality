@@ -1,5 +1,7 @@
 # Guidance: DEL-07-02 Execution Root Scaffolding from Decomposition
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable exists to turn accepted SOFTWARE_DECOMP markdown into a filesystem execution root that downstream Chirality workflows can inspect, validate, and continue. Its value is not the folder creation alone; it is the preservation of project truth as explicit files under the working root with stable package and deliverable identity.
@@ -20,7 +22,7 @@ Sources: `docs/DIRECTIVE.md` Sections 1 and 2.1; `docs/CONTRACT.md` K-FS-1 and K
 
 ## Considerations
 
-- `docs/PRD.md` is a warning-bearing source for this run because `_REFERENCES.md` reports a HASH_MISMATCH. Use its requirements because the task brief explicitly permits that treatment, and preserve the warning in downstream documentation.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Scaffold output is a boundary between decomposition truth and execution working state. The scaffold service should copy or reference the accepted decomposition snapshot without treating generated folders as a replacement for the decomposition authority.
 - PREPARATION compatibility should be treated as an operator-facing readiness check, not as proof that downstream deliverables are complete.
 - The scaffold operation should avoid over-owning adjacent responsibilities. Metadata contract validation belongs primarily to DEL-07-03, lifecycle transition enforcement to DEL-07-04, and `Dependencies.csv` v3.1 behavior to DEL-07-05.
@@ -73,4 +75,4 @@ P3 disposition: X-001 is already covered in Procedure prerequisites and reinforc
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| None | No source-content conflict identified during P1/P2 drafting. The `docs/PRD.md` HASH_MISMATCH is a source warning, not a semantic conflict under this task brief. | `_REFERENCES.md` REF-006 | Task brief | All documents using PRD citations | Use PRD with explicit warning. | TBD |
+| None | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | Task brief | All documents using PRD citations | Use PRD with explicit warning. | TBD — reconciled under D-APP-38 |

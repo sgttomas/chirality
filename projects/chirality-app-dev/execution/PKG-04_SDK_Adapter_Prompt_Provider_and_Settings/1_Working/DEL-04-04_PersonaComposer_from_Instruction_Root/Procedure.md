@@ -1,5 +1,7 @@
 # Procedure: DEL-04-04 PersonaComposer from Instruction Root
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Provide an operational path for implementing and verifying the PersonaComposer slice so it replaces stub prompt behavior with deterministic, source-grounded prompt composition from instruction-root governance, active persona, working-root policy, mode, and permitted tool-surface inputs.
@@ -13,7 +15,7 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 | Persona alias vocabulary | Use or delegate the accepted alias mappings. | `docs/TYPES.md` Section 3.4 |
 | Runtime mode/tool policy | Use resolved mode and permitted tool-surface inputs supplied by the runtime/options layer. | `docs/SPEC.md` Sections 13-15 |
 | Upstream dependencies | Extracted ACTIVE upstream edges identify DEL-04-02 for resolved mode/tool-surface inputs, DEL-08-01 for instruction-root packaging/conformance, DEL-08-02 for alias routing/resolver interface, and a PRD source-snapshot constraint. Declared dependency sections remain TBD until accepted by the governing dependency workflow. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-04-04-004 through DEP-04-04-007 |
-| Source-state warning | Treat `docs/PRD.md` hash mismatch as a warning; do not rely on PRD-only details without confirmation. | `_REFERENCES.md` REF-006 |
+| Source-state warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 
 ## Steps
 
@@ -64,3 +66,7 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 - Tests: persona content hash tests, boot fingerprint tests, alias/missing-persona tests, prompt-content tests.
 - Integration evidence: boot/session fingerprint metadata update; downstream consuming deliverable/interface is currently `UNKNOWN` / `TBD` per `Dependencies.csv` DEP-04-04-008.
 - Open items: exact runtime input interface, downstream fingerprint handoff consumer, and accepted PRD snapshot confirmation.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.

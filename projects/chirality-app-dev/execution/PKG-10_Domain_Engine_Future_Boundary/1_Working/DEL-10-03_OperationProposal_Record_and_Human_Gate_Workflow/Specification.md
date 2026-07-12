@@ -4,7 +4,7 @@
 
 This deliverable defines a future-boundary data model and review workflow for `OperationProposal` records. It covers the proposal record shape, proposal-only status, lifecycle, K-AUTH-2-bound human gate, deterministic result-schema hooks, and review checklist for future domain-engine operations.
 
-This deliverable excludes current-release domain operation execution, source types, domain MCP tools, domain adapter implementation, protected-path enforcement implementation, operation stores, apply tooling, and any claim that Chirality owns solver truth. Those items remain future amendment or sibling-deliverable scope.
+This deliverable excludes operation apply, `/api/domain/*` endpoints, direct protected-path writes/hooks, general domain-runtime activation, and any claim that Chirality owns solver truth. D-APP-49 through D-APP-52 separately authorize source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools; those staged surfaces remain outside this four-document contract except as governing context.
 
 Primary canon: `_REFERENCES.md` REF-008, `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. Under D-T0-01, the framework-root persona is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it and must not weaken framework invariants.
 
@@ -76,3 +76,11 @@ Additional documentation needed before implementation:
   refs above; the tooling and the app-dev-side result-record location remain `TBD`.)
 - TBD: review checklist result artifact path/schema.
 - TBD: concrete proposal instances and profile-specific boundary notice copy.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.
+
+## D-APP-56 ownership amendment (2026-07-12)
+
+Under R4-P27, this deliverable owns the ruled proposal-tool surface in `domain-proposal-tools.ts` (`propose`, `refresh`, and `validate`), including registration, proposal envelopes, and gates. Only PEC-profile-scoped fixture interaction is evidence for DEL-10-04. This amendment does not unlock DEP-10-03-004 or any D-APP-53 Option-C-gated work.

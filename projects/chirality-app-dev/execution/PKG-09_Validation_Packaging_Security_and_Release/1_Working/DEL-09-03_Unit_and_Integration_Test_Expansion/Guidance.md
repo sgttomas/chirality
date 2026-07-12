@@ -1,5 +1,7 @@
 # Guidance: DEL-09-03 Unit and Integration Test Expansion
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-09-03 exists to make the vNext runtime, lifecycle, dependency, attachment, and permission behavior testable at focused unit/API/integration levels. The deliverable supports release readiness by expanding regression coverage for the named behaviors rather than by implementing those behaviors directly.
@@ -22,7 +24,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 8.11-8.16 and 1
 - Use integration tests when behavior depends on route cleanup, session locking, SSE termination, cancellation, or multiple services.
 - Use unit tests for deterministic parsers, mappers, permission resolution, fixture validation, and event replay.
 - Keep Section 9 validation IDs aligned with DEL-09-02; this deliverable can provide underlying unit/API/integration coverage, but authoring the runner/ID catalog belongs to DEL-09-02 unless a later human ruling changes scope.
-- Treat the PRD hash mismatch as a warning, not a reason to discard PRD requirements, because the dispatch explicitly permits this handling.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Mark unimplemented or phase-dependent coverage as `TBD` or `ASSUMPTION` in planning notes rather than creating tests that assert unavailable behavior.
 - Treat missing implementation paths, fixture paths, and command output as closure evidence gaps, not as permission to invent paths. The implementation pass should replace those `TBD` values only after files and commands exist.
 
@@ -52,4 +54,4 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 8.11-8.16 and 1
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
-| CONFLICT-001 | PRD reference hash mismatch: expected and observed SHA256 differ. | `_REFERENCES.md` REF-006 | TASK dispatch source-warning override | All source-grounded PRD references | Treat as source warning only for this run, per dispatch. | TBD |
+| CONFLICT-001 | PRD reference hash status: MATCH: expected and observed SHA256 differ. | `_REFERENCES.md` REF-006 | TASK dispatch source-warning override | All source-grounded PRD references | Treat as source status for this run, per dispatch. | TBD — reconciled under D-APP-38 |

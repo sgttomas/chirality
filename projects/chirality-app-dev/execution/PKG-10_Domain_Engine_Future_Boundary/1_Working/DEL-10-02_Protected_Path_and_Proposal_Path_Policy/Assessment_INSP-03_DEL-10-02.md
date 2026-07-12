@@ -56,3 +56,13 @@ No dependency rows were marked satisfied or mutated by this assessment. DEL-10-0
 ## Issuance-Gate-Process Observations
 
 This deliverable should not be issued under normal implementation gates until the owner decides how doc-only future-boundary deliverables are accepted. Runtime safety claims need actual hooks and tests; this wave only verifies that the draft policy is conservative and fenced.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The old-REQ001 static-scan sentence saying no frontend domain path existed is
+preserved historical evidence at the Reviewed SHA. D-APP-49 through D-APP-52
+subsequently authorized bounded profile and proposal-tool code. No
+`/api/domain/*`, accept, apply, or force surface was introduced, so the
+future-boundary/no-scope-creep conclusion remains valid while its former
+absence evidence is superseded. No assessment verdict or lifecycle state
+changes here.
