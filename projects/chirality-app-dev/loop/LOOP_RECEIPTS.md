@@ -942,3 +942,90 @@
   - Gate outcome: stopped at the wave boundary per standing protocol and the
     Receipt 26 direction; no self-merge; no lifecycle transition; no fence
     crossed. Durable checks recorded below in this receipt's commit.
+
+- **2026-07-12 — Receipt 28** (PR #190 merged on owner direction; R2 W5
+  dispatch — PKG-01, 4 deliverables, fable discovery).
+  - Owner direction (2026-07-12, in-session), verbatim: "merge PR #190 and
+    after that resume the next wave."
+  - Executed: PR #190 merged; W4 evidence on `main` = `242900ae9`; work
+    branch fast-forwarded, clean. Pre-dispatch checks at the new HEAD:
+    `git diff --quiet fac46e33f..HEAD -- frontend/` exit 0 — frontend
+    byte-identical, W1 gate transcript binding preserved.
+  - Dispatch: W5 = PKG-01 (DEL-01-01..04), ALL discovery agents fable per
+    the Receipt 18 steer (enforcement-truth register wave), single sub-batch
+    of 4 (at the cap). Wave-5 briefs adapted from W4 with a PKG-01 section
+    encoding the enforcement-truth axis: documentary claims stay MR-10
+    documentary rows, but any governance claim asserting an ENFORCED product
+    behavior must be checked against the live frontend surface — a register
+    asserting enforcement the implementation does not carry is a defect row,
+    not an ALIGNED documentary row; MR-7/MR-11 strict on decision citations;
+    irreconcilable register-vs-ruling conflict → AUTHORITY_CONFLICT. Fan-in:
+    fable high effort over all self-flagged + non-ALIGNED rows, outcomes to
+    `R2_WAVES/PKG-01/_VERIFICATION.md`; then package summary, register
+    update, durable checks, commit/push/PR, completion receipt, and STOP at
+    the W5/W6 boundary for owner merge direction.
+
+- **2026-07-12 — Receipt 29** (standing session permission: self-merge of
+  this run's wave PRs).
+  - Owner direction (2026-07-12, in-session, while W5 discovery was
+    running), verbatim: "You now have my permission for the remainder of
+    this session to merge the PRs yourself."
+  - Effect on the standing wave protocol: the per-wave STOP-for-merge at
+    wave boundaries is lifted for the remainder of this session — each wave
+    still closes with deterministic validation, fable high-effort fan-in,
+    package summary, register update, durable checks, and commit/push/PR,
+    after which the orchestrator merges the PR itself (recording the merge
+    in the completion receipt) and proceeds directly to the next wave.
+    Supersedes, for this session only, the Receipt 26/28 boundary-stop
+    wording. Unchanged: STOP at R4 after R3 + plan §10 QA (owner-gated);
+    R5 repair tranches need explicit ruling; no lifecycle transitions; all
+    other fences and the Receipt 18 model steer remain in force.
+
+- **2026-07-12 — Receipt 30** (D-APP-55 R2 W5 complete: PKG-01 concordance
+  discovery + fan-in verification; wave closed under the Receipt 29
+  self-merge permission).
+  - Discovery: 4 fable agents (Receipt 18 steer — ALL W5 discovery fable),
+    one sub-batch of 4, all clean. 89 claim rows across DEL-01-01 (15),
+    DEL-01-02 (33), DEL-01-03 (21), DEL-01-04 (20); deterministic validator
+    0 errors before fan-in (1 warning, resolved below). Frontend byte-
+    identity fac46e33f -> HEAD re-verified at dispatch and at fan-in.
+  - Fan-in (fable, high effort): 40 rows rechecked (self-flagged ∪
+    non-ALIGNED) — 37 confirmed, 2 refuted, 1 contested. All verdicts
+    routed to owning agents; no orchestrator/verifier CSV edits.
+    - DEL-01-03 ACC-02: STALE_ASSESSMENT -> STALE_SPECIFICATION accepted
+      (owner independently re-verified the corpus-v1 PRD hash mismatch in
+      AUTHORITY_CORPUS.json before accepting).
+    - DEL-01-04 ACC-002: ACCEPTED_DIVERGENCE -> STALE_SPECIFICATION
+      accepted (strict affirmative-permission test: D-APP-50/52 permit the
+      tool surface, not the BR-005 register-wording divergence); minority
+      ALIGNED reading escalated to R3.
+    - DEL-01-02 RBR-014 contest: owner-resolved to STALE_SPECIFICATION on
+      the live ask-default fact (register "Bash denied by default" flatly
+      false at HEAD). ZERO standing contested rows in W5.
+    - Corrections: RBR-021 repair enumeration extended to register lines
+      112/122; DEL-01-03 MR-10 recasts (EXC-01/EXC-03/ACC-04 + REGISTER-1)
+      clear the validator warning.
+  - Final census (89 rows): ALIGNED 54, STALE_SPECIFICATION 15,
+    STALE_ASSESSMENT 12, PARTIALLY_IMPLEMENTED 3, REMAINING_STATE_MISMATCH
+    3, DOCUMENTED_UNIMPLEMENTED 2; zero AUTHORITY_CONFLICT / UNKNOWN /
+    DEFERRED / ACCEPTED_DIVERGENCE. Post-correction validator: 0 errors,
+    0 warnings.
+  - Findings of record: enforcement-truth axis holds package-wide (no
+    register row asserts an enforcement the implementation lacks; no OUT
+    boundary crossed live without a ruling); residual = four stale
+    enforcement-surface path citations in the reliance register (RBR-001,
+    post-D-APP-48 paths) + no path-existence assertion in
+    reliance-boundary-register.test.ts (RBR-025). Three run-wide doc-lag
+    repair classes for R5: corpus v1->v6 label pin (four-way consistent),
+    CHECKING-lifecycle wording (D-APP-54), register-premised INSP-03
+    staleness (no superseding notes). R3 items: MR-1 application rule
+    (assessment-only vs kit-surface staleness), REF-007 machine-absolute
+    path wart (all four registers), DEL-01-04 ACC-003 provider-expansion
+    BR wording vs DEL-04-02, DEL-01-02 REQUIREMENT_INDEX parser gap
+    confirmed. Evidence: `R2_WAVES/PKG-01/_VERIFICATION.md`,
+    `PACKAGE_SUMMARIES/PKG-01.md`; register cell extended (W5-COMPLETE).
+  - Wave closed per Receipt 29: durable checks + commit/push/PR +
+    orchestrator self-merge (PR number recorded in the commit/PR trail),
+    then proceed directly to W6 (PKG-10, ALL-fable discovery per Receipt
+    18, F-APP-3 fence-adjacent brief). Run counter: 934 claim rows through
+    fan-in to date (W1 86 + W2 423 + W3 223 + W4 113 + W5 89).
