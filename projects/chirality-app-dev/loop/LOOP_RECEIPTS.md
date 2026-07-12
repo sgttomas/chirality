@@ -753,8 +753,8 @@
   - Executed: PR #186 merged (CI `harness` pass); W2 evidence now on `main` =
     `7ac660761`; work branch fast-forwarded to it, clean. No further dispatch.
   - State at pause: R0, R1, R2 W1 (PKG-02) and W2 (PKG-03/04/05/06) COMPLETE
-    and merged — 32 of 53 deliverables concordance-processed (3 R0 + 4 W1 +
-    19 W2 + 6 remaining-package overlap none); resume point is **W3 dispatch
+    and merged — 26 of 53 deliverables concordance-processed (3 R0 + 4 W1 +
+    19 W2); 27 remain across W3–W7; resume point is **W3 dispatch
     (PKG-07/08, 11 deliverables, opus discovery per the Receipt 18 steer)**,
     then W4 (PKG-09), W5 (PKG-01, fable), W6 (PKG-10, fable), W7 (PKG-00),
     R3, plan §10 QA, STOP at R4. Two explicitly contested rows and the
