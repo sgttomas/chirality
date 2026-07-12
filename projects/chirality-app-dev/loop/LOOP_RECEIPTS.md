@@ -1372,3 +1372,21 @@
     53-state census; original-run integrity; `git diff --check`; practitioner
     self-check. Frontend gates skipped because P40 is docs/register metadata
     only.
+
+- **2026-07-12 — Receipt 40** (D-APP-56 R5 P41 / Tranche D machine-absolute
+  reference-path repair complete; P40 landed PR #204).
+  - Upstream: D-APP-56; exact immutable-CSV set UPD-080 (1/1, six affected
+    claim/register members across DEL-01-02 and DEL-10-01..05).
+  - Executed: eight governed REF-007/REF-008 Path cells now use repo-root-
+    relative `agents/AGENT_SOFTWARE_DECOMP.md` / `agents/AGENT_DOMAIN_ENGINE.md`
+    pointers. Both recorded hash columns and `MATCH` status are preserved.
+  - State: all 53 deliverables remain IN_PROGRESS; the generic concordance
+    Remaining item stays open pending R6; original RUN_D55 artifacts are
+    unchanged; no runtime source changed.
+  - Model/roles: GPT-5 read-only discovery derived and adversarially checked
+    the exact member/edit set; GPT-5 governed execution applied and fan-in
+    checked the P41 tranche. No silent model substitution occurred.
+  - Checks: exact member/path census; target existence and SHA-256 reproduction;
+    metadata-only diff check; six durable-record sets; 53-state census;
+    original-run integrity; `git diff --check`; practitioner self-check.
+    Frontend gates skipped because P41 is docs/register metadata only.
