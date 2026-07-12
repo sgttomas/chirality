@@ -843,3 +843,102 @@
     evidence-only tranche, no runtime source changed; git diff check pass
     (writes confined to the run folder, `loop/LOOP_RECEIPTS.md`, and the
     D-APP-55 register cell).
+
+- **2026-07-12 — Receipt 25** (PR #189 merged on owner direction; run PAUSED at the W3/W4 boundary awaiting further instructions).
+  - Owner direction (2026-07-12, in-session), verbatim: "merge PR #189, then
+    wait for further instructions."
+  - Executed: PR #189 merged; W3 evidence now on `main` = `bdb046934`; work
+    branch fast-forwarded to it, clean. No further dispatch. Note: `main`
+    had also advanced with the chirality-piping concordance merge (PR #187,
+    other-project tranche, not touched by this run); the root
+    harness-premerge workflow shows its known parked 0-second startup
+    failure on `main` pushes (parked item, unchanged); the governance-harness
+    run on the merge commit was verified separately.
+  - State at pause: R0, R1, R2 W1 (PKG-02), W2 (PKG-03/04/05/06), and W3
+    (PKG-07/08) COMPLETE and merged — 37 of 53 deliverables
+    concordance-processed (3 R0 + 4 W1 + 19 W2 + 11 W3); 16 remain across
+    W4–W7; resume point is **W4 dispatch (PKG-09, 6 deliverables, opus
+    discovery per the Receipt 18 steer)**, then W5 (PKG-01, fable), W6
+    (PKG-10, fable), W7 (PKG-00), R3, plan §10 QA, STOP at R4. Standing for
+    R3: three explicitly contested rows (DEL-04-05 RQ-011, DEL-06-02
+    REGISTER-2, DEL-07-04 REQ-017), the Declared-TBD register-class
+    conflict, the STALE_ASSESSMENT superseding-note boundary, and the
+    DEL-08-02 corpus-amendment NEW-PACKET family.
+  - Gate outcome: paused by owner direction — not a fence stop; R4/R5 remain
+    owner-gated; no lifecycle transition; no fence crossed.
+  - Checks: none run — record-keeping receipt only; nothing but this receipt
+    changed since the merged tranche.
+
+- **2026-07-12 — Receipt 26** (R2 W4 dispatch — PKG-09, 6 deliverables).
+  - Owner direction (2026-07-12, in-session), verbatim: "Resume D-APP-55.
+    Read Receipt 25 in projects/chirality-app-dev/loop/LOOP_RECEIPTS.md, then
+    dispatch W4 per its resume point and the standing wave protocol (Receipts
+    18/23-24). Stop at the wave boundary."
+  - Pre-dispatch checks: working tree clean at HEAD `6f7c06814` (one receipt
+    commit ahead of `main` = `bdb046934`, rides into the W4 PR);
+    `git diff --quiet fac46e33f..HEAD -- frontend/` exit 0 — frontend
+    byte-identical, W1 gate transcript binding preserved. The governance-
+    harness run on merge commit `bdb046934` was verified `success` before the
+    pause (Receipt 25 note closed).
+  - Dispatch: W4 = PKG-09 (DEL-09-01..06), opus discovery per the Receipt 18
+    steer, sub-batched at the four-agent cap (4 + 2). Wave-4 briefs adapted
+    from the W3 briefs with: the superseding-note test for stale assessments
+    (W3 fan-in rule, pending R3 run-wide ratification) added to the binding
+    judgment rules; a PKG-09 note requiring the DEL-09-04 agent to determine
+    whether its claim set covers the packaged-SDK verification surface
+    (handle from the accepted DEL-08-01 W3 refutation) and directing the
+    fan-in verifier to check it; and a reminder that CI/release/security
+    evidence must never carry secret or key values. Fan-in verification:
+    fable at high effort over all self-flagged + non-ALIGNED rows, outcomes
+    to `R2_WAVES/PKG-09/_VERIFICATION.md`; then package summary, register
+    update, durable checks, commit/push/PR, completion receipt, and STOP at
+    the W4/W5 boundary for owner merge direction.
+
+- **2026-07-12 — Receipt 27** (R2 W4 — PKG-09 — COMPLETE; run STOPPED at the
+  W4/W5 boundary for owner merge direction).
+  - Discovery: six opus agents in two sub-batches (4 + 2), all completed
+    cleanly; 109 initial rows, deterministic validation 0 errors.
+  - Fan-in (fable, high effort): 47 rows rechecked (self-flagged ∪
+    non-ALIGNED) — 43 confirmed, 2 refuted, 2 contested, plus notes-level
+    factual findings in four deliverables. All items returned to owning
+    agents; no row orchestrator-edited. Outcomes (full record in
+    `R2_WAVES/PKG-09/_VERIFICATION.md`):
+    - Refutations accepted (2): DEL-09-01 UNMAPPED-1 → ALIGNED (accepted
+      mapping under DEL-09-02-RQ-012); DEL-09-05 REQ-003 →
+      PARTIALLY_IMPLEMENTED + AssessmentEvidence STILL CURRENT (packaging
+      outputs absent at source state; restores same-surface consistency
+      with DEL-09-04).
+    - Contests: DEL-09-02 RQ-015 owner-RESOLVED → STALE_SPECIFICATION
+      (MR-8 tie-break); DEL-09-05 REQ-008 STANDS CONTESTED (ALIGNED kept;
+      K-VALIDATE-1 packaging-enforcement interpretation routed to R3).
+    - Owner-made additions (4 rows): DEL-09-03 ACC-001 (kit stale-hash
+      coverage miss) + REGISTER rows in DEL-09-01/05/06 for the REF-006
+      `_DEPENDENCIES.md` lag class (5 of 6 siblings now ledger it;
+      DEL-09-03 has the model dated correction; R3 harmonizes the class).
+      One evidence citation corrected (DEL-09-03 REQ-002).
+  - Final census: 113 rows — ALIGNED 76, PARTIALLY_IMPLEMENTED 15,
+    STALE_SPECIFICATION 9, REMAINING_STATE_MISMATCH 6, STALE_VERIFICATION 2,
+    IMPLEMENTED_DIFFERENTLY 2, DOCUMENTED_UNIMPLEMENTED 2,
+    IMPLEMENTED_UNDOCUMENTED 1; zero AUTHORITY_CONFLICT / UNKNOWN /
+    DEFERRED_AGENT_WORKFLOW. Re-validation after corrections: 0 errors.
+  - Findings of record: the W3 DEL-08-01 packaged-SDK handle is CLOSED
+    (DEL-09-04 REQ-008 owns all three sub-surfaces incl.
+    `verifyUnpackedSdkBundle`); executed CI is the repo-root
+    harness-premerge workflow (kit-described project-local copy is
+    non-executing; ownership DEL-09-05, decomposition line 364); the
+    dominant defect family is packaging-evidence absence (no dist/DMG/probe
+    artifacts bound to fac46e33f — all 15 PARTIAL rows); REF-006 staleness
+    recurs in registers (5 REGISTER rows) and kits (6 STALE_SPECIFICATION
+    rows) → PKG-07-pattern R5 tranche; cross-package R3 item:
+    `desktop-release-template.yml` build-windows job vs K-RELEASE-1
+    macOS-only posture (verified unadapted-template state).
+  - Artifacts: `R2_WAVES/PKG-09/` (6 claims CSVs + 6 notes +
+    `_VERIFICATION.md`), `PACKAGE_SUMMARIES/PKG-09.md`, register
+    run-visibility cell extended. Source binding: frontend byte-identical
+    fac46e33f → HEAD (re-verified at dispatch and by fan-in).
+  - 43 of 53 deliverables now concordance-processed (3 R0 + 4 W1 + 19 W2 +
+    11 W3 + 6 W4); 10 remain (W5 PKG-01 ×4 fable, W6 PKG-10 ×4 fable,
+    W7 PKG-00 ×2 opus), then R3 (fable) + plan §10 QA, STOP at R4.
+  - Gate outcome: stopped at the wave boundary per standing protocol and the
+    Receipt 26 direction; no self-merge; no lifecycle transition; no fence
+    crossed. Durable checks recorded below in this receipt's commit.
