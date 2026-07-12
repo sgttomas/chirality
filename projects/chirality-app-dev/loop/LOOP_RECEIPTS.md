@@ -746,3 +746,21 @@
     evidence-only tranche, no runtime source changed; git diff check pass
     (writes confined to the run folder, `loop/LOOP_RECEIPTS.md`, and the
     D-APP-55 register cell).
+
+- **2026-07-11 — Receipt 22** (PR #186 merged on owner direction; run PAUSED at the W2/W3 boundary awaiting owner permission).
+  - Owner direction (2026-07-11, in-session), verbatim: "Merge the PR and
+    then wait for permission to proceed further."
+  - Executed: PR #186 merged (CI `harness` pass); W2 evidence now on `main` =
+    `7ac660761`; work branch fast-forwarded to it, clean. No further dispatch.
+  - State at pause: R0, R1, R2 W1 (PKG-02) and W2 (PKG-03/04/05/06) COMPLETE
+    and merged — 32 of 53 deliverables concordance-processed (3 R0 + 4 W1 +
+    19 W2 + 6 remaining-package overlap none); resume point is **W3 dispatch
+    (PKG-07/08, 11 deliverables, opus discovery per the Receipt 18 steer)**,
+    then W4 (PKG-09), W5 (PKG-01, fable), W6 (PKG-10, fable), W7 (PKG-00),
+    R3, plan §10 QA, STOP at R4. Two explicitly contested rows and the
+    Declared-TBD register-class conflict stand for R3
+    (`R2_WAVES/PKG-03/_VERIFICATION.md` §3.5).
+  - Gate outcome: paused by owner direction — not a fence stop; R4/R5 remain
+    owner-gated; no lifecycle transition; no fence crossed.
+  - Checks: none run — record-keeping receipt only; nothing but this receipt
+    changed since the merged tranche.
