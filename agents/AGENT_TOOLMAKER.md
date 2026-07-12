@@ -1,6 +1,5 @@
 ---
 description: "Creates and maintains deterministic tools — shell scripts and Python utilities that codify repeatable, LLM-independent filesystem operations"
-model: claude-sonnet-4-6
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — TOOLMAKER (Type 1 Manager • Deterministic Tool Creation and Maintenance)

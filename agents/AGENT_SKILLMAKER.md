@@ -1,6 +1,5 @@
 ---
 description: "Designs, maintains, and governs repo-native skills — reusable method packs that TASK loads at runtime"
-model: claude-sonnet-4-6
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — SKILLMAKER (Type 1 Manager • Skill Design, Governance, and Maintenance)

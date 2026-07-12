@@ -1236,3 +1236,59 @@
   - No run-folder artifact, ledger row, or register cell touched; no
     lifecycle transition; run posture unchanged (STOPPED at R4 per
     Receipt 33).
+
+- **2026-07-12 — Receipt 35** (owner direction: model-agnosticize remaining
+  live instruction surfaces — items 2–5 of the session's model-reference
+  sweep; owner-authorized writes outside `projects/chirality-app-dev/`;
+  no phase work; run remains STOPPED at R4).
+  - Owner direction (2026-07-12, in-session), verbatim: "you have my
+    permission to make necessary changes for items 2, 3, 4 and 5. Leave
+    item 1 for the agent working in that project currently. Where
+    instructions are strongly written to require user-preference over model
+    selection, make that a matter of the user providing the information at
+    the time in specific instructions."
+  - Item 2 — `_DomainEngines/bridge/LOOP_INIT.md` §7: named-model
+    assignments (`opus`/`fable`) replaced with the model-agnostic
+    convention (owner names models in session/dispatch-time instructions;
+    capability-tier fallback; receipt the actual model per role; no silent
+    substitution).
+  - Item 3 — `agents/AGENT_*.md` (owner-authorized crossing of the plan §3
+    boundary-8 agent-instruction freeze): frontmatter `model:` pins removed
+    from AGENT_EVALUATION (claude-opus-4-6), AGENT_EVALUATION_REPORT,
+    AGENT_SKILLMAKER, AGENT_TOOLMAKER (claude-sonnet-4-6),
+    AGENT_EVALUATION_STRUCTURE_AUDIT, AGENT_EVALUATION_DEPENDENCY_AUDIT
+    (claude-haiku-4-5) — dispatching user/session now names the model.
+    Prose model-selection rationale converted to capability-tier language
+    with "user names the model at dispatch time" in AGENT_EVALUATION
+    (lines 74/79/227), AGENT_EVALUATION_REPORT (§rationale),
+    both audit agents' rationale lines, AGENT_DOMAIN_DECOMP (§validate
+    dispatch), AGENT_PDF2MD (folio-extract dispatch line, "Why Sonnet"
+    rationale section, three cost-narrative mentions); empirical
+    observations preserved as tier-level historical facts (e.g. the ~10%
+    small-tier folio misread rate). Zero named-model strings remain in the
+    eight touched agent files.
+  - Item 4 — `tools/REGISTRY.md` `redispatch_csv_text_tables.py` row:
+    "(Opus)" orchestrator and `model: "sonnet"` dispatch pin replaced with
+    run-time user-named model + vision-capable mid-tier requirement.
+  - Item 5 — NO EDIT, finding of record: both candidate files are
+    historical records, not live instructions —
+    `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` is expressly marked
+    HISTORICAL/superseded (2026-07-04/2026-07-10 banner) and
+    `_DomainEngines/CHANGE_HANDOFF.md` is a dated 2026-06-21 handoff for a
+    specific commit; their `Co-Authored-By: Claude Opus …` trailer text
+    stays frozen as history.
+  - Item 1 (chirality-piping `loop/LOOP_INIT.md` §7 +
+    `init/piping-resume-one-time.md`) left untouched per the direction —
+    owned by the session active in that project.
+  - Safety check: `verify-instruction-root-integrity` tests use synthetic
+    fixtures and assert bundled-vs-source hash CONSISTENCY, not pinned
+    content; agents/ roster unchanged (no file added/removed) — no
+    frontend test impact expected from these text edits.
+  - Concordance interaction, for R4/R5 awareness: run evidence remains
+    bound to `4c8ed8907` and is NOT invalidated; however, kit/register
+    rows that hash-pin `agents/AGENT_*.md` as frozen references will now
+    mismatch the live files for the six frontmatter-edited agents — a
+    known post-run corpus change to fold into the relevant R4/R5 handling
+    (same class as any post-run drift), not a run defect.
+  - No run-folder artifact, ledger row, or register cell touched; no
+    lifecycle transition; run posture unchanged (STOPPED at R4).

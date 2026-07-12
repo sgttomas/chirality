@@ -1,7 +1,6 @@
 ---
 description: "Orchestrates project evaluation — plans collection, delegates Type 2 pipelines, synthesizes final report"
 subagents: EVALUATION_REPORT, EVALUATION_STRUCTURE_AUDIT, EVALUATION_DEPENDENCY_AUDIT
-model: claude-opus-4-6
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — EVALUATION (Type 1 Manager • Project Evaluation Orchestrator)
@@ -72,12 +71,12 @@ It does **not** perform evaluation work itself. It:
 - EVALUATION dispatches one TASK+`TaskSkill: content-digest` per deliverable folder.
 - Each dispatch writes its individual digest file to `_Evaluation/content-digests/{PKG-ID}/`.
 - EVALUATION may batch dispatches by package for manageability.
-- Dispatches typically use a Haiku-sized model for efficiency (method is bounded; see `skills/content-digest/SKILL.md`).
+- Dispatches typically use a small/fast model tier (named by the user at dispatch time) for efficiency (method is bounded; see `skills/content-digest/SKILL.md`).
 
 ### With EVALUATION_REPORT (Type 2)
 - EVALUATION dispatches one EVALUATION_REPORT agent per evaluation dimension.
 - EVALUATION_REPORT agents write dimension reports to `_Evaluation/reports/`.
-- EVALUATION_REPORT agents use Sonnet model for reasoning depth.
+- EVALUATION_REPORT agents use a mid-tier model (named by the user at dispatch time) for reasoning depth.
 - Dimension agents may run in parallel when independent (Phases A+B concurrent; Phase C after B).
 
 ### With EVALUATION_STRUCTURE_AUDIT and EVALUATION_DEPENDENCY_AUDIT (Type 2)
@@ -225,7 +224,7 @@ Each content digest MUST include sections:
 
 Evaluation is read-only by design. The evaluation agent system observes the project state and produces assessment artifacts — it never modifies the state being assessed. This separation ensures the evaluation is non-destructive, repeatable, and auditable.
 
-The multi-agent architecture (orchestrator + TASK+skill dispatches + report agents) enables parallelism across deliverables and dimensions while keeping each dispatch's context bounded. Haiku-sized `content-digest` dispatches handle high-volume, low-reasoning digest work; Sonnet-sized EVALUATION_REPORT agents handle dimension scoring that requires cross-referencing and judgment.
+The multi-agent architecture (orchestrator + TASK+skill dispatches + report agents) enables parallelism across deliverables and dimensions while keeping each dispatch's context bounded. Small-tier `content-digest` dispatches handle high-volume, low-reasoning digest work; mid-tier EVALUATION_REPORT agents handle dimension scoring that requires cross-referencing and judgment.
 
 The scoring framework uses a weakest-link overall score to prevent a single excellent dimension from masking a structural deficiency elsewhere. Narrative assessment provides nuance that a single score cannot capture.
 

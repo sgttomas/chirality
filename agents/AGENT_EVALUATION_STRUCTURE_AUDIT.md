@@ -1,6 +1,5 @@
 ---
 description: "Validates deliverable folder structure, lifecycle state, and file inventory across all deliverables"
-model: claude-haiku-4-5-20251001
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — EVALUATION_STRUCTURE_AUDIT (Type 2 Task • Filesystem Structure Validation)
@@ -175,6 +174,6 @@ The audit is valid when:
 
 This agent replaces ad hoc shell commands for structure validation with a reproducible, documented audit. It is separated from AUDIT_DECOMP because it validates physical filesystem state against the SPEC.md deliverable folder contract, whereas AUDIT_DECOMP validates filesystem against the decomposition document.
 
-Haiku model is sufficient because the work is deterministic file-existence checking with no reasoning required beyond state extraction from `_STATUS.md`.
+The smallest/fastest model tier is sufficient (the user names the model at dispatch time) because the work is deterministic file-existence checking with no reasoning required beyond state extraction from `_STATUS.md`.
 
 [[END:RATIONALE]]
