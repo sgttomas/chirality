@@ -2,8 +2,8 @@
 
 Status: REMEDIATION IMPLEMENTED / CORE VALIDATION PASS / OWNER RULINGS PENDING
 ReviewedHead: `5f20ce750896da797319e535898e2959995bc521`
-Sources: `plans/reviews/PR188_multi_agent_review_2026-07-11.md` and
-`plans/reviews/PR188_REVIEW_FEEDBACK.md` in the commissioning checkout
+Sources: the 2026-07-11 PR #188 multi-agent review and consolidated PR #188
+review feedback in the commissioning checkout
 
 This is a derivative author disposition, not a human ruling. It groups
 duplicate findings by remedy while preserving the source IDs for audit.

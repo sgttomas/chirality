@@ -2,7 +2,7 @@
 
 Status:       PROPOSED
 HumanRuling:  PENDING
-Ruling SHA:   TBD (binds only after an explicit owner ruling is transcribed and published)
+Proposed SHA: ee35409f5cf3a81ecb29a271527156b991df97b9
 Date:         2026-07-12
 FramedBy:     PR #188 multi-agent review and author remediation
 
