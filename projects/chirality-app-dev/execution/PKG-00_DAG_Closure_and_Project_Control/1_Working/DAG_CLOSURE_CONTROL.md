@@ -6,7 +6,7 @@
 |---|---|
 | ControlPackageID | PKG-00 |
 | ControlPackageName | DAG Closure and Project Control |
-| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` |
+| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/` |
 | StrictFullGraphStatus | ACYCLIC |
 | StrictSCCCount | 0 |
 | BlockerSubsetStatus | ACYCLIC |
@@ -61,7 +61,7 @@ The four existing scope-change packets remain available as seed evidence inside 
 
 | Priority | Control Deliverable | Scope | Action |
 |---:|---|---|---|
-| - | - | No active SCC closure queue | Latest accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` reports `scc_count = 0`; proceed with the D-APP-19 inspection queue. |
+| - | - | No active SCC closure queue | Latest accepted DepClosure snapshot `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` reports `scc_count = 0`; proceed with the D-APP-19 inspection queue. |
 
 ## SCC-001 Dispatch Evidence
 

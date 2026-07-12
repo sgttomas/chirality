@@ -6,6 +6,17 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P42 DepClosure snapshot-pointer repair
+
+Executed UPD-081..UPD-083 across DEL-00-01 and DEL-00-02. The current
+accepted DepClosure pointer now names
+`CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`; the predecessor
+`CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains preserved as historical
+first-proof closure evidence. DEL-00-01's two SCC-002 descriptors now match
+the owning live rows. DEL-10-04 was excluded because its UPD-157 register
+repair belongs to P45. Both deliverables remain `IN_PROGRESS`; the generic
+concordance Remaining item stays open for R6.
+
 ## 2026-07-12 - D-APP-56 R5 P41 reference-path metadata repair
 
 Executed UPD-080 across six deliverables, rewriting eight governed REF-007/
