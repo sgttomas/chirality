@@ -1,5 +1,7 @@
 # Procedure: DEL-07-01 Working Root Validation and Instruction Root Protection
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operational steps to produce and verify the DEL-07-01 implementation artifacts: root validation tests, path policy helpers, and instruction-root protection fixtures.
@@ -12,7 +14,7 @@ This procedure may be used by the implementer or reviewer to check that working-
 |---|---|---|
 | Accepted deliverable scope for DEL-07-01. | Available in `_CONTEXT.md` and decomposition. | `_CONTEXT.md`; decomposition `DEL-07-01` row |
 | Current lifecycle state permits P3 enrichment. | `INITIALIZED`; Phase 2.5 is `P3_ONLY` and preserves `_STATUS.md` under `NO_STATUS_TOUCH`. | `_STATUS.md`; `_SEMANTIC_LENSING.md` |
-| Authoritative source corpus is accessible. | Accessible; `docs/PRD.md` has HASH_MISMATCH warning. | `_REFERENCES.md` |
+| Authoritative source corpus is accessible. | Accessible; `docs/PRD.md` has MATCH status. | `_REFERENCES.md` — reconciled under D-APP-38 |
 | Declared upstream dependencies. | TBD - no accepted dependency edges extracted yet. | `_DEPENDENCIES.md` |
 | Code module locations for implementation. | TBD. | Source-grounding gap |
 
@@ -20,7 +22,7 @@ This procedure may be used by the implementer or reviewer to check that working-
 
 1. Confirm source state.
    - Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and `_STATUS.md`.
-   - Record any source hash warnings, including the `docs/PRD.md` `HASH_MISMATCH`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 2. Identify the active instruction root.
    - Resolve the instruction root from packaged resources or `CHIRALITY_INSTRUCTION_ROOT` during development.
@@ -74,7 +76,7 @@ This procedure may be used by the implementer or reviewer to check that working-
 10. Record verification evidence.
     - Store test output or summaries where the project test convention requires.
     - Record final test command names and evidence locations when implementation identifies them; until then they remain TBD.
-    - Preserve the `docs/PRD.md` `HASH_MISMATCH` warning in review notes or run records for PRD-dependent acceptance.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
     - Preserve source citations and any unresolved `TBD` items for later semantic/dependency passes.
 
 ## Verification
@@ -87,7 +89,7 @@ This procedure may be used by the implementer or reviewer to check that working-
 | Instruction-root protection | Writes beneath instruction root are denied across ordinary execution modes. | Hook or policy fixture output. |
 | Symlink write policy | Symlink writes are denied under the initial policy. | Symlink fixture output. |
 | Fail-closed hooks | Hook failure denies governed action and records triage. | Hook failure test output. |
-| PRD hash warning | Evidence notes preserve the `HASH_MISMATCH` source-state warning. | Review note or run record. |
+| PRD hash warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Review note or run record. — reconciled under D-APP-38 |
 | Fixture evidence completeness | Relative, missing, non-directory, unreadable, unwritable, instruction-root-contained, outside-root, traversal, instruction-root write, and symlink cases have output or summary records. | Test output, fixture list, or coverage checklist. |
 
 ## Records
@@ -116,4 +118,4 @@ Records still TBD:
 | D-001 | converted to TBD | Verification requires API test output for `/api/working-root/validate` and downstream normalized-root reuse; implementation confirmation is still pending. |
 | X-001 | converted to TBD | `Records still TBD` now names final test command names and evidence locations for all fixture families. |
 | E-001 | already covered | Step 8 and Verification preserve initial symlink rejection and require future amendment/test evidence before relaxation. |
-| E-002 | incorporated | Step 10, Verification, and Records require preservation of the PRD hash mismatch warning in review evidence. |
+| E-002 | incorporated | Step 10, Verification, and Records require preservation of the PRD hash status: MATCH status in review evidence. — reconciled under D-APP-38 |

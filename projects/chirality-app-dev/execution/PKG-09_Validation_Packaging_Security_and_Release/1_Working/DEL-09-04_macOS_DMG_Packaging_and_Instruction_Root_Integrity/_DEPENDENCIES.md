@@ -26,7 +26,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` outputs are invalid evidence and were not read or consumed.
 - Anchor document selection: `_CONTEXT.md` and `Datasheet.md`; execution document order: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`, `_REFERENCES.md`.
 - Decomposition status: available and used to validate PKG-09, DEL-09-04, SOW-030, SOW-072, SOW-073, OI-003, and OI-004.
-- [WARNING] REF-006_HASH_MISMATCH: `_REFERENCES.md` marks `docs/PRD.md` as `HASH_MISMATCH`; assignment override treats this as a source warning only for this run.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - [WARNING] OPEN_ISSUE_TARGET_TYPE: OI-003 and OI-004 were preserved as `TargetType=UNKNOWN` because `OPEN_ISSUE` is not a Dependencies.csv v3.1 target enum.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE parent anchor (`DEP-09-04-001`) exists.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE parent anchor exists.
@@ -78,3 +78,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | TBD | 6 |
 
 Closure remains open because six ACTIVE rows have `SatisfactionStatus=TBD`; no edge should be treated as satisfied until evidence is accepted by the owning workflow.
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

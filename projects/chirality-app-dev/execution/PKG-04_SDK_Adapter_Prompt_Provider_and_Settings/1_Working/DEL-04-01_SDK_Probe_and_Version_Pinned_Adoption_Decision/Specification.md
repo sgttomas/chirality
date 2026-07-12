@@ -1,5 +1,7 @@
 # Specification: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the evidence required to decide whether Chirality should adopt a version-pinned Claude Agent SDK runtime path for R1.
@@ -78,7 +80,7 @@ The first-adapter probe may remain `TBD` until implementation begins, but the fi
 | DEL-04-01-VER-007 | Interrupt probe | Cancel/interrupt behavior preserves terminal outcomes and releases route/session control. |
 | DEL-04-01-VER-008 | Packaging probe | Packaged Electron runtime can start SDK-backed harness turn or records a fallback-blocking issue. |
 | DEL-04-01-VER-009 | Fallback decision review | Any failed P0 reliance boundary produces fallback or residual-risk action before R1 production default. |
-| DEL-04-01-VER-010 | Source-state check | REF-006 `docs/PRD.md` hash mismatch is resolved or explicitly accepted before closure. |
+| DEL-04-01-VER-010 | Source-state check | REF-006 `docs/PRD.md` hash status: MATCH is resolved or explicitly accepted before closure. — reconciled under D-APP-38 |
 | DEL-04-01-VER-011 | Probe evidence completeness | Evidence rows listed in Probe Evidence Thresholds are present, or each missing row is marked `TBD` with fallback/residual-risk impact. |
 
 ## Documentation
@@ -89,7 +91,7 @@ Required records:
 - Version-pinned adoption decision.
 - Fallback criteria.
 - Residual-risk notes.
-- Source-state note for REF-006 `docs/PRD.md` hash mismatch.
+- Source-state note for REF-006 `docs/PRD.md` hash status: MATCH. (reconciled under D-APP-38).
 - Traceability to SOW-018, SOW-044, SOW-046, OBJ-004, OI-001, and OI-002.
 
 TBD:

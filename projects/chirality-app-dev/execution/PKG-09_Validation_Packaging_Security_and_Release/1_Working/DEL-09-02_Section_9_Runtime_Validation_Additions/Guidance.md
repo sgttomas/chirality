@@ -1,5 +1,7 @@
 # Guidance: DEL-09-02 Section 9 Runtime Validation Additions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable turns the vNext runtime-governance requirements into Section 9 validation coverage. Its purpose is to make release readiness visible as SDK-backed runtime phases land, without treating SDK behavior as product truth unless Chirality contracts, event records, and tests verify the boundary.
@@ -64,6 +66,6 @@ Example gating note for conditional domain validation:
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CONFLICT-001 | PRD hash mismatch recorded in `_REFERENCES.md`, but assignment instructs treating it as source warning only. | `_REFERENCES.md` REF-006 | Assignment runtime override | All PRD-cited sections | Proceed with PRD as accessible source while preserving the warning and corroborating with SPEC/CONTRACT/TYPES where possible. | TBD |
+| CONFLICT-001 | PRD hash status: MATCH recorded in `_REFERENCES.md`, but assignment instructs treating it as source status. | `_REFERENCES.md` REF-006 | Assignment runtime override | All PRD-cited sections | Proceed with PRD as accessible source while preserving the warning and corroborating with SPEC/CONTRACT/TYPES where possible. | TBD — reconciled under D-APP-38 |
 | CONFLICT-002 | Section 9 includes `section9.domain_profile_validation`, but source states it applies only after governed domain-profile amendment enters scope. | `docs/SPEC.md` Section 19.3 | `docs/PRD.md` Section 12.4 | Datasheet Attributes; Specification Requirements; Procedure Steps | Include the ID in the registry but mark it pending/gated until amendment is accepted. | TBD |
 | CONFLICT-003 | Declared upstream/downstream dependencies remain `TBD`, while `_DEPENDENCIES.md` now includes an extracted dependency register and warns not to compute blocked/available state until project-level graph checks run. | `_DEPENDENCIES.md` Declared Upstream/Downstream | `_DEPENDENCIES.md` Extracted Dependency Register | Datasheet Conditions; Procedure Prerequisites; Guidance Trade-offs | Use extracted rows as handoff context only; require accepted FULL_GRAPH closure before dependency state becomes implementation closure authority. | TBD |

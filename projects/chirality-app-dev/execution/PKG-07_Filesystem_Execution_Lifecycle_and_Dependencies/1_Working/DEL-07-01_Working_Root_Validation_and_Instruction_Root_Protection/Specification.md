@@ -1,5 +1,7 @@
 # Specification: DEL-07-01 Working Root Validation and Instruction Root Protection
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the security-control behavior for validating the active working root and protecting the release-managed instruction root during ordinary project execution.
@@ -53,7 +55,7 @@ Use these terms consistently in implementation notes and tests:
 | Chirality filesystem/path contract | Governs working-root containment and symlink write policy. | `docs/CONTRACT.md` K-PATH-2, K-PATH-3 |
 | Chirality hook contract | Governs fail-closed hook behavior and required containment/protection hooks. | `docs/CONTRACT.md` K-HOOK-1; `docs/SPEC.md` Section 15.2 |
 | Chirality API contract | Provides working-root validation and deliverable filesystem API surfaces. | `docs/SPEC.md` API endpoints table |
-| Product requirements | Establish P0/P1 acceptance for validation, containment, instruction-root protection, and safe writes. | `docs/PRD.md` Sections 7.1, 8.9, 8.15; REF-006 HASH_MISMATCH warning applies |
+| Product requirements | Establish P0/P1 acceptance for validation, containment, instruction-root protection, and safe writes. | `docs/PRD.md` Sections 7.1, 8.9, 8.15; REF-006 MATCH status applies — reconciled under D-APP-38 |
 
 ## Verification
 
@@ -66,7 +68,7 @@ Use these terms consistently in implementation notes and tests:
 | REQ-07-01-008, REQ-07-01-009 | Integration tests proving hooks fail closed and policy denials override permissive modes. | Hook failure triage and permission decision records. |
 | REQ-07-01-010 | Test matrix review against required acceptance cases. | Coverage checklist stored with test fixtures. |
 | REQ-07-01-011 | API test for `/api/working-root/validate` response shape and downstream normalized-root reuse. | API test output; ASSUMPTION remains pending until implementation design confirms reuse path. |
-| REQ-07-01-001 through REQ-07-01-011 | Source-state review confirms PRD-dependent acceptance remains warning-bearing until REF-006 hash mismatch is accepted, corrected, or bypassed by explicit human ruling. | Review note or run record naming `_REFERENCES.md` REF-006 disposition. |
+| REQ-07-01-001 through REQ-07-01-011 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Review note or run record naming `_REFERENCES.md` REF-006 disposition. — reconciled under D-APP-38 |
 
 ## Documentation
 
@@ -76,7 +78,7 @@ Required artifacts for this deliverable:
 - Path policy helpers.
 - Instruction-root protection fixtures.
 - Test coverage notes mapping fixtures to SOW-002 and SOW-027.
-- Source-state note that `docs/PRD.md` was available but marked `HASH_MISMATCH` in `_REFERENCES.md`.
+- Source-state note that `docs/PRD.md` was available but marked `MATCH` in `_REFERENCES.md`. (reconciled under D-APP-38).
 
 Documentation gaps:
 
@@ -90,6 +92,6 @@ Documentation gaps:
 | ItemID | Specification Disposition | Evidence |
 |---|---|---|
 | A-001 | converted to TBD | Documentation gaps explicitly retain unknown code module names, helper/API locations, and test file names rather than inventing implementation paths. |
-| C-001 | already covered | `Standards`, `Verification`, and `Documentation` preserve the PRD HASH_MISMATCH warning as review-aware source state. |
+| C-001 | already covered | `Standards`, `Verification`, and `Documentation` preserve the PRD MATCH status as review-aware source state. — reconciled under D-APP-38 |
 | F-001 | incorporated | `Terminology` normalizes working root, `projectRoot` / active project root, instruction root, and path containment vocabulary for implementation use. |
 | D-001 | converted to TBD | REQ-07-01-011 remains labeled ASSUMPTION and verification requires implementation confirmation of endpoint reuse. |

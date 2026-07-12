@@ -1,5 +1,7 @@
 # Guidance: DEL-02-03 Working Root File Tree and Scope Scan UI
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable gives the operator a trustworthy, bounded view of the selected working root and the scanned deliverable scope. It supports the desktop shell by making filesystem project truth visible enough for routing and inspection while leaving enforcement and data mutation to the runtime and workflow-specific APIs.
@@ -20,7 +22,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 - Working-root validation is a shared boundary. DEL-02-03 should integrate with validation feedback, but the security-control implementation is attributed to DEL-07-01 by the decomposition SOW ledger.
 - Scope scan results bridge PKG-02 and PKG-07. The UI is responsible for presentation and selection behavior; deterministic filesystem scanning and contract data belong to runtime/filesystem deliverables.
 - Deliverable summaries may need to show `_STATUS.md` and dependency snapshot information, but dependency extraction is explicitly deferred for this run.
-- The PRD source has a recorded hash mismatch. Use PRD requirements as warned local source material for this run; do not treat the mismatch as resolved.
+- The PRD source has a recorded hash status: MATCH. Use PRD requirements as warned local source material for this run; do not treat the MATCH as resolved. (reconciled under D-APP-38).
 - The dispatch path named `PKG-02_Desktop_UI_and_Local_Experience`, but the accessible scaffolded folder is `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. Stable IDs match; package folder-name mismatch needs human confirmation.
 
 ## Trade-offs
@@ -46,12 +48,12 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | DEL-02-03-CONFLICT-001 | Dispatch path uses stale package folder label `PKG-02_Desktop_UI_and_Local_Experience`; scaffolded folder uses `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. | Dispatch brief `DeliverablePath / ScopePath` | `_CONTEXT.md`; `docs/CONTRACT.md` K-ID-1/K-PATH-1; decomposition PKG-02 | Datasheet Identification; run record; final report | Treat stable IDs `PKG-02` and `DEL-02-03` plus accessible scaffold as controlling for this run. | TBD |
-| DEL-02-03-CONFLICT-002 | PRD hash mismatch exists for REF-006. | `_REFERENCES.md` expected/actual hash row for REF-006 | Dispatch instruction says treat mismatch as source warning, not blocker | All PRD-derived requirements | Proceed with warned PRD source for P1/P2 drafting; leave hash acceptance unresolved. | TBD |
+| DEL-02-03-CONFLICT-002 | PRD hash status: MATCH exists for REF-006. | `_REFERENCES.md` expected/actual hash row for REF-006 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | All PRD-derived requirements | Proceed with warned PRD source for P1/P2 drafting; leave hash acceptance unresolved. | TBD — reconciled under D-APP-38 |
 
 ## Human-Ruling Needed
 
 - Confirm whether the package-folder label mismatch should be normalized, renamed, or left as a path-history artifact.
-- Resolve or explicitly accept the PRD hash mismatch for future closure.
+- Resolve or explicitly accept the PRD hash status: MATCH for future closure. (reconciled under D-APP-38).
 - Confirm exact UI component/module paths and API response field names before implementation-level acceptance.
 
 ## Pass 3 Disposition Notes
@@ -59,4 +61,4 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | ItemID | Disposition | Evidence |
 |---|---|---|
 | A-001 | Already covered as conflict: the package-folder label mismatch remains in the Conflict Table for human ruling. | `Guidance.md` Conflict Table; `_CONTEXT.md` Identity; `docs/CONTRACT.md` K-ID-1/K-PATH-1. |
-| X-003 | Already covered as conflict/source warning: the PRD hash mismatch remains visible and unresolved for closure. | `_REFERENCES.md` REF-006; `Guidance.md` Conflict Table; `Datasheet.md` Conditions; `Procedure.md` Prerequisites. |
+| X-003 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; `Guidance.md` Conflict Table; `Datasheet.md` Conditions; `Procedure.md` Prerequisites. — reconciled under D-APP-38 |

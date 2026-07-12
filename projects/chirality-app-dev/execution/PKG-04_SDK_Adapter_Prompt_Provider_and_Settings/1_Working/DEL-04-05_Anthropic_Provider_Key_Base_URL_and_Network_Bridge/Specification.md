@@ -1,5 +1,7 @@
 # Specification: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable covers the security and provider-boundary behavior for Anthropic SDK execution in PKG-04:
@@ -50,7 +52,7 @@ Sources: `_CONTEXT.md` "Deliverable Scope"; `execution/_Decomposition/Chirality_
 | Chirality API key and network invariants | API keys are non-project convenience state; network is loopback plus Anthropic API path unless amended. | `docs/CONTRACT.md` Section 1.9 |
 | SDK runtime configuration contract | `settingSources: []`, active-turn-only API key handoff, safe metadata recording. | `docs/SPEC.md` Section 12 |
 | Attachments, API keys, and network policy | Electron safeStorage location, key logging prohibitions, renderer and Node/SDK network policy. | `docs/SPEC.md` Section 16 |
-| PRD Anthropic provider policy | FR-030 through FR-035 describe key precedence, base URL, renderer network policy, provider error classes, and SDK turn boundary. | `docs/PRD.md` Section 8.5, HASH_MISMATCH warning |
+| PRD Anthropic provider policy | FR-030 through FR-035 describe key precedence, base URL, renderer network policy, provider error classes, and SDK turn boundary. | `docs/PRD.md` Section 8.5, MATCH status — reconciled under D-APP-38 |
 
 ## Verification
 
@@ -93,4 +95,4 @@ TBD:
 
 ## Source-State Warning
 
-`docs/PRD.md` is listed as `HASH_MISMATCH` in `_REFERENCES.md`. Requirements sourced from `docs/PRD.md` are preserved because the brief instructed this warning to be treated as source-state warning, not a blocker. Before final acceptance, the owning workflow should reverify PRD-derived FR/NFR rows against the accepted source snapshot.
+REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.

@@ -1,5 +1,7 @@
 # Guidance: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable keeps Anthropic provider access inside Chirality-owned runtime governance while adopting the Claude Agent SDK as the preferred engine substrate. It protects API keys, constrains network access, keeps provider/SDK details behind adapter boundaries, and gives downstream validation clear evidence for key precedence, base URL policy, network policy, and redacted failure handling.
@@ -83,4 +85,4 @@ Supported examples from available sources:
 | OI-DEL-04-05-001 | Exact provider wrapper module path is TBD. | Decomposition names the artifact, but source corpus does not prescribe file layout. |
 | OI-DEL-04-05-002 | Exact Node/SDK network enforcement mechanism is TBD. | `docs/SPEC.md` requires Node/SDK calls not to broaden policy, but implementation mechanism is not fixed in the accessible sources. |
 | OI-DEL-04-05-003 | Exact SDK error object taxonomy is TBD. | SDK version/probe results belong to adjacent R0/R1 work and may affect classifier details. |
-| OI-DEL-04-05-004 | PRD-derived claims require revalidation before final acceptance. | `_REFERENCES.md` reports `docs/PRD.md` `HASH_MISMATCH`. |
+| OI-DEL-04-05-004 | PRD-derived claims require revalidation before final acceptance. | `_REFERENCES.md` reports `docs/PRD.md` `MATCH`. — reconciled under D-APP-38 |

@@ -1,5 +1,7 @@
 # Specification: DEL-07-03 Deliverable Metadata and Document Kit Contracts
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable covers backend support for scanning and validating deliverable-local filesystem contracts in PKG-07. The covered contracts are deliverable metadata files, canonical memory, semantic placeholders, and four-document kit buckets. Sources: `_CONTEXT.md` / Deliverable Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / DEL-07-03 row.
@@ -48,7 +50,7 @@ This section records the Pass 3 contract shape needed for later implementation w
 | Canonical memory | Present or missing `MEMORY.md` | `docs/SPEC.md` / Section 3.1 and Section 5.4; `docs/PRD.md` / Section 10.8 | Should be visible in output; exact requiredness TBD |
 | Prohibited memory | Present `_MEMORY.md` | `docs/SPEC.md` / Section 3.1 and Section 5.4; `docs/PRD.md` / Section 10.8 | Must be reported as prohibited for this profile |
 | Optional files | Present or absent `Dependencies.csv`, `_SEMANTIC_LENSING.md`, or `HASH_VERIFICATION_BYPASS.jsonl` | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 | Absence must not invalidate a folder solely by itself |
-| Source/hash warning | Reference hash mismatch, bypass record, or unsupported source state | `_REFERENCES.md` / REF-006; `docs/CONTRACT.md` / K-CONFLICT-1 | Must remain visible as warning evidence |
+| Source/hash warning | Reference hash status: MATCH, bypass record, or unsupported source state | `_REFERENCES.md` / REF-006; `docs/CONTRACT.md` / K-CONFLICT-1 | Must remain visible as warning evidence — reconciled under D-APP-38 |
 | Unknown unsupported condition | File or state condition not covered by the accepted contract | `docs/CONTRACT.md` / K-INVENT-1 and K-CONFLICT-1 | Must surface as unknown/TBD, not silently accepted |
 
 ### Minimum Result Fields
@@ -60,7 +62,7 @@ Until an implementation-specific schema is accepted, scanner findings should pre
 | Standard or governing source | Applicability | Location |
 |---|---|---|
 | `docs/SPEC.md` | Primary physical file-layout, lifecycle, and deliverable-local contract source | Sections 3, 4, 5, 17.2 |
-| `docs/PRD.md` | Product requirements for filesystem execution and deliverable folder layout | Sections 8.8, 8.9, 10.8; HASH_MISMATCH warning per `_REFERENCES.md` |
+| `docs/PRD.md` | Product requirements for filesystem execution and deliverable folder layout | Sections 8.8, 8.9, 10.8; MATCH status per `_REFERENCES.md` — reconciled under D-APP-38 |
 | `docs/TYPES.md` | Vocabulary for deliverables, artifacts, lifecycle states, and dependency classes | Sections 1.2, 1.3, lifecycle state table |
 | `docs/CONTRACT.md` | Governance invariants for roots, authority, hidden truth, and conflicts | K-AUTH, K-ROOT, K-CONFLICT |
 | `docs/DIRECTIVE.md` | Evidence posture, no hidden memory, root separation, provider-neutral governance | Sections 2.5, 2.6, 2.7 |
@@ -86,7 +88,7 @@ Until an implementation-specific schema is accepted, scanner findings should pre
 | F-001 / E-001 scanner output schema | Accepted implementation type or schema and fixtures covering all finding categories. | Converted to minimum result fields; final schema TBD |
 | F-002 severity behavior | Fixtures for missing `_SEMANTIC.md`, initialized missing document-kit files, optional-file absence, `_MEMORY.md`, and source/hash warnings. | Converted to required verification evidence |
 | X-001 concrete tests | Passing test names, fixture paths, and command outputs from the implementation slice. | Deferred as closure evidence; exact paths/commands TBD |
-| X-002 warning propagation | Test or review evidence preserving REF-006 HASH_MISMATCH and unknown unsupported conditions. | Converted to required verification evidence |
+| X-002 warning propagation | Test or review evidence preserving REF-006 MATCH and unknown unsupported conditions. | Converted to required verification evidence — reconciled under D-APP-38 |
 | E-002 API consumer contract | Integration evidence for `/api/working-root/scope` or an accepted adjacent API, if scanner output is exposed there. | Reframed as assumption pending implementation proof |
 
 ## Documentation
@@ -98,4 +100,4 @@ Required or expected artifacts for closure:
 - `_MEMORY.md` rejection tests.
 - Test fixtures covering valid, incomplete, optional, and prohibited deliverable-local files.
 - Documentation or inline contract comments for scanner output severity (`TBD` until implementation schema is selected).
-- Evidence that `docs/PRD.md` HASH_MISMATCH was treated as a source warning for this drafting run.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.

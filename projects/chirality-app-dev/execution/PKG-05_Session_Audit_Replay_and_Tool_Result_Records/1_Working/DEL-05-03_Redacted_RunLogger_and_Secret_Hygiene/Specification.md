@@ -1,5 +1,7 @@
 # Specification: DEL-05-03 Redacted RunLogger and Secret Hygiene
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the security control for redacting provider, SDK, tool, and run-log data so key material and configured secrets do not enter Chirality runtime records.
@@ -43,8 +45,8 @@ Out of scope:
 | `docs/CONTRACT.md` K-KEY-1 | Primary key-material hygiene invariant. |
 | `docs/SPEC.md` Section 9 Runtime Event Schema | Defines `HarnessEvent` payload rules, including no secrets. |
 | `docs/SPEC.md` Section 12.3 API Key Handling | Defines key precedence and active-turn-only SDK handoff. |
-| `docs/PRD.md` Section 8.5 | Provider key, network, and typed provider error requirements. Source-state warning: HASH_MISMATCH. |
-| `docs/PRD.md` Section 8.12 | Runtime event logging and redaction requirements. Source-state warning: HASH_MISMATCH. |
+| `docs/PRD.md` Section 8.5 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+| `docs/PRD.md` Section 8.12 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
 ## Verification
 

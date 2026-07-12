@@ -25,7 +25,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Decomposition authority: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` located and used for anchor and target resolution.
 - Source documents used: `_CONTEXT.md`, `_REFERENCES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, existing `_DEPENDENCIES.md`, and the decomposition authority.
 - Human ruling applied: semantic lensing and P3 enrichment skipped; `_SEMANTIC.md` was not read or consumed as evidence.
-- `[WARNING] REF-006_HASH_MISMATCH`: `_REFERENCES.md` reports `docs/PRD.md` hash mismatch. Rows using PRD-derived requirements retain the source-state warning and are not sole-authority closure evidence.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - `[WARNING] UNKNOWN_TBD_RETAINED`: final redaction helper path, run logger path, configured-secret schema, replacement token, and exact policy integration point remain TBD in source documents.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor is present.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE parent anchor is present.
@@ -58,8 +58,8 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | Metric | Count |
 |---|---:|
-| ACTIVE rows | 13 |
-| RETIRED rows | 0 |
+| ACTIVE rows | 12 |
+| RETIRED rows | 1 |
 | ANCHOR rows | 5 |
 | EXECUTION rows | 8 |
 | UPSTREAM rows | 12 |
@@ -67,5 +67,9 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 8 |
-| PENDING | 5 |
+| SATISFIED | 9 |
+| PENDING | 3 |
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

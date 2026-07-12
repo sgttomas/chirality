@@ -26,7 +26,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Source docs used: `_CONTEXT.md`, `_REFERENCES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, existing `_DEPENDENCIES.md`, and the decomposition authority.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` was not read and was not consumed as evidence.
 - Defaults applied: SOURCE_DOCS=AUTO, DOC_ROLE_MAP=DEFAULT, ANCHOR_DOC=Datasheet.md, EXECUTION_DOC_ORDER=Specification.md then Guidance.md then Procedure.md then Datasheet.md.
-- [WARNING] PRD_HASH_MISMATCH: `_REFERENCES.md` records REF-006 expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`; source documents treat this as a warning only.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - [WARNING] TBD_SURFACES: exact validation registry path, runner entrypoint, local validation command, summary schema path, and summary fields remain TBD in source documents.
 - No `[WARNING] FLOATING_NODE`: one active `IMPLEMENTS_NODE` anchor was extracted.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: only one active `IMPLEMENTS_NODE` anchor was extracted.
@@ -91,3 +91,7 @@ Structured register: `Dependencies.csv` v3.1
 | SatisfactionStatus | Count |
 |---|---:|
 | TBD | 25 |
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

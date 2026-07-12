@@ -60,7 +60,7 @@ Define and verify the deliverable implementation for `HarnessEvent` schema and a
 8. Preserve UI/runtime separation.
    - Keep browser SSE event names and compact `UIEvent` payloads separate from persisted `HarnessEvent` payloads.
    - Ensure SDK messages are mapped through an adapter rather than treated as the browser or persisted event contract.
-   - Source: `docs/CONTRACT.md` K-EVENT-1; `docs/PRD.md` Section 9.4 (HASH_MISMATCH source warning).
+   - Source: `docs/CONTRACT.md` K-EVENT-1; `docs/PRD.md` Section 9.4 (HASH_MISMATCH source state).
 
 9. Document unresolved implementation choices.
    - Mark event payload schemas by type as TBD unless already supported by source or accepted implementation, including payload-specific schemas for later tool, hook, compaction, subagent, and SDK mirror categories.

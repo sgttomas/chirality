@@ -24,8 +24,8 @@ TBD - no accepted declared dependency edges have been provided. Current register
 | Count Type | Count |
 |---|---:|
 | Total rows | 26 |
-| ACTIVE rows | 26 |
-| RETIRED rows | 0 |
+| ACTIVE rows | 25 |
+| RETIRED rows | 1 |
 | ANCHOR rows | 20 |
 | EXECUTION rows | 6 |
 | Parent anchors (`IMPLEMENTS_NODE`) | 1 |
@@ -44,8 +44,8 @@ TBD - no accepted declared dependency edges have been provided. Current register
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 26 |
-| RETIRED | 0 |
+| ACTIVE | 25 |
+| RETIRED | 1 |
 
 ### Compact Register
 
@@ -76,7 +76,7 @@ TBD - no accepted declared dependency edges have been provided. Current register
 | DEP-07-05-023 | EXECUTION | UPSTREAM | PREREQUISITE | Dependency authority model | ACTIVE |
 | DEP-07-05-024 | EXECUTION | UPSTREAM | CONSTRAINT | Working-root write policy | ACTIVE |
 | DEP-07-05-025 | EXECUTION | DOWNSTREAM | INTERFACE | Dependency API and MCP contract surfaces | ACTIVE |
-| DEP-07-05-026 | EXECUTION | UPSTREAM | CONSTRAINT | docs/PRD.md hash mismatch warning | ACTIVE |
+| DEP-07-05-026 | EXECUTION | UPSTREAM | CONSTRAINT | docs/PRD.md reference state MATCH | RETIRED |
 
 ## Run Notes
 
@@ -90,7 +90,7 @@ TBD - no accepted declared dependency edges have been provided. Current register
 - No declared rows were present to preserve or merge. All rows in this run are extracted rows.
 - [WARNING] OBJECTIVE_TARGET_TYPE_UNAVAILABLE: `OBJ-006` is explicit evidence, but the v3.1 `TargetType` enum has no `OBJECTIVE`; the row preserves `TargetType=UNKNOWN`.
 - [WARNING] UNKNOWN_INTERFACE_CONSUMER: the API/MCP dependency surface is explicit, but no consumer deliverable ID is explicitly named in the evidence; the row preserves `TargetType=UNKNOWN`.
-- [WARNING] SOURCE_HASH_MISMATCH: `_REFERENCES.md` records `REF-006` / `docs/PRD.md` as `HASH_MISMATCH`; the warning is preserved as an execution constraint.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 
 ## Run History
 
@@ -102,10 +102,14 @@ TBD - no accepted declared dependency edges have been provided. Current register
 
 | Field | Count |
 |---|---:|
-| ACTIVE | 26 |
-| RETIRED | 0 |
+| ACTIVE | 25 |
+| RETIRED | 1 |
 | RequiredMaturity=SEMANTIC_READY | 26 |
 | ProposedMaturity=TBD | 26 |
-| SatisfactionStatus=TBD | 26 |
+| SatisfactionStatus=TBD | 25 |
 
 No downstream handoff section was added because `CONSUMER_CONTEXT=NONE`.
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

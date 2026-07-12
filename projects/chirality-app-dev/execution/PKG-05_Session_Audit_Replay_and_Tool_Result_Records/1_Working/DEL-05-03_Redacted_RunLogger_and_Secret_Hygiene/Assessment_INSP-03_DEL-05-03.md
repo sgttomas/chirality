@@ -61,3 +61,7 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. Active pe
 ## Issuance-Gate-Process Observations
 
 DEL-05-03 should not be issued on the current evidence alone because its strongest claim is deliberately broad: no secrets in all runtime logs/events/transcripts/artifacts/display paths. The process is correctly surfacing that broad claim as a release-quality proof requirement, not a source-inspection assumption.
+
+## D-APP-56 R5 P40 annotation (2026-07-12)
+
+The source-state caveat above is preserved as historical assessment evidence. REF-006 now records `docs/PRD.md` expected and actual SHA-256 as `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` (`MATCH`) under D-APP-38; it is not a current warning or blocker. No assessment verdict or lifecycle state changes here.

@@ -1,5 +1,7 @@
 # Datasheet: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -39,7 +41,7 @@
 | Protected path enforcement | Prompt text is not a sufficient safety boundary for filesystem writes or domain operations | `docs/CONTRACT.md` Section 1.6 K-PERM-2 |
 | Fixture specificity | OpenPipeStress-specific assumptions must live in profile and adapter layers, not in core harness runtime | `docs/PRD.md` Section 8.17 FR-114 |
 | Dependency state | Declared upstream and downstream dependencies are TBD until dependency extraction and project graph validation occur | `_DEPENDENCIES.md` Declared Upstream/Downstream |
-| PRD source warning | Expected PRD hash differs from observed PRD hash; dispatch treats this as a source warning only | `_REFERENCES.md` REF-006; assignment override |
+| PRD source warning | expected and observed PRD hashes match under D-APP-38; dispatch treats this as a source status | `_REFERENCES.md` REF-006; assignment override |
 | Future amendment gate | Accepted PKG-10 amendment or explicit human authorization is required before fixture implementation becomes active work | `_DEPENDENCIES.md` Extracted Dependency Register; `docs/PLAN.md` R7 |
 
 ## Construction

@@ -1,5 +1,7 @@
 # Datasheet: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -30,7 +32,7 @@ Sources: `_CONTEXT.md` (Identity, Package Scope, Deliverable Scope, Traceability
 | Linter behavior | Validate schema, enum values, identity rules, provenance, and resolvable deliverable references; report warnings without fabricating values | `docs/CONTRACT.md` Section 1.7; `docs/PRD.md` Section 8.9 |
 | API surface | `/api/working-root/deliverable/dependencies` supports GET/PUT for `Dependencies.csv` snapshot rows | `docs/PRD.md` Section 17.2 |
 | MCP surface | `mcp__chirality__deps_read` and `mcp__chirality__deps_write` | `docs/SPEC.md` Section 14.2 |
-| Source warning | `docs/PRD.md` is locally accessible but has a recorded hash mismatch in `_REFERENCES.md`; use as warned source, not as silent accepted hash truth | `_REFERENCES.md` (Authoritative Source Corpus) |
+| Source warning | `docs/PRD.md` is locally accessible but has a recorded hash status: MATCH in `_REFERENCES.md`; use as warned source, not as silent accepted hash truth | `_REFERENCES.md` (Authoritative Source Corpus) — reconciled under D-APP-38 |
 
 ## Conditions
 
@@ -93,7 +95,7 @@ The reader, writer, and linter must preserve these core columns from `docs/SPEC.
 - `docs/SPEC.md` Sections 3, 5, 6, 14.2, 14.3, and 15.2.
 - `docs/TYPES.md` Section 6.
 - `docs/CONTRACT.md` Section 1.7.
-- `docs/PRD.md` Sections 8.9, 10.9, and 17.2. Source warning: `_REFERENCES.md` records `HASH_MISMATCH` for this file.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - `docs/DIRECTIVE.md` Sections 2.5 and 5.
 - `docs/PLAN.md` R4 target slice and Optional/Retired Scope Status.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-07 deliverable table and Scope Ledger SOW-029.
@@ -103,7 +105,7 @@ The reader, writer, and linter must preserve these core columns from `docs/SPEC.
 | ItemID | Datasheet disposition |
 |---|---|
 | C-001 | Converted to a named TBD: the warning output must remain structured and deterministic, but the exact warning code/category taxonomy is not selected by the accessible sources. |
-| F-001 | Already surfaced as a source-state warning: `docs/PRD.md` remains usable only with the recorded `_REFERENCES.md` `HASH_MISMATCH` warning until a human accepts or refreshes the PRD hash. |
+| F-001 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | D-001 | Converted to implementation slots: module names, API handler names, fixture paths, payload type names, and test paths remain TBD until local code ownership selects them. |
 | X-001 | Converted to acceptance-evidence slots: API/MCP dependency payload evidence and governed write-hook evidence remain required, with final artifact paths TBD. |
 

@@ -1,5 +1,7 @@
 # Guidance: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable makes release packaging explicit and repeatable for the current macOS-only target. Its job is not just to produce a DMG, but to prove that packaged Chirality preserves the instruction-root resource boundary and can execute the SDK subprocess/binary from the packaged layout.
@@ -10,7 +12,7 @@ This deliverable makes release packaging explicit and repeatable for the current
 - Keep the release target narrow. `docs/PRD.md` KG-014 and decomposition SOW-078 make Windows/Linux packaging out of scope without amendment.
 - Treat instruction-root resources as package blockers. `docs/SPEC.md` Section 1.1 says missing required instruction-root assets are a P0 packaging and runtime-readiness blocker.
 - Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, current shipped Anthropic network guardrails, and SDK package execution.
-- Do not use the PRD hash mismatch as a blocker in this run. The assignment explicitly downgrades REF-006 mismatch to a source warning only; future validation should still resolve or accept the source state.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Considerations
 
@@ -38,7 +40,7 @@ TBD: No source-backed example transcript or accepted packaging probe output is a
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| DEL-09-04-CONF-001 | PRD hash in `_REFERENCES.md` does not match expected hash, but assignment instructs this run to treat mismatch as warning only. | `_REFERENCES.md` REF-006 | Assignment override | All PRD-backed requirements | Use PRD as source for this P1/P2 draft and retain hash mismatch as warning. | TBD |
+| DEL-09-04-CONF-001 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | Assignment override | All PRD-backed requirements | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | TBD — reconciled under D-APP-38 |
 | DEL-09-04-CONF-002 | Required instruction-root assets may be incomplete in current source or package state. | `docs/SPEC.md` Section 1.1; `docs/PRD.md` Section 10.1 | Decomposition OI-004 | Specification requirements, Procedure verification | Treat missing assets as P0 readiness blocker until completed or amended. | TBD |
 | DEL-09-04-CONF-003 | The accepted authority for the required instruction-root packaged asset set must be explicit when code-level integrity manifests differ from policy-level required assets. | `docs/SPEC.md` Section 1.1; `docs/PRD.md` FR-058 | Code-level integrity manifest, location TBD | Specification requirements, Procedure verification | Treat policy-level required assets as readiness blockers unless a governed amendment narrows the manifest. | TBD |
 | DEL-09-04-CONF-004 | Whether SDK-backed turn start after R1 is a DEL-09-04 closure blocker or deferred packaged-app validation needs human/source ruling. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | `_CONTEXT.md` deliverable scope | Procedure packaged runtime guardrail check | Keep SDK subprocess/package-layout proof in scope; mark full packaged SDK-backed turn start as `TBD` until owner ruling. | TBD |

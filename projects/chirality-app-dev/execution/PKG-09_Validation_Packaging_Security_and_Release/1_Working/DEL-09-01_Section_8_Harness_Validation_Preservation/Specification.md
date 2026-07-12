@@ -1,5 +1,7 @@
 # Specification: DEL-09-01 Section 8 Harness Validation Preservation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 DEL-09-01 covers preservation of the existing Section 8 harness validation surface, current local checks, and stable premerge summary behavior for PKG-09. It includes test runner preservation tests and premerge summary checks.
@@ -23,7 +25,7 @@ Out of scope:
 | DEL-09-01-REQ-007 | CI premerge validation must run the wrapper after server readiness and upload the stable summary artifact. | `.github/workflows/harness-premerge.yml` | Pull request or workflow dispatch run verifies readiness poll, wrapper execution, artifact check, and upload step. |
 | DEL-09-01-REQ-008 | Section 8 validation must cover server reachability, session CRUD, boot error taxonomy, smoke stream ordering, session persistence/resume continuity, permissions under current validation markers, interrupt behavior, and SDK-native stream handling with no legacy parser regressions. | `docs/SPEC.md` Section 19.2; `docs/PRD.md` Section 12.3 | Required test IDs and summary content map to the listed behavior. |
 | DEL-09-01-REQ-009 | Unknown or unsupported factual details in validation preservation documents must remain `TBD`, `ASSUMPTION`, or conflict entries rather than invented requirements. | `docs/CONTRACT.md` K-INVENT-1; `skills/four-documents/SKILL.md` source-grounding rule | Document review checks for unsupported claims. |
-| DEL-09-01-REQ-010 | The PRD hash mismatch observed for this run must be recorded as a source warning only and must not block P1/P2 authoring. | Invoker runtime instruction; `_REFERENCES.md` REF-006 | Run record and documents record the warning without treating PRD as absent. |
+| DEL-09-01-REQ-010 | The PRD hash status: MATCH observed for this run must be recorded as a source status and must not block P1/P2 authoring. | Invoker runtime instruction; `_REFERENCES.md` REF-006 | Run record and documents record the warning without treating PRD as absent. — reconciled under D-APP-38 |
 
 ## Standards
 

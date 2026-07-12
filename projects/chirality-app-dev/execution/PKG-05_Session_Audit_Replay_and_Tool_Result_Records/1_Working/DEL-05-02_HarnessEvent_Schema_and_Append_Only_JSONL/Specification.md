@@ -1,5 +1,7 @@
 # Specification: DEL-05-02 HarnessEvent Schema and Append-Only JSONL
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the product-owned `HarnessEvent` schema and append-only JSONL persistence surface for Chirality runtime audit records.
@@ -27,7 +29,7 @@ Out of scope:
 | DEL-05-02-RQ-002 | `HarnessEvent` may include `turnId` and `parentEventId` when applicable. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
 | DEL-05-02-RQ-003 | The initial schema version shall be `1`. | `docs/SPEC.md` Section 9.1 |
 | DEL-05-02-RQ-004 | Event IDs shall be unique per event. | `docs/SPEC.md` Section 9.2 |
-| DEL-05-02-RQ-005 | Session event storage shall append newline-delimited JSON records in write sequence. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` FR-073 (HASH_MISMATCH source warning) |
+| DEL-05-02-RQ-005 | Session event storage shall append newline-delimited JSON records in write sequence. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` FR-073 (MATCH source status) — reconciled under D-APP-38 |
 | DEL-05-02-RQ-006 | `turn.accepted` shall be persisted before SDK/model execution starts. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2 |
 | DEL-05-02-RQ-007 | Every accepted turn shall persist a durable terminal success, failure, cancellation, or interruption outcome. | `docs/CONTRACT.md` K-EVENT-3; decomposition SOW-015 |
 | DEL-05-02-RQ-008 | Replay shall ignore malformed trailing JSONL lines, preserve valid prior records, and surface diagnostics. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
@@ -47,7 +49,7 @@ Out of scope:
 | SPEC Runtime Event Schema | Governs JSONL append rules, event IDs, replay tolerance, secret exclusion, large payload references, and versioning | `docs/SPEC.md` Section 9 |
 | CONTRACT K-EVENT invariants | Binding constraints for UI/runtime separation, accepted-turn persistence, terminal durability, canonical audit mirror, malformed-tail replay, redaction, and tool-result payload handling | `docs/CONTRACT.md` K-EVENT-1 through K-EVENT-7 |
 | Runtime Engine Contract | Requires runtime boundary to persist accepted turns and terminal outcomes while yielding UI events | `docs/SPEC.md` Section 10.1 |
-| PRD runtime requirements | Product requirements FR-072 through FR-076 and related SDK mapping requirements; use with hash warning | `docs/PRD.md` Section 9 / FR table; `_REFERENCES.md` REF-006 HASH_MISMATCH |
+| PRD runtime requirements | Product requirements FR-072 through FR-076 and related SDK mapping requirements; use with hash warning | `docs/PRD.md` Section 9 / FR table; `_REFERENCES.md` REF-006 MATCH — reconciled under D-APP-38 |
 
 ## Verification
 
@@ -78,4 +80,4 @@ Required deliverable artifacts:
 - UI/runtime separation test.
 - Later-category fixture coverage plan for tool, hook, compaction, subagent, and SDK mirror event names, with payload-specific fixtures marked TBD until owning deliverables mature.
 - Redaction helper or fixture contract reference from DEL-05-03, currently TBD.
-- Source notes documenting the `docs/PRD.md` HASH_MISMATCH warning if PRD text is used to justify implementation behavior not also present in matching sources.
+- Source notes documenting the `docs/PRD.md` MATCH status if PRD text is used to justify implementation behavior not also present in matching sources. (reconciled under D-APP-38).

@@ -1,5 +1,7 @@
 # Datasheet: DEL-06-03 Initial Chirality MCP Read Tools
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -38,7 +40,7 @@
 | Status truth source | `_STATUS.md` is canonical human-readable lifecycle state. | `docs/CONTRACT.md` Section 1.7 K-STATUS-1 |
 | Dependency truth source | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are authoritative for dependencies. | `docs/CONTRACT.md` Section 1.7 K-DEP-1 |
 | Scaffold posture | `mcp__chirality__scaffold` is gated; this deliverable should cover preview/dry-run behavior where appropriate, not uncontrolled scaffold writes. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
-| Source-state warning | `docs/PRD.md` is accessible but has a reference-hash mismatch in `_REFERENCES.md`; per task brief this is treated as a source-state warning, not a blocker. | `_REFERENCES.md` REF-006; task brief |
+| Source-state warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -68,4 +70,4 @@
 - `docs/SPEC.md` Sections 14, 15, 17.2, and 19.3 for tool names, modes, API surfaces, and validation IDs.
 - `docs/TYPES.md` Sections 8.1-8.4 for permission and MCP vocabulary.
 - `docs/PLAN.md` R2 and R6 for sequencing and MCP extension boundaries.
-- `docs/PRD.md` Sections 8.13-8.14 and R2 traceability; HASH_MISMATCH warning recorded in `_REFERENCES.md`.
+- `docs/PRD.md` Sections 8.13-8.14 and R2 traceability; MATCH status recorded in `_REFERENCES.md`. (reconciled under D-APP-38).

@@ -1,5 +1,7 @@
 # Guidance: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-06-01 exists to make runtime tool permission decisions explicit, persisted, and governed by Chirality-owned policy rather than SDK defaults or prompt text. It is the permission-policy slice of PKG-06: hooks, write path policy, bash governance, and MCP implementation details are adjacent deliverables, but this deliverable defines the overlay semantics they must feed.
@@ -11,7 +13,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06; `docs/CONTRACT.md` Section 1.6; `d
 1. Capability-forward policy with explicit hard-deny precedence is the controlling rule. If any authoritative policy, hook, governance, SDK deny rule, path boundary, or human gate says deny, the final decision is deny. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-1.
 2. Prompt text is never enough. Permission-sensitive behavior must be enforced by runtime code, policy, hooks, callback mediation, or human gates. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-2.
 3. `allowedTools` is convenience, not containment. Treat it as possible auto-approval only; use disallowed tools, mode posture, hooks, `canUseTool`, and `dontAsk` to restrict execution. Sources: `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3.
-4. Product-owned records are the durable truth. `HarnessPermissionDecision` and `tool.permission` events should remain Chirality-shaped even when SDK metadata is attached. Sources: `docs/TYPES.md` Section 8.2; `docs/PRD.md` Section 9.4, HASH_MISMATCH warning.
+4. Product-owned records are the durable truth. `HarnessPermissionDecision` and `tool.permission` events should remain Chirality-shaped even when SDK metadata is attached. Sources: `docs/TYPES.md` Section 8.2; `docs/PRD.md` Section 9.4, MATCH status. (reconciled under D-APP-38).
 5. MCP is not a bypass. Chirality MCP tools and SDK built-ins must pass through equivalent permission and hook policy. Source: `docs/CONTRACT.md` Section 1.6 K-MCP-1.
 
 ## Considerations
@@ -30,9 +32,9 @@ Sources: `_CONTEXT.md`; decomposition PKG-06; `docs/CONTRACT.md` Section 1.6; `d
 
 Use the `source` field deliberately. A decision from `chirality-policy` should not be mislabeled as `human`, and SDK callback mediation should be captured distinctly from hook denials. Human approvals remain non-delegable in the broader governance model; automated permission decisions should not be described as approvals for reliance.
 
-### PRD Hash Warning
+### PRD Hash Status
 
-`docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. PRD R2/R3 content is still useful product direction for this draft, but any implementation detail that depends only on PRD wording should be reviewed once the source-state warning is resolved.
+REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 Current disposition: keep PRD-derived implementation direction warning-qualified and require review evidence before using PRD-only details as closure proof. CONTRACT, TYPES, SPEC, PLAN, and the accepted decomposition remain the unqualified sources for binding permission vocabulary, invariants, mode mapping, sequencing, and deliverable scope.
 
@@ -41,9 +43,9 @@ Current disposition: keep PRD-derived implementation direction warning-qualified
 | Trade-off | Guidance |
 |---|---|
 | Omit denied tools vs expose and deny at call time | Prefer omission where possible to reduce model context and accidental attempts, but still enforce denial at runtime because exposure control alone is not a safety boundary. Source: `docs/SPEC.md` Section 14.3. |
-| SDK mode vs Chirality overlay | Use SDK posture where it helps, but preserve Chirality-owned capability policy with explicit hard-deny precedence, decision records, event logs, path containment, and human-gate semantics. Sources: `docs/PLAN.md` risk table; `docs/PRD.md` KG-026, HASH_MISMATCH warning. |
+| SDK mode vs Chirality overlay | Use SDK posture where it helps, but preserve Chirality-owned capability policy with explicit hard-deny precedence, decision records, event logs, path containment, and human-gate semantics. Sources: `docs/PLAN.md` risk table; `docs/PRD.md` KG-026, MATCH status. — reconciled under D-APP-38 |
 | `ask` UX vs deterministic execution | Interactive approval can be appropriate for governed actions, but only if the persisted decision precedes SDK allow/deny return. Non-interactive contexts should use `dontAsk` denial rather than inventing approval. |
-| Mode mapping now vs future SDK drift | Keep mapping centralized and tested because SDK permission behavior may change. Source: `docs/PRD.md` KG-021, HASH_MISMATCH warning. |
+| Mode mapping now vs future SDK drift | Keep mapping centralized and tested because SDK permission behavior may change. Source: `docs/PRD.md` KG-021, MATCH status. — reconciled under D-APP-38 |
 
 ## Examples
 
@@ -60,10 +62,10 @@ Current disposition: keep PRD-derived implementation direction warning-qualified
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
-| TBD | No direct source conflict identified during P1/P2. PRD has a HASH_MISMATCH source-state warning. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections used above | All PRD-cited requirements and guidance | Treat PRD as warning-qualified source until hash state is reconciled. | TBD |
+| TBD | No direct source conflict identified during P1/P2. PRD has a MATCH source state. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections used above | All PRD-cited requirements and guidance | Treat PRD as a current MATCH source under the reconciled D-APP-38 source state. | TBD — reconciled under D-APP-38 |
 
 ## Pass 3 Semantic Lensing Disposition
 
 | ItemID | Disposition | Evidence and source reread |
 |---|---|---|
-| X-001 | Incorporated as an explicit PRD HASH_MISMATCH disposition. | Guidance now states that PRD-only implementation direction remains warning-qualified and cannot close evidence without review. Reread: `_REFERENCES.md` REF-006; `docs/CONTRACT.md` Section 1.7 K-CONFLICT-1; `docs/PRD.md` R2/R3 direction with HASH_MISMATCH warning. |
+| X-001 | Incorporated as an explicit PRD MATCH disposition. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |

@@ -1,5 +1,7 @@
 # Specification: DEL-04-02 SdkOptionsBuilder and Settings Isolation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the `SdkOptionsBuilder` backend feature slice for constructing deterministic Claude Agent SDK options from Chirality-owned runtime state and policy. It covers:
@@ -25,26 +27,26 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 
 | ID | Requirement | Source |
 |---|---|---|
-| DEL-04-02-REQ-001 | The builder MUST resolve runtime option fallback chains deterministically for model, tools, max turns, mode, and persona. | SOW-016; `docs/SPEC.md` Section 13.1; `docs/PRD.md` Section 8.4, HASH_MISMATCH |
-| DEL-04-02-REQ-002 | Unknown option keys MUST be ignored with warnings rather than silently mutating behavior. | SOW-016; `docs/SPEC.md` Section 13.1; `docs/PRD.md` Section 8.4, HASH_MISMATCH |
+| DEL-04-02-REQ-001 | The builder MUST resolve runtime option fallback chains deterministically for model, tools, max turns, mode, and persona. | SOW-016; `docs/SPEC.md` Section 13.1; `docs/PRD.md` Section 8.4, MATCH — reconciled under D-APP-38 |
+| DEL-04-02-REQ-002 | Unknown option keys MUST be ignored with warnings rather than silently mutating behavior. | SOW-016; `docs/SPEC.md` Section 13.1; `docs/PRD.md` Section 8.4, MATCH — reconciled under D-APP-38 |
 | DEL-04-02-REQ-003 | Shipped SDK options MUST use `settingSources: []`. | SOW-045; `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
-| DEL-04-02-REQ-004 | Development-only project settings MAY use `['project']` only behind explicit environment configuration; `user` and `local` sources MUST NOT be used in shipped builds. | `docs/SPEC.md` Section 12.2; `docs/PRD.md` Section 8.12, HASH_MISMATCH |
-| DEL-04-02-REQ-005 | `opts.tools` MUST map only to registered SDK built-ins or Chirality MCP tools; unknown names MUST produce structured validation errors. | SOW-047; `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13, HASH_MISMATCH |
-| DEL-04-02-REQ-006 | Tool ordering, naming, MCP server IDs, and allow/deny option lists MUST be stable for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | `docs/CONTRACT.md` K-TOOL-1; `docs/PRD.md` Section 8.13, HASH_MISMATCH |
+| DEL-04-02-REQ-004 | Development-only project settings MAY use `['project']` only behind explicit environment configuration; `user` and `local` sources MUST NOT be used in shipped builds. | `docs/SPEC.md` Section 12.2; `docs/PRD.md` Section 8.12, MATCH — reconciled under D-APP-38 |
+| DEL-04-02-REQ-005 | `opts.tools` MUST map only to registered SDK built-ins or Chirality MCP tools; unknown names MUST produce structured validation errors. | SOW-047; `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
+| DEL-04-02-REQ-006 | Tool ordering, naming, MCP server IDs, and allow/deny option lists MUST be stable for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | `docs/CONTRACT.md` K-TOOL-1; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
 | DEL-04-02-REQ-007 | The builder MUST NOT treat `allowedTools` alone as a restriction boundary. Restriction posture MUST include deny rules, mode policy, hooks, `canUseTool`, and/or `dontAsk` where applicable. | `docs/CONTRACT.md` K-PERM-3; `docs/SPEC.md` Section 14.3 |
-| DEL-04-02-REQ-008 | Resolved `maxTurns` MUST be included in SDK options so max-turn guards can stop runaway loops and terminal max-turn errors can be persisted by runtime/event layers. | SOW-052; `docs/PRD.md` Section 8.13, HASH_MISMATCH |
+| DEL-04-02-REQ-008 | Resolved `maxTurns` MUST be included in SDK options so max-turn guards can stop runaway loops and terminal max-turn errors can be persisted by runtime/event layers. | SOW-052; `docs/PRD.md` Section 8.13, MATCH — reconciled under D-APP-38 |
 | DEL-04-02-REQ-009 | The builder MUST preserve Chirality-owned semantics by keeping SDK-specific names and option details at adapter boundaries and safe metadata surfaces, not public API contracts. | `docs/CONTRACT.md` K-ENGINE-1 through K-ENGINE-4; `docs/TYPES.md` Section 9 |
 | DEL-04-02-REQ-010 | Safe visible metadata SHOULD include SDK package version, SDK permission mode, visible tool list, MCP server names, settings-source posture, SDK session ID/resume mode, and transcript/store linkage where available. | `docs/SPEC.md` Section 12.4 |
-| DEL-04-02-REQ-011 | API keys and secrets MUST NOT be written to project files or included in visible metadata produced by this builder. | `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` Section 10.3.1, HASH_MISMATCH |
-| DEL-04-02-REQ-012 | Exact SDK option property names beyond cited source text are TBD until the first-adapter probe/version decision confirms current TypeScript APIs. | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH |
-| DEL-04-02-REQ-013 | The builder input contract MUST either define or explicitly import the owning adjacent contract for session state, persona output, hook policy, MCP server descriptors, subagent descriptors, resume linkage, and settings policy before the exact TypeScript shape is treated as closed. | `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Section 4, HASH_MISMATCH; `execution/_Decomposition/...` DEL-04-01 through DEL-04-05 |
+| DEL-04-02-REQ-011 | API keys and secrets MUST NOT be written to project files or included in visible metadata produced by this builder. | `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` Section 10.3.1, MATCH — reconciled under D-APP-38 |
+| DEL-04-02-REQ-012 | Exact SDK option property names beyond cited source text are TBD until the first-adapter probe/version decision confirms current TypeScript APIs. | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, MATCH — reconciled under D-APP-38 |
+| DEL-04-02-REQ-013 | The builder input contract MUST either define or explicitly import the owning adjacent contract for session state, persona output, hook policy, MCP server descriptors, subagent descriptors, resume linkage, and settings policy before the exact TypeScript shape is treated as closed. | `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Section 4, MATCH; `execution/_Decomposition/...` DEL-04-01 through DEL-04-05 — reconciled under D-APP-38 |
 | DEL-04-02-REQ-014 | Before constructing SDK options, the builder MUST fail closed or return a structured integration error when required governed policy inputs for settings, tools, permission posture, hooks, MCP, or subagents are absent or explicitly unresolved. | `docs/CONTRACT.md` K-RELIANCE-2, K-PERM-1 through K-PERM-3, K-MCP-1, K-HOOK-1; `docs/PLAN.md` R2 |
 
 ## Standards
 
 | Standard or Contract | Application | Source |
 |---|---|---|
-| Chirality `AgentEnginePort` / `RuntimeEngineContract` | SDK options are constructed behind a product-owned engine boundary. | `docs/CONTRACT.md` K-ENGINE-1; `docs/SPEC.md` Section 11; `docs/PRD.md` Section 8.12, HASH_MISMATCH |
+| Chirality `AgentEnginePort` / `RuntimeEngineContract` | SDK options are constructed behind a product-owned engine boundary. | `docs/CONTRACT.md` K-ENGINE-1; `docs/SPEC.md` Section 11; `docs/PRD.md` Section 8.12, MATCH — reconciled under D-APP-38 |
 | SDK settings isolation | Shipped runtime must not load ambient user/global Claude Code settings or local `.claude/settings.local.json`. | `docs/CONTRACT.md` K-SDK-1; `docs/SPEC.md` Section 12.2 |
 | Capability-forward policy with explicit hard-deny precedence permission policy | Builder must carry policy posture without confusing auto-approval with restriction. | `docs/CONTRACT.md` K-PERM-1 through K-PERM-6 |
 | Chirality MCP naming | Chirality tools use `mcp__chirality__*` names. | `docs/SPEC.md` Section 14.2; `docs/TYPES.md` Section 8.4 |

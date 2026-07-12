@@ -1,5 +1,7 @@
 # Datasheet: DEL-07-01 Working Root Validation and Instruction Root Protection
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -39,7 +41,7 @@
 | Path containment | Runtime tools must enforce working-root containment and reject writes outside the active project root. | `docs/CONTRACT.md` K-PATH-2; `docs/PRD.md` FR-050 |
 | Symlink writes | Symlink writes are rejected in the initial policy. | `docs/CONTRACT.md` K-PATH-3; `docs/SPEC.md` Section 15.2 |
 | Permission override | Deny decisions from policy, hooks, path containment, governance, SDK deny rules, or human gates override allows. | `docs/PRD.md` Section 3; `docs/CONTRACT.md` K-PERM-1 |
-| Source-state warning | `docs/PRD.md` is usable for this draft but has a HASH_MISMATCH in `_REFERENCES.md`; content depending on it should remain review-aware. | `_REFERENCES.md` REF-006 |
+| Source-state warning | `docs/PRD.md` is usable for this draft but has a MATCH in `_REFERENCES.md`; content depending on it should remain review-aware. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -57,7 +59,7 @@
 | ItemID | Datasheet Disposition | Evidence |
 |---|---|---|
 | A-001 | converted to TBD | `Construction` keeps code locations as TBD because accessible sources identify required enforcement surfaces but not final runtime module, hook module, path helper, or test file names. |
-| E-002 | incorporated | `Conditions` and `References` preserve the `docs/PRD.md` HASH_MISMATCH warning; final implementation/review evidence location remains TBD and is carried in `Procedure.md`. |
+| E-002 | incorporated | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
 ## References
 
@@ -68,5 +70,5 @@
 | REF-003 | `docs/SPEC.md` | Sections 1.1, 1.2, 15.2; API endpoints table | Instruction-root and working-root contracts, hooks, API surfaces. |
 | REF-004 | `docs/TYPES.md` | Sections 1.5, 1.6, 8.2 | Vocabulary and permission-mode terms. |
 | REF-005 | `docs/PLAN.md` | Implementation sequencing references to hooks and path containment | Context only; not used as primary authority for requirements. |
-| REF-006 | `docs/PRD.md` | Sections 7.1, 8.9, 8.15, 10.1, 10.2; FR-003, FR-050, FR-051, FR-095, FR-097 | Product requirements. HASH_MISMATCH warning recorded in `_REFERENCES.md`. |
+| REF-006 | `docs/PRD.md` | Sections 7.1, 8.9, 8.15, 10.1, 10.2; FR-003, FR-050, FR-051, FR-095, FR-097 | Product requirements. MATCH status recorded in `_REFERENCES.md`. — reconciled under D-APP-38 |
 | REF-007 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | PKG-07 and DEL-07-01 rows; SOW mapping rows | Scope routing and deliverable identity. |

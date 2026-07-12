@@ -1,5 +1,7 @@
 # Specification: DEL-09-05 CI Artifact and Release Verification Workflow
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the CI premerge workflow, stable artifact upload behavior, local command sequence, and manual release verification checklist for `DEL-09-05 CI Artifact and Release Verification Workflow`.
@@ -103,6 +105,6 @@ Required outputs for this deliverable:
 
 Documentation notes:
 
-- `docs/PRD.md` is usable in this run only under the dispatch ruling that its hash mismatch is a source warning.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - `ResponsibleParty` remains `TBD` until assigned by a human.
 - Any missing implementation-specific detail, including workflow path, artifact name, retention period, release evidence filename, and exact checker script path, remains `TBD`.

@@ -1,5 +1,7 @@
 # Specification: DEL-09-02 Section 9 Runtime Validation Additions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies runtime validation additions for Section 9 of the harness validation surface. It covers validation IDs, harness runner updates, and summary schema expectations for runtime boundaries related to the provider-adapter conformance, first-adapter mapper, event log, settings isolation, permissions, MCP tools, hooks, compaction, and subagents.
@@ -38,7 +40,7 @@ Excluded from this deliverable:
 | `docs/CONTRACT.md` K-ENGINE, K-SDK, K-EVENT, K-PERM, K-TOOL, K-MCP, K-HOOK, K-PATH, K-SUBAGENT | Governs invariant-level validation targets. |
 | `docs/SPEC.md` Sections 9, 10, 14, 15, 19.3 | Governs event schema, runtime engine contract, MCP names, permissions/hooks, and Section 9 validation IDs. |
 | `docs/TYPES.md` Sections 7.3, 8.4, 8.5 | Governs type targets and vocabulary for events, MCP names, and hook terms. |
-| `docs/PRD.md` Sections 8.12-8.16 and 12.4 | Governs product requirements for runtime boundaries and validation additions. PRD hash mismatch warning applies. |
+| `docs/PRD.md` Sections 8.12-8.16 and 12.4 | Governs product requirements for runtime boundaries and validation additions. PRD hash status: MATCH status applies. — reconciled under D-APP-38 |
 
 ## Verification
 
@@ -72,4 +74,4 @@ Required deliverable artifacts:
 - Test fixtures for event log, permissions, MCP, hooks, compaction, and subagent governance where implementation exists.
 - Human-facing notes for any IDs marked pending because their runtime phase has not landed.
 - Section 8 preservation evidence or premerge summary reference alongside new Section 9 outcomes.
-- Warning-qualified PRD source-state note while `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.

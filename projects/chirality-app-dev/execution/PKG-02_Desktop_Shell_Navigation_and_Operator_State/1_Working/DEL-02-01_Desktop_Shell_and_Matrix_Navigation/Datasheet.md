@@ -1,5 +1,7 @@
 # Datasheet: DEL-02-01 Desktop Shell and Matrix Navigation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -38,7 +40,7 @@
 | Objective supported | OBJ-001 | `_CONTEXT.md`; decomposition objective mapping |
 | Inclusions | UI and operator workflow behavior | `_CONTEXT.md`; decomposition PKG-02 package row |
 | Exclusions | Runtime engine internals | `_CONTEXT.md`; decomposition PKG-02 package row |
-| PRD source status | `HASH_MISMATCH` observed and treated as source warning per dispatch | `_REFERENCES.md`; dispatch instruction |
+| PRD source status | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; dispatch instruction — reconciled under D-APP-38 |
 | Dependency extraction | Deferred; `Dependencies.csv` not produced in this run | Dispatch instruction; `_DEPENDENCIES.md` initial population rule |
 
 ## Construction

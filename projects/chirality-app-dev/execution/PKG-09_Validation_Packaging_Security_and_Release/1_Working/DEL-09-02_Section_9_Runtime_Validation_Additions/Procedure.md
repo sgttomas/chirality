@@ -1,5 +1,7 @@
 # Procedure: DEL-09-02 Section 9 Runtime Validation Additions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operational steps to produce and verify the Section 9 runtime validation additions for DEL-09-02 while preserving source-grounding, existing Section 8 behavior, and deliverable-local boundaries.
@@ -9,7 +11,7 @@ Define the operational steps to produce and verify the Section 9 runtime validat
 - `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and `_STATUS.md` are available in the deliverable folder.
 - Authoritative source slices are available from `docs/PRD.md`, `docs/SPEC.md`, `docs/CONTRACT.md`, `docs/TYPES.md`, `docs/DIRECTIVE.md`, and the v3.2 software decomposition.
 - Declared upstream and downstream dependencies remain `TBD`; an extracted dependency register exists, but do not compute blocked/available state until project-level FULL_GRAPH closure has been checked.
-- PRD hash mismatch is recorded as a source warning only for this run.
+- PRD hash status: MATCH is recorded as a source status for this run. (reconciled under D-APP-38).
 - Responsible party remains `TBD`.
 
 ## Steps

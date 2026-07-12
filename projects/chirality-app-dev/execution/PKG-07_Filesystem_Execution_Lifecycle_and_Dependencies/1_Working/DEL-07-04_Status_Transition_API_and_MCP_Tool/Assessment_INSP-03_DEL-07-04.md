@@ -67,3 +67,7 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-07-04
 ## Issuance-Gate-Process Observations
 
 DEL-07-04 is substantially implemented. The remaining gate issues are mostly fixture/source-state rigor rather than core lifecycle mechanics.
+
+## D-APP-56 R5 P40 annotation (2026-07-12)
+
+The source-state caveat above is preserved as historical assessment evidence. REF-006 now records `docs/PRD.md` expected and actual SHA-256 as `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` (`MATCH`) under D-APP-38; it is not a current warning or blocker. No assessment verdict or lifecycle state changes here.

@@ -1,5 +1,7 @@
 # Guidance: DEL-05-02 HarnessEvent Schema and Append-Only JSONL
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-05-02 exists to make Chirality runtime work auditable through a product-owned event log. The core outcome is a stable, provider-neutral `HarnessEvent` schema and append-only JSONL writer that records accepted turns, runtime events, and terminal outcomes in `.chirality/sessions/<sessionId>/events.jsonl`.
@@ -31,7 +33,7 @@ This deliverable supports OBJ-003: making accepted turns, SDK messages, terminal
 
 ## Considerations
 
-- `docs/PRD.md` is marked `HASH_MISMATCH` in `_REFERENCES.md`. PRD requirements such as FR-072 through FR-076 align with matching SPEC/CONTRACT/TYPES sources, but PRD-only interpretations should remain provisional until the hash state is resolved.
+- `docs/PRD.md` is marked `MATCH` in `_REFERENCES.md`. PRD requirements such as FR-072 through FR-076 align with matching SPEC/CONTRACT/TYPES sources, but PRD-only interpretations should remain provisional until the hash state is resolved. (reconciled under D-APP-38).
 - `turn.accepted` is part of this deliverable's core slice; broader interrupt cleanup and lifecycle lock release are adjacent concerns owned by DEL-03-04.
 - Redaction is adjacent but not optional. DEL-05-02 should define the event API so redaction can be enforced by DEL-05-03 without schema churn.
 - Tool permission, hook, compaction, subagent, and SDK mirror categories are listed as later event categories in SPEC/TYPES. The initial implementation should not block those categories, but should avoid over-implementing behavior owned by later deliverables.
@@ -47,7 +49,7 @@ This deliverable supports OBJ-003: making accepted turns, SDK messages, terminal
 | SDK transcript richness vs. Chirality canonicality | Keep SDK transcripts linked as secondary artifacts; import only selected data into `HarnessEvent` when needed. |
 | Immediate category completeness vs. bounded slice | Implement the initial event categories required for accepted turns and terminal outcomes; leave later tool/hook/subagent semantics to their owning deliverables. |
 | Inline data vs. artifact references | Inline small safe data only; reference large or sensitive data through governed artifact metadata. |
-| PRD detail vs. hash mismatch | Use PRD only where corroborated by matching sources, or mark PRD-only details as TBD/ASSUMPTION. |
+| PRD detail vs. hash status: MATCH | Use PRD only where corroborated by matching sources, or mark PRD-only details as TBD/ASSUMPTION. — reconciled under D-APP-38 |
 
 ## Examples
 
@@ -77,4 +79,4 @@ No source-content conflicts were identified during P1/P2 drafting.
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| SOURCE-WARN-001 | `docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`; PRD content aligns with matching SPEC/CONTRACT/TYPES slices used here but source state is not clean. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076 | Datasheet References; Specification Standards/Requirements; Guidance Considerations | Use PRD only as corroborating context until reference hash is reconciled. | TBD |
+| SOURCE-WARN-001 | `docs/PRD.md` is listed as MATCH in `_REFERENCES.md`; PRD content aligns with matching SPEC/CONTRACT/TYPES slices used here but source state is not clean. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076 | Datasheet References; Specification Standards/Requirements; Guidance Considerations | Use PRD only as corroborating context until reference hash is reconciled. | TBD — reconciled under D-APP-38 |

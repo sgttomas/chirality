@@ -1,5 +1,7 @@
 # Procedure: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operational procedure for producing and later verifying the DEL-10-04 future fixture profile, validation tests, and adapter assumptions note without activating domain-engine implementation.
@@ -11,7 +13,7 @@ Define the operational procedure for producing and later verifying the DEL-10-04
 - ResponsibleParty assignment: TBD.
 - Concrete future test path and adapter manifest location: TBD.
 - Dependency posture: `_DEPENDENCIES.md` now contains extracted ACTIVE rows, but all satisfaction remains `PENDING`; accepted declared upstream/downstream closure and project graph validation remain TBD.
-- Source warning acknowledged: REF-006 PRD hash mismatch is treated as warning only for this run and remains visible for future closure reliance.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Steps
 

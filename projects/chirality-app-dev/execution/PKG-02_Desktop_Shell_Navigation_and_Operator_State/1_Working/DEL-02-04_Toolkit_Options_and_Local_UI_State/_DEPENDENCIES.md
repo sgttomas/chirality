@@ -55,7 +55,7 @@ Structured register: `Dependencies.csv` v3.1
 - Source documents used: `_CONTEXT.md`, `_REFERENCES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, existing `_DEPENDENCIES.md`, and the specified decomposition authority.
 - `Dependencies.csv` did not previously exist in this deliverable folder; all rows in this run are new extracted rows.
 - Objective traces `OBJ-001` and `OBJ-004` are encoded with `TargetType=WBS_NODE` because the v3.1 target enum has no `OBJECTIVE` value.
-- [WARNING] PRD_HASH_MISMATCH: `_REFERENCES.md` reports REF-006 expected SHA `86cb6f...` and actual SHA `fb1c73...`; PRD-derived dependencies remain active with warning and closure remains pending for that source.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor was found.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor was found.
 - No `[WARNING] MISSING_DECOMPOSITION`: the runtime override decomposition file was available and used.
@@ -76,12 +76,16 @@ Structured register: `Dependencies.csv` v3.1
 | SatisfactionStatus | Count |
 |---|---:|
 | NOT_APPLICABLE | 6 |
-| SATISFIED | 6 |
-| PENDING | 1 |
+| SATISFIED | 7 |
+| PENDING | 0 |
 | TBD | 1 |
 
 Closure notes:
 
 - The extracted register is schema-valid and evidence-first, but project-level availability must still wait for FULL_GRAPH cycle checks.
-- `DEP-02-04-012` remains `PENDING` because REF-006 has a hash mismatch.
+- DEP-02-04-012 is SATISFIED: REF-006 is MATCH under D-APP-38.
 - `DEP-02-04-014` remains `TBD` because the source explicitly leaves adjacent runtime option contracts and permission policy integration points unresolved.
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

@@ -1,5 +1,7 @@
 # Datasheet: DEL-09-02 Section 9 Runtime Validation Additions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -53,5 +55,5 @@
 | REF-003 | `docs/SPEC.md` | Runtime event schema, engine contract, MCP names, hook rules, Section 9 IDs. |
 | REF-004 | `docs/TYPES.md` | HarnessEvent target, MCP names, hook terms, Section 9 vocabulary. |
 | REF-005 | `docs/PLAN.md` | Roadmap sequencing and validation themes. |
-| REF-006 | `docs/PRD.md` | Product requirements and Section 9 runtime validation additions; hash mismatch warning applies. |
+| REF-006 | `docs/PRD.md` | Product requirements and Section 9 runtime validation additions; hash status: MATCH status applies. — reconciled under D-APP-38 |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no deliverable-specific requirement extracted. |

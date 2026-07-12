@@ -1,5 +1,7 @@
 # Datasheet: DEL-02-03 Working Root File Tree and Scope Scan UI
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value | Source |
@@ -34,7 +36,7 @@
 | Dynamic selection behavior | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state | `docs/PRD.md` FR-013 |
 | Scan runaway protection | File scans enforce depth/count limits | `docs/PRD.md` NFR-012 |
 | Authority boundary | UI consumes workspace APIs but remains presentation-focused | `_CONTEXT.md`; decomposition row for DEL-02-03 |
-| Source warning | PRD expected hash differs from observed hash; content using PRD is accepted for this run only as a warned source | `_REFERENCES.md`; dispatch instruction |
+| Source warning | PRD expected and observed PRD hashes match under D-APP-38; content using PRD is accepted for this run only as a warned source | `_REFERENCES.md`; dispatch instruction |
 
 ## Construction
 

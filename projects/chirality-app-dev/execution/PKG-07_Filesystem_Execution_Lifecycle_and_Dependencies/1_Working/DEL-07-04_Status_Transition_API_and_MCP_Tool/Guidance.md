@@ -1,5 +1,7 @@
 # Guidance: DEL-07-04 Status Transition API and MCP Tool
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This deliverable exists to make deliverable lifecycle state a product-owned filesystem contract rather than an inferred UI or runtime condition. The accepted SOFTWARE_DECOMP v3.2 entry defines the slice as parsing `_STATUS.md` and enforcing forward-only, actor-authorized transitions with approval SHA for human gates. The source documents reinforce that `_STATUS.md` is canonical and that status transition behavior is a governed API/MCP surface, not prompt-only convention.
@@ -27,7 +29,7 @@ This deliverable exists to make deliverable lifecycle state a product-owned file
 ## Considerations
 
 - Actor authorization should be explicit enough that unsupported actors fail closed. SPEC Section 4.3 lists authorized actors by transition; implementation-specific actor identity mapping remains `TBD`.
-- Approval SHA validation should follow the PRD acceptance detail of a 7-64 character hex SHA-like token for transitions to `CHECKING` or `ISSUED`. PRD hash mismatch warning applies.
+- Approval SHA validation should follow the PRD acceptance detail of a 7-64 character hex SHA-like token for transitions to `CHECKING` or `ISSUED`. PRD hash status: MATCH status applies. (reconciled under D-APP-38).
 - The API and MCP tool should return structured denial information for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, path/policy denial, and malformed `_STATUS.md`. Exact response shape is `TBD`.
 - `INITIALIZED -> SEMANTIC_READY` is optional according to `docs/TYPES.md` Section 4.1; if semantic lensing is skipped, deliverables may transition directly from `INITIALIZED -> IN_PROGRESS` under SPEC actor rules.
 - Status transition writes should remain subject to project-root containment and instruction-root protection expectations from the filesystem and permission surfaces. Source: `docs/CONTRACT.md` K-PATH-2 and K-MCP-1; `docs/PLAN.md` R3 implementation targets.
@@ -35,7 +37,7 @@ This deliverable exists to make deliverable lifecycle state a product-owned file
 - If alternate immutable approval evidence is ever accepted instead of a git SHA-like token, treat it as a human-approved policy extension recorded in versioned project evidence. Do not accept arbitrary runtime text as approval evidence. Source: `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2.
 - Review evidence should prove that status-transition outputs, tool events, hook events, and runtime records describe execution only. They must not use language that claims an agent, SDK, MCP tool, validator, or runtime event approved, issued, certified, or released work for reliance. Source: `docs/DIRECTIVE.md` Sections 2.3-2.4; `docs/CONTRACT.md` K-AUTH-1/K-BIND-1.
 - `SOFTWARE_DECOMP` is the accepted decomposition-family label in deliverable context, while `SOFTWARE` is the runtime dispatch token used by the four-documents task. Preserve both labels with their context rather than normalizing one into the other.
-- The effect of the current PRD hash mismatch remains `TBD`: a human or implementation owner must decide whether it blocks implementation, blocks final acceptance, or blocks only PRD-specific acceptance claims.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Trade-offs
 
@@ -65,9 +67,9 @@ This deliverable exists to make deliverable lifecycle state a product-owned file
 |---|---|---|---|---|---|---|
 | TBD | No source conflict identified during P1/P2 drafting. | TBD | TBD | TBD | TBD | TBD |
 
-## Source Warning
+## Source Status
 
-`docs/PRD.md` is listed as `HASH_MISMATCH` in `_REFERENCES.md`. Use PRD acceptance details as warned source material until the reference hash is reconciled.
+`docs/PRD.md` is listed as `MATCH` in `_REFERENCES.md`. Use PRD acceptance details as warned source material until the reference hash is reconciled. (reconciled under D-APP-38).
 
 ## Pass 3 Disposition Notes
 
@@ -76,4 +78,4 @@ This deliverable exists to make deliverable lifecycle state a product-owned file
 | C-001 | Incorporated as a policy-extension rule for alternate immutable approval evidence. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2. |
 | D-002 | Incorporated as review-evidence guidance separating runtime/event records from human approval records. | `docs/DIRECTIVE.md` Sections 2.3-2.4; `docs/CONTRACT.md` K-AUTH-1/K-BIND-1. |
 | E-001 | Incorporated as contextual variant-label guidance. | `_CONTEXT.md` Identification; `_SEMANTIC_LENSING.md` header. |
-| E-003 | Converted to `TBD` pending human or implementation-owner ruling on PRD hash mismatch governance effect. | `_REFERENCES.md` REF-006; `docs/SPEC.md` reference hash behavior. |
+| E-003 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; `docs/SPEC.md` reference hash behavior. — reconciled under D-APP-38 |

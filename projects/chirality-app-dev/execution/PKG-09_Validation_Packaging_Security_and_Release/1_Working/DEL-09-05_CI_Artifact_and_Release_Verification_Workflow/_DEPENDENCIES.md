@@ -66,7 +66,7 @@ Source register: `Dependencies.csv`
 - Execution doc order selected: `Specification.md`, `Guidance.md`, `Procedure.md`.
 - Existing `Dependencies.csv`: missing before this run; created with v3.1 schema.
 - Existing declared dependency sections: preserved as `TBD` because no human-declared dependency edges were accepted.
-- `[WARNING] PRD_HASH_MISMATCH`: `_REFERENCES.md` reports `docs/PRD.md` hash mismatch for REF-006; source docs treat this as a source warning for this run, not as resolved.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - `[WARNING] SUPERSEDED_SOURCE_NOTE`: the four authored documents contain older notes saying not to create `Dependencies.csv`; the current dependency-recording brief explicitly authorizes `Dependencies.csv`, `_DEPENDENCIES.md`, and run-record writes.
 - `[WARNING] UNRESOLVED_TBD`: CI workflow path, upload artifact name and retention, release evidence location, `ResponsibleParty`, and some environment readiness checks remain `TBD`.
 - `[WARNING] TARGET_TYPE_LIMIT`: OBJ-008 and file/artifact targets use `TargetType=UNKNOWN` where v3.1 has no OBJECTIVE, FILE, or ARTIFACT target enum.
@@ -89,3 +89,7 @@ Source register: `Dependencies.csv`
 | TBD | 14 |
 
 Closure state: dependency register initialized, schema validation passed, and unresolved implementation details remain `TBD`.
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

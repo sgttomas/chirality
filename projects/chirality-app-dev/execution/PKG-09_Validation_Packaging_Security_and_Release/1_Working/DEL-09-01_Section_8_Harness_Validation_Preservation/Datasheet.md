@@ -1,5 +1,7 @@
 # Datasheet: DEL-09-01 Section 8 Harness Validation Preservation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -34,7 +36,7 @@
 - Section 8 validation defaults to `HARNESS_BASE_URL=http://127.0.0.1:3000` and uses `HARNESS_PROJECT_ROOT` when provided; otherwise it resolves to `../examples/example-project` from `frontend/`. Source: `frontend/scripts/validate-harness-section8.mjs`.
 - If the requested project root is inside the instruction root, the Section 8 script stages it under the temporary validation root before running tests. Source: `frontend/scripts/validate-harness-section8.mjs`.
 - The current provenance summary records a passing Section 8 run with `testCount: 8`. Source: `provenance/build-artifacts/frontend__artifacts__harness__section8__latest__summary.json`.
-- Source warning: `docs/PRD.md` is locally accessible but has a known hash mismatch for this run; the invoker instructed that mismatch to be treated as a source warning only.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Construction
 
@@ -58,4 +60,3 @@ This deliverable should be implemented as a preservation-oriented test suite and
 - `frontend/scripts/validate-harness-section8.mjs`.
 - `.github/workflows/harness-premerge.yml`.
 - `provenance/build-artifacts/frontend__artifacts__harness__section8__latest__summary.json`.
-

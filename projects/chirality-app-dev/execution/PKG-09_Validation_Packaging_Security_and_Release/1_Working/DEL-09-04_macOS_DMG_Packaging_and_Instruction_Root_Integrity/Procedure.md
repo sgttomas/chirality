@@ -1,5 +1,7 @@
 # Procedure: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operational steps to produce the macOS arm64 unsigned DMG and assemble evidence that instruction-root resources and SDK subprocess packaging posture are valid for the packaged app.
@@ -13,7 +15,7 @@ Define the operational steps to produce the macOS arm64 unsigned DMG and assembl
 - Required instruction-root assets are present or missing assets are tracked as blockers.
 - Dependency state: `Dependencies.csv` v3.1 currently contains 9 ACTIVE rows; six rows remain `SatisfactionStatus=TBD`, so dependency closure remains open until accepted evidence resolves them.
 - Evidence bundle custody: ResponsibleParty remains TBD; until assigned, route release evidence bundle ownership through the package owner or human-appointed release reviewer.
-- Source warning: `_REFERENCES.md` marks `docs/PRD.md` as `HASH_MISMATCH`; assignment says to treat this as warning only for this run.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Steps
 
@@ -72,4 +74,4 @@ Required records:
 | SDK subprocess packaging probe | Probe command, package path, expected result, observed result, output path, and blocker state if failed. |
 | Manual package verification notes | Architecture, minimum OS, signing posture, resource inclusion, working-root selector, network policy, and SDK packaged execution scope. |
 | Evidence bundle custody | ResponsibleParty or routing placeholder; currently `TBD` until human assignment. |
-| Blocker list | All `TBD` or failed items, including missing instruction-root assets, dependency rows with `SatisfactionStatus=TBD`, PRD hash mismatch disposition, and unresolved SDK-backed turn-start scope. |
+| Blocker list | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |

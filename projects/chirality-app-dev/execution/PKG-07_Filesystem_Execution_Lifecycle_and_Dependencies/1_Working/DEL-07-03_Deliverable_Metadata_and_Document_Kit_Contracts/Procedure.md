@@ -1,5 +1,7 @@
 # Procedure: DEL-07-03 Deliverable Metadata and Document Kit Contracts
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the working procedure for producing and verifying the DEL-07-03 backend feature slice: scanner/validator support for deliverable metadata files, canonical memory, semantic placeholders, and four-document kit buckets. Sources: `_CONTEXT.md` / Deliverable Scope; decomposition / DEL-07-03 row.
@@ -10,7 +12,7 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 |---|---|
 | Accepted decomposition entry for DEL-07-03 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / DEL-07-03 row |
 | Governing file layout and lifecycle contract | `docs/SPEC.md` / Sections 3, 4, 5 |
-| Product requirements for filesystem execution model | `docs/PRD.md` / Sections 8.8, 8.9, 10.8; HASH_MISMATCH warning in `_REFERENCES.md` |
+| Product requirements for filesystem execution model | `docs/PRD.md` / Sections 8.8, 8.9, 10.8; MATCH status in `_REFERENCES.md` — reconciled under D-APP-38 |
 | Vocabulary for deliverables, artifacts, and lifecycle states | `docs/TYPES.md` / Sections 1.2, 1.3, lifecycle state table |
 | Governance posture for roots, memory, evidence, and conflicts | `docs/DIRECTIVE.md` / Sections 2.5, 2.6, 2.7; `docs/CONTRACT.md` / K-ROOT, K-CONFLICT |
 | Declared upstream dependencies | TBD - no declared upstream dependency edges have been accepted by a human. Extracted ACTIVE rows exist in `_DEPENDENCIES.md` and `Dependencies.csv`, but they are not accepted declared dependencies for this prerequisite row. Source: `_DEPENDENCIES.md` / Declared Upstream and Extracted Dependency Register |
@@ -21,7 +23,7 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 
 1. Confirm scope and source contracts.
    - Read DEL-07-03 context, references, and decomposition row.
-   - Carry the `docs/PRD.md` HASH_MISMATCH as a warning until the reference record is corrected or a human-approved bypass exists.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 2. Define fixture cases.
    - Include valid `OPEN` baseline, initialized four-doc kit, missing metadata file, missing recommended document kit file, prohibited `_MEMORY.md`, optional `_SEMANTIC_LENSING.md` absence, and optional `HASH_VERIFICATION_BYPASS.jsonl` presence.
@@ -62,7 +64,7 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 9. Add tests and run verification.
    - Add metadata scanner tests, document kit detection tests, and `_MEMORY.md` rejection tests.
    - Add path/root containment fixtures if this code accepts filesystem paths.
-   - Include fixture coverage for missing `_SEMANTIC.md`, initialized folders missing one or more document-kit files, optional-file absence, optional-file presence, prohibited `_MEMORY.md`, REF-006 HASH_MISMATCH propagation, and unknown unsupported conditions.
+   - Include fixture coverage for missing `_SEMANTIC.md`, initialized folders missing one or more document-kit files, optional-file absence, optional-file presence, prohibited `_MEMORY.md`, REF-006 MATCH propagation, and unknown unsupported conditions. (reconciled under D-APP-38).
    - Exact test command is TBD until implementation location is selected.
 
 ## Verification
@@ -77,7 +79,7 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 | `MEMORY.md` present | Validator accepts canonical memory file |
 | `_MEMORY.md` present | Validator rejects or flags prohibited file |
 | `_SEMANTIC_LENSING.md` absent | Validator does not fail solely for optional absence |
-| PRD hash mismatch present in references | Output/report preserves source warning |
+| PRD hash status: MATCH present in references | Output/report preserves source warning — reconciled under D-APP-38 |
 | Instruction-root path supplied to write-capable path handling | Write operation is blocked or not available from this slice |
 | Extracted dependency rows present but declared sections remain TBD | Procedure treats extracted rows as evidence records, not accepted declared prerequisites |
 | Scanner result consumed by scope API or adjacent API | Compatibility is proven by implementation or route-level tests; no route-shape change is assumed here |

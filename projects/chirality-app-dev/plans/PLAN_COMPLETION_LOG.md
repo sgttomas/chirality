@@ -6,6 +6,17 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P40 REF-006 current-state repair
+
+Executed UPD-068..UPD-079 across 32 deliverables. Four-document kits now
+read REF-006 `docs/PRD.md` as `MATCH` under D-APP-38; explicitly named
+INSP-03 caveats carry append-only current-state annotations. The distinct
+DEL-06-05 schema/terminal-linkage and DEL-06-06 implementation-path repairs
+now cite live implementation and test surfaces. P16=A register work preserves
+dated extraction history while reconciling ten structured rows and fifteen
+register summaries. All deliverables remain `IN_PROGRESS`; the generic
+concordance Remaining item stays open for R6.
+
 ## 2026-07-12 - D-APP-56 R5 P39 lifecycle-wording repair
 
 Executed UPD-061..UPD-067 across seven deliverables, replacing duplicated

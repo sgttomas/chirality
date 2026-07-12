@@ -1342,3 +1342,33 @@
   - Checks: member/rider accounting; scoped present-tense scan; 53-state census;
     DEL-02-01 header fidelity; `git diff --check`; app-dev self-check; frontend
     gates skipped because no runtime source changed.
+
+- **2026-07-12 — Receipt 39** (D-APP-56 R5 P40 / Tranche C REF-006
+  current-state repair complete; P39 landed PR #203).
+  - Upstream: D-APP-56; exact immutable-CSV set UPD-068..UPD-079 (12/12,
+    49 affected claim pairs, 32 deliverables); P16=A authorizes the register
+    half as annotate-only with dated history preserved.
+  - Executed: kit REF-006 wording now reads the D-APP-38 MATCH state; named
+    assessment caveats received append-only annotations; DEL-06-05's accepted
+    artifact schema and interrupted-to-tool.failed linkage and DEL-06-06's
+    concrete mapper/test/replay/artifact paths are recorded. Register rows,
+    current warning prose, and summary counters now agree with structured CSV
+    truth; dated Run History rows remain unchanged.
+  - State: all 53 deliverables remain IN_PROGRESS; the generic concordance
+    Remaining item stays open pending R6; original RUN_D55 artifacts are
+    unchanged; no runtime source changed.
+  - Model/roles: GPT-5 read-only discovery derived and adversarially checked
+    the member/edit set; GPT-5 governed execution applied and fan-in checked
+    the P40 tranche. No silent model substitution occurred.
+  - Owner handoff direction received during P40, verbatim: "I agree with your
+    recommended resolution. Proceed accordingly." By pointer to the preceding
+    recommendation, this means P45's 54 app-dev doc/register rows proceed, its
+    four code rows remain for the final code tranche, and the six-pin root
+    export rider is deferred to separately authorized regeneration. This does
+    not alter P40 and no P45/root-export edit is included here.
+  - Checks: exact member/pair accounting; REF-006 hash/MATCH census; ten
+    dependency-schema validations; structured-to-markdown counter checks;
+    scoped stale-current scan; UPD-073 path existence; 32 durable-record sets;
+    53-state census; original-run integrity; `git diff --check`; practitioner
+    self-check. Frontend gates skipped because P40 is docs/register metadata
+    only.

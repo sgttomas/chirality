@@ -97,4 +97,4 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 - MCP write/gated surface inventory and parity tests: TBD.
 - Provenance/diff/summary evidence format: TBD.
 - Runtime event evidence for allowed and denied write attempts: TBD.
-- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+- Review note for PRD HASH_MISMATCH: required under the reconciled D-APP-38 source state.
