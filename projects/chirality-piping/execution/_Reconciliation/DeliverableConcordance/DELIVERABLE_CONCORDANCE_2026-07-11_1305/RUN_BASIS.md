@@ -234,6 +234,72 @@
   ledgers to `WAVES/W2/`, after the owner acts on PR #187. The frozen
   evidence worktree remains reproducible from the pinned SHA.
 
+- **2026-07-11 — Resumed; R2 W2 dispatched (PKG-04–PKG-05).** Owner
+  permission of record (in-session, verbatim): "This is your permission to
+  resume." (following "merge the PR and then wait for permission to proceed
+  further."; PR #187 merged to main as `667a679594f`). W2 = 11 deliverables
+  (DEL-04-01..06, DEL-05-01..05), ALL-fable discovery pilots per the
+  Receipt-17 steer (solver-mechanics engineering-adjudication risk), ≤4
+  concurrent, ledgers to `WAVES/W2/`, under `R1_CONVENTIONS.md` plus the W1
+  calibration items (rev-drift STALE-side encoding with owner-calibration
+  caveat; SECURITY em-dash marker + OWNER routing; overtaken-review-prose
+  STALE encoding with Gate record as DecisionBasis; addendum-10
+  docs-exclusion discipline; byte-exact bootstrap transcription). Fable
+  high-effort fan-in after wave completion; defective ledgers re-run by
+  fable pilots; wave boundary = validate/summarize/commit/push/PR/receipt,
+  then STOP for owner direction. Receipt 20 records the resume.
+
+- **2026-07-11 — PAUSED mid-W2 at owner direction (batches 1–2 complete).**
+  Owner direction of record (in-session, verbatim): "Pause again when Batch
+  2 is in and fully accounted for.  We will continue with Batch 3 when I
+  give you approval." State at pause: 8 of 11 W2 ledgers written and
+  structurally validated clean (batch 1 DEL-04-01..04, 92 rows, commit
+  `951e3a94b`; batch 2 DEL-04-05/06 + DEL-05-01/02, 89 rows, commit
+  `4d1c96a04`); frozen worktree porcelain empty throughout; no agents in
+  flight; nothing partial. The wave fan-in has not run (whole-wave pass;
+  runs after batch 3). Resume point: dispatch W2 batch 3 (DEL-05-03,
+  DEL-05-04, DEL-05-05; fable pilots per the Receipt-17 steer) on owner
+  approval, then the fable high-effort fan-in over all 11 ledgers and the
+  wave-boundary protocol. Receipt 21 records the pause.
+
+- **2026-07-12 — Resumed; W2 batch 3 dispatched; standing self-merge grant
+  recorded.** Owner direction of record (in-session, verbatim): "Proceed now
+  with the immediate next step of dispatch batch 3.  You may continue
+  through successive PRs in this matter by approving merger yourself, not
+  waiting for human ruling until you get to R4." Effect: (a) W2 batch 3
+  (DEL-05-03, DEL-05-04, DEL-05-05; fable pilots per the Receipt-17 steer)
+  dispatched; (b) the owner has granted a standing authorization — scoped to
+  this concordance exercise — for the orchestrator to open AND self-merge
+  the wave-boundary PRs and continue through waves W2–W5, R3, and R6
+  without stopping for per-PR merge direction. This supersedes, by explicit
+  owner direction, the earlier per-PR "never reuse an earlier grant" pacing
+  for merge approvals only; all other fences, batch validation gates, and
+  the Receipt-17 steer remain unchanged. The run still STOPs before R4/R5:
+  no decision gates, repairs, or lifecycle transitions without explicit
+  owner ruling. Receipt 22 records the resume and grant.
+
+- **2026-07-12 — R2 wave W2 COMPLETE (PKG-04, PKG-05).** 11 ledgers, 242
+  rows (PKG-04: 133 across DEL-04-01..06; PKG-05: 109 across
+  DEL-05-01..05), all fable pilots per the Receipt-17 steer, dispatched in
+  three ≤4-concurrency batches (commits `951e3a94b`, `4d1c96a04`,
+  `c3a1986a4`). Fan-in verification (fable, high effort, owner-ruled
+  scope): `WAVES/W2/W2_VERIFICATION_PKG-04.md` and `..._PKG-05.md` —
+  **11/11 SOUND**, 100 PASS / 25 QUALIFIED / 0 FAIL spot-checks, zero
+  DEFECTIVE ledgers, zero re-runs. Three non-defect owning-pilot
+  corrections applied post-fan-in (convention-7 ATTESTED markers on
+  DEL-04-03-REQ-004 / DEL-04-05-REQ-006; evidence-pointer amendment on
+  DEL-05-04-REQ-014), all revalidated (242 rows, 0 errors), histograms
+  unaffected (commit `528c8c7aa`). Package summaries:
+  `PACKAGE_SUMMARIES/PKG-04.md`, `PKG-05.md`. Frozen worktree porcelain
+  empty before and after every pilot, verifier, and correction operation.
+  Cross-ledger risks carried to W3 calibration and R3 are itemized in the
+  package summaries (notably: SourceReliability leg-keying,
+  undated-MEMORY-head rule, README enumeration grain, byte-identical-copy
+  re-execution pattern, AuthorityNeeded TBD/gate-token semantics). Under
+  the 2026-07-12 standing owner grant, the W2 PR is opened and self-merged
+  by the orchestrator; W3 proceeds without a per-PR stop. Receipt 23
+  records the wave boundary.
+
 ## Fences (restated)
 
 Discovery is read-only; no lifecycle transition (`LIFECYCLE_REASSESSMENT_REQUIRED`

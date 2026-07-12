@@ -508,3 +508,84 @@
     notes, after the owner acts on PR #187).
   - Gate outcome: paused at owner direction. W2 is NOT to be launched
     without new owner direction; PR #187 merge remains the owner's act.
+
+- **2026-07-11 — Receipt 20** (resume after W1 pause; R2 W2 dispatched).
+  - Owner directions of record (2026-07-11, in-session, verbatim): "merge
+    the PR and then wait for permission to proceed further." — executed:
+    PR #187 merged to main as `667a679594f271ec45b3daa05f0d98a6575236bd`;
+    then "This is your permission to resume."
+  - Pre-dispatch state: branch `claude/chirality-piping-d41-concordance-9811cb`
+    clean at `f99eb7f78`; frozen evidence worktree verified at
+    `551f84ef6be656f1603ce0acfa5e3935aa9683c7`, porcelain empty; no partial
+    W2 artifacts; `WAVES/W2/` created empty.
+  - Gate outcome: executing — R2 W2 (PKG-04–05, 11 deliverables, ALL-fable
+    discovery pilots per the Receipt-17 steer) dispatched under
+    `R1_CONVENTIONS.md` plus the W1 calibration notes
+    (`PACKAGE_SUMMARIES/PKG-0{0..3}.md`); ≤4 concurrent pilots; fable
+    high-effort fan-in after the wave; wave boundary =
+    validate/summarize/commit/push/PR/receipt, then STOP for owner merge
+    direction (no grant reuse).
+
+- **2026-07-11 — Receipt 21** (paused mid-W2 at owner direction; batch 2
+  complete).
+  - Owner direction of record (2026-07-11, in-session, verbatim): "Pause
+    again when Batch 2 is in and fully accounted for.  We will continue
+    with Batch 3 when I give you approval."
+  - State at pause: W2 batches 1–2 complete and accounted for — 8 of 11
+    ledgers written (DEL-04-01..06, DEL-05-01/02; 181 rows), each batch
+    structurally validated (0 errors) and committed (batch 1 `951e3a94b`,
+    batch 2 `4d1c96a04`); frozen worktree porcelain empty throughout; no
+    agents in flight; no partial artifacts. Fan-in has NOT run — it is a
+    whole-wave pass and waits for batch 3.
+  - Gate outcome: paused at owner direction. Resume point: dispatch W2
+    batch 3 (DEL-05-03/04/05, fable pilots) on owner approval, then the
+    wave fan-in and the standard wave-boundary protocol. Pause entry
+    appended to RUN_BASIS.
+
+- **2026-07-12 — Receipt 22** (resume: W2 batch 3 dispatched; standing
+  self-merge grant through R4 boundary).
+  - Owner direction of record (2026-07-12, in-session, verbatim): "Proceed
+    now with the immediate next step of dispatch batch 3.  You may continue
+    through successive PRs in this matter by approving merger yourself, not
+    waiting for human ruling until you get to R4."
+  - Interpretation of record: standing authorization, scoped to this
+    concordance exercise, for the orchestrator to open and self-merge the
+    wave-boundary PRs and continue autonomously through W2–W5, R3, R6, and
+    RUN_SUMMARY. It supersedes — by explicit owner direction — the earlier
+    per-PR merge-grant pacing ("Never reuse an earlier grant") for merge
+    approvals only. Everything else stands: Receipt-17 model steer, ≤4
+    concurrent pilots, per-batch structural validation and commits, fan-in
+    scope, fences F-PIP-1..5, frozen-tree read-only discipline, and the
+    hard STOP before R4/R5 (no decision gates, repairs, lifecycle
+    transitions, or register/DAG changes without explicit owner ruling).
+  - Pre-dispatch state verified: branch clean at `cffc205c7`; frozen
+    worktree at pinned SHA `551f84ef6` with empty porcelain; W2 batches 1–2
+    validated and committed; scratchpad W2 brief intact.
+  - Action: dispatched W2 batch 3 — DEL-05-03, DEL-05-04, DEL-05-05, three
+    concurrent fable discovery pilots under W2_PILOT_BRIEF (R1_CONVENTIONS
+    + W1 calibration items). RUN_BASIS resume/grant entry appended.
+
+- **2026-07-12 — Receipt 23** (R2 wave W2 complete; PR self-merged under
+  standing grant).
+  - Batch 3 (DEL-05-03 19 rows / DEL-05-04 21 / DEL-05-05 21) returned
+    clean: 0 validation errors, no STOP-worthy contradictions, frozen
+    porcelain empty; commit `c3a1986a4`. Wave totals: 11 ledgers, 242
+    rows (PKG-04 133, PKG-05 109).
+  - Fan-in (fable, high effort, one verifier per package, owner-ruled
+    scope incl. all self-flagged and non-ALIGNED rows): 11/11 SOUND, 100
+    PASS / 25 QUALIFIED / 0 FAIL, zero re-runs. Reports
+    `WAVES/W2/W2_VERIFICATION_PKG-04.md`, `..._PKG-05.md`.
+  - Non-defect corrections routed to owning pilots (never repaired
+    centrally): ATTESTED record-not-present markers on DEL-04-03-REQ-004
+    and DEL-04-05-REQ-006; declaration-level evidence pointers with
+    explicit qualifier on DEL-05-04-REQ-014. Each pilot re-verified the
+    underlying facts against the frozen tree before editing; single-cell
+    diffs confirmed; all 11 ledgers revalidated (0 errors); commit
+    `528c8c7aa`.
+  - Package summaries written: `PACKAGE_SUMMARIES/PKG-04.md`, `PKG-05.md`
+    (histograms computed from ledgers; cross-ledger risks itemized for W3
+    calibration and R3).
+  - Wave boundary executed under the 2026-07-12 standing owner grant
+    (Receipt 22): PR opened and self-merged by the orchestrator; W3
+    (opus pilots per the Receipt-17 steer) proceeds without a per-PR
+    stop. Hard STOP before R4/R5 unchanged.
