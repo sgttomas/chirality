@@ -136,6 +136,36 @@ describe('lifecycle transitions', () => {
     );
   });
 
+  it.each(['HUMANOID', 'HUMAN_RESOURCES', 'HUMAN AGENT'])(
+    'rejects arbitrary HUMAN-prefixed actor %s at a human gate',
+    (actor) => {
+      expect(() =>
+        applyLifecycleTransition(
+          `# Status: DEL-05-03 Lifecycle State Handling\n\n**Current State:** IN_PROGRESS\n**Last Updated:** 2026-02-24\n\n## History\n- 2026-02-24 - State set to IN_PROGRESS (WORKING_ITEMS)\n`,
+          'CHECKING',
+          actor,
+          { date: '2026-02-25', approvalSha: 'abcdef1' }
+        )
+      ).toThrowError(
+        expect.objectContaining({ code: 'UNAUTHORIZED_ACTOR' }) satisfies Partial<LifecycleTransitionError>
+      );
+    }
+  );
+
+  it.each(['HUMAN', 'USER', 'OPERATOR'])(
+    'accepts exact human actor alias %s while retaining approval-SHA evidence',
+    (actor) => {
+      const result = applyLifecycleTransition(
+        `# Status: DEL-05-03 Lifecycle State Handling\n\n**Current State:** IN_PROGRESS\n**Last Updated:** 2026-02-24\n\n## History\n- 2026-02-24 - State set to IN_PROGRESS (WORKING_ITEMS)\n`,
+        'CHECKING',
+        actor,
+        { date: '2026-02-25', approvalSha: 'abcdef1' }
+      );
+      expect(result.actor).toBe(actor);
+      expect(result.content).toContain('**Checking Approval SHA:** abcdef1');
+    }
+  );
+
   it('rejects backward transitions with explicit error code', () => {
     expect(() =>
       applyLifecycleTransition(

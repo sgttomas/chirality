@@ -61,4 +61,4 @@
 
 ## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-UPD-109 records the ruled loop-first layout: File Tree and Chat are the resizable panes; Tool Kit is a right-sidebar tab. UPD-111 records that the 14-row derivative dependency register exists. UPD-110 remains withheld for the final code tranche.
+UPD-109 records the ruled loop-first layout: File Tree and Chat are the resizable panes; Tool Kit is a right-sidebar tab. UPD-111 records that the 14-row derivative dependency register exists. UPD-110 is implemented by the governed `AppShell` keyboard-resize interaction test.

@@ -64,4 +64,4 @@
 
 ## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 remains withheld for the final code tranche.
+UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 is implemented by the governed PORTAL active-link render test.

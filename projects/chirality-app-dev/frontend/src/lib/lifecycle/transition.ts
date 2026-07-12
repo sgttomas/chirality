@@ -66,7 +66,7 @@ const APPROVAL_SHA_PATTERN = /^[0-9a-f]{7,64}$/i;
 
 function normalizeActor(actor: string): string {
   const normalized = actor.trim().toUpperCase().replace(/\s+/g, '_');
-  if (normalized === 'USER' || normalized === 'OPERATOR' || normalized.startsWith('HUMAN')) {
+  if (normalized === 'HUMAN' || normalized === 'USER' || normalized === 'OPERATOR') {
     return 'HUMAN';
   }
   return normalized;

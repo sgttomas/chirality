@@ -2,6 +2,8 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - D-APP-56 R4-P04 adopted `hook.progress`; mapper and JSONL replay tests preserve stdout, stderr, and output. No lifecycle transition occurred.
+
 - 2026-06-21 - ADQ-11/D-APP-43 closed the PreCompact/Stop residual by accepting adapter message/status/result lifecycle mapping as the canonical implementation surface: `context.compaction.started`, `context.compacted`, `context.compaction.failed`, `turn.completed`, `turn.failed`, and D-APP-40 `turn.interrupted`. No synthetic SDK hook callback layer is required. Evidence: `../Evidence_ADQ-11_Permission_Tool_Residuals.md`. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 - 2026-07-12 - D-APP-56 R5 P40 executed UPD-071, UPD-073: REF-006 current-state kit/register wording now agrees with D-APP-38 MATCH; dated source-warning and assessment history is preserved. No lifecycle transition.

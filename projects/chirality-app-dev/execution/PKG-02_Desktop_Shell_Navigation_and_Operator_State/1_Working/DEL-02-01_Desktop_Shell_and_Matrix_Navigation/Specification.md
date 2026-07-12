@@ -72,7 +72,7 @@ Required or anticipated artifacts:
 
 ## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 remains withheld for the final code tranche.
+UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 is implemented by the `ShellFrame` render test asserting the rendered PORTAL link carries `shell-nav-link--active`.
 
 ## D-APP-56 shell ownership amendment (2026-07-12)
 
