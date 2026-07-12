@@ -1620,3 +1620,44 @@
     and no-op; landed Remaining removal; 53-state census; original-run
     integrity; practitioner self-check; `git diff --check`. Frontend gates
     skipped because this corrective tranche is documentation/corpus metadata.
+
+- **2026-07-12 — Receipt 50** (D-APP-55 R6
+  backcheck and run closeout; correction PR #216 merged at `c313325b7`).
+  - Authority/scope: D-APP-56 R6 and closeout only. The original
+    `RUN_D55_CONCORDANCE_2026-07-11_1904Z` snapshot remains immutable.
+  - Executed: re-extracted all 255 affected-claim references across 151 changed
+    proposal rows; preserved the ten
+    explicit NO-REPAIR-NEEDED rows; removed the completed generic concordance
+    bootstrap from 53/53 `_STATUS.md` files; consolidated DEL-00-02's duplicate
+    owner/ResponsibleParty residual; made DEL-10-01's future-domain item
+    self-contained; published immutable derivative snapshot
+    `execution/_Reconciliation/DeliverableConcordance/R6_D55_BACKCHECK_2026-07-12_1903Z/`.
+  - Verdict: R5 COMPLETE / R6 COMPLETE / RUN CLOSED. All 53 deliverables remain
+    IN_PROGRESS; no owner ruling is attributed to an agent; no lifecycle,
+    issuance, release, publication, or professional claim changed. The root
+    six-pin export regeneration remains separately deferred.
+  - Model/role: GPT-5 highest-capability governed-artifact executor performed
+    the R6 status reconciliation, changed-claim re-extraction, derivative
+    snapshot, register/log closeout, and structural validation. Primary
+    orchestrator owns final gates, commit, PR, merge, and receipt finalization.
+    No silent model substitution occurred.
+  - Detailed evidence: the derivative snapshot carries a 255-row matrix—one
+    row per executed `(UpdateID, affected claim reference)`—with exact multiset
+    equality to the immutable proposal CSV, claim-specific live paths/semantic
+    locators/observed values, evidence-record
+    paths, and six dimension verdicts; its rider audit gives exact P04/P19
+    source/test proof, all ten explicit rider outcomes, and a 12/12
+    stale-assessment-current audit with zero historical recodes.
+  - Checks: 255/255 affected-claim references across 151/151 executed
+    update rows CONFIRMED; UPD-005 independently covers 6/6 and UPD-161 13/13;
+    53/53 lifecycle
+    states IN_PROGRESS; zero generic concordance Remaining bullets; 53/53
+    deliverables represented in a 65-row Remaining census (32 surviving items,
+    33 explicit NONE rows); every evidence locator/path exists and every
+    observed value is claim-specific; CQ-F1 22/22; 12/12 stale assessments
+    carry current annotations with zero recodes; original RUN_D55 integrity;
+    corpus v8 audit/status (eight MATCH, zero drift); practitioner self-check
+    baseline; practitioner-harness pytest 263 passed / 1 skipped; frontend
+    typecheck; full Vitest 680 passed / 4 skipped; owned-server premerge gate
+    Section 8 PASS (8) and Section 9 PASS (16, report-only); `git diff
+    --check` and app-dev-only scope fence.

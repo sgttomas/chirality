@@ -10,7 +10,6 @@
 - Adoption-verdict approving role remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
 - Land handover-consumption evidence for DEP-04-01-010..013 or retire/replace those rows with a recorded basis (consumer mirror rows in DEL-04-02/03/05 are TBD; DEL-04-04 carries no DEL-04-01 reference at all) (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed rows 006/009)
 - Close the CODEV-001 live-environment residuals — live subprocess version, payload sequence, session/transcript placement (DEP-04-01-007) (source: ORN-13 disposition; Evidence_D53A record) (gated: D-APP-52 owner act — live-LLM demonstration)
-- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -25,3 +24,4 @@
 - 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
 - 2026-07-12 - D-APP-56 R5 P40 applied UPD-069; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-118; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+- 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.

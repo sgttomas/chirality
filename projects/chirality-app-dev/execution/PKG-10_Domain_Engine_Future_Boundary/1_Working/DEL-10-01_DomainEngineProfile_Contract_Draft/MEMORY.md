@@ -4,6 +4,7 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - R6 rewrote the surviving domain-engine advance as a self-contained owner-gated item naming the tier-0, F-APP-3, apply-class, evidence, and sibling-contract constraints; discovery no longer depends on the obsolete ADQ-17 planning artifact. D-APP-55 is closed; lifecycle remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P43 executed UPD-091 by annotating the named historical INSP-03 gaps/caveat/premise with D-APP-37/38/49..53 evidence while preserving genuine future-boundary TBDs. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P41 rewrote the governed REF-007/REF-008 Path metadata from machine-absolute paths to repo-root-relative `agents/AGENT_SOFTWARE_DECOMP.md` and `agents/AGENT_DOMAIN_ENGINE.md`. Recorded hashes, `MATCH` status, and lifecycle state remain unchanged.
 - 2026-07-12 - D-APP-56 R4-P39 reconciled present-tense lifecycle wording to read current state from `_STATUS.md`; prior CHECKING evidence remains historical. No lifecycle transition occurred.

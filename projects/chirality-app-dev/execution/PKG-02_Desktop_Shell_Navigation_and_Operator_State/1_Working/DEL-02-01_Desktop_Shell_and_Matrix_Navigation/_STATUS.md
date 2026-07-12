@@ -9,7 +9,6 @@
 
 ## Remaining
 - CQ-F1 residue is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48, preserving the accepted affinity classifications exactly: `frontend/src/app/globals.css` — PKG-02 shell styling (R0-vintage granularity; R4-P29 family); `frontend/src/app/page.tsx` — PKG-02 root redirect wrapper (R4-P29 family); `frontend/src/components/shell/chat-markdown.tsx`, `frontend/src/components/shell/document-view.tsx`, `frontend/src/components/shell/file-picker.tsx`, and `frontend/src/components/shell/session-list-view.tsx` — shell view component (DEL-02-01 family); `frontend/src/components/shell/subagent-stream-view.tsx` and `frontend/src/components/shell/tool-stream-view.tsx` — shell event-view (DEL-05-04 transcript-stream-view sibling family); `frontend/src/components/workspace/harness-events-provider.tsx` — workspace event plumbing (DEL-02-01/PKG-02 family); `frontend/src/lib/shell/ansi.ts` and `frontend/src/lib/shell/document-view-state.ts` — shell helper; `frontend/src/lib/shell/harness-event-buffer.ts` and `frontend/src/lib/shell/harness-event-views.ts` — shell event plumbing; `frontend/src/lib/workspace/navigation-intent.ts` — workspace navigation helper. No ownership or mapping is asserted (revisit: next concordance pass).
-- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
 - 2026-07-12 - D-APP-56 final code tranche implemented UPD-106 PORTAL active-link render coverage; state remains IN_PROGRESS.
@@ -25,3 +24,4 @@
 - 2026-07-12 - D-APP-56 R5 P40 applied UPD-068; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-088 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-105; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+- 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
