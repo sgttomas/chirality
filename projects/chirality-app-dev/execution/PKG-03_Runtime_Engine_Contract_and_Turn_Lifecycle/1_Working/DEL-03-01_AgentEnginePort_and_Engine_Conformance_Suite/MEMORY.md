@@ -1,5 +1,7 @@
 # MEMORY - DEL-03-01
 
+- 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-03-01: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
+
 ## Decisions And Evidence
 
 - 2026-07-03 - D-APP-46 extraction absorbed into DEL-03-01 records: `Datasheet.md` now records the accepted package-owned `AgentEnginePort` source path with the app-dev shim retained, INSP-03/CODEV-001 carry forward notes for extracted contract surfaces, and `Evidence_CODEV-002_Harness_Contract_Package_Consumption_Readiness.md` records the internal package baseline. No lifecycle state, dependency row, package publication, F2/F3/F4 crossing, piping consumption, release posture, or professional/code-compliance claim changed.

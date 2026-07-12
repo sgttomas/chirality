@@ -34,7 +34,7 @@
 
 | Condition | Value | Source |
 |---|---|---|
-| Current release implementation status | Domain-engine endpoints/tools are provisional future platform interfaces and must not be implemented as current-release scope | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016 |
+| Current implementation partition | D-APP-49 through D-APP-52 rule source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools live; endpoints, apply, protected-path hooks/writes, and general runtime remain future/gated | `docs/SPEC.md` Section 18; `docs/PRD.md` KG-016; D-APP-49 through D-APP-52 |
 | Adoption gate | Future domain-engine work requires governed amendment and stable core harness/runtime boundaries | Decomposition OI-005 and DEC-006; `docs/PRD.md` Section 8.17 |
 | Fixture posture | OpenPipeStress may be a first fixture profile if adopted, but it is not Chirality core behavior | `docs/PRD.md` FR-114; `docs/TYPES.md` Section 11.3 |
 | PRD reference integrity | WARNING: `_REFERENCES.md` records PRD ExpectedSHA256 `86cb6f...eb34` and ActualSHA256 `fb1c73...6fc8`; per dispatch, this is treated as a source status | `_REFERENCES.md`; user dispatch |

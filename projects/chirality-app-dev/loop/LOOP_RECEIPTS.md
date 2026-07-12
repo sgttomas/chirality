@@ -1538,3 +1538,32 @@
     discovery and trigger scan; one-root-file diff fence; 53-state census;
     original-run integrity; `git diff --check`; practitioner self-check.
     Frontend gates skipped because no product runtime source changed.
+
+- **2026-07-12 — Receipt 47** (D-APP-56 R5 P06 governed authority-corpus
+  transcription complete; P05 landed via PR #213 at `aa4bb0031`).
+  - Authority/scope: D-APP-56 R4-P06=A, including Option 1 for sub-items (c)
+    and (d). Exact immutable-CSV membership is UPD-005..UPD-018 (14/14),
+    accounted in `execution/_Reconciliation/DeliverableConcordance/R5_P06_ACCOUNTING_2026-07-12.md`.
+  - Executed content: loop-first navigation and persona/matrix vocabulary;
+    hardcoded `WORKING_ITEMS` fallback; D-APP-49..52 staged domain posture;
+    post-D-APP-44 provider/residency and Pi boundary row; implemented
+    adapter-port input shape. Kit-side riders and durable records cover all
+    nine affected deliverables.
+  - State: all affected deliverables remain IN_PROGRESS; generic concordance
+    Remaining stays open for R6; original RUN_D55 artifacts unchanged; no
+    runtime code or lifecycle transition.
+  - Model/role: GPT-5 highest-capability governed-artifact executor applied
+    the authority and kit changes. GPT-5 primary orchestrator performs the
+    exact D-APP-38 procedure and tranche verification. No silent model
+    substitution occurred.
+  - D-APP-38 sequence: initial `status` returned rc=1 with exactly four
+    authority-doc drifts (SPEC/TYPES/PLAN/PRD); `bump --date 2026-07-12`
+    minted corpus v7 with the P06 reason; first `apply` reconciled 204 rows
+    across 51 deliverable files; `audit` passed; final `status` reported
+    eight MATCH / zero drift; second `apply` reconciled 0 rows across 0 files
+    and preserved diff hash `083bd803f3e80ee030ec063756ea57b4f54ff3ec`.
+  - Checks: 14-row accounting; corpus v7 audit/status; second-apply no-op;
+    nine-record census; 53-state census; original-run integrity;
+    `git diff --check`; practitioner self-check. Frontend runtime gates are
+    skipped because this tranche changes governed documentation and
+    corpus-reference metadata only.

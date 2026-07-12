@@ -274,18 +274,18 @@ Acceptance:
 - Tool collisions are prevented.
 - Remote MCP and plugin marketplace remain out of scope until governed future amendment.
 
-### R7 — Domain Engine Profiles and Operation Proposals — Future Amendment
+### R7 — Domain Engine Profiles and Operation Proposals — Staged / Future Amendment
 
 Purpose:
 
-- Introduce generic Domain Engine Profiles and operation-proposal workflows after core harness stability.
+- Preserve the D-APP-49 through D-APP-52 staged-live source-type, closed-registry, read-tool, and pec-scoped loopback proposal surface while governing broader domain-engine activation separately.
 
 Implementation targets:
 
-- `DomainEngineProfile` contract.
+- `DomainEngineProfile` contract and type guards (staged live).
 - Protected path and proposal path policy.
 - Deterministic adapter manifests.
-- `OperationProposal` records.
+- `OperationProposal` records and pec-scoped propose/refresh/validate transport (staged live).
 - Human-gated operation application.
 - Boundary notices.
 - OpenPipeStress as first fixture profile if adopted.
@@ -294,7 +294,7 @@ Acceptance:
 
 - Domain engines own domain truth.
 - Agents write proposals and summaries, not protected model truth.
-- Applying domain operations requires explicit human acceptance.
+- Applying domain operations remains excluded from the tool surface and requires a future proposal plus explicit human acceptance.
 - Chirality does not claim professional approval, code compliance, external validation, or solver ownership.
 
 ---

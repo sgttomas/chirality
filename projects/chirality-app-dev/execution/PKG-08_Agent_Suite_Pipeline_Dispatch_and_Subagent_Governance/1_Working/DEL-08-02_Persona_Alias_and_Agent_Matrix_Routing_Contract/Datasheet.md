@@ -23,12 +23,12 @@
 | Anticipated artifacts | Alias resolver tests; route fixtures; matrix mapping tests. | `_CONTEXT.md`; decomposition entry DEL-08-02 |
 | Covered scope items | SOW-005, SOW-006, SOW-017. | `_CONTEXT.md`; decomposition scope table |
 | Supported objectives | OBJ-001, OBJ-007. | `_CONTEXT.md`; decomposition entry DEL-08-02 |
-| UI alias map | `HELP -> HELP_HUMAN`; `ORCHESTRATE -> ORCHESTRATOR`; `AGENTS -> HELPS_HUMANS`; `DEPENDENCIES -> EVALUATION`. `AGGREGATE` and `RECONCILING` are not compatibility aliases because their former targets are not Type 0/1 loop personas. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` FR-026; D-APP-28 loop-first routing |
+| UI alias map | `HELP -> HELP_HUMAN`; `ORCHESTRATE -> ORCHESTRATOR`; `AGENTS -> HELPS_HUMANS`; `DEPENDENCIES -> EVALUATION`. `AGGREGATE` and `RECONCILING` are not compatibility aliases: their former cells were re-pointed to the canonical Type 1 `REVIEW` and `RESEARCH` personas so no alias is needed. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` FR-026; D-APP-28 loop-first routing |
 | Matrix rows | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE`. | `docs/TYPES.md` Section 4.1; `docs/PRD.md` FR-007 |
 | Matrix columns | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING`. | `docs/TYPES.md` Section 4.2; `docs/PRD.md` FR-007 |
 | Matrix routing destinations | `NORMATIVE` and `EVALUATIVE` produce loop-persona intent; `OPERATIVE` routes to PIPELINE. | `docs/TYPES.md` Section 4.1; `docs/PRD.md` Section 7.2 and FR-008; D-APP-28 |
 | Persona filename target | Persona names resolve to `agents/AGENT_*.md`; missing personas return `PERSONA_NOT_FOUND`. | `docs/PRD.md` FR-025 |
-| Persona fallback | Request/session persona falls back to `HELP_HUMAN` or configured default. | `docs/SPEC.md` Section 13.1 |
+| Persona fallback | Empty or missing request/session persona falls back to the live hardcoded `WORKING_ITEMS` default; unknown non-empty labels pass through normalized for instruction-file resolution. | `docs/SPEC.md` Section 13.1; `frontend/src/lib/shell/persona-resolution.ts` |
 
 ## Conditions
 

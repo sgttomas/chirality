@@ -1,5 +1,7 @@
 # MEMORY - DEL-10-04
 
+- 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-10-04: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
+
 ## Decisions And Evidence
 
 - 2026-07-12 - D-APP-56 R4-P41 rewrote the governed REF-007 Path metadata from a machine-absolute path to repo-root-relative `agents/AGENT_SOFTWARE_DECOMP.md`. Recorded hashes, `MATCH` status, and lifecycle state remain unchanged.

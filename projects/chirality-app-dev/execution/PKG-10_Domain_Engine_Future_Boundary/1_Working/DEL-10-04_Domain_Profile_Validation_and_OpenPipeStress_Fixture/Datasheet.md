@@ -37,7 +37,7 @@
 | Condition | Value | Source |
 |---|---|---|
 | Runtime sequencing | Domain-engine profiles and operation proposals are future amendment work after core harness stability | `docs/PLAN.md` R7; `docs/PRD.md` R7 |
-| Current-release exclusion | Domain-engine endpoints and tools are provisional future interfaces and must not be implemented as current-release scope | `docs/SPEC.md` Section 18 |
+| Staged/live boundary | Source types/guards, the closed registry, ruled read tools, and pec-scoped loopback propose/refresh/validate tools are live under D-APP-49 through D-APP-52; endpoints, apply, and protected-path hooks/writes remain future/gated | `docs/SPEC.md` Section 18; D-APP-49 through D-APP-52 |
 | Protected path enforcement | Prompt text is not a sufficient safety boundary for filesystem writes or domain operations | `docs/CONTRACT.md` Section 1.6 K-PERM-2 |
 | Fixture specificity | OpenPipeStress-specific assumptions must live in profile and adapter layers, not in core harness runtime | `docs/PRD.md` Section 8.17 FR-114 |
 | Dependency state | Declared upstream and downstream dependencies are TBD until dependency extraction and project graph validation occur | `_DEPENDENCIES.md` Declared Upstream/Downstream |
