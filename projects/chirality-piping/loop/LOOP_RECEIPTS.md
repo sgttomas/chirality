@@ -444,3 +444,67 @@
     artifacts). Resume: R2 W1 (PKG-00–03) per RUN_BASIS resume point. No
     lifecycle transition; discovery read-only; repair tranches remain
     gate-stopped.
+
+- **2026-07-11 — Receipt 17** (concordance resume: pre-dispatch verification +
+  owner steer of record; R2 W1 dispatch follows).
+  - Start: dedicated worktree
+    `.claude/worktrees/chirality-piping-d41-concordance-9811cb`, branch
+    `claude/chirality-piping-d41-concordance-9811cb`, HEAD `052b3c2b2`
+    (includes the PR #184 merge `5e2763f0a`), tree clean. Account verified
+    ryan@chirality.ai ("ryan@chirality.ai's Organization"); orchestrator model
+    `claude-fable-5`; opus subagent availability verified by live ping.
+  - Frozen evidence worktree recreated at
+    `.claude-worktrees/piping-frozen-551f84ef6`; HEAD verified equal to the
+    full pinned SHA `551f84ef6be656f1603ce0acfa5e3935aa9683c7`; porcelain
+    clean; strictly read-only.
+  - Resume boundary re-verified: R1 complete; R2 never started; no `WAVES/`
+    or `PACKAGE_SUMMARIES/` artifacts exist (the aborted W1 launch produced
+    no agent output); R0/R0b ledgers remain calibration-only.
+  - Owner steer of record (2026-07-11, resume prompt, verbatim): "Steer (this
+    run, owner-ruled 2026-07-11, overrides LOOP_INIT §7 defaults per its own
+    terms): fable orchestrates; opus for R2 discovery pilots in waves W1-W5,
+    EXCEPT fable for ALL discovery pilots in W2 (PKG-04-05, solver mechanics —
+    engineering-adjudication risk), PKG-12 in W4 (security/privacy, F-PIP-1
+    fence-adjacent, first SECURITY-class encoding), and PKG-01 in W1 (F-PIP-2
+    professional-claims fence; DEL-01-01 ISSUED). Fable at high effort for the
+    per-wave fan-in verification pass, scoped to: all self-flagged rows, all
+    non-ALIGNED rows, plus >=2 ALIGNED/IMPLEMENTED_UNDOCUMENTED rows sampled
+    per ledger. Any ledger the verification pass finds defective is re-run by
+    a fable pilot. R3 synthesis and R6 backcheck agents are fable."
+  - Gate outcome: executing — R2 W1 (PKG-00–03, 25 pilots) dispatched under
+    `R1_CONVENTIONS.md`; ≤4 concurrent pilots; wave boundary =
+    validate/commit/push/PR/receipt, then STOP for owner merge direction.
+
+- **2026-07-11 — Receipt 18** (R2 W1 complete; wave-boundary stop).
+  - Executed per Receipt 17's steer: 25 W1 ledgers (504 rows; opus pilots,
+    fable for PKG-01), fable high-effort fan-in (17 SOUND / 8 DEFECTIVE),
+    8 fable re-runs + 3 owning-pilot string corrections, Part C SECURITY
+    spot-checks PASS. Artifacts: `WAVES/W1/` (25 ledgers + notes + 4
+    verification reports) and `PACKAGE_SUMMARIES/PKG-0{0..3}.md` in the run
+    folder; phase detail in RUN_BASIS (W1-complete entry) — never here.
+  - Checks: full-wave structural validation pass (header/enums/ClaimID/
+    addenda sweeps, 0 errors); notes histograms reproduce; frozen worktree
+    porcelain empty throughout; no product/deliverable surface touched, so
+    no DEC-025 sweep owed (run artifacts only).
+  - Notable for W2 calibration (detail in package summaries): rev-0.7
+    pointer-drift encoding adjudicated STALE-side with owner-calibration
+    caveat; SECURITY marker/routing harmonization; overtaken Gate-C review
+    prose encodes STALE on affected DECL rows.
+  - Gate outcome: stopped/awaiting owner — wave branch pushed and PR opened
+    (branch `claude/chirality-piping-d41-concordance-9811cb`); W1 merge
+    direction or explicit per-PR self-merge grant required before W2
+    (PKG-04–05, all-fable) dispatches. No lifecycle transition; no register
+    change; discovery read-only.
+
+- **2026-07-11 — Receipt 19** (pause after W1; same session as Receipts
+  17–18).
+  - Owner direction of record (2026-07-11, in-session, verbatim): "Once this
+    wave fans-in and you have dealt with everything so it's safe to pause,
+    do so.  Do not launch another wave."
+  - State at pause: W1 fan-in, re-runs, revalidation, package summaries,
+    Receipt 18, and PR #187 were already complete when the direction
+    arrived; no agents in flight; no partial artifacts. Pause entry appended
+    to RUN_BASIS (resume point: W2 per the Receipt-17 steer + W1 calibration
+    notes, after the owner acts on PR #187).
+  - Gate outcome: paused at owner direction. W2 is NOT to be launched
+    without new owner direction; PR #187 merge remains the owner's act.
