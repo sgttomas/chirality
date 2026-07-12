@@ -620,7 +620,7 @@ interface AgentEnginePort {
 }
 ```
 
-`AgentEngineRunInput` MUST include the active session, normalized project root, persona, mode, resolved runtime options, and content blocks or attachment summaries where applicable. `TurnEngine.runTurn(request)` remains the route-independent product lifecycle method above this adapter port.
+`AgentEngineRunInput` carries the implemented adapter-port inputs: active session identity and resolved options plus content blocks. The session record and resolved options carry normalized `projectRoot`, persona, mode, and attachment summaries; interrupt and stream cancellation carry cancellation out of band. `TurnEngine.runTurn(request)` remains the route-independent product lifecycle method above this adapter port.
 
 ### 10.3 Engine Adapter Rules
 
@@ -712,7 +712,7 @@ Safe runtime metadata SHOULD include:
 | Tools | `opts.tools` → persona frontmatter → runtime default |
 | Max turns | `opts.maxTurns` → persona frontmatter → runtime default |
 | Mode | request/session mode → runtime default |
-| Persona | request/session persona → `HELP_HUMAN` or configured default |
+| Persona | request/session persona → hardcoded `WORKING_ITEMS` default when empty or missing |
 
 Unknown option keys MUST be ignored with warnings rather than silently mutating behavior.
 
@@ -874,7 +874,7 @@ Existing route shapes remain stable during adapter adoption and TurnEngine extra
 
 ## 18. Domain Engine Future Specification Boundary
 
-Domain-engine endpoints and tools are provisional future platform interfaces. They must not be implemented as current-release scope and must not imply automated professional acceptance or direct protected-model writes.
+D-APP-49 through D-APP-52 authorize a bounded staged surface: source types and guards, a closed profile registry, ruled read tools, and pec-scoped loopback propose/refresh/validate tools. The endpoint families below, operation apply, direct protected-path writes/hooks, and general domain-runtime activation remain provisional future interfaces. No staged or future surface implies automated professional acceptance or direct protected-model writes.
 
 Candidate endpoint families:
 

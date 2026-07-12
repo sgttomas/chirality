@@ -1,5 +1,7 @@
 # MEMORY - DEL-10-03
 
+- 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-10-03: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
+
 ## Decisions And Evidence
 
 - 2026-07-12 - D-APP-56 R5 P43 executed UPD-093 by annotating the three overtaken INSP-03 conclusion groups while preserving proposal-store, artifact-schema, and apply-exposure TBDs. No lifecycle transition occurred.

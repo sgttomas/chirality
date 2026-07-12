@@ -1,5 +1,7 @@
 # MEMORY - DEL-01-04
 
+- 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-01-04: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
+
 - 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-01-04; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
 
 ## Decisions And Evidence

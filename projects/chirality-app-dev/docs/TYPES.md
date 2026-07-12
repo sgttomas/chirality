@@ -126,9 +126,8 @@ A Type 2 agent cannot modify Type 0 rules. A Type 1 agent cannot issue work for 
 |---|---|
 | `HELP` | `HELP_HUMAN` |
 | `ORCHESTRATE` | `ORCHESTRATOR` |
-| `AGGREGATE` | `AGGREGATION` |
-| `RECONCILING` | `RECONCILIATION` |
 | `AGENTS` | `HELPS_HUMANS` |
+| `DEPENDENCIES` | `EVALUATION` |
 
 ---
 
@@ -138,9 +137,9 @@ A Type 2 agent cannot modify Type 0 rules. A Type 1 agent cannot issue work for 
 
 | Value | Meaning | Destination |
 |---|---|---|
-| `NORMATIVE` | Guidance, orchestration, standards, and aggregation support. | WORKBENCH |
+| `NORMATIVE` | Guidance, orchestration, standards, and review support. | Mounted loop-persona intent; tertiary forms stay sidebar-reachable. |
 | `OPERATIVE` | Pipeline execution categories. | PIPELINE |
-| `EVALUATIVE` | Review, dependencies, change, and reconciliation support. | WORKBENCH |
+| `EVALUATIVE` | Review, evaluation, change, and research support. | Mounted loop-persona intent; tertiary forms stay sidebar-reachable. |
 
 ### 4.2 Matrix Columns
 
@@ -155,9 +154,9 @@ A Type 2 agent cannot modify Type 0 rules. A Type 1 agent cannot issue work for 
 
 | Row | Guiding | Applying | Judging | Reviewing |
 |---|---|---|---|---|
-| `NORMATIVE` | `HELP` | `ORCHESTRATE` | `WORKING_ITEMS` | `AGGREGATE` |
+| `NORMATIVE` | `HELP` | `ORCHESTRATE` | `WORKING_ITEMS` | `REVIEW` |
 | `OPERATIVE` | `DECOMP*` | `PREP*` | `TASK*` | `AUDIT*` |
-| `EVALUATIVE` | `AGENTS` | `DEPENDENCIES` | `CHANGE` | `RECONCILING` |
+| `EVALUATIVE` | `AGENTS` | `DEPENDENCIES` | `CHANGE` | `RESEARCH` |
 
 ### 4.4 Pipeline Terms
 
@@ -503,17 +502,15 @@ type ChildRunRecord = {
 This section is an app-dev vocabulary target that conforms to framework-root
 `agents/AGENT_DOMAIN_ENGINE.md` at commit `77a327727605f05da5f304288f1ddd87dc09659d`.
 
-> **Forward note (2026-07-04 — D-APP-49 ruling O-A; D-T0-10 proven-L2 acknowledgment recorded):**
-> F3 step (a) is open, and the prior boundary sentence — "It is documentation only. It does not
-> stand up source types, domain MCP tools, protected-path hooks, domain runtime, or
-> operation-application behavior." — is amended forward: the `DomainEngineProfile` /
+> **Forward note (2026-07-12 — D-APP-49 through D-APP-52 ruled staged surface):**
+> The prior documentation-only boundary is amended forward: the `DomainEngineProfile` /
 > `OperationProposal` vocabulary below now has inert source-type mirrors (types + type guards
 > only; no behavior, persistence, UI, I/O, or imports) in
 > `frontend/packages/harness-contract/src/domain-profile.ts` and
-> `frontend/packages/harness-contract/src/operation-proposal.ts`. The rest of the boundary
-> stands unchanged: this section and those modules stand up no domain MCP tools (step (b)
-> remains the separate D-APP-50 lane; `mcp__chirality__domain_*` stays reserved), no
-> protected-path hooks, no domain runtime, and no operation-application behavior.
+> `frontend/packages/harness-contract/src/operation-proposal.ts`. D-APP-50 through D-APP-52
+> also authorize the closed profile registry, ruled read tools, and pec-scoped loopback
+> propose/refresh/validate tools. Operation apply, `/api/domain/*` endpoints, direct
+> protected-path writes/hooks, and general domain-runtime activation remain future and gated.
 
 ### 11.1 `DomainEngineProfile`
 

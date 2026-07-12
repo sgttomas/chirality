@@ -4,7 +4,7 @@
 
 This deliverable defines a future-boundary data model and review workflow for `OperationProposal` records. It covers the proposal record shape, proposal-only status, lifecycle, K-AUTH-2-bound human gate, deterministic result-schema hooks, and review checklist for future domain-engine operations.
 
-This deliverable excludes current-release domain operation execution, source types, domain MCP tools, domain adapter implementation, protected-path enforcement implementation, operation stores, apply tooling, and any claim that Chirality owns solver truth. Those items remain future amendment or sibling-deliverable scope.
+This deliverable excludes operation apply, `/api/domain/*` endpoints, direct protected-path writes/hooks, general domain-runtime activation, and any claim that Chirality owns solver truth. D-APP-49 through D-APP-52 separately authorize source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools; those staged surfaces remain outside this four-document contract except as governing context.
 
 Primary canon: `_REFERENCES.md` REF-008, `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. Under D-T0-01, the framework-root persona is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it and must not weaken framework invariants.
 

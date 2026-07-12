@@ -6,10 +6,10 @@
 |---|---|---|---|---|---|
 | REF-001 | `docs/DIRECTIVE.md` | Intent, authority, professional boundaries | `14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317` | `14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317` | MATCH |
 | REF-002 | `docs/CONTRACT.md` | Invariants and enforcement surfaces | `2f52a24cee9badd4ae21347195d1e7d54739bbf41929d1da535e25429d2923b4` | `2f52a24cee9badd4ae21347195d1e7d54739bbf41929d1da535e25429d2923b4` | MATCH |
-| REF-003 | `docs/SPEC.md` | Physical structures, runtime mechanics, API/file contracts | `cbca612e6a4e390e36ca55da0f9381491f6b9f582e64c36232edd517dc1f8611` | `cbca612e6a4e390e36ca55da0f9381491f6b9f582e64c36232edd517dc1f8611` | MATCH |
-| REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `bb4af418f577c3dff12114ab100070de50801bc7e0f94221635b0a171a736b87` | `bb4af418f577c3dff12114ab100070de50801bc7e0f94221635b0a171a736b87` | MATCH |
-| REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98` | `6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98` | MATCH |
-| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` | `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` | MATCH |
+| REF-003 | `docs/SPEC.md` | Physical structures, runtime mechanics, API/file contracts | `47cc3b054f97b94f8b475e329deaf599aabbb9c1495cdf0b867427e40fe3cab8` | `47cc3b054f97b94f8b475e329deaf599aabbb9c1495cdf0b867427e40fe3cab8` | MATCH |
+| REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `5359175e560de31694c6839ab84db03de4619cbf251fc87b62e2dc3f0e6bba5a` | `5359175e560de31694c6839ab84db03de4619cbf251fc87b62e2dc3f0e6bba5a` | MATCH |
+| REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `11b1e9911f0edced41a9f94674c9e0a144c696ac52143c958042f55ae9b29d51` | `11b1e9911f0edced41a9f94674c9e0a144c696ac52143c958042f55ae9b29d51` | MATCH |
+| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `6e7c1c67a3dee4bede5959a50a5d332cd7455f215355eaf8a7c7cd7da4b0c619` | `6e7c1c67a3dee4bede5959a50a5d332cd7455f215355eaf8a7c7cd7da4b0c619` | MATCH |
 | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method and gate protocol | `4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab` | `4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab` | MATCH |
 | REF-008 | `agents/AGENT_DOMAIN_ENGINE.md` | Domain-engine persona; canonical DomainEngineProfile / OperationProposal contract (pinned at `77a327727`) | `ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95` | `ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95` | MATCH |
 
