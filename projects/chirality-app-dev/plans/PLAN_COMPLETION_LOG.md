@@ -6,6 +6,14 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P41 reference-path metadata repair
+
+Executed UPD-080 across six deliverables, rewriting eight governed REF-007/
+REF-008 Path cells from machine-absolute paths to repo-root-relative
+`agents/AGENT_SOFTWARE_DECOMP.md` and `agents/AGENT_DOMAIN_ENGINE.md` pointers.
+Recorded hashes and `MATCH` status are unchanged. All deliverables remain
+`IN_PROGRESS`; the generic concordance Remaining item stays open for R6.
+
 ## 2026-07-12 - D-APP-56 R5 P40 REF-006 current-state repair
 
 Executed UPD-068..UPD-079 across 32 deliverables. Four-document kits now

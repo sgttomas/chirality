@@ -10,8 +10,8 @@
 | REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `bb4af418f577c3dff12114ab100070de50801bc7e0f94221635b0a171a736b87` | `bb4af418f577c3dff12114ab100070de50801bc7e0f94221635b0a171a736b87` | MATCH |
 | REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98` | `6f0baacc2bd0b626f8fc0639624fd94bfd048445c9c5ebc4453ac09d8289bc98` | MATCH |
 | REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` | `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` | MATCH |
-| REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method and gate protocol | `4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab` | `4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab` | MATCH |
-| REF-008 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_DOMAIN_ENGINE.md` | Domain-engine persona; canonical DomainEngineProfile / OperationProposal contract (pinned at `77a327727`) | `ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95` | `ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95` | MATCH |
+| REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method and gate protocol | `4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab` | `4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab` | MATCH |
+| REF-008 | `agents/AGENT_DOMAIN_ENGINE.md` | Domain-engine persona; canonical DomainEngineProfile / OperationProposal contract (pinned at `77a327727`) | `ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95` | `ad20dbb3f91b4eeac61f3a76603f462a6a006172f1c4da1ee2cfcf6349d74c95` | MATCH |
 
 ## Decomposition Entry
 
