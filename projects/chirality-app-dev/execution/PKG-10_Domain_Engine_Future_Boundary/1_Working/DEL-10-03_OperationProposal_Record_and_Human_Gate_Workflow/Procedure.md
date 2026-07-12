@@ -83,3 +83,7 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 - Review checklist result: TBD future artifact recording schema completeness, protected-path posture, boundary-language review, human-gate readiness, deterministic-check readiness, and unresolved implementation blockers.
 - Boundary notice review result.
 - Adapter validation/apply result: the result envelope is published (2026-07-02) as `projects/chirality-piping/schemas/operation_outcome.schema.json` (operation/change identifiers, validation states, diff preview, diagnostics, honest acceptance receipt); the app-dev-side implementation artifact (accepted proposal reference, output references, failure/rollback note, record location) remains `TBD`.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.

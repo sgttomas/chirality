@@ -78,3 +78,7 @@ Example evidence rows the final probe notes should contain:
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
 | SRC-001 | `docs/PRD.md` is authoritative in role but `_REFERENCES.md` reports `MATCH`; content based on PRD should not be closed without source-state confirmation. | `_REFERENCES.md` REF-006 | `docs/PRD.md` R0/R1 and KG-021 through KG-032 | Datasheet References; Specification Requirements and Verification; Guidance Considerations | Use corroborated PRD claims as draft context where they match MATCH sources; require human/source refresh before closure. | TBD — reconciled under D-APP-38 |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.

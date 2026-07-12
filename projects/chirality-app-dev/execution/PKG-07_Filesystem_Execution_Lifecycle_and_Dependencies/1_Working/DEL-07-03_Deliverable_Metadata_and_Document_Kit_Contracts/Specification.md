@@ -101,3 +101,7 @@ Required or expected artifacts for closure:
 - Test fixtures covering valid, incomplete, optional, and prohibited deliverable-local files.
 - Documentation or inline contract comments for scanner output severity (`TBD` until implementation schema is selected).
 - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-131 supersedes the integration-test TBD: additive `/api/project/deliverables` binding exists and is fixture-locked.

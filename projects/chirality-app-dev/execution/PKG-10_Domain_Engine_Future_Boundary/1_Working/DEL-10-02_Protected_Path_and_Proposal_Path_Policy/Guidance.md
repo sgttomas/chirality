@@ -49,3 +49,7 @@ Supported example categories:
 | CT-002 | Concrete protected/proposal path examples are requested as anticipated artifacts, but accessible sources define only categories and fields, not specific path patterns. | `_CONTEXT.md` Anticipated Artifacts | `docs/TYPES.md` §11.1/§11.3; `docs/PRD.md` §8.17 | Examples, requirements, procedure | Mark concrete patterns TBD until `DomainEngineProfile` contract/future amendment supplies them. | TBD |
 | CT-003 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | `docs/PRD.md` §8.17 and §10.10 | PRD-grounded requirements, closure language | Keep A-001 and E-001 visible as a source-warning conflict until a human accepts or replaces the PRD snapshot. | TBD |
 | CT-004 | No accountable owner is named for accepting or replacing the REF-006 PRD snapshot before final policy closure. | `_REFERENCES.md` REF-006 | `_CONTEXT.md` Source Authority | Source warning closure | Treat D-001 as a human-ruling TBD; do not close the PRD source warning by agent judgment. | TBD |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-149 acknowledges concrete path blocks in ADOPTED profiles while retaining accepted-glob syntax and hook API as TBD/gated.

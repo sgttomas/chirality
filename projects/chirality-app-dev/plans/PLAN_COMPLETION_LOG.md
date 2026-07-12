@@ -6,6 +6,17 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P45 residual metadata repair
+
+Executed the 54 app-dev documentation/register rows in UPD-100..UPD-157,
+excluding code rows UPD-106, UPD-110, UPD-140, and UPD-141. Thirty-five
+deliverables now carry dated current-state reconciliation on the named kit or
+register surfaces; sixteen structured dependency registers validate and their
+current markdown summaries agree with the CSVs. The six-file root public-
+export hash-pin rider is deferred in full under the owner's clarification and
+was not edited. All deliverables remain `IN_PROGRESS`; generic concordance
+Remaining items stay open for R6. Work pauses after this tranche as directed.
+
 ## 2026-07-12 - D-APP-56 R5 P44 relocated-pointer docs repair
 
 Executed UPD-095, UPD-096, UPD-098, and UPD-099 plus the named PKG-05 and

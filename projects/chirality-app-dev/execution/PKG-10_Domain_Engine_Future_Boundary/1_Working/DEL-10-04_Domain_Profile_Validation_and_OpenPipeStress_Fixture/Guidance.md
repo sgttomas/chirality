@@ -68,3 +68,7 @@ TBD until amendment assigns files and owner:
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | CT-001 | No source-content conflict identified during P1/P2. PRD hash status: MATCH is recorded as a source status per dispatch. | `_REFERENCES.md` REF-006 | Assignment override | All documents citing PRD | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | TBD — reconciled under D-APP-38 |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt `domain-engine-profile-validation/v1`, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.

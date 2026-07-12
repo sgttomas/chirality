@@ -106,3 +106,7 @@ Source: `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727` and reflected in `
 - `docs/TYPES.md` §11
 - `docs/PLAN.md` §R7
 - `docs/PRD.md` §8.17, §10.10, §R7, KG-016 through KG-020
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-148 distinguishes supplied ruled-amendment fields (profile instances and hook-field schema references) from genuine remaining TBDs (adapters, stores, endpoints, apply tooling, and per-instance notice review).

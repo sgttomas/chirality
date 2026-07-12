@@ -80,3 +80,7 @@ No source-content conflicts were identified during P1/P2 drafting.
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | SOURCE-WARN-001 | `docs/PRD.md` is listed as MATCH in `_REFERENCES.md`; PRD content aligns with matching SPEC/CONTRACT/TYPES slices used here but source state is not clean. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076 | Datasheet References; Specification Standards/Requirements; Guidance Considerations | Use PRD only as corroborating context until reference hash is reconciled. | TBD — reconciled under D-APP-38 |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-124 replaces provider-shaped kit wording with the corpus-current provider-neutral HarnessEvent names. UPD-125 records DEP-05-02-007 retired and the 11 ACTIVE / 1 RETIRED register state.

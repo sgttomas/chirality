@@ -62,3 +62,7 @@
 - `docs/TYPES.md` §11.
 - `docs/PLAN.md` R7.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-10 and SOW-068 rows.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-149 acknowledges concrete path blocks in ADOPTED profiles while retaining accepted-glob syntax and hook API as TBD/gated.

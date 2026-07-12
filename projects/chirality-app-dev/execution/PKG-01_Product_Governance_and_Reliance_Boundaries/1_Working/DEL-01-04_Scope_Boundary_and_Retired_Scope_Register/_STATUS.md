@@ -22,3 +22,4 @@
 - 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
 - 2026-07-12 - D-APP-56 R4-P38 corpus-label repair applied; concordance bootstrap remains open pending R6 backcheck; no state change.
 - 2026-07-12 - D-APP-56 R4-P39 lifecycle-wording repair applied; concordance bootstrap remains open pending R6; no state change.
+- 2026-07-12 - D-APP-56 R5 P45 applied UPD-104; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.

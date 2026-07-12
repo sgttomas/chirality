@@ -129,3 +129,7 @@ Record constraints:
 - API keys and secret material must not be stored in project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts.
 - The PRD hash mismatch must remain visible as a source warning until separately resolved.
 - `Dependencies.csv` was produced by a prior dependency-recording run; P3 does not edit dependency files, and readiness still requires accepted dependency-edge or blocker disposition.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.

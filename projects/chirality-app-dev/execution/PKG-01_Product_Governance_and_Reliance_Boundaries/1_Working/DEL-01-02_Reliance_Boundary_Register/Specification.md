@@ -97,3 +97,7 @@ The ADQ-02 work package includes:
 | OI-RBR-003 | Confirm SDK transcript placement decision after R1 probe. | TBD |
 | OI-RBR-004 | Current implemented Section 9 validation IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD until validator/session-linkage work lands. | PARTIAL |
 | OI-RBR-005 | Generated register rows cite the current D-APP-38 corpus snapshot and distinguish current corpus-matched evidence from future drift warnings. | CLOSED |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; Bash is mode-gated with live default `ask` and workspace-write auto-allow only after hooks, not flatly denied by default.

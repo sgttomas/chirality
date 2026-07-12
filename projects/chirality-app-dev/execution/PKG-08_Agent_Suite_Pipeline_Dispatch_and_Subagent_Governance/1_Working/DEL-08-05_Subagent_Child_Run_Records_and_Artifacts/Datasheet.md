@@ -81,3 +81,7 @@
 - `docs/PLAN.md` - R5 governed subagent runtime sequencing and retired-scope boundary.
 - `docs/PRD.md` - runtime event, artifact, and subagent requirements. Current under the D-APP-38 authority corpus.
 - `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` - decomposition method reference.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-138 records the implemented ChildRunRecord fields: remove `completedAt`; include `mode`, `capabilityPolicy`, `governance`, and `contractVersion`; examples must not invent persona/sdkAgentId/model timestamps. UPD-139 marks only artifact-policy row DEP-08-05-006 satisfied.

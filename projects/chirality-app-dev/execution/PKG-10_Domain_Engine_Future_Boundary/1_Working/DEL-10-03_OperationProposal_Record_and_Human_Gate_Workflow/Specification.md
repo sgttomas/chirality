@@ -76,3 +76,7 @@ Additional documentation needed before implementation:
   refs above; the tooling and the app-dev-side result-record location remain `TBD`.)
 - TBD: review checklist result artifact path/schema.
 - TBD: concrete proposal instances and profile-specific boundary notice copy.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.

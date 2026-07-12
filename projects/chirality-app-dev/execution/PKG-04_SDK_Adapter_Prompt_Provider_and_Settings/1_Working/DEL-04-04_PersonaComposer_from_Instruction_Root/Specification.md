@@ -74,3 +74,7 @@ Required traceability:
 
 - Link tests to SOW-017 and SOW-030 where the test framework supports names or comments.
 - Record any unresolved dependency on DEL-04-02, DEL-08-01, or DEL-08-02 as `TBD` or `ASSUMPTION` rather than hiding it in implementation behavior.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.

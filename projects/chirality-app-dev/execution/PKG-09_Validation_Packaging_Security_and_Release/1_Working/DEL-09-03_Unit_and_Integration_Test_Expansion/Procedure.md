@@ -90,3 +90,7 @@ This procedure describes how to produce and verify the DEL-09-03 test expansion 
 | X-001 | Incorporated as closure evidence. | Records now require test source paths, fixture paths, behavior-group coverage decisions, and command evidence before determination closure, with blockers if still `TBD`. Reread: Procedure Records and Verification. |
 | E-001 | Incorporated as fixture-path guard. | Step 5 now requires actual fixture files before replacing fixture path `TBD`s for symlink, budget, malformed JSONL, dependency, status, and denied-tool cases. Reread: `docs/SPEC.md` Sections 9.2 and 16.1; `docs/PRD.md` Sections 12.5-12.6. |
 | E-002 | Incorporated with current dependency state. | Prerequisites and Records now note existing `Dependencies.csv`, 13 ACTIVE rows, and satisfaction `TBD`; final release-readiness review must resolve or explicitly defer applicable dependency evidence. Reread: `_DEPENDENCIES.md`, `Dependencies.csv`, and `_run_records/TASK_RUN_2026-05-20_2102.md`. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-145 replaces closure-record TBDs with the existing GATE-TRANSCRIPT/ADQ-14 command evidence.

@@ -76,3 +76,7 @@ TBD:
 
 - Human assignment of `ResponsibleParty`.
 - Human closure decision for `Dependencies.csv` rows whose `SatisfactionStatus` remains `TBD`.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-103 records the post-D-APP-53 state: the dependency-reconciliation act is human-closed and the earlier INSP-03 dependency wording is historical. This does not imply every dependency is satisfied or any lifecycle transition.

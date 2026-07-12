@@ -90,3 +90,7 @@ Required or expected artifacts:
 | X-001 | Incorporated by requiring named option-list sources or fixtures for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`. |
 | X-002 | Incorporated by naming required document-kit discovery evidence and canonical `KnowledgeTypeOption` treatment for any exposed metadata buckets. |
 | X-003 | Incorporated by requiring visible, disabled or coming-soon semantics, and inability to initiate execution as one disabled-option evidence set. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-134 supersedes run-scoped dependency deferral wording: the extracted derivative register exists and is live.

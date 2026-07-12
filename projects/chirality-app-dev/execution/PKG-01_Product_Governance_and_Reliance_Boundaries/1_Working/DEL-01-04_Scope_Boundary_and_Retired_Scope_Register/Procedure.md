@@ -92,3 +92,7 @@ Records produced or updated by this procedure:
 Related derivative record owned by a separate workflow:
 
 - `Dependencies.csv`
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-104 supersedes the setup-era statement that no dependency rows had been extracted: the 13-row derivative register exists and remains owned by the separate dependency workflow.

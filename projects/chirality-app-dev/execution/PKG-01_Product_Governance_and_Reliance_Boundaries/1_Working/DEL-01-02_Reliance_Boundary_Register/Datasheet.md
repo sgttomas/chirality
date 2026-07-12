@@ -131,3 +131,7 @@
 - REF-005: `docs/PLAN.md`, especially R0/R1 reliance-boundary deliverables and acceptance.
 - REF-006: `docs/PRD.md`, especially §§8.12-8.16 and §15, under the current D-APP-38 corpus snapshot MATCH status.
 - REF-007: `AGENT_SOFTWARE_DECOMP.md`, especially no-invention and scope-boundary protocol.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; Bash is mode-gated with live default `ask` and workspace-write auto-allow only after hooks, not flatly denied by default.

@@ -61,3 +61,7 @@
 - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - `docs/SPEC.md`
 - `docs/TYPES.md`
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-112 resolves the SOW-023 traceability delta in favor of inclusion because decomposition v3.2 explicitly maps SOW-023 to DEL-02-05; the new anchor is derivative traceability, not a lifecycle decision.

@@ -63,3 +63,7 @@
 | REF-005 | `docs/PLAN.md` | Sections 2-4, 6-8 | Roadmap sequencing, tests, known SDK risks |
 | REF-006 | `docs/PRD.md` | Sections 8.4, 8.12, 8.13, 10.3.1, KG-021 through KG-032 | Product requirements; source hash status: MATCH noted — reconciled under D-APP-38 |
 | REF-DEC | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-04-02; SOW-016, SOW-045, SOW-047, SOW-052 | Deliverable scope and traceability |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-119/120/121 record the realized split: `TurnEngine.assertKnownAgentSdkTools` owns runtime validation, the options builder owns deterministic mapping, concrete compiling SDK property names are probe-backed, and the module/test paths are landed.

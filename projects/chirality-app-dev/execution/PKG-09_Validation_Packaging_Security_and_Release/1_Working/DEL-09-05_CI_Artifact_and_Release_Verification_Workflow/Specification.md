@@ -108,3 +108,7 @@ Documentation notes:
 - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - `ResponsibleParty` remains `TBD` until assigned by a human.
 - Any missing implementation-specific detail, including workflow path, artifact name, retention period, release evidence filename, and exact checker script path, remains `TBD`.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.

@@ -71,3 +71,10 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 ## Downstream Handoff Notes
 
 Not applicable; `CONSUMER_CONTEXT=NONE`.
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-137
+- **Current counts:** ACTIVE 6; RETIRED 0; PENDING=1; SATISFIED=2; TBD=3.
+- **Correction:** DEP-08-04-003 resolves to evaluateSubagentGovernance and is SATISFIED.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

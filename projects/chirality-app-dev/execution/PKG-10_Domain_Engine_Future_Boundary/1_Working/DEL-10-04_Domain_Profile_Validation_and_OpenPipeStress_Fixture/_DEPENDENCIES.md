@@ -76,3 +76,10 @@ Closure state update (2026-07-10, D-APP-53 reconciliation; previously `PENDING` 
 |---|---|---|---|---|---|
 | 2026-05-20T21:07:24-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH; FUTURE_AMENDMENT_TBD; RESPONSIBLE_PARTY_TBD; TEST_PATH_TBD; PROJECT_GRAPH_VALIDATION_TBD | ANCHOR=3; EXECUTION=5; TOTAL=8 |
 | 2026-07-10 | RECONCILIATION (D-APP-53) | n/a | located; anchors re-verified | 4 rows SATISFIED; -004/-006 annotate-only (owner-gated); -007/-008 left open with reasons; SOURCE_HASH_MISMATCH resolved (REF-006 MATCH); linter PASS 0/0 | ANCHOR=3; EXECUTION=5; TOTAL=8 |
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-157
+- **Current counts:** ACTIVE 8; RETIRED 0; PENDING=3; SATISFIED=5.
+- **Correction:** DEP-10-04-008 is SATISFIED against D53A; four prior PENDING rows are now three.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
