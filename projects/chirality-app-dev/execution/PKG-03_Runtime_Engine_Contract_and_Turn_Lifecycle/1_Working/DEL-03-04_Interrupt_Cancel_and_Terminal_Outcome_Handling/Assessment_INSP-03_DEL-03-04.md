@@ -61,3 +61,15 @@ ADQ-05 satisfies the D-APP-40 terminal-taxonomy decision row. Active rows still 
 ## Issuance-Gate-Process Observations
 
 DEL-03-04 has strong interrupt and terminal SSE evidence, and D-APP-40/ADQ-05 resolves interruption taxonomy. The gate should not treat client-disconnect cancellation persistence or accepted-input recovery as closed until a focused runtime-event tranche resolves them.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The REQ-004, REQ-005, ACC-002, and ACC-003 `PARTIAL` conclusions and their
+matching Gap 1/Gap 2 and forward-recommendation text are preserved historical
+inspection evidence. ORN-09 subsequently added exactly-once
+`turn.cancelled(reason=client_disconnect)` persistence and pre-execution
+`message.accepted` durability, with recovery and disconnect coverage in the
+route tests. Those four conclusions are superseded for current-state reading,
+as identified by the D-APP-56 P43 rider and `R3_SPOT_CHECK.md`. This note does
+not recode immutable concordance rows, alter an assessment verdict, or change
+lifecycle state.

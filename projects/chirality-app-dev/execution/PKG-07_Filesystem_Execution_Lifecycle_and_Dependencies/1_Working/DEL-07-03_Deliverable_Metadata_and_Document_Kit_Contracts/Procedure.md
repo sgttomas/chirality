@@ -16,7 +16,7 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 | Vocabulary for deliverables, artifacts, and lifecycle states | `docs/TYPES.md` / Sections 1.2, 1.3, lifecycle state table |
 | Governance posture for roots, memory, evidence, and conflicts | `docs/DIRECTIVE.md` / Sections 2.5, 2.6, 2.7; `docs/CONTRACT.md` / K-ROOT, K-CONFLICT |
 | Declared upstream dependencies | TBD - no declared upstream dependency edges have been accepted by a human. Extracted ACTIVE rows exist in `_DEPENDENCIES.md` and `Dependencies.csv`, but they are not accepted declared dependencies for this prerequisite row. Source: `_DEPENDENCIES.md` / Declared Upstream and Extracted Dependency Register |
-| Implementation location | TBD |
+| Implementation location | `frontend/src/lib/workspace/filesystem.ts` (`scanDeliverableDocumentKitContract`), consumed by the project-deliverables API scan. |
 | Scanner output schema | Minimum result fields are recorded in `Specification.md` / Scanner Finding Contract (P3); final implementation schema remains TBD. |
 
 ## Steps

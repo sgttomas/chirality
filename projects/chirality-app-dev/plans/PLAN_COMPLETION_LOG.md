@@ -6,6 +6,17 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P43 noteless-INSP-03 annotation repair
+
+Executed UPD-084..UPD-094 across eleven deliverables plus the owner-ruled
+DEL-03-04 four-claim rider. Twelve historical INSP-03 assessments now carry
+append-only superseding annotations; their original matrices, gaps, evidence,
+and recommendations remain preserved. DEL-07-03 also names the realized
+scanner implementation and test paths. DEL-10-04 was reviewed as the fifth
+PKG-10 assessment but required no edit because it has no P43 proposal row or
+owner rider. All deliverables remain `IN_PROGRESS`; the generic concordance
+Remaining item stays open for R6.
+
 ## 2026-07-12 - D-APP-56 R5 P42 DepClosure snapshot-pointer repair
 
 Executed UPD-081..UPD-083 across DEL-00-01 and DEL-00-02. The current

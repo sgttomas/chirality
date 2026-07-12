@@ -74,3 +74,13 @@ DEL-07-03 is one of the least complete PKG-07 deliverables. Current code can dis
 ## D-APP-56 R5 P40 annotation (2026-07-12)
 
 The source-state caveat above is preserved as historical assessment evidence. REF-006 now records `docs/PRD.md` expected and actual SHA-256 as `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` (`MATCH`) under D-APP-38; it is not a current warning or blocker. No assessment verdict or lifecycle state changes here.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The matrix conclusions for DEL-07-03-REQ-001 through REQ-007 and REQ-009 are
+preserved historical evidence from before ADQ-07. The existing ADQ-07 note
+records the superseding implementation; this annotation makes explicit that
+the old `PARTIAL`/`FAIL`/`TBD` cells are historical rather than current
+scanner truth. The implementation and focused tests now live at the paths
+recorded in the kit. No assessment verdict, dependency row, or lifecycle
+state changes here.

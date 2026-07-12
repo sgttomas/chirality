@@ -74,3 +74,14 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-01-02
 ## Issuance-Gate-Process Observations
 
 DEL-01-02 is the clearest PKG-01 blocker. The project has many runtime enforcement surfaces and validation IDs, but the deliverable's named output artifact is missing. A future issuance gate should require the register file, name reconciliation, and explicit row-level source-warning treatment before considering `ISSUED`.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The `PARTIAL` conclusions for RBR-002, RBR-003, RBR-005, RBR-006, RBR-009,
+RBR-019, RBR-020, and RBR-023 are preserved historical evidence. ADQ-02
+subsequently generated `docs/harness/reliance_boundary_register.md` with the
+row-level no-prompt-only/no-SDK-default proof, enforcement owners, active
+adapter validation names, audit, permission, redaction, fallback, and
+cross-check records those conclusions said were absent. The eight conclusions
+are therefore superseded for current-state reading. This note does not erase
+the original matrix or make an issuance or lifecycle decision.

@@ -55,3 +55,14 @@ No dependency rows were marked satisfied or mutated by this assessment. DEL-10-0
 ## Issuance-Gate-Process Observations
 
 This deliverable shows why PKG-10 needs a separate doc-only basis. The document set is useful future-boundary work, but normal issuance criteria that expect runnable implementation evidence do not fit without an explicit human ruling.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+Gap 1, Gap 4, the Source-State Caveat, and the old-REQ002 no-implementation
+premise are preserved historical evidence. D-APP-37 supplied the PKG-10
+document-only acceptance basis; D-APP-53 reconciled the dependency register;
+D-APP-38 restored REF-006 to `MATCH`; and D-APP-49 through D-APP-52 authorized
+the bounded staged-live profile/tool surfaces while keeping apply excluded.
+Those named observations are superseded for current-state reading. Remaining
+adapter, store, endpoint, apply-tooling, and per-instance review TBDs are not
+closed by this note. No lifecycle state changes here.

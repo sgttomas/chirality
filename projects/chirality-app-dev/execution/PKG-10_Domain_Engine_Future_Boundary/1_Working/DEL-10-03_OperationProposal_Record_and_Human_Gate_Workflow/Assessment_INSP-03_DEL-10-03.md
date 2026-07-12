@@ -56,3 +56,14 @@ No dependency rows were marked satisfied or mutated by this assessment. DEL-10-0
 ## Issuance-Gate-Process Observations
 
 This deliverable is a strong input to gate-process evaluation because its central gate is itself undefined. Issuance would need either a doc-only acceptance ruling or a future implementation/evidence tranche; the current artifact should not be treated as workflow approval.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The old-REQ003, old-REQ004/REQ009, and old-REQ008 conclusions above are
+preserved historical evidence. D-APP-50 and D-APP-52 supplied the bounded
+proposal record/tool surface with no accept/apply path, and the D-APP-53
+closure records the concrete K-AUTH-2 SHA-bound acceptance-evidence rule.
+Those former absence/undefined premises are superseded. The app-dev proposal
+store, concrete acceptance-record artifact schema, and any future apply
+exposure remain genuine TBD/gated work; this note does not authorize them or
+change lifecycle state.

@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - D-APP-56 R5 P43 executed UPD-086 by appending a current-state annotation for eight overtaken INSP-03 register conclusions while preserving the historical matrix. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P41 rewrote the governed REF-007 Path metadata from a machine-absolute path to repo-root-relative `agents/AGENT_SOFTWARE_DECOMP.md`. Recorded hashes, `MATCH` status, and lifecycle state remain unchanged.
 - 2026-07-12 - D-APP-56 R4-P39 reconciled present-tense lifecycle wording to read current state from `_STATUS.md`; prior CHECKING evidence remains historical. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P38 refreshed current kit and reliance-register corpus-version wording to version-neutral D-APP-38 snapshot references. Historical dated evidence was preserved; no lifecycle transition or authority-corpus bump occurred.

@@ -58,3 +58,14 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-00-02
 ## Issuance-Gate-Process Observations
 
 The deliverable is correctly in `CHECKING` with owner-approved SHA recorded (`_STATUS.md` lines 3-7), but it should not be issued yet. Dependency closure is accepted, while stale document-kit conflict language and responsible-party ambiguity remain useful inputs to the gate-process evaluation.
+
+## D-APP-56 R5 P43 annotation (2026-07-12)
+
+The REQ-005 and REQ-010 `PARTIAL` rows above are preserved as historical
+inspection evidence at the assessment's Reviewed SHA. They are superseded for
+current-state reading: the guidance now treats the former conflict as closed
+history, and the accepted handoff records the upstream snapshot, derivative
+status, closure verdict, rerun conditions, and remaining blockers. The
+requirements are met; DEL-00-02-ACC-001 separately owns the surviving
+lifecycle-wording residue. No assessment verdict or lifecycle state changes
+in this annotation.

@@ -48,7 +48,7 @@
 | Document kit detector | Treat `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` as first-class knowledge buckets. | `docs/PRD.md` / FR-049; `docs/SPEC.md` / Section 3.1 |
 | Memory contract validator | Accept `MEMORY.md` as canonical when present and reject `_MEMORY.md` in this project profile. | `docs/SPEC.md` / Section 3.1 and Section 5.4; `docs/PRD.md` / Section 10.8 |
 | Semantic placeholder validator | Recognize `_SEMANTIC.md` as part of the PREPARATION baseline and `_SEMANTIC_LENSING.md` as optional semantic analysis narrative. | `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / Section 10.8 |
-| Test coverage | Include metadata scanner tests, document kit detection tests, and `_MEMORY.md` rejection tests. Exact test paths are TBD. | `_CONTEXT.md` / Anticipated Artifacts; decomposition / DEL-07-03 row |
+| Test coverage | Metadata scanner, document-kit detection, and `_MEMORY.md` rejection coverage lives in `frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts`; project-deliverables route integration is covered by `frontend/src/__tests__/api/project/deliverables-route.test.ts`. | `_CONTEXT.md` / Anticipated Artifacts; decomposition / DEL-07-03 row |
 
 ## References
 

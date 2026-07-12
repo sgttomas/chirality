@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - D-APP-56 R5 P43 executed UPD-093 by annotating the three overtaken INSP-03 conclusion groups while preserving proposal-store, artifact-schema, and apply-exposure TBDs. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P41 rewrote the governed REF-007/REF-008 Path metadata from machine-absolute paths to repo-root-relative `agents/AGENT_SOFTWARE_DECOMP.md` and `agents/AGENT_DOMAIN_ENGINE.md`. Recorded hashes, `MATCH` status, and lifecycle state remain unchanged.
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 - 2026-06-21 - ADQ-17 prepared `plans/artifacts/adq17_future_r7_amendment_brief_2026-06-21.md` as a doc-only future amendment brief. It carries forward the `OperationProposal` record and human-gate workflow as future planning only, with acceptance-evidence and apply-semantics rulings required before implementation. No operation store, apply workflow, lifecycle issuance, professional approval, certification, sealing, authentication, code-compliance acceptance, or release-readiness claim changed.

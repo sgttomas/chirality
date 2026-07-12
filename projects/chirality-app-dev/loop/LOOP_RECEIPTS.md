@@ -1410,3 +1410,28 @@
     two durable-record sets; 53-state census; original-run integrity;
     `git diff --check`; practitioner self-check. Frontend gates skipped because
     P42 is documentation/control metadata only.
+
+- **2026-07-12 — Receipt 42** (D-APP-56 R5 P43 / Tranche F noteless-INSP-03
+  supersede/annotate complete; P42 landed PR #206).
+  - Upstream: D-APP-56 R4-P43=A and R4-P11=A; exact immutable-CSV set
+    UPD-084..UPD-094 (11/11, 30 affected claim keys across 11 deliverables)
+    plus the owner-ruled DEL-03-04 rider (REQ-004/REQ-005/ACC-002/ACC-003,
+    4/4). Total accounted claim keys: 34/34.
+  - Executed: twelve historical INSP-03 assessments received append-only
+    current-state annotations without altering their original matrices, gaps,
+    evidence, recommendations, or verdicts. DEL-07-03's two expressly named
+    kit TBDs now point to the realized scanner and test files.
+  - Scope: DEL-10-04 was reviewed in the all-PKG-10 pass and required no edit
+    because it has no P43 CSV row or owner rider. Original RUN_D55 artifacts
+    remain unchanged; no claim row was recoded.
+  - State: all 53 deliverables remain IN_PROGRESS; generic concordance
+    Remaining items stay open pending R6; no runtime source changed.
+  - Model/roles: GPT-5 read-only discovery derived and adversarially checked
+    the exact member/rider set; GPT-5 governed execution applied and fan-in
+    checked the P43 tranche. No silent model substitution occurred.
+  - Checks: exact member/claim accounting; twelve annotation-marker and
+    additions-only assessment checks; exact two-kit-replacement and cited-path
+    checks; twelve durable-record sets; DEL-10-04 no-edit check; 53-state
+    census; original-run integrity; D-APP-38 status; `git diff --check`;
+    practitioner self-check. Frontend gates skipped because P43 is
+    documentation/deliverable metadata only.
