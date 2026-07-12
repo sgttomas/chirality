@@ -95,7 +95,8 @@ claim about the current unvalidated remediation tree:
 
 ## Integration Hold
 
-The owner ratified the three standards and approved D-GOV-13 through D-GOV-14.
+The owner ratified the three standards and approved D-GOV-13 through D-GOV-14,
+published at `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
 The app-dev and piping reconciliation proto-runs have resumed under their
 pinned methods. PR #188 must not merge until both produce stable terminal
 handoffs, their accepted changes integrate, this branch rebases onto that

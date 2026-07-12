@@ -3,6 +3,7 @@
 Status:       RULED
 HumanRuling:  APPROVED — owner response, 2026-07-12: "My rulings are `APPROVED` for all."
 Proposed SHA: ee35409f5cf3a81ecb29a271527156b991df97b9
+Ruling SHA:   d22f80bf5d6c1190ce151df75d936bfcf4d38bc3
 Date:         2026-07-12
 FramedBy:     PR #188 multi-agent review and author remediation
 

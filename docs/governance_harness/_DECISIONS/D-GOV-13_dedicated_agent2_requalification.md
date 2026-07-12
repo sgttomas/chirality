@@ -3,6 +3,7 @@
 Status:       RULED
 HumanRuling:  APPROVED — D-GOV-14 item 4; owner response, 2026-07-12: "My rulings are `APPROVED` for all."
 Proposed SHA: 62e563e47b2cbb1edd154d2ded5ce169d8be05b0
+Ruling SHA:   d22f80bf5d6c1190ce151df75d936bfcf4d38bc3
 Date:         2026-07-11
 FramedBy:     D-GOV-10 and D-GOV-11 dedicated-specialist requalification requirement
 
