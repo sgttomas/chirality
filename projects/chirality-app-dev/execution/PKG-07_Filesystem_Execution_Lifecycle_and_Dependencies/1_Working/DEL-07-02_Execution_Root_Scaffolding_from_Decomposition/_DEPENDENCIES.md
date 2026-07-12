@@ -41,7 +41,7 @@ Active extracted rows: 7.
 - Decomposition status: found and used for DEL-07-02, SOW-024, SOW-025, and DEL-07-01 target resolution.
 - No `[WARNING] FLOATING_NODE`: exactly one ACTIVE `IMPLEMENTS_NODE` anchor was extracted.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: only one ACTIVE `IMPLEMENTS_NODE` anchor was extracted.
-- Warning: `_REFERENCES.md` reports REF-006 `docs/PRD.md` as `HASH_MISMATCH`; rows cite the warning where relevant and do not treat the hash mismatch as closure evidence.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - Conservative extraction retained unresolved lifecycle values as `TBD` where source evidence does not prove satisfaction or proposed maturity.
 
 ## Run History
@@ -62,4 +62,8 @@ Active extracted rows: 7.
 | RequiredMaturity | Count |
 |---|---:|
 | SEMANTIC_READY | 4 |
-| TBD | 3 |
+| TBD | 7 |
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

@@ -1,5 +1,7 @@
 # Procedure: DEL-06-06 Hook Lifecycle and Compaction Mirror
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This procedure describes how to produce and verify the DEL-06-06 hook lifecycle and compaction mirror implementation. It is written for the deliverable artifact, not as an end-user operation runbook.
@@ -13,10 +15,10 @@ This procedure describes how to produce and verify the DEL-06-06 hook lifecycle 
 | Session audit mirror rules | Available in `docs/SPEC.md` Section 8.4 and `docs/CONTRACT.md` Section 1.5 |
 | Hook vocabulary and required hook behavior | Available in `docs/TYPES.md` Section 8.5 and `docs/SPEC.md` Section 15.2 |
 | Engine adapter translation rules | Available in `docs/SPEC.md` Section 10.3 |
-| Compaction mirror product direction | Available in `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15 is warning-qualified due to HASH_MISMATCH |
+| Compaction mirror product direction | Available in `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15 is current and MATCH — reconciled under D-APP-38 |
 | Declared upstream dependencies | Human-declared upstream dependencies remain `TBD`; extracted ACTIVE upstream edges exist in `_DEPENDENCIES.md` and must be closure-checked before final acceptance. |
-| Exact implementation file paths | TBD |
-| Exact test fixture paths | TBD |
+| Exact implementation file paths | `frontend/src/lib/harness/chirality-hooks.ts`; `sdk-message-mapper.ts`; `session-events.ts`; `tool-result-artifacts.ts` |
+| Exact test fixture paths | `frontend/src/__tests__/lib/chirality-hooks.test.ts`; `sdk-message-mapper.test.ts`; `session-events.test.ts`; `tool-result-artifacts.test.ts`; `frontend/scripts/validate-harness-section9.mjs` |
 
 ## Steps
 
@@ -55,7 +57,7 @@ This procedure describes how to produce and verify the DEL-06-06 hook lifecycle 
    - Append JSONL events in write sequence with unique event IDs.
    - Keep replay tolerant of malformed trailing lines as required by the session event contract.
    - Store large or sensitive payloads as session artifacts or redact them according to policy.
-   - BLOCKER: the event writer and session artifact API call paths must be cited from the owning PKG-05/PKG-03 surfaces before implementation closure; exact call path is TBD.
+   - Event writer/session-artifact call paths are resolved: `session-events.ts` `appendHarnessEvent` and `tool-result-artifacts.ts`.
 
 8. Add tests and fixtures.
    - Add hook lifecycle mapper tests for start, completion, and failure outcomes.
@@ -65,8 +67,8 @@ This procedure describes how to produce and verify the DEL-06-06 hook lifecycle 
    - Include Section 9 validation linkage for `section9.context_compaction_boundary` where the validation runner expects it.
 
 9. Record residual gaps and source warnings.
-   - Keep exact module paths, fixture names, payload fields, and event linkage policy as `TBD` until implementation assigns them.
-   - Record the `docs/PRD.md` HASH_MISMATCH warning anywhere PRD-only compaction payload details are used.
+   - Keep only genuinely unsupported payload fields or linkage policy as `TBD`; the mapper, fixture, replay, artifact, and runner paths above are assigned.
+   - Record the `docs/PRD.md` MATCH status anywhere PRD-only compaction payload details are used. (reconciled under D-APP-38).
 
 ## Verification
 
@@ -81,17 +83,17 @@ This procedure describes how to produce and verify the DEL-06-06 hook lifecycle 
 | Replay preservation | Full Chirality event replay remains possible after compaction without relying on SDK transcript as canonical truth. |
 | Stop/finalization | Finalization evidence aligns with exactly one durable terminal outcome for the accepted turn. |
 | Redaction and payload budget | Secrets are absent and large payloads are artifact-referenced or redacted. |
-| PRD warning | PRD-derived payload specifics remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+| PRD warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
 ## Records
 
-- Hook lifecycle mapper implementation path: TBD.
-- Event schema or mapper test path: TBD.
-- `context.compacted` test path: TBD.
-- Terminal hook fixture path: TBD.
-- Session event replay validation evidence: TBD.
-- Redaction/payload-budget validation evidence: TBD.
-- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+- Hook lifecycle mapper implementation: `frontend/src/lib/harness/chirality-hooks.ts` and `sdk-message-mapper.ts`.
+- Event schema/mapper and `context.compacted` tests: `frontend/src/__tests__/lib/chirality-hooks.test.ts` and `sdk-message-mapper.test.ts`.
+- Terminal hook fixtures: `frontend/src/__tests__/lib/sdk-message-mapper.test.ts`.
+- Session event replay validation: `frontend/src/lib/harness/session-events.ts` and `frontend/src/__tests__/lib/session-events.test.ts`.
+- Redaction/payload-budget validation: `frontend/src/lib/harness/tool-result-artifacts.ts`, its test, and `chirality-hooks.test.ts`.
+- Section 9 validation: `frontend/scripts/validate-harness-section9.mjs` and `harness-section9-manifest.json`.
+- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (reconciled under D-APP-38).
 - Dependency-closure note: human-declared upstream dependency status is TBD; extracted ACTIVE edges in `_DEPENDENCIES.md` must be reconciled before closure.
 
 ## Pass 3 Disposition

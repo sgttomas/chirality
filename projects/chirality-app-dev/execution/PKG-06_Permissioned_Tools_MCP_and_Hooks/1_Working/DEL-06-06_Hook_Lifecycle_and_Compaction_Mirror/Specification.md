@@ -1,5 +1,7 @@
 # Specification: DEL-06-06 Hook Lifecycle and Compaction Mirror
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 DEL-06-06 specifies the backend feature slice that mirrors SDK or adapter hook lifecycle, terminal finalization, and context-compaction boundaries into Chirality-owned runtime events. It covers hook start, completion, and failure event mapping; `PreCompact` boundary mirroring; Stop/finalization evidence; JSONL append semantics; replay-safe event payload discipline; and tests for `context.compacted` and terminal hook fixtures.
@@ -21,7 +23,7 @@ Out of scope:
 - Subagent governance bridge behavior beyond preserving hook event compatibility, owned by PKG-08 deliverables.
 - Custom context-compaction implementation unless a later governed source update requires fallback behavior.
 
-Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 through 10 and 15; `docs/CONTRACT.md` Sections 1.4 through 1.6; `docs/TYPES.md` Sections 7 and 8.5; `docs/PRD.md` Section 8.15 with HASH_MISMATCH warning.
+Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 through 10 and 15; `docs/CONTRACT.md` Sections 1.4 through 1.6; `docs/TYPES.md` Sections 7 and 8.5; `docs/PRD.md` Section 8.15 with MATCH status. (reconciled under D-APP-38).
 
 ## Requirements
 
@@ -34,14 +36,14 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 thr
 | DEL-06-06-REQ-005 | Hook failure outcomes MUST preserve fail-closed behavior for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
 | DEL-06-06-REQ-006 | The mapper MUST support `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, and subagent hook terms without making exact SDK callback names authoritative in public APIs. | `docs/TYPES.md` Section 8.5; `docs/SPEC.md` Section 10.3 |
 | DEL-06-06-REQ-007 | `PreCompact` mirroring MUST persist a compaction boundary when available. | `docs/SPEC.md` Section 15.2; decomposition SOW-061 |
-| DEL-06-06-REQ-008 | `context.compacted` events MUST be persisted for compaction boundaries and record replay implications where knowable. | `docs/SPEC.md` Section 9.4; `docs/PRD.md` Section 8.15, HASH_MISMATCH warning |
+| DEL-06-06-REQ-008 | `context.compacted` events MUST be persisted for compaction boundaries and record replay implications where knowable. | `docs/SPEC.md` Section 9.4; `docs/PRD.md` Section 8.15, MATCH status — reconciled under D-APP-38 |
 | DEL-06-06-REQ-009 | Full Chirality event log replay MUST remain possible after compaction; SDK transcript linkage may be preserved but cannot displace `events.jsonl`. | `docs/CONTRACT.md` Section 1.4 K-SDK-3 and Section 1.5 K-EVENT-4; `docs/PLAN.md` R4 |
 | DEL-06-06-REQ-010 | Stop/finalization mapping MUST preserve durable terminal outcome evidence for success, failure, cancellation, or interruption. | `docs/CONTRACT.md` Section 1.5 K-EVENT-3; `docs/SPEC.md` Section 15.2 |
 | DEL-06-06-REQ-011 | Runtime event payloads MUST NOT store secrets, and large or sensitive payloads MUST be stored as artifacts or redacted according to policy. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
 | DEL-06-06-REQ-012 | SDK-specific values MAY be retained only as explicit adapter metadata fields, not as Chirality public contract identifiers. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-CORE-1 |
 | DEL-06-06-REQ-013 | Tests MUST cover `context.compacted` event production and terminal hook fixtures. | `_CONTEXT.md`; `docs/SPEC.md` Section 19 `section9.context_compaction_boundary` |
-| DEL-06-06-REQ-014 | Implementation MUST record the `docs/PRD.md` HASH_MISMATCH warning for any behavior that depends only on PRD Section 8.15 details. | `_REFERENCES.md` REF-006 |
-| DEL-06-06-REQ-015 | Implementation evidence MUST identify the mapper component path, schema or mapper tests, terminal fixtures, replay validation, and redaction or payload-budget checks before closure; unassigned paths remain `TBD` rather than assumed. | `_CONTEXT.md` anticipated artifacts; `docs/SPEC.md` Sections 9.2 and 19; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
+| DEL-06-06-REQ-014 | Implementation MUST record the `docs/PRD.md` MATCH status for any behavior that depends only on PRD Section 8.15 details. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
+| DEL-06-06-REQ-015 | Implementation evidence identifies mapper components (`chirality-hooks.ts`, `sdk-message-mapper.ts`), mapper/terminal/compaction tests (`chirality-hooks.test.ts`, `sdk-message-mapper.test.ts`), replay validation (`session-events.ts` / `session-events.test.ts`), artifact/redaction checks (`tool-result-artifacts.ts` / tests), and the Section 9 runner (`scripts/validate-harness-section9.mjs`). | `_CONTEXT.md`; `docs/SPEC.md` Sections 9.2 and 19; cited live paths |
 
 ## Standards
 
@@ -52,7 +54,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 thr
 | `docs/SPEC.md` Section 15.2 | Required hooks, including PreCompact mirror and Stop/finalization behavior. |
 | `docs/TYPES.md` Sections 7 and 8.5 | Runtime vocabulary, event categories, hook terms, and adapter boundary vocabulary. |
 | `docs/PLAN.md` R4 | Sequencing and acceptance for compaction mirror and replay preservation. |
-| `docs/PRD.md` Section 8.15 | Product requirements for compaction event persistence; use with HASH_MISMATCH warning from `_REFERENCES.md`. |
+| `docs/PRD.md` Section 8.15 | Product requirements for compaction event persistence; use with MATCH status from `_REFERENCES.md`. — reconciled under D-APP-38 |
 
 ## Verification
 
@@ -70,18 +72,18 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 thr
 | DEL-06-06-REQ-011 | Redaction and payload-budget tests assert secrets are excluded and large payloads are artifact-referenced. |
 | DEL-06-06-REQ-013 | Section 9 validation includes or points to `section9.context_compaction_boundary`; exact runner path: TBD. |
 | DEL-06-06-REQ-014 | Review evidence records the PRD hash warning when PRD-only behavior is cited. |
-| DEL-06-06-REQ-015 | Closure review verifies every required evidence path is either present and testable or retained as a blocker with owner/path `TBD`; exact runner and fixture paths are not inferred from the validation ID alone. |
+| DEL-06-06-REQ-015 | Closure review verifies the cited mapper, fixture, replay, artifact/redaction, and Section 9 runner paths exist and remain testable. |
 
 ## Documentation
 
 Required implementation evidence:
 
-- Hook lifecycle mapper or equivalent adapter component path: TBD.
-- Event schema or mapper tests for `hook.started`, `hook.completed`, and `context.compacted`: TBD.
-- Terminal hook fixtures for Stop/finalization: TBD.
-- Replay test or validation evidence proving compaction does not displace the Chirality audit mirror: TBD.
-- Redaction or payload-budget evidence for hook and compaction payloads: TBD.
-- Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.
+- Hook lifecycle mapper: `frontend/src/lib/harness/chirality-hooks.ts`; adapter mapping: `frontend/src/lib/harness/sdk-message-mapper.ts`.
+- Schema/mapper and terminal/compaction fixtures: `frontend/src/__tests__/lib/chirality-hooks.test.ts` and `sdk-message-mapper.test.ts`.
+- Replay validation: `frontend/src/lib/harness/session-events.ts` and `frontend/src/__tests__/lib/session-events.test.ts`.
+- Artifact/redaction and payload-budget checks: `frontend/src/lib/harness/tool-result-artifacts.ts`, its tests, and `chirality-hooks.test.ts`.
+- Section 9 runner: `frontend/scripts/validate-harness-section9.mjs` with `harness-section9-manifest.json`.
+- Residual-risk note for `docs/PRD.md` MATCH under the reconciled D-APP-38 source state. (reconciled under D-APP-38).
 
 ## Pass 3 Disposition
 
@@ -89,7 +91,7 @@ Required implementation evidence:
 |---|---|---|
 | F-001 | Converted to a concrete verification obligation without inventing paths: `context.compacted` and terminal hook evidence must point to exact runner or fixture paths before closure; current path remains `TBD`. | `docs/SPEC.md` Section 19 `section9.context_compaction_boundary`; `_CONTEXT.md` anticipated artifacts |
 | F-002 | Incorporated as DEL-06-06-REQ-015 and documentation evidence blockers for mapper, schema tests, terminal fixtures, replay, and redaction or payload-budget checks. | `docs/SPEC.md` Sections 9.2 and 19; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
-| X-002 | Already covered in validation intent but not in path evidence; retained as `TBD` runner/fixture evidence tied to `section9.context_compaction_boundary`. | `docs/SPEC.md` Section 19; `docs/PRD.md` Section 8.14/8.15 validation list, HASH_MISMATCH warning |
+| X-002 | Already covered in validation intent but not in path evidence; retained as `TBD` runner/fixture evidence tied to `section9.context_compaction_boundary`. | `docs/SPEC.md` Section 19; `docs/PRD.md` Section 8.14/8.15 validation list, MATCH status — reconciled under D-APP-38 |
 
 ## Traceability
 

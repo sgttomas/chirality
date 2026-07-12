@@ -1,5 +1,7 @@
 # Procedure: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Use this procedure to produce or review boundary-notice copy for future domain-engine surfaces without activating domain-engine implementation or implying Chirality-owned solver truth.
@@ -11,7 +13,7 @@ Use this procedure to produce or review boundary-notice copy for future domain-e
 - Confirm PKG-10 remains future-boundary/gated scope unless a governed amendment says otherwise.
 - Confirm no accepted upstream dependency edges are available yet; `_DEPENDENCIES.md` records upstream/downstream as TBD.
 - Use `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/PRD.md`, `docs/SPEC.md`, `docs/TYPES.md`, and the v3.2 SOFTWARE_DECOMP as source authority.
-- Treat the PRD hash mismatch in `_REFERENCES.md` as a warning only for this run, per dispatch.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Steps
 
@@ -58,7 +60,7 @@ Use this procedure to produce or review boundary-notice copy for future domain-e
 | Future scope preserved | Confirm current-release implementation is not implied. |
 | Unsupported facts labeled | Confirm unknowns are `TBD`, `ASSUMPTION`, `PROPOSAL`, or conflict-table items. |
 | Closure evidence complete | Confirm the review output record includes reviewed surface, reviewer, date, checklist result, source-warning status, unresolved human rulings, and closure verdict. |
-| PRD warning maintained | Confirm the PRD hash mismatch remains recorded with owner or resolution path until reconciled or formally waived. |
+| PRD warning maintained | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
 ## Review Output Record
 
@@ -83,7 +85,7 @@ A reviewed notice package is not complete merely because copy exists. Closure ev
 - Required notice pattern or out-of-scope rationale for each selected future surface category.
 - Completed checklist capture location, or `TBD` when no accepted storage location exists.
 - OperationProposal schema citation status before operation-proposal notice examples are used as closure evidence.
-- PRD source-warning owner or resolution path while `_REFERENCES.md` records a hash mismatch.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Unresolved human-ruling items carried forward explicitly.
 
 ## Records
@@ -91,6 +93,6 @@ A reviewed notice package is not complete merely because copy exists. Closure ev
 - Reviewed boundary notice copy.
 - Completed domain review checklist from `Guidance.md`.
 - Human-ruling list for unresolved wording, profile, or engine-specific questions.
-- Source-warning note for PRD hash mismatch until reconciled, including owner or resolution path `TBD`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Review output record containing reviewed surface, reviewer, date, checklist result, source-warning status, closure verdict, and human-ruling carryforward.
 - This deliverable's `_STATUS.md` lifecycle state.

@@ -58,7 +58,7 @@ Counts:
 - Anchor document selection: `Datasheet.md` and `_CONTEXT.md` for identity/traceability, cross-checked against the decomposition authority.
 - Execution document order: `Procedure.md`, `Specification.md`, `Guidance.md`.
 - Decomposition status: available and used to validate `PKG-09`, `SOW-019`, `SOW-020`, `SOW-022`, `SOW-023`, and `OBJ-008`.
-- [WARNING] SOURCE_HASH_MISMATCH: `_REFERENCES.md` reports `docs/PRD.md` expected/actual hash mismatch. Per deliverable source notes, this is recorded as a warning and not used as a blocker.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - [WARNING] TBD_TARGETS: test framework/command names and implementation paths are explicit prerequisites but unresolved by the allowed evidence set, so target fields remain `UNKNOWN`/`TBD`.
 
 ## Run History
@@ -77,3 +77,7 @@ Counts:
 | SatisfactionStatus | Count |
 |---|---:|
 | TBD | 10 |
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

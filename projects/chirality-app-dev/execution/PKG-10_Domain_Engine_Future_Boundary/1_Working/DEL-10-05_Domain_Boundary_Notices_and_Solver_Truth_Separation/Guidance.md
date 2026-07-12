@@ -1,5 +1,7 @@
 # Guidance: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Use this deliverable to keep future domain-engine language clear, conservative, and reviewable. Chirality may govern interaction, proposal records, audit records, adapter policy, protected/proposal path boundaries, and human gates. It must not present itself as the domain solver, the professional approver, the code-compliance authority, or the owner of solver truth.
@@ -15,7 +17,7 @@ Use this deliverable to keep future domain-engine language clear, conservative, 
 ## Considerations
 
 - Domain-engine boundary language overlaps with general professional-boundary language in `docs/DIRECTIVE.md` and `docs/CONTRACT.md`; keep the wording mutually consistent.
-- PRD Section 8.17 defines future compatibility requirements, but the PRD hash mismatch in `_REFERENCES.md` remains a source warning until reconciled.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - DomainEngineProfile details remain future work. Do not invent profile fields beyond the source-backed set: engine identity, optional version, protected paths, proposal paths, artifact types, operations, manifest rules, and boundary notices.
 - OpenPipeStress may be useful as a first fixture profile, but examples must not hardcode OpenPipeStress assumptions into Chirality core behavior.
 - Runtime events, adapter results, and deterministic checks can support review; they do not make a deliverable professionally reliable by themselves.
@@ -84,7 +86,7 @@ Completed checklist evidence should be captured as part of the review output rec
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
-| CT-001 | PRD source hash mismatch recorded in `_REFERENCES.md`; dispatch instructs treating mismatch as source warning only. | `_REFERENCES.md` REF-006 expected/actual SHA values | User dispatch instruction | Datasheet Conditions; Specification Documentation; this Guidance section | Use current accessible `docs/PRD.md` for P1/P2 drafting while preserving the warning until reconciled. | TBD |
+| CT-001 | PRD source hash status: MATCH recorded in `_REFERENCES.md`; dispatch instructs treating MATCH as source status. | `_REFERENCES.md` REF-006 expected/actual SHA values | User dispatch instruction | Datasheet Conditions; Specification Documentation; this Guidance section | Use current accessible `docs/PRD.md` for P1/P2 drafting while preserving the warning until reconciled. | TBD — reconciled under D-APP-38 |
 
 ## Human Rulings Needed
 

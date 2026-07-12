@@ -1,5 +1,7 @@
 # Specification: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable covers backend support to read, validate, and write deliverable-local `Dependencies.csv` v3.1 registers while preserving schema, provenance, row lifecycle, and warnings.
@@ -93,6 +95,6 @@ Recommended supporting documentation:
 - Fixture README or inline test comments explaining valid v3.1 rows, legacy normalization cases, invalid enum cases, unresolved target cases, and retired-row preservation.
 - API/MCP contract notes that point back to `docs/SPEC.md` Section 6 and `docs/PRD.md` Section 8.9.
 
-Source warning: `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived requirements above should be rechecked by a human before relying on them as accepted hash truth.
+REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
-Pass 3 source-state disposition: F-001 is already surfaced by the source warning above and by the Guidance conflict table. P3 does not resolve the PRD hash mismatch or treat PRD-derived claims as accepted hash truth.
+REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.

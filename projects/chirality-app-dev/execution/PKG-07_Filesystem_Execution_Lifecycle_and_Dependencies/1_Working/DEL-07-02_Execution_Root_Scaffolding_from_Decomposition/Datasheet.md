@@ -1,5 +1,7 @@
 # Datasheet: DEL-07-02 Execution Root Scaffolding from Decomposition
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -39,7 +41,7 @@
 | Idempotence | Existing directories/files are preserved on rerun. | `docs/PRD.md` Section 7.3; `docs/PRD.md` NFR-011 |
 | Recovery diagnostics | Failures are fail-fast and include stage, target path, and created paths for recovery. | `docs/PRD.md` Section 7.3 |
 | Lifecycle state file | `_STATUS.md` is the canonical lifecycle file. | `docs/SPEC.md` Section 4; `docs/CONTRACT.md` K-STATUS-1 |
-| Source warning | `docs/PRD.md` is accessible but has a HASH_MISMATCH in `_REFERENCES.md`; use as a warning-bearing source per task brief. | `_REFERENCES.md` REF-006; task brief |
+| Source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -59,5 +61,5 @@
 - `docs/CONTRACT.md` K-HIER-1, K-FS-1, K-ROOT-1 through K-ROOT-3, K-STATUS-1, K-INVENT-1, K-CONFLICT-1.
 - `docs/SPEC.md` Sections 2, 3, 4, 5, and 17.1.
 - `docs/TYPES.md` Sections 8.4 and 13.
-- `docs/PRD.md` Sections 7.3, 8.8, 8.9, 11.2, and 17.1. Source warning: HASH_MISMATCH in `_REFERENCES.md`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-07-02 and SOW-024/SOW-025 rows.

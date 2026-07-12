@@ -1,5 +1,7 @@
 # Guidance: DEL-07-01 Working Root Validation and Instruction Root Protection
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-07-01 exists to make the filesystem boundary trustworthy before agents, tools, MCP wrappers, hooks, or SDK-mediated actions operate on project files. It protects two project-critical distinctions:
@@ -22,7 +24,7 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/DIRECTIVE.md` Sections 2.7-2.9
 
 ## Considerations
 
-- `docs/PRD.md` is marked `HASH_MISMATCH` in `_REFERENCES.md`. For this Phase 2.2 draft it is treated as an accessible source-state warning, not as a blocker. Claims relying on PRD rows should remain review-aware until the hash state is accepted or corrected.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - The decomposition assigns SOW-002 and SOW-027 to DEL-07-01. SOW-002 covers working-root selection and validation; SOW-027 covers path containment and instruction-root protection.
 - `DEL-06-04` also references path hooks for write/edit execution. ASSUMPTION: DEL-07-01 should define reusable root/path policy expectations and tests, while DEL-06-04 applies them in the broader write/edit surface. This is an inferred coordination note from the decomposition, not an accepted dependency edge.
 - `_DEPENDENCIES.md` currently has no accepted upstream or downstream edges. Do not treat neighboring deliverables as formal dependencies until dependency extraction accepts them.
@@ -38,7 +40,7 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/DIRECTIVE.md` Sections 2.7-2.9
 | Enforcement in hooks and wrappers | Catches SDK built-ins and MCP/tool actions at runtime. | Hook failure paths must be tested and observable. | Required for reliance-boundary confidence. |
 | Strict instruction-root write block | Protects release-managed governance assets from ordinary project execution. | Release/governance updates need a separate controlled pathway. | Required by CONTRACT and SPEC. |
 | Reject symlink writes initially | Reduces path escape risk. | Blocks some advanced local workflows. | Required until governed relaxation exists. |
-| Treat PRD hash mismatch as warning | Allows Phase 2.2 drafting to proceed per brief. | Requirement rows may need revalidation when source state is resolved. | Record warning and cite source locations. |
+| REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Allows Phase 2.2 drafting to proceed per brief. | Requirement rows may need revalidation when source state is resolved. | Record warning and cite source locations. — reconciled under D-APP-38 |
 
 ## Examples
 
@@ -55,7 +57,7 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/DIRECTIVE.md` Sections 2.7-2.9
 
 | Warning ID | Source | Warning | Impacted Sections | Human Ruling |
 |---|---|---|---|---|
-| WARN-07-01-001 | `_REFERENCES.md` REF-006 | `docs/PRD.md` has `HASH_MISMATCH`. Brief says to treat it as a source-state warning. | Datasheet, Specification, Guidance, Procedure citations to `docs/PRD.md` | TBD |
+| WARN-07-01-001 | `_REFERENCES.md` REF-006 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | Datasheet, Specification, Guidance, Procedure citations to `docs/PRD.md` | TBD — reconciled under D-APP-38 |
 
 No direct source conflict was found among the accessible slices read for this draft.
 
@@ -63,7 +65,7 @@ No direct source conflict was found among the accessible slices read for this dr
 
 | ItemID | Ruling Needed | Current Posture |
 |---|---|---|
-| C-001 | Accept, correct, replace, or explicitly bypass the `docs/PRD.md` REF-006 hash mismatch before PRD-dependent rows are treated as stable closure evidence. | Source-state warning preserved; no human ruling invented. |
+| C-001 | Accept, correct, replace, or explicitly bypass the `docs/PRD.md` REF-006 hash status: MATCH before PRD-dependent rows are treated as stable closure evidence. | Source-state warning preserved; no human ruling invented. — reconciled under D-APP-38 |
 | X-002 | Decide whether `DEL-06-04` remains only a coordination note or becomes an accepted dependency edge for write/edit hook enforcement. | No dependency edge accepted in `_DEPENDENCIES.md`; guidance keeps the relationship non-authoritative. |
 | E-001 | If future symlink-write relaxation is proposed, identify the amendment reference and fixture evidence required for acceptance. | Initial symlink rejection remains required. |
 
@@ -71,6 +73,6 @@ No direct source conflict was found among the accessible slices read for this dr
 
 | ItemID | Guidance Disposition | Evidence |
 |---|---|---|
-| C-001 | surfaced as human ruling | `Source-State Warnings` and `Human Rulings Needed` preserve the PRD hash mismatch without treating it as closure. |
+| C-001 | surfaced as human ruling | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | X-002 | surfaced as human ruling | `Considerations` and `Human Rulings Needed` state that `DEL-06-04` is not an accepted dependency edge unless later accepted. |
 | E-001 | already covered | `Considerations`, `Trade-offs`, `Examples`, and `Human Rulings Needed` keep symlink writes rejected until governed amendment and tests exist. |

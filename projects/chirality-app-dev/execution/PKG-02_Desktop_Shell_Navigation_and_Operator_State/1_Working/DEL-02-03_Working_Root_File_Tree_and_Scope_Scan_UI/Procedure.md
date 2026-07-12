@@ -1,5 +1,7 @@
 # Procedure: DEL-02-03 Working Root File Tree and Scope Scan UI
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the working procedure to produce and verify the Working Root File Tree and Scope Scan UI slice without expanding into filesystem enforcement, dependency extraction, or runtime engine internals.
@@ -75,7 +77,7 @@ Define the working procedure to produce and verify the Working Root File Tree an
 
 - UI implementation artifacts: file tree panel, deliverable summary widgets, scope scan integration.
 - Test or acceptance evidence for root selection, invalid root display, bounded tree behavior, scope reset behavior, and deliverable routing; artifact location TBD.
-- Conflict/human-ruling record for package-folder label mismatch and PRD hash mismatch.
+- Conflict/human-ruling record for package-folder label MATCH and PRD hash status: MATCH. (reconciled under D-APP-38).
 - This four-document kit: `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`.
 
 ## Pass 3 Disposition Notes

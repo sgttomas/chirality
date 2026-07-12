@@ -1,5 +1,7 @@
 # Datasheet: DEL-07-06 Reference Hash and Snapshot Conventions
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -30,7 +32,7 @@
 
 | Condition | Handling | Source |
 |---|---|---|
-| `docs/PRD.md` source state | REF-006 is locally accessible but `_REFERENCES.md` reports `HASH_MISMATCH`; this run treats it as a source-state warning per brief. PRD-only statements remain review-aware until hash reconciliation or acceptance. | `_REFERENCES.md` REF-006; task brief |
+| `docs/PRD.md` source state | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
 | Unknown owner | `ResponsibleParty` remains `TBD` until assigned by a human. | `_CONTEXT.md` Source Authority |
 | Retired scope boundary | Do not reactivate execution-root validator, dependency graph generator, deliverable lock, unified pipeline run records, or staleness propagation as current commitments. | `docs/PLAN.md` Section 9; `docs/PRD.md` Section 6.4 and KG-012 with REF-006 hash warning |
 | Human authority | No agent, SDK, tool, runtime event, validator, or adapter can author binding approval records. | `docs/CONTRACT.md` K-AUTH-1; `docs/DIRECTIVE.md` Section 2.4 |
@@ -59,5 +61,5 @@
 | REF-003 | `docs/SPEC.md` | Sections 2, 3.1, 4.3, 5.3 | MATCH |
 | REF-004 | `docs/TYPES.md` | Sections 1-2, 3.3 | MATCH |
 | REF-005 | `docs/PLAN.md` | Section 9 | MATCH |
-| REF-006 | `docs/PRD.md` | Sections 6.4, 8.10, 10.8, 15 | HASH_MISMATCH source-state warning |
+| REF-006 | `docs/PRD.md` | Sections 6.4, 8.10, 10.8, 15 | MATCH source state — reconciled under D-APP-38 |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method context | MATCH |

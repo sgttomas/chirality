@@ -1,5 +1,7 @@
 # Procedure: DEL-07-02 Execution Root Scaffolding from Decomposition
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operational workflow for implementing and verifying execution-root scaffolding from decomposition markdown for DEL-07-02. The procedure describes how to produce the backend feature slice and how the scaffold operation should behave when invoked.
@@ -89,7 +91,7 @@ Implementation should leave or update these records:
 - Scaffold result payload examples or fixtures.
 - PREPARATION compatibility diagnostics.
 - Any human rulings for `INIT.md` or `_COORDINATION.md` content templates.
-- Warning record that `docs/PRD.md` was used despite `_REFERENCES.md` HASH_MISMATCH under explicit task instruction.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Open Items
 

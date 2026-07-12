@@ -1,5 +1,7 @@
 # Specification: DEL-10-05 Domain Boundary Notices and Solver Truth Separation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies boundary-notice and review requirements for future domain-engine surfaces in Chirality. It covers documentation/UI/event-record copy and review checks that preserve the distinction between:
@@ -56,6 +58,6 @@ This deliverable produces and maintains:
 - Domain review checklist.
 - UI/documentation examples.
 - Human-ruling list for unresolved future-amendment details.
-- Source-warning note for the PRD hash mismatch recorded in `_REFERENCES.md`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Surface inventory or out-of-scope rationale for selected future surfaces.
 - OperationProposal schema citation status before operation-proposal examples are used for closure evidence.

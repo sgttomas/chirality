@@ -1,5 +1,7 @@
 # Procedure: DEL-10-02 Protected Path and Proposal Path Policy
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define a repeatable procedure for producing and reviewing the protected path and proposal path policy without activating domain-engine implementation. The procedure preserves the future-boundary posture of PKG-10 and keeps protected domain-engine model truth separate from agent-writable proposal outputs.
@@ -11,7 +13,7 @@ Define a repeatable procedure for producing and reviewing the protected path and
 | Deliverable context for DEL-10-02 | Available in `_CONTEXT.md`. |
 | Decomposition entry for DEL-10-02 and SOW-068 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`. |
 | Domain invariants | Available in `docs/CONTRACT.md` §1.10. |
-| Future domain requirements | Available in `docs/PRD.md` §8.17 and §10.10, with REF-006 hash mismatch treated as source warning only. |
+| Future domain requirements | Available in `docs/PRD.md` §8.17 and §10.10, with REF-006 hash status: MATCH treated as source status. — reconciled under D-APP-38 |
 | Future profile vocabulary | Available in `docs/TYPES.md` §11. |
 | Declared upstream dependencies | Extracted dependency register exists in `_DEPENDENCIES.md`; declared upstream/downstream sections remain TBD. P3 disposition: B-002 already covered as deferred closure input. |
 | ResponsibleParty | TBD. |
@@ -72,6 +74,6 @@ Define a repeatable procedure for producing and reviewing the protected path and
 - Protected/proposal path policy: `Specification.md`.
 - Hook implications and TBDs: `Specification.md`, `Guidance.md`.
 - Examples and conflicts: `Guidance.md`.
-- Source warning: PRD hash mismatch recorded in `Datasheet.md` and `Guidance.md`.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - Dependency register: `_DEPENDENCIES.md` includes extracted active rows, while human-declared upstream/downstream sections remain TBD; closure must not treat those extracted rows as human-declared acceptance.
 - Future workflow owner: TBD - the owner who defines the approved adapter or operation workflow that can convert proposals into protected-state changes is not named in accessible sources. P3 disposition: D-002 converted to closure-relevant TBD.

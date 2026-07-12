@@ -1,5 +1,7 @@
 # Specification: DEL-09-03 Unit and Integration Test Expansion
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 DEL-09-03 shall define and implement focused unit, API, and integration test expansion for TurnEngine, SSE compatibility, event replay, attachment validation, status lifecycle behavior, dependency register behavior, interrupts/cancellation, and denied actions.
@@ -30,7 +32,7 @@ This deliverable excludes feature implementation except test fixtures and packag
 | `docs/CONTRACT.md` | Binding invariants for event audit, permissions, lifecycle, dependencies, attachments, validation, and no-invention behavior. |
 | `docs/SPEC.md` | Physical file/API/runtime contracts for `_STATUS.md`, `Dependencies.csv`, `HarnessEvent`, TurnEngine, SSE, tools, permissions, and attachments. |
 | `docs/TYPES.md` | Vocabulary and canonical terms for runtime, session, permission, validation, and dependency concepts. |
-| `docs/PRD.md` | Product requirements for validation/test coverage and runtime behavior; hash mismatch is a source warning only for this run. |
+| `docs/PRD.md` | Product requirements for validation/test coverage and runtime behavior; hash status: MATCH is a source status for this run. — reconciled under D-APP-38 |
 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accepted decomposition routing, DEL-09-03 scope, SOW mapping, and objective mapping. |
 
 ## Verification

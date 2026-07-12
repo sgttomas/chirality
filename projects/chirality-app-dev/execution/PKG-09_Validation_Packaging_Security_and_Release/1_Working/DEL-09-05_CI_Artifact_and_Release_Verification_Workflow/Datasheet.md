@@ -1,5 +1,7 @@
 # Datasheet: DEL-09-05 CI Artifact and Release Verification Workflow
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -33,7 +35,7 @@
 
 | Condition | Value | Source |
 |---|---|---|
-| Source fidelity warning | `docs/PRD.md` has expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`; per dispatch brief, this is a source warning only. | `_REFERENCES.md`; dispatch brief |
+| Source fidelity warning | `docs/PRD.md` has expected SHA `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` and observed SHA `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd`; per dispatch brief, this is a source status. | `_REFERENCES.md`; dispatch brief |
 | CI provider implementation | ASSUMPTION: GitHub Actions is the intended CI surface because `docs/PRD.md` Section 12.7 names "The GitHub workflow"; exact workflow file path is TBD. | `docs/PRD.md` Section 12.7 |
 | Stable summary artifact path | The review target is `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. | `docs/PRD.md` Sections 12.2 and 12.7; `docs/SPEC.md` Section 19.1 |
 | CI upload artifact identity | The CI workflow must upload the stable summary artifact, but the CI upload artifact name, retention period, and workflow file path are `TBD` until source-defined or human-approved. | `docs/PRD.md` Section 12.7; `_SEMANTIC_LENSING.md` D-001 |
@@ -59,5 +61,5 @@
 | REF-003 | `docs/SPEC.md` | Required checks, Section 8/9 validation, manual release verification | MATCH |
 | REF-004 | `docs/TYPES.md` | Vocabulary for artifacts, validation, `desktop:dist`, and lifecycle terms | MATCH |
 | REF-005 | `docs/PLAN.md` | Local check command sequence and expected package artifacts | MATCH |
-| REF-006 | `docs/PRD.md` | CI acceptance, validation plan, manual release verification | HASH_MISMATCH source warning only |
+| REF-006 | `docs/PRD.md` | CI acceptance, validation plan, manual release verification | MATCH source status only — reconciled under D-APP-38 |
 | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context | MATCH |

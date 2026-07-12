@@ -1,5 +1,7 @@
 # Procedure: DEL-06-05 Bash Governance and Timeout Policy
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This procedure describes how to produce and verify the DEL-06-05 Bash governance implementation and timeout/capture policy evidence. It is written for the deliverable artifact, not as an end-user shell runbook.
@@ -12,7 +14,7 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
 | Binding Bash invariant | Available in `docs/CONTRACT.md` Section 1.6 K-BASH-1 |
 | Permission/mode vocabulary | Available in `docs/TYPES.md` Section 8 and `docs/SPEC.md` Section 15.1 |
 | Tool-surface rules | Available in `docs/SPEC.md` Section 14.3 |
-| R4 sequencing and acceptance criteria | Available in `docs/PLAN.md`; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
+| R4 sequencing and acceptance criteria | Available in `docs/PLAN.md`; `docs/PRD.md` is current and MATCH — reconciled under D-APP-38 |
 | Declared upstream dependencies | Extracted ACTIVE upstream rows exist in `_DEPENDENCIES.md`; declared upstream remains TBD until dependency satisfaction is accepted. |
 | Exact implementation file paths | TBD |
 | Exact test fixture paths | TBD |
@@ -36,7 +38,7 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
    - Require stdout/stderr capture plan.
    - Require result storage or preview policy for medium/large outputs.
    - Require audit metadata sufficient to record permission, start, terminal outcome, and artifact references.
-   - Treat command metadata fields and network posture checks as unresolved preflight slots until an accepted contract defines them or assigns them outside DEL-06-05. PRD R4 mentions both, but REF-006 remains HASH_MISMATCH warning-qualified.
+   - Treat command metadata fields and network posture checks as unresolved preflight slots until an accepted contract defines them or assigns them outside DEL-06-05. PRD R4 mentions both, but REF-006 remains MATCH-confirmed. (reconciled under D-APP-38).
 
 4. Enforce denied-never-spawns.
    - Place denial checks before process creation.
@@ -53,7 +55,7 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
    - Inline only small safe outputs.
    - Preview medium/large outputs.
    - Store raw large outputs under session artifacts and persist safe metadata such as artifact path, byte counts, truncation status, and channel labels where the accepted schema permits.
-   - PRD artifact-policy fields include tool name, turn ID, byte count, truncation flag, and relative artifact path; Bash channel labels and terminal-outcome linkage remain TBD pending accepted schema.
+   - Apply the D-APP-42 artifact schema (`toolName`, `toolUseId`, `turnId`, byte lengths, truncation, SHA-256, relative path, stdout/stderr labels) and the ADQ-11/D-APP-43 mapping of `interrupted: true` to `tool.failed` terminal evidence.
 
 7. Persist audit evidence.
    - Persist permission evidence before allowing execution.
@@ -63,7 +65,7 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
 8. Add tests and traceability.
    - Add default deny, `readOnly` deny, `dontAsk` deny, denied-never-spawns, timeout-required, stdout/stderr separation, output artifact metadata, and interruption tests.
    - Tag or name tests with DEL-06-05 or SOW-062 where local test conventions allow.
-   - Record the PRD HASH_MISMATCH warning in implementation or review notes.
+   - Record the PRD MATCH status in implementation or review notes. (reconciled under D-APP-38).
 
 ## Verification
 
@@ -80,7 +82,7 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
 | Interrupt behavior | Active Bash can be interrupted when supported, and terminal outcome is persisted. |
 | Audit records | Permission, start, completion/failure/interruption, and artifact metadata are persisted in Chirality-owned event shape. |
 | Hook fail-closed | Hook failure blocks shell execution. |
-| PRD warning | PRD-derived details remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+| PRD warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
 ## Records
 
@@ -93,4 +95,4 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
 - Interruption/timeout terminal outcome test evidence: TBD.
 - Hook/path composition evidence with DEL-06-04 and DEL-06-06: TBD.
 - Concrete test names, fixtures, and harness paths for DEL-06-05 / SOW-062 traceability: TBD.
-- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (reconciled under D-APP-38).

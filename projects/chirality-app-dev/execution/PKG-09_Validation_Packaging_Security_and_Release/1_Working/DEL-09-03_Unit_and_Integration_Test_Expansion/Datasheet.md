@@ -1,5 +1,7 @@
 # Datasheet: DEL-09-03 Unit and Integration Test Expansion
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -29,7 +31,7 @@
 
 | Condition | Value | Source |
 |---|---|---|
-| PRD source warning | Expected PRD hash `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. Treated as source warning only per dispatch. | `_REFERENCES.md`; TASK dispatch |
+| PRD source warning | Expected PRD hash `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. Treated as source status per dispatch. | `_REFERENCES.md`; TASK dispatch |
 | Dependency register output | `Dependencies.csv` must not be created by this run. Dependency extraction remains deferred until later workflow. | TASK dispatch; `_DEPENDENCIES.md` InitialPopulationRule |
 | Source-grounding rule | Unsupported facts remain `TBD`, `ASSUMPTION`, or conflict entries. | `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
 | Lifecycle state | Initial state was `OPEN`; safe transition target after non-empty four-document initialization is `INITIALIZED`. | `_STATUS.md`; `docs/SPEC.md` Section 4 |

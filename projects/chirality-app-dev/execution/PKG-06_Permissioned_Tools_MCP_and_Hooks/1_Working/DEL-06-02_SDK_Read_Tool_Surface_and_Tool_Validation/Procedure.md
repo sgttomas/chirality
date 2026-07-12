@@ -1,5 +1,7 @@
 # Procedure: DEL-06-02 SDK Read Tool Surface and Tool Validation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 This procedure describes how to produce and verify the DEL-06-02 SDK read tool-surface resolver and validation evidence. It is written for the deliverable artifact, not as an end-user operation runbook.
@@ -13,7 +15,7 @@ This procedure describes how to produce and verify the DEL-06-02 SDK read tool-s
 | Binding permission/tool/MCP invariants | Available in `docs/CONTRACT.md` Section 1.6 |
 | SDK and MCP tool naming specification | Available in `docs/SPEC.md` Section 14 |
 | Mode and hook context | Available in `docs/SPEC.md` Section 15 |
-| Roadmap sequencing for R2/R3 | Available in `docs/PLAN.md`; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
+| Roadmap sequencing for R2/R3 | Available in `docs/PLAN.md`; `docs/PRD.md` is current and MATCH — reconciled under D-APP-38 |
 | Declared upstream dependencies | TBD - `_DEPENDENCIES.md` lists no accepted upstream edges yet |
 | Exact implementation file paths | TBD |
 | Exact test fixture paths | TBD |
@@ -69,7 +71,7 @@ This procedure describes how to produce and verify the DEL-06-02 SDK read tool-s
 
 10. Record residual gaps.
    - Keep exact implementation and fixture paths as `TBD` until assigned.
-   - Record the `docs/PRD.md` HASH_MISMATCH as a source-state warning in implementation or review evidence.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Verification
 
@@ -82,7 +84,7 @@ This procedure describes how to produce and verify the DEL-06-02 SDK read tool-s
 | Permission boundary | `allowedTools` does not restrict by itself and cannot bypass deny policy. |
 | Implementation-vs-exposure | SDK/tool implementation availability does not imply model exposure. |
 | MCP parity | Chirality MCP names pass through the same surface and permission path as SDK built-ins. |
-| PRD warning | PRD-derived details remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+| PRD warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
 ## Records
 
@@ -94,4 +96,4 @@ This procedure describes how to produce and verify the DEL-06-02 SDK read tool-s
 - Read-first sequencing test path: TBD. (P3: F-002)
 - Safe metadata or boot-fingerprint path for SDK names, versions, and MCP identifiers: TBD. (P3: E-001)
 - Trace package tying resolver, registry, error contract, fixtures, sequencing tests, and PRD warning note to implementation evidence: TBD. (P3: X-001)
-- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled. (P3: A-001, D-002, E-002)
+- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (P3: A-001, D-002, E-002) (reconciled under D-APP-38).

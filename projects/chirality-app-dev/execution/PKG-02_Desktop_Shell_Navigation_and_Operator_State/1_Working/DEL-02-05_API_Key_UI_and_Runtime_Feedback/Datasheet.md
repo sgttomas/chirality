@@ -1,5 +1,7 @@
 # Datasheet: DEL-02-05 API Key UI and Runtime Feedback
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -35,7 +37,7 @@
 | Secure-storage mechanism | Electron `safeStorage` | `docs/PRD.md` Section 7.7; `docs/SPEC.md` Section 16.2 |
 | Runtime errors preserve retry context | Required for drafts and attachments | `docs/PRD.md` Section 7.3 and FR-020; decomposition SOW-013 |
 | Runtime event/log redaction | API keys and configured secrets must be redacted | `docs/PRD.md` FR-075 and NFR-002; `docs/CONTRACT.md` K-EVENT-6 |
-| PRD source integrity | PRD hash mismatch observed; use as source warning, not blocker per dispatch instruction | `_REFERENCES.md` REF-006; dispatch override |
+| PRD source integrity | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; dispatch override — reconciled under D-APP-38 |
 
 ## Construction
 
@@ -56,6 +58,6 @@
 - `docs/CONTRACT.md`
 - `docs/DIRECTIVE.md`
 - `docs/PLAN.md`
-- `docs/PRD.md` (**source warning:** hash mismatch recorded in `_REFERENCES.md`)
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 - `docs/SPEC.md`
 - `docs/TYPES.md`

@@ -1,5 +1,7 @@
 # Specification: DEL-07-04 Status Transition API and MCP Tool
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the backend slice that parses deliverable-local `_STATUS.md`, exposes status read/transition access through the working-root API and Chirality MCP tooling, and enforces lifecycle rules for state movement. The slice covers SOW-028 and supports OBJ-006 as recorded in `_CONTEXT.md` and the accepted SOFTWARE_DECOMP v3.2 entry for DEL-07-04.
@@ -40,7 +42,7 @@ Out of scope:
 | DEL-07-04-REQ-015 | Tests SHALL cover parser success/failure, invalid state handling, unauthorized actor rejection, backward transition rejection, approval SHA enforcement, and API/MCP routing. | `docs/PRD.md` Section 8.9 FR-052 through FR-054; decomposition DEL-07-04 anticipated artifacts |
 | DEL-07-04-REQ-016 | Request and response payload schemas for status read, status transition, and MCP equivalents SHALL be captured as accepted schema fixtures before implementation acceptance; until accepted, exact fields remain `TBD`. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` API inventory; `docs/PRD.md` FR-079 |
 | DEL-07-04-REQ-017 | Runtime actor identity mapping SHALL be explicit and fail closed for unmapped actors before transition authorization is treated as complete; exact enum or mapping remains `TBD`. | `docs/SPEC.md` Section 4.3; `docs/CONTRACT.md` K-STATUS-2 |
-| DEL-07-04-REQ-018 | PRD-derived approval-SHA acceptance criteria SHALL NOT be treated as final implementation acceptance authority until the `docs/PRD.md` hash mismatch is reconciled or a human-approved bypass record is accepted. | `_REFERENCES.md` REF-006; `docs/SPEC.md` Section 3.1 file inventory for `HASH_VERIFICATION_BYPASS.jsonl`; `docs/SPEC.md` Section 7 reference hash behavior |
+| DEL-07-04-REQ-018 | PRD-derived approval-SHA acceptance criteria SHALL NOT be treated as final implementation acceptance authority until the `docs/PRD.md` hash status: MATCH is reconciled or a human-approved bypass record is accepted. | `_REFERENCES.md` REF-006; `docs/SPEC.md` Section 3.1 file inventory for `HASH_VERIFICATION_BYPASS.jsonl`; `docs/SPEC.md` Section 7 reference hash behavior — reconciled under D-APP-38 |
 
 ## Standards
 
@@ -50,7 +52,7 @@ Out of scope:
 | `docs/SPEC.md` Sections 13 and 14.2 | Governs status API and Chirality MCP tool names. |
 | `docs/CONTRACT.md` K-STATUS-1/K-STATUS-2 | Binding invariants for canonical status state and transition enforcement. |
 | `docs/CONTRACT.md` K-MCP-1/K-PERM-1 | Binding invariants for MCP wrapper and deny-first behavior. |
-| `docs/PRD.md` Section 8.9 | Product requirements for lifecycle and dependency contracts; HASH_MISMATCH warning applies. |
+| `docs/PRD.md` Section 8.9 | Product requirements for lifecycle and dependency contracts; MATCH status applies. — reconciled under D-APP-38 |
 | `docs/TYPES.md` Section 4.1 | Defines lifecycle vocabulary and optional `INITIALIZED -> IN_PROGRESS` route when semantic lensing is skipped. |
 
 ## Verification
@@ -67,7 +69,7 @@ Out of scope:
 | REQ-015 | Test suite includes the anticipated artifacts from decomposition: status parser tests, transition API/tool tests, and approval SHA tests. |
 | REQ-016 | Schema fixture tests cover status snapshot response, transition request, transition success response, transition denial response, and MCP input/output schemas after the accepted schemas exist. |
 | REQ-017 | Actor authorization tests cover every SPEC Section 4.3 authorized transition plus unmapped/unsupported actor denial. |
-| REQ-018 | Acceptance checklist verifies the PRD hash mismatch has been reconciled or explicitly bypassed before relying on PRD-specific SHA-token criteria as final. |
+| REQ-018 | Acceptance checklist verifies the PRD hash status: MATCH has been reconciled or explicitly bypassed before relying on PRD-specific SHA-token criteria as final. — reconciled under D-APP-38 |
 | REQ-004, REQ-005, REQ-006, REQ-011, REQ-012 | Denial fixtures assert typed reasons for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, policy/path denial, and malformed `_STATUS.md`. |
 
 ## Documentation
@@ -99,6 +101,6 @@ TBD:
 | F-002 | Incorporated as schema fixture verification after schemas are accepted. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` FR-079. |
 | X-001 | Incorporated as denial-reason fixture coverage. | `docs/CONTRACT.md` K-PERM-1/K-MCP-1/K-STATUS-2; `docs/SPEC.md` Sections 4.1-4.3. |
 
-## Source Warning
+## Source Status
 
-`docs/PRD.md` is listed as `HASH_MISMATCH` in `_REFERENCES.md`. Requirements using PRD clauses are retained because the source is locally accessible and explicitly listed, but the mismatch should be reconciled before treating PRD-derived acceptance details as final implementation authority.
+`docs/PRD.md` is listed as `MATCH` in `_REFERENCES.md`. Requirements using PRD clauses are retained because the source is locally accessible and explicitly listed, but the MATCH should be reconciled before treating PRD-derived acceptance details as final implementation authority. (reconciled under D-APP-38).

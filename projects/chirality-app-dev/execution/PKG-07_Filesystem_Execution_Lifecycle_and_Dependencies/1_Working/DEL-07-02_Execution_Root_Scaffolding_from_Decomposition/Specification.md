@@ -1,5 +1,7 @@
 # Specification: DEL-07-02 Execution Root Scaffolding from Decomposition
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Scope
 
 This deliverable specifies the backend feature slice that scaffolds a SPEC-conformant execution root from accepted decomposition markdown for Chirality App vNext. The slice covers SOW-024 execution-root scaffolding and SOW-025 flat package/deliverable folder layout for PKG-07.
@@ -57,8 +59,8 @@ The `POST /api/harness/scaffold` response shape remains an implementation contra
 |---|---|---|
 | Execution Root Layout | Governs root folders, package folders, tool roots, and deliverable paths. | `docs/SPEC.md` Sections 2 and 3 |
 | Lifecycle File Contract | Governs `_STATUS.md` scaffold state and later lifecycle transition compatibility. | `docs/SPEC.md` Section 4 |
-| Filesystem Execution Model | Product requirements for scaffold layout, package/deliverable structures, metadata files, document kits, and path policy. | `docs/PRD.md` Section 8.8; source warning HASH_MISMATCH |
-| Reliability Requirement NFR-011 | Idempotent and recoverable scaffolding. | `docs/PRD.md` Section 11.2; source warning HASH_MISMATCH |
+| Filesystem Execution Model | Product requirements for scaffold layout, package/deliverable structures, metadata files, document kits, and path policy. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+| Reliability Requirement NFR-011 | Idempotent and recoverable scaffolding. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | Invariant Catalog | Governs flat hierarchy, project truth, root separation, lifecycle canonicality, no invention, and conflict surfacing. | `docs/CONTRACT.md` K-HIER-1, K-FS-1, K-ROOT-1 through K-ROOT-3, K-STATUS-1, K-INVENT-1, K-CONFLICT-1 |
 | TYPES Vocabulary | Governs initial Chirality MCP tool names and coordination representation terms where the scaffold API exposes or records those concepts. | `docs/TYPES.md` Sections 8.4 and 13 |
 
@@ -88,7 +90,7 @@ Required or expected artifacts:
 - Idempotence tests.
 - Fail-fast recovery diagnostics.
 - API contract notes for `/api/harness/scaffold`.
-- Source warning note that `docs/PRD.md` is being used despite `_REFERENCES.md` HASH_MISMATCH under the explicit task instruction.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Assumptions and TBDs
 

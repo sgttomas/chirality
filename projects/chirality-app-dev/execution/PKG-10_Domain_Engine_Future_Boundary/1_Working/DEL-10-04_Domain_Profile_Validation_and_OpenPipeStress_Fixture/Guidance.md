@@ -1,5 +1,7 @@
 # Guidance: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-10-04 exists to keep future Domain Engine Profile validation and an OpenPipeStress fixture representable without turning Chirality into a domain-specific solver or moving domain operations into current-release scope. The accepted decomposition describes this as a TEST_SUITE deliverable for validating generic domain profiles and modeling OpenPipeStress as a future fixture without hardcoding solver assumptions into core.
@@ -21,7 +23,7 @@ DEL-10-04 exists to keep future Domain Engine Profile validation and an OpenPipe
 - ASSUMPTION: Future test locations will be selected by the package implementation plan after PKG-10 amendment; no current source assigns concrete test paths for DEL-10-04.
 - ASSUMPTION: The adapter assumptions note should distinguish profile-level assumptions, adapter-manifest assumptions, operation-proposal assumptions, and explicit non-assumptions about Chirality core runtime.
 - Future adapter assumptions should separate at least four classes: profile-level fixture facts, adapter-level manifest and execution assumptions, operation-proposal-level human-gated change assumptions, and explicit core-runtime non-assumptions. This preserves `docs/PRD.md` Section 8.17 FR-114 without making OpenPipeStress behavior part of the harness core.
-- The REF-006 PRD hash mismatch is a visible source-status warning, not a new design fact. Continued PRD citation is accepted for this assignment only because the task brief explicitly directed P3 enrichment to proceed; closure reliance still needs human acceptance or refreshed source metadata.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Trade-offs
 
@@ -65,4 +67,4 @@ TBD until amendment assigns files and owner:
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CT-001 | No source-content conflict identified during P1/P2. PRD hash mismatch is recorded as a source warning only per dispatch. | `_REFERENCES.md` REF-006 | Assignment override | All documents citing PRD | Treat PRD mismatch as warning during P3, but require human acceptance or refreshed source metadata before closure reliance | TBD |
+| CT-001 | No source-content conflict identified during P1/P2. PRD hash status: MATCH is recorded as a source status per dispatch. | `_REFERENCES.md` REF-006 | Assignment override | All documents citing PRD | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | TBD — reconciled under D-APP-38 |

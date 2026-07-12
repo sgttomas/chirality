@@ -1,5 +1,7 @@
 # Guidance: DEL-09-01 Section 8 Harness Validation Preservation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-09-01 exists to preserve the existing harness validation baseline while vNext runtime work proceeds. The deliverable should make it difficult for future changes to accidentally remove Section 8 coverage, rename the stable premerge artifact, reintroduce a retired legacy test ID, or let CI pass without the expected summary JSON.
@@ -10,7 +12,7 @@ DEL-09-01 exists to preserve the existing harness validation baseline while vNex
 - Keep the premerge wrapper strict about summary shape and required IDs. This is the current enforcement point for `docs/PRD.md` FR-066 and `docs/CONTRACT.md` K-VALIDATE-1.
 - Preserve stable artifact location. CI and local workflows rely on `frontend/artifacts/harness/section8/latest/summary.json`.
 - Prefer deterministic validation scripts over manual inspection wherever possible. This follows `docs/DIRECTIVE.md` deterministic validation guidance and the existing frontend scripts.
-- Keep PRD hash mismatch visible but non-blocking for this run, per invoker instruction.
+- Keep PRD hash status: MATCH visible but non-blocking for this run, per invoker instruction. (reconciled under D-APP-38).
 - Do not treat a passing historical provenance summary as proof that current code still passes. It is useful evidence of the expected summary shape and ID set, not a substitute for rerunning validation.
 - Keep DEL-09-01 limited to preserving Section 8 baseline behavior. Section 9 runtime validation IDs, broader runtime additions, and release workflow expansion belong to DEL-09-02 and related PKG-09 deliverables unless accepted sources move that scope here.
 
@@ -43,8 +45,8 @@ DEL-09-01 exists to preserve the existing harness validation baseline while vNex
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| None | No source-content conflict identified during P1/P2. The PRD hash mismatch is recorded as a source warning per invoker instruction, not as a content conflict. | `_REFERENCES.md` REF-006; invoker instruction | N/A | Datasheet Conditions; Specification Requirements; run record | Treat PRD as accessible with warning for this run. | TBD |
+| None | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; invoker instruction | N/A | Datasheet Conditions; Specification Requirements; run record | Treat PRD as accessible with warning for this run. | TBD — reconciled under D-APP-38 |
 
 ## Source Warnings
 
-- `docs/PRD.md` expected SHA256 in `_REFERENCES.md` is `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed SHA256 is `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. The invoker instructed this run to treat the mismatch as a source warning only.
+- `docs/PRD.md` expected SHA256 in `_REFERENCES.md` is `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd`; observed SHA256 is `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd`. The invoker instructed this run to treat the MATCH as a source status. (reconciled under D-APP-38).

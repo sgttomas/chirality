@@ -26,7 +26,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Human ruling applied: semantic lensing and P3 enrichment were skipped; `_SEMANTIC.md` was not read or consumed and is not evidence for this register.
 - Anchor doc selected: `Datasheet.md` with `_CONTEXT.md` and decomposition authority for validation.
 - Execution doc order selected: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`, `_REFERENCES.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`.
-- `[WARNING] SOURCE_HASH_MISMATCH: REF-006 docs/PRD.md remains HASH_MISMATCH in _REFERENCES.md; PRD-derived dependency statements stay warning-qualified until reconciled or accepted.`
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - `[WARNING] TARGET_NOT_READ: _STATUS.md is an explicit Procedure prerequisite target, but it was not read or consumed because the dependency-recording ruling restricted evidence sources. Satisfaction remains TBD.`
 - `[WARNING] DEPENDENCY_EDGES_TBD: Procedure names accepted dependency edges as a prerequisite, while existing _DEPENDENCIES.md declares no accepted upstream/downstream edges yet.`
 - Parent anchor check: one ACTIVE `IMPLEMENTS_NODE` row found; no `FLOATING_NODE` or `AMBIGUOUS_ANCHOR` warning.
@@ -38,8 +38,8 @@ Current register: `Dependencies.csv` v3.1.
 | Count Type | Value |
 |---|---:|
 | Total rows | 13 |
-| ACTIVE rows | 13 |
-| RETIRED rows | 0 |
+| ACTIVE rows | 12 |
+| RETIRED rows | 1 |
 | ANCHOR rows | 6 |
 | EXECUTION rows | 7 |
 | Parent anchors (`IMPLEMENTS_NODE`) | 1 |
@@ -59,15 +59,15 @@ Current register: `Dependencies.csv` v3.1.
 | DEP-07-06-010 | EXECUTION | PREREQUISITE | UPSTREAM | `_STATUS.md` | ACTIVE | `Procedure.md#Prerequisites`; target not read |
 | DEP-07-06-011 | EXECUTION | PREREQUISITE | UPSTREAM | decomposition v3.2 | ACTIVE | `Procedure.md#Steps` |
 | DEP-07-06-012 | EXECUTION | PREREQUISITE | UPSTREAM | authoritative source corpus | ACTIVE | `Procedure.md#Prerequisites` |
-| DEP-07-06-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | `Specification.md#Requirements`; `_REFERENCES.md` REF-006 |
+| DEP-07-06-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | RETIRED | `Specification.md#Requirements`; `_REFERENCES.md` REF-006 |
 
 ## Lifecycle Summary
 
 | Dimension | Count |
 |---|---:|
-| ACTIVE | 13 |
-| RETIRED | 0 |
-| Satisfaction `TBD` | 13 |
+| ACTIVE | 12 |
+| RETIRED | 1 |
+| Satisfaction `TBD` | 12 |
 | Satisfaction `PENDING` | 0 |
 | Satisfaction `IN_PROGRESS` | 0 |
 | Satisfaction `SATISFIED` | 0 |
@@ -79,3 +79,7 @@ Current register: `Dependencies.csv` v3.1.
 | Timestamp | Mode | Strictness | Decomposition Path / Status | Warnings | ACTIVE Counts |
 |---|---|---|---|---|---|
 | 2026-05-20T19:54:22-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / found and used | `SOURCE_HASH_MISMATCH`, `TARGET_NOT_READ`, `DEPENDENCY_EDGES_TBD` | 13 total: 6 ANCHOR, 7 EXECUTION |
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

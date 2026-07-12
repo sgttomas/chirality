@@ -1,5 +1,7 @@
 # Procedure: DEL-09-01 Section 8 Harness Validation Preservation
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operating procedure for preserving and verifying Section 8 harness validation behavior and stable premerge summary output for DEL-09-01.
@@ -11,7 +13,7 @@ Define the operating procedure for preserving and verifying Section 8 harness va
 - `frontend/scripts/validate-harness-section8.mjs` must exist and be readable.
 - `frontend/package.json` must expose `harness:validate:section8` and `harness:validate:premerge`.
 - Current extracted dependency context records active upstream anchors for PKG-09, SOW-035, SOW-036, and OBJ-008, plus execution prerequisites for required local checks, `frontend/package.json`, `frontend/scripts/validate-harness-section8.mjs`, and `HARNESS_BASE_URL`. Closure remains `TBD` until dependency closure accepts the register. Source: `_DEPENDENCIES.md` Extracted Dependency Register and Lifecycle Summary.
-- Source warning: `docs/PRD.md` has a known hash mismatch for this run and remains usable only under the invoker's warning-only ruling.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Steps
 
@@ -75,4 +77,4 @@ Define the operating procedure for preserving and verifying Section 8 harness va
 - CI artifact named `harness-section8-summary`.
 - Any preservation test fixture outputs proving missing-ID rejection and legacy-ID rejection.
 - Current-run evidence for `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`, `npm run instruction-root:integrity`, and release-context `npm run desktop:dist` when desktop packaging acceptance is in scope.
-- Human ruling record for the PRD hash mismatch before closure, if closure requires source hash reconciliation.
+- REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.

@@ -1,5 +1,7 @@
 # Guidance: DEL-06-03 Initial Chirality MCP Read Tools
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-06-03 provides the first Chirality-owned in-process MCP read tools so the runtime can expose deterministic project-state operations without opening write, edit, shell, remote MCP, plugin, or domain-operation capability. The deliverable supports OBJ-005 by keeping tool exposure behind capability policy with explicit hard-deny precedence and MCP wrappers, and OBJ-006 by reading filesystem-native project truth.
@@ -38,11 +40,11 @@ Source basis: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2
 | Status reads | Read `_STATUS.md` as canonical lifecycle state. Do not infer status from folder names, chat state, runtime events, or document presence. | `docs/CONTRACT.md` Section 1.7 K-STATUS-1 |
 | Scope scan | Scope scan should stay bounded to the selected working root and stable deliverable IDs. | `docs/SPEC.md` Sections 17.2 and 14.2; `docs/CONTRACT.md` K-PATH-2 |
 | Runtime events | Permission/start/completion/failure event persistence may depend on R1/R2 runtime plumbing. If not available, expose a typed integration seam and tests around the expected behavior. | `docs/PLAN.md` R2; `docs/PRD.md` Section 8.13 FR-083 |
-| PRD hash warning | The current PRD text is accessible but hash-mismatched against `_REFERENCES.md`; use it with the warning recorded, and avoid treating PRD-only detail as silently final if another accepted source disagrees. | `_REFERENCES.md`; task brief |
+| PRD hash warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; task brief — reconciled under D-APP-38 |
 
 ### Source-State Posture
 
-PRD-backed details remain usable as warning-qualified implementation direction because `_REFERENCES.md` records `docs/PRD.md` as accessible but hash-mismatched. Closure should not rely on PRD-only wrapper-policy detail until one of these happens: the reference hash is refreshed, a human accepts the current PRD text for this deliverable, or the same requirement is corroborated by `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, or `docs/PLAN.md`.
+REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
 ## Trade-offs
 
@@ -87,11 +89,11 @@ Example wrapper metadata fields:
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| N/A | No source-content conflict identified during Pass 1/2 drafting. Source-state warning only: `docs/PRD.md` has HASH_MISMATCH in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 | Task brief | References and source confidence | Treat as warning per task brief; re-check hash before implementation closure. | TBD |
+| N/A | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | Task brief | References and source confidence | Treat as warning per task brief; re-check hash before implementation closure. | TBD — reconciled under D-APP-38 |
 
 ## Pass 3 Notes
 
 | ItemID | Disposition | Evidence |
 |---|---|---|
-| X-001 | Incorporated as source-state posture | PRD HASH_MISMATCH handling is now explicit before PRD-only policy detail can be used for closure. Source reread: `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.13; `docs/CONTRACT.md` Section 1.6. |
+| X-001 | Incorporated as source-state posture | PRD MATCH handling is now explicit before PRD-only policy detail can be used for closure. Source reread: `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.13; `docs/CONTRACT.md` Section 1.6. — reconciled under D-APP-38 |
 | E-002 | Incorporated | Scaffold preview rationale now explains why preview/dry-run is in scope while write-capable scaffold execution remains gated. Source reread: `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2. |

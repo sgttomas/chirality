@@ -8,7 +8,7 @@ Produce and verify the DEL-09-06 security-control evidence set for renderer netw
 
 | Prerequisite | Status / Source |
 |---|---|
-| Accessible source corpus for DEL-09-06 | Available via `_REFERENCES.md`; PRD hash mismatch treated as source warning only |
+| Accessible source corpus for DEL-09-06 | Available via `_REFERENCES.md`; PRD hash mismatch treated as source status |
 | ResponsibleParty | TBD |
 | Declared upstream dependencies | TBD; `_DEPENDENCIES.md` has no accepted dependency edges yet |
 | Test framework and exact command names | TBD; source corpus requires repeatable local checks but this deliverable folder does not identify exact commands |

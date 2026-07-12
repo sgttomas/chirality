@@ -1,5 +1,7 @@
 # Datasheet: DEL-02-02 Workbench and Pipeline Selection UX
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -33,7 +35,7 @@
 |---|---|---|
 | Current release priority | Workbench agent context, pipeline category controls, and TASK split selectors are P0. Workbench contract APIs and stale selection reset are P1. | `docs/PRD.md` Section 8.2 |
 | Scope boundary | Includes UI and operator workflow behavior; excludes runtime engine internals. | `_CONTEXT.md` Package Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 7 |
-| Source warning | `docs/PRD.md` is accessible but has the expected PRD hash mismatch recorded in `_REFERENCES.md`; per dispatch, this is treated as a source warning, not a blocker. | `_REFERENCES.md` Authoritative Source Corpus |
+| Source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` Authoritative Source Corpus — reconciled under D-APP-38 |
 | Dispatch path warning | The dispatched path used stale package label `PKG-02_Desktop_UI_and_Local_Experience`; the unique live DEL-02-02 folder is under `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. | `execution/_Coordination/WORKSPACE_MANIFEST.csv`; `_CONTEXT.md` Identity |
 
 ## Construction

@@ -1,5 +1,7 @@
 # Datasheet: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Identification
 
 | Field | Value |
@@ -21,20 +23,20 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 
 | Attribute | Value | Source |
 |---|---|---|
-| Primary control | `ChiralityPermissionOverlay` | `docs/PRD.md` Section 9.4, HASH_MISMATCH warning; decomposition glossary |
+| Primary control | `ChiralityPermissionOverlay` | `docs/PRD.md` Section 9.4, MATCH status; decomposition glossary — reconciled under D-APP-38 |
 | Decision record | `HarnessPermissionDecision` with `allow`, `deny`, or application-level `ask` | `docs/TYPES.md` Section 8.2 |
 | Decision sources | `sdk-option`, `sdk-callback`, `chirality-policy`, `hook`, `human`, `prompt-support` | `docs/TYPES.md` Section 8.2 |
 | Permission modes in scope | `readOnly`, `workspaceWrite`, `dontAsk`, `ask`, `bypass` | `docs/TYPES.md` Section 8.1; `docs/SPEC.md` Section 15.1 |
-| Core precedence rule | Deny overrides allow | `docs/CONTRACT.md` Section 1.6 K-PERM-1; `docs/PRD.md` NFR-007, HASH_MISMATCH warning |
-| Restriction boundary | `allowedTools` alone is not a restriction boundary | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3; `docs/PRD.md` KG-023, HASH_MISMATCH warning |
+| Core precedence rule | Deny overrides allow | `docs/CONTRACT.md` Section 1.6 K-PERM-1; `docs/PRD.md` NFR-007, MATCH status — reconciled under D-APP-38 |
+| Restriction boundary | `allowedTools` alone is not a restriction boundary | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3; `docs/PRD.md` KG-023, MATCH status — reconciled under D-APP-38 |
 | Interactive approval path | `canUseTool` mediates application approval; decision must be persisted before returning SDK allow/deny | `docs/SPEC.md` Section 15.1; decomposition row SOW-058 |
-| Event obligation | Persist `tool.permission` events for governed tool attempts | `docs/PRD.md` R2 acceptance, HASH_MISMATCH warning; decomposition row SOW-056 |
+| Event obligation | Persist `tool.permission` events for governed tool attempts | `docs/PRD.md` R2 acceptance, MATCH status; decomposition row SOW-056 — reconciled under D-APP-38 |
 
 ## Conditions
 
 | Condition | Constraint | Source |
 |---|---|---|
-| PRD source state | `docs/PRD.md` is accessible but has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details are treated as source-state-warning evidence, not as unqualified accepted truth. | `_REFERENCES.md` REF-006 |
+| PRD source state | `docs/PRD.md` is accessible but has MATCH in `_REFERENCES.md`; PRD-derived details are treated as source-state evidence, not as unqualified accepted truth. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 | Read-only mode | Must not expose or allow write/edit/bash/network-capable actions. | `docs/CONTRACT.md` Section 1.6 K-PERM-4; `docs/TYPES.md` Section 8.1 |
 | `dontAsk` mode | Denies unapproved actions without prompting; unapproved writes, shell, network, and unknown tools deny. | `docs/CONTRACT.md` Section 1.6 K-PERM-5; `docs/TYPES.md` Section 8.1 |
 | `ask` mode | Application may request interactive approval for governed actions; SDK callback ultimately returns allow or deny. | `docs/TYPES.md` Sections 8.1 and 8.2 |
@@ -49,7 +51,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Mode mapper | Maps Chirality modes to SDK posture plus overlay behavior. | `docs/SPEC.md` Section 15.1 |
 | Deny evaluation | Any explicit deny from policy, path containment, hook, governance, SDK deny rule, or human gate blocks execution. | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
 | Decision persistence | A structured permission decision is recorded before downstream execution or before returning an SDK approval result. | `docs/TYPES.md` Section 8.2; decomposition rows SOW-054 and SOW-058 |
-| Event integration | Tool attempts emit permission/start/completion/failure events in the R2 scope. | `docs/PRD.md` R2 implementation targets, HASH_MISMATCH warning; `docs/TYPES.md` Section 7.3 later event categories |
+| Event integration | Tool attempts emit permission/start/completion/failure events in the R2 scope. | `docs/PRD.md` R2 implementation targets, MATCH status; `docs/TYPES.md` Section 7.3 later event categories — reconciled under D-APP-38 |
 | Tests | Include readOnly, dontAsk, and ask behavior tests. Exact test paths and fixtures: TBD. | `_CONTEXT.md`; decomposition DEL-06-01 anticipated artifacts |
 
 ## References
@@ -60,5 +62,5 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | REF-003 | `docs/SPEC.md` Sections 14 and 15 | Tool names, MCP tools, tool surface rules, mode mapping, hook requirements | MATCH |
 | REF-004 | `docs/TYPES.md` Section 8 | Permission modes, decision record, tool-surface terms | MATCH |
 | REF-005 | `docs/PLAN.md` R2 and R3 | Sequencing and acceptance context | MATCH |
-| REF-006 | `docs/PRD.md` Sections 9.4, R2, R3, NFR-007, KG-023 | Product requirements and implementation direction | HASH_MISMATCH warning |
+| REF-006 | `docs/PRD.md` Sections 9.4, R2, R3, NFR-007, KG-023 | Product requirements and implementation direction | MATCH status — reconciled under D-APP-38 |
 | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Deliverable scope, SOW coverage, package boundaries | accepted v3.2 working surface |

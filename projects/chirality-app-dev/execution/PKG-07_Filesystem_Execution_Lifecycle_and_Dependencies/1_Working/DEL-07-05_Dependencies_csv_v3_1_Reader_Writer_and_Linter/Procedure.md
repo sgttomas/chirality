@@ -1,5 +1,7 @@
 # Procedure: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the operating workflow for producing and verifying the DEL-07-05 backend slice: a `Dependencies.csv` v3.1 reader, writer, and linter that preserves schema, provenance, lifecycle behavior, and warnings.
@@ -10,7 +12,7 @@ Sources: `_CONTEXT.md` (Deliverable Scope and Anticipated Artifacts); `docs/SPEC
 
 | Prerequisite | Status / Note | Source |
 |---|---|---|
-| Accepted source references are available | Available locally; `docs/PRD.md` has recorded `HASH_MISMATCH` warning. | `_REFERENCES.md` |
+| Accepted source references are available | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` — reconciled under D-APP-38 |
 | v3.1 schema and enum vocabulary are known | Defined in SPEC and TYPES. | `docs/SPEC.md` Section 6; `docs/TYPES.md` Section 6 |
 | Dependency authority model is known | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are authoritative; aggregation is on demand. | `docs/CONTRACT.md` Section 1.7 |
 | Working-root write policy is known | Governed writes require containment, instruction-root protection, symlink rejection, and hook/provenance behavior. | `docs/SPEC.md` Section 15 |
@@ -110,14 +112,14 @@ Expected records from implementation:
 - Linter test suite and fixtures. Exact paths TBD.
 - Provenance fixtures showing valid source citation and `location TBD` behavior.
 - API/MCP tests or integration evidence for dependency read/write contract surfaces.
-- Review note confirming `docs/PRD.md` hash mismatch was considered before accepting PRD-derived requirements.
+- Review note confirming `docs/PRD.md` hash status: MATCH was considered before accepting PRD-derived requirements. (reconciled under D-APP-38).
 
 ## Pass 3 Worklist Disposition
 
 | ItemID | Procedure disposition | Required follow-through |
 |---|---|---|
 | C-001 | Converted to TBD. | Select and document stable warning categories or codes before locking tests for reader, writer, linter, API, and MCP warning output. |
-| F-001 | Already surfaced as conflict. | Preserve `_REFERENCES.md` PRD `HASH_MISMATCH` in review evidence or refresh/accept the PRD hash through the appropriate human-governed path. |
+| F-001 | Already surfaced as conflict. | Preserve `_REFERENCES.md` PRD `MATCH` in review evidence or refresh/accept the PRD hash through the appropriate human-governed path. — reconciled under D-APP-38 |
 | D-001 | Converted to implementation-location slots. | Record final module names, API handler names, MCP wrapper names, payload type names, fixture paths, and test paths in implementation evidence once selected. |
 | X-001 | Converted to acceptance-evidence slots. | Record API/MCP dependency read-write payload evidence and governed write-hook evidence, including containment, instruction-root rejection, symlink-write rejection, provenance/event hooks, extension-column preservation, retired-row retention, and warning behavior. |
 

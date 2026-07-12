@@ -1,5 +1,7 @@
 # Guidance: DEL-04-04 PersonaComposer from Instruction Root
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 DEL-04-04 exists to replace stub persona prompt behavior with a governed PersonaComposer that reads Chirality instruction-root materials and produces prompt context suitable for the SDK-backed runtime path. The value of the slice is not more prompt text by itself; it is making prompt composition deterministic, traceable, source-grounded, and bounded by Chirality-owned runtime policy.
@@ -52,8 +54,8 @@ ASSUMPTION: A useful test fixture can vary one input at a time, such as agent in
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
-| CT-001 | `docs/PRD.md` is listed as `HASH_MISMATCH`, but decomposition SOW rows cite PRD sections for persona and instruction-root scope. | `_REFERENCES.md` REF-006 | Decomposition SOW-017 / SOW-030 and `docs/PRD.md` Section 8.4 | Datasheet References; Specification PC-REQ-004, PC-REQ-006, PC-REQ-010, PC-REQ-011 | Treat PRD-derived details as source-state warnings; prefer matching `docs/SPEC.md`, `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `docs/TYPES.md`, and accepted decomposition where they overlap. | TBD |
+| CT-001 | `docs/PRD.md` is listed as `MATCH`, but decomposition SOW rows cite PRD sections for persona and instruction-root scope. | `_REFERENCES.md` REF-006 | Decomposition SOW-017 / SOW-030 and `docs/PRD.md` Section 8.4 | Datasheet References; Specification PC-REQ-004, PC-REQ-006, PC-REQ-010, PC-REQ-011 | Treat PRD-derived details as source-state warnings; prefer matching `docs/SPEC.md`, `docs/CONTRACT.md`, `docs/DIRECTIVE.md`, `docs/TYPES.md`, and accepted decomposition where they overlap. | TBD — reconciled under D-APP-38 |
 
 ## Source-State Warning
 
-`docs/PRD.md` was read because it is an authoritative corpus entry, but `_REFERENCES.md` records a hash mismatch. Claims that depend only on PRD content are labeled with a HASH_MISMATCH warning or preserved as `TBD`/`ASSUMPTION`.
+REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.

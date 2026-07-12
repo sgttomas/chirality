@@ -25,7 +25,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Decomposition authority used: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; anchor label resolution succeeded.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` was not read or consumed.
 - Strictness: CONSERVATIVE. Unknown implementation paths, SDK error shapes, and Node/SDK network enforcement mechanisms remain `TBD`.
-- [WARNING] SOURCE_STATE: `_REFERENCES.md` reports `docs/PRD.md` / `REF-006` as `HASH_MISMATCH`; PRD-derived implementation details require source-state revalidation before final acceptance.
+- [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 
 ## Extracted Dependency Register
 
@@ -42,7 +42,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-04-05-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-03 | ACTIVE | `Specification.md` |
 | DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05 | ACTIVE | `Specification.md` |
 | DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | ACTIVE | `Specification.md` |
-| DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | `Procedure.md` |
+| DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | `Procedure.md` |
 
 Counts: 12 ACTIVE rows; 6 ANCHOR, 6 EXECUTION.
 
@@ -50,16 +50,20 @@ Counts: 12 ACTIVE rows; 6 ANCHOR, 6 EXECUTION.
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 12 |
-| RETIRED | 0 |
+| ACTIVE | 10 |
+| RETIRED | 2 |
 
 | SatisfactionStatus | Count |
 |---|---:|
 | SATISFIED | 6 |
-| TBD | 6 |
+| TBD | 4 |
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE Counts |
 |---|---|---|---|---|---|
 | 2026-05-20T19:35:58-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_STATE REF-006 HASH_MISMATCH | ANCHOR=6; EXECUTION=6 |
+
+## D-APP-56 R5 P40 register annotation (2026-07-12)
+
+REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.

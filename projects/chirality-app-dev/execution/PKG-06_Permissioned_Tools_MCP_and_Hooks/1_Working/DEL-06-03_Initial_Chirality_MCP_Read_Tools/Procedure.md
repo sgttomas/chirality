@@ -1,5 +1,7 @@
 # Procedure: DEL-06-03 Initial Chirality MCP Read Tools
 
+> **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+
 ## Purpose
 
 Define the working procedure for producing and verifying the DEL-06-03 MCP read-tool implementation artifacts. The procedure is constrained to the read-tool slice: status read, dependency read, bounded scope scan, and scaffold preview/dry-run.
@@ -13,7 +15,7 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 | Runtime sequence context | R2 requires permission-gated read surface before writes/bash; see `docs/PLAN.md` R2. |
 | Declared upstream dependencies | Active unresolved interfaces are recorded in `_DEPENDENCIES.md`: DEL-06-01 permission overlay integration, DEL-07-05 dependency reader behavior, UNKNOWN/TBD status lifecycle API owner, and UNKNOWN/TBD Chirality runtime event path. Closure requires human or upstream acceptance of these states. |
 | Implementation module locations | TBD - no implementation path is specified in the accessible sources for this deliverable. |
-| PRD source-state warning | `docs/PRD.md` has HASH_MISMATCH in `_REFERENCES.md`; treat as warning per task brief. |
+| PRD source state | `docs/PRD.md` is `MATCH` in `_REFERENCES.md` under D-APP-38. |
 
 ### Implementation Location Worklist
 
@@ -87,7 +89,7 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 | Scaffold preview | Dry-run/preview does not apply filesystem writes. |
 | Runtime events | Permission/start/completion/failure events are persisted or an explicit pending integration contract is tested. |
 | Upstream dependency closure | DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership are accepted or recorded as closure blockers. |
-| Source-state warning | `docs/PRD.md` HASH_MISMATCH is recorded until reference hashes are refreshed or human accepted. |
+| Source-state status | `docs/PRD.md` REF-006 is `MATCH` under D-APP-38. |
 
 ## Records
 
@@ -97,7 +99,7 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 - Validation output for deterministic ordering and denial behavior.
 - Status/dependency/scope/scaffold preview test results.
 - Section 9 validation mapping, including `section9.chirality_mcp_status_dependencies` where applicable.
-- Source-state note for `docs/PRD.md` HASH_MISMATCH until resolved.
+- Source-state note: `docs/PRD.md` REF-006 is `MATCH` under D-APP-38; dated mismatch history remains in prior run records.
 - Implementation location map for MCP definitions, wrapper metadata, status reader, dependency reader, scope scan, and scaffold preview.
 - Upstream closure record for DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership.
 - Runtime event contract blocker record if the Chirality runtime event path remains unavailable.
