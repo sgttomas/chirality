@@ -71,6 +71,9 @@ Terms are organized alphabetically. Where a term has a specific meaning in the A
 | Agent 0 (Supervising Architect) | The sole canonical runtime role that aligns with the human, supervises Agent 1 managers, returns rulings, and performs validated cross-manager fan-in. Standards remain external. | TYPES.md §4.1 |
 | Type 1 (Manager) | The agent classification for a package- or project-scoped agent that interprets intent, decomposes work, routes to specialists, and merges results. | TYPES.md §4.1 |
 | Agent 2 (Specialist) | A narrow-scope agent that executes a sealed bounded brief, returns outputs with evidence, and does not delegate. | TYPES.md §4.1 |
+| Terminal fan-out/fan-in | A parent dispatches independent children, waits for terminal returns, validates fan-in, and then releases dependent work. | TYPES.md §4.4 |
+| Supervised many-to-many agency | Active children report coordination information to their parent, which selectively relays or amends affected sibling workflows without permitting direct sibling delegation. | TYPES.md §4.4 |
+| Work graph | The recorded agent-instance nodes, dependencies, concurrency eligibility, ownership, returns, and gates that govern an orchestration run; posture labels are descriptive only. | TYPES.md §4.4 |
 | Upstream (direction) | A dependency direction value indicating that the host deliverable requires information from the target deliverable. | TYPES.md §3.3 |
 | Validation | The process of confirming that a deliverable or artifact satisfies its stated requirements and acceptance criteria; distinct from authentication in that it addresses fitness for purpose rather than professional attestation. | DIRECTIVE.md §3.2 |
 | Vocabulary map | A table of canonical terms and synonyms produced by PROJECT_DECOMP to prevent semantic drift across agents, documents, and stakeholders. | TYPES.md §8 |

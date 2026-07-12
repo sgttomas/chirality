@@ -46,7 +46,8 @@ Write scope distribution across the suite reflects the fault containment archite
 | `repo-metadata-only` | DOMAIN_DECOMP, HELPS_HUMANS context-transposition mode |
 | `repo-wide` | HELPS_HUMANS |
 | `project-level` | PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP |
-| `deliverable-local` | WORKING_ITEMS, REVIEW; TASK skills may receive deliverable-local allowed targets through the bounded TASK shell |
+| `package-level` | WORKING_ITEMS, constrained to one activated package and optionally selected deliverables |
+| `deliverable-local` | REVIEW; TASK skills may receive deliverable-local allowed targets through the bounded TASK shell |
 | `tool-root-only` | ORCHESTRATOR (including scheduling), EVALUATION, CHANGE, ESTIMATING, AGGREGATION, and bounded audit specialists |
 | `workspace-scaffold-only` | PREPARATION (primary scaffold variant) |
 | `bounded-task-brief` | TASK shell; effective writes are authorized by the bounded brief, including deliverable-local and KTY-local task variants |
@@ -139,7 +140,12 @@ HELP_HUMAN, CHANGE, REVIEW, SCOPE_CHANGE, HELPS_HUMANS context-transposition mod
 
 Session continuity across agent invocations is maintained through two durable filesystem artifacts: `NEXT_INSTANCE_PROMPT.md` (stable session startup instructions, modified only on protocol changes) and `NEXT_INSTANCE_STATE.md` (mutable state pointer, updated by WORKING_ITEMS at each session handoff). This control loop — described in Chapter 4 (§4.8) — enables multi-session project execution without hidden state.
 
-Four distinct spawning mechanisms govern how Type 1 agents invoke Type 2 agents. ORCHESTRATOR uses human-gated phases, pausing between each sequential spawning decision. WORKING_ITEMS uses pre-authorized dispatch, autonomously invoking TASK agents after the human confirms the session objective. RECONCILIATION uses a human-directed toolbelt: the human specifies which agents are authorized before any dispatch occurs, and at most one task agent runs per cycle by default. CHANGE uses approval-gate execution, requiring explicit `APPROVE:` tokens that enumerate specific actions before any filesystem or git change proceeds.
+Multi-agent orchestration supports terminal fan-out/fan-in, supervised
+parent-mediated many-to-many agency, and mixed dependency-valid work graphs.
+HELP_HUMAN owns cross-package orchestration; each WORKING_ITEMS instance owns
+one activated package and may dispatch Agent 2 work after the human-aligned
+scope is accepted. The human may prescribe the graph or delegate its
+selection. Consequential changes still return to the human.
 
 ---
 

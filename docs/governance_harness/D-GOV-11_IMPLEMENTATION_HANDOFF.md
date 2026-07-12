@@ -1,7 +1,7 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
 Status: ACTIVE / PARTIALLY BLOCKED BY EXTERNAL INTEGRATION  
-DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`  
+DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
 ## Accepted Direction
@@ -14,6 +14,9 @@ Branch: `codex/agent-governance-redesign`
 - EVALUATION owns generic audit/reconciliation semantics.
 - RECONCILIATION is reserved for deliverable-corpus concordance.
 - PDF2MD and DRAWING_EXTRACT remain Agent 1.
+- Terminal fan-out/fan-in and supervised many-to-many agency are complementary
+  canonical patterns; mixed work graphs are allowed.
+- WORKING_ITEMS is a package-level Agent 1 and SOFTWARE_DEV is deferred.
 
 ## Implemented in This Instruction Tranche
 
@@ -25,6 +28,8 @@ Branch: `codex/agent-governance-redesign`
 - RECONCILIATION reserved fail-closed pending calibration evidence.
 - SCHEDULING merged into ORCHESTRATOR; SKILLMAKER, TOOLMAKER, CONTEXT_TRANSPOSE, and SCHEDULING persona files removed after live caller redirection.
 - PDF2MD and DRAWING_EXTRACT source/target calibration and novel-generalist semantics added.
+- D-GOV-12 doctrine, package-level WORKING_ITEMS, cross-package HELP_HUMAN,
+  orchestration vocabulary, and managed-runtime record schema added.
 - DBM, disposition matrix, TYPES, DIRECTIVE, README, professional-engineering mapping, roadmap, validators, skill/tool ownership, and export contract updated.
 
 ## Pending Internal Work

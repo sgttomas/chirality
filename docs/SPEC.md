@@ -682,7 +682,7 @@ PROTOCOL > SPEC > STRUCTURE > RATIONALE
 | `AGENT_TYPE` | `TYPE 0`, `TYPE 1`, `TYPE 2` | Architect / Manager / Specialist |
 | `AGENT_CLASS` | `PERSONA`, `TASK` | Interactive session vs. straight-through pipeline |
 | `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
-| `WRITE_SCOPE` | base values: `repo-wide`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `project-level`, `bounded-task-brief`, `none` | What the agent is allowed to write |
+| `WRITE_SCOPE` | base values: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none` | What the agent is allowed to write |
 | `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
 
 **`WRITE_SCOPE` parameterization.** A `tool-root-only` scope MAY be parameterized to a specific tool root or registered subtree — written `tool-root-only ({EXECUTION_ROOT}/_Reconciliation/<subtree>/)`. The parameterized form satisfies the `AUDIT_GOVERNANCE` registry check via its parent tool root (see §1.2). `bounded-task-brief` is the canonical scope of the `TASK` shell: writes are authorized only by the effective bounded task brief (`AllowedWriteTargets` or an explicitly named boundary), never by `ScopePath`/`DeliverablePath` alone, and always subject to ScopePath containment (§0.2.3).
@@ -699,10 +699,34 @@ Harness runtime metadata parsing uses a split contract:
 - **Canonical body header/table**: the `AGENT_TYPE: {0|1|2}` line in the instruction body and the `AGENT_CLASS` value in the Agent Type table.
 
 Subagent registry safety rules:
-- Delegated subagents MUST declare `AGENT_TYPE: 2` in the body header.
-- `AGENT_CLASS: TASK` is preferred and validated as a warning-level rule (non-blocking).
+- The compatibility bridge currently delegates only agents that declare
+  `AGENT_TYPE: 2`; the managed hierarchy target additionally permits Agent 0
+  to launch named Agent 1 sessions.
+- Agent 1 delegates only Agent 2 forms. `AGENT_CLASS: TASK` remains preferred
+  for persistent Agent 2 packages.
 
 Delegation governance rule (fail closed): when subagents are enabled and a Type 1 persona is allowlisted for subagents, runtime injects subagents only if valid governance metadata is present (`contextSealed === true`, `pipelineRunApproved === true`, a non-empty `approvalRef`). Missing or invalid governance metadata MUST block subagent injection while allowing the parent turn to continue normally. Deployment-specific harness/runtime API and UI contracts (turn input, attachment handling, selector schemas) are defined in the owning project's runtime docs, not at the framework root.
+
+### 9.8 Managed Multi-Agent Runtime Record
+
+The managed runtime persists one append-only record tree per orchestration
+run under `{EXECUTION_ROOT}/_Coordination/AgentRuns/<RunID>/`. It contains the
+versioned orchestration plan, work graph, instance launch briefs/status/returns,
+coordination notices and dispositions, parent updates and acknowledgments,
+brief amendments, and final handoff state.
+
+Every work graph records `RunID`, `PlanVersion`, selection authority,
+descriptive posture, accepted basis, agent-instance nodes, dependency edges,
+concurrency eligibility, read scopes, write ownership, expected returns,
+fan-in gates, and human decision points. Every managed instance records its
+logical parent, agent role/type, instruction or brief hash, declared context,
+tools, writes, output artifacts, and status.
+
+The runtime rejects direct sibling messaging, invalid parent/child type pairs,
+undeclared writes, concurrent path overlap (including ancestor containment),
+missing seals/approval references, capability inheritance, and fan-in over
+missing or invalid returns. Overlapping writes require an accepted predecessor
+or one declared integration owner.
 
 ---
 

@@ -124,6 +124,11 @@ Use live registries and discovery tools rather than static counts.
 
 An agent is an LLM plus instructions, declared files/context, tools, and permissions. Type 0 / Type 1 / Type 2 are runtime delegation positions: Supervising Architect, Manager, and Specialist. Standards constrain every layer but are not agents. `AGENTS.md` is the canonical runtime doctrine and live role index.
 
+Multi-agent workflows may use terminal fan-out/fan-in, supervised
+parent-mediated many-to-many coordination, or mixed dependency-valid work
+graphs. HELP_HUMAN manages cross-package work; each WORKING_ITEMS instance
+manages one activated package and its deliverable-scoped Agent 2 work.
+
 `TASK` is the default recurring-method form of Agent 2. Ephemeral bounded generalists and human-approved dedicated specialists are also valid. Skills are method packs TASK can hydrate; tools are deterministic helpers for repeatable operations such as scaffolding, validation, PDF/drawing processing, dependency analysis, publication assembly, source cataloging, and test-surface discovery.
 
 ---

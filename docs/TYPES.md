@@ -190,7 +190,7 @@ Agent 2 has three valid construction forms: `TASK + skill + brief`; an ephemeral
 |---|---|---|
 | `AGENT_CLASS` | `PERSONA`, `TASK` | Agent 0 and Agent 1 are interactive personas; persistent Agent 2 packages are straight-through specialists |
 | `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | Type 0/1 may use chat; Type 2 is delegated or pipeline-invoked and is not a top-level chat persona |
-| `WRITE_SCOPE` | base values: `repo-wide`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `project-level`, `bounded-task-brief`, `none` | What the agent is allowed to write |
+| `WRITE_SCOPE` | base values: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none` | What the agent is allowed to write |
 | `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
 
 A `tool-root-only` scope MAY be parameterized to a registered tool root or subtree — `tool-root-only ({EXECUTION_ROOT}/_Reconciliation/<subtree>/)`. `bounded-task-brief` is the `TASK` shell's scope: writes are authorized only by the effective bounded task brief and are always subject to ScopePath containment (`SPEC.md` §0.2.3, §9.5). The full enumeration and parameterization rules live in `SPEC.md` §9.5.
@@ -204,6 +204,21 @@ A `tool-root-only` scope MAY be parameterized to a registered tool root or subtr
 - Human authority remains the halting condition at consequential gates.
 
 Authority and capability do not increase through delegation. Escalation flows upward. No agent may approve deliverables for external reliance on behalf of the accountable human.
+
+### 4.4 Multi-Agent Orchestration
+
+| Term | Meaning |
+|---|---|
+| `OrchestrationSelectionAuthority` | `HUMAN | AGENT_0 | AGENT_1` — who selected the current work graph |
+| `OrchestrationPosture` | `TERMINAL_FAN_OUT_IN | SUPERVISED_MANY_TO_MANY | MIXED` — descriptive label for the graph |
+| `ClaimStatus` | `PROVISIONAL | VALIDATED | ACCEPTED | DISPUTED` — warrant state preserved across a coordination relay |
+| `CoordinationDisposition` | `RECORD | RELAY | AMEND | HOLD | REPLAN | ESCALATE | ROUTE` — parent action on a child notice |
+| `UpdateAcknowledgment` | `INCORPORATED | NO_EFFECT | BLOCKED | CONFLICT | HUMAN_DECISION_REQUIRED` — child response to a parent update |
+
+The work graph records actual sequencing and concurrency; the posture is not a
+complete execution language. Agent 0 owns cross-package graphs. A
+WORKING_ITEMS Agent 1 instance owns exactly one activated package and its
+intra-package graph.
 
 ---
 

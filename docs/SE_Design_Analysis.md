@@ -29,7 +29,8 @@ The atomic unit of work is the **production unit folder** — a single deliverab
 Encapsulation is enforced by:
 - K-HIER-1: flat package→deliverable hierarchy (no nesting)
 - K-WRITE-1: deliverable-local agents write only within their assigned folder
-- WORKING_ITEMS invariant: no cross-deliverable scanning/editing by default
+- WORKING_ITEMS invariant: one activated package per instance; cross-package
+  scanning/editing requires Agent 0 ownership or a separate activation
 
 Cross-deliverable operations (reconciliation, aggregation, closure analysis) are explicit, opt-in, and write to isolated tool roots — never to deliverable folders.
 
@@ -244,7 +245,9 @@ ORCHESTRATOR (Plant Setup)
 
 ### 6.2 Open-Loop vs Closed-Loop Segments
 
-**Open-loop (within a session):** WORKING_ITEMS produces content within a single deliverable without cross-deliverable feedback. Bounded by deliverable scope and session objective.
+**Open-loop (within a terminal child):** Agent 2 produces one bounded return
+without sibling feedback. WORKING_ITEMS manages the package-level graph and
+validates deliverable fan-in.
 
 **Closed-loop (across sessions):** The handoff mechanism (`NEXT_INSTANCE_STATE.md`) carries state between sessions. TASK+dependency-extract rerun after content changes updates the dependency graph. RECONCILIATION detects integration defects. ORCHESTRATOR scan computes work availability for the next tier.
 

@@ -33,6 +33,10 @@ The established direction (reflected in `AGENTS.md` and the agent suite):
   Agent 0; Agent 1 managers remain direct human entry points; Agent 2 may be
   TASK plus a skill, an ephemeral bounded generalist, or an approved dedicated
   specialist. Standards constrain all layers from outside the hierarchy.
+- **Multi-agent orchestration supports terminal fan-out/fan-in, supervised
+  many-to-many agency, and arbitrary dependency-valid mixed work graphs.** The
+  human may prescribe or delegate pattern selection. Agent 0 manages
+  cross-package work; package-level WORKING_ITEMS manages intra-package work.
 - **`TASK` is the default recurring-method Agent 2 shell.** A dedicated
   specialist requires evidence that TASK and ephemeral-generalist forms are
   inadequate, a HELPS_HUMANS proposal, and explicit human approval.

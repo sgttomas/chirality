@@ -1,7 +1,8 @@
 # Workflow-Component Design Standard
 
-> **Status: CANDIDATE IMPLEMENTATION of ruled directions D-GOV-10 and
-> D-GOV-11.** The standard/persona split and runtime hierarchy are owner-ruled.
+> **Status: CANDIDATE IMPLEMENTATION of ruled directions D-GOV-10,
+> D-GOV-11, and D-GOV-12.** The standard/persona split, runtime hierarchy, and
+> multi-agent orchestration doctrine are owner-ruled.
 > This exact text becomes authoritative when accepted and published in the
 > governed record. Until then, ratified `DIRECTIVE.md`, `CONTRACT.md`,
 > `SPEC.md`, `TYPES.md`, and the live `AGENTS.md` govern on disagreement.
@@ -149,7 +150,41 @@ package does not acquire authority beyond its constituent records.
 - Delegation cannot expand capabilities and requires sealed context, approved
   pipeline authority, path containment, and child-run evidence.
 
-### 4.2 Dedicated-package qualification
+### 4.2 Multi-agent orchestration
+
+Terminal fan-out/fan-in and supervised many-to-many agency are both canonical.
+A workflow may compose arbitrary dependency-valid sequences of individual and
+concurrent actions; the recorded work graph, not a pattern label, governs.
+
+The human may prescribe the graph or posture, partially constrain it, or
+delegate selection. Selection follows: human direction; human-approved
+constraints and gates; accepted state and dependencies; Agent 0 cross-package
+judgment; Agent 1 intra-package judgment. The selected or derived posture,
+selection authority, nodes, dependencies, concurrency eligibility, read/write
+ownership, expected returns, fan-in gates, and human decision points are
+recorded before dispatch.
+
+Terminal fan-out/fan-in is appropriate when children can execute independently
+and their terminal returns are sufficient. Supervised many-to-many agency is
+appropriate when active work may generate information relevant to siblings or
+downstream work. Live coordination remains parent-mediated: Agent 1 reports to
+Agent 0 for cross-manager disposition; Agent 2 reports to Agent 1 for
+intra-package disposition. Direct sibling messaging and child bypass are not
+allowed.
+
+Informational relays preserve claim status and minimum sufficient context.
+Changes to objective, basis, scope, ownership, risk, or acceptance require a
+versioned brief amendment; consequential amendments require a human ruling.
+Manager-selected orchestration within accepted authority does not require a
+separate approval for every child.
+
+Shared reads are allowed. Concurrent sibling writes must be disjoint under
+exact-path and ancestor-containment checks. Overlapping writes require an
+accepted predecessor and serialization or one declared integration owner.
+Failures block only declared dependants. Independent siblings continue, and
+fan-in refuses missing, invalid, contradictory, or unaccepted returns.
+
+### 4.3 Dedicated-package qualification
 
 Agent-package status is not grandfathered. Every existing or proposed
 specialist package must pass this sequence:
@@ -235,6 +270,10 @@ Every agent declares a write scope. Every TASK run resolves explicit
 `AllowedWriteTargets`; `ScopePath` alone does not grant writes. All writes are
 subject to K-WRITE-2: normalized real paths must remain under the active
 checkout, with symlink and traversal escapes rejected.
+
+`package-level` authorizes an Agent 1 only within one activated package and
+the deliverables selected by its accepted package brief. Shared project-level
+surfaces require separate ownership from Agent 0 or explicit serialization.
 
 ### 7.2 Snapshot applicability
 

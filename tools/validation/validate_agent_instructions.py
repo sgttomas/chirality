@@ -48,6 +48,7 @@ REQUIRED_FIELDS = (
 WRITE_SCOPE_PREFIXES = (
     "repo-wide",
     "project-level",
+    "package-level",
     "deliverable-local",
     "tool-root-only",
     "workspace-scaffold-only",

@@ -1,6 +1,6 @@
 # Design Basis Memorandum — Agent Instruction Architecture
 
-> **Status:** Current design basis under D-GOV-11. Runtime hierarchy support is staged; durable launch briefs remain the fallback until managed delegation lands.
+> **Status:** Current design basis under D-GOV-11 and D-GOV-12. Runtime hierarchy and live multi-agent support are staged; durable briefs remain the fallback until managed delegation lands.
 
 ## 1. Purpose
 
@@ -60,7 +60,21 @@ Skills do not acquire authority from their dispatcher. Tools do not carry hidden
 
 ## 6. Delegation and Coordination
 
-Runtime delegation is hierarchical. Many-to-many coordination is asynchronous through accepted filesystem artifacts, dependencies, immutable snapshots, handoff records, and Git state.
+Runtime delegation and communication are hierarchical. Coordination is
+many-to-many through both parent-mediated live agency and accepted filesystem
+artifacts, dependencies, immutable snapshots, handoff records, and Git state.
+
+Two named patterns are canonical. Terminal fan-out/fan-in dispatches bounded
+independent children and coordinates through validated terminal returns.
+Supervised many-to-many agency permits active children to report notices to
+their parent, which may selectively relay information or amend dependent work.
+Arbitrary mixed sequential/concurrent compositions are represented by a work
+graph and need no additional pattern names. Humans may prescribe the graph or
+delegate selection to the responsible Agent 0 or Agent 1.
+
+HELP_HUMAN owns the cross-package graph. Each WORKING_ITEMS instance owns one
+activated package and its intra-package graph across deliverables. Agent 0
+brokers Agent 1 coordination; Agent 1 brokers Agent 2 coordination.
 
 Git records versions and transport state; a commit or push is not semantic acceptance. Accepted truth is identified by the owning workflow’s gate and snapshot/handoff contract.
 
@@ -75,7 +89,14 @@ Fan-out is allowed only over disjoint scopes or declared shared dependencies. Fa
 - RECONCILIATION is reserved for deliverable-corpus concordance and remains fail-closed until the two project calibrations are accepted.
 - ORCHESTRATOR owns human-gated schedule-basis workflows; deterministic graph calculation and rendering remain tools or TASK methods.
 - PDF2MD and DRAWING_EXTRACT remain Agent 1 because source targets, schemas, review depth, and recovery posture require human calibration before repetitive work.
-- REVIEW, CHANGE, WORKING_ITEMS, RESEARCH, decomposition managers, SCOPE_CHANGE, DOMAIN_ENGINE, DBM_PUBLISHER, and EQUATION_AUDIT remain Agent 1 around their real human decisions.
+- WORKING_ITEMS is the package-level production manager and may coordinate many
+  deliverable-scoped Agent 2 instances.
+- REVIEW, CHANGE, RESEARCH, decomposition managers, SCOPE_CHANGE,
+  DOMAIN_ENGINE, DBM_PUBLISHER, and EQUATION_AUDIT remain Agent 1 around their
+  real human decisions.
+- SOFTWARE_DEV is deferred until real trials demonstrate persistent manager
+  semantics that WORKING_ITEMS plus software profiles, skills, tools, and
+  ephemeral generalists cannot carry safely.
 
 ## 8. Persistence and Closure
 
@@ -85,7 +106,12 @@ Every phase-changing workflow follows the integration rules in `AGENTS.md`: deri
 
 The current application can open Type 0/1 sessions and delegate one-level Type 2 children, but it does not yet provide the full hierarchy. Until managed delegation lands, HELP_HUMAN produces durable Agent 1 launch briefs and managers produce durable Agent 2 briefs without claiming executable nesting.
 
-The next runtime tranche adds a governed `delegate_agent` service with managed child sessions, actual named instruction loading, ephemeral-generalist sealed briefs, parentage and instruction/brief hashes, capability non-inheritance, path containment, child-run records, and validated fan-in. The old SDK bridge remains a compatibility adapter until nested acceptance tests pass.
+The next runtime tranche adds managed child sessions, work graphs,
+parent-mediated notices and updates, versioned amendments, actual named
+instruction loading, ephemeral-generalist sealed briefs, parentage and
+instruction/brief hashes, capability non-inheritance, path containment,
+durable child-run records, and validated fan-in. The old SDK bridge remains a
+compatibility adapter until nested and live-coordination acceptance tests pass.
 
 ## 10. Conformance
 

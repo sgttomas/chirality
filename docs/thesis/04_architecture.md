@@ -231,7 +231,9 @@ The six categories, from most to least restrictive, are:
 - **REPO-METADATA-ONLY** — May write to instruction files, README, and templates — not to execution truth. Applies to: DOMAIN_DECOMP, HELPS_HUMANS context-transposition mode.
 - **REPO-WIDE** — May write across the instruction repository under its declared protocol (agent, skill, and tool governance; publication through CHANGE). Applies to: HELPS_HUMANS.
 - **PROJECT-LEVEL** — May write to decomposition documents, project metadata files, and folder scaffolding. Applies to: PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP.
-- **DELIVERABLE-LOCAL** — May write only within a single assigned production unit folder. Applies to: WORKING_ITEMS, TASK+four-documents, TASK+domain-documents, TASK+semantic-matrix-build, TASK+lens-register, TASK+dependency-extract, TASK, REVIEW.
+- **PACKAGE-LEVEL** — May write only within one activated package and its
+  selected deliverables. Applies to WORKING_ITEMS.
+- **DELIVERABLE-LOCAL** — May write only within a single assigned production unit folder. Applies to: TASK+four-documents, TASK+domain-documents, TASK+semantic-matrix-build, TASK+lens-register, TASK+dependency-extract, TASK, REVIEW.
 - **TOOL-ROOT-ONLY** — May write only to a specific designated tool root under `{EXECUTION_ROOT}/`. Applies to: ORCHESTRATOR (`_Coordination/`), RECONCILIATION (`_Reconciliation/`), CHANGE (`_Change/` plus repo files with approval gate), ORCHESTRATOR scheduling workflow (`_Schedule/`), ESTIMATING (`_Estimates/`), AGGREGATION (`_Aggregation/`), and the four audit agents.
 
 ### 4.6.2 The Write Scope Tree
@@ -302,7 +304,9 @@ DBM §7.2 states six rules that govern write scope enforcement across the agent 
 3. Tool-root agents write only to their designated tool root under `{EXECUTION_ROOT}/`.
 4. Source truth (deliverable production documents) is never modified by tool-root agents.
 5. `_STATUS.md` updates are restricted to designated agents (PREPARATION, TASK+four-documents, TASK+semantic-matrix-build, REVIEW) and only for forward lifecycle transitions.
-6. Cross-deliverable scanning or editing is prohibited inside WORKING_ITEMS sessions unless the human explicitly requests a cross-check.
+6. WORKING_ITEMS may scan and coordinate the deliverables of its one activated
+   package. Cross-package access requires Agent 0 ownership or separate
+   authority.
 
 ### 4.6.4 Write Scope as Fault Containment
 
@@ -434,7 +438,8 @@ This mechanism solves a fundamental limitation of LLM-based agent systems: the a
 The operational control loop in a running project follows the sequence:
 
 1. **ORCHESTRATOR** initializes the workspace and session handoff artifacts; manages gate sequence.
-2. **WORKING_ITEMS** reads session state and executes deliverable-level work; dispatches TASK agents pre-authorizedly.
+2. **WORKING_ITEMS** reads package state, derives the intra-package work graph,
+   and dispatches deliverable-scoped TASK agents within accepted authority.
 3. **TASK+dependency-extract** reruns are triggered after content changes to keep dependency registers current.
 4. **RECONCILIATION** aggregates and audits across the project; dispatches audit agents to produce closure reports and coverage analyses.
 5. **CHANGE** receives approved commit instructions and applies them to the repository, requiring explicit approval tokens before any state-changing action.
@@ -449,7 +454,7 @@ DBM §6.3 defines four distinct spawning mechanisms, each with different authori
 | Mechanism | Used By | Authorization Required |
 |-----------|---------|----------------------|
 | **Human-gated phases** | ORCHESTRATOR | Explicit human confirmation at each sequential phase |
-| **Pre-authorized dispatch** | WORKING_ITEMS | Human confirms session objective once; TASK agents dispatched autonomously within session |
+| **Package orchestration** | WORKING_ITEMS | Human or Agent 0 accepts the package activation; TASK agents are dispatched according to the recorded work graph |
 | **Human-directed toolbelt** | RECONCILIATION | Human provides TOOLBELT list of authorized agents; one task per cycle by default |
 | **Approval-gated execution** | CHANGE | Explicit approval tokens required per action (`APPROVE:` or `APPROVE_DESTRUCTIVE:`) |
 

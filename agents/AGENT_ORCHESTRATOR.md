@@ -587,7 +587,8 @@ Repeat Phase 4.1 for each subsequent tier until all tiers are complete.
   1. **Invariant operating instructions** — decomposition authority, three-perspective planning model, sequencing policy (full graph = audit truth, blocker subset = execution truth), PKG-08 handling rule (or equivalent non-driving scope rule).
   2. **Standard control loop definition** — the 6-step tier loop:
      1. ORCHESTRATOR scan (BLOCKED/UNBLOCKED advisory)
-     2. Fan-out execution for current tier (WORKING_ITEMS + TASK, one deliverable per TASK session)
+     2. Fan-out execution for current tier (one package-level WORKING_ITEMS
+        instance coordinating one deliverable per TASK session)
      3. `dependency-extract` skill rerun only for touched deliverables (via TASK+dependency-extract)
      4. RECONCILIATION on touched interfaces
      5. Periodic full AUDIT_DEP_CLOSURE

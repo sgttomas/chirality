@@ -89,35 +89,63 @@ agent file.
 - Until the managed runtime bridge is active, Agent 0 uses durable
   manager-launch briefs and handoffs rather than claiming executable nesting.
 
-## Runtime Hierarchy and Persistent Coordination
+## Multi-Agent Orchestration
 
-Runtime control is hierarchical, but project coordination is many-to-many
-through the filesystem and Git:
+Runtime delegation and communication are hierarchical. Work coordination is
+many-to-many through both live parent-mediated agency and durable filesystem
+and Git state. The hierarchy governs who may delegate or communicate; it does
+not prescribe one universal execution pattern.
 
-- files hold scope, decisions, claims, artifacts, dependencies, and handoffs;
-- accepted snapshots provide stable inputs to later branches;
-- Git records content identity, history, diffs, worktree isolation, and
-  integration state;
-- one agent's accepted output may become declared input to several later
-  managers or specialists.
+The human may prescribe an orchestration pattern or sequence, provide only
+constraints and priorities, or delegate selection to Agent 0 or a directly
+invoked Agent 1. Selection precedence is: explicit human direction;
+human-approved constraints, priorities, and gates; accepted project and
+decomposition state and dependencies; Agent 0 cross-package judgment; Agent 1
+intra-package judgment. The selected or derived posture and work graph are
+recorded before dispatch.
 
-Cross-agent coordination occurs through explicit artifacts and accepted
-handoffs, not hidden conversational memory.
+### Terminal fan-out/fan-in
 
-## Fan-Out, Fan-In, and Failure Isolation
+Use terminal fan-out/fan-in when bounded children can execute independently
+and terminal returns provide sufficient coordination. The parent freezes
+briefs, dispatches eligible children, collects terminal returns, validates
+coverage, schemas, provenance, conflicts, and failures, and only then releases
+dependent work. A child failure or critical blocker may return normally to its
+parent without converting the run into many-to-many coordination.
 
-1. Agent 0 aligns the objective and supervises the selected Agent 1 manager.
-2. Agent 1 freezes the run plan and dispatches bounded Agent 2 work.
-3. Agent 2 instances execute with fresh private conversational state and only
-   declared instructions, briefs, files, references, tools, and permissions.
-4. Agent 1 validates coverage, schemas, provenance, conflicts, and failures at
-   fan-in before synthesizing a result.
-5. Agent 0 presents cross-manager results and human decisions when operating
-   in the supervising path.
+### Supervised many-to-many agency
 
-Sibling failure is isolated only when write scopes and dependencies are
-disjoint or explicitly coordinated. A failed instance does not invalidate an
-independent sibling; partial outputs are not accepted at fan-in.
+Use supervised many-to-many agency when active work can produce information
+relevant to other active or planned work. Agent 1 reports coordination notices
+to Agent 0; Agent 0 records, selectively relays, amends, holds, replans,
+escalates, or routes them. Within a package, Agent 2 reports to its Agent 1
+parent, which performs the equivalent disposition. Siblings do not use hidden
+or undeclared direct messaging and children do not bypass their parent.
+
+Informational relays preserve claim status and carry only minimum sufficient
+context. Changes to objective, accepted basis, write scope, ownership, risk,
+or acceptance criteria require a versioned brief amendment. Consequential
+amendments return to the human.
+
+### Mixed work graphs and safety
+
+A work graph may compose arbitrary dependency-valid sequences of individual
+and concurrent actions without assigning every composition a pattern name.
+Manager-selected orchestration inside an accepted scope does not require a
+new approval for every child. Dynamic replanning is allowed when live evidence
+changes the graph, but prior plan versions and amendments remain durable.
+
+Every child declares read scope, write targets, dependencies, expected
+returns, and fan-in gates. Shared reads are allowed. Concurrent sibling writes
+must be disjoint; overlapping writes require serialization against an accepted
+predecessor or one declared integration owner. Failed nodes block only their
+declared dependants; independent work continues. Partial or invalid returns
+are not accepted at fan-in.
+
+Files hold scope, decisions, claims, artifacts, dependencies, notices,
+amendments, acknowledgments, and handoffs. Accepted snapshots provide stable
+inputs; Git records identity, history, isolation, and integration state. These
+durable surfaces complement live agency and never become hidden authority.
 
 ---
 
@@ -152,7 +180,7 @@ independent sibling; partial outputs are not accepted at fan-in.
 | HELPS_HUMANS | `AGENT_HELPS_HUMANS.md` | Designs and maintains agents, skills, tools, briefs, workflow packages, migrations, registries, and validators |
 | RESEARCH | `AGENT_RESEARCH.md` | Evidence-grounded inquiry over accepted domain decompositions, source catalogs, and retrieval indexes |
 | ORCHESTRATOR | `AGENT_ORCHESTRATOR.md` | Project setup, coordination, tier sequencing, control loops, and human-gated schedule-basis workflows |
-| WORKING_ITEMS | `AGENT_WORKING_ITEMS.md` | Deliverable-scoped content production |
+| WORKING_ITEMS | `AGENT_WORKING_ITEMS.md` | Package-level production manager; plans and coordinates Agent 2 work across activated deliverables |
 | RECONCILIATION | `AGENT_RECONCILIATION.md` | Reserved for deliverable-corpus concordance; not activatable until accepted calibration handoffs are integrated |
 | CHANGE | `AGENT_CHANGE.md` | Git state management with approval gates |
 | PROJECT_DECOMP | `AGENT_PROJECT_DECOMP.md` | EPC / design-build decomposition |
@@ -199,7 +227,7 @@ This file is not the complete skill registry. It lists only canonical dispatch r
 |---|---|
 | ORCHESTRATOR | Dispatches setup, decomposition-support, document-production, semantic, dependency, and estimation skills as required by the active phase. See `skills/README.md` and live `skills/*/SKILL.md` files for the current inventory. |
 | SCOPE_CHANGE | Dispatches bounded remediation and decomposition-package review skills for closure support. |
-| WORKING_ITEMS | Dispatches deliverable-local production, consistency, proposal-format, equipment, and content-digest skills when the brief selects them. |
+| WORKING_ITEMS | Manages one activated package and dispatches deliverable production, software, consistency, proposal-format, equipment, and content-digest skills according to its work graph. |
 | PDF2MD | Dispatches `TASK + pdf2md-page` for per-page transcription and, when `ASSET_MODE=prose`, `TASK + pdf2md-page-assets` for page-bounded asset discovery. `TASK + pdf2md` is available for smaller single-run conversions where full PDF2MD orchestration is unnecessary. |
 | EQUATION_AUDIT | Dispatches `TASK + equation-flag-interpret` per flagged equation whose `description` is a natural-language note (one TASK per such entry, in Phase 3a); when `ENABLE_CROPS=true`, also dispatches `TASK + equation-bbox-detect` per page that contains display equations (Phase 1). |
 | DRAWING_EXTRACT | Dispatches target-specific drawing skills, including `drawing-extract-page`, `drawing-titleblock-page`, and `pandid-valve-symbol-instance`, according to the `(DRAWING_TYPE, EXTRACTION_TARGET)` registry in `AGENT_DRAWING_EXTRACT.md`. |

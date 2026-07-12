@@ -64,6 +64,13 @@ The formal epistemic ontology and warrant lifecycle are defined in `CHIRALITY_FR
 
 The operational model distinguishes external standards from three runtime positions: Agent 0 Supervising Architect, Agent 1 Manager, and Agent 2 Specialist. HELP_HUMAN is the sole Agent 0; a human may instead enter through any Agent 1. Agent 0 delegates only to Agent 1, Agent 1 delegates bounded work to Agent 2, and Agent 2 does not delegate. Authority and capability never increase through delegation, escalation flows upward, and no agent may bypass a human gate or approve professional reliance. Agent 2 may be TASK plus a skill and brief, an ephemeral bounded generalist, or an explicitly approved dedicated specialist.
 
+Multi-agent workflows may use terminal fan-out/fan-in, supervised
+parent-mediated many-to-many agency, or any dependency-valid mixture of
+sequential and concurrent actions. The human may prescribe the graph or
+delegate its selection. Agent 0 owns cross-package coordination; Agent 1 owns
+coordination within its activated scope; durable artifacts and Git state
+complement live agency.
+
 Gate-controlled workflows ensure that humans make consequential decisions at defined junctions. Brief-driven pipelines make agent execution bounded, repeatable, and auditable — Type 2 agents receive structured inputs and return structured outputs with no mid-run human decisions required. Write quarantine contains failures within declared zones: every agent has an explicit write scope, tool roots are isolated from source truth, and no agent writes outside its declared zone.
 
 The instruction root (release-managed agent operating system) is physically separated from the working root (user-controlled project state). This ensures that the rules governing agent behavior are stable across projects while execution remains fully filesystem-native. See §2.6.

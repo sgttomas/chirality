@@ -34,7 +34,12 @@ The Chirality architecture enforces three distinct separations, each of which el
 
 The atomic unit of work in the Chirality architecture is the **production unit folder** — a single deliverable or knowledge type. Each folder is self-contained, carrying identity (`_CONTEXT.md`), lifecycle state (`_STATUS.md`), dependency registers (`_DEPENDENCIES.md`, `Dependencies.csv`), references (`_REFERENCES.md`), working memory (`_MEMORY.md`), and production documents. This encapsulation pattern, in which every module carries its own state and interface declarations internally, is consistent with information-hiding principles applied to system decomposition [CITE:SE_textbook].
 
-Encapsulation is formally enforced by three invariant mechanisms. K-HIER-1 mandates a flat package-to-deliverable hierarchy — no nesting — ensuring that the system can never develop hidden coupling through intermediate levels. K-WRITE-1 restricts deliverable-local agents to writing only within their assigned folder. The WORKING_ITEMS invariant extends this by prohibiting cross-deliverable scanning or editing by default. The result is that a fault in any deliverable-local agent is structurally confined to that deliverable's folder; it cannot propagate to adjacent deliverables without an explicit cross-deliverable operation.
+Encapsulation is formally enforced at two management horizons. K-HIER-1
+mandates a flat package-to-deliverable hierarchy. WORKING_ITEMS is confined to
+one activated package, while each Agent 2 child receives explicit bounded write
+targets. Cross-package coordination remains with Agent 0. Shared reads are
+allowed, concurrent sibling writes must be disjoint, and overlapping writes
+are serialized or assigned to one integration owner.
 
 Cross-deliverable operations — reconciliation, aggregation, closure analysis — are explicit, opt-in, and write to isolated tool roots rather than to deliverable folders. This design ensures that integration operations are always auditable as distinct events in the project record, rather than being conflated with production work.
 
@@ -176,7 +181,8 @@ The write scope architecture creates formal fault containment zones with precise
 
 | Containment Zone | Assigned Agents | Maximum Failure Impact |
 |---|---|---|
-| Deliverable-local | WORKING_ITEMS, TASK, TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register | Limited to one production unit folder |
+| Package-level | WORKING_ITEMS | Limited to one activated package and selected deliverables |
+| Deliverable-local | TASK, TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register | Limited to brief-declared production-unit targets |
 | Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, ORCHESTRATOR scheduling workflow | Limited to one tool root; source truth untouched |
 | Repository (approval-gated) | CHANGE | Requires explicit human approval token per action |
 | Read-only | HELP_HUMAN, HELPS_HUMANS, Decomposition Standard | Zero write impact |
@@ -294,7 +300,11 @@ The control variable framework also illustrates why the epistemology pillar is s
 
 The control architecture includes both open-loop and closed-loop segments, serving different functional purposes.
 
-**Open-loop (within a session):** WORKING_ITEMS produces content within a single deliverable without cross-deliverable feedback. The agent is bounded by its deliverable scope and session objective. There is no real-time sensor reading from the broader project state. This open-loop characteristic is intentional — it prevents agents from being distracted by or making decisions based on the state of other deliverables during focused production work.
+**Terminal child execution:** an Agent 2 may execute one bounded objective
+without sibling feedback, followed by validated fan-in. **Supervised
+many-to-many execution:** active children report relevant findings to their
+parent, which selectively relays or amends affected work. WORKING_ITEMS owns
+this coordination within one package; HELP_HUMAN owns it across packages.
 
 **Closed-loop (across sessions):** The handoff mechanism (`NEXT_INSTANCE_STATE.md`) carries state between sessions. TASK+dependency-extract reruns after content changes update the dependency graph with current evidence. RECONCILIATION detects integration defects by comparing the updated dependency graph against expected satisfaction states. ORCHESTRATOR scans compute work availability for the next tier. The closed loop operates at the session boundary, not within a session.
 

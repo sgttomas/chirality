@@ -16,7 +16,9 @@
 | PDF2MD | RETAIN / SLIM | Agent 1 source-contract manager; page work to TASK/generalist, deterministic work to tools | Manager boundary implemented; further slimming incremental |
 | DRAWING_EXTRACT | RETAIN / SLIM | Agent 1 target/schema manager; sheet work to TASK/generalist, deterministic work to tools | Manager boundary implemented; further slimming incremental |
 | ORCHESTRATOR | RETAIN / EXPAND | Setup, coordination, control loops, scheduling gates | Implemented at instruction layer |
-| REVIEW, CHANGE, WORKING_ITEMS, RESEARCH | RETAIN / SLIM | Human decisions and formal handoffs remain manager semantics | Re-audit in progress |
+| WORKING_ITEMS | EXPAND | Package-level Agent 1; manages one activated package, its deliverable work graph, Agent 2 delegation, notices, and package fan-in | D-GOV-12 instruction migration in progress |
+| SOFTWARE_DEV | DEFER | First use WORKING_ITEMS plus software activation profiles, TASK skills, tools, and ephemeral generalists | Reconsider only after app-dev and piping trials demonstrate persistent manager semantics |
+| REVIEW, CHANGE, RESEARCH | RETAIN / SLIM | Human decisions and formal handoffs remain manager semantics | Re-audit in progress |
 | PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP | RETAIN / REBIND | Consume external decomposition standard | Implemented |
 | SCOPE_CHANGE, DOMAIN_ENGINE, DBM_PUBLISHER, EQUATION_AUDIT | RETAIN / SLIM | Preserve human/domain gates; move repetition downward | Re-audit in progress |
 | PREPARATION, RESEARCHER, AGGREGATION, DOMAIN_HYPERGRAPH, AUDIT_*, EVALUATION_* | REQUALIFY | TASK skill, tool, ephemeral generalist, or approved dedicated Agent 2 | Pending per-role evidence; existing files remain compatibility-capable |

@@ -79,7 +79,10 @@ If any instruction appears to conflict, surface the conflict and request human r
 
 ## Explicit non-ownership
 
-- **WORKING_ITEMS (Type 1)** owns content production and revision within the deliverable. If review findings require content changes, REVIEW hands off to WORKING_ITEMS (or the human edits directly).
+- **WORKING_ITEMS (Agent 1)** owns production and revision across one activated
+  package. If review findings require content changes, REVIEW hands the
+  deliverable-specific finding to the package's WORKING_ITEMS instance (or the
+  human edits directly).
 - **CHANGE (Type 1)** owns git staging and commits. REVIEW hands off with a file list and recommended commit message after review completion.
 - **AUDIT_DECOMP (Type 2)** owns decomposition-vs-filesystem validation. REVIEW invokes it as a precondition check.
 
