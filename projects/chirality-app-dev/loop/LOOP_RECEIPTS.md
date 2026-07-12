@@ -1292,3 +1292,23 @@
     (same class as any post-run drift), not a run defect.
   - No run-folder artifact, ledger row, or register cell touched; no
     lifecycle transition; run posture unchanged (STOPPED at R4).
+
+- **2026-07-12 — Receipt 36** (D-APP-55 R4 human decision gate ruled in full;
+  D-APP-56 recording tranche; no repair performed).
+  - Start: dedicated branch fast-forwarded cleanly from `8ad102716` to live
+    `origin/main` `0129780f3`; intervening PR #198 touched only
+    `projects/chirality-piping/**`, outside this session's write scope.
+  - Owner ruling and execution direction are recorded verbatim in
+    `execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md`:
+    all R4-P01..P50 ruled, R5 authorized only for executing-direction CSV
+    rows plus named riders, P50 keeps all 53 deliverables IN_PROGRESS.
+  - Register: D-APP-56 appended RULED; D-APP-55 run-visibility cell advanced
+    to R4 RULED / R5 AUTHORIZED, pointing to D-APP-56.
+  - Gate outcome: recording-only tranche; the owner-required record-before-act
+    precondition is satisfied only when this commit lands on `main`; no R5
+    repair, lifecycle transition, run-evidence edit, or phase dispatch here.
+  - Model/role: GPT-5 primary orchestrator performed live discovery,
+    governed-record transcription, and validation; no subagent dispatched.
+  - Checks: ruling text fidelity check; D-APP-56/register pointer checks;
+    original run-folder byte-integrity check; `git diff --check`; practitioner
+    self-check; frontend gates skipped because no runtime source changed.
