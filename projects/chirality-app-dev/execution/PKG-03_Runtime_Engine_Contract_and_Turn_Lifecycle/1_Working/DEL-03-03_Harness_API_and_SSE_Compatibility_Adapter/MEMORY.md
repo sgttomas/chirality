@@ -9,3 +9,4 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-116: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-03-03; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-07-12 - R6 re-extraction found that UPD-045's SPEC §17.1 catalog half had remained pending after the initial P06 merge. The authorized three-route amendment was applied through a corrective D-APP-38 corpus bump; the obsolete P06 Remaining item was removed. No runtime or lifecycle change occurred.
