@@ -123,3 +123,10 @@ new registrations, live binding, issuance, or a release claim.
 | Current Section 9 ID vocabulary | PASS: the manifest contains the exact 16-ID inventory from SPEC Section 19.3 and PRD Section 12.4; active mapper IDs use the current `adapter_*` names. |
 | Governed manifest metadata | PASS: every ID declares source references, test files, evidence files, warnings, and blockers in `frontend/scripts/harness-section9-manifest.json`. |
 | Lifecycle and dependency posture | PASS: this file does not mutate `_STATUS.md`, `Dependencies.csv`, dependency satisfaction, or issuance state. |
+
+## D-APP-56 R5 P45 current-state annotation (2026-07-12)
+
+UPD-101 supersedes the earlier flat Bash-default-deny wording. The live
+post-enablement posture is mode-gated: default mode returns `ask`, and
+workspace-write auto-allow occurs only after hooks; timeout, capture, storage,
+interrupt, and audit controls are implemented under D-APP-04/D-APP-43.

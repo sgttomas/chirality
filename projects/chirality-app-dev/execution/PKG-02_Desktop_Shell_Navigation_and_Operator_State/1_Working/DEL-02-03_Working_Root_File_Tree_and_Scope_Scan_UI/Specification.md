@@ -91,3 +91,7 @@ TBD:
 | X-001 | Incorporated as `TBD`: skipped-directory response-shape details were added to the API response shape unknowns. | `docs/PRD.md` FR-004; `docs/SPEC.md` §17.2. |
 | X-002 | Already covered: verification binds error rendering to preserving type/status/message/details where available. | `docs/PRD.md` NFR-009; `Specification.md` Verification for DEL-02-03-REQ-011. |
 | E-001 | Converted to `TBD` / deferred: exact status/dependency summary fields remain unresolved and unsupported fields must not be inferred. | `docs/PRD.md` FR-010; `docs/SPEC.md` §17.2. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-108 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; the file-tree UI still does not own dependency extraction.

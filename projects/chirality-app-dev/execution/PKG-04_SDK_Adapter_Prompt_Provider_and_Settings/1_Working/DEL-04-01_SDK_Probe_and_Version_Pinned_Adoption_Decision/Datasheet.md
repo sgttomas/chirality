@@ -62,3 +62,7 @@ ASSUMPTION: The final artifact format may be Markdown under `docs/harness/` beca
 | REF-005 | `docs/PLAN.md` | MATCH | R0/R1 sequencing, probe deliverables, acceptance criteria |
 | REF-006 | `docs/PRD.md` | MATCH | Product requirements and runtime direction; use requires source-state confirmation — reconciled under D-APP-38 |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | MATCH | Decomposition method context only |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.

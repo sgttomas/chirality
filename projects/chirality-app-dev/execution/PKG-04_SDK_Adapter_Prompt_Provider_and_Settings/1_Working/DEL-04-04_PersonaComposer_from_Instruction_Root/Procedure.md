@@ -66,3 +66,7 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 - Tests: persona content hash tests, boot fingerprint tests, alias/missing-persona tests, prompt-content tests.
 - Integration evidence: boot/session fingerprint metadata update; downstream consuming deliverable/interface is currently `UNKNOWN` / `TBD` per `Dependencies.csv` DEP-04-04-008.
 - Open items: exact runtime input interface, downstream fingerprint handoff consumer, and accepted PRD snapshot confirmation.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.

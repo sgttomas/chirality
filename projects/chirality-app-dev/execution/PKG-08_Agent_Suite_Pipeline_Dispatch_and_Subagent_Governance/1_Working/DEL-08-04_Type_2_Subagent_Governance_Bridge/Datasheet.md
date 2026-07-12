@@ -61,3 +61,7 @@
 | REF-005 | `docs/PLAN.md` | MATCH |
 | REF-006 | `docs/PRD.md` | MATCH under the current D-APP-38 authority corpus |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | MATCH |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-135/136 record the landed `SubagentGovernanceDecision`, preflight `safeMetadata`, and `ChildRunRecord` shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.

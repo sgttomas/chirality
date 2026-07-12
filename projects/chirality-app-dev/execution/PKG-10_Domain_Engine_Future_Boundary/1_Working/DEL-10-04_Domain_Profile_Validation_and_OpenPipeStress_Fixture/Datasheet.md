@@ -64,3 +64,7 @@
 - `docs/SPEC.md` Sections 14.3 and 18.
 - `docs/TYPES.md` Sections 11.1 through 11.3.
 - `docs/PLAN.md` R7 and risk table.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt `domain-engine-profile-validation/v1`, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.

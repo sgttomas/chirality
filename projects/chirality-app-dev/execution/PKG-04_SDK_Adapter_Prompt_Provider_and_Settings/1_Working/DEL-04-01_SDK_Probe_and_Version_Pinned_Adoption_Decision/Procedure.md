@@ -132,3 +132,7 @@ TBD records:
 - Exact Electron packaging result.
 - Exact adoption verdict.
 - Exact human approver or approving role.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.

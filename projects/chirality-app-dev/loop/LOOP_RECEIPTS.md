@@ -1457,3 +1457,32 @@
     53-state census; original-run integrity; `git diff --check`; practitioner
     self-check. Frontend gates skipped because UPD-097 is withheld and this
     tranche changes documentation/deliverable metadata only.
+
+- **2026-07-12 — Receipt 44** (D-APP-56 R5 P45 / Tranche H residual
+  app-dev metadata repair complete; P44 landed PR #209; PAUSE after P45).
+  - Upstream: D-APP-56 R4-P45=A and the owner's clarified execution split.
+    Immutable CSV membership is exactly UPD-100..UPD-157 (58 rows); this
+    tranche executed 54 app-dev doc/register rows across 35 deliverables.
+  - Withheld: code rows UPD-106, UPD-110, UPD-140, and UPD-141 remain for the
+    separately verified final code tranche. The six-file Receipt-35 root
+    public-export hash-pin rider is deferred in full pending separate root
+    export-regeneration authorization; no root export surface was edited.
+  - Executed: named kit surfaces carry dated current-state reconciliation;
+    dependency/register corrections follow the live structured rows and
+    preserve extraction history. Genuine TBDs and gates named by the proposal
+    rows remain explicit; no new product scope was invented.
+  - State: all 53 deliverables remain IN_PROGRESS; generic concordance
+    Remaining items stay open pending R6; original RUN_D55 artifacts are
+    unchanged. No runtime/test source changed.
+  - Model/roles: GPT-5 read-only discovery derived and adversarially checked
+    the member split and ambiguous-row resolutions; GPT-5 governed execution
+    applied and fan-in checked the P45 tranche. No silent substitution.
+  - Checks: exact 58=54+4 accounting; 35 durable record sets; ten changed
+    dependency CSV schema validations and sixteen structured/current-summary counter checks;
+    targeted path and residual-preservation checks; code-row/root-export
+    no-diff checks; 53-state census; original-run integrity; D-APP-38 status;
+    `git diff --check`; practitioner self-check. Frontend runtime gates skipped
+    because all four code rows are withheld.
+  - Gate outcome: owner direction is to PAUSE after P38-P45. No P05, P06,
+    consolidated decision-application, code, R6, or closeout work starts from
+    this receipt.

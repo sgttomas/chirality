@@ -86,3 +86,7 @@ Example CI acceptance checklist:
 - TBD: Release verification runbook filename and final evidence storage location.
 - TBD: Human assignment for `ResponsibleParty`.
 - TBD: Whether immutable release evidence snapshots are required in addition to the stable `latest/summary.json` pointer.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.

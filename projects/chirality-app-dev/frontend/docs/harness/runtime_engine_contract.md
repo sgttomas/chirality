@@ -330,3 +330,11 @@ The app-directory packaged live read-tool proof recorded under D-APP-17 supports
 D-APP-18 key-aware default. Mounted-DMG live parity, broad packaged workflow evidence,
 signing, notarization, publication, distribution, release-readiness claims, and
 professional-boundary claims remain outside this contract unless separately ruled.
+
+## Fallback criteria and reliance-register handoff
+
+Under UPD-113 / D-APP-56 R5 P45, inability to satisfy or verify a
+product-critical SDK boundary triggers the K-ENGINE-5 exit path and explicit
+residual-risk review; it is not silently accepted. The row-level enforcement,
+fallback, and validation crosswalk is maintained in
+`docs/harness/reliance_boundary_register.md` (DEL-01-02).

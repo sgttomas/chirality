@@ -75,3 +75,7 @@ Required deliverable artifacts:
 - Human-facing notes for any IDs marked pending because their runtime phase has not landed.
 - Section 8 preservation evidence or premerge summary reference alongside new Section 9 outcomes.
 - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-143 records the landed `harness-section9-manifest.json` and stable artifacts manifest. UPD-144 records the ruled domain-profile ID as registered and validated within the in-process read-evidence fence.

@@ -61,3 +61,7 @@ Source: `_CONTEXT.md` Identity, Package Scope, Deliverable Scope, Traceability; 
 | REF-005 | `docs/PLAN.md` | R1 prompt composer target and validation categories | MATCH |
 | REF-006 | `docs/PRD.md` | Section 8.4 and related SDK/runtime requirements | MATCH — reconciled under D-APP-38 |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method reference | MATCH; not used for implementation requirements |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.

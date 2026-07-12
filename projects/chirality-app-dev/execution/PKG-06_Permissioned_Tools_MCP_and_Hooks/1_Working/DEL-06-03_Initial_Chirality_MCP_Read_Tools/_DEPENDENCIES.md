@@ -84,3 +84,10 @@ Open dependency closure items:
 ## Run History
 
 - 2026-05-20 19:47 - `TASK + dependency-extract`; mode `UPDATE`; strictness `CONSERVATIVE`; decomposition available; created `Dependencies.csv` with 9 ACTIVE rows. Historical warnings: PRD hash mismatch later reconciled by D-APP-38 corpus v2, unresolved status lifecycle API owner, unresolved/conditional runtime event path.
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-128
+- **Current counts:** ACTIVE 9; RETIRED 0; SATISFIED=5; TBD=4.
+- **Correction:** DEP-06-03-005 is SATISFIED and removed from current open-item interpretation.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

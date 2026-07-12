@@ -61,3 +61,7 @@
 | REF-006 | `docs/PRD.md` | Sections 7.2, 8.1, 8.2, and package mapping |
 | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOW-001, SOW-005, OBJ-001, PKG-02, DEL-02-01 |
 | LOCAL | `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md` | Deliverable identity, source status, and dependency deferral |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 remains withheld for the final code tranche.

@@ -63,3 +63,7 @@
 | REF-005 | `docs/PLAN.md` | Local check command sequence and expected package artifacts | MATCH |
 | REF-006 | `docs/PRD.md` | CI acceptance, validation plan, manual release verification | MATCH source status only — reconciled under D-APP-38 |
 | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context | MATCH |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.

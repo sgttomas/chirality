@@ -69,3 +69,7 @@ P3 disposition: D-001 is now implementation-evidence-backed for the selected pat
 - Route query handling test results, with selected query key names documented.
 - Any human rulings resolving the package path mismatch, PRD hash mismatch, or PRD/SPEC/TYPES source-pointer issue.
 - This four-document kit and the TASK run record.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 remains withheld for the final code tranche.

@@ -70,3 +70,7 @@
 | REF-005 | `docs/PLAN.md` R1 | Sequencing context for SDK adoption and session events |
 | REF-006 | `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method context only |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-124 replaces provider-shaped kit wording with the corpus-current provider-neutral HarnessEvent names. UPD-125 records DEP-05-02-007 retired and the 11 ACTIVE / 1 RETIRED register state.

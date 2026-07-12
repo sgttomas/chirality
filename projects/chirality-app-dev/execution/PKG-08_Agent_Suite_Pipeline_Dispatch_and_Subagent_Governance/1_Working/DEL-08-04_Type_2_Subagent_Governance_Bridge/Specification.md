@@ -90,3 +90,7 @@ Required artifacts for this deliverable:
 | Conflict ID | Source A | Source B | Issue | Proposed handling |
 |---|---|---|---|---|
 | C-001 | `_REFERENCES.md` REF-006 | D-APP-38 authority corpus | Former PRD source-state warning is resolved for this tranche. | Use PRD-derived subagent governance text under D-APP-38; keep implementation proof separate from source-state proof. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-135/136 record the landed `SubagentGovernanceDecision`, preflight `safeMetadata`, and `ChildRunRecord` shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.

@@ -71,3 +71,7 @@
 | ItemID | Disposition | Evidence |
 |---|---|---|
 | E-001 | Incorporated as a normalization note distinguishing the accepted decomposition family from the runtime dispatch token. | `_CONTEXT.md` Identification; `_SEMANTIC_LENSING.md` header; `skills/four-documents/SKILL.md` runtime override values. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-132 names the landed status-transition and MCP modules while leaving ResponsibleParty assignment human-owned.

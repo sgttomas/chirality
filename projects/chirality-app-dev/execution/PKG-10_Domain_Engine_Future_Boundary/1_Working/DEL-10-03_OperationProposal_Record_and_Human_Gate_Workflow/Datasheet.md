@@ -68,3 +68,7 @@
 - `docs/PRD.md` Section 8.17
 - `docs/SPEC.md` domain endpoint list and future profile note
 - `docs/TYPES.md` Sections 11.1-11.3
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.

@@ -80,3 +80,10 @@ Closure state: dependency register initialized, but dependency satisfaction rema
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE counts |
 |---|---|---|---|---|---|
 | 2026-05-20T19:47:22-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` available | Historical SOURCE_STATE_PRD_HASH_MISMATCH, later reconciled by D-APP-38 corpus v2 | ANCHOR=1; EXECUTION=7; TOTAL=8 |
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-129
+- **Current counts:** ACTIVE 8; RETIRED 0; NOT_APPLICABLE=1; TBD=7.
+- **Correction:** DEP-06-05-008 now records REF-006 MATCH; dated corpus-vintage history remains.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

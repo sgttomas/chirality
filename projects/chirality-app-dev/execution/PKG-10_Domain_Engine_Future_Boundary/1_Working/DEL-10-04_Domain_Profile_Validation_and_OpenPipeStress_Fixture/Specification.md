@@ -71,3 +71,7 @@ Required or anticipated artifacts:
 | Warning | Impact |
 |---|---|
 | REF-006 `docs/PRD.md` has expected SHA256 `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd` and observed SHA256 `ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd`. | Treated as source status per assignment override; requirements cite PRD sections conservatively, preserve the MATCH visibly, and require human acceptance or refreshed source metadata before closure reliance. — reconciled under D-APP-38 |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt `domain-engine-profile-validation/v1`, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.

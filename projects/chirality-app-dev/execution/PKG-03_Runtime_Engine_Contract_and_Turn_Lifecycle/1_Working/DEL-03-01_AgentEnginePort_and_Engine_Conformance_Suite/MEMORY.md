@@ -24,3 +24,5 @@
 ## Dependency Note
 
 No DEL-03-01 `Dependencies.csv` rows were marked satisfied, waived, retired, or not applicable during the CODEV-001 closure assessment.
+
+- 2026-07-12 - D-APP-56 R5 P45 executed UPD-113, UPD-114: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.

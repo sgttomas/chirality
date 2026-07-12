@@ -80,3 +80,10 @@ Counts:
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
 REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+## D-APP-56 R5 P45 current register summary (2026-07-12)
+
+- **Source:** UPD-132
+- **Current counts:** ACTIVE 7; RETIRED 1; NOT_APPLICABLE=3; PENDING=4; SATISFIED=1.
+- **Correction:** DEP-07-04-008 resolves to landed implementation modules and is SATISFIED; ResponsibleParty remains separate.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.

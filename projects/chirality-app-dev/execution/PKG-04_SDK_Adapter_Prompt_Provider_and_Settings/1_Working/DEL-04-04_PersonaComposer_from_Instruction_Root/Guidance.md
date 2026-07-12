@@ -59,3 +59,7 @@ ASSUMPTION: A useful test fixture can vary one input at a time, such as agent in
 ## Source-State Warning
 
 REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-122 records accepted alias delegation to the shell persona resolver; the composer need not duplicate it. UPD-123 records DEP-04-04-004 retirement and corrected register counts.

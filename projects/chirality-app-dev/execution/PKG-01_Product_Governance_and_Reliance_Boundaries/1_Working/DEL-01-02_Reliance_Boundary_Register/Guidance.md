@@ -145,3 +145,7 @@ code-compliance acceptance.
 | TBD-RBR-002 | Exact SDK transcript storage/mirroring decision. | Resolve after R1 first-adapter probe and session linkage work. |
 | TBD-RBR-003 | Final Section 9 validation file/test names. | Current implemented IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD. |
 | TBD-RBR-004 | Generated-register completion evidence. | ADQ-02 generated and cross-checked `docs/harness/reliance_boundary_register.md`; future validator automation remains downstream. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; Bash is mode-gated with live default `ask` and workspace-write auto-allow only after hooks, not flatly denied by default.

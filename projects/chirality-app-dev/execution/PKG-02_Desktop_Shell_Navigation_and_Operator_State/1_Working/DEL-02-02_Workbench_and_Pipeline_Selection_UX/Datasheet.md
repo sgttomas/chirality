@@ -58,3 +58,7 @@
 - `docs/TYPES.md` Section 4 for navigation vocabulary.
 - `docs/SPEC.md` Section 17.2 for deliverable status/dependency workspace APIs.
 - `docs/CONTRACT.md` Section 1.7 for lifecycle/dependency/provenance invariants.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-107 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; dependency extraction remains outside this UX slice's product ownership.

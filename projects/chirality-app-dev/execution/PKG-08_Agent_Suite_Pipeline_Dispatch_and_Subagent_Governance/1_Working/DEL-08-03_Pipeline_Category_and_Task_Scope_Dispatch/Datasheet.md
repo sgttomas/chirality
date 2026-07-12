@@ -94,3 +94,7 @@
 |---|---|
 | B-001 | Converted to explicit implementation slots for selector, option-list, scope-scan, knowledge-discovery, reset-fixture, and test-path records. |
 | B-002 | Incorporated as a dependency edge snapshot that preserves accepted extracted rows as context while leaving closure status and downstream consumer target TBD. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-134 supersedes run-scoped dependency deferral wording: the extracted derivative register exists and is live.

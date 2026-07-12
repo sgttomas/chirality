@@ -77,3 +77,7 @@ Records to update or cross-link when implementation lands:
 - Runtime contract or mapper docs, exact path TBD.
 - Section 9 validation coverage for runtime engine event log and session replay, exact validation IDs from `docs/SPEC.md` Section 19.3.
 - Test fixtures demonstrating lock release and terminal outcome persistence.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-117 names the landed observability basis: `RunningHarnessTurn.cancel`, post-terminal same-session acceptance, and lock-release/terminal-outcome tests. The former exact-hook/state-API TBD is retired.

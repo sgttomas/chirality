@@ -113,3 +113,7 @@ TBD records:
 ## Source Status
 
 `docs/PRD.md` is listed as `MATCH` in `_REFERENCES.md`; reconcile the source hash before final acceptance of PRD-derived acceptance details. (reconciled under D-APP-38).
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-132 names the landed status-transition and MCP modules while leaving ResponsibleParty assignment human-owned.

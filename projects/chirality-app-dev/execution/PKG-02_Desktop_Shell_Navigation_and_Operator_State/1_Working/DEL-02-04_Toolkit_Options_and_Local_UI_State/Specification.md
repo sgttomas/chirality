@@ -79,3 +79,7 @@ Required artifacts for this deliverable:
 - ASSUMPTION: Toolkit controls will present only runtime-supported option fields or clearly disabled/unavailable fields. Exact runtime-supported control inventory is TBD; current source support names model, tools, max turns, mode, persona, and governance metadata as candidate option categories.
 - TBD: Exact file/component names for Toolkit controls and pane state implementation.
 - TBD: Exact permission policy mode enum and enforcement integration until the policy engine is accepted.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-109 records the ruled loop-first layout: File Tree and Chat are the resizable panes; Tool Kit is a right-sidebar tab. UPD-111 records that the 14-row derivative dependency register exists. UPD-110 remains withheld for the final code tranche.

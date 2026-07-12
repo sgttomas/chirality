@@ -57,3 +57,7 @@
 | REF-005 | `docs/PLAN.md` | Roadmap sequencing and validation themes. |
 | REF-006 | `docs/PRD.md` | Product requirements and Section 9 runtime validation additions; hash status: MATCH status applies. — reconciled under D-APP-38 |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no deliverable-specific requirement extracted. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-143 records the landed `harness-section9-manifest.json` and stable artifacts manifest. UPD-144 records the ruled domain-profile ID as registered and validated within the in-process read-evidence fence.

@@ -85,3 +85,7 @@ Define the working procedure to produce and verify the Working Root File Tree an
 | ItemID | Disposition | Evidence |
 |---|---|---|
 | F-001 | Incorporated as required evidence with `TBD` artifact location: Procedure now preserves acceptance evidence as required without implying it already exists. | `Procedure.md` Verification and Records; `Specification.md` Verification. |
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-108 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; the file-tree UI still does not own dependency extraction.

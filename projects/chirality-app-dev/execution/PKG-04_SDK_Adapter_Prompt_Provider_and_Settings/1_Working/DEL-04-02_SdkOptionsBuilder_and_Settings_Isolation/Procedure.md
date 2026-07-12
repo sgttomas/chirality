@@ -106,3 +106,7 @@ Expected implementation records:
 - first-adapter probe/version evidence from DEL-04-01 before exact SDK option fields are treated as final.
 - Terminal max-turn runtime/event handoff fixture owner, currently TBD and likely adjacent to DEL-04-03 or DEL-03-02 pending accepted contract.
 - Any unresolved `TBD`, `ASSUMPTION`, or conflict entries carried forward for human or upstream-agent ruling.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-119/120/121 record the realized split: `TurnEngine.assertKnownAgentSdkTools` owns runtime validation, the options builder owns deterministic mapping, concrete compiling SDK property names are probe-backed, and the module/test paths are landed.

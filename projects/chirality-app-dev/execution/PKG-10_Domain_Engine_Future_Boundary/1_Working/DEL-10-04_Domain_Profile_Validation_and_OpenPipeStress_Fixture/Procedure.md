@@ -78,3 +78,7 @@ Define the operational procedure for producing and later verifying the DEL-10-04
 - Human-approved boundary-notice wording fixture: TBD.
 - TASK run record under `_run_records/`.
 - `_STATUS.md` not changed during P3_ONLY because `_SEMANTIC_LENSING.md` declares `NO_STATUS_TOUCH`.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt `domain-engine-profile-validation/v1`, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.

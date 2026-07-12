@@ -97,4 +97,8 @@ Recommended supporting documentation:
 
 REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-133 adopts the stricter live rule: every ACTIVE dependency row requires both `EvidenceFile` and `SourceRef`.
+
 REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.

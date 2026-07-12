@@ -69,3 +69,7 @@ Required or anticipated artifacts:
 - ADQ-13 evidence: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/Evidence_ADQ-13_UI_Specs_Render_Tests.md`.
 - Human ruling if the dispatch path/package rename is material to scope identity.
 - P3 disposition: selected implementation keys are documented above; source-pointer and package-path warnings remain surfaced for future governed reconciliation.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 remains withheld for the final code tranche.
