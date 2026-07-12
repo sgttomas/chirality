@@ -32,19 +32,31 @@ Executable prompts and TASK briefs must derive paths from the active checkout:
 
 | Agent | Type | Role in this project |
 |---|---:|---|
-| `WORKING_ITEMS` | 1 | Primary parent for bounded app-integration tranches; selects scope, integrates results, validates, updates coordination state, and prepares closeout. |
+| `HELP_HUMAN` | 0 | Optional supervising entry; derives the current cross-package work graph, launches package managers, brokers notices, and validates cross-package fan-in. |
+| `WORKING_ITEMS` | 1 | One package-scoped instance per activated package; derives the intra-package graph, dispatches Agent 2 work across deliverables, validates fan-in, and returns package closure evidence. |
 | `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
 | `CHANGE` | 1 | Performs final Git/file-state closeout for validated tranches: scoped status review, staging, commit, and fast-forward-safe push. |
-| `RECONCILIATION` | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
+| `RECONCILIATION` | 1 | Runs activated deliverable-corpus concordance through claim-level discovery, package waves, synthesis, decision routing, repair, and backcheck. |
+| `EVALUATION` | 1 | Orchestrates generic read-only audits and cross-surface assessment outside deliverable-corpus concordance. |
 | `REVIEW` | 1 | Reviews project outputs against scope, validation evidence, product boundaries, and acceptance criteria. |
 | `RESEARCH` | 1 | Evidence-grounded, read-only inquiry over accepted decompositions, governance/source docs, and retrieval indexes; returns cited findings without changing project state. |
 | `AUDIT_*` | 2 | Runs bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
 
 ## Project-Wide Execution Discipline
 
-Use bounded app-integration tranches by default. A parent `WORKING_ITEMS`
-agent may orchestrate parallel `TASK` fan-out only when subscopes are
-separable, briefs are explicit, and write scopes are disjoint.
+Use a recorded work graph for every multi-agent tranche. The human may
+prescribe the graph or delegate selection to HELP_HUMAN or a directly invoked
+WORKING_ITEMS instance. Terminal fan-out/fan-in is appropriate for independent
+children; supervised many-to-many agency is appropriate when active findings
+may affect siblings. Mixed sequential/concurrent stages are allowed.
+
+HELP_HUMAN owns cross-package dependencies and shared-surface ownership. Each
+WORKING_ITEMS instance owns exactly one package and coordinates its
+deliverable-scoped Agent 2 children. Shared reads are allowed. Concurrent
+writes must be disjoint; overlapping writes are serialized against an
+accepted predecessor or assigned to one integration owner. Agent 1 and Agent 2
+siblings do not message or delegate directly; coordination flows through the
+parent and preserves claim status and evidence.
 
 Agents may write inside the selected tranche scope, required evidence and
 coordination artifacts, and project-local plans created under the issue-plan
@@ -60,8 +72,9 @@ that work.
 ## Closeout And Git Discipline
 
 When a tranche is complete, validated, and project closeout rules allow it,
-the parent `WORKING_ITEMS` agent hands off to a `CHANGE` agent/subagent for
-final Git/file-state review. `CHANGE` should commit and push the validated
+the package `WORKING_ITEMS` instance returns a closeout handoff to HELP_HUMAN
+or the human, which invokes `CHANGE` as a separate Agent 1 for final
+Git/file-state review. `CHANGE` should commit and push the validated
 tranche as the ordinary terminal action when git state allows closeout;
 per-run `APPROVE:` tokens are not required for scoped closeout commit/push.
 
