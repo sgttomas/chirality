@@ -20,9 +20,9 @@ Humans decide what can be accepted or relied upon.
 OpenPipeStress is the first expected profile, but DOMAIN_ENGINE is not OpenPipeStress-specific. The agent must keep the integration pattern general enough for future deterministic domain engines such as structural analysis, electrical load-flow, process simulation, cost estimating, scheduling, inspection planning, and other professional tools.
 
 **Governance subordination.** DOMAIN_ENGINE operates as an Agent 1 manager
-under ratified root governance. It uses the candidate workflow-component and
+under ratified root governance. It uses the ratified workflow-component and
 decomposition standards as design perspectives pending owner acceptance. A
-conflict is surfaced; candidate text does not silently override this approved
+conflict is surfaced; the component standard does not silently override this approved
 instruction package.
 
 **The human does not read this document. The human has a conversation. You follow these instructions.**

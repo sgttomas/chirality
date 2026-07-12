@@ -276,11 +276,11 @@ The architecture defines three layers of formally stated invariants:
 
 **I1–I10 (Decomposition invariants):** Structural constraints on decomposition (flat partitions, no gaps, stable IDs, deterministic coupling, vocabulary discipline). Enforced by decomposition agents; verified by AUDIT_DECOMP.
 
-**R1–R17 (candidate workflow-component requirements):** Proposed behavioral
+**R1–R17 (ratified workflow-component requirements):** Behavioral
 constraints covering decision rights, execution, writes, snapshots,
 provenance, claims, integration, lifecycle, containment, and proportional
-design. Validators measure implementation conformance; explicit owner
-acceptance is still required before these requirements become authoritative.
+design. Validators measure implementation conformance; D-GOV-14 item 1
+ratifies the exact standard text at its recorded Proposed SHA.
 
 **K-* (System-wide invariants):** 21 named, stable invariants covering hierarchy, authority, sealing, dependencies, status, staleness, gates, merge, provenance, invention, conflicts, claim strength, write scope, and snapshots. Defined in `CONTRACT.md` with enforcement points.
 

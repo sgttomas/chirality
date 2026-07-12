@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: REVIEW REMEDIATION IN PROGRESS / OWNER RULINGS PENDING
+Status: OWNER RULINGS TRANSCRIBED / PROTO-RUN INTEGRATION AND FINAL VALIDATION PENDING
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -46,9 +46,9 @@ Branch: `codex/agent-governance-redesign`
 - Current generic audit and REVIEW snapshots write under `_Evaluation/`;
   historical generic `_Reconciliation/` snapshots remain immutable evidence.
   RECONCILIATION alone owns new deliverable-corpus concordance runs.
-- D-GOV-13 records a fourteen-role requalification proposal with persistent
-  output/recovery and live-reference compatibility evidence. It is pending an
-  explicit owner ruling; named execution fails closed meanwhile.
+- D-GOV-13 records the approved fourteen-role requalification baseline with
+  persistent output/recovery and live-reference compatibility evidence. Named
+  execution remains subject to every declared runtime gate.
 
 ## Validation Evidence
 
@@ -62,10 +62,9 @@ The review-remediation candidate currently has the following verified evidence:
   Python tests pass; `git diff --check origin/main` reports no whitespace
   errors.
 - The public derivative regenerates with 583 files and zero boundary findings.
-- The agent validator reports only the fourteen
-  `TYPE2_APPROVAL_NOT_RULED` errors required by the pending D-GOV-13 ruling and
-  reports no warnings. This is an authority gate, not a technical test failure;
-  named execution remains fail-closed until the owner rules.
+- Before the ruling, the agent validator reported only the fourteen
+  `TYPE2_APPROVAL_NOT_RULED` authority-gate errors and no warnings. Post-ruling
+  validation is part of the publication checks below.
 
 The following was the accepted pre-review evidence at PR #188 head before the
 review-remediation tranche. It is retained as historical evidence, not as a
@@ -94,26 +93,29 @@ claim about the current unvalidated remediation tree:
 - Reconsider `SOFTWARE_DEV` only if WORKING_ITEMS plus the software activation
   profile, TASK skills, and deterministic tools prove insufficient in practice.
 
-## External Blockers
+## Integration Hold
 
-Explicit owner disposition remains required for the three candidate standards
-(workflow-component, decomposition, software workflow profile) and the
-D-GOV-13 fourteen-role dedicated-Agent-2 proposal. Full packaging, live
-premerge, piping-sensitive, and independent public-staging validation must run
-after those rulings are transcribed.
+The owner ratified the three standards and approved D-GOV-13 through D-GOV-14.
+The app-dev and piping reconciliation proto-runs have resumed under their
+pinned methods. PR #188 must not merge until both produce stable terminal
+handoffs, their accepted changes integrate, this branch rebases onto that
+state, and full packaging, live-premerge, piping-sensitive, and independent
+public-staging validation passes.
 
 ## Required Resume Sequence
 
-1. Close PR #188 review findings and transcribe owner rulings.
-2. Regenerate and validate the public derivative, then merge PR #188.
-3. At each paused concordance run's next wave, re-check its pinned source-state
-   basis against the merged tree and record `CURRENT` or `STALE_INPUT`.
-4. Resume project work under the accepted hierarchy and the in-flight carve-outs.
+1. Publish the owner ruling and backfill its immutable ruling SHA.
+2. Allow both reconciliation proto-runs to finish under their pinned methods
+   and produce the D-GOV-14 item 8 terminal evidence.
+3. Integrate their accepted changes, rebase PR #188, and resolve any instruction,
+   loop, index, runtime, or export conflicts.
+4. Regenerate and validate every affected root and project surface, then merge
+   PR #188 only when hosted and local acceptance evidence is green.
 
 ## Closure Verdict
 
-Instruction tranche: REVIEW REMEDIATION IN PROGRESS.
+Instruction tranche: OWNER-RULED; INTEGRATION HOLD ACTIVE.
 RECONCILIATION activation: COMPLETE.
 Runtime bridge: REMEDIATED; CORE TESTS PASS, FULL ACCEPTANCE PENDING.
-Overall D-GOV-11 implementation: pending PR #188 review closure and explicit
-owner disposition of candidate standards and D-GOV-13.
+Overall D-GOV-11 implementation: owner-approved, pending proto-run integration,
+final rebase, full acceptance validation, and merge.

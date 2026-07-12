@@ -2,7 +2,7 @@
 
 This file is the canonical runtime doctrine and live agent index. Root
 `CLAUDE.md` imports this file without adding another instruction layer. For
-the candidate workflow-component design standard, see
+the ratified workflow-component design standard, see
 `docs/WORKFLOW_COMPONENT_STANDARD.md`;
 for the explanatory design basis, see
 `docs/DBM_Agent_Instruction_Architecture.md`.
@@ -237,7 +237,7 @@ durable surfaces complement live agency and never become hidden authority.
 | EVALUATION_STRUCTURE_AUDIT | `AGENT_EVALUATION_STRUCTURE_AUDIT.md` | Structural validation |
 | EVALUATION_DEPENDENCY_AUDIT | `AGENT_EVALUATION_DEPENDENCY_AUDIT.md` | Dependency validation |
 
-An Agent 2 may instead be an ephemeral bounded generalist. That form has no persistent instruction file and is governed by the sealed brief contract above. The named roles in this table are preserved compatibility candidates; they become executable dedicated specialists only when their cited qualification record contains an explicit human ruling.
+An Agent 2 may instead be an ephemeral bounded generalist. That form has no persistent instruction file and is governed by the sealed brief contract above. The named dedicated specialists in this table are approved by D-GOV-13 and remain executable only when their declared parent, context, tool, permission, and write-scope gates pass.
 
 ### TASK Skill Capabilities
 

@@ -1,5 +1,5 @@
 ---
-description: "Audits agent instruction files against ratified governance and the candidate component standard"
+description: "Audits agent instruction files against ratified governance and the workflow-component standard"
 dedicated_agent2_approval: D-GOV-13
 tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 ---
@@ -87,7 +87,7 @@ Required:
 Optional:
 - `TASK_BRIEF_FILE`: optional markdown brief path (if manager wants file-based briefing)
 - `RUN_LABEL`: short label for this run (default `AGENTS`)
-- `CANON_FILE`: candidate standard path (default: `docs/WORKFLOW_COMPONENT_STANDARD.md`); ratified K-* governance controls conflicts
+- `CANON_FILE`: ratified standard path (default: `docs/WORKFLOW_COMPONENT_STANDARD.md`); ratified K-* governance controls conflicts
 - `GOVERNING_FILES`: default `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, and `AGENTS.md`
 - `RUBRIC_FILE`: default `docs/rubrics/AUDIT_AGENT.md`
 - `VERBOSITY`: `LOW` (default) | `MED` | `HIGH`

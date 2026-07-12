@@ -1,17 +1,16 @@
 # Decomposition Standard
 
-> **Status: CANDIDATE EXTRACTION under D-GOV-11 direction 7.** The owner ruled
-> that the DECOMP_BASE protocol become an external standard; this exact text
-> remains pending explicit owner acceptance. Ratified root governance and the
-> approved decomposition-manager instructions govern on disagreement.
+> **Status: RATIFIED — D-GOV-14 item 2, owner ruling 2026-07-12.** The exact
+> text at commit `ee35409f5cf3a81ecb29a271527156b991df97b9` is the external
+> decomposition protocol shared by PROJECT_DECOMP, SOFTWARE_DECOMP, and
+> DOMAIN_DECOMP. Ratified root governance governs on disagreement.
 
 This normative document defines the invariant protocol, validity requirements, entity schemas, and required output sections shared by all decomposition managers in this framework. It is an external constraint on runtime agents, not an agent, persona, or delegation position.
 
 PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, and future decomposition managers MUST conform to this standard and extend it with domain-specific semantics. HELPS_HUMANS provides conversational design and conformance assistance for decomposition components.
 
-Where a conforming agent's instruction file disagrees with this candidate,
-surface the conflict. Do not give this candidate precedence until it is
-explicitly accepted.
+Where a conforming agent's instruction file disagrees with this standard,
+surface the conflict and apply the repository's authority and conflict rules.
 
 ---
 

@@ -1,9 +1,8 @@
 # Software Workflow Activation Profile
 
-> **Status: CANDIDATE IMPLEMENTATION of D-GOV-12 direction 10.** The ruled
-> architecture requires a software activation profile; this exact profile
-> text remains pending explicit owner acceptance and does not acquire
-> authority merely because it was implemented or merged.
+> **Status: RATIFIED — D-GOV-14 item 3, owner ruling 2026-07-12.** The exact
+> text at commit `ee35409f5cf3a81ecb29a271527156b991df97b9` is the activation
+> profile contract for WORKING_ITEMS software packages.
 
 ## Purpose
 

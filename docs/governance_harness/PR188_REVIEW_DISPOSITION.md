@@ -1,6 +1,6 @@
 # PR #188 Review Disposition
 
-Status: REMEDIATION IMPLEMENTED / CORE VALIDATION PASS / OWNER RULINGS PENDING
+Status: REMEDIATION IMPLEMENTED / OWNER RULINGS TRANSCRIBED / FINAL INTEGRATION PENDING
 ReviewedHead: `5f20ce750896da797319e535898e2959995bc521`
 Sources: the 2026-07-11 PR #188 multi-agent review and consolidated PR #188
 review feedback in the commissioning checkout
@@ -12,7 +12,7 @@ duplicate findings by remedy while preserving the source IDs for audit.
 
 | Findings | Disposition and evidence surface |
 |---|---|
-| C08, C09 | Dedicated candidates now declare tool policies; ORCHESTRATOR/EVALUATION caller allowlists and validator-required edges cover every prescribed specialist. Named roles still fail closed until D-GOV-13 is ruled. |
+| C08, C09 | Dedicated specialists declare tool policies; ORCHESTRATOR/EVALUATION caller allowlists and validator-required edges cover every prescribed specialist. D-GOV-13 approves the fourteen-role compatibility baseline; all other runtime gates remain fail-closed. |
 | H01 | A filesystem-atomic per-run launch lock encloses sibling overlap validation and status reservation; corrupt sibling status fails closed. |
 | H02 | Child session identity is written to `STATUS.json` before the first WAIT/BACKGROUND turn, enabling notices and acknowledgments during execution. |
 | H03 | The parent run is bound only through a post-validation binder, so an invalid first request cannot poison retry state. |
@@ -33,22 +33,22 @@ duplicate findings by remedy while preserving the source IDs for audit.
 
 | Findings | Disposition and evidence surface |
 |---|---|
-| C01, C16, C18, C42, C43, C49, C50 | Both in-flight concordance runs are explicitly grandfathered under pinned methods/steers/write surfaces and platform-native TASK execution; old §7 steer references alias to current §8; each run must re-check source-state currency before its next wave. |
-| C05, C28, C29, C54 | Public export excludes private-project CI, loop launchers, TRB briefs, and development backlog; it uses a public-only init prompt and generalized private-home detection. Public decisions/handoff remain intentionally in scope, pending D-GOV-14 item 9. |
-| C06 | K-AGENTS-1 and TYPES now implement D-GOV-11: root AGENTS carries the Agent 0/1/2 hierarchy/index; the 3×4 matrix is deployment UI vocabulary only, not runtime authority grammar. This interpretation is presented for explicit confirmation in D-GOV-14 item 6. |
+| C01, C16, C18, C42, C43, C49, C50 | Both resumed concordance proto-runs are explicitly grandfathered under pinned methods/steers/write surfaces and existing TASK execution; old §7 steer references alias to current §8. D-GOV-14 item 8 requires terminal basis/closure/lesson handoffs, integration, PR #188 rebase, and full revalidation rather than a mid-run retrofit. |
+| C05, C28, C29, C54 | Public export excludes private-project CI, loop launchers, TRB briefs, and development backlog; it uses a public-only init prompt and generalized private-home detection. D-GOV-14 item 9 approves public decisions, handoff, and human-authority records. |
+| C06 | K-AGENTS-1 and TYPES implement the D-GOV-14 item 6 ruling: root AGENTS carries the Agent 0/1/2 hierarchy/index; the 3×4 matrix is deployment UI vocabulary only, not runtime authority grammar. |
 | C07, C21, C22, C25, C33, C34, C35, C41, C45, C57, C58 | Stale role, pause-boundary, ID-width, migration-state, glossary, ConsumerHint, matrix, and fallback language was corrected; D-GOV-10 was restored to its bound content except its publication-SHA backfill. |
 | C10 | All PR-added software skill/tool files now have exactly one terminal newline; merge-range `git diff --check` is a required closure gate. |
 | C11, C12, C13, C14, C15, C26, C27, C32, C47, C53, CR app-doc coverage | Human approval semantics are restored; runtime metadata is not represented as authenticating a human act; consequential categories are defined; claim vocabularies and ruling language are separated; DBM anchors and professional-practice narratives were updated to the current runtime. |
 | C31 | Deleted component-persona sources are `NO,RETIRED` in the Chirality domain source manifest with explicit D-GOV-11 replacement notes. |
 | C36, C51 | SCHEDULING retirement is documented in the implementation handoff and submitted for explicit confirmation in D-GOV-14 item 5 without editing the SHA-bound D-GOV-11 ruling. |
 
-## Authority corrections pending owner action
+## Authority corrections ruled by the owner
 
 | Findings | Current disposition |
 |---|---|
-| C02, C04, C30, C52 | Workflow-component, decomposition, and software workflow texts are consistently marked CANDIDATE and no longer self-ratify. D-GOV-14 items 1–3 request explicit acceptance of exact review-closure text. |
-| C03, C19, C20, C38 | D-GOV-13 is `PROPOSED`, carries a full proposed SHA, and no longer claims a human ruling. Its fourteen-role table is D-GOV-14 item 4; runtime and validator fail closed until ruled. |
-| C55 | Continued publication of the owner identity/business email needed by public authority verification is D-GOV-14 item 9. |
+| C02, C04, C30, C52 | D-GOV-14 items 1–3 ratify the exact workflow-component, decomposition, and software workflow texts at `ee35409f5cf3a81ecb29a271527156b991df97b9`. |
+| C03, C19, C20, C38 | D-GOV-14 item 4 approves D-GOV-13's fourteen-role table; runtime and validator still require every remaining declared gate. |
+| C55 | D-GOV-14 item 9 affirmatively approves continued publication of the owner identity and business email needed by public authority verification. |
 
 ## Notes and non-defects
 
@@ -69,10 +69,13 @@ Python tests pass, all 43 live skills validate, 433 live path-anchor surfaces
 pass, instruction entrypoints pass, the 583-file public export regenerates with
 zero boundary findings, and `git diff --check origin/main` passes. The agent
 validator's only findings are the fourteen intentionally fail-closed
-`TYPE2_APPROVAL_NOT_RULED` errors pending D-GOV-14 item 4.
+`TYPE2_APPROVAL_NOT_RULED` errors before the D-GOV-14 item 4 ruling. The
+post-ruling validator result is recorded after ruling publication.
 
-1. Obtain the explicit owner ruling requested by D-GOV-14.
-2. Transcribe and SHA-bind the ruling without self-reference.
+1. Publish and SHA-bind the D-GOV-14 and D-GOV-13 rulings without
+   self-reference.
+2. Allow both active reconciliation proto-runs to reach stable handoffs and
+   integrate their accepted changes before rebasing PR #188.
 3. Run the complete root, app-dev, piping-sensitive, packaging, live premerge,
    export-regeneration, and independent staging validation suites.
 4. Update this record and the D-GOV-11 handoff with exact post-remediation

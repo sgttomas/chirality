@@ -1,15 +1,15 @@
 # D-GOV-13 — Dedicated Agent 2 requalification
 
-Status:       PROPOSED
-HumanRuling:  PENDING — the implementation plan authorized re-audit but did not explicitly approve this fourteen-role table
+Status:       RULED
+HumanRuling:  APPROVED — D-GOV-14 item 4; owner response, 2026-07-12: "My rulings are `APPROVED` for all."
 Proposed SHA: 62e563e47b2cbb1edd154d2ded5ce169d8be05b0
 Date:         2026-07-11
 FramedBy:     D-GOV-10 and D-GOV-11 dedicated-specialist requalification requirement
 
-## Proposed disposition
+## Ruled disposition
 
-The following existing Agent 2 instruction packages are proposed for explicit
-human approval as dedicated specialists in the compatibility baseline:
+The following existing Agent 2 instruction packages are approved as dedicated
+specialists in the compatibility baseline:
 
 | Role | Persistent semantics justifying the package |
 |---|---|
@@ -36,7 +36,7 @@ stable output, recovery, or compatibility contract beyond a generic brief.
 Removing a file without migrating those callers and references would violate
 D-GOV-11's replacement-first rule.
 
-If approved, the ruling is not permanent immunity from consolidation. A future
+A ruling is not permanent immunity from consolidation. A future
 migration may replace any role with TASK plus a skill or deterministic tool
 only when the replacement method, callers, compatibility behavior, historical
 reference posture, validators, and tests land together. New dedicated Agent 2
@@ -47,5 +47,6 @@ roles still require a fresh HELPS_HUMANS proposal and human approval.
 Each candidate file declares `dedicated_agent2_approval: D-GOV-13` in
 frontmatter. The agent validator and managed runtime resolve that reference,
 require this record to be `RULED`, and confirm the role appears in the table.
-Until the owner explicitly rules, named execution of these candidates fails
-closed; TASK and ephemeral-generalist forms remain available.
+Named execution is permitted only when all remaining parent, context, tool,
+permission, and write-scope gates pass. TASK and ephemeral-generalist forms
+remain available.

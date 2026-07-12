@@ -12,7 +12,7 @@
 | CONTEXT_TRANSPOSE | MERGE | HELPS_HUMANS component/migration design; bounded run work uses TASK or ephemeral generalist | Implemented; persona removed |
 | SCHEDULING | MERGE | ORCHESTRATOR schedule workflow; calculation/rendering downward | Implemented at instruction layer; persona removed |
 | EVALUATION | EXPAND | Generic audit orchestration plus old RECONCILIATION audit/coherence semantics | Implemented |
-| RECONCILIATION | RECREATED | Deliverable-corpus concordance from the ratified method plus paused app-dev and piping calibration evidence | Activated after integration of app-dev W2/W3 and piping W1 pause boundaries; in-flight runs retain their pinned methods |
+| RECONCILIATION | RECREATED | Deliverable-corpus concordance from the ratified method plus app-dev and piping proto-run evidence | Activated from the integrated calibration/pause evidence; resumed proto-runs retain their pinned methods and report terminal lessons before PR #188 integration |
 | PDF2MD | RETAIN / SLIM | Agent 1 source-contract manager; page work to TASK/generalist, deterministic work to tools | Manager boundary implemented; further slimming incremental |
 | DRAWING_EXTRACT | RETAIN / SLIM | Agent 1 target/schema manager; sheet work to TASK/generalist, deterministic work to tools | Manager boundary implemented; further slimming incremental |
 | ORCHESTRATOR | RETAIN / EXPAND | Setup, coordination, control loops, scheduling gates | Implemented at instruction layer |
@@ -21,7 +21,7 @@
 | REVIEW, CHANGE, RESEARCH | RETAIN / SLIM | Human decisions and formal handoffs remain manager semantics | Current contracts rebound; further slimming is evidence-driven |
 | PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP | RETAIN / REBIND | Consume external decomposition standard | Implemented |
 | SCOPE_CHANGE, DOMAIN_ENGINE, DBM_PUBLISHER, EQUATION_AUDIT | RETAIN / SLIM | Preserve human/domain gates; move repetition downward | Current contracts rebound; further slimming is evidence-driven |
-| PREPARATION, RESEARCHER, AGGREGATION, DOMAIN_HYPERGRAPH, AUDIT_*, EVALUATION_* | RETAIN / PROPOSED REQUALIFICATION | Candidate dedicated Agent 2 roles under D-GOV-13; future TASK-skill/tool migration remains replacement-first | Persistent output/recovery schemas and live compatibility references recorded; named execution remains pending explicit human approval |
+| PREPARATION, RESEARCHER, AGGREGATION, DOMAIN_HYPERGRAPH, AUDIT_*, EVALUATION_* | RETAIN / REQUALIFIED | Approved dedicated Agent 2 roles under D-GOV-13; future TASK-skill/tool migration remains replacement-first | Persistent output/recovery schemas and live compatibility references recorded; named execution remains subject to all runtime gates |
 | TASK | RETAIN | Default recurring-method Agent 2 shell | Live |
 
 ## Removal Rule
@@ -30,7 +30,7 @@ No remaining dedicated Agent 2 file is removed until its replacement, callers, c
 
 ## External Dependencies
 
-The paused app-dev and piping concordance branches are integrated into the
-redesign branch and their calibration evidence now grounds RECONCILIATION.
-Managed delegation and project-loop migration proceed against this accepted
-instruction roster before project development resumes.
+The earlier app-dev and piping calibration/pause evidence grounds the current
+RECONCILIATION contract. Their resumed proto-runs remain isolated under pinned
+methods. Their accepted changes and terminal lessons must integrate before the
+redesign branch is rebased, fully revalidated, and merged.

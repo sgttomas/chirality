@@ -12,8 +12,8 @@ governs on divergence.
 
 ## A.1 Workflow Design Requirements (R1–R17)
 
-Defined in the candidate workflow-component standard. Apply to workflow
-component designs when accepted; ratified K-* invariants govern meanwhile.
+Defined in the ratified workflow-component standard. Apply to workflow
+component designs together with the ratified K-* invariants.
 
 | ID | Requirement | Rule |
 |----|-------------|------|

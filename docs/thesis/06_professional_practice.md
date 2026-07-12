@@ -112,10 +112,11 @@ professional remains accountable and authorizes consequential gates.
 This "regular and ongoing communication" requirement deserves comment in the AI context. Managed runs make consequential briefs, notices, amendments, returns, gates, and handoffs durable in runtime records or governed project artifacts. Git records accepted publication and integration state; not every transient message is committed, and a commit is never itself semantic acceptance.
 
 **Identifying and rectifying gaps in competencies.** AUDIT_AGENTS evaluates
-instruction files against ratified K-* governance and, provisionally, the
-candidate workflow-component standard. The evaluation framework assesses
-output quality; versioning and review prevent silent instruction changes.
-Candidate conformance results are evidence, not owner acceptance.
+instruction files against ratified K-* governance and the ratified
+workflow-component standard. The evaluation framework assesses output quality;
+versioning and review prevent silent instruction changes. Conformance results
+are evidence for remediation and do not themselves approve consequential
+changes.
 
 **Completing periodic reviews to ensure PWPs are accurate and reliable.** The REVIEW agent (`agents/AGENT_REVIEW.md`) implements a formal 5-gate review process for lifecycle transitions. EVALUATION performs generic cross-deliverable coherence analysis; RECONCILIATION separately aligns deliverable-local and project-wide truth during an activated corpus-concordance run. Accepted project artifacts are git-versioned, and managed run records preserve delegated-work evidence. The review protocol is addressed in detail in §6.5.
 
