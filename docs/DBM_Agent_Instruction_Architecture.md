@@ -35,7 +35,10 @@ no child capability becomes available to the parent.
 
 ## 3. Standards Are External
 
-`docs/WORKFLOW_COMPONENT_STANDARD.md`, `docs/DECOMPOSITION_STANDARD.md`, system invariants, domain standards, and accepted project governance constrain all runtime layers. They are not agents and do not occupy Agent 0.
+Ratified system invariants, accepted domain standards, and accepted project
+governance constrain all runtime layers. `docs/WORKFLOW_COMPONENT_STANDARD.md`
+and `docs/DECOMPOSITION_STANDARD.md` are candidate external standards pending
+explicit owner acceptance. None of these documents is an agent or Agent 0.
 
 HELPS_HUMANS is the Agent 1 manager that applies and maintains workflow-component governance. It is not itself the constitutional source.
 
@@ -114,9 +117,9 @@ tools, write targets, status, and returns. Waiting children support terminal
 fan-in; background children plus notices, updates, amendments, acknowledgments,
 and safe-boundary update delivery support supervised many-to-many coordination.
 
-The old SDK Agent bridge is a compatibility adapter governed by the same type
-policy and now embeds actual named instructions. It remains non-delegating and
-environment-gated while managed sessions are the canonical nested path.
+The old SDK Agent bridge is disabled after managed-delegation acceptance. It
+remains only as a fail-closed compatibility surface; managed sessions are the
+sole executable nested path.
 If managed delegation is unavailable, multi-agent execution defers; a durable
 brief may preserve intent but does not claim that a child ran.
 

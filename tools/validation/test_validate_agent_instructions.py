@@ -95,6 +95,18 @@ class ValidateAgentInstructionsTests(unittest.TestCase):
         ).replace("— TASK (", "— AUDITOR (")
         self.assertEqual([], self.validate(text, "AGENT_AUDITOR.md"))
 
+    def test_body_text_cannot_impersonate_dedicated_approval_frontmatter(self) -> None:
+        text = VALID_AGENT.replace("— TASK (", "— AUDITOR (").replace(
+            "## PROTOCOL",
+            "```yaml\ndedicated_agent2_approval: D-GOV-13\n```\n## PROTOCOL",
+        )
+        findings = self.validate(text, "AGENT_AUDITOR.md")
+        self.assertIn("TYPE2_REQUALIFICATION_REQUIRED", {item.code for item in findings})
+
+    def test_all_positive_r_identifiers_are_checked_against_catalog(self) -> None:
+        findings = self.validate(VALID_AGENT.replace("## PROTOCOL", "R117\n## PROTOCOL"))
+        self.assertIn("R_ID_UNKNOWN", {item.code for item in findings})
+
     def test_missing_agent_reference_warns(self) -> None:
         text = VALID_AGENT.replace("## PROTOCOL", "See `AGENT_MISSING.md`.\n## PROTOCOL")
         findings = self.validate(text)

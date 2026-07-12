@@ -171,7 +171,7 @@ describe('ClaudeAgentSdkManager', () => {
     });
   });
 
-  it('passes executable Agent options only through delegated R5 governance', async () => {
+  it('keeps the retired Agent bridge absent from SDK options', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-manager-agent-'));
     process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
     const query = createQuery([
@@ -206,17 +206,10 @@ describe('ClaudeAgentSdkManager', () => {
     expect(query).toHaveBeenCalledWith(
       expect.objectContaining({
         options: expect.objectContaining({
-          tools: ['Agent'],
-          allowedTools: ['Agent'],
-          disallowedTools: expect.not.arrayContaining(['Agent']),
-          agents: {
-            TASK: expect.objectContaining({
-              tools: [],
-              disallowedTools: expect.arrayContaining(['Agent', 'Bash', 'Write']),
-              maxTurns: 1,
-              permissionMode: 'dontAsk'
-            })
-          }
+          tools: [],
+          allowedTools: [],
+          disallowedTools: expect.arrayContaining(['Agent']),
+          agents: undefined
         })
       })
     );

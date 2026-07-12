@@ -5,7 +5,6 @@ import {
   evaluateSubagentPreflight,
   SUBAGENT_BRIDGE_POLICY_VERSION,
   SUBAGENT_BRIDGE_RULING_REF,
-  SUBAGENT_EXECUTION_ALLOWED_REASON,
   SUBAGENT_EXECUTION_DENIED_REASON
 } from '../../lib/harness/subagent-bridge';
 import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
@@ -52,35 +51,18 @@ describe('subagent bridge', () => {
     expect(definition.disallowedTools).toContain('Write');
   });
 
-  it('returns an SDK agents option-shape only when delegated candidates exist', () => {
+  it('keeps the SDK agents option disabled after managed delegation acceptance', () => {
     const bridge = createExecutableSubagentBridge({ session, opts });
-
-    expect(bridge).toMatchObject({
-      policyVersion: SUBAGENT_BRIDGE_POLICY_VERSION,
-      rulingRef: SUBAGENT_BRIDGE_RULING_REF,
-      sessionId: 'sess_bridge',
-      delegatedSubagents: ['TASK'],
-      agents: {
-        TASK: {
-          tools: [],
-          disallowedTools: expect.arrayContaining(['Agent']),
-          maxTurns: 1,
-          permissionMode: 'dontAsk'
-        }
-      }
-    });
-
+    expect(bridge).toBeUndefined();
     expect(
       createExecutableSubagentBridge({
         session,
         opts: { ...opts, delegatedSubagents: [] }
       })
     ).toBeUndefined();
-    expect(bridge?.agents.TASK.prompt).toContain('# TASK actual instruction');
-    expect(bridge?.agents.TASK.prompt).toContain('AGENT_TASK.md');
   });
 
-  it('allows only eligible Agent preflight requests and records child metadata', () => {
+  it('denies even formerly eligible Agent requests and records retired-bridge metadata', () => {
     const decision = evaluateSubagentPreflight({
       toolInput: {
         agent: 'TASK',
@@ -90,18 +72,18 @@ describe('subagent bridge', () => {
     });
 
     expect(decision).toEqual({
-      allowed: true,
-      reason: SUBAGENT_EXECUTION_ALLOWED_REASON,
+      allowed: false,
+      reason: SUBAGENT_EXECUTION_DENIED_REASON,
       safeMetadata: {
         policyVersion: SUBAGENT_BRIDGE_POLICY_VERSION,
         rulingRef: SUBAGENT_BRIDGE_RULING_REF,
-        allowClass: 'subagent-execution',
-        denyClass: undefined,
-        executionPosture: 'executable',
-        executableBridge: true,
+        allowClass: undefined,
+        denyClass: 'subagent-execution',
+        executionPosture: 'hard-denied',
+        executableBridge: false,
         requestedAgent: 'TASK',
         eligibleAgentNames: ['TASK'],
-        eligibleChildDefinition: true,
+        eligibleChildDefinition: false,
         childToolNames: [],
         childCapabilityInheritance: false
       }

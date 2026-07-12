@@ -5,4 +5,3 @@
 3. The reported root cause is supported and alternatives are addressed.
 4. Diagnosis does not become an unauthorized repair.
 5. Cross-package effects are returned as coordination notices.
-

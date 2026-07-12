@@ -538,7 +538,7 @@ describe('Chirality write hooks', () => {
     });
   });
 
-  it('allows only eligible Agent preflight and records executable bridge metadata', async () => {
+  it('blocks the retired Agent bridge even for formerly eligible children', async () => {
     const preToolUse = getHooks(['TASK']).PreToolUse?.[0]?.hooks[0];
 
     const result = await preToolUse?.(
@@ -556,10 +556,11 @@ describe('Chirality write hooks', () => {
     );
 
     expect(result).toMatchObject({
-      continue: true,
+      continue: false,
+      decision: 'block',
       hookSpecificOutput: {
         hookEventName: 'PreToolUse',
-        permissionDecision: 'allow'
+        permissionDecision: 'deny'
       }
     });
 
@@ -593,12 +594,12 @@ describe('Chirality write hooks', () => {
     ]);
     expect(replay.events[1].data).toMatchObject({
       hookName: 'chirality.subagent.pre_tool_use',
-      decision: 'approve',
+      decision: 'block',
       descriptorName: 'agent',
       safeMetadata: {
-        allowClass: 'subagent-execution',
-        executionPosture: 'executable',
-        executableBridge: true,
+        denyClass: 'subagent-execution',
+        executionPosture: 'hard-denied',
+        executableBridge: false,
         requestedAgent: 'TASK'
       }
     });

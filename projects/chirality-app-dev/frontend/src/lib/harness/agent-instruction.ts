@@ -75,6 +75,8 @@ const ALLOWED_AGENT_FRONTMATTER_KEYS = new Set([
 const ALLOWED_WRITE_SCOPES = new Set([
   'repo-wide',
   'project-level',
+  'package-level',
+  'bounded-task-brief',
   'deliverable-local',
   'tool-root-only',
   'workspace-scaffold-only',

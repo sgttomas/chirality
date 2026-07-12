@@ -10,11 +10,18 @@ from pathlib import Path
 from common import load_profile
 
 
+def as_text(value: str | bytes | None) -> str:
+    if value is None:
+        return ""
+    return value.decode("utf-8", errors="replace") if isinstance(value, bytes) else value
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run allowlisted software checks without a shell.")
     parser.add_argument("profile")
     parser.add_argument("--check", action="append", default=[])
     parser.add_argument("--output", required=True)
+    parser.add_argument("--timeout-seconds", type=float, default=600.0)
     args = parser.parse_args()
     profile_path = Path(args.profile).resolve()
     project_root, profile = load_profile(profile_path)
@@ -36,16 +43,35 @@ def main() -> int:
         if not cwd.is_dir():
             raise ValueError(f"check {check_id} cwd does not exist: {cwd}")
         started = time.monotonic()
-        completed = subprocess.run(command, cwd=cwd, text=True, capture_output=True, shell=False)
+        timeout_seconds = spec.get("timeout_seconds", args.timeout_seconds)
+        if not isinstance(timeout_seconds, (int, float)) or timeout_seconds <= 0:
+            raise ValueError(f"check {check_id} timeout_seconds must be positive")
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=cwd,
+                text=True,
+                capture_output=True,
+                shell=False,
+                timeout=float(timeout_seconds),
+            )
+            exit_code = completed.returncode
+            stdout = completed.stdout
+            stderr = completed.stderr
+        except subprocess.TimeoutExpired as error:
+            exit_code = 124
+            stdout = as_text(error.stdout)
+            stderr = as_text(error.stderr) + f"\ncheck timed out after {timeout_seconds} seconds"
         results.append({
             "id": check_id,
             "command": command,
             "cwd": cwd.relative_to(workspace_root).as_posix() or ".",
-            "exit_code": completed.returncode,
+            "exit_code": exit_code,
+            "timeout_seconds": timeout_seconds,
             "duration_seconds": round(time.monotonic() - started, 3),
-            "stdout": completed.stdout,
-            "stderr": completed.stderr,
-            "status": "PASS" if completed.returncode == 0 else "FAIL",
+            "stdout": stdout,
+            "stderr": stderr,
+            "status": "PASS" if exit_code == 0 else "FAIL",
         })
     report = {
         "schema": "chirality-software-check-evidence/v1",
@@ -56,6 +82,11 @@ def main() -> int:
         "results": results,
     }
     output = Path(args.output)
+    if not output.is_absolute():
+        output = (workspace_root / output).resolve()
+    else:
+        output = output.resolve()
+    output.relative_to(workspace_root)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"status": report["status"], "output": str(output), "checks": selected}))

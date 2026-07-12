@@ -360,7 +360,7 @@ describe('tool descriptor registry', () => {
       required: ['profileId', 'projectId', 'proposalId']
     });
 
-    expect(HARNESS_TOOL_REGISTRY_VERSION).toBe('harness-tools.v12.scoped-delegation');
+    expect(HARNESS_TOOL_REGISTRY_VERSION).toBe('harness-tools.v13.atomic-coordination');
 
     // D-APP-50 rider-2 / D-APP-52 rider-5 pins: no accept/apply/force name
     // exists in any registry, under any alias.

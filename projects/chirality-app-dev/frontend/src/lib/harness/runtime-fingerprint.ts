@@ -12,7 +12,7 @@ import { MANAGED_DELEGATION_POLICY_VERSION } from './managed-delegation';
 import { HARNESS_TOOL_REGISTRY_VERSION } from '@chirality/harness-contract/tool-descriptor';
 import type { HarnessRuntimeFingerprint } from '@chirality/harness-contract/types';
 
-export const HARNESS_RUNTIME_FINGERPRINT_SCHEMA_VERSION = 'harness-runtime-fingerprint.v3.scoped-delegation';
+export const HARNESS_RUNTIME_FINGERPRINT_SCHEMA_VERSION = 'harness-runtime-fingerprint.v4.atomic-coordination';
 
 function sha256Hex(value: string): string {
   return createHash('sha256').update(value).digest('hex');

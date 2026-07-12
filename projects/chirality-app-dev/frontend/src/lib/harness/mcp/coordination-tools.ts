@@ -79,6 +79,14 @@ export async function launchManagedChild(input: ManagedChildLaunch) {
     input.childInstanceId
   );
   const runRoot = path.dirname(path.dirname(instanceRoot));
+  const runningStatus = JSON.parse(
+    await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')
+  ) as Record<string, unknown>;
+  await writeFile(
+    path.join(instanceRoot, 'STATUS.json'),
+    `${JSON.stringify({ ...runningStatus, childSessionId: child.sessionId, status: 'RUNNING' }, null, 2)}\n`,
+    'utf8'
+  );
 
   const readUndeliveredUpdates = async (delivered: ReadonlySet<string>) => {
     let names: string[] = [];
@@ -200,10 +208,14 @@ export async function launchManagedChild(input: ManagedChildLaunch) {
           await refreshOrchestrationHandoff(path.dirname(path.dirname(instanceRoot)));
         })
         .catch(async (error) => {
-          const current = JSON.parse(await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')) as Record<string, unknown>;
-          await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...current, childSessionId: child.sessionId, status: 'FAILED', error: error instanceof Error ? error.message : 'background child failed' }, null, 2)}\n`, 'utf8');
-          await runtime.sessionManager.save(child.sessionId, { childRunStatus: 'FAILED' });
-          await refreshOrchestrationHandoff(path.dirname(path.dirname(instanceRoot)));
+          try {
+            const current = JSON.parse(await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')) as Record<string, unknown>;
+            await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...current, childSessionId: child.sessionId, status: 'FAILED', error: error instanceof Error ? error.message : 'background child failed' }, null, 2)}\n`, 'utf8');
+            await runtime.sessionManager.save(child.sessionId, { childRunStatus: 'FAILED' });
+            await refreshOrchestrationHandoff(path.dirname(path.dirname(instanceRoot)));
+          } catch (recordError) {
+            console.error('[managed-delegation] failed to record background child failure', recordError);
+          }
         });
     });
     return { sessionId: child.sessionId, status: 'RUNNING', output: 'Managed child launched in background.' } as const;
@@ -255,13 +267,22 @@ export function buildCoordinationMcpTools(input: {
         if (existing.orchestrationRunId && existing.orchestrationRunId !== args.runId) {
           throw new Error('Managed child must remain in the parent orchestration run');
         }
-        const parent = await runtime.sessionManager.save(existing.sessionId, {
+        const parent: SessionRecord = {
+          ...existing,
           orchestrationRunId: args.runId,
           executionRoot: args.executionRoot,
           planVersion: args.planVersion,
           declaredTools: [...input.context.tools]
-        });
-        const service = new ManagedDelegationService(launchManagedChild);
+        };
+        const service = new ManagedDelegationService(
+          launchManagedChild,
+          async (validatedParent) => runtime.sessionManager.save(existing.sessionId, {
+            orchestrationRunId: validatedParent.orchestrationRunId,
+            executionRoot: validatedParent.executionRoot,
+            planVersion: validatedParent.planVersion,
+            declaredTools: [...input.context.tools]
+          })
+        );
         return jsonResult(await service.delegate(parent, input.context.tools, args as DelegateAgentInput));
       }
     ));
@@ -279,7 +300,9 @@ export function buildCoordinationMcpTools(input: {
         requestedAction: z.string().min(1),
         blocking: z.boolean(),
         humanDecisionRequired: z.boolean(),
-        acceptedBasisRef: z.string().min(1)
+        acceptedBasisRef: z.string().min(1),
+        validationRef: z.string().min(1).optional(),
+        humanAcceptanceRef: z.string().min(1).optional()
       },
       async (args) => jsonResult(await reportCoordinationNotice(await parentSession(input.context), args))
     ));
@@ -302,7 +325,14 @@ export function buildCoordinationMcpTools(input: {
         selectionAuthority: z.enum(['HUMAN', 'AGENT_0', 'AGENT_1']).optional(),
         posture: z.enum(['TERMINAL_FAN_OUT_IN', 'SUPERVISED_MANY_TO_MANY', 'MIXED']).optional(),
         acceptedBasis: z.array(z.string()).optional(),
-        workGraph: z.record(z.string(), z.unknown()).optional()
+        workGraph: z.record(z.string(), z.unknown()).optional(),
+        validationRef: z.string().min(1).optional(),
+        humanAcceptanceRef: z.string().min(1).optional(),
+        amendmentCategories: z.array(z.enum([
+          'INFORMATION', 'CONTEXT', 'SEQUENCING', 'SCOPE', 'RISK',
+          'AUTHORITY', 'SHARED_WRITE', 'ACCEPTANCE'
+        ])).optional(),
+        amendmentVersion: z.string().min(1).optional()
       },
       async (args) => jsonResult(await sendAgentUpdate(await parentSession(input.context), args))
     ));

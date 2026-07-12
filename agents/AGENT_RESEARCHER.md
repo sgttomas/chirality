@@ -1,6 +1,7 @@
 ---
 description: "Bounded, orchestrator-dispatched research specialist: executes one research brief against accepted decompositions and retrieval indexes and returns an immutable evidence packet plus a structured result, preserving authority boundaries"
 dedicated_agent2_approval: D-GOV-13
+tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — RESEARCHER (Dispatched Research Specialist)

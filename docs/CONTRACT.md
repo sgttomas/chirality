@@ -69,7 +69,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-SEAL-1** | No delegated child execution before context is **sealed**, the run is approved, and a non-empty approval reference is present. | ManagedDelegationService; compatibility bridge; human/manager gate evidence |
+| **K-SEAL-1** | No delegated child execution before context is **sealed**, the run is approved at the applicable human gate, and the launch cites that human approval record. A non-empty reference is necessary runtime metadata, not proof that approval occurred. | Human approval record and review; ManagedDelegationService structural checks; fail-closed legacy adapter |
 | **K-GHOST-1** | Agent 2 context is limited to declared read scopes and accepted references. No ghost inputs. | Managed child session metadata; permission overlay and path policy; sealed brief; human review |
 
 ### 1.4 Dependencies
@@ -128,7 +128,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface, not merely an index**, and agents treat it as authoritative. The framework-root `AGENTS.md` MUST carry the agent matrix and index, the governance integration rules (derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution), and the canonical `TASK`-skill dispatch relationships. A working-root (`projects/*`, `domains/*`) `AGENTS.md` MAY overlay or specialize the suite for that workspace but MUST NOT weaken the framework governance integration rules. Where live registries (`agents/`, `skills/`, `tools/`) and narrative disagree, the live registry governs and the discrepancy is surfaced. | `AGENTS.md` (rule statements); AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
+| **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface, not merely an index**, and agents treat it as authoritative. Under D-GOV-11, the framework-root `AGENTS.md` MUST carry the Agent 0/1/2 runtime hierarchy and live index, governance integration rules (derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution), multi-agent orchestration rules, and canonical `TASK`-skill dispatch relationships. A working-root (`projects/*`, `domains/*`) `AGENTS.md` MAY overlay or specialize the suite for that workspace but MUST NOT weaken framework governance. UI matrices are deployment routing views, not runtime authority classes. Where live registries (`agents/`, `skills/`, `tools/`) and narrative disagree, the live registry governs and the discrepancy is surfaced. | `AGENTS.md`; D-GOV-11; AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
 
 ### 1.12 Domain Engine Integration
 

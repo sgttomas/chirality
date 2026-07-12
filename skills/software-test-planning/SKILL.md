@@ -26,4 +26,3 @@ metadata:
 - gaps requiring human disposition.
 
 Safe for generic TASK with `ApplyEdits: false` unless test-file changes are separately authorized.
-

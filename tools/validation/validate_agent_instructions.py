@@ -57,6 +57,24 @@ WRITE_SCOPE_PREFIXES = (
     "none",
 )
 
+REQUIRED_DELEGATION_EDGES = {
+    "ORCHESTRATOR": {"PREPARATION", "DOMAIN_HYPERGRAPH", "AGGREGATION", "TASK"},
+    "RESEARCH": {"RESEARCHER"},
+    "EVALUATION": {
+        "TASK",
+        "AUDIT_DEP_CLOSURE",
+        "AUDIT_AGENTS",
+        "AUDIT_DECOMP",
+        "AUDIT_GOVERNANCE",
+        "AUDIT_EPISTEMIC",
+        "AUDIT_HYPERGRAPH_CLOSURE",
+        "AUDIT_SCOPE_CLOSURE",
+        "EVALUATION_REPORT",
+        "EVALUATION_STRUCTURE_AUDIT",
+        "EVALUATION_DEPENDENCY_AUDIT",
+    },
+}
+
 
 @dataclass(frozen=True)
 class Finding:
@@ -149,7 +167,7 @@ def validate_file(path: Path, repo_root: Path, valid_r_ids: set[str]) -> list[Fi
         if role != "TASK":
             approval_match = re.search(
                 r"^dedicated_agent2_approval:\s*(D-GOV-\d+)\s*$",
-                text,
+                frontmatter_block(text),
                 re.MULTILINE,
             )
             if not approval_match:
@@ -186,11 +204,9 @@ def validate_file(path: Path, repo_root: Path, valid_r_ids: set[str]) -> list[Fi
         if not (repo_root / "agents" / ref).is_file():
             add(findings, "WARN", "AGENT_REFERENCE_UNRESOLVED", rel, f"referenced live agent file does not exist: {ref}")
 
-    # R0-R5 are also used by the RESEARCH evidence-quality rubric. Only flag
-    # numerically out-of-catalog references here; semantic audits determine
-    # whether an in-range token refers to the workflow standard or a local
-    # vocabulary.
-    for rid in sorted(set(re.findall(r"\bR(?:1[89]|[2-9]\d+)\b", text))):
+    # R0 is a local research-grade token. Every positive R identifier is
+    # otherwise checked against the loaded workflow-standard catalog.
+    for rid in sorted(set(re.findall(r"\bR\d+\b", text)) - {"R0"}):
         if rid not in valid_r_ids:
             add(findings, "WARN", "R_ID_UNKNOWN", rel, f"requirement identifier is not defined by the standard: {rid}")
 
@@ -267,6 +283,22 @@ def validate_hierarchy(paths: list[Path], repo_root: Path) -> list[Finding]:
             add(findings, "ERROR", "AGENT1_DIRECT_ENTRY", rel, "Agent 1 must support direct human invocation")
         if agent_type == "2" and (interaction.startswith("chat") or interaction.startswith("both")):
             add(findings, "ERROR", "TYPE2_DIRECT_ENTRY", rel, "Agent 2 may not be a direct-chat persona")
+
+    for parent, required_children in REQUIRED_DELEGATION_EDGES.items():
+        parent_record = records.get(parent)
+        if not parent_record:
+            continue
+        parent_path, parent_text, _, _ = parent_record
+        declared = set(frontmatter_list(parent_text, "subagents"))
+        for child in sorted(required_children - declared):
+            rel = parent_path.resolve().relative_to(repo_root.resolve())
+            add(
+                findings,
+                "ERROR",
+                "REQUIRED_DELEGATION_EDGE_MISSING",
+                rel,
+                f"canonical dispatch relationship {parent} -> {child} is not declared in subagents",
+            )
 
     return findings
 

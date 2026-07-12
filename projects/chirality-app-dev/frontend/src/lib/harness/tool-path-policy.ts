@@ -92,12 +92,13 @@ function denyPath(input: {
   };
 }
 
-async function rejectSymlinkWritePath(input: {
+async function rejectSymlinkPath(input: {
   projectRoot: string;
   rawPath: string;
   resolvedPath: string;
   pathField: string;
   pathScope: HarnessToolDescriptor['pathScope'];
+  access: 'read' | 'write';
 }): Promise<HarnessToolPathPolicyResult | undefined> {
   const root = path.resolve(input.projectRoot);
   const relative = path.relative(root, input.resolvedPath);
@@ -113,8 +114,8 @@ async function rejectSymlinkWritePath(input: {
       const stats = await lstat(current);
       if (stats.isSymbolicLink()) {
         return denyPath({
-          reason: `Write path '${input.rawPath}' crosses symbolic link '${current}'.`,
-          denyClass: 'symlink-write',
+          reason: `${input.access === 'read' ? 'Read' : 'Write'} path '${input.rawPath}' crosses symbolic link '${current}'.`,
+          denyClass: `symlink-${input.access}`,
           projectRoot: input.projectRoot,
           pathField: input.pathField,
           rawPath: input.rawPath,
@@ -142,7 +143,7 @@ async function rejectSymlinkWritePath(input: {
       }
 
       return denyPath({
-        reason: `Write path '${input.rawPath}' could not be checked for symbolic links.`,
+          reason: `${input.access === 'read' ? 'Read' : 'Write'} path '${input.rawPath}' could not be checked for symbolic links.`,
         denyClass: 'path-stat-failed',
         projectRoot: input.projectRoot,
         pathField: input.pathField,
@@ -274,6 +275,18 @@ export async function evaluateToolPathPolicy(input: {
     });
   }
 
+  const symlinkDeny = await rejectSymlinkPath({
+    projectRoot: input.projectRoot,
+    rawPath: pathField.value,
+    resolvedPath,
+    pathField: pathField.field,
+    pathScope,
+    access: pathScope === 'project-root-read' ? 'read' : 'write'
+  });
+  if (symlinkDeny) {
+    return symlinkDeny;
+  }
+
   if (pathScope !== 'project-root-write') {
     return {
       allowed: true,
@@ -295,17 +308,6 @@ export async function evaluateToolPathPolicy(input: {
         instructionRoot: path.resolve(instructionRoot)
       }
     });
-  }
-
-  const symlinkDeny = await rejectSymlinkWritePath({
-    projectRoot: input.projectRoot,
-    rawPath: pathField.value,
-    resolvedPath,
-    pathField: pathField.field,
-    pathScope
-  });
-  if (symlinkDeny) {
-    return symlinkDeny;
   }
 
   return {

@@ -29,6 +29,14 @@ def main() -> int:
             command.append(args.head)
         completed = subprocess.run(command, text=True, capture_output=True, shell=False, check=True)
         paths = [line for line in completed.stdout.splitlines() if line]
+        untracked = subprocess.run(
+            ["git", "-C", str(repo), "ls-files", "--others", "--exclude-standard"],
+            text=True,
+            capture_output=True,
+            shell=False,
+            check=True,
+        )
+        paths = sorted(set(paths + [line for line in untracked.stdout.splitlines() if line]))
     violations = [path for path in paths if not any(contained(path, allowed) for allowed in args.allowed)]
     report = {
         "schema": "chirality-change-scope/v1",
@@ -43,4 +51,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

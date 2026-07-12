@@ -9,7 +9,7 @@ import { evaluateShellCommandPolicy } from './tool-shell-policy';
 import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import { evaluateSubagentPreflight } from './subagent-bridge';
 
-export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v6.managed-child-scopes';
+export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v7.coordination-mode';
 
 export type HarnessPermissionDecisionValue = 'allow' | 'deny' | 'ask';
 
@@ -221,6 +221,18 @@ export function resolveHarnessPermissionDecision(
   }
 
   if (hasDescriptorPermission(descriptor, 'coordination')) {
+    if (mode !== 'workspaceWrite') {
+      return createDecision(
+        input,
+        'deny',
+        `${descriptor.name} mutates the orchestration control plane and requires workspaceWrite mode.`,
+        {
+          hardDeny: true,
+          denyClass: 'coordination-mode',
+          requiresManagedDelegationPolicy: true
+        }
+      );
+    }
     return createDecision(
       input,
       'allow',

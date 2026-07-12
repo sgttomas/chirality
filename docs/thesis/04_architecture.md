@@ -190,7 +190,7 @@ The two lifecycles are interleaved: a deliverable in `IN_PROGRESS` contains clai
 
 The agent system is organized into three types with strictly partitioned responsibilities. The hierarchy is defined in DBM §2 and summarized in TYPES.md §4. It is not merely a labeling convention — it is the mechanism by which the system's authority model is enforced.
 
-**Standards and Agent 0.** Normative governance and domain standards form the constitutional layer outside the runtime hierarchy. `docs/WORKFLOW_COMPONENT_STANDARD.md` governs component design and `docs/DECOMPOSITION_STANDARD.md` defines the seven-gate protocol, I1–I10 invariants, and extension contract. HELP_HUMAN is the sole Agent 0 Supervising Architect; HELPS_HUMANS is the Agent 1 manager that applies and maintains component governance. Where an instruction disagrees with an accepted standard, the conflict is resolved through governed amendment rather than by treating the standard as an agent.
+**Standards and Agent 0.** Normative governance and accepted domain standards form the constitutional layer outside the runtime hierarchy. The workflow-component and decomposition standards in this tranche are candidate texts implementing ruled separations; until explicitly accepted, ratified root governance and approved manager instructions govern conflicts. HELP_HUMAN is the sole Agent 0 Supervising Architect; HELPS_HUMANS is the Agent 1 manager that applies and maintains component governance.
 
 **Agent 0 — Supervising Architect.** HELP_HUMAN is the sole Agent 0. It aligns
 the human's objective, authority, stakes, and decision points; derives the

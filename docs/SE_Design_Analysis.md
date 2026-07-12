@@ -155,13 +155,16 @@ The write scope architecture creates formal fault containment:
 
 | Containment Zone | Agents | Failure Impact |
 |-----------------|--------|----------------|
-| Deliverable-local | WORKING_ITEMS, TASK, DELIVERABLE_TASK (also TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register via TASK shell) | Limited to one production unit folder |
-| Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, SCHEDULING | Limited to one tool root; source truth untouched |
+| Package-level | WORKING_ITEMS | Limited to one activated package, with child writes further bounded by brief |
+| Bounded task | TASK (including TASK+four-documents, dependency-extract, semantic-matrix-build, and lens-register) | Limited to the sealed `ScopePath` and allowed write targets |
+| Tool-root | ORCHESTRATOR scheduling workflow, AGGREGATION, AUDIT_* | Limited to one tool root; source truth untouched |
 | Repo (approval-gated) | CHANGE | Requires explicit human approval token per action |
 | Read-only | HELP_HUMAN | Zero write impact |
 | Workflow-component architecture | HELPS_HUMANS | Repo-wide component-design surfaces under human-reviewed governance changes |
 
-A Type 2 agent failure cannot corrupt source truth — it writes to an isolated tool root or a single deliverable folder. The CHANGE agent's approval gate (APPROVE: / APPROVE_DESTRUCTIVE:) is the sole path from derived output to committed state.
+A Type 2 agent failure is contained to its sealed brief: an isolated tool root,
+scaffold boundary, or bounded content target. CHANGE governs Git mutation but
+does not convert committed state into semantic acceptance.
 
 ### 4.2 Failure Mode Visibility
 
@@ -273,7 +276,11 @@ The architecture defines three layers of formally stated invariants:
 
 **I1–I10 (Decomposition invariants):** Structural constraints on decomposition (flat partitions, no gaps, stable IDs, deterministic coupling, vocabulary discipline). Enforced by decomposition agents; verified by AUDIT_DECOMP.
 
-**R1–R17 (Workflow-component requirements):** Stable behavioral constraints covering human decision rights, bounded execution, write quarantine, artifact-appropriate snapshots, provenance, no invention, conflict surfacing, brief-driven execution, Git/approval semantics, component boundaries, claim calibration, integration governance, registry lifecycle, path containment, and proportional design. Defined in `WORKFLOW_COMPONENT_STANDARD.md` and enforced through component contracts, validators, audits, and human review.
+**R1–R17 (candidate workflow-component requirements):** Proposed behavioral
+constraints covering decision rights, execution, writes, snapshots,
+provenance, claims, integration, lifecycle, containment, and proportional
+design. Validators measure implementation conformance; explicit owner
+acceptance is still required before these requirements become authoritative.
 
 **K-* (System-wide invariants):** 21 named, stable invariants covering hierarchy, authority, sealing, dependencies, status, staleness, gates, merge, provenance, invention, conflicts, claim strength, write scope, and snapshots. Defined in `CONTRACT.md` with enforcement points.
 

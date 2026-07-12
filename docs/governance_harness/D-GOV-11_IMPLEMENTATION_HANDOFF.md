@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: COMPLETE
+Status: REVIEW REMEDIATION IN PROGRESS / OWNER RULINGS PENDING
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -37,7 +37,8 @@ Branch: `codex/agent-governance-redesign`
   discovery/check/scope/comparison/drift tools are live.
 - Managed child sessions, terminal/background execution, coordination notices,
   updates, amendments, acknowledgments, runtime records, actual named
-  instruction loading, and the SDK compatibility adapter are implemented.
+  instruction loading, and fail-closed retirement of the record-less SDK
+  compatibility path are implemented.
 - Completion-audit hardening enforces child read scopes and write targets at
   permission/hook boundaries, fails closed on unbounded managed Bash, validates
   return markers, versions replans, injects updates at safe turn boundaries,
@@ -45,10 +46,30 @@ Branch: `codex/agent-governance-redesign`
 - Current generic audit and REVIEW snapshots write under `_Evaluation/`;
   historical generic `_Reconciliation/` snapshots remain immutable evidence.
   RECONCILIATION alone owns new deliverable-corpus concordance runs.
-- D-GOV-13 requalifies the 14 retained dedicated Agent 2 packages against
-  persistent output/recovery and live-reference compatibility evidence.
+- D-GOV-13 records a fourteen-role requalification proposal with persistent
+  output/recovery and live-reference compatibility evidence. It is pending an
+  explicit owner ruling; named execution fails closed meanwhile.
 
 ## Validation Evidence
+
+The review-remediation candidate currently has the following verified evidence:
+
+- App-dev runtime: the complete Vitest suite passes 94 files (one skipped),
+  686 tests (four skipped); TypeScript typechecking passes; the focused managed
+  delegation and coordination suite passes 16 tests.
+- Root governance/tool checks: instruction entrypoints pass; all 43 live skills
+  validate; 433 live path-anchor surfaces pass; 42 targeted review-remediation
+  Python tests pass; `git diff --check origin/main` reports no whitespace
+  errors.
+- The public derivative regenerates with 583 files and zero boundary findings.
+- The agent validator reports only the fourteen
+  `TYPE2_APPROVAL_NOT_RULED` errors required by the pending D-GOV-13 ruling and
+  reports no warnings. This is an authority gate, not a technical test failure;
+  named execution remains fail-closed until the owner rules.
+
+The following was the accepted pre-review evidence at PR #188 head before the
+review-remediation tranche. It is retained as historical evidence, not as a
+claim about the current unvalidated remediation tree:
 
 - Root governance/tool suite: 762 tests passed. Agent hierarchy/output-root,
   project-loop/entrypoint, skill, and path validators pass with 33 agent
@@ -75,16 +96,24 @@ Branch: `codex/agent-governance-redesign`
 
 ## External Blockers
 
-None. Both paused concordance branches are integrated, combined validation has
-passed, and the public derivative has been regenerated and independently checked.
+Explicit owner disposition remains required for the three candidate standards
+(workflow-component, decomposition, software workflow profile) and the
+D-GOV-13 fourteen-role dedicated-Agent-2 proposal. Full packaging, live
+premerge, piping-sensitive, and independent public-staging validation must run
+after those rulings are transcribed.
 
 ## Required Resume Sequence
 
-1. Resume project work from this accepted hierarchy and orchestration basis.
+1. Close PR #188 review findings and transcribe owner rulings.
+2. Regenerate and validate the public derivative, then merge PR #188.
+3. At each paused concordance run's next wave, re-check its pinned source-state
+   basis against the merged tree and record `CURRENT` or `STALE_INPUT`.
+4. Resume project work under the accepted hierarchy and the in-flight carve-outs.
 
 ## Closure Verdict
 
-Instruction tranche: COMPLETE.
+Instruction tranche: REVIEW REMEDIATION IN PROGRESS.
 RECONCILIATION activation: COMPLETE.
-Runtime bridge: IMPLEMENTED AND VALIDATED.
-Overall D-GOV-11 implementation: COMPLETE.
+Runtime bridge: REMEDIATED; CORE TESTS PASS, FULL ACCEPTANCE PENDING.
+Overall D-GOV-11 implementation: pending PR #188 review closure and explicit
+owner disposition of candidate standards and D-GOV-13.

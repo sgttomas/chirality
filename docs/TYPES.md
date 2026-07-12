@@ -170,7 +170,8 @@ Candidate/non-gating graph dispositions are governance worklist states, not depe
 
 ## 4. Agent Roles
 
-Agents are classified into three types following the 0-1-2 model. See `AGENTS.md` for the live agent matrix and index.
+Agents are classified into three runtime positions following the 0-1-2 model.
+See `AGENTS.md` for the live hierarchy and index.
 
 ### 4.1 Agent Types
 
@@ -202,6 +203,9 @@ A `tool-root-only` scope MAY be parameterized to a registered tool root or subtr
 - Agent 1 may delegate to named Agent 2 specialists, TASK, or an explicitly permitted ephemeral generalist.
 - Agent 2 executes within its sealed brief and may not delegate.
 - Human authority remains the halting condition at consequential gates.
+  Consequential means at least: scope expansion, consequential-risk change,
+  authority change, unresolved shared-write/ownership conflict, or acceptance
+  criteria/lifecycle-acceptance change. Ambiguity returns to the human.
 
 Authority and capability do not increase through delegation. Escalation flows upward. No agent may approve deliverables for external reliance on behalf of the accountable human.
 
@@ -211,7 +215,7 @@ Authority and capability do not increase through delegation. Escalation flows up
 |---|---|
 | `OrchestrationSelectionAuthority` | `HUMAN | AGENT_0 | AGENT_1` — who selected the current work graph |
 | `OrchestrationPosture` | `TERMINAL_FAN_OUT_IN | SUPERVISED_MANY_TO_MANY | MIXED` — descriptive label for the graph |
-| `ClaimStatus` | `PROVISIONAL | VALIDATED | ACCEPTED | DISPUTED` — warrant state preserved across a coordination relay |
+| `CoordinationClaimStatus` | `PROVISIONAL | VALIDATED | ACCEPTED | DISPUTED` — relay disposition state, distinct from §10 epistemic labels and lifecycle status |
 | `CoordinationDisposition` | `RECORD | RELAY | AMEND | HOLD | REPLAN | ESCALATE | ROUTE` — parent action on a child notice |
 | `UpdateAcknowledgment` | `INCORPORATED | NO_EFFECT | BLOCKED | CONFLICT | HUMAN_DECISION_REQUIRED` — child response to a parent update |
 
@@ -219,6 +223,21 @@ The work graph records actual sequencing and concurrency; the posture is not a
 complete execution language. Agent 0 owns cross-package graphs. A
 WORKING_ITEMS Agent 1 instance owns exactly one activated package and its
 intra-package graph.
+
+Coordination claim-status authority is explicit:
+
+- `PROVISIONAL`: an observation not yet validated; any managed child may report it.
+- `VALIDATED`: a manager or deterministic check has validated the observation;
+  the notice/update cites `validationRef`.
+- `ACCEPTED`: a human accepted the proposition for the governed workflow; the
+  notice/update cites `humanAcceptanceRef`. An agent may relay but never mint
+  this state.
+- `DISPUTED`: evidence conflicts or a recipient contests the proposition;
+  conflict evidence remains attached and no silent resolution occurs.
+
+An informational `RELAY` always cites its source `noticeId` and preserves the
+source status. Claim status does not itself advance lifecycle state or satisfy
+fan-in acceptance criteria.
 
 ---
 
@@ -314,7 +333,10 @@ The standard's abstract entities (Atomic Unit, Partition, Production Unit, Decom
 
 ## 9. UI Navigation Vocabulary
 
-The agent matrix and pipeline categories below are framework-level governance grammar (referenced by `AGENTS.md`); the desktop frontend uses them for matrix routing and pipeline selection. Deployment-specific selector and API details are owned by the runtime project's docs.
+The matrix and pipeline categories below are legacy-compatible desktop UI
+routing vocabulary. They are not the Agent 0/1/2 runtime hierarchy, do not
+classify document authority, and are not instantiated by root `AGENTS.md`.
+Deployment-specific selector and API details are owned by runtime-project docs.
 
 ### 9.1 Matrix Axes
 
@@ -323,7 +345,8 @@ The agent matrix and pipeline categories below are framework-level governance gr
 | `MatrixRow` | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE` | Epistemic-posture lane; also routes to WORKBENCH or PIPELINE |
 | `MatrixColumn` | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING` | Functional-role matrix column shared across all rows |
 
-The matrix is both a routing view and a governance grammar: NORMATIVE defines rules and standards, OPERATIVE executes bounded work within them, and EVALUATIVE audits, reconciles, and judges results (see `AGENTS.md`).
+The matrix is a routing view only. Runtime delegation and authority follow the
+Agent 0/1/2 hierarchy in `AGENTS.md`; standards constrain every layer.
 
 ### 9.2 Pipeline Selectors
 

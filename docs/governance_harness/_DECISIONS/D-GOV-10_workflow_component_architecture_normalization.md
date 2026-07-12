@@ -77,8 +77,3 @@ were written.
 Changing any of the four ruled directions above requires a superseding owner
 decision. Implementation detail may change through review without superseding
 this record when the ruled direction remains intact.
-
-**Partial supersession:** D-GOV-11 supersedes this record's runtime hierarchy,
-HELP_HUMAN classification, exclusive-TASK implication, EVALUATION-to-
-RECONCILIATION merge direction, and live DECOMP_BASE posture. The remaining
-D-GOV-10 directions continue unchanged.

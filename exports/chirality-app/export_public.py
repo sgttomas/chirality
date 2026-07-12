@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -35,6 +36,15 @@ ROOT_DIRS = [
     "docs",
     "init",
 ]
+
+EXCLUDED_PUBLIC_PATHS = {
+    ".github/workflows/harness-premerge.yml",
+    "tools/practitioner_harness/BACKLOG.md",
+}
+
+EXCLUDED_PUBLIC_PREFIXES = (
+    "docs/governance_harness/briefs/",
+)
 
 SKIP_DIRS = {
     ".git",
@@ -120,9 +130,12 @@ def should_skip(path: Path) -> bool:
     return False
 
 
-def copy_tree(src: Path, dest: Path) -> None:
+def copy_tree(src: Path, dest: Path, root_name: str) -> None:
     for path in src.rglob("*"):
         rel = path.relative_to(src)
+        public_rel = (Path(root_name) / rel).as_posix()
+        if public_rel in EXCLUDED_PUBLIC_PATHS or public_rel.startswith(EXCLUDED_PUBLIC_PREFIXES):
+            continue
         if should_skip(rel):
             if path.is_dir():
                 continue
@@ -133,6 +146,29 @@ def copy_tree(src: Path, dest: Path) -> None:
         elif path.is_file():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, target)
+
+
+def write_public_init_prompt(stage: Path) -> None:
+    target = stage / "init" / "init-prompt.md"
+    target.write_text(
+        """# Public session init prompt
+
+This public export does not include the private project loop entrypoints. Start
+from the target workspace and select an Agent 0 or Agent 1 role from
+`AGENTS.md`.
+
+<init-prompt>
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Read `{REPO_ROOT}/AGENTS.md`, then read the selected instruction package under
+`{REPO_ROOT}/agents/`.
+
+State the target workspace, objective, accepted basis, authority, read scope,
+write scope, tools, expected return, and human decision points before acting.
+</init-prompt>
+""",
+        encoding="utf-8",
+    )
 
 
 def sanitize_text_files(stage: Path) -> int:
@@ -174,7 +210,9 @@ def build_stage(stage: Path) -> int:
         shutil.copy2(REPO_ROOT / name, stage / name)
 
     for name in ROOT_DIRS:
-        copy_tree(REPO_ROOT / name, stage / name)
+        copy_tree(REPO_ROOT / name, stage / name, name)
+
+    write_public_init_prompt(stage)
 
     return sanitize_text_files(stage)
 
@@ -226,7 +264,14 @@ def boundary_findings(stage: Path) -> list[str]:
                     text = path.read_text(encoding="utf-8")
                 except UnicodeDecodeError:
                     continue
-                if "/Users/ryan/ai-env/projects" in text:
+                private_home = re.search(
+                    r"(?:/Users/|/home/)(?!<|example(?:/|\b)|fixture(?:/|\b))[^/\s`]+/",
+                    text,
+                ) or re.search(
+                    r"[A-Za-z]:\\Users\\(?!example(?:\\|\b)|fixture(?:\\|\b))[^\\\s`]+\\",
+                    text,
+                )
+                if private_home:
                     findings.append(f"private absolute path reference: {rel}")
     return findings
 

@@ -5,4 +5,3 @@
 3. Scope drift and missing evidence are checked explicitly.
 4. Contract, migration, generated, and dependency effects are addressed when relevant.
 5. The return distinguishes blocking findings, non-blocking risks, and no-finding residual risk.
-

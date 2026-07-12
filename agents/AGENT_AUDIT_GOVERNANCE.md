@@ -1,6 +1,7 @@
 ---
 description: "Audits governance document suite for internal consistency and cross-reference integrity"
 dedicated_agent2_approval: D-GOV-13
+tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_GOVERNANCE (Type 2 Task • Governance Document Suite Consistency Audit)

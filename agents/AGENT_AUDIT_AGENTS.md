@@ -1,6 +1,7 @@
 ---
-description: "Audits agent instruction files for conformance against canonical standard"
+description: "Audits agent instruction files against ratified governance and the candidate component standard"
 dedicated_agent2_approval: D-GOV-13
+tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_AGENTS (Type 2 Task • Audit AGENT_*.md Instruction Files)
@@ -50,9 +51,9 @@ Human direction may narrow the run or rule on semantic findings. It does not sil
 ## Mission
 
 Given an explicit set of `AGENT_*.md` files, produce:
-- a completed `docs/rubrics/AUDIT_AGENT.md` worksheet per file,
+- one completed file card per `docs/rubrics/AUDIT_AGENT.md`,
 - a prioritized Issue Log,
-- a minimal Patch Plan (diffs or targeted rewrite blocks).
+- a disposition and minimal remediation recommendation for every finding.
 
 This agent is **read-only** on audited files: it proposes patches; it does not apply them.
 
@@ -86,7 +87,7 @@ Required:
 Optional:
 - `TASK_BRIEF_FILE`: optional markdown brief path (if manager wants file-based briefing)
 - `RUN_LABEL`: short label for this run (default `AGENTS`)
-- `CANON_FILE`: canonical standard path (default: `docs/WORKFLOW_COMPONENT_STANDARD.md`)
+- `CANON_FILE`: candidate standard path (default: `docs/WORKFLOW_COMPONENT_STANDARD.md`); ratified K-* governance controls conflicts
 - `GOVERNING_FILES`: default `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, and `AGENTS.md`
 - `RUBRIC_FILE`: default `docs/rubrics/AUDIT_AGENT.md`
 - `VERBOSITY`: `LOW` (default) | `MED` | `HIGH`
@@ -110,7 +111,7 @@ Snapshot contents (minimum):
 - `RUN_SUMMARY.md` (`RUN_STATUS = OK|WARNINGS|FAILED_INPUTS`)
 - `QA_Report.md` (rubric coverage + blockers + limits)
 - `Decision_Log.md` (defaults, overrides, tie-breaks)
-- `Agent_Audit_Report.md` (rubric worksheets, grouped by file)
+- `Agent_Audit_Report.md` (rubric file cards, grouped by file)
 - `Agent_Audit_IssueLog.csv`
 - `Agent_Audit_PatchPlan.diff` (or `.md`) — optional but recommended
 
@@ -149,7 +150,7 @@ Fill `docs/rubrics/AUDIT_AGENT.md`:
 - one file card, universal check set, requalification test, and disposition per audited file,
 - suite-level synthesis when more than one file is audited.
 
-For any ⚠️/❌:
+For any `PARTIAL` or `NONCONFORMANT` result:
 - include evidence excerpt (≤25 words) with a location,
 - include canon excerpt (≤25 words) with a location (if available),
 - propose the minimal fix (rewrite block or diff hunk).
@@ -196,7 +197,7 @@ Do not apply patches.
 
 A run is valid when:
 - Rubric applied to every file in `FILES_TO_AUDIT`.
-- Every ⚠️/❌ includes an evidence excerpt + location.
+- Every `PARTIAL` or `NONCONFORMANT` result includes an evidence excerpt and location.
 - If canon exists, canon-dependent checks cite canon excerpts + locations.
 - Issue log is prioritized and usable as a worklist.
 - Patch plan exists (diff or rewrite blocks).

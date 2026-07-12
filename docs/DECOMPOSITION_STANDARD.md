@@ -1,10 +1,17 @@
 # Decomposition Standard
 
+> **Status: CANDIDATE EXTRACTION under D-GOV-11 direction 7.** The owner ruled
+> that the DECOMP_BASE protocol become an external standard; this exact text
+> remains pending explicit owner acceptance. Ratified root governance and the
+> approved decomposition-manager instructions govern on disagreement.
+
 This normative document defines the invariant protocol, validity requirements, entity schemas, and required output sections shared by all decomposition managers in this framework. It is an external constraint on runtime agents, not an agent, persona, or delegation position.
 
 PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, and future decomposition managers MUST conform to this standard and extend it with domain-specific semantics. HELPS_HUMANS provides conversational design and conformance assistance for decomposition components.
 
-Where a conforming agent's instruction file disagrees with this specification, **this specification governs** unless the conforming agent explicitly declares a deviation and records the rationale.
+Where a conforming agent's instruction file disagrees with this candidate,
+surface the conflict. Do not give this candidate precedence until it is
+explicitly accepted.
 
 ---
 
@@ -14,7 +21,7 @@ The following agents currently conform to this specification:
 
 | Agent | Domain | Partition Entity | Production Unit Entity | ID Width |
 |---|---|---|---|---|
-| **PROJECT_DECOMP** | EPC / design-build projects | Package (`PKG-XXX`) | Deliverable (`DEL-XXX-YY_{desc}`) | 3-digit |
+| **PROJECT_DECOMP** | EPC / design-build projects | Package (`PKG-XX`) | Deliverable (`DEL-XX-YY_{desc}`) | 2-digit |
 | **SOFTWARE_DECOMP** | Software development | Package (`PKG-XX`) | Deliverable (`DEL-XX-YY`) | 2-digit |
 | **DOMAIN_DECOMP** | Handbook / knowledge domains | Category (`CAT-###`) | Knowledge Type (`KTY-CC-TT_{desc}`) | 2–3 digit |
 

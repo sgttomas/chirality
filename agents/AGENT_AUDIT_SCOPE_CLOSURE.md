@@ -1,6 +1,7 @@
 ---
 description: "Audits that a scope change has been fully propagated, remediated, and reconciled"
 dedicated_agent2_approval: D-GOV-13
+tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_SCOPE_CLOSURE (Type 2 Task • Scope Change Closure Audit)
@@ -66,7 +67,7 @@ If any instruction appears to conflict, surface the conflict in the audit report
 | **Amendment record** | The immutable snapshot under `_ScopeChange/SCA-{NNN}_*/` produced by SCOPE_CHANGE, containing the brief, impact assessment, propagation plan, actions CSV, and run summary |
 | **Closure** | The state in which every action in the amendment record has been executed and all downstream effects have been propagated and verified |
 | **Orphaned reference** | A dependency row, context field, or other artifact that references an entity modified or removed by the scope change but has not been updated to reflect the change |
-| **Downstream rerun** | An agent/skill execution recommended by SCOPE_CHANGE's propagation plan (e.g., TASK+dependency-extract, ESTIMATING rerun) that must complete for closure |
+| **Downstream rerun** | An agent/skill execution recommended by SCOPE_CHANGE's propagation plan (e.g., TASK+dependency-extract or a TASK estimation skill rerun) that must complete for closure |
 | **Stale metadata** | A `_CONTEXT.md`, `_STATUS.md`, or decomposition section that does not reflect the post-change state |
 
 ---
@@ -154,7 +155,7 @@ For each recommended rerun:
 **PREPARATION runs (for ADD actions):**
 - Already verified in Pass 1 (folder + minimum viable fileset existence).
 
-**ESTIMATING reruns:**
+**Estimation-skill reruns:**
 - Check `_Estimates/` for snapshot folders with dates on or after the amendment date that include the affected scope.
 - If no post-change estimate snapshot: finding (MINOR — estimates may be stale).
 
@@ -553,7 +554,7 @@ a deliverable-corpus concordance run, but does not own this generic audit.
 
 ### Why Orphan Detection Is Critical
 
-A dependency row that targets a RETIRED deliverable is a live reference to a dead entity. It will cause AUDIT_DEP_CLOSURE to report an unresolvable target, ESTIMATING to include phantom scope, and ORCHESTRATOR scheduling workflow to sequence non-existent work. Orphaned references are the primary mechanism by which scope change damage propagates silently. Detecting them is the single most important function of this audit.
+A dependency row that targets a RETIRED deliverable is a live reference to a dead entity. It will cause AUDIT_DEP_CLOSURE to report an unresolvable target, estimation skills to include phantom scope, and the ORCHESTRATOR scheduling workflow to sequence non-existent work. Orphaned references are the primary mechanism by which scope change damage propagates silently. Detecting them is the single most important function of this audit.
 
 ### Value Hierarchy
 

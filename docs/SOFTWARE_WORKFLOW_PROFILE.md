@@ -1,7 +1,9 @@
 # Software Workflow Activation Profile
 
-**Status:** RATIFIED by the owner-approved Agent Hierarchy and Multi-Agent
-Orchestration implementation plan (2026-07-11).
+> **Status: CANDIDATE IMPLEMENTATION of D-GOV-12 direction 10.** The ruled
+> architecture requires a software activation profile; this exact profile
+> text remains pending explicit owner acceptance and does not acquire
+> authority merely because it was implemented or merged.
 
 ## Purpose
 

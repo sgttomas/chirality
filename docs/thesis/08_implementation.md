@@ -28,7 +28,11 @@ The suite is distributed across three types as follows:
 | Type 1 — Interactive Personas | Gate-controlled, human-facing orchestrators |
 | Type 2 — Bounded Task Agents | Brief-driven, straight-through specialists |
 
-The architectural constitution is documentary, not agentic: `docs/WORKFLOW_COMPONENT_STANDARD.md` governs workflow components and `docs/DECOMPOSITION_STANDARD.md` defines the seven-gate decomposition protocol and I1–I10. HELP_HUMAN is the sole Agent 0; HELPS_HUMANS is the Agent 1 manager that applies and maintains component governance.
+The architectural constitution is documentary, not agentic. Ratified root
+governance is authoritative; the workflow-component and decomposition
+standards are candidate implementations pending explicit owner acceptance.
+HELP_HUMAN is the sole Agent 0; HELPS_HUMANS is the Agent 1 manager that
+applies and maintains component governance.
 
 Agent 1 managers are interactive personas. They execute gate-controlled workflows, may delegate sealed work to Agent 2, and validate fan-in. They may not approve deliverables for reliance or override accepted standards.
 
@@ -45,16 +49,16 @@ Write scope distribution across the suite reflects the fault containment archite
 | `none` | HELP_HUMAN; reserved/deprecated compatibility roles only as explicitly declared |
 | `repo-metadata-only` | DOMAIN_DECOMP, HELPS_HUMANS context-transposition mode |
 | `repo-wide` | HELPS_HUMANS |
-| `project-level` | PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP |
+| `project-level` | PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE |
 | `package-level` | WORKING_ITEMS, constrained to one activated package and optionally selected deliverables |
 | `deliverable-local` | REVIEW; TASK skills may receive deliverable-local allowed targets through the bounded TASK shell |
-| `tool-root-only` | ORCHESTRATOR (including scheduling), EVALUATION, CHANGE, ESTIMATING, AGGREGATION, and bounded audit specialists |
+| `tool-root-only` | ORCHESTRATOR (including scheduling), EVALUATION, CHANGE, AGGREGATION, and bounded audit specialists |
 | `workspace-scaffold-only` | PREPARATION (primary scaffold variant) |
 | `bounded-task-brief` | TASK shell; effective writes are authorized by the bounded brief, including deliverable-local and KTY-local task variants |
 
 This distribution reflects the system's core invariant K-WRITE-1 (Appendix A): every agent's write zone is declared in its header block, and no agent may write outside that declared zone. The separation between source truth (deliverable-local agents) and derived outputs (tool-root agents) creates the fault containment boundary discussed in Chapter 4 (§4.6.2): a failing Type 2 tool-root agent cannot corrupt source truth because its write scope physically excludes deliverable folders.
 
-### 8.2.3 The 3×4 Agent Matrix
+### 8.2.3 The legacy-compatible 3×4 UI matrix
 
 The indexed agent suite is organized within a 3×4 matrix that maps epistemic posture (rows) to functional role (columns):
 
@@ -64,7 +68,11 @@ The indexed agent suite is organized within a 3×4 matrix that maps epistemic po
 | **OPERATIVE** | DECOMP\* | PREPARATION | TASK | AUDIT\* |
 | **EVALUATIVE** | HELPS_HUMANS | DBM_PUBLISHER | CHANGE | RESEARCH |
 
-The matrix serves a dual purpose. Architecturally, it ensures that every agent has a clear position within the system's epistemic and functional coordinate space, preventing role ambiguity as the suite grows. Operationally, it drives the desktop application's navigation routing: NORMATIVE and EVALUATIVE rows open interactive WORKBENCH sessions; the OPERATIVE row opens PIPELINE sessions with category selectors for the four pipeline categories of the OPERATIVE row (DECOMP\*, PREPARATION, TASK, AUDIT\*). The current per-agent index and role classification are maintained in `AGENTS.md`. The matrix above is reproduced from the live `AGENTS.md` registry as of 2026-07-02; per K-AGENTS-1 the registry governs on any divergence.
+The matrix is retained as a desktop navigation view: NORMATIVE and EVALUATIVE
+rows route to WORKBENCH while OPERATIVE cells route to PIPELINE selectors. It
+is not the runtime delegation hierarchy and is no longer instantiated by root
+`AGENTS.md`. Agent authority and delegation follow Agent 0/1/2; the matrix
+labels remain deployment-owned compatibility vocabulary.
 
 ---
 
@@ -236,7 +244,11 @@ Validation in the Chirality system operates across four distinct layers: agent i
 
 ### 8.5.1 Internal Validation Mechanisms
 
-**AUDIT_AGENTS** (dedicated Agent 2 specialist requalified under D-GOV-13) checks instruction files against `docs/WORKFLOW_COMPONENT_STANDARD.md`. Given a list of files and a rubric, it produces an audit report, issue log, and patch plan. EVALUATION owns orchestration and current evaluation outputs under `_Evaluation/`; historical `_Reconciliation/AgentAudit/` snapshots remain immutable evidence.
+**AUDIT_AGENTS** is one of the dedicated Agent 2 candidates proposed under
+D-GOV-13. Until explicit owner approval, named execution fails closed and
+EVALUATION uses TASK/generalist forms. If approved, AUDIT_AGENTS checks
+instruction files against the accepted component standard and produces file
+cards, findings, and remediation recommendations under `_Evaluation/`.
 
 **AUDIT_DECOMP** (Type 2) verifies decomposition coverage: that every in-scope atomic unit identified in the decomposition ledger has been assigned to a partition and production unit, that ledger columns meet the minimum specification, and that the Coverage and Telemetry section is present and populated. It produces a coverage report, an issue log CSV, a coverage matrix, and a `coverage_summary.json`. AUDIT_DECOMP is also triggered as a precondition check by the REVIEW agent before lifecycle transitions are permitted, creating a hard gate: a decomposition that fails coverage audit cannot advance through the REVIEW agent's formal 5-gate protocol (distinct from the seven-gate decomposition protocol of §8.2.4).
 
@@ -305,7 +317,14 @@ The invariant system defines enforcement that is partially carried by instructio
 | **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
 | **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |
 
-The "agent instructions (design-time)" enforcement category means that compliance depends on the agent reading and following its instruction file correctly — not on a runtime enforcement engine that would reject non-compliant behavior. Similarly, "human review (gate)" means that the human operator is the enforcement mechanism for several invariants, not automated checking. The deterministic exceptions are narrow: the TASK shell's ScopePath containment check (K-WRITE-2) rejects out-of-tree write targets at runtime, and the governance audit agents provide post-hoc automated checking for K-CLAIM-1, K-PROV-1, K-AGENTS-1, and K-DOMAIN-4. This is a deliberate design choice documented in DIRECTIVE.md (human authority at every gate), but it has a practical consequence: the system's invariant coverage depends on the quality and consistency of agent instruction following, which cannot be guaranteed to be identical across runs.
+Instruction-layer constraints still depend on model conformance, while human
+review remains the mechanism for semantic acceptance. The managed runtime now
+adds mechanical enforcement for delegation topology, named allowlists,
+context/write boundaries, session mode, active-write disjointness, durable
+parentage, claim-preserving relays, versioned replans, acknowledgments, and
+return-schema fan-in. TASK ScopePath checks and governance audits provide
+additional deterministic and post-hoc coverage. These controls narrow—but do
+not eliminate—the residual dependence on instruction following.
 
 The five invariants identified for future tooling enforcement — K-STALE-1 (staleness propagation), K-VAL-1 (dirty-state detection via SHA comparison), K-MERGE-1 (pre-merge SHA verification), K-AUTH-2 (content-addressed approval binding), and K-DEP-2 (dependency ID resolution) — are fully specified in CONTRACT.md but currently rely on human review and agent self-enforcement rather than automated checking. This represents the most significant gap between the architectural specification and the implemented enforcement layer.
 
@@ -323,19 +342,35 @@ The implementation's planning records identified seven future hardening candidat
 
 4. **On-Demand Dependency Graph Generation** — aggregation of deliverable-local `Dependencies.csv` files into a project-level dependency graph (JSON or Mermaid) for visualization and critical path analysis. The `analyze_dep_closure.py` tool performs graph analysis but does not produce a visualization-ready output format. Classified as medium effort.
 
-5. **Lock Mechanism Formalization** — a deliverable-level lock mechanism preventing concurrent agent execution against the same deliverable. Currently prevented by convention in the instruction architecture but not enforced mechanically. Classified as medium-high effort.
+5. **Lock Mechanism Generalization** — managed delegation now atomically
+   reserves sibling write targets and rejects exact or ancestor overlap. Future
+   work may generalize the mechanism beyond managed child sessions.
 
-6. **Run Record Persistence** — a unified pipeline run record schema per Type 2 agent execution. Currently, execution history is distributed across `_STATUS.md` history entries and tool root snapshot folders without a unified per-run record. Classified as medium effort.
+6. **Run Record Evolution** — unified managed child records now persist plans,
+   graphs, briefs, status, returns, notices, amendments, and handoff state.
+   Future work concerns schema migration and longer-term archival policy.
 
 7. **Staleness Calculation Tooling** — automated staleness propagation from the dependency graph combined with baseline SHA tracking. This is the highest-complexity item because it depends on items 4 (dependency graph generation) and 6 (run records with baseline SHAs). Classified as high effort.
 
 ### 8.6.4 Summary Assessment
 
-The architecture's central claim — that a formally specified invariant system, applied through a layered agent hierarchy against a filesystem-native state model, can provide the auditability and authority controls required for professional practice — is substantiated in the current implementation at the level of instruction architecture and deterministic tooling. The K-* invariants catalogued in CONTRACT.md (reproduced in Appendix A), the R-series workflow design requirements (R1–R12), and the 10 I-series decomposition invariants are all stated, mapped to enforcing agents or mechanisms, and covered by at least one validation pathway.
+The architecture's central claim is supported by the ratified K-* invariant
+catalog and its implemented runtime/tool enforcement. The R1–R17 workflow and
+I1–I10 decomposition series are stated and mapped as candidate standards
+pending explicit owner acceptance.
 
-However, it would be inaccurate to characterize the current implementation as providing a verified runtime enforcement engine. The invariant system is enforced by a combination of instruction text (agents follow their specifications), deterministic tools (mechanical operations are performed correctly and reproducibly), human gates (consequential decisions are owned by licensed professionals), and a partial suite of automated audits (AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, and the evaluation subsystem). There is no runtime monitor that intercepts agent actions and rejects those that violate declared write scopes. There is no automated staleness propagation that flags downstream deliverables when an upstream deliverable changes. The sealing invariant (K-SEAL-1) depends on ORCHESTRATOR reading and enforcing its own protocol, not on a guard that prevents file writes before seal conditions are met.
+The current implementation provides a verified but bounded runtime enforcement
+layer. Permission callbacks and hooks reject out-of-scope reads/writes,
+symlink escapes, invalid delegation edges, overlapping active writes, missing
+seals, and invalid fan-in records. It does not authenticate that a cited human
+approval record represents a genuine human act, evaluate engineering truth,
+or automatically propagate all downstream staleness. Those remain human and
+workflow-governance responsibilities.
 
-This gap is honest and deliberate. DIRECTIVE.md §2.8 (Least Structure That Works) explicitly states: "Structure is added only when it reduces error or rework. Rigor scales with stakes." The current enforcement model — instruction text plus deterministic tools plus human gates — is sufficient for the professional practice context in which the system is deployed, where the primary actors are licensed professionals who have accepted personal responsibility for the work product. The future hardening candidates address the remaining automation gaps in priority order; they do not change the fundamental architecture, they complete it.
+The remaining boundary is deliberate: runtime structure can constrain actions
+and preserve evidence, but it cannot supply professional judgment or human
+acceptance. Future hardening addresses staleness and evidence automation
+without changing that accountability boundary.
 
 [TODO: Characterize the actual error rates observed in practice — do the instruction-text enforcement mechanisms show measurable conformance rates across example project executions? This would provide empirical validation for the claim that instruction-level enforcement is sufficient.]
 
@@ -348,7 +383,7 @@ This chapter has presented the concrete implementation of the architectural comm
 | Dimension | Count |
 |-----------|-------|
 | K-* invariants (CONTRACT.md) | live catalog; reproduced in Appendix A |
-| Workflow design requirements (R1–R12) | 12 |
+| Candidate workflow design requirements (R1–R17) | 17 |
 | Decomposition invariants (I1–I10) | 10 |
 | Contract layers | 3 (R-series, I-series, K-series) |
 | Enforcement layers (CONTRACT.md §2) | 4 (agent instructions, runtime, human review, future tooling) |

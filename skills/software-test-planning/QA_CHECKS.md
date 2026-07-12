@@ -5,4 +5,3 @@
 3. Negative, boundary, and regression cases are considered.
 4. Pass criteria and evidence outputs are explicit.
 5. Expensive or consequential gates are identified for the parent or human.
-

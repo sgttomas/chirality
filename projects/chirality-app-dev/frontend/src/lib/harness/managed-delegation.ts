@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { SessionRecord } from '@chirality/harness-contract/types';
 import { HarnessError } from '@chirality/harness-contract/errors';
@@ -15,8 +15,8 @@ import { createHarnessEvent } from './event-factory';
 import { getPermissionEventChannel } from './permission-event-channel';
 import { GENERALIST_AGENT2_PERSONA } from './agent-roster';
 
-export const MANAGED_DELEGATION_POLICY_VERSION = 'managed-delegation.v2.scoped-fan-in';
-export const ORCHESTRATION_RECORD_SCHEMA_VERSION = 'chirality-agent-runs/v1';
+export const MANAGED_DELEGATION_POLICY_VERSION = 'managed-delegation.v3.atomic-coordination';
+export const ORCHESTRATION_RECORD_SCHEMA_VERSION = 'chirality-agent-runs/v2';
 
 export type AgentType = 0 | 1 | 2;
 export type ChildKind = 'named' | 'task' | 'generalist';
@@ -40,6 +40,15 @@ export type UpdateAcknowledgment =
   | 'BLOCKED'
   | 'CONFLICT'
   | 'HUMAN_DECISION_REQUIRED';
+export type AmendmentCategory =
+  | 'INFORMATION'
+  | 'CONTEXT'
+  | 'SEQUENCING'
+  | 'SCOPE'
+  | 'RISK'
+  | 'AUTHORITY'
+  | 'SHARED_WRITE'
+  | 'ACCEPTANCE';
 
 export type DelegateAgentInput = {
   executionRoot: string;
@@ -95,6 +104,7 @@ export type ManagedChildReturn = {
 };
 
 export type ManagedChildLauncher = (input: ManagedChildLaunch) => Promise<ManagedChildReturn>;
+export type ManagedParentBinder = (parent: SessionRecord) => Promise<SessionRecord>;
 
 type ResolvedChild = {
   persona: string;
@@ -124,8 +134,21 @@ function requireNonEmpty(value: string, field: string): string {
 }
 
 function assertWorkGraph(workGraph: Record<string, unknown>, field = 'workGraph'): void {
-  if (!Array.isArray(workGraph.nodes) || !Array.isArray(workGraph.edges)) {
-    throw new HarnessError('INVALID_REQUEST', 400, `${field} must declare nodes and edges arrays`);
+  const requiredArrays = [
+    'nodes',
+    'edges',
+    'concurrencyEligibility',
+    'expectedReturns',
+    'fanInGates',
+    'humanDecisionPoints'
+  ];
+  const missing = requiredArrays.filter((key) => !Array.isArray(workGraph[key]));
+  if (missing.length > 0) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      `${field} must declare array field(s): ${missing.join(', ')}`
+    );
   }
 }
 
@@ -221,6 +244,25 @@ async function resolveChild(
   if (input.childKind === 'task' && childType !== 2) {
     throw new HarnessError('INVALID_REQUEST', 400, 'TASK child must be Agent 2');
   }
+  if (childType === 2 && agentName !== 'TASK') {
+    const approvalRef = parseFrontmatter(instruction.content).dedicated_agent2_approval;
+    if (typeof approvalRef !== 'string' || !/^D-GOV-\d+$/.test(approvalRef)) {
+      throw new HarnessError('INVALID_REQUEST', 409, `${agentName} has no dedicated Agent 2 approval reference`);
+    }
+    const repoRoot = path.dirname(path.dirname(instruction.path));
+    const decisionsRoot = path.join(repoRoot, 'docs', 'governance_harness', '_DECISIONS');
+    const matches = (await readdir(decisionsRoot)).filter((name) => name.startsWith(`${approvalRef}_`) && name.endsWith('.md'));
+    if (matches.length !== 1) {
+      throw new HarnessError('INVALID_REQUEST', 409, `${approvalRef} does not resolve to one decision record`);
+    }
+    const decision = await readFile(path.join(decisionsRoot, matches[0]), 'utf8');
+    if (!/^Status:\s+RULED\s*$/m.test(decision)) {
+      throw new HarnessError('INVALID_REQUEST', 409, `${agentName} dedicated Agent 2 approval is not RULED`);
+    }
+    if (!new RegExp(`^\\|\\s*${agentName}\\s*\\|`, 'm').test(decision)) {
+      throw new HarnessError('INVALID_REQUEST', 409, `${approvalRef} does not approve role ${agentName}`);
+    }
+  }
   return {
     parentType,
     child: {
@@ -234,6 +276,7 @@ async function resolveChild(
 }
 
 function renderPlan(input: DelegateAgentInput, parent: SessionRecord): string {
+  const graph = input.workGraph ?? {};
   return [
     '# Orchestration Plan',
     '',
@@ -245,6 +288,10 @@ function renderPlan(input: DelegateAgentInput, parent: SessionRecord): string {
     `- ParentSession: ${parent.sessionId}`,
     `- ParentRole: ${parent.persona}`,
     `- AcceptedBasis: ${input.acceptedBasis.join('; ')}`,
+    `- ConcurrencyEligibility: ${JSON.stringify(graph.concurrencyEligibility ?? [])}`,
+    `- ExpectedReturns: ${JSON.stringify(graph.expectedReturns ?? [])}`,
+    `- FanInGates: ${JSON.stringify(graph.fanInGates ?? [])}`,
+    `- HumanDecisionPoints: ${JSON.stringify(graph.humanDecisionPoints ?? [])}`,
     ''
   ].join('\n');
 }
@@ -266,6 +313,7 @@ function renderBrief(
     `ChildInstanceID: ${instanceId}`,
     `ChildKind: ${input.childKind}`,
     `Purpose: ${input.purpose}`,
+    `ScopePath: ${writeTargets[0] ?? declaredContext[0] ?? parent.projectRoot}`,
     `AcceptedBasis: ${input.acceptedBasis.join('; ')}`,
     `DeclaredContext: ${declaredContext.join('; ') || 'none'}`,
     `AllowedTools: ${input.tools.join(', ')}`,
@@ -304,15 +352,18 @@ export async function refreshOrchestrationHandoff(runRoot: string): Promise<void
     return;
   }
   const rows: string[] = [];
+  const statuses: string[] = [];
   for (const instanceId of entries) {
     try {
       const status = await readJson(path.join(instancesRoot, instanceId, 'STATUS.json'));
+      statuses.push(String(status.status ?? 'UNKNOWN'));
       rows.push(`| ${instanceId} | ${String(status.childRole ?? '')} | ${String(status.status ?? 'UNKNOWN')} | ${String(status.outputArtifact ?? '') || '—'} |`);
     } catch {
+      statuses.push('INVALID_STATUS');
       rows.push(`| ${instanceId} | — | INVALID_STATUS | — |`);
     }
   }
-  const open = rows.some((row) => /\| (?:LAUNCHED|RUNNING|FAILED|BLOCKED|INVALID_STATUS) \|/.test(row));
+  const open = statuses.some((status) => status !== 'COMPLETED');
   const content = [
     '# Agent Run Handoff State',
     '',
@@ -359,7 +410,35 @@ async function assertNoActiveWriteOverlap(
       }
     } catch (error) {
       if (error instanceof HarnessError) throw error;
+      throw new HarnessError(
+        'INVALID_REQUEST',
+        409,
+        `Cannot prove write disjointness because sibling ${siblingId} has an invalid status record`
+      );
     }
+  }
+}
+
+async function withRunLaunchLock<T>(runRoot: string, operation: () => Promise<T>): Promise<T> {
+  await mkdir(runRoot, { recursive: true });
+  const lockPath = path.join(runRoot, '.launch-lock');
+  const deadline = Date.now() + 10_000;
+  while (true) {
+    try {
+      await mkdir(lockPath);
+      break;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
+      if (Date.now() >= deadline) {
+        throw new HarnessError('INVALID_REQUEST', 409, 'Timed out waiting for orchestration launch lock');
+      }
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+  }
+  try {
+    return await operation();
+  } finally {
+    await rm(lockPath, { recursive: true, force: true });
   }
 }
 
@@ -386,7 +465,10 @@ async function assertAcceptedPredecessors(
 }
 
 export class ManagedDelegationService {
-  constructor(private readonly launchChild: ManagedChildLauncher) {}
+  constructor(
+    private readonly launchChild: ManagedChildLauncher,
+    private readonly bindValidatedParent?: ManagedParentBinder
+  ) {}
 
   async delegate(parent: SessionRecord, parentTools: readonly string[], input: DelegateAgentInput) {
     if (!input.contextSealed || !input.pipelineRunApproved || !input.approvalRef?.trim()) {
@@ -511,12 +593,9 @@ export class ManagedDelegationService {
       await writeNew(path.join(versionRoot, 'ORCHESTRATION_PLAN.md'), renderPlan(input, parent));
       await writeNew(path.join(versionRoot, 'WORK_GRAPH.json'), `${JSON.stringify({ schema: ORCHESTRATION_RECORD_SCHEMA_VERSION, ...input.workGraph }, null, 2)}\n`);
     }
-    await assertAcceptedPredecessors(runRoot, input.dependencies, input.acceptedPredecessors ?? []);
-    await assertNoActiveWriteOverlap(runRoot, instanceId, writeTargets, input.dependencies);
     const brief = renderBrief(input, instanceId, parent, declaredContext, writeTargets);
     const briefHash = sha256(brief);
     const instanceRoot = path.join(runRoot, 'instances', instanceId);
-    await writeNew(path.join(instanceRoot, 'LAUNCH_BRIEF.md'), brief);
     const baseStatus = {
       schema: ORCHESTRATION_RECORD_SCHEMA_VERSION,
       policyVersion: MANAGED_DELEGATION_POLICY_VERSION,
@@ -538,11 +617,25 @@ export class ManagedDelegationService {
       outputArtifact: null,
       requiredReturnMarkers: input.requiredReturnMarkers
     };
-    await writeNew(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'LAUNCHED' }, null, 2)}\n`);
-    await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'RUNNING' }, null, 2)}\n`, 'utf8');
+    await withRunLaunchLock(runRoot, async () => {
+      await assertAcceptedPredecessors(runRoot, input.dependencies, input.acceptedPredecessors ?? []);
+      await assertNoActiveWriteOverlap(runRoot, instanceId, writeTargets, input.dependencies);
+      await writeNew(path.join(instanceRoot, 'LAUNCH_BRIEF.md'), brief);
+      await writeNew(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'LAUNCHED' }, null, 2)}\n`);
+      await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'RUNNING' }, null, 2)}\n`, 'utf8');
+    });
     try {
+      const parentForRun: SessionRecord = {
+        ...parent,
+        orchestrationRunId: runId,
+        executionRoot,
+        planVersion: input.planVersion
+      };
+      const launchParent = this.bindValidatedParent
+        ? await this.bindValidatedParent(parentForRun)
+        : parentForRun;
       const returned = await this.launchChild({
-        parent,
+        parent: launchParent,
         childPersona: child.persona,
         childKind: input.childKind,
         childAgentType: child.agentType,
@@ -626,7 +719,15 @@ export async function reportCoordinationNotice(session: SessionRecord, input: {
   blocking: boolean;
   humanDecisionRequired: boolean;
   acceptedBasisRef: string;
+  validationRef?: string;
+  humanAcceptanceRef?: string;
 }) {
+  if (input.claimStatus === 'VALIDATED' && !input.validationRef?.trim()) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'VALIDATED notice requires validationRef');
+  }
+  if (input.claimStatus === 'ACCEPTED' && !input.humanAcceptanceRef?.trim()) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'ACCEPTED notice requires humanAcceptanceRef');
+  }
   const { parentSessionId, agentInstanceId } = await assertManagedChildSession(session);
   const noticeId = `notice_${randomUUID()}`;
   const record = { schema: ORCHESTRATION_RECORD_SCHEMA_VERSION, noticeId, runId: session.orchestrationRunId, senderInstanceId: agentInstanceId, senderSessionId: session.sessionId, parentSessionId, ...input, createdAt: new Date().toISOString() };
@@ -652,6 +753,10 @@ export async function sendAgentUpdate(parent: SessionRecord, input: {
   posture?: OrchestrationPosture;
   acceptedBasis?: string[];
   workGraph?: Record<string, unknown>;
+  validationRef?: string;
+  humanAcceptanceRef?: string;
+  amendmentCategories?: AmendmentCategory[];
+  amendmentVersion?: string;
 }) {
   const runRoot = coordinationRunRoot(parent);
   const childStatus = await readJson(path.join(runRoot, 'instances', safeSegment(input.childInstanceId, 'childInstanceId'), 'STATUS.json'));
@@ -661,8 +766,32 @@ export async function sendAgentUpdate(parent: SessionRecord, input: {
   if (childStatus.status !== 'RUNNING') {
     throw new HarnessError('INVALID_REQUEST', 409, 'Updates may be sent only to an active child');
   }
-  if (input.consequential && !input.humanRulingRef?.trim()) {
+  const categoricalHumanTriggers = new Set<AmendmentCategory>([
+    'SCOPE', 'RISK', 'AUTHORITY', 'SHARED_WRITE', 'ACCEPTANCE'
+  ]);
+  if (
+    (input.disposition === 'AMEND' || input.disposition === 'REPLAN') &&
+    (!input.amendmentCategories || input.amendmentCategories.length === 0)
+  ) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'AMEND and REPLAN require amendmentCategories');
+  }
+  if (input.amendment && !input.amendmentVersion?.trim() && !input.planVersion?.trim()) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'Versioned amendment requires amendmentVersion or planVersion');
+  }
+  const categoryRequiresHuman = input.amendmentCategories?.some((category) =>
+    categoricalHumanTriggers.has(category)
+  ) ?? false;
+  if ((input.consequential || categoryRequiresHuman) && !input.humanRulingRef?.trim()) {
     throw new HarnessError('INVALID_REQUEST', 400, 'Consequential amendment requires humanRulingRef');
+  }
+  if (input.claimStatus === 'VALIDATED' && !input.validationRef?.trim()) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'VALIDATED update requires validationRef');
+  }
+  if (input.claimStatus === 'ACCEPTED' && !input.humanAcceptanceRef?.trim()) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'ACCEPTED update requires humanAcceptanceRef');
+  }
+  if (input.disposition === 'RELAY' && !input.noticeId) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'RELAY requires noticeId');
   }
   let sourceNotice: Record<string, unknown> | undefined;
   if (input.noticeId) {
@@ -709,6 +838,10 @@ export async function sendAgentUpdate(parent: SessionRecord, input: {
       `- ParentSession: ${parent.sessionId}`,
       `- ParentRole: ${parent.persona}`,
       `- AcceptedBasis: ${input.acceptedBasis.join('; ')}`,
+      `- ConcurrencyEligibility: ${JSON.stringify(input.workGraph.concurrencyEligibility)}`,
+      `- ExpectedReturns: ${JSON.stringify(input.workGraph.expectedReturns)}`,
+      `- FanInGates: ${JSON.stringify(input.workGraph.fanInGates)}`,
+      `- HumanDecisionPoints: ${JSON.stringify(input.workGraph.humanDecisionPoints)}`,
       ''
     ].join('\n');
     await writeNew(path.join(versionRoot, 'ORCHESTRATION_PLAN.md'), plan);
@@ -730,7 +863,11 @@ export async function sendAgentUpdate(parent: SessionRecord, input: {
     await writeNew(path.join(runRoot, 'dispositions', `${safeSegment(input.noticeId, 'noticeId')}.json`), `${JSON.stringify(record, null, 2)}\n`);
   }
   if (input.amendment) {
-    await writeNew(path.join(runRoot, 'amendments', input.childInstanceId, `${updateId}.md`), `${input.amendment.trim()}\n`);
+    const amendmentVersion = safeSegment(
+      input.amendmentVersion ?? input.planVersion ?? '',
+      'amendmentVersion'
+    );
+    await writeNew(path.join(runRoot, 'amendments', input.childInstanceId, `${amendmentVersion}.md`), `${input.amendment.trim()}\n`);
   }
   const childSessionId = typeof childStatus.childSessionId === 'string' ? childStatus.childSessionId : undefined;
   if (childSessionId) {

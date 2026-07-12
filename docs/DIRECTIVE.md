@@ -4,7 +4,7 @@
 
 This document captures the founding intent, design philosophy, and structural constraints of the Chirality agent operating system. It is the "why" document — the principles that govern all other governance documents, agent instructions, and operational decisions.
 
-**Authority chain.** `DIRECTIVE.md` (this document — *why*) establishes the principles. `CONTRACT.md` binds them as K-* invariants. `SPEC.md` defines the physical structures, file formats, and path-anchoring conventions. `TYPES.md` defines the canonical vocabulary, identifiers, and enums. `WORKFLOW_COMPONENT_STANDARD.md` governs classification and design of agents, skills, tools, briefs, and workflow packages. `PLAN.md` records the active roadmap. `AGENTS.md` and `agents/` are the live instruction surface; `skills/` and `tools/` are the method and deterministic layers. Where a lower document conflicts with this one, this document governs unless a governed change updates the relevant record; the conflict is surfaced, not silently reconciled.
+**Authority chain.** `DIRECTIVE.md` (this document — *why*) establishes the principles. `CONTRACT.md` binds them as K-* invariants. `SPEC.md` defines physical structures, formats, and path anchoring. `TYPES.md` defines canonical vocabulary. D-GOV-10 rules that workflow-component design be externalized; the exact `WORKFLOW_COMPONENT_STANDARD.md` text is a candidate pending explicit owner acceptance. `PLAN.md` records the active roadmap. `AGENTS.md` and `agents/` are the live instruction surface; `skills/` and `tools/` are method and deterministic layers. Where a candidate or lower document conflicts with ratified governance, ratified governance controls and the conflict is surfaced.
 
 ---
 

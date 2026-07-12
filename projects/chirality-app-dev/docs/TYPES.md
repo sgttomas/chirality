@@ -461,7 +461,7 @@ SDK terms belong at the adapter boundary. Public Chirality APIs and canonical ev
 
 ```ts
 type ChildRunRecord = {
-  contractVersion: 2;
+  schema: 'chirality-agent-runs/v2';
   orchestrationRunId: string;
   planVersion: string;
   childInstanceId: string;
@@ -498,11 +498,11 @@ type ChildRunRecord = {
 | Term | Meaning |
 |---|---|
 | `ManagedDelegationService` | Authoritative hierarchy, seal, capability, path, write-overlap, and durable-record policy for managed delegation. |
-| `evaluateSubagentGovernance` | Compatibility fail-closed gate for the legacy SDK Agent adapter. |
+| `evaluateSubagentGovernance` | Fail-closed gate retained for rejected legacy SDK Agent requests; it no longer launches children. |
 | Named child | Agent 1 or Agent 2 instantiated from its actual `AGENT_*.md` and recorded instruction hash. |
 | Generalist child | Ephemeral Agent 2 instantiated from the Agent 2 base contract and sealed brief without a persistent role file. |
 | Parent session | Session requesting delegation. |
-| Child run | Governed managed-session or compatibility-adapter execution record. |
+| Child run | Governed managed-session execution record. |
 | Work graph | Versioned nodes, dependencies, concurrency, ownership, returns, and gates for one orchestration run. |
 | Coordination notice | Typed child-to-parent information with claim status, evidence, affected scopes, and requested action. |
 | Parent update | Immutable relay or versioned amendment delivered to one direct child at a safe turn boundary. |
@@ -510,7 +510,19 @@ type ChildRunRecord = {
 | Return markers | Brief-declared structural markers that a completed return must contain before fan-in can accept it. |
 | Context sealed | Required governance condition confirming bounded context. |
 | Pipeline run approved | Required governance condition for Type 2 task invocation. |
-| Approval reference | Non-empty human/gate evidence string required before delegation. |
+| Approval reference | Citation to the applicable human approval record; runtime validates presence/structure, not the human act. |
+
+Coordination claim statuses are distinct from epistemic and lifecycle status:
+`PROVISIONAL` is unvalidated; `VALIDATED` requires `validationRef`; `ACCEPTED`
+requires `humanAcceptanceRef` to a human act; `DISPUTED` preserves conflict.
+Every `RELAY` cites its source notice and preserves that status. These values
+do not mechanically accept a child return or advance lifecycle state.
+
+Every work graph includes `nodes`, `edges`, `concurrencyEligibility`,
+`expectedReturns`, `fanInGates`, and `humanDecisionPoints`. Every AMEND/REPLAN
+records `amendmentCategories` and a stable amendment or plan version; scope,
+risk, authority, shared-write, and acceptance categories require a human
+ruling reference.
 
 ---
 

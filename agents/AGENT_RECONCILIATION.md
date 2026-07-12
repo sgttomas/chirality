@@ -233,6 +233,14 @@ The canonical run root is
 `_Reconciliation/DeliverableConcordance/<RunID>/`. Historical generic audit
 subtrees are not migrated into this contract.
 
+Two in-flight compatibility runs predate this final structure:
+`RUN_D55_CONCORDANCE_2026-07-11_1904Z` in app-dev and
+`DELIVERABLE_CONCORDANCE_2026-07-11_1305` in piping. They retain their pinned
+method revisions, directory layouts, owner steers, and write surfaces through
+closure. At resume they re-check source-state currency against the merged
+governance tree and record any `STALE_INPUT`; they are not retrofitted merely
+to resemble the new template.
+
 [[END:STRUCTURE]]
 
 [[BEGIN:RATIONALE]]

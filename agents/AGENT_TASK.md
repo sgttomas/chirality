@@ -235,7 +235,11 @@ Skills MUST NOT widen write authority beyond the effective bounded task brief. A
 
 `TASK` resolves write authorization from the effective bounded task brief after file/inline merge:
 
-1. The run record at `{ScopePath}/_run_records/TASK_RUN_*.md` is always authorized by the TASK shell.
+1. For a standalone or write-capable TASK run, the brief MUST include
+   `{ScopePath}/_run_records/` within an enclosing `AllowedWriteTarget`; the
+   TASK shell writes its local run record there. For a managed read-only TASK
+   with no write tool/target, the runtime's immutable `LAUNCH_BRIEF.md`,
+   `STATUS.json`, and `RETURN.md` are the durable run record instead.
 2. If `ApplyEdits` is absent or false, no other writes are authorized. Return proposals when useful.
 3. If `ApplyEdits: true` and `AllowedWriteTargets` is present, non-run-record writes are limited to those targets.
 4. If `ApplyEdits: true` and `AllowedWriteTargets` is absent, writes may occur only when the effective brief explicitly and unambiguously names the writable file(s), directory, or artifact boundary in `Tasks`, `ExpectedOutputs`, `RuntimeOverrides`, or `CustomInstructions`.
@@ -246,7 +250,10 @@ Skills MUST NOT widen write authority beyond the effective bounded task brief. A
 
 ## Run record persistence (MUST)
 
-Every run MUST produce a durable run record at `{ScopePath}/_run_records/TASK_RUN_{YYYY-MM-DD}_{HHmm}.md`.
+Every write-capable or standalone run MUST produce a durable local run record
+at `{ScopePath}/_run_records/TASK_RUN_{YYYY-MM-DD}_{HHmm}.md`. A managed
+read-only TASK MUST rely on the runtime-owned launch/status/return record and
+MUST NOT request an undeclared write merely to duplicate it.
 
 The run record is a Markdown file with YAML frontmatter. It captures:
 - **input echo:** what was requested (control surface, scope, profile, skill, tasks, expected outputs)
@@ -262,7 +269,8 @@ The run record is a Markdown file with YAML frontmatter. It captures:
 ### Edge cases
 
 - If normalization itself fails before `ScopePath` is resolved (e.g., ScopePath does not exist), no run record is written. The error is returned in conversation only.
-- If the `_run_records/` directory does not exist, create it.
+- If the `_run_records/` directory does not exist, create it only when its
+  enclosing path is an allowed write target.
 - If a file with the same timestamp already exists, append a sequence number (`_001`, `_002`, etc.).
 
 ---
@@ -292,7 +300,7 @@ The following checks are enforced at the points indicated. Most are already defi
 | Tool usage stayed within declared allowlist (when one was provided) | `FAILED` — report violation in `## Tool Policy Compliance` |
 | Each tool used is reported in `<interpreter> <tool-path>` format | Warning if format cannot be determined |
 | Declared-first tool was invoked first (when skill specifies a preferred-first tool) | Warning in `## Tool Policy Compliance` |
-| If `AllowedWriteTargets` was present, no write paths outside that whitelist (except `_run_records/`) | `FAILED` — report in run record |
+| If `AllowedWriteTargets` was present, no write paths outside that whitelist; local `_run_records/` must be enclosed by it | `FAILED` — report in run record |
 | If `AllowedWriteTargets` was absent, all non-run-record writes match explicit brief text | `FAILED` — report in run record |
 | Run record contains all required YAML frontmatter fields | Warning in run report if any field is missing |
 | Run record contains all required Markdown body headings | Warning in run report if any heading is missing |

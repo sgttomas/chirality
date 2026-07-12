@@ -42,7 +42,14 @@ function request(overrides: Partial<DelegateAgentInput> = {}): DelegateAgentInpu
     selectionAuthority: 'AGENT_0',
     posture: 'MIXED',
     acceptedBasis: ['snapshot-1'],
-    workGraph: { nodes: ['child'], edges: [] },
+    workGraph: {
+      nodes: ['child'],
+      edges: [],
+      concurrencyEligibility: ['child'],
+      expectedReturns: ['# Return'],
+      fanInGates: ['valid return'],
+      humanDecisionPoints: []
+    },
     childKind: 'named',
     agentName: 'WORKING_ITEMS',
     purpose: 'manage package',
@@ -67,6 +74,7 @@ beforeEach(async () => {
   projectRoot = path.join(temp, 'project');
   await mkdir(path.join(root, 'agents'), { recursive: true });
   await mkdir(path.join(root, 'docs'), { recursive: true });
+  await mkdir(path.join(root, 'docs/governance_harness/_DECISIONS'), { recursive: true });
   await mkdir(projectRoot, { recursive: true });
   await writeFile(path.join(root, 'README.md'), '# root\n', 'utf8');
   await writeFile(path.join(root, 'AGENTS.md'), '# agents\n', 'utf8');
@@ -105,6 +113,10 @@ describe('managed delegation', () => {
     const plan = await readFile(path.join(projectRoot, 'execution/_Coordination/AgentRuns/RUN-1/ORCHESTRATION_PLAN.md'), 'utf8');
     expect(plan).toContain('SelectionAuthority: HUMAN');
     expect(plan).toContain('Posture: TERMINAL_FAN_OUT_IN');
+    expect(plan).toContain('ConcurrencyEligibility:');
+    expect(plan).toContain('ExpectedReturns:');
+    expect(plan).toContain('FanInGates:');
+    expect(plan).toContain('HumanDecisionPoints:');
   });
 
   it('denies 0→2 and 1→1, but allows an authorized ephemeral generalist Agent 2', async () => {
@@ -126,6 +138,47 @@ describe('managed delegation', () => {
     );
     expect(result.status).toBe('COMPLETED');
     expect(result.instructionHash).toBeUndefined();
+  });
+
+  it('fails closed for a dedicated Agent 2 whose qualification is not ruled', async () => {
+    await agent('CANDIDATE', 2, 'dedicated_agent2_approval: D-GOV-13\ntools: [read]\n');
+    await agent('WORKING_ITEMS', 1, 'subagents: TASK, WORKING_ITEMS, CANDIDATE\nallow_generalist_agent2: true\ntools: [read]\n');
+    await writeFile(
+      path.join(root, 'docs/governance_harness/_DECISIONS/D-GOV-13_candidate.md'),
+      '# D-GOV-13\n\nStatus: PROPOSED\n\n| Role | Basis |\n|---|---|\n| CANDIDATE | fixture |\n',
+      'utf8'
+    );
+    const service = new ManagedDelegationService(async () => ({
+      sessionId: 'sess_candidate',
+      status: 'RUNNING',
+      output: 'running'
+    }));
+    await expect(service.delegate(
+      parent('WORKING_ITEMS', 1),
+      ['read'],
+      request({
+        runId: 'RUN-CANDIDATE',
+        selectionAuthority: 'AGENT_1',
+        childKind: 'named',
+        agentName: 'CANDIDATE'
+      })
+    )).rejects.toThrow('approval is not RULED');
+    await writeFile(
+      path.join(root, 'docs/governance_harness/_DECISIONS/D-GOV-13_candidate.md'),
+      '# D-GOV-13\n\nStatus: RULED\n\n| Role | Basis |\n|---|---|\n| CANDIDATE | fixture |\n',
+      'utf8'
+    );
+    const approved = await service.delegate(
+      parent('WORKING_ITEMS', 1),
+      ['read'],
+      request({
+        runId: 'RUN-CANDIDATE-RULED',
+        selectionAuthority: 'AGENT_1',
+        childKind: 'named',
+        agentName: 'CANDIDATE'
+      })
+    );
+    expect(approved.status).toBe('RUNNING');
   });
 
   it('allows Agent 1→TASK and denies every delegation attempt from Agent 2', async () => {
@@ -241,6 +294,51 @@ describe('managed delegation', () => {
         })
       )
     ).rejects.toThrow('Concurrent write overlap');
+  });
+
+  it('atomically reserves concurrent sibling write targets', async () => {
+    const service = new ManagedDelegationService(async () => ({
+      sessionId: `sess_${Math.random()}`,
+      status: 'RUNNING',
+      output: 'running'
+    }));
+    await service.delegate(parent('HELP_HUMAN', 0), ['read'], request({ runId: 'RUN-ATOMIC' }));
+    const concurrent = await Promise.allSettled([
+      service.delegate(parent('HELP_HUMAN', 0), ['read'], request({
+        runId: 'RUN-ATOMIC',
+        workGraph: undefined,
+        declaredContext: ['execution/PKG-02'],
+        writeTargets: ['execution/PKG-02']
+      })),
+      service.delegate(parent('HELP_HUMAN', 0), ['read'], request({
+        runId: 'RUN-ATOMIC',
+        workGraph: undefined,
+        declaredContext: ['execution/PKG-02/nested'],
+        writeTargets: ['execution/PKG-02/nested']
+      }))
+    ]);
+    expect(concurrent.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    expect(concurrent.filter((result) => result.status === 'rejected')).toHaveLength(1);
+    expect(String((concurrent.find((result) => result.status === 'rejected') as PromiseRejectedResult).reason)).toContain('Concurrent write overlap');
+  });
+
+  it('does not bind a parent run until launch validation succeeds', async () => {
+    const bound: string[] = [];
+    const service = new ManagedDelegationService(
+      async () => ({ sessionId: 'sess_child', status: 'RUNNING', output: 'running' }),
+      async (candidate) => {
+        bound.push(candidate.orchestrationRunId ?? '');
+        return candidate;
+      }
+    );
+    await expect(service.delegate(
+      parent('HELP_HUMAN', 0),
+      ['read'],
+      request({ runId: 'RUN-BAD-BIND', contextSealed: false })
+    )).rejects.toThrow('requires seal');
+    expect(bound).toEqual([]);
+    await service.delegate(parent('HELP_HUMAN', 0), ['read'], request({ runId: 'RUN-GOOD-BIND' }));
+    expect(bound).toEqual(['RUN-GOOD-BIND']);
   });
 
   it('keeps disjoint siblings active and reconstructs an existing run with a new service instance', async () => {
@@ -376,10 +474,31 @@ describe('managed delegation', () => {
     await expect(
       sendAgentUpdate(parentRecord, {
         childInstanceId: delegated.instanceId,
+        disposition: 'RELAY',
+        summary: 'Unsourced relay.',
+        claimStatus: 'PROVISIONAL',
+        evidenceRefs: [],
+        consequential: false
+      })
+    ).rejects.toThrow('RELAY requires noticeId');
+    await expect(
+      sendAgentUpdate(parentRecord, {
+        childInstanceId: delegated.instanceId,
+        disposition: 'RECORD',
+        summary: 'Unsupported acceptance.',
+        claimStatus: 'ACCEPTED',
+        evidenceRefs: [],
+        consequential: false
+      })
+    ).rejects.toThrow('requires humanAcceptanceRef');
+    await expect(
+      sendAgentUpdate(parentRecord, {
+        childInstanceId: delegated.instanceId,
         noticeId: notice.noticeId,
         disposition: 'RELAY',
         summary: 'Illegally promote the claim.',
         claimStatus: 'ACCEPTED',
+        humanAcceptanceRef: 'HUMAN-ACCEPT-1',
         evidenceRefs: ['src/a.ts:10'],
         consequential: false
       })
@@ -392,6 +511,8 @@ describe('managed delegation', () => {
         claimStatus: 'VALIDATED',
         evidenceRefs: [],
         consequential: true,
+        amendmentCategories: ['SCOPE'],
+        amendmentVersion: 'brief-v2',
         amendment: 'Change the objective.'
       })
     ).rejects.toThrow('requires humanRulingRef');
@@ -413,17 +534,42 @@ describe('managed delegation', () => {
 
     await sendAgentUpdate(parentRecord, {
       childInstanceId: delegated.instanceId,
+      disposition: 'AMEND',
+      summary: 'Add bounded context.',
+      claimStatus: 'PROVISIONAL',
+      evidenceRefs: ['src/a.ts:10'],
+      consequential: false,
+      amendmentCategories: ['CONTEXT'],
+      amendmentVersion: 'brief-v2',
+      amendment: 'Add src/b.ts to the declared read context.'
+    });
+    expect(await readFile(
+      path.join(projectRoot, `execution/_Coordination/AgentRuns/RUN-3/amendments/${delegated.instanceId}/brief-v2.md`),
+      'utf8'
+    )).toContain('src/b.ts');
+
+    await sendAgentUpdate(parentRecord, {
+      childInstanceId: delegated.instanceId,
       disposition: 'REPLAN',
       summary: 'Add a dependency-valid second stage.',
       claimStatus: 'VALIDATED',
+      validationRef: 'validation/report-1',
       evidenceRefs: ['src/a.ts:10'],
       consequential: false,
+      amendmentCategories: ['SEQUENCING'],
       amendment: 'Use plan v2 for downstream dispatch.',
       planVersion: 'v2',
       selectionAuthority: 'AGENT_0',
       posture: 'MIXED',
       acceptedBasis: ['snapshot-1'],
-      workGraph: { nodes: ['child', 'downstream'], edges: [['child', 'downstream']] }
+      workGraph: {
+        nodes: ['child', 'downstream'],
+        edges: [['child', 'downstream']],
+        concurrencyEligibility: ['child'],
+        expectedReturns: ['# Return'],
+        fanInGates: ['valid return'],
+        humanDecisionPoints: []
+      }
     });
     const versioned = await readFile(
       path.join(projectRoot, 'execution/_Coordination/AgentRuns/RUN-3/plans/v2/WORK_GRAPH.json'),

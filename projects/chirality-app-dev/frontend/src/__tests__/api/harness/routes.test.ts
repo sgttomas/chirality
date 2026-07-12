@@ -301,8 +301,8 @@ describe('Harness API baseline routes', () => {
     expect(bootBody.session.sdkPackageVersion).toBe('0.3.150');
     expect(bootBody.session.runtimeFingerprint).toEqual(bootBody.boot.runtimeFingerprint);
     expect(bootBody.boot.runtimeFingerprint).toMatchObject({
-      schemaVersion: 'harness-runtime-fingerprint.v3.scoped-delegation',
-      managedDelegationPolicyVersion: 'managed-delegation.v2.scoped-fan-in',
+      schemaVersion: 'harness-runtime-fingerprint.v4.atomic-coordination',
+      managedDelegationPolicyVersion: 'managed-delegation.v3.atomic-coordination',
       toolRegistryVersion: expect.stringMatching(/^harness-tools\./),
       sdkPackageVersion: '0.3.150',
       mcpServers: [

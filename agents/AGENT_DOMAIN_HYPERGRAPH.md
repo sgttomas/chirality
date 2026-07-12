@@ -1,6 +1,7 @@
 ---
 description: "Builds a DOMAIN hypergraph from workspace folders — nodes, hyperedges, and incidence tables with deterministic IDs"
 dedicated_agent2_approval: D-GOV-13
+tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — DOMAIN_HYPERGRAPH (Type 2 Task • Folder→Hypergraph Builder)

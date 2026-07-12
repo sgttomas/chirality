@@ -2,7 +2,8 @@
 
 This file is the canonical runtime doctrine and live agent index. Root
 `CLAUDE.md` imports this file without adding another instruction layer. For
-workflow-component design rules, see `docs/WORKFLOW_COMPONENT_STANDARD.md`;
+the candidate workflow-component design standard, see
+`docs/WORKFLOW_COMPONENT_STANDARD.md`;
 for the explanatory design basis, see
 `docs/DBM_Agent_Instruction_Architecture.md`.
 
@@ -91,10 +92,12 @@ agent file.
 - Managed delegation uses `delegate_agent`; named children load their actual
   instruction package, generalists use the Agent 2 base contract plus a sealed
   brief, and every run persists parentage, hashes, scopes, status, and returns.
-  Multi-agent execution requires the managed runtime. Durable launch briefs
-  remain governed evidence inside that runtime, not a substitute for a child
-  session. If the delegation tools are unavailable, defer the multi-agent stage
-  or continue only work that is genuinely single-agent.
+  Multi-agent execution requires an actual governed child-session mechanism;
+  durable launch briefs alone are never a substitute for execution. The app
+  harness uses `delegate_agent`. A project loop may use its platform's native
+  hierarchical TASK/subagent facility when the loop freezes equivalent briefs,
+  scopes, parentage, and returns. If no executable child mechanism is available,
+  defer the multi-agent stage or continue only genuinely single-agent work.
 
 ## Multi-Agent Orchestration
 
@@ -134,6 +137,12 @@ context. Changes to objective, accepted basis, write scope, ownership, risk,
 or acceptance criteria require a versioned brief amendment. Consequential
 amendments return to the human.
 
+“Consequential” is not left to unconstrained agent preference. It includes at
+least scope expansion, a change in consequential risk, a change in authority,
+an unresolved shared-write/ownership conflict, or a change in acceptance
+criteria or lifecycle acceptance. Any uncertainty about whether one of these
+conditions applies is itself returned to the human.
+
 ### Mixed work graphs and safety
 
 A work graph may compose arbitrary dependency-valid sequences of individual
@@ -148,6 +157,12 @@ must be disjoint; overlapping writes require serialization against an accepted
 predecessor or one declared integration owner. Failed nodes block only their
 declared dependants; independent work continues. Partial or invalid returns
 are not accepted at fan-in.
+
+Arbitrary Bash cannot be proven package-bounded by lexical command inspection.
+In the app harness, a Bash-bearing managed child therefore requires explicit
+project-root read/write scope and becomes the serialized integration owner for
+that stage. Package-parallel work uses bounded file tools or registered
+deterministic tools instead.
 
 Files hold scope, decisions, claims, artifacts, dependencies, notices,
 amendments, acknowledgments, and handoffs. Accepted snapshots provide stable
@@ -171,8 +186,8 @@ durable surfaces complement live agency and never become hidden authority.
 
 | Standard | File | Role |
 | --- | --- | --- |
-| Workflow-Component Design Standard | `docs/WORKFLOW_COMPONENT_STANDARD.md` | Governs classification, design, authority, lifecycle, and conformance of agents, skills, tools, briefs, and workflow packages |
-| Decomposition Standard | `docs/DECOMPOSITION_STANDARD.md` | Defines the 7-gate decomposition protocol, I1–I10 invariants, schemas, and extension contract |
+| Workflow-Component Design Standard | `docs/WORKFLOW_COMPONENT_STANDARD.md` | Candidate implementation of the ruled standard/persona split; becomes independently authoritative only after explicit owner acceptance |
+| Decomposition Standard | `docs/DECOMPOSITION_STANDARD.md` | Candidate extraction of the ruled 7-gate protocol and I1–I10 invariants; becomes independently authoritative only after explicit owner acceptance |
 
 ### Agent 0 — Supervising Architect
 
@@ -202,7 +217,7 @@ durable surfaces complement live agency and never become hidden authority.
 | DRAWING_EXTRACT | `AGENT_DRAWING_EXTRACT.md` | Drawing-type-aware extraction pipeline; core-vs-repertoire split orchestrates rasterization, target-appropriate crops/tiles, target-specific TASK skill dispatch per (drawing_type × extraction_target), deterministic QA, target-driven assembly, and optional PFD-equipment merge. DRAWING_SET, PFD, and P_AND_ID targets are implemented; ISOMETRIC/GA remain stubbed fail-fast |
 | DBM_PUBLISHER | `AGENT_DBM_PUBLISHER.md` | Publish one rewritten DBM from approved DOMAIN state using frozen planning artifacts, direct section dispatch, package assembly, and post-authoring evidence-bundle review |
 
-### Agent 2 — Dedicated Specialists and TASK
+### Agent 2 — TASK and Proposed Dedicated Specialists
 
 | Agent | Instruction File | Role |
 | --- | --- | --- |
@@ -222,7 +237,7 @@ durable surfaces complement live agency and never become hidden authority.
 | EVALUATION_STRUCTURE_AUDIT | `AGENT_EVALUATION_STRUCTURE_AUDIT.md` | Structural validation |
 | EVALUATION_DEPENDENCY_AUDIT | `AGENT_EVALUATION_DEPENDENCY_AUDIT.md` | Dependency validation |
 
-An Agent 2 may instead be an ephemeral bounded generalist. That form has no persistent instruction file and is governed by the sealed brief contract above. The dedicated roles in this table remain live only where their persistent runtime semantics justify a file or while a governed compatibility migration is incomplete.
+An Agent 2 may instead be an ephemeral bounded generalist. That form has no persistent instruction file and is governed by the sealed brief contract above. The named roles in this table are preserved compatibility candidates; they become executable dedicated specialists only when their cited qualification record contains an explicit human ruling.
 
 ### TASK Skill Capabilities
 

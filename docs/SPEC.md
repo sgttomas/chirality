@@ -446,7 +446,7 @@ The `RegisterSchemaVersion` column MUST be present in every row and set to `v3.1
 | Column | Type | Description |
 |---|---|---|
 | `EstimateImpactClass` | enum | `BLOCKING`, `ADVISORY`, `INFO`, `TBD` |
-| `ConsumerHint` | enum | `TASK`, `TASK_ESTIMATING`, `AGGREGATION`, `RECONCILIATION`, `TBD` |
+| `ConsumerHint` | enum | `TASK`, `TASK_ESTIMATING`, `AGGREGATION`, `EVALUATION`, `RECONCILIATION_LEGACY`, `TBD` |
 
 ### 6.3 Canonical Enum Values
 
@@ -642,7 +642,11 @@ Rows are never deleted. Rows no longer observed in source text are marked `RETIR
 
 ## 9. Agent Instruction File Structure
 
-All agent instruction files (`AGENT_*.md`) MUST follow the structure defined by `WORKFLOW_COMPONENT_STANDARD.md`. `AGENT_HELPS_HUMANS.md` is the applying/maintenance persona, not the source of the structural standard. The agent index and governance surface `AGENTS.md` is a distinct, authoritative file with its own required contents (see `CONTRACT.md` K-AGENTS-1).
+All live agent instruction files currently implement the candidate structure in
+`WORKFLOW_COMPONENT_STANDARD.md` and are checked by the instruction validator.
+That implementation evidence does not ratify the candidate. HELPS_HUMANS is
+the applying/maintenance persona, not the constitutional source. `AGENTS.md`
+is a distinct authoritative runtime surface (K-AGENTS-1).
 
 ### 9.1 Required Header
 
@@ -710,13 +714,14 @@ Harness runtime metadata parsing uses a split contract:
 - **Canonical body header/table**: the `AGENT_TYPE: {0|1|2}` line in the instruction body and the `AGENT_CLASS` value in the Agent Type table.
 
 Subagent registry safety rules:
-- The compatibility bridge delegates only governed children under the same
-  hierarchy policy; the canonical managed runtime permits Agent 0 to launch
-  named Agent 1 sessions and Agent 1 to launch valid Agent 2 forms.
+- The former SDK Agent compatibility bridge is disabled after managed-runtime
+  acceptance. The canonical managed runtime permits Agent 0 to launch named
+  Agent 1 sessions and Agent 1 to launch valid Agent 2 forms; historical Agent
+  tool requests fail closed.
 - Agent 1 delegates only Agent 2 forms. `AGENT_CLASS: TASK` remains preferred
   for persistent Agent 2 packages.
 
-Delegation governance rule (fail closed): when subagents are enabled and a Type 1 persona is allowlisted for subagents, runtime injects subagents only if valid governance metadata is present (`contextSealed === true`, `pipelineRunApproved === true`, a non-empty `approvalRef`). Missing or invalid governance metadata MUST block subagent injection while allowing the parent turn to continue normally. Deployment-specific harness/runtime API and UI contracts (turn input, attachment handling, selector schemas) are defined in the owning project's runtime docs, not at the framework root.
+Delegation governance rule (fail closed): when subagents are enabled and a Type 1 persona is allowlisted for subagents, runtime injects subagents only if valid governance metadata is present (`contextSealed === true`, `pipelineRunApproved === true`, a non-empty `approvalRef`). The reference MUST cite the applicable human approval record; runtime presence checks are necessary but do not authenticate or create that human act. Missing or invalid governance metadata MUST block subagent injection while allowing the parent turn to continue normally. Deployment-specific harness/runtime API and UI contracts (turn input, attachment handling, selector schemas) are defined in the owning project's runtime docs, not at the framework root.
 
 ### 9.8 Managed Multi-Agent Runtime Record
 

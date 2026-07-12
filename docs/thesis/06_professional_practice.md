@@ -97,7 +97,7 @@ The Chirality architecture satisfies each of these obligations through mechanism
 
 APEGA §3.1.1.1 identifies five specific obligations constituting active involvement. For each, the Chirality mechanism is identified and the governing document cited. Appendix C, Table C.1.1, provides the full compliance trace.
 
-**Directing, monitoring, and controlling work throughout its lifespan.** The licensed professional directs, monitors, and controls AI agent work through the gate-controlled orchestration model. Type 1 (Manager) agents operate through interactive sessions in which the licensed professional makes consequential decisions at every phase transition. Type 2 (Specialist) agents execute only within bounded briefs defined by the licensed professional or an authorized Type 1 agent. Human authority is the halting condition for every workflow: no agent may autonomously advance workflow stages, approve deliverables, or resolve conflicts. This is enforced by invariants K-GATE-1 (dynamic gates with minimum seal and pipeline approval requirements) and K-SEAL-1 (no Type 2 execution before context is sealed and gate-approved by a human). The orchestration architecture is defined in `docs/DBM_Agent_Instruction_Architecture.md` §6.
+**Directing, monitoring, and controlling work throughout its lifespan.** The licensed professional directs, monitors, and controls AI agent work through the gate-controlled orchestration model. Agent 0 and Agent 1 frame consequential decisions for the human; Agent 2 executes only bounded briefs under an approved run. Human authority is the halting condition for scope, risk, authority, shared-write, acceptance, lifecycle, and reliance decisions. Runtime metadata checks support but do not authenticate the human approval act. The orchestration architecture is defined in `docs/DBM_Agent_Instruction_Architecture.md` §6.
 
 The runtime hierarchy (Agent 0 Supervising Architect / Agent 1 Manager / Agent
 2 Specialist) is directly relevant here. Standards constrain every layer;
@@ -107,11 +107,15 @@ professional remains accountable and authorizes consequential gates.
 
 **Establishing and documenting scope, duties, responsibilities, authorities, and limitations.** Every agent instruction file (`agents/AGENT_*.md`) declares the agent's type, class, interaction surface, write scope, blocking behavior, primary outputs, and non-negotiable invariants. These declarations are the formal record of scope, duties, responsibilities, authorities, and limitations for each agent — equivalent, in structural terms, to a position description for a human subordinate, but with the significant difference that the declarations are versioned, auditable, and identical for every run. Write scope enforcement is carried by the declared contract plus diff review under invariant K-WRITE-1 (`docs/CONTRACT.md` §1.10), with bounded task writes additionally path-contained by a deterministic TASK-shell check (K-WRITE-2). The authority model is defined in `docs/TYPES.md` §4.3.
 
-**Maintaining regular and ongoing communication.** Type 1 agents maintain interactive sessions with the licensed professional, presenting structured outputs and awaiting human decisions at gates before proceeding. Type 2 agents receive structured briefs (INIT-TASK) and return structured run reports with PASS/FAIL status and evidence. Session continuity is maintained through handoff artifacts (`NEXT_INSTANCE_STATE.md`, `NEXT_INSTANCE_PROMPT.md`) that preserve project context across sessions without hidden state. Working memory per deliverable is maintained in `_MEMORY.md` (defined in `docs/SPEC.md` §8). The brief and output contract formats are defined in `docs/DBM_Agent_Instruction_Architecture.md` §9.
+**Maintaining regular and ongoing communication.** Agent 0 and Agent 1 maintain interactive sessions with the licensed professional, presenting structured outputs and awaiting human decisions at gates before proceeding. Agent 2 receives sealed briefs and returns structured reports with status and evidence. Session continuity is maintained through versioned orchestration plans, launch briefs, notices, returns, and handoff state rather than hidden context. Working memory per deliverable is maintained in `_MEMORY.md` (defined in `docs/SPEC.md` §8). Runtime persistence is defined in `docs/DBM_Agent_Instruction_Architecture.md` §§8–9.
 
-This "regular and ongoing communication" requirement deserves comment in the AI context. For a human subordinate, ongoing communication involves informal channels — conversation, observation, questions — that may not leave a documentary record. For an AI agent, every interaction is structured and every consequential output is a versioned artifact in the git repository. In this sense, the Chirality architecture satisfies the communication requirement more completely than a comparable human supervision relationship: every agent output, every brief, every gate decision, and every session handoff is committed to version control and subject to diff-based review.
+This "regular and ongoing communication" requirement deserves comment in the AI context. Managed runs make consequential briefs, notices, amendments, returns, gates, and handoffs durable in runtime records or governed project artifacts. Git records accepted publication and integration state; not every transient message is committed, and a commit is never itself semantic acceptance.
 
-**Identifying and rectifying gaps in competencies.** The AUDIT_AGENTS system verifies conformance of agent instruction files against the workflow-component standard (`docs/WORKFLOW_COMPONENT_STANDARD.md`). Three layers of contracts govern agent behavior: workflow-component requirements (defined in `docs/WORKFLOW_COMPONENT_STANDARD.md`), decomposition invariants I1–I10 (defined in `docs/DECOMPOSITION_STANDARD.md`), and the system-wide K-* invariants (catalogued in `docs/CONTRACT.md`). The evaluation framework provides systematic assessment of agent output quality. Agent instruction governance follows release engineering discipline: instruction files are versioned, reviewed before release, and subject to no silent behavior changes (§6.7 of the professional practice standard). This is the mechanism by which the firm identifies and rectifies gaps in agent competencies — not through ad hoc review but through a systematic governance process.
+**Identifying and rectifying gaps in competencies.** AUDIT_AGENTS evaluates
+instruction files against ratified K-* governance and, provisionally, the
+candidate workflow-component standard. The evaluation framework assesses
+output quality; versioning and review prevent silent instruction changes.
+Candidate conformance results are evidence, not owner acceptance.
 
 **Completing periodic reviews to ensure PWPs are accurate and reliable.** The REVIEW agent (`agents/AGENT_REVIEW.md`) implements a formal 5-gate review process for lifecycle transitions. EVALUATION performs generic cross-deliverable coherence analysis; RECONCILIATION separately aligns deliverable-local and project-wide truth during an activated corpus-concordance run. Accepted project artifacts are git-versioned, and managed run records preserve delegated-work evidence. The review protocol is addressed in detail in §6.5.
 
@@ -123,7 +127,7 @@ APEGA §3.1.1.2 requires that the licensed professional be responsible for all t
 
 **Technical direction through formal mechanisms.** Technical direction is provided through agent briefs, explicit gate decisions, and conflict adjudication at human gates. Agents propose; humans approve. Agents surface conflicts; humans rule. The licensed professional is the mandatory decision authority at every gate — no agent may bypass a gate or autonomously declare an outcome (K-GATE-1, K-SEAL-1).
 
-**Availability to review and approve.** The gate-controlled workflow structure ensures that the licensed professional is a required participant in every consequential decision. Type 2 agents cannot proceed without prior gate approval; outputs cannot advance to a new lifecycle state without human authorization. The architecture makes human participation a structural precondition for progress under the sanctioned workflow.
+**Availability to review and approve.** The gate-controlled workflow structure requires the licensed professional at every defined consequential decision. Agent 2 launch cites prior human run approval, and no output advances lifecycle state without human authorization.
 
 **Decision records in durable project record.** Every decision must be recorded in versioned files: Decision Logs, `_MEMORY.md` (per `docs/SPEC.md` §8), and `_STATUS.md` lifecycle history (per `docs/SPEC.md` §3). Invariant K-STATUS-1 designates `_STATUS.md` as the canonical, human-readable lifecycle state file for each deliverable. Agents are prohibited from maintaining hidden state that diverges from the filesystem (`docs/DIRECTIVE.md` §2.5). As the firm's founding design principle states: if a decision is not in a versioned file, it does not exist for purposes of reliance.
 
@@ -250,14 +254,21 @@ The firm's QC/QA framework for AI-assisted work is implemented through the agent
 | `docs/CONTRACT.md` | The binding K-* invariant catalog with its enforcement map |
 | `docs/SPEC.md` | Physical structures, file formats, schema validation |
 | `docs/TYPES.md` | Controlled vocabulary, enumerated types, lifecycle state machine |
-| `agents/AGENT_HELPS_HUMANS.md` | Workflow design requirements (R1–R12) binding on all agents |
+| `docs/WORKFLOW_COMPONENT_STANDARD.md` | Candidate workflow design requirements (R1–R17), pending explicit owner acceptance |
 | `docs/DECOMPOSITION_STANDARD.md` | Decomposition invariants (I1–I10) binding on all decomposition agents |
 
-The three-layer invariant system — R1–R12 workflow requirements, I1–I10 decomposition invariants, and the K-* system-wide catalog — and its enforcement map are described in Chapter 4. The significance for QC/QA purposes is that compliance is verified at multiple independent levels: at design time through agent instruction constraints, at runtime through orchestrator enforcement, at human gates through professional review, and through automated tooling for specific invariants (K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2). No single point of failure can disable the entire control system.
+The three-layer model combines candidate R1–R17 workflow requirements,
+candidate I1–I10 decomposition invariants, and the ratified K-* catalog.
+Compliance evidence comes from instruction review, managed runtime controls,
+human gates, and deterministic validation; candidate requirements do not
+become authoritative merely through this mapping.
 
 ### 6.7.2 Instruction Governance as Release Engineering
 
-Agent instruction files are part of the firm's controlled quality system. They are treated as controlled documents under a release engineering discipline: versioned in git, reviewed before release, subject to no silent behavior changes, with material changes to write scope, tool access, or agent outputs requiring a recorded release note (`PROFESSIONAL_ENGINEERING.md` §6.2). Conformance of all agent instruction files against the canonical standard is verified by AUDIT_AGENTS; structural requirements for instruction files are defined in `docs/SPEC.md` §9.
+Agent instruction files are part of the firm's controlled quality system. They
+are versioned, reviewed, and subject to no silent behavior changes. AUDIT_AGENTS
+checks ratified invariants and reports provisional conformance to candidate
+standards; structural validation is defined in `docs/SPEC.md` §9.
 
 This approach addresses a quality risk specific to AI-assisted practice: the risk that changes to agent behavior go undetected and affect the quality of work products without the professional's awareness. By treating agent instruction files as controlled documents subject to formal release engineering, the firm ensures that material behavior changes are visible, reviewed, and documented — and that the professional is informed of changes that may affect the validity of prior review or supervision work.
 
@@ -276,7 +287,10 @@ The firm uses LLMs provided by technology vendors as the cognitive engine within
 - Testing of agent behavior within the firm's instruction architecture before adopting model updates
 - Documented assessment of material model changes and their impact on agent behavior
 
-Critically, the firm does not rely solely on the technology provider's safety measures. The agent instruction architecture constrains and governs LLM behavior independent of the provider's controls: R1–R12 workflow requirements, the K-* system invariants, write scope quarantine, and deterministic tool validation. This independence is essential: the professional's obligation is to exercise due diligence on the tools used in PWP preparation, and that obligation cannot be satisfied by deferring to the vendor's quality assurance practices.
+Critically, the firm does not rely solely on the technology provider's safety
+measures. Ratified K-* invariants, accepted instructions, write-scope
+quarantine, human gates, and deterministic validation supply independent
+controls. Candidate R/I standards strengthen that structure if accepted.
 
 ### 6.7.5 Evidence and Auditability
 

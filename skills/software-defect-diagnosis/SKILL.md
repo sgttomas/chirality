@@ -25,4 +25,3 @@ metadata:
 - bounded repair options and regression-test recommendation.
 
 Safe for generic TASK with `ApplyEdits: false`.
-

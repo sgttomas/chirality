@@ -54,7 +54,7 @@ Interfaces between agents are defined by four mechanisms, each with explicit sem
 | Identity contract | `_CONTEXT.md` | Declares what a deliverable is, who owns it, and what it traces to |
 | Dependency contract | `Dependencies.csv` v3.1 (29 columns) | Machine-readable typed edges between deliverables |
 | Coordination contract | `_COORDINATION.md` | Project-level choreography semantics |
-| Brief contract | INIT-TASK briefs | Structured input for Type 2 agents with validated enumerations |
+| Brief contract | Sealed Agent 2 briefs | Structured objective, scope, context, tools, writes, outputs, and acceptance checks |
 
 Every interface is machine-checkable and carries explicit preconditions and postconditions. The dependency contract, discussed further in Section 7.8.3 in the context of the formal type system, defines a 29-column schema with fully enumerated type domains covering dependency class, anchor type, direction, dependency type, target type, confidence, origin, explicitness, status, and satisfaction status. This level of interface specification is characteristic of safety-critical systems design, where ambiguous interfaces are a primary source of integration failure [CITE:SE_textbook].
 
@@ -183,13 +183,16 @@ The write scope architecture creates formal fault containment zones with precise
 |---|---|---|
 | Package-level | WORKING_ITEMS | Limited to one activated package and selected deliverables |
 | Deliverable-local | TASK, TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register | Limited to brief-declared production-unit targets |
-| Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, ORCHESTRATOR scheduling workflow | Limited to one tool root; source truth untouched |
+| Tool-root | ORCHESTRATOR scheduling workflow, AGGREGATION, AUDIT_*, and TASK estimation skills | Limited to one tool root; source truth untouched |
 | Repository (approval-gated) | CHANGE | Requires explicit human approval token per action |
 | Read-only | HELP_HUMAN, HELPS_HUMANS, Decomposition Standard | Zero write impact |
 
 This zoning architecture is a direct application of the fault containment region concept in safety engineering [CITE:Leveson2011]: the system is partitioned such that a failure within any zone cannot propagate to adjacent zones without crossing a boundary enforced by an independent mechanism. In the Chirality implementation, the boundary between the tool-root zone and source truth is carried by K-WRITE-1 as a declared, auditable contract rather than by informal process discipline — a conforming agent has no write path outside its declared scope, bounded task writes are additionally path-contained by a deterministic TASK-shell check (K-WRITE-2), and deviations surface in diff review (Chapter 8, §8.6).
 
-The CHANGE agent occupies a distinctive position in this architecture. It is the sole path from derived analysis output to committed repository state, and every action requires an explicit human approval token (APPROVE: or APPROVE_DESTRUCTIVE:). A Type 2 agent failure cannot corrupt source truth because no Type 2 agent has a write path to source truth. The CHANGE agent's approval gate is the sole crossing point, and it requires active human authorization.
+CHANGE occupies a distinctive position as the governed Git-state manager.
+Agent 2 may write source content only inside explicit bounded targets; tool-root
+specialists remain quarantined. Committing records Git state but does not
+accept engineering content or advance lifecycle state.
 
 ### 7.5.2 Failure Mode Visibility
 
@@ -212,9 +215,12 @@ The `FAILED_INPUTS` halt behavior is particularly significant. When a Type 2 age
 
 Two invariants bound what a Type 2 agent can see and when it is permitted to run.
 
-K-SEAL-1 states: "No Type 2 agent execution before context is sealed and gate-approved by a human." The sealing operation requires that all inputs be explicitly declared via `_REFERENCES.md` and deliverable folder contents, and that a human confirm the sealed context before execution begins. This prevents agents from operating on an incomplete or evolving input set — a condition that, in an LLM-based system, is a primary source of unpredictable behavior.
+K-SEAL-1 requires sealed context, approval at the applicable human run gate,
+and a launch citation to that human approval record. Runtime checks verify the
+presence and structure of metadata, not the authenticity of the human act.
 
-K-GHOST-1 states: "Type 2 agent context is limited to folder contents and declared references. No ghost inputs." Ghost inputs — sources of information available to an agent at execution time but not declared in the sealed context — are structurally prohibited. The agent may not consult undeclared prior context, informal communications, or any information source not explicitly listed in `_REFERENCES.md`.
+K-GHOST-1 limits Agent 2 context to declared files, references, and sealed
+brief content. Prior chat state and undeclared sources are not implicit inputs.
 
 Together, K-SEAL-1 and K-GHOST-1 implement a formal context boundary analogous to the environmental control requirements imposed on safety-critical software [CITE:Leveson2011]. The context of execution is defined, bounded, and approved before execution begins.
 
@@ -337,7 +343,13 @@ The architecture defines three layers of formally stated invariants, each govern
 
 **I1–I10 (Decomposition invariants)** are structural constraints on the decomposition process: human-validated gates (I1), no invention (I2), flat partitions (I3), exactly one partition per atomic unit (I4), stable identifiers (I5), deterministic ID coupling (I6), best-effort objective mapping (I7), traceable rationale (I8), machine-checkable ledger and telemetry (I9), and vocabulary discipline (I10). These invariants are enforced by decomposition agents during execution and verified by the AUDIT_DECOMP agent post-execution.
 
-**R1–R12 (Workflow design requirements)** are behavioral constraints on all agents in the system: human decision rights (R1), straight-through task execution (R2), write quarantine (R3), immutable snapshots (R4), mandatory provenance (R5), no invention (R6), conflict surfacing (R7), brief-driven execution (R8), hygienic publication (R9), and the skill/tool-boundary requirements — explicit skill tool policy (R10), explicit tool contract (R11), preserved skill/tool boundary (R12). These invariants are enforced by agent instruction design — they are embedded in the instruction logic of every agent rather than checked by a separate auditing mechanism.
+**R1–R17 (candidate workflow design requirements)** cover human decision
+rights, straight-through Agent 2 execution, write quarantine, snapshots,
+provenance, no invention, conflict surfacing, brief-driven execution,
+publication, skill/tool contracts and separation, claim calibration,
+multi-phase integration, registry lifecycle, checkout containment, and
+proportional design evidence. They become independently binding only after
+explicit owner acceptance; ratified K-* invariants govern meanwhile.
 
 **K-* (System-wide invariants)** form the named, stable invariant catalog maintained in `CONTRACT.md`, covering the full scope of system behavior: hierarchy (K-HIER-1, K-ID-1), authority (K-AUTH-1, K-AUTH-2, K-BIND-1), sealing (K-SEAL-1, K-GHOST-1), dependencies (K-DEP-1, K-DEP-2), status (K-STATUS-1), staleness (K-STALE-1, K-STALE-2, K-VAL-1), gates (K-GATE-1), merge (K-MERGE-1), provenance and claim discipline (K-PROV-1, K-CLAIM-1), invention (K-INVENT-1), conflicts (K-CONFLICT-1), write scope and path containment (K-WRITE-1, K-WRITE-2), snapshots (K-SNAP-1), the agent registry surface (K-AGENTS-1), and domain-engine boundaries (K-DOMAIN-1 through K-DOMAIN-4). K-* identifiers are stable and never reused; retired invariants are preserved in the catalog with retirement rationale. The full catalog as of this revision is reproduced in Appendix A.
 

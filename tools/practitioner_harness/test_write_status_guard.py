@@ -9,22 +9,13 @@ NOT read or written by these tests.
 from __future__ import annotations
 
 import subprocess
+import importlib.util
 from pathlib import Path
 
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = REPO_ROOT / "tools" / "scaffolding" / "write_status.sh"
-STAGING_SCRIPT = (
-    REPO_ROOT
-    / "exports"
-    / "chirality-app"
-    / "staging"
-    / "tools"
-    / "scaffolding"
-    / "write_status.sh"
-)
-
 MANIFEST_SHA_DECLARING = """\
 schema: practitioner-harness-adapter/v1
 project: fixture-app
@@ -474,17 +465,17 @@ def test_non_git_dir_actor_gate_still_enforced(tmp_path):
 # ---------------------------------------------------------------------------
 
 
-def test_canonical_and_staging_guard_byte_identity():
-    if not STAGING_SCRIPT.exists():
-        pytest.skip("staging export copy absent (exports/chirality-app/staging)")
+def test_canonical_and_staging_guard_byte_identity(tmp_path):
+    exporter_path = REPO_ROOT / "exports" / "chirality-app" / "export_public.py"
+    spec = importlib.util.spec_from_file_location("chirality_public_export_guard", exporter_path)
+    assert spec and spec.loader
+    exporter = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(exporter)
+    stage = tmp_path / "public-stage"
+    exporter.build_stage(stage)
+    staged_script = stage / "tools" / "scaffolding" / "write_status.sh"
     canonical = SCRIPT.read_bytes()
-    staged = STAGING_SCRIPT.read_bytes()
-    if canonical != staged:
-        pytest.skip(
-            "canonical guard has been edited; byte-identity is restored by export "
-            "regeneration (python3 exports/chirality-app/export_public.py) later in "
-            "the PR flow — rerun this test after the export is regenerated"
-        )
+    staged = staged_script.read_bytes()
     assert canonical == staged
 
 

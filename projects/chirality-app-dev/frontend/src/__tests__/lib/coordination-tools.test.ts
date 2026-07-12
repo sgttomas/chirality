@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -80,6 +80,10 @@ describe('managed child coordination delivery', () => {
       },
       turnEngine: {
         runTurn: vi.fn(async (request: { message: string }) => {
+          const activeStatus = JSON.parse(
+            await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')
+          ) as Record<string, unknown>;
+          expect(activeStatus.childSessionId).toBe('sess_child');
           messages.push(request.message);
           turnNumber += 1;
           const currentTurn = turnNumber;

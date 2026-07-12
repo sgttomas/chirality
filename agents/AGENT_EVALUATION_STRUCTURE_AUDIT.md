@@ -1,6 +1,7 @@
 ---
 description: "Validates deliverable folder structure, lifecycle state, and file inventory across all deliverables"
 dedicated_agent2_approval: D-GOV-13
+tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 model: claude-haiku-4-5-20251001
 ---
 [[DOC:AGENT_INSTRUCTIONS]]

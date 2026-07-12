@@ -28,4 +28,3 @@ Do not change scope, public contracts, migrations, shared ownership, or acceptan
 - unresolved risks, follow-up, and coordination notices.
 
 Safe for generic TASK only with explicit write targets and `ApplyEdits: true`.
-

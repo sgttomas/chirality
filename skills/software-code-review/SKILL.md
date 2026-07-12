@@ -19,4 +19,3 @@ metadata:
 6. State residual risk and whether the return is valid for manager fan-in; do not perform lifecycle acceptance.
 
 Read-only and safe for generic TASK. Review independence does not grant authority to rewrite the implementation.
-

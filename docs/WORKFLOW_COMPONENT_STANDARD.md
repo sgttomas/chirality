@@ -3,13 +3,14 @@
 > **Status: CANDIDATE IMPLEMENTATION of ruled directions D-GOV-10,
 > D-GOV-11, and D-GOV-12.** The standard/persona split, runtime hierarchy, and
 > multi-agent orchestration doctrine are owner-ruled.
-> This exact text becomes authoritative when accepted and published in the
-> governed record. Until then, ratified `DIRECTIVE.md`, `CONTRACT.md`,
+> This exact text becomes authoritative only after explicit owner acceptance;
+> implementation or merge alone is not ratification. Until then, ratified
+> `DIRECTIVE.md`, `CONTRACT.md`,
 > `SPEC.md`, `TYPES.md`, and the live `AGENTS.md` govern on disagreement.
 
-This document defines how Chirality agents, skills, deterministic tools,
+This candidate document proposes how Chirality agents, skills, deterministic tools,
 briefs, and workflow packages are designed, classified, maintained, and
-retired. It is the normative design standard applied by HELPS_HUMANS and the
+retired. It is the proposed design standard applied provisionally by HELPS_HUMANS and the
 subsystem-maintenance personas.
 
 It replaces the standards content formerly embedded in

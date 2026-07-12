@@ -2,11 +2,11 @@ import type { AgentDefinition } from '@anthropic-ai/claude-agent-sdk';
 import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
 import { getCurrentTrancheDisallowedToolNames } from '@chirality/harness-contract/tool-descriptor';
 
-export const SUBAGENT_BRIDGE_POLICY_VERSION = 'subagent-bridge.v3.managed-policy-adapter';
+export const SUBAGENT_BRIDGE_POLICY_VERSION = 'subagent-bridge.v4.disabled-after-managed-delegation';
 export const SUBAGENT_BRIDGE_RULING_REF = 'D-APP-10 Option C';
 
 export const SUBAGENT_EXECUTION_DENIED_REASON =
-  'Subagent execution is denied because the requested child is not eligible for the D-APP-10 Option C executable bridge.';
+  'The legacy SDK Agent bridge is disabled; use delegate_agent so hierarchy, scopes, parentage, and returns are durably recorded.';
 
 export const SUBAGENT_EXECUTION_ALLOWED_REASON =
   'Subagent execution is allowed by the D-APP-10 Option C executable bridge.';
@@ -85,23 +85,8 @@ export function createExecutableSubagentBridge(input: {
   session: SessionRecord;
   opts: ResolvedOpts;
 }): ExecutableSubagentBridge | undefined {
-  const delegatedSubagents = uniqueNames(input.opts.delegatedSubagents);
-  if (delegatedSubagents.length === 0) {
-    return undefined;
-  }
-
-  return {
-    policyVersion: SUBAGENT_BRIDGE_POLICY_VERSION,
-    rulingRef: SUBAGENT_BRIDGE_RULING_REF,
-    sessionId: input.session.sessionId,
-    delegatedSubagents,
-    agents: Object.fromEntries(
-      delegatedSubagents.map((agentName) => [
-        agentName,
-        createExecutableAgentDefinition(agentName, input.opts.delegatedAgentInstructions?.[agentName])
-      ])
-    )
-  };
+  void input;
+  return undefined;
 }
 
 export function evaluateSubagentPreflight(input: {
@@ -110,22 +95,18 @@ export function evaluateSubagentPreflight(input: {
 }): SubagentPreflightDecision {
   const eligibleAgentNames = uniqueNames(input.eligibleAgentNames);
   const requestedAgent = extractRequestedSubagentName(input.toolInput);
-  const eligibleChildDefinition = Boolean(
-    requestedAgent && eligibleAgentNames.includes(requestedAgent)
-  );
+  const eligibleChildDefinition = false;
 
   return {
     allowed: eligibleChildDefinition,
-    reason: eligibleChildDefinition
-      ? SUBAGENT_EXECUTION_ALLOWED_REASON
-      : SUBAGENT_EXECUTION_DENIED_REASON,
+    reason: SUBAGENT_EXECUTION_DENIED_REASON,
     safeMetadata: {
       policyVersion: SUBAGENT_BRIDGE_POLICY_VERSION,
       rulingRef: SUBAGENT_BRIDGE_RULING_REF,
       denyClass: eligibleChildDefinition ? undefined : 'subagent-execution',
-      allowClass: eligibleChildDefinition ? 'subagent-execution' : undefined,
-      executionPosture: eligibleChildDefinition ? 'executable' : 'hard-denied',
-      executableBridge: true,
+      allowClass: undefined,
+      executionPosture: 'hard-denied',
+      executableBridge: false,
       requestedAgent,
       eligibleAgentNames,
       eligibleChildDefinition,

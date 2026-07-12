@@ -8,7 +8,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v12.scoped-delegation';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v13.atomic-coordination';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -152,7 +152,7 @@ const CHIRALITY_MUTATING_MCP_RUNTIME: HarnessToolRuntimeSupport = {
 const CHIRALITY_COORDINATION_MCP_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: true,
   reason:
-    'Managed coordination tools write only runtime-owned append-only control-plane records and enforce hierarchy, seals, parentage, capabilities, and project path boundaries in their handlers.'
+    'Managed coordination tools require workspaceWrite mode, write runtime-owned control-plane records, and enforce hierarchy, seals, parentage, capabilities, and project path boundaries.'
 };
 
 const CHIRALITY_DOMAIN_DESCRIPTOR_ONLY_RUNTIME: HarnessToolRuntimeSupport = {
@@ -640,7 +640,11 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     description: 'Report a typed, evidence-linked coordination notice from a managed child to its direct parent.',
     inputSchema: {
       type: 'object',
-      required: ['noticeType', 'claimStatus', 'summary', 'evidenceRefs', 'affectedScopes', 'requestedAction', 'blocking', 'humanDecisionRequired', 'acceptedBasisRef']
+      required: ['noticeType', 'claimStatus', 'summary', 'evidenceRefs', 'affectedScopes', 'requestedAction', 'blocking', 'humanDecisionRequired', 'acceptedBasisRef'],
+      conditional: {
+        VALIDATED: ['validationRef'],
+        ACCEPTED: ['humanAcceptanceRef']
+      }
     }
   }),
   chiralityCoordinationMcpDescriptor({
@@ -649,7 +653,13 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     description: 'Relay information or a versioned amendment from a parent to one direct child.',
     inputSchema: {
       type: 'object',
-      required: ['childInstanceId', 'disposition', 'summary', 'claimStatus', 'evidenceRefs', 'consequential']
+      required: ['childInstanceId', 'disposition', 'summary', 'claimStatus', 'evidenceRefs', 'consequential'],
+      conditional: {
+        RELAY: ['noticeId'],
+        AMEND_REPLAN: ['amendmentCategories', 'amendmentVersion or planVersion'],
+        VALIDATED: ['validationRef'],
+        ACCEPTED: ['humanAcceptanceRef']
+      }
     }
   }),
   chiralityCoordinationMcpDescriptor({

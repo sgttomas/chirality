@@ -135,7 +135,9 @@ A user who converts a scope of work into packages, deliverables, lifecycle recor
 
 ### 4.3 Specialist Contributor
 
-A user or workflow that executes bounded deliverable-local work through TASK, DEPENDENCIES, CHIRALITY_FRAMEWORK, CHIRALITY_LENS, ESTIMATING, or audit agents.
+A user or workflow that executes bounded deliverable-local work through TASK,
+registered dependency/lens/estimation skills, deterministic tools, or audit
+specialists.
 
 ### 4.4 Governance Maintainer
 
@@ -431,10 +433,14 @@ Acceptance:
 
 ### 7.11 Governed Subagent Delegation
 
-1. User or persona requests delegation.
-2. Runtime evaluates `evaluateSubagentGovernance` as the authoritative gate.
-3. Delegation requires environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 task-agent eligibility.
-4. If allowed in a later implementation phase, runtime creates a child run record with restricted tools/cwd and streams lifecycle to the parent session.
+1. An Agent 0 or Agent 1 requests managed delegation.
+2. `ManagedDelegationService` validates hierarchy, allowlists, the applicable
+   human approval citation, sealed context, tools, scopes, dependencies, and
+   return contracts before binding the parent run.
+3. Runtime creates the child session and durable plan/brief/status/return
+   records; the record-less SDK Agent adapter remains disabled.
+4. Parent-mediated notices and updates preserve claim status and require
+   safe-boundary acknowledgment.
 
 Acceptance:
 
@@ -574,7 +580,7 @@ Priority:
 |---|---:|---|---|
 | FR-058 | P0 | The full instruction root shall include the indexed core agent suite and governance docs. | Packaged resources contain `agents/`, `docs/`, `AGENTS.md`, exact one-line `CLAUDE.md`, `README.md`, `docs/WHAT-IS-AN-AGENT.md`, and `PROFESSIONAL_ENGINEERING.md` where required by integrity policy. |
 | FR-059 | P0 | Agent instruction files shall declare type/class/surface/write-scope/blocking/output metadata. | Conformance is auditable against governing instruction architecture and SPEC. |
-| FR-060 | P0 | Managed delegation shall fail closed under the Agent 0/1/2 hierarchy. | Requires `contextSealed=true`, `pipelineRunApproved=true`, non-empty `approvalRef`, a parent/child-type-valid allowlist or declared generalist policy, instruction/brief evidence, capability and path containment, disjoint or serialized writes, and durable child-run records. The legacy SDK Agent adapter retains its environment gate during compatibility migration. |
+| FR-060 | P0 | Managed delegation shall fail closed under the Agent 0/1/2 hierarchy. | Requires `contextSealed=true`, `pipelineRunApproved=true`, an `approvalRef` citing the applicable human approval record, a parent/child-type-valid allowlist or declared generalist policy, instruction/brief evidence, capability and path containment, disjoint or serialized writes, and durable child-run records. Runtime validates reference presence and structure, not the human act itself. The legacy SDK Agent adapter is disabled after managed-service acceptance. |
 | FR-061 | P1 | Deterministic project tools and scripts shall remain indexed and executable when present. | Tool registries and validation scripts identify inputs/outputs and remain locally runnable. |
 | FR-062 | P1 | Snapshot-producing workflows shall write immutable snapshot folders and mutable `_LATEST.md` pointers. | Reruns create new timestamped folders; prior snapshots are not overwritten. |
 | FR-063 | P1 | CHANGE/publication workflows shall require explicit approval tokens and SHA checks. | Approval records include candidate SHA/action list; CHANGE rechecks HEAD before approved actions. |
@@ -694,7 +700,7 @@ Provisional Chirality-to-SDK permission mapping:
 | FR-099 | P1 | Compaction events shall be persisted. | `context.compacted` records boundary, preserved recent turns where knowable, SDK compact metadata, and replay implications. |
 | FR-100 | P1 | Bash shall remain unavailable unless explicitly governed and validated. | Denied bash never spawns; allowed bash captures stdout/stderr separately, times out, stores large output, and can be interrupted when possible. This bash gate must not suppress unrelated safe read/tool capability. |
 | FR-101 | P1 | Subagent execution shall create governed child run records. | Child run includes logical parent, parent/child types, child kind, instruction or brief hash, accepted basis, declared context/tools/writes, plan version, status, timestamps, return validation, output artifact, and coordination evidence. |
-| FR-102 | P1 | Child tools, context, and write boundaries shall be restricted. | Named children use approved role policy; generalists are bounded by parent tools and brief. Permission callbacks and hooks enforce declared read/write scopes, with managed Bash fail-closed unless full-project scope is explicit. The compatibility adapter cannot bypass hierarchy governance. |
+| FR-102 | P1 | Child tools, context, and write boundaries shall be restricted. | Named children use approved role policy; generalists are bounded by parent tools and brief. Permission callbacks and hooks enforce declared read/write scopes, with managed Bash fail-closed unless full-project scope is explicit. The disabled compatibility adapter cannot execute children. |
 | FR-103 | P2 | Deferred tool search shall return only currently allowed tools. | Tool search is added only when catalog size justifies it and never reveals denied tools. |
 | FR-104 | P1 | In-process Chirality MCP tools shall pass through the same permission and hook overlay as SDK built-ins. | Server metadata is preserved, name collisions are prevented, and tools are filtered or denied before execution. |
 | FR-105 | P2 | Plugin-like extension points and remote MCP shall remain out of scope until mature guardrails exist. | Product does not ship a marketplace/plugin system or remote tool expansion before local SDK governance is stable. |
@@ -1412,9 +1418,8 @@ Acceptance:
 
 Purpose:
 
-- Execute Agent 0→1 and Agent 1→2 delegation through managed child sessions,
-  while routing the legacy SDK `agents` / `Agent` bridge through the same
-  hierarchy policy as a compatibility adapter.
+- Execute Agent 0→1 and Agent 1→2 delegation through managed child sessions
+  and retire the record-less SDK `agents` / `Agent` execution path fail-closed.
 
 Implementation targets:
 
@@ -1435,7 +1440,7 @@ Implementation targets:
   closure when a delivered update is not acknowledged.
 - Require checkable return markers, version every replan, and preserve the
   initial plus amended work graphs for restart reconstruction.
-- Keep the SDK Agent tool fail-closed and non-delegating during compatibility migration.
+- Keep the retired SDK Agent tool fail-closed and non-executable.
 
 Acceptance:
 

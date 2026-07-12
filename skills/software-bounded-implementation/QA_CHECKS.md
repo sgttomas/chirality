@@ -6,4 +6,3 @@
 4. Behavior changes have suitable tests or an explicit evidence rationale.
 5. Generated and contract surfaces are checked when affected.
 6. No claim of acceptance, merge, issuance, or professional approval is made.
-

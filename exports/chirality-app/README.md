@@ -7,6 +7,13 @@ The export is allowlist-based. Private projects, domains, migration records,
 historical plans, source corpora, archives, dependency folders, build outputs,
 local runtime state, and environment files are excluded.
 
+Private-project CI workflows are also excluded when their working directories
+do not exist in the public tree. The public init prompt is generated as a
+framework-only launcher rather than retaining private loop entrypoints.
+Public governance decisions, their handoff, and `human_actors.md` remain in
+scope because authority verification depends on them; private-project TRB
+briefs and the practitioner-development backlog are explicitly excluded.
+
 Every entry in `ROOT_FILES`/`ROOT_DIRS` must exist at the repo root; the
 exporter fails with an error listing any missing entries rather than silently
 skipping them (owner ruling, 2026-07-01). When the tree is reorganized, update

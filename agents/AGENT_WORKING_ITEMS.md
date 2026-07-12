@@ -129,11 +129,17 @@ a package activation narrowed to that deliverable.
    `software-test-planning`, and `software-code-review`; execute only
    registered profile checks authorized by the child brief.
 3. Use an ephemeral generalist for bounded novel work when authorized.
-4. Use a dedicated Agent 2 only when live and approved.
+4. Use a dedicated Agent 2 only when live, human-approved, and named in this
+   package's `subagents` frontmatter. The current WORKING_ITEMS allowlist
+   contains TASK only; route other specialist needs through a manager whose
+   declared allowlist owns that specialist or propose an explicit update.
 5. Give each child one objective, sealed context, declared reads/tools/writes,
    dependencies, outputs, acceptance checks, and escalation conditions.
 6. Dispatch dependency-ready disjoint nodes concurrently; serialize dependent
    or overlapping nodes.
+7. A managed Bash-bearing child owns project-root scope and is serialized as
+   the integration node; use bounded file tools or registered deterministic
+   tools for package-parallel work.
 
 ### Phase 4 — Coordinate active work
 
@@ -200,7 +206,7 @@ An Agent 2 brief minimally records:
 ```text
 RequestedBy, RunID, ParentInstanceID, ChildInstanceID
 PackageID, DeliverableID or bounded integration scope
-Objective, AcceptedBasis, Dependencies
+Objective, ScopePath, AcceptedBasis, Dependencies, EXCLUSIONS
 DeclaredReads, AllowedTools, AllowedWriteTargets
 ExpectedOutputs, AcceptanceCriteria, Escalation
 ```
