@@ -24,7 +24,7 @@ Sources: `_CONTEXT.md` (Identity), `_STATUS.md` (Current State after this run).
 | ControlPurpose | Coordinate source-grounded SCC-001 reconciliation for the runtime, SDK, session, and tooling closure area. |
 | GraphParticipation | EXCLUDED_CONTROL_DELIVERABLE |
 | StructuredDependencyRegister | Intentionally absent; do not create `Dependencies.csv` for this control deliverable. |
-| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/` |
+| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/` |
 | StrictFullGraphStatus | ACYCLIC |
 | StrictSCCCount | 0 |
 | BlockerSubsetStatus | ACYCLIC |

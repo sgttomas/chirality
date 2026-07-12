@@ -20,8 +20,8 @@ The current accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_
 
 The two source rows differ in reading:
 
-- `DEP-10-02-004` is an `INTERFACE` row from `DEL-10-02` to `DEL-10-03`, with `SatisfactionStatus` `TBD`, `Confidence` `MEDIUM`, and notes that it is future-boundary only.
-- `DEP-10-03-006` is a `PREREQUISITE` row from `DEL-10-03` to `DEL-10-02`, with `SatisfactionStatus` `PENDING`, `Confidence` `HIGH`, and notes that it is an explicit sibling-deliverable prerequisite.
+- `DEP-10-02-004` is a retained `INTERFACE` row from `DEL-10-02` to `DEL-10-03`, with `Status` `RETIRED`, `SatisfactionStatus` `NOT_APPLICABLE`, and `Confidence` `MEDIUM`.
+- `DEP-10-03-006` is a preserved `PREREQUISITE` row from `DEL-10-03` to `DEL-10-02`, with `Status` `ACTIVE`, `SatisfactionStatus` `SATISFIED`, and `Confidence` `HIGH`.
 
 Sources: PKG-10 `Dependencies.csv` rows `DEP-10-02-004` and `DEP-10-03-006`.
 

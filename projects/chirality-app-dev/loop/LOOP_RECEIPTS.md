@@ -1390,3 +1390,23 @@
     metadata-only diff check; six durable-record sets; 53-state census;
     original-run integrity; `git diff --check`; practitioner self-check.
     Frontend gates skipped because P41 is docs/register metadata only.
+
+- **2026-07-12 — Receipt 41** (D-APP-56 R5 P42 / Tranche E DepClosure
+  snapshot-pointer repair complete; P41 landed PR #205).
+  - Upstream: D-APP-56; exact immutable-CSV set UPD-081..UPD-083 (3/3,
+    DEL-00-01 and DEL-00-02 only).
+  - Executed: D53A is current across the named control-kit/reference surfaces;
+    SAFE_MOVES remains historical first-proof evidence; DEL-00-01's two
+    SCC-002 descriptors now match the live owning dependency rows.
+  - Scope: DEL-10-04 excluded because its actionable register repair is
+    UPD-157/P45; original RUN_D55 artifacts remain unchanged.
+  - State: all 53 deliverables remain IN_PROGRESS; generic concordance
+    Remaining items stay open pending R6; no runtime source changed.
+  - Model/roles: GPT-5 read-only discovery derived and adversarially checked
+    the member/edit set; GPT-5 governed execution applied and fan-in checked
+    the P42 tranche. No silent model substitution occurred.
+  - Checks: exact member/path census; D53A `_LATEST` and closure-summary checks;
+    SAFE_MOVES historical-preservation check; live SCC-002 row-field checks;
+    two durable-record sets; 53-state census; original-run integrity;
+    `git diff --check`; practitioner self-check. Frontend gates skipped because
+    P42 is documentation/control metadata only.
