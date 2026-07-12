@@ -1486,3 +1486,36 @@
   - Gate outcome: owner direction is to PAUSE after P38-P45. No P05, P06,
     consolidated decision-application, code, R6, or closeout work starts from
     this receipt.
+
+- **2026-07-12 — Receipt 45** (D-APP-56 R5 consolidated decision application
+  complete; awaiting commit/PR merge at receipt authoring).
+  - Upstream: Receipt 44 pause lifted by the active owner goal; D-APP-56 remains
+    the complete R4 ruling. Exact immutable-CSV set is 42 rows:
+    32 EXECUTED (UPD-001..003, 019..022, 034..054, 158..161), nine
+    NO-REPAIR-NEEDED under P15 (UPD-023..031), and one NOT-A-DEFECT /
+    NO-REPAIR-NEEDED under P18 (UPD-032). Durable enumeration:
+    `execution/_Reconciliation/DeliverableConcordance/R5_DECISION_APPLICATION_ACCOUNTING_2026-07-12.md`.
+  - Executed: ruled kit/register ownership, exclusions, mappings, and dated
+    deferrals for P01-P03, P07-P10, P15-P18, P20-P37, and P46-P49. P17's
+    project-local per-class rule is in `docs/VALIDATION_STRATEGY.md`; its
+    four DEL-04-05 coverage classes remain explicit in `## Remaining`.
+    BR-005 is ruled and BR-001..004 deferred; P26 UNKNOWN and P46 gates remain.
+    P47/P48/P49 residuals are deliverable-local; all 22 CQ-F1 paths occur once
+    with their accepted affinity classifications preserved.
+  - Withheld: UPD-045's authority-catalog half remains for P06. No P05, P06,
+    final-code, or R6 work is included. The six-pin root export rider remains
+    separately deferred.
+  - State: all 53 deliverables remain IN_PROGRESS; generic concordance Remaining
+    items stay for R6; original RUN_D55 artifacts are unchanged.
+  - Model/roles: GPT-5 primary orchestrator performed live discovery, governed
+    fan-in, fixes, and validation; GPT-5 highest-capability agents executed the
+    disjoint P01-P26 and P27-P49 governed surfaces; a separate GPT-5
+    highest-capability adversarial verifier found the P15/P17/P37/CQ-F1
+    integration gaps, all corrected before closeout. No silent model
+    substitution occurred.
+  - Checks: 42-row outcome accounting; CQ-F1 22/22 exact-once and affinity
+    review; 33 deliverable durable records; dependency CSV schema parse;
+    P17/P22/P26/P46 rider checks; 53-state census; original-run integrity;
+    `git diff --check`; practitioner status and self-check baseline. Frontend
+    runtime gates skipped because this tranche changes documentation/register
+    metadata only.

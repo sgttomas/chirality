@@ -26,3 +26,5 @@
 - 2026-07-12 - D-APP-56 R4-P41 reference-path metadata repair applied; concordance bootstrap remains open pending R6; no state change.
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-093 as an append-only INSP-03 superseding annotation; named store/schema/apply residuals remain gated; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-150, UPD-151, UPD-152; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+
+- 2026-07-12 - D-APP-56 R4-P46 reaffirmed DEP-10-03-004 as D-APP-53 Option-C-gated, open, and unselectable; UNKNOWN/gated posture preserved and no state change occurred.

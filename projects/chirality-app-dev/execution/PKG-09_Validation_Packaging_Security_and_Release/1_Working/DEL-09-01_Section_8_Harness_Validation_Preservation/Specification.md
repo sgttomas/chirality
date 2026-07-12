@@ -54,5 +54,9 @@ Required artifacts for this deliverable:
 - Section 8 validation preservation tests.
 - Premerge summary checks.
 - Evidence of stable summary artifact generation at `frontend/artifacts/harness/section8/latest/summary.json`.
-- CI artifact upload evidence for `harness-section8-summary`.
+- CI artifact upload evidence for the current `harness-validation-summaries` bundle.
 - Any residual `TBD`, `ASSUMPTION`, or source-warning notes carried forward into closure.
+
+## D-APP-56 CI ownership amendment (2026-07-12)
+
+R4-P37 assigns the repo-root CI workflow and uploaded validation-artifact ownership to DEL-09-05. DEL-09-01 retains a narrowed requirement that the CI validation chain preserve Section 8 through the release-quality wrapper: `.github/workflows/harness-premerge.yml` invokes `npm run validate:release-quality`, which invokes the premerge/Section 8 validation, and uploads `harness-validation-summaries`. DEL-09-01 does not own the workflow.

@@ -95,3 +95,7 @@ TBD:
 ## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
 UPD-108 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; the file-tree UI still does not own dependency extraction.
+
+## D-APP-56 launcher confirmation (2026-07-12)
+
+R4-P29 confirms that the portal deliverable-rows launcher is within the existing DEL-02-03 REQ-009 claim. This is an ownership confirmation, not a new lifecycle or implementation claim.

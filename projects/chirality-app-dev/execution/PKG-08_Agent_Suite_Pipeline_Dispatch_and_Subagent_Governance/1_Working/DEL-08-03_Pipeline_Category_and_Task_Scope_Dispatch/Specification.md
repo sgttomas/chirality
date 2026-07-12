@@ -33,7 +33,7 @@ Out of scope:
 | DEL-08-03-REQ-007 | Dynamic scope scan shall reset invalid selection state when roots change, deliverables disappear, knowledge markers are disabled, or knowledge targets become stale. | P1 | `docs/PRD.md` FR-013 |
 | DEL-08-03-REQ-008 | Knowledge-type discovery shall support document-kit files as first-class knowledge buckets: Datasheet, Specification, Guidance, and Procedure. | P1 | `docs/PRD.md` FR-049 |
 | DEL-08-03-REQ-009 | Knowledge-type discovery shall align with the canonical `KnowledgeTypeOption` vocabulary when metadata buckets are exposed. | P1 | `docs/TYPES.md` Section 4.4 |
-| DEL-08-03-REQ-010 | Scope scanning shall use the active working-root scope surface rather than hard-coded project assumptions, with evidence showing a call, mock contract, or fixture for `/api/working-root/scope`. | P0 | `docs/SPEC.md` Section 17.2; `docs/PRD.md` FR-013 |
+| DEL-08-03-REQ-010 | Scope scanning shall use the active working-root scope surface rather than hard-coded project assumptions, with evidence showing a call, mock contract, or fixture for `/api/project/deliverables`. | P0 | `docs/SPEC.md` Section 17.2; `docs/PRD.md` FR-013; D-APP-56 R4-P21 |
 | DEL-08-03-REQ-011 | Dispatch behavior shall not expand agent authority or bypass Type 2 governance constraints; pass evidence shall show selector state cannot bypass write-scope, sealed-context, no-ghost-input, approval-reference, or fail-closed delegation gates. | P0 | `docs/CONTRACT.md` K-WRITE-1, K-SEAL-1, K-GHOST-1, K-SUBAGENT-1 |
 | DEL-08-03-REQ-012 | Selector tests shall cover pipeline selector behavior, knowledge-type discovery, disabled option handling, and invalid-selection reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target. | P1 | Decomposition anticipated artifacts; `docs/PRD.md` FR-013 |
 
@@ -58,7 +58,7 @@ Out of scope:
 | DEL-08-03-REQ-004, DEL-08-03-REQ-005, DEL-08-03-REQ-006 | UI/state tests for split TASK selectors and required target deliverable behavior. | TASK selector state tests |
 | DEL-08-03-REQ-007 | State transition tests using named fixtures for root change, removed deliverable, disabled marker, and stale knowledge target. | Stale selection reset tests plus fixture inventory |
 | DEL-08-03-REQ-008, DEL-08-03-REQ-009 | Scope scan and UI tests for document-kit buckets (`Datasheet`, `Specification`, `Guidance`, `Procedure`) and any exposed metadata buckets using canonical `KnowledgeTypeOption` labels. | Knowledge-type discovery tests |
-| DEL-08-03-REQ-010 | API integration or mocked API contract tests for `/api/working-root/scope`, including evidence that returned deliverables and knowledge buckets come from the active working root. | Scope scan integration tests |
+| DEL-08-03-REQ-010 | API integration or mocked API contract tests for `/api/project/deliverables`, including evidence that returned deliverables and knowledge buckets come from the active working root. | Scope scan integration tests |
 | DEL-08-03-REQ-011 | Governance regression tests or review checks proving dispatch does not enable unauthorized Type 2 execution or bypass sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation. | Governance guard tests or review evidence |
 | DEL-08-03-REQ-012 | Test inventory review with named category, TASK scope, discovery, disabled-option, and reset fixtures. | Named tests or fixtures covering anticipated artifacts |
 

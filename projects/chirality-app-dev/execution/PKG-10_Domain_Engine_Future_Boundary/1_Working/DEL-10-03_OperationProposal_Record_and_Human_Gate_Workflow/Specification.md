@@ -80,3 +80,7 @@ Additional documentation needed before implementation:
 ## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
 UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.
+
+## D-APP-56 ownership amendment (2026-07-12)
+
+Under R4-P27, this deliverable owns the ruled proposal-tool surface in `domain-proposal-tools.ts` (`propose`, `refresh`, and `validate`), including registration, proposal envelopes, and gates. Only PEC-profile-scoped fixture interaction is evidence for DEL-10-04. This amendment does not unlock DEP-10-03-004 or any D-APP-53 Option-C-gated work.

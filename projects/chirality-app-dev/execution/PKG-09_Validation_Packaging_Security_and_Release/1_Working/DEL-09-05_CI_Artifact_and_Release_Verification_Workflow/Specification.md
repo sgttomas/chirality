@@ -112,3 +112,7 @@ Documentation notes:
 ## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
 UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.
+
+## D-APP-56 CI ownership amendment (2026-07-12)
+
+R4-P37 confirms DEL-09-05 as owner of `.github/workflows/harness-premerge.yml` and its `harness-validation-summaries` artifact. DEL-09-01 retains its Section 8 wrapper-preservation interest and verification contract but does not own the workflow.

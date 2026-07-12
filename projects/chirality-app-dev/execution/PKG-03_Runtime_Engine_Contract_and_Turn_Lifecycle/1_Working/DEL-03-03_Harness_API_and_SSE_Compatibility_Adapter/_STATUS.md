@@ -7,6 +7,9 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Apply the three-route SPEC 17.1 catalog amendment only through the separately governed D-APP-56 R4-P06 corpus tranche (gate: P06 corpus procedure).
+- The route-adapter test index and SSE compatibility fixture README are deferred on 2026-07-12 under D-APP-56 R4-P48 until the next governed documentation-production tranche (gate: new owner-authorized production tranche).
+- CQ-F1 working-root route affinity: `frontend/src/app/api/working-root/deliverable/content/route.ts` is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48; no ownership or mapping is asserted (revisit: next concordance pass).
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History

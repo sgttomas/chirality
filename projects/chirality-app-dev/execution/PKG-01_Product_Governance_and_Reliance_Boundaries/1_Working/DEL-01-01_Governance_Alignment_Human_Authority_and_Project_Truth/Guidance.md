@@ -59,6 +59,6 @@ Closed historical conflict: `DEL-01-01-C001` is superseded by the current D-APP-
 | Ruling ID | Status / needed decision |
 |---|---|
 | DEL-01-01-R001 | Closed by the current D-APP-38 corpus snapshot; rerun authority-corpus status if an authority document changes. |
-| DEL-01-01-R002 | Confirm whether the stale dispatch package-label path should be corrected in ORCHESTRATOR coordination state. |
-| DEL-01-01-R003 | Assign `ResponsibleParty`, if ownership is ready. |
+| DEL-01-01-R002 | Resolved by D-APP-56 R4-P48 on 2026-07-12: preserve stable IDs and the live package path; no obsolete dispatch label is needed to discover or execute remaining work. |
+| DEL-01-01-R003 | `ResponsibleParty` assignment explicitly deferred by D-APP-56 R4-P47 on 2026-07-12; retain `TBD` until an accountable human assigns it. |
 | DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. |

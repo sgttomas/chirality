@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- ResponsibleParty remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
 - Resolve owner-authority / ResponsibleParty TBD fields at issuance-gate sign-off (see also DEL-01-03) (source: insp05 addendum §5 separate-ruling items / D-APP-53 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 

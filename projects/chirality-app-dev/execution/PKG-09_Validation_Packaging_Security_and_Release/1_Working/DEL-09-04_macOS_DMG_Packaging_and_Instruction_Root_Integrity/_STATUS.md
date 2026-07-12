@@ -7,9 +7,13 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- CQ-F1 Electron bridge affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/src/types/chirality-window.d.ts` and `frontend/electron/preload.ts`. No ownership or mapping is asserted (revisit: next concordance pass).
+- CQ-F1 proof/build affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/src/lib/harness/scripted-agent-sdk-proof.ts` and `frontend/scripts/assert-harness-contract-deps.mjs`. No ownership or mapping is asserted (revisit: next concordance pass).
+- Packaging/release evidence for DEL-09-04's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged-SDK proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
+- 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2)
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

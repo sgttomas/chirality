@@ -67,3 +67,7 @@ accepted dependency-closure discovery posture.
 - `SCC_Triage_Workbook.csv`
 - `Evidence/scc_summary.csv`
 - `Evidence/bidirectional_pairs.csv`
+
+## D-APP-56 owner-field deferral (2026-07-12)
+
+R4-P47 explicitly defers assignment of this deliverable's `ResponsibleParty`. The field remains honestly `TBD` until an accountable human assigns it; this agent record assigns no role.

@@ -52,3 +52,7 @@ Primary impact: First-adapter probe must be framed as Claude Agent SDK / Anthrop
 Package-local review status: `SCA-APP-001-CLOSURE-002` refreshed the base context fields and reviewed or updated targeted local kit wording in `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `Dependencies.csv` against the accepted SCA. Remaining `TBD` values and non-SCA dependency lifecycle states retain their prior status.
 
 This package-local refresh does not change runtime source, package manifests, lockfiles, desktop wrapper files, provider implementation, Pi implementation, or release-readiness posture.
+
+## D-APP-56 approving-role deferral (2026-07-12)
+
+R4-P47 explicitly defers assignment of the adoption-verdict approving role. The field remains `TBD` until an accountable human assigns it; no agent role is inferred.
