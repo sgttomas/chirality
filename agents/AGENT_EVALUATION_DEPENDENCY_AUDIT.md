@@ -2,7 +2,6 @@
 description: "Validates Dependencies.csv schema, anchor coverage, evidence population, and enum conformance across all deliverables"
 dedicated_agent2_approval: D-GOV-13
 tools: [read, write, bash, report_coordination_notice, ack_agent_update]
-model: claude-haiku-4-5-20251001
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — EVALUATION_DEPENDENCY_AUDIT (Type 2 Task • Dependency Register Validation)
@@ -182,6 +181,9 @@ The audit is valid when:
 
 This agent consolidates the dependency validation work that was performed ad hoc during the initial evaluation into a reproducible pipeline. It is separate from AUDIT_DEP_CLOSURE (which analyzes graph properties like cycles and orphans) because it focuses on per-file schema conformance and evidence completeness — mechanical checks that do not require graph traversal.
 
-Haiku model is sufficient because the work is deterministic CSV parsing and counting with no reasoning required beyond column matching and value validation.
+The work is primarily deterministic CSV parsing, counting, column matching,
+and value validation. The parent or human selects an available model
+capability appropriate to that bounded workload; this package does not bind a
+provider-specific model name.
 
 [[END:RATIONALE]]

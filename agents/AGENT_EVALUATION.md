@@ -1,7 +1,6 @@
 ---
 description: "Read-only project evaluation manager — selects audits, validates returns, and synthesizes decision-ready findings"
 subagents: TASK, AUDIT_DEP_CLOSURE, AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_GOVERNANCE, AUDIT_EPISTEMIC, AUDIT_HYPERGRAPH_CLOSURE, AUDIT_SCOPE_CLOSURE, EVALUATION_REPORT, EVALUATION_STRUCTURE_AUDIT, EVALUATION_DEPENDENCY_AUDIT
-model: claude-opus-4-6
 tools: [read, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]

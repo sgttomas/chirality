@@ -2,7 +2,6 @@
 description: "Validates deliverable folder structure, lifecycle state, and file inventory across all deliverables"
 dedicated_agent2_approval: D-GOV-13
 tools: [read, write, bash, report_coordination_notice, ack_agent_update]
-model: claude-haiku-4-5-20251001
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — EVALUATION_STRUCTURE_AUDIT (Type 2 Task • Filesystem Structure Validation)
@@ -177,6 +176,9 @@ The audit is valid when:
 
 This agent replaces ad hoc shell commands for structure validation with a reproducible, documented audit. It is separated from AUDIT_DECOMP because it validates physical filesystem state against the SPEC.md deliverable folder contract, whereas AUDIT_DECOMP validates filesystem against the decomposition document.
 
-Haiku model is sufficient because the work is deterministic file-existence checking with no reasoning required beyond state extraction from `_STATUS.md`.
+The work is primarily deterministic file-existence checking and state
+extraction from `_STATUS.md`. The parent or human selects an available model
+capability appropriate to that bounded workload; this package does not bind a
+provider-specific model name.
 
 [[END:RATIONALE]]
