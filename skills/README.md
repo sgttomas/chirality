@@ -121,6 +121,9 @@ Publication example:
 Review example:
 - `WORKING_ITEMS` dispatches `TASK + dbm-draft-review` to review a human-prepared draft DBM against the governed knowledge base. The skill runs deterministic substrate tools (`scan_section_coverage.py`, `extract_claims.py`, `scan_tbd_markers.py`, `check_body_thinness.py`) then uses agent judgment to compare the substrate against governed truth (KA artifacts, section map, publication rules, supersession state) and prepare candidate findings. The human dispositions findings through the REVIEW agent.
 
+Software example:
+- `WORKING_ITEMS` activates the project-local `software-workflow.json`, then dispatches `TASK` with one of `software-repository-reconnaissance`, `software-bounded-implementation`, `software-defect-diagnosis`, `software-test-planning`, or `software-code-review`. The skill carries the reasoning method; `tools/software_workflow/` discovers surfaces, selects and runs registered checks, validates write scope, compares structured contracts, and detects generated-file drift. See `docs/SOFTWARE_WORKFLOW_PROFILE.md`.
+
 Legacy skills:
 - `dbm-concordance-seed` — marked `chirality-skill-status: LEGACY`; no longer dispatched by DBM_PUBLISHER. Concordance has moved from pre-authoring gate to post-authoring evidence bundle review.
 

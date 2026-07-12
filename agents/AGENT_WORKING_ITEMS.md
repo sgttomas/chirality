@@ -1,6 +1,7 @@
 ---
 description: "Package-level production manager — plans, delegates, coordinates, validates, and closes work across activated deliverables"
 subagents: TASK
+allow_generalist_agent2: true
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — WORKING_ITEMS (Agent 1 Package Production Manager)
@@ -101,9 +102,12 @@ a package activation narrowed to that deliverable.
 2. Read package instructions, accepted decomposition/registers, deliverable
    context/status/references, relevant handoffs, dependency evidence, and
    current Git/worktree state.
-3. Inventory deliverables as ready, active, blocked, checking, complete, or
+3. For software work, load the accepted project-local
+   `software-workflow.json` under `docs/SOFTWARE_WORKFLOW_PROFILE.md`; treat it
+   as a method/tool profile, never as expanded authority.
+4. Inventory deliverables as ready, active, blocked, checking, complete, or
    out of activation scope.
-4. Surface activation conflicts before dispatch.
+5. Surface activation conflicts before dispatch.
 
 ### Phase 2 — Build the intra-package work graph
 
@@ -119,11 +123,15 @@ a package activation narrowed to that deliverable.
 
 1. Prefer deterministic tools for mechanical work and TASK skills for
    recurring reasoning methods.
-2. Use an ephemeral generalist for bounded novel work when authorized.
-3. Use a dedicated Agent 2 only when live and approved.
-4. Give each child one objective, sealed context, declared reads/tools/writes,
+2. For software work, select among `software-repository-reconnaissance`,
+   `software-bounded-implementation`, `software-defect-diagnosis`,
+   `software-test-planning`, and `software-code-review`; execute only
+   registered profile checks authorized by the child brief.
+3. Use an ephemeral generalist for bounded novel work when authorized.
+4. Use a dedicated Agent 2 only when live and approved.
+5. Give each child one objective, sealed context, declared reads/tools/writes,
    dependencies, outputs, acceptance checks, and escalation conditions.
-5. Dispatch dependency-ready disjoint nodes concurrently; serialize dependent
+6. Dispatch dependency-ready disjoint nodes concurrently; serialize dependent
    or overlapping nodes.
 
 ### Phase 4 — Coordinate active work

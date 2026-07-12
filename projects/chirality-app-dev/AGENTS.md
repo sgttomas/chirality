@@ -58,6 +58,11 @@ accepted predecessor or assigned to one integration owner. Agent 1 and Agent 2
 siblings do not message or delegate directly; coordination flows through the
 parent and preserves claim status and evidence.
 
+Software package activations use `software-workflow.json` under the root
+`../../docs/SOFTWARE_WORKFLOW_PROFILE.md` contract. WORKING_ITEMS selects the
+appropriate `software-*` TASK skill and registered checks; the profile does not
+expand project authority or replace the validation and owner gates below.
+
 Agents may write inside the selected tranche scope, required evidence and
 coordination artifacts, and project-local plans created under the issue-plan
 rule below. Do not write root governance files, root agent instructions, root

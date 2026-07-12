@@ -24,6 +24,19 @@ Deterministic tools for the Chirality agent operating system. These tools codify
 | `count_workspace_state.sh` | zsh | Count packages, deliverables, lifecycle states, tool roots | EXECUTION_ROOT | Summary table |
 | `scan_next_amendment_id.sh` | zsh | Scan _ScopeChange/ for next available SCA-{NNN} ID | SCOPE_CHANGE_ROOT | Next ID string (stdout) |
 
+## Software Workflow
+
+Profile-driven deterministic support for WORKING_ITEMS software activations. The canonical profile contract is `docs/SOFTWARE_WORKFLOW_PROFILE.md`.
+
+| Name | Language | Purpose | Inputs | Outputs |
+|------|----------|---------|--------|---------|
+| `discover_repository.py` | Python 3 | Discover manifests and conventional test files without executing project code | root | JSON repository map |
+| `select_affected_checks.py` | Python 3 | Map changed project-relative paths to registered checks | profile, paths | JSON check selection and reasons |
+| `run_registered_checks.py` | Python 3 | Execute selected profile commands as argument arrays without a shell | profile, repeated `--check`, `--output` | Normalized JSON evidence; exit 0/1 |
+| `validate_change_scope.py` | Python 3 | Compare explicit or Git-derived changed paths with allowed write roots | repo, repeated `--allowed`, diff or explicit paths | JSON PASS/FAIL scope report |
+| `compare_structured.py` | Python 3 | Compare JSON API, schema, or migration artifacts by flattened value path | before, after | JSON added/removed/changed report |
+| `verify_generated_manifest.py` | Python 3 | Verify generated files against a path-to-SHA-256 manifest | root, manifest | JSON PASS/FAIL drift report |
+
 ## Validation
 
 | Name | Language | Purpose | Inputs | Outputs |
