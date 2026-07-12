@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - D-APP-56 R4-P39 reconciled present-tense lifecycle wording to read current state from `_STATUS.md`; prior CHECKING evidence remains historical. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P38 refreshed current kit corpus-version wording to version-neutral D-APP-38 snapshot references. Historical dated evidence was preserved; boundary-row rulings remain governed separately and no lifecycle transition occurred.
 - 2026-06-21 - ADQ-03 materialized `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized scope-boundary/professional-boundary checklist and evidence-template package for DEL-01-04. Boundary-row human rulings, dependency satisfaction, issuance, release readiness, and professional approval remain unresolved/human-gated; `_STATUS.md` remains unchanged.
 - 2026-06-21 - ADQ-01 reconciled stale lifecycle/dependency-creation and REF-006 wording against current `CHECKING` state, existing derivative `Dependencies.csv`, and D-APP-38 corpus `v1` (`docs/PRD.md` MATCH). Boundary-row human rulings remain TBD; no `_STATUS.md`, dependency row, issuance, release, or professional-boundary state changed.

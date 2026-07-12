@@ -12,7 +12,7 @@
 | ResponsibleParty | TBD - HumanRuling required for the owning human/agent authorized to accept SCC-001 rulings. |
 | DecompositionVariant | CONTROL_PACKAGE |
 | DecompositionRevision | PKG-00 overlay |
-| CurrentLifecycleState | CHECKING |
+| CurrentLifecycleState | Read from `_STATUS.md` (currently `IN_PROGRESS`) |
 
 Sources: `_CONTEXT.md` (Identity), `_STATUS.md` (Current State after this run).
 

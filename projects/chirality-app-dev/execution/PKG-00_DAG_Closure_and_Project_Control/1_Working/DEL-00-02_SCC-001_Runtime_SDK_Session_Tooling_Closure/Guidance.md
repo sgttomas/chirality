@@ -42,8 +42,8 @@ Sources: `Evidence/scc_summary.csv`, `Evidence/bidirectional_pairs.csv`, `Depend
 
 ## Closed-History And Current Boundary Notes
 
-The old `OPEN`/`SEMANTIC_READY` lifecycle conflict is historical. `_STATUS.md` is the lifecycle
-authority and currently records `CHECKING` under the D-APP-19 inspection program. The accepted
+The old `OPEN`/`SEMANTIC_READY`/`CHECKING` lifecycle sequence is historical. `_STATUS.md` is the
+sole current lifecycle authority and currently records `IN_PROGRESS` under D-APP-54. The accepted
 safe-moves DepClosure snapshot closes SCC-001 for dependency-closure discovery with strict
 `scc_count = 0`; it does not create lifecycle issuance, product acceptance, release readiness,
 professional approval, certification, sealing, authentication, or code-compliance acceptance.

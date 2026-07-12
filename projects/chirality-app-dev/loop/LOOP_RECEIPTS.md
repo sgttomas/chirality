@@ -1327,3 +1327,18 @@
   - Checks: CSV member coverage 6/6; targeted stale-label scan; dependency CSV
     parse; D-APP-38 status no drift; `git diff --check`; self-check; frontend
     gates skipped because no runtime source changed.
+
+- **2026-07-12 — Receipt 38** (D-APP-56 R5 P39 / Tranche B lifecycle-wording
+  repair complete; P38 landed PR #201).
+  - Upstream: D-APP-56; exact CSV set UPD-061..UPD-067 (7/7) plus the CQ-F5
+    rider on DEL-02-01.
+  - Executed: seven kits now read current lifecycle from `_STATUS.md`; CQ-F5
+    recorded as reviewed/no-repair with Checking Approval SHA and D-APP-19
+    Authorization Basis preserved unchanged as historical evidence.
+  - State: all 53 deliverables remain IN_PROGRESS; generic concordance
+    Remaining items stay open pending R6; original run folder unchanged.
+  - Model/roles: GPT-5 primary governed execution/fan-in; GPT-5 read-only
+    discovery agent independently derived seven rows and the CQ-F5 treatment.
+  - Checks: member/rider accounting; scoped present-tense scan; 53-state census;
+    DEL-02-01 header fidelity; `git diff --check`; app-dev self-check; frontend
+    gates skipped because no runtime source changed.

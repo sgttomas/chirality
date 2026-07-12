@@ -13,7 +13,7 @@
 | ResponsibleParty | TBD |
 | Type | DOC_UPDATE |
 | ContextEnvelope | S |
-| Current lifecycle state | CHECKING (drafted earlier at `OPEN`; inspection transition recorded in `_STATUS.md`) |
+| Current lifecycle state | Read from `_STATUS.md` (currently `IN_PROGRESS`; prior states remain historical evidence) |
 
 ## Attributes
 

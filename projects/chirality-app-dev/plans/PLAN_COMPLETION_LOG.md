@@ -6,6 +6,15 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P39 lifecycle-wording repair
+
+Executed UPD-061..UPD-067 across seven deliverables, replacing duplicated
+present-tense `CHECKING` claims with `_STATUS.md`-derived lifecycle wording.
+The CQ-F5 rider was reviewed as a ruled no-action: DEL-02-01's Checking
+Approval SHA and D-APP-19 authorization basis remain preserved history. All
+eight affected deliverables remain `IN_PROGRESS`; no lifecycle transition
+occurred and the concordance bootstrap remains open pending R6.
+
 ## 2026-07-12 - D-APP-56 R5 P38 corpus-label repair
 
 Executed the six R4-P38 proposal rows (UPD-055..UPD-060) across DEL-01-01..04.

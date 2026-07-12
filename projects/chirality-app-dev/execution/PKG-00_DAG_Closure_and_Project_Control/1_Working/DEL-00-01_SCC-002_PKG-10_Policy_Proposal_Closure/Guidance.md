@@ -49,7 +49,8 @@ The decision authority for product-register edits remains unresolved. `E-001` is
 ## Closed-History Note
 
 The earlier lifecycle-label conflict is closed as historical context. `_STATUS.md` is the lifecycle
-authority for this deliverable and currently records `CHECKING` under the D-APP-19 inspection program.
+authority for this deliverable and currently records `IN_PROGRESS` under D-APP-54; the prior
+D-APP-19 `CHECKING` record remains historical evidence.
 `DAG_CLOSURE_CONTROL.md` and the accepted DepClosure snapshot
 `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` are dependency-closure discovery evidence only; they do
 not authorize lifecycle issuance, release readiness, professional approval, certification, sealing,

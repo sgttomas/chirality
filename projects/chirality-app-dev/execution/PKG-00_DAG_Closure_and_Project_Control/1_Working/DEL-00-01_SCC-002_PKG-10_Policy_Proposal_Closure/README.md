@@ -8,7 +8,7 @@
 | DeliverableID | DEL-00-01 |
 | Name | SCC-002 PKG-10 Policy Proposal Closure |
 | Type | CONTROL_RECONCILIATION |
-| Status | OPEN |
+| Status | Read from `_STATUS.md` (currently `IN_PROGRESS`) |
 | SCC | SCC-002 |
 
 ## Purpose
@@ -35,4 +35,3 @@ Treat `DEP-10-03-006` as the likely true sequencing edge unless source evidence 
 ## Graph Boundary
 
 This control deliverable does not have a `Dependencies.csv` register and must not be consumed as a product dependency node.
-
