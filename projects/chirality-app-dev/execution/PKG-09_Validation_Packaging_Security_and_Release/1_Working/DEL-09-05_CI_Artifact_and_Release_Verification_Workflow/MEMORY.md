@@ -10,3 +10,4 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-146, UPD-147: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-09-05; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-07-12 - D-APP-56 R4-P05 Option C executed under the owner's one-file root exception: the desktop-release template text is retained at `.github/workflows/desktop-release-template.yml.disabled`, outside active GitHub workflow discovery. No release, publication, signing, lifecycle, or product-runtime authority changed.
