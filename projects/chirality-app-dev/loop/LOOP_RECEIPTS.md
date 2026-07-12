@@ -1029,3 +1029,50 @@
     then proceed directly to W6 (PKG-10, ALL-fable discovery per Receipt
     18, F-APP-3 fence-adjacent brief). Run counter: 934 claim rows through
     fan-in to date (W1 86 + W2 423 + W3 223 + W4 113 + W5 89).
+
+- **2026-07-12 — Receipt 31** (D-APP-55 R2 W6 complete: PKG-10 concordance
+  discovery + fan-in verification; W5 PR merged; wave closed under the
+  Receipt 29 self-merge permission).
+  - W5 close trail: PR #191 created (gh retry loop over transient GitHub
+    IPv6 timeouts) and merged by the orchestrator per Receipt 29; main =
+    1976b379d; branch fast-forwarded; frontend byte-identity re-verified.
+  - Scope correction of record: PKG-10 contains FIVE deliverables
+    (DEL-10-01..05) — session planning notes had said four. Dispatched as
+    sub-batches 4+1 at the concurrency cap, all fable (Receipt 18 steer),
+    under a new W6 brief carrying the heightened F-APP-3 fence and the
+    W5-settled judgment rules.
+  - Discovery: 105 claim rows (25+22+21+22+15); deterministic validator
+    0 errors / 0 warnings on first pass.
+  - Fan-in (fable, high effort): 51 rows rechecked (self-flagged ∪
+    non-ALIGNED ∪ deferred candidates) — **51 confirmed, 0 refuted,
+    0 contested: the run's first zero-flip wave**. No rows routed back;
+    no CSV edited post-discovery. Both considered-not-coded deferrals
+    (dated D53A-era prose notes) ruled correctly-not-coded; contrast case
+    DEL-10-04 REGISTER-2 (machine-field lag) correctly coded → dated-note
+    discipline sent to R3 for run-wide ratification.
+  - F-APP-3 audit: zero fence violations across all six agents; one
+    justified UNKNOWN cell (DEL-10-03 REMAINING-2); DEL-10-01 resolved a
+    cross-project gate fence-compliantly from own pinned tool-descriptor
+    gateReason text.
+  - Final census (105 rows): ALIGNED 68, STALE_SPECIFICATION 17,
+    STALE_ASSESSMENT 6, PARTIALLY_IMPLEMENTED 4, IMPLEMENTED_UNDOCUMENTED
+    4, REMAINING_STATE_MISMATCH 6; zero AUTHORITY_CONFLICT / UNKNOWN /
+    DEFERRED / ACCEPTED_DIVERGENCE dispositions.
+  - Findings of record: kits describe a pure future boundary while
+    D-APP-49..52 landed a ruled staged-live surface — flat-assertion rows
+    STALE_SPECIFICATION, substance-still-true rows ALIGNED (W5
+    affirmative-permission rule held throughout); the boundary itself is
+    enforced live verbatim as ruled (no apply surface, registry gate,
+    test-pinned boundary copy — product cleaner than paperwork); four
+    IMPLEMENTED_UNDOCUMENTED rows partition the unowned staged surface
+    (R3: ONE ownership packet, partition two evidence overlaps); one
+    consolidated corpus-amendment NEW-PACKET (SPEC §18, TYPES §11, PLAN
+    R7, PRD KG-016); all five INSP-03s carry overtaken conclusions
+    without superseding notes; REF-007/008 absolute-path wart in all five
+    registers; REF-006 stale warning carried as live in three kits (PKG-07
+    R5 tranche). Evidence: `R2_WAVES/PKG-10/_VERIFICATION.md`,
+    `PACKAGE_SUMMARIES/PKG-10.md`; register cell extended (W6-COMPLETE).
+  - Wave closed per Receipt 29: durable checks + commit/push/PR +
+    orchestrator self-merge, then proceed directly to W7 (PKG-00, 2
+    deliverables, OPUS discovery per Receipt 18). Run counter: 1039 claim
+    rows through fan-in to date (86+423+223+113+89+105).
