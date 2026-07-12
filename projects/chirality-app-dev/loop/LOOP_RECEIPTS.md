@@ -1120,3 +1120,85 @@
     orchestrator self-merge, then proceed to R3 synthesis (fable per
     Receipt 18), then plan §10 QA, then **STOP at R4** (owner-gated; the
     Receipt 29 self-merge permission does not lift the R4 stop).
+
+- **2026-07-12 — Receipt 33** (D-APP-55 R3 synthesis + plan §10 QA complete —
+  **R3 COMPLETE; run STOPPED at the R4 human decision gate**; session resumed
+  post-W7 under the standing directions of record).
+  - Resume basis: W7/R2 closed at Receipt 32 (PR #194 merged, main =
+    `60db8de85`); frontend byte-identity to `fac46e33f` re-verified at resume
+    and again at close (`git diff --quiet` exit 0). Model of record: Fable 5
+    orchestrator, all R3 agents fable (Receipt 18 steer).
+  - R3-A (prior session, verified this session): merged
+    `CLAIM_CONCORDANCE.csv` (1,115 rows = 1,066 R2 + 49 R0-carried
+    DEL-02-01/DEL-03-04; zero duplicate keys; 53/53 deliverables;
+    DEL-10-01's superseded 28-row R0 ledger correctly excluded in favor of
+    its W6 re-run), `UNMAPPED_IMPLEMENTATION.csv` (36 rows),
+    `CONFLICTS_AND_UNKNOWNS.csv` (62 items, all with Owner +
+    SmallestNextAction), `AGENT_WORKFLOW_OBSERVATIONS.md` (zero
+    DEFERRED_AGENT_WORKFLOW dispositions run-wide — scan-verified; two
+    evidence-only boundary observations, no workflow recommendation).
+  - R3-B: `PROPOSED_DECISION_FINDINGS.md` (prior session) — 50 draft R4
+    packets in the six plan §8/R4 decision types, NEW-PACKET sweep reconciled
+    (66 cells → 30 distinct packets + 20 mandated non-cell packets).
+    Companion `PROPOSED_DELIVERABLE_UPDATES.csv` was found MISSING at resume
+    (the one defect in the prior session's R3 outputs) and produced this
+    session: 161 proposal-only repair rows, UPD-001..161, every row GatedBy
+    a real packet; validated twice (agent script + independent orchestrator
+    script): no empty cells, all 38 GatedBy values resolve, all 265
+    AffectedClaims pairs resolve to ledger rows; 39 repair-shaped ledger
+    rows deliberately not emitted, each with recorded reason; full coverage
+    sweep proves all 277 repair-shaped rows cited or reasoned.
+  - Plan §10 reviewer spot-check (fable, independent):
+    `R3_SPOT_CHECK.md` — 100 unique rows (9.0% of ledger): all high-risk
+    (8 LOW-confidence + non-ALIGNED HDN, capped 40), all 4 standing
+    contests (representation verified, not re-adjudicated), ALL 28
+    R0-vintage DEL-03-04 rows, 30 stratified across every disposition and
+    all 11 packages. **Verdicts: 100 CONFIRMED / 0 REFUTED /
+    0 UNVERIFIABLE; zero STALE_INPUT.**
+  - Finding F-1 (the spot-check's one artifact defect): PKG-03.md census
+    misstated the DEL-03-04 (R0) column — 21 rows with DEL-02-01's R0
+    detail vs the actual 28 (ALIGNED 24, PARTIAL 1, STALE_SPEC 1,
+    IMPL_UNDOC 2; package total 89, not 82) — a wrong-deliverable
+    transposition at W2 fan-in. Corrected by APPEND-ONLY erratum in
+    `PACKAGE_SUMMARIES/PKG-03.md` (original text preserved; corrected
+    census script-verified against the ledger). PKG-02.md and the PKG-03
+    prose findings verified uncontaminated.
+  - R0-vintage caveats of record (documented, NOT recoded — evidence
+    immutable, R2 closed): DEL-03-04 — 4 rows WOULD-RECODE to
+    STALE_ASSESSMENT under the run's harmonized precedent (REQ-004/REQ-005/
+    ACC-002/ACC-003, noteless INSP-03 PARTIALs), 27/28 rows lack the MR-1
+    token, 2 MR-5 REGISTER_DEFECT rows missing; DEL-02-01 — zero
+    WOULD-RECODE, 2 token-less rows, ~2 missing MR-5 rows. Routed to the
+    R4 gate (intersects R4-P11/P43).
+  - R3-C: `COVERAGE_AND_QA.md` (13 deterministic checks C1–C13 recorded;
+    §10 bullet verdicts: 5 PASS, 5 PASS-WITH-CAVEAT, 0 FAIL) +
+    `RUN_SUMMARY.md` (end-to-end narrative, script-derived final census,
+    R4 posture, explicit not-done list). New coverage findings CQ-F1..F5
+    ledgered in the report, headline: CQ-F1 — 22 of 155 implementation
+    surfaces (~4,830 LOC, dominantly the DEL-02-01 R0-granularity
+    footprint) uncited at any granularity and not listed unmapped;
+    enumerated with affinity classification and routed to R4. CQ-F2/F3
+    correct two spot-check parentheticals (DEL-02-01 has zero MR-5 rows;
+    its 21 rows bind directly at `4c8ed8907`, not the Receipt-4 fallback);
+    CQ-F4 — REQUIREMENT_INDEX parser gap larger than receipts recorded
+    (17 deliverables, no coverage loss); CQ-F5 — DEL-02-01 R0-notes
+    header-shape flag nearest to R4-P39, no packet names it.
+  - Whole-run final census (1,115 rows): ALIGNED 833, STALE_SPECIFICATION
+    94, PARTIALLY_IMPLEMENTED 64, REMAINING_STATE_MISMATCH 53,
+    IMPLEMENTED_UNDOCUMENTED 28, STALE_ASSESSMENT 23,
+    IMPLEMENTED_DIFFERENTLY 6, DOCUMENTED_UNIMPLEMENTED 5,
+    ACCEPTED_DIVERGENCE 5, STALE_VERIFICATION 4; zero AUTHORITY_CONFLICT /
+    UNKNOWN / DEFERRED_AGENT_WORKFLOW / STALE_INPUT.
+  - Plan §9 artifact contract: **14/14 required run artifacts present**
+    (+ run-local evidence files `R3_SPOT_CHECK.md`, wave `_VERIFICATION.md`
+    set, R0/R1 folders). All agent judgments; no human rulings represented;
+    no lifecycle transitions; no repairs executed; parked items unchanged
+    (root harness-premerge workflow; R4 corpus-amendment packet execution).
+  - Close per Receipt 29 (carried through R3 by Receipt 32's terms):
+    durable checks above + commit/push/PR + orchestrator self-merge
+    (PR number in the commit/PR trail), register cell extended
+    (R3-COMPLETE + §10-QA-COMPLETE + AWAITING-R4).
+  - **STOPPED at R4.** The 50 draft decision packets and 161 gated proposal
+    rows await owner rulings; R5 requires explicit owner ruling per
+    deliverable/tranche. No further phase work will be dispatched by this
+    session.

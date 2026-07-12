@@ -54,3 +54,36 @@ IMPLEMENTED_DIFFERENTLY 1 — from the owner-accepted calibration packet.)
 
 None open beyond the class-level register question: zero AUTHORITY_CONFLICT,
 UNKNOWN, DEFERRED_AGENT_WORKFLOW rows; zero contested fan-in verdicts.
+
+---
+
+## Erratum (2026-07-12, R3 §10 spot-check finding F-1 — append-only correction)
+
+The census above misstates the `DEL-03-04 (R0)` column and therefore the
+package totals. The actual `R0_CALIBRATION/DEL-03-04_claims.csv` ledger
+(byte-identical rows carried into `CLAIM_CONCORDANCE.csv`) has **28 rows**:
+ALIGNED 24, PARTIALLY_IMPLEMENTED 1, STALE_SPECIFICATION 1,
+IMPLEMENTED_UNDOCUMENTED 2 — package total **89 claim rows**, not 82.
+
+Corrected census (verified reproducible from the claim ledger by script):
+
+| Disposition | 03-01 | 03-02 | 03-03 | 03-04 (R0) | Total |
+|---|---|---|---|---|---|
+| ALIGNED | 17 | 15 | 16 | 24 | 72 |
+| PARTIALLY_IMPLEMENTED | 3 | 2 | 1 | 1 | 7 |
+| REMAINING_STATE_MISMATCH | 1 | 2 | 2 | 0 | 5 |
+| ACCEPTED_DIVERGENCE | 1 | 0 | 0 | 0 | 1 |
+| IMPLEMENTED_UNDOCUMENTED | 0 | 0 | 1 | 2 | 3 |
+| STALE_SPECIFICATION | 0 | 0 | 0 | 1 | 1 |
+| AUTHORITY_CONFLICT / UNKNOWN / DEFERRED_AGENT_WORKFLOW | 0 | 0 | 0 | 0 | 0 |
+
+The original column (21 rows) and the "R0 detail" parenthetical
+(STALE_ASSESSMENT 2, STALE_VERIFICATION 1, IMPLEMENTED_DIFFERENTLY 1) match
+the `DEL-02-01` R0 census, not DEL-03-04 — a wrong-deliverable transposition
+at W2 fan-in. The package-level prose findings are unaffected except that the
+"ruled bounded posture" item citing an R0 DEL-03-04 divergence should be read
+against DEL-03-04-REQ-006A (ALIGNED under the D-APP-40 Option B ruling); the
+ledger has no DEL-03-04 ACCEPTED_DIVERGENCE or IMPLEMENTED_DIFFERENTLY row.
+Original text above is preserved unchanged per the run's append-only
+discipline. Source: `R3_SPOT_CHECK.md` F-1; erratum recorded by the
+orchestrator (agent judgment, not a human ruling).
