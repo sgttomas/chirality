@@ -58,3 +58,7 @@ ADQ-09 satisfies the DEL-05-04 replay/transcript dependency rows for canonical s
 ## Issuance-Gate-Process Observations
 
 DEL-05-04 now has a product-owned transcript projection and sidebar view over canonical event replay. Keep the distinction between ADQ-09 transcript replay closure and ADQ-10 artifact checksum/retention policy.
+
+## D-APP-56 R5 P44 pointer annotation (2026-07-12)
+
+The REQ004 and REQ007 evidence citations above preserve the paths inspected at assessment time. D-APP-48 subsequently relocated `types.ts` and `transcript-replay.ts` to `frontend/packages/harness-contract/src/`; the current paths are `frontend/packages/harness-contract/src/types.ts` and `frontend/packages/harness-contract/src/transcript-replay.ts`. The PASS conclusions are unchanged; this is an evidence-pointer annotation only.

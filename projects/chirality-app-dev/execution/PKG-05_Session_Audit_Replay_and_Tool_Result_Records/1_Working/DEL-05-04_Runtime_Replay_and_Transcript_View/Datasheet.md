@@ -37,7 +37,7 @@
 | Downstream dependencies | ADQ-10 remains responsible for DEL-05-05 checksum/retention residuals; ADQ-09 consumes artifact-link metadata but does not close checksum policy. | `_DEPENDENCIES.md`; `D-APP-42` |
 | Canonicality constraint | `events.jsonl` remains canonical for runtime replay; SDK transcripts assist resume/debugging but do not displace Chirality events. | `docs/SPEC.md` Section 8.4; `docs/DIRECTIVE.md` Section 2.3 |
 | Migration constraint | Replay must account for legacy flat sessions through D-APP-41 eager conversion, then operate on canonical folder records. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` session storage notes; `D-APP-41` |
-| Exact parser API | `replayHarnessEvents(sessionId)` in `frontend/src/lib/harness/session-events.ts`; transcript projection via `deriveTranscriptView(events, session?)` in `frontend/src/lib/harness/transcript-replay.ts`. | ADQ-09 implementation |
+| Exact parser API | `replayHarnessEvents(sessionId)` in `frontend/src/lib/harness/session-events.ts`; transcript projection via `deriveTranscriptView(events, session?)` in `frontend/packages/harness-contract/src/transcript-replay.ts`. | ADQ-09 implementation; D-APP-48 relocation |
 | Exact transcript view route/UI placement | Replay route: `frontend/src/app/api/harness/session/[id]/events/route.ts`; sidebar UI: `frontend/src/components/shell/transcript-stream-view.tsx`. | ADQ-09 implementation |
 | Tool summary detail level | ASSUMPTION: replay should expose compact summaries and artifact links rather than raw large payloads, because large payloads are stored as artifacts and referenced by path. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
 

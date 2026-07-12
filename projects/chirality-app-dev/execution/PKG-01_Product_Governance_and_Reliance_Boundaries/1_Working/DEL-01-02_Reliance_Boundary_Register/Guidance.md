@@ -58,18 +58,19 @@ Rows should not be so granular that every implementation function becomes its ow
 
 For required register fields, use mandatory completion criteria rather than advisory wording: each row must name the protected product semantic, source evidence, enforcement owner, enforcement surface, prompt-only posture, SDK-default-only posture, validation evidence or `TBD`, residual risk, and decision status.
 
-### Implementation Surfaces That May Be `TBD`
+### Current Implementation Surfaces And Path Maintenance
 
-At P1/P2 drafting stage, several named surfaces may not exist yet. Use `TBD` for exact file paths while retaining the required conceptual surface:
+Keep concrete register paths synchronized with the inspectable tree. Use `TBD` only for a genuinely absent or unassigned surface, and retain a downstream closure path for every such entry.
 
-| Surface | Why it may be TBD now |
+| Surface | Current implementation path |
 |---|---|
-| `AgentEnginePort` / `RuntimeEngineContract` implementation file | Runtime contract deliverable belongs primarily to DEL-03-01. |
-| `TurnEngine` implementation file | Runtime lifecycle implementation belongs primarily to DEL-03-02. |
-| `SdkOptionsBuilder` | Settings and SDK option construction belongs primarily to DEL-04-02. |
-| `ChiralityPermissionOverlay` | Permission policy implementation belongs primarily to DEL-06-01. |
-| `ChiralityHooks` / hook runner | Hook implementation belongs primarily to DEL-06-04 and DEL-06-06. |
-| `evaluateSubagentGovernance` bridge | Subagent runtime implementation belongs primarily to DEL-08-04. |
+| `AgentEnginePort` | `frontend/packages/harness-contract/src/agent-engine-port.ts` |
+| `RuntimeEngineContract` | `frontend/src/lib/harness/agent-runtime-contract.ts` |
+| `TurnEngine` | `frontend/src/lib/harness/turn-engine.ts` |
+| `SdkOptionsBuilder` | `frontend/src/lib/harness/sdk-options-builder.ts` |
+| `ChiralityPermissionOverlay` | `frontend/src/lib/harness/permission-overlay.ts` |
+| `ChiralityHooks` / hook runner | `frontend/src/lib/harness/chirality-hooks.ts` |
+| `evaluateSubagentGovernance` bridge | `frontend/src/lib/harness/subagent-governance.ts` |
 
 ### Residual Risk Topics
 
@@ -140,7 +141,7 @@ code-compliance acceptance.
 | ID | Item | Disposition |
 |---|---|---|
 | ASSUMPTION-RBR-001 | The decomposition-listed objectives OBJ-002, OBJ-005, and OBJ-009 are directionally relevant to DEL-01-02. | Supported by DEL-01-02 decomposition row; not an extra hard requirement beyond cited source requirements. |
-| TBD-RBR-001 | Exact implementation file paths for runtime contract, permissions, hooks, settings, event log, and subagent bridge. | Leave `TBD` until downstream implementation deliverables exist. |
+| TBD-RBR-001 | Exact implementation file paths for runtime contract, permissions, hooks, settings, event log, and subagent bridge. | RESOLVED for the currently named surfaces above; keep their register citations current and use `TBD` only for a genuinely absent or unassigned future surface. |
 | TBD-RBR-002 | Exact SDK transcript storage/mirroring decision. | Resolve after R1 first-adapter probe and session linkage work. |
 | TBD-RBR-003 | Final Section 9 validation file/test names. | Current implemented IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD. |
 | TBD-RBR-004 | Generated-register completion evidence. | ADQ-02 generated and cross-checked `docs/harness/reliance_boundary_register.md`; future validator automation remains downstream. |

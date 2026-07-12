@@ -23,7 +23,7 @@ D-APP-38 authority corpus v2 reconciles `docs/PRD.md`; `_REFERENCES.md` records 
 
 ### Budget thresholds
 
-The runtime already defines tool-specific byte thresholds in `frontend/src/lib/harness/tool-descriptor.ts`. D-APP-42 deliberately leaves those values and the artifact naming scheme unchanged, so ADQ-10 validation should verify current behavior rather than introduce new policy.
+The runtime already defines tool-specific byte thresholds in `frontend/packages/harness-contract/src/tool-descriptor.ts`. D-APP-42 deliberately leaves those values and the artifact naming scheme unchanged, so ADQ-10 validation should verify current behavior rather than introduce new policy.
 
 F-001 and X-001 remain linked for future threshold changes: if thresholds or preview limits are changed later, that change needs a governed policy decision plus boundary tests. ADQ-10 does not alter those values.
 

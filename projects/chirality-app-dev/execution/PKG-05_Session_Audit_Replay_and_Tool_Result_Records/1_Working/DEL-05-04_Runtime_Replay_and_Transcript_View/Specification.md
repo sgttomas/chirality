@@ -37,7 +37,7 @@ Sources: `_CONTEXT.md`; `docs/SPEC.md` Sections 8-11; `docs/CONTRACT.md` K-EVENT
 | DEL-05-04-REQ-010 | Replay fixtures MUST cover event append/replay, malformed trailing JSONL behavior, and SDK session linkage/resume metadata. | `docs/SPEC.md` Section 19.3; `docs/PRD.md` conformance bullets |
 | DEL-05-04-REQ-011 | ASSUMPTION: the transcript view model should represent large tool results by summary and artifact reference rather than raw inline payload. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
 | DEL-05-04-REQ-012 | The accepted parser, model, API, component, and fixture paths are assigned by ADQ-09 implementation and must remain recorded in evidence. | Source gap resolved by ADQ-09 |
-| DEL-05-04-REQ-013 | The implementation handoff MUST record `frontend/src/lib/harness/session-events.ts`, `frontend/src/lib/harness/transcript-replay.ts`, `frontend/src/app/api/harness/session/[id]/events/route.ts`, `frontend/src/components/shell/transcript-stream-view.tsx`, and the focused replay/transcript fixtures. | `docs/SPEC.md` Sections 8-11; decomposition DEL-05-04 row; P3 items C-001 and D-001 |
+| DEL-05-04-REQ-013 | The implementation handoff MUST record `frontend/src/lib/harness/session-events.ts`, `frontend/packages/harness-contract/src/transcript-replay.ts`, `frontend/src/app/api/harness/session/[id]/events/route.ts`, `frontend/src/components/shell/transcript-stream-view.tsx`, and the focused replay/transcript fixtures. | `docs/SPEC.md` Sections 8-11; decomposition DEL-05-04 row; P3 items C-001 and D-001 |
 
 ## Standards
 

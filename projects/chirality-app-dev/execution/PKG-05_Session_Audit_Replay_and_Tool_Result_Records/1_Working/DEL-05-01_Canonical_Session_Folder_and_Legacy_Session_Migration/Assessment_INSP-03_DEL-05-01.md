@@ -66,3 +66,7 @@ Validation passed:
 - `git diff --check`
 
 Closeout validation details are recorded in `Evidence_ADQ-08_Canonical_Session_Migration.md`.
+
+## D-APP-56 R5 P44 pointer annotation (2026-07-12)
+
+The R006/R007/R009 and SDK-transcript-gap citations above preserve the `frontend/src/lib/harness/types.ts` path inspected at assessment time. D-APP-48 subsequently relocated that contract to `frontend/packages/harness-contract/src/types.ts`. The assessment conclusions are unchanged; this is an evidence-pointer annotation only.

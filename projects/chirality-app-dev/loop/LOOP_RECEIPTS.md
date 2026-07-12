@@ -1435,3 +1435,25 @@
     census; original-run integrity; D-APP-38 status; `git diff --check`;
     practitioner self-check. Frontend gates skipped because P43 is
     documentation/deliverable metadata only.
+
+- **2026-07-12 — Receipt 43** (D-APP-56 R5 P44 / Tranche G relocated-pointer
+  docs repair complete; P43 landed PR #208).
+  - Upstream: D-APP-56 R4-P44=A; exact immutable-CSV set UPD-095..UPD-099,
+    with docs rows UPD-095/096/098/099 executed and UPD-097 withheld in full.
+  - Executed: four reliance-register paths, RBR-024 maintenance wording,
+    DEL-05-04 and DEL-03-03 anchors, and named PKG-05/PKG-04 pointer riders
+    now bind the live harness-contract package; dated assessments use forward
+    annotations without verdict changes.
+  - Pending: UPD-097/RBR-025 remains explicit in DEL-01-02 `## Remaining` for
+    the final code tranche and fresh full-repository typecheck/test gate.
+  - State: all 53 deliverables remain IN_PROGRESS; generic concordance
+    Remaining items stay open pending R6; original RUN_D55 artifacts unchanged.
+  - Model/roles: GPT-5 read-only discovery derived and adversarially checked
+    the exact row/rider split; GPT-5 governed execution applied and fan-in
+    checked the P44 docs tranche. No silent model substitution occurred.
+  - Checks: exact CSV/split and rider accounting; destination existence;
+    scoped current-path and additions-only assessment checks; seven durable
+    record sets; RBR-025 pending/test-no-diff check; P48 residual preservation;
+    53-state census; original-run integrity; `git diff --check`; practitioner
+    self-check. Frontend gates skipped because UPD-097 is withheld and this
+    tranche changes documentation/deliverable metadata only.
