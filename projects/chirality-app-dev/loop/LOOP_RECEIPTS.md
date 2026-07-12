@@ -1567,3 +1567,29 @@
     `git diff --check`; practitioner self-check. Frontend runtime gates are
     skipped because this tranche changes governed documentation and
     corpus-reference metadata only.
+
+- **2026-07-12 — Receipt 48 (DRAFT)** (D-APP-56 R5 final code tranche;
+  local gates complete; awaiting committed-SHA disposable-clone transcript
+  and commit/PR merge).
+  - Authority/scope: D-APP-56 R4-P04, R4-P19, R4-P44 UPD-097, and R4-P45
+    UPD-106/110/140/141. No other proposal row was introduced or executed.
+  - Implemented: normative `hook.progress` kit coverage plus mapper and JSONL
+    replay tests; exact HUMAN/USER/OPERATOR human-gate aliases with arbitrary
+    HUMAN-prefix denial; cited frontend enforcement-path existence assertion;
+    PORTAL active-link render test; AppShell focusable separator and
+    Home/End/Arrow interaction test; missing-runtime and removed-regression-ID
+    premerge-wrapper fixtures.
+  - Invariants: string actor API and approval-SHA gate retained; all affected
+    deliverables remain IN_PROGRESS; original RUN_D55 artifacts unchanged; no
+    lifecycle transition or release/publication claim.
+  - Model/role: GPT-5 highest-capability governed-artifact executor performed
+    code, test, kit, and durable-record execution. Primary orchestrator owns
+    gate execution, transcript, PR, and merge; a separate GPT-5
+    highest-capability verifier performed adversarial review. No silent model
+    substitution occurred.
+  - Checks so far: locked dependencies installed with `npm ci`; focused
+    Vitest passed 45/45 after correcting the two new component tests' automatic
+    JSX-runtime setup; typecheck passed; full Vitest passed 680/680 with four
+    integration tests skipped (95 files passed, one skipped). The fresh
+    committed-SHA disposable-clone typecheck/full-test gate remains mandatory
+    before Receipt 48 can be finalized.

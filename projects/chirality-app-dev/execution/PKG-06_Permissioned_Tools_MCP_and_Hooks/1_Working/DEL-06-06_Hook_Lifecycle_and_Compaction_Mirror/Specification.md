@@ -32,7 +32,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 thr
 | DEL-06-06-REQ-001 | The hook lifecycle mapper MUST emit Chirality-owned `HarnessEvent` records rather than exposing SDK hook names as the persisted event contract. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-ENGINE-4 |
 | DEL-06-06-REQ-002 | Each emitted runtime event MUST conform to the `HarnessEvent` shape: `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
 | DEL-06-06-REQ-003 | Runtime event writes MUST append newline-delimited JSONL in write sequence and use unique event IDs. | `docs/SPEC.md` Section 9.2 |
-| DEL-06-06-REQ-004 | Hook lifecycle event mapping MUST include `hook.started` and `hook.completed` categories where hook execution evidence is available. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
+| DEL-06-06-REQ-004 | Hook lifecycle event mapping MUST include `hook.started`, `hook.progress`, and `hook.completed` categories where hook execution evidence is available. Progress mapping MUST preserve available stdout, stderr, and output fields in provider-neutral `HarnessEvent` data. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3; D-APP-56 R4-P04 |
 | DEL-06-06-REQ-005 | Hook failure outcomes MUST preserve fail-closed behavior for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
 | DEL-06-06-REQ-006 | The mapper MUST support `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, and subagent hook terms without making exact SDK callback names authoritative in public APIs. | `docs/TYPES.md` Section 8.5; `docs/SPEC.md` Section 10.3 |
 | DEL-06-06-REQ-007 | `PreCompact` mirroring MUST persist a compaction boundary when available. | `docs/SPEC.md` Section 15.2; decomposition SOW-061 |
@@ -63,7 +63,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 thr
 | DEL-06-06-REQ-001, REQ-012 | Type or mapper tests assert persisted event types use Chirality-owned names and SDK details appear only under explicit adapter metadata. |
 | DEL-06-06-REQ-002 | Schema tests validate every emitted hook/compaction/terminal event against `HarnessEvent`. |
 | DEL-06-06-REQ-003 | Session event writer tests assert newline-delimited append order and unique event IDs. |
-| DEL-06-06-REQ-004 | Hook lifecycle tests invoke start and completion paths and assert `hook.started` and `hook.completed` evidence. |
+| DEL-06-06-REQ-004 | Mapper and persistence tests assert `hook.progress` is emitted and replayed with available stdout, stderr, and output fields, alongside start and completion evidence. |
 | DEL-06-06-REQ-005 | Failure fixtures assert failed hook outcomes do not silently allow write, shell, domain, or subagent execution. |
 | DEL-06-06-REQ-006 | Mapper tests cover `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, and subagent hook term handling where runtime support exists. |
 | DEL-06-06-REQ-007, REQ-008 | `context.compacted` tests assert a compaction boundary event is persisted when the SDK/model emits the boundary. |

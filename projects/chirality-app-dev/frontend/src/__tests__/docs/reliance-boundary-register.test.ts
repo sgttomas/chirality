@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -56,5 +56,18 @@ describe('reliance boundary register', () => {
 
     expect(register).toContain('does not authorize apply behavior');
     expect(register).not.toContain('Not implemented in the current Section 9 script');
+  });
+
+  it('keeps every cited frontend enforcement-surface path inspectable', async () => {
+    const register = await readFile(REGISTER_PATH, 'utf8');
+    const citedPaths = [...register.matchAll(/`(frontend\/(?:src|packages|scripts|docs)\/[^`*]+)`/g)]
+      .map((match) => match[1].replace(/\s+uses\s+.*$/, ''));
+
+    expect(citedPaths.length).toBeGreaterThan(0);
+    await Promise.all(
+      [...new Set(citedPaths)].map((citedPath) =>
+        access(path.resolve(process.cwd(), '..', citedPath))
+      )
+    );
   });
 });

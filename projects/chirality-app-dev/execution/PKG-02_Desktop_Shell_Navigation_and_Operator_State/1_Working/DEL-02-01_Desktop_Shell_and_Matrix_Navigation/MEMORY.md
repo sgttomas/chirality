@@ -4,6 +4,8 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - D-APP-56 final code tranche implemented UPD-106 with a rendered ShellFrame PORTAL active-link assertion. No lifecycle transition occurred.
+
 - 2026-07-12 - D-APP-56 R5 P43 executed UPD-088 by annotating the historical INSP-03 REQ-001/REQ-011 conclusions with the landed ADQ-13 shell/key evidence. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P39 reviewed CQ-F5 and preserved the Checking Approval SHA / D-APP-19 Authorization Basis as historical evidence; no repair was required. No lifecycle transition occurred.
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.

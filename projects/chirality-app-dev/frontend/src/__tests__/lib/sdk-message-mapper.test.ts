@@ -153,6 +153,35 @@ describe('mapSdkMessageToHarness', () => {
     });
   });
 
+  it('emits hook.progress and preserves progress output fields', () => {
+    const mapped = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'hook_progress',
+      hook_id: 'hook_1',
+      hook_name: 'PostToolUse',
+      hook_event: 'after-write',
+      stdout: 'halfway',
+      stderr: 'warning',
+      output: '50%',
+      uuid: '00000000-0000-0000-0000-000000000099',
+      session_id: 'sdk_1'
+    } as never);
+
+    expect(mapped.harnessEvents).toHaveLength(1);
+    expect(mapped.harnessEvents[0]).toMatchObject({
+      sessionId: 'sess_1',
+      type: 'hook.progress',
+      data: {
+        hookId: 'hook_1',
+        hookName: 'PostToolUse',
+        hookEvent: 'after-write',
+        stdout: 'halfway',
+        stderr: 'warning',
+        output: '50%'
+      }
+    });
+  });
+
   it('maps assistant tool use and queued user messages into Chirality lifecycle events', () => {
     const assistant = mapSdkMessageToHarness('sess_1', {
       type: 'assistant',

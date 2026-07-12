@@ -29,6 +29,7 @@ describe('session events', () => {
         'tool.completed',
         'tool.failed',
         'hook.started',
+        'hook.progress',
         'hook.completed',
         'queue.enqueued',
         'branch.summarized',
@@ -41,6 +42,23 @@ describe('session events', () => {
         'subagent.completed'
       ])
     );
+  });
+
+  it('persists and replays hook.progress payloads without dropping output fields', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-session-events-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    await appendHarnessEvent(createHarnessEvent({
+      sessionId: 'sess_hook',
+      type: 'hook.progress',
+      data: { hookId: 'hook_1', stdout: 'halfway', stderr: 'warning', output: '50%' }
+    }));
+
+    const replay = await replayHarnessEvents('sess_hook');
+    expect(replay.summary.eventTypeCounts).toMatchObject({ 'hook.progress': 1 });
+    expect(replay.events[0]).toMatchObject({
+      type: 'hook.progress',
+      data: { hookId: 'hook_1', stdout: 'halfway', stderr: 'warning', output: '50%' }
+    });
   });
 
   it('appends and replays HarnessEvent JSONL records', async () => {
