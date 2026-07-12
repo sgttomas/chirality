@@ -2,7 +2,7 @@
 
 Status:       RULED
 HumanRuling:  Runtime hierarchy and role ownership approved by owner (Ryan Tufts), 2026-07-11
-Ruling SHA:   TBD (binds at CHANGE publish)
+Ruling SHA:   de20b4ea57ae8889880ed650fb3980fccb5a9245
 Date:         2026-07-11
 FramedBy:     owner review of the D-GOV-10 candidate workflow-component architecture
 
