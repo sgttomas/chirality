@@ -9,7 +9,7 @@ import { evaluateShellCommandPolicy } from './tool-shell-policy';
 import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import { evaluateSubagentPreflight } from './subagent-bridge';
 
-export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v5.managed-coordination';
+export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v6.managed-child-scopes';
 
 export type HarnessPermissionDecisionValue = 'allow' | 'deny' | 'ask';
 
@@ -339,6 +339,8 @@ export function createHarnessCanUseTool(input: {
   sessionId: string;
   mode: string;
   projectRoot?: string;
+  allowedReadScopes?: readonly string[];
+  allowedWriteTargets?: readonly string[];
   delegatedSubagents?: readonly string[];
   resolveDescriptor: (toolName: string) => HarnessToolDescriptor | undefined;
   // When provided, an `ask` decision suspends until the operator returns a
@@ -354,14 +356,18 @@ export function createHarnessCanUseTool(input: {
       descriptor,
       projectRoot: input.projectRoot,
       toolInput,
-      blockedPath: options.blockedPath
+      blockedPath: options.blockedPath,
+      allowedReadScopes: input.allowedReadScopes,
+      allowedWriteTargets: input.allowedWriteTargets
     });
     const shellPolicy =
       pathPolicy.allowed && descriptor?.permissions.includes('shell')
         ? await evaluateShellCommandPolicy({
             descriptor,
             projectRoot: input.projectRoot,
-            toolInput
+            toolInput,
+            allowedReadScopes: input.allowedReadScopes,
+            allowedWriteTargets: input.allowedWriteTargets
           })
         : undefined;
     const explicitDeny = !pathPolicy.allowed || shellPolicy?.allowed === false;

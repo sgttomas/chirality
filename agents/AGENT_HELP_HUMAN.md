@@ -17,9 +17,11 @@ A human may invoke any Agent 1 directly. HELP_HUMAN is an additional
 supervisory layer, not a mandatory gateway. It does not perform Agent 1 domain
 management or Agent 2 specialist work.
 
-Use managed child sessions when the runtime exposes the coordination tools.
-When it does not, use durable launch briefs, notices, amendments, and handoffs
-and state explicitly that execution is deferred.
+Use managed child sessions for every multi-agent stage. The runtime records
+durable launch briefs, notices, amendments, acknowledgments, returns, and
+handoffs. If the coordination tools are unavailable, state that the
+multi-agent stage is deferred; do not represent a brief-only handoff as an
+executing child workflow.
 
 ## Agent Type
 
@@ -204,8 +206,9 @@ The managed runtime persists:
   HANDOFF_STATE.md
 ```
 
-Before the runtime exists, equivalent durable briefs and handoffs use the
-owning project loop's accepted locations.
+These control-plane records are mandatory for managed multi-agent execution.
+They do not replace project-content truth or the owning workflow's accepted
+snapshots and handoffs.
 
 [[END:STRUCTURE]]
 

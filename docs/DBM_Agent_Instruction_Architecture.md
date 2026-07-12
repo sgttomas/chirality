@@ -1,6 +1,6 @@
 # Design Basis Memorandum — Agent Instruction Architecture
 
-> **Status:** Current design basis under D-GOV-11 and D-GOV-12. Managed hierarchy and live parent-mediated coordination are implemented; durable briefs remain the fallback when the managed runtime is unavailable.
+> **Status:** Current design basis under D-GOV-11 and D-GOV-12. Managed hierarchy, enforced child scopes, validated fan-in, and parent-mediated coordination are implemented. Briefs are durable runtime evidence, not a substitute for an executing child session.
 
 ## 1. Purpose
 
@@ -28,7 +28,10 @@ Human ↔ Agent 0 → Agent 1 → Agent 2
 
 HELP_HUMAN is the sole canonical Agent 0. Every Agent 1 is also a valid direct human entry point. A human may start an untyped session and adopt the hierarchy through steering instructions.
 
-Agent 0 delegates only to named Agent 1 roles. Agent 1 delegates to Agent 2. Agent 2 does not delegate. Authority, permissions, context, and capabilities do not increase through delegation.
+Agent 0 delegates only to named Agent 1 roles. Agent 1 delegates to Agent 2.
+Agent 2 does not delegate. Capabilities are not inherited: a named child uses
+its approved role policy, a generalist is bounded by its parent and brief, and
+no child capability becomes available to the parent.
 
 ## 3. Standards Are External
 
@@ -86,7 +89,7 @@ Fan-out is allowed only over disjoint scopes or declared shared dependencies. Fa
 - HELPS_HUMANS owns agent, skill, tool, brief, validator, registry, compatibility, migration, and deprecation design.
 - `DECOMP_BASE` is replaced by `docs/DECOMPOSITION_STANDARD.md`; decomposition managers consume the standard.
 - EVALUATION owns generic audit orchestration, coherence assessment, scoring, and remediation recommendations.
-- RECONCILIATION is reserved for deliverable-corpus concordance and remains fail-closed until the two project calibrations are accepted.
+- RECONCILIATION owns deliverable-corpus concordance from the accepted app-dev and piping calibrations and ratified method.
 - ORCHESTRATOR owns human-gated schedule-basis workflows; deterministic graph calculation and rendering remain tools or TASK methods.
 - PDF2MD and DRAWING_EXTRACT remain Agent 1 because source targets, schemas, review depth, and recovery posture require human calibration before repetitive work.
 - WORKING_ITEMS is the package-level production manager and may coordinate many
@@ -109,12 +112,13 @@ managed 0→1→2 child sessions. `delegate_agent` persists work graphs, launch
 briefs, parentage, child kinds, instruction/brief hashes, declared context,
 tools, write targets, status, and returns. Waiting children support terminal
 fan-in; background children plus notices, updates, amendments, acknowledgments,
-and session events support supervised many-to-many coordination.
+and safe-boundary update delivery support supervised many-to-many coordination.
 
 The old SDK Agent bridge is a compatibility adapter governed by the same type
 policy and now embeds actual named instructions. It remains non-delegating and
 environment-gated while managed sessions are the canonical nested path.
-Durable briefs remain the fail-safe when runtime delegation is unavailable.
+If managed delegation is unavailable, multi-agent execution defers; a durable
+brief may preserve intent but does not claim that a child ran.
 
 ## 10. Conformance
 

@@ -155,6 +155,7 @@ export interface HarnessRuntimeFingerprint {
   schemaVersion: string;
   personaComposerVersion: string;
   permissionPolicyVersion: string;
+  managedDelegationPolicyVersion: string;
   subagentPolicyVersion: string;
   toolRegistryVersion: string;
   sdkPackageVersion: string;

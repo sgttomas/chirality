@@ -100,6 +100,59 @@ class ValidateAgentInstructionsTests(unittest.TestCase):
         findings = self.validate(text)
         self.assertIn("AGENT_REFERENCE_UNRESOLVED", {item.code for item in findings})
 
+    def test_current_audit_output_must_use_evaluation_root(self) -> None:
+        text = VALID_AGENT.replace("— TASK (", "— AUDIT_SAMPLE (").replace(
+            "| bounded-task-brief |",
+            "| tool-root-only (`{EXECUTION_ROOT}/_Reconciliation/Sample/`) |",
+        )
+        findings = self.validate(text, "AGENT_AUDIT_SAMPLE.md")
+        self.assertIn("AUDIT_OUTPUT_ROOT_INVALID", {item.code for item in findings})
+
+    def test_hierarchy_accepts_help_human_to_manager_to_task(self) -> None:
+        task = self.root / "agents" / "AGENT_TASK.md"
+        task.write_text(VALID_AGENT, encoding="utf-8")
+        manager_text = (
+            VALID_AGENT.replace('description: "fixture"', 'description: "fixture"\nsubagents: TASK\nallow_generalist_agent2: true')
+            .replace("— TASK (", "— WORKING_ITEMS (")
+            .replace("AGENT_TYPE: 2", "AGENT_TYPE: 1")
+            .replace("TYPE 2", "TYPE 1")
+            .replace("| TASK |", "| PERSONA |")
+            .replace("| INIT-TASK |", "| both |")
+            .replace("| never |", "| allowed |")
+        )
+        manager = self.root / "agents" / "AGENT_WORKING_ITEMS.md"
+        manager.write_text(manager_text, encoding="utf-8")
+        architect_text = (
+            manager_text.replace("subagents: TASK", "subagents: WORKING_ITEMS")
+            .replace("allow_generalist_agent2: true\n", "")
+            .replace("— WORKING_ITEMS (", "— HELP_HUMAN (")
+            .replace("AGENT_TYPE: 1", "AGENT_TYPE: 0")
+            .replace("TYPE 1", "TYPE 0")
+        )
+        architect = self.root / "agents" / "AGENT_HELP_HUMAN.md"
+        architect.write_text(architect_text, encoding="utf-8")
+        self.assertEqual(
+            [],
+            validator.validate_hierarchy([architect, manager, task], self.root),
+        )
+
+    def test_hierarchy_rejects_agent0_to_agent2(self) -> None:
+        task = self.root / "agents" / "AGENT_TASK.md"
+        task.write_text(VALID_AGENT, encoding="utf-8")
+        architect_text = (
+            VALID_AGENT.replace('description: "fixture"', 'description: "fixture"\nsubagents: TASK')
+            .replace("— TASK (", "— HELP_HUMAN (")
+            .replace("AGENT_TYPE: 2", "AGENT_TYPE: 0")
+            .replace("TYPE 2", "TYPE 0")
+            .replace("| TASK |", "| PERSONA |")
+            .replace("| INIT-TASK |", "| chat |")
+            .replace("| never |", "| allowed |")
+        )
+        architect = self.root / "agents" / "AGENT_HELP_HUMAN.md"
+        architect.write_text(architect_text, encoding="utf-8")
+        findings = validator.validate_hierarchy([architect, task], self.root)
+        self.assertIn("AGENT0_CHILD_TYPE", {item.code for item in findings})
+
 
 if __name__ == "__main__":
     unittest.main()

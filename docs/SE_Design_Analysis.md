@@ -18,7 +18,7 @@ The system enforces three distinct separations:
 
 **Instruction vs Execution.** The instruction root (release-managed agent OS) is physically separated from the working root (user-controlled project state). Agents read instructions from one location and write state to another. This is stated in `DIRECTIVE.md` §2.6 and enforced by the runtime architecture.
 
-**Source Truth vs Derived Output.** Deliverable folders (source truth) are structurally isolated from tool roots (derived outputs). Tool roots (`_Aggregation/`, `_Estimates/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) contain agent-produced analysis and snapshots. Source truth contains human-accepted deliverable content. The boundary is enforced by K-WRITE-1: every agent declares its write scope and cannot cross into another zone.
+**Source Truth vs Derived Output.** Deliverable folders (source truth) are structurally isolated from tool roots (derived outputs). Tool roots (`_Aggregation/`, `_Estimates/`, `_Evaluation/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) contain agent-produced analysis and snapshots. Source truth contains human-accepted deliverable content. The boundary is enforced by K-WRITE-1 and managed child scope checks.
 
 **Authority vs Execution.** Normative standards constrain every runtime layer from outside the hierarchy. Agent 0 supervises Agent 1 managers; Agent 1 delegates bounded Agent 2 execution; Agent 2 does not delegate. Escalation flows upward and human gate authority remains final. This is stated in `TYPES.md` §4.3.
 
@@ -228,7 +228,7 @@ The system implements a closed-loop feedback control system across sessions:
 ORCHESTRATOR (Plant Setup)
   → WORKING_ITEMS (Actuator — produces content)
     → TASK+dependency-extract rerun (Sensor — updates dependency state)
-      → RECONCILIATION (Comparator — surfaces deviations)
+      → EVALUATION (Comparator — surfaces deviations)
         → CHANGE (Output — commits to baseline)
           → ORCHESTRATOR scan (Feedback — reports new state)
 ```
@@ -238,7 +238,7 @@ ORCHESTRATOR (Plant Setup)
 | Controlled Variable | Set Point | Sensor | Actuator |
 |--------------------|-----------|--------|----------|
 | Lifecycle state | ISSUED | `_STATUS.md` | REVIEW gate |
-| Dependency closure | All active deps satisfied | `Dependencies.csv` | RECONCILIATION |
+| Dependency closure | All active deps satisfied | `Dependencies.csv` | EVALUATION |
 | Decomposition fidelity | Zero unassigned units | Decomposition Ledger | Human correction |
 | Work availability | No blocked deliverables | Blocker analysis | Tier sequencing |
 | Artifact completeness | All anticipated artifacts present | Folder scan | WORKING_ITEMS |
@@ -249,7 +249,13 @@ ORCHESTRATOR (Plant Setup)
 without sibling feedback. WORKING_ITEMS manages the package-level graph and
 validates deliverable fan-in.
 
-**Closed-loop (across sessions):** The handoff mechanism (`NEXT_INSTANCE_STATE.md`) carries state between sessions. TASK+dependency-extract rerun after content changes updates the dependency graph. RECONCILIATION detects integration defects. ORCHESTRATOR scan computes work availability for the next tier.
+**Closed-loop (across sessions and active managed runs):** Durable handoffs
+carry state between sessions. During a run, children report typed notices to
+their parent; selected updates arrive at safe turn boundaries and require
+acknowledgment. TASK+dependency-extract updates dependency state, EVALUATION
+detects generic integration defects, and managers derive the next
+dependency-valid graph. RECONCILIATION is activated separately for calibrated
+deliverable-corpus concordance.
 
 ### 6.3 Human Authority as the Halting Condition
 

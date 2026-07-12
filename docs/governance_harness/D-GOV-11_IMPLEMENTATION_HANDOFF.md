@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: COMPLETE
+Status: COMPLETE / DERIVATIVE EXPORT REFRESH PENDING
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -22,7 +22,7 @@ Branch: `codex/agent-governance-redesign`
 
 - Canonical doctrine in `AGENTS.md`; exact `CLAUDE.md` import and validator/export enforcement.
 - HELPS_HUMANS consolidated component design, skill/tool design, context transposition, and decomposition-component design.
-- HELP_HUMAN rewritten as sole read-only Agent 0 with managed delegation and a durable launch-brief fallback.
+- HELP_HUMAN rewritten as sole read-only Agent 0 with managed delegation; durable launch briefs are runtime evidence, not an execution fallback.
 - `docs/DECOMPOSITION_STANDARD.md` extracted; DECOMP_BASE persona removed and live managers rebound.
 - EVALUATION expanded; old generic RECONCILIATION semantics transferred.
 - RECONCILIATION activated from the ratified method and integrated app-dev and
@@ -38,24 +38,32 @@ Branch: `codex/agent-governance-redesign`
 - Managed child sessions, terminal/background execution, coordination notices,
   updates, amendments, acknowledgments, runtime records, actual named
   instruction loading, and the SDK compatibility adapter are implemented.
+- Completion-audit hardening enforces child read scopes and write targets at
+  permission/hook boundaries, fails closed on unbounded managed Bash, validates
+  return markers, versions replans, injects updates at safe turn boundaries,
+  requires acknowledgments, reconstructs handoff state, and isolates failures.
+- Current generic audit and REVIEW snapshots write under `_Evaluation/`;
+  historical generic `_Reconciliation/` snapshots remain immutable evidence.
+  RECONCILIATION alone owns new deliverable-corpus concordance runs.
 - D-GOV-13 requalifies the 14 retained dedicated Agent 2 packages against
   persistent output/recovery and live-reference compatibility evidence.
 
 ## Validation Evidence
 
-- Root governance/tool suite: 757 tests passed before the D-GOV-13 metadata
-  binding; the affected validator suite then passed 57 tests, with 33 agent
+- Root governance/tool suite: 762 tests passed. Agent hierarchy/output-root,
+  project-loop/entrypoint, skill, and path validators pass with 33 agent
   packages at zero errors and zero warnings and all 43 live skills valid.
 - App-dev runtime: TypeScript typecheck passed; the complete Vitest suite passed
-  93 files (one skipped), 673 tests (four skipped); the final managed-delegation,
-  descriptor, bridge, and instruction-integrity slice passed 29 tests.
+  94 files (one skipped), 682 tests (four skipped). The unsigned desktop package
+  built; packaged instruction-root integrity passed; the live premerge probe
+  passed 8 Section 8 scenarios and 16 Section 9 gates.
 - Piping: the complete evidence sweep passed 36 Rust crate tests, 459 Python
   tests, 471 desktop unit/component tests, 18 development browser-flow tests,
   the production-distribution WASM test, and the desktop production build.
 - Path-anchor and instruction-entrypoint validators passed. `git diff --check`
   reported no whitespace errors.
-- The allowlisted public derivative regenerated successfully with 585 manifest
-  entries and zero boundary findings.
+- Public-derivative evidence from the prior publication passed with 585 manifest
+  entries and zero boundary findings; refresh follows this audit-repair commit.
 
 ## Deferred Evolution
 
@@ -66,16 +74,17 @@ Branch: `codex/agent-governance-redesign`
 
 ## External Blockers
 
-None. Both paused concordance branches are integrated, combined validation has
-passed, and the public derivative has been regenerated.
+None. Both paused concordance branches are integrated and combined validation
+has passed. Only derivative export refresh remains.
 
 ## Required Resume Sequence
 
-1. Resume project work from this accepted hierarchy and orchestration basis.
+1. Regenerate and validate the public derivative.
+2. Resume project work from this accepted hierarchy and orchestration basis.
 
 ## Closure Verdict
 
 Instruction tranche: COMPLETE.
 RECONCILIATION activation: COMPLETE.
 Runtime bridge: IMPLEMENTED AND VALIDATED.
-Overall D-GOV-11 implementation: COMPLETE.
+Overall D-GOV-11 implementation: COMPLETE; derivative export refresh pending.

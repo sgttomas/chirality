@@ -92,6 +92,8 @@ export type ChiralityToolHookInput = {
   sessionId: string;
   projectRoot: string;
   instructionRoot?: string;
+  allowedReadScopes?: readonly string[];
+  allowedWriteTargets?: readonly string[];
   delegatedSubagents?: readonly string[];
   resolveDescriptor?: (toolName: string) => HarnessToolDescriptor | undefined;
 };
@@ -481,7 +483,9 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
           descriptor,
           projectRoot: input.projectRoot,
           instructionRoot: input.instructionRoot,
-          toolInput: readToolInput(preInput)
+          toolInput: readToolInput(preInput),
+          allowedReadScopes: input.allowedReadScopes,
+          allowedWriteTargets: input.allowedWriteTargets
         });
 
         if (!shellPolicy.allowed) {
@@ -518,7 +522,9 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
         descriptor,
         projectRoot: input.projectRoot,
         instructionRoot: input.instructionRoot,
-        toolInput: readToolInput(preInput)
+        toolInput: readToolInput(preInput),
+        allowedReadScopes: input.allowedReadScopes,
+        allowedWriteTargets: input.allowedWriteTargets
       });
 
       if (!pathPolicy.allowed) {

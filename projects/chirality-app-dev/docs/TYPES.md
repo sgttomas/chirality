@@ -420,6 +420,10 @@ Initial in-process MCP tool names should use this namespace:
 - `mcp__chirality__deps_write`
 - `mcp__chirality__scope_scan`
 - `mcp__chirality__scaffold`
+- `mcp__chirality__delegate_agent`
+- `mcp__chirality__report_coordination_notice`
+- `mcp__chirality__send_agent_update`
+- `mcp__chirality__ack_agent_update`
 
 Future domain tools use `mcp__chirality__domain_*` only after a governed domain-profile amendment.
 
@@ -457,30 +461,28 @@ SDK terms belong at the adapter boundary. Public Chirality APIs and canonical ev
 
 ```ts
 type ChildRunRecord = {
-  contractVersion: 1;
-  childRunId: string;
+  contractVersion: 2;
+  orchestrationRunId: string;
+  planVersion: string;
+  childInstanceId: string;
   parentSessionId: string;
   parentTurnId?: string;
-  parentPersona: string;
-  agentName: string;
+  parentRole: string;
+  parentAgentType: 0 | 1;
+  childRole: string;
+  childAgentType: 1 | 2;
+  childKind: 'named' | 'task' | 'generalist';
   projectRoot: string;
   mode: string;
-  status: 'queued' | 'denied' | 'running' | 'completed' | 'failed' | 'cancelled';
-  capabilityPolicy: {
-    inheritParentCapabilities: false;
-    requestedToolNames: string[];
-    allowedToolNames: string[];
-    deniedCapabilities: string[];
-  };
-  governance: {
-    state: 'allowed' | 'denied' | 'adapter-observed';
-    gate?: string;
-    reason?: string;
-    approvalRef?: string;
-    approvedBy?: string;
-    allowlistedSubagents: string[];
-    delegatedSubagents: string[];
-  };
+  status: 'LAUNCHED' | 'RUNNING' | 'COMPLETED' | 'FAILED' | 'BLOCKED';
+  approvalRef: string;
+  instructionPath?: string;
+  instructionHash?: string;
+  briefHash: string;
+  declaredContext: string[];
+  declaredTools: string[];
+  allowedWriteTargets: string[];
+  requiredReturnMarkers: string[];
   outputArtifactPath?: string;
   adapter?: {
     adapterName: string;
@@ -503,6 +505,9 @@ type ChildRunRecord = {
 | Child run | Governed managed-session or compatibility-adapter execution record. |
 | Work graph | Versioned nodes, dependencies, concurrency, ownership, returns, and gates for one orchestration run. |
 | Coordination notice | Typed child-to-parent information with claim status, evidence, affected scopes, and requested action. |
+| Parent update | Immutable relay or versioned amendment delivered to one direct child at a safe turn boundary. |
+| Update acknowledgment | Child response: `INCORPORATED`, `NO_EFFECT`, `BLOCKED`, `CONFLICT`, or `HUMAN_DECISION_REQUIRED`. |
+| Return markers | Brief-declared structural markers that a completed return must contain before fan-in can accept it. |
 | Context sealed | Required governance condition confirming bounded context. |
 | Pipeline run approved | Required governance condition for Type 2 task invocation. |
 | Approval reference | Non-empty human/gate evidence string required before delegation. |

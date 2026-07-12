@@ -140,7 +140,10 @@ APEGA requires that the licensed professional demonstrate active involvement thr
 
 **Directing, monitoring, and controlling work throughout its lifespan.**
 
-- Type 1 (Manager) agents operate through gate-controlled workflows where the licensed professional makes consequential decisions at every phase.
+- HELP_HUMAN may supervise several Agent 1 managers across packages while
+  presenting consequential cross-manager decisions to the licensed
+  professional. Agent 1 managers remain valid direct human entry points.
+- Type 1 (Manager) agents operate through gate-controlled workflows where the licensed professional makes consequential decisions at defined junctions.
 - Type 2 (Specialist) agents execute only within bounded briefs defined by the licensed professional or an authorized Type 1 agent.
 - Human authority is the halting condition — no agent may autonomously advance workflow stages, approve deliverables, or resolve conflicts. Enforced by K-GATE-1 (dynamic gates with minimum seal + pipeline approval) and K-SEAL-1 (no Type 2 execution before context is sealed and gate-approved). See `docs/CONTRACT.md` §1.7, §1.3.
 - Implementation: `docs/DBM_Agent_Instruction_Architecture.md` §6 (Orchestration Architecture).
@@ -149,7 +152,7 @@ APEGA requires that the licensed professional demonstrate active involvement thr
 
 - Every agent instruction file (AGENT_*.md) declares: agent type, class, interaction surface, write scope, blocking behavior, primary outputs, and non-negotiable invariants.
 - Write scope is enforced by invariant K-WRITE-1: "Every agent has an explicit write scope declared in its header block. No agent writes outside its declared zone."
-- The runtime hierarchy (Agent 0 Supervising Architect / Agent 1 Manager / Agent 2 Specialist) establishes clear delegation boundaries. Normative standards constrain all three layers from outside the hierarchy. Authority and capability do not increase through delegation; escalation flows upward; no agent may approve deliverables for external reliance.
+- The runtime hierarchy (Agent 0 Supervising Architect / Agent 1 Manager / Agent 2 Specialist) establishes clear delegation boundaries. Normative standards constrain all three layers from outside the hierarchy. Capabilities are explicit rather than inherited, escalation flows upward, and no agent may approve deliverables for external reliance.
 - Implementation: `docs/TYPES.md` §4 (Agent Roles), §4.3 (Authority Model); `docs/DBM_Agent_Instruction_Architecture.md` §2 (Type Hierarchy), §7 (Write Scope Architecture); `docs/CONTRACT.md` §1.10 (K-WRITE-1).
 
 **Maintaining regular and ongoing communication.**
@@ -170,7 +173,10 @@ APEGA requires that the licensed professional demonstrate active involvement thr
 **Completing periodic reviews to ensure PWPs are accurate and reliable.**
 
 - REVIEW agent implements a formal 5-gate review process for lifecycle transitions (see §5 of this standard).
-- RECONCILIATION agent performs cross-deliverable coherence analysis.
+- EVALUATION performs generic cross-deliverable coherence assessment.
+- Activated RECONCILIATION runs align deliverable-local objectives, claims,
+  artifacts, implementation evidence, lifecycle state, and remaining work with
+  project-wide truth.
 - All agent outputs are git-committed, enabling diff-based review at any point.
 - Implementation: `docs/CONTRACT.md` (invariant system); `agents/AGENT_REVIEW.md` (review protocol).
 

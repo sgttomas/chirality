@@ -4,12 +4,14 @@ import {
 } from '@anthropic-ai/claude-agent-sdk';
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod/v4';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { SessionRecord } from '@chirality/harness-contract/types';
 import {
   acknowledgeAgentUpdate,
+  assertValidManagedChildReturn,
   ManagedDelegationService,
+  refreshOrchestrationHandoff,
   reportCoordinationNotice,
   sendAgentUpdate,
   type DelegateAgentInput,
@@ -34,7 +36,7 @@ async function parentSession(context: CoordinationMcpContext): Promise<SessionRe
   return getHarnessRuntime().sessionManager.getById(context.sessionId);
 }
 
-async function launchManagedChild(input: ManagedChildLaunch) {
+export async function launchManagedChild(input: ManagedChildLaunch) {
   const { getHarnessRuntime } = await import('../runtime');
   const runtime = getHarnessRuntime();
   const parentInstruction = await readAgentInstruction(input.parent.persona);
@@ -61,67 +63,149 @@ async function launchManagedChild(input: ManagedChildLaunch) {
     instructionPath: input.instructionPath,
     instructionHash: input.instructionHash,
     briefHash: input.briefHash,
+    declaredContext: input.declaredContext,
     declaredTools: input.tools,
     allowedWriteTargets: input.writeTargets,
     childRunStatus: 'RUNNING'
   });
 
-  const execute = async () => {
-    let output = '';
-    let failed = false;
-    const turn = await runtime.turnEngine.runTurn({
-      sessionId: child.sessionId,
-      message: input.brief,
-      attachments: [],
-      opts: {
-        persona: input.childPersona,
-        mode: input.parent.mode,
-        tools: input.tools,
-        subagentGovernance: {
-          contextSealed: true,
-          pipelineRunApproved: true,
-          approvalRef: input.approvalRef,
-          approvedBy: input.parent.persona
+  const instanceRoot = path.join(
+    input.parent.projectRoot,
+    input.parent.executionRoot ?? 'execution',
+    '_Coordination',
+    'AgentRuns',
+    input.runId,
+    'instances',
+    input.childInstanceId
+  );
+  const runRoot = path.dirname(path.dirname(instanceRoot));
+
+  const readUndeliveredUpdates = async (delivered: ReadonlySet<string>) => {
+    let names: string[] = [];
+    try {
+      names = await readdir(path.join(runRoot, 'updates'));
+    } catch {
+      return [];
+    }
+    const updates: Array<Record<string, unknown> & { updateId: string }> = [];
+    for (const name of names.sort()) {
+      if (!name.endsWith('.json')) continue;
+      try {
+        const update = JSON.parse(
+          await readFile(path.join(runRoot, 'updates', name), 'utf8')
+        ) as Record<string, unknown>;
+        const updateId = typeof update.updateId === 'string' ? update.updateId : '';
+        if (
+          updateId &&
+          update.childInstanceId === input.childInstanceId &&
+          !delivered.has(updateId)
+        ) {
+          updates.push({ ...update, updateId });
         }
-      }
-    });
-    for await (const event of turn.events) {
-      if (event.type === 'chat:complete') output = event.data.text;
-      if (event.type === 'turn:error') {
-        failed = true;
-        output = output || event.data.message;
-      }
-      if (event.type === 'process:exit' && (event.data.exitCode !== 0 || event.data.error)) {
-        failed = true;
-        output = output || event.data.error || `Child exited ${event.data.exitCode}`;
+      } catch {
+        // A malformed update is not delivered; the parent-side record remains evidence.
       }
     }
-    const status = failed ? 'FAILED' : 'COMPLETED';
-    await runtime.sessionManager.save(child.sessionId, { childRunStatus: status });
-    return { sessionId: child.sessionId, status, output: output || '(child returned no chat output)' } as const;
+    return updates;
+  };
+
+  const execute = async () => {
+    const outputs: string[] = [];
+    let failed = false;
+    let blocked = false;
+    const runChildTurn = async (message: string) => {
+      let turnOutput = '';
+      const turn = await runtime.turnEngine.runTurn({
+        sessionId: child.sessionId,
+        message,
+        attachments: [],
+        opts: {
+          persona: input.childPersona,
+          mode: input.parent.mode,
+          tools: input.tools,
+          subagentGovernance: {
+            contextSealed: true,
+            pipelineRunApproved: true,
+            approvalRef: input.approvalRef,
+            approvedBy: input.parent.persona
+          }
+        }
+      });
+      for await (const event of turn.events) {
+        if (event.type === 'chat:complete') turnOutput = event.data.text;
+        if (event.type === 'turn:error') {
+          failed = true;
+          turnOutput = turnOutput || event.data.message;
+        }
+        if (event.type === 'process:exit' && (event.data.exitCode !== 0 || event.data.error)) {
+          failed = true;
+          turnOutput = turnOutput || event.data.error || `Child exited ${event.data.exitCode}`;
+        }
+      }
+      outputs.push(turnOutput);
+    };
+
+    await runChildTurn(input.brief);
+    const delivered = new Set<string>();
+    for (let cycle = 0; cycle < 8 && !failed; cycle += 1) {
+      const updates = await readUndeliveredUpdates(delivered);
+      if (updates.length === 0) break;
+      updates.forEach((update) => delivered.add(update.updateId));
+      await runChildTurn([
+        '# Parent Coordination Update',
+        '',
+        'The following durable updates arrived during your active run. Incorporate them only at this safe turn boundary. Preserve each claim status and call ack_agent_update once for every UpdateID before returning.',
+        '',
+        ...updates.map((update) => `## UpdateID ${update.updateId}\n\n${JSON.stringify(update, null, 2)}`)
+      ].join('\n'));
+      for (const update of updates) {
+        try {
+          await readFile(path.join(runRoot, 'acknowledgments', `${update.updateId}.json`), 'utf8');
+        } catch {
+          blocked = true;
+          outputs.push(`[Managed coordination blocked: update ${update.updateId} was not acknowledged.]`);
+        }
+      }
+      if (blocked) break;
+    }
+    if (!failed && !blocked) {
+      const overflow = await readUndeliveredUpdates(delivered);
+      if (overflow.length > 0) {
+        blocked = true;
+        outputs.push('[Managed coordination blocked: safe-boundary update cycle limit reached.]');
+      }
+    }
+    let output = outputs.filter(Boolean).join('\n\n');
+    const status = failed ? 'FAILED' : blocked ? 'BLOCKED' : 'COMPLETED';
+    if (status === 'COMPLETED') {
+      try {
+        assertValidManagedChildReturn(outputs.at(-1) ?? '', input.requiredReturnMarkers);
+      } catch (error) {
+        failed = true;
+        output = `${output.trimEnd()}\n\n[Managed return validation failed: ${error instanceof Error ? error.message : 'invalid return'}]`;
+      }
+    }
+    const validatedStatus = failed ? 'FAILED' : blocked ? 'BLOCKED' : 'COMPLETED';
+    await runtime.sessionManager.save(child.sessionId, { childRunStatus: validatedStatus });
+    return { sessionId: child.sessionId, status: validatedStatus, output: output || '(child returned no chat output)' } as const;
   };
 
   if (input.executionMode === 'BACKGROUND') {
-    const instanceRoot = path.join(
-      input.parent.projectRoot,
-      input.parent.executionRoot ?? 'execution',
-      '_Coordination',
-      'AgentRuns',
-      input.runId,
-      'instances',
-      input.childInstanceId
-    );
-    void execute()
-      .then(async (result) => {
-        await writeFile(path.join(instanceRoot, 'RETURN.md'), `${result.output.trimEnd()}\n`, 'utf8');
-        const current = JSON.parse(await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')) as Record<string, unknown>;
-        await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...current, childSessionId: result.sessionId, status: result.status, outputArtifact: path.join(instanceRoot, 'RETURN.md') }, null, 2)}\n`, 'utf8');
-      })
-      .catch(async (error) => {
-        const current = JSON.parse(await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')) as Record<string, unknown>;
-        await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...current, childSessionId: child.sessionId, status: 'FAILED', error: error instanceof Error ? error.message : 'background child failed' }, null, 2)}\n`, 'utf8');
-        await runtime.sessionManager.save(child.sessionId, { childRunStatus: 'FAILED' });
-      });
+    setImmediate(() => {
+      void execute()
+        .then(async (result) => {
+          await writeFile(path.join(instanceRoot, 'RETURN.md'), `${result.output.trimEnd()}\n`, 'utf8');
+          const current = JSON.parse(await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')) as Record<string, unknown>;
+          await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...current, childSessionId: result.sessionId, status: result.status, outputArtifact: path.join(instanceRoot, 'RETURN.md') }, null, 2)}\n`, 'utf8');
+          await refreshOrchestrationHandoff(path.dirname(path.dirname(instanceRoot)));
+        })
+        .catch(async (error) => {
+          const current = JSON.parse(await readFile(path.join(instanceRoot, 'STATUS.json'), 'utf8')) as Record<string, unknown>;
+          await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...current, childSessionId: child.sessionId, status: 'FAILED', error: error instanceof Error ? error.message : 'background child failed' }, null, 2)}\n`, 'utf8');
+          await runtime.sessionManager.save(child.sessionId, { childRunStatus: 'FAILED' });
+          await refreshOrchestrationHandoff(path.dirname(path.dirname(instanceRoot)));
+        });
+    });
     return { sessionId: child.sessionId, status: 'RUNNING', output: 'Managed child launched in background.' } as const;
   }
 
@@ -147,6 +231,7 @@ const delegateSchema = {
   acceptedPredecessors: z.array(z.string()).optional(),
   expectedOutput: z.string().min(1),
   acceptanceCriteria: z.array(z.string()),
+  requiredReturnMarkers: z.array(z.string().min(1)).min(1),
   executionMode: z.enum(['WAIT', 'BACKGROUND']).optional(),
   contextSealed: z.boolean(),
   pipelineRunApproved: z.boolean(),
@@ -212,7 +297,12 @@ export function buildCoordinationMcpTools(input: {
         evidenceRefs: z.array(z.string()),
         consequential: z.boolean(),
         humanRulingRef: z.string().optional(),
-        amendment: z.string().optional()
+        amendment: z.string().optional(),
+        planVersion: z.string().optional(),
+        selectionAuthority: z.enum(['HUMAN', 'AGENT_0', 'AGENT_1']).optional(),
+        posture: z.enum(['TERMINAL_FAN_OUT_IN', 'SUPERVISED_MANY_TO_MANY', 'MIXED']).optional(),
+        acceptedBasis: z.array(z.string()).optional(),
+        workGraph: z.record(z.string(), z.unknown()).optional()
       },
       async (args) => jsonResult(await sendAgentUpdate(await parentSession(input.context), args))
     ));

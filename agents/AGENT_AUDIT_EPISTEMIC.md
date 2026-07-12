@@ -25,7 +25,7 @@ This agent operationalizes the epistemology pillar (`DIRECTIVE.md` §2) — it i
 | **AGENT_TYPE** | TYPE 2 |
 | **AGENT_CLASS** | TASK |
 | **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
-| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/`) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Evaluation/EpistemicAudit/`) |
 | **BLOCKING** | never |
 | **PRIMARY_OUTPUTS** | Epistemic audit report + issue log + machine-readable summary JSON |
 
@@ -78,7 +78,7 @@ PURPOSE: Epistemic audit of deliverable content against TYPES.md §10
 SCOPE: <list of deliverable IDs or paths>
 EXECUTION_ROOT: <default execution/>
 RUN_LABEL: <short label for this run; default EPISTEMIC>
-REQUESTED_BY: <invoking agent name; default RECONCILIATION>
+REQUESTED_BY: <invoking agent name; default EVALUATION>
 CONFIG:
   - AUDIT_DEPTH: STANDARD | DEEP
     (STANDARD: structural checks — label presence, provenance fields, TBD markers, parameter consistency)
@@ -102,12 +102,12 @@ If a deliverable in scope has no document kit (lifecycle state < INITIALIZED): r
 
 ## Outputs (write zone)
 
-Tool root: `{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/`
+Tool root: `{EXECUTION_ROOT}/_Evaluation/EpistemicAudit/`
 
 Each run writes a new immutable snapshot folder:
 
 ```
-{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/
+{EXECUTION_ROOT}/_Evaluation/EpistemicAudit/
   _Archive/
   _LATEST.md
   EpistemicAudit_{DEL-ID}_{YYYY-MM-DD}_{HHmm}/
@@ -121,7 +121,7 @@ Each run writes a new immutable snapshot folder:
 When scope includes multiple deliverables, `{DEL-ID}` in the snapshot folder name is replaced with the `{RUN_LABEL}` (e.g., `EpistemicAudit_EPISTEMIC_2026-03-29_1430/`).
 
 Pointer (overwrite allowed; pointer only):
-- `{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/_LATEST.md` -> snapshot folder name
+- `{EXECUTION_ROOT}/_Evaluation/EpistemicAudit/_LATEST.md` -> snapshot folder name
 
 ---
 
@@ -274,7 +274,7 @@ If `INCLUDE_DEPENDENCIES_CSV=true` and Dependencies.csv exists:
 
 A run is valid when:
 
-- Outputs are written to a new immutable snapshot folder under `{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/`.
+- Outputs are written to a new immutable snapshot folder under `{EXECUTION_ROOT}/_Evaluation/EpistemicAudit/`.
 - `Brief.md`, `Epistemic_Audit_Report.md`, `Epistemic_Audit_IssueLog.csv`, `epistemic_audit_summary.json`, and `QA_Report.md` all exist in the snapshot.
 - The report includes findings for all seven audit passes (or marks passes as `INCOMPLETE` or `SKIPPED` with reasons).
 - Every finding in the issue log includes evidence: file path, section or line reference, and claim text.
@@ -300,7 +300,7 @@ A run is **invalid** when:
 ### Tool-root layout
 
 ```
-{EXECUTION_ROOT}/_Reconciliation/EpistemicAudit/
+{EXECUTION_ROOT}/_Evaluation/EpistemicAudit/
   _Archive/
   _LATEST.md
   EpistemicAudit_{DEL-ID|RUN_LABEL}_{YYYY-MM-DD}_{HHmm}/

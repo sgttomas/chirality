@@ -592,7 +592,8 @@ Repeat Phase 4.1 for each subsequent tier until all tiers are complete.
      2. Fan-out execution for current tier (one package-level WORKING_ITEMS
         instance coordinating one deliverable per TASK session)
      3. `dependency-extract` skill rerun only for touched deliverables (via TASK+dependency-extract)
-     4. RECONCILIATION on touched interfaces
+     4. EVALUATION on touched interfaces; activate RECONCILIATION only when a
+        calibrated deliverable-corpus concordance run is actually required
      5. Periodic full AUDIT_DEP_CLOSURE
      6. CHANGE handoff for coherent commits
   3. **Tiered strategy rules** — work advances in waves by tier; blocker maturity threshold from `_COORDINATION.md`; policy overlays (e.g., pre-tier gates) are authoritative.

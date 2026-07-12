@@ -1,7 +1,7 @@
 # Harness Tool Catalog
 
 **Status:** Generated governance/runtime support artifact
-**Registry version:** `harness-tools.v11.managed-delegation`
+**Registry version:** `harness-tools.v12.scoped-delegation`
 **Source:** `frontend/packages/harness-contract/src/tool-descriptor.ts`
 **Regenerate:** `npm run harness:generate-tool-catalog`
 

@@ -93,7 +93,7 @@ CATEGORY_REFINEMENTS: dict[str, dict[str, str]] = {
             "decomposition-specific manifests and remediation planning."
         ),
         "InclusionCriteria": (
-            "Include atoms about DECOMP_BASE, DOMAIN_DECOMP, PROJECT_DECOMP, "
+            "Include atoms about DECOMPOSITION_STANDARD, DOMAIN_DECOMP, PROJECT_DECOMP, "
             "SOFTWARE_DECOMP, source atomization, source skeletons, dispatch "
             "units, Domain Ledger rows, Category/KTY/Subject assignment, "
             "decomposition package review, and source-driven scope change."
@@ -243,7 +243,7 @@ CATEGORY_REFINEMENTS: dict[str, dict[str, str]] = {
             "coordination, and operating cadence."
         ),
         "InclusionCriteria": (
-            "Include atoms about ORCHESTRATOR, PREPARATION, CHANGE, SCHEDULING, "
+            "Include atoms about ORCHESTRATOR, PREPARATION, CHANGE, schedule workflows, "
             "WORKING_ITEMS, HELP_HUMAN, deliverable workflows, dependency "
             "registers, handoff state, INIT-TASK coordination, and control loops."
         ),

@@ -50,11 +50,11 @@ The path model is specified in `SPEC.md` §0.2. The entities it defines:
 | **Instruction Root** | The shared, release-managed agent operating system — `AGENTS.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`. `= REPO_ROOT` in this monorepo; the app bundle in desktop builds (see `DIRECTIVE.md` §2.6). |
 | **Working Root** (`WORKING_ROOT`) | The active project or domain workspace — `projects/<name>/` or `domains/<name>/`, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. |
 | **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. |
-| **Tool Root** | A workspace-level directory for derived outputs under `{EXECUTION_ROOT}` (e.g. `_Decomposition/`, `_Reconciliation/`), isolated from source truth. The registry is `SPEC.md` §1.2. |
+| **Tool Root** | A workspace-level directory for derived outputs under `{EXECUTION_ROOT}` (e.g. `_Decomposition/`, `_Evaluation/`, `_Reconciliation/`), isolated from source truth. The registry is `SPEC.md` §1.2. |
 
 ### 1.5 Path Tokens
 
-Agent instructions and skills reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `REPO_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
+Agent instructions and skills reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{EVALUATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `REPO_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
 
 ---
 
@@ -193,7 +193,7 @@ Agent 2 has three valid construction forms: `TASK + skill + brief`; an ephemeral
 | `WRITE_SCOPE` | base values: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none` | What the agent is allowed to write |
 | `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
 
-A `tool-root-only` scope MAY be parameterized to a registered tool root or subtree — `tool-root-only ({EXECUTION_ROOT}/_Reconciliation/<subtree>/)`. `bounded-task-brief` is the `TASK` shell's scope: writes are authorized only by the effective bounded task brief and are always subject to ScopePath containment (`SPEC.md` §0.2.3, §9.5). The full enumeration and parameterization rules live in `SPEC.md` §9.5.
+A `tool-root-only` scope MAY be parameterized to a registered tool root or subtree — for example `tool-root-only ({EXECUTION_ROOT}/_Evaluation/<subtree>/)`. `bounded-task-brief` is the `TASK` shell's scope: writes are authorized only by the effective bounded task brief and are always subject to ScopePath containment (`SPEC.md` §0.2.3, §9.5). The full enumeration and parameterization rules live in `SPEC.md` §9.5.
 
 ### 4.3 Authority Model
 

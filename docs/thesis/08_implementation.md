@@ -97,11 +97,10 @@ The three-variant design satisfies the decomposition system's principal engineer
 The spawning graph defines which Type 1 agents may invoke which Type 2 agents and under what conditions. The graph is reproduced from DBM_Agent_Instruction_Architecture.md §6.1:
 
 ```
-HELP_HUMAN (Type 1 — classifies intent, routes to agents; does not spawn)
+HELP_HUMAN (Agent 0) ──delegates── named Agent 1 managers
 
 ORCHESTRATOR (Type 1) ──spawns──┬── PREPARATION (Type 2)
                                 ├── DOMAIN_HYPERGRAPH (Type 2) [DOMAIN only; Phase 2.6]
-                                ├── ESTIMATING (Type 2)
                                 └── AGGREGATION (Type 2)
                   ──dispatches TASK+skill──┬── four-documents [Phases 2.2 + 2.5]
                                            ├── domain-documents [Phase 2.2; DOMAIN]
@@ -110,17 +109,19 @@ ORCHESTRATOR (Type 1) ──spawns──┬── PREPARATION (Type 2)
                                            ├── dependency-extract [setup + refresh]
                                            └── estimate-snapshot, estimate-prep [Phase 4]
 
-WORKING_ITEMS (Type 1) ──spawns──── TASK (Type 2)
+WORKING_ITEMS (Agent 1, one package) ──delegates── TASK, approved named Agent 2,
+                                                    or bounded generalist Agent 2
 
-RECONCILIATION (Type 1) ──spawns──┬── AUDIT_DEP_CLOSURE (Type 2)
-                                  ├── AUDIT_AGENTS (Type 2)
-                                  ├── AUDIT_DECOMP (Type 2)
-                                  └── AUDIT_HYPERGRAPH_CLOSURE (Type 2) [DOMAIN only]
+EVALUATION (Agent 1) ──delegates──┬── AUDIT_DEP_CLOSURE (Agent 2)
+                                 ├── AUDIT_AGENTS (Agent 2)
+                                 ├── AUDIT_DECOMP (Agent 2)
+                                 ├── AUDIT_GOVERNANCE / AUDIT_EPISTEMIC (Agent 2)
+                                 ├── AUDIT_HYPERGRAPH_CLOSURE (Agent 2) [DOMAIN]
+                                 ├── EVALUATION_REPORT / *_AUDIT (Agent 2)
+                                 └── TASK + evaluation skills
 
-EVALUATION (Type 1) ──spawns──┬── CONTENT_DIGEST (Type 2)
-                              ├── EVALUATION_REPORT (Type 2)
-                              ├── EVALUATION_STRUCTURE_AUDIT (Type 2)
-                              └── EVALUATION_DEPENDENCY_AUDIT (Type 2)
+RECONCILIATION (Agent 1) ──delegates── TASK or bounded generalist Agent 2
+                                      for calibrated corpus-concordance waves
 
 DBM_PUBLISHER (Type 1) ──dispatches TASK+skill──┬── dbm-section-publish
                                                 └── dbm-publish
@@ -132,8 +133,8 @@ HELPS_HUMANS context-transposition mode (Type 1) ── hands off to CHANGE (for
 ORCHESTRATOR scheduling workflow (Type 1) ── standalone (reads dependency graph; produces schedule artifacts)
 HELPS_HUMANS (Type 1) ── standalone (deterministic tools; hands off to CHANGE for publication)
 HELPS_HUMANS (Type 1) ── standalone (designs and governs skills; coordinates with HELPS_HUMANS)
-PDF2MD (Type 1) ──spawns──── PDF2MD_PAGE (Type 2) [per page]
-DRAWING_EXTRACT (Type 1) ──spawns──── DRAWING_EXTRACT_PAGE (Type 2) [per page]
+PDF2MD (Agent 1) ──delegates──── TASK + pdf2md-page-full [per page]
+DRAWING_EXTRACT (Agent 1) ──delegates──── TASK + target-specific drawing skill
 ```
 
 HELP_HUMAN, CHANGE, REVIEW, SCOPE_CHANGE, HELPS_HUMANS context-transposition mode, and ORCHESTRATOR scheduling workflow operate as leaves or handoff coordinators rather than primary spawners; EVALUATION, DBM_PUBLISHER, PDF2MD, and DRAWING_EXTRACT are additional Type 1 spawners or skill dispatchers, per the graph above (DBM §6.1, as of 2026-07-02). CHANGE, in particular, requires explicit approval tokens before any state-changing action, providing the highest-control gate in the system.
@@ -187,7 +188,7 @@ The `tools/` directory contains deterministic shell scripts and Python utilities
 
 The validation category is architecturally significant. `validate_enum.py` checks a value against 24 named enumeration sets (defined across TYPES.md and the tool's own registry), enforcing schema discipline across all agent writes. `validate_dependencies_schema.py` validates a Dependencies.csv file against the v3.1 schema — all 29 required columns — providing deterministic schema compliance checking without requiring LLM reasoning. `check_min_viable_fileset.sh` verifies the five required metadata files are present in a deliverable folder. These three tools together instantiate a substantial portion of the validation criteria defined in SPEC.md §12.
 
-The coordination category contains a single but structurally important tool: `analyze_dep_closure.py`. This tool performs a complete dependency graph analysis across an execution root, detecting strongly connected components (cycles), identifying orphan deliverables (nodes with no dependency edges), performing hub analysis, and checking bidirectional pair symmetry. It produces a `closure_summary.json` and six CSV reports. This tool is invoked by the AUDIT_DEP_CLOSURE agent and supports the RECONCILIATION orchestration workflow.
+The coordination category contains a single but structurally important tool: `analyze_dep_closure.py`. This tool performs a complete dependency graph analysis across an execution root, detecting strongly connected components (cycles), identifying orphan deliverables (nodes with no dependency edges), performing hub analysis, and checking bidirectional pair symmetry. It produces a `closure_summary.json` and six CSV reports. This tool is invoked by the AUDIT_DEP_CLOSURE agent and supports the EVALUATION audit workflow. A RECONCILIATION corpus run may consume an accepted evaluation snapshot as evidence but does not own the generic audit.
 
 ### 8.3.2 The LLM Boundary
 
@@ -239,7 +240,7 @@ Validation in the Chirality system operates across four distinct layers: agent i
 
 **AUDIT_DECOMP** (Type 2) verifies decomposition coverage: that every in-scope atomic unit identified in the decomposition ledger has been assigned to a partition and production unit, that ledger columns meet the minimum specification, and that the Coverage and Telemetry section is present and populated. It produces a coverage report, an issue log CSV, a coverage matrix, and a `coverage_summary.json`. AUDIT_DECOMP is also triggered as a precondition check by the REVIEW agent before lifecycle transitions are permitted, creating a hard gate: a decomposition that fails coverage audit cannot advance through the REVIEW agent's formal 5-gate protocol (distinct from the seven-gate decomposition protocol of §8.2.4).
 
-**AUDIT_DEP_CLOSURE** (Type 2) performs dependency graph analysis using the `analyze_dep_closure.py` tool. The analysis covers: schema validation of all Dependencies.csv files in scope, identification of orphan deliverables (no dependency edges, either incoming or outgoing), strongly connected component detection (cycles in the dependency DAG, which violate the expected acyclic structure), hub identification (nodes with unusually high edge degree), and bidirectional pair symmetry checking. Results are written to `_Reconciliation/DepClosure/` as an immutable snapshot. This agent directly enforces K-DEP-1 (deliverable-local dependency registers are authoritative) and contributes to K-DEP-2 (dependency references must resolve to existing deliverable IDs) by surfacing unresolvable targets.
+**AUDIT_DEP_CLOSURE** (Type 2) performs dependency graph analysis using the `analyze_dep_closure.py` tool. The analysis covers: schema validation of all Dependencies.csv files in scope, identification of orphan deliverables (no dependency edges, either incoming or outgoing), strongly connected component detection (cycles in the dependency DAG, which violate the expected acyclic structure), hub identification (nodes with unusually high edge degree), and bidirectional pair symmetry checking. Current results are written to `_Evaluation/DepClosure/` as an immutable snapshot; historical `_Reconciliation/DepClosure/` snapshots remain readable but are not overwritten or treated as current authority. This agent directly enforces K-DEP-1 and contributes to K-DEP-2 by surfacing unresolvable targets.
 
 **Folder Structure Validation Checklist.** SPEC.md §12 defines a formal validation checklist for execution roots, package folders, and deliverable folders. A valid execution root must contain at least one `PKG-XX_{Label}/` folder, a `_Decomposition/` folder with at least one decomposition document, and an `INIT.md` file. A valid deliverable folder must contain `_STATUS.md` with a valid lifecycle state, `_CONTEXT.md` with header fields matching the decomposition, `_DEPENDENCIES.md`, `_REFERENCES.md`, and the `_SEMANTIC.md` placeholder — the five-file minimum viable fileset. An initialized deliverable (state ≥ `INITIALIZED`) must additionally contain the four-document kit: `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`. A dependency-tracked deliverable must additionally contain `Dependencies.csv` with valid v3.1 schema headers. The tools `check_min_viable_fileset.sh`, `check_four_documents.sh`, and `validate_dependencies_schema.py` provide deterministic checks against these criteria.
 

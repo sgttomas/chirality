@@ -172,7 +172,7 @@ KTY_SPECS: list[dict[str, Any]] = [
             subj("SUB-02-03-01_Derivative-Package-Rule", "Derivative Package Rule", "Derivative package status, upstream snapshot citation, and non-substitution rules.", ["derivative package", "upstream snapshot", "not a substitute", "accepted upstream"]),
             subj("SUB-02-03-02_Snapshot-Handoff-Closure", "Snapshot, Handoff, and Closure", "Snapshot, handoff-state, closure, and sequencing rules.", ["snapshot", "handoff", "closure", "sequencing", "phase-boundary", "pointer"]),
         ],
-        "AGENTS.md governance integration rules and DECOMP_BASE.",
+        "AGENTS.md governance integration rules and DECOMPOSITION_STANDARD.",
     ),
     kty(
         "KTY-02-04_Human-Gated-Governance",
@@ -200,7 +200,7 @@ KTY_SPECS: list[dict[str, Any]] = [
             subj("SUB-03-01-01_Gate-Sequence", "Gate Sequence", "Gate ordering, closure requirements, and phase outputs.", ["gate", "phase", "intake", "normalize", "coverage", "publish", "closure"], sources=["DECOMP"], fallback=True),
             subj("SUB-03-01-02_Handoff-State", "Decomposition Handoff State", "Handoff contents, accepted snapshots, blockers, and rerun requirements.", ["handoff", "rerun", "blocker", "accepted snapshot", "closure verdict"]),
         ],
-        "DECOMP_BASE and DOMAIN_DECOMP instruction sources.",
+        "DECOMPOSITION_STANDARD and DOMAIN_DECOMP instruction sources.",
     ),
     kty(
         "KTY-03-02_Source-Intake-and-Skeletons",
@@ -281,7 +281,7 @@ KTY_SPECS: list[dict[str, Any]] = [
         "Skill authors, Skillmaker, and validators.",
         "Used when creating, auditing, or dispatching a skill pack.",
         [
-            subj("SUB-04-02-01_Skill-Metadata", "Skill Metadata", "Skill pack descriptions, metadata, folder contracts, and registry behavior.", ["skill", "metadata", "skill.md", "skills/readme", "registry", "capability"], sources=["SKILLMAKER", "SKILLPACK-META"]),
+            subj("SUB-04-02-01_Skill-Metadata", "Skill Metadata", "Skill pack descriptions, metadata, folder contracts, and registry behavior.", ["skill", "metadata", "skill.md", "skills/readme", "registry", "capability"], sources=["HELPS_HUMANS", "SKILLPACK-META"]),
             subj("SUB-04-02-02_QA-and-Tool-Policy", "QA and Tool Policy", "QA checks, allowed tools, blocked writes, and tool policy constraints.", ["qa_checks", "tool_policy", "allowedtools", "allowed tools", "blocked", "write scope"]),
         ],
         "Skillmaker, skill meta, and grouped skill-pack sources.",
@@ -295,10 +295,10 @@ KTY_SPECS: list[dict[str, Any]] = [
         "Toolmaker, maintainers, and workflow agents.",
         "Used when adding or changing deterministic tooling.",
         [
-            subj("SUB-04-03-01_Toolmaker-Contracts", "Toolmaker Contracts", "Tool ownership, deterministic behavior, inputs, outputs, and validation expectations.", ["toolmaker", "deterministic", "tool", "script", "validator", "command"], sources=["TOOLMAKER"]),
+            subj("SUB-04-03-01_Toolmaker-Contracts", "Tool Design Contracts", "Tool ownership, deterministic behavior, inputs, outputs, and validation expectations.", ["tool design", "deterministic", "tool", "script", "validator", "command"], sources=["HELPS_HUMANS"]),
             subj("SUB-04-03-02_Tool-Registry", "Tool Registry", "Registry entries, command descriptions, and script discoverability.", ["tools/registry", "registry", "query_source_index", "validate", "build"], sources=["TOOLS-REGISTRY"]),
         ],
-        "TOOLMAKER and tools registry sources.",
+        "HELPS_HUMANS tool-design and tools-registry sources.",
     ),
     kty(
         "KTY-04-04_Runtime-Overrides-and-Policies",
@@ -647,9 +647,9 @@ KTY_SPECS: list[dict[str, Any]] = [
         "Used when work must be ordered or dependency closure is needed.",
         [
             subj("SUB-09-04-01_Dependency-Extraction", "Dependency Extraction", "Dependency registers, predecessor/successor relations, and extracted dependencies.", ["dependency", "dependencies", "predecessor", "successor", "dependency-extract"], sources=["DEPENDENCY"]),
-            subj("SUB-09-04-02_Schedule-Generation", "Schedule Generation", "Schedule generation, sequencing, duration, and readiness checks.", ["schedule", "scheduling", "duration", "sequence", "critical"], sources=["SCHEDULING"]),
+            subj("SUB-09-04-02_Schedule-Generation", "Schedule Generation", "Schedule generation, sequencing, duration, and readiness checks.", ["schedule", "scheduling", "duration", "sequence", "critical"], sources=["ORCHESTRATOR"]),
         ],
-        "SCHEDULING and dependency-extract skill sources.",
+        "ORCHESTRATOR scheduling-workflow and dependency-extract skill sources.",
     ),
     kty(
         "KTY-09-05_Working-Items-and-Deliverables",

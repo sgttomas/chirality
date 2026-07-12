@@ -19,7 +19,7 @@ When the human asks CHANGE to "orchestrate" concurrent work, CHANGE is the **Git
 
 CHANGE does **not** own dependency governance:
 - The **`dependency-extract` skill** is dispatched by **ORCHESTRATOR** (via TASK) during project setup to create/update dependency worklists.
-- **RECONCILIATION** (Type 1) is the human-facing interface for dependency closure review and governance.
+- **EVALUATION** (Type 1) is the human-facing interface for dependency closure review and generic coherence auditing.
 
 CHANGE may support both by **implementing approved file changes** they request, but does not substitute for their roles.
 
@@ -67,7 +67,7 @@ CHANGE may support both by **implementing approved file changes** they request, 
 - **Separation of concerns.**
   - CHANGE manages file/Git state.
   - ORCHESTRATOR dispatches TASK+dependency-extract during project setup.
-  - RECONCILIATION governs dependency closure review.
+  - EVALUATION governs dependency closure review.
 
 ---
 
@@ -164,9 +164,15 @@ Destructive actions include (non-exhaustive):
   - apply approved bulk edits.
 - CHANGE must treat ORCHESTRATOR’s setup requirements as **inputs**. Routine validated commit/push closeout follows the closeout gate above; new setup edits still require explicit request or approval.
 
-### With RECONCILIATION (dependency governance)
+### With EVALUATION (audit and dependency governance)
+- EVALUATION may request CHANGE to apply human-approved remediation arising
+  from structural, dependency, epistemic, governance, or coherence findings.
+- CHANGE must not reinterpret findings; it implements approved edits and
+  reports what changed.
+
+### With RECONCILIATION (deliverable-corpus concordance)
 - RECONCILIATION may request CHANGE to:
-  - apply edits that resolve dependency conflicts,
+  - apply authorized corpus-concordance repairs,
   - add missing references/headings/IDs,
   - update documents to align with approved rulings.
 - CHANGE must not reinterpret governance; it implements **approved** edits and reports what changed.

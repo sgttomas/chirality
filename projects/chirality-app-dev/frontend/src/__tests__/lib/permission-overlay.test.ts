@@ -411,6 +411,64 @@ describe('permission overlay', () => {
     });
   });
 
+  it('enforces managed child read scopes, write targets, and fail-closed shell boundaries', async () => {
+    await useTempSessionRoot();
+    const projectRoot = path.join(tmpDir, 'project');
+    const packageRoot = path.join(projectRoot, 'PKG-01');
+    await mkdir(packageRoot, { recursive: true });
+    const canUseTool = createHarnessCanUseTool({
+      sessionId,
+      mode: 'workspaceWrite',
+      projectRoot,
+      allowedReadScopes: [packageRoot],
+      allowedWriteTargets: [packageRoot],
+      resolveDescriptor: getHarnessToolDescriptor
+    });
+
+    const options = (toolUseID: string) => ({
+      signal: new AbortController().signal,
+      toolUseID
+    });
+    await expect(
+      canUseTool('Read', { file_path: 'PKG-01/in.md' }, options('managed_read_inside'))
+    ).resolves.toMatchObject({ behavior: 'allow' });
+    await expect(
+      canUseTool('Read', { file_path: 'PKG-02/out.md' }, options('managed_read_outside'))
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('declared read scope')
+    });
+    await expect(
+      canUseTool('Glob', { pattern: '**/*.md' }, options('managed_unbounded_glob'))
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('requires an explicit path')
+    });
+    await expect(
+      canUseTool(
+        'Write',
+        { file_path: 'PKG-01/out.md', content: 'inside' },
+        options('managed_write_inside')
+      )
+    ).resolves.toMatchObject({ behavior: 'allow' });
+    await expect(
+      canUseTool(
+        'Write',
+        { file_path: 'PKG-02/out.md', content: 'outside' },
+        options('managed_write_outside')
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('declared write targets')
+    });
+    await expect(
+      canUseTool('Bash', { command: 'npm test' }, options('managed_shell'))
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('Bash is denied for a managed child')
+    });
+  });
+
   it('hard-denies unsafe write callback paths before SDK execution', async () => {
     await useTempSessionRoot();
     const projectRoot = path.join(tmpDir, 'project');

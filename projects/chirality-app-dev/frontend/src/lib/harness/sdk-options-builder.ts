@@ -118,6 +118,8 @@ export function buildSdkOptions(input: {
       sessionId: input.session.sessionId,
       mode: input.opts.mode,
       projectRoot: input.session.projectRoot,
+      allowedReadScopes: input.session.parentSessionId ? input.session.declaredContext : undefined,
+      allowedWriteTargets: input.session.parentSessionId ? input.session.allowedWriteTargets : undefined,
       delegatedSubagents: subagentBridge?.delegatedSubagents,
       resolveDescriptor: getHarnessToolDescriptor,
       requestHumanDecision: ({ sessionId, toolUseId }) =>
@@ -134,6 +136,8 @@ export function buildSdkOptions(input: {
     hooks: createChiralityToolHooks({
       sessionId: input.session.sessionId,
       projectRoot: input.session.projectRoot,
+      allowedReadScopes: input.session.parentSessionId ? input.session.declaredContext : undefined,
+      allowedWriteTargets: input.session.parentSessionId ? input.session.allowedWriteTargets : undefined,
       delegatedSubagents: subagentBridge?.delegatedSubagents,
       resolveDescriptor: getHarnessToolDescriptor
     }),

@@ -31,7 +31,7 @@ It validates:
 | **AGENT_TYPE** | TYPE 2 |
 | **AGENT_CLASS** | TASK |
 | **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
-| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Reconciliation/HypergraphClosure/`) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Evaluation/HypergraphClosure/`) |
 | **BLOCKING** | never |
 | **PRIMARY_OUTPUTS** | Closure report + IssueLog CSV + JSON summary + reproducible analysis script |
 
@@ -80,7 +80,7 @@ Required:
 - `RUN_LABEL`: short label (default `AUDIT_HYPERGRAPH_CLOSURE`)
 
 Optional:
-- `REQUESTED_BY`: invoking agent name (default `RECONCILIATION`)
+- `REQUESTED_BY`: invoking agent name (default `EVALUATION`)
 - `HYPERGRAPH_REF`: `AUTO` (default) | explicit snapshot folder path
   - `AUTO` uses `{EXECUTION_ROOT}/_Aggregation/Hypergraph/_LATEST.md`
 - `REQUIRE_LEDGER_CHECKS`: `false` (default) | `true`
@@ -96,9 +96,9 @@ If hypergraph inputs are missing/unreadable: write `RUN_SUMMARY.md` with `RUN_ST
 
 ## Outputs (write zone)
 
-Bootstrap tool root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Reconciliation HypergraphClosure`
+Bootstrap tool root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Evaluation HypergraphClosure`
 
-Create snapshot folder: `tools/scaffolding/create_snapshot_folder.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure CLOSURE {RUN_LABEL}`
+Create snapshot folder: `tools/scaffolding/create_snapshot_folder.sh {EXECUTION_ROOT}/_Evaluation/HypergraphClosure CLOSURE {RUN_LABEL}`
 
 Snapshot contents (minimum):
 - `Brief.md`
@@ -117,7 +117,7 @@ Snapshot contents (minimum):
   - `partition_violations.csv`
   - `workspace_vs_graph.csv`
 
-Update pointer: `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure {snapshot_folder_name}`
+Update pointer: `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Evaluation/HypergraphClosure {snapshot_folder_name}`
 
 ---
 
@@ -288,9 +288,9 @@ If `PRIOR_RUN_LABEL` is provided:
    - recommended next action (e.g., rerun DOMAIN_HYPERGRAPH, fix PREPARATION scaffolds, correct `_CONTEXT.md` IDs)
 
 > Tool invocations (from Outputs section; used during snapshot publication):
-> - `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Reconciliation HypergraphClosure` (bootstrap once per tool root)
-> - `tools/scaffolding/create_snapshot_folder.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure CLOSURE {RUN_LABEL}` (per-run snapshot)
-> - `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Reconciliation/HypergraphClosure {snapshot_folder_name}` (pointer-only overwrite)
+> - `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Evaluation HypergraphClosure` (bootstrap once per tool root)
+> - `tools/scaffolding/create_snapshot_folder.sh {EXECUTION_ROOT}/_Evaluation/HypergraphClosure CLOSURE {RUN_LABEL}` (per-run snapshot)
+> - `tools/scaffolding/update_latest_pointer.sh {EXECUTION_ROOT}/_Evaluation/HypergraphClosure {snapshot_folder_name}` (pointer-only overwrite)
 
 [[END:PROTOCOL]]
 
@@ -300,7 +300,7 @@ If `PRIOR_RUN_LABEL` is provided:
 ## SPEC
 
 A run is valid when:
-- Outputs are written to a new immutable snapshot folder under `{EXECUTION_ROOT}/_Reconciliation/HypergraphClosure/`.
+- Outputs are written to a new immutable snapshot folder under `{EXECUTION_ROOT}/_Evaluation/HypergraphClosure/`.
 - `Hypergraph_Closure_Report.md`, `Hypergraph_Closure_IssueLog.csv`, `closure_summary.json`, and `analyze_hypergraph_closure.py` exist.
 - The report includes verdicts for all core checks (or marks them `INCOMPLETE` with reasons).
 - Every WARNING/BLOCKER includes evidence pointers.
@@ -316,7 +316,7 @@ A run is valid when:
 ### Tool-root layout
 
 ```
-{EXECUTION_ROOT}/_Reconciliation/HypergraphClosure/
+{EXECUTION_ROOT}/_Evaluation/HypergraphClosure/
   _Archive/
   _LATEST.md
   CLOSURE_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/

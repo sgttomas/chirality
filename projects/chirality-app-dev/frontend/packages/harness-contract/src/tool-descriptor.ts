@@ -8,7 +8,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v11.managed-delegation';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v12.scoped-delegation';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -631,7 +631,7 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     description: 'Launch a governed direct child session under the Agent 0→1 or Agent 1→2 hierarchy and persist its work graph, brief, status, and return.',
     inputSchema: {
       type: 'object',
-      required: ['executionRoot', 'runId', 'planVersion', 'selectionAuthority', 'posture', 'acceptedBasis', 'childKind', 'purpose', 'brief', 'declaredContext', 'tools', 'writeTargets', 'dependencies', 'expectedOutput', 'acceptanceCriteria', 'contextSealed', 'pipelineRunApproved', 'approvalRef']
+      required: ['executionRoot', 'runId', 'planVersion', 'selectionAuthority', 'posture', 'acceptedBasis', 'childKind', 'purpose', 'brief', 'declaredContext', 'tools', 'writeTargets', 'dependencies', 'expectedOutput', 'acceptanceCriteria', 'requiredReturnMarkers', 'contextSealed', 'pipelineRunApproved', 'approvalRef']
     }
   }),
   chiralityCoordinationMcpDescriptor({

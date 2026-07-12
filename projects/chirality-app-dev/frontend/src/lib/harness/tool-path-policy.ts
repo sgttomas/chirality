@@ -165,6 +165,8 @@ export async function evaluateToolPathPolicy(input: {
   toolInput: unknown;
   blockedPath?: string;
   instructionRoot?: string;
+  allowedReadScopes?: readonly string[];
+  allowedWriteTargets?: readonly string[];
 }): Promise<HarnessToolPathPolicyResult> {
   if (input.blockedPath) {
     return denyPath({
@@ -193,7 +195,37 @@ export async function evaluateToolPathPolicy(input: {
   }
 
   const pathField = readPrimaryPathField(input.toolInput);
+  const projectRoot = path.resolve(input.projectRoot);
+  const managedScopes =
+    pathScope === 'project-root-read'
+      ? input.allowedReadScopes
+      : pathScope === 'project-root-write'
+        ? input.allowedWriteTargets
+        : undefined;
   if (!pathField) {
+    if (input.descriptor?.permissions.includes('shell')) {
+      return {
+        allowed: true,
+        metadata: {
+          projectRoot,
+          pathScope
+        }
+      };
+    }
+    if (
+      managedScopes !== undefined &&
+      !managedScopes.some((scope) => path.resolve(scope) === projectRoot)
+    ) {
+      return denyPath({
+        reason: `${pathScope === 'project-root-read' ? 'Read' : 'Write'} tool requires an explicit path inside the managed child scope.`,
+        denyClass: 'managed-scope-path-required',
+        projectRoot: input.projectRoot,
+        pathScope,
+        extra: {
+          managedScopes: managedScopes.map((scope) => path.resolve(scope))
+        }
+      });
+    }
     return {
       allowed: true,
       metadata: {
@@ -221,6 +253,24 @@ export async function evaluateToolPathPolicy(input: {
       rawPath: pathField.value,
       resolvedPath,
       pathScope
+    });
+  }
+
+  if (
+    managedScopes !== undefined &&
+    !managedScopes.some((scope) => isWithinRoot(scope, resolvedPath))
+  ) {
+    return denyPath({
+      reason: `Path '${pathField.value}' is outside the managed child's declared ${pathScope === 'project-root-read' ? 'read scope' : 'write targets'}.`,
+      denyClass: pathScope === 'project-root-read' ? 'managed-read-scope' : 'managed-write-scope',
+      projectRoot: input.projectRoot,
+      pathField: pathField.field,
+      rawPath: pathField.value,
+      resolvedPath,
+      pathScope,
+      extra: {
+        managedScopes: managedScopes.map((scope) => path.resolve(scope))
+      }
     });
   }
 

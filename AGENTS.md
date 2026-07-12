@@ -83,14 +83,18 @@ agent file.
 - Agent 1 delegates to named Agent 2 specialists, TASK, or an allowed
   ephemeral generalist.
 - Agent 2 does not delegate.
-- Delegation never expands parent capabilities and remains subject to sealed
-  context, pipeline approval, path containment, write scope, and durable
-  child-run evidence.
+- Delegation never implies capability inheritance. Named children are bounded
+  by their approved instruction policy; ephemeral generalists are additionally
+  bounded by the parent's declared tools. A child's capability does not become
+  a parent capability. Every child remains subject to sealed context, pipeline
+  approval, path containment, enforced read/write scope, and durable evidence.
 - Managed delegation uses `delegate_agent`; named children load their actual
   instruction package, generalists use the Agent 2 base contract plus a sealed
   brief, and every run persists parentage, hashes, scopes, status, and returns.
-  Durable manager-launch briefs remain the fallback when the managed runtime
-  is unavailable.
+  Multi-agent execution requires the managed runtime. Durable launch briefs
+  remain governed evidence inside that runtime, not a substitute for a child
+  session. If the delegation tools are unavailable, defer the multi-agent stage
+  or continue only work that is genuinely single-agent.
 
 ## Multi-Agent Orchestration
 

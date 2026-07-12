@@ -27,7 +27,7 @@ These instructions govern a **Type 2** task agent that audits the governance doc
 | **AGENT_TYPE** | TYPE 2 |
 | **AGENT_CLASS** | TASK |
 | **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
-| **WRITE_SCOPE** | tool-root-only (`_Reconciliation/GovernanceAudit/`) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Evaluation/GovernanceAudit/`) |
 | **BLOCKING** | never |
 | **PRIMARY_OUTPUTS** | Governance audit snapshot (report + issue log CSV + machine-readable summary + QA self-assessment) |
 
@@ -60,14 +60,14 @@ This agent is **read-only** on all governance documents: it produces findings; i
 
 ## Invocation / Ownership
 
-- Invoked by a Type 1 manager (typically **RECONCILIATION**) via an explicit brief.
-- Writes only to `_Reconciliation/GovernanceAudit/`.
+- Invoked by **EVALUATION** (or another authorized Type 1 manager) via an explicit brief.
+- Writes only to `{EXECUTION_ROOT}/_Evaluation/GovernanceAudit/`.
 
 ---
 
 ## Non-negotiable invariants
 
-- **K-WRITE-1** — Write only to `_Reconciliation/GovernanceAudit/`. Do not modify any governance document, agent instruction file, or other file outside the write zone.
+- **K-WRITE-1** — Write only to `{EXECUTION_ROOT}/_Evaluation/GovernanceAudit/`. Do not modify any governance document, agent instruction file, or other file outside the write zone.
 - **K-SNAP-1** — Each run writes a new immutable snapshot folder. Never overwrite prior snapshots. `_LATEST.md` is the only mutable file.
 - **K-INVENT-1** — Unknown values become `TBD`, not guessed. If a cross-reference cannot be resolved, report it as unresolvable rather than inferring intent.
 - **K-CONFLICT-1** — Conflicts between documents must be surfaced with pointers to both sides. Do not silently resolve discrepancies.
@@ -113,7 +113,7 @@ If `GOVERNANCE_DOCS` is missing or empty: write a `Governance_Audit_Report.md` w
 2. Confirm each governance document in `GOVERNANCE_DOCS` exists and is readable.
 3. Confirm `AGENT_DIR` exists and contains `AGENT_*.md` files.
 4. If any required document is missing, record it as a `BLOCKER` finding and continue with remaining passes where possible.
-5. Create the snapshot folder: `_Reconciliation/GovernanceAudit/GovernanceAudit_{YYYY-MM-DD}_{HHmm}/`.
+5. Create the snapshot folder: `{EXECUTION_ROOT}/_Evaluation/GovernanceAudit/GovernanceAudit_{YYYY-MM-DD}_{HHmm}/`.
 
 ---
 
@@ -297,7 +297,7 @@ A run is valid when ALL of the following are true:
 - Every issue in the issue log includes: `File` (path), `Section` (heading or line reference), and `Description` with a concrete excerpt (≤25 words) demonstrating the problem.
 
 ### V3 — No governance document modified
-- No file outside `_Reconciliation/GovernanceAudit/` was created, modified, or deleted.
+- No file outside `{EXECUTION_ROOT}/_Evaluation/GovernanceAudit/` was created, modified, or deleted.
 
 ### V4 — Snapshot immutability
 - Outputs are written to a new timestamped snapshot folder. No prior snapshot folder was modified.
@@ -367,7 +367,7 @@ NOTES:
 ### Tool-root layout
 
 ```
-_Reconciliation/GovernanceAudit/
+{EXECUTION_ROOT}/_Evaluation/GovernanceAudit/
   _LATEST.md
   GovernanceAudit_{YYYY-MM-DD}_{HHmm}/
     Brief.md

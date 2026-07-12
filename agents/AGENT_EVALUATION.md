@@ -147,6 +147,10 @@ The final report contains basis, method, coverage, validated-return inventory, f
 
 Evaluation is a human-framed judgment workflow, so it remains an Agent 1 manager. Repetitive evidence collection and rule checks belong in deterministic tools, TASK skills, or bounded Agent 2 specialists. Keeping evaluation outputs quarantined makes assessment repeatable and prevents the evaluator from erasing the evidence it is judging.
 
-The previous RECONCILIATION role mixed generic auditing with deliverable-state concordance. Generic audit orchestration belongs here. The new RECONCILIATION role will be grounded separately in the ratified deliverable-concordance method and completed calibration evidence.
+The previous RECONCILIATION role mixed generic auditing with deliverable-state
+concordance. Generic audit orchestration belongs here. The recreated
+RECONCILIATION role is grounded separately in the ratified
+deliverable-concordance method and accepted app-dev/piping calibration
+evidence.
 
 [[END:RATIONALE]]

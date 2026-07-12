@@ -693,8 +693,8 @@ Provisional Chirality-to-SDK permission mapping:
 | FR-098 | P1 | Context window management shall preserve auditability. | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when the SDK emits them. |
 | FR-099 | P1 | Compaction events shall be persisted. | `context.compacted` records boundary, preserved recent turns where knowable, SDK compact metadata, and replay implications. |
 | FR-100 | P1 | Bash shall remain unavailable unless explicitly governed and validated. | Denied bash never spawns; allowed bash captures stdout/stderr separately, times out, stores large output, and can be interrupted when possible. This bash gate must not suppress unrelated safe read/tool capability. |
-| FR-101 | P1 | Subagent execution shall create governed child run records. | Child run includes parent session/turn, persona, agent name, SDK agent ID where available, model, project root, status, timestamps, and output artifact path. |
-| FR-102 | P1 | Subagent tools and working directory shall be restricted. | SDK `agents` definitions inherit or reduce parent permissions; they cannot bypass `evaluateSubagentGovernance`. |
+| FR-101 | P1 | Subagent execution shall create governed child run records. | Child run includes logical parent, parent/child types, child kind, instruction or brief hash, accepted basis, declared context/tools/writes, plan version, status, timestamps, return validation, output artifact, and coordination evidence. |
+| FR-102 | P1 | Child tools, context, and write boundaries shall be restricted. | Named children use approved role policy; generalists are bounded by parent tools and brief. Permission callbacks and hooks enforce declared read/write scopes, with managed Bash fail-closed unless full-project scope is explicit. The compatibility adapter cannot bypass hierarchy governance. |
 | FR-103 | P2 | Deferred tool search shall return only currently allowed tools. | Tool search is added only when catalog size justifies it and never reveals denied tools. |
 | FR-104 | P1 | In-process Chirality MCP tools shall pass through the same permission and hook overlay as SDK built-ins. | Server metadata is preserved, name collisions are prevented, and tools are filtered or denied before execution. |
 | FR-105 | P2 | Plugin-like extension points and remote MCP shall remain out of scope until mature guardrails exist. | Product does not ship a marketplace/plugin system or remote tool expansion before local SDK governance is stable. |
@@ -1424,16 +1424,25 @@ Implementation targets:
 - Load actual `AGENT_*.md` content for named children; build ephemeral
   generalists from the Agent 2 base contract plus a sealed brief.
 - Restrict tools, MCP servers, mode, context, and write targets for every child.
+- Enforce declared read scopes and write targets at permission and hook
+  boundaries; fail closed on unscoped file operations. Because arbitrary Bash
+  cannot be proven path-bounded, a managed child receives Bash only when its
+  declared read and write scopes explicitly cover the project root.
 - Support waiting children for terminal fan-in and background children for
   supervised many-to-many coordination.
 - Emit parent-visible notice/update/acknowledgment events and preserve claim status.
+- Deliver active parent updates at the next safe child-turn boundary and block
+  closure when a delivered update is not acknowledged.
+- Require checkable return markers, version every replan, and preserve the
+  initial plus amended work graphs for restart reconstruction.
 - Keep the SDK Agent tool fail-closed and non-delegating during compatibility migration.
 
 Acceptance:
 
 - Direct untyped, Agent 0, and Agent 1 sessions are allowed; Agent 2 direct chat is denied.
 - 0→1, 1→named 2, 1→TASK, and declared 1→generalist are allowed; 0→2, 1→1, and 2→any are denied.
-- Missing seal, approval, instruction/brief, path boundary, or valid return fails closed.
+- Missing seal, approval, instruction/brief, declared scope, checkable return
+  marker, or valid return fails closed.
 - Concurrent overlapping writes fail; serialized overlaps require an accepted predecessor.
 - Parent and child sessions retain reconstructible lifecycle, output, and coordination evidence.
 - Developer-only bypass does not grant ungated child autonomy.

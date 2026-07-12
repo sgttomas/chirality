@@ -26,7 +26,7 @@ The Chirality architecture enforces three distinct separations, each of which el
 
 **Instruction versus execution.** The instruction root — a release-managed agent operating system distributed with the application — is physically separated from the working root, the user-controlled filesystem directory where agents read and write project state. Agents read their governing instructions from one location and write state to another. This separation, stated in `DIRECTIVE.md` §2.6 and enforced by the runtime architecture, ensures that the rules governing agent behavior are stable across projects and releases while project execution remains fully filesystem-native. An agent cannot modify its own governing instructions during execution because those instructions reside in a separate, write-protected location.
 
-**Source truth versus derived output.** Deliverable folders — the source truth of the project — are structurally isolated from tool roots, which contain agent-produced analysis and snapshots. Tool roots (`_Aggregation/`, `_Estimates/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) are explicitly designated zones for derived output. Source truth contains only human-accepted deliverable content. The boundary is enforced by invariant K-WRITE-1: every agent declares its write scope in its header block, and no agent may write outside that declared zone. This prevents derived analysis from silently contaminating the authoritative project record.
+**Source truth versus derived output.** Deliverable folders — the source truth of the project — are structurally isolated from tool roots, which contain agent-produced analysis and snapshots. Tool roots (`_Aggregation/`, `_Estimates/`, `_Evaluation/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) are explicitly designated zones for derived output. Source truth contains only human-accepted deliverable content. The boundary is enforced by invariant K-WRITE-1 plus managed child read/write scopes, permission policy, and hooks. This prevents derived analysis from silently contaminating the authoritative project record.
 
 **Authority versus execution.** Standards constrain the system from outside the runtime hierarchy. Agent 0 aligns with the human and supervises Agent 1 managers; Agent 1 delegates bounded work to Agent 2; Agent 2 does not delegate. Authority and capability do not increase through delegation, escalation flows upward, and no agent may bypass a human gate.
 
@@ -273,12 +273,12 @@ The system implements a closed-loop feedback control architecture spanning the c
 ORCHESTRATOR (Plant Setup)
   → WORKING_ITEMS (Actuator — produces content)
     → TASK+dependency-extract rerun (Sensor — updates dependency state)
-      → RECONCILIATION (Comparator — surfaces deviations)
+      → EVALUATION (Comparator — surfaces deviations)
         → CHANGE (Output — commits to baseline)
           → ORCHESTRATOR scan (Feedback — reports new state)
 ```
 
-Each element of this loop has a defined control function. The ORCHESTRATOR initializes the plant state — the workspace configuration and coordination representation — and provides the periodic scan that closes the loop by reporting current system state. WORKING_ITEMS is the primary actuator, producing content that advances deliverables toward their set points. The TASK+dependency-extract rerun after content changes functions as a sensor, updating the dependency state to reflect the new system state. RECONCILIATION is the comparator, differencing actual dependency state against expected dependency state and surfacing deviations as findings. CHANGE commits accepted states to baseline, making the output permanent. The ORCHESTRATOR scan then reports the new baseline state as feedback to the next iteration.
+Each element of this loop has a defined control function. ORCHESTRATOR initializes workspace and coordination state. Package-level WORKING_ITEMS instances are the primary actuators. TASK+dependency-extract reruns update dependency state as sensors. EVALUATION is the generic comparator, differencing observed state against the accepted basis and surfacing deviations. RECONCILIATION is activated only for the broader problem of corpus concordance. CHANGE records authorized file/Git state; a commit is not semantic acceptance. The next manager inspection closes the loop from accepted live state.
 
 ### 7.7.2 Control Variables and Set Points
 
@@ -287,7 +287,7 @@ The system manages five primary control variables, each with a defined set point
 | Controlled Variable | Set Point | Sensor | Actuator |
 |---|---|---|---|
 | Lifecycle state | ISSUED | `_STATUS.md` | REVIEW gate |
-| Dependency closure | All active dependencies satisfied | `Dependencies.csv` | RECONCILIATION |
+| Dependency closure | All active dependencies satisfied | `Dependencies.csv` | EVALUATION |
 | Decomposition fidelity | Zero unassigned atomic units | Decomposition Ledger | Human correction |
 | Work availability | No blocked deliverables | Blocker analysis | Tier sequencing |
 | Artifact completeness | All anticipated artifacts present | Folder scan | WORKING_ITEMS |
@@ -306,9 +306,18 @@ many-to-many execution:** active children report relevant findings to their
 parent, which selectively relays or amends affected work. WORKING_ITEMS owns
 this coordination within one package; HELP_HUMAN owns it across packages.
 
-**Closed-loop (across sessions):** The handoff mechanism (`NEXT_INSTANCE_STATE.md`) carries state between sessions. TASK+dependency-extract reruns after content changes update the dependency graph with current evidence. RECONCILIATION detects integration defects by comparing the updated dependency graph against expected satisfaction states. ORCHESTRATOR scans compute work availability for the next tier. The closed loop operates at the session boundary, not within a session.
+**Closed-loop (across sessions and active runs):** Durable handoffs carry state
+between sessions. During a managed run, Agent 2 notices return to Agent 1 and
+Agent 1 notices return to Agent 0; selected updates are delivered at safe turn
+boundaries and recorded with acknowledgments. TASK+dependency-extract updates
+the dependency sensor, EVALUATION detects generic integration defects, and
+manager inspections compute the next dependency-valid work graph.
 
-This architectural choice — confining closed-loop feedback to session boundaries — is consistent with a broader safety principle: feedback should be deferred to a point at which it can be evaluated with appropriate scope and authority. Real-time feedback within a production session would require the agent to make scope decisions it is not authorized to make.
+Feedback is therefore neither unrestricted real-time sibling messaging nor
+confined to terminal session boundaries. It is parent-mediated, claim-status
+preserving, and applied only at safe turn boundaries. Objective, authority,
+scope, ownership, risk, or acceptance changes require versioned amendments;
+consequential changes return to the human.
 
 ### 7.7.4 Human Authority as the Halting Condition
 

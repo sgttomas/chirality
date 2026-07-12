@@ -76,7 +76,7 @@ Defined in `docs/CONTRACT.md` (reproduced here as of 2026-07-02; 27 invariants).
 
 | ID | Invariant | Enforcement |
 |----|-----------|-------------|
-| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; aggregation is on-demand via `_Reconciliation/`. | TASK+dependency-extract (local writes only); RECONCILIATION agent (read-only aggregation) |
+| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; generic read-only aggregation is on-demand via `_Evaluation/`; a calibrated corpus-concordance run may also inventory dependencies under `_Reconciliation/DeliverableConcordance/`. | TASK+dependency-extract (local writes only); EVALUATION (generic audit); RECONCILIATION (activated corpus concordance) |
 | **K-DEP-2** | Dependency references to deliverables must **resolve to existing deliverable IDs**. Unresolvable targets use `TargetType=UNKNOWN`. | TASK+dependency-extract (Function 2); validation checks |
 
 ### A.3.5 Status and Lifecycle (CONTRACT §1.5)

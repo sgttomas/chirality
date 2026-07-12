@@ -91,7 +91,10 @@ This produces: `closure_summary.json`, `orphans.csv`, `scc_summary.csv`, `hubs.c
 
 > Tool invocation: `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {SNAPSHOT_DIR}`
 
-If the full analysis tool is unavailable, fall back to reading existing reconciliation reports at `_Reconciliation/DepClosure/`.
+If the full analysis tool is unavailable, an explicitly cited historical
+snapshot under `_Reconciliation/DepClosure/` may be read as legacy evidence.
+It is never overwritten or treated as current authority; current output still
+lands under `_Evaluation/` and records the rerun limitation.
 
 ### Step 7 — Compile report
 Write to `OUTPUT_FILE`.

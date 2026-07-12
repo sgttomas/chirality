@@ -62,7 +62,7 @@ The formal epistemic ontology and warrant lifecycle are defined in `CHIRALITY_FR
 
 **Praxiology — how work is done.**
 
-The operational model distinguishes external standards from three runtime positions: Agent 0 Supervising Architect, Agent 1 Manager, and Agent 2 Specialist. HELP_HUMAN is the sole Agent 0; a human may instead enter through any Agent 1. Agent 0 delegates only to Agent 1, Agent 1 delegates bounded work to Agent 2, and Agent 2 does not delegate. Authority and capability never increase through delegation, escalation flows upward, and no agent may bypass a human gate or approve professional reliance. Agent 2 may be TASK plus a skill and brief, an ephemeral bounded generalist, or an explicitly approved dedicated specialist.
+The operational model distinguishes external standards from three runtime positions: Agent 0 Supervising Architect, Agent 1 Manager, and Agent 2 Specialist. HELP_HUMAN is the sole Agent 0; a human may instead enter through any Agent 1. Agent 0 delegates only to Agent 1, Agent 1 delegates bounded work to Agent 2, and Agent 2 does not delegate. Capabilities are explicit rather than inherited: named children use their approved role policy, generalists are bounded by their parent and brief, and no child capability becomes available to its parent. Escalation flows upward, and no agent may bypass a human gate or approve professional reliance. Agent 2 may be TASK plus a skill and brief, an ephemeral bounded generalist, or an explicitly approved dedicated specialist.
 
 Multi-agent workflows may use terminal fan-out/fan-in, supervised
 parent-mediated many-to-many agency, or any dependency-valid mixture of

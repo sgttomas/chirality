@@ -298,7 +298,7 @@ Tools identified as useful but not yet needed — either used by only one agent,
 | `find_estimate_snapshots.sh` | query | Glob all EST_* snapshot folders | AGGREGATION already uses `merge_detail_csvs.py --glob` which embeds the lookup |
 | `find_detail_csvs.sh` | query | Find Detail.csv within estimate snapshots | Same — embedded in `merge_detail_csvs.py --glob` pattern |
 | `extract_decomp_ids.py` | query | Parse decomposition markdown to extract PKG/DEL IDs, names, fields | ORCHESTRATOR and PREPARATION currently parse via LLM reading; useful for deterministic coverage checks once decomposition format stabilizes further |
-| `build_blocker_dag.py` | coordination | Topological sort of hard execution dependencies into tier assignments | SCHEDULING computes tiers inline; `analyze_dep_closure.py` already produces SCC/cycle analysis. Tier assignment would add standalone topological output |
+| `build_blocker_dag.py` | coordination | Topological sort of hard execution dependencies into tier assignments | ORCHESTRATOR's scheduling workflow computes tiers inline; `analyze_dep_closure.py` already produces SCC/cycle analysis. Tier assignment would add standalone topological output |
 | `serialize_workspace_state.py` | reporting | Serialize filesystem state to JSON | Superseded by AUDIT_DECOMP's `coverage_summary.json`; no agent protocol invokes a generic filesystem-to-JSON dump |
 
 **Promotion criteria:** A backlog tool should be promoted to CREATE NOW when (1) a second agent needs the same operation, or (2) an existing agent's inline implementation diverges across runs and needs standardization.

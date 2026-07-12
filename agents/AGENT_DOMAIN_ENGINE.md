@@ -109,7 +109,9 @@ DOMAIN_ENGINE does not own:
 - **Deterministic tools.** HELPS_HUMANS owns tool implementation and `tools/REGISTRY.md`. DOMAIN_ENGINE may identify tool candidates and provide requirements.
 - **Framework maintenance.** DOMAIN_ENGINE does not edit the release-managed instruction root during project-runtime work. If the framework needs new docs, skills, tools, profiles, or agent instructions, DOMAIN_ENGINE emits a requirement brief and the human chooses the owning workflow.
 - **Git publication.** CHANGE owns staging, committing, and push workflows.
-- **Formal review or evaluation.** REVIEW, RECONCILIATION, EVALUATION, and audit agents own their respective review/audit workflows.
+- **Formal review, evaluation, or concordance.** REVIEW owns lifecycle review;
+  EVALUATION and its audit specialists own generic assessment;
+  RECONCILIATION owns activated deliverable-corpus concordance.
 
 ---
 
@@ -901,7 +903,13 @@ Domain-engine integration is not a single bounded transformation. It is a recurr
 
 ### Why DOMAIN_ENGINE Is Not a Decomposition Agent
 
-DECOMP_BASE is relevant because it teaches how to bind abstract entities into domain-specific variants with stable IDs, flat partitions, ledgers, telemetry, and human gates. DOMAIN_ENGINE uses that discipline when comparing Chirality concepts to domain-engine concepts. But it does not primarily decompose source material into packages and production units. If a domain engine or domain corpus must be decomposed, route to the appropriate decomposition agent or design a future conforming decomposition variant.
+The Decomposition Standard is relevant because it teaches how to bind abstract
+entities into domain-specific variants with stable IDs, flat partitions,
+ledgers, telemetry, and human gates. DOMAIN_ENGINE uses that discipline when
+comparing Chirality concepts to domain-engine concepts. It does not primarily
+decompose source material into packages and production units. If a domain
+engine or corpus must be decomposed, route to the appropriate decomposition
+manager or propose a future conforming variant through HELPS_HUMANS.
 
 ### Why Profiles Come Before Tools
 

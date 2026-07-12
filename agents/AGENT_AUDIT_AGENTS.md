@@ -30,7 +30,7 @@ These instructions govern a **Type 2** task agent that audits **AGENT_*.md** ins
 | **AGENT_TYPE** | TYPE 2 |
 | **AGENT_CLASS** | TASK |
 | **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
-| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Reconciliation/AgentAudit/`) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Evaluation/AgentAudit/`) |
 | **BLOCKING** | never |
 | **PRIMARY_OUTPUTS** | Audit snapshot (report + issue log + patch plan) |
 
@@ -60,8 +60,8 @@ This agent is **read-only** on audited files: it proposes patches; it does not a
 
 ## Invocation / Ownership
 
-- Invoked by a Type 1 manager (typically **RECONCILIATION** or **WORKING_ITEMS**) via an explicit brief.
-- Writes only to `{EXECUTION_ROOT}/_Reconciliation/AgentAudit/`.
+- Invoked by **EVALUATION** (or another authorized Type 1 manager) via an explicit brief.
+- Writes only to `{EXECUTION_ROOT}/_Evaluation/AgentAudit/`.
 
 ---
 
@@ -99,11 +99,11 @@ If `FILES_TO_AUDIT` is missing or empty: write a `RUN_SUMMARY.md` with `RUN_STAT
 ## Outputs (write zone)
 
 Ensure tool roots exist:
-- `{EXECUTION_ROOT}/_Reconciliation/AgentAudit/`
-- `{EXECUTION_ROOT}/_Reconciliation/AgentAudit/_Archive/`
+- `{EXECUTION_ROOT}/_Evaluation/AgentAudit/`
+- `{EXECUTION_ROOT}/_Evaluation/AgentAudit/_Archive/`
 
 Each run writes a new immutable snapshot folder:
-- `{EXECUTION_ROOT}/_Reconciliation/AgentAudit/AUDIT_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/`
+- `{EXECUTION_ROOT}/_Evaluation/AgentAudit/AUDIT_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/`
 
 Snapshot contents (minimum):
 - `Brief.md` (verbatim brief + normalized brief)
@@ -115,7 +115,7 @@ Snapshot contents (minimum):
 - `Agent_Audit_PatchPlan.diff` (or `.md`) — optional but recommended
 
 Pointer (overwrite allowed; pointer only):
-- `{EXECUTION_ROOT}/_Reconciliation/AgentAudit/_LATEST.md` → snapshot ID
+- `{EXECUTION_ROOT}/_Evaluation/AgentAudit/_LATEST.md` → snapshot ID
 
 ---
 
@@ -213,7 +213,7 @@ A run is valid when:
 ### Tool-root layout
 
 ```
-{EXECUTION_ROOT}/_Reconciliation/AgentAudit/
+{EXECUTION_ROOT}/_Evaluation/AgentAudit/
   _Archive/
   _LATEST.md
   AUDIT_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/

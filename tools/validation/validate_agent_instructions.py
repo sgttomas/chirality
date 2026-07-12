@@ -173,6 +173,14 @@ def validate_file(path: Path, repo_root: Path, valid_r_ids: set[str]) -> list[Fi
     write_scope = fields.get("WRITE_SCOPE", "")
     if write_scope and not write_scope.startswith(WRITE_SCOPE_PREFIXES):
         add(findings, "ERROR", "WRITE_SCOPE_INVALID", rel, f"unrecognized write-scope prefix: {write_scope}")
+    if role.startswith("AUDIT_") and "_Evaluation/" not in write_scope:
+        add(
+            findings,
+            "ERROR",
+            "AUDIT_OUTPUT_ROOT_INVALID",
+            rel,
+            "current generic audit specialists must write under _Evaluation/; _Reconciliation/ audit paths are historical only",
+        )
 
     for ref in sorted(set(re.findall(r"\b(AGENT_[A-Z0-9_]+\.md)\b", text))):
         if not (repo_root / "agents" / ref).is_file():
@@ -185,6 +193,80 @@ def validate_file(path: Path, repo_root: Path, valid_r_ids: set[str]) -> list[Fi
     for rid in sorted(set(re.findall(r"\bR(?:1[89]|[2-9]\d+)\b", text))):
         if rid not in valid_r_ids:
             add(findings, "WARN", "R_ID_UNKNOWN", rel, f"requirement identifier is not defined by the standard: {rid}")
+
+    return findings
+
+
+def frontmatter_block(text: str) -> str:
+    if not text.startswith("---\n"):
+        return ""
+    closing = text.find("\n---\n", 4)
+    return "" if closing < 0 else text[4:closing]
+
+
+def frontmatter_list(text: str, key: str) -> list[str]:
+    match = re.search(rf"^{re.escape(key)}:\s*(.*?)\s*$", frontmatter_block(text), re.MULTILINE)
+    if not match or not match.group(1).strip():
+        return []
+    value = match.group(1).strip()
+    if value.startswith("[") and value.endswith("]"):
+        value = value[1:-1]
+    return [item.strip().strip("'\"") for item in value.split(",") if item.strip()]
+
+
+def validate_hierarchy(paths: list[Path], repo_root: Path) -> list[Finding]:
+    findings: list[Finding] = []
+    records: dict[str, tuple[Path, str, str, dict[str, str]]] = {}
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        type_match = re.search(r"^AGENT_TYPE:\s*([012])\s*$", text, re.MULTILINE)
+        if not type_match:
+            continue
+        records[path.stem.removeprefix("AGENT_")] = (
+            path,
+            text,
+            type_match.group(1),
+            table_fields(text),
+        )
+
+    type_zero = sorted(role for role, (_, _, agent_type, _) in records.items() if agent_type == "0")
+    suite_path = Path("agents")
+    if type_zero != ["HELP_HUMAN"]:
+        add(
+            findings,
+            "ERROR",
+            "AGENT0_ROSTER_INVALID",
+            suite_path,
+            f"exactly HELP_HUMAN must be Agent 0; found {', '.join(type_zero) or 'none'}",
+        )
+
+    for role, (path, text, agent_type, fields) in records.items():
+        rel = path.resolve().relative_to(repo_root.resolve())
+        subagents = frontmatter_list(text, "subagents")
+        if agent_type == "2" and subagents:
+            add(findings, "ERROR", "TYPE2_DELEGATION_DECLARED", rel, "Agent 2 may not declare subagents")
+        for child in subagents:
+            child_record = records.get(child)
+            if not child_record:
+                add(findings, "ERROR", "SUBAGENT_ROLE_UNRESOLVED", rel, f"subagent role does not exist: {child}")
+                continue
+            child_type = child_record[2]
+            if agent_type == "0" and child_type != "1":
+                add(findings, "ERROR", "AGENT0_CHILD_TYPE", rel, f"Agent 0 child {child} must be Agent 1")
+            if agent_type == "1" and child_type != "2":
+                add(findings, "ERROR", "AGENT1_CHILD_TYPE", rel, f"Agent 1 child {child} must be Agent 2")
+        allows_generalist = re.search(
+            r"^allow_generalist_agent2:\s*true\s*$",
+            frontmatter_block(text),
+            re.MULTILINE,
+        )
+        if allows_generalist and agent_type != "1":
+            add(findings, "ERROR", "GENERALIST_PARENT_TYPE", rel, "only Agent 1 may allow ephemeral generalist Agent 2 children")
+        interaction = fields.get("INTERACTION_SURFACE", "").lower()
+        if agent_type == "1" and not (interaction.startswith("chat") or interaction.startswith("both")):
+            add(findings, "ERROR", "AGENT1_DIRECT_ENTRY", rel, "Agent 1 must support direct human invocation")
+        if agent_type == "2" and (interaction.startswith("chat") or interaction.startswith("both")):
+            add(findings, "ERROR", "TYPE2_DIRECT_ENTRY", rel, "Agent 2 may not be a direct-chat persona")
 
     return findings
 
@@ -211,6 +293,8 @@ def main() -> int:
         valid_r_ids = canonical_r_ids(repo_root / "docs" / "WORKFLOW_COMPONENT_STANDARD.md")
         paths = resolve_paths(args, repo_root)
         findings = [finding for path in paths for finding in validate_file(path, repo_root, valid_r_ids)]
+        roster_paths = sorted((repo_root / "agents").glob("AGENT_*.md"))
+        findings.extend(validate_hierarchy(roster_paths, repo_root))
     except (OSError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
