@@ -176,6 +176,64 @@
   reproducible from the SHA (`git worktree add --detach <path>
   551f84ef6be656f1603ce0acfa5e3935aa9683c7`).
 
+- **2026-07-11 — Resumed; R2 W1 dispatched.** Resume verified against the
+  durable pause record: R1 complete, R2 never started, no partial W1
+  artifacts. Frozen evidence worktree recreated at the pinned SHA
+  (`551f84ef6be656f1603ce0acfa5e3935aa9683c7`; HEAD verified, porcelain
+  clean). Owner steer of record for this resume (verbatim in loop
+  Receipt 17): fable orchestrates; opus discovery pilots for W1/W3/W5 and
+  W4-except-PKG-12; fable discovery pilots for all of W2, PKG-12 in W4, and
+  PKG-01 in W1; fable-at-high-effort per-wave fan-in verification scoped to
+  all self-flagged rows, all non-ALIGNED rows, plus >=2
+  ALIGNED/IMPLEMENTED_UNDOCUMENTED rows per ledger; defective ledgers re-run
+  by fable pilots; R3/R6 agents fable. W1 = `PKG-00`–`PKG-03`, 25
+  deliverable-grained pilots under `R1_CONVENTIONS.md`, ledgers to
+  `WAVES/W1/CLAIM_CONCORDANCE_DEL-XX-XX.csv` + `NOTES_DEL-XX-XX.md`; at most
+  four concurrent pilots, each sub-batch persisted and structurally
+  validated before the next launches. DEL-01-01 remains ISSUED/read-only
+  with `SCOPE_CHANGE` routing and no bootstrap row.
+
+- **2026-07-11 — R2 W1 complete (PKG-00–PKG-03).** 25 deliverable-grained
+  ledgers (504 claim rows; 21 opus pilots + 4 fable PKG-01 pilots per the
+  Receipt-17 steer; ≤4 concurrent; every sub-batch structurally validated
+  before the next launched; one pilot resumed from transcript after a
+  connection drop with no artifact loss). Fan-in verification (4 fable
+  verifiers at high effort, one per package; scope per the steer plus the
+  Part C SECURITY spot-check): 17 SOUND / 8 DEFECTIVE; reports
+  `WAVES/W1/W1_VERIFICATION_PKG-0{0..3}.md`. All 8 defective ledgers re-run
+  by fable pilots (each independently re-verified the named defects; zero
+  disagreements): DEL-00-02/04/05/06/07 (rev-0.7 authority-pointer drift
+  adjudicated STALE-side under addendum 4, owner-calibration caveat
+  recorded), DEL-02-04 (2 DECL flips + REQ-014), DEL-03-04 (overtaken Gate-C
+  review prose), DEL-03-05 (convention-5 gate-column mechanical repair).
+  Three SOUND ledgers took owning-pilot string corrections (DEL-02-02
+  overtaken claim; DEL-03-02/DEL-03-08 addendum-10 qualifier truncation).
+  Part C SECURITY spot-checks: PASS (DEL-02-04 REQ-013, DEL-02-05
+  REQ-013/025, DEL-03-07 REQ-003/004) with two W2+ harmonizations named
+  (em-dash marker form; OWNER routing). Full-wave structural revalidation
+  clean; frozen tree porcelain empty throughout; zero
+  AUTHORITY_CONFLICT/UNKNOWN/IMPLEMENTED_UNMAPPED rows; W1 mechanical
+  selectability: 11 YES rows (2 DEL-01-03, 9 DEL-02-05). Package summaries:
+  `PACKAGE_SUMMARIES/PKG-0{0..3}.md` (ClaimType×Disposition histograms
+  computed from ledgers; cross-ledger risks for W2–W5 and R3 recorded
+  there). Wave boundary: committed, pushed, PR opened; STOPPED for owner
+  merge direction per the Receipt-17 protocol. W2 (PKG-04–05, all-fable
+  pilots) dispatches only after the owner acts.
+
+- **2026-07-11 — PAUSED after W1 at owner direction.** Owner direction of
+  record (in-session, verbatim): "Once this wave fans-in and you have dealt
+  with everything so it's safe to pause, do so.  Do not launch another
+  wave." W1 was already complete at the direction's arrival (fan-in done,
+  all 8 defective ledgers re-run, revalidated, package summaries written,
+  PR #187 open); no agents in flight; nothing partial. Resume point:
+  dispatch R2 wave W2 (`PKG-04`–`PKG-05`, 11 deliverables, ALL-fable pilots
+  per the Receipt-17 steer) under `R1_CONVENTIONS.md` plus the W1
+  cross-ledger calibration notes in `PACKAGE_SUMMARIES/PKG-0{0..3}.md`
+  (rev-drift STALE-side encoding, SECURITY marker/routing harmonization,
+  overtaken-review-prose encoding, addendum-10 qualifier exclusion clause),
+  ledgers to `WAVES/W2/`, after the owner acts on PR #187. The frozen
+  evidence worktree remains reproducible from the pinned SHA.
+
 ## Fences (restated)
 
 Discovery is read-only; no lifecycle transition (`LIFECYCLE_REASSESSMENT_REQUIRED`
