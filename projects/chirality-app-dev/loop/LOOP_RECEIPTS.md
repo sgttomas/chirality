@@ -1568,9 +1568,8 @@
     skipped because this tranche changes governed documentation and
     corpus-reference metadata only.
 
-- **2026-07-12 — Receipt 48 (DRAFT)** (D-APP-56 R5 final code tranche;
-  local gates complete; awaiting committed-SHA disposable-clone transcript
-  and commit/PR merge).
+- **2026-07-12 — Receipt 48** (D-APP-56 R5 final code tranche complete;
+  awaiting PR merge at receipt finalization).
   - Authority/scope: D-APP-56 R4-P04, R4-P19, R4-P44 UPD-097, and R4-P45
     UPD-106/110/140/141. No other proposal row was introduced or executed.
   - Implemented: normative `hook.progress` kit coverage plus mapper and JSONL
@@ -1587,9 +1586,12 @@
     gate execution, transcript, PR, and merge; a separate GPT-5
     highest-capability verifier performed adversarial review. No silent model
     substitution occurred.
-  - Checks so far: locked dependencies installed with `npm ci`; focused
+  - Checks: locked dependencies installed with `npm ci`; focused
     Vitest passed 45/45 after correcting the two new component tests' automatic
     JSX-runtime setup; typecheck passed; full Vitest passed 680/680 with four
-    integration tests skipped (95 files passed, one skipped). The fresh
-    committed-SHA disposable-clone typecheck/full-test gate remains mandatory
-    before Receipt 48 can be finalized.
+    integration tests skipped (95 files passed, one skipped). A fresh
+    disposable full-repository clone at committed source SHA
+    `cbef0aac2069b5edfe4ee35654e9d9bd652047d3` repeated `npm ci`,
+    typecheck, and full Vitest with the same 680/4 result and PASS marker;
+    durable transcript:
+    `execution/_Reconciliation/DeliverableConcordance/R5_FINAL_CODE_GATE_TRANSCRIPT_2026-07-12.md`.
