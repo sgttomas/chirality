@@ -62,7 +62,7 @@ Verification is documentary and review-based for this phase:
 | Boundary-row inspection | Confirm the concrete register rows are present in `Datasheet.md` under `Boundary Register Rows` and include source reference, amendment trigger, current status, and human ruling fields. |
 | Boundary review checklist | Confirm `docs/BOUNDARY_REVIEW_CHECKLISTS.md` covers scope-boundary and professional-boundary review without treating checklist completion as approval. |
 | Scope containment | Confirm this run does not satisfy or mutate dependency rows and does not modify files outside the authorized tranche scope. |
-| Status transition | Confirm `_STATUS.md` remains `CHECKING`; any future `ISSUED` transition requires a fresh human approval SHA. |
+| Status transition | Read current state from `_STATUS.md`; this work makes no transition, and any future human-gate transition requires governed approval evidence. |
 
 ## Documentation
 

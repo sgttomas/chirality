@@ -14,7 +14,7 @@
 | ResponsibleParty | TBD |
 | Type | DOC_UPDATE |
 | ContextEnvelope | M |
-| CurrentLifecycleState | CHECKING (drafted earlier at `INITIALIZED`; inspection transition recorded in `_STATUS.md`) |
+| CurrentLifecycleState | Read from `_STATUS.md` (currently `IN_PROGRESS`; prior states remain historical evidence) |
 
 ## Attributes
 
@@ -37,7 +37,7 @@
 | Project truth condition | Gate-relevant project state must be represented in versioned project files under the working root and accepted git history. Hidden app state, chats, SDK transcripts, runtime logs, model context, caches, API keys, and provider transcripts are not project truth unless imported through a governed process. |
 | Runtime audit condition | Runtime events explain work and support replay, but they do not approve deliverables, issue work, prove code compliance, or substitute for accepted project files and human approval records. |
 | Reliance-boundary condition | Product-critical boundaries must be documented, implemented, and tested in Chirality terms; prompt text or opaque SDK defaults alone are insufficient for P0 boundaries. |
-| Lifecycle condition | `_STATUS.md` is the canonical lifecycle file. Current deliverable state is `CHECKING`; any future `ISSUED` transition remains a non-delegable human gate. |
+| Lifecycle condition | `_STATUS.md` is the canonical lifecycle file and the current state is read from it; any future human-gate transition remains non-delegable. |
 | Dependency-register condition | `Dependencies.csv` is a derivative dependency-extract artifact. This reconciliation may describe it but must not mark rows satisfied or mutate dependency status. |
 
 ## Construction

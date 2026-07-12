@@ -11,7 +11,7 @@ Define the bounded procedure for maintaining the future `DomainEngineProfile` co
 | Deliverable-local context is present. | Satisfied: `_CONTEXT.md` exists. |
 | Authoritative references are accessible. | Satisfied: `_REFERENCES.md` includes REF-008 for framework `AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. |
 | Framework precedence is known. | Satisfied: D-T0-01 makes framework-root `AGENT_DOMAIN_ENGINE.md` canonical; app-dev `docs/TYPES.md` Section 11 conforms to it. |
-| Current status posture is preserved. | Required: `_STATUS.md` remains `CHECKING`; this tranche does not perform issuance or release readiness. |
+| Current status posture is preserved. | Required: read current state from `_STATUS.md`; this tranche performs no lifecycle transition or release-readiness act. |
 | Current scope remains future-boundary. | Required by `docs/SPEC.md` Section 18, `docs/PLAN.md` R7, and D-APP-39 F3. |
 
 ## Steps
@@ -72,11 +72,11 @@ Define the bounded procedure for maintaining the future `DomainEngineProfile` co
 | Check | Expected result |
 |---|---|
 | Four document files | Present and non-empty. |
-| Status state | `_STATUS.md` remains `CHECKING`; no `ISSUED` transition is claimed. |
+| Status state | Current state is read from `_STATUS.md`; no lifecycle transition is claimed. |
 | Responsible party | Remains `TBD`. |
 | Canon conformance | Profile vocabulary includes REF-008 identity, status, integration, path role, deterministic-tool, operation-proposal, and professional-boundary fields. |
 | True TBD posture | Concrete profiles, concrete schema refs, adapters, stores, path hooks, and apply tooling remain `TBD`. |
-| Dependency register | `Dependencies.csv` is not created by this run. |
+| Dependency register | Existing `Dependencies.csv` remains separate derivative evidence and is not created or edited by this conformance tranche. |
 | Implementation activation | No domain-engine source type, endpoint, MCP tool, adapter, operation store, apply workflow, or protected-path write implementation is activated. |
 
 ## Records

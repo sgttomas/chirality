@@ -9,7 +9,7 @@ This procedure describes how to produce, review, and maintain the Reliance Bound
 | Prerequisite | Status / source |
 |---|---|
 | Deliverable-local context | `_CONTEXT.md` read for identity, scope, anticipated artifacts, and traceability. |
-| Lifecycle state | `_STATUS.md` read; current state is `CHECKING`. |
+| Lifecycle state | Read from `_STATUS.md` (currently `IN_PROGRESS`); this procedure performs no transition. |
 | References | `_REFERENCES.md` read; REF-001 through REF-007 available. |
 | Dependency declarations | `_DEPENDENCIES.md` and `Dependencies.csv` read; extracted rows remain active/TBD dependency evidence. |
 | Decomposition entry | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-01-02 row read. |
