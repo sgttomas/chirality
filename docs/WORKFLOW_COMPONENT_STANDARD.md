@@ -1,10 +1,10 @@
 # Workflow-Component Design Standard
 
-> **Status: CANDIDATE IMPLEMENTATION of ruled direction D-GOV-10.** The
-> architecture split is owner-ruled. This exact text remains reviewable and
-> becomes authoritative only when accepted and published in the governed
-> record. Until then, ratified `DIRECTIVE.md`, `CONTRACT.md`, `SPEC.md`,
-> `TYPES.md`, and the live `AGENTS.md` govern on disagreement.
+> **Status: CANDIDATE IMPLEMENTATION of ruled directions D-GOV-10 and
+> D-GOV-11.** The standard/persona split and runtime hierarchy are owner-ruled.
+> This exact text becomes authoritative when accepted and published in the
+> governed record. Until then, ratified `DIRECTIVE.md`, `CONTRACT.md`,
+> `SPEC.md`, `TYPES.md`, and the live `AGENTS.md` govern on disagreement.
 
 This document defines how Chirality agents, skills, deterministic tools,
 briefs, and workflow packages are designed, classified, maintained, and
@@ -61,9 +61,10 @@ staleness is a finding, not an alternate registry.
 
 ### 2.2 Local runtime precedence
 
-Within a TASK run, authorization is resolved by the TASK shell. A brief or
-skill may narrow authority but may not relax the shell, K-* invariants,
-ScopePath containment, or an owning workflow's accepted gate conditions.
+Within a TASK run, authorization is resolved by the TASK shell. Within an
+ephemeral-generalist or dedicated-specialist run, the sealed brief and runtime
+permission envelope provide the effective boundary. No brief or component may
+relax K-* invariants, ScopePath containment, or accepted gate conditions.
 
 Within an agent instruction file, required sections retain this precedence:
 
@@ -75,75 +76,96 @@ RATIONALE is non-normative and cannot create permissions.
 
 ---
 
-## 3. Workflow-component model
+## 3. Workflow-component and runtime model
 
 ### 3.1 Agent
 
-An agent is a governed actor surface. It qualifies only when it owns at least
-one distinction that cannot be represented safely by TASK plus a skill:
+An agent is operationally an LLM supplied with instructions, declared
+files/context, tools, and permissions. Agent 0/1/2 identify runtime delegation
+positions, not document authority:
 
-- a distinct human interaction or gate lifecycle;
-- a distinct decision-right or escalation contract;
-- a distinct shell-level context, invocation, or authorization boundary;
-- durable workflow-state ownership or handoff responsibility; or
-- a write-scope posture whose enforcement cannot be expressed by a bounded
-  TASK brief.
+| Layer | Role |
+|---|---|
+| Agent 0 | Supervising Architect; aligns the human and workflow and supervises managers |
+| Agent 1 | Manager; plans, delegates, validates fan-in, and escalates decisions |
+| Agent 2 | Specialist; executes one bounded objective without creating another orchestration layer |
 
-A different topic, output schema, tool recipe, or snapshot folder is not by
-itself a reason to create an agent.
+An agent instance is distinct from an agent role and from the durable
+instruction package used to instantiate that role. A skill can specialize an
+Agent 2 instance without becoming an agent role.
 
-### 3.2 Skill
+### 3.2 Agent 2 construction forms
 
-A skill is a reusable bounded reasoning method executed through TASK. It owns
-method steps, method-specific inputs and outputs, tool composition guidance,
-QA checks, and failure semantics. It does not own human decision rights,
-shell authorization, or independent runtime identity.
+Agent 2 may be constructed as:
 
-### 3.3 Deterministic tool
+1. TASK shell plus skill and sealed brief;
+2. ephemeral bounded generalist with a purpose-specific sealed brief and no
+   persistent agent file; or
+3. dedicated specialist instruction package approved for persistent runtime
+   semantics that TASK/generalist construction cannot safely express.
+
+A dedicated specialist requires a HELPS_HUMANS proposal and explicit human
+approval before live registration.
+
+### 3.3 Skill
+
+A skill is a reusable bounded reasoning method normally executed through TASK.
+It owns method steps, method-specific inputs and outputs, tool composition
+guidance, QA checks, and failure semantics. It does not own human decision
+rights or widen runtime authorization.
+
+### 3.4 Deterministic tool
 
 A tool performs an LLM-independent operation with declared inputs, outputs,
 scope, exit behavior, and idempotence posture. Parsing, validation,
 scaffolding, graph algorithms, deterministic transformation, and report
 rendering belong here when they require no semantic judgment.
 
-### 3.4 Brief
+### 3.5 Brief
 
 A brief carries run-specific purpose, scope, paths, constraints, permissions,
 runtime overrides, expected outputs, and acceptance checks. One-off guidance
-does not become a skill or agent merely because it is detailed.
+does not become a skill or persistent agent package merely because it is
+detailed.
 
-### 3.5 Workflow package
+### 3.6 Workflow package
 
-A workflow package combines personas, TASK skills, tools, briefs, governed
-artifacts, and handoff contracts into a multi-step lifecycle. A package does
-not acquire authority beyond the authority class of its constituent records.
+A workflow package combines Agent 0/1/2 instances, skills, tools, briefs,
+governed artifacts, and handoff contracts into a multi-step lifecycle. A
+package does not acquire authority beyond its constituent records.
 
 ---
 
-## 4. Requalification and anti-proliferation rule
+## 4. Entry, delegation, and package qualification
 
-Agent status is not grandfathered. Every existing or proposed agent must pass
-this classification sequence:
+### 4.1 Entry and delegation
 
-1. Does it own a distinct human interaction, gate, decision, shell, context,
-   authorization, or handoff contract?
-   - **Yes:** an agent may be warranted.
-   - **No:** continue.
-2. Does it require recurring LLM reasoning under a bounded brief?
-   - **Yes:** use TASK plus a skill.
-   - **No:** continue.
-3. Is it deterministic?
-   - **Yes:** use a tool.
-   - **No:** continue.
-4. Is it run-specific?
-   - **Yes:** keep it in the brief.
-   - **No:** surface the unresolved classification rather than minting a
-     component by default.
+- Humans may start an untyped session, Agent 0, or any Agent 1 directly.
+- HELP_HUMAN is the sole canonical Agent 0.
+- Agent 0 delegates only to named Agent 1 roles.
+- Agent 1 delegates to Agent 2 through TASK, ephemeral-generalist, or approved
+  dedicated-specialist construction.
+- Agent 2 does not delegate.
+- Delegation cannot expand capabilities and requires sealed context, approved
+  pipeline authority, path containment, and child-run evidence.
 
-Type 2 identity is exceptional. TASK is the canonical Type 2 execution shell.
-Another Type 2 agent persists only when its shell-level behavior cannot be
-lawfully or coherently represented by TASK hydration and bounded write
-authorization.
+### 4.2 Dedicated-package qualification
+
+Agent-package status is not grandfathered. Every existing or proposed
+specialist package must pass this sequence:
+
+1. If the operation is deterministic, use a tool.
+2. If the reasoning recurs with stable inputs/outputs and TASK-compatible
+   authorization, use TASK plus a skill.
+3. If the work is one bounded, novel, or heterogeneous objective expressible
+   by a sealed brief, use an ephemeral generalist Agent 2.
+4. Propose a dedicated Agent 2 package only when persistent
+   model/tool/context/permission/recovery semantics cannot safely be expressed
+   through TASK or an ephemeral generalist.
+
+Different subject matter, output schema, or snapshot folder alone does not
+justify a persistent agent package. Repeated generalist briefs are evidence
+for a skill candidate.
 
 ---
 
@@ -293,10 +315,10 @@ Every `AGENT_*.md` file must contain:
 9. Inputs, outputs, failure posture, and handoff behavior where applicable.
 10. Compatibility/deprecation notes when replacing an earlier surface.
 
-Type 1 personas use conversation and human gates only where a consequential
-decision exists. Type 2 shells run straight through; invalid required inputs
-fail explicitly, while absent evidence becomes a surfaced gap rather than an
-invented value.
+Agent 0 and Agent 1 may be directly conversational. Agent 1 may also operate as
+a managed child of Agent 0. Agent 2 runs straight through; invalid required
+inputs fail explicitly, while absent evidence becomes a surfaced gap rather
+than an invented value.
 
 ---
 
@@ -366,13 +388,13 @@ standard.
 | ID | Requirement |
 |---|---|
 | R1 | Human decision rights are explicit and preserved. |
-| R2 | Bounded task execution runs straight through without mid-run human decisions. |
+| R2 | Agent 2 execution runs straight through without mid-run human decisions or further delegation. |
 | R3 | Every agent and run has an explicit write boundary; tool-root outputs do not silently modify source truth. |
 | R4 | Snapshot requirements match artifact authority and phase-boundary needs; immutable snapshots are never overwritten. |
 | R5 | Non-trivial governed claims carry schema-appropriate provenance or explicit `location TBD`. |
 | R6 | Missing information is represented as `TBD` or a gap, never invented. |
 | R7 | Conflicts and duplicates are surfaced; semantic resolution remains human-owned. |
-| R8 | Reusable bounded execution is brief-driven with explicit inputs, permissions, outputs, and failure posture. |
+| R8 | Agent 2 execution is brief-driven with explicit inputs, context, permissions, outputs, and failure posture regardless of construction form. |
 | R9 | Publication and Git operations are reviewable and non-destructive; operational closeout is never represented as semantic approval. |
 | R10 | Every skill has an explicit tool policy. |
 | R11 | Every deterministic tool has an explicit input/output, scope, error, test, and idempotence contract. |
@@ -411,9 +433,9 @@ No component is retired merely by deleting its instruction file.
 
 ## 16. Maintenance and audit
 
-HELPS_HUMANS maintains this standard through governed proposals and owner
-review. SKILLMAKER and TOOLMAKER maintain their subordinate subsystem
-contracts. AUDIT mechanisms assess conformance but do not amend the standard.
+HELPS_HUMANS maintains this standard and its skill/tool subsystem contracts
+through governed proposals and owner review. Audit mechanisms assess
+conformance but do not amend the standard.
 
 Every suite-wide audit records:
 
@@ -423,4 +445,3 @@ Every suite-wide audit records:
 - conflicts between narrative and live surfaces;
 - compatibility obligations; and
 - whether findings are structural, semantic, or human-decision dependent.
-

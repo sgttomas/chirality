@@ -1,386 +1,101 @@
-# DBM — Workflow-Component Architecture
+# Design Basis Memorandum — Agent Instruction Architecture
 
-> **Status: CANDIDATE AMENDMENT implementing D-GOV-10.** This memorandum is
-> explanatory, not an independent registry or invariant catalog. On
-> disagreement, `DIRECTIVE.md`, `CONTRACT.md`, `SPEC.md`, `TYPES.md`,
-> `AGENTS.md`, and `WORKFLOW_COMPONENT_STANDARD.md` govern in that order.
+> **Status:** Current design basis under D-GOV-11. Runtime hierarchy support is staged; durable launch briefs remain the fallback until managed delegation lands.
 
-## Purpose and scope
+## 1. Purpose
 
-This design-basis memorandum explains how Chirality's workflow-component
-layers fit together:
+This memorandum explains why Chirality separates runtime delegation roles from normative documents and how agent instructions, skills, tools, briefs, filesystem state, and Git state compose into governed workflows.
 
-1. normative governance documents;
-2. human-facing personas and the canonical TASK shell;
-3. repo-native skills;
-4. deterministic tools;
-5. briefs and workflow packages; and
-6. runtime artifacts, snapshots, handoffs, and generated views.
-
-It does not define live membership. `AGENTS.md` owns the live agent registry,
-live `skills/*/SKILL.md` folders own skill membership, and
-`tools/REGISTRY.md` owns deterministic-tool discovery. This memorandum must be
-updated when it no longer explains those surfaces accurately, but a stale DBM
-cannot create or preserve a component.
-
-## Governing documents
-
-| Document | Authority |
-|---|---|
-| `DIRECTIVE.md` | Founding intent, professional posture, and authority chain |
-| `CONTRACT.md` | Binding K-* invariants |
-| `SPEC.md` | Filesystem, schema, path, snapshot, and instruction-file contracts |
-| `TYPES.md` | Canonical entities, identifiers, enums, and type semantics |
-| `AGENTS.md` | Live agent registry, governance integration rules, and canonical TASK-skill dispatch relationships |
-| `WORKFLOW_COMPONENT_STANDARD.md` | Component classification, design, lifecycle, and conformance rules |
-| `AGENT_DECOMP_BASE.md` | Type 0 decomposition protocol standard (I1–I10 and decomposition gates) |
-
-`PLAN.md` records direction rather than binding requirements. Working-root
-governance may specialize the framework but may not weaken root invariants.
-
----
-
-## 1. Architectural principles
-
-### 1.1 Filesystem authority
-
-Authoritative governance and project state live in git-tracked files, subject
-to the domain-engine exception in K-DOMAIN-1. Generated views and rebuildable
-projections do not become authority by being convenient or current-looking.
-
-### 1.2 Human semantic authority
-
-Humans own acceptance, issuance, authentication, scope boundaries, conflict
-rulings, baseline integration, destructive actions, and professional
-judgment. Agents prepare evidence, proposals, changes, and records. A tool or
-agent PASS is structural evidence within a declared observation boundary, not
-semantic or professional approval.
-
-### 1.3 Evidence-first operation
-
-Claim-producing components provide extrinsic provenance, expose gaps and
-conflicts, and calibrate claim strength to warrant strength. Warrant lifecycle
-labels are audit-time diagnostics under D-GOV-08; producers are not required
-to emit FACT or warrant-state tags on every claim.
-
-### 1.4 Separation of instruction and execution
-
-The release-managed instruction root defines behavior; working roots hold
-project/domain state. TASK write targets must resolve inside the active
-checkout. This permits one instruction system to serve many isolated working
-roots and git worktrees.
-
-### 1.5 Least sufficient structure
-
-Structure exists to reduce error, preserve authority, and make reruns and
-handoffs safe. It is not a goal in itself. A design covers all applicable
-contracts without manufacturing empty artifacts or new personas.
-
----
-
-## 2. Component layers
+The canonical operational definition is:
 
 ```text
-Root governance and standards
-        │ constrain
-        ▼
-Type 1 personas ── compose briefs / hold gates / own handoffs
-        │ dispatch
-        ▼
-TASK shell ── resolves context, authorization, hydration, run record
-        │ loads                       │ invokes
-        ▼                             ▼
-Skills (reasoning methods)      Tools (deterministic operations)
-        │                             │
-        └──────── produce governed/evidence/derivative artifacts ────────┐
-                                                                          │
-Human review, rulings, acceptance, and next-phase authorization ◀─────────┘
+agent = LLM + instructions + declared files/context + tools + permissions
 ```
 
-### 2.1 Normative standards
+An agent instance is one running system. A role is a stable responsibility such as EVALUATION. An instruction package is the persistent `AGENT_*.md` contract for a named role. These are related but not interchangeable.
 
-Normative standards live in governed documents. D-GOV-10 moved the general
-workflow-component standard out of HELPS_HUMANS so the applying persona no
-longer doubles as its own constitution.
+## 2. Runtime Hierarchy
 
-`AGENT_DECOMP_BASE.md` remains a Type 0 protocol standard during this
-transition. Its eventual disposition is assessed independently; D-GOV-10
-does not silently reclassify it.
+```text
+Human ↔ Agent 0 → Agent 1 → Agent 2
+```
 
-### 2.2 Type 1 personas
+| Position | Name | Responsibility |
+|---|---|---|
+| Agent 0 | Supervising Architect | Aligns scope, stakes, authority, decision points, and managers with the human; supervises cross-manager fan-in |
+| Agent 1 | Manager | Freezes a workflow contract, owns human gates, delegates bounded work, validates returns, and closes or hands off |
+| Agent 2 | Specialist | Executes one sealed brief with declared context, tools, write scope, output contract, and no delegation |
 
-Type 1 personas provide a human interaction surface where the workflow needs
-distinct gates, decision support, authority translation, state ownership, or
-handoff responsibility. They may compose and dispatch bounded TASK briefs.
+HELP_HUMAN is the sole canonical Agent 0. Every Agent 1 is also a valid direct human entry point. A human may start an untyped session and adopt the hierarchy through steering instructions.
 
-HELPS_HUMANS is now a Type 1 architect persona. It applies and maintains the
-workflow-component standard, conducts requalification, and prepares migration
-and deprecation designs.
+Agent 0 delegates only to named Agent 1 roles. Agent 1 delegates to Agent 2. Agent 2 does not delegate. Authority, permissions, context, and capabilities do not increase through delegation.
 
-### 2.3 TASK
+## 3. Standards Are External
 
-TASK is the canonical Type 2 shell. It owns:
+`docs/WORKFLOW_COMPONENT_STANDARD.md`, `docs/DECOMPOSITION_STANDARD.md`, system invariants, domain standards, and accepted project governance constrain all runtime layers. They are not agents and do not occupy Agent 0.
 
-- input normalization;
-- ScopePath and AllowedWriteTargets enforcement;
-- active-checkout containment;
-- skill hydration and tool-policy resolution;
-- run-record behavior;
-- generic failure and epistemic controls; and
-- structured return to the dispatcher.
+HELPS_HUMANS is the Agent 1 manager that applies and maintains workflow-component governance. It is not itself the constitutional source.
 
-TASK does not own method-specific domain logic. That logic belongs in skills.
+## 4. Agent 2 Construction
 
-### 2.4 Skills
+Agent 2 has three valid forms:
 
-Skills are reusable reasoning methods. Each live skill supplies `SKILL.md`,
-`BRIEF_SCHEMA.md`, `TOOL_POLICY.md`, and `QA_CHECKS.md`. A dispatcher provides
-run parameters but does not reconstruct the method in an ad hoc prompt.
+1. `TASK + skill + brief` for a recurring method with stable instructions.
+2. An ephemeral bounded generalist for a novel, purpose-specific task whose sealed brief is sufficient and which does not justify a persistent role.
+3. A dedicated named specialist with an approved `AGENT_*.md` when persistent runtime semantics, permissions, or evidence contracts cannot be carried safely by TASK or a brief.
 
-### 2.5 Tools
+The qualification order is tool, TASK skill, ephemeral generalist, then dedicated specialist. A dedicated package requires HELPS_HUMANS to document the failed alternatives, persistent semantic need, callers, compatibility plan, tests, and deprecation conditions, followed by explicit human approval.
 
-Tools provide deterministic scaffolding, parsing, validation, graph analysis,
-transformation, rendering, and reporting. They have explicit scope and failure
-contracts and do not invoke LLM reasoning as an implementation shortcut.
+## 5. Workflow Components
 
-### 2.6 Briefs
+| Component | Function |
+|---|---|
+| Agent role | Owns judgment, gates, delegation, or a persistent bounded execution contract |
+| Skill | Reusable reasoning method hydrated by TASK |
+| Tool | Deterministic transformation or validation with explicit inputs and outputs |
+| Brief | Sealed run-specific scope, context, permissions, outputs, and acceptance criteria |
+| Workflow package | Durable evidence: accepted basis, briefs, returns, findings, decisions, snapshots, and handoff state |
 
-Briefs carry run-specific purpose, scope, constraints, permissions, overrides,
-outputs, and acceptance checks. They may narrow a skill or shell contract but
-cannot relax governance or shell authorization.
+Skills do not acquire authority from their dispatcher. Tools do not carry hidden judgment policy. Briefs do not relax parent permissions. Workflow packages preserve state across otherwise isolated agent contexts.
 
-### 2.7 Workflow packages
+## 6. Delegation and Coordination
 
-Multi-step workflows combine persona gates, TASK skills, tools, accepted
-snapshots, derivative packages, and handoff records. A workflow package is a
-composition; it is not a new authority class.
+Runtime delegation is hierarchical. Many-to-many coordination is asynchronous through accepted filesystem artifacts, dependencies, immutable snapshots, handoff records, and Git state.
 
----
+Git records versions and transport state; a commit or push is not semantic acceptance. Accepted truth is identified by the owning workflow’s gate and snapshot/handoff contract.
 
-## 3. The agent qualification boundary
+Fan-out is allowed only over disjoint scopes or declared shared dependencies. Fan-in validates presence, schema, evidence, and acceptance criteria before synthesis. A failed sibling does not erase independent successful returns, but shared-dependency effects must be surfaced. Each Agent 2 receives only declared context; prior chat state is not an implicit input.
 
-An agent is warranted only for a distinct governed actor surface. The
-qualification signals are:
+## 7. Live Role Decisions
 
-- human interaction or gate lifecycle;
-- decision-right or escalation contract;
-- shell-level context, invocation, or authorization semantics;
-- durable workflow-state or handoff ownership; or
-- a write-scope posture not safely expressible through TASK.
+- HELP_HUMAN is sole Agent 0.
+- HELPS_HUMANS owns agent, skill, tool, brief, validator, registry, compatibility, migration, and deprecation design.
+- `DECOMP_BASE` is replaced by `docs/DECOMPOSITION_STANDARD.md`; decomposition managers consume the standard.
+- EVALUATION owns generic audit orchestration, coherence assessment, scoring, and remediation recommendations.
+- RECONCILIATION is reserved for deliverable-corpus concordance and remains fail-closed until the two project calibrations are accepted.
+- ORCHESTRATOR owns human-gated schedule-basis workflows; deterministic graph calculation and rendering remain tools or TASK methods.
+- PDF2MD and DRAWING_EXTRACT remain Agent 1 because source targets, schemas, review depth, and recovery posture require human calibration before repetitive work.
+- REVIEW, CHANGE, WORKING_ITEMS, RESEARCH, decomposition managers, SCOPE_CHANGE, DOMAIN_ENGINE, DBM_PUBLISHER, and EQUATION_AUDIT remain Agent 1 around their real human decisions.
 
-The following are not sufficient:
+## 8. Persistence and Closure
 
-- a different subject matter;
-- a different output schema;
-- a particular sequence of tools;
-- a dedicated snapshot folder;
-- historical use as an agent; or
-- a desire for a memorable role name.
+Every phase-changing workflow follows the integration rules in `AGENTS.md`: derivative packages cite accepted upstream snapshots; phase boundaries produce immutable snapshots where governed; stopped work emits handoff state; closure requires accepted truth, derivative disposition, audit status, blockers, and rerun requirements; cycles are resolved explicitly rather than silently linearized.
 
-No Type 2 agent is grandfathered. Other than TASK, each must demonstrate
-shell-level semantics that cannot move to a skill or tool. The transition is
-tracked in `docs/AGENT_DISPOSITION_MATRIX.md`.
+## 9. Runtime Transition
 
----
+The current application can open Type 0/1 sessions and delegate one-level Type 2 children, but it does not yet provide the full hierarchy. Until managed delegation lands, HELP_HUMAN produces durable Agent 1 launch briefs and managers produce durable Agent 2 briefs without claiming executable nesting.
 
-## 4. Contract framework
+The next runtime tranche adds a governed `delegate_agent` service with managed child sessions, actual named instruction loading, ephemeral-generalist sealed briefs, parentage and instruction/brief hashes, capability non-inheritance, path containment, child-run records, and validated fan-in. The old SDK bridge remains a compatibility adapter until nested acceptance tests pass.
 
-### 4.1 K-* invariants
+## 10. Conformance
 
-`CONTRACT.md` is the authoritative invariant catalog. Workflow-component
-design most directly depends on:
+Conformance is established by the canonical doctrine in `AGENTS.md`, exact `CLAUDE.md` import, instruction and skill validators, path/entrypoint validators, role-specific tests, runtime hierarchy tests, and workflow acceptance scenarios. Narrative lists never override the live instruction files, skills registry, tools registry, or accepted decisions.
 
-- K-AUTH-1/2 and K-BIND-1 — human rulings and SHA binding;
-- K-SEAL-1 and K-GHOST-1 — sealed bounded context;
-- K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1 — epistemic integrity;
-- K-WRITE-1/2 and K-SNAP-1 — scope, containment, and snapshots;
-- K-AGENTS-1 — live governance surface and registry precedence; and
-- K-DOMAIN-1..4 — domain-engine authority and protected operations.
+## References
 
-### 4.2 R1–R17
-
-`WORKFLOW_COMPONENT_STANDARD.md` owns workflow-component compliance
-requirements. R1–R12 retain their stable identifiers; R13–R17 add claim
-calibration, integration governance, registry lifecycle, path containment,
-and proportional design coverage.
-
-### 4.3 I1–I10
-
-`AGENT_DECOMP_BASE.md` owns the decomposition invariants. They apply to
-conforming decomposition workflows and do not turn every decomposition method
-into a separate agent automatically.
-
-### 4.4 Instruction-file structure
-
-`SPEC.md` and the workflow-component standard require the canonical header,
-Agent Type table, and delimited PROTOCOL/SPEC/STRUCTURE/RATIONALE sections.
-These sections make contracts machine-locatable; they do not justify copying
-the complete root canon into every file.
-
----
-
-## 5. Runtime authority and Git semantics
-
-### 5.1 Semantic gates
-
-Human gates are used where a consequential semantic decision exists. A Type 1
-persona must not insert approval questions merely to make a workflow appear
-controlled; conversely, it must not automate a decision reserved to a human.
-
-### 5.2 Straight-through execution
-
-TASK runs are bounded and non-interactive. Missing required inputs fail
-explicitly. Missing evidence becomes a gap or TBD and may allow conservative
-continuation only where the method contract permits.
-
-### 5.3 Routine closeout
-
-Scoped commit/push may be operationally autonomous after explicit task or
-accepted-handoff authorization, clean scope separation, and recorded
-validation. Merge, rebase, destructive cleanup, history rewriting, ambiguous
-staging, and baseline integration remain human-gated.
-
-The vocabulary is deliberate:
-
-- `committed` and `pushed` describe Git facts;
-- `accepted`, `issued`, `authenticated`, `ruled`, and `approved` describe
-  human acts evidenced by governed records.
-
----
-
-## 6. Write and artifact architecture
-
-### 6.1 Write boundaries
-
-Agent headers declare broad write posture. TASK briefs declare effective
-targets. The narrowest applicable boundary controls, and every write remains
-subject to active-checkout containment.
-
-### 6.2 Artifact classes
-
-Workflows distinguish authoritative truth, candidates, derivative packages,
-factual evidence, generated views, and convenience state. This prevents
-reports and regenerated packages from becoming accidental shadow authority.
-
-### 6.3 Snapshots
-
-Snapshots terminate phase-boundary decisions, preserve accepted inputs, or
-make audit/derivative outputs reproducible. They are not required for every
-ordinary edit. A workflow must state mutability and authority rather than
-relying on a filename convention alone.
-
-### 6.4 Pointers
-
-Pointers are mutable navigation aids. Their currency can be checked
-mechanically, but a current pointer does not prove acceptance or closure.
-
----
-
-## 7. Multi-phase governance
-
-The six integration rules in `AGENTS.md` are architectural, not optional
-workflow embellishments:
-
-1. derivative packages cite accepted upstream truth;
-2. governed phase boundaries terminate in immutable snapshots;
-3. paused workflows emit explicit handoff state;
-4. closure includes truth acceptance, derivative disposition, audit status,
-   and blockers;
-5. downstream phases consume current accepted inputs; and
-6. cycles are resolved by recorded structural moves, not silent ordering.
-
-The handoff state is the durable seam between agents, sessions, branches, and
-worktrees. Chat history is not a substitute.
-
----
-
-## 8. Live topology and transition posture
-
-At D-GOV-10 framing, the live suite contains 38 agent instruction files:
-
-- 2 previously classified Type 0;
-- 21 previously classified Type 1; and
-- 15 Type 2, including TASK.
-
-The initial migration audit identified the 14 non-TASK Type 2 agents as
-mandatory requalification candidates. This is not a predetermined retirement
-verdict: each disposition must cite its actual contract and callers.
-
-Type 1 workflow personas are audited after the Type 2 wave. Some may remain
-because they own real iterative human gates; others may slim, merge into a
-broader persona, or become workflow packages over TASK skills and tools.
-
-No migration changes the active reconciliation worktrees. This redesign is
-developed in an isolated lane and integrated only after rebase, conflict
-review, validation, and owner acceptance.
-
----
-
-## 9. Lifecycle and migration
-
-### 9.1 Component lifecycle
-
-Components are CANDIDATE, ACTIVE, DEPRECATED, or RETIRED. Historical files do
-not remain active merely because references to them survive in narrative.
-
-### 9.2 Disposition vocabulary
-
-The suite audit uses:
-
-- `RETAIN` — role and contract remain justified;
-- `SLIM` — agent remains, method detail moves down;
-- `MERGE` — authority/interaction surface joins another persona;
-- `CONVERT_TO_SKILL` — bounded reasoning moves under TASK;
-- `CONVERT_TO_TOOL` — deterministic behavior moves to tools; and
-- `RETIRE` — live discovery ends after compatibility closure.
-
-### 9.3 Migration package
-
-A valid migration identifies:
-
-- current callers and outputs;
-- replacement dispatcher, skill, and/or tool;
-- write and artifact-authority equivalence;
-- compatibility window and removal condition;
-- registry and narrative updates;
-- validation evidence; and
-- handoff/closure status.
-
-Deleting an instruction file is the final mechanical step, not the migration.
-
----
-
-## 10. Audit and enforcement
-
-### 10.1 Deterministic checks
-
-Mechanically observable requirements should be validated: header fields,
-section markers, type/class compatibility, registry membership, referenced
-component existence, R-ID validity, and lifecycle metadata.
-
-### 10.2 Semantic audit
-
-Semantic reviewers assess whether an agent genuinely owns distinct authority
-or shell semantics, whether claim language overstates evidence, and whether a
-migration preserves human decision rights and closure behavior.
-
-### 10.3 Audit authority
-
-An audit finding is evidence and judgment within its declared boundary. It is
-not an amendment. HELPS_HUMANS may propose a standards change; the owner rules
-on consequential governance changes.
-
----
-
-## 11. Current open implementation work
-
-The D-GOV-10 implementation is complete only when:
-
-- the new standard and HELPS_HUMANS split are accepted;
-- direct references to the former embedded standard are migrated;
-- the agent-audit rubric uses the new governing basis;
-- deterministic agent conformance validation exists;
-- every live agent has a disposition with evidence;
-- migration waves are separately reviewed and validated; and
-- the branch is rebased over stable reconciliation handoffs before
-  integration.
+- `AGENTS.md`
+- `docs/WORKFLOW_COMPONENT_STANDARD.md`
+- `docs/DECOMPOSITION_STANDARD.md`
+- `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`
+- `docs/AGENT_DISPOSITION_MATRIX.md`
+- `docs/DELIVERABLE_CONCORDANCE_METHOD.md`

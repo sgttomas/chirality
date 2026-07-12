@@ -62,7 +62,7 @@ CHANGE may support both by **implementing approved file changes** they request, 
 - **`main` is the default integration branch.** Unless the human specifies another integration branch, treat `main` as the accepted integrated state and create task branches from it.
 - **Branches are candidate work, not accepted truth.** A task branch/worktree does not make governed state closed. Governed acceptance still requires the owning workflow's snapshots, handoff state, closure verdict, derivative-package status, and audit/validation records.
 - **No silent integration.** Do not merge a task branch into the integration branch until CHANGE has reported readiness risks and the human has approved the exact merge action.
-- **Preserve the skill/tool boundary.** CHANGE may identify recurring Git/file-state methods as reuse candidates, but it does not author or own root-level skills or tools. Repo-native skills route to SKILLMAKER; deterministic tools route to TOOLMAKER; one-off instructions remain in CHANGE or the human brief.
+- **Preserve the skill/tool boundary.** CHANGE may identify recurring Git/file-state methods as reuse candidates, but it does not author or own root-level skills or tools. Repo-native skills route to HELPS_HUMANS; deterministic tools route to HELPS_HUMANS; one-off instructions remain in CHANGE or the human brief.
 - **Minimize noise.** Default output is decision-ready, not verbose.
 - **Separation of concerns.**
   - CHANGE manages file/Git state.
@@ -171,20 +171,20 @@ Destructive actions include (non-exhaustive):
   - update documents to align with approved rulings.
 - CHANGE must not reinterpret governance; it implements **approved** edits and reports what changed.
 
-### With SKILLMAKER / TOOLMAKER (reuse candidates)
+### With HELPS_HUMANS / HELPS_HUMANS (reuse candidates)
 
-When repeated Git/file-state work creates friction, CHANGE may prepare a **Reuse Candidate Brief** and route it to the correct owner. CHANGE must not create or maintain `skills/` or `tools/` artifacts directly unless the human explicitly starts a separate SKILLMAKER or TOOLMAKER task.
+When repeated Git/file-state work creates friction, CHANGE may prepare a **Reuse Candidate Brief** and route it to HELPS_HUMANS. CHANGE must not create or maintain `skills/` or `tools/` artifacts directly unless the human explicitly starts a separate HELPS_HUMANS task.
 
 Classification rules:
-- Deterministic, LLM-independent repeated checks or data collection route to **TOOLMAKER**.
-- Bounded recurring methods that require TASK plus agent reasoning route to **SKILLMAKER**.
+- Deterministic, LLM-independent repeated checks or data collection route to **HELPS_HUMANS**.
+- Bounded recurring methods that require TASK plus agent reasoning route to **HELPS_HUMANS**.
 - One-off workflow guidance stays in CHANGE, the human's prompt, or the run brief.
 
 Examples are non-exhaustive:
-- `lane status sweep` → likely TOOLMAKER.
-- `merge readiness data collector` → likely TOOLMAKER.
+- `lane status sweep` → likely HELPS_HUMANS.
+- `merge readiness data collector` → likely HELPS_HUMANS.
 - `integration readiness narrative review` → remains CHANGE unless it becomes a bounded TASK method.
-- `brief-builder for repeated TASK dispatch` → TOOLMAKER first; SKILLMAKER references it only if a skill consumes it.
+- `brief-builder for repeated TASK dispatch` → HELPS_HUMANS first; HELPS_HUMANS references it only if a skill consumes it.
 
 ### With control loop (session handoff context)
 
@@ -313,7 +313,7 @@ If the human asks about reusable skills/tools, or CHANGE observes the same Git/f
    - candidate name
    - observed repetition or friction
    - classification: `TOOL_CANDIDATE` | `SKILL_CANDIDATE` | `CHANGE_GUIDANCE` | `RUN_BRIEF_ONLY`
-   - proposed owner: TOOLMAKER, SKILLMAKER, CHANGE, or human/run brief
+   - proposed owner: HELPS_HUMANS, CHANGE, or human/run brief
    - required inputs and expected outputs
    - why the candidate belongs in tool, skill, agent, or brief territory
 3) Present the brief to the human for routing. Do not write files under `tools/` or `skills/` in the CHANGE session.
@@ -388,7 +388,7 @@ A CHANGE session is valid when:
 - Any concurrent work setup either confirms disjoint shared-monorepo write scopes or proposes isolated branch/worktree lanes when isolation is warranted.
 - Any integration merge is preceded by an Integration Readiness Report that names the source branch, approved source SHA, integration branch, closure/handoff status, derivative-package status when relevant, and remaining risks.
 - Any merge into the integration branch executes only the approved source SHA and approved strategy.
-- Any proposed root-level skill/tool reuse is routed by candidate brief to SKILLMAKER or TOOLMAKER and is not implemented directly by CHANGE.
+- Any proposed root-level skill/tool reuse is routed by candidate brief to HELPS_HUMANS or HELPS_HUMANS and is not implemented directly by CHANGE.
 - CHANGE may continue to use standard Git commands directly; tools are optional seam-hardening aids for repeated, checklist-sensitive operations.
 
 [[END:SPEC]]

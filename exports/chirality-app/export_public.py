@@ -20,6 +20,7 @@ REPORT_PATH = PROFILE_DIR / "export-report.md"
 ROOT_FILES = [
     ".gitignore",
     "AGENTS.md",
+    "CLAUDE.md",
     "README.md",
     "CHIRALITY_FRAMEWORK.md",
     "PROFESSIONAL_ENGINEERING.md",
@@ -161,6 +162,10 @@ def build_stage(stage: Path) -> int:
             + "; update ROOT_FILES/ROOT_DIRS to match the tree"
         )
 
+    claude_contract = (REPO_ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    if claude_contract != "@AGENTS.md\n":
+        raise SystemExit("CLAUDE.md must contain exactly '@AGENTS.md\\n'")
+
     if stage.exists():
         shutil.rmtree(stage)
     stage.mkdir(parents=True)
@@ -193,7 +198,11 @@ def write_manifest(stage: Path, output: Path) -> int:
             }
         )
     with output.open("w", encoding="utf-8", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=["path", "size_bytes", "sha256"])
+        writer = csv.DictWriter(
+            fh,
+            fieldnames=["path", "size_bytes", "sha256"],
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(rows)
     return len(rows)

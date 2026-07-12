@@ -177,7 +177,7 @@ Verify that invariant IDs are consistent across the repo.
 - Report any R-ID in the canonical set that is never cited outside the defining document (orphaned requirements).
 
 **3c. I1–I10 invariants:**
-- Build the canonical I-ID set from `AGENT_DECOMP_BASE.md`.
+- Build the canonical I-ID set from `docs/DECOMPOSITION_STANDARD.md`.
 - Scan all governance documents for I-ID references.
 - Report any I-ID cited that does not exist in the canonical set.
 - Report any I-ID in the canonical set that is never cited outside the defining document (orphaned invariants).

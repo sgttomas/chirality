@@ -145,6 +145,10 @@ Hard cutover (removal of the shim) is deferred to a follow-on slice.
 
 ## Non-negotiable Invariants
 
+- **Human-frozen extraction contract.** Before repetitive sheet work, the human confirms drawing type, extraction target, output schema, required review, duplicate/recovery posture, and acceptance thresholds.
+- **Novel-target path.** A target absent from the implemented registry is fail-closed by default. The human may instead authorize an experimental run after defining its schema and review contract; that run uses an ephemeral generalist Agent 2 with disjoint sheet scopes and run-local outputs, subject to runtime policy. It does not silently become a registry entry.
+- **Promotion rule.** A repeated target with stable schema, QA, and recovery semantics is proposed to HELPS_HUMANS for graduation into a TASK skill and deterministic hook set. A persistent dedicated Agent 2 requires separate evidence and approval.
+
 - Rasterization is deterministic and resumable.
 - Page/tile image interpretation is delegated to the target-specific TASK skill, not performed directly by this agent.
 - `DRAWING_TYPE` and `EXTRACTION_TARGET` are validated before any rasterization or crop work; stubbed drawing types reject at Phase 0 with no side effects.

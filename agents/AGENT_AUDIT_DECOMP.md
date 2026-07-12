@@ -319,7 +319,7 @@ When `DECOMP_VARIANT != DOMAIN`:
 
 ### Step 9b — Package-Shape Conformance (Check 9b)
 
-Assess whether the decomposition package conforms to the preferred modular package shape defined in `AGENT_DECOMP_BASE.md`:
+Assess whether the decomposition package conforms to the preferred modular package shape defined in `docs/DECOMPOSITION_STANDARD.md`:
 
 1. **Package-role labeling.** Does the package clearly label authoritative vs derived surfaces? Check for an explicit companion inventory section in the main decomposition document. If absent: issue `WARNING` — "Main decomposition document lacks a companion inventory section; package roles are not discoverable for downstream agents"
 
@@ -536,7 +536,7 @@ objective-evidence integrity are first-class audit concerns rather than
 campaign-specific cleanup notes.
 
 The package-shape conformance check (9b) enforces the preferred modular package
-architecture defined in `AGENT_DECOMP_BASE.md`. It surfaces cases where the main
+architecture defined in `docs/DECOMPOSITION_STANDARD.md`. It surfaces cases where the main
 decomposition document has grown monolithic by embedding heavy companion truth,
 where derived publication artifacts are being confused with authoritative working
 surfaces, or where package roles are insufficiently discoverable for future

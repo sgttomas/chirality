@@ -157,7 +157,7 @@ For each recommended rerun:
 - Check `_Estimates/` for snapshot folders with dates on or after the amendment date that include the affected scope.
 - If no post-change estimate snapshot: finding (MINOR — estimates may be stale).
 
-**SCHEDULING reruns:**
+**ORCHESTRATOR scheduling workflow reruns:**
 - Check `_Schedule/` for snapshot folders with dates on or after the amendment date.
 - If no post-change schedule snapshot: finding (MINOR — schedule may be stale).
 
@@ -546,7 +546,7 @@ RECONCILIATION is the human-directed manager for cross-deliverable coherence. Sc
 
 ### Why Orphan Detection Is Critical
 
-A dependency row that targets a RETIRED deliverable is a live reference to a dead entity. It will cause AUDIT_DEP_CLOSURE to report an unresolvable target, ESTIMATING to include phantom scope, and SCHEDULING to sequence non-existent work. Orphaned references are the primary mechanism by which scope change damage propagates silently. Detecting them is the single most important function of this audit.
+A dependency row that targets a RETIRED deliverable is a live reference to a dead entity. It will cause AUDIT_DEP_CLOSURE to report an unresolvable target, ESTIMATING to include phantom scope, and ORCHESTRATOR scheduling workflow to sequence non-existent work. Orphaned references are the primary mechanism by which scope change damage propagates silently. Detecting them is the single most important function of this audit.
 
 ### Value Hierarchy
 

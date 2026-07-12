@@ -155,7 +155,7 @@ Tool roots are workspace-level directories for derived outputs, resolved `{EXECU
 | `_Estimates/` | Cost estimate snapshots | TASK + estimate skills |
 | `_Evaluation/` | Project evaluation reports and scored dimension snapshots | EVALUATION / EVALUATION_* |
 | `_Reconciliation/` | Reconciliation reports, closure analysis | RECONCILIATION |
-| `_Schedule/` | Schedule snapshots generated from the dependency graph | SCHEDULING |
+| `_Schedule/` | Schedule snapshots generated from the dependency graph | ORCHESTRATOR scheduling workflow |
 | `_ScopeChange/` | Change-impact assessments and decomposition amendment snapshots | SCOPE_CHANGE |
 | `_Sources/` | Shared source/reference documents | Human / source-extraction pipelines |
 | `_LocalIndexes/` | Derived source-catalog and retrieval snapshots (domain packs) | DOMAIN_DECOMP / retrieval tools |

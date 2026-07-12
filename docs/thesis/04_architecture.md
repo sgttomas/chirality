@@ -158,7 +158,7 @@ The `INITIALIZED → SEMANTIC_READY` transition is optional. If the semantic len
 
 TYPES.md §5.2 draws an explicit distinction that is architecturally important. **Lifecycle states** track the production status of individual deliverables and are recorded in `_STATUS.md`. **Stage gates** (30%, 60%, 90%, IFC, and similar project-level milestones) are human-managed checkpoints that represent aggregate progress targets across a set of deliverables. Stage gates are not lifecycle states and are tracked separately in coordination records.
 
-The distinction prevents a category error that is common in project management tooling: conflating the micro-level question (is this deliverable ready for review?) with the macro-level question (has the project reached a stage gate?). In the Chirality architecture, the answer to the first question is always obtained from `_STATUS.md`; the answer to the second requires aggregation across the project, which is the domain of the SCHEDULING and RECONCILIATION agents.
+The distinction prevents a category error that is common in project management tooling: conflating the micro-level question (is this deliverable ready for review?) with the macro-level question (has the project reached a stage gate?). In the Chirality architecture, the answer to the first question is always obtained from `_STATUS.md`; the answer to the second requires aggregation across the project, which is the domain of the ORCHESTRATOR scheduling workflow and RECONCILIATION agents.
 
 ### 4.4.4 `_STATUS.md` as Canonical State Indicator
 
@@ -184,7 +184,7 @@ The two lifecycles are interleaved: a deliverable in `IN_PROGRESS` contains clai
 
 The agent system is organized into three types with strictly partitioned responsibilities. The hierarchy is defined in DBM §2 and summarized in TYPES.md §4. It is not merely a labeling convention — it is the mechanism by which the system's authority model is enforced.
 
-**Type 0 — Canonical Standards (Architect).** Type 0 agents define the invariant protocols and design standards that all downstream agents must conform to. They do not write project state. They are, in the DBM's terminology, the "constitutional layer" of the system. The Type 0 layer is composed of HELPS_HUMANS, which defines the workflow design standard (R1–R12, the four-section agent structure, brief formats, and QA contracts), and DECOMP_BASE, which defines the decomposition protocol standard (the seven-gate protocol, I1–I10 invariants, and the extension contract for decomposition variants). Where any agent instruction disagrees with a Type 0 standard, the agent instruction must be edited to conform — not the standard.
+**Standards and Agent 0.** Normative governance and domain standards form the constitutional layer outside the runtime hierarchy. `docs/WORKFLOW_COMPONENT_STANDARD.md` governs component design and `docs/DECOMPOSITION_STANDARD.md` defines the seven-gate protocol, I1–I10 invariants, and extension contract. HELP_HUMAN is the sole Agent 0 Supervising Architect; HELPS_HUMANS is the Agent 1 manager that applies and maintains component governance. Where an instruction disagrees with an accepted standard, the conflict is resolved through governed amendment rather than by treating the standard as an agent.
 
 **Type 1 — Interactive Personas (Manager).** Type 1 agents are human-facing orchestrators. They run conversational, gate-controlled workflows where humans make consequential decisions and agents handle routing, structural output, and brief preparation. Type 1 agents may spawn Type 2 agents. They own orchestration decisions but do not own engineering content. See `AGENTS.md` for the current agent index.
 
@@ -198,7 +198,7 @@ DBM §2 identifies three authority invariants that the entire system depends upo
 
 1. **Type 2 cannot escalate to Type 1 authority.** Specialists execute bounded briefs and return outputs. They cannot initiate gate reviews, spawn other agents, or make scope decisions. A Type 2 agent that encounters a scope question must record it as `TBD` and surface it in the run report — it cannot route the question to a human directly.
 
-2. **Type 1 cannot override Type 0 constraints.** Managers orchestrate within the rules established by canonical standards. They cannot relax the R1–R12 workflow requirements, the I1–I10 decomposition invariants, or any K-* invariant. An orchestration decision that would require violating a Type 0 constraint is not a valid orchestration decision.
+2. **Managers cannot override standards.** Agent 1 managers operate within accepted workflow, decomposition, and K-* invariants. A proposed workflow that requires violating a standard must escalate for governed amendment.
 
 3. **Human gates are reserved against every agent type.** No agent — regardless of type — is authorized to approve deliverables for external reliance, resolve conflicts authoritatively, commit to the baseline, or advance the lifecycle to `CHECKING` or `ISSUED`. These transitions are withheld from agents at every enforcement layer: no sanctioned workflow path includes them, ORCHESTRATOR's gate protocol refuses them at runtime, and the human gate makes the reservation effective. (Chapter 8, §8.6 states this enforcement model and its limits.)
 
@@ -227,12 +227,12 @@ The write scope model, defined in DBM §7, enforces a formal separation between 
 
 The six categories, from most to least restrictive, are:
 
-- **NONE** — Read-only. The agent may draft content but may not write to any location. The human applies any output. Applies to: HELPS_HUMANS, DECOMP_BASE, HELP_HUMAN.
-- **REPO-METADATA-ONLY** — May write to instruction files, README, and templates — not to execution truth. Applies to: DOMAIN_DECOMP, CONTEXT_TRANSPOSE.
-- **REPO-WIDE** — May write across the instruction repository under its declared protocol (tool and skill registries; publication through CHANGE). Applies to: TOOLMAKER, SKILLMAKER.
+- **NONE** — Read-only. The agent may draft content but may not write to any location. The human applies any output. Applies to: HELPS_HUMANS, Decomposition Standard, HELP_HUMAN.
+- **REPO-METADATA-ONLY** — May write to instruction files, README, and templates — not to execution truth. Applies to: DOMAIN_DECOMP, HELPS_HUMANS context-transposition mode.
+- **REPO-WIDE** — May write across the instruction repository under its declared protocol (agent, skill, and tool governance; publication through CHANGE). Applies to: HELPS_HUMANS.
 - **PROJECT-LEVEL** — May write to decomposition documents, project metadata files, and folder scaffolding. Applies to: PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP.
 - **DELIVERABLE-LOCAL** — May write only within a single assigned production unit folder. Applies to: WORKING_ITEMS, TASK+four-documents, TASK+domain-documents, TASK+semantic-matrix-build, TASK+lens-register, TASK+dependency-extract, TASK, REVIEW.
-- **TOOL-ROOT-ONLY** — May write only to a specific designated tool root under `{EXECUTION_ROOT}/`. Applies to: ORCHESTRATOR (`_Coordination/`), RECONCILIATION (`_Reconciliation/`), CHANGE (`_Change/` plus repo files with approval gate), SCHEDULING (`_Schedule/`), ESTIMATING (`_Estimates/`), AGGREGATION (`_Aggregation/`), and the four audit agents.
+- **TOOL-ROOT-ONLY** — May write only to a specific designated tool root under `{EXECUTION_ROOT}/`. Applies to: ORCHESTRATOR (`_Coordination/`), RECONCILIATION (`_Reconciliation/`), CHANGE (`_Change/` plus repo files with approval gate), ORCHESTRATOR scheduling workflow (`_Schedule/`), ESTIMATING (`_Estimates/`), AGGREGATION (`_Aggregation/`), and the four audit agents.
 
 ### 4.6.2 The Write Scope Tree
 
@@ -241,12 +241,12 @@ DBM §7.1 presents the assignment structure in a tree format; it is shown here u
 ```
 NONE
 ├── HELPS_HUMANS
-├── DECOMP_BASE
+├── Decomposition Standard
 └── HELP_HUMAN
 
 REPO-METADATA-ONLY
 ├── DOMAIN_DECOMP
-└── CONTEXT_TRANSPOSE
+└── HELPS_HUMANS context-transposition mode
 
 PROJECT-LEVEL
 ├── PROJECT_DECOMP
@@ -266,14 +266,14 @@ DELIVERABLE-LOCAL
 └── REVIEW (+tool-root for snapshots)
 
 REPO-WIDE
-├── TOOLMAKER
-└── SKILLMAKER
+├── HELPS_HUMANS
+└── HELPS_HUMANS
 
 TOOL-ROOT-ONLY
 ├── ORCHESTRATOR         → _Coordination/
 ├── RECONCILIATION       → _Reconciliation/
 ├── CHANGE               → _Change/ (+repo files with approval gate)
-├── SCHEDULING           → _Schedule/
+├── ORCHESTRATOR scheduling workflow           → _Schedule/
 ├── ESTIMATING           → _Estimates/
 ├── AGGREGATION          → _Aggregation/
 ├── AUDIT_AGENTS         → _Reconciliation/AgentAudit/
@@ -324,7 +324,7 @@ The Chirality system maintains agent behavior through three distinct layers of c
 
 **R1–R12: Workflow Design Requirements** (from HELPS_HUMANS). These requirements apply to all agents and to the design of any new agent workflow (R1–R12 as of this revision; R10–R12 govern the skill/tool layer). They establish universal baseline obligations: that human decision rights are explicit (R1), that task agents run straight-through without mid-run gates (R2), that write quarantine is enforced (R3), that snapshots are immutable (R4), that provenance is mandatory (R5), that no-invention behavior is defined (R6), that conflicts and duplicates are surfaced (R7), that brief-driven execution exists (R8), and that publication is hygienic and non-destructive by default (R9).
 
-**I1–I10: Decomposition Invariants** (from DECOMP_BASE). These ten invariants apply specifically to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) and are verified by AUDIT_DECOMP. They govern: human-validated decomposition gates (I1), no-invention in scope assignment (I2), flat partition structure (I3), no overlaps and no gaps (I4), stable identifiers (I5), deterministic ID coupling (I6), best-effort objective mapping (I7), traceable rationale (I8), machine-checkable ledger and telemetry (I9), and vocabulary discipline (I10).
+**I1–I10: Decomposition Invariants** (from Decomposition Standard). These ten invariants apply specifically to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) and are verified by AUDIT_DECOMP. They govern: human-validated decomposition gates (I1), no-invention in scope assignment (I2), flat partition structure (I3), no overlaps and no gaps (I4), stable identifiers (I5), deterministic ID coupling (I6), best-effort objective mapping (I7), traceable rationale (I8), machine-checkable ledger and telemetry (I9), and vocabulary discipline (I10).
 
 **K-* Invariants: System-Wide Enforcement** (from CONTRACT.md). The K-* catalog defines system-wide binding constraints. The full catalog is reproduced in Appendix A; the groupings and their primary enforcing agents are summarized below.
 
@@ -336,7 +336,7 @@ The Chirality system maintains agent behavior through three distinct layers of c
 | Dependencies | K-DEP-1, K-DEP-2 | TASK+dependency-extract, AUDIT_DEP_CLOSURE |
 | Status | K-STATUS-1 | PREPARATION, TASK+four-documents, TASK+semantic-matrix-build, REVIEW |
 | Staleness & Validation | K-STALE-1, K-STALE-2, K-VAL-1 | AUDIT_DEP_CLOSURE, RECONCILIATION; future tooling |
-| Gates | K-GATE-1 | ORCHESTRATOR, SCHEDULING |
+| Gates | K-GATE-1 | ORCHESTRATOR, ORCHESTRATOR scheduling workflow |
 | Merge | K-MERGE-1 | CHANGE |
 | Provenance & Claim Discipline | K-PROV-1, K-CLAIM-1 | TASK+dependency-extract (row evidence); AUDIT_GOVERNANCE |
 | Invention | K-INVENT-1 | Universal (all agents) |
@@ -362,7 +362,7 @@ The live enforcement map (`CONTRACT.md` §2, reproduced in Appendix A) additiona
 
 This distribution of enforcement is architecturally significant. It means that no single failure mode — a misbehaving agent, a human error, a tool gap — can violate all constraints simultaneously. The layers are complementary and partially redundant.
 
-[RATIONALE: The decision to enforce many invariants at the agent-instruction level rather than at runtime places the constraint earlier than runtime-only enforcement: a conforming agent never plans the violating action, rather than being caught attempting it. The constraint binds intent, not guaranteed behavior (Chapter 8, §8.6.2). The tradeoff is that instruction-level enforcement depends on the quality of the agent instructions themselves, which requires the Type 0 canonical standards and the AUDIT_AGENTS agent to maintain.]
+[RATIONALE: Enforcing many invariants at the instruction level places the constraint earlier than runtime-only enforcement: a conforming agent should not plan the violating action. The constraint binds intent, not guaranteed behavior (Chapter 8, §8.6.2). This depends on maintained external standards, HELPS_HUMANS component governance, and conformance audits.]
 
 ---
 
@@ -404,10 +404,10 @@ DBM_PUBLISHER (Type 1) ──dispatches TASK+skill──┬── dbm-section-pu
 CHANGE (Type 1) ── leaf agent (spawns nothing; implements approved edits)
 REVIEW (Type 1) ── triggers AUDIT_DECOMP as precondition check
 SCOPE_CHANGE (Type 1) ── hands off to ORCHESTRATOR (for PREPARATION) + CHANGE (for commits)
-CONTEXT_TRANSPOSE (Type 1) ── hands off to CHANGE (for publication)
-SCHEDULING (Type 1) ── standalone (reads dependency graph; produces schedule artifacts)
-TOOLMAKER (Type 1) ── standalone (deterministic tools; hands off to CHANGE for publication)
-SKILLMAKER (Type 1) ── standalone (designs and governs skills; coordinates with TOOLMAKER)
+HELPS_HUMANS context-transposition mode (Type 1) ── hands off to CHANGE (for publication)
+ORCHESTRATOR scheduling workflow (Type 1) ── standalone (reads dependency graph; produces schedule artifacts)
+HELPS_HUMANS (Type 1) ── standalone (deterministic tools; hands off to CHANGE for publication)
+HELPS_HUMANS (Type 1) ── standalone (designs and governs skills; coordinates with HELPS_HUMANS)
 PDF2MD (Type 1) ──spawns──── PDF2MD_PAGE (Type 2) [per page]
 DRAWING_EXTRACT (Type 1) ──spawns──── DRAWING_EXTRACT_PAGE (Type 2) [per page]
 ```

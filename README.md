@@ -122,9 +122,9 @@ Use live registries and discovery tools rather than static counts.
 | Tests | `tools/validation/discover_test_surfaces.py` for this private canonical repo |
 | Roadmap | `docs/PLAN.md` |
 
-Agents are instruction contracts: role, authority, write scope, interaction surface, protocol, and output expectations. The Type 0 / Type 1 / Type 2 model is an authority model, and the matrix in `AGENTS.md` is a governance and routing view.
+An agent is an LLM plus instructions, declared files/context, tools, and permissions. Type 0 / Type 1 / Type 2 are runtime delegation positions: Supervising Architect, Manager, and Specialist. Standards constrain every layer but are not agents. `AGENTS.md` is the canonical runtime doctrine and live role index.
 
-`TASK` is the canonical bounded Type 2 execution shell. Skills are method packs that `TASK` can hydrate for recurring task shapes. Tools are deterministic helpers for repeatable operations such as scaffolding, validation, PDF/drawing processing, dependency analysis, publication assembly, source cataloging, and test-surface discovery.
+`TASK` is the default recurring-method form of Agent 2. Ephemeral bounded generalists and human-approved dedicated specialists are also valid. Skills are method packs TASK can hydrate; tools are deterministic helpers for repeatable operations such as scaffolding, validation, PDF/drawing processing, dependency analysis, publication assembly, source cataloging, and test-surface discovery.
 
 ---
 

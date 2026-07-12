@@ -70,7 +70,7 @@ Identifiers are assigned once and persist across renames, path changes, and rest
 | Scope Item | `SOW-NNN` | `SOW-003` | PROJECT_DECOMP |
 | Objective | `OBJ-NNN` | `OBJ-001` | PROJECT_DECOMP |
 
-Conforming decomposition variants define additional stable-ID families in their own contracts (e.g. domain-knowledge identifiers; see §8.2 and `AGENT_DECOMP_BASE.md`). The ID rules below apply to all families.
+Conforming decomposition variants define additional stable-ID families in their own contracts (e.g. domain-knowledge identifiers; see §8.2 and `docs/DECOMPOSITION_STANDARD.md`). The ID rules below apply to all families.
 
 ### 2.1 ID Rules
 
@@ -176,18 +176,20 @@ Agents are classified into three types following the 0-1-2 model. See `AGENTS.md
 
 | Type | Name | Role | Scope |
 |---|---|---|---|
-| **Type 0** | Protocol standard | Defines a canonical protocol and extension invariants consumed by conforming workflows; general governance standards may instead live directly in `docs/` | Project-wide |
-| **Type 1** | Manager | Interprets intent, decomposes work, routes to specialists, merges results | Package or project scope |
-| **Type 2** | Specialist | Executes bounded briefs with minimal context; returns outputs + evidence | Single deliverable or narrow task |
+| **Type 0** | Supervising Architect | Aligns with the human, frames authority and decision points, supervises Agent 1 managers, and performs validated cross-manager fan-in | Human matter / workflow portfolio |
+| **Type 1** | Manager | Converts human-approved intent into a governed workflow, makes manager-level decisions at human gates, delegates bounded work, and validates fan-in | Package, project, or specialist workflow scope |
+| **Type 2** | Specialist | Executes a sealed bounded brief with declared context, tools, outputs, and write scope; returns outputs plus evidence and does not delegate | Single deliverable or narrow task |
 
-`TASK` is the canonical Type 2 execution shell; it hydrates reusable methods through `TaskSkill: <name>` rather than proliferating bespoke task agents.
+The type number is a runtime delegation position, not a document-authority class. Normative standards live outside the hierarchy and constrain every layer. HELP_HUMAN is the sole canonical Agent 0. Agent 1 roles are directly invokable by a human and may also run under Agent 0.
+
+Agent 2 has three valid construction forms: `TASK + skill + brief`; an ephemeral bounded generalist with no persistent `AGENT_*.md`; or an approved dedicated specialist instruction package. TASK is the default for recurring method work. A dedicated specialist requires evidence that TASK and ephemeral-generalist forms are inadequate, a HELPS_HUMANS proposal, and explicit human approval.
 
 ### 4.2 Classification Properties
 
 | Property | Values | Meaning |
 |---|---|---|
-| `AGENT_CLASS` | `PERSONA`, `TASK` | Persona agents run interactive sessions; Task agents run straight-through pipelines |
-| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
+| `AGENT_CLASS` | `PERSONA`, `TASK` | Agent 0 and Agent 1 are interactive personas; persistent Agent 2 packages are straight-through specialists |
+| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | Type 0/1 may use chat; Type 2 is delegated or pipeline-invoked and is not a top-level chat persona |
 | `WRITE_SCOPE` | base values: `repo-wide`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `project-level`, `bounded-task-brief`, `none` | What the agent is allowed to write |
 | `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
 
@@ -195,12 +197,13 @@ A `tool-root-only` scope MAY be parameterized to a registered tool root or subtr
 
 ### 4.3 Authority Model
 
-- Normative governance documents define framework rules; Type 0 protocol standards define specialized canonical protocols and extension invariants.
-- Type 1 prepares workspaces and orchestrates (what the specialist can see).
-- Type 2 does the work (within bounded scope).
-- Human approves at gates.
+- Normative governance documents and domain standards constrain Agent 0, Agent 1, and Agent 2; they are not runtime agents.
+- Agent 0 supervises only named Agent 1 managers.
+- Agent 1 may delegate to named Agent 2 specialists, TASK, or an explicitly permitted ephemeral generalist.
+- Agent 2 executes within its sealed brief and may not delegate.
+- Human authority remains the halting condition at consequential gates.
 
-Authority flows downward; escalation flows upward. A Type 2 agent cannot modify rules set by Type 0. A Type 1 agent cannot approve deliverables for external reliance.
+Authority and capability do not increase through delegation. Escalation flows upward. No agent may approve deliverables for external reliance on behalf of the accountable human.
 
 ---
 
@@ -280,7 +283,7 @@ The project decomposition document (produced by PROJECT_DECOMP) defines these en
 
 ### 8.2 Domain Decomposition Entities
 
-The decomposition protocol is shared across variants by `AGENT_DECOMP_BASE.md`; `DOMAIN_DECOMP` binds its abstract entities to domain-knowledge names. The handbook/domain variant defines:
+The decomposition protocol is shared across variants by `docs/DECOMPOSITION_STANDARD.md`; `DOMAIN_DECOMP` binds its abstract entities to domain-knowledge names. The handbook/domain variant defines:
 
 | Entity | ID Format | Purpose |
 |---|---|---|
@@ -290,7 +293,7 @@ The decomposition protocol is shared across variants by `AGENT_DECOMP_BASE.md`; 
 | **Handbook Unit (Atom)** | `HBA-<SOURCE_PREFIX>-NNNNN` | An atomic instruction/concept extracted from a source; the unit of coverage checking |
 | **Section Node** | `SEC-<SOURCE_PREFIX>-NNNN` | A source section in the reviewed skeleton; the section-level retrieval substrate |
 
-The base specification's abstract entities (Atomic Unit, Partition, Production Unit, Decomposition Ledger, Coverage & Telemetry, Vocabulary Map) and the seven-gate protocol are defined in `AGENT_DECOMP_BASE.md`; PROJECT_DECOMP, SOFTWARE_DECOMP, and DOMAIN_DECOMP bind them to domain-specific names and ID widths.
+The standard's abstract entities (Atomic Unit, Partition, Production Unit, Decomposition Ledger, Coverage & Telemetry, Vocabulary Map) and seven-gate protocol are defined in `docs/DECOMPOSITION_STANDARD.md`; PROJECT_DECOMP, SOFTWARE_DECOMP, and DOMAIN_DECOMP bind them to domain-specific names and ID widths.
 
 ---
 

@@ -16,7 +16,7 @@ Throughout this chapter, references to Appendix A (invariant catalog) and `AGENT
 
 ## 8.2 Agent Suite
 
-The Chirality system ships an indexed agent suite organized according to the Type 0/1/2 hierarchy defined in Chapter 4 (§4.5) and catalogued in full in `AGENTS.md`. This section provides a structural characterization of that suite.
+The Chirality system ships an indexed agent suite organized according to the Agent 0/1/2 runtime hierarchy defined in Chapter 4 (§4.5) and catalogued in full in `AGENTS.md`. This section provides a structural characterization of that suite.
 
 ### 8.2.1 Type Distribution
 
@@ -24,30 +24,30 @@ The suite is distributed across three types as follows:
 
 | Type | Role |
 |------|------|
-| Type 0 — Canonical Standards | Constitutional layer; defines invariant protocols |
+| External standards | Constitutional layer; defines invariant protocols outside runtime delegation |
 | Type 1 — Interactive Personas | Gate-controlled, human-facing orchestrators |
 | Type 2 — Bounded Task Agents | Brief-driven, straight-through specialists |
 
-The Type 0 agents — HELPS_HUMANS and DECOMP_BASE — function as the architectural constitution. HELPS_HUMANS defines the workflow-component design requirements (R1–R12) and the universal structural template that every other agent must conform to. DECOMP_BASE defines the seven-gate decomposition protocol and the ten decomposition invariants (I1–I10) that all decomposition agents inherit. Neither agent writes project state; both exist solely to define the standards against which all downstream agents are validated.
+The architectural constitution is documentary, not agentic: `docs/WORKFLOW_COMPONENT_STANDARD.md` governs workflow components and `docs/DECOMPOSITION_STANDARD.md` defines the seven-gate decomposition protocol and I1–I10. HELP_HUMAN is the sole Agent 0; HELPS_HUMANS is the Agent 1 manager that applies and maintains component governance.
 
-Type 1 agents are interactive personas. They execute gate-controlled, multi-phase workflows in which humans make consequential decisions at each phase boundary. Type 1 agents may spawn Type 2 specialists and maintain orchestration state, but they may not approve deliverables for reliance or override Type 0 constraints.
+Agent 1 managers are interactive personas. They execute gate-controlled workflows, may delegate sealed work to Agent 2, and validate fan-in. They may not approve deliverables for reliance or override accepted standards.
 
 Type 2 agents are brief-driven specialists. They accept structured INIT-TASK briefs, execute straight-through without mid-run gates, and produce auditable outputs consisting of either deliverable-local file writes or immutable snapshots in designated tool roots. Type 2 agents never spawn other agents. Invalid inputs cause a `FAILED_INPUTS` halt; missing data is marked `TBD` and execution continues conservatively.
 
 ### 8.2.2 Class and Write Scope Distribution
 
-Agent classification along the AGENT_CLASS dimension divides the suite into PERSONA agents (conversational, gate-controlled interface) and TASK agents (brief-driven, straight-through execution). By design, all Type 1 agents carry AGENT_CLASS: PERSONA and all Type 2 agents carry AGENT_CLASS: TASK. The Type 0 agents are also classed as PERSONA but carry WRITE_SCOPE: none — they produce standards, not project state.
+Agent classification along the AGENT_CLASS dimension distinguishes interactive PERSONA managers from straight-through persistent TASK specialists. HELP_HUMAN is a read-only Agent 0 persona. Agent 2 may also be an ephemeral generalist with no persistent instruction file.
 
 Write scope distribution across the suite reflects the fault containment architecture described in Chapter 4 (§4.6). The eight declared write scope categories and their agent populations are:
 
 | Write Scope | Agents |
 |-------------|--------|
-| `none` | HELPS_HUMANS, DECOMP_BASE, HELP_HUMAN |
-| `repo-metadata-only` | DOMAIN_DECOMP, CONTEXT_TRANSPOSE |
-| `repo-wide` | TOOLMAKER, SKILLMAKER |
+| `none` | HELP_HUMAN; reserved/deprecated compatibility roles only as explicitly declared |
+| `repo-metadata-only` | DOMAIN_DECOMP, HELPS_HUMANS context-transposition mode |
+| `repo-wide` | HELPS_HUMANS |
 | `project-level` | PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP |
 | `deliverable-local` | WORKING_ITEMS, REVIEW; TASK skills may receive deliverable-local allowed targets through the bounded TASK shell |
-| `tool-root-only` | ORCHESTRATOR, RECONCILIATION, CHANGE, SCHEDULING, ESTIMATING, AGGREGATION, AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, DOMAIN_HYPERGRAPH, AUDIT_HYPERGRAPH_CLOSURE |
+| `tool-root-only` | ORCHESTRATOR (including scheduling), EVALUATION, CHANGE, ESTIMATING, AGGREGATION, and bounded audit specialists |
 | `workspace-scaffold-only` | PREPARATION (primary scaffold variant) |
 | `bounded-task-brief` | TASK shell; effective writes are authorized by the bounded brief, including deliverable-local and KTY-local task variants |
 
@@ -69,7 +69,7 @@ The matrix serves a dual purpose. Architecturally, it ensures that every agent h
 
 ### 8.2.4 Decomposition System
 
-The decomposition system comprises three conforming variant agents — PROJECT_DECOMP, SOFTWARE_DECOMP, and DOMAIN_DECOMP — each inheriting from the DECOMP_BASE Type 0 standard. The conformance relationship is formally specified in DBM_Agent_Instruction_Architecture.md §8.5 (the Extension Contract) and operationalized in the seven-gate protocol:
+The decomposition system comprises three conforming managers — PROJECT_DECOMP, SOFTWARE_DECOMP, and DOMAIN_DECOMP — each constrained by `docs/DECOMPOSITION_STANDARD.md`. The conformance relationship is specified by that standard's Extension Contract and operationalized in the seven-gate protocol:
 
 | Gate | Name | Gate Question |
 |------|------|---------------|
@@ -81,7 +81,7 @@ The decomposition system comprises three conforming variant agents — PROJECT_D
 | 6 | Coverage | "Are coverage, mappings, and open issues acceptable?" |
 | 7 | Publish | "Is this the accepted basis for downstream work?" |
 
-All three variants share this protocol verbatim. Domain-specific differentiation is provided through an Extension Contract that each variant must satisfy: entity binding tables (mapping abstract DECOMP_BASE terms to domain-specific equivalents), ID format specifications, production unit type taxonomies, and domain-specific telemetry extensions. The three variants differ along the following dimensions (see Chapter 6 for detailed treatment):
+All three variants share this protocol verbatim. Domain-specific differentiation is provided through an Extension Contract that each variant must satisfy: entity binding tables (mapping abstract Decomposition Standard terms to domain-specific equivalents), ID format specifications, production unit type taxonomies, and domain-specific telemetry extensions. The three variants differ along the following dimensions (see Chapter 6 for detailed treatment):
 
 - **PROJECT_DECOMP** targets EPC and design-build work. Atomic units are scope items (SOW-NNN); production units are deliverables (DEL-XX-YY). The worked examples in `examples/execution-6a` through `examples/execution-6c` are all PROJECT_DECOMP instances.
 - **SOFTWARE_DECOMP** targets software development. It introduces Context Envelope sizing (S/M/L/XL) as a mandatory telemetry extension, constraining the volume of context passed to each Type 2 agent run.
@@ -127,15 +127,15 @@ DBM_PUBLISHER (Type 1) ──dispatches TASK+skill──┬── dbm-section-pu
 CHANGE (Type 1) ── leaf agent (spawns nothing; implements approved edits)
 REVIEW (Type 1) ── triggers AUDIT_DECOMP as precondition check
 SCOPE_CHANGE (Type 1) ── hands off to ORCHESTRATOR (for PREPARATION) + CHANGE (for commits)
-CONTEXT_TRANSPOSE (Type 1) ── hands off to CHANGE (for publication)
-SCHEDULING (Type 1) ── standalone (reads dependency graph; produces schedule artifacts)
-TOOLMAKER (Type 1) ── standalone (deterministic tools; hands off to CHANGE for publication)
-SKILLMAKER (Type 1) ── standalone (designs and governs skills; coordinates with TOOLMAKER)
+HELPS_HUMANS context-transposition mode (Type 1) ── hands off to CHANGE (for publication)
+ORCHESTRATOR scheduling workflow (Type 1) ── standalone (reads dependency graph; produces schedule artifacts)
+HELPS_HUMANS (Type 1) ── standalone (deterministic tools; hands off to CHANGE for publication)
+HELPS_HUMANS (Type 1) ── standalone (designs and governs skills; coordinates with HELPS_HUMANS)
 PDF2MD (Type 1) ──spawns──── PDF2MD_PAGE (Type 2) [per page]
 DRAWING_EXTRACT (Type 1) ──spawns──── DRAWING_EXTRACT_PAGE (Type 2) [per page]
 ```
 
-HELP_HUMAN, CHANGE, REVIEW, SCOPE_CHANGE, CONTEXT_TRANSPOSE, and SCHEDULING operate as leaves or handoff coordinators rather than primary spawners; EVALUATION, DBM_PUBLISHER, PDF2MD, and DRAWING_EXTRACT are additional Type 1 spawners or skill dispatchers, per the graph above (DBM §6.1, as of 2026-07-02). CHANGE, in particular, requires explicit approval tokens before any state-changing action, providing the highest-control gate in the system.
+HELP_HUMAN, CHANGE, REVIEW, SCOPE_CHANGE, HELPS_HUMANS context-transposition mode, and ORCHESTRATOR scheduling workflow operate as leaves or handoff coordinators rather than primary spawners; EVALUATION, DBM_PUBLISHER, PDF2MD, and DRAWING_EXTRACT are additional Type 1 spawners or skill dispatchers, per the graph above (DBM §6.1, as of 2026-07-02). CHANGE, in particular, requires explicit approval tokens before any state-changing action, providing the highest-control gate in the system.
 
 Session continuity across agent invocations is maintained through two durable filesystem artifacts: `NEXT_INSTANCE_PROMPT.md` (stable session startup instructions, modified only on protocol changes) and `NEXT_INSTANCE_STATE.md` (mutable state pointer, updated by WORKING_ITEMS at each session handoff). This control loop — described in Chapter 4 (§4.8) — enables multi-session project execution without hidden state.
 
@@ -160,13 +160,13 @@ The evaluation subsystem operates against a dedicated `_Evaluation/` tool root w
 
 ### 8.2.7 Skill Subsystem
 
-The SKILLMAKER agent (Type 1, `AGENT_SKILLMAKER.md`) is the design-time governor of the repo-native skill layer under `skills/`. SKILLMAKER owns skill design, contract evolution, and subsystem governance — deciding when recurring methods should become skills, what the skill contract should contain, and how skills compose with task profiles and deterministic tools. It does not participate in runtime skill execution; that remains the domain of TASK. When a skill requires a new deterministic helper, SKILLMAKER identifies the need and coordinates with TOOLMAKER for implementation. SKILLMAKER is a standalone Type 1 agent that does not spawn Type 2 agents.
+HELPS_HUMANS (Agent 1, `agents/AGENT_HELPS_HUMANS.md`) governs the repo-native skill layer under `skills/`: deciding when recurring methods become skills, defining contracts, maintaining validators, and preserving the skill/tool boundary. Runtime skill execution remains the domain of TASK. When a skill requires a deterministic helper, HELPS_HUMANS designs the tool contract in its separate tool-design mode.
 
 ---
 
 ## 8.3 Deterministic Tools
 
-The `tools/` directory contains the deterministic toolset — shell scripts and Python utilities — that agents invoke during pipeline execution. These tools are indexed in `tools/REGISTRY.md` and maintained by the TOOLMAKER agent (Type 1, AGENT_TOOLMAKER.md).
+The `tools/` directory contains deterministic shell scripts and Python utilities used during pipeline execution. They are indexed in `tools/REGISTRY.md` and maintained through HELPS_HUMANS tool-design governance.
 
 ### 8.3.1 Category Distribution
 
@@ -229,7 +229,7 @@ Validation in the Chirality system operates across four distinct layers: agent i
 
 ### 8.5.1 Internal Validation Mechanisms
 
-**AUDIT_AGENTS** (Type 2) performs conformance checking of agent instruction files against the AGENT_HELPS_HUMANS.md standard. Given a list of agent files, a canonical file, and a rubric, it produces an audit report, an issue log, and a patch plan. This mechanism enforces the structural template mandated by the Type 0 standard at the text level: header block completeness, section boundary markers, non-negotiable invariant declarations, and WRITE_SCOPE declarations. AUDIT_AGENTS writes to `_Reconciliation/AgentAudit/` as an immutable snapshot, providing a durable record of conformance state at any point in the development cycle.
+**AUDIT_AGENTS** (Agent 2 compatibility specialist pending requalification) checks instruction files against `docs/WORKFLOW_COMPONENT_STANDARD.md`. Given a list of files and a rubric, it produces an audit report, issue log, and patch plan. EVALUATION owns orchestration and current evaluation outputs under `_Evaluation/`; historical `_Reconciliation/AgentAudit/` snapshots remain immutable evidence.
 
 **AUDIT_DECOMP** (Type 2) verifies decomposition coverage: that every in-scope atomic unit identified in the decomposition ledger has been assigned to a partition and production unit, that ledger columns meet the minimum specification, and that the Coverage and Telemetry section is present and populated. It produces a coverage report, an issue log CSV, a coverage matrix, and a `coverage_summary.json`. AUDIT_DECOMP is also triggered as a precondition check by the REVIEW agent before lifecycle transitions are permitted, creating a hard gate: a decomposition that fails coverage audit cannot advance through the REVIEW agent's formal 5-gate protocol (distinct from the seven-gate decomposition protocol of §8.2.4).
 
@@ -273,7 +273,7 @@ The following capabilities are fully implemented and demonstrated in the example
 
 - The indexed agent instruction suite (conformance verified by AUDIT_AGENTS)
 - The registered deterministic toolset (registered and referenced in agent PROTOCOL sections where applicable)
-- The three-variant decomposition system (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) sharing the DECOMP_BASE 7-gate protocol
+- The three-variant decomposition system (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) sharing the Decomposition Standard 7-gate protocol
 - The orchestration spawning graph and session handoff mechanism
 - The evaluation subsystem (EVALUATION with its supporting subagents, and example execution traces)
 - The dependency graph analysis pipeline (AUDIT_DEP_CLOSURE + `analyze_dep_closure.py`)

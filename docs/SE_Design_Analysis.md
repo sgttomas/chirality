@@ -20,7 +20,7 @@ The system enforces three distinct separations:
 
 **Source Truth vs Derived Output.** Deliverable folders (source truth) are structurally isolated from tool roots (derived outputs). Tool roots (`_Aggregation/`, `_Estimates/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) contain agent-produced analysis and snapshots. Source truth contains human-accepted deliverable content. The boundary is enforced by K-WRITE-1: every agent declares its write scope and cannot cross into another zone.
 
-**Authority vs Execution.** Normative governance documents and Type 0 protocol standards constrain Type 1 orchestration, which constrains Type 2 bounded execution; escalation flows upward. This is stated in `TYPES.md` §4.3 and enforced by component contracts and human gate authority.
+**Authority vs Execution.** Normative standards constrain every runtime layer from outside the hierarchy. Agent 0 supervises Agent 1 managers; Agent 1 delegates bounded Agent 2 execution; Agent 2 does not delegate. Escalation flows upward and human gate authority remains final. This is stated in `TYPES.md` §4.3.
 
 ### 1.2 Modularity & Encapsulation
 
@@ -87,7 +87,7 @@ Every analysis run (estimation, closure audit, reconciliation, review) produces 
 
 The system implements a classic V-model: decomposition down the left side, integration and verification up the right.
 
-**Decomposition (left leg)** — `AGENT_DECOMP_BASE.md` defines a 7-gate protocol:
+**Decomposition (left leg)** — `docs/DECOMPOSITION_STANDARD.md` defines a 7-gate protocol:
 
 | Phase | Direction | Activity | Gate |
 |-------|-----------|----------|------|
@@ -126,7 +126,7 @@ Transition readiness criteria are severity-based:
 
 Three forms of coverage verification exist:
 
-**Decomposition coverage** (DECOMP_BASE Phase 6): Every IN-scope atomic unit mapped to exactly one partition and at least one production unit. Gaps are open issues with stable IDs.
+**Decomposition coverage** (`docs/DECOMPOSITION_STANDARD.md`, Phase 6): Every IN-scope atomic unit maps to exactly one partition and at least one production unit. Gaps are open issues with stable IDs.
 
 **Dependency coverage** (TASK+dependency-extract Function 5): Every active dependency row has evidence (EvidenceFile + SourceRef). Floating nodes (deliverables without an IMPLEMENTS_NODE anchor) generate warnings.
 
@@ -157,7 +157,7 @@ The write scope architecture creates formal fault containment:
 | Deliverable-local | WORKING_ITEMS, TASK, DELIVERABLE_TASK (also TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register via TASK shell) | Limited to one production unit folder |
 | Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, SCHEDULING | Limited to one tool root; source truth untouched |
 | Repo (approval-gated) | CHANGE | Requires explicit human approval token per action |
-| Read-only | HELP_HUMAN, DECOMP_BASE | Zero write impact |
+| Read-only | HELP_HUMAN | Zero write impact |
 | Workflow-component architecture | HELPS_HUMANS | Repo-wide component-design surfaces under human-reviewed governance changes |
 
 A Type 2 agent failure cannot corrupt source truth — it writes to an isolated tool root or a single deliverable folder. The CHANGE agent's approval gate (APPROVE: / APPROVE_DESTRUCTIVE:) is the sole path from derived output to committed state.
@@ -190,7 +190,7 @@ These invariants bound what a Type 2 agent can see and when it can run. Context 
 
 ### 5.1 Hierarchical Decomposition & Allocation
 
-The decomposition protocol (`AGENT_DECOMP_BASE.md`) implements formal requirements decomposition:
+The decomposition protocol (`docs/DECOMPOSITION_STANDARD.md`) implements formal requirements decomposition:
 
 ```
 Source Corpus (SOW/Handbook)

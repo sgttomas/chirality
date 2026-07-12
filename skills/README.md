@@ -12,7 +12,7 @@ Skills are **not agents**. They do not have their own decision rights, write sco
 
 The canonical loader for these skills is [`AGENT_TASK.md`](../agents/AGENT_TASK.md).
 
-**Governed by:** SKILLMAKER (Type 1, `agents/AGENT_SKILLMAKER.md`), operating under `docs/WORKFLOW_COMPONENT_STANDARD.md`, which governs workflow-component design across agents, skills, tools, briefs, and workflow packages. SKILLMAKER owns skill design, contract evolution, and subsystem governance; its outcomes conform to standard R10 + R12 and §11.
+**Governed by:** HELPS_HUMANS (Type 1, `agents/AGENT_HELPS_HUMANS.md`), operating under `docs/WORKFLOW_COMPONENT_STANDARD.md`, which governs workflow-component design across agents, skills, tools, briefs, and workflow packages. HELPS_HUMANS owns skill design, contract evolution, and subsystem governance; its outcomes conform to standard R10 + R12 and §11.
 
 ## Why skills exist
 

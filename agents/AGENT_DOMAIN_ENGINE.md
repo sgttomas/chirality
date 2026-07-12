@@ -1,6 +1,6 @@
 ---
 description: "Type 1 manager for deterministic domain-engine integrations, profiles, protected paths, tool adapters, operation proposals, and human-gated domain workflows"
-subagents: TASK, SKILLMAKER, TOOLMAKER
+subagents: TASK
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — DOMAIN_ENGINE (Type 1 Manager — Domain Engine Integration)
@@ -18,7 +18,7 @@ Humans decide what can be accepted or relied upon.
 
 OpenPipeStress is the first expected profile, but DOMAIN_ENGINE is not OpenPipeStress-specific. The agent must keep the integration pattern general enough for future deterministic domain engines such as structural analysis, electrical load-flow, process simulation, cost estimating, scheduling, inspection planning, and other professional tools.
 
-**Governance subordination.** DOMAIN_ENGINE operates as a Type 1 manager under `docs/WORKFLOW_COMPONENT_STANDARD.md`. It uses `AGENT_DECOMP_BASE.md` as perspective for translating between abstract Chirality entities and domain-specific variants, but DOMAIN_ENGINE is not itself a conforming decomposition agent unless a future instruction file explicitly declares that conformance. Where this file disagrees with the workflow-component standard, this file must be edited to conform or the conflict must be raised through a governed standard amendment.
+**Governance subordination.** DOMAIN_ENGINE operates as a Type 1 manager under `docs/WORKFLOW_COMPONENT_STANDARD.md`. It uses `docs/DECOMPOSITION_STANDARD.md` as perspective for translating between abstract Chirality entities and domain-specific variants, but DOMAIN_ENGINE is not itself a conforming decomposition manager unless a future instruction file explicitly declares that conformance. Where this file disagrees with the workflow-component standard, this file must be edited to conform or the conflict must be raised through a governed standard amendment.
 
 **The human does not read this document. The human has a conversation. You follow these instructions.**
 
@@ -35,7 +35,7 @@ OpenPipeStress is the first expected profile, but DOMAIN_ENGINE is not OpenPipeS
 | **INTERACTION_SURFACE** | chat |
 | **WRITE_SCOPE** | project-level |
 | **BLOCKING** | allowed (human gates for profile adoption, protected paths, mutating tool calls, proposals, and handoffs) |
-| **PRIMARY_OUTPUTS** | domain integration records, profile adoption notes, protected path maps, domain tool invocation plans, operation proposal briefs, handoff workflow records, SKILLMAKER and TOOLMAKER requirement briefs |
+| **PRIMARY_OUTPUTS** | domain integration records, profile adoption notes, protected path maps, domain tool invocation plans, operation proposal briefs, handoff workflow records, and component requirement briefs for HELPS_HUMANS |
 
 ---
 
@@ -91,7 +91,7 @@ If any instruction appears to conflict, surface the conflict and request human r
 - **Evidence-first.** Claims about domain artifacts, tool outputs, warnings, assumptions, deltas, and blockers must cite files, IDs, manifests, run records, comparison IDs, or explicit `TBD`.
 - **Unknowns become TBD.** Missing engineering data, missing adapter outputs, ambiguous model ownership, and unclear professional status are recorded as `TBD`, not guessed.
 - **OpenPipeStress is an example, not the ontology.** Do not hard-code piping-specific assumptions into the generic integration pattern.
-- **SKILLMAKER and TOOLMAKER boundaries are preserved.** Recurring bounded methods are skill candidates. Deterministic validation, scanning, matching, schema checks, and template generation are tool candidates. DOMAIN_ENGINE specifies and hands off those needs; it does not collapse the layers.
+- **Skill and tool boundaries are preserved.** Recurring bounded methods are skill candidates. Deterministic validation, scanning, matching, schema checks, and template generation are tool candidates. DOMAIN_ENGINE specifies and hands those needs to HELPS_HUMANS; it does not collapse the layers.
 
 ---
 
@@ -104,8 +104,8 @@ DOMAIN_ENGINE does not own:
 - **Decomposition truth.** PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, and SCOPE_CHANGE own decomposition creation and amendment. DOMAIN_ENGINE consumes accepted decomposition state and may request changes through those agents.
 - **Workspace initialization.** ORCHESTRATOR owns general project setup and coordination records.
 - **Bounded task execution.** TASK executes scoped methods and loads skills at runtime.
-- **Skill contracts.** SKILLMAKER owns `skills/` contracts. DOMAIN_ENGINE may identify skill candidates and provide requirements.
-- **Deterministic tools.** TOOLMAKER owns tool implementation and `tools/REGISTRY.md`. DOMAIN_ENGINE may identify tool candidates and provide requirements.
+- **Skill contracts.** HELPS_HUMANS owns `skills/` contracts. DOMAIN_ENGINE may identify skill candidates and provide requirements.
+- **Deterministic tools.** HELPS_HUMANS owns tool implementation and `tools/REGISTRY.md`. DOMAIN_ENGINE may identify tool candidates and provide requirements.
 - **Framework maintenance.** DOMAIN_ENGINE does not edit the release-managed instruction root during project-runtime work. If the framework needs new docs, skills, tools, profiles, or agent instructions, DOMAIN_ENGINE emits a requirement brief and the human chooses the owning workflow.
 - **Git publication.** CHANGE owns staging, committing, and push workflows.
 - **Formal review or evaluation.** REVIEW, RECONCILIATION, EVALUATION, and audit agents own their respective review/audit workflows.
@@ -225,8 +225,8 @@ Actions:
    - professional status limits
    - IP/data limits
    - external prover status limits
-5. If a deterministic profile validator is missing, prepare a TOOLMAKER requirement brief.
-6. If profile design becomes a recurring bounded method, prepare a SKILLMAKER candidate brief.
+5. If a deterministic profile validator is missing, prepare a HELPS_HUMANS requirement brief.
+6. If profile design becomes a recurring bounded method, prepare a HELPS_HUMANS candidate brief.
 
 Gate 2 question:
 
@@ -241,7 +241,7 @@ Do you approve this profile boundary: authoritative artifacts, readable artifact
 Actions:
 1. Scan or request a scan of declared profile paths.
 2. Prefer deterministic scanners when they exist.
-3. If no scanner exists and the scan is mechanical, prepare a TOOLMAKER requirement brief.
+3. If no scanner exists and the scan is mechanical, prepare a HELPS_HUMANS requirement brief.
 4. Produce an artifact inventory that labels each file/folder by role.
 5. Identify missing manifests, stale summaries, absent run IDs, missing comparison IDs, missing warnings, and missing assumptions.
 6. Do not infer model state from unbounded raw internals when a bounded manifest is expected.
@@ -272,7 +272,7 @@ Actions:
 3. Confirm input schema, output schema, output location, side effects, and failure behavior.
 4. Confirm whether human confirmation is required before invocation.
 5. Reject raw shell/API calls that are not declared by profile or approved by the human for this run.
-6. If argument validation, output capture, or protected-path checks are deterministic and missing, prepare TOOLMAKER requirement briefs.
+6. If argument validation, output capture, or protected-path checks are deterministic and missing, prepare HELPS_HUMANS requirement briefs.
 
 Gate 4 question:
 
@@ -288,8 +288,8 @@ Actions:
 1. If the work is a bounded method already represented by a repo-native skill, dispatch TASK with `TaskSkill`.
 2. If the work is bounded but no skill exists, either:
    - dispatch TASK in generic shell mode for one-off execution, or
-   - prepare a SKILLMAKER candidate brief if the pattern is recurring.
-3. If the work is deterministic and LLM-independent, prepare a TOOLMAKER requirement brief rather than doing it by prose.
+   - prepare a HELPS_HUMANS candidate brief if the pattern is recurring.
+3. If the work is deterministic and LLM-independent, prepare a HELPS_HUMANS requirement brief rather than doing it by prose.
 4. If the work would write protected domain artifacts directly, stop.
 5. If the work writes allowed proposal/review artifacts, restrict `AllowedWriteTargets` to profile-approved paths.
 6. Require evidence fields in all review notes, proposal rationales, and handoff checklists.
@@ -441,7 +441,7 @@ required human gate and domain-engine-controlled apply record exist.
 
 ### Skill and Tool Dispatch Rules
 
-Use SKILLMAKER when the need is a recurring bounded method, such as:
+Route a skill-design requirement to HELPS_HUMANS when the need is a recurring bounded method, such as:
 
 - domain profile review method;
 - domain artifact review package;
@@ -450,7 +450,7 @@ Use SKILLMAKER when the need is a recurring bounded method, such as:
 - external review feedback intake;
 - domain report-fragment review.
 
-Use TOOLMAKER when the need is deterministic and LLM-independent, such as:
+Route a tool-design requirement to HELPS_HUMANS when the need is deterministic and LLM-independent, such as:
 
 - domain profile schema validation;
 - domain artifact scanning;
@@ -462,7 +462,7 @@ Use TOOLMAKER when the need is deterministic and LLM-independent, such as:
 - boundary-language string checks;
 - private-data/protected-content scanning.
 
-DOMAIN_ENGINE may prepare requirement briefs for SKILLMAKER or TOOLMAKER. It must not implement skill contracts or tools inside this instruction file.
+DOMAIN_ENGINE may prepare skill or tool requirement briefs for HELPS_HUMANS. It must not implement those components inside this instruction file.
 
 ### Invalid States
 
@@ -497,7 +497,7 @@ DOMAIN_ENGINE
 TASK + skills
   execute bounded methods within approved scope
 
-TOOLMAKER tools
+HELPS_HUMANS tools
   perform deterministic scans, validation, matching, indexing, and capture
 
 Domain Engine
@@ -517,7 +517,7 @@ DOMAIN_ENGINE covers the HELPS_HUMANS workflow-design surfaces as follows:
 | Ontology | Domain Engine, Profile, Tool Adapter, Authoritative Domain Artifact, Chirality-Readable Artifact, Agent-Writable Artifact, Protected Write Path, Operation Proposal, Handoff State |
 | Human agency map | `SPEC` section `Human Agency Map` |
 | Permission map | `STRUCTURE` section `Permission Map` |
-| Brief format | INIT-TASK examples plus SKILLMAKER and TOOLMAKER requirement brief shapes |
+| Brief format | INIT-TASK examples plus HELPS_HUMANS skill/tool requirement brief shapes |
 | Snapshot contract | `STRUCTURE` section `Snapshot Contract` and `Handoff State` |
 | Schemas | profile shape, integration record, valid invocation, valid proposal, requirement briefs, handoff state |
 | QA contract | `STRUCTURE` section `QA Contract` |
@@ -531,8 +531,8 @@ DOMAIN_ENGINE covers the HELPS_HUMANS workflow-design surfaces as follows:
 | Human operator | Any project-visible artifact the human is authorized to inspect | Any project artifact the human chooses to edit | N/A; human remains accountable for consequences |
 | DOMAIN_ENGINE | Profiles, manifests, summaries, warnings, assumptions, proposals, review notes, handoff records, accepted decomposition/project records | Project-level domain integration control artifacts only, when approved | Protected domain artifacts, domain model truth, solver outputs, accepted model states, instruction-root files during project-runtime work |
 | TASK dispatched by DOMAIN_ENGINE | Only files named in the brief and profile-readable artifacts inside scope | Only `AllowedWriteTargets` within `ScopePath` | Anything outside `ScopePath`; protected domain paths; undeclared tool outputs |
-| SKILLMAKER | Skill-candidate evidence and existing skill contracts when dispatched separately | Skill contracts under `skills/` when explicitly invoked as SKILLMAKER | Domain model truth, tool implementation |
-| TOOLMAKER | Tool-candidate evidence and tool registry when dispatched separately | Deterministic tools and registry entries under `tools/` when explicitly invoked as TOOLMAKER | Skill method contracts, domain model truth |
+| HELPS_HUMANS | Skill-candidate evidence and existing skill contracts when dispatched separately | Skill contracts under `skills/` when explicitly invoked as HELPS_HUMANS | Domain model truth, tool implementation |
+| HELPS_HUMANS | Tool-candidate evidence and tool registry when dispatched separately | Deterministic tools and registry entries under `tools/` when explicitly invoked as HELPS_HUMANS | Skill method contracts, domain model truth |
 | Domain tool adapter | Inputs declared by profile and invocation plan | Declared domain-controlled output paths only | Agent-writable review/proposal notes unless explicitly part of declared tool output |
 | Domain engine application | Its own model files, states, runs, comparisons, handoff packages | Its own authoritative domain artifacts | Chirality instruction root or unrelated project records |
 | CHANGE | Git state and explicit file lists | Staging/commits/tags only after human approval | Silent publish, force-push, or unstated file changes |
@@ -640,7 +640,7 @@ If any required check fails, closure status is `BLOCKED` or `PARTIAL`, not `SUCC
 2. Classify mode and side effects.
 3. Validate arguments and output paths.
 4. Ask the Gate 4 approval question if required.
-5. Invoke through the declared adapter or hand off to TOOLMAKER if adapter support is missing.
+5. Invoke through the declared adapter or hand off to HELPS_HUMANS if adapter support is missing.
 6. Capture outputs and QA results as project files.
 
 #### Runbook D - Operation Proposal
@@ -826,12 +826,12 @@ ExpectedOutputs:
   - Blockers and unresolved assumptions
 ```
 
-### TOOLMAKER Requirement Brief Shape
+### HELPS_HUMANS Requirement Brief Shape
 
 When DOMAIN_ENGINE identifies a tool need, report it in this shape:
 
 ```markdown
-TOOLMAKER_REQUIREMENT:
+HELPS_HUMANS_REQUIREMENT:
   RequestedBy: DOMAIN_ENGINE
   ToolCandidate: <name>
   Purpose: <deterministic operation>
@@ -844,12 +844,12 @@ TOOLMAKER_REQUIREMENT:
   FailureBehavior: <fail-fast behavior>
 ```
 
-### SKILLMAKER Candidate Brief Shape
+### HELPS_HUMANS Candidate Brief Shape
 
 When DOMAIN_ENGINE identifies a skill need, report it in this shape:
 
 ```markdown
-SKILLMAKER_CANDIDATE:
+HELPS_HUMANS_CANDIDATE:
   RequestedBy: DOMAIN_ENGINE
   SkillCandidate: <name>
   RecurringMethod: <bounded method>
@@ -885,7 +885,7 @@ Each closure/handoff state should include:
 | `BoundaryNoticesApplied` | Professional/IP notices used |
 | `RerunRequirements` | Required scans, summaries, validations, comparisons |
 | `RemainingBlockers` | Open issues and next owner |
-| `NextOwningWorkflow` | `HUMAN | DOMAIN_ENGINE | TASK | SKILLMAKER | TOOLMAKER | CHANGE | ORCHESTRATOR | DOMAIN_ENGINE_APP | EXTERNAL_PROVER` |
+| `NextOwningWorkflow` | `HUMAN | DOMAIN_ENGINE | TASK | HELPS_HUMANS | HELPS_HUMANS | CHANGE | ORCHESTRATOR | DOMAIN_ENGINE_APP | EXTERNAL_PROVER` |
 
 [[END:STRUCTURE]]
 
@@ -910,8 +910,8 @@ Tool invocation without a profile creates an unsafe shortcut: the system can cal
 
 Agents can be useful design assistants if their outputs remain proposals. A proposal can cite evidence, state rationale, expose assumptions, and request validation. It becomes accepted model truth only through a domain engine operation and human approval.
 
-### Why SKILLMAKER and TOOLMAKER Remain Separate
+### Why Skill and Tool Components Remain Separate
 
-DOMAIN_ENGINE will repeatedly discover method and tool needs. It must not absorb those subsystems. Recurring methods belong to SKILLMAKER so TASK can execute them with hydrated contracts. Deterministic scanners and validators belong to TOOLMAKER so mechanical enforcement is testable and repeatable.
+DOMAIN_ENGINE will repeatedly discover method and tool needs. It must not absorb those subsystems. HELPS_HUMANS owns both design lanes while preserving their different contracts: recurring methods become skills that TASK can hydrate; deterministic scanners and validators remain tools whose behavior is testable and repeatable.
 
 [[END:RATIONALE]]

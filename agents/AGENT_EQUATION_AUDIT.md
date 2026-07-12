@@ -380,7 +380,7 @@ Per `docs/WORKFLOW_COMPONENT_STANDARD.md` §3–4, an agent is justified when it
 
 ### Why the LLM boundary moved into a skill
 
-The legacy `process_flagged.py --interpret` flag shelled out to the `claude` CLI in Sonnet mode via `subprocess`, embedding LLM reasoning inside a deterministic tool. That pattern violated workflow-component standard R12 (skill/tool boundary). Two concrete problems followed: the tool had no `TASK` context (so `AGENT_TASK.md` invariants didn't apply), and the brief was synthesized by the tool as a Python f-string rather than rendered by a TOOLMAKER-owned brief-builder.
+The legacy `process_flagged.py --interpret` flag shelled out to the `claude` CLI in Sonnet mode via `subprocess`, embedding LLM reasoning inside a deterministic tool. That pattern violated workflow-component standard R12 (skill/tool boundary). Two concrete problems followed: the tool had no `TASK` context (so `AGENT_TASK.md` invariants didn't apply), and the brief was synthesized by the tool as a Python f-string rather than rendered by a HELPS_HUMANS-owned brief-builder.
 
 The new shape — `equation-flag-interpret` skill loaded by `TASK`, with a brief rendered by `build_equation_interpret_brief.py` — restores both boundaries: `process_flagged.py` becomes deterministic again, and the LLM reasoning lives inside a skill whose contract is auditable via `SKILL.md`, `BRIEF_SCHEMA.md`, `TOOL_POLICY.md`, `QA_CHECKS.md`.
 

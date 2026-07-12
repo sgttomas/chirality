@@ -7,8 +7,8 @@ Usage:
     python3 tools/validation/validate_agent_instructions.py --json
 
 Checks structural fields and section presence, type/class compatibility,
-R-identifier references, exact AGENT_*.md references, and D-GOV-10 Type 2
-requalification posture. Semantic agent qualification remains a rubric audit.
+R-identifier references, exact AGENT_*.md references, and D-GOV-11 dedicated
+Agent 2 requalification posture. Semantic agent qualification remains a rubric audit.
 
 Exit codes:
     0 = no ERROR findings (WARN findings may remain)
@@ -146,7 +146,7 @@ def validate_file(path: Path, repo_root: Path, valid_r_ids: set[str]) -> list[Fi
         if not blocking.startswith("never"):
             add(findings, "ERROR", "TYPE2_BLOCKING", rel, "Type 2 agents must be non-blocking")
         if role != "TASK":
-            add(findings, "WARN", "TYPE2_REQUALIFICATION_REQUIRED", rel, "D-GOV-10 requires this non-TASK Type 2 agent to requalify")
+            add(findings, "WARN", "TYPE2_REQUALIFICATION_REQUIRED", rel, "D-GOV-11 requires evidence and human approval for each dedicated Agent 2 package")
 
     write_scope = fields.get("WRITE_SCOPE", "")
     if write_scope and not write_scope.startswith(WRITE_SCOPE_PREFIXES):

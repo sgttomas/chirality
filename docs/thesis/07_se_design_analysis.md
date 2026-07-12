@@ -28,7 +28,7 @@ The Chirality architecture enforces three distinct separations, each of which el
 
 **Source truth versus derived output.** Deliverable folders — the source truth of the project — are structurally isolated from tool roots, which contain agent-produced analysis and snapshots. Tool roots (`_Aggregation/`, `_Estimates/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) are explicitly designated zones for derived output. Source truth contains only human-accepted deliverable content. The boundary is enforced by invariant K-WRITE-1: every agent declares its write scope in its header block, and no agent may write outside that declared zone. This prevents derived analysis from silently contaminating the authoritative project record.
 
-**Authority versus execution.** The Type 0/1/2 hierarchy separates standards definition (Type 0 — Architect agents), orchestration (Type 1 — Manager agents), and bounded task execution (Type 2 — Specialist agents). Authority flows downward: Type 0 constraints govern Type 1 behavior; Type 1 orchestration governs Type 2 task scope. Escalation flows upward. No agent of any type can exceed its authority tier, and no agent of any type can bypass a human gate. This separation, defined in `TYPES.md` §4.3 and enforced by agent instruction constraints and human gate authority, provides a formal model of delegation that mirrors classical SE authority hierarchy [CITE:SE_textbook].
+**Authority versus execution.** Standards constrain the system from outside the runtime hierarchy. Agent 0 aligns with the human and supervises Agent 1 managers; Agent 1 delegates bounded work to Agent 2; Agent 2 does not delegate. Authority and capability do not increase through delegation, escalation flows upward, and no agent may bypass a human gate.
 
 ### 7.2.2 Modularity and Encapsulation
 
@@ -101,7 +101,7 @@ Verification determines whether a system has been built correctly relative to it
 
 ### 7.4.1 The V-Model
 
-The system implements a classic V-model: decomposition down the left side and integration with verification up the right. `AGENT_DECOMP_BASE.md` defines a seven-gate protocol that maps directly onto this structure.
+The system implements a classic V-model: decomposition down the left side and integration with verification up the right. `docs/DECOMPOSITION_STANDARD.md` defines a seven-gate protocol that maps directly onto this structure.
 
 **Decomposition (left leg)** — five phases drive requirements downward from source corpus to testable production units:
 
@@ -144,7 +144,7 @@ The five-gate structure is an instantiation of the stage-gate principle in SE pr
 
 Three complementary forms of coverage verification exist in the Chirality system.
 
-**Decomposition coverage** (DECOMP_BASE Phase 6) verifies that every in-scope atomic unit is mapped to exactly one partition and at least one production unit. Gaps are recorded as open issues with stable identifiers. Coverage is reported as a machine-checkable metric across the decomposition ledger.
+**Decomposition coverage** (Decomposition Standard Phase 6) verifies that every in-scope atomic unit is mapped to exactly one partition and at least one production unit. Gaps are recorded as open issues with stable identifiers. Coverage is reported as a machine-checkable metric across the decomposition ledger.
 
 **Dependency coverage** (TASK+dependency-extract Function 5) verifies that every active dependency row has associated evidence — an `EvidenceFile` field and a `SourceRef` field, or an explicit `location TBD` marker. Floating nodes, deliverables without an `IMPLEMENTS_NODE` anchor row, generate structured warnings. This form of coverage serves K-PROV-1: the provenance of every dependency claim must be traceable to a source.
 
@@ -177,9 +177,9 @@ The write scope architecture creates formal fault containment zones with precise
 | Containment Zone | Assigned Agents | Maximum Failure Impact |
 |---|---|---|
 | Deliverable-local | WORKING_ITEMS, TASK, TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register | Limited to one production unit folder |
-| Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, SCHEDULING | Limited to one tool root; source truth untouched |
+| Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, ORCHESTRATOR scheduling workflow | Limited to one tool root; source truth untouched |
 | Repository (approval-gated) | CHANGE | Requires explicit human approval token per action |
-| Read-only | HELP_HUMAN, HELPS_HUMANS, DECOMP_BASE | Zero write impact |
+| Read-only | HELP_HUMAN, HELPS_HUMANS, Decomposition Standard | Zero write impact |
 
 This zoning architecture is a direct application of the fault containment region concept in safety engineering [CITE:Leveson2011]: the system is partitioned such that a failure within any zone cannot propagate to adjacent zones without crossing a boundary enforced by an independent mechanism. In the Chirality implementation, the boundary between the tool-root zone and source truth is carried by K-WRITE-1 as a declared, auditable contract rather than by informal process discipline — a conforming agent has no write path outside its declared scope, bounded task writes are additionally path-contained by a deterministic TASK-shell check (K-WRITE-2), and deviations surface in diff review (Chapter 8, §8.6).
 
@@ -220,7 +220,7 @@ Requirements engineering encompasses the processes of eliciting, analyzing, spec
 
 ### 7.6.1 Hierarchical Decomposition and Allocation
 
-The decomposition protocol (`AGENT_DECOMP_BASE.md`) implements formal requirements decomposition through four levels of progressive refinement:
+The decomposition protocol (`docs/DECOMPOSITION_STANDARD.md`) implements formal requirements decomposition through four levels of progressive refinement:
 
 ```
 Source Corpus (scope of work / handbook)
@@ -567,7 +567,7 @@ Each SE discipline implemented in the Chirality architecture serves one or more 
 
 The Chirality instruction architecture is, in its entirety, a systems engineering artifact. The instruction files are formal specifications defining interfaces, state machines, invariants, preconditions, postconditions, containment zones, and authority boundaries. The governance documents — `DIRECTIVE.md`, the specification (`SPEC.md`), the type system (`TYPES.md`), and `CONTRACT.md` — form a coherent specification hierarchy: intent, physical structures, vocabulary, and binding invariants.
 
-What distinguishes this architecture from a conventional agent system is that the SE disciplines are not bolted on as compliance artifacts. They are the mechanism by which agents coordinate, the means by which failures are contained, and the basis on which humans maintain authority. The Type 0/1/2 hierarchy, the write scope architecture, the invariant system, the gate-controlled workflows, and the evidence-first epistemology are all instantiations of classical SE patterns adapted to the specific challenge of governing LLM-based agents in professional and regulated environments.
+What distinguishes this architecture from a conventional agent system is that the SE disciplines are not bolted on as compliance artifacts. They are the mechanism by which agents coordinate, the means by which failures are contained, and the basis on which humans maintain authority. The Agent 0/1/2 runtime hierarchy, the write scope architecture, the invariant system, the gate-controlled workflows, and the evidence-first epistemology are all instantiations of classical SE patterns adapted to the specific challenge of governing LLM-based agents in professional and regulated environments.
 
 The practical implication is significant: the systems engineering content of this architecture is not incidental overhead. It is what makes the system capable of supporting professional reliance. A system without content-addressed approval cannot provide reliable baselines. A system without fault containment zones cannot bound agent failures. A system without the formal type system cannot enforce consistent behavior across agent instances. A system without human gates cannot maintain professional accountability. The SE disciplines are not qualities added to the system; they are the properties that define it.
 

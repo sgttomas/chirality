@@ -63,7 +63,7 @@ Terms defined in the APEGA practice standard *Relying on the Work of Others and 
 | **Professional Work Product (PWP)** | An output of professional services with technical information relied upon by others to make a decision or take action | Authenticated deliverables issued for reliance (lifecycle state: ISSUED) |
 | **Authentication** | A licensed professional has completed, performed a thorough review of, or directly supervised and controlled the work and accepts professional responsibility | Human approval, seal, and signature at issuance gate |
 | **Validation** | A Responsible Member has reviewed the PWP to ensure it meets QC/QA measures in the PPMP | Responsible Member review per the firm's PPMP |
-| **Direct Supervision and Control** | Directing, monitoring, and controlling engineering work, including making all decisions related to the practice | Gate-controlled agent orchestration under the Type 0/1/2 hierarchy with human authority at every gate |
+| **Direct Supervision and Control** | Directing, monitoring, and controlling engineering work, including making all decisions related to the practice | Gate-controlled Agent 0/1/2 delegation with human authority at every consequential gate |
 | **Thorough Review** | An evaluation of the outputs of professional services prepared by others to verify their reliability, validity, and technical accuracy | REVIEW agent 5-gate protocol + human authentication decision |
 | **Due Diligence** | The level of judgement, care, forethought, and determination a person reasonably uses to avoid harming oneself, other people, property, or the environment | The licensed professional's exercise of judgment at every gate, supported by the system's evidence trail |
 | **AI Agent** | A controlled system architecture (model + instructions + tools + file access + governance) that performs bounded work under the direction of a licensed professional | An AGENT_*.md instruction file instantiated at runtime within the Chirality agent operating system |
@@ -149,7 +149,7 @@ APEGA requires that the licensed professional demonstrate active involvement thr
 
 - Every agent instruction file (AGENT_*.md) declares: agent type, class, interaction surface, write scope, blocking behavior, primary outputs, and non-negotiable invariants.
 - Write scope is enforced by invariant K-WRITE-1: "Every agent has an explicit write scope declared in its header block. No agent writes outside its declared zone."
-- The three-type hierarchy (Type 0 Architect / Type 1 Manager / Type 2 Specialist) establishes clear authority boundaries. Authority flows downward; escalation flows upward. A Type 2 agent cannot modify rules set by Type 0. A Type 1 agent cannot approve deliverables for external reliance.
+- The runtime hierarchy (Agent 0 Supervising Architect / Agent 1 Manager / Agent 2 Specialist) establishes clear delegation boundaries. Normative standards constrain all three layers from outside the hierarchy. Authority and capability do not increase through delegation; escalation flows upward; no agent may approve deliverables for external reliance.
 - Implementation: `docs/TYPES.md` §4 (Agent Roles), §4.3 (Authority Model); `docs/DBM_Agent_Instruction_Architecture.md` §2 (Type Hierarchy), §7 (Write Scope Architecture); `docs/CONTRACT.md` §1.10 (K-WRITE-1).
 
 **Maintaining regular and ongoing communication.**
@@ -162,7 +162,7 @@ APEGA requires that the licensed professional demonstrate active involvement thr
 **Identifying and rectifying gaps in competencies.**
 
 - Agent audit system (AUDIT_AGENTS) verifies conformance of agent instructions against the canonical standard (`agents/AGENT_HELPS_HUMANS.md`). Structural requirements for instruction files defined in `docs/SPEC.md` §9.
-- Three layers of contracts govern agent behavior: R1–R9 workflow design requirements (defined in `agents/AGENT_HELPS_HUMANS.md`), I1–I10 decomposition invariants (defined in `agents/AGENT_DECOMP_BASE.md`), and 21 K-* system-wide invariants (defined in `docs/CONTRACT.md`).
+- Three layers of contracts govern agent behavior: workflow-component requirements in `docs/WORKFLOW_COMPONENT_STANDARD.md`, I1–I10 decomposition invariants in `docs/DECOMPOSITION_STANDARD.md`, and system-wide K-* invariants in `docs/CONTRACT.md`.
 - Evaluation framework provides systematic assessment of agent output quality.
 - Agent instruction governance follows release engineering discipline: versioned, reviewed, no silent behavior changes (see §6.2 of this standard).
 - Implementation: `docs/DBM_Agent_Instruction_Architecture.md` §4 (Contract Framework).
@@ -279,8 +279,8 @@ The firm's quality control and assurance for AI-assisted work is implemented thr
 | `docs/CONTRACT.md` | 21 binding invariants (K-*) with enforcement map |
 | `docs/SPEC.md` | Physical structures, file formats, schema validation checklists |
 | `docs/TYPES.md` | Controlled vocabulary, enumerated types, lifecycle state machine |
-| `agents/AGENT_HELPS_HUMANS.md` | Workflow design requirements (R1–R9) binding on all agents |
-| `agents/AGENT_DECOMP_BASE.md` | Decomposition invariants (I1–I10) binding on all decomposition agents |
+| `docs/WORKFLOW_COMPONENT_STANDARD.md` | Workflow-component requirements binding on agents, skills, tools, briefs, and workflow packages |
+| `docs/DECOMPOSITION_STANDARD.md` | Decomposition invariants (I1–I10) binding on decomposition managers |
 
 ### 6.2 Instruction Governance as Release Engineering
 

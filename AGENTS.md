@@ -1,18 +1,127 @@
-# AGENTS — Agent Index
+# AGENTS — Runtime Doctrine, Governance Rules, and Agent Index
 
-This file indexes the agent suite. For classification semantics, see `docs/TYPES.md` §4. For workflow-component design rules, see `docs/WORKFLOW_COMPONENT_STANDARD.md`; for the explanatory design basis, see `docs/DBM_Agent_Instruction_Architecture.md`.
+This file is the canonical runtime doctrine and live agent index. Root
+`CLAUDE.md` imports this file without adding another instruction layer. For
+workflow-component design rules, see `docs/WORKFLOW_COMPONENT_STANDARD.md`;
+for the explanatory design basis, see
+`docs/DBM_Agent_Instruction_Architecture.md`.
 
 Use `AGENT_*` for instruction files (e.g., `AGENT_CHANGE.md`). Use the role name for the agent itself (e.g., `CHANGE`). All files are in `agents/`.
 
 ---
 
-## Agent Matrix
+## What Is an Agent?
 
-Rows describe epistemic posture; columns describe functional role. NORMATIVE and EVALUATIVE rows open in WORKBENCH (interactive). OPERATIVE row opens in PIPELINE (task execution).
+```text
+agent = LLM + instructions + declared files/context + tools + permissions
+```
 
-Read structurally, the rows also form a governance grammar: NORMATIVE defines rules and standards, OPERATIVE executes bounded work within them, and EVALUATIVE audits, reconciles, and judges the results.
+This is an operational definition, not a claim of personhood or professional
+responsibility. An agent may generate claims and modify state within its
+permission boundary. The human remains accountable for what is accepted or
+relied upon.
 
-### Governance Integration Rules
+Distinguish:
+
+| Term | Meaning |
+|---|---|
+| **Agent instance** | A running LLM with an instruction stack, declared context, tools, and permissions |
+| **Agent role** | A named responsibility in the runtime delegation hierarchy |
+| **Agent instruction package** | Durable `AGENT_*.md` instructions used to instantiate or govern a role |
+| **Skill** | A reusable bounded method loaded into an Agent 2 instance, normally through TASK |
+| **Tool** | A deterministic operation available to an agent; never a substitute for semantic judgment |
+| **Brief** | Run-specific purpose, scope, context, permissions, outputs, and acceptance checks |
+
+## Good Agents and Great Workflows
+
+A good agent has one bounded role, one explicit objective, a declared context,
+an explicit permission boundary, and a checkable output contract. A great
+workflow composes good agents between human decision points:
+
+```text
+Human ↔ Agent 0 → Agent 1 → Agent 2
+```
+
+| Layer | Name | Role |
+|---|---|---|
+| **Agent 0** | Supervising Architect | Aligns the human and workflow, selects and supervises managers, presents decisions, and maintains the instruction system through the appropriate Agent 1 |
+| **Agent 1** | Manager | Converts aligned direction into plans and briefs, delegates bounded work, validates fan-in, and escalates decisions |
+| **Agent 2** | Specialist | Executes one bounded objective and returns outputs plus evidence without creating another orchestration layer |
+
+HELP_HUMAN is the sole canonical Agent 0. Humans may also start an untyped
+session or invoke any Agent 1 directly. Type 2 is not a top-level chat entry.
+
+Normative standards are outside this runtime hierarchy. They constrain every
+agent layer; they are not agents themselves.
+
+## Agent 2 Construction Forms
+
+Agent 2 may be instantiated in three ways:
+
+1. **TASK agent** — TASK shell + skill + sealed brief. Use for recurring
+   methods whose authorization and run semantics fit TASK.
+2. **Ephemeral generalist** — a fresh general-purpose instance with one sealed
+   purpose-specific brief, declared context, explicit tools, write targets,
+   outputs, and acceptance checks. It has no persistent `AGENT_*.md`.
+3. **Dedicated specialist** — a persistent Agent 2 instruction package for
+   runtime semantics that TASK or an ephemeral generalist cannot safely
+   express.
+
+A dedicated specialist requires a HELPS_HUMANS proposal and explicit human
+approval before it is added to the live index. The proposal must identify the
+persistent context, tool, permission, recovery, caller, compatibility, and
+review requirements that justify a named package.
+
+Repeated ephemeral-generalist briefs are evidence for a skill candidate.
+Different subject matter or output schema alone does not justify a dedicated
+agent file.
+
+## Delegation and Entry Rules
+
+- Human entry: untyped session, Agent 0, or any Agent 1.
+- Agent 0 delegates only to named Agent 1 managers.
+- Agent 1 delegates to named Agent 2 specialists, TASK, or an allowed
+  ephemeral generalist.
+- Agent 2 does not delegate.
+- Delegation never expands parent capabilities and remains subject to sealed
+  context, pipeline approval, path containment, write scope, and durable
+  child-run evidence.
+- Until the managed runtime bridge is active, Agent 0 uses durable
+  manager-launch briefs and handoffs rather than claiming executable nesting.
+
+## Runtime Hierarchy and Persistent Coordination
+
+Runtime control is hierarchical, but project coordination is many-to-many
+through the filesystem and Git:
+
+- files hold scope, decisions, claims, artifacts, dependencies, and handoffs;
+- accepted snapshots provide stable inputs to later branches;
+- Git records content identity, history, diffs, worktree isolation, and
+  integration state;
+- one agent's accepted output may become declared input to several later
+  managers or specialists.
+
+Cross-agent coordination occurs through explicit artifacts and accepted
+handoffs, not hidden conversational memory.
+
+## Fan-Out, Fan-In, and Failure Isolation
+
+1. Agent 0 aligns the objective and supervises the selected Agent 1 manager.
+2. Agent 1 freezes the run plan and dispatches bounded Agent 2 work.
+3. Agent 2 instances execute with fresh private conversational state and only
+   declared instructions, briefs, files, references, tools, and permissions.
+4. Agent 1 validates coverage, schemas, provenance, conflicts, and failures at
+   fan-in before synthesizing a result.
+5. Agent 0 presents cross-manager results and human decisions when operating
+   in the supervising path.
+
+Sibling failure is isolated only when write scopes and dependencies are
+disjoint or explicitly coordinated. A failed instance does not invalidate an
+independent sibling; partial outputs are not accepted at fan-in.
+
+---
+
+## Governance Integration Rules
 
 - **Derivative-package rule.** Any package assembled from accepted upstream truth but not itself authoritative decomposition truth is a derivative package. This includes regenerated KTY-local artifacts, `_Aggregation` outputs, hypergraph snapshots, audit snapshots, concordance packages, and publication packages. Derivative packages must cite their accepted upstream snapshot(s) and must never be treated as a substitute for decomposition truth.
 - **Snapshot rule.** Every phase-boundary decision that changes or validates governed state must terminate in a new immutable snapshot and a pointer update only where the owning workflow explicitly permits one. Later phases consume accepted snapshots; they do not rely on mutable working state alone.
@@ -21,70 +130,44 @@ Read structurally, the rows also form a governance grammar: NORMATIVE defines ru
 - **Sequencing rule.** If a later phase consumes derivative packages, it must run only after the upstream authoritative snapshot has been accepted and the required handoff state records which derivative packages are current.
 - **Cycle-resolution rule.** A dependency graph is objective-relative; its strongly-connected components are the objective signal of undecided ordering. Resolve each SCC by a recorded move (decompose / invert / merge / cut; cut/merge are human-gated), hold cycle-participating edges non-gating until resolved, and never silently linearize a cycle. See `docs/CYCLE_DRIVEN_RESOLUTION.md`.
 
-|  | **GUIDING** | **APPLYING** | **JUDGING** | **REVIEWING** |
-| --- | --- | --- | --- | --- |
-| **NORMATIVE** | HELP_HUMAN | ORCHESTRATOR | WORKING_ITEMS | AGGREGATION |
-| **OPERATIVE** | DECOMP\* | PREPARATION | TASK | AUDIT\* |
-| **EVALUATIVE** | HELPS_HUMANS | DBM_PUBLISHER | CHANGE | RESEARCH |
-
-### Operative Row — Pipeline Categories
-
-The OPERATIVE row opens in PIPELINE (task execution). The `PREPARATION` and `TASK` cells name canonical shells directly. Wildcard cells (`DECOMP*`, `AUDIT*`, `PDF2MD*`, `DRAWING_EXTRACT*`) still expand to agent groups, grouped by `PipelineCategory` (see `TYPES.md` §9.2).
-
-**DECOMP\*:** PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, SCOPE_CHANGE
-
-**PDF2MD\*:** PDF2MD
-
-**DRAWING_EXTRACT\*:** DRAWING_EXTRACT
-
-**AUDIT\*:** AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, AUDIT_HYPERGRAPH_CLOSURE, AUDIT_GOVERNANCE, AUDIT_EPISTEMIC, AUDIT_SCOPE_CLOSURE, EVALUATION_REPORT, EVALUATION_STRUCTURE_AUDIT, EVALUATION_DEPENDENCY_AUDIT
-
-Other live task-family agents (AGGREGATION, DOMAIN_HYPERGRAPH) are indexed below by type. Canonical methods previously exposed through archived wrapper agents are now dispatched via `TASK` + `TaskSkill: <name>` (see "TASK Skill Capabilities" below).
-
----
-
 ## Agent Index
 
-### Normative Workflow-Component Standard
+### Normative Standards (Not Agents)
 
 | Standard | File | Role |
 | --- | --- | --- |
 | Workflow-Component Design Standard | `docs/WORKFLOW_COMPONENT_STANDARD.md` | Governs classification, design, authority, lifecycle, and conformance of agents, skills, tools, briefs, and workflow packages |
+| Decomposition Standard | `docs/DECOMPOSITION_STANDARD.md` | Defines the 7-gate decomposition protocol, I1–I10 invariants, schemas, and extension contract |
 
-### Type 0 — Canonical Protocol Standards
-
-| Agent | Instruction File | Role |
-| --- | --- | --- |
-| DECOMP_BASE | `AGENT_DECOMP_BASE.md` | Decomposition protocol standard (7-gate, I1–I10) |
-
-### Type 1 — Interactive Personas
+### Agent 0 — Supervising Architect
 
 | Agent | Instruction File | Role |
 | --- | --- | --- |
-| HELP_HUMAN | `AGENT_HELP_HUMAN.md` | Operator assistance; classifies intent, drafts briefs |
-| HELPS_HUMANS | `AGENT_HELPS_HUMANS.md` | Workflow-component architect persona; applies and maintains the normative standard, classifies components, and governs migration/deprecation designs |
+| HELP_HUMAN | `AGENT_HELP_HUMAN.md` | Sole canonical Agent 0; aligns with the human, supervises Agent 1 managers, returns decisions, and performs validated cross-manager fan-in |
+
+### Agent 1 — Managers
+
+| Agent | Instruction File | Role |
+| --- | --- | --- |
+| HELPS_HUMANS | `AGENT_HELPS_HUMANS.md` | Designs and maintains agents, skills, tools, briefs, workflow packages, migrations, registries, and validators |
 | RESEARCH | `AGENT_RESEARCH.md` | Evidence-grounded inquiry over accepted domain decompositions, source catalogs, and retrieval indexes |
-| ORCHESTRATOR | `AGENT_ORCHESTRATOR.md` | Project setup, tier sequencing, control loops |
+| ORCHESTRATOR | `AGENT_ORCHESTRATOR.md` | Project setup, coordination, tier sequencing, control loops, and human-gated schedule-basis workflows |
 | WORKING_ITEMS | `AGENT_WORKING_ITEMS.md` | Deliverable-scoped content production |
-| RECONCILIATION | `AGENT_RECONCILIATION.md` | Cross-deliverable coherence analysis |
+| RECONCILIATION | `AGENT_RECONCILIATION.md` | Reserved for deliverable-corpus concordance; not activatable until accepted calibration handoffs are integrated |
 | CHANGE | `AGENT_CHANGE.md` | Git state management with approval gates |
 | PROJECT_DECOMP | `AGENT_PROJECT_DECOMP.md` | EPC / design-build decomposition |
 | SOFTWARE_DECOMP | `AGENT_SOFTWARE_DECOMP.md` | Software decomposition with Context Envelopes |
 | DOMAIN_DECOMP | `AGENT_DOMAIN_DECOMP.md` | Handbook / knowledge domain decomposition |
 | SCOPE_CHANGE | `AGENT_SCOPE_CHANGE.md` | Change impact assessment and decomposition amendment |
 | DOMAIN_ENGINE | `AGENT_DOMAIN_ENGINE.md` | Domain-engine integration manager; profiles, protected paths, adapter workflows, operation proposals, and human-gated domain handoffs |
-| CONTEXT_TRANSPOSE | `AGENT_CONTEXT_TRANSPOSE.md` | Cross-context structural transposition |
 | REVIEW | `AGENT_REVIEW.md` | Formal 5-gate review for lifecycle transitions |
-| SCHEDULING | `AGENT_SCHEDULING.md` | Schedule generation from dependency graph |
-| EVALUATION | `AGENT_EVALUATION.md` | Project evaluation orchestration |
-| TOOLMAKER | `AGENT_TOOLMAKER.md` | Deterministic tool design and implementation |
-| SKILLMAKER | `AGENT_SKILLMAKER.md` | Skill design, governance, and subsystem ownership |
+| EVALUATION | `AGENT_EVALUATION.md` | Read-only audit orchestration, cross-deliverable coherence assessment, scoring, and remediation recommendations |
 | PDF2MD | `AGENT_PDF2MD.md` | Native PDF-to-Markdown conversion pipeline; orchestrates rasterization, batch VLM dispatch, post-processing, optional prose asset materialization, assembly |
 | EQUATION_AUDIT | `AGENT_EQUATION_AUDIT.md` | Post-PDF2MD equation-review loop; iterates extract → human review → interpret prose notes → apply fixes → re-extract → backcheck → close, terminating in an immutable snapshot under `audit/equations/snapshots/`. Dispatches `equation-flag-interpret` per prose-shaped flag and `equation-bbox-detect` per page when crops are enabled |
 | DRAWING_EXTRACT | `AGENT_DRAWING_EXTRACT.md` | Drawing-type-aware extraction pipeline; core-vs-repertoire split orchestrates rasterization, target-appropriate crops/tiles, target-specific TASK skill dispatch per (drawing_type × extraction_target), deterministic QA, target-driven assembly, and optional PFD-equipment merge. DRAWING_SET, PFD, and P_AND_ID targets are implemented; ISOMETRIC/GA remain stubbed fail-fast |
 | DBM_PUBLISHER | `AGENT_DBM_PUBLISHER.md` | Publish one rewritten DBM from approved DOMAIN state using frozen planning artifacts, direct section dispatch, package assembly, and post-authoring evidence-bundle review |
 
-### Type 2 — Bounded Task Agents
+### Agent 2 — Dedicated Specialists and TASK
 
 | Agent | Instruction File | Role |
 | --- | --- | --- |
@@ -103,6 +186,8 @@ Other live task-family agents (AGGREGATION, DOMAIN_HYPERGRAPH) are indexed below
 | EVALUATION_REPORT | `AGENT_EVALUATION_REPORT.md` | Scored dimension evaluation |
 | EVALUATION_STRUCTURE_AUDIT | `AGENT_EVALUATION_STRUCTURE_AUDIT.md` | Structural validation |
 | EVALUATION_DEPENDENCY_AUDIT | `AGENT_EVALUATION_DEPENDENCY_AUDIT.md` | Dependency validation |
+
+An Agent 2 may instead be an ephemeral bounded generalist. That form has no persistent instruction file and is governed by the sealed brief contract above. The dedicated roles in this table remain live only where their persistent runtime semantics justify a file or while a governed compatibility migration is incomplete.
 
 ### TASK Skill Capabilities
 

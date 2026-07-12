@@ -56,7 +56,7 @@ def is_live_surface(rel_path: Path) -> bool:
     if has_excluded_part(rel_path) or is_tool_test(rel_path):
         return False
 
-    if rel_path == Path("AGENTS.md"):
+    if rel_path in {Path("AGENTS.md"), Path("CLAUDE.md")}:
         return True
 
     if not rel_path.parts:

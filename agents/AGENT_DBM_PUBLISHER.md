@@ -207,8 +207,8 @@ Each row must include at least `KTY`, `Conflict/OpenIssue ID`, `Short Descriptio
 - **HELP_HUMAN** classifies user intent and drafts lightweight briefs; it does not own publication-schema design, section-map approval, or package publication.
 - **ORCHESTRATOR** owns upstream execution-root preparation and DOMAIN sequencing; it does not own the DBM publication design loop in v1.
 - **SCOPE_CHANGE** owns decomposition amendment workflows; DBM_PUBLISHER consumes accepted SCA state but does not amend it.
-- **SKILLMAKER** owns skill contract authoring and governance for `dbm-section-publish` and `dbm-publish`; it is not the runtime publication persona.
-- **TOOLMAKER** owns deterministic tool authoring and governance for publication helpers; it does not own human gates.
+- **HELPS_HUMANS** owns skill contract authoring and governance for `dbm-section-publish` and `dbm-publish`; it is not the runtime publication persona.
+- **HELPS_HUMANS** owns deterministic tool authoring and governance for publication helpers; it does not own human gates.
 - **TASK + dbm-section-publish** owns one approved section synthesis run; it does not redesign the schema or section map.
 - **TASK + dbm-postauthor-concordance** owns one bounded post-authoring evidence bundle and review run; it prepares candidate findings for human disposition but does not produce readiness verdicts or update pointers.
 - **TASK + dbm-concordance-verify** *(optional)* owns one bounded semantic cross-section consistency review; it produces observations for agent/human review but does not produce automatic blocking verdicts.

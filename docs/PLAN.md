@@ -29,18 +29,20 @@ competing roadmap surface.
 
 The established direction (reflected in `AGENTS.md` and the agent suite):
 
-- **`TASK` is the canonical Type 2 execution shell.** It hydrates reusable
-  methods via `TaskSkill: <name>`. A new bespoke task agent is not added when
-  role, write scope, and interaction surface are unchanged and only the method
-  differs — that is a skill.
+- **Agent 0/1/2 are runtime delegation positions.** HELP_HUMAN is the sole
+  Agent 0; Agent 1 managers remain direct human entry points; Agent 2 may be
+  TASK plus a skill, an ephemeral bounded generalist, or an approved dedicated
+  specialist. Standards constrain all layers from outside the hierarchy.
+- **`TASK` is the default recurring-method Agent 2 shell.** A dedicated
+  specialist requires evidence that TASK and ephemeral-generalist forms are
+  inadequate, a HELPS_HUMANS proposal, and explicit human approval.
 - **Workflow-component standards are separate from applying personas.**
   `docs/WORKFLOW_COMPONENT_STANDARD.md` is the normative design surface;
-  HELPS_HUMANS applies and maintains it as a Type 1 persona. Existing agents
+  HELPS_HUMANS applies and maintains it as an Agent 1 manager. Existing agents
   requalify under the same agent/skill/tool/brief boundary as new components
-  (D-GOV-10).
+  (D-GOV-11, superseding conflicting D-GOV-10 conclusions).
 - **Method logic lives in `skills/`; deterministic operations live in
-  `tools/`; Type 1 personas handle human-facing orchestration.** `ORCHESTRATOR`
-  is the grandfathered orchestration persona.
+  `tools/`; Agent 1 managers handle human-facing orchestration.**
 - **Governance is two-layered.** The framework root (`AGENTS.md`, root `docs/`,
   `agents/`, `skills/`, `tools/`) defines Chirality-wide rules; working roots
   specialize them without weakening framework invariants (`CONTRACT.md`

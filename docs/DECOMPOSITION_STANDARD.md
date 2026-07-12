@@ -1,34 +1,14 @@
----
-description: "Type 0 base specification — defines the invariant decomposition protocol shared by all decomposition agents"
----
-[[DOC:AGENT_INSTRUCTIONS]]
-# AGENT INSTRUCTIONS — DECOMP_BASE (Decomposition Base Specification)
-AGENT_TYPE: 0
+# Decomposition Standard
 
-This document is a **base specification** that defines the invariant protocol, validity requirements, entity schemas, and required output sections shared by all decomposition agents in this framework.
+This normative document defines the invariant protocol, validity requirements, entity schemas, and required output sections shared by all decomposition managers in this framework. It is an external constraint on runtime agents, not an agent, persona, or delegation position.
 
-As a Type 0 PERSONA, DECOMP_BASE can be conversed with for guidance on decomposition agent design, conformance checking, and extension planning. It does not itself execute decomposition — that is the role of the conforming Type 1 agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, and future variants), which MUST conform to this specification and extend it with domain-specific semantics.
+PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, and future decomposition managers MUST conform to this standard and extend it with domain-specific semantics. HELPS_HUMANS provides conversational design and conformance assistance for decomposition components.
 
 Where a conforming agent's instruction file disagrees with this specification, **this specification governs** unless the conforming agent explicitly declares a deviation and records the rationale.
 
 ---
 
-**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_CHANGE.md`); use the role name (e.g., `DECOMP_BASE`) when referring to this specification. This applies to all agents.
-
-## Agent Type
-
-| Property | Value |
-|---|---|
-| **AGENT_TYPE** | TYPE 0 |
-| **AGENT_CLASS** | PERSONA |
-| **INTERACTION_SURFACE** | chat |
-| **WRITE_SCOPE** | none (governs write scope of conforming agents) |
-| **BLOCKING** | never |
-| **PRIMARY_OUTPUTS** | Decomposition base specification; conformance guidance for decomposition agent design |
-
----
-
-## Conforming agents
+## Conforming managers
 
 The following agents currently conform to this specification:
 
@@ -464,9 +444,9 @@ Non-trivial assignment and boundary decisions, recorded so later work can trace 
 
 ### Extension contract (what a conforming agent MUST provide)
 
-When creating a new decomposition agent that conforms to this specification, the instruction file MUST:
+When creating a new decomposition manager that conforms to this standard, the instruction file MUST:
 
-1. **Reference this specification.** State conformance to `AGENT_DECOMP_BASE.md`.
+1. **Reference this standard.** State conformance to `docs/DECOMPOSITION_STANDARD.md`.
 2. **Bind abstract entities to domain-specific names.** Provide a glossary that maps Source Corpus, Atomic Unit, Partition, Production Unit, and Artifact to domain-specific terms.
 3. **Define ID formats.** Specify the stable ID format and width for each entity (partition IDs, production unit IDs, atomic unit IDs).
 4. **Define the production-unit type taxonomy.** Provide the domain-specific type values (e.g., `API_CONTRACT`, `BACKEND_FEATURE_SLICE` for software; `Procedure`, `Checklist`, `Template` for knowledge domains).
@@ -496,7 +476,7 @@ The decomposition protocol — intake, normalize, partition, operationalize, ver
 
 The remaining differences across variants are in domain-specific semantics: what entities are called, how IDs are formatted, what type taxonomies apply, and what domain-specific constraints are added (e.g., Context Envelope for software sizing).
 
-Extracting the invariant protocol into a base specification:
+Extracting the invariant protocol into a normative standard:
 - **Reduces duplication.** The shared contract is defined once and referenced, not copy-pasted.
 - **Makes conformance auditable.** New decomposition variants can be checked against the base specification for completeness and consistency.
 - **Clarifies what is invariant vs what is domain-specific.** The extension contract makes the boundary explicit, preventing accidental drift where one variant evolves a structural change that the others don't track.
@@ -515,7 +495,7 @@ Domain-specific content that cannot be abstracted without losing meaning:
 
 ### References
 - `docs/WORKFLOW_COMPONENT_STANDARD.md` — canonical workflow-component design standard
-- `AGENT_HELPS_HUMANS.md` — applying architecture persona
+- `agents/AGENT_HELPS_HUMANS.md` — component-design manager
 - `AGENT_PROJECT_DECOMP.md` — EPC/design-build conforming agent
 - `AGENT_SOFTWARE_DECOMP.md` — software development conforming agent
 - `AGENT_DOMAIN_DECOMP.md` — handbook/knowledge domain conforming agent
