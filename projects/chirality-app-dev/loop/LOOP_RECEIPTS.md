@@ -1076,3 +1076,47 @@
     orchestrator self-merge, then proceed directly to W7 (PKG-00, 2
     deliverables, OPUS discovery per Receipt 18). Run counter: 1039 claim
     rows through fan-in to date (86+423+223+113+89+105).
+
+- **2026-07-12 — Receipt 32** (D-APP-55 R2 W7 complete: PKG-00 concordance
+  discovery + fan-in verification — **R2 COMPLETE**; W6 PR merged; wave
+  closed under the Receipt 29 self-merge permission).
+  - W6 close trail: PR #193 created (gh retry loop) and merged by the
+    orchestrator per Receipt 29; main = bcee2ec12; branch fast-forwarded;
+    frontend byte-identity re-verified.
+  - Discovery: 2 opus agents (Receipt 18 steer — W7 on opus), 27 claim
+    rows (DEL-00-01: 13, DEL-00-02: 14); validator 0 errors / 0 warnings
+    on first pass. W7 brief carried all settled judgment rules W1-W6
+    (incl. the W6 dated-note discipline) and authorized citing pinned R2
+    wave ledgers for member-surface state.
+  - Fan-in (fable, high effort): 10 rows rechecked — 8 confirmed,
+    2 refuted, 0 contested. Both refutations accepted by the owning agent:
+    DEL-00-02 REQ-005 and REQ-010 ALIGNED+OVERTAKEN -> STALE_ASSESSMENT
+    (noteless INSP-03 PARTIALs presented as current; harmonizes with the
+    W3 superseding-note test and the PKG-07/PKG-10 precedent line — the
+    owner's notes record that its rows captured the load-bearing fact but
+    inverted the conclusion). Corrections: DEL-00-02 REQ-007 evidence
+    erratum (DEL-03-04 has NO R2 ledger — five of six SCC-001 members
+    adjudicated, not six; disposition stands on snapshot evidence);
+    DEL-00-01 REMAINING-1 verbatim-text restoration ("§§6-8"); DEL-00-01
+    REQ-003 repair scope widened to both stale SCC-002 descriptor rows.
+    ZERO standing contested rows.
+  - Final census (27 rows): ALIGNED 18, STALE_SPECIFICATION 5,
+    STALE_ASSESSMENT 2, REMAINING_STATE_MISMATCH 2.
+  - Findings of record: both SCC closure verdicts substantively INTACT
+    (verifier opened both DepClosure snapshots: scc_count=0,
+    bidirectional_pair_count=0; D53A predecessor chain confirmed, no row
+    changes) — the DAG is closed at fac46e33f as claimed; the package's
+    one real defect class is the superseded-snapshot currency pointer
+    (kits + twin REF-003 rows pin SAFE_MOVES_001 while _LATEST names
+    D53A), found identically by both agents, joining DEL-10-04's W6
+    sighting as one R5 tranche; DEL-03-04 R2-ledger coverage gap goes to
+    §10 QA; REQUIREMENT_INDEX parser gap verified for both PKG-00
+    deliverables. Evidence: `R2_WAVES/PKG-00/_VERIFICATION.md`,
+    `PACKAGE_SUMMARIES/PKG-00.md`; register cell extended (W7-COMPLETE +
+    R2-COMPLETE).
+  - **R2 COMPLETE: all 10 packages / 53 deliverables adjudicated; 1,066
+    claim rows through per-wave fan-in (86+423+223+113+89+105+27).**
+  - Wave closed per Receipt 29: durable checks + commit/push/PR +
+    orchestrator self-merge, then proceed to R3 synthesis (fable per
+    Receipt 18), then plan §10 QA, then **STOP at R4** (owner-gated; the
+    Receipt 29 self-merge permission does not lift the R4 stop).
