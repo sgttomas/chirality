@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: COMPLETE / PUBLICATION PENDING
+Status: COMPLETE / DERIVATIVE EXPORT PENDING
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -69,14 +69,13 @@ has passed. Public-export regeneration follows the publication commits.
 
 ## Required Resume Sequence
 
-1. Bind D-GOV-13 to the implementation publication SHA.
-2. Regenerate and validate the derivative public export.
-3. Resume project work from this accepted hierarchy and orchestration basis.
+1. Regenerate and validate the derivative public export.
+2. Resume project work from this accepted hierarchy and orchestration basis.
 
 ## Closure Verdict
 
 Instruction tranche: COMPLETE.
 RECONCILIATION activation: COMPLETE.
 Runtime bridge: IMPLEMENTED AND VALIDATED.
-Overall D-GOV-11 implementation: COMPLETE, subject only to publication-SHA
-binding and derivative-export regeneration.
+Overall D-GOV-11 implementation: COMPLETE, subject only to derivative-export
+regeneration.

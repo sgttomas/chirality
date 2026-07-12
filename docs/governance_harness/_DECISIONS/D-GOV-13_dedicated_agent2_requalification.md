@@ -2,7 +2,7 @@
 
 Status:       RULED
 HumanRuling:  Owner-approved implementation plan and session-wide governance-change authority (Ryan Tufts), 2026-07-11
-Ruling SHA:   TBD — bind at publication commit
+Ruling SHA:   62e563e47
 Date:         2026-07-11
 FramedBy:     D-GOV-10 and D-GOV-11 dedicated-specialist requalification requirement
 
@@ -48,4 +48,3 @@ Each approved file declares `dedicated_agent2_approval: D-GOV-13` in
 frontmatter. The agent validator resolves that reference to this RULED record
 and confirms the role appears in the approval table. A missing, unresolved, or
 non-RULED reference remains a warning or error.
-
