@@ -764,3 +764,82 @@
     owner-gated; no lifecycle transition; no fence crossed.
   - Checks: none run — record-keeping receipt only; nothing but this receipt
     changed since the merged tranche.
+
+- **2026-07-11 — Receipt 23** (owner permission to resume; R2 W3 dispatched: PKG-07 + PKG-08, 11 deliverables).
+  - Owner direction (2026-07-11, in-session), verbatim: "This is your
+    permission to resume."
+  - Re-verification at dispatch: `git diff --quiet fac46e33f..HEAD --
+    frontend/` exit 0 at HEAD `74150b3a8` (branch; `main` = `7ac660761`) —
+    `frontend/` byte-identical to `fac46e33f`; the W1 gate transcript binding
+    stands; no STALE_INPUT condition; no new gate transcript needed.
+  - Dispatch: W3 = PKG-07 (DEL-07-01..06) + PKG-08 (DEL-08-01..05), 11
+    deliverables, `opus` discovery agents per the Receipt 18 steer,
+    sub-batched at the four-agent cap with per-sub-batch persistence +
+    deterministic validation; fable high-effort fan-in per package
+    (self-flagged ∪ non-ALIGNED recheck) with outcomes in wave-local
+    `_VERIFICATION.md` files.
+  - Wave-brief clarifications carried into W3 (method continuity from W1/W2
+    fan-in outcomes, flagged for R3 harmonization; they change no standing
+    rows): ACCEPTED_DIVERGENCE requires an affirmative permitting decision
+    (withheld authorization does not qualify); IMPLEMENTED_UNDOCUMENTED
+    requires no accepted mapping anywhere in the corpus (decomposition v3.2
+    sibling assignments count); "no test exists" assertions require a real
+    search; Declared Upstream/Downstream "TBD" `_DEPENDENCIES.md` sections
+    are not register defects by themselves (docs/SPEC.md §5.2, the
+    orchestrator-verified fact behind the PKG-06 accepted refutations) — W3
+    forward only, class-level reconciliation with standing W1/W2 rows stays
+    an R3 item; PKG-08 agent-workflow surfaces are FROZEN_PROCESS_INPUT
+    (plan §3 boundary 8) → DEFERRED_AGENT_WORKFLOW routing where resolution
+    depends on them.
+  - Gate posture unchanged: wave-boundary STOP for owner merge direction
+    after validation/fan-in/summaries/checks/PR; never self-merge; R4/R5
+    owner-gated; no lifecycle transitions; parked items out of scope.
+
+- **2026-07-12 — Receipt 24** (R2 W3 COMPLETE: PKG-07 + PKG-08, 11 deliverables, 223 claim rows; STOPPED at the W3/W4 boundary for owner merge direction; W3 dispatch and discovery ran 2026-07-11, fan-in closed past midnight).
+  - Discovery: 11 deliverables in three sub-batches at the four-agent cap,
+    `opus` TASK agents per the Receipt 18 steer, each sub-batch persisted and
+    deterministically validated before the next. Final: 223 claim rows
+    (PKG-07 125, PKG-08 98), 0 validation errors/warnings.
+  - Fan-in (fable, high effort, one verifier per package): 74 rows rechecked
+    (self-flagged ∪ non-ALIGNED). Outcomes in the two wave-local
+    `_VERIFICATION.md` files: 59 confirmed; 11 refuted, ALL accepted by their
+    owning agents after independent re-verification (notably: the DEL-07-03
+    8-row STALE_ASSESSMENT class flipped ALIGNED+OVERTAKEN on the
+    superseding-note test; two IMPLEMENTED_UNDOCUMENTED rows folded under
+    decomposition sibling assignments — DEL-07-02→DEL-06-03 scaffold
+    preview, DEL-08-01→DEL-09-04 packaged-SDK verification; DEL-07-04's
+    accurately-recorded gated remaining item recognized as concordant);
+    4 contested — 3 resolved by their owners with full both-readings records
+    (DEL-07-05 UNMAPPED-001 → ALIGNED under docs/TYPES.md §6.2; DEL-08-02
+    REQ-004 → IMPLEMENTED_DIFFERENTLY, the cited rulings never governed the
+    RECONCILING alias; DEL-08-02 REQ-014 kept with the defect relocated to
+    live docs/SPEC.md §13.1 wording), 1 standing explicitly contested row
+    (DEL-07-04 REQ-017, PARTIALLY_IMPLEMENTED — prefix-wildcard actor
+    matching vs deferred-enum reading). No judgment edited by anyone but its
+    owner.
+  - Findings of record: the REF-006/D-APP-35 HASH_MISMATCH staleness family
+    spans all six PKG-07 deliverables (one R5 tranche); DEL-08-02 carries six
+    corpus-amendment NEW-PACKETs (D-APP-38 family — pre-pivot alias/WORKBENCH
+    wording + SPEC §13.1 default-persona line); DEL-08-01 is the run's first
+    perfect all-ALIGNED ledger (21/21); the W2 handles resolved cleanly
+    (child-output limits → DEL-08-05 UNMAPPED-1; subagent permission class →
+    DEL-08-04↔DEL-06-01 compatible split); one known double-count flagged for
+    R3 (DEL-08-03 ↔ merged W1 DEL-02-02 pipeline-surface panels).
+  - Final W3 census: 223 rows — ALIGNED 183, STALE_SPECIFICATION 15,
+    REMAINING_STATE_MISMATCH 10, PARTIALLY_IMPLEMENTED 9,
+    IMPLEMENTED_DIFFERENTLY 3, IMPLEMENTED_UNDOCUMENTED 3; zero
+    AUTHORITY_CONFLICT/UNKNOWN/DEFERRED_AGENT_WORKFLOW (the PKG-08
+    FROZEN_PROCESS_INPUT boundary was verified — no row required
+    DEFERRED_AGENT_WORKFLOW routing). Package summaries derived from the
+    ledgers: `PACKAGE_SUMMARIES/PKG-0{7,8}.md`. D-APP-55 register
+    run-visibility cell updated (W3 complete, stopped at the wave boundary).
+  - Gate outcome: STOPPED at the W3/W4 boundary per the resume steer — owner
+    merge direction required; never self-merge. R4/R5 remain owner-gated; no
+    lifecycle transition; no fence crossed; parked items unchanged. Next on
+    merge direction: W4 = PKG-09 (6 deliverables, opus discovery per the
+    steer).
+  - Checks: self-check exit 0, severities unchanged (REVIEW 27, WARN 6);
+    practitioner pytest 263 passed/1 skipped; frontend gates skipped —
+    evidence-only tranche, no runtime source changed; git diff check pass
+    (writes confined to the run folder, `loop/LOOP_RECEIPTS.md`, and the
+    D-APP-55 register cell).
