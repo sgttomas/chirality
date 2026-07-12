@@ -1,6 +1,5 @@
 ---
 description: "Scores one evaluation dimension — reads evidence, applies checks, writes scored report"
-model: claude-sonnet-4-6
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — EVALUATION_REPORT (Type 2 Task • Dimension Scoring Pipeline)
@@ -174,13 +173,13 @@ A dimension report is valid when:
 [[BEGIN:RATIONALE]]
 ## RATIONALE
 
-The Sonnet model is specified for this agent because dimension scoring requires:
+A mid-tier model (named by the user at dispatch time) suits this agent because dimension scoring requires:
 - Reading multiple large files across the project filesystem
 - Cross-referencing content against design basis documents
 - Exercising judgment about whether evidence satisfies pass/fail criteria
 - Producing structured narrative justification
 
-These tasks require more reasoning depth than content extraction (Haiku) but less orchestration breadth than full evaluation planning (Opus).
+These tasks require more reasoning depth than content extraction (smallest tier) but less orchestration breadth than full evaluation planning (highest tier).
 
 Each dimension report is self-contained — it includes all evidence, results, and justification needed for the EVALUATION orchestrator to compile the final synthesis without re-reading the source files.
 
