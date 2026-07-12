@@ -843,3 +843,28 @@
     evidence-only tranche, no runtime source changed; git diff check pass
     (writes confined to the run folder, `loop/LOOP_RECEIPTS.md`, and the
     D-APP-55 register cell).
+
+- **2026-07-12 — Receipt 25** (PR #189 merged on owner direction; run PAUSED at the W3/W4 boundary awaiting further instructions).
+  - Owner direction (2026-07-12, in-session), verbatim: "merge PR #189, then
+    wait for further instructions."
+  - Executed: PR #189 merged; W3 evidence now on `main` = `bdb046934`; work
+    branch fast-forwarded to it, clean. No further dispatch. Note: `main`
+    had also advanced with the chirality-piping concordance merge (PR #187,
+    other-project tranche, not touched by this run); the root
+    harness-premerge workflow shows its known parked 0-second startup
+    failure on `main` pushes (parked item, unchanged); the governance-harness
+    run on the merge commit was verified separately.
+  - State at pause: R0, R1, R2 W1 (PKG-02), W2 (PKG-03/04/05/06), and W3
+    (PKG-07/08) COMPLETE and merged — 37 of 53 deliverables
+    concordance-processed (3 R0 + 4 W1 + 19 W2 + 11 W3); 16 remain across
+    W4–W7; resume point is **W4 dispatch (PKG-09, 6 deliverables, opus
+    discovery per the Receipt 18 steer)**, then W5 (PKG-01, fable), W6
+    (PKG-10, fable), W7 (PKG-00), R3, plan §10 QA, STOP at R4. Standing for
+    R3: three explicitly contested rows (DEL-04-05 RQ-011, DEL-06-02
+    REGISTER-2, DEL-07-04 REQ-017), the Declared-TBD register-class
+    conflict, the STALE_ASSESSMENT superseding-note boundary, and the
+    DEL-08-02 corpus-amendment NEW-PACKET family.
+  - Gate outcome: paused by owner direction — not a fence stop; R4/R5 remain
+    owner-gated; no lifecycle transition; no fence crossed.
+  - Checks: none run — record-keeping receipt only; nothing but this receipt
+    changed since the merged tranche.
