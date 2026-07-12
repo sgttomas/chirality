@@ -1,0 +1,66 @@
+PackageID,DeliverableID,ItemOrdinal,Disposition,RemainingWork
+PKG-00,DEL-00-01,0,NONE,No surviving deliverable-local work item.
+PKG-00,DEL-00-02,1,SURVIVING,"ResponsibleParty and related owner-authority `TBD` fields remain explicitly deferred under D-APP-56 R4-P47 until an accountable owner assigns them, including issuance-gate sign-off coordination with DEL-01-03 (source: insp05 addendum §5 / D-APP-53 Option C; gated: new owner ruling)."
+PKG-01,DEL-01-01,1,SURVIVING,ResponsibleParty remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
+PKG-01,DEL-01-01,2,SURVIVING,"The standalone governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document-diff checklist, acceptance checklist, and conflict/source-warning table are deferred on 2026-07-12 under D-APP-56 R4-P48 until the next governed documentation-production tranche (gate: new owner-authorized production tranche; destinations remain governed by DEL-01-01-R004)."
+PKG-01,DEL-01-02,0,NONE,No surviving deliverable-local work item.
+PKG-01,DEL-01-03,0,NONE,No surviving deliverable-local work item.
+PKG-01,DEL-01-04,0,NONE,No surviving deliverable-local work item.
+PKG-02,DEL-02-01,1,SURVIVING,"CQ-F1 residue is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48, preserving the accepted affinity classifications exactly: `frontend/src/app/globals.css` — PKG-02 shell styling (R0-vintage granularity; R4-P29 family); `frontend/src/app/page.tsx` — PKG-02 root redirect wrapper (R4-P29 family); `frontend/src/components/shell/chat-markdown.tsx`, `frontend/src/components/shell/document-view.tsx`, `frontend/src/components/shell/file-picker.tsx`, and `frontend/src/components/shell/session-list-view.tsx` — shell view component (DEL-02-01 family); `frontend/src/components/shell/subagent-stream-view.tsx` and `frontend/src/components/shell/tool-stream-view.tsx` — shell event-view (DEL-05-04 transcript-stream-view sibling family); `frontend/src/components/workspace/harness-events-provider.tsx` — workspace event plumbing (DEL-02-01/PKG-02 family); `frontend/src/lib/shell/ansi.ts` and `frontend/src/lib/shell/document-view-state.ts` — shell helper; `frontend/src/lib/shell/harness-event-buffer.ts` and `frontend/src/lib/shell/harness-event-views.ts` — shell event plumbing; `frontend/src/lib/workspace/navigation-intent.ts` — workspace navigation helper. No ownership or mapping is asserted (revisit: next concordance pass)."
+PKG-02,DEL-02-02,1,SURVIVING,Add the D-APP-36-bar PIPELINE lifecycle-transition render test recorded by D-APP-56 R4-P28 (gate: code-test tranche authorized for this obligation).
+PKG-02,DEL-02-03,0,NONE,No surviving deliverable-local work item.
+PKG-02,DEL-02-04,0,NONE,No surviving deliverable-local work item.
+PKG-02,DEL-02-05,0,NONE,No surviving deliverable-local work item.
+PKG-03,DEL-03-01,0,NONE,No surviving deliverable-local work item.
+PKG-03,DEL-03-02,0,NONE,No surviving deliverable-local work item.
+PKG-03,DEL-03-03,1,SURVIVING,The route-adapter test index and SSE compatibility fixture README are deferred on 2026-07-12 under D-APP-56 R4-P48 until the next governed documentation-production tranche (gate: new owner-authorized production tranche).
+PKG-03,DEL-03-03,2,SURVIVING,CQ-F1 working-root route affinity: `frontend/src/app/api/working-root/deliverable/content/route.ts` is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48; no ownership or mapping is asserted (revisit: next concordance pass).
+PKG-03,DEL-03-04,0,NONE,No surviving deliverable-local work item.
+PKG-04,DEL-04-01,1,SURVIVING,Adoption-verdict approving role remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
+PKG-04,DEL-04-01,2,SURVIVING,Land handover-consumption evidence for DEP-04-01-010..013 or retire/replace those rows with a recorded basis (consumer mirror rows in DEL-04-02/03/05 are TBD; DEL-04-04 carries no DEL-04-01 reference at all) (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed rows 006/009)
+PKG-04,DEL-04-01,3,SURVIVING,"Close the CODEV-001 live-environment residuals — live subprocess version, payload sequence, session/transcript placement (DEP-04-01-007) (source: ORN-13 disposition; Evidence_D53A record) (gated: D-APP-52 owner act — live-LLM demonstration)"
+PKG-04,DEL-04-02,0,NONE,No surviving deliverable-local work item.
+PKG-04,DEL-04-03,0,NONE,No surviving deliverable-local work item.
+PKG-04,DEL-04-04,0,NONE,No surviving deliverable-local work item.
+PKG-04,DEL-04-05,1,SURVIVING,"Add explicit RQ-011 category assertions for `REQUEST_TIMEOUT`, `RATE_LIMITED`, `NETWORK_ERROR`, and `API_RESPONSE_ERROR`; D-APP-56 R4-P17 keeps this four-class verification gap visible without changing the accepted ALIGNED disposition (gate: future owner-authorized test tranche)."
+PKG-05,DEL-05-01,1,SURVIVING,"Add a dedicated unsafe/session-ID traversal guard test for `assertSafeSessionId`, as recorded by D-APP-56 R4-P31 (gate: code-test tranche authorized for this obligation)."
+PKG-05,DEL-05-02,0,NONE,No surviving deliverable-local work item.
+PKG-05,DEL-05-03,1,SURVIVING,Define and land the arbitrary-secret-registry redaction taxonomy (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
+PKG-05,DEL-05-04,0,NONE,No surviving deliverable-local work item.
+PKG-05,DEL-05-05,1,SURVIVING,"Implement D-APP-42 Option C full tool-result audit policy (per-session artifact manifest, retention-class/deletion-state fields, cleanup independent of session deletion) (source: PLAN_2026-06-20_autonomous_development_queue §9 deferred enhancement / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)"
+PKG-06,DEL-06-01,0,NONE,No surviving deliverable-local work item.
+PKG-06,DEL-06-02,1,SURVIVING,CQ-F1 catalog-generator affinity: `frontend/scripts/generate-tool-catalog.mjs` is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48; no ownership or mapping is asserted (revisit: next concordance pass).
+PKG-06,DEL-06-03,0,NONE,No surviving deliverable-local work item.
+PKG-06,DEL-06-04,0,NONE,No surviving deliverable-local work item.
+PKG-06,DEL-06-05,0,NONE,No surviving deliverable-local work item.
+PKG-06,DEL-06-06,0,NONE,No surviving deliverable-local work item.
+PKG-07,DEL-07-01,0,NONE,No surviving deliverable-local work item.
+PKG-07,DEL-07-02,0,NONE,No surviving deliverable-local work item.
+PKG-07,DEL-07-03,0,NONE,No surviving deliverable-local work item.
+PKG-07,DEL-07-04,1,SURVIVING,Add content-change SHA revalidation to the status-transition surface (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
+PKG-07,DEL-07-05,0,NONE,No surviving deliverable-local work item.
+PKG-07,DEL-07-06,0,NONE,No surviving deliverable-local work item.
+PKG-08,DEL-08-01,0,NONE,No surviving deliverable-local work item.
+PKG-08,DEL-08-02,0,NONE,No surviving deliverable-local work item.
+PKG-08,DEL-08-03,0,NONE,No surviving deliverable-local work item.
+PKG-08,DEL-08-04,1,SURVIVING,Produce the per-attempt subagent decision-replay artifact (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
+PKG-08,DEL-08-05,0,NONE,No surviving deliverable-local work item.
+PKG-09,DEL-09-01,0,NONE,No surviving deliverable-local work item.
+PKG-09,DEL-09-02,0,NONE,No surviving deliverable-local work item.
+PKG-09,DEL-09-03,0,NONE,No surviving deliverable-local work item.
+PKG-09,DEL-09-04,1,SURVIVING,CQ-F1 Electron bridge affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/src/types/chirality-window.d.ts` and `frontend/electron/preload.ts`. No ownership or mapping is asserted (revisit: next concordance pass).
+PKG-09,DEL-09-04,2,SURVIVING,CQ-F1 proof/build affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/src/lib/harness/scripted-agent-sdk-proof.ts` and `frontend/scripts/assert-harness-contract-deps.mjs`. No ownership or mapping is asserted (revisit: next concordance pass).
+PKG-09,DEL-09-04,3,SURVIVING,Packaging/release evidence for DEL-09-04's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged-SDK proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
+PKG-09,DEL-09-05,1,SURVIVING,Packaging/release evidence for DEL-09-05's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and CI-artifact gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
+PKG-09,DEL-09-06,1,SURVIVING,Packaging/release evidence for DEL-09-06's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged renderer/security proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
+PKG-10,DEL-10-01,1,SURVIVING,"Advance the domain engine beyond the currently authorized staged, read-only boundary only through a new owner ruling that names the next tier-0 capability and its verification evidence. Preserve the F-APP-3 stepwise lane, keep apply-class exposure excluded unless separately ruled, and coordinate the bounded contracts in DEL-10-02..DEL-10-05 (governed by D-APP-50 and D-APP-53; gated: new owner ruling)."
+PKG-10,DEL-10-01,2,SURVIVING,Flip mcp__chirality__domain_headless_preview_run from descriptor-only to live — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping DEC-064 / TP-RUNNER-014 headless_preview_runner entrypoint + transport soundness)
+PKG-10,DEL-10-02,1,SURVIVING,Define the concrete path-glob syntax and hook API and close DEP-10-02-005 — no live evidence exists yet (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed DEP-10-02-003) (stage-gated: F-APP-3 / PKG-10 future-boundary lane; needs its own decision packet before code)
+PKG-10,DEL-10-03,1,SURVIVING,Resolve DEP-10-03-004 — whether the D-APP-50/51/52 rulings constitute the accepted amendment authorizing operation-workflow implementation (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed the other 7 rows) (gated: owner ruling — F-APP-3-adjacent)
+PKG-10,DEL-10-03,2,SURVIVING,Land the open_pipe_stress-scoped proposal transport (domain_proposal_validate live via operation_applier.validate) — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping-side operation_applier.validate transport soundness)
+PKG-10,DEL-10-03,3,SURVIVING,"Run the D-APP-52 live-LLM demonstration of the pec transport/proposal tools — explicitly deferred, key-absent at ruling (source: D-APP-53 packet §4 / D-APP-52 packet) (gated: D-APP-52 owner act — owner-at-screen, live key)"
+PKG-10,DEL-10-04,1,SURVIVING,CQ-F1 PEC-fixture affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/scripts/pec-scratch-server.mjs` and `frontend/scripts/run-pec-bridge-rehearsal.ts`. No ownership or mapping is asserted (revisit: next concordance pass).
+PKG-10,DEL-10-04,2,SURVIVING,Resolve DEP-10-04-004 (accepted PKG-10 amendment judgment) and DEP-10-04-006 (ResponsibleParty assignment) (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed rows 001..003/005) (gated: owner acts)
+PKG-10,DEL-10-04,3,SURVIVING,Assign the adapter-manifest location and close DEP-10-04-007 (the four named test files landed; no source names a manifest location) (source: Evidence_D53A record)
+PKG-10,DEL-10-04,4,SURVIVING,Re-judge DEP-10-04-008 (FULL_GRAPH validation) against accepted snapshot CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z — dischargeable on its live evidence (source: Evidence_D53A record)
+PKG-10,DEL-10-05,0,NONE,No surviving deliverable-local work item.

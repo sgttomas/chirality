@@ -7,7 +7,6 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
 - 2026-07-12 - D-APP-56 final code tranche implemented UPD-097/RBR-025 cited-enforcement-path existence coverage; full-repository gate remains tranche-level evidence; state remains IN_PROGRESS.
@@ -27,3 +26,4 @@
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-086 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P44 docs applied UPD-095 and UPD-096; UPD-097/RBR-025 recorded as pending the final code tranche; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-100, UPD-101, UPD-102; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+- 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.

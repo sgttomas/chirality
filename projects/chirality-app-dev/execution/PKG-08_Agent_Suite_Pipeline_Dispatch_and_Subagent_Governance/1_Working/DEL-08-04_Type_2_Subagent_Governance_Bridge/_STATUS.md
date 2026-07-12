@@ -8,7 +8,6 @@
 
 ## Remaining
 - Produce the per-attempt subagent decision-replay artifact (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
-- Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2)
@@ -23,3 +22,4 @@
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-135, UPD-136, UPD-137; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 
 - 2026-07-12 - D-APP-56 R4-P46 reaffirmed the D-APP-53 Option-C-gated per-attempt decision-replay artifact as open and unselectable; no gate was unlocked and no state change occurred.
+- 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
