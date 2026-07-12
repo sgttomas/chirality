@@ -52,19 +52,23 @@ Branch: `codex/agent-governance-redesign`
 
 ## Validation Evidence
 
-The review-remediation candidate currently has the following verified evidence:
+The owner-ruled, SHA-bound candidate currently has the following verified
+evidence:
 
 - App-dev runtime: the complete Vitest suite passes 94 files (one skipped),
   686 tests (four skipped); TypeScript typechecking passes; the focused managed
   delegation and coordination suite passes 16 tests.
 - Root governance/tool checks: instruction entrypoints pass; all 43 live skills
-  validate; 433 live path-anchor surfaces pass; 42 targeted review-remediation
-  Python tests pass; `git diff --check origin/main` reports no whitespace
-  errors.
+  validate; all 33 agent packages validate with zero errors and warnings; 433
+  live path-anchor surfaces pass; 42 targeted review-remediation Python tests
+  pass; the complete practitioner governance harness passes 264 tests; and
+  `git diff --check origin/main` reports no whitespace errors.
 - The public derivative regenerates with 583 files and zero boundary findings.
-- Before the ruling, the agent validator reported only the fourteen
-  `TYPE2_APPROVAL_NOT_RULED` authority-gate errors and no warnings. Post-ruling
-  validation is part of the publication checks below.
+  Its independent staging tree passes all 33 agent packages, all 43 skills,
+  canonical instruction entrypoints, and 424 exported path-anchor surfaces.
+- D-GOV-13 and D-GOV-14 are bound to ruling publication commit
+  `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`; the post-ruling validator no
+  longer emits `TYPE2_APPROVAL_NOT_RULED`.
 
 The following was the accepted pre-review evidence at PR #188 head before the
 review-remediation tranche. It is retained as historical evidence, not as a
@@ -105,12 +109,11 @@ public-staging validation passes.
 
 ## Required Resume Sequence
 
-1. Publish the owner ruling and backfill its immutable ruling SHA.
-2. Allow both reconciliation proto-runs to finish under their pinned methods
+1. Allow both reconciliation proto-runs to finish under their pinned methods
    and produce the D-GOV-14 item 8 terminal evidence.
-3. Integrate their accepted changes, rebase PR #188, and resolve any instruction,
+2. Integrate their accepted changes, rebase PR #188, and resolve any instruction,
    loop, index, runtime, or export conflicts.
-4. Regenerate and validate every affected root and project surface, then merge
+3. Regenerate and validate every affected root and project surface, then merge
    PR #188 only when hosted and local acceptance evidence is green.
 
 ## Closure Verdict

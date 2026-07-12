@@ -63,20 +63,20 @@ duplicate findings by remedy while preserving the source IDs for audit.
 
 ## Closure gates
 
-Current candidate evidence: 94 frontend test files pass (one skipped), 686
+Current ruled-candidate evidence: 94 frontend test files pass (one skipped), 686
 frontend tests pass (four skipped), TypeScript typechecking passes, 42 targeted
-Python tests pass, all 43 live skills validate, 433 live path-anchor surfaces
-pass, instruction entrypoints pass, the 583-file public export regenerates with
-zero boundary findings, and `git diff --check origin/main` passes. The agent
-validator's only findings are the fourteen intentionally fail-closed
-`TYPE2_APPROVAL_NOT_RULED` errors before the D-GOV-14 item 4 ruling. The
-post-ruling validator result is recorded after ruling publication.
+Python tests pass, the complete practitioner harness passes 264 tests, all 43
+live skills validate, all 33 agent packages validate with zero errors and
+warnings, 433 live path-anchor surfaces pass, instruction entrypoints pass,
+the 583-file public export regenerates with zero boundary findings, and
+`git diff --check origin/main` passes. The independent export staging tree
+passes all 33 agents, all 43 skills, instruction entrypoints, and 424 path
+anchors. D-GOV-13 and D-GOV-14 are bound to ruling publication commit
+`d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
 
-1. Publish and SHA-bind the D-GOV-14 and D-GOV-13 rulings without
-   self-reference.
-2. Allow both active reconciliation proto-runs to reach stable handoffs and
+1. Allow both active reconciliation proto-runs to reach stable handoffs and
    integrate their accepted changes before rebasing PR #188.
-3. Run the complete root, app-dev, piping-sensitive, packaging, live premerge,
+2. Run the complete root, app-dev, piping-sensitive, packaging, live premerge,
    export-regeneration, and independent staging validation suites.
-4. Update this record and the D-GOV-11 handoff with exact post-remediation
+3. Update this record and the D-GOV-11 handoff with exact post-integration
    evidence, push PR #188, and require green hosted checks before merge.
