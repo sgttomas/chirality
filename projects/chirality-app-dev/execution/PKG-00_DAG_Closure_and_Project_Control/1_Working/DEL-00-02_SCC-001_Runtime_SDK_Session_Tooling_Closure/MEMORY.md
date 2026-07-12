@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - D-APP-56 R5 P43 executed UPD-084 by appending current-state annotations for INSP-03 REQ-005/REQ-010 while preserving the historical assessment. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R5 P42 executed UPD-083: D53A is the current accepted DepClosure snapshot and SAFE_MOVES remains the historical SCC-001-closing first-proof snapshot. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P39 reconciled present-tense lifecycle wording to read current state from `_STATUS.md`; prior CHECKING evidence remains historical. No lifecycle transition occurred.
 - 2026-06-21 - ADQ-01 reconciled stale PKG-00 lifecycle/conflict and Pass 3 disposition wording in `Guidance.md` and `Procedure.md` against current `CHECKING` state and accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`. No `_STATUS.md`, dependency row, issuance, release, or professional-boundary state changed.

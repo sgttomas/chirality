@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-07-12 - D-APP-56 R5 P43 executed UPD-091 by annotating the named historical INSP-03 gaps/caveat/premise with D-APP-37/38/49..53 evidence while preserving genuine future-boundary TBDs. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P41 rewrote the governed REF-007/REF-008 Path metadata from machine-absolute paths to repo-root-relative `agents/AGENT_SOFTWARE_DECOMP.md` and `agents/AGENT_DOMAIN_ENGINE.md`. Recorded hashes, `MATCH` status, and lifecycle state remain unchanged.
 - 2026-07-12 - D-APP-56 R4-P39 reconciled present-tense lifecycle wording to read current state from `_STATUS.md`; prior CHECKING evidence remains historical. No lifecycle transition occurred.
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.

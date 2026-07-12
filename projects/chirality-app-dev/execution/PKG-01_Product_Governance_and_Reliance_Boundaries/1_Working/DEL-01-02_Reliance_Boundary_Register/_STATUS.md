@@ -23,3 +23,4 @@
 - 2026-07-12 - D-APP-56 R4-P38 corpus-label repair applied; concordance bootstrap remains open pending R6 backcheck; no state change.
 - 2026-07-12 - D-APP-56 R4-P39 lifecycle-wording repair applied; concordance bootstrap remains open pending R6; no state change.
 - 2026-07-12 - D-APP-56 R4-P41 reference-path metadata repair applied; concordance bootstrap remains open pending R6; no state change.
+- 2026-07-12 - D-APP-56 R5 P43 applied UPD-086 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
