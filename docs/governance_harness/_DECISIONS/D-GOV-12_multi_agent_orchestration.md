@@ -2,7 +2,7 @@
 
 Status:       RULED
 HumanRuling:  Multi-agent orchestration plan approved by owner (Ryan Tufts), 2026-07-11
-Ruling SHA:   TBD (binds at CHANGE publish)
+Ruling SHA:   8a8a477b90d65c4932c0e0bf8644c08f100cff3c
 Date:         2026-07-11
 FramedBy:     owner refinement of D-GOV-11 runtime hierarchy
 
