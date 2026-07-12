@@ -18,6 +18,8 @@ Out of scope:
 - Broad session CRUD, boot metadata, and active-turn lock design assigned to DEL-03-02.
 - Route-shape and general SSE compatibility documentation assigned to DEL-03-03.
 - Append-only event store implementation assigned primarily to DEL-05-02, except as required to verify terminal outcomes for this slice.
+- Durable terminal persistence by the deterministic UI-only stub adapter; its
+  UI-visible terminal outcomes are test scaffolding, not K-EVENT-3 parity.
 
 Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` Sections 9 through 11; decomposition DEL-03-04 row.
 

@@ -80,7 +80,7 @@ Avoid examples:
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CT-001 | Dispatch path used `PKG-01_Governance_and_Product_Boundaries`, but the matching folder on disk is `PKG-01_Product_Governance_and_Reliance_Boundaries`. | User dispatch path | `_CONTEXT.md` PackageName and actual folder path | Run record; final report | Treat actual matching DEL-01-03 folder as resolved scope; preserve stable PackageID/DeliverableID. | TBD |
+| CT-001 | Dispatch path used `PKG-01_Governance_and_Product_Boundaries`, but the matching folder on disk is `PKG-01_Product_Governance_and_Reliance_Boundaries`. | User dispatch path | `_CONTEXT.md` PackageName and actual folder path | Run record; final report | Treat actual matching DEL-01-03 folder as resolved scope; preserve stable PackageID/DeliverableID. | **RULED 2026-07-12 (D-APP-56 R4-P35): proposed authority ratified.** |
 
 Closed historical conflict: `CT-002` is superseded by the current D-APP-38 corpus snapshot; current `_REFERENCES.md`
 records REF-006 `docs/PRD.md` as `MATCH`.

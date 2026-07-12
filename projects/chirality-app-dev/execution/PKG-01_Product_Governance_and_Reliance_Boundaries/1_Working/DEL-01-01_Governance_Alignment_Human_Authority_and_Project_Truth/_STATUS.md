@@ -7,6 +7,8 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- ResponsibleParty remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
+- The standalone governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document-diff checklist, acceptance checklist, and conflict/source-warning table are deferred on 2026-07-12 under D-APP-56 R4-P48 until the next governed documentation-production tranche (gate: new owner-authorized production tranche; destinations remain governed by DEL-01-01-R004).
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History

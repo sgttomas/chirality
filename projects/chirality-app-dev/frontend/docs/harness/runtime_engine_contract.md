@@ -1,5 +1,10 @@
 # Runtime Engine Contract
 
+> **D-APP-56 R4-P24 architecture note (2026-07-12):** `TurnEngine` consumes
+> the product-owned `IAgentSdkManager` port. Adapter-side terminal persistence
+> is the accepted placement; `AgentEnginePort` is historical design naming,
+> not a required live interface name.
+
 ## Scope
 
 This contract defines Chirality's product-owned turn boundary for harness runtime adapters.

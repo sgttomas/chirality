@@ -1,5 +1,7 @@
 # MEMORY - DEL-08-03
 
+- 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-08-03; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
+
 ## Decisions And Evidence
 
 - 2026-06-21 - ADQ-12 added Pipeline surface render coverage for category controls, disabled coming-soon options, valid TASK knowledge-type deep links, and stale knowledge-target reset during initial render. It also added a route regression proving Pipeline TASK selector state cannot bypass Type 2 governance. No lifecycle state advanced.

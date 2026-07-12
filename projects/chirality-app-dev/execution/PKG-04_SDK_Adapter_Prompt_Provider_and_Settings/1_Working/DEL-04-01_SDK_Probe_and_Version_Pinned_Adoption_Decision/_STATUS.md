@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Adoption-verdict approving role remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
 - Land handover-consumption evidence for DEP-04-01-010..013 or retire/replace those rows with a recorded basis (consumer mirror rows in DEL-04-02/03/05 are TBD; DEL-04-04 carries no DEL-04-01 reference at all) (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed rows 006/009)
 - Close the CODEV-001 live-environment residuals — live subprocess version, payload sequence, session/transcript placement (DEP-04-01-007) (source: ORN-13 disposition; Evidence_D53A record) (gated: D-APP-52 owner act — live-LLM demonstration)
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)

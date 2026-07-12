@@ -73,3 +73,7 @@ Required or anticipated artifacts:
 ## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
 UPD-105 supersedes run-scoped dependency-extraction deferral wording: the extracted register exists and is live. UPD-106 remains withheld for the final code tranche.
+
+## D-APP-56 shell ownership amendment (2026-07-12)
+
+R4-P29 assigns the `/chat` direct-chat shell surface and portal persona-picker bar to DEL-02-01 shell scope. The deliverable-rows launcher remains covered by DEL-02-03 REQ-009. DEL-08-02 retains persona-alias ownership and owns the `isMatrixLaunchBlockedByStreaming` persona/matrix launch guard as consumer-side behavior.

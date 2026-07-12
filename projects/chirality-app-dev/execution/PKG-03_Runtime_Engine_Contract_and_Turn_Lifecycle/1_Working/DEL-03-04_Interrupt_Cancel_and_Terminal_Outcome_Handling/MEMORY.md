@@ -1,5 +1,7 @@
 # MEMORY - DEL-03-04
 
+- 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-03-04; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
+
 ## Decisions And Evidence
 
 - 2026-07-12 - D-APP-56 R5 P43 executed the owner rider by annotating the four overtaken INSP-03 PARTIAL claims (REQ-004/REQ-005/ACC-002/ACC-003) with ORN-09 evidence; immutable run rows were not recoded. No lifecycle transition occurred.

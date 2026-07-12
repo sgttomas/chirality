@@ -1,5 +1,7 @@
 # MEMORY - DEL-01-04
 
+- 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-01-04; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
+
 ## Decisions And Evidence
 
 - 2026-07-12 - D-APP-56 R4-P39 reconciled present-tense lifecycle wording to read current state from `_STATUS.md`; prior CHECKING evidence remains historical. No lifecycle transition occurred.

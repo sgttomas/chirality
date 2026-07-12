@@ -1,5 +1,7 @@
 # MEMORY - DEL-04-05
 
+- 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-04-05; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
+
 ## Decisions And Evidence
 
 - 2026-07-12 - D-APP-56 R5 P44 pointer rider added a forward annotation for the D-APP-46/D-APP-48 `tool-descriptor.ts` relocation; historical assessment conclusions remain unchanged. No lifecycle transition occurred.

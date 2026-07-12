@@ -18,6 +18,10 @@ Out of scope:
 - Tool permission semantics and allow/deny policy, except where redaction must apply after permitted tool execution.
 - Canonical session folder layout and append-only JSONL writer ownership, which belong to adjacent PKG-05 deliverables.
 - API key storage implementation, except that this deliverable must not undermine the existing safeStorage/env precedence rules.
+- `frontend/scripts/scan-secret-evidence.mjs` is an unrequired
+  defense-in-depth proof surface. PKG-09 validation may formalize that command
+  in a future governed change; D-APP-56 R4-P02 does not make it a DEL-05-03
+  product obligation.
 
 ## Requirements
 
@@ -36,6 +40,7 @@ Out of scope:
 | DEL-05-03-R11 | Every runtime record or diagnostic write/display path that can carry provider, SDK, tool, run-log, event, or artifact payload data MUST pass through redaction before persistence and before user-visible diagnostic display where the value could reveal configured secrets. | P0 | `docs/CONTRACT.md` K-EVENT-6, K-KEY-1; `docs/PLAN.md` Section 6.3 |
 | DEL-05-03-R12 | The shared redaction helper contract MUST remain TBD until implementation records the final module path, public API, configured-secret schema, supported encoded variants, overlap handling, and accepted replacement token. | P0 | `docs/PRD.md` FR-075; current code context; `docs/CONTRACT.md` K-EVENT-6 |
 | DEL-05-03-R13 | Tool-result hygiene verification MUST cover inline, preview, artifact, redacted, and withheld payload paths before sensitive raw values may be accepted into persisted records. | P0 | `docs/CONTRACT.md` K-EVENT-7; `docs/PRD.md` Section 10.5 |
+| DEL-05-03-R14 | Domain-proposal transport must apply the same credential, cookie, and configured-secret hygiene as other governed runtime transport lanes. | P0 | D-APP-52; D-APP-56 R4-P27 |
 
 ## Standards
 
@@ -83,3 +88,7 @@ TBD:
 - Whether SDK transcript redaction can be guaranteed or only avoided/cross-referenced, because source text says SDK transcripts should avoid API keys "if avoidable".
 - Final ownership of provider-local encoded/overlapping key tests after migration to the shared helper.
 - Final source path inventory for provider errors, SDK diagnostics, `HarnessEvent.data`, run logs, and tool result persistence/display.
+
+## D-APP-56 domain-proposal transport amendment (2026-07-12)
+
+R4-P27 adds domain-proposal transport credential and cookie hygiene to this deliverable's redaction scope under the D-APP-52 lane. This does not unlock the separately gated arbitrary configured-secret registry item reaffirmed by R4-P46.

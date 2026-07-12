@@ -41,6 +41,11 @@ Sources: `_CONTEXT.md`; decomposition `DEL-05-05`; `docs/SPEC.md` Sections 8-9; 
 
 ## Standards
 
+The distinct medium-band preview representation remains explicitly deferred
+under D-APP-42 and D-APP-56 R4-P08 as a future output-budget policy question.
+Current small-inline and artifact-backed overflow behavior remains governed and
+must not be represented as implementing that deferred representation.
+
 | Standard / Contract | Applicability | Source |
 |---|---|---|
 | Chirality `HarnessEvent` schema | Persisted runtime event metadata must use stable product-owned event shape. | `docs/SPEC.md` Section 9.1; `docs/PRD.md` Section 10.4 |
@@ -74,3 +79,7 @@ Required implementation artifacts for this deliverable:
 - Redaction fixtures for sensitive tool output handling: `frontend/src/__tests__/lib/tool-result-artifacts.test.ts` and `frontend/src/__tests__/lib/session-events.test.ts`.
 - Developer notes identifying that D-APP-42 chose SHA-256 plus session-lifetime retention while leaving thresholds, preview length, and naming unchanged.
 - P3 disposition record for B-001, C-001, F-001, D-001, X-001, and E-001 showing which items were retired, incorporated, or explicitly left outside ADQ-10.
+
+## D-APP-56 child-output partition note (2026-07-12)
+
+R4-P32 assigns `artifacts/subagents/` child-output storage and its 16 KiB/512 KiB thresholds to DEL-08-05. DEL-05-05 continues to own `descriptor.resultBudget`; it does not duplicate child-output artifact ownership.

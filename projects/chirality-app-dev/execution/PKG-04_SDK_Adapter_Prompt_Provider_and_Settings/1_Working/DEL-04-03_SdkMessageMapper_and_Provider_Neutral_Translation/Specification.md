@@ -74,3 +74,7 @@ Required documentation and artifacts:
 - Provider-neutral leakage tests.
 - A `TBD` or open-issue list for any SDK message category not yet confirmed by DEL-04-01.
 - Section 9 validation coverage entry for `section9.adapter_message_mapper`, the current implemented mapper validation ID.
+
+## D-APP-56 event-lane amendment (2026-07-12)
+
+R4-P34 adds the `message.delta`, `message.completed`, and `queue.enqueued` lane emitted by `sdk-message-mapper.ts` to the REQ-006 event-category mapping, parallel to the existing `model.*` lane.

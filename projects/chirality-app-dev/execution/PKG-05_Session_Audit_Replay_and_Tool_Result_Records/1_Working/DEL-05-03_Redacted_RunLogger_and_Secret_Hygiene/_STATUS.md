@@ -11,6 +11,7 @@
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
+- 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)
@@ -22,3 +23,5 @@
 - 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
 - 2026-07-12 - D-APP-56 R5 P40 applied UPD-070, UPD-079; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-126; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+
+- 2026-07-12 - D-APP-56 R4-P46 reaffirmed the D-APP-53 Option-C-gated arbitrary configured-secret registry as open and unselectable; no gate was unlocked and no state change occurred.

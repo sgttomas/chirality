@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- CQ-F1 PEC-fixture affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/scripts/pec-scratch-server.mjs` and `frontend/scripts/run-pec-bridge-rehearsal.ts`. No ownership or mapping is asserted (revisit: next concordance pass).
 - Resolve DEP-10-04-004 (accepted PKG-10 amendment judgment) and DEP-10-04-006 (ResponsibleParty assignment) (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed rows 001..003/005) (gated: owner acts)
 - Assign the adapter-manifest location and close DEP-10-04-007 (the four named test files landed; no source names a manifest location) (source: Evidence_D53A record)
 - Re-judge DEP-10-04-008 (FULL_GRAPH validation) against accepted snapshot CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z — dischargeable on its live evidence (source: Evidence_D53A record)

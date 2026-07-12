@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- CQ-F1 catalog-generator affinity: `frontend/scripts/generate-tool-catalog.mjs` is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48; no ownership or mapping is asserted (revisit: next concordance pass).
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History

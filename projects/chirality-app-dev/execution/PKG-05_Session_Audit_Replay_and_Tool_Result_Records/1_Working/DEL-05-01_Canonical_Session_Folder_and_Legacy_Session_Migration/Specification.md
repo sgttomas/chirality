@@ -84,3 +84,7 @@ Required artifacts:
 - Source-state recheck confirming the D-APP-38 authority corpus is current for this deliverable.
 
 Source: `_CONTEXT.md` `Anticipated Artifacts`; `docs/SPEC.md` Section 8; `docs/PLAN.md` R1/R2 notes.
+
+## D-APP-56 guard amendment (2026-07-12)
+
+R4-P31 adopts both session-manager guards into DEL-05-01: `assertSafeSessionId` prevents unsafe/path-traversing session identifiers, and `assertProjectRootAccessible` enforces accessible contained project roots. A dedicated session-ID guard test remains an explicit verification obligation; this text does not assert it exists.

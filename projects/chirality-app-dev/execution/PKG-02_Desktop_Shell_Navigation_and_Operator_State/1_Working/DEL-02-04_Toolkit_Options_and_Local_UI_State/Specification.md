@@ -26,13 +26,13 @@ Sources: `_CONTEXT.md`; `docs/PRD.md` Sections 8.1, 8.4, 8.7; `execution/_Decomp
 |---|---|---|
 | DEL-02-04-REQ-001 | The shell shall support resizable and collapsible File Tree, Toolkit, and Chat panes. | `docs/PRD.md` Section 8.1 FR-005 |
 | DEL-02-04-REQ-002 | Pane resize/collapse behavior shall support drag and keyboard operation; Home collapses, End expands, and widths are persisted locally. | `docs/PRD.md` Section 8.1 FR-005; Section 11.4 NFR-019 |
-| DEL-02-04-REQ-003 | The Toolkit panel shall expose per-turn options for model, tools, max turns, mode, persona, and governance metadata as supported by runtime. | `docs/PRD.md` Section 8.7 FR-041 |
+| DEL-02-04-REQ-003 | The Toolkit panel shall expose per-turn options for model, tools, max turns, and governance metadata as supported by runtime; mode and persona are supplied by the persona picker and session controls. | `docs/PRD.md` Section 8.7 FR-041; D-APP-56 R4-P07 |
 | DEL-02-04-REQ-004 | Toolkit settings and presets shall persist locally and remain non-authoritative. | `docs/PRD.md` Section 8.7 FR-042; `docs/DIRECTIVE.md` Section 2.6; `docs/SPEC.md` Section 1.3 |
 | DEL-02-04-REQ-005 | Local presets shall not override governance enforcement or project truth. | `docs/PRD.md` Section 8.7 FR-042; `docs/CONTRACT.md` K-NOMEM-1 |
 | DEL-02-04-REQ-006 | Chat drafts and attachment selections shall persist locally per root/persona/mode. | `docs/PRD.md` Section 8.7 FR-043 |
 | DEL-02-04-REQ-007 | Malformed local draft or attachment-selection records shall be dropped. | `docs/PRD.md` Section 8.7 FR-043 |
 | DEL-02-04-REQ-008 | Local storage failures shall warn without breaking chat. | `docs/PRD.md` Section 8.7 FR-043 |
-| DEL-02-04-REQ-009 | Toolkit mode controls shall map to permission policy modes once the policy engine exists. | `docs/PRD.md` Section 8.7 FR-044 |
+| DEL-02-04-REQ-009 | Mode supplied by the persona picker and session controls shall map to the enforced permission policy; Toolkit-local mode controls are not required. | `docs/PRD.md` Section 8.7 FR-044; D-APP-56 R4-P07 |
 | DEL-02-04-REQ-010 | Toolkit mode controls shall not be treated as mere prompt hints when permission policy enforcement exists. | `docs/PRD.md` Section 8.7 FR-044 |
 | DEL-02-04-REQ-011 | Runtime option fallback chains represented or initiated by the UI shall remain deterministic. | `docs/PRD.md` Section 8.4 FR-023; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-016 |
 | DEL-02-04-REQ-012 | Unknown option keys shall be ignored with warnings and shall not silently mutate behavior. | `docs/PRD.md` Section 8.4 FR-024; `docs/SPEC.md` Section 13.1 |
@@ -57,7 +57,7 @@ Sources: `_CONTEXT.md`; `docs/PRD.md` Sections 8.1, 8.4, 8.7; `execution/_Decomp
 | DEL-02-04-REQ-003 | Component or integration tests confirming the Toolkit can set only supported runtime options and labels unsupported/unavailable options without inventing behavior. |
 | DEL-02-04-REQ-004, DEL-02-04-REQ-005, DEL-02-04-REQ-013 | Tests or review checks proving local presets do not write project truth files, do not override governance enforcement, and cannot be treated as authoritative runtime policy. |
 | DEL-02-04-REQ-006, DEL-02-04-REQ-007, DEL-02-04-REQ-008 | Local-storage tests for root/persona/mode keying, malformed-record discard, and storage-failure warning behavior. |
-| DEL-02-04-REQ-009, DEL-02-04-REQ-010 | Policy-mode integration tests once the permission policy engine exists; until then, mark enforcement wiring as TBD and avoid false claims. |
+| DEL-02-04-REQ-009, DEL-02-04-REQ-010 | Policy-mode integration tests prove persona-picker/session-control input reaches the enforced permission policy and cannot be treated as a prompt hint. |
 | DEL-02-04-REQ-011, DEL-02-04-REQ-012 | Option-handoff tests confirming deterministic fallback display/submit behavior and warnings for unknown keys; test records must show that unknown keys are warned, ignored, and do not silently mutate runtime behavior. |
 | DEL-02-04-REQ-014 | Review against `docs/ui/UI_POLISH_EXECUTION_PLAN.md`, including D-APP-36 component/render evidence and browser or screenshot evidence where layout risk warrants it. The checklist makes verification repeatable; REQ-014 remains unproven until current evidence is recorded. |
 

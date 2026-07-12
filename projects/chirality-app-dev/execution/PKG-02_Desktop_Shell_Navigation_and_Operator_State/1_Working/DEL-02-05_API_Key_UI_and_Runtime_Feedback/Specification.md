@@ -19,6 +19,9 @@ Out of scope:
 - Redaction helper implementation.
 - Network allowlist enforcement.
 - Dependency extraction and `Dependencies.csv` creation.
+- Remove-stored-key and reveal/hide controls are deliberate, unrequired
+  convenience UI. They do not add a product requirement or test obligation
+  under D-APP-56 R4-P01.
 
 Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-02-05 row; `docs/PRD.md` Sections 7.3 and 7.7; `docs/SPEC.md` Sections 11, 12.3, and 16.2.
 

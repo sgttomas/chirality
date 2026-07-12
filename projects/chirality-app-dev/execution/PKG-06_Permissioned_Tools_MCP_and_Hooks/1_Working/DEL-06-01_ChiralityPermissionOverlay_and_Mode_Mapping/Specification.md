@@ -102,3 +102,7 @@ Required implementation evidence:
 | SOW-055 Permission modes and capability policy with explicit hard-deny precedence | DEL-06-01-REQ-003 through REQ-009, REQ-011, REQ-015 |
 | SOW-056 Tool permission events | DEL-06-01-REQ-010 |
 | SOW-058 Interactive approval through `canUseTool` | DEL-06-01-REQ-002, REQ-007 |
+
+## D-APP-56 permission-class amendment (2026-07-12)
+
+R4-P33 adds the D-APP-10-governed subagent/Agent class to REQ-005: delegated children are allowed only under `workspaceWrite`; other modes hard-deny through `evaluateSubagentPreflight`. DEL-06-01 owns the declaration and DEL-08-04 consumes it.

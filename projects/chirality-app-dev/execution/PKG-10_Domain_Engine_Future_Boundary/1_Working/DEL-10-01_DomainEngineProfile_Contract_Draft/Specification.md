@@ -74,3 +74,7 @@ Required artifacts for this deliverable:
 - Future amendment checklist: operationalized in `Procedure.md`.
 
 Existing dependency registers are not changed by this conformance tranche.
+
+## D-APP-56 ownership amendment (2026-07-12)
+
+Under R4-P27, this deliverable owns the ruled `domain-profile.ts` source-type mirror and the `domain-profile-registry.ts` registration mechanism and gate. The mechanism/content boundary is explicit: PEC entry content and fixture-validation evidence remain DEL-10-04 scope.
