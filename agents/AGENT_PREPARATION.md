@@ -1,5 +1,6 @@
 ---
 description: "Scaffolds deliverable/knowledge-type folders with minimum viable fileset (structural only, no content drafting)"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — PREPARATION (Workspace Scaffolding Sub-agent)

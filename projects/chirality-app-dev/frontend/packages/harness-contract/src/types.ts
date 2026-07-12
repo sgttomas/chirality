@@ -40,6 +40,24 @@ export interface SessionRecord {
   runtimeFingerprint?: HarnessRuntimeFingerprint;
   bootedAt?: string;
   model?: string;
+  orchestrationRunId?: string;
+  executionRoot?: string;
+  agentInstanceId?: string;
+  parentSessionId?: string;
+  parentInstanceId?: string;
+  parentAgentType?: 0 | 1;
+  agentType?: 0 | 1 | 2;
+  childKind?: 'named' | 'task' | 'generalist';
+  planVersion?: string;
+  approvalRef?: string;
+  instructionPath?: string;
+  instructionHash?: string;
+  briefHash?: string;
+  declaredContext?: string[];
+  declaredTools?: string[];
+  allowedWriteTargets?: string[];
+  outputArtifact?: string;
+  childRunStatus?: 'LAUNCHED' | 'RUNNING' | 'COMPLETED' | 'FAILED' | 'BLOCKED';
 }
 
 export interface SessionCreateRequest {
@@ -172,6 +190,12 @@ export interface ResolvedOpts {
   mode: string;
   subagentGovernance?: unknown;
   delegatedSubagents?: string[];
+  delegatedAgentInstructions?: Record<string, {
+    path: string;
+    content: string;
+    sha256: string;
+    agentType: 1 | 2;
+  }>;
 }
 
 export type ContentBlock =

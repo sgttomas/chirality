@@ -1,0 +1,51 @@
+# D-GOV-13 — Dedicated Agent 2 requalification
+
+Status:       RULED
+HumanRuling:  Owner-approved implementation plan and session-wide governance-change authority (Ryan Tufts), 2026-07-11
+Ruling SHA:   TBD — bind at publication commit
+Date:         2026-07-11
+FramedBy:     D-GOV-10 and D-GOV-11 dedicated-specialist requalification requirement
+
+## Ruling
+
+The following existing Agent 2 instruction packages are explicitly approved
+as dedicated specialists in the current compatibility baseline:
+
+| Role | Persistent semantics justifying the package |
+|---|---|
+| AGGREGATION | Cross-scope synthesis schema, conflict policy, immutable snapshot, and aggregation-specific recovery contract |
+| AUDIT_AGENTS | Instruction-conformance rubric, validator-first evidence contract, and agent-specific finding schema |
+| AUDIT_DECOMP | Decomposition-coverage basis, filesystem comparison, and decomposition finding/closure contract |
+| AUDIT_DEP_CLOSURE | Dependency graph, cycle/orphan detection, closure evidence, and rerun contract |
+| AUDIT_EPISTEMIC | Claim/warrant classification, provenance metrics, conflict detection, and epistemic report schema |
+| AUDIT_GOVERNANCE | Cross-document authority ordering, reference integrity, claim-language, and governance finding contract |
+| AUDIT_HYPERGRAPH_CLOSURE | Partition, incidence, orphan, reference, and coverage closure contract |
+| AUDIT_SCOPE_CLOSURE | Amendment-action propagation, remediation evidence, and scope-closure contract |
+| DOMAIN_HYPERGRAPH | Deterministic identifier, node/hyperedge/incidence package, snapshot, and validation contract |
+| EVALUATION_DEPENDENCY_AUDIT | Evaluation-local dependency schema, anchor/evidence metrics, and structured return |
+| EVALUATION_REPORT | Dimension scoring, evidence basis, rating calculation, and scored report schema |
+| EVALUATION_STRUCTURE_AUDIT | Evaluation-local filesystem/lifecycle inventory and structural finding schema |
+| PREPARATION | Idempotent scaffold modes, minimum filesets, compatibility templates, and no-overwrite recovery contract |
+| RESEARCHER | Immutable evidence-packet schema, retrieval provenance, claim status, citation, and bounded research return |
+
+## Basis
+
+These files are cited by live callers, accepted project artifacts,
+domain-source records, or thesis/governance explanations, and each carries a
+stable output, recovery, or compatibility contract beyond a generic brief.
+Removing a file without migrating those callers and references would violate
+D-GOV-11's replacement-first rule.
+
+Approval is explicit but not permanent immunity from consolidation. A future
+migration may replace any role with TASK plus a skill or deterministic tool
+only when the replacement method, callers, compatibility behavior, historical
+reference posture, validators, and tests land together. New dedicated Agent 2
+roles still require a fresh HELPS_HUMANS proposal and human approval.
+
+## Validation contract
+
+Each approved file declares `dedicated_agent2_approval: D-GOV-13` in
+frontmatter. The agent validator resolves that reference to this RULED record
+and confirms the role appears in the approval table. A missing, unresolved, or
+non-RULED reference remains a warning or error.
+

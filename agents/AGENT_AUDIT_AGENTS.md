@@ -1,5 +1,6 @@
 ---
 description: "Audits agent instruction files for conformance against canonical standard"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_AGENTS (Type 2 Task • Audit AGENT_*.md Instruction Files)

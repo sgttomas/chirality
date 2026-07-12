@@ -1,5 +1,6 @@
 ---
 description: "Generic bounded-task shell — normalizes a bounded task brief, loads skills, and executes within brief-defined write authority"
+tools: [read, write, bash, report_coordination_notice, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — TASK (Generic Bounded-Task Shell)

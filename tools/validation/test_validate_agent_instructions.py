@@ -82,6 +82,19 @@ class ValidateAgentInstructionsTests(unittest.TestCase):
         findings = self.validate(text, "AGENT_AUDITOR.md")
         self.assertIn("TYPE2_REQUALIFICATION_REQUIRED", {item.code for item in findings})
 
+    def test_ruled_dedicated_type2_approval_closes_warning(self) -> None:
+        decisions = self.root / "docs" / "governance_harness" / "_DECISIONS"
+        decisions.mkdir(parents=True)
+        (decisions / "D-GOV-13_fixture.md").write_text(
+            "# D-GOV-13\n\nStatus: RULED\n\n| Role | Basis |\n|---|---|\n| AUDITOR | stable contract |\n",
+            encoding="utf-8",
+        )
+        text = VALID_AGENT.replace(
+            'description: "fixture"',
+            'description: "fixture"\ndedicated_agent2_approval: D-GOV-13',
+        ).replace("— TASK (", "— AUDITOR (")
+        self.assertEqual([], self.validate(text, "AGENT_AUDITOR.md"))
+
     def test_missing_agent_reference_warns(self) -> None:
         text = VALID_AGENT.replace("## PROTOCOL", "See `AGENT_MISSING.md`.\n## PROTOCOL")
         findings = self.validate(text)

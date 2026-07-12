@@ -1,5 +1,6 @@
 ---
 description: "Audits decomposition quality and coverage — validates filesystem matches decomposition"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_DECOMP (Type 2 Task • Decomposition‑vs‑Filesystem Validation)

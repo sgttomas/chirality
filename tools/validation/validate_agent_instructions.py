@@ -147,7 +147,28 @@ def validate_file(path: Path, repo_root: Path, valid_r_ids: set[str]) -> list[Fi
         if not blocking.startswith("never"):
             add(findings, "ERROR", "TYPE2_BLOCKING", rel, "Type 2 agents must be non-blocking")
         if role != "TASK":
-            add(findings, "WARN", "TYPE2_REQUALIFICATION_REQUIRED", rel, "D-GOV-11 requires evidence and human approval for each dedicated Agent 2 package")
+            approval_match = re.search(
+                r"^dedicated_agent2_approval:\s*(D-GOV-\d+)\s*$",
+                text,
+                re.MULTILINE,
+            )
+            if not approval_match:
+                add(findings, "WARN", "TYPE2_REQUALIFICATION_REQUIRED", rel, "D-GOV-11 requires evidence and human approval for each dedicated Agent 2 package")
+            else:
+                approval_ref = approval_match.group(1)
+                decision_matches = sorted(
+                    (repo_root / "docs" / "governance_harness" / "_DECISIONS").glob(
+                        f"{approval_ref}_*.md"
+                    )
+                )
+                if len(decision_matches) != 1:
+                    add(findings, "ERROR", "TYPE2_APPROVAL_UNRESOLVED", rel, f"{approval_ref} must resolve to exactly one decision record")
+                else:
+                    decision_text = decision_matches[0].read_text(encoding="utf-8")
+                    if not re.search(r"^Status:\s+RULED\s*$", decision_text, re.MULTILINE):
+                        add(findings, "ERROR", "TYPE2_APPROVAL_NOT_RULED", rel, f"{approval_ref} is not RULED")
+                    if not re.search(rf"^\|\s*{re.escape(role)}\s*\|", decision_text, re.MULTILINE):
+                        add(findings, "ERROR", "TYPE2_APPROVAL_ROLE_MISSING", rel, f"{approval_ref} does not approve role {role}")
 
     write_scope = fields.get("WRITE_SCOPE", "")
     if write_scope and not write_scope.startswith(WRITE_SCOPE_PREFIXES):

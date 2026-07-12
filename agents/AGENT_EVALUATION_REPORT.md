@@ -1,5 +1,6 @@
 ---
 description: "Scores one evaluation dimension — reads evidence, applies checks, writes scored report"
+dedicated_agent2_approval: D-GOV-13
 model: claude-sonnet-4-6
 ---
 [[DOC:AGENT_INSTRUCTIONS]]

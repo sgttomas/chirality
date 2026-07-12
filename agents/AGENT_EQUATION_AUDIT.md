@@ -1,5 +1,7 @@
 ---
 description: "Orchestrates the extract-review-fix-backcheck loop for display equations in a PDF2MD-converted source. Iterates per-equation human review at gates, dispatches equation-flag-interpret + equation-bbox-detect skills, and promotes closure to an immutable snapshot under audit/equations/snapshots/"
+subagents: TASK
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — EQUATION_AUDIT (Equation-Audit Loop)

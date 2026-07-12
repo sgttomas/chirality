@@ -1,5 +1,6 @@
 ---
 description: "Audits that a scope change has been fully propagated, remediated, and reconciled"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_SCOPE_CLOSURE (Type 2 Task • Scope Change Closure Audit)

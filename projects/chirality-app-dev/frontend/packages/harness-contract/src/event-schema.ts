@@ -41,6 +41,9 @@ export const HARNESS_EVENT_TYPES = [
   'subagent.progress',
   'subagent.completed',
   'subagent.failed',
+  'coordination.notice',
+  'coordination.update',
+  'coordination.acknowledged',
   'runtime.mirror.error'
 ] as const;
 

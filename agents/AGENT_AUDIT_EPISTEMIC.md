@@ -1,5 +1,6 @@
 ---
 description: "Audits deliverable content against the epistemic ontology — label coverage, provenance, gaps, conflicts, warrant state"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_EPISTEMIC (Type 2 Task • Epistemic Ontology Compliance Audit)

@@ -140,7 +140,10 @@ export function buildSdkOptions(input: {
     mcpServers: createChiralityMcpServers({
       context: {
         projectRoot: input.session.projectRoot,
-        sessionId: input.session.sessionId
+        sessionId: input.session.sessionId,
+        persona: input.opts.persona,
+        mode: input.opts.mode,
+        tools: input.opts.tools
       },
       allowedToolNames: allowedChiralityMcpToolNames,
       mode: input.opts.mode

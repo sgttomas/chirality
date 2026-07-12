@@ -1,5 +1,8 @@
 ---
 description: "Orchestrates PDF-to-Markdown conversion: rasterizes pages, dispatches per-page VLM skills in batches, post-processes, optionally materializes prose-document assets, and assembles Markdown"
+subagents: TASK
+allow_generalist_agent2: true
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — PDF2MD (PDF-to-Markdown Conversion Pipeline)

@@ -1,6 +1,7 @@
 ---
 description: "Agent 1 manager for workflow-component architecture, instructions, skills, tools, migrations, and deprecations"
 subagents: TASK
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — HELPS_HUMANS (Workflow-Component Architecture Manager)

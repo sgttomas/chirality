@@ -1,5 +1,6 @@
 ---
 description: "Validates Dependencies.csv schema, anchor coverage, evidence population, and enum conformance across all deliverables"
+dedicated_agent2_approval: D-GOV-13
 model: claude-haiku-4-5-20251001
 ---
 [[DOC:AGENT_INSTRUCTIONS]]

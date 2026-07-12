@@ -11,7 +11,7 @@ import { SUBAGENT_BRIDGE_POLICY_VERSION } from './subagent-bridge';
 import { HARNESS_TOOL_REGISTRY_VERSION } from '@chirality/harness-contract/tool-descriptor';
 import type { HarnessRuntimeFingerprint } from '@chirality/harness-contract/types';
 
-export const HARNESS_RUNTIME_FINGERPRINT_SCHEMA_VERSION = 'harness-runtime-fingerprint.v1';
+export const HARNESS_RUNTIME_FINGERPRINT_SCHEMA_VERSION = 'harness-runtime-fingerprint.v2.managed-delegation';
 
 function sha256Hex(value: string): string {
   return createHash('sha256').update(value).digest('hex');

@@ -9,7 +9,7 @@ import { evaluateShellCommandPolicy } from './tool-shell-policy';
 import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import { evaluateSubagentPreflight } from './subagent-bridge';
 
-export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v4.subagent';
+export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v5.managed-coordination';
 
 export type HarnessPermissionDecisionValue = 'allow' | 'deny' | 'ask';
 
@@ -216,6 +216,18 @@ export function resolveHarnessPermissionDecision(
         denyClass: 'subagent',
         requiresSubagentPreflight: true,
         ...preflight.safeMetadata
+      }
+    );
+  }
+
+  if (hasDescriptorPermission(descriptor, 'coordination')) {
+    return createDecision(
+      input,
+      'allow',
+      `${descriptor.name} is admitted to handler-level hierarchy and control-plane validation.`,
+      {
+        allowClass: 'coordination',
+        requiresManagedDelegationPolicy: true
       }
     );
   }

@@ -455,6 +455,8 @@ Machine-consumed YAML frontmatter MAY include:
 - `max_turns`
 - `disallowed_tools`
 - `auto_approve_tools`
+- `allow_generalist_agent2`
+- `dedicated_agent2_approval`
 
 Runtime MUST treat UI visibility of an option as non-authoritative. Governance and permission policy remain authoritative.
 
@@ -483,6 +485,12 @@ Current fields:
 - `bootFingerprint`
 - `bootedAt`
 - `model`
+- `orchestrationRunId`, `executionRoot`, `agentInstanceId`
+- `parentSessionId`, `parentInstanceId`, `parentAgentType`, `agentType`
+- `childKind`, `planVersion`, `approvalRef`
+- `instructionPath`, `instructionHash`, `briefHash`
+- `declaredContext`, `declaredTools`, `allowedWriteTargets`
+- `outputArtifact`, `childRunStatus`
 
 Legacy records MUST remain readable during migration.
 
@@ -589,6 +597,9 @@ type HarnessEvent = {
 - `context.compacted`
 - `subagent.started`
 - `subagent.completed`
+- `coordination.notice`
+- `coordination.update`
+- `coordination.acknowledged`
 - `runtime.mirror.error`
 
 ---

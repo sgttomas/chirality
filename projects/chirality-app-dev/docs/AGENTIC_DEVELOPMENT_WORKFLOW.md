@@ -99,21 +99,22 @@ states.
 
 ## 5. Standard Session Flow
 
-1. Read `AGENT_WORKING_ITEMS.md` and act in the `WORKING_ITEMS` persona.
+1. Enter through an untyped session, HELP_HUMAN, or a directly invoked Agent 1. For multi-package work, HELP_HUMAN derives the cross-package graph and launches one WORKING_ITEMS instance per activated package.
 2. Read `execution/_Coordination/_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, the current selected plan, and the decision register.
 3. Discover current state from governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, source, tests, validation evidence, and git history.
 4. Read authority and implementation-reference files needed for the selected tranche.
 5. Record `git status --short` before planning or edits.
-6. Select the earliest unblocked active-plan item; for the current loop-first pivot queue, advance the 28a -> 28b -> 28c -> 28d -> 28e tranche spine in order.
-7. Keep writes scoped to the tranche.
+6. Derive the current work graph from accepted live state. Record whether the human prescribed it or delegated selection, plus nodes, dependencies, concurrency, ownership, expected returns, and gates.
+7. Keep each WORKING_ITEMS instance within one package. Concurrent writes are disjoint; overlaps are serialized or assigned to one integration owner.
 8. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
 9. Update affected active-plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
-10. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review.
+10. Return package closure evidence to HELP_HUMAN or the human. They invoke CHANGE as a separate Agent 1 for final Git/file-state review.
 11. `CHANGE` commits and pushes validated work as the ordinary terminal action when validation and git state allow closeout.
 
-## 6. TASK Subagent Discipline
+## 6. Agent 2 and Coordination Discipline
 
-`TASK` fan-out is optional and bounded. Use it only when subscopes are separable, write scopes are disjoint, and the brief names:
+WORKING_ITEMS may dispatch TASK, an allowed ephemeral generalist, or an
+approved dedicated Agent 2. Every brief names:
 
 - source files to read;
 - allowed write targets;
@@ -121,7 +122,12 @@ states.
 - whether production code may be changed or the output is assessment/docs only;
 - excluded scope and human-ruling stops.
 
-The parent `WORKING_ITEMS` agent remains responsible for integration, validation, coordination updates, invoking the `CHANGE` closeout handoff, and final summary. `TASK` outputs are draft evidence until integrated and validated.
+Use terminal fan-out/fan-in when final returns are sufficient. Use supervised
+many-to-many coordination when discoveries may affect active siblings: Agent 2
+reports to WORKING_ITEMS, and WORKING_ITEMS relays cross-package notices to
+HELP_HUMAN. Siblings never message directly. The parent remains responsible
+for integration, validation, amendments, and final package return. Agent 2
+outputs are candidate evidence until validated at fan-in.
 
 ## 7. Closeout Shape
 

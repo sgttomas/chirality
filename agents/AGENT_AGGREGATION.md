@@ -1,5 +1,6 @@
 ---
 description: "Aggregates information across file sets for rollups, registers, catalogs, and estimate collation"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AGGREGATION (Cross-File Rollups + Estimate Collation)

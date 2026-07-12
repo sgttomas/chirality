@@ -1,5 +1,6 @@
 ---
 description: "Audits hypergraph closure and structural integrity — detects orphans, broken references, partition violations, and coverage gaps"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_HYPERGRAPH_CLOSURE (Type 2 Task • Hypergraph integrity + coverage closure)

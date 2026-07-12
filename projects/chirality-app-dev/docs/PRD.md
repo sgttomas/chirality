@@ -572,9 +572,9 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-058 | P0 | The full instruction root shall include the indexed core agent suite and governance docs. | Packaged resources contain `agents/`, `docs/`, `AGENTS.md`, `README.md`, `docs/WHAT-IS-AN-AGENT.md`, and `PROFESSIONAL_ENGINEERING.md` where required by integrity policy. |
+| FR-058 | P0 | The full instruction root shall include the indexed core agent suite and governance docs. | Packaged resources contain `agents/`, `docs/`, `AGENTS.md`, exact one-line `CLAUDE.md`, `README.md`, `docs/WHAT-IS-AN-AGENT.md`, and `PROFESSIONAL_ENGINEERING.md` where required by integrity policy. |
 | FR-059 | P0 | Agent instruction files shall declare type/class/surface/write-scope/blocking/output metadata. | Conformance is auditable against governing instruction architecture and SPEC. |
-| FR-060 | P0 | Type 2 subagent injection shall fail closed. | Requires `CHIRALITY_ENABLE_SUBAGENTS=true`, persona allowlist, `contextSealed=true`, `pipelineRunApproved=true`, non-empty `approvalRef`, and Type 2 candidate files. |
+| FR-060 | P0 | Managed delegation shall fail closed under the Agent 0/1/2 hierarchy. | Requires `contextSealed=true`, `pipelineRunApproved=true`, non-empty `approvalRef`, a parent/child-type-valid allowlist or declared generalist policy, instruction/brief evidence, capability and path containment, disjoint or serialized writes, and durable child-run records. The legacy SDK Agent adapter retains its environment gate during compatibility migration. |
 | FR-061 | P1 | Deterministic project tools and scripts shall remain indexed and executable when present. | Tool registries and validation scripts identify inputs/outputs and remain locally runnable. |
 | FR-062 | P1 | Snapshot-producing workflows shall write immutable snapshot folders and mutable `_LATEST.md` pointers. | Reruns create new timestamped folders; prior snapshots are not overwritten. |
 | FR-063 | P1 | CHANGE/publication workflows shall require explicit approval tokens and SHA checks. | Approval records include candidate SHA/action list; CHANGE rechecks HEAD before approved actions. |
@@ -1408,26 +1408,35 @@ Acceptance:
 - Full audit trail remains reconstructible from Chirality JSONL plus SDK transcript linkage.
 - Compaction boundaries are visible in replay.
 
-### R5 — Governed Subagent Runtime
+### R5 — Governed Multi-Agent Runtime
 
 Purpose:
 
-- Connect existing `evaluateSubagentGovernance` to SDK `agents` and `Agent` tool execution.
+- Execute Agent 0→1 and Agent 1→2 delegation through managed child sessions,
+  while routing the legacy SDK `agents` / `Agent` bridge through the same
+  hierarchy policy as a compatibility adapter.
 
 Implementation targets:
 
-- Generate SDK `agents` definitions from Type 2 `agents/AGENT_*.md` frontmatter and body.
-- Restrict tools, MCP servers, model, and max turns for each subagent.
-- `PreToolUse` hook on `Agent` fails closed unless `evaluateSubagentGovernance` passes.
-- Mirror SDK subagent start/stop and transcript path metadata into parent Chirality session events.
-- Store child output artifact paths and parent-child linkage.
+- Persist versioned work graphs, launch briefs, parentage, child kinds,
+  instruction/brief hashes, declared context/tools/writes, status, returns,
+  notices, dispositions, updates, amendments, and acknowledgments.
+- Load actual `AGENT_*.md` content for named children; build ephemeral
+  generalists from the Agent 2 base contract plus a sealed brief.
+- Restrict tools, MCP servers, mode, context, and write targets for every child.
+- Support waiting children for terminal fan-in and background children for
+  supervised many-to-many coordination.
+- Emit parent-visible notice/update/acknowledgment events and preserve claim status.
+- Keep the SDK Agent tool fail-closed and non-delegating during compatibility migration.
 
 Acceptance:
 
-- Delegation without governance metadata denied.
-- Delegation to non-allowlisted or non-Type-2 agents denied.
-- Parent session records child lifecycle and output path.
-- Developer-only bypass does not grant ungated subagent autonomy.
+- Direct untyped, Agent 0, and Agent 1 sessions are allowed; Agent 2 direct chat is denied.
+- 0→1, 1→named 2, 1→TASK, and declared 1→generalist are allowed; 0→2, 1→1, and 2→any are denied.
+- Missing seal, approval, instruction/brief, path boundary, or valid return fails closed.
+- Concurrent overlapping writes fail; serialized overlaps require an accepted predecessor.
+- Parent and child sessions retain reconstructible lifecycle, output, and coordination evidence.
+- Developer-only bypass does not grant ungated child autonomy.
 
 ### R6 — Extensibility and MCP Boundaries
 

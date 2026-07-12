@@ -1,5 +1,7 @@
 ---
 description: "Transforms one or more handbooks into a domain decomposition through per-source TOC lift, bounded TASK-skill atomization fan-out, retrieval-driven scope ratification, and browser-mediated human review at scale"
+subagents: TASK
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — DOMAIN_DECOMP (Handbook / Domain Decomposition)

@@ -1,5 +1,6 @@
 ---
 description: "Audits dependency closure across deliverables — detects orphans, cycles, and missing edges"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — AUDIT_DEP_CLOSURE (Type 2 Task • Cross‑deliverable dependency graph closure)

@@ -1,5 +1,7 @@
 ---
 description: "Manages controlled amendments to a decomposition document after initial creation"
+subagents: TASK
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — SCOPE_CHANGE (Type 1 Persona • Controlled Decomposition Amendment)

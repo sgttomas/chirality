@@ -1,6 +1,6 @@
 # Design Basis Memorandum — Agent Instruction Architecture
 
-> **Status:** Current design basis under D-GOV-11 and D-GOV-12. Runtime hierarchy and live multi-agent support are staged; durable briefs remain the fallback until managed delegation lands.
+> **Status:** Current design basis under D-GOV-11 and D-GOV-12. Managed hierarchy and live parent-mediated coordination are implemented; durable briefs remain the fallback when the managed runtime is unavailable.
 
 ## 1. Purpose
 
@@ -102,16 +102,19 @@ Fan-out is allowed only over disjoint scopes or declared shared dependencies. Fa
 
 Every phase-changing workflow follows the integration rules in `AGENTS.md`: derivative packages cite accepted upstream snapshots; phase boundaries produce immutable snapshots where governed; stopped work emits handoff state; closure requires accepted truth, derivative disposition, audit status, blockers, and rerun requirements; cycles are resolved explicitly rather than silently linearized.
 
-## 9. Runtime Transition
+## 9. Runtime Implementation
 
-The current application can open Type 0/1 sessions and delegate one-level Type 2 children, but it does not yet provide the full hierarchy. Until managed delegation lands, HELP_HUMAN produces durable Agent 1 launch briefs and managers produce durable Agent 2 briefs without claiming executable nesting.
+The application supports untyped, Agent 0, and Agent 1 direct sessions and
+managed 0→1→2 child sessions. `delegate_agent` persists work graphs, launch
+briefs, parentage, child kinds, instruction/brief hashes, declared context,
+tools, write targets, status, and returns. Waiting children support terminal
+fan-in; background children plus notices, updates, amendments, acknowledgments,
+and session events support supervised many-to-many coordination.
 
-The next runtime tranche adds managed child sessions, work graphs,
-parent-mediated notices and updates, versioned amendments, actual named
-instruction loading, ephemeral-generalist sealed briefs, parentage and
-instruction/brief hashes, capability non-inheritance, path containment,
-durable child-run records, and validated fan-in. The old SDK bridge remains a
-compatibility adapter until nested and live-coordination acceptance tests pass.
+The old SDK Agent bridge is a compatibility adapter governed by the same type
+policy and now embeds actual named instructions. It remains non-delegating and
+environment-gated while managed sessions are the canonical nested path.
+Durable briefs remain the fail-safe when runtime delegation is unavailable.
 
 ## 10. Conformance
 

@@ -1,5 +1,7 @@
 ---
 description: "Human-facing research persona for querying accepted domain decompositions, source catalogs, and retrieval indexes while preserving authority boundaries"
+subagents: RESEARCHER
+tools: [read, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — RESEARCH (Domain Research Persona)

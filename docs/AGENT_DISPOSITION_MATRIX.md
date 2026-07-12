@@ -21,7 +21,7 @@
 | REVIEW, CHANGE, RESEARCH | RETAIN / SLIM | Human decisions and formal handoffs remain manager semantics | Re-audit in progress |
 | PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP | RETAIN / REBIND | Consume external decomposition standard | Implemented |
 | SCOPE_CHANGE, DOMAIN_ENGINE, DBM_PUBLISHER, EQUATION_AUDIT | RETAIN / SLIM | Preserve human/domain gates; move repetition downward | Re-audit in progress |
-| PREPARATION, RESEARCHER, AGGREGATION, DOMAIN_HYPERGRAPH, AUDIT_*, EVALUATION_* | REQUALIFY | TASK skill, tool, ephemeral generalist, or approved dedicated Agent 2 | Pending per-role evidence; existing files remain compatibility-capable |
+| PREPARATION, RESEARCHER, AGGREGATION, DOMAIN_HYPERGRAPH, AUDIT_*, EVALUATION_* | RETAIN / REQUALIFIED | Approved dedicated Agent 2 under D-GOV-13; future TASK-skill/tool migration remains replacement-first | Persistent output/recovery schemas and live compatibility references recorded in D-GOV-13; each file declares the approval reference |
 | TASK | RETAIN | Default recurring-method Agent 2 shell | Live |
 
 ## Removal Rule

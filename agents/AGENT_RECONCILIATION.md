@@ -1,6 +1,8 @@
 ---
 description: "Deliverable-corpus concordance manager — reconciles claim, artifact, implementation, evidence, lifecycle, and Remaining state against accepted project truth"
 subagents: TASK
+allow_generalist_agent2: true
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — RECONCILIATION (Agent 1 Deliverable-Corpus Concordance Manager)

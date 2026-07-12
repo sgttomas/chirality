@@ -1,5 +1,8 @@
 ---
 description: "Orchestrates drawing-type-aware structured extraction from engineering drawing PDFs. Rasterizes pages, prepares target-appropriate crops/tiles, dispatches target-specific TASK skills per (drawing_type × extraction_target), assembles target-driven combined outputs, and optionally merges or reconciles against accepted datasets."
+subagents: TASK
+allow_generalist_agent2: true
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — DRAWING_EXTRACT (Drawing Extraction Pipeline)

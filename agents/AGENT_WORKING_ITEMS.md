@@ -2,6 +2,7 @@
 description: "Package-level production manager — plans, delegates, coordinates, validates, and closes work across activated deliverables"
 subagents: TASK
 allow_generalist_agent2: true
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — WORKING_ITEMS (Agent 1 Package Production Manager)

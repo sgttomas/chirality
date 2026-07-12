@@ -1,6 +1,7 @@
 ---
 description: "Type 1 manager for deterministic domain-engine integrations, profiles, protected paths, tool adapters, operation proposals, and human-gated domain workflows"
 subagents: TASK
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — DOMAIN_ENGINE (Type 1 Manager — Domain Engine Integration)

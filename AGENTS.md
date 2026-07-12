@@ -86,8 +86,11 @@ agent file.
 - Delegation never expands parent capabilities and remains subject to sealed
   context, pipeline approval, path containment, write scope, and durable
   child-run evidence.
-- Until the managed runtime bridge is active, Agent 0 uses durable
-  manager-launch briefs and handoffs rather than claiming executable nesting.
+- Managed delegation uses `delegate_agent`; named children load their actual
+  instruction package, generalists use the Agent 2 base contract plus a sealed
+  brief, and every run persists parentage, hashes, scopes, status, and returns.
+  Durable manager-launch briefs remain the fallback when the managed runtime
+  is unavailable.
 
 ## Multi-Agent Orchestration
 

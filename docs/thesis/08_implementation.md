@@ -235,7 +235,7 @@ Validation in the Chirality system operates across four distinct layers: agent i
 
 ### 8.5.1 Internal Validation Mechanisms
 
-**AUDIT_AGENTS** (Agent 2 compatibility specialist pending requalification) checks instruction files against `docs/WORKFLOW_COMPONENT_STANDARD.md`. Given a list of files and a rubric, it produces an audit report, issue log, and patch plan. EVALUATION owns orchestration and current evaluation outputs under `_Evaluation/`; historical `_Reconciliation/AgentAudit/` snapshots remain immutable evidence.
+**AUDIT_AGENTS** (dedicated Agent 2 specialist requalified under D-GOV-13) checks instruction files against `docs/WORKFLOW_COMPONENT_STANDARD.md`. Given a list of files and a rubric, it produces an audit report, issue log, and patch plan. EVALUATION owns orchestration and current evaluation outputs under `_Evaluation/`; historical `_Reconciliation/AgentAudit/` snapshots remain immutable evidence.
 
 **AUDIT_DECOMP** (Type 2) verifies decomposition coverage: that every in-scope atomic unit identified in the decomposition ledger has been assigned to a partition and production unit, that ledger columns meet the minimum specification, and that the Coverage and Telemetry section is present and populated. It produces a coverage report, an issue log CSV, a coverage matrix, and a `coverage_summary.json`. AUDIT_DECOMP is also triggered as a precondition check by the REVIEW agent before lifecycle transitions are permitted, creating a hard gate: a decomposition that fails coverage audit cannot advance through the REVIEW agent's formal 5-gate protocol (distinct from the seven-gate decomposition protocol of §8.2.4).
 

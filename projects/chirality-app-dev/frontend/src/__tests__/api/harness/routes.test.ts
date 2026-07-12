@@ -301,13 +301,13 @@ describe('Harness API baseline routes', () => {
     expect(bootBody.session.sdkPackageVersion).toBe('0.3.150');
     expect(bootBody.session.runtimeFingerprint).toEqual(bootBody.boot.runtimeFingerprint);
     expect(bootBody.boot.runtimeFingerprint).toMatchObject({
-      schemaVersion: 'harness-runtime-fingerprint.v1',
+      schemaVersion: 'harness-runtime-fingerprint.v2.managed-delegation',
       toolRegistryVersion: expect.stringMatching(/^harness-tools\./),
       sdkPackageVersion: '0.3.150',
       mcpServers: [
         expect.objectContaining({
           name: 'chirality',
-          version: '1.0.0',
+          version: '2.0.0',
           toolNames: expect.arrayContaining(['status_read', 'deps_read'])
         })
       ],
@@ -1387,6 +1387,17 @@ describe('direct-chat persona gate (D-APP-24)', () => {
     expect(response.status).toBe(200);
     expect(body.session.persona).toBe('WORKING_ITEMS');
     expect(body.session.mode).toBe('CHAT');
+  });
+
+  it('allows an explicitly untyped CHAT session without creating an agent role', async () => {
+    const routes = await importRouteModules();
+    const { response, body } = await createSession(routes, context.projectRoot, {
+      persona: 'UNTYPED',
+      mode: 'CHAT'
+    });
+
+    expect(response.status).toBe(200);
+    expect(body.session.persona).toBe('UNTYPED');
   });
 
   it('does not gate non-CHAT sections (workbench may still create any persona)', async () => {

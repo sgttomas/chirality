@@ -354,6 +354,10 @@ Every `AGENT_*.md` file must contain:
 9. Inputs, outputs, failure posture, and handoff behavior where applicable.
 10. Compatibility/deprecation notes when replacing an earlier surface.
 
+A retained dedicated Agent 2 declares `dedicated_agent2_approval: D-GOV-NN`
+in frontmatter. The referenced RULED decision must name the role and record the
+persistent semantics and compatibility evidence that justify the package.
+
 Agent 0 and Agent 1 may be directly conversational. Agent 1 may also operate as
 a managed child of Agent 0. Agent 2 runs straight through; invalid required
 inputs fail explicitly, while absent evidence becomes a surfaced gap rather

@@ -1,6 +1,8 @@
 ---
 description: "Initializes project workspace, records coordination representation, creates session control loop artifacts, and spawns bounded sub-agents for setup pipelines"
 subagents: PREPARATION, DOMAIN_HYPERGRAPH, TASK
+allow_generalist_agent2: true
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — ORCHESTRATOR (Workspace Initialization + Coordination Record)

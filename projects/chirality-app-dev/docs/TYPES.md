@@ -96,9 +96,9 @@ The unsanitized canonical name belongs in `_CONTEXT.md` or the governing decompo
 
 | Type | Name | Role | Scope |
 |---|---|---|---|
-| **Type 0** | Architect | Defines and maintains rules, standards, contracts, and role boundaries. | Project-wide or system-wide. |
-| **Type 1** | Manager | Interprets intent, decomposes work, routes specialists, reconciles outputs. | Project, package, or workflow. |
-| **Type 2** | Specialist | Executes bounded briefs with minimal context and returns outputs plus evidence. | Deliverable-local or narrow task. |
+| **Type 0** | Supervising Architect | Aligns the human and workflow, supervises Agent 1 managers, brokers cross-package coordination, and returns consequential decisions. HELP_HUMAN is the sole canonical instance role. | Cross-manager and cross-package. |
+| **Type 1** | Manager | Owns one management scope, derives work graphs, routes specialists, coordinates evidence, and validates fan-in. | Package, project workflow, source campaign, or bounded management domain. |
+| **Type 2** | Specialist | Executes one sealed brief and returns outputs plus evidence without delegating. | Deliverable-local, page/sheet-local, or narrow task. |
 
 ### 3.2 Agent Classification Properties
 
@@ -111,14 +111,18 @@ The unsanitized canonical name belongs in `_CONTEXT.md` or the governing decompo
 
 ### 3.3 Authority Model
 
-Authority flows downward; escalation flows upward.
+Delegation flows downward; evidence, coordination notices, and escalation flow
+upward. Standards constrain every layer but do not occupy Agent 0.
 
-- Type 0 defines what “correct” means.
+- Type 0 aligns the human, scope, stakes, managers, and decision points.
 - Type 1 prepares, routes, and reconciles work.
 - Type 2 executes bounded work.
 - Humans approve, issue, sign, seal, and accept reliance.
 
-A Type 2 agent cannot modify Type 0 rules. A Type 1 agent cannot issue work for reliance. No agent can approve professional work.
+Agent 0 delegates only to named Agent 1 roles. Agent 1 delegates only to TASK,
+allowed ephemeral generalists, or approved dedicated Agent 2 roles. Agent 2
+does not delegate. A Type 1 agent cannot issue work for reliance. No agent can
+approve professional work.
 
 ### 3.4 Persona Alias Terms
 
@@ -337,6 +341,9 @@ Later event categories:
 - `context.compacted`
 - `subagent.started`
 - `subagent.completed`
+- `coordination.notice`
+- `coordination.update`
+- `coordination.acknowledged`
 - `runtime.mirror.error`
 
 ### 7.4 Browser `UIEvent` Terms
@@ -446,7 +453,7 @@ SDK terms belong at the adapter boundary. Public Chirality APIs and canonical ev
 
 ---
 
-## 10. Subagent Runtime Vocabulary
+## 10. Multi-Agent Runtime Vocabulary
 
 ```ts
 type ChildRunRecord = {
@@ -488,10 +495,14 @@ type ChildRunRecord = {
 
 | Term | Meaning |
 |---|---|
-| `evaluateSubagentGovernance` | Authoritative fail-closed gate for delegation. |
-| Type 2 candidate | Agent instruction with `AGENT_TYPE: 2`; preferred `AGENT_CLASS: TASK`. |
+| `ManagedDelegationService` | Authoritative hierarchy, seal, capability, path, write-overlap, and durable-record policy for managed delegation. |
+| `evaluateSubagentGovernance` | Compatibility fail-closed gate for the legacy SDK Agent adapter. |
+| Named child | Agent 1 or Agent 2 instantiated from its actual `AGENT_*.md` and recorded instruction hash. |
+| Generalist child | Ephemeral Agent 2 instantiated from the Agent 2 base contract and sealed brief without a persistent role file. |
 | Parent session | Session requesting delegation. |
-| Child run | Governed subagent execution record. |
+| Child run | Governed managed-session or compatibility-adapter execution record. |
+| Work graph | Versioned nodes, dependencies, concurrency, ownership, returns, and gates for one orchestration run. |
+| Coordination notice | Typed child-to-parent information with claim status, evidence, affected scopes, and requested action. |
 | Context sealed | Required governance condition confirming bounded context. |
 | Pipeline run approved | Required governance condition for Type 2 task invocation. |
 | Approval reference | Non-empty human/gate evidence string required before delegation. |

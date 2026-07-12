@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: ACTIVE / PARTIALLY BLOCKED BY EXTERNAL INTEGRATION  
+Status: COMPLETE / PUBLICATION PENDING
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -22,7 +22,7 @@ Branch: `codex/agent-governance-redesign`
 
 - Canonical doctrine in `AGENTS.md`; exact `CLAUDE.md` import and validator/export enforcement.
 - HELPS_HUMANS consolidated component design, skill/tool design, context transposition, and decomposition-component design.
-- HELP_HUMAN rewritten as sole read-only Agent 0 with durable launch-brief fallback.
+- HELP_HUMAN rewritten as sole read-only Agent 0 with managed delegation and a durable launch-brief fallback.
 - `docs/DECOMPOSITION_STANDARD.md` extracted; DECOMP_BASE persona removed and live managers rebound.
 - EVALUATION expanded; old generic RECONCILIATION semantics transferred.
 - RECONCILIATION activated from the ratified method and integrated app-dev and
@@ -32,31 +32,51 @@ Branch: `codex/agent-governance-redesign`
 - D-GOV-12 doctrine, package-level WORKING_ITEMS, cross-package HELP_HUMAN,
   orchestration vocabulary, and managed-runtime record schema added.
 - DBM, disposition matrix, TYPES, DIRECTIVE, README, professional-engineering mapping, roadmap, validators, skill/tool ownership, and export contract updated.
+- App-dev and piping loops now use package-level WORKING_ITEMS work graphs.
+- Project software profiles, five software TASK skills, and deterministic
+  discovery/check/scope/comparison/drift tools are live.
+- Managed child sessions, terminal/background execution, coordination notices,
+  updates, amendments, acknowledgments, runtime records, actual named
+  instruction loading, and the SDK compatibility adapter are implemented.
+- D-GOV-13 requalifies the 14 retained dedicated Agent 2 packages against
+  persistent output/recovery and live-reference compatibility evidence.
 
-## Pending Internal Work
+## Validation Evidence
 
-- Requalify each remaining non-TASK dedicated Agent 2 and migrate it only with callers, compatibility behavior, and tests.
-- Continue slimming retained Agent 1 roles around human decisions and handoffs.
-- Rerun and resolve full validation/export findings after all current-tranche edits.
+- Root governance/tool suite: 757 tests passed before the D-GOV-13 metadata
+  binding; the affected validator suite then passed 57 tests, with 33 agent
+  packages at zero errors and zero warnings and all 43 live skills valid.
+- App-dev runtime: TypeScript typecheck passed; the complete Vitest suite passed
+  93 files (one skipped), 673 tests (four skipped); the final managed-delegation,
+  descriptor, bridge, and instruction-integrity slice passed 29 tests.
+- Piping: the complete evidence sweep passed 36 Rust crate tests, 459 Python
+  tests, 471 desktop unit/component tests, 18 development browser-flow tests,
+  the production-distribution WASM test, and the desktop production build.
+- Path-anchor and instruction-entrypoint validators passed. `git diff --check`
+  reported no whitespace errors.
+
+## Deferred Evolution
+
+- Continue slimming retained Agent 1 roles around human decisions and handoffs
+  when use evidence identifies a safe replacement-first migration.
+- Reconsider `SOFTWARE_DEV` only if WORKING_ITEMS plus the software activation
+  profile, TASK skills, and deterministic tools prove insufficient in practice.
 
 ## External Blockers
 
-The concordance integration blocker is cleared. Managed delegation,
-project-loop migration, software profiles/skills/tools, and combined
-acceptance remain open.
+None. Both paused concordance branches are integrated and combined validation
+has passed. Public-export regeneration follows the publication commits.
 
 ## Required Resume Sequence
 
-1. Update project indexes and loop instructions to the package-level paradigm.
-2. Add software activation profiles, initial skills, and deterministic tools.
-3. Implement the managed delegation runtime, compatibility adapter, metadata,
-   persistence, and hierarchy/live-coordination tests.
-4. Run root, app-dev, piping, and workflow acceptance scenarios.
-5. Publish through CHANGE.
+1. Bind D-GOV-13 to the implementation publication SHA.
+2. Regenerate and validate the derivative public export.
+3. Resume project work from this accepted hierarchy and orchestration basis.
 
 ## Closure Verdict
 
-Instruction tranche: OPEN until full validation passes.
+Instruction tranche: COMPLETE.
 RECONCILIATION activation: COMPLETE.
-Runtime bridge: IN PROGRESS against integrated paused project state.
-Overall D-GOV-11 implementation: OPEN.
+Runtime bridge: IMPLEMENTED AND VALIDATED.
+Overall D-GOV-11 implementation: COMPLETE, subject only to publication-SHA
+binding and derivative-export regeneration.

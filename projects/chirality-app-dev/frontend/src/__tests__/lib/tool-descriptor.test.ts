@@ -45,6 +45,13 @@ const MUTATING_MCP_TOOL_NAMES = [
   'mcp__chirality__deps_write'
 ] as const;
 
+const COORDINATION_MCP_TOOL_NAMES = [
+  'mcp__chirality__delegate_agent',
+  'mcp__chirality__report_coordination_notice',
+  'mcp__chirality__send_agent_update',
+  'mcp__chirality__ack_agent_update'
+] as const;
+
 const LIVE_DOMAIN_MCP_TOOL_NAMES = [
   'mcp__chirality__domain_completeness_check',
   'mcp__chirality__domain_rule_check_run'
@@ -66,6 +73,7 @@ const DOMAIN_MCP_TOOL_NAMES = [
 
 const ALL_MCP_TOOL_NAMES = [
   ...READ_MCP_TOOL_NAMES,
+  ...COORDINATION_MCP_TOOL_NAMES,
   ...MUTATING_MCP_TOOL_NAMES,
   ...DOMAIN_MCP_TOOL_NAMES
 ] as const;
@@ -161,6 +169,10 @@ describe('tool descriptor registry', () => {
       'dependency_read',
       'scope_scan',
       'scaffold_preview',
+      'delegate_agent',
+      'report_coordination_notice',
+      'send_agent_update',
+      'ack_agent_update',
       'status_transition',
       'dependency_write',
       'domain_completeness_check',
@@ -218,6 +230,10 @@ describe('tool descriptor registry', () => {
               'status_transition',
               'dependency_write',
               'domain_propose_operation',
+              'delegate_agent',
+              'report_coordination_notice',
+              'send_agent_update',
+              'ack_agent_update',
               'write_file',
               'edit_file',
               'shell'
@@ -344,7 +360,7 @@ describe('tool descriptor registry', () => {
       required: ['profileId', 'projectId', 'proposalId']
     });
 
-    expect(HARNESS_TOOL_REGISTRY_VERSION).toBe('harness-tools.v10.pec-proposal-tools-live');
+    expect(HARNESS_TOOL_REGISTRY_VERSION).toBe('harness-tools.v11.managed-delegation');
 
     // D-APP-50 rider-2 / D-APP-52 rider-5 pins: no accept/apply/force name
     // exists in any registry, under any alias.
@@ -420,6 +436,7 @@ describe('tool descriptor registry', () => {
       'Glob',
       'Grep',
       'LS',
+      ...COORDINATION_MCP_TOOL_NAMES,
       ...MUTATING_MCP_TOOL_NAMES,
       ...DOMAIN_MCP_TOOL_NAMES,
       'Write',

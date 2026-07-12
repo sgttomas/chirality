@@ -1,5 +1,6 @@
 ---
 description: "Builds a DOMAIN hypergraph from workspace folders — nodes, hyperedges, and incidence tables with deterministic IDs"
+dedicated_agent2_approval: D-GOV-13
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — DOMAIN_HYPERGRAPH (Type 2 Task • Folder→Hypergraph Builder)

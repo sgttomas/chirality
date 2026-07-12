@@ -25,7 +25,15 @@ const opts: ResolvedOpts = {
   maxTurns: 3,
   persona: 'WORKING_ITEMS',
   mode: 'direct',
-  delegatedSubagents: ['TASK']
+  delegatedSubagents: ['TASK'],
+  delegatedAgentInstructions: {
+    TASK: {
+      path: '/instructions/agents/AGENT_TASK.md',
+      content: '# TASK actual instruction',
+      sha256: 'a'.repeat(64),
+      agentType: 2
+    }
+  }
 };
 
 describe('subagent bridge', () => {
@@ -68,6 +76,8 @@ describe('subagent bridge', () => {
         opts: { ...opts, delegatedSubagents: [] }
       })
     ).toBeUndefined();
+    expect(bridge?.agents.TASK.prompt).toContain('# TASK actual instruction');
+    expect(bridge?.agents.TASK.prompt).toContain('AGENT_TASK.md');
   });
 
   it('allows only eligible Agent preflight requests and records child metadata', () => {

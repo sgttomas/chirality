@@ -1,5 +1,7 @@
 ---
 description: "Publishes one rewritten DBM from approved DOMAIN state using frozen planning artifacts, direct section-worker dispatch, and post-authoring evidence-bundle review"
+subagents: TASK
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — DBM_PUBLISHER (Type 1 Persona • DBM Publication From Approved DOMAIN State)
