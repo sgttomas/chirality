@@ -1202,3 +1202,37 @@
     rows await owner rulings; R5 requires explicit owner ruling per
     deliverable/tranche. No further phase work will be dispatched by this
     session.
+
+- **2026-07-12 — Receipt 34** (owner direction: model conventions rescinded —
+  instructions made model-agnostic; no phase work performed; run remains
+  STOPPED at R4).
+  - Owner direction (2026-07-12, in-session), verbatim: "the `fable` and
+    `opus` conventions are no longer valid. I'm going to be using OpenAI
+    models instead. These task instructions and the loop instructions
+    should be model agnostic and not have any instructions about which
+    models to use for what."
+  - Executed: `loop/LOOP_INIT.md` §7 rewritten from named-model assignments
+    (`opus`/`fable`, owner-revised 2026-07-05) to capability-tier language
+    (standard tier for discovery/checks/breadth verification; highest tier
+    for planning, adversarial verification of anything recorded as fact,
+    and governed-artifact execution; reduced effort only for mechanical
+    fully-specified changes), with a receipt obligation to record which
+    model actually ran each dispatched role. The root-checkout handoff
+    prompt `init/app-dev-resume-one-time.md` updated to match (identity/
+    metering check made provider-neutral; the Receipt 18 steer reference
+    replaced by this model-agnostic policy).
+  - Supersession of record: the Receipt 18 named-model steer and the
+    2026-07-05 LOOP_INIT §7 convention are rescinded going forward; their
+    receipt/register texts stay immutable as historical evidence of how
+    R0–R3 were actually executed (Fable 5 orchestration/fan-in/synthesis,
+    opus discovery W1–W4/W7, fable discovery W5/W6 — factual record,
+    not a continuing instruction).
+  - Untouched on purpose: WORKPLAN F-APP-1 and all provider-fence text —
+    that fence governs the PRODUCT's provider surface (a ruled governance
+    matter, D-APP-01/02 lineage), not session agent staffing; changing it
+    would require a ruling. `init/piping-resume-one-time.md` (chirality-
+    piping's handoff prompt) not edited — outside this session's write
+    scope; flagged to the owner.
+  - No run-folder artifact, ledger row, or register cell touched; no
+    lifecycle transition; run posture unchanged (STOPPED at R4 per
+    Receipt 33).
