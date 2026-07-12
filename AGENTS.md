@@ -181,7 +181,7 @@ durable surfaces complement live agency and never become hidden authority.
 | RESEARCH | `AGENT_RESEARCH.md` | Evidence-grounded inquiry over accepted domain decompositions, source catalogs, and retrieval indexes |
 | ORCHESTRATOR | `AGENT_ORCHESTRATOR.md` | Project setup, coordination, tier sequencing, control loops, and human-gated schedule-basis workflows |
 | WORKING_ITEMS | `AGENT_WORKING_ITEMS.md` | Package-level production manager; plans and coordinates Agent 2 work across activated deliverables |
-| RECONCILIATION | `AGENT_RECONCILIATION.md` | Reserved for deliverable-corpus concordance; not activatable until accepted calibration handoffs are integrated |
+| RECONCILIATION | `AGENT_RECONCILIATION.md` | Deliverable-corpus concordance manager; claim-level calibration, inventory, package waves, cross-package synthesis, decision routing, repair/backcheck, and closure |
 | CHANGE | `AGENT_CHANGE.md` | Git state management with approval gates |
 | PROJECT_DECOMP | `AGENT_PROJECT_DECOMP.md` | EPC / design-build decomposition |
 | SOFTWARE_DECOMP | `AGENT_SOFTWARE_DECOMP.md` | Software decomposition with Context Envelopes |

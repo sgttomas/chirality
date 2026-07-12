@@ -12,7 +12,7 @@
 | CONTEXT_TRANSPOSE | MERGE | HELPS_HUMANS component/migration design; bounded run work uses TASK or ephemeral generalist | Implemented; persona removed |
 | SCHEDULING | MERGE | ORCHESTRATOR schedule workflow; calculation/rendering downward | Implemented at instruction layer; persona removed |
 | EVALUATION | EXPAND | Generic audit orchestration plus old RECONCILIATION audit/coherence semantics | Implemented |
-| RECONCILIATION | RECREATE | Deliverable-corpus concordance from ratified method and two accepted calibrations | Reserved fail-closed; pending external handoffs |
+| RECONCILIATION | RECREATED | Deliverable-corpus concordance from the ratified method plus paused app-dev and piping calibration evidence | Activated after integration of app-dev W1/W2 and piping W1 pause boundaries |
 | PDF2MD | RETAIN / SLIM | Agent 1 source-contract manager; page work to TASK/generalist, deterministic work to tools | Manager boundary implemented; further slimming incremental |
 | DRAWING_EXTRACT | RETAIN / SLIM | Agent 1 target/schema manager; sheet work to TASK/generalist, deterministic work to tools | Manager boundary implemented; further slimming incremental |
 | ORCHESTRATOR | RETAIN / EXPAND | Setup, coordination, control loops, scheduling gates | Implemented at instruction layer |
@@ -30,4 +30,7 @@ No remaining dedicated Agent 2 file is removed until its replacement, callers, c
 
 ## External Dependencies
 
-The final RECONCILIATION contract depends on stable, accepted concordance handoffs from `chirality-piping` and `chirality-app-dev`. Managed nested delegation depends on integrating those branches, rebasing this tranche, and then changing the app-dev runtime against the accepted instruction roster.
+The paused app-dev and piping concordance branches are integrated into the
+redesign branch and their calibration evidence now grounds RECONCILIATION.
+Managed delegation and project-loop migration proceed against this accepted
+instruction roster before project development resumes.

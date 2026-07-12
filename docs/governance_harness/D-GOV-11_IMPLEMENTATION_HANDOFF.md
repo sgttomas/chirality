@@ -25,7 +25,8 @@ Branch: `codex/agent-governance-redesign`
 - HELP_HUMAN rewritten as sole read-only Agent 0 with durable launch-brief fallback.
 - `docs/DECOMPOSITION_STANDARD.md` extracted; DECOMP_BASE persona removed and live managers rebound.
 - EVALUATION expanded; old generic RECONCILIATION semantics transferred.
-- RECONCILIATION reserved fail-closed pending calibration evidence.
+- RECONCILIATION activated from the ratified method and integrated app-dev and
+  piping calibration/pause evidence.
 - SCHEDULING merged into ORCHESTRATOR; SKILLMAKER, TOOLMAKER, CONTEXT_TRANSPOSE, and SCHEDULING persona files removed after live caller redirection.
 - PDF2MD and DRAWING_EXTRACT source/target calibration and novel-generalist semantics added.
 - D-GOV-12 doctrine, package-level WORKING_ITEMS, cross-package HELP_HUMAN,
@@ -40,21 +41,22 @@ Branch: `codex/agent-governance-redesign`
 
 ## External Blockers
 
-1. The final RECONCILIATION instruction requires stable accepted concordance handoffs from both `chirality-piping` and `chirality-app-dev` and their integration into the branch basis.
-2. The managed delegation runtime must be implemented after those branches integrate and this branch is rebased, so app-dev runtime changes are made against the accepted instruction roster.
+The concordance integration blocker is cleared. Managed delegation,
+project-loop migration, software profiles/skills/tools, and combined
+acceptance remain open.
 
 ## Required Resume Sequence
 
-1. Confirm both calibration lanes have stable handoffs and accepted changes on main.
-2. Rebase `codex/agent-governance-redesign`.
-3. Derive and validate the activated RECONCILIATION contract from the ratified method and calibration evidence.
-4. Implement the managed `delegate_agent` runtime, compatibility adapter, metadata, and hierarchy tests.
-5. Run root and app-dev validation and workflow acceptance scenarios.
-6. Publish through CHANGE and backfill ruling SHAs.
+1. Update project indexes and loop instructions to the package-level paradigm.
+2. Add software activation profiles, initial skills, and deterministic tools.
+3. Implement the managed delegation runtime, compatibility adapter, metadata,
+   persistence, and hierarchy/live-coordination tests.
+4. Run root, app-dev, piping, and workflow acceptance scenarios.
+5. Publish through CHANGE.
 
 ## Closure Verdict
 
-Instruction tranche: OPEN until full validation passes.  
-RECONCILIATION activation: BLOCKED by external accepted evidence.  
-Runtime bridge: SEQUENCED after rebase, not authorized against stale app-dev state.  
+Instruction tranche: OPEN until full validation passes.
+RECONCILIATION activation: COMPLETE.
+Runtime bridge: IN PROGRESS against integrated paused project state.
 Overall D-GOV-11 implementation: OPEN.
