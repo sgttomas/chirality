@@ -6,6 +6,16 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-12 - D-APP-56 R5 P44 relocated-pointer docs repair
+
+Executed UPD-095, UPD-096, UPD-098, and UPD-099 plus the named PKG-05 and
+PKG-04 pointer riders across seven deliverables. Current register, kit, and
+runtime-contract citations now identify the live harness-contract package;
+dated assessments retain their original evidence with forward relocation
+annotations. UPD-097/RBR-025 is explicitly withheld for the final code tranche
+and fresh full-repository gate. All seven deliverables remain `IN_PROGRESS`;
+the generic concordance Remaining item stays open for R6.
+
 ## 2026-07-12 - D-APP-56 R5 P43 noteless-INSP-03 annotation repair
 
 Executed UPD-084..UPD-094 across eleven deliverables plus the owner-ruled

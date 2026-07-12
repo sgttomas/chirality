@@ -65,3 +65,7 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. Active pe
 ## Issuance-Gate-Process Observations
 
 DEL-04-05 has strong provider-boundary tests. Issuance should focus on whole-product redaction/logging breadth, timeout traceability, and REF-006 rather than expanding provider scope.
+
+## D-APP-56 R5 P44 pointer annotation (2026-07-12)
+
+The RQ-010 evidence citation above preserves the `frontend/src/lib/harness/tool-descriptor.ts` path inspected at assessment time. D-APP-46/D-APP-48 subsequently relocated that contract to `frontend/packages/harness-contract/src/tool-descriptor.ts`. The PASS conclusion is unchanged; this is an evidence-pointer annotation only.

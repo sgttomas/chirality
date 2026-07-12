@@ -18,7 +18,7 @@ ADQ-09 implements the G4 transcript view using existing replay/event data for DE
   - Preserves write order.
   - Counts malformed JSONL lines.
   - Applies read-time redaction to parsed replay records so imported/manual event logs cannot leak configured API keys.
-- Transcript model: `frontend/src/lib/harness/transcript-replay.ts`
+- Transcript model: `frontend/packages/harness-contract/src/transcript-replay.ts`
   - Exports `TranscriptView`, `TranscriptItem`, `TranscriptSdkLinkage`, and `deriveTranscriptView(events, session?)`.
   - Projects user/assistant message events, accumulated assistant deltas, tool completions/failures, compact tool summaries, artifact links, terminal outcomes, diagnostics, and SDK linkage metadata.
   - Keeps SDK transcript/store fields as adapter metadata under `sdkLinkage`.

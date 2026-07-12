@@ -18,7 +18,7 @@ unless explicitly mapped into Chirality-owned records.
 
 ## AgentEnginePort
 
-The product boundary is represented by `frontend/src/lib/harness/agent-engine-port.ts`.
+The product boundary is represented by `frontend/packages/harness-contract/src/agent-engine-port.ts`.
 
 Required behavior:
 
@@ -55,7 +55,7 @@ remain browser-visible SSE terminal evidence.
 
 ## HarnessEvent Evidence
 
-`frontend/src/lib/harness/event-schema.ts` defines versioned persisted runtime evidence.
+`frontend/packages/harness-contract/src/event-schema.ts` defines versioned persisted runtime evidence.
 `frontend/src/lib/harness/session-events.ts` appends JSONL records under the configured
 Chirality session root.
 

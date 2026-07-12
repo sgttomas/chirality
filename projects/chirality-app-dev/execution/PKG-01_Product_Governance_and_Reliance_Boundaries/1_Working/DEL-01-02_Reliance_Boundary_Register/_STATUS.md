@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Add the RBR-025 cited-enforcement-path existence assertion and rerun/record the row-level cross-check (source: D-APP-56 R4-P44 / UPD-097) (stage-gated: final code tranche and fresh full-repository typecheck/test gate)
 - Run claim-level concordance per the reconciliation method (source: plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §§6–8 at pinned main revision 551f84ef6)
 
 ## History
@@ -24,3 +25,4 @@
 - 2026-07-12 - D-APP-56 R4-P39 lifecycle-wording repair applied; concordance bootstrap remains open pending R6; no state change.
 - 2026-07-12 - D-APP-56 R4-P41 reference-path metadata repair applied; concordance bootstrap remains open pending R6; no state change.
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-086 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
+- 2026-07-12 - D-APP-56 R5 P44 docs applied UPD-095 and UPD-096; UPD-097/RBR-025 recorded as pending the final code tranche; generic concordance Remaining retained for R6; state remains IN_PROGRESS.

@@ -25,7 +25,7 @@
 | Artifact metadata fields | Tool name where known, optional turn ID where available, original and stored byte counts, truncation flag, SHA-256, session-lifetime retention policy, redaction status, and relative artifact path. | `docs/PRD.md` Section 10.5; D-APP-42 |
 | Redaction boundary | Runtime events, run logs, tool artifacts, and provider errors must redact secrets and avoid API keys. | `docs/CONTRACT.md` K-EVENT-6, K-KEY-1; `docs/PRD.md` NFR-002 |
 | Output budget classes | Small results inline, medium results preview plus metadata, large results artifact plus metadata. | `docs/PRD.md` Section 10.5 |
-| Output budget thresholds | Existing descriptor-defined thresholds remain unchanged by D-APP-42. | `frontend/src/lib/harness/tool-descriptor.ts`; D-APP-42 |
+| Output budget thresholds | Existing descriptor-defined thresholds remain unchanged by D-APP-42. | `frontend/packages/harness-contract/src/tool-descriptor.ts`; D-APP-42 |
 
 ## Conditions
 

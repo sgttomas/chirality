@@ -84,7 +84,7 @@ Dependency closure disposition: F-001 is resolved for the ADQ-09 transcript/repl
 Expected records for closure:
 
 - Replay parser implementation path: `frontend/src/lib/harness/session-events.ts`.
-- Transcript reconstruction model path: `frontend/src/lib/harness/transcript-replay.ts`.
+- Transcript reconstruction model path: `frontend/packages/harness-contract/src/transcript-replay.ts`.
 - Replay API path: `frontend/src/app/api/harness/session/[id]/events/route.ts`.
 - Transcript UI path: `frontend/src/components/shell/transcript-stream-view.tsx`.
 - Transcript reconstruction, malformed-tail, SDK transcript linkage, redaction, API replay, and sidebar render test results.
