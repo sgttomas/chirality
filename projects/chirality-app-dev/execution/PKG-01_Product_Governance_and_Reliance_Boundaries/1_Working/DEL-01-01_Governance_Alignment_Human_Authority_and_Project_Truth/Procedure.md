@@ -10,7 +10,7 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 |---|---|
 | Deliverable-local context files exist: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md` | Present at P3 enrichment. |
 | Current lifecycle state permits documentation reconciliation | `CHECKING`; this procedure does not perform lifecycle issuance or status regression. |
-| Authoritative references are locally accessible | Accessible; D-APP-38 corpus `v1` records REF-006 `docs/PRD.md` as `MATCH`. |
+| Authoritative references are locally accessible | Accessible; the current D-APP-38 corpus snapshot records REF-006 `docs/PRD.md` as `MATCH`. |
 | Upstream dependencies | See derivative `Dependencies.csv`; rows remain pending unless separately disposed. |
 | Downstream dependencies | No downstream deliverable edges are accepted in this reconciliation. |
 | Human owner | `ResponsibleParty: TBD`. |

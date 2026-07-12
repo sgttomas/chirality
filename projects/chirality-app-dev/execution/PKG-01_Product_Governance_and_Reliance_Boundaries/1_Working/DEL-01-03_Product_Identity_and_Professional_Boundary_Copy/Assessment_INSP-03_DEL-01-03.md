@@ -42,6 +42,11 @@ DEL-01-03 governs user-facing and review-facing copy for Chirality product ident
 
 ## Source-State Caveat
 
+**Superseding note (2026-07-12, D-APP-56 R4-P38):** The paragraph below is
+the preserved 2026-05-20 inspection observation. D-APP-38 reconciliation has
+since superseded that hash-mismatch condition; live `_REFERENCES.md` records
+REF-006 as `MATCH` under the current authority-corpus snapshot.
+
 `docs/PRD.md` is warning-limited for this deliverable: `_REFERENCES.md` records REF-006 as `HASH_MISMATCH`, expected `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`, actual `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. The deliverable correctly preserves the warning as a closure issue.
 
 ## Dependency Closure Note

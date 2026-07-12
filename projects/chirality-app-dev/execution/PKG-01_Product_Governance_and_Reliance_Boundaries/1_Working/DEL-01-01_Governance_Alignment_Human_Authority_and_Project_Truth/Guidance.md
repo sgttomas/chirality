@@ -18,7 +18,7 @@ Use this deliverable to keep the governing document set coherent while the Chira
 | Area | Guidance |
 |---|---|
 | Authority order | Start with `docs/DIRECTIVE.md`, then `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md`, and `docs/PRD.md`; use decomposition and agent instructions for scoped execution context. |
-| PRD reference integrity | D-APP-38 corpus `v1` reconciled REF-006; current `_REFERENCES.md` records `docs/PRD.md` as `MATCH`. Treat older hash-mismatch warnings as historical unless a fresh corpus audit reports drift. |
+| PRD reference integrity | the current D-APP-38 corpus snapshot reconciled REF-006; current `_REFERENCES.md` records `docs/PRD.md` as `MATCH`. Treat older hash-mismatch warnings as historical unless a fresh corpus audit reports drift. |
 | Accepted git history | When governance notes become acceptance evidence, bind them to a git SHA or equivalent immutable evidence. Content changes after approval require review again. |
 | Evidence roles | Runtime audit records support replay, diagnosis, and review; checklist outputs organize review evidence; accepted git history or equivalent immutable evidence binds any human approval to specific content. None of these records is approval by itself unless the accountable human approval record exists. |
 | Runtime implementation detail | Include runtime specifics only when they prove or preserve a boundary, such as accepted-turn persistence, event canonicality, settings isolation, permission denial, path containment, or SDK transcript non-authority. |
@@ -51,14 +51,14 @@ Use this deliverable to keep the governing document set coherent while the Chira
 |---|---|---|---|---|---|---|
 | DEL-01-01-C002 | Dispatch path used package label `PKG-01_Governance_and_Product_Boundaries`, but the existing deliverable folder and `_CONTEXT.md` use `PKG-01_Product_Governance_and_Reliance_Boundaries`. | TASK dispatch assignment path | Existing deliverable folder, `_CONTEXT.md`, and SOFTWARE_DECOMP v3.2 package name | Run record; all document Identification sections | Use stable IDs `PKG-01` and `DEL-01-01` plus existing `_CONTEXT.md`/decomposition package name; ask human to correct the stale dispatch label if needed. | TBD |
 
-Closed historical conflict: `DEL-01-01-C001` is superseded by D-APP-38 corpus `v1`; REF-006
+Closed historical conflict: `DEL-01-01-C001` is superseded by the current D-APP-38 corpus snapshot; REF-006
 `docs/PRD.md` now matches in `_REFERENCES.md`.
 
 ## Rulings And Open Questions
 
 | Ruling ID | Status / needed decision |
 |---|---|
-| DEL-01-01-R001 | Closed by D-APP-38 corpus `v1`; rerun authority-corpus status if an authority document changes. |
+| DEL-01-01-R001 | Closed by the current D-APP-38 corpus snapshot; rerun authority-corpus status if an authority document changes. |
 | DEL-01-01-R002 | Confirm whether the stale dispatch package-label path should be corrected in ORCHESTRATOR coordination state. |
 | DEL-01-01-R003 | Assign `ResponsibleParty`, if ownership is ready. |
 | DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. |

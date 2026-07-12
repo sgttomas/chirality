@@ -32,7 +32,7 @@ ResponsibleParty remains `TBD` until assigned by a human.
 | `docs/SPEC.md` | Accessible; hash match. |
 | `docs/TYPES.md` | Accessible; hash match. |
 | `docs/PLAN.md` | Accessible; hash match. |
-| `docs/PRD.md` | Accessible; D-APP-38 corpus `v1` records matching REF-006 authority-doc hashes. |
+| `docs/PRD.md` | Accessible; the current D-APP-38 corpus snapshot records matching REF-006 authority-doc hashes. |
 | Active decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accessible. |
 | `AGENT_SOFTWARE_DECOMP.md` | Accessible; hash match. |
 
@@ -46,7 +46,7 @@ ResponsibleParty remains `TBD` until assigned by a human.
 | Runtime-audit boundary | Checklist review | Runtime audit is evidence/replay support only; it does not replace approval records. |
 | Cross-document consistency | Diff checklist | PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition remain aligned or conflicts are surfaced. |
 | Reference integrity handling | Reference-row check | Authority-doc references, including REF-006, match the current D-APP-38 corpus before issue-readiness reliance is claimed. |
-| Historical warning handling | Conflict/source-warning table | Historical PRD hash warnings are treated as superseded by D-APP-38 corpus `v1`; other path/source conflicts remain visible pending human ruling. |
+| Historical warning handling | Conflict/source-warning table | Historical PRD hash warnings are treated as superseded by the current D-APP-38 corpus snapshot; other path/source conflicts remain visible pending human ruling. |
 | Dependency-register handling | Scope check | This reconciliation does not satisfy, retire, or otherwise mutate local dependency rows. |
 
 ## Documentation

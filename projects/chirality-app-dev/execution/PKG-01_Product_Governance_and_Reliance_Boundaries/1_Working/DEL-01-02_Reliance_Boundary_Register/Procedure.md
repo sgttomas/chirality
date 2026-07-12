@@ -13,7 +13,7 @@ This procedure describes how to produce, review, and maintain the Reliance Bound
 | References | `_REFERENCES.md` read; REF-001 through REF-007 available. |
 | Dependency declarations | `_DEPENDENCIES.md` and `Dependencies.csv` read; extracted rows remain active/TBD dependency evidence. |
 | Decomposition entry | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-01-02 row read. |
-| Reference integrity | D-APP-38 corpus `v1` records REF-006 `docs/PRD.md` as `MATCH`. |
+| Reference integrity | the current D-APP-38 corpus snapshot records REF-006 `docs/PRD.md` as `MATCH`. |
 | Required source review | Directive, Contract, Spec, Types, Plan, PRD, and Software Decomp source slices reviewed. |
 
 ## Steps
@@ -129,7 +129,7 @@ For each boundary row:
 1. Run a consistency review across register rows, enforcement matrix, and test index.
 2. Confirm there are no P0 rows with prompt-only or SDK-default-only enforcement.
 3. Confirm human-gate and professional-boundary rows do not imply automated approval.
-4. Confirm REF-006 is current under D-APP-38 corpus `v1`, or preserve any future drift warning.
+4. Confirm REF-006 is current under the current D-APP-38 corpus snapshot, or preserve any future drift warning.
 5. Confirm the generated register, enforcement matrix, and test index can be traced back to the datasheet fields and specification requirements.
 6. Move the deliverable to the next lifecycle state only through the authorized status workflow.
 
@@ -164,6 +164,6 @@ For each boundary row:
 
 | ID | Blocker | Required action |
 |---|---|---|
-| BLK-RBR-001 | REF-006 source-state | Closed by D-APP-38 corpus `v1`; reopen only if future authority-corpus status reports drift. |
+| BLK-RBR-001 | REF-006 source-state | Closed by the current D-APP-38 corpus snapshot; reopen only if future authority-corpus status reports drift. |
 | BLK-RBR-002 | Exact implementation surfaces not yet complete | Downstream runtime implementation deliverables must fill file paths and tests. |
 | BLK-RBR-003 | SDK transcript and settings behavior require empirical probe | R0/R1 first-adapter probe and validation must confirm behavior before final acceptance. |

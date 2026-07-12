@@ -103,7 +103,7 @@ Track these explicitly until closed:
 | BoundaryID | RB-SETTINGS |
 | BoundaryCategory | settings |
 | ProductSemantic | Shipped builds must not load ambient user/global or local Claude Code settings. |
-| SourceRefs | `docs/SPEC.md` §12.2; `docs/CONTRACT.md` K-SDK-1; `docs/PRD.md` FR-117 under D-APP-38 corpus `v1` |
+| SourceRefs | `docs/SPEC.md` §12.2; `docs/CONTRACT.md` K-SDK-1; `docs/PRD.md` FR-117 under the current D-APP-38 corpus snapshot |
 | EnforcementOwner | Chirality code + SDK option + release validation |
 | EnforcementSurface | `SdkOptionsBuilder` sets `settingSources: []`; settings isolation test; release verification |
 | PromptOnlyAllowed | NO |
@@ -122,7 +122,7 @@ Track these explicitly until closed:
 
 ## Closed Source-State Note
 
-Historical conflict `CONF-RBR-001` is superseded by D-APP-38 corpus `v1`: `_REFERENCES.md` now records
+Historical conflict `CONF-RBR-001` is superseded by the current D-APP-38 corpus snapshot: `_REFERENCES.md` now records
 REF-006 `docs/PRD.md` as `MATCH`. That source-state reconciliation did not by itself generate the
 reliance-boundary register or satisfy dependency rows; it only removed the stale PRD hash blocker from
 the local-kit wording.
