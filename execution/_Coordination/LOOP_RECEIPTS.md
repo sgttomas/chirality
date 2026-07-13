@@ -39,3 +39,17 @@
   receipt, TYPES, or SPEC content was changed.
 - Release gate: explicit APPROVED/AMENDED ruling on the nine-item D-GOV-15
   slate and SHA-bound publication before any pilot worktree conversion.
+
+### Receipt 1 — 2026-07-12 — D-GOV-15 approved; execution deferred
+
+- Owner ruling: "I rule APPROVED for all nine. Incorporate this, but do not
+  proceed with implementation."
+- Decision: `D-GOV-15`, proposed snapshot
+  `c4c5dd2df0d7b5424d48672c38d1eef37262e2f6`; all nine items approved.
+- Effect: the exact pilot variance and Stage-1 execution contract are
+  authorized, but no pilot worktree or conversion was started in this session.
+- State: `HANDOFF_READY`; next session must inspect live Git/project-loop state,
+  publish a versioned orchestration plan, and execute the calibration gate
+  before any frozen-schema wave.
+- Stop gate remains: no candidate pilot deliverable merges to `main`; stop for
+  D-GOV-16 after preservation audit and Stage-2 evidence assembly.

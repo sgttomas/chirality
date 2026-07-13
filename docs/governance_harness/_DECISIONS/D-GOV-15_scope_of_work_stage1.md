@@ -1,8 +1,9 @@
 # D-GOV-15 — Deliverable Scope-of-Work Stage 1
 
-Status:       PROPOSED — AWAITING OWNER RULING
-HumanRuling:  TBD
+Status:       RULED
+HumanRuling:  APPROVED — owner response, 2026-07-12: "I rule APPROVED for all nine. Incorporate this, but do not proceed with implementation."
 Proposed SHA: c4c5dd2df0d7b5424d48672c38d1eef37262e2f6
+Ruling SHA:   TBD — backfill after ruling publication commit
 Date:         2026-07-12
 FramedBy:     deliverable Scope-of-Work architecture assessment and Stage-1 plan
 EvidenceBasis: `67ba77e5107f941e6fcc7382ef467b6b018e972d`
@@ -160,6 +161,9 @@ not silently relax the gate or turn the candidate into authority.
 
 ## Owner ruling
 
-TBD. The owner must explicitly approve, reject, or amend the nine-item slate.
-Until then, the reports and candidate component work may inform a decision,
-but no path-scoped variance, pilot conversion, or Stage-2 authority exists.
+APPROVED for all nine items by the human owner on 2026-07-12. The owner also
+directed that this ruling be incorporated without proceeding with pilot
+implementation in the current session. The path-scoped variance is therefore
+authorized but not yet exercised. A later session must resume from the ruled
+snapshot, derive a fresh execution graph, and preserve every Stage-1 fence and
+Stage-2 stop gate above.
