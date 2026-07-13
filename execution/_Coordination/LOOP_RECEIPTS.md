@@ -133,3 +133,17 @@
   dispatched and no canon, project, lifecycle, pilot, or remote state changed.
 - Release gate: human accepts or amends this plan, then a fresh governed
   execution run reruns synchronized-main basis checks before dispatch.
+
+### Receipt 8 — 2026-07-12 — D-GOV-16 Stage-2 root loop activated
+
+- Authority: owner direction “proceed accordingly,” recorded in
+  `SOW-STAGE2-PLAN-20260712/PLAN_ACCEPTANCE.md`; plan acceptance is not H1/H2.
+- Binding: loop activation snapshot
+  `1eebc67ca0ce82bb2ae320fec49b1568fa037ba1` establishes the deterministic
+  `LOOP_INIT.md` → `CURRENT_WORKPLAN.md` → Stage-2 workplan chain.
+- Checks: target containment, launcher immutability, and all four sealed
+  ORCHESTRATOR loop-output hashes PASS.
+- State: `STAGE2_LOOP_ACTIVE — READY_FOR_FRESH_EXECUTION_SESSION`; no Stage-2
+  node ran, and H1/H2 remain unapproved.
+- Release gate: a fresh governed execution run repeats Step 0 synchronized-main
+  and census/caller preflight before it may dispatch a dependency-released node.

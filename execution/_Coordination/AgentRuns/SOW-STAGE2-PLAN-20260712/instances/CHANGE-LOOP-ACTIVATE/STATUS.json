@@ -3,6 +3,8 @@
   "instance": "CHANGE-LOOP-ACTIVATE",
   "role": "CHANGE",
   "parent": "HELP_HUMAN",
-  "status": "DISPATCHED",
-  "objective": "Commit, bind, fast-forward, and push the accepted Stage-2 root-loop activation without executing Stage 2."
+  "status": "STAGE2_LOOP_ACTIVE — READY_FOR_FRESH_EXECUTION_SESSION",
+  "objective": "Commit, bind, fast-forward, and push the accepted Stage-2 root-loop activation without executing Stage 2.",
+  "activation_snapshot": "1eebc67ca0ce82bb2ae320fec49b1568fa037ba1",
+  "result": "Root loop activated and bound; no Stage-2 node ran, and H1/H2 remain unapproved human gates."
 }

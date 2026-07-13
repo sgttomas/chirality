@@ -1,6 +1,6 @@
 # Scope-of-Work Stage-1 Handoff State
 
-Status: `STAGE2_PLAN_PRESENTED_AWAITING_ACCEPTANCE`
+Status: `STAGE2_LOOP_ACTIVE — READY_FOR_FRESH_EXECUTION_SESSION`
 
 ## Accepted upstream basis
 
@@ -22,6 +22,10 @@ Status: `STAGE2_PLAN_PRESENTED_AWAITING_ACCEPTANCE`
 - Presented Stage-2 plan branch/snapshot:
   `codex/sow-stage2-plan@27f03730c956447b9a9696422cc9c63b8f061939`;
   package `execution/_Coordination/AgentRuns/SOW-STAGE2-PLAN-20260712/`.
+- Accepted Stage-2 root-loop activation snapshot:
+  `1eebc67ca0ce82bb2ae320fec49b1568fa037ba1`; deterministic pointer
+  `CURRENT_WORKPLAN.md` selects
+  `WORKPLAN_2026-07-12_scope_of_work_stage2.md`.
 
 ## Closure verdict
 
@@ -39,9 +43,10 @@ contract. Ten-pilot reproduction passes byte-for-byte. The full evidence is
 derivative and does not replace deliverable, decomposition, lifecycle, or
 human-decision truth.
 
-The fresh D-GOV-16 Stage-2 orchestration plan is now presented and SHA-bound.
-It passed its basis, arithmetic, and traceability checks, but no Stage-2 node
-was dispatched and the plan is not execution authority.
+The fresh D-GOV-16 Stage-2 orchestration plan is accepted for the next
+goal-oriented execution session and has been integrated into the deterministic
+root bootstrap chain. The plan and loop activation passed their sealed checks,
+but no Stage-2 node has been dispatched or implemented.
 
 ## D-GOV-16 ruled package
 
@@ -56,12 +61,13 @@ basis.
 
 ## Required stop and release condition
 
-The required fresh governed plan has been presented from synchronized `main`,
-but it remains awaiting human acceptance, amendment, deferral, or rejection.
-Until an accepted plan starts a fresh governed execution run, `docs/TYPES.md`
-and `docs/SPEC.md` remain unchanged; no remaining-corpus conversion, consumer
-migration, candidate-pilot integration, ISSUED representation replacement,
-lifecycle act, or legacy retirement occurs.
+The accepted plan is active only through a fresh execution session that begins
+with its Step 0 preflight. Until that run lawfully releases a node,
+`docs/TYPES.md` and `docs/SPEC.md` remain unchanged; no remaining-corpus
+conversion, consumer migration, candidate-pilot integration, ISSUED
+representation replacement, lifecycle act, or legacy retirement occurs. H1
+administrative approval for ISSUED `DEL-01-01` and H2 legacy-retirement
+approval remain unapproved human gates.
 
 ## Rerun requirements
 
