@@ -1,0 +1,14 @@
+{
+  "instance_id": "HELPS-C1",
+  "role": "HELPS_HUMANS",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "brief_version": 1,
+  "status": "PASS",
+  "objective": "Prepare exact D-GOV-16 canon successor candidate without live canon or Git mutation",
+  "dependencies": ["B0_PASS"],
+  "return": "RETURN.md",
+  "candidate": "candidates/P1_CANON",
+  "blockers": [],
+  "next_owner": "EVALUATION",
+  "completed_at": "2026-07-13T06:08:22Z"
+}

@@ -1,0 +1,10 @@
+{
+  "instance_id": "CHANGE-C1G",
+  "role": "CHANGE",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "brief_version": 1,
+  "status": "READY",
+  "objective": "Integrate and bind exact D-GOV-16 canon through an approved PR",
+  "dependencies": ["C1V_PASS", "HUMAN_STEER_001"],
+  "return": "RETURN.md"
+}

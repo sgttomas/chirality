@@ -1,0 +1,15 @@
+{
+  "instance_id": "ORCHESTRATOR-B0",
+  "role": "ORCHESTRATOR",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "brief_version": 1,
+  "status": "PASS",
+  "objective": "Execute only B0 synchronized-main preflight and freeze P0_BASIS",
+  "dependencies": ["H0_ACCEPTED", "SYNCHRONIZED_REFS"],
+  "return": "RETURN.md",
+  "basis_commit": "c5f5bbd6e636916a76c34a04295f6ddd2a3d0983",
+  "snapshot": "../../snapshots/P0_BASIS/HANDOFF_STATE.md",
+  "next_released_node": "C1",
+  "blockers": [],
+  "reruns_required": []
+}
