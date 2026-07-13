@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="869bd9079ab1a2f600c03ef9ccc8680064601853479a0d77b64ee0499c1b786b">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>869bd9079ab1a2f600c03ef9ccc8680064601853479a0d77b64ee0499c1b786b</code>.</p>
+<h1 id="scope-of-work-del-06-04">Scope of Work — DEL-06-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-06-04</code> in service of project scope [SOW-027, SOW-057, SOW-060] and package objectives [OBJ-005, OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Write/edit execution gate, PreToolUse hooks, write/edit tests, provenance metadata, and path policy fixtures.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-04-write-edit-surface-and-path-hooks">CLM-001 — Datasheet: DEL-06-04 Write/Edit Surface and Path Hooks</h3>
+<h4 id="datasheet-del-06-04-write-edit-surface-and-path-hooks">Datasheet: DEL-06-04 Write/Edit Surface and Path Hooks</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-04</td></tr>
+<tr><td>Deliverable name</td><td>Write/Edit Surface and Path Hooks</td></tr>
+<tr><td>Package</td><td>PKG-06 Permissioned Tools, MCP, and Hooks</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>Responsible party</td><td>TBD</td></tr>
+<tr><td>Decomposition variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Context envelope</td><td>L</td></tr>
+<tr><td>Scope items</td><td>SOW-027, SOW-057, SOW-060</td></tr>
+<tr><td>Objective context</td><td>OBJ-005, OBJ-006</td></tr>
+<tr><td>Anticipated artifacts</td><td>PreToolUse hooks; write/edit tests; provenance metadata; path policy fixtures</td></tr>
+</tbody></table>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot;, scope ledger rows SOW-027, SOW-057, SOW-060, and objective rows OBJ-005 and OBJ-006.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary control surface</td><td>Write/edit execution gate using hooks and runtime path policy</td><td><code>_CONTEXT.md</code>; decomposition row DEL-06-04</td></tr>
+<tr><td>Hook phase in scope</td><td><code>PreToolUse</code> for pre-execution denial and <code>PostToolUse</code>/post-failure evidence where applicable</td><td><code>docs/TYPES.md</code> Section 8.5; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Path containment rule</td><td>Filesystem operations outside the active project or working root are denied</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PATH-2; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Instruction-root rule</td><td>Ordinary project execution must not mutate the instruction root</td><td><code>docs/CONTRACT.md</code> Section 1.3 K-ROOT-2; <code>docs/SPEC.md</code> Section 1</td></tr>
+<tr><td>Symlink rule</td><td>Symlink writes are rejected in the initial policy</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PATH-3; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Exact edit precondition</td><td>Controlled edits require exact edit preconditions before execution</td><td><code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Provenance obligation</td><td>Successful writes/edits emit diff, summary, provenance, or runtime event evidence</td><td><code>docs/PLAN.md</code> R3; <code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Deny precedence</td><td>Hook, path, policy, SDK deny, governance, and human-gate denials override allows</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Constraint</td><td>Source</td></tr>
+<tr><td>PRD source state</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+<tr><td>Mode dependency</td><td><code>workspaceWrite</code> can use SDK edit acceptance only after write hooks pass; <code>readOnly</code> cannot write.</td><td><code>docs/SPEC.md</code> Section 15.1; <code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Hook failure policy</td><td>Hook failures fail closed for write, shell, domain, and subagent actions.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>MCP parity</td><td>Chirality MCP write tools must pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1</td></tr>
+<tr><td>Current MCP write surface</td><td>The current source inventory identifies <code>mcp__chirality__status_transition</code> and <code>mcp__chirality__deps_write</code> as write/gated tools; <code>mcp__chirality__scaffold</code> is gated and must be classified before any mutation behavior is enabled.</td><td><code>docs/SPEC.md</code> Section 14.2</td></tr>
+<tr><td>Adjacent deliverables</td><td>Permission mode mapping is owned by DEL-06-01; tool resolver/read MCP surfaces are owned by DEL-06-02 and DEL-06-03; compaction/terminal hook mirroring is owned by DEL-06-06.</td><td>decomposition PKG-06 rows</td></tr>
+<tr><td>Dependency state</td><td><code>_DEPENDENCIES.md</code> lists no accepted upstream or downstream edges yet.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction note</td><td>Source</td></tr>
+<tr><td>Path policy helper</td><td>Resolve and validate candidate write/edit targets against the active project or working root and instruction root. Exact implementation path: TBD.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PATH-2; <code>docs/PRD.md</code> Section 7.9</td></tr>
+<tr><td>PreToolUse gate</td><td>Deny write/edit attempts before execution when containment, instruction-root, symlink, mode, or permission policy fails.</td><td><code>docs/SPEC.md</code> Section 15.2; <code>docs/TYPES.md</code> Section 8.5</td></tr>
+<tr><td>Exact edit validator</td><td>Require exact edit preconditions for edit-style operations before mutation. Exact diff/match algorithm: TBD.</td><td><code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Safe write/edit execution</td><td>Perform atomic write/edit where practical only after permission and hook gates pass. Atomicity details: TBD.</td><td><code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Provenance recorder</td><td>Capture safe provenance, diff/summary, permission/runtime events, and source metadata for each write attempt. Exact event fields beyond source docs: TBD.</td><td><code>docs/PLAN.md</code> R3; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Path policy fixtures</td><td>Include fixtures for outside-root targets, instruction-root targets, symlink targets, missing files, stale edit preconditions, allowed in-root writes, and the current MCP write/gated surface.</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R3 acceptance</td></tr>
+<tr><td>Tests</td><td>Include write/edit tests for denied outside-root writes, denied instruction-root writes, denied symlink writes, exact edit preconditions, provenance evidence, MCP parity, and PRD warning carry-forward. Exact test paths: TBD.</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R3 acceptance; <code>_REFERENCES.md</code> REF-006</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td><td>Source state</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code> Sections 2, 4, 7</td><td>Reliance boundary and provenance principles</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code> Sections 1.3, 1.6, 1.7</td><td>Binding root, permission, hook, path, MCP, and write-scope invariants</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code> Sections 14 and 15</td><td>Tool surface rules, mode mapping, required hooks, validation IDs</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code> Section 8</td><td>Permission modes, tool terms, hook terms, event names</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code> R2/R3 and risk table</td><td>Sequencing and acceptance context</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code> Sections 7.9, 9.4, R2/R3, NFRs</td><td>Product requirements and implementation direction</td><td>MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Deliverable scope, SOW coverage, package boundaries</td><td>accepted v3.2 working surface</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-06-04-write-edit-surface-and-path-hooks">CLM-007 — Specification: DEL-06-04 Write/Edit Surface and Path Hooks</h3>
+<h4 id="specification-del-06-04-write-edit-surface-and-path-hooks">Specification: DEL-06-04 Write/Edit Surface and Path Hooks</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-06-04 specifies the write/edit execution surface and path hooks needed to permit controlled workspace writes without relying on prompt text, SDK defaults, or <code>allowedTools</code> alone. It covers project-root or working-root containment, instruction-root write blocking, symlink write rejection, exact edit preconditions, and provenance hooks for write/edit attempts.</p>
+<p>In scope:</p>
+<ul>
+<li>- Gate SDK <code>Write</code>/<code>Edit</code> and Chirality MCP write tools before mutation.</li>
+<li>- Enforce active project or working-root containment.</li>
+<li>- Block instruction-root writes during ordinary project execution.</li>
+<li>- Reject symlink writes in the initial policy.</li>
+<li>- Require exact edit preconditions before edit-style mutation.</li>
+<li>- Record safe provenance, diff/summary, permission/runtime event evidence, and hook outcomes.</li>
+<li>- Provide path policy fixtures and write/edit tests for allowed and denied cases.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Permission overlay mode semantics and <code>canUseTool</code> approval mediation owned by DEL-06-01, except where their decisions feed this hook.</li>
+<li>- Read tool exposure, read MCP wrappers, unknown-tool validation, and deterministic tool ordering owned by DEL-06-02 and DEL-06-03.</li>
+<li>- Bash governance owned by DEL-06-05.</li>
+<li>- Hook lifecycle and compaction mirror details owned by DEL-06-06, except for write/edit hook evidence needed by this deliverable.</li>
+<li>- Domain-engine protected-path operation semantics, except where a protected path hook implication is shared with future path policy.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06 rows; <code>docs/CONTRACT.md</code> Sections 1.3 and 1.6; <code>docs/SPEC.md</code> Sections 14 and 15; <code>docs/PRD.md</code> Section 7.9 with MATCH status. (reconciled under D-APP-38).</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-06-04-REQ-001</td><td>The runtime MUST run a pre-execution hook or equivalent gate before any write/edit mutation is performed.</td><td>decomposition SOW-057; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-06-04-REQ-002</td><td>The write/edit gate MUST deny filesystem operations outside the active project or working root.</td><td>decomposition SOW-027; <code>docs/CONTRACT.md</code> Section 1.6 K-PATH-2</td></tr>
+<tr><td>DEL-06-04-REQ-003</td><td>The write/edit gate MUST deny ordinary project writes under the instruction root.</td><td>decomposition SOW-027; <code>docs/CONTRACT.md</code> Section 1.3 K-ROOT-2</td></tr>
+<tr><td>DEL-06-04-REQ-004</td><td>The write/edit gate MUST reject symlink writes in the initial policy.</td><td>decomposition SOW-060; <code>docs/CONTRACT.md</code> Section 1.6 K-PATH-3</td></tr>
+<tr><td>DEL-06-04-REQ-005</td><td>Edit-style operations MUST require exact edit preconditions before mutation.</td><td>decomposition SOW-060; <code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-04-REQ-006</td><td>Hook failures MUST fail closed for write/edit actions.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-06-04-REQ-007</td><td>Explicit denies from policy, path containment, hook, governance, SDK deny rule, or human gate MUST override any allow.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1</td></tr>
+<tr><td>DEL-06-04-REQ-008</td><td><code>allowedTools</code> MUST NOT be treated as sufficient restriction or safety boundary for write/edit capability.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>DEL-06-04-REQ-009</td><td><code>readOnly</code> mode MUST deny write/edit capability, and <code>workspaceWrite</code> MUST allow governed writes only after hooks and policy pass.</td><td><code>docs/SPEC.md</code> Section 15.1; <code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-04-REQ-010</td><td>In-process Chirality MCP write/gated tools MUST pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins before mutation behavior is enabled. Current source inventory includes <code>mcp__chirality__status_transition</code>, <code>mcp__chirality__deps_write</code>, and gated <code>mcp__chirality__scaffold</code> classification.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/SPEC.md</code> Section 14.2</td></tr>
+<tr><td>DEL-06-04-REQ-011</td><td>Successful controlled writes/edits SHOULD be atomic where practical and MUST emit a diff or summary suitable for audit.</td><td><code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-04-REQ-012</td><td>Every write attempt MUST produce permission/runtime event evidence or equivalent audit records, including denials.</td><td><code>docs/PLAN.md</code> R3 acceptance; <code>docs/PRD.md</code> Section 7.9, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-04-REQ-013</td><td>Provenance append hooks MUST record safe provenance/run evidence where policy requires it.</td><td><code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-06-04-REQ-014</td><td>Path validation SHOULD include regular-file and symlink checks for attachment/write-relevant paths where applicable.</td><td><code>docs/SPEC.md</code> attachment/path validation bullets; decomposition SOW-060</td></tr>
+<tr><td>DEL-06-04-REQ-015</td><td>Tests MUST cover outside-root denial, instruction-root denial, symlink denial, stale or missing exact edit preconditions, allowed in-root write/edit behavior, and provenance/event evidence.</td><td><code>_CONTEXT.md</code>; <code>docs/PLAN.md</code> R3 acceptance</td></tr>
+<tr><td>DEL-06-04-REQ-016</td><td>Acceptance evidence MUST keep PRD-derived controlled-write behavior warning-qualified under the reconciled D-APP-38 source state or a governed hash-bypass record is accepted.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/CONTRACT.md</code> Section 1.7 K-REF-1</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Sections 1.3 and 1.6</td><td>Binding root, permission, hook, MCP, and path invariants.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 14 and 15</td><td>Tool surface rules, mode mapping, and required hook behavior.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 8</td><td>Permission mode vocabulary, tool surface terms, and hook terms.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R3</td><td>Controlled write/edit sequencing and acceptance criteria.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 7.9</td><td>Controlled write/edit product flow; use with MATCH status from <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-06-04-REQ-001, REQ-006</td><td>Unit or integration tests inject hook pass/fail outcomes and assert no mutation occurs when the hook fails or is unavailable.</td></tr>
+<tr><td>DEL-06-04-REQ-002</td><td>Path containment tests attempt outside-root absolute and traversal-equivalent targets and assert denial before mutation.</td></tr>
+<tr><td>DEL-06-04-REQ-003</td><td>Instruction-root fixtures assert writes under the instruction root are denied during ordinary project execution.</td></tr>
+<tr><td>DEL-06-04-REQ-004</td><td>Symlink fixtures assert symlink targets and symlink path segments are rejected in the initial policy.</td></tr>
+<tr><td>DEL-06-04-REQ-005</td><td>Edit tests assert stale, missing, or non-exact preconditions do not mutate files.</td></tr>
+<tr><td>DEL-06-04-REQ-007, REQ-008</td><td>Precedence tests assert SDK allows, <code>allowedTools</code>, or session allows cannot override Chirality deny policy.</td></tr>
+<tr><td>DEL-06-04-REQ-009</td><td>Mode tests assert <code>readOnly</code> cannot write and <code>workspaceWrite</code> writes only after permission and hook gates pass.</td></tr>
+<tr><td>DEL-06-04-REQ-010</td><td>MCP parity tests assert <code>mcp__chirality__status_transition</code>, <code>mcp__chirality__deps_write</code>, gated <code>mcp__chirality__scaffold</code> if mutation-capable, and future write MCP tools pass through equivalent gates.</td></tr>
+<tr><td>DEL-06-04-REQ-011, REQ-013</td><td>Successful-write tests assert diff/summary and provenance metadata are produced without leaking unsafe data.</td></tr>
+<tr><td>DEL-06-04-REQ-012</td><td>Runtime event tests assert allowed and denied write attempts produce permission/runtime evidence.</td></tr>
+<tr><td>DEL-06-04-REQ-014</td><td>Path fixture tests cover regular-file, symlink, extension, and validation failure cases where those checks apply.</td></tr>
+<tr><td>DEL-06-04-REQ-015</td><td>Test index or validation marker references this deliverable and includes the required negative and positive fixtures.</td></tr>
+<tr><td>DEL-06-04-REQ-016</td><td>Source-state verifier asserts PRD-derived requirements remain annotated with REF-006 MATCH until the reference hash is reconciled or an accepted bypass record exists. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required implementation evidence:</p>
+<ul>
+<li>- Write/edit hook module or equivalent gate: TBD path to module that registers the pre-execution write/edit decision point and fail-closed behavior.</li>
+<li>- Path policy helper or fixture set: TBD path to helper and fixtures covering outside-root, instruction-root, symlink, malformed target, and allowed in-root cases.</li>
+<li>- Instruction-root and working-root resolver integration: TBD path to resolver integration proving a single active containment root is used for this deliverable.</li>
+<li>- Exact edit precondition validator: TBD path to validator plus selected stale-content behavior, matcher, and diff strategy.</li>
+<li>- MCP write/gated surface coverage: TBD test evidence for <code>mcp__chirality__status_transition</code>, <code>mcp__chirality__deps_write</code>, gated <code>mcp__chirality__scaffold</code> classification, and any later write-capable MCP tools.</li>
+<li>- Provenance/diff/summary recorder: TBD path to event or artifact writer that records allowed and denied write attempts.</li>
+<li>- Write/edit negative and positive tests: TBD paths for denial and allowed-mutation fixtures.</li>
+<li>- Source-state verifier and residual-risk note for <code>docs/PRD.md</code> MATCH under the reconciled D-APP-38 source state or a governed hash-bypass record is accepted. (reconciled under D-APP-38).</li>
+</ul>
+<h3 id="clm-013-traceability">CLM-013 — Traceability</h3>
+<h5 id="traceability">Traceability</h5>
+<table><tbody>
+<tr><td>Source item</td><td>Covered by</td></tr>
+<tr><td>SOW-027 Project-root containment and instruction-root protection</td><td>DEL-06-04-REQ-002, REQ-003, REQ-007, REQ-015</td></tr>
+<tr><td>SOW-057 Hooks and fail-closed behavior</td><td>DEL-06-04-REQ-001, REQ-006, REQ-012, REQ-013</td></tr>
+<tr><td>SOW-060 Safe write/edit behavior</td><td>DEL-06-04-REQ-004, REQ-005, REQ-011, REQ-014, REQ-015</td></tr>
+<tr><td>OBJ-005 Capability-forward policy with explicit hard-deny precedence permission policy, hooks, result budgets, and approvals</td><td>DEL-06-04-REQ-001, REQ-006 through REQ-013</td></tr>
+<tr><td>OBJ-006 Filesystem project truth through containment and change discipline</td><td>DEL-06-04-REQ-002 through REQ-005, REQ-011 through REQ-016</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — The write/edit surface denies unauthorized or unsafe mutation before execution, preserves prior content on failed gates, and emits the required verification and provenance evidence.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-06-04-write-edit-surface-and-path-hooks">CLM-014 — Procedure: DEL-06-04 Write/Edit Surface and Path Hooks</h3>
+<h4 id="procedure-del-06-04-write-edit-surface-and-path-hooks">Procedure: DEL-06-04 Write/Edit Surface and Path Hooks</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-06-04 write/edit surface and path hook implementation evidence. It is written for the deliverable artifact, not as an end-user operation runbook.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted DEL-06-04 scope and source references</td><td>Available in <code>_CONTEXT.md</code> and <code>_REFERENCES.md</code></td></tr>
+<tr><td>Binding root, permission, hook, path, and MCP invariants</td><td>Available in <code>docs/CONTRACT.md</code> Sections 1.3 and 1.6</td></tr>
+<tr><td>Tool surface and hook specification</td><td>Available in <code>docs/SPEC.md</code> Sections 14 and 15</td></tr>
+<tr><td>Hook and tool vocabulary</td><td>Available in <code>docs/TYPES.md</code> Section 8</td></tr>
+<tr><td>Roadmap sequencing for controlled writes</td><td>Available in <code>docs/PLAN.md</code> R3; <code>docs/PRD.md</code> is warning-qualified due to HASH_MISMATCH</td></tr>
+<tr><td>Declared upstream dependencies</td><td>TBD - <code>_DEPENDENCIES.md</code> lists no accepted upstream edges yet</td></tr>
+<tr><td>Exact implementation file paths</td><td>TBD</td></tr>
+<tr><td>Exact test fixture paths</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Establish the mutation surfaces.</p>
+<ul>
+<li>- Identify SDK built-in <code>Write</code> and <code>Edit</code> surfaces, plus any Chirality MCP write tools currently exposed.</li>
+<li>- Treat <code>mcp__chirality__status_transition</code> and <code>mcp__chirality__deps_write</code> as current write/gated MCP surfaces from the SPEC inventory.</li>
+<li>- Classify gated <code>mcp__chirality__scaffold</code> before enabling any mutation behavior, and record whether it remains preview-only, scaffold-write capable, or out of this deliverable&#x27;s active write surface.</li>
+<li>- Confirm write/edit surfaces are not exposed in <code>readOnly</code> and are only available in governed write modes.</li>
+<li>- Keep unknown or future write-capable tools out of scope until registered and governed.</li>
+</ul>
+<p>2. Define or locate the active root resolver.</p>
+<ul>
+<li>- Resolve the active project or working root and the instruction root from product-owned runtime state.</li>
+<li>- Treat the decomposition phrase &quot;project root&quot; and the governance phrase &quot;working root&quot; as the same containment boundary until implementation chooses canonical naming.</li>
+<li>- Record any naming or resolver ambiguity as <code>TBD</code> or a review item.</li>
+</ul>
+<p>3. Implement the pre-execution path gate.</p>
+<ul>
+<li>- Reject missing, malformed, or unresolvable target paths where the write/edit operation requires a target.</li>
+<li>- Deny targets outside the active project or working root.</li>
+<li>- Deny ordinary project writes under the instruction root.</li>
+<li>- Reject symlink targets and symlink path segments under the initial policy.</li>
+<li>- Fail closed if path classification cannot be completed.</li>
+</ul>
+<p>4. Implement exact edit precondition checks.</p>
+<ul>
+<li>- Require edit-style operations to specify the exact content or equivalent exact precondition needed for safe replacement.</li>
+<li>- Deny or fail without mutation when the current file content does not match the precondition.</li>
+<li>- Select and document the exact matching algorithm, stale-content behavior, and diff strategy; keep them as <code>TBD</code> until implementation design selects them.</li>
+<li>- Record whether stale content is surfaced as permission denial, tool validation failure, or another terminal outcome so runtime event evidence can be tested.</li>
+</ul>
+<p>5. Connect permission and hook decisions.</p>
+<ul>
+<li>- Feed DEL-06-01 permission overlay results into the write/edit gate.</li>
+<li>- Apply explicit hard-deny precedence when SDK options, mode, operator intent, or <code>allowedTools</code> conflict with Chirality policy or hook denial.</li>
+<li>- Do not rely on <code>allowedTools</code> alone as a restriction boundary.</li>
+</ul>
+<p>6. Execute controlled mutation only after gates pass.</p>
+<ul>
+<li>- Perform the write/edit atomically where practical.</li>
+<li>- Preserve existing file content when any pre-execution gate fails.</li>
+<li>- Ensure Chirality MCP write tools and SDK built-ins follow equivalent policy.</li>
+</ul>
+<p>7. Record provenance and runtime evidence.</p>
+<ul>
+<li>- Record permission/runtime evidence for allowed and denied attempts.</li>
+<li>- For successful writes/edits, capture safe provenance, diff or summary, and hook outcome metadata.</li>
+<li>- For failed or denied write/edit attempts, capture the deliverable-local evidence needed to prove no mutation occurred; leave lifecycle-wide hook failure mirroring to DEL-06-06.</li>
+<li>- Apply redaction and result-budget policy where outputs could be large or sensitive.</li>
+</ul>
+<p>8. Add tests and fixtures.</p>
+<ul>
+<li>- Add fixtures for allowed in-root regular-file writes and edits.</li>
+<li>- Add denial fixtures for outside-root targets, instruction-root targets, symlink targets, hook failure, mode denial, and stale edit preconditions.</li>
+<li>- Add parity coverage for SDK built-ins and Chirality MCP write tools where both are in scope.</li>
+<li>- Record exact test paths as <code>TBD</code> until assigned.</li>
+</ul>
+<p>9. Record residual gaps.</p>
+<ul>
+<li>- Track unresolved root naming, exact edit algorithm, implementation file paths, fixture paths, and PRD HASH_MISMATCH state.</li>
+<li>- Add or reference a source-state verifier that keeps PRD-derived behavior warning-qualified until REF-006 is reconciled or a governed bypass record is accepted.</li>
+<li>- Surface any remaining source conflicts in the deliverable review notes.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Pre-execution hook</td><td>Write/edit mutation does not occur until the hook or equivalent gate passes.</td></tr>
+<tr><td>Path containment</td><td>Outside-root targets are denied without mutation.</td></tr>
+<tr><td>Instruction-root protection</td><td>Instruction-root targets are denied during ordinary project execution.</td></tr>
+<tr><td>Symlink rejection</td><td>Symlink target or path-segment attempts are denied in the initial policy.</td></tr>
+<tr><td>Exact edit precondition</td><td>Stale, missing, or ambiguous edit preconditions fail without mutation.</td></tr>
+<tr><td>Deny precedence</td><td>Hook, path, policy, SDK deny, governance, or human-gate denial overrides any allow.</td></tr>
+<tr><td>Mode behavior</td><td><code>readOnly</code> cannot write; <code>workspaceWrite</code> writes only after permission and hooks pass.</td></tr>
+<tr><td>MCP parity</td><td>Chirality MCP write tools pass through equivalent gates as SDK built-ins.</td></tr>
+<tr><td>Provenance</td><td>Successful writes produce safe diff/summary/provenance evidence; denied attempts produce audit evidence.</td></tr>
+<tr><td>PRD warning</td><td>PRD-derived controlled-write details remain traceable to <code>_REFERENCES.md</code> HASH_MISMATCH until reconciled.</td></tr>
+<tr><td>Hook-lifecycle boundary</td><td>Write/edit denial or failure evidence is captured here, while broader hook lifecycle and compaction/terminal mirroring remain assigned to DEL-06-06.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Write/edit hook implementation path: TBD.</li>
+<li>- Root resolver and instruction-root resolver integration: TBD.</li>
+<li>- Path policy fixtures: TBD.</li>
+<li>- Exact edit validator and matcher tests: TBD.</li>
+<li>- Stale-content terminal outcome classification: TBD.</li>
+<li>- MCP write/gated surface inventory and parity tests: TBD.</li>
+<li>- Provenance/diff/summary evidence format: TBD.</li>
+<li>- Runtime event evidence for allowed and denied write attempts: TBD.</li>
+<li>- Review note for PRD HASH_MISMATCH: required under the reconciled D-APP-38 source state.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Validate path containment, instruction-root protection, symlink rejection, exact edit preconditions, deny precedence, mode behavior, MCP parity, and provenance using the source-defined checks and fixtures.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-06-04-write-edit-surface-and-path-hooks">CLM-020 — Guidance: DEL-06-04 Write/Edit Surface and Path Hooks</h3>
+<h4 id="guidance-del-06-04-write-edit-surface-and-path-hooks">Guidance: DEL-06-04 Write/Edit Surface and Path Hooks</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-06-04 exists to make controlled workspace writes possible without weakening Chirality&#x27;s filesystem, permission, and provenance boundaries. It is the write/edit security-control slice for PKG-06: permission overlay decisions, read tool exposure, MCP wrapper shape, bash governance, and hook lifecycle mirroring are adjacent deliverables, but this deliverable defines the path and mutation gates that must pass before files change.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06; <code>docs/CONTRACT.md</code> Sections 1.3 and 1.6; <code>docs/SPEC.md</code> Section 15; <code>docs/PLAN.md</code> R3.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Runtime code is the boundary. Prompt text, persona wording, or tool descriptions must not be relied on to protect filesystem writes. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-2.</p>
+<p>2. Capability-forward policy with explicit hard-deny precedence remains controlling. A denial from policy, path containment, hook, governance, SDK deny rule, or human gate overrides any allow. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1.</p>
+<p>3. The active project or working root bounds ordinary writes. Target paths outside that root are denied before mutation. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-PATH-2.</p>
+<p>4. Instruction-root writes are release/change operations, not ordinary project execution. Ordinary project runs must not mutate the instruction root. Source: <code>docs/CONTRACT.md</code> Section 1.3 K-ROOT-2.</p>
+<p>5. Symlink write rejection is the initial policy. Any relaxation would need a governed amendment and tests. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-PATH-3.</p>
+<p>6. Provenance is part of the write, not an afterthought. Allowed and denied attempts need enough event, diff, summary, and provenance evidence for audit. Sources: <code>docs/PLAN.md</code> R3; <code>docs/SPEC.md</code> Section 15.2.</p>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<h3 id="clm-024-root-terminology">CLM-024 — Root Terminology</h3>
+<h6 id="root-terminology">Root Terminology</h6>
+<p>The decomposition uses &quot;project-root containment&quot;; <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, and <code>docs/PRD.md</code> primarily use &quot;working root.&quot; Treat these as the active runtime containment root for this deliverable until implementation selects the exact public name. Do not create two independent roots without a source update.</p>
+<h3 id="clm-025-hook-placement">CLM-025 — Hook Placement</h3>
+<h6 id="hook-placement">Hook Placement</h6>
+<p><code>PreToolUse</code> should be the normal enforcement point for path containment, instruction-root protection, symlink rejection, exact edit preconditions, and mode/policy denial before mutation. <code>PostToolUse</code> should record successful write provenance, diff/summary, and safe metadata. This deliverable owns the evidence that a write/edit attempt was allowed, denied, or failed without mutation; DEL-06-06 owns broader hook lifecycle, compaction, stop/finalization, and terminal mirror semantics. Post-failure records should therefore capture the minimum write/edit denial or failure evidence here and hand lifecycle-wide failure mirroring to DEL-06-06. Sources: <code>docs/SPEC.md</code> Section 15.2; decomposition rows DEL-06-04 and DEL-06-06.</p>
+<h3 id="clm-026-exact-edit-preconditions">CLM-026 — Exact Edit Preconditions</h3>
+<h6 id="exact-edit-preconditions">Exact Edit Preconditions</h6>
+<p>Exact edit preconditions should prevent stale or ambiguous edits from mutating files. The source corpus requires exact preconditions but does not specify the matching algorithm. Keep algorithmic details as <code>TBD</code> until implementation design chooses the file matcher, diff strategy, and stale-content behavior. The design record should state whether stale content is a denied permission decision, a tool validation failure, or another terminal outcome, because that choice determines the event evidence and user-facing feedback.</p>
+<h3 id="clm-027-mcp-write-gated-surface">CLM-027 — MCP Write/Gated Surface</h3>
+<h6 id="mcp-write-gated-surface">MCP Write/Gated Surface</h6>
+<p>The current SPEC inventory names <code>mcp__chirality__status_transition</code> and <code>mcp__chirality__deps_write</code> as write/gated Chirality MCP tools, and <code>mcp__chirality__scaffold</code> as gated. Treat <code>scaffold</code> as requiring explicit mutation classification before exposure, and require any future write-capable MCP tool to opt into the same gate sequence as SDK <code>Write</code>/<code>Edit</code>. Source: <code>docs/SPEC.md</code> Section 14.2.</p>
+<h3 id="clm-028-prd-hash-status">CLM-028 — PRD Hash Status</h3>
+<h6 id="prd-hash-status">PRD Hash Status</h6>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h3 id="clm-029-trade-offs">CLM-029 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Omit write tools vs expose and deny</td><td>Prefer not exposing write/edit tools until mode and permission policy allow them, but still enforce hook denial because exposure control alone is not a safety boundary. Sources: <code>docs/SPEC.md</code> Section 14.3; <code>docs/CONTRACT.md</code> K-PERM-3.</td></tr>
+<tr><td>SDK built-ins vs Chirality MCP write tools</td><td>Treat both as mutation surfaces requiring equivalent permission, hook, path, redaction, and event logging policy. Source: <code>docs/CONTRACT.md</code> K-MCP-1.</td></tr>
+<tr><td>Atomic write/edit vs implementation simplicity</td><td>Perform atomic mutation where practical, but do not use atomicity as a substitute for pre-execution path and precondition checks. The implementation rationale should identify when atomic behavior is practical, when it is not, and what evidence proves failed gates preserved prior content. Source: <code>docs/PRD.md</code> Section 7.9, MATCH status. — reconciled under D-APP-38</td></tr>
+<tr><td>Symlink denial vs advanced workspace layouts</td><td>Reject symlink writes initially. If future workspace needs require symlink support, add a governed policy amendment and targeted tests first. Source: <code>docs/CONTRACT.md</code> K-PATH-3.</td></tr>
+<tr><td>Provenance detail vs data exposure</td><td>Record enough diff/summary/provenance to audit the write while applying the same redaction and result-budget posture as other tools. Source: <code>docs/SPEC.md</code> Section 15.2.</td></tr>
+</tbody></table>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected behavior</td></tr>
+<tr><td><code>readOnly</code> session attempts <code>Write</code> or <code>Edit</code></td><td>Deny before mutation; record permission/runtime evidence where governed.</td></tr>
+<tr><td><code>workspaceWrite</code> session edits an in-root regular file with exact precondition match and passing hooks</td><td>Allow mutation, preferably atomic where practical; record diff/summary and provenance.</td></tr>
+<tr><td>Write target resolves outside the active project or working root</td><td>Deny in <code>PreToolUse</code> or equivalent gate; no mutation occurs.</td></tr>
+<tr><td>Write target is under the instruction root</td><td>Deny as ordinary project execution; instruction-root mutation requires governed release/change operation.</td></tr>
+<tr><td>Write target or path segment is a symlink</td><td>Deny under initial policy; no mutation occurs.</td></tr>
+<tr><td>Edit precondition does not match current file content</td><td>Deny or fail the edit without mutation; record failure evidence.</td></tr>
+<tr><td>SDK <code>allowedTools</code> includes <code>Edit</code> but Chirality hook denies path containment</td><td>Final result is deny; <code>allowedTools</code> does not bypass hooks.</td></tr>
+<tr><td>Chirality MCP dependency writer is used</td><td>It must pass through equivalent permission, hook, path, redaction, and event logging policy as SDK built-ins.</td></tr>
+</tbody></table>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-06-04-CONFLICT-001</td><td>Root terminology differs between &quot;project root&quot; in decomposition wording and &quot;working root&quot; in governance docs.</td><td><code>_CONTEXT.md</code> and decomposition row DEL-06-04</td><td><code>docs/CONTRACT.md</code> K-PATH-2; <code>docs/PRD.md</code> Section 7.9</td><td>Datasheet Conditions; Specification Scope and REQ-002; Procedure Steps</td><td>Treat both as the active runtime containment root and settle canonical naming during implementation.</td><td>TBD</td></tr>
+<tr><td>DEL-06-04-CONFLICT-002</td><td>PRD is content-accessible but current and MATCH.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> Sections 7.9 and R3</td><td>PRD-cited requirements and guidance</td><td>Use PRD as warning-qualified source until reference hash state is reconciled.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-027 SOW-057 SOW-060 OBJ-005 OBJ-006</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "schema": "chirality-sow-negative-tests/v1",
+  "tests": [
+    {
+      "id": "partial_legacy_kit",
+      "expected_format": "INVALID",
+      "expected_exit_code": 1,
+      "actual_format": "INVALID",
+      "actual_exit_code": 1,
+      "output_artifact_created": false,
+      "issues": [
+        "format state is INVALID",
+        "partial legacy production kit; missing: Specification.md, Procedure.md, Guidance.md"
+      ],
+      "pass": true
+    },
+    {
+      "id": "unauthorized_dual_format",
+      "expected_format": "AMBIGUOUS",
+      "expected_exit_code": 1,
+      "actual_format": "AMBIGUOUS",
+      "actual_exit_code": 1,
+      "output_artifact_created": false,
+      "issues": [
+        "format state is AMBIGUOUS",
+        "dual production formats require an isolated conversion workspace and exact migration authority"
+      ],
+      "pass": true
+    },
+    {
+      "id": "unauthorized_checklist_no_output",
+      "expected_exit_code": 1,
+      "actual_exit_code": 1,
+      "output_artifact_created": false,
+      "pass": true
+    }
+  ],
+  "pass": true
+}

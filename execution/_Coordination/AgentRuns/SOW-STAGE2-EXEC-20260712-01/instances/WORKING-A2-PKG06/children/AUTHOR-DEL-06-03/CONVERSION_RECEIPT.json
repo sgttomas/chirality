@@ -1,0 +1,38 @@
+{
+  "schema": "chirality-sow-conversion-receipt/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "AUTHOR-DEL-06-03",
+  "deliverable_id": "DEL-06-03",
+  "package_id": "PKG-06",
+  "derivative_status": "ISOLATED_MIGRATION_CANDIDATE",
+  "accepted_upstream": {
+    "execution_basis": "main@0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+    "preflight_snapshot": "snapshots/W_A2/preflight/ACCEPTANCE.md",
+    "decomposition_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+  },
+  "candidate": {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG06/DEL-06-03/ScopeOfWork.md",
+    "sha256": "4f1505dfcba0704cc49bac089e7f5ab68608c14e4f7828e486fa0861574b4ffd",
+    "bytes": 44762,
+    "lines": 588,
+    "format": "SOW_V1"
+  },
+  "preservation": {
+    "mapping_count": 34,
+    "source_line_total": 382,
+    "dispositions": {"PRESERVED": 34},
+    "parity": "PASS",
+    "source_and_control_bytes_unchanged": true,
+    "lifecycle_unchanged": true
+  },
+  "determinism": {
+    "conversion_twice_identical": true,
+    "review_checklist_twice_identical": true,
+    "html_twice_identical": true
+  },
+  "integration_authority": false,
+  "lifecycle_authority": false,
+  "legacy_retirement_authority": false,
+  "verdict": "PASS"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 239,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "9d7a5de67db2b656f86246b1f2f466862ae60e53102d011be6910555afab15b6"
+      },
+      "text": "The DEL-04-04 evidence package contains `persona-composer.ts` or an accepted equivalent, persona content hash tests, and boot fingerprint updates that demonstrate instruction-root governance, active persona, working-root policy, mode, and permitted tool-surface composition for SOW-017, SOW-030 and OBJ-004, OBJ-007.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-04-04-VER-001",
+          "source_line": 350,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the DEL-04-04 implementation and run the referenced persona-content and boot-fingerprint tests against SOW-017, SOW-030, OBJ-004, OBJ-007, and the preserved legacy requirements to confirm the named prompt-composition inputs and artifacts are present."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-04-04",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-04",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "9d7a5de67db2b656f86246b1f2f466862ae60e53102d011be6910555afab15b6"
+  },
+  "tool_version": "1"
+}

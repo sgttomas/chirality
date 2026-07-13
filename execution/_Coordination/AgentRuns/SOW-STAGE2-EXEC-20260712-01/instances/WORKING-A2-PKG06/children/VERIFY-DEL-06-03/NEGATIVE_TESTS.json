@@ -1,0 +1,38 @@
+{
+  "schema": "chirality-sow-negative-tests/v1",
+  "pass": true,
+  "tests": [
+    {
+      "id": "partial-legacy-validator",
+      "fixture": "negative/partial",
+      "exit_code": 1,
+      "resolved_format": "INVALID",
+      "expected_issue": "partial legacy production kit; missing: Guidance.md",
+      "pass": true
+    },
+    {
+      "id": "unauthorized-dual-validator",
+      "fixture": "negative/unauthorized_dual",
+      "exit_code": 1,
+      "resolved_format": "AMBIGUOUS",
+      "expected_issue": "dual production formats require an isolated conversion workspace and exact migration authority",
+      "pass": true
+    },
+    {
+      "id": "partial-legacy-checklist-no-output",
+      "fixture": "negative/partial",
+      "exit_code": 1,
+      "output": "negative/partial/SHOULD_NOT_EXIST.json",
+      "output_exists": false,
+      "pass": true
+    },
+    {
+      "id": "unauthorized-dual-checklist-no-output",
+      "fixture": "negative/unauthorized_dual",
+      "exit_code": 1,
+      "output": "negative/unauthorized_dual/SHOULD_NOT_EXIST.json",
+      "output_exists": false,
+      "pass": true
+    }
+  ]
+}

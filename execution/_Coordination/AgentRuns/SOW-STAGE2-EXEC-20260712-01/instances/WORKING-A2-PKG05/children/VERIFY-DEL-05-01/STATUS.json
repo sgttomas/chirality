@@ -1,0 +1,10 @@
+{
+  "agent": "TASK",
+  "candidate_sha256": "1c0e1a3bf9bd915ea23f9ace4ff0284e029efa36c661dca4ac7a78a65ce770a6",
+  "deliverable_id": "DEL-05-01",
+  "manifest_complete": true,
+  "mapping_count": 30,
+  "source_line_count": 445,
+  "status": "PASS_UNCHANGED",
+  "terminal": true
+}

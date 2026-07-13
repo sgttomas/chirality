@@ -1,0 +1,8 @@
+{
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "target": "workspace",
+  "valid": true,
+  "isolated_migration": true,
+  "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+}

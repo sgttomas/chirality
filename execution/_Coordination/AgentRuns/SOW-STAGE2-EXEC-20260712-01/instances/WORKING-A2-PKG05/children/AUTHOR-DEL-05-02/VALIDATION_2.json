@@ -1,0 +1,6 @@
+{
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "target": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-02/workspace/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL",
+  "valid": true
+}

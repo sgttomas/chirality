@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-05-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 256,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a12f7b2c1d4139c95df897fea97b57484918e05ec8348338ea6b171e3e05aa0f"
+      },
+      "text": "Every legacy source line is preserved exactly and traceably in the migrated ScopeOfWork contract.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-05-03-VER-001",
+          "source_line": 380,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run deterministic validation, claim mapping, parity, checklist derivation, and script-free rendering; require every check to pass."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-05-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-05",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "a12f7b2c1d4139c95df897fea97b57484918e05ec8348338ea6b171e3e05aa0f"
+  },
+  "tool_version": "1"
+}

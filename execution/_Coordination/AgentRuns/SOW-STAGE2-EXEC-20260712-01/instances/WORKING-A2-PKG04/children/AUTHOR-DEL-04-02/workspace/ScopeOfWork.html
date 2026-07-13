@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="15796b93739a7a3481c288aafc8550baae34a440b159f4d80adbe7698c17428d">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>15796b93739a7a3481c288aafc8550baae34a440b159f4d80adbe7698c17428d</code>.</p>
+<h1 id="scope-of-work-del-04-02">Scope of Work — DEL-04-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-04-02</code> in service of project scope [SOW-016, SOW-045, SOW-047, SOW-052] and package objectives [OBJ-004, OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — DEL-04-02 SdkOptionsBuilder and Settings Isolation production output: sdk-options-builder.ts, settings isolation tests, and visible tool metadata, bounded by SOW-016, SOW-045, SOW-047, SOW-052, OBJ-004, and OBJ-005.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-02-sdkoptionsbuilder-and-settings-isolation">CLM-001 — Datasheet: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h3>
+<h4 id="datasheet-del-04-02-sdkoptionsbuilder-and-settings-isolation">Datasheet: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-04-02</td></tr>
+<tr><td>DeliverableName</td><td>SdkOptionsBuilder and Settings Isolation</td></tr>
+<tr><td>PackageID</td><td>PKG-04</td></tr>
+<tr><td>PackageName</td><td>SDK Adapter, Prompt, Provider, and Settings</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-016, SOW-045, SOW-047, SOW-052</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-004, OBJ-005</td></tr>
+<tr><td>AnticipatedArtifacts</td><td><code>sdk-options-builder.ts</code>; settings isolation tests; visible tool metadata</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary subject</td><td>Deterministic SDK option construction and shipped settings isolation for the SDK-backed runtime path.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-04-02</td></tr>
+<tr><td>Runtime option inputs</td><td>Session state, persona, mode, model/tool/max-turn options, tool policy, hooks, MCP servers, subagents, resume/session linkage, and settings policy. Exact TypeScript input type is TBD until DEL-04-01 probe evidence and adjacent contracts for persona, session linkage, hooks, MCP, subagents, and settings policy are accepted.</td><td><code>docs/PRD.md</code> Section 4 and Section 8.4, MATCH; <code>docs/SPEC.md</code> Sections 12-15; <code>execution/_Decomposition/...</code> DEL-04-01 through DEL-04-05 — reconciled under D-APP-38</td></tr>
+<tr><td>Fallback chains</td><td>Model: <code>opts.model</code> -&gt; <code>CHIRALITY_GLOBAL_MODEL</code> or instruction-root frontmatter -&gt; runtime default. Tools: <code>opts.tools</code> -&gt; persona frontmatter/defaults -&gt; runtime default. Max turns: <code>opts.maxTurns</code> -&gt; persona frontmatter/defaults -&gt; runtime default. Mode and persona use request/session values before runtime defaults.</td><td><code>docs/SPEC.md</code> Section 13.1; <code>docs/PRD.md</code> Section 8.4, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Settings posture</td><td>Shipped SDK options use <code>settingSources: []</code>. Development-only project settings may use <code>[&#x27;project&#x27;]</code> only behind explicit environment configuration. <code>user</code> and <code>local</code> setting sources are not permitted in shipped builds.</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1; <code>docs/PRD.md</code> Sections 8.12 and 10.3.1, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Tool mapping posture</td><td><code>opts.tools</code> maps only to registered SDK built-ins or Chirality MCP tools. Unknown names produce structured validation errors.</td><td><code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> Section 8.13, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Permission boundary posture</td><td><code>allowedTools</code> is not a restriction boundary by itself; restrictions depend on deny rules, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> posture.</td><td><code>docs/CONTRACT.md</code> K-PERM-3; <code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> Section 8.13, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Max-turn guard</td><td>Resolved <code>maxTurns</code> is passed into SDK options so runaway loops stop and terminal max-turn errors can be persisted. Exact error mapping is owned by adjacent runtime/event deliverables.</td><td><code>docs/PRD.md</code> Section 8.13, MATCH; <code>execution/_Decomposition/...</code> SOW-052 — reconciled under D-APP-38</td></tr>
+<tr><td>Visible metadata</td><td>Safe adapter metadata should include SDK package version, permission mode, visible tool list, MCP server names, settings-source posture, SDK session ID/resume mode, and transcript/store linkage where available. SDK package version is adapter/runtime evidence, not a public Chirality product-version authority.</td><td><code>docs/SPEC.md</code> Section 12.4; <code>docs/CONTRACT.md</code> K-ENGINE-4; <code>docs/TYPES.md</code> Section 9; <code>docs/PRD.md</code> Section 10.3.1, MATCH — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>SDK role</td><td>The Claude Agent SDK is the preferred runtime spine only when verified and kept behind Chirality-owned contracts.</td><td><code>docs/DIRECTIVE.md</code> Section 2.8; <code>docs/CONTRACT.md</code> K-ENGINE-1 through K-ENGINE-5</td></tr>
+<tr><td>Product identity</td><td>SDK-specific defaults, transcript shape, tool names, and Claude Code assumptions must not define public Chirality semantics.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-3, K-ENGINE-4, K-SDK-4; <code>docs/PLAN.md</code> Section 2</td></tr>
+<tr><td>Tool expansion sequence</td><td>Read tools are enabled before write/edit/bash capability. Write, bash, and subagent execution deepen in PKG-06 and later packages.</td><td><code>docs/PLAN.md</code> R2; <code>docs/PRD.md</code> Section 8.13, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Dependency state</td><td>Declared upstream and downstream dependencies are TBD; dependency extraction is deferred until after four-document authoring and semantic passes.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>Source-state warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Expected Content</td></tr>
+<tr><td><code>sdk-options-builder.ts</code></td><td>Deterministic builder for SDK request options, settings-source posture, resolved model/tools/maxTurns/mode/persona, hooks, MCP server registration metadata, subagent descriptors where enabled, resume/session linkage, and safe visible metadata. Candidate R1 path is <code>frontend/src/lib/harness/sdk-options-builder.ts</code> per PRD source-state warning; accepted module path and exact exported API remain TBD pending implementation convention.</td></tr>
+<tr><td>Settings isolation tests</td><td>Tests asserting shipped <code>settingSources: []</code>, development project-settings opt-in only through explicit environment configuration, and no <code>user</code>/<code>local</code> setting sources in shipped builds.</td></tr>
+<tr><td>Tool mapping tests</td><td>Tests asserting deterministic tool ordering, registered-name mapping, unknown-tool structured validation errors, and no reliance on <code>allowedTools</code> alone as a restriction boundary.</td></tr>
+<tr><td>Max-turn tests</td><td>Tests asserting resolved max-turn value reaches SDK options and terminal max-turn outcome is available to the runtime/event layer. Exact terminal event fixture: TBD in coordination with runtime event deliverables.</td></tr>
+<tr><td>Visible tool metadata</td><td>Safe runtime metadata containing visible tool names, MCP server names, permission posture, settings-source posture, and SDK version fields where known.</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>SourcePath</td><td>SectionRef</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Sections 0, 2.8</td><td>Authority order and SDK-governed posture</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Sections 1.4, 1.6</td><td>SDK governance, settings isolation, permission/tool invariants</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Sections 12-15</td><td>Runtime configuration, fallback chains, tool surface, modes/hooks</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Sections 7.2, 8.2, 8.3, 9</td><td>Vocabulary for SdkOptionsBuilder, settings, permission, tools, session linkage</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Sections 2-4, 6-8</td><td>Roadmap sequencing, tests, known SDK risks</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Sections 8.4, 8.12, 8.13, 10.3.1, KG-021 through KG-032</td><td>Product requirements; source hash status: MATCH noted — reconciled under D-APP-38</td></tr>
+<tr><td>REF-DEC</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>DEL-04-02; SOW-016, SOW-045, SOW-047, SOW-052</td><td>Deliverable scope and traceability</td></tr>
+</tbody></table>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-119/120/121 record the realized split: <code>TurnEngine.assertKnownAgentSdkTools</code> owns runtime validation, the options builder owns deterministic mapping, concrete compiling SDK property names are probe-backed, and the module/test paths are landed.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-04-02-sdkoptionsbuilder-and-settings-isolation">CLM-008 — Specification: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h3>
+<h4 id="specification-del-04-02-sdkoptionsbuilder-and-settings-isolation">Specification: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the <code>SdkOptionsBuilder</code> backend feature slice for constructing deterministic Claude Agent SDK options from Chirality-owned runtime state and policy. It covers:</p>
+<ul>
+<li>- runtime option fallback resolution for model, tools, max turns, mode, and persona;</li>
+<li>- shipped SDK settings isolation;</li>
+<li>- registered SDK built-in and Chirality MCP tool option mapping;</li>
+<li>- safe visible metadata for tool/settings posture;</li>
+<li>- max-turn option propagation;</li>
+<li>- tests for settings isolation and options/tool mapping.</li>
+</ul>
+<p>Exclusions:</p>
+<ul>
+<li>- <code>PersonaComposer</code> content assembly is owned by DEL-04-04, though this builder consumes its output.</li>
+<li>- SDK message to <code>UIEvent</code>/<code>HarnessEvent</code> mapping is owned by DEL-04-03.</li>
+<li>- provider key/base URL handoff is owned by DEL-04-05.</li>
+<li>- full permission overlay, hooks, write/bash enablement, and subagent execution gates deepen in PKG-06 and PKG-08; this deliverable must accept policy inputs without weakening those later boundaries.</li>
+<li>- Chirality event-store internals beyond safe metadata handoff are outside PKG-04 scope.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-04-02; <code>docs/SPEC.md</code> Sections 12-15.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-04-02-REQ-001</td><td>The builder MUST resolve runtime option fallback chains deterministically for model, tools, max turns, mode, and persona.</td><td>SOW-016; <code>docs/SPEC.md</code> Section 13.1; <code>docs/PRD.md</code> Section 8.4, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-002</td><td>Unknown option keys MUST be ignored with warnings rather than silently mutating behavior.</td><td>SOW-016; <code>docs/SPEC.md</code> Section 13.1; <code>docs/PRD.md</code> Section 8.4, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-003</td><td>Shipped SDK options MUST use <code>settingSources: []</code>.</td><td>SOW-045; <code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1</td></tr>
+<tr><td>DEL-04-02-REQ-004</td><td>Development-only project settings MAY use <code>[&#x27;project&#x27;]</code> only behind explicit environment configuration; <code>user</code> and <code>local</code> sources MUST NOT be used in shipped builds.</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/PRD.md</code> Section 8.12, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-005</td><td><code>opts.tools</code> MUST map only to registered SDK built-ins or Chirality MCP tools; unknown names MUST produce structured validation errors.</td><td>SOW-047; <code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> Section 8.13, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-006</td><td>Tool ordering, naming, MCP server IDs, and allow/deny option lists MUST be stable for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy.</td><td><code>docs/CONTRACT.md</code> K-TOOL-1; <code>docs/PRD.md</code> Section 8.13, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-007</td><td>The builder MUST NOT treat <code>allowedTools</code> alone as a restriction boundary. Restriction posture MUST include deny rules, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> where applicable.</td><td><code>docs/CONTRACT.md</code> K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>DEL-04-02-REQ-008</td><td>Resolved <code>maxTurns</code> MUST be included in SDK options so max-turn guards can stop runaway loops and terminal max-turn errors can be persisted by runtime/event layers.</td><td>SOW-052; <code>docs/PRD.md</code> Section 8.13, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-009</td><td>The builder MUST preserve Chirality-owned semantics by keeping SDK-specific names and option details at adapter boundaries and safe metadata surfaces, not public API contracts.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-1 through K-ENGINE-4; <code>docs/TYPES.md</code> Section 9</td></tr>
+<tr><td>DEL-04-02-REQ-010</td><td>Safe visible metadata SHOULD include SDK package version, SDK permission mode, visible tool list, MCP server names, settings-source posture, SDK session ID/resume mode, and transcript/store linkage where available.</td><td><code>docs/SPEC.md</code> Section 12.4</td></tr>
+<tr><td>DEL-04-02-REQ-011</td><td>API keys and secrets MUST NOT be written to project files or included in visible metadata produced by this builder.</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/PRD.md</code> Section 10.3.1, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-012</td><td>Exact SDK option property names beyond cited source text are TBD until the first-adapter probe/version decision confirms current TypeScript APIs.</td><td><code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> KG-021, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-013</td><td>The builder input contract MUST either define or explicitly import the owning adjacent contract for session state, persona output, hook policy, MCP server descriptors, subagent descriptors, resume linkage, and settings policy before the exact TypeScript shape is treated as closed.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>docs/PRD.md</code> Section 4, MATCH; <code>execution/_Decomposition/...</code> DEL-04-01 through DEL-04-05 — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-02-REQ-014</td><td>Before constructing SDK options, the builder MUST fail closed or return a structured integration error when required governed policy inputs for settings, tools, permission posture, hooks, MCP, or subagents are absent or explicitly unresolved.</td><td><code>docs/CONTRACT.md</code> K-RELIANCE-2, K-PERM-1 through K-PERM-3, K-MCP-1, K-HOOK-1; <code>docs/PLAN.md</code> R2</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Contract</td><td>Application</td><td>Source</td></tr>
+<tr><td>Chirality <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code></td><td>SDK options are constructed behind a product-owned engine boundary.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-1; <code>docs/SPEC.md</code> Section 11; <code>docs/PRD.md</code> Section 8.12, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>SDK settings isolation</td><td>Shipped runtime must not load ambient user/global Claude Code settings or local <code>.claude/settings.local.json</code>.</td><td><code>docs/CONTRACT.md</code> K-SDK-1; <code>docs/SPEC.md</code> Section 12.2</td></tr>
+<tr><td>Capability-forward policy with explicit hard-deny precedence permission policy</td><td>Builder must carry policy posture without confusing auto-approval with restriction.</td><td><code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-6</td></tr>
+<tr><td>Chirality MCP naming</td><td>Chirality tools use <code>mcp__chirality__*</code> names.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/TYPES.md</code> Section 8.4</td></tr>
+<tr><td>Epistemic controls</td><td>Unknown implementation details remain <code>TBD</code> rather than invented.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1; <code>docs/DIRECTIVE.md</code> Section 2.5</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Requirement Links</td><td>Verification Approach</td><td>Expected Evidence</td></tr>
+<tr><td>DEL-04-02-VER-001</td><td>REQ-001, REQ-002</td><td>Unit tests for model/tool/maxTurns/mode/persona fallback order and unknown-key warnings.</td><td>Options-builder test fixtures assert warning emission and identical resolved SDK behavior when unknown option keys are added to otherwise identical inputs.</td></tr>
+<tr><td>DEL-04-02-VER-002</td><td>REQ-003, REQ-004</td><td>Settings isolation tests for shipped default, explicit development project opt-in, and forbidden setting-source cases.</td><td>Fixtures cover shipped <code>settingSources: []</code>, development-only <code>[&#x27;project&#x27;]</code> behind explicit environment configuration, and rejection/exclusion of <code>user</code> and <code>local</code> sources in shipped posture.</td></tr>
+<tr><td>DEL-04-02-VER-003</td><td>REQ-005, REQ-006, REQ-007, REQ-014</td><td>Composite tool/policy mapping tests for registered built-ins, registered Chirality MCP names, deterministic ordering, unknown-name errors, MCP server IDs, allow/deny lists, and permission policy inputs.</td><td>One deterministic-order fixture includes requested tools, visible tools, MCP server IDs, <code>allowedTools</code>, <code>disallowedTools</code>, permission mode, hook/callback posture, and structured validation errors.</td></tr>
+<tr><td>DEL-04-02-VER-004</td><td>REQ-007, REQ-014</td><td>Tests or static checks proving <code>allowedTools</code> is not the sole restriction mechanism for restricted modes.</td><td>Fixture showing deny/disallowed/hook/callback posture included or required before option construction proceeds.</td></tr>
+<tr><td>DEL-04-02-VER-005</td><td>REQ-008</td><td>Max-turn option propagation test and terminal max-turn handoff fixture.</td><td>SDK options fixture plus runtime event handoff fixture location TBD; likely adjacent owner is DEL-04-03 or DEL-03-02 pending accepted integration contract.</td></tr>
+<tr><td>DEL-04-02-VER-006</td><td>REQ-009, REQ-010, REQ-011</td><td>Metadata-shape and redaction review confirming SDK details are adapter metadata and safe runtime metadata only.</td><td>Single metadata fixture proves safe fields are present and API keys, raw secrets, hidden user settings content, and public product-version claims are absent.</td></tr>
+<tr><td>DEL-04-02-VER-007</td><td>REQ-011</td><td>Redaction/secret exclusion test for builder output and visible metadata.</td><td>Fixture with API-key-like input verifies no secret output in project files, visible metadata, or runtime records owned by this slice.</td></tr>
+<tr><td>DEL-04-02-VER-008</td><td>REQ-012, REQ-013</td><td>first-adapter probe/typecheck after package pin and adjacent-contract import review.</td><td>Probe notes, TypeScript compile evidence from DEL-04-01 or R1 implementation, and source-backed references for any imported persona/session/hook/MCP/settings policy types.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts:</p>
+<ul>
+<li>- <code>sdk-options-builder.ts</code> or equivalent module path selected by implementation owner.</li>
+<li>- Unit tests for fallback chains, unknown keys, settings isolation, tool mapping, deterministic ordering, max-turn propagation, and visible metadata.</li>
+<li>- Safe visible tool/settings metadata fixture.</li>
+<li>- Notes in implementation comments or local docs for any SDK option whose exact TypeScript shape depends on the accepted first-adapter probe.</li>
+</ul>
+<p>Open documentation items:</p>
+<ul>
+<li>- TBD: exact module path and exported TypeScript API.</li>
+<li>- TBD: target test command or validation suite for this module after implementation path is selected.</li>
+<li>- TBD: exact structured error type for unknown tools.</li>
+<li>- TBD: exact integration point with <code>PersonaComposer</code>, <code>TurnEngine</code>, and PKG-06 permission overlay.</li>
+<li>- TBD: exact SDK package version and option names confirmed by DEL-04-01 probe.</li>
+</ul>
+<h3 id="clm-014-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-014 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-119/120/121 record the realized split: <code>TurnEngine.assertKnownAgentSdkTools</code> owns runtime validation, the options builder owns deterministic mapping, concrete compiling SDK property names are probe-backed, and the module/test paths are landed.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-04-02 output satisfies the legacy production-contract requirements and checks for deterministic runtime option fallback, provider/SDK settings isolation, registered tool option mapping, and max-turn guards for SOW-016, SOW-045, SOW-047, and SOW-052.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-04-02-sdkoptionsbuilder-and-settings-isolation">CLM-015 — Procedure: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h3>
+<h4 id="procedure-del-04-02-sdkoptionsbuilder-and-settings-isolation">Procedure: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h4>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce and verify the <code>SdkOptionsBuilder</code> feature slice without exceeding the deliverable boundary. The procedure supports creation of <code>sdk-options-builder.ts</code>, settings isolation tests, and visible tool metadata.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td><td>Source</td></tr>
+<tr><td>Accepted deliverable scope for DEL-04-02</td><td>Available in decomposition and <code>_CONTEXT.md</code></td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-04-02</td></tr>
+<tr><td>first-adapter probe/version decision</td><td>TBD; required before final exact SDK TypeScript option fields are frozen</td><td><code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> KG-021, HASH_MISMATCH</td></tr>
+<tr><td>Runtime engine contract integration point</td><td>TBD; adjacent deliverables define <code>AgentEnginePort</code>, <code>TurnEngine</code>, and conformance suite</td><td><code>docs/CONTRACT.md</code> K-ENGINE-1; <code>docs/PRD.md</code> Section 8.12, HASH_MISMATCH</td></tr>
+<tr><td>Persona composer output contract</td><td>TBD; DEL-04-04 owns prompt composition</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/...</code> DEL-04-04</td></tr>
+<tr><td>Permission overlay policy inputs</td><td>TBD; PKG-06 owns full overlay and hooks, but this builder must accept policy posture</td><td><code>_CONTEXT.md</code> ContextEnvelopeNotes; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Implementation module path</td><td>TBD; candidate R1 path is <code>frontend/src/lib/harness/sdk-options-builder.ts</code> but accepted path/export shape must follow implementation convention</td><td><code>docs/PLAN.md</code> R1; <code>docs/PRD.md</code> Section 13.3, HASH_MISMATCH</td></tr>
+<tr><td>Dependency edges</td><td>TBD; no declared upstream/downstream dependencies have been extracted yet</td><td><code>_DEPENDENCIES.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source and package scope.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and the DEL-04-02 decomposition row.</li>
+<li>- Confirm SOW coverage: SOW-016, SOW-045, SOW-047, SOW-052.</li>
+<li>- Record the <code>docs/PRD.md</code> <code>HASH_MISMATCH</code> warning if using PRD-backed details.</li>
+</ul>
+<p>2. Define the builder input shape.</p>
+<ul>
+<li>- Include session/runtime state needed for model, tools, max turns, mode, persona, hooks, MCP servers, subagents, resume/session linkage, and settings policy.</li>
+<li>- Reference or import adjacent owner contracts for persona output, session linkage, hooks, MCP server descriptors, subagent descriptors, permission policy, and settings policy when those contracts exist.</li>
+<li>- Mark exact TypeScript API names as TBD until first-adapter probe/version evidence is accepted.</li>
+</ul>
+<p>3. Implement deterministic fallback resolution.</p>
+<ul>
+<li>- Resolve model, tools, and max turns using <code>docs/SPEC.md</code> Section 13.1.</li>
+<li>- Resolve mode and persona from request/session values before runtime defaults.</li>
+<li>- Emit warnings for unknown option keys and ensure unknown keys do not mutate behavior.</li>
+</ul>
+<p>4. Implement settings isolation posture.</p>
+<ul>
+<li>- For shipped posture, set SDK settings source behavior to <code>settingSources: []</code>.</li>
+<li>- Permit <code>[&#x27;project&#x27;]</code> only under explicit development configuration.</li>
+<li>- Reject invalid shipped policy inputs before option construction or omit ambient settings by construction; do not pass <code>user</code> or <code>local</code> settings sources in shipped builds.</li>
+<li>- Add safe visible metadata for selected settings-source posture.</li>
+</ul>
+<p>5. Implement tool-surface resolution.</p>
+<ul>
+<li>- Resolve requested tools against registered SDK built-ins and registered Chirality MCP tool names.</li>
+<li>- Preserve deterministic ordering.</li>
+<li>- Return structured validation errors for unknown names before SDK request construction.</li>
+<li>- Include visible tool metadata that is safe for runtime display/logging.</li>
+</ul>
+<p>6. Carry permission, hook, MCP, and subagent policy posture.</p>
+<ul>
+<li>- Include <code>disallowedTools</code>, permission mode, hooks, <code>canUseTool</code>, MCP server descriptors, and subagent descriptors only as supplied by governed policy inputs.</li>
+<li>- Do not treat <code>allowedTools</code> alone as sufficient restriction.</li>
+<li>- Fail closed or return TBD/integration errors for subagent descriptors until governance bridge requirements are available.</li>
+</ul>
+<p>7. Include max-turn guard option.</p>
+<ul>
+<li>- Pass resolved <code>maxTurns</code> into SDK options.</li>
+<li>- Ensure runtime/event layers can observe terminal max-turn errors; exact event mapping is TBD in adjacent deliverables.</li>
+</ul>
+<p>8. Produce safe metadata.</p>
+<ul>
+<li>- Include SDK package version where known, permission mode, visible tool list, MCP server names, settings-source posture, SDK session ID/resume mode, and transcript/store linkage where available.</li>
+<li>- Exclude API keys, raw secrets, hidden user settings content, and project-truth claims.</li>
+</ul>
+<p>9. Add tests.</p>
+<ul>
+<li>- Add fallback-chain tests.</li>
+<li>- Add unknown-option warning tests that prove resolved SDK behavior is unchanged when unknown keys are present.</li>
+<li>- Add shipped settings isolation tests.</li>
+<li>- Add development-only project-setting opt-in tests.</li>
+<li>- Add forbidden <code>user</code> and <code>local</code> settings-source tests for shipped posture.</li>
+<li>- Add tool mapping, ordering, and unknown-tool tests.</li>
+<li>- Add one composite deterministic-order fixture covering requested tools, visible tools, MCP server IDs, allow/deny lists, permission mode, hook/callback posture, and permission policy inputs together.</li>
+<li>- Add <code>allowedTools</code> misconception guard test.</li>
+<li>- Add max-turn propagation test.</li>
+<li>- Add safe metadata redaction/exclusion test proving safe fields are present and API keys/secrets are absent.</li>
+</ul>
+<p>10. Run validation.</p>
+<ul>
+<li>- Run targeted unit tests for <code>sdk-options-builder.ts</code> or the selected equivalent module.</li>
+<li>- Run typecheck after SDK version/API is pinned.</li>
+<li>- Run broader harness validation when the feature is wired into <code>TurnEngine</code>.</li>
+<li>- Record the exact test command or validation suite once the implementation path exists; until then, keep the command as TBD.</li>
+<li>- Record any remaining TBD fields, terminal max-turn fixture owner, or SDK-probe dependencies.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Fallback determinism</td><td>Same inputs produce same resolved options, warnings, tool ordering, and metadata.</td></tr>
+<tr><td>Unknown option handling</td><td>Unknown option keys warn and do not affect behavior.</td></tr>
+<tr><td>Shipped settings isolation</td><td>Shipped posture produces <code>settingSources: []</code> and no <code>user</code>/<code>local</code> setting sources.</td></tr>
+<tr><td>Development settings gate</td><td><code>[&#x27;project&#x27;]</code> requires explicit development configuration.</td></tr>
+<tr><td>Tool mapping</td><td>Registered SDK built-ins and Chirality MCP tools resolve; unknown names produce structured validation errors.</td></tr>
+<tr><td>Composite deterministic ordering</td><td>Tools, MCP server IDs, allow/deny lists, hook/callback posture, permission mode, and policy inputs remain stable for identical inputs.</td></tr>
+<tr><td>Permission posture</td><td>Restricted modes do not rely on <code>allowedTools</code> alone.</td></tr>
+<tr><td>Max-turn guard</td><td>Resolved max-turn value reaches SDK options.</td></tr>
+<tr><td>Metadata safety</td><td>Visible metadata contains only safe runtime details and no secrets.</td></tr>
+<tr><td>Adapter boundary</td><td>SDK-specific details do not become public Chirality API or canonical event semantics except as adapter metadata.</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Expected implementation records:</p>
+<ul>
+<li>- <code>sdk-options-builder.ts</code> or equivalent module selected by implementation owner.</li>
+<li>- Exact module path/export shape record, currently TBD pending implementation convention.</li>
+<li>- Settings isolation tests.</li>
+<li>- Tool mapping and visible metadata tests.</li>
+<li>- Max-turn propagation tests.</li>
+<li>- Unknown option warning tests.</li>
+<li>- Targeted test command or validation suite, currently TBD until implementation path exists.</li>
+<li>- first-adapter probe/version evidence from DEL-04-01 before exact SDK option fields are treated as final.</li>
+<li>- Terminal max-turn runtime/event handoff fixture owner, currently TBD and likely adjacent to DEL-04-03 or DEL-03-02 pending accepted contract.</li>
+<li>- Any unresolved <code>TBD</code>, <code>ASSUMPTION</code>, or conflict entries carried forward for human or upstream-agent ruling.</li>
+</ul>
+<h3 id="clm-021-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-119/120/121 record the realized split: <code>TurnEngine.assertKnownAgentSdkTools</code> owns runtime validation, the options builder owns deterministic mapping, concrete compiling SDK property names are probe-backed, and the module/test paths are landed.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Verify with the legacy-defined options-builder tests and records covering fallback and unknown-option behavior, shipped and development settings isolation, registered tool mapping and ordering, max-turn propagation, and safe visible metadata.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-04-02-sdkoptionsbuilder-and-settings-isolation">CLM-022 — Guidance: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h3>
+<h4 id="guidance-del-04-02-sdkoptionsbuilder-and-settings-isolation">Guidance: DEL-04-02 SdkOptionsBuilder and Settings Isolation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p><code>SdkOptionsBuilder</code> exists to keep SDK request construction deterministic, explicit, and governed while Chirality adopts the Claude Agent SDK as a replaceable implementation substrate. It should translate Chirality-owned session state, resolved runtime options, prompt/tool policy, settings posture, and resume metadata into SDK-facing options without allowing SDK defaults or ambient settings to redefine product behavior.</p>
+<p>Sources: <code>docs/DIRECTIVE.md</code> Section 2.8; <code>docs/CONTRACT.md</code> Section 1.4; <code>docs/SPEC.md</code> Sections 12-15; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-04-02.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Determinism before convenience.</p>
+<p>For the same session, persona, mode, option set, SDK version, MCP server set, and policy input, the builder should produce stable option values, stable tool ordering, and stable visible metadata. Sources: <code>docs/CONTRACT.md</code> K-TOOL-1; <code>docs/PRD.md</code> Section 8.13, MATCH. (reconciled under D-APP-38).</p>
+<p>2. Settings isolation is a release boundary.</p>
+<p>Shipped builds use <code>settingSources: []</code>. Development-only project settings require explicit environment enablement and must not include <code>user</code> or <code>local</code> sources. Sources: <code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1.</p>
+<p>3. Policy adequacy is checked before option construction.</p>
+<p>The builder should not normalize missing governed policy into permissive SDK defaults. If required settings, tool, permission, hook, MCP, or subagent policy inputs are absent, explicitly unresolved, or contradictory, the builder should fail closed or return a structured integration error before constructing SDK options. Sources: <code>docs/CONTRACT.md</code> K-RELIANCE-2, K-PERM-1 through K-PERM-3, K-MCP-1, K-HOOK-1; <code>docs/PLAN.md</code> R2.</p>
+<p>4. <code>allowedTools</code> is not a safety boundary.</p>
+<p>Treat <code>allowedTools</code> as SDK auto-approval posture, not as the complete restriction mechanism. Restricted modes require deny rules, disallowed tools, hooks, <code>canUseTool</code>, <code>dontAsk</code>, or the PKG-06 overlay as applicable. Sources: <code>docs/CONTRACT.md</code> K-PERM-3; <code>docs/SPEC.md</code> Section 14.3.</p>
+<p>5. Adapter metadata is allowed; public semantic leakage is not.</p>
+<p>SDK-specific names and SDK package version may appear in adapter-local metadata and safe runtime metadata, but they are evidence about the runtime adapter, not public Chirality product-version authority. Public Chirality APIs, canonical events, and governance records remain Chirality-owned. Sources: <code>docs/CONTRACT.md</code> K-ENGINE-4; <code>docs/TYPES.md</code> Section 9.</p>
+<p>6. Prefer explicit unknowns over plausible SDK detail.</p>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Fallback implementation</td><td>Keep fallback resolution pure and testable. Emit warnings for unknown option keys; do not let unknown fields affect behavior.</td><td><code>docs/SPEC.md</code> Section 13.1</td></tr>
+<tr><td>Settings posture</td><td>Make shipped/development posture an explicit input or environment-derived policy, then record the selected posture in safe metadata. Shipped option construction should omit ambient settings by using <code>settingSources: []</code>; development project settings should be admitted only by the explicit development policy path.</td><td><code>docs/SPEC.md</code> Sections 12.2, 12.4</td></tr>
+<tr><td>Tool registry</td><td>Resolve requested tool names against a deterministic registry of SDK built-ins and Chirality MCP tools. Unknown names should fail before SDK request construction.</td><td><code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>Hooks and permissions</td><td>Accept hook/callback/deny policy inputs, but do not overclaim that this slice fully implements PKG-06 permission semantics.</td><td><code>_CONTEXT.md</code> ContextEnvelopeNotes; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Resume and session linkage</td><td>Include resume/session fields only through the engine/session contract and safe adapter metadata. SDK transcripts remain secondary to Chirality events.</td><td><code>docs/CONTRACT.md</code> K-SDK-3; <code>docs/SPEC.md</code> Section 12.4</td></tr>
+<tr><td>Subagents</td><td>Treat subagent option construction as policy-gated and fail-closed until the governance bridge supplies restricted child definitions.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1, K-SUBAGENT-2; <code>docs/PRD.md</code> KG-027, MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>PRD hash state</td><td>Use <code>docs/PRD.md</code> requirements with caution because <code>_REFERENCES.md</code> reports <code>MATCH</code>; do not use PRD-only details to override matching higher-authority sources.</td><td><code>_REFERENCES.md</code>; <code>docs/DIRECTIVE.md</code> Section 0 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred Direction</td><td>Rationale</td></tr>
+<tr><td>SDK defaults vs explicit options</td><td>Prefer explicit Chirality options and recorded posture.</td><td>Prevents ambient settings and SDK defaults from becoming product semantics.</td></tr>
+<tr><td>Early tool exposure vs controlled sequence</td><td>Prefer read-only and registered tools first; defer write/bash/subagent execution until overlays and hooks are active.</td><td>Matches roadmap sequence and avoids permission boundary overclaiming.</td></tr>
+<tr><td>Rich SDK metadata vs provider-neutral core</td><td>Keep SDK metadata local to adapter/runtime metadata, with public APIs and canonical events in Chirality terms.</td><td>Preserves engine replaceability and conformance testing.</td></tr>
+<tr><td>Immediate exact SDK field design vs probe-backed API</td><td>Use <code>TBD</code> for exact fields until SDK version/probe confirms current TypeScript APIs.</td><td>Avoids encoding stale or guessed upstream SDK behavior.</td></tr>
+</tbody></table>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<h3 id="clm-028-example-fallback-trace">CLM-028 — Example Fallback Trace</h3>
+<h6 id="example-fallback-trace">Example Fallback Trace</h6>
+<p>```text</p>
+<p>Input:</p>
+<p>opts.model = TBD</p>
+<p>environment CHIRALITY_GLOBAL_MODEL = set</p>
+<p>instruction-root model default = available</p>
+<p>runtime default = available</p>
+<p>Expected resolution:</p>
+<p>model = CHIRALITY_GLOBAL_MODEL</p>
+<p>warning list = none unless unknown option keys are present</p>
+<p>Source:</p>
+<p>docs/SPEC.md Section 13.1</p>
+<p>```</p>
+<h3 id="clm-029-example-settings-posture">CLM-029 — Example Settings Posture</h3>
+<h6 id="example-settings-posture">Example Settings Posture</h6>
+<p>```text</p>
+<p>Shipped build:</p>
+<p>settingSources = []</p>
+<p>visible metadata includes settings-source posture = &quot;shipped-empty&quot;</p>
+<p>Development-only explicit project settings:</p>
+<p>settingSources = [&#x27;project&#x27;]</p>
+<p>visible metadata includes settings-source posture = &quot;development-project&quot;</p>
+<p>user/local setting sources remain forbidden</p>
+<p>Source:</p>
+<p>docs/SPEC.md Section 12.2</p>
+<p>```</p>
+<h3 id="clm-030-example-tool-resolution">CLM-030 — Example Tool Resolution</h3>
+<h6 id="example-tool-resolution">Example Tool Resolution</h6>
+<p>```text</p>
+<p>Requested tools:</p>
+<p>Read</p>
+<p>mcp__chirality__status_read</p>
+<p>unknown_tool</p>
+<p>Expected result:</p>
+<p>Read maps to registered SDK built-in if available.</p>
+<p>mcp__chirality__status_read maps to registered Chirality MCP tool.</p>
+<p>unknown_tool returns structured validation error before SDK request construction.</p>
+<p>Source:</p>
+<p>docs/SPEC.md Sections 14.1-14.3</p>
+<p>```</p>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>CONFLICT-DEL-04-02-001</td><td><code>docs/PRD.md</code> is locally accessible and highly relevant, but <code>_REFERENCES.md</code> reports <code>MATCH</code> against the expected SHA.</td><td><code>_REFERENCES.md</code> Authoritative Source Corpus</td><td><code>docs/PRD.md</code> Sections 8.4, 8.12, 8.13, 10.3.1</td><td>All PRD-cited requirements and guidance</td><td>Treat PRD content as source-state warning: use when consistent with higher-authority matching sources, mark PRD-only exact details as TBD or assumption until source state is accepted.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-016 SOW-045 SOW-047 SOW-052 OBJ-004 OBJ-005</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

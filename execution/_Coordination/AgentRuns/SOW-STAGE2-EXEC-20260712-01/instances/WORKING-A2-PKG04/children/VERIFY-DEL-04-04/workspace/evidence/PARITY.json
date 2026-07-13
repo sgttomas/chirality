@@ -1,0 +1,285 @@
+{
+  "checks": [
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 4,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-001"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 22,
+      "line_start": 5,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-002"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 34,
+      "line_start": 23,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-003"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 44,
+      "line_start": 35,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-004"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 52,
+      "line_start": 45,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-005"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 64,
+      "line_start": 53,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-006"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 67,
+      "line_start": 65,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-007"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 4,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-008"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 25,
+      "line_start": 5,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-009"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 42,
+      "line_start": 26,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-010"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 52,
+      "line_start": 43,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-011"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 62,
+      "line_start": 53,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-012"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 77,
+      "line_start": 63,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-013"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 80,
+      "line_start": 78,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-014"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 4,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-015"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 8,
+      "line_start": 5,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-016"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 19,
+      "line_start": 9,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-017"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 51,
+      "line_start": 20,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-018"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 62,
+      "line_start": 52,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-019"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 69,
+      "line_start": 63,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-020"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 72,
+      "line_start": 70,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-021"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 4,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-022"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 10,
+      "line_start": 5,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-023"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 27,
+      "line_start": 11,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-024"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 37,
+      "line_start": 28,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-025"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 46,
+      "line_start": 38,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-026"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 52,
+      "line_start": 47,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-027"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 58,
+      "line_start": 53,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-028"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 62,
+      "line_start": 59,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-029"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 65,
+      "line_start": 63,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-030"
+    }
+  ],
+  "issues": [],
+  "pass": true,
+  "schema": "chirality-sow-parity/v1",
+  "scope_of_work": "ScopeOfWork.md",
+  "scope_of_work_sha256": "9d7a5de67db2b656f86246b1f2f466862ae60e53102d011be6910555afab15b6",
+  "source_files": {
+    "Datasheet.md": "f8c89a1290e0bba0ae3510f7c9a30a85ff4f85ec397eb02833558f177f62b396",
+    "Guidance.md": "855245c7ae9b05f153c275fab8577facbf2625dbe84bdfad363965e5ea8d2d87",
+    "Procedure.md": "0d68529d32d841351e784bbf2e17b9adbd03f5054f399347d779f0fb4a06eafa",
+    "Specification.md": "a9a2674460ec1281f982a84080fcf954b6332e95f50423ca8b2126409b98c089"
+  }
+}

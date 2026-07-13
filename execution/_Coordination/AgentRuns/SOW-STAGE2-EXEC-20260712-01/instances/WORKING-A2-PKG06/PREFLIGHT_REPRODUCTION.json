@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-a2-package-preflight-reproduction/v1",
+  "package": "APP-PKG-06",
+  "basis": "0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+  "member_count": 6,
+  "members": ["DEL-06-01", "DEL-06-02", "DEL-06-03", "DEL-06-04", "DEL-06-05", "DEL-06-06"],
+  "bindings_checked": 54,
+  "binding_failures": 0,
+  "binding_set": ["Datasheet.md", "Specification.md", "Guidance.md", "Procedure.md", "_STATUS.md", "_CONTEXT.md", "_REFERENCES.md", "_DEPENDENCIES.md", "Dependencies.csv"],
+  "live_scope_of_work_files": 0,
+  "resolved_format": "LEGACY_FOUR_DOC",
+  "lifecycle": "IN_PROGRESS",
+  "issued": false,
+  "verdict": "PASS"
+}

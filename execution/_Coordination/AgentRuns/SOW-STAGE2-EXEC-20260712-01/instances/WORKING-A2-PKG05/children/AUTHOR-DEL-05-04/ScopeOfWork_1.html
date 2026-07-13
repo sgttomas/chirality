@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2</code>.</p>
+<h1 id="scope-of-work-del-05-04">Scope of Work — DEL-05-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-05-04</code> in service of project scope [SOW-042, SOW-046] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A runtime replay and transcript-view contract that reconstructs accepted turns, assistant output, tool summaries, terminal outcomes, diagnostics, artifact links, and secondary SDK transcript linkage from Chirality-owned HarnessEvent records.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-04-runtime-replay-and-transcript-view">CLM-001 — Datasheet: DEL-05-04 Runtime Replay and Transcript View</h3>
+<h4 id="datasheet-del-05-04-runtime-replay-and-transcript-view">Datasheet: DEL-05-04 Runtime Replay and Transcript View</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-05-04</td></tr>
+<tr><td>Deliverable name</td><td>Runtime Replay and Transcript View</td></tr>
+<tr><td>Package</td><td>PKG-05 Session Audit, Replay, and Tool Result Records</td></tr>
+<tr><td>Decomposition variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Responsible party</td><td>TBD</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Scope items</td><td>SOW-042, SOW-046</td></tr>
+<tr><td>Objective</td><td>OBJ-003</td></tr>
+<tr><td>Anticipated artifacts</td><td>Replay parser; transcript model; transcript sidebar view; transcript reconstruction tests; malformed-tail tests</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary store</td><td><code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> as the product-owned Chirality audit mirror.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-EVENT-4; <code>docs/TYPES.md</code> Section 1.8</td></tr>
+<tr><td>Session metadata input</td><td><code>.chirality/sessions/&lt;sessionId&gt;/session.json</code> with session identity, project root, persona, mode, model, SDK linkage, transcript/store linkage, and resume metadata where available.</td><td><code>docs/SPEC.md</code> Sections 8.2-8.4</td></tr>
+<tr><td>Legacy metadata input</td><td>Existing <code>{sessionRoot}/{sessionId}.json</code> records remain readable through D-APP-41 eager conversion, then canonical folder records are used.</td><td><code>docs/SPEC.md</code> Section 8.1; <code>docs/PRD.md</code> Section 8.12 and session storage notes; <code>D-APP-41</code></td></tr>
+<tr><td>Event record shape</td><td><code>HarnessEvent</code> includes <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, optional <code>turnId</code>, optional <code>parentEventId</code>, timestamp, type, and data payload.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Replay tolerance</td><td>Replay must ignore malformed trailing JSONL lines while preserving valid prior events and surfacing diagnostics.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5; <code>docs/PRD.md</code> FR-073 and NFR-013</td></tr>
+<tr><td>Transcript content target</td><td>Accepted user turns, assistant output, tool summaries, terminal outcomes, artifact links, and SDK transcript links.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>docs/PRD.md</code> FR-076</td></tr>
+<tr><td>SDK transcript status</td><td>SDK transcript paths/store keys are secondary adapter metadata unless explicitly imported into <code>HarnessEvent</code> form.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3; <code>docs/DIRECTIVE.md</code> Sections 2.3 and 2.10</td></tr>
+<tr><td>UI/runtime contract separation</td><td>Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s are separate contracts; replay must not make public UI/API contracts SDK-shaped.</td><td><code>docs/SPEC.md</code> Sections 10.3 and 11; <code>docs/CONTRACT.md</code> K-EVENT-1 and K-ENGINE-4</td></tr>
+<tr><td>Secret handling</td><td>Secrets must not be stored in events; runtime logs, tool artifacts, and provider errors require redaction.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Upstream dependencies</td><td>ADQ-09 replay scope depends on DEL-05-01, DEL-05-02, DEL-04-01 SDK linkage metadata, redaction policy/helper, and DEL-05-05 artifact-link metadata; all are satisfied for transcript/replay projection.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code>; ADQ-09 evidence</td></tr>
+<tr><td>Downstream dependencies</td><td>ADQ-10 remains responsible for DEL-05-05 checksum/retention residuals; ADQ-09 consumes artifact-link metadata but does not close checksum policy.</td><td><code>_DEPENDENCIES.md</code>; <code>D-APP-42</code></td></tr>
+<tr><td>Canonicality constraint</td><td><code>events.jsonl</code> remains canonical for runtime replay; SDK transcripts assist resume/debugging but do not displace Chirality events.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/DIRECTIVE.md</code> Section 2.3</td></tr>
+<tr><td>Migration constraint</td><td>Replay must account for legacy flat sessions through D-APP-41 eager conversion, then operate on canonical folder records.</td><td><code>docs/SPEC.md</code> Section 8.1; <code>docs/PRD.md</code> session storage notes; <code>D-APP-41</code></td></tr>
+<tr><td>Exact parser API</td><td><code>replayHarnessEvents(sessionId)</code> in <code>frontend/src/lib/harness/session-events.ts</code>; transcript projection via <code>deriveTranscriptView(events, session?)</code> in <code>frontend/packages/harness-contract/src/transcript-replay.ts</code>.</td><td>ADQ-09 implementation; D-APP-48 relocation</td></tr>
+<tr><td>Exact transcript view route/UI placement</td><td>Replay route: <code>frontend/src/app/api/harness/session/[id]/events/route.ts</code>; sidebar UI: <code>frontend/src/components/shell/transcript-stream-view.tsx</code>.</td><td>ADQ-09 implementation</td></tr>
+<tr><td>Tool summary detail level</td><td>ASSUMPTION: replay should expose compact summaries and artifact links rather than raw large payloads, because large payloads are stored as artifacts and referenced by path.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-7</td></tr>
+</tbody></table>
+<h3 id="clm-005-pass-3-semantic-lensing-notes">CLM-005 — Pass 3 Semantic Lensing Notes</h3>
+<h5 id="pass-3-semantic-lensing-notes">Pass 3 Semantic Lensing Notes</h5>
+<table><tbody>
+<tr><td>Item ID</td><td>Datasheet disposition</td><td>Source reread</td></tr>
+<tr><td>B-001</td><td>Retired: D-APP-38 authority corpus v2 reports REF-006 and all other DEL-05-04 references as <code>MATCH</code>.</td><td><code>_REFERENCES.md</code> authoritative source corpus; <code>Guidance.md</code> Source-State Notes</td></tr>
+<tr><td>C-001</td><td>Resolved: parser API, transcript model, replay route, and sidebar placement are assigned by ADQ-09.</td><td><code>docs/SPEC.md</code> Sections 8-11; ADQ-09 implementation</td></tr>
+<tr><td>D-001</td><td>Resolved: verification fixture filenames and implementation paths are recorded in Specification, Procedure, and ADQ-09 evidence.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/SPEC.md</code> Section 19.3</td></tr>
+</tbody></table>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction expectation</td><td>Source</td></tr>
+<tr><td>Replay parser</td><td>Read ordered newline-delimited <code>HarnessEvent</code> records, ignore malformed final records, retain valid prior records, redact replay output, and emit diagnostics for replay/reporting.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/PRD.md</code> FR-073 and NFR-013; <code>frontend/src/lib/harness/session-events.ts</code></td></tr>
+<tr><td>Transcript reconstruction</td><td>Group accepted turns, assistant deltas/completions, tool lifecycle summaries, terminal outcomes, and diagnostics into a replayable transcript representation.</td><td><code>docs/SPEC.md</code> Sections 9.3-9.4; <code>docs/PRD.md</code> FR-076; <code>frontend/src/lib/harness/transcript-replay.ts</code></td></tr>
+<tr><td>SDK linkage projection</td><td>Include <code>sdkSessionId</code>, <code>sdkTranscriptPath</code> or <code>sdkSessionStoreKey</code>, <code>sdkProjectKey</code>, and resume metadata from session metadata when present, while keeping these fields adapter metadata.</td><td><code>docs/SPEC.md</code> Sections 8.3-8.4; <code>docs/TYPES.md</code> Section 7.2</td></tr>
+<tr><td>Artifact link projection</td><td>Represent large payloads by session artifact paths rather than inlining raw large or sensitive content.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-7</td></tr>
+<tr><td>Verification fixtures</td><td>Include transcript reconstruction, malformed-tail, redaction, API replay, SDK-linkage, and sidebar render tests in accepted fixture paths.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/SPEC.md</code> Section 19.3 validation IDs; ADQ-09 tests</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td><td>Source state</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Runtime audit canonicality, professional boundaries, provider-neutrality</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for event replay, transcript status, redaction, and SDK boundaries</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Session layout, event schema, replay rules, SDK metadata, validation IDs</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Vocabulary and type targets for runtime audit mirror, session metadata, and <code>HarnessEvent</code></td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>R1 sequencing context and runtime validation direction</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Product requirements for replay and SDK transcript linkage</td><td>MATCH</td></tr>
+<tr><td>REF-007</td><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context only</td><td>MATCH</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-05-04-runtime-replay-and-transcript-view">CLM-008 — Specification: DEL-05-04 Runtime Replay and Transcript View</h3>
+<h4 id="specification-del-05-04-runtime-replay-and-transcript-view">Specification: DEL-05-04 Runtime Replay and Transcript View</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-05-04 specifies the backend feature slice that reconstructs runtime replay and transcript views from Chirality-owned session events. It covers replay parsing, transcript reconstruction tests, malformed-tail handling, terminal-state projection, and SDK transcript linkage surfaced as non-canonical adapter metadata.</p>
+<p>In scope:</p>
+<ul>
+<li>- Read canonical <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> records and session metadata for replay/reporting.</li>
+<li>- Preserve valid prior JSONL events when the tail line is malformed and surface diagnostics.</li>
+<li>- Reconstruct accepted turns, assistant output, tool summaries, terminal outcomes, artifact links, and SDK transcript links.</li>
+<li>- Keep SDK transcripts secondary to Chirality <code>HarnessEvent</code> records unless imported into <code>HarnessEvent</code> form.</li>
+<li>- Maintain separation between compact browser <code>UIEvent</code>s and richer persisted <code>HarnessEvent</code>s.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Defining the full <code>HarnessEvent</code> schema and append-only writer. That is primarily DEL-05-02.</li>
+<li>- Canonical session folder migration and legacy session migration helpers. That is primarily DEL-05-01.</li>
+<li>- Tool result storage thresholds and raw artifact storage. That is primarily DEL-05-05.</li>
+<li>- Tool permission semantics, which are excluded by the package context.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> Sections 8-11; <code>docs/CONTRACT.md</code> K-EVENT and K-SDK invariants; <code>docs/PRD.md</code> FR-073, FR-076, FR-118, FR-121. D-APP-38 authority corpus v2 reports these references as <code>MATCH</code>.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-05-04-REQ-001</td><td>The replay reader MUST treat <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> as the canonical runtime audit mirror for transcript reconstruction.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-EVENT-4</td></tr>
+<tr><td>DEL-05-04-REQ-002</td><td>The replay reader MUST process newline-delimited <code>HarnessEvent</code> records in write sequence.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-05-04-REQ-003</td><td>Replay MUST ignore a malformed trailing JSONL line, preserve valid prior events, and surface a diagnostic.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>DEL-05-04-REQ-004</td><td>Replay MUST NOT treat SDK transcripts as canonical project or runtime audit truth unless their content has been explicitly imported into <code>HarnessEvent</code> form.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3; <code>docs/DIRECTIVE.md</code> Section 2.3</td></tr>
+<tr><td>DEL-05-04-REQ-005</td><td>Transcript reconstruction MUST include accepted user turns and terminal outcomes when the corresponding <code>HarnessEvent</code>s are present.</td><td><code>docs/SPEC.md</code> Sections 9.3-9.4; <code>docs/CONTRACT.md</code> K-EVENT-2 and K-EVENT-3</td></tr>
+<tr><td>DEL-05-04-REQ-006</td><td>Transcript reconstruction SHOULD include assistant deltas/completions, tool summaries, artifact links, and SDK transcript links when supported by available events or session metadata.</td><td><code>docs/SPEC.md</code> Sections 8.3, 9.3, and 9.4; <code>docs/PRD.md</code> FR-076 and FR-085</td></tr>
+<tr><td>DEL-05-04-REQ-007</td><td>SDK-specific names, IDs, transcript paths, and store keys MUST remain adapter metadata and MUST NOT redefine public Chirality replay contracts.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>DEL-05-04-REQ-008</td><td>Replay output MUST redact or omit secrets and MUST NOT expose API keys from event data, runtime logs, tool artifacts, provider errors, or SDK metadata.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/DIRECTIVE.md</code> Section 2.9</td></tr>
+<tr><td>DEL-05-04-REQ-009</td><td>Legacy session records MUST remain readable for replay-related session discovery through the D-APP-41 eager conversion path, after which canonical folder records are the runtime source.</td><td><code>docs/SPEC.md</code> Section 8.1; <code>docs/PRD.md</code> FR-077 and session storage notes; <code>D-APP-41</code></td></tr>
+<tr><td>DEL-05-04-REQ-010</td><td>Replay fixtures MUST cover event append/replay, malformed trailing JSONL behavior, and SDK session linkage/resume metadata.</td><td><code>docs/SPEC.md</code> Section 19.3; <code>docs/PRD.md</code> conformance bullets</td></tr>
+<tr><td>DEL-05-04-REQ-011</td><td>ASSUMPTION: the transcript view model should represent large tool results by summary and artifact reference rather than raw inline payload.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-7</td></tr>
+<tr><td>DEL-05-04-REQ-012</td><td>The accepted parser, model, API, component, and fixture paths are assigned by ADQ-09 implementation and must remain recorded in evidence.</td><td>Source gap resolved by ADQ-09</td></tr>
+<tr><td>DEL-05-04-REQ-013</td><td>The implementation handoff MUST record <code>frontend/src/lib/harness/session-events.ts</code>, <code>frontend/packages/harness-contract/src/transcript-replay.ts</code>, <code>frontend/src/app/api/harness/session/[id]/events/route.ts</code>, <code>frontend/src/components/shell/transcript-stream-view.tsx</code>, and the focused replay/transcript fixtures.</td><td><code>docs/SPEC.md</code> Sections 8-11; decomposition DEL-05-04 row; P3 items C-001 and D-001</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Chirality session layout</td><td>Replay consumes <code>.chirality/sessions/&lt;sessionId&gt;/session.json</code>, <code>events.jsonl</code>, <code>turns/</code>, <code>artifacts/</code>, and <code>sdk/</code> where present.</td><td><code>docs/SPEC.md</code> Section 8.2</td></tr>
+<tr><td><code>HarnessEvent</code> type target</td><td>Replay consumes stable versioned events with event/session/turn identity and typed data payloads.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Runtime engine adapter rule</td><td>Replay-facing contracts remain Chirality-owned and provider-neutral.</td><td><code>docs/SPEC.md</code> Section 10.3</td></tr>
+<tr><td>Runtime event invariants</td><td>Accepted turns, terminal events, malformed-tail tolerance, redaction, and artifact budgeting govern replay behavior.</td><td><code>docs/CONTRACT.md</code> K-EVENT-2 through K-EVENT-7</td></tr>
+<tr><td>SDK transcript invariant</td><td>SDK transcript linkage is resume/debug metadata, not canonical replay truth.</td><td><code>docs/CONTRACT.md</code> K-SDK-3</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-05-04-REQ-001, DEL-05-04-REQ-002</td><td>Unit test replay ordering from valid <code>events.jsonl</code> fixtures.</td></tr>
+<tr><td>DEL-05-04-REQ-003</td><td>Malformed-tail fixture: final line invalid JSON; valid earlier events still appear; diagnostic is returned.</td></tr>
+<tr><td>DEL-05-04-REQ-004, DEL-05-04-REQ-007</td><td>Type/API tests or snapshot tests showing SDK transcript fields appear only as adapter metadata, not canonical event identity.</td></tr>
+<tr><td>DEL-05-04-REQ-005, DEL-05-04-REQ-006</td><td>Transcript reconstruction tests for accepted turns, assistant output, tool summaries, terminal outcomes, artifact links, and SDK transcript links.</td></tr>
+<tr><td>DEL-05-04-REQ-008</td><td>Redaction fixture with secret-like event/tool/provider data; replay output omits or redacts sensitive values.</td></tr>
+<tr><td>DEL-05-04-REQ-009</td><td>Legacy session discovery/retrieval fixture remains readable while canonical folder layout is introduced.</td></tr>
+<tr><td>DEL-05-04-REQ-010</td><td>Section 9 validation coverage includes <code>section9.session_event_replay</code> and <code>section9.sdk_session_link_resume</code>.</td></tr>
+<tr><td>DEL-05-04-REQ-011</td><td>Tool-result replay fixture confirms compact summary plus artifact link behavior.</td></tr>
+<tr><td>DEL-05-04-REQ-013</td><td>Handoff/review check confirms all replay parser, transcript model, route/component, and fixture path placeholders are filled with accepted ADQ-09 code/test locations.</td></tr>
+</tbody></table>
+<p>Minimum fixture coverage before closure includes success, failure, cancellation, interruption, malformed-tail diagnostics, legacy session reads, SDK transcript linkage, redaction behavior, and compact tool-result artifact links. ADQ-09 assigns the replay/transcript fixture paths: <code>frontend/src/__tests__/lib/session-events.test.ts</code>, <code>frontend/src/__tests__/lib/transcript-replay.test.ts</code>, <code>frontend/src/__tests__/api/harness/routes.test.ts</code>, and <code>frontend/src/__tests__/components/harness-stream-views.test.ts</code>. Source reread: <code>docs/SPEC.md</code> Sections 9.2 and 19.3; <code>docs/PRD.md</code> Section 12 validation IDs. Disposition: X-001 incorporated with implementation-specific names filled by ADQ-09.</p>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required records or artifacts for this deliverable:</p>
+<ul>
+<li>- Replay parser implementation: <code>frontend/src/lib/harness/session-events.ts</code>.</li>
+<li>- Transcript reconstruction model and interfaces: <code>frontend/src/lib/harness/transcript-replay.ts</code>.</li>
+<li>- Replay API placement: <code>frontend/src/app/api/harness/session/[id]/events/route.ts</code>.</li>
+<li>- Transcript UI placement: <code>frontend/src/components/shell/transcript-stream-view.tsx</code> and the Workspace sidebar Transcript tab.</li>
+<li>- Transcript, malformed-tail, SDK-linkage, redaction, and artifact-link fixtures: <code>frontend/src/__tests__/lib/transcript-replay.test.ts</code>, <code>frontend/src/__tests__/lib/session-events.test.ts</code>, <code>frontend/src/__tests__/api/harness/routes.test.ts</code>, and <code>frontend/src/__tests__/components/harness-stream-views.test.ts</code>.</li>
+<li>- Source-state note: D-APP-38 authority corpus v2 reports all DEL-05-04 references as <code>MATCH</code>.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The runtime replay and transcript view preserves canonical Chirality event precedence, valid-event ordering, malformed-tail tolerance, redaction, adapter-only SDK linkage, compact artifact references, and recorded implementation and fixture paths.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-05-04-runtime-replay-and-transcript-view">CLM-014 — Procedure: DEL-05-04 Runtime Replay and Transcript View</h3>
+<h4 id="procedure-del-05-04-runtime-replay-and-transcript-view">Procedure: DEL-05-04 Runtime Replay and Transcript View</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define an operational path for producing and verifying the Runtime Replay and Transcript View deliverable. ADQ-09 assigned the implementation ownership paths for the replay parser, transcript model, replay API, sidebar component, and focused fixtures.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / note</td><td>Source</td></tr>
+<tr><td>Canonical session folder layout is available through the D-APP-41/ADQ-08 eager conversion path.</td><td>Satisfied for replay discovery.</td><td><code>docs/SPEC.md</code> Section 8.2; <code>D-APP-41</code>; ADQ-08 evidence</td></tr>
+<tr><td>Legacy session records remain readable through conversion.</td><td>Satisfied: flat records convert to canonical folders on read/list/resume/save.</td><td><code>docs/SPEC.md</code> Section 8.1; <code>D-APP-41</code>; ADQ-08 evidence</td></tr>
+<tr><td><code>HarnessEvent</code> schema and event writer behavior are available.</td><td>Satisfied for ADQ-09 replay and transcript projection.</td><td><code>docs/SPEC.md</code> Section 9; <code>frontend/src/lib/harness/event-schema.ts</code>; <code>frontend/src/lib/harness/session-events.ts</code></td></tr>
+<tr><td>SDK session linkage metadata is available in session metadata or fixtures.</td><td>Satisfied by <code>SessionRecord</code> linkage fields and transcript projection fixtures.</td><td><code>docs/SPEC.md</code> Section 8.3; <code>frontend/src/lib/harness/transcript-replay.ts</code>; <code>frontend/src/__tests__/lib/transcript-replay.test.ts</code></td></tr>
+<tr><td>Declared dependency edges are accepted for ADQ-09 replay closure.</td><td>Satisfied for DEL-05-04 ADQ-09 scope; ADQ-10 remains for DEL-05-05 checksum/retention policy outside this transcript slice.</td><td><code>_DEPENDENCIES.md</code>; <code>D-APP-42</code></td></tr>
+<tr><td>Redaction helper or policy is available.</td><td>Satisfied: replay applies read-time redaction to imported/manual logs as well as append-time redaction.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6; <code>frontend/src/lib/harness/session-events.ts</code></td></tr>
+</tbody></table>
+<p>Dependency closure disposition: F-001 is resolved for the ADQ-09 transcript/replay scope. DEL-05-01 is satisfied by ADQ-08/D-APP-41, DEL-05-02 replay-facing schema/writer behavior is available, SDK linkage is fixture-covered, read-time redaction is implemented, and DEL-05-05 artifact-link projection is covered without claiming ADQ-10 checksum/retention closure. Source reread: <code>_DEPENDENCIES.md</code> extracted dependency register; decomposition rows for DEL-05-01, DEL-05-02, DEL-05-04, and DEL-05-05; <code>docs/CONTRACT.md</code> K-EVENT-6 and K-EVENT-7.</p>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. <strong>Confirm source contracts.</strong></p>
+<ul>
+<li>- Re-read the accepted session layout, event schema, replay rules, SDK linkage fields, and browser/runtime contract separation.</li>
+<li>- Use D-APP-38 authority corpus v2 as the current source-state check.</li>
+</ul>
+<p>2. <strong>Define replay input handling.</strong></p>
+<ul>
+<li>- Read <code>.chirality/sessions/&lt;sessionId&gt;/session.json</code> and <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> for canonical vNext sessions.</li>
+<li>- Preserve compatibility for legacy <code>{sessionRoot}/{sessionId}.json</code> records through D-APP-41 eager conversion to canonical folders.</li>
+<li>- Keep exact path override behavior for <code>CHIRALITY_SESSION_ROOT</code> aligned with the session store contract.</li>
+</ul>
+<p>3. <strong>Parse <code>events.jsonl</code>.</strong></p>
+<ul>
+<li>- Process newline-delimited <code>HarnessEvent</code> records in write sequence.</li>
+<li>- Validate the required event fields defined by the type target.</li>
+<li>- Ignore a malformed trailing line while retaining prior valid events.</li>
+<li>- Return or record a diagnostic for malformed-tail replay.</li>
+</ul>
+<p>4. <strong>Build the transcript projection.</strong></p>
+<ul>
+<li>- Group events by <code>turnId</code> where available.</li>
+<li>- Project accepted user input, assistant deltas/completions, tool summaries, terminal outcomes, and artifact references.</li>
+<li>- Treat missing optional event categories as absent data, not parser failure, unless a required accepted-turn/terminal invariant is violated.</li>
+<li>- ASSUMPTION: expose compact tool summaries and artifact links rather than raw large payloads.</li>
+</ul>
+<p>5. <strong>Attach SDK transcript linkage.</strong></p>
+<ul>
+<li>- Read <code>engineSessionId</code>, <code>claudeSessionId</code>, <code>sdkSessionId</code>, <code>sdkTranscriptPath</code>, <code>sdkSessionStoreKey</code>, <code>sdkConfigDir</code>, SDK setting sources, SDK package versions, and model metadata when present in <code>session.json</code>.</li>
+<li>- Mark SDK transcript/store linkage as adapter metadata and secondary runtime state.</li>
+<li>- Do not let SDK message names, transcript paths, or session IDs become canonical Chirality identifiers.</li>
+</ul>
+<p>6. <strong>Apply redaction and safety filtering.</strong></p>
+<ul>
+<li>- Ensure replay output and diagnostics do not expose API keys or configured secret variants.</li>
+<li>- For large or sensitive tool result data, show summary and artifact reference only.</li>
+<li>- Surface redaction limitations as diagnostics rather than silently leaking raw content.</li>
+</ul>
+<p>7. <strong>Create verification fixtures.</strong></p>
+<ul>
+<li>- Valid transcript reconstruction fixture.</li>
+<li>- Malformed-tail JSONL fixture.</li>
+<li>- Terminal outcome fixture for success, failure, cancellation, or interruption where source events exist.</li>
+<li>- SDK linkage fixture confirming <code>events.jsonl</code> remains canonical.</li>
+<li>- Legacy session fixture.</li>
+<li>- Redaction fixture for secret-like event, tool, provider, or SDK metadata.</li>
+<li>- Tool-result artifact-link fixture for compact summaries and stored payload references.</li>
+<li>- Record exact fixture filenames in the evidence file.</li>
+</ul>
+<p>8. <strong>Run verification.</strong></p>
+<ul>
+<li>- Execute unit tests and Section 9 validation coverage for <code>section9.session_event_replay</code> and <code>section9.sdk_session_link_resume</code>.</li>
+</ul>
+<p>9. <strong>Record accepted implementation locations.</strong></p>
+<ul>
+<li>- Record the replay parser module path, transcript view model/interface name, route or component placement, transcript reconstruction fixture path, malformed-tail fixture path, SDK-linkage fixture path, redaction fixture path, and tool-result artifact fixture path.</li>
+<li>- Source reread: <code>docs/SPEC.md</code> Sections 8.2, 8.4, 9.2, and 19.3; decomposition DEL-05-04 row. Disposition: D-001 incorporated and filled by ADQ-09 code discovery/implementation.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Canonical replay</td><td>Valid events reconstruct accepted turns, assistant output, tool summaries, terminal outcomes, and artifact links where present.</td></tr>
+<tr><td>Malformed tail</td><td>Invalid final JSONL line is ignored; valid prior events survive; diagnostic is visible.</td></tr>
+<tr><td>SDK linkage</td><td>SDK session/transcript/store metadata appears as secondary adapter metadata only.</td></tr>
+<tr><td>Legacy read</td><td>Legacy flat session record remains readable through D-APP-41 eager conversion and then replay uses canonical folder state.</td></tr>
+<tr><td>Redaction</td><td>Secret-like values do not appear in replay output, diagnostics, or summaries.</td></tr>
+<tr><td>Contract separation</td><td>Browser <code>UIEvent</code> and persisted <code>HarnessEvent</code> concepts remain distinct in naming and tests.</td></tr>
+<tr><td>Closure slots</td><td>Parser API, transcript model, route/component placement, fixture paths, dependency edges, and redaction/tool-result artifact coverage are recorded in ADQ-09 evidence.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Expected records for closure:</p>
+<ul>
+<li>- Replay parser implementation path: <code>frontend/src/lib/harness/session-events.ts</code>.</li>
+<li>- Transcript reconstruction model path: <code>frontend/packages/harness-contract/src/transcript-replay.ts</code>.</li>
+<li>- Replay API path: <code>frontend/src/app/api/harness/session/[id]/events/route.ts</code>.</li>
+<li>- Transcript UI path: <code>frontend/src/components/shell/transcript-stream-view.tsx</code>.</li>
+<li>- Transcript reconstruction, malformed-tail, SDK transcript linkage, redaction, API replay, and sidebar render test results.</li>
+<li>- Source-state note for D-APP-38 authority corpus v2 <code>MATCH</code>.</li>
+<li>- Dependency register update for the ADQ-09 replay/transcript scope.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Validate schema and traceability; map and parity-check every legacy source line; derive the deterministic REVIEW checklist; render script-free HTML; and confirm source/control byte preservation.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-05-04-runtime-replay-and-transcript-view">CLM-020 — Guidance: DEL-05-04 Runtime Replay and Transcript View</h3>
+<h4 id="guidance-del-05-04-runtime-replay-and-transcript-view">Guidance: DEL-05-04 Runtime Replay and Transcript View</h4>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable makes Chirality runtime work replayable from product-owned records. The replay surface should let operators and tests reconstruct accepted user turns, assistant output, tool activity summaries, terminal outcomes, diagnostics, artifact references, and SDK transcript linkage without treating SDK transcripts or UI state as canonical truth.</p>
+<p>Sources: <code>_CONTEXT.md</code>; <code>docs/DIRECTIVE.md</code> Sections 2.2-2.3; <code>docs/SPEC.md</code> Sections 8-10; <code>docs/CONTRACT.md</code> K-EVENT and K-SDK invariants.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. <strong>Replay from Chirality events first.</strong> Use <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> as the canonical replay input. SDK transcripts can help resume/debugging, but they do not replace the Chirality audit mirror. Sources: <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-EVENT-4 and K-SDK-3.</p>
+<p>2. <strong>Separate UI compactness from audit richness.</strong> Browser <code>UIEvent</code>s remain compact while persisted <code>HarnessEvent</code>s may carry richer runtime metadata. Replay should not blur those contracts. Sources: <code>docs/SPEC.md</code> Sections 10.3 and 11; <code>docs/CONTRACT.md</code> K-EVENT-1.</p>
+<p>3. <strong>Keep provider-specific details at adapter boundaries.</strong> SDK session IDs, transcript paths, tool names, and message names are useful metadata but must not become public Chirality contract identity. Sources: <code>docs/SPEC.md</code> Section 10.3; <code>docs/DIRECTIVE.md</code> Section 2.10.</p>
+<p>4. <strong>Prefer recoverability over all-or-nothing parsing.</strong> A malformed trailing JSONL record should not destroy access to earlier valid events. Sources: <code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5.</p>
+<p>5. <strong>Do not leak secrets through replay.</strong> Replay output, diagnostics, and artifact summaries should follow redaction and artifact-reference rules. Sources: <code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6 and K-EVENT-7.</p>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The replay model should preserve stable identity fields: <code>sessionId</code>, <code>turnId</code>, and event identity. Stable identifiers persist across path and label changes. Source: <code>docs/TYPES.md</code> Sections 1.7-2.</li>
+<li>- Terminal outcomes matter as much as streamed text. Accepted turns must end with a durable success, failure, cancellation, or interruption event for reliable replay. Source: <code>docs/CONTRACT.md</code> K-EVENT-2 and K-EVENT-3.</li>
+<li>- Session metadata can provide SDK linkage (<code>sdkSessionId</code>, <code>sdkTranscriptPath</code>, <code>sdkSessionStoreKey</code>, <code>sdkResumeMode</code>) but replay should present it as linkage metadata, not as the transcript authority. Source: <code>docs/SPEC.md</code> Sections 8.3-8.4.</li>
+<li>- Legacy session records are handled through the D-APP-41 eager conversion path; replay should consume the canonical folder state after conversion. Source: <code>docs/SPEC.md</code> Section 8.1; <code>D-APP-41</code>.</li>
+<li>- ADQ-09 assigns the concrete view model and API shape: <code>TranscriptView</code>/<code>TranscriptItem</code> in <code>frontend/packages/harness-contract/src/transcript-replay.ts</code>, the replay API in <code>frontend/src/app/api/harness/session/[id]/events/route.ts</code>, and the sidebar component in <code>frontend/src/components/shell/transcript-stream-view.tsx</code>.</li>
+</ul>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Rationale</td></tr>
+<tr><td>Strict JSONL parsing vs. tolerant replay</td><td>Favor tolerant replay for a malformed final line, while surfacing diagnostics.</td><td>Protects audit recoverability after interruption or partial writes.</td></tr>
+<tr><td>Raw tool output vs. artifact links</td><td>Favor compact summaries plus artifact links for large or sensitive results.</td><td>Prevents replay views from flooding UI/model context and supports redaction policy.</td></tr>
+<tr><td>SDK transcript detail vs. Chirality canonicality</td><td>Show SDK transcript/store linkage as secondary metadata.</td><td>Maintains provider-neutral core and avoids SDK-shaped public contracts.</td></tr>
+<tr><td>Legacy compatibility vs. clean vNext layout</td><td>Use D-APP-41 eager conversion and canonical folder records for replay.</td><td>Gives deterministic long-term storage while keeping legacy reads usable through migration.</td></tr>
+</tbody></table>
+<p>For tool results, compact summaries plus artifact references are the preferred replay shape because the audit view needs durable traceability without re-exposing large or sensitive payloads in transcript context. The artifact reference preserves where the full result was stored, while the summary supports review and redaction-aware replay. Sources reread: <code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6 and K-EVENT-7. Disposition: E-001 incorporated.</p>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected replay behavior</td><td>Source</td></tr>
+<tr><td>Valid event log with accepted turn, model deltas, and completion</td><td>Transcript view shows the accepted user input, assistant output, and terminal completion.</td><td><code>docs/SPEC.md</code> Sections 9.3-9.4</td></tr>
+<tr><td>Event log with malformed final line</td><td>Replay ignores the malformed tail, returns prior valid events, and surfaces a diagnostic.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>Session metadata includes <code>sdkTranscriptPath</code></td><td>Transcript view may link or display the SDK transcript location as secondary metadata; it must keep <code>events.jsonl</code> canonical.</td><td><code>docs/SPEC.md</code> Section 8.4</td></tr>
+<tr><td>Tool result event references an artifact</td><td>Transcript view should summarize the tool outcome and link the artifact path rather than inlining raw large content.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-7</td></tr>
+</tbody></table>
+<h3 id="clm-026-source-state-notes">CLM-026 — Source-State Notes</h3>
+<h5 id="source-state-notes">Source-State Notes</h5>
+<p>D-APP-38 authority corpus v2 reports DEL-05-04 references as <code>MATCH</code>, including <code>docs/PRD.md</code>. PRD-derived replay requirements are no longer warning-qualified for this deliverable.</p>
+<p>Disposition: B-001 is retired for the current source corpus; the previous PRD hash mismatch is resolved by D-APP-38 corpus v2 reconciliation.</p>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>No content conflict identified in accessible source slices during P1/P2.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-042 SOW-046 OBJ-003</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

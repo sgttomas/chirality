@@ -1,0 +1,21 @@
+{
+  "instance_id": "VERIFY-DEL-06-06",
+  "parent_instance_id": "WORKING-A2-PKG06",
+  "agent": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "VERIFY",
+  "terminal": true,
+  "status": "PASS_UNCHANGED",
+  "candidate_sha256": "5f04c8f7105de8ce1da380031fde21974d16af1056f50c6804ffa0de5eac6402",
+  "mapping_count": 33,
+  "source_line_count": 354,
+  "lifecycle": "IN_PROGRESS",
+  "schema_verdict": "PASS",
+  "content_authority_verdict": "PASS",
+  "preservation_containment_verdict": "PASS",
+  "execution_substrate_verdict": "PASS",
+  "candidate_modified": false,
+  "blockers": [],
+  "waivers": [],
+  "rerun_required": false
+}

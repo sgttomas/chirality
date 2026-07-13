@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="45157c90dfbb088b522d8299d5b9df5c06acb04dd61bc7c6610ff9c33685cd75">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>45157c90dfbb088b522d8299d5b9df5c06acb04dd61bc7c6610ff9c33685cd75</code>.</p>
+<h1 id="scope-of-work-del-04-01">Scope of Work — DEL-04-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-04-01</code> in service of project scope [SOW-018, SOW-044, SOW-046] and package objectives [OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — First-adapter probe notes, a version-pinned adoption decision, fallback criteria, future-provider criteria, and residual-risk notes for DEL-04-01 covering SOW-018, SOW-044, SOW-046 and supporting OBJ-004.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">CLM-001 — Datasheet: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h3>
+<h4 id="datasheet-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">Datasheet: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-04-01</td></tr>
+<tr><td>Deliverable Name</td><td>First-Adapter Probe and Version-Pinned Adoption Decision</td></tr>
+<tr><td>Package</td><td>PKG-04 SDK Adapter, Prompt, Provider, and Settings</td></tr>
+<tr><td>Decomposition Variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Type</td><td>REQ_SLICE</td></tr>
+<tr><td>Context Envelope</td><td>M</td></tr>
+<tr><td>Responsible Party</td><td>TBD</td></tr>
+<tr><td>Scope Items</td><td>SOW-018, SOW-044, SOW-046</td></tr>
+<tr><td>Objective</td><td>OBJ-004</td></tr>
+<tr><td>Anticipated Artifacts</td><td>first-adapter probe notes; version decision; fallback criteria; residual-risk notes</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Runtime direction</td><td>Claude Agent SDK is the preferred runtime spine only if empirical verification and conformance tests preserve Chirality-owned governance.</td><td><code>docs/SPEC.md</code> Section 12.1; <code>docs/DIRECTIVE.md</code> Section 2.8</td></tr>
+<tr><td>Product boundary</td><td>Chirality owns <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code>, browser <code>UIEvent</code>s, persisted <code>HarnessEvent</code>s, session canonicality, permission semantics, working-root/instruction-root policy, prompt/persona composition, redaction, provenance, and fallback criteria.</td><td><code>docs/DIRECTIVE.md</code> Section 2.8; <code>docs/SPEC.md</code> Section 10</td></tr>
+<tr><td>Probe purpose</td><td>Validate SDK assumptions before R1 implementation details harden and make adoption a replaceable engine choice, not product identity.</td><td><code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> R0</td></tr>
+<tr><td>Required probe topics</td><td>Package version, <code>query()</code> message sequence, <code>settingSources</code>, permission mapping, <code>canUseTool</code>, hooks, in-process MCP, agents, resume, <code>SessionStore</code>, <code>CLAUDE_CONFIG_DIR</code>, interrupt behavior, Electron packaging, API key environment handling, branding constraints, and fallback triggers.</td><td><code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> R0</td></tr>
+<tr><td>Required metadata to capture</td><td>SDK package version; Claude Code subprocess version when knowable; SDK permission mode; visible tool list; MCP server names; settings-source posture; SDK session ID and resume mode; transcript/store linkage.</td><td><code>docs/SPEC.md</code> Section 12.4</td></tr>
+<tr><td>Adoption decision state</td><td>TBD: no probe result or pinned SDK version is present in the accessible source corpus.</td><td>Source gap from <code>_REFERENCES.md</code> corpus</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Current Value</td><td>Source</td></tr>
+<tr><td>Shipped settings isolation</td><td><code>settingSources: []</code> is required for shipped SDK builds.</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/PLAN.md</code> R1; <code>docs/PRD.md</code> R1</td></tr>
+<tr><td>Development settings posture</td><td>Development-only project settings may use <code>[&#x27;project&#x27;]</code> behind explicit environment configuration; <code>user</code> and <code>local</code> setting sources must not be used in shipped builds.</td><td><code>docs/SPEC.md</code> Section 12.2</td></tr>
+<tr><td>Transcript canonicality</td><td>SDK transcripts are secondary runtime state unless imported into <code>HarnessEvent</code> form; Chirality JSONL remains canonical.</td><td><code>docs/SPEC.md</code> Sections 8.4 and 10.3; <code>docs/CONTRACT.md</code> K-SDK-3</td></tr>
+<tr><td>Tool restriction boundary</td><td><code>allowedTools</code> is not a restriction boundary by itself; restrictions require deny policy, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> posture.</td><td><code>docs/SPEC.md</code> Section 14.3; <code>docs/CONTRACT.md</code> K-PERM-3</td></tr>
+<tr><td>Permission overlay</td><td>Deny overrides allow, including policy, hooks, SDK deny rule, or human gate denials.</td><td><code>docs/CONTRACT.md</code> K-PERM-1</td></tr>
+<tr><td>Probe exposure</td><td>R0 acceptance requires no local tools exposed to the model during the probe outside controlled validation.</td><td><code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> R0</td></tr>
+<tr><td>Source-state warning</td><td><code>docs/PRD.md</code> is accessible but <code>_REFERENCES.md</code> records <code>MATCH</code>; claims citing PRD require snapshot confirmation before closure.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>This deliverable is a requirements/probe decision package, not runtime code. It should be constructed as:</p>
+<p>1. first-adapter probe notes that record empirical behavior for every required probe topic.</p>
+<p>2. A version-pinned adoption decision identifying the exact <code>@anthropic-ai/claude-agent-sdk</code> version and any Claude Code subprocess version when knowable.</p>
+<p>3. Fallback criteria that preserve the custom-runtime roadmap if a product-critical boundary cannot be satisfied or verified.</p>
+<p>4. Residual-risk notes for SDK API drift, settings leakage, transcript location, packaging, permissions, subagents, and product-identity drift.</p>
+<p>ASSUMPTION: The final artifact format may be Markdown under <code>docs/harness/</code> because R0 deliverables named in <code>docs/PLAN.md</code> and <code>docs/PRD.md</code> are documentation artifacts, but the exact file name for this probe decision is TBD.</p>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Status</td><td>Used For</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>MATCH</td><td>Product boundary, reliance boundaries, provider-neutrality, product identity</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>MATCH</td><td>Binding invariants for SDK governance, permissions, events, settings, transcripts</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>MATCH</td><td>Runtime contract, session/event schema, SDK configuration, tool surface, hooks</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>MATCH</td><td>Vocabulary for engine, SDK metadata, tools, hooks, MCP, events</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>MATCH</td><td>R0/R1 sequencing, probe deliverables, acceptance criteria</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>MATCH</td><td>Product requirements and runtime direction; use requires source-state confirmation — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>MATCH</td><td>Decomposition method context only</td></tr>
+</tbody></table>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">CLM-008 — Specification: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h3>
+<h4 id="specification-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">Specification: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the evidence required to decide whether Chirality should adopt a version-pinned Claude Agent SDK runtime path for R1.</p>
+<p>Included:</p>
+<ul>
+<li>- Confirm the SDK package version and Claude Code subprocess version when knowable.</li>
+<li>- Probe <code>query()</code> message sequence, permissions, hooks, in-process MCP, sessions, storage, interrupts, packaging, settings isolation, API key handoff, and fallback triggers.</li>
+<li>- Preserve Chirality-owned runtime semantics for <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code>, <code>UIEvent</code>, <code>HarnessEvent</code>, session metadata, permission decisions, redaction, prompt composition, and product identity.</li>
+<li>- Produce first-adapter probe notes, version decision, fallback criteria, and residual-risk notes.</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>- Implementing <code>SdkOptionsBuilder</code>, <code>SdkMessageMapper</code>, <code>TurnEngine</code>, provider key bridge, or prompt composer code.</li>
+<li>- Exposing new user-visible write, bash, remote MCP, plugin, domain-operation, or subagent execution capability.</li>
+<li>- Treating SDK transcripts or SDK message names as canonical Chirality contracts.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition row for <code>DEL-04-01</code>; <code>docs/PLAN.md</code> R0/R1; <code>docs/PRD.md</code> R0/R1 with REF-006 hash warning.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Verification</td><td>Source</td></tr>
+<tr><td>DEL-04-01-REQ-001</td><td>The probe notes MUST record the exact <code>@anthropic-ai/claude-agent-sdk</code> package version selected for evaluation and the Claude Code subprocess version when knowable.</td><td>Inspect probe record and package/version evidence.</td><td><code>docs/SPEC.md</code> Section 12.4; <code>docs/PLAN.md</code> R0</td></tr>
+<tr><td>DEL-04-01-REQ-002</td><td>The adoption decision MUST remain version-pinned and regression-tested on upgrade.</td><td>Confirm version decision identifies pin and upgrade test expectation.</td><td><code>docs/CONTRACT.md</code> K-SDK-2; <code>docs/PRD.md</code> KG-021</td></tr>
+<tr><td>DEL-04-01-REQ-003</td><td>The probe MUST capture SDK <code>query()</code> message sequence and determine whether known SDK messages can map to stable <code>UIEvent</code>s and provider-neutral <code>HarnessEvent</code>s.</td><td>Compare probe notes to event mapping acceptance criteria.</td><td><code>docs/PLAN.md</code> R0/R1; <code>docs/SPEC.md</code> Sections 9 and 10.3</td></tr>
+<tr><td>DEL-04-01-REQ-004</td><td>The decision MUST not accept SDK-specific message names, permission modes, transcript paths, tool names, or session IDs as public API or canonical event fields except as adapter metadata.</td><td>Review adoption decision and residual risks for provider-neutral boundary.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>DEL-04-01-REQ-005</td><td>The probe MUST verify shipped settings isolation using <code>settingSources: []</code>; any development <code>[&#x27;project&#x27;]</code> use must be explicit and non-shipped.</td><td>Inspect probe result and planned settings tests.</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1</td></tr>
+<tr><td>DEL-04-01-REQ-006</td><td>The probe MUST test permission behavior, including <code>allowedTools</code>, <code>disallowedTools</code>, <code>permissionMode</code>, <code>canUseTool</code>, hooks, and capability policy, explicit hard-deny precedence, and overlay implications.</td><td>Inspect probe notes for each permission surface and a restriction-boundary conclusion.</td><td><code>docs/SPEC.md</code> Sections 14.3 and 15.1; <code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-3</td></tr>
+<tr><td>DEL-04-01-REQ-007</td><td>The probe MUST test in-process Chirality MCP feasibility without treating MCP as a bypass around permission, hooks, path policy, redaction, or event logging.</td><td>Confirm probe notes cover MCP transport and wrapper policy expectations.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/CONTRACT.md</code> K-MCP-1</td></tr>
+<tr><td>DEL-04-01-REQ-008</td><td>The probe MUST capture SDK session ID, resume behavior, transcript/store linkage, <code>SessionStore</code>, and <code>CLAUDE_CONFIG_DIR</code> behavior.</td><td>Inspect session/storage section of probe notes and residual-risk register.</td><td><code>docs/SPEC.md</code> Sections 8.4 and 12.4; <code>docs/PRD.md</code> KG-024 and KG-028</td></tr>
+<tr><td>DEL-04-01-REQ-009</td><td>The decision MUST keep <code>.chirality/sessions/&lt;id&gt;/events.jsonl</code> or a configured Chirality-controlled session path as the canonical audit mirror.</td><td>Review adoption decision for transcript canonicality statement.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-EVENT-4</td></tr>
+<tr><td>DEL-04-01-REQ-010</td><td>The probe MUST test interrupt/cancel terminal behavior and require success, failure, interruption, and cancellation events to persist before production default use.</td><td>Inspect probe notes and R1 acceptance mapping.</td><td><code>docs/PLAN.md</code> R1; <code>docs/SPEC.md</code> Section 10.1</td></tr>
+<tr><td>DEL-04-01-REQ-011</td><td>The probe MUST test Electron packaging of the SDK subprocess and record any <code>asarUnpack</code>, signing, environment, or path residual risks.</td><td>Inspect packaging probe result and residual-risk notes.</td><td><code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> KG-025</td></tr>
+<tr><td>DEL-04-01-REQ-012</td><td>The probe MUST verify API key environment handling: key material is supplied only as needed for active turns and redacted from logs/events.</td><td>Inspect probe notes for env handoff and redaction evidence.</td><td><code>docs/SPEC.md</code> Section 12.3; <code>docs/PLAN.md</code> R1</td></tr>
+<tr><td>DEL-04-01-REQ-013</td><td>The adoption decision MUST define fallback triggers if SDK behavior cannot satisfy or verify product-critical boundaries.</td><td>Confirm fallback criteria exist and reference custom-runtime path.</td><td><code>docs/DIRECTIVE.md</code> Section 2.8; <code>docs/CONTRACT.md</code> K-ENGINE-5; <code>docs/PLAN.md</code> R0</td></tr>
+<tr><td>DEL-04-01-REQ-014</td><td>The probe MUST not expose local tools to the model outside controlled validation.</td><td>Review probe setup and notes.</td><td><code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> R0</td></tr>
+<tr><td>DEL-04-01-REQ-015</td><td>The decision MUST record residual risks for SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in.</td><td>Inspect residual-risk notes.</td><td><code>docs/PRD.md</code> KG-021 through KG-032</td></tr>
+</tbody></table>
+<h3 id="clm-011-probe-evidence-thresholds">CLM-011 — Probe Evidence Thresholds</h3>
+<h5 id="probe-evidence-thresholds">Probe Evidence Thresholds</h5>
+<p>The first-adapter probe may remain <code>TBD</code> until implementation begins, but the final probe notes and adoption decision must contain the following evidence rows before the first-adapter path is accepted as a production default.</p>
+<table><tbody>
+<tr><td>Evidence Area</td><td>Required Evidence Row(s)</td><td>Accept / TBD / Fallback Rule</td><td>Source</td></tr>
+<tr><td>Version pin</td><td>Exact <code>@anthropic-ai/claude-agent-sdk</code> version, package manifest evidence, lockfile evidence, and Claude Code subprocess version where knowable.</td><td><code>TBD</code> until the package and lockfile evidence exist; do not infer a version from roadmap text.</td><td><code>docs/SPEC.md</code> Section 12.4; <code>docs/PLAN.md</code> R1 implementation targets</td></tr>
+<tr><td>Settings isolation</td><td>Shipped-like SDK options showing <code>settingSources: []</code>; negative evidence that <code>user</code> and <code>local</code> settings were not loaded; separate notation for any development-only <code>[&#x27;project&#x27;]</code> posture.</td><td>Failure to prove shipped <code>settingSources: []</code> is a fallback blocker or explicit residual-risk decision.</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1</td></tr>
+<tr><td>Permission behavior</td><td>Rows for <code>allowedTools</code>, <code>disallowedTools</code>, <code>permissionMode</code>, <code>canUseTool</code>, hooks, and capability-policy and hard-deny precedence outcome.</td><td>Passing evidence must show <code>allowedTools</code> is not treated as a restriction boundary by itself and explicit denials fail closed.</td><td><code>docs/SPEC.md</code> Sections 14.3 and 15.1; <code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-3</td></tr>
+<tr><td>Message mapping</td><td>Observed SDK <code>query()</code> message categories and sequence; mapping of each product-relevant message into stable <code>UIEvent</code> and <code>HarnessEvent</code> categories; unmapped categories with fallback or residual-risk treatment.</td><td>Adequate proof requires provider-neutral mapping without SDK names becoming public API or canonical persisted event fields.</td><td><code>docs/SPEC.md</code> Sections 9 and 10.3; <code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>Terminal outcomes</td><td>Success, failure, interruption, and cancellation evidence, including persisted terminal events and route/session cleanup behavior.</td><td>Production default use remains blocked until all required terminal outcomes persist or are explicitly carried as residual risk.</td><td><code>docs/SPEC.md</code> Sections 10.1 and 11; <code>docs/PLAN.md</code> R1 acceptance</td></tr>
+<tr><td>API key handoff and redaction</td><td>Active-turn SDK environment handoff; redaction checks for logs, events, SDK transcripts if avoidable, provider errors, and tool artifacts.</td><td>Any persisted key material in project files, runtime events, logs, or artifacts is a blocker.</td><td><code>docs/SPEC.md</code> Section 12.3; <code>docs/CONTRACT.md</code> K-KEY-1</td></tr>
+<tr><td>Packaging</td><td>Packaged Electron app SDK turn result; subprocess/binary path behavior; <code>asarUnpack</code> or equivalent need; signing posture; environment handling; transcript/storage effect.</td><td>Packaging failure is fallback-blocking unless a human accepts a bounded residual-risk posture.</td><td><code>docs/PLAN.md</code> Section 6.4; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>Decision authority</td><td>Human approver for <code>ADOPT</code>, <code>ADOPT_WITH_RESIDUAL_RISK</code>, or <code>FALLBACK</code>.</td><td>TBD until a responsible party or approving role is assigned; <code>ResponsibleParty</code> remains TBD.</td><td><code>_CONTEXT.md</code> Identity; <code>docs/DIRECTIVE.md</code> Section 2.4</td></tr>
+</tbody></table>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Chirality runtime engine contract</td><td>Defines product-owned boundary before SDK adapter can become production default.</td><td><code>docs/SPEC.md</code> Section 10</td></tr>
+<tr><td>Chirality runtime event schema</td><td>Defines canonical persisted event shape and required terminal categories.</td><td><code>docs/SPEC.md</code> Section 9</td></tr>
+<tr><td>SDK runtime configuration</td><td>Governs settings isolation, API key handoff, and metadata capture.</td><td><code>docs/SPEC.md</code> Section 12</td></tr>
+<tr><td>SDK tool surface and Chirality MCP rules</td><td>Governs tool names, MCP wrappers, and restriction boundary.</td><td><code>docs/SPEC.md</code> Section 14</td></tr>
+<tr><td>Permission modes and hooks</td><td>Governs provisional SDK posture, deny overlay, and required hooks.</td><td><code>docs/SPEC.md</code> Section 15</td></tr>
+<tr><td>Binding invariants</td><td>Governs SDK, engine, event, permission, filesystem, and release constraints.</td><td><code>docs/CONTRACT.md</code> Sections 1.4 through 1.7</td></tr>
+</tbody></table>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Check</td><td>Required Result</td></tr>
+<tr><td>DEL-04-01-VER-001</td><td>Version evidence check</td><td>Exact SDK package version is recorded, with lockfile/package evidence when implementation begins.</td></tr>
+<tr><td>DEL-04-01-VER-002</td><td>Message sequence probe</td><td>SDK message categories used by Chirality are observed and mapped or flagged as fallback blockers.</td></tr>
+<tr><td>DEL-04-01-VER-003</td><td>Settings isolation probe</td><td>Shipped posture proves <code>settingSources: []</code>; no user/local settings load.</td></tr>
+<tr><td>DEL-04-01-VER-004</td><td>Permission probe</td><td><code>allowedTools</code> is not mistaken for restriction; capability policy with explicit hard-deny precedence, hooks, and callbacks are evaluated.</td></tr>
+<tr><td>DEL-04-01-VER-005</td><td>MCP probe</td><td>In-process MCP tooling can be exposed only through Chirality policy and event logging.</td></tr>
+<tr><td>DEL-04-01-VER-006</td><td>Session/storage probe</td><td>SDK session ID, resume, transcript path/store key, <code>SessionStore</code>, and <code>CLAUDE_CONFIG_DIR</code> behavior are documented.</td></tr>
+<tr><td>DEL-04-01-VER-007</td><td>Interrupt probe</td><td>Cancel/interrupt behavior preserves terminal outcomes and releases route/session control.</td></tr>
+<tr><td>DEL-04-01-VER-008</td><td>Packaging probe</td><td>Packaged Electron runtime can start SDK-backed harness turn or records a fallback-blocking issue.</td></tr>
+<tr><td>DEL-04-01-VER-009</td><td>Fallback decision review</td><td>Any failed P0 reliance boundary produces fallback or residual-risk action before R1 production default.</td></tr>
+<tr><td>DEL-04-01-VER-010</td><td>Source-state check</td><td>REF-006 <code>docs/PRD.md</code> hash status: MATCH is resolved or explicitly accepted before closure. — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-04-01-VER-011</td><td>Probe evidence completeness</td><td>Evidence rows listed in Probe Evidence Thresholds are present, or each missing row is marked <code>TBD</code> with fallback/residual-risk impact.</td></tr>
+</tbody></table>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required records:</p>
+<ul>
+<li>- first-adapter probe notes.</li>
+<li>- Version-pinned adoption decision.</li>
+<li>- Fallback criteria.</li>
+<li>- Residual-risk notes.</li>
+<li>- Source-state note for REF-006 <code>docs/PRD.md</code> hash status: MATCH. (reconciled under D-APP-38).</li>
+<li>- Traceability to SOW-018, SOW-044, SOW-046, OBJ-004, OI-001, and OI-002.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Final document file path for the first-adapter probe decision.</li>
+<li>- Exact SDK version and subprocess version.</li>
+<li>- Exact package manifest and lockfile evidence location.</li>
+<li>- Exact transcript storage decision: <code>SessionStore</code>, <code>CLAUDE_CONFIG_DIR</code>, both, or cross-reference default path as residual risk.</li>
+<li>- Exact packaging requirements discovered by the probe.</li>
+<li>- Exact human approver or approving role for <code>ADOPT</code>, <code>ADOPT_WITH_RESIDUAL_RISK</code>, or <code>FALLBACK</code>.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-04-01 evidence package records the first-adapter probe results and a version-pinned adoption decision, including provider/SDK message mapping, SDK session link and transcript placement, fallback triggers, future-provider criteria, and residual-risk notes, for SOW-018, SOW-044, SOW-046 and OBJ-004.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">CLM-015 — Procedure: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h3>
+<h4 id="procedure-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">Procedure: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce and verify the first-adapter probe notes, version-pinned adoption decision, fallback criteria, and residual-risk notes for DEL-04-01.</p>
+<p>This procedure is for producing the deliverable artifact. It does not authorize implementation of SDK-backed runtime code or exposure of new user-visible tools.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Note</td><td>Source</td></tr>
+<tr><td>Accepted decomposition row for DEL-04-01</td><td>Present in SOFTWARE_DECOMP v3.2.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td></tr>
+<tr><td>Source corpus</td><td>Accessible; <code>docs/PRD.md</code> has REF-006 <code>MATCH</code>.</td><td><code>_REFERENCES.md</code> — reconciled under D-APP-38</td></tr>
+<tr><td>Upstream dependencies</td><td>TBD: no accepted dependency edges have been extracted yet.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>first-adapter probe environment</td><td>TBD: package version, subprocess availability, Electron packaging posture, and test harness are not yet recorded.</td><td>Source gap</td></tr>
+<tr><td>Runtime contract expectations</td><td>Required before SDK adapter production default.</td><td><code>docs/SPEC.md</code> Section 10; <code>docs/PLAN.md</code> R1</td></tr>
+<tr><td>Reliance-boundary expectations</td><td>Required for P0 boundaries and fallback decisions.</td><td><code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/CONTRACT.md</code> K-RELIANCE-1</td></tr>
+</tbody></table>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source-state before final closure.</p>
+<ul>
+<li>- Re-check <code>_REFERENCES.md</code> and resolve or explicitly accept the REF-006 <code>docs/PRD.md</code> hash status: MATCH. (reconciled under D-APP-38).</li>
+<li>- If unresolved, keep PRD-derived conclusions marked as draft/source-warning material.</li>
+</ul>
+<p>2. Prepare the probe matrix.</p>
+<ul>
+<li>- Include package version, <code>query()</code> message sequence, <code>settingSources</code>, permission mapping, <code>canUseTool</code>, hooks, in-process MCP, agents, resume, <code>SessionStore</code>, <code>CLAUDE_CONFIG_DIR</code>, interrupt behavior, Electron packaging, API key environment handling, branding/product identity, fallback triggers, and residual risks.</li>
+<li>- Source: <code>docs/PLAN.md</code> R0 and <code>docs/PRD.md</code> R0.</li>
+</ul>
+<p>3. Record version evidence.</p>
+<ul>
+<li>- Capture exact <code>@anthropic-ai/claude-agent-sdk</code> version under evaluation.</li>
+<li>- Capture package manifest and lockfile evidence location once implementation begins.</li>
+<li>- Capture Claude Code subprocess version where knowable.</li>
+<li>- Mark unknowns as <code>TBD</code>; do not infer a version from roadmap text.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 12.4; <code>docs/CONTRACT.md</code> K-SDK-2.</li>
+</ul>
+<p>4. Probe SDK message behavior.</p>
+<ul>
+<li>- Run a controlled <code>query()</code> sequence in the intended adapter environment.</li>
+<li>- Record observed message categories, ordering, terminal states, and error/interrupt behavior.</li>
+<li>- Determine whether each required message can map to stable <code>UIEvent</code> and <code>HarnessEvent</code> contracts.</li>
+<li>- Source: <code>docs/SPEC.md</code> Sections 9 and 10.3.</li>
+</ul>
+<p>5. Probe settings isolation.</p>
+<ul>
+<li>- Verify shipped-like options use <code>settingSources: []</code>.</li>
+<li>- Verify <code>user</code> and <code>local</code> setting sources are not used in shipped builds.</li>
+<li>- If development-only project settings are used, require explicit environment configuration.</li>
+<li>- Record the evidence row location for shipped settings posture, negative user/local settings evidence, and any development-only project-setting posture.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 12.2.</li>
+</ul>
+<p>6. Probe permissions and tool exposure.</p>
+<ul>
+<li>- Test <code>permissionMode</code>, <code>allowedTools</code>, <code>disallowedTools</code>, <code>canUseTool</code>, and hooks.</li>
+<li>- Confirm that <code>allowedTools</code> is not treated as a restriction boundary.</li>
+<li>- Confirm denied tools are blocked by policy, hooks, SDK deny rule, or human gate and are recorded before allowing/denying when applicable.</li>
+<li>- Record one minimal evidence row per permission surface and one capability-policy and hard-deny precedence outcome row.</li>
+<li>- Source: <code>docs/SPEC.md</code> Sections 14.3 and 15.1; <code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-3.</li>
+</ul>
+<p>7. Probe MCP and hook behavior.</p>
+<ul>
+<li>- Test in-process Chirality MCP exposure only under controlled validation.</li>
+<li>- Confirm MCP tools are not bypasses and remain subject to permission, hook, path, redaction, and event logging policy.</li>
+<li>- Confirm required hooks for path containment, instruction-root protection, symlink write rejection, and write budget are feasible where applicable.</li>
+<li>- Source: <code>docs/SPEC.md</code> Sections 14.2 and 15.2; <code>docs/CONTRACT.md</code> K-MCP-1.</li>
+</ul>
+<p>8. Probe sessions, storage, transcripts, and resume.</p>
+<ul>
+<li>- Record SDK session ID, resume mode, transcript path or store key, SDK config dir, <code>SessionStore</code>, and <code>CLAUDE_CONFIG_DIR</code> behavior.</li>
+<li>- Prefer project-controlled transcript placement or mirroring when reliable.</li>
+<li>- If SDK writes outside project-controlled storage, cross-reference the path or store key and record residual risk while keeping Chirality JSONL canonical.</li>
+<li>- Source: <code>docs/SPEC.md</code> Sections 8.4 and 12.4.</li>
+</ul>
+<p>9. Probe API key environment handling and redaction.</p>
+<ul>
+<li>- Confirm key precedence and active-turn handoff behavior.</li>
+<li>- Confirm key material is redacted from logs, events, SDK transcripts if avoidable, and tool artifacts.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 12.3; <code>docs/CONTRACT.md</code> K-KEY-1.</li>
+</ul>
+<p>10. Probe Electron packaging.</p>
+<ul>
+<li>- Validate that a packaged build can start an SDK-backed harness turn.</li>
+<li>- Record subprocess/binary execution path, <code>asarUnpack</code>, signing, environment, and transcript/storage effects.</li>
+<li>- Record the residual-risk verdict if packaging works only with special path, signing, environment, or storage assumptions.</li>
+<li>- Source: <code>docs/PRD.md</code> KG-025; <code>docs/PLAN.md</code> R0.</li>
+</ul>
+<p>11. Draft the version-pinned adoption decision.</p>
+<ul>
+<li>- State <code>ADOPT</code>, <code>ADOPT_WITH_RESIDUAL_RISK</code>, or <code>FALLBACK</code>.</li>
+<li>- Name the human approver or approving role; keep this field <code>TBD</code> until ownership is assigned.</li>
+<li>- Cite probe evidence for each P0 reliance boundary.</li>
+<li>- Keep the SDK privileged as implementation substrate, not product identity or governance authority.</li>
+<li>- Source: <code>docs/DIRECTIVE.md</code> Sections 2.8 through 2.11.</li>
+</ul>
+<p>12. Draft fallback criteria and residual-risk notes.</p>
+<ul>
+<li>- Include SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in.</li>
+<li>- Source: <code>docs/PRD.md</code> KG-021 through KG-032.</li>
+</ul>
+<p>13. Route downstream work.</p>
+<ul>
+<li>- Send implementation requirements to DEL-04-02 through DEL-04-05 as appropriate.</li>
+<li>- Keep this deliverable as the documentation/probe decision slice.</li>
+<li>- Source: decomposition rows for PKG-04.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Criteria</td></tr>
+<tr><td>Source-state check</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>Probe coverage</td><td>Every required probe topic from R0 has an evidence row or <code>TBD</code> blocker.</td></tr>
+<tr><td>Version pin</td><td>Exact SDK package version is recorded before adoption.</td></tr>
+<tr><td>Version evidence location</td><td>Package manifest and lockfile evidence location is recorded once implementation begins.</td></tr>
+<tr><td>Contract boundary</td><td>Decision states that SDK-specific identifiers remain adapter metadata and Chirality contracts stay product-owned.</td></tr>
+<tr><td>Settings isolation</td><td>Shipped posture uses <code>settingSources: []</code>.</td></tr>
+<tr><td>Permissions</td><td>Rows exist for <code>allowedTools</code>, <code>disallowedTools</code>, <code>permissionMode</code>, <code>canUseTool</code>, hooks, and explicit hard-deny precedence; <code>allowedTools</code> is not treated as restriction.</td></tr>
+<tr><td>Sessions/transcripts</td><td>SDK transcript/store linkage is recorded without replacing Chirality audit JSONL.</td></tr>
+<tr><td>Interrupts</td><td>Success, failure, interruption, and cancellation terminal behavior is evidenced or flagged.</td></tr>
+<tr><td>Packaging</td><td>Packaged app SDK turn is proven or recorded as fallback/residual risk.</td></tr>
+<tr><td>Fallback criteria</td><td>Any unverifiable P0 reliance boundary has an explicit fallback trigger.</td></tr>
+<tr><td>Adoption authority</td><td><code>ADOPT</code>, <code>ADOPT_WITH_RESIDUAL_RISK</code>, or <code>FALLBACK</code> has a named human approver or approving role, or remains <code>TBD</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Required records:</p>
+<ul>
+<li>- first-adapter probe matrix and notes.</li>
+<li>- Version-pinned adoption decision.</li>
+<li>- Fallback criteria.</li>
+<li>- Residual-risk notes.</li>
+<li>- Source-state warning or resolution for REF-006.</li>
+<li>- Traceability to SOW-018, SOW-044, SOW-046, OBJ-004, OI-001, and OI-002.</li>
+</ul>
+<p>TBD records:</p>
+<ul>
+<li>- Exact SDK version.</li>
+<li>- Exact Claude Code subprocess version, if knowable.</li>
+<li>- Exact package manifest and lockfile evidence location.</li>
+<li>- Exact transcript/store decision.</li>
+<li>- Exact Electron packaging result.</li>
+<li>- Exact adoption verdict.</li>
+<li>- Exact human approver or approving role.</li>
+</ul>
+<h3 id="clm-021-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Inspect the DEL-04-01 evidence package against SOW-018, SOW-044, SOW-046, OBJ-004, and the preserved legacy requirements to confirm the probe notes, pinned-version decision, mappings, transcript treatment, fallback and future-provider criteria, and residual-risk notes are present.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">CLM-022 — Guidance: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h3>
+<h4 id="guidance-del-04-01-first-adapter-probe-and-version-pinned-adoption-decision">Guidance: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable creates the evidence package for deciding whether Chirality can adopt the Claude Agent SDK as a version-pinned, replaceable runtime substrate for R1. The decision must preserve Chirality-owned runtime contracts, audit records, settings isolation, permission semantics, transcript canonicality, product identity, and fallback control.</p>
+<p>Source grounding: <code>docs/DIRECTIVE.md</code> Section 2.8 through 2.11; <code>docs/PLAN.md</code> R0/R1; decomposition row for <code>DEL-04-01</code>.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Chirality contracts come first.</p>
+<p>SDK APIs, message names, tool names, session IDs, and transcript paths are adapter metadata. <code>AgentEnginePort</code>, <code>UIEvent</code>, <code>HarnessEvent</code>, session storage, permission decisions, and governance records remain Chirality-owned. Sources: <code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> K-ENGINE-1 through K-ENGINE-5.</p>
+<p>2. Probe before adoption.</p>
+<p>R0 exists to validate SDK assumptions before R1 implementation details harden. The probe should produce a positive adoption decision only where behavior is observed, recorded, and compatible with conformance expectations. Sources: <code>docs/PLAN.md</code> R0; <code>docs/PRD.md</code> R0.</p>
+<p>3. Product-critical reliance boundaries need enforceable surfaces.</p>
+<p>Prompt text and opaque SDK defaults are insufficient for P0 audit, filesystem, lifecycle, transcript, settings, subagent, and human-gate boundaries. Sources: <code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/CONTRACT.md</code> K-RELIANCE-1 and K-RELIANCE-2.</p>
+<p>4. Settings isolation is a release boundary.</p>
+<p>Shipped SDK builds must use <code>settingSources: []</code>; user and local setting sources are not allowed in shipped builds. Source: <code>docs/SPEC.md</code> Section 12.2.</p>
+<p>5. Permission restrictions require more than <code>allowedTools</code>.</p>
+<p><code>allowedTools</code> can auto-approve but is not by itself a restriction boundary. The probe should explicitly test deny rules, mode policy, hooks, and <code>canUseTool</code> behavior. Sources: <code>docs/SPEC.md</code> Section 14.3; <code>docs/CONTRACT.md</code> K-PERM-3.</p>
+<p>6. SDK transcripts assist but do not govern.</p>
+<p>SDK transcript placement and mirroring may support resume/debugging, but the Chirality audit JSONL remains canonical unless SDK content is imported into <code>HarnessEvent</code> form. Sources: <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3.</p>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- The decomposition marks this as a documentation/probe slice with no new user tool exposure. Keep implementation changes out of this deliverable and route code work to downstream DEL-04-02 through DEL-04-05.</li>
+<li>- Open issue OI-001 makes SDK viability, message categories, settings behavior, hooks, permissions, MCP, sessions, and packaging empirical questions. Do not convert unknown probe results into requirements that pretend the answer is already known.</li>
+<li>- Open issue OI-002 leaves transcript placement unresolved. The acceptable outcomes are project-controlled <code>SessionStore</code>, <code>CLAUDE_CONFIG_DIR</code>, both, or cross-reference to default path with residual risk, per the decomposition and source corpus.</li>
+<li>- Packaging risk is not limited to the SDK package dependency. The probe must consider SDK subprocess/binary execution in Electron and any built-app path constraints.</li>
+<li>- Fallback threshold is a human-governed TBD: if a product-critical reliance boundary cannot be observed, enforced, and recorded in Chirality terms, the adoption decision should either select <code>FALLBACK</code> or explicitly assign <code>ADOPT_WITH_RESIDUAL_RISK</code> to an accountable approver.</li>
+</ul>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision Area</td><td>Prefer</td><td>Watch For</td><td>Source</td></tr>
+<tr><td>Runtime mechanics</td><td>SDK handles generic model/tool loop when verified.</td><td>SDK defaults redefining product semantics.</td><td><code>docs/DIRECTIVE.md</code> Section 2.8; <code>docs/PLAN.md</code> R0/R1</td></tr>
+<tr><td>Event model</td><td>Chirality maps SDK messages into stable UI/runtime events.</td><td>Browser or persisted event contracts becoming SDK-shaped.</td><td><code>docs/SPEC.md</code> Sections 9 and 10.3</td></tr>
+<tr><td>Tool permissions</td><td>Capability-forward policy with explicit hard-deny precedence overlay with hooks and callbacks.</td><td>Mistaking <code>allowedTools</code> for restriction.</td><td><code>docs/SPEC.md</code> Sections 14.3 and 15.1</td></tr>
+<tr><td>Session storage</td><td>Project-controlled transcript/store linkage where reliable.</td><td>SDK default transcript path becoming de facto canonical.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/PRD.md</code> KG-024</td></tr>
+<tr><td>Settings</td><td><code>settingSources: []</code> in shipped builds.</td><td>Ambient <code>.claude</code> or user/local settings entering product behavior.</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1</td></tr>
+<tr><td>Adoption</td><td>Version-pinned SDK path with conformance tests.</td><td>SDK API drift, packaging failures, or unverifiable reliance boundaries.</td><td><code>docs/CONTRACT.md</code> K-SDK-2; <code>docs/PRD.md</code> KG-021 through KG-032</td></tr>
+</tbody></table>
+<h3 id="clm-027-residual-risk-appraisal-method">CLM-027 — Residual-Risk Appraisal Method</h3>
+<h5 id="residual-risk-appraisal-method">Residual-Risk Appraisal Method</h5>
+<p>Residual-risk notes should evaluate each unresolved SDK adoption issue against three questions:</p>
+<p>1. Can Chirality observe the behavior in project-owned records or adapter metadata?</p>
+<p>2. Can Chirality enforce or fail closed at a product-owned boundary rather than relying on prompt text or opaque SDK defaults?</p>
+<p>3. Can a human reviewer distinguish <code>ADOPT_WITH_RESIDUAL_RISK</code> from <code>FALLBACK</code> using version-pinned probe evidence?</p>
+<p>Apply the method to SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in. Sources: <code>docs/DIRECTIVE.md</code> Sections 2.8 through 2.11; <code>docs/CONTRACT.md</code> K-ENGINE-5, K-RELIANCE-1, K-RELIANCE-2, and K-SDK-2; <code>docs/PLAN.md</code> R0/R1 and Section 8.</p>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>TBD: no completed first-adapter probe notes are available in the accessible source corpus.</p>
+<p>Example evidence rows the final probe notes should contain:</p>
+<table><tbody>
+<tr><td>Probe Topic</td><td>Evidence to Capture</td><td>Accept / Fallback Question</td></tr>
+<tr><td>SDK version</td><td>Package name, exact version, lockfile evidence, subprocess version when knowable.</td><td>Can this version be pinned and regression-tested?</td></tr>
+<tr><td>Messages</td><td>Observed message categories and sequence from <code>query()</code>.</td><td>Can all required categories map to stable <code>UIEvent</code> and <code>HarnessEvent</code> records?</td></tr>
+<tr><td>Settings</td><td>Effective <code>settingSources</code> behavior in shipped-like and dev-only modes.</td><td>Can shipped builds avoid ambient user/local settings?</td></tr>
+<tr><td>Permissions</td><td>Behavior of <code>permissionMode</code>, <code>allowedTools</code>, <code>disallowedTools</code>, <code>canUseTool</code>, and hooks.</td><td>Can capability policy with explicit hard-deny precedence be verified in Chirality terms?</td></tr>
+<tr><td>Session storage</td><td>SDK session ID, resume behavior, transcript path/store key, <code>SessionStore</code>, <code>CLAUDE_CONFIG_DIR</code>.</td><td>Can SDK transcripts remain secondary and traceable?</td></tr>
+<tr><td>Packaging</td><td>Built Electron app starts SDK-backed turn and can execute required subprocess/binary.</td><td>Does packaging require fallback or release blocker?</td></tr>
+</tbody></table>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>SRC-001</td><td><code>docs/PRD.md</code> is authoritative in role but <code>_REFERENCES.md</code> reports <code>MATCH</code>; content based on PRD should not be closed without source-state confirmation.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> R0/R1 and KG-021 through KG-032</td><td>Datasheet References; Specification Requirements and Verification; Guidance Considerations</td><td>Use corroborated PRD claims as draft context where they match MATCH sources; require human/source refresh before closure.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-030-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-030 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-018 SOW-044 SOW-046 OBJ-004</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

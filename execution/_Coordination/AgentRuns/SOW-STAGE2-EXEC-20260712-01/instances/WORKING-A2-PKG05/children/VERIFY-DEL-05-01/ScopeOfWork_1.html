@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="1c0e1a3bf9bd915ea23f9ace4ff0284e029efa36c661dca4ac7a78a65ce770a6">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>1c0e1a3bf9bd915ea23f9ace4ff0284e029efa36c661dca4ac7a78a65ce770a6</code>.</p>
+<h1 id="scope-of-work-del-05-01">Scope of Work — DEL-05-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-05-01</code> in service of project scope [SOW-009, SOW-043, SOW-046] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A canonical folder-backed Chirality session store and first-touch legacy flat-record migration that preserve stable session identity and the product-owned audit boundary.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-01-canonical-session-folder-and-legacy-session-migration">CLM-001 — Datasheet: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h3>
+<h4 id="datasheet-del-05-01-canonical-session-folder-and-legacy-session-migration">Datasheet: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-05-01</td></tr>
+<tr><td>DeliverableName</td><td>Canonical Session Folder and Legacy Session Migration</td></tr>
+<tr><td>PackageID</td><td>PKG-05</td></tr>
+<tr><td>PackageName</td><td>Session Audit, Replay, and Tool Result Records</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>Scope Items</td><td>SOW-009, SOW-043, SOW-046</td></tr>
+<tr><td>Objective</td><td>OBJ-003</td></tr>
+</tbody></table>
+<p>Source: <code>_CONTEXT.md</code> <code>Identity</code>, <code>Traceability</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> <code>PKG-05</code>.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Canonical session root</td><td><code>.chirality/sessions/&lt;sessionId&gt;/</code> unless <code>CHIRALITY_SESSION_ROOT</code> overrides the root</td><td><code>docs/SPEC.md</code> Section 8.2; <code>docs/PRD.md</code> session storage section</td></tr>
+<tr><td>Canonical metadata file</td><td><code>session.json</code></td><td><code>docs/SPEC.md</code> Section 8.2</td></tr>
+<tr><td>Canonical event log</td><td><code>events.jsonl</code></td><td><code>docs/SPEC.md</code> Section 8.2; <code>docs/CONTRACT.md</code> K-EVENT-4</td></tr>
+<tr><td>Canonical per-turn folder</td><td><code>turns/&lt;turnId&gt;.json</code></td><td><code>docs/SPEC.md</code> Section 8.2</td></tr>
+<tr><td>Canonical artifact folder</td><td><code>artifacts/</code></td><td><code>docs/SPEC.md</code> Section 8.2; <code>docs/TYPES.md</code> Section 7.2</td></tr>
+<tr><td>Canonical SDK metadata/transcript folder</td><td><code>sdk/</code></td><td><code>docs/SPEC.md</code> Section 8.2</td></tr>
+<tr><td>Legacy record shape</td><td><code>{sessionRoot}/{sessionId}.json</code></td><td><code>docs/SPEC.md</code> Section 8.1</td></tr>
+<tr><td>Legacy conversion requirement</td><td>Legacy records must remain readable by converting to canonical folders on first touch</td><td><code>docs/SPEC.md</code> Section 8.1; <code>docs/PRD.md</code> FR-077; D-APP-41</td></tr>
+<tr><td>Supported session operations in scope</td><td>create, list, resume, retrieve, save, delete</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW-009; <code>docs/PRD.md</code> FR-014</td></tr>
+<tr><td>Legacy migration behavior in scope</td><td>Existing <code>.chirality/sessions/*.json</code> records are canonicalized during list/resume/retrieve/save/delete and removed after conversion</td><td><code>docs/PRD.md</code> FR-077; D-APP-41</td></tr>
+<tr><td>SDK transcript authority</td><td>SDK transcripts are secondary runtime state unless imported into <code>HarnessEvent</code> form</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Chirality audit mirror canonicality</td><td><code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> remains the product-owned runtime audit mirror</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/TYPES.md</code> Section 1.8</td></tr>
+<tr><td>Project truth boundary</td><td>Runtime transcripts, SDK transcripts, UI state, and caches are not project truth unless imported into governed files</td><td><code>docs/TYPES.md</code> Section 1.7; <code>docs/CONTRACT.md</code> K-FS-1</td></tr>
+<tr><td>Stable identity</td><td>Session, turn, and runtime event identifiers are stable IDs assigned once</td><td><code>docs/TYPES.md</code> Section 2</td></tr>
+<tr><td>SDK linkage</td><td><code>sdkSessionId</code>, transcript path/store key, config dir, settings sources, SDK package version, Claude Code version, and resume mode are future metadata candidates</td><td><code>docs/SPEC.md</code> Section 8.3</td></tr>
+<tr><td>Transcript placement</td><td>TBD: R1 must empirically decide the least surprising SDK transcript/storage pattern</td><td><code>docs/SPEC.md</code> Section 8.4; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW-046/OI-002</td></tr>
+<tr><td>Authority corpus state</td><td>D-APP-38 corpus v2 is applied for this deliverable; <code>_REFERENCES.md</code> reports MATCH for PRD/SPEC/TYPES/CONTRACT/PLAN</td><td><code>_REFERENCES.md</code>; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-pass-3-lensing-status">CLM-005 — Pass 3 Lensing Status</h3>
+<h5 id="pass-3-lensing-status">Pass 3 Lensing Status</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Status</td><td>Datasheet impact</td></tr>
+<tr><td>X-001</td><td>unresolved TBD</td><td>Transcript placement remains an R1/OI-002 decision; this datasheet does not treat SDK transcript storage as stable review closure.</td></tr>
+<tr><td>E-001</td><td>satisfied</td><td>PRD-derived behavior was rechecked against the D-APP-38 corpus v2 MATCH state before ADQ-08 closure.</td></tr>
+</tbody></table>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>Canonical vNext session folder:</p>
+<p>```text</p>
+<p>.chirality/sessions/&lt;sessionId&gt;/</p>
+<table><tbody>
+<tr><td>-- session.json</td></tr>
+<tr><td>-- events.jsonl</td></tr>
+<tr><td>-- turns/</td></tr>
+<tr><td>`-- &lt;turnId&gt;.json</td></tr>
+<tr><td>-- artifacts/</td></tr>
+</tbody></table>
+<p>`-- sdk/</p>
+<p>```</p>
+<p>Source: <code>docs/SPEC.md</code> Section 8.2.</p>
+<p>Legacy session record:</p>
+<p>```text</p>
+<p>{sessionRoot}/{sessionId}.json</p>
+<p>```</p>
+<p>Legacy flat records are migration inputs only. On first read, list, resume, save,</p>
+<p>or delete access, the runtime writes <code>{sessionRoot}/{sessionId}/session.json</code></p>
+<p>and removes the flat record. If both shapes exist, defined canonical values win,</p>
+<p>legacy-only fields are preserved, and the merged canonical record replaces the</p>
+<p>duplicate pair.</p>
+<p>Known legacy fields:</p>
+<ul>
+<li>- <code>sessionId</code></li>
+<li>- <code>projectRoot</code></li>
+<li>- <code>persona</code></li>
+<li>- <code>mode</code></li>
+<li>- <code>createdAt</code></li>
+<li>- <code>updatedAt</code></li>
+<li>- <code>claudeSessionId</code></li>
+<li>- <code>bootFingerprint</code></li>
+<li>- <code>bootedAt</code></li>
+<li>- <code>model</code></li>
+<li>- <code>engineSessionId</code></li>
+<li>- <code>sdkSessionId</code></li>
+<li>- <code>sdkTranscriptPath</code></li>
+<li>- <code>sdkSessionStoreKey</code></li>
+<li>- <code>sdkConfigDir</code></li>
+<li>- <code>sdkSettingSources</code></li>
+<li>- <code>sdkPackageVersion</code></li>
+<li>- <code>sdkClaudeCodeVersion</code></li>
+<li>- <code>runtimeFingerprint</code></li>
+</ul>
+<p>Source: <code>docs/SPEC.md</code> Section 8.1.</p>
+<p>Future <code>session.json</code> fields should include:</p>
+<ul>
+<li>- <code>sessionId</code></li>
+<li>- <code>projectRoot</code></li>
+<li>- <code>persona</code></li>
+<li>- <code>mode</code></li>
+<li>- <code>createdAt</code></li>
+<li>- <code>updatedAt</code></li>
+<li>- <code>model</code></li>
+<li>- <code>bootFingerprint</code></li>
+<li>- <code>sdkSessionId</code></li>
+<li>- <code>sdkProjectKey</code></li>
+<li>- <code>sdkTranscriptPath</code> or <code>sdkSessionStoreKey</code></li>
+<li>- <code>sdkConfigDir</code></li>
+<li>- <code>sdkSettingSources</code></li>
+<li>- <code>sdkPackageVersion</code></li>
+<li>- <code>sdkClaudeCodeVersion</code></li>
+<li>- <code>sdkResumeMode</code></li>
+</ul>
+<p>Source: <code>docs/SPEC.md</code> Section 8.3.</p>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> <code>Identity</code>, <code>Package Scope</code>, <code>Deliverable Scope</code>, <code>Traceability</code></li>
+<li>- <code>_REFERENCES.md</code> <code>Authoritative Source Corpus</code></li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> <code>PKG-05</code>, SOW-009, SOW-043, SOW-046, OBJ-003</li>
+<li>- <code>docs/SPEC.md</code> Sections 8-10 and 19.3</li>
+<li>- <code>docs/TYPES.md</code> Sections 1.7, 1.8, 2, and 7</li>
+<li>- <code>docs/CONTRACT.md</code> K-ID-1, K-PATH-1, K-FS-1, K-SDK-3, K-EVENT-4, K-EVENT-5, K-EVENT-6</li>
+<li>- <code>docs/PLAN.md</code> R1/R2 implementation notes</li>
+<li>- <code>docs/PRD.md</code> session storage, FR-014, FR-077, FR-118, FR-121, FR-122, FR-123</li>
+<li>- D-APP-38 authority corpus v2</li>
+<li>- D-APP-41 canonical session storage ruling</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-05-01-canonical-session-folder-and-legacy-session-migration">CLM-008 — Specification: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h3>
+<h4 id="specification-del-05-01-canonical-session-folder-and-legacy-session-migration">Specification: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-05-01 specifies the session data-model change that makes folder-backed harness sessions canonical and converts legacy flat <code>.json</code> session records into that shape on first touch.</p>
+<p>In scope:</p>
+<ul>
+<li>- Canonical <code>.chirality/sessions/&lt;sessionId&gt;/</code> folder layout.</li>
+<li>- <code>session.json</code> metadata expectations.</li>
+<li>- Legacy <code>.chirality/sessions/&lt;sessionId&gt;.json</code> conversion during read, list, resume, save, and delete surfaces.</li>
+<li>- SDK session linkage metadata needed for resume without making SDK transcripts authoritative.</li>
+<li>- Tests for session folder layout, migration helpers, duplicate folder/flat behavior, and legacy conversion behavior.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- <code>HarnessEvent</code> schema and append-only JSONL writer details owned by DEL-05-02.</li>
+<li>- Runtime redaction owned by DEL-05-03.</li>
+<li>- Replay UI/diagnostics owned by DEL-05-04.</li>
+<li>- Tool permission semantics, excluded by PKG-05 package scope.</li>
+<li>- Final SDK transcript placement decision where source authority marks it as an R1/OI-002 decision.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code> <code>Deliverable Scope</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> <code>PKG-05</code>; <code>docs/SPEC.md</code> Sections 8-10; D-APP-41 ruling on canonical session storage.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-05-01-R001</td><td>New canonical sessions MUST be represented as folders under <code>.chirality/sessions/&lt;sessionId&gt;/</code> or the configured <code>CHIRALITY_SESSION_ROOT</code> equivalent.</td><td><code>docs/SPEC.md</code> Section 8.2</td></tr>
+<tr><td>DEL-05-01-R002</td><td>A canonical session folder MUST support <code>session.json</code>, <code>events.jsonl</code>, <code>turns/</code>, <code>artifacts/</code>, and <code>sdk/</code> as the physical layout.</td><td><code>docs/SPEC.md</code> Section 8.2</td></tr>
+<tr><td>DEL-05-01-R003</td><td>Legacy flat records at <code>{sessionRoot}/{sessionId}.json</code> MUST be converted to <code>{sessionRoot}/{sessionId}/session.json</code> on first read/list/resume/save/delete access.</td><td><code>docs/SPEC.md</code> Section 8.1; D-APP-41</td></tr>
+<tr><td>DEL-05-01-R004</td><td>Existing <code>.chirality/sessions/*.json</code> records MUST list and resume by way of eager canonical conversion; runtime code MUST NOT keep flat records as a standing parallel storage shape.</td><td><code>docs/PRD.md</code> FR-077; <code>docs/SPEC.md</code> Section 8.1; D-APP-41</td></tr>
+<tr><td>DEL-05-01-R005</td><td>Session CRUD behavior MUST remain bound to normalized project root.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW-009; <code>docs/PRD.md</code> FR-014</td></tr>
+<tr><td>DEL-05-01-R006</td><td><code>session.json</code> SHOULD include stable Chirality session metadata and SDK linkage metadata listed in SPEC Section 8.3.</td><td><code>docs/SPEC.md</code> Section 8.3</td></tr>
+<tr><td>DEL-05-01-R007</td><td>SDK session identifiers and transcript/store references MUST remain adapter metadata and MUST NOT redefine Chirality session identity.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/TYPES.md</code> Section 7.2; <code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>DEL-05-01-R008</td><td><code>events.jsonl</code> MUST remain the canonical Chirality audit mirror; SDK transcripts are secondary unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3 and K-EVENT-4</td></tr>
+<tr><td>DEL-05-01-R009</td><td>If SDK transcript storage remains outside the working root, Chirality MUST cross-reference the transcript path or store key from <code>session.json</code> and record residual reliance-boundary risk.</td><td><code>docs/SPEC.md</code> Section 8.4</td></tr>
+<tr><td>DEL-05-01-R010</td><td>If both canonical folder and legacy flat records exist for the same <code>sessionId</code>, resolution MUST prefer defined canonical values, preserve legacy-only fields, write the merged canonical <code>session.json</code>, and remove the flat record.</td><td>D-APP-41; <code>docs/SPEC.md</code> Section 8.1</td></tr>
+<tr><td>DEL-05-01-R011</td><td>Session identifiers MUST remain stable across renames, path changes, and UI labels.</td><td><code>docs/TYPES.md</code> Section 2; <code>docs/CONTRACT.md</code> K-ID-1</td></tr>
+<tr><td>DEL-05-01-R012</td><td>Runtime records and project files MUST preserve stable IDs when paths change.</td><td><code>docs/CONTRACT.md</code> K-PATH-1</td></tr>
+<tr><td>DEL-05-01-R013</td><td>Secrets and API keys MUST NOT be stored in session metadata, runtime events, logs, SDK transcripts if avoidable, or tool artifacts.</td><td><code>docs/CONTRACT.md</code> K-KEY-1; K-EVENT-6</td></tr>
+<tr><td>DEL-05-01-R014</td><td><code>CHIRALITY_SESSION_ROOT</code> override behavior MUST remain supported for session storage root resolution.</td><td><code>docs/SPEC.md</code> Section 8.2; <code>docs/PRD.md</code> session storage section</td></tr>
+<tr><td>DEL-05-01-R015</td><td>Implementation evidence MUST name the active session storage module, canonicalization helper behavior, and focused validation commands used for closure.</td><td>D-APP-41; implementation evidence</td></tr>
+<tr><td>DEL-05-01-R016</td><td>New sessions MUST NOT write legacy flat <code>{sessionId}.json</code> files.</td><td>D-APP-41; <code>docs/SPEC.md</code> Section 8.2</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>SPEC Harness Session Store</td><td>Defines legacy record shape, canonical folder layout, future metadata, and canonicalization rules.</td><td><code>docs/SPEC.md</code> Section 8</td></tr>
+<tr><td>SPEC Runtime Event Schema</td><td>Constrains <code>events.jsonl</code> canonicality and replay tolerance where the session folder contains event logs.</td><td><code>docs/SPEC.md</code> Section 9</td></tr>
+<tr><td>SPEC Engine Adapter Rules</td><td>Requires SDK names, IDs, transcript paths, and external message names to remain adapter metadata.</td><td><code>docs/SPEC.md</code> Section 10.3</td></tr>
+<tr><td>TYPES Runtime and Session Vocabulary</td><td>Defines <code>SessionRecord</code>, <code>sessionId</code>, <code>sdkSessionId</code>, <code>events.jsonl</code>, <code>session.json</code>, and <code>artifacts/</code>.</td><td><code>docs/TYPES.md</code> Section 7</td></tr>
+<tr><td>CONTRACT Invariants</td><td>Governs stable identity, project truth, SDK transcript secondary status, event mirror canonicality, replay tolerance, and redaction.</td><td><code>docs/CONTRACT.md</code> K-ID-1, K-FS-1, K-SDK-3, K-EVENT-4 through K-EVENT-6</td></tr>
+<tr><td>PRD Runtime Requirements</td><td>Product requirements for session CRUD, legacy readability, SDK linkage, and audit mirror canonicality.</td><td><code>docs/PRD.md</code> FR-014, FR-077, FR-118, FR-121; D-APP-38 corpus v2 reports MATCH</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td></tr>
+<tr><td>R001, R002, R006, R014</td><td>Unit tests for session root resolution and canonical folder creation, including <code>CHIRALITY_SESSION_ROOT</code>.</td></tr>
+<tr><td>R003, R004, R005, R010, R016</td><td>Legacy fixture tests proving flat <code>.json</code> records are converted through list, retrieve, resume, save, and delete surfaces; duplicate fixture tests proving merge precedence, legacy-only field preservation, and flat-file removal.</td></tr>
+<tr><td>R007, R008, R009</td><td>Metadata tests proving SDK identifiers/transcript references are stored as adapter metadata and <code>events.jsonl</code> remains canonical.</td></tr>
+<tr><td>R011, R012</td><td>Tests or scanner checks proving <code>sessionId</code> is the persisted identity and not inferred from path labels alone.</td></tr>
+<tr><td>R013</td><td>Redaction/security tests proving secret-like values are not written to session metadata or referenced artifacts; detailed redaction implementation belongs to DEL-05-03.</td></tr>
+<tr><td>R015</td><td>Review check that implementation-specific file paths, helper behavior, and command names are recorded in ADQ-08 evidence.</td></tr>
+<tr><td>A-001</td><td>Review check that save/update behavior remains an internal session-manager persistence operation unless a separate public API is accepted.</td></tr>
+<tr><td>B-001</td><td>Review check that legacy <code>claudeSessionId</code> remains readable without being silently redefined as <code>sdkSessionId</code>.</td></tr>
+<tr><td>F-001</td><td>Review check that duplicate folder-versus-flat behavior follows D-APP-41 and is fixture-tested.</td></tr>
+<tr><td>E-002</td><td>Review check that any external SDK transcript path/store-key use has an explicit residual reliance-boundary note; no final transcript placement claim is made in DEL-05-01.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts:</p>
+<ul>
+<li>- Session folder layout specification or implementation note.</li>
+<li>- Migration helper description covering eager legacy flat <code>.json</code> conversion.</li>
+<li>- Legacy-read/list/resume/save/delete conversion test fixtures.</li>
+<li>- Duplicate folder/flat merge and cleanup test fixture.</li>
+<li>- <code>session.json</code> metadata field documentation.</li>
+<li>- SDK transcript/linkage residual-risk note where placement remains unresolved.</li>
+<li>- Test evidence for session root override behavior.</li>
+<li>- Implementation evidence for save/update behavior, duplicate folder-versus-flat behavior, and <code>claudeSessionId</code> preservation.</li>
+<li>- Source-state recheck confirming the D-APP-38 authority corpus is current for this deliverable.</li>
+</ul>
+<p>Source: <code>_CONTEXT.md</code> <code>Anticipated Artifacts</code>; <code>docs/SPEC.md</code> Section 8; <code>docs/PLAN.md</code> R1/R2 notes.</p>
+<h3 id="clm-014-d-app-56-guard-amendment-2026-07-12">CLM-014 — D-APP-56 guard amendment (2026-07-12)</h3>
+<h5 id="d-app-56-guard-amendment-2026-07-12">D-APP-56 guard amendment (2026-07-12)</h5>
+<p>R4-P31 adopts both session-manager guards into DEL-05-01: <code>assertSafeSessionId</code> prevents unsafe/path-traversing session identifiers, and <code>assertProjectRootAccessible</code> enforces accessible contained project roots. A dedicated session-ID guard test remains an explicit verification obligation; this text does not assert it exists.</p>
+<ul>
+<li>- <strong>AC-001</strong> — Review and focused tests confirm that new sessions use the canonical folder layout and list, retrieve, resume, save, and delete operations convert legacy flat records while preserving stable session identity and defined duplicate-record precedence.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-05-01-canonical-session-folder-and-legacy-session-migration">CLM-015 — Procedure: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h3>
+<h4 id="procedure-del-05-01-canonical-session-folder-and-legacy-session-migration">Procedure: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Provide an operational procedure for producing and verifying the DEL-05-01 implementation slice: canonical session folder layout plus eager legacy flat <code>.json</code> conversion for list, resume, retrieve, save, and delete behavior.</p>
+<p>Source: <code>_CONTEXT.md</code> <code>Deliverable Scope</code>; <code>docs/SPEC.md</code> Section 8; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-05-01.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Accepted DEL-05-01 scope and four-document kit.</li>
+<li>- Access to <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/PLAN.md</code>, and <code>docs/PRD.md</code>.</li>
+<li>- Awareness that the D-APP-38 authority corpus is current for this deliverable; <code>_REFERENCES.md</code> reports matching hashes for PRD/SPEC/TYPES/CONTRACT/PLAN.</li>
+<li>- Current session storage implementation is <code>frontend/src/lib/harness/session-manager.ts</code>; focused storage tests are <code>frontend/src/__tests__/lib/session-manager.test.ts</code>.</li>
+<li>- Upstream dependency edges are not yet accepted; <code>_DEPENDENCIES.md</code> declares upstream/downstream as TBD.</li>
+<li>- R1/OI-002 transcript placement remains unresolved; do not hard-code final SDK transcript storage policy beyond metadata support.</li>
+</ul>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Locate current session storage code and fixtures.</p>
+<ul>
+<li>- Identify where legacy <code>.chirality/sessions/&lt;sessionId&gt;.json</code> records are created, listed, read, resumed, and deleted.</li>
+<li>- Keep the public session API contract stable while changing the on-disk storage shape.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Section 8.1; <code>docs/PRD.md</code> FR-014 and FR-077.</li>
+</ul>
+<p>2. Define or update the session root resolver.</p>
+<ul>
+<li>- Resolve default <code>.chirality/sessions</code>.</li>
+<li>- Preserve <code>CHIRALITY_SESSION_ROOT</code> override behavior.</li>
+<li>- Normalize project-root filtering where session list behavior depends on project root.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Section 8.2; <code>docs/PRD.md</code> FR-014.</li>
+</ul>
+<p>3. Introduce canonical folder creation for new sessions.</p>
+<ul>
+<li>- Create <code>.chirality/sessions/&lt;sessionId&gt;/</code>.</li>
+<li>- Write <code>session.json</code> for new session metadata.</li>
+<li>- Do not write a legacy flat <code>{sessionId}.json</code> file for new sessions.</li>
+<li>- Ensure <code>events.jsonl</code>, <code>turns/</code>, <code>artifacts/</code>, and <code>sdk/</code> remain compatible with the canonical folder layout according to implementation needs.</li>
+<li>- Do not make SDK transcript files canonical.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Sections 8.2 and 8.4.</li>
+</ul>
+<p>4. Populate <code>session.json</code> with supported metadata.</p>
+<ul>
+<li>- Include stable Chirality metadata such as <code>sessionId</code>, <code>projectRoot</code>, <code>persona</code>, <code>mode</code>, timestamps, model, and boot fingerprint when available.</li>
+<li>- Include SDK linkage metadata such as <code>sdkSessionId</code>, transcript path/store key, config dir, settings sources, SDK package version, Claude Code version, and resume mode when available.</li>
+<li>- Leave unavailable fields absent or <code>TBD</code> per implementation convention; do not invent values.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Section 8.3.</li>
+</ul>
+<p>5. Add canonicalizing read/list logic.</p>
+<ul>
+<li>- Folder sessions read from <code>&lt;sessionId&gt;/session.json</code>.</li>
+<li>- Legacy sessions are read from <code>&lt;sessionId&gt;.json</code>, immediately written to <code>&lt;sessionId&gt;/session.json</code>, and then removed as flat records.</li>
+<li>- Listing should discover both shapes, canonicalize legacy records, and avoid duplicate records for the same stable <code>sessionId</code>.</li>
+<li>- If both shapes exist, defined canonical values take precedence, legacy-only fields are preserved, the merged canonical file is written, and the flat record is removed.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Section 8.1; <code>docs/TYPES.md</code> Section 2; D-APP-41.</li>
+</ul>
+<p>6. Preserve resume compatibility.</p>
+<ul>
+<li>- Legacy <code>claudeSessionId</code> remains readable.</li>
+<li>- New SDK linkage should use <code>sdkSessionId</code> and explicit resume metadata when available.</li>
+<li>- Do not silently map <code>claudeSessionId</code> to <code>sdkSessionId</code>; preserve legacy linkage fields and record new SDK linkage separately when available.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Sections 8.1 and 8.3; <code>docs/PRD.md</code> FR-118.</li>
+</ul>
+<p>7. Preserve retrieve and delete compatibility.</p>
+<ul>
+<li>- Retrieve should work for folder and flat legacy inputs by canonicalizing first.</li>
+<li>- Delete should resolve the session shape, then remove the canonical session folder and any stray flat duplicate for the same <code>sessionId</code>.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> endpoint table; <code>docs/PRD.md</code> FR-014 and FR-077; D-APP-41.</li>
+</ul>
+<p>8. Keep event/audit canonicality intact.</p>
+<ul>
+<li>- Do not replace <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> with SDK transcript data.</li>
+<li>- Cross-reference SDK transcript path/store key in metadata if needed.</li>
+<li>- Record residual reliance-boundary risk if SDK transcript storage remains outside a project-controlled folder.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3 and K-EVENT-4.</li>
+</ul>
+<p>9. Add migration helper tests.</p>
+<ul>
+<li>- Test canonical folder creation.</li>
+<li>- Test legacy flat record listing and canonical conversion.</li>
+<li>- Test legacy resume metadata remains available after conversion.</li>
+<li>- Test legacy retrieve/save/delete behavior.</li>
+<li>- Test root override behavior.</li>
+<li>- Test duplicate-shape behavior under D-APP-41 canonical-precedence merge and flat-file cleanup.</li>
+<li>- Source basis: <code>_CONTEXT.md</code> <code>Anticipated Artifacts</code>; <code>docs/SPEC.md</code> Section 19.3.</li>
+</ul>
+<p>10. Re-run relevant local validation.</p>
+<ul>
+<li>- Run focused unit/API tests for session CRUD and migration helpers.</li>
+<li>- Run broader harness validation because this implementation changes runtime storage behavior.</li>
+<li>- Confirm TypeScript and authority-corpus status before closeout.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> Section 19.3; <code>docs/PRD.md</code> FR-064 through FR-069.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Canonical layout creation</td><td>New sessions have the folder shape required by <code>docs/SPEC.md</code> Section 8.2.</td></tr>
+<tr><td>Legacy list conversion</td><td>Existing <code>.chirality/sessions/*.json</code> records appear in session list output and are converted to canonical folders.</td></tr>
+<tr><td>Legacy resume conversion</td><td>Legacy records retain metadata and are converted without crashing.</td></tr>
+<tr><td>Legacy retrieve/save/delete conversion</td><td>Existing flat records can be retrieved, saved, and deleted through supported session surfaces after canonicalization.</td></tr>
+<tr><td>Duplicate-shape cleanup</td><td>Duplicate folder/flat records merge with canonical precedence, preserve legacy-only fields, and remove the flat record.</td></tr>
+<tr><td>SDK linkage metadata</td><td>SDK IDs/transcript references are adapter metadata and do not redefine Chirality <code>sessionId</code>.</td></tr>
+<tr><td>Audit mirror canonicality</td><td><code>events.jsonl</code> remains the product-owned audit mirror.</td></tr>
+<tr><td>Redaction posture</td><td>Session metadata and artifacts do not store API keys or known secrets.</td></tr>
+<tr><td>Source-state recheck</td><td>PRD-derived behavior is checked against the D-APP-38 corpus v2 MATCH state before implementation closure.</td></tr>
+</tbody></table>
+<h3 id="clm-020-pass-3-evidence-checks">CLM-020 — Pass 3 Evidence Checks</h3>
+<h5 id="pass-3-evidence-checks">Pass 3 Evidence Checks</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Check</td><td>Expected handling</td></tr>
+<tr><td>C-001</td><td>Implementation worker identifies current session storage source files and focused test commands.</td><td>SATISFIED by ADQ-08 evidence: <code>session-manager.ts</code>, <code>session-manager.test.ts</code>, focused route/event/turn tests, typecheck.</td></tr>
+<tr><td>D-001</td><td>Duplicate-shape test exists after duplicate policy is accepted.</td><td>SATISFIED by D-APP-41 and <code>session-manager.test.ts</code> duplicate fixture.</td></tr>
+<tr><td>E-001</td><td>PRD-derived behavior is rechecked against REF-006 source state before closure.</td><td>SATISFIED by D-APP-38 corpus v2 / <code>_REFERENCES.md</code> MATCH state and ADQ-08 status check.</td></tr>
+<tr><td>F-001</td><td>Delete behavior is verified when both folder and flat records exist for the same <code>sessionId</code>.</td><td>SATISFIED by <code>session-manager.test.ts</code> delete fixture.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Updated source files for session root resolution, canonical folder layout, and migration helpers: <code>frontend/src/lib/harness/session-manager.ts</code>.</li>
+<li>- Legacy flat-session fixtures: <code>frontend/src/__tests__/lib/session-manager.test.ts</code>.</li>
+<li>- Canonical folder-session fixtures: <code>frontend/src/__tests__/lib/session-manager.test.ts</code>.</li>
+<li>- Test results for list/resume/retrieve/save/delete migration behavior: <code>Evidence_ADQ-08_Canonical_Session_Migration.md</code>.</li>
+<li>- Residual-risk note for SDK transcript placement if not project-controlled: remains carried by R1/OI-002 and DEL-05-04; DEL-05-01 stores only metadata.</li>
+<li>- Human ruling for duplicate folder/flat record delete semantics: D-APP-41.</li>
+<li>- Source-state recheck record for REF-006 PRD-derived behavior: D-APP-38 corpus v2 MATCH state and ADQ-08 evidence.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Run focused session-manager tests for canonical creation, legacy conversion across supported operations, duplicate merge and cleanup, root override, stable identity, SDK metadata separation, and unsafe session-ID traversal guards; review the resulting evidence against SOW-009, SOW-043, SOW-046, and OBJ-003.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-05-01-canonical-session-folder-and-legacy-session-migration">CLM-022 — Guidance: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h3>
+<h4 id="guidance-del-05-01-canonical-session-folder-and-legacy-session-migration">Guidance: DEL-05-01 Canonical Session Folder and Legacy Session Migration</h4>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable gives Chirality one canonical session storage shape while still absorbing existing harness sessions. The main design pressure is to convert legacy flat <code>.json</code> records into folder-backed sessions and keep runtime audit authority with Chirality-owned <code>events.jsonl</code>, not SDK transcripts or hidden state.</p>
+<p>Sources: <code>_CONTEXT.md</code> <code>Deliverable Scope</code>; <code>docs/SPEC.md</code> Section 8; <code>docs/CONTRACT.md</code> K-SDK-3 and K-EVENT-4.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Preserve session identity.</p>
+<p><code>sessionId</code> is a stable identifier. Do not make folder names, UI labels, SDK session IDs, or transcript paths the authoritative identity. Source: <code>docs/TYPES.md</code> Section 2; <code>docs/CONTRACT.md</code> K-ID-1.</p>
+<p>2. Prefer one durable storage shape.</p>
+<p>Canonical folder sessions are the target shape. Legacy flat records are inputs to eager conversion on list, read, resume, save, and delete, not a permanent parallel format. Source: <code>docs/SPEC.md</code> Section 8.1; <code>docs/PRD.md</code> FR-077; D-APP-41.</p>
+<p>3. Keep Chirality audit canonical.</p>
+<p><code>events.jsonl</code> is the product-owned audit mirror. SDK transcripts can assist resume/debugging but are secondary unless imported into <code>HarnessEvent</code> form. Source: <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3 and K-EVENT-4.</p>
+<p>4. Separate metadata from provider state.</p>
+<p><code>sdkSessionId</code>, transcript paths, store keys, SDK config directories, settings sources, and SDK versions are adapter metadata. They should help resume and diagnosis without shaping public APIs or canonical event semantics. Source: <code>docs/SPEC.md</code> Sections 8.3 and 10.3; <code>docs/TYPES.md</code> Section 7.2.</p>
+<p>5. Preserve legacy metadata without redefining it.</p>
+<p>Legacy <code>claudeSessionId</code> remains readable as legacy adapter linkage. New SDK linkage fields are recorded separately when available; migration must not silently rewrite one identity into another without accepted evidence.</p>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The layout should serve later PKG-05 deliverables: <code>events.jsonl</code> for DEL-05-02, replay support for DEL-05-04, and artifacts for DEL-05-05. Do not overload DEL-05-01 with those implementations.</li>
+<li>- Legacy records include <code>claudeSessionId</code>; vNext metadata uses <code>sdkSessionId</code> and related SDK linkage fields. Preserve both when present unless an accepted transform is later defined.</li>
+<li>- <code>CHIRALITY_SESSION_ROOT</code> changes the storage root. Tests should cover both default and override roots.</li>
+<li>- Session CRUD is source-supported. In the current implementation, <code>FileSessionManager.save</code> is an internal persistence operation used by boot/session update flows; no separate public save route is created by this deliverable.</li>
+<li>- Transcript placement remains an R1/OI-002 decision. A migration implementation should be able to record transcript path/store-key metadata without assuming the final storage mechanism.</li>
+<li>- Redaction requirements apply to metadata and artifacts, but detailed redaction behavior belongs to DEL-05-03.</li>
+</ul>
+<h3 id="clm-026-pass-3-rulings-needed">CLM-026 — Pass 3 Rulings Needed</h3>
+<h5 id="pass-3-rulings-needed">Pass 3 Rulings Needed</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Ruling needed</td><td>Interim guidance</td></tr>
+<tr><td>A-001</td><td>Whether session save/update is a distinct behavior or covered by create/boot/retrieve/delete surfaces.</td><td>Resolved for ADQ-08 by implementation evidence: keep <code>FileSessionManager.save</code> internal and do not add a public save route.</td></tr>
+<tr><td>B-001</td><td>Whether legacy <code>claudeSessionId</code> maps directly to <code>sdkSessionId</code>.</td><td>Keep the legacy field readable and record new SDK linkage separately unless implementation evidence accepts a transform.</td></tr>
+<tr><td>F-001</td><td>Duplicate folder-versus-flat behavior for the same stable <code>sessionId</code>.</td><td>Resolved by D-APP-41: canonical values win, legacy-only fields are preserved, and the flat record is removed after merge.</td></tr>
+<tr><td>X-001</td><td>Final SDK transcript placement and review closure standard.</td><td>Keep SDK transcript path/store key as non-authoritative metadata while R1/OI-002 remains open.</td></tr>
+</tbody></table>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Option</td><td>Benefit</td><td>Cost / Risk</td><td>Guidance</td></tr>
+<tr><td>Lazy legacy read support</td><td>Minimal migration risk; existing sessions remain usable</td><td>Code must handle two storage shapes indefinitely unless later cleanup occurs</td><td>Not selected after D-APP-41</td></tr>
+<tr><td>Eager conversion to folders</td><td>Simplifies later reader code and eliminates the flat-record parallel format</td><td>Requires explicit duplicate merge and field-preservation tests</td><td>Selected by D-APP-41</td></tr>
+<tr><td>Store SDK transcript under working-root-controlled folder</td><td>Better locality and governance review</td><td>SDK behavior must be empirically verified</td><td>Preferred direction when reliable; source marks it as R1 decision</td></tr>
+<tr><td>Cross-reference SDK transcript in user home</td><td>Preserves resume if SDK cannot be redirected</td><td>Adds reliance-boundary risk and non-project state dependency</td><td>Accept only with explicit <code>session.json</code> metadata and residual-risk record</td></tr>
+<tr><td>Keep <code>events.jsonl</code> as canonical audit mirror</td><td>Preserves Chirality-owned runtime evidence</td><td>Requires event writer/replay discipline</td><td>Required by SPEC and CONTRACT</td></tr>
+</tbody></table>
+<p>E-002 disposition: when SDK transcripts remain outside project-controlled storage, the trade-off is acceptable only with <code>session.json</code> cross-reference metadata and a residual reliance-boundary record. Source: <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-SDK-3 and K-EVENT-4.</p>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Canonical folder example:</p>
+<p>```text</p>
+<p>.chirality/sessions/sess_example/</p>
+<table><tbody>
+<tr><td>-- session.json</td></tr>
+<tr><td>-- events.jsonl</td></tr>
+<tr><td>-- turns/</td></tr>
+<tr><td>`-- turn_example.json</td></tr>
+<tr><td>-- artifacts/</td></tr>
+</tbody></table>
+<p>`-- sdk/</p>
+<p>```</p>
+<p>Legacy flat record example:</p>
+<p>```text</p>
+<p>.chirality/sessions/sess_example.json</p>
+<p>```</p>
+<p><code>session.json</code> should keep SDK linkage separate from Chirality identity:</p>
+<p>```json</p>
+<p>{</p>
+<p>&quot;sessionId&quot;: &quot;sess_example&quot;,</p>
+<p>&quot;projectRoot&quot;: &quot;/path/to/working-root&quot;,</p>
+<p>&quot;persona&quot;: &quot;HELP_HUMAN&quot;,</p>
+<p>&quot;mode&quot;: &quot;WORKBENCH&quot;,</p>
+<p>&quot;sdkSessionId&quot;: &quot;TBD&quot;,</p>
+<p>&quot;sdkTranscriptPath&quot;: &quot;TBD&quot;,</p>
+<p>&quot;sdkSessionStoreKey&quot;: &quot;TBD&quot;</p>
+<p>}</p>
+<p>```</p>
+<p>Example is illustrative only; exact field optionality remains implementation-owned. Source: <code>docs/SPEC.md</code> Section 8.3.</p>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>DEL-05-01-C001</td><td>Session &quot;save&quot; is listed in SOW/PRD session operations, while SPEC endpoint list explicitly names create, boot, list, get/delete, turn, and interrupt but not a separate save endpoint.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW-009; <code>docs/PRD.md</code> FR-014</td><td><code>docs/SPEC.md</code> API endpoint table</td><td><code>Specification.md</code> Verification; <code>Procedure.md</code> Steps</td><td>Treat save/update as the implementation&#x27;s internal <code>FileSessionManager.save</code> persistence operation unless a separate public save route is later accepted.</td><td>ADQ-08 implementation evidence</td></tr>
+</tbody></table>
+<h3 id="clm-030-source-state-notes">CLM-030 — Source-State Notes</h3>
+<h5 id="source-state-notes">Source-State Notes</h5>
+<ul>
+<li>- <code>_REFERENCES.md</code> reports MATCH for the active authority corpus after the D-APP-38 corpus v2 refresh.</li>
+<li>- ADQ-08 code inspection identifies <code>frontend/src/lib/harness/session-manager.ts</code> as the storage implementation path and <code>frontend/src/__tests__/lib/session-manager.test.ts</code> as the focused migration fixture path.</li>
+</ul>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-009 SOW-043 SOW-046 OBJ-003</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

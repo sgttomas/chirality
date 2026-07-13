@@ -1,0 +1,36 @@
+{
+  "schema": "chirality-sow-author-qa/v1",
+  "instance_id": "AUTHOR-DEL-06-03",
+  "deliverable_id": "DEL-06-03",
+  "candidate_sha256": "4f1505dfcba0704cc49bac089e7f5ab68608c14e4f7828e486fa0861574b4ffd",
+  "checks": {
+    "frozen_source_hashes": "PASS",
+    "frozen_status_hash": "PASS",
+    "live_dependencies_csv_consumed": "PASS",
+    "authorized_dual_format_validation": "PASS",
+    "standalone_sow_v1_validation": "PASS",
+    "frontmatter_headings_ids_refs_matrix": "PASS",
+    "claim_mapping": {"status": "PASS", "rows": 34, "sha256": "9af225a44c796cdae5327d081df7a28b6c19932bda51e5631fccb4f055820d34"},
+    "parity": {"status": "PASS", "checks": 34, "source_lines": 382, "issues": 0},
+    "review_checklist": {"status": "PASS", "items": 1, "repeated_sha256": "e32aabf968bc772728db10e9123a145b14b523b9d78e59b9994353fbd1cf9ee8"},
+    "html": {"status": "PASS", "repeated_sha256": "704e305d02c03a4465ec5f0965cd2eb92df24ca393de74ec5f09f8042607d57a", "source_hash_bound": true, "script_free": true, "external_resources": 0},
+    "conversion_repeatability": {"status": "PASS", "repeated_sha256": "4f1505dfcba0704cc49bac089e7f5ab68608c14e4f7828e486fa0861574b4ffd"},
+    "wrong_authority_converter_fail_closed": "PASS",
+    "unauthorized_dual_validator_fail_closed": "PASS",
+    "unauthorized_checklist_fail_closed_without_output": "PASS",
+    "source_control_lifecycle_byte_identity": "PASS",
+    "candidate_only_write_boundary": "PASS",
+    "project_tree_read_only": "PASS",
+    "git_operations": "NONE"
+  },
+  "finding_classes": {
+    "schema_mechanical": "PASS",
+    "project_content_authority": "PASS_WITH_EXISTING_TBD_DEPENDENCY_INTERFACES_PRESERVED",
+    "preservation_containment": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "blockers": [],
+  "waivers": [],
+  "rerun_requirements": [],
+  "verdict": "PASS"
+}

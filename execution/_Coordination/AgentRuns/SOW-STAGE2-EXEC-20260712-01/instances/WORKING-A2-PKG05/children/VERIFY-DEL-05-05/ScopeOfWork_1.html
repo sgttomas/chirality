@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9</code>.</p>
+<h1 id="scope-of-work-del-05-05">Scope of Work — DEL-05-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-05-05</code> in service of project scope [SOW-053, SOW-059] and package objectives [OBJ-003, OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Artifact store, output budget tests, and metadata fixtures that preserve deterministic replay under tool concurrency and keep medium/large tool outputs out of unbounded chat or model context.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-05-toolresultstore-and-session-artifacts">CLM-001 — Datasheet: DEL-05-05 ToolResultStore and Session Artifacts</h3>
+<h4 id="datasheet-del-05-05-toolresultstore-and-session-artifacts">Datasheet: DEL-05-05 ToolResultStore and Session Artifacts</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-05-05</td></tr>
+<tr><td>DeliverableName</td><td>ToolResultStore and Session Artifacts</td></tr>
+<tr><td>PackageID</td><td>PKG-05</td></tr>
+<tr><td>PackageName</td><td>Session Audit, Replay, and Tool Result Records</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary purpose</td><td>Store and preview medium/large tool outputs under session artifacts without flooding chat or model context.</td><td><code>_CONTEXT.md</code> Deliverable Scope; decomposition <code>DEL-05-05</code> row</td></tr>
+<tr><td>Session artifact location</td><td><code>.chirality/sessions/&lt;sessionId&gt;/artifacts/</code> for large tool results after redaction/truncation policy has been applied.</td><td><code>docs/SPEC.md</code> Sections 8.2, 9.2; <code>docs/PRD.md</code> Sections 10.3, 10.5</td></tr>
+<tr><td>Canonical audit mirror</td><td><code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code>; SDK transcripts remain secondary unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/DIRECTIVE.md</code> Section 2.3</td></tr>
+<tr><td>Event linkage</td><td>Tool result artifacts must be referenced by path from persisted runtime event metadata.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/PRD.md</code> Section 10.4</td></tr>
+<tr><td>Artifact metadata fields</td><td>Tool name where known, optional turn ID where available, original and stored byte counts, truncation flag, SHA-256, session-lifetime retention policy, redaction status, and relative artifact path.</td><td><code>docs/PRD.md</code> Section 10.5; D-APP-42</td></tr>
+<tr><td>Redaction boundary</td><td>Runtime events, run logs, tool artifacts, and provider errors must redact secrets and avoid API keys.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6, K-KEY-1; <code>docs/PRD.md</code> NFR-002</td></tr>
+<tr><td>Output budget classes</td><td>Small results inline, medium results preview plus metadata, large results artifact plus metadata.</td><td><code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>Output budget thresholds</td><td>Existing descriptor-defined thresholds remain unchanged by D-APP-42.</td><td><code>frontend/packages/harness-contract/src/tool-descriptor.ts</code>; D-APP-42</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Working-root locality</td><td>Project execution state, sessions, and tool artifacts live under the selected working root or configured Chirality-controlled session path.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3, 2.8; <code>docs/SPEC.md</code> Section 10.2</td></tr>
+<tr><td>Replay requirement</td><td>JSONL replay must tolerate malformed trailing lines while preserving valid prior events.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>Ordering requirement</td><td>JSONL writes must append newline-delimited events in write sequence.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/PRD.md</code> Section 10.4</td></tr>
+<tr><td>Concurrent tool activity</td><td>Deterministic replay must survive SDK tool concurrency.</td><td>Decomposition SOW-053; <code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>Model/chat budget</td><td>Large outputs must not flood chat or model context.</td><td><code>docs/PRD.md</code> NFR-017 and R4 acceptance</td></tr>
+<tr><td>Sensitive payload storage</td><td>Sensitive values must not be stored unless a redaction pass has approved the payload.</td><td><code>docs/PRD.md</code> Section 10.5; <code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected construction</td><td>Status</td></tr>
+<tr><td><code>ToolResultStore</code></td><td>Product-owned artifact and preview policy for tool outputs.</td><td>Implemented in <code>frontend/src/lib/harness/tool-result-artifacts.ts</code> and <code>frontend/src/lib/harness/tool-evidence.ts</code></td></tr>
+<tr><td>Session artifact writer</td><td>Writes artifact results beneath <code>.chirality/sessions/&lt;sessionId&gt;/artifacts/tools/</code> and returns relative artifact references, byte counts, SHA-256, and retention metadata.</td><td>Implemented in <code>frontend/src/lib/harness/tool-result-artifacts.ts</code></td></tr>
+<tr><td>Preview builder</td><td>Produces inline small results and artifact-backed overflow without unbounded chat/model expansion.</td><td>Implemented with current descriptor-defined thresholds</td></tr>
+<tr><td>Metadata fixture set</td><td>Covers tool name, optional turn ID where available, byte counts, SHA-256, session-lifetime retention, truncation flag, relative artifact path, and redaction status.</td><td>Covered by focused tests</td></tr>
+<tr><td>Output budget tests</td><td>Verify inline/artifact behavior and no chat/context flooding.</td><td>Covered by focused tests</td></tr>
+<tr><td>Replay fixtures</td><td>Verify artifact links remain reconstructible through <code>events.jsonl</code> replay, including malformed-tail tolerance and interleaved append order.</td><td>Covered by focused tests</td></tr>
+</tbody></table>
+<h3 id="clm-006-current-discovery-state">CLM-006 — Current Discovery State</h3>
+<h5 id="current-discovery-state">Current Discovery State</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Current state</td><td>Disposition</td></tr>
+<tr><td>B-001 source-state warning</td><td><code>_REFERENCES.md</code> now marks REF-006 <code>docs/PRD.md</code> as <code>MATCH</code> under D-APP-38 authority corpus v2.</td><td>Retired for ADQ-10 scope.</td></tr>
+<tr><td>C-001 implementation and fixture paths</td><td>Accepted implementation and fixture paths are now recorded in <code>Specification.md</code>, <code>Procedure.md</code>, and ADQ-10 evidence.</td><td>Closed for ADQ-10 scope.</td></tr>
+<tr><td>F-001 unresolved policy fields</td><td>D-APP-42 accepts SHA-256 and session-lifetime retention while leaving byte thresholds, preview length, and artifact naming unchanged.</td><td>Closed for checksum/retention; no TTL, quota, daemon, or release-retention claim authorized.</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Notes</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>MATCH. Runtime events explain work and the Chirality audit mirror is canonical.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>MATCH. K-EVENT and K-KEY invariants bind redaction, artifacts, and replay.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>MATCH. Defines session layout, <code>HarnessEvent</code>, append/replay rules, and artifact path references.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>MATCH. Defines <code>ToolResultStore</code>, session terms, <code>events.jsonl</code>, and <code>artifacts/</code>.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>MATCH. Places tool-result budgeting in R4 and preserves Chirality ownership of artifact/preview policy.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>MATCH. D-APP-38 authority corpus v2 reconciled the accepted PRD snapshot.</td></tr>
+<tr><td>REF-007</td><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>MATCH. Used for decomposition method context only.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-05-05-toolresultstore-and-session-artifacts">CLM-008 — Specification: DEL-05-05 ToolResultStore and Session Artifacts</h3>
+<h4 id="specification-del-05-05-toolresultstore-and-session-artifacts">Specification: DEL-05-05 ToolResultStore and Session Artifacts</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-05-05 covers the backend feature slice that stores, previews, and references medium/large tool outputs as session artifacts so chat and model context are not flooded. The slice belongs to PKG-05, whose package scope is canonical session layout, <code>HarnessEvent</code>, JSONL append/replay, redaction, and tool result artifacts.</p>
+<p>In scope:</p>
+<ul>
+<li>- Product-owned <code>ToolResultStore</code> policy and implementation surface for tool output budgeting.</li>
+<li>- Session-local artifact storage under <code>.chirality/sessions/&lt;sessionId&gt;/artifacts/</code>.</li>
+<li>- Metadata records linking stored artifacts to tool name, optional turn ID where available, byte counts, truncation flag, SHA-256 checksum, session-lifetime retention policy, and relative artifact path.</li>
+<li>- Preview behavior for medium results and inline behavior for small results.</li>
+<li>- Output budget tests, replay/metadata fixtures, and redaction-sensitive artifact behavior.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Tool permission semantics and deny-first policy, except where stored tool output must respect redaction and audit constraints.</li>
+<li>- SDK transcript canonicality decisions outside artifact linkage.</li>
+<li>- Bash enablement policy, except that allowed bash output must eventually use the same result budgeting behavior.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition <code>DEL-05-05</code>; <code>docs/SPEC.md</code> Sections 8-9; <code>docs/PRD.md</code> Sections 10.4-10.5; D-APP-42.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-05-05-REQ-001</td><td>The implementation MUST preserve <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> as the product-owned Chirality audit mirror; artifact storage MUST NOT make SDK transcripts canonical.</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/DIRECTIVE.md</code> Section 2.3; <code>docs/CONTRACT.md</code> K-EVENT-4</td></tr>
+<tr><td>DEL-05-05-REQ-002</td><td>Large tool result payloads MUST be stored as artifacts and referenced by path from runtime event metadata.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/PRD.md</code> Section 10.4</td></tr>
+<tr><td>DEL-05-05-REQ-003</td><td>Raw large tool results MUST be stored beneath <code>.chirality/sessions/&lt;sessionId&gt;/artifacts/</code> or an explicitly configured Chirality-controlled session artifact path.</td><td><code>docs/SPEC.md</code> Section 8.2; <code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>DEL-05-05-REQ-004</td><td>Small text tool results MAY be carried inline in <code>tool.completed</code> data; medium results MUST include preview and metadata; large results MUST include artifact metadata rather than unbounded inline content.</td><td><code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>DEL-05-05-REQ-005</td><td>Artifact metadata MUST include tool name where known, optional turn ID where available, original and stored byte counts, truncation flag, SHA-256 for exact stored bytes, session-lifetime retention policy, and relative artifact path.</td><td><code>docs/PRD.md</code> Section 10.5; D-APP-42</td></tr>
+<tr><td>DEL-05-05-REQ-006</td><td>Runtime events, run logs, tool artifacts, and provider errors MUST redact secrets and avoid storing API keys.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6, K-KEY-1; <code>docs/PRD.md</code> NFR-002</td></tr>
+<tr><td>DEL-05-05-REQ-007</td><td>Sensitive values MUST NOT be stored in tool artifacts unless a redaction pass has approved the payload.</td><td><code>docs/PRD.md</code> Section 10.5; <code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+<tr><td>DEL-05-05-REQ-008</td><td>Artifact links and summaries MUST remain replayable from Chirality JSONL plus session metadata even when a malformed trailing JSONL line exists.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>DEL-05-05-REQ-009</td><td>Tool result storage MUST preserve deterministic replay under concurrent SDK tool activity by relying on ordered append/write sequence metadata rather than arrival ambiguity.</td><td>Decomposition SOW-053; <code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-05-05-REQ-010</td><td>Output budget tests MUST verify that large outputs do not flood chat or model context and that medium/large outputs surface usable previews or artifact links.</td><td><code>docs/PRD.md</code> NFR-017 and R4 acceptance; decomposition anticipated artifacts</td></tr>
+<tr><td>DEL-05-05-REQ-011</td><td>ASSUMPTION: The implementation should expose <code>ToolResultStore</code> through a product-owned interface/module that is not SDK-shaped, because TYPES and PRD identify it as Chirality-owned policy.</td><td><code>docs/TYPES.md</code> Section 7/8 glossary; <code>docs/PRD.md</code> Section 9.4</td></tr>
+<tr><td>DEL-05-05-REQ-012</td><td>Output class byte thresholds, preview length, and artifact naming scheme remain the existing descriptor/artifact-writer policy; persisted artifacts MUST carry SHA-256 checksums and session-lifetime retention metadata, with no TTL, quota, daemon, or release-retention claim authorized.</td><td><code>frontend/packages/harness-contract/src/tool-descriptor.ts</code>; <code>frontend/src/lib/harness/tool-result-artifacts.ts</code>; D-APP-42</td></tr>
+<tr><td>DEL-05-05-REQ-013</td><td>The deterministic replay test for concurrent or interleaved tool-result completions MUST assert the accepted ordering signal: JSONL append/write sequence, <code>parentEventId</code> linkage where applicable, or another explicitly accepted event-ordering metadata field.</td><td>D-001; <code>docs/SPEC.md</code> Section 9.1-9.2; decomposition SOW-053</td></tr>
+<tr><td>DEL-05-05-REQ-014</td><td>Threshold-boundary verification MUST cover the current descriptor-defined byte thresholds and preview behavior; D-APP-42 does not change those thresholds.</td><td>X-001; <code>docs/PRD.md</code> NFR-017 and R4 acceptance; D-APP-42</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<p>The distinct medium-band preview representation remains explicitly deferred</p>
+<p>under D-APP-42 and D-APP-56 R4-P08 as a future output-budget policy question.</p>
+<p>Current small-inline and artifact-backed overflow behavior remains governed and</p>
+<p>must not be represented as implementing that deferred representation.</p>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Chirality <code>HarnessEvent</code> schema</td><td>Persisted runtime event metadata must use stable product-owned event shape.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/PRD.md</code> Section 10.4</td></tr>
+<tr><td>Append-only JSONL event store</td><td>Artifact references must be compatible with ordered append/replay semantics.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>Session layout contract</td><td>Artifact storage must fit canonical session folder layout.</td><td><code>docs/SPEC.md</code> Section 8.2</td></tr>
+<tr><td>K-EVENT invariants</td><td>Binding audit, replay, redaction, and artifact-budget constraints.</td><td><code>docs/CONTRACT.md</code> Section 1.5</td></tr>
+<tr><td>Working-root/project-truth boundary</td><td>Tool artifacts are runtime audit state, not accepted project truth or human approval records.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3, 2.8</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>REQ-001, REQ-002, REQ-003</td><td>Unit tests for session path resolution, relative artifact references, and event metadata persistence under <code>.chirality/sessions/&lt;sessionId&gt;/</code>.</td></tr>
+<tr><td>REQ-004, REQ-010</td><td>Output budget tests covering small inline and artifact-backed overflow behavior under current descriptor-defined limits.</td></tr>
+<tr><td>REQ-005</td><td>Metadata fixture tests asserting tool name, optional turn ID where available, byte counts, truncation flag, SHA-256, session-lifetime retention, and relative artifact path.</td></tr>
+<tr><td>REQ-006, REQ-007</td><td>Redaction tests using provider errors, run logs, event data, and tool-result payload fixtures with secret-like values.</td></tr>
+<tr><td>REQ-008</td><td>Replay tests using valid JSONL followed by a malformed trailing line; valid prior artifact links must remain available.</td></tr>
+<tr><td>REQ-009, REQ-013</td><td>Deterministic ordering tests using concurrent or interleaved tool-result completion fixtures; assertions must bind replay order to write sequence or accepted event-ordering metadata rather than completion-arrival ambiguity.</td></tr>
+<tr><td>REQ-011</td><td>Conformance/type tests ensuring public event/API contracts remain provider-neutral and not SDK-shaped.</td></tr>
+<tr><td>REQ-012</td><td>Unit tests and review confirming existing thresholds/naming are unchanged while SHA-256 and session-lifetime retention metadata are present.</td></tr>
+<tr><td>REQ-014</td><td>Threshold and overflow tests for the current descriptor-defined limits.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required implementation artifacts for this deliverable:</p>
+<ul>
+<li>- Artifact store implementation path: <code>frontend/src/lib/harness/tool-result-artifacts.ts</code>.</li>
+<li>- Output budget tests for inline/artifact overflow behavior: <code>frontend/src/__tests__/lib/tool-result-artifacts.test.ts</code> and <code>frontend/src/__tests__/lib/tool-evidence.test.ts</code>.</li>
+<li>- Metadata fixtures covering required artifact metadata fields: <code>frontend/src/__tests__/lib/tool-result-artifacts.test.ts</code>, <code>frontend/src/__tests__/lib/sdk-message-mapper.test.ts</code>, and <code>frontend/src/__tests__/lib/transcript-replay.test.ts</code>.</li>
+<li>- Replay fixtures with artifact references and malformed-tail JSONL tolerance: <code>frontend/src/__tests__/lib/session-events.test.ts</code>.</li>
+<li>- Redaction fixtures for sensitive tool output handling: <code>frontend/src/__tests__/lib/tool-result-artifacts.test.ts</code> and <code>frontend/src/__tests__/lib/session-events.test.ts</code>.</li>
+<li>- Developer notes identifying that D-APP-42 chose SHA-256 plus session-lifetime retention while leaving thresholds, preview length, and naming unchanged.</li>
+<li>- P3 disposition record for B-001, C-001, F-001, D-001, X-001, and E-001 showing which items were retired, incorporated, or explicitly left outside ADQ-10.</li>
+</ul>
+<h3 id="clm-014-d-app-56-child-output-partition-note-2026-07-12">CLM-014 — D-APP-56 child-output partition note (2026-07-12)</h3>
+<h5 id="d-app-56-child-output-partition-note-2026-07-12">D-APP-56 child-output partition note (2026-07-12)</h5>
+<p>R4-P32 assigns <code>artifacts/subagents/</code> child-output storage and its 16 KiB/512 KiB thresholds to DEL-08-05. DEL-05-05 continues to own <code>descriptor.resultBudget</code>; it does not duplicate child-output artifact ownership.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The artifact store, output-budget behavior, metadata fixtures, redaction boundary, and replay ordering satisfy the preserved source requirements for SOW-053 and SOW-059 without changing the accepted threshold, preview-length, naming, or lifecycle policies.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-05-05-toolresultstore-and-session-artifacts">CLM-015 — Procedure: DEL-05-05 ToolResultStore and Session Artifacts</h3>
+<h4 id="procedure-del-05-05-toolresultstore-and-session-artifacts">Procedure: DEL-05-05 ToolResultStore and Session Artifacts</h4>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the production and verification procedure for implementing <code>ToolResultStore</code> and session artifact behavior for DEL-05-05. The procedure focuses on producing the deliverable artifacts named in <code>_CONTEXT.md</code>: artifact store, output budget tests, and metadata fixtures.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the active source corpus listed in <code>_REFERENCES.md</code> is available.</li>
+<li>- Review <code>docs/SPEC.md</code> Sections 8-9 for session layout and <code>HarnessEvent</code> append/replay rules.</li>
+<li>- Review <code>docs/CONTRACT.md</code> K-EVENT-4 through K-EVENT-7 and K-KEY-1 for canonical audit, replay, redaction, and artifact constraints.</li>
+<li>- Review <code>docs/PRD.md</code> Sections 10.4-10.5 and NFR-017 from the D-APP-38 authority corpus v2; <code>_REFERENCES.md</code> records REF-006 as <code>MATCH</code>.</li>
+<li>- Confirm upstream dependencies in <code>Dependencies.csv</code>; ADQ-10 closes the REF-006 source-state warning, implementation path, checksum, retention, and interleaved replay residuals.</li>
+<li>- Use <code>frontend/src/lib/harness/tool-result-artifacts.ts</code> as the artifact persistence implementation path.</li>
+<li>- Treat B-001 as retired by the D-APP-38 authority corpus v2 reconciliation.</li>
+</ul>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Identify the session artifact root.</p>
+<ul>
+<li>- Use canonical <code>.chirality/sessions/&lt;sessionId&gt;/artifacts/</code> from <code>docs/SPEC.md</code> Section 8.2 unless the runtime is explicitly configured with a Chirality-controlled session root.</li>
+<li>- Keep artifact paths relative in event metadata where required by <code>docs/PRD.md</code> Section 10.5.</li>
+</ul>
+<p>2. Define the tool-result budget policy.</p>
+<ul>
+<li>- Represent small, medium, and large result classes.</li>
+<li>- Use the existing descriptor-defined byte thresholds and preview behavior; D-APP-42 leaves thresholds, preview length, and naming unchanged.</li>
+<li>- Ensure the policy can produce inline small data, medium preview plus metadata, and large artifact references.</li>
+</ul>
+<p>3. Define the artifact metadata shape.</p>
+<ul>
+<li>- Include tool name where known, optional turn ID where available, original and stored byte counts, truncation flag, SHA-256 checksum for the exact stored bytes after redaction/truncation, session-lifetime retention policy, redaction status, and relative artifact path.</li>
+</ul>
+<p>4. Implement artifact persistence.</p>
+<ul>
+<li>- Store raw large results under the session artifact folder.</li>
+<li>- Persist compact metadata in Chirality runtime events rather than embedding raw large payloads in <code>HarnessEvent.data</code>.</li>
+<li>- Preserve ordered append/write sequence semantics for replay.</li>
+</ul>
+<p>5. Implement preview handling.</p>
+<ul>
+<li>- Inline small text results only when within the accepted threshold and after redaction policy permits storage.</li>
+<li>- Generate medium previews that are sufficient for UI scan/replay without full raw output in chat/model context.</li>
+<li>- For large results, show artifact metadata/link plus a bounded preview if permitted by redaction policy.</li>
+</ul>
+<p>6. Apply redaction before persistence.</p>
+<ul>
+<li>- Redact API keys and configured secret variants from event data, logs, provider errors, and tool artifacts.</li>
+<li>- Do not store sensitive values unless a redaction pass has approved the payload.</li>
+</ul>
+<p>7. Add output budget tests.</p>
+<ul>
+<li>- Cover small inline, medium preview plus metadata, and large raw artifact storage.</li>
+<li>- Include threshold-boundary fixtures once threshold values are accepted.</li>
+<li>- Verify large outputs do not flood chat or model context.</li>
+<li>- For X-001, use the current descriptor-defined threshold and overflow tests; do not introduce new threshold values in ADQ-10.</li>
+</ul>
+<p>8. Add metadata and replay fixtures.</p>
+<ul>
+<li>- Assert required metadata fields.</li>
+<li>- Verify relative artifact paths resolve under the session artifact root.</li>
+<li>- Verify valid artifact links remain available when replay ignores a malformed trailing JSONL line.</li>
+<li>- Include interleaved tool-result fixtures for deterministic replay under concurrency.</li>
+<li>- For D-001, assert replay order from JSONL write sequence or accepted event-ordering metadata; do not rely on incidental SDK completion order.</li>
+</ul>
+<p>9. Run relevant validation.</p>
+<ul>
+<li>- Run unit and integration tests for the artifact store, event append/replay, redaction, and session metadata.</li>
+<li>- Add or update Section 9 validation coverage when the runtime validation IDs land.</li>
+</ul>
+<p>10. Record residual policy boundaries.</p>
+<ul>
+<li>- If future work changes thresholds, preview length, naming, redaction-status policy, or retention beyond session lifetime, record a new governed decision before changing implementation behavior.</li>
+<li>- For E-001, record D-APP-42&#x27;s balance: SHA-256 supports audit verification of exact stored bytes, while session-lifetime retention avoids TTL, quota, daemon, release-retention, or broader custody claims.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Session path check</td><td>Large artifact payloads are written beneath <code>.chirality/sessions/&lt;sessionId&gt;/artifacts/</code> or an approved Chirality-controlled session artifact root.</td></tr>
+<tr><td>Metadata check</td><td>Tool name where known, optional turn ID where available, byte counts, truncation flag, SHA-256, session-lifetime retention policy, and relative artifact path are persisted with the result reference.</td></tr>
+<tr><td>Budget check</td><td>Small and artifact-overflow outputs follow the current descriptor-defined policy without changing thresholds.</td></tr>
+<tr><td>Redaction check</td><td>API keys and configured secrets do not appear in event data, logs, provider errors, or stored artifacts.</td></tr>
+<tr><td>Replay check</td><td>Valid prior artifact links survive malformed trailing JSONL during replay.</td></tr>
+<tr><td>Concurrency check</td><td>Interleaved tool completions replay deterministically by write sequence or accepted event ordering metadata.</td></tr>
+<tr><td>Provider-neutral check</td><td>Public contracts and canonical events are Chirality-owned and do not expose SDK-shaped internals except as adapter metadata.</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Artifact store implementation path: <code>frontend/src/lib/harness/tool-result-artifacts.ts</code>.</li>
+<li>- Output budget test files: <code>frontend/src/__tests__/lib/tool-result-artifacts.test.ts</code>, <code>frontend/src/__tests__/lib/tool-evidence.test.ts</code>, and SDK mapping coverage in <code>frontend/src/__tests__/lib/sdk-message-mapper.test.ts</code>.</li>
+<li>- Metadata fixture files: <code>frontend/src/__tests__/lib/tool-result-artifacts.test.ts</code>, <code>frontend/src/__tests__/lib/sdk-message-mapper.test.ts</code>, and <code>frontend/src/__tests__/lib/transcript-replay.test.ts</code>.</li>
+<li>- Replay fixture files: <code>frontend/src/__tests__/lib/session-events.test.ts</code>.</li>
+<li>- Redaction fixture files: <code>frontend/src/__tests__/lib/tool-result-artifacts.test.ts</code> and <code>frontend/src/__tests__/lib/session-events.test.ts</code>.</li>
+<li>- Residual design decisions: thresholds, preview length, and artifact naming remain the existing descriptor/artifact-writer policy and are unchanged by D-APP-42; no TTL, quota, daemon, or release-retention policy is claimed.</li>
+<li>- C-001 path disposition: accepted implementation and fixture paths are recorded above.</li>
+<li>- F-001 policy disposition: D-APP-42 accepts SHA-256 and session-lifetime retention; thresholds, preview length, and naming remain unchanged.</li>
+<li>- D-001 verification disposition: <code>session-events.test.ts</code> includes an interleaved tool artifact replay fixture that asserts JSONL append order and checksum metadata.</li>
+<li>- X-001 verification disposition: current descriptor threshold and overflow tests exist; ADQ-10 did not change threshold values.</li>
+<li>- E-001 rationale disposition: SHA-256 verifies stored bytes after redaction/truncation; session-lifetime retention preserves session replay without expanding into release/distribution retention claims.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the candidate, prove complete source-range parity, derive the exact acceptance checklist, render the offline derivative deterministically, and execute the source-defined artifact, budget, metadata, redaction, malformed-tail replay, and concurrency-ordering checks.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-05-05-toolresultstore-and-session-artifacts">CLM-021 — Guidance: DEL-05-05 ToolResultStore and Session Artifacts</h3>
+<h4 id="guidance-del-05-05-toolresultstore-and-session-artifacts">Guidance: DEL-05-05 ToolResultStore and Session Artifacts</h4>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to keep tool-heavy runtime work auditable and readable. Tool results must be available for replay and diagnosis, but large payloads must not be pushed unbounded into chat, browser events, or model context. Chirality owns the artifact/preview policy even when the SDK supplies the tool loop.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition <code>DEL-05-05</code>; <code>docs/DIRECTIVE.md</code> Sections 2.3 and 2.8; <code>docs/PLAN.md</code> R4; <code>docs/PRD.md</code> Sections 9.4 and 10.5; D-APP-42.</p>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep <code>events.jsonl</code> canonical. Runtime artifact metadata should point from Chirality events to stored outputs; artifact storage must not make SDK transcripts or chat history the authority. Source: <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-EVENT-4.</li>
+<li>- Budget output by representation. Small text can be inline, medium output needs preview plus metadata, and large output needs artifact storage plus a compact reference. Source: <code>docs/PRD.md</code> Section 10.5.</li>
+<li>- Preserve replay before convenience. A user reviewing a session later should be able to reconstruct tool summaries, terminal outcomes, and artifact links from Chirality JSONL plus session metadata. Source: <code>docs/PRD.md</code> FR-076 and NFR-017; <code>docs/SPEC.md</code> Section 9.2.</li>
+<li>- Redact before storing sensitive content. Secrets must not land in runtime events, run logs, provider errors, or tool artifacts. Source: <code>docs/CONTRACT.md</code> K-EVENT-6 and K-KEY-1.</li>
+<li>- Keep provider details out of product contracts. <code>ToolResultStore</code> should operate on Chirality event/session concepts, not SDK-native transcript shapes. Source: <code>docs/PRD.md</code> Section 9.4; <code>docs/CONTRACT.md</code> K-ENGINE-4.</li>
+<li>- Make policy boundaries explicit. D-APP-42 accepts SHA-256 checksums and session-lifetime retention, leaves thresholds, preview length, and naming unchanged, and authorizes no TTL, quota, daemon, or release-retention claim.</li>
+</ul>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<h3 id="clm-025-source-state-posture">CLM-025 — Source-state posture</h3>
+<h6 id="source-state-posture">Source-state posture</h6>
+<p>D-APP-38 authority corpus v2 reconciles <code>docs/PRD.md</code>; <code>_REFERENCES.md</code> records REF-006 as <code>MATCH</code>. Historical B-001 source-state warnings are retired for the ADQ-10 scope.</p>
+<h3 id="clm-026-budget-thresholds">CLM-026 — Budget thresholds</h3>
+<h6 id="budget-thresholds">Budget thresholds</h6>
+<p>The runtime already defines tool-specific byte thresholds in <code>frontend/packages/harness-contract/src/tool-descriptor.ts</code>. D-APP-42 deliberately leaves those values and the artifact naming scheme unchanged, so ADQ-10 validation should verify current behavior rather than introduce new policy.</p>
+<p>F-001 and X-001 remain linked for future threshold changes: if thresholds or preview limits are changed later, that change needs a governed policy decision plus boundary tests. ADQ-10 does not alter those values.</p>
+<h3 id="clm-027-event-and-artifact-separation">CLM-027 — Event and artifact separation</h3>
+<h6 id="event-and-artifact-separation">Event and artifact separation</h6>
+<p>Avoid embedding raw large payloads in <code>HarnessEvent.data</code>. Store the payload under session artifacts and persist metadata sufficient for replay. This keeps UI events compact and prevents model-context flooding while preserving audit evidence.</p>
+<h3 id="clm-028-redaction-posture">CLM-028 — Redaction posture</h3>
+<h6 id="redaction-posture">Redaction posture</h6>
+<p>The safest implementation shape is a redaction decision before artifact persistence. If source uncertainty remains about whether a payload contains secrets, prefer redacted preview and blocked raw storage over saving unreviewed sensitive output.</p>
+<h3 id="clm-029-concurrent-tool-activity">CLM-029 — Concurrent tool activity</h3>
+<h6 id="concurrent-tool-activity">Concurrent tool activity</h6>
+<p>The decomposition explicitly includes deterministic replay under tool concurrency. Store enough sequence or parent-event linkage to preserve replay order under interleaved completions. ADQ-10 accepts JSONL append order as the deterministic ordering signal for the interleaved artifact replay fixture.</p>
+<p>D-001 is best handled as an assertion-design requirement: replay tests should prove ordering from JSONL write sequence or accepted event-ordering metadata, not from incidental SDK completion order.</p>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Inline content vs artifact link</td><td>Inline improves immediate readability for small text. Artifact links preserve performance and context for large output. Use the budget class, not ad hoc UI convenience, to decide.</td></tr>
+<tr><td>Preview richness vs leakage risk</td><td>Rich previews help review, but sensitive data must be redacted. Prefer safe summaries when redaction status is uncertain.</td></tr>
+<tr><td>SDK transcript detail vs Chirality canonicality</td><td>SDK transcripts may contain useful details, but Chirality event metadata and artifact references are the replay authority unless transcript content is imported into <code>HarnessEvent</code> form.</td></tr>
+<tr><td>Early hardcoded thresholds vs configurable policy</td><td>ADQ-10 does not introduce new threshold values. It preserves the current descriptor-defined thresholds and records that future threshold changes need a governed policy update.</td></tr>
+<tr><td>Retention/checksum certainty vs premature policy</td><td>D-APP-42 chooses SHA-256 for exact stored bytes after redaction/truncation and session-lifetime retention. This gives replay/audit verification without claiming TTL, quota, daemon cleanup, release retention, or broader custody guarantees.</td></tr>
+</tbody></table>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected behavior</td></tr>
+<tr><td>Small text result</td><td>Store result inline in the tool completion event data when it is within the current descriptor-defined small-output threshold and contains no unredacted secrets.</td></tr>
+<tr><td>Medium text result</td><td>Store a bounded preview and required metadata; avoid placing the full raw result in chat/model context.</td></tr>
+<tr><td>Large result</td><td>Store payload under <code>.chirality/sessions/&lt;sessionId&gt;/artifacts/</code>; persist relative artifact path, tool name where known, optional turn ID where available, byte counts, truncation flag, SHA-256, and session-lifetime retention in event metadata.</td></tr>
+<tr><td>Sensitive tool output</td><td>Apply redaction before event/artifact persistence; if redaction cannot approve the payload, do not store raw sensitive values.</td></tr>
+<tr><td>Malformed trailing JSONL line</td><td>Replay should ignore the malformed tail and preserve valid prior events and artifact links.</td></tr>
+</tbody></table>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>NONE</td><td>No direct source-content conflict remains open for ADQ-10. REF-006 is <code>MATCH</code> under D-APP-38 authority corpus v2, and D-APP-42 resolves checksum/retention policy.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-42</td><td><code>docs/PRD.md</code> Sections 10.4-10.5 and NFR-017</td><td>All sections citing PRD; artifact metadata policy</td><td>Use matched PRD source plus D-APP-42 for checksum/retention; preserve thresholds, preview length, and naming unchanged.</td><td>ACCEPTED</td></tr>
+<tr><td>B-001</td><td>RETIRED: PRD-derived tool-result budgeting and metadata claims are no longer warning-qualified for this scope because REF-006 now matches the accepted authority corpus.</td><td><code>_REFERENCES.md</code> REF-006</td><td>D-APP-38 authority corpus v2</td><td>Datasheet Attributes; Specification Requirements; Procedure Steps</td><td>Retire B-001 source-state caveat.</td><td>ACCEPTED</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-053 SOW-059 OBJ-003 OBJ-005</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

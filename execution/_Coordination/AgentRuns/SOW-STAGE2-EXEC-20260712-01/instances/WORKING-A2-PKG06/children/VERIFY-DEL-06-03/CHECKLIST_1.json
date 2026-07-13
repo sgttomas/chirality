@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 272,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4f1505dfcba0704cc49bac089e7f5ab68608c14e4f7828e486fa0861574b4ffd"
+      },
+      "text": "The converted contract preserves every legacy source line with hash-bound migration markers, retains the initial read-tool scope and exclusions, and provides verification coverage for naming, wrapper metadata, permission and deny behavior, lifecycle and dependency reads, bounded scans, no-write scaffold preview, and unresolved dependency closure.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-03-VER-001",
+          "source_line": 429,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the SOW schema and source parity; inspect deterministic descriptor, permission, hook, path, redaction, event, status, dependency, bounded-scan, scaffold-preview, and Section 9 evidence, with human review of unresolved TBD dependency interfaces."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "4f1505dfcba0704cc49bac089e7f5ab68608c14e4f7828e486fa0861574b4ffd"
+  },
+  "tool_version": "1"
+}

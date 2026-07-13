@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 249,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "fbfc8b759f12c725abaf36f0fdb86cfd965d19248d77385142b75073df4a0bc7"
+      },
+      "text": "The output demonstrates that Bash is denied by default and, when enabled, is governed by explicit mode, timeout, separate output capture, result storage, interruption handling, and audit behavior.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-05-VER-001",
+          "source_line": 381,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the Bash deny/default, timeout/capture, output metadata, interruption, and audit evidence against the accepted SOW-062 and OBJ-005 basis."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-05",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "fbfc8b759f12c725abaf36f0fdb86cfd965d19248d77385142b75073df4a0bc7"
+  },
+  "tool_version": "1"
+}

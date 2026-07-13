@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="a12f7b2c1d4139c95df897fea97b57484918e05ec8348338ea6b171e3e05aa0f">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>a12f7b2c1d4139c95df897fea97b57484918e05ec8348338ea6b171e3e05aa0f</code>.</p>
+<h1 id="scope-of-work-del-05-03">Scope of Work — DEL-05-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-05-03</code> in service of project scope [SOW-021, SOW-041] and package objectives [OBJ-003, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Source-preserving migration contract for DEL-05-03 Redacted RunLogger and Secret Hygiene.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-03-redacted-runlogger-and-secret-hygiene">CLM-001 — Datasheet: DEL-05-03 Redacted RunLogger and Secret Hygiene</h3>
+<h4 id="datasheet-del-05-03-redacted-runlogger-and-secret-hygiene">Datasheet: DEL-05-03 Redacted RunLogger and Secret Hygiene</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-05-03</td></tr>
+<tr><td>Deliverable Name</td><td>Redacted RunLogger and Secret Hygiene</td></tr>
+<tr><td>Package</td><td>PKG-05 Session Audit, Replay, and Tool Result Records</td></tr>
+<tr><td>Decomposition Variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Responsible Party</td><td>TBD</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>Context Envelope</td><td>S</td></tr>
+<tr><td>Scope Items</td><td>SOW-021, SOW-041</td></tr>
+<tr><td>Supporting Objectives</td><td>OBJ-003, OBJ-008</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary control surface</td><td>Redaction of provider, SDK, tool, and run logs before key material or secrets enter runtime records.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Section 8.12; <code>docs/PLAN.md</code> Section 6.3</td></tr>
+<tr><td>Runtime logger target</td><td><code>RunLogger</code> or equivalent redacted structured runtime logger.</td><td><code>docs/PRD.md</code> R1 implementation targets</td></tr>
+<tr><td>Secret classes explicitly named by sources</td><td>API keys and configured secret variants.</td><td><code>docs/PRD.md</code> FR-075; <code>docs/PRD.md</code> NFR-002</td></tr>
+<tr><td>Records covered</td><td>Runtime events, run logs, tool artifacts, provider errors, SDK errors, SDK stderr/debug logs, and event records.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/PLAN.md</code> Section 6.3; <code>docs/PRD.md</code> FR-075</td></tr>
+<tr><td>Canonical audit record relation</td><td><code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> remains the product-owned Chirality audit mirror; SDK transcripts are secondary unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/CONTRACT.md</code> K-EVENT-4, K-SDK-3; <code>docs/SPEC.md</code> Sections 8.4 and 9</td></tr>
+<tr><td>Provider error relation</td><td>Provider errors must be classified and produce typed <code>SDK_FAILURE</code> details with key redaction.</td><td><code>docs/PRD.md</code> Section 8.5, FR-034</td></tr>
+<tr><td>Tool result relation</td><td>Large or sensitive tool results must be budgeted, previewed, stored as artifacts, or redacted according to policy.</td><td><code>docs/CONTRACT.md</code> K-EVENT-7; <code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>Existing code context</td><td>Current source tree contains Anthropic provider redaction helpers and tests for configured API-key redaction.</td><td><code>frontend/src/lib/harness/anthropic-agent-sdk-manager.ts</code>; <code>frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts</code></td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Requirement-Relevant Fact</td><td>Source</td></tr>
+<tr><td>API key storage</td><td>API keys are non-project convenience state and must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts.</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/PRD.md</code> FR-031; <code>docs/SPEC.md</code> Section 12.3</td></tr>
+<tr><td>API key handoff</td><td>Key material is supplied to the SDK environment only as needed for active turns and redacted from logs/events.</td><td><code>docs/SPEC.md</code> Section 12.3; <code>docs/PLAN.md</code> R1</td></tr>
+<tr><td>Event payloads</td><td><code>HarnessEvent.data</code> payloads must avoid secrets.</td><td><code>docs/SPEC.md</code> Section 9; <code>docs/PRD.md</code> Section 10.4</td></tr>
+<tr><td>SDK boundaries</td><td>SDK messages, IDs, tool names, transcript paths, and external names may appear only as adapter metadata under product-owned contracts.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/DIRECTIVE.md</code> Section 4.2</td></tr>
+<tr><td>Source warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code>; human runtime instruction — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Description</td><td>Status</td></tr>
+<tr><td>Redaction helper</td><td>Shared helper that redacts configured API key material and configured secret variants before text or structured data is logged or persisted.</td><td>TBD: final module path and public API</td></tr>
+<tr><td>Run logger</td><td>Structured runtime logger that applies the redaction helper before emitting logs, runtime events, error details, or debug/stderr captures.</td><td>TBD: final module path; anticipated as <code>frontend/src/lib/harness/run-logger.ts</code> by PRD R1</td></tr>
+<tr><td>Provider error fixtures</td><td>Fixtures covering auth, rate limit, timeout, API error, network error, invalid base URL, and policy violation redaction.</td><td>TBD</td></tr>
+<tr><td>Tool result redaction gate</td><td>Policy hook ensuring sensitive tool outputs are redacted or withheld before inline event payloads or artifacts are persisted.</td><td>TBD: exact policy integration point</td></tr>
+<tr><td>Tests</td><td>Unit and integration tests proving configured key variants and provider/SDK/tool/run-log paths do not leak secrets.</td><td>TBD: final test names; current provider redaction tests exist</td></tr>
+</tbody></table>
+<h3 id="clm-006-pass-3-implementation-slots">CLM-006 — Pass 3 Implementation Slots</h3>
+<h5 id="pass-3-implementation-slots">Pass 3 Implementation Slots</h5>
+<table><tbody>
+<tr><td>Slot</td><td>Required Record</td><td>Current Disposition</td><td>Source</td></tr>
+<tr><td>Shared redaction helper identity</td><td>Final module path, exported API name, accepted replacement token, and supported configured-secret schema.</td><td>TBD until implementation selects the shared helper contract.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6, K-KEY-1; <code>docs/PRD.md</code> FR-075</td></tr>
+<tr><td>RunLogger identity</td><td>Final module path and public logging surface used by provider errors, SDK diagnostics, event emission, tool-result handling, and run logs.</td><td>TBD; PRD R1 names <code>run-logger.ts</code> as an implementation target but not an accepted final path.</td><td><code>docs/PLAN.md</code> R1; <code>docs/PRD.md</code> R1 implementation targets</td></tr>
+<tr><td>Boundary inventory</td><td>Discovered code paths for provider errors, SDK errors, SDK stderr/debug logs, <code>HarnessEvent.data</code>, run logs, and tool-result persistence/display.</td><td>TBD until code discovery records the implementation paths.</td><td><code>docs/SPEC.md</code> Section 9; <code>docs/PRD.md</code> Sections 10.3.1, 10.4, 10.5</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Notes</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Runtime logs and API keys are non-authoritative unless governed import occurs; secrets stay out of project files and event payloads.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>K-EVENT-6 and K-KEY-1 are the primary invariants for this deliverable.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Runtime event schema, SDK adapter rules, and API-key handling rules.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td><code>HarnessEvent</code>, Runtime Audit Mirror, Project Truth, and SDK transcript vocabulary.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>R1 sequencing and security/privacy acceptance notes.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Product requirements for provider error classification, runtime redaction, session events, and R1 implementation targets. MATCH status recorded in <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method; SECURITY_CONTROL type definition.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-05-03-redacted-runlogger-and-secret-hygiene">CLM-008 — Specification: DEL-05-03 Redacted RunLogger and Secret Hygiene</h3>
+<h4 id="specification-del-05-03-redacted-runlogger-and-secret-hygiene">Specification: DEL-05-03 Redacted RunLogger and Secret Hygiene</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the security control for redacting provider, SDK, tool, and run-log data so key material and configured secrets do not enter Chirality runtime records.</p>
+<p>In scope:</p>
+<ul>
+<li>- Redaction helper behavior for configured API keys and configured secret variants.</li>
+<li>- Redacted <code>RunLogger</code> or equivalent runtime logging surface.</li>
+<li>- Secret hygiene for <code>HarnessEvent</code> payloads, provider errors, SDK errors, SDK stderr/debug logs, and tool result artifacts.</li>
+<li>- Tests and fixtures proving provider error classification and redaction behavior.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Tool permission semantics and allow/deny policy, except where redaction must apply after permitted tool execution.</li>
+<li>- Canonical session folder layout and append-only JSONL writer ownership, which belong to adjacent PKG-05 deliverables.</li>
+<li>- API key storage implementation, except that this deliverable must not undermine the existing safeStorage/env precedence rules.</li>
+<li>- <code>frontend/scripts/scan-secret-evidence.mjs</code> is an unrequired</li>
+</ul>
+<p>defense-in-depth proof surface. PKG-09 validation may formalize that command</p>
+<p>in a future governed change; D-APP-56 R4-P02 does not make it a DEL-05-03</p>
+<p>product obligation.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Priority</td><td>Source</td></tr>
+<tr><td>DEL-05-03-R1</td><td>Runtime events, run logs, tool artifacts, and provider errors MUST redact secrets and avoid storing API keys.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+<tr><td>DEL-05-03-R2</td><td>API keys MUST remain non-project convenience state and MUST NOT be written to project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/PRD.md</code> FR-031, NFR-002</td></tr>
+<tr><td>DEL-05-03-R3</td><td>Runtime logging MUST redact API keys and configured secret variants from SDK errors, tool outputs where policy requires, and event records.</td><td>P0</td><td><code>docs/PRD.md</code> FR-075</td></tr>
+<tr><td>DEL-05-03-R4</td><td>Provider error classification MUST produce typed <code>SDK_FAILURE</code> details for auth, rate limit, timeout, API error, network error, invalid base URL, and policy violation, with key redaction.</td><td>P1</td><td><code>docs/PRD.md</code> FR-034</td></tr>
+<tr><td>DEL-05-03-R5</td><td>SDK debug logs and stderr captures MUST pass through the run logger redaction layer before persistence or display.</td><td>P0</td><td><code>docs/PRD.md</code> Section 10.3 notes; <code>docs/PLAN.md</code> Section 6.3</td></tr>
+<tr><td>DEL-05-03-R6</td><td><code>HarnessEvent.data</code> payloads MUST avoid secrets; any persisted event data from provider, SDK, hook, permission, tool, or transcript metadata must be redacted first.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 9; <code>docs/PRD.md</code> Section 10.4</td></tr>
+<tr><td>DEL-05-03-R7</td><td>Large or sensitive tool results MUST be budgeted, previewed, stored as artifacts, or redacted according to policy; sensitive raw values MUST NOT be stored unless a redaction pass has approved the payload.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-EVENT-7; <code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>DEL-05-03-R8</td><td>SDK transcripts remain secondary runtime state; this deliverable MUST NOT treat SDK transcripts as canonical project truth or allow unredacted transcript data to replace Chirality JSONL review surfaces.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-SDK-3; <code>docs/SPEC.md</code> Section 8.4</td></tr>
+<tr><td>DEL-05-03-R9</td><td>ASSUMPTION: The redaction helper SHOULD handle raw, URL-encoded, lowercase URL-encoded, and double-encoded configured key variants, because current provider tests already exercise those cases.</td><td>P1</td><td>Current code context: <code>frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts</code>; exact product-wide helper API TBD</td></tr>
+<tr><td>DEL-05-03-R10</td><td>Redaction MUST preserve enough non-secret metadata for audit and debugging, such as error class, policy category, status, source indicator, artifact metadata, and event type.</td><td>P1</td><td><code>docs/PRD.md</code> FR-034, FR-075; <code>docs/SPEC.md</code> Sections 9 and 12.3</td></tr>
+<tr><td>DEL-05-03-R11</td><td>Every runtime record or diagnostic write/display path that can carry provider, SDK, tool, run-log, event, or artifact payload data MUST pass through redaction before persistence and before user-visible diagnostic display where the value could reveal configured secrets.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-EVENT-6, K-KEY-1; <code>docs/PLAN.md</code> Section 6.3</td></tr>
+<tr><td>DEL-05-03-R12</td><td>The shared redaction helper contract MUST remain TBD until implementation records the final module path, public API, configured-secret schema, supported encoded variants, overlap handling, and accepted replacement token.</td><td>P0</td><td><code>docs/PRD.md</code> FR-075; current code context; <code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+<tr><td>DEL-05-03-R13</td><td>Tool-result hygiene verification MUST cover inline, preview, artifact, redacted, and withheld payload paths before sensitive raw values may be accepted into persisted records.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-EVENT-7; <code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>DEL-05-03-R14</td><td>Domain-proposal transport must apply the same credential, cookie, and configured-secret hygiene as other governed runtime transport lanes.</td><td>P0</td><td>D-APP-52; D-APP-56 R4-P27</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Contract</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-EVENT-6</td><td>Primary redaction invariant for runtime records.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-KEY-1</td><td>Primary key-material hygiene invariant.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 9 Runtime Event Schema</td><td>Defines <code>HarnessEvent</code> payload rules, including no secrets.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 12.3 API Key Handling</td><td>Defines key precedence and active-turn-only SDK handoff.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.5</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.12</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification Approach</td></tr>
+<tr><td>DEL-05-03-R1, R2, R3</td><td>Unit tests for redaction helper and run logger using configured key material and representative provider/SDK/tool/run-log payloads.</td></tr>
+<tr><td>DEL-05-03-R4</td><td>Provider error fixtures for auth, rate limit, timeout, API error, network error, invalid base URL, and policy violation; assert typed <code>SDK_FAILURE</code> details contain no key material.</td></tr>
+<tr><td>DEL-05-03-R5</td><td>Tests or harness fixtures for SDK stderr/debug capture through the redaction layer.</td></tr>
+<tr><td>DEL-05-03-R6</td><td>Event-schema tests that serialize representative <code>HarnessEvent</code> payloads and assert no configured secret variants are present.</td></tr>
+<tr><td>DEL-05-03-R7</td><td>Tool-result tests for inline, preview, artifact, and redacted/withheld payload paths.</td></tr>
+<tr><td>DEL-05-03-R8</td><td>Replay/session tests confirming Chirality JSONL remains canonical and SDK transcript metadata is treated as secondary adapter metadata.</td></tr>
+<tr><td>DEL-05-03-R9</td><td>Extend current provider redaction tests to the shared helper once the helper path is finalized.</td></tr>
+<tr><td>DEL-05-03-R10</td><td>Snapshot or structured assertions that non-secret diagnostic metadata survives redaction.</td></tr>
+<tr><td>DEL-05-03-R11</td><td>Cross-surface fixture asserting provider errors, SDK stderr/debug logs, SDK errors, <code>HarnessEvent.data</code>, run logs, and tool artifacts are redacted before persistence and before display when display could expose secrets.</td></tr>
+<tr><td>DEL-05-03-R12</td><td>Contract tests for raw, URL-encoded, lowercase URL-encoded, double-encoded, and overlapping configured key values; final fixture ownership remains TBD until the shared helper API is accepted.</td></tr>
+<tr><td>DEL-05-03-R13</td><td>Tool-result tests for small inline data, medium preview data, large artifact storage, explicit redacted payloads, and withheld sensitive payloads.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts:</p>
+<ul>
+<li>- Redaction helper.</li>
+<li>- Redacted run logger.</li>
+<li>- Run logger tests.</li>
+<li>- Provider error fixtures.</li>
+<li>- Secret hygiene notes for event payloads and tool artifacts.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Final module path for the shared redaction helper.</li>
+<li>- Final module path for <code>RunLogger</code> if it differs from the PRD R1 target.</li>
+<li>- Config format for additional non-API-key secret variants.</li>
+<li>- Exact redaction replacement token.</li>
+<li>- Whether SDK transcript redaction can be guaranteed or only avoided/cross-referenced, because source text says SDK transcripts should avoid API keys &quot;if avoidable&quot;.</li>
+<li>- Final ownership of provider-local encoded/overlapping key tests after migration to the shared helper.</li>
+<li>- Final source path inventory for provider errors, SDK diagnostics, <code>HarnessEvent.data</code>, run logs, and tool result persistence/display.</li>
+</ul>
+<h3 id="clm-014-d-app-56-domain-proposal-transport-amendment-2026-07-12">CLM-014 — D-APP-56 domain-proposal transport amendment (2026-07-12)</h3>
+<h5 id="d-app-56-domain-proposal-transport-amendment-2026-07-12">D-APP-56 domain-proposal transport amendment (2026-07-12)</h5>
+<p>R4-P27 adds domain-proposal transport credential and cookie hygiene to this deliverable&#x27;s redaction scope under the D-APP-52 lane. This does not unlock the separately gated arbitrary configured-secret registry item reaffirmed by R4-P46.</p>
+<ul>
+<li>- <strong>AC-001</strong> — Every legacy source line is preserved exactly and traceably in the migrated ScopeOfWork contract.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-05-03-redacted-runlogger-and-secret-hygiene">CLM-015 — Procedure: DEL-05-03 Redacted RunLogger and Secret Hygiene</h3>
+<h4 id="procedure-del-05-03-redacted-runlogger-and-secret-hygiene">Procedure: DEL-05-03 Redacted RunLogger and Secret Hygiene</h4>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps for producing and verifying the DEL-05-03 implementation artifacts: a redaction helper, redacted run logger behavior, run logger tests, and provider error fixtures that prevent key material and configured secrets from entering runtime records.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted source requirements from <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/PRD.md</code>, <code>docs/PLAN.md</code>, and the v3.2 SOFTWARE_DECOMP entry.</td><td>Available; <code>docs/PRD.md</code> has HASH_MISMATCH warning.</td></tr>
+<tr><td>Human assignment of responsible party.</td><td>TBD</td></tr>
+<tr><td>Final module locations for redaction helper and run logger.</td><td>TBD</td></tr>
+<tr><td>Final configured-secret variant schema.</td><td>TBD</td></tr>
+<tr><td>Declared dependency edges for this deliverable.</td><td>TBD: <code>_DEPENDENCIES.md</code> has no accepted upstream/downstream edges yet.</td></tr>
+</tbody></table>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm scope.</p>
+<ul>
+<li>- Verify the implementation remains limited to redaction and secret hygiene for provider, SDK, tool, run-log, event, and artifact surfaces.</li>
+<li>- Do not take ownership of tool permission semantics, session layout, or JSONL append/replay beyond redaction hooks.</li>
+</ul>
+<p>2. Inventory persistence and display boundaries.</p>
+<ul>
+<li>- Identify every code path that can persist or display provider errors, SDK errors, SDK stderr/debug logs, run logs, <code>HarnessEvent.data</code>, and tool result payloads.</li>
+<li>- Mark each boundary as <code>must redact before write</code>, <code>must redact before display</code>, <code>artifact policy required</code>, or <code>TBD</code>.</li>
+<li>- Record the discovered module path, function or class name, payload shape, and owning deliverable when known; retain <code>TBD</code> for unknown paths rather than inferring them from adjacent scopes.</li>
+</ul>
+<p>3. Define the redaction helper contract.</p>
+<ul>
+<li>- Include configured API key values and configured secret variants.</li>
+<li>- Include raw key material and encoded variants where supported by tests.</li>
+<li>- Include raw, URL-encoded, lowercase URL-encoded, double-encoded, and overlapping configured key cases once supported by the shared helper.</li>
+<li>- Preserve non-secret metadata needed for typed errors, audit replay, and debugging.</li>
+<li>- TBD: replacement token and configuration schema.</li>
+</ul>
+<p>4. Implement or adapt the redacted run logger.</p>
+<ul>
+<li>- Ensure provider, SDK, tool, and run-log payloads pass through the helper before being written to logs, runtime events, or artifacts.</li>
+<li>- Route SDK stderr/debug capture through this layer.</li>
+<li>- Keep <code>HarnessEvent</code> and <code>UIEvent</code> contracts product-owned and provider-neutral.</li>
+</ul>
+<p>5. Add provider error fixtures.</p>
+<ul>
+<li>- Cover auth, rate limit, timeout, API error, network error, invalid base URL, and policy violation.</li>
+<li>- Assert typed <code>SDK_FAILURE</code> details remain useful and contain no configured key material or secret variants.</li>
+</ul>
+<p>6. Add event and artifact hygiene tests.</p>
+<ul>
+<li>- Serialize representative <code>HarnessEvent</code> payloads and assert secrets are absent.</li>
+<li>- Test small inline, medium preview, large artifact, and sensitive-tool-result paths.</li>
+<li>- Assert sensitive raw values are redacted or withheld before persistence.</li>
+<li>- Cover inline, preview, artifact, explicit redacted payload, and withheld-payload outcomes for tool results.</li>
+</ul>
+<p>7. Add regression tests for key variants.</p>
+<ul>
+<li>- Cover raw configured key values.</li>
+<li>- Cover URL-encoded variants when the implementation supports URL-derived payloads.</li>
+<li>- Cover overlapping key values so shorter keys do not leave suffixes from longer keys.</li>
+<li>- ASSUMPTION: current provider tests for encoded and overlapping keys should be migrated or reused against the shared helper.</li>
+</ul>
+<p>8. Run verification.</p>
+<ul>
+<li>- Run the focused unit tests for the redaction helper, run logger, provider error classification, event serialization, and tool result hygiene.</li>
+<li>- Run the relevant Section 8/Section 9 validation checks once the runtime-event surfaces exist.</li>
+<li>- Record unresolved source or implementation decisions as TBD rather than silently accepting gaps.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>API key storage/path check</td><td>No key material is written to working root, docs, runtime events, logs, SDK transcripts if avoidable, or tool artifacts.</td></tr>
+<tr><td>Provider error fixtures</td><td>All required provider error classes produce typed <code>SDK_FAILURE</code> details with no key material.</td></tr>
+<tr><td>SDK stderr/debug fixture</td><td>Captured SDK diagnostic text passes through redaction before logging or persistence.</td></tr>
+<tr><td>Runtime event serialization</td><td>Representative <code>HarnessEvent.data</code> payloads contain no configured secret values.</td></tr>
+<tr><td>Tool result policy</td><td>Sensitive tool output is redacted, withheld, or stored only after an approved redaction pass.</td></tr>
+<tr><td>Audit usability</td><td>Non-secret metadata required for replay, diagnosis, and artifact references remains present.</td></tr>
+<tr><td>Cross-surface redaction assertion</td><td>Provider errors, SDK stderr/debug logs, SDK errors, run logs, <code>HarnessEvent.data</code>, and tool artifacts all pass through redaction before persistence and sensitive display.</td></tr>
+<tr><td>SDK transcript boundary</td><td>Record whether this deliverable can guarantee transcript redaction or only avoid/cross-reference transcripts; current source state keeps this decision TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Produce or update:</p>
+<ul>
+<li>- Redaction helper source file.</li>
+<li>- Redacted run logger source file.</li>
+<li>- Provider error fixtures.</li>
+<li>- Run logger and redaction helper tests.</li>
+<li>- Event serialization and tool result hygiene tests.</li>
+<li>- Test output or validation notes showing no configured secrets appear in runtime records.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Exact test command set.</li>
+<li>- Exact Section 9 validation IDs to run for this deliverable after the runtime event schema lands.</li>
+<li>- Exact discovered code path inventory for provider, SDK, event, run-log, and tool-result surfaces.</li>
+<li>- Whether SDK transcript redaction is guaranteed by DEL-05-03 or only avoided and cross-referenced where feasible.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic validation, claim mapping, parity, checklist derivation, and script-free rendering; require every check to pass.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-05-03-redacted-runlogger-and-secret-hygiene">CLM-021 — Guidance: DEL-05-03 Redacted RunLogger and Secret Hygiene</h3>
+<h4 id="guidance-del-05-03-redacted-runlogger-and-secret-hygiene">Guidance: DEL-05-03 Redacted RunLogger and Secret Hygiene</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-05-03 exists to prevent API keys and configured secrets from becoming runtime audit content. The runtime audit mirror is intentionally rich enough for replay and diagnosis, so this deliverable supplies the redaction control that lets Chirality keep durable event, provider, SDK, tool, and run-log records without converting key material into project truth or persistent runtime leakage.</p>
+<p>Primary evidence:</p>
+<ul>
+<li>- <code>docs/CONTRACT.md</code> K-EVENT-6: runtime events, run logs, tool artifacts, and provider errors must redact secrets and avoid storing API keys.</li>
+<li>- <code>docs/CONTRACT.md</code> K-KEY-1: API keys are non-project convenience state and must not be written to project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts.</li>
+<li>- <code>docs/PRD.md</code> FR-075: runtime logging redacts API keys and configured secret variants from SDK errors, tool outputs where policy requires, and event records.</li>
+</ul>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Redact before persistence and sensitive display.</p>
+<p>Any provider, SDK, tool, or run-log payload that may be written to JSONL, artifacts, logs, error details, diagnostics, or user-visible diagnostic surfaces should pass through redaction before it crosses the persistence boundary or a display boundary that could reveal configured secrets.</p>
+<p>2. Keep the audit useful.</p>
+<p>Redaction should remove secret values while preserving non-secret diagnostic structure such as error class, status, source, policy category, event type, byte counts, truncation flags, and artifact references.</p>
+<p>3. Treat API keys as non-project convenience state.</p>
+<p>API keys can be resolved from UI safeStorage or environment variables for active turns, but they must not become project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts.</p>
+<p>4. Keep SDK artifacts secondary.</p>
+<p>SDK transcripts and metadata are resume/debug artifacts. The Chirality audit mirror remains the product-owned record, and SDK-shaped values should be retained only as adapter metadata where source contracts permit it.</p>
+<p>5. Prefer shared redaction over isolated patches.</p>
+<p>Current code contains provider-local redaction behavior. ASSUMPTION: the deliverable should consolidate product-wide redaction behavior into a shared helper used by provider error handling, run logging, event emission, and tool artifact handling.</p>
+<p>6. Keep shape-specific handling where the payload requires it.</p>
+<p>A shared helper should centralize secret matching and replacement, while provider errors, SDK diagnostics, <code>HarnessEvent.data</code>, and tool artifacts may still need surface-specific adapters so non-secret metadata remains useful and payload policies remain enforceable.</p>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Provider errors</td><td>Preserve typed <code>SDK_FAILURE</code> classification while redacting key material and configured secret variants.</td><td><code>docs/PRD.md</code> FR-034</td></tr>
+<tr><td>Event records</td><td><code>HarnessEvent.data</code> may be rich but must not contain secrets.</td><td><code>docs/SPEC.md</code> Section 9</td></tr>
+<tr><td>SDK stderr/debug logs</td><td>Treat as potentially sensitive and route through the run logger redaction layer.</td><td><code>docs/PLAN.md</code> Section 6.3; <code>docs/PRD.md</code> runtime notes</td></tr>
+<tr><td>Tool results</td><td>Do not rely on truncation alone for sensitive values. Apply redaction or withhold sensitive raw values before inline event payloads or artifact storage.</td><td><code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>Secret variants</td><td>The PRD names API keys and configured secret variants but does not define the configuration schema. Keep schema-specific claims as TBD until implementation is decided.</td><td><code>docs/PRD.md</code> FR-075</td></tr>
+<tr><td>PRD source state</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code>; human runtime instruction — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-025-trade-offs">CLM-025 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Direction</td></tr>
+<tr><td>Strict redaction vs diagnostic detail</td><td>Prefer strict redaction of values while retaining typed, non-secret metadata for debugging.</td></tr>
+<tr><td>Inline tool result convenience vs leakage risk</td><td>Prefer preview/metadata/artifact references and redaction over raw inline content when sensitivity is possible.</td></tr>
+<tr><td>Product-owned audit vs SDK transcript completeness</td><td>Keep Chirality JSONL canonical; use SDK transcript linkage as secondary metadata, not as a replacement.</td></tr>
+<tr><td>Provider-local helper vs shared helper</td><td>Prefer a shared helper once this deliverable is implemented; keep provider-specific handling only where source payload shapes require it.</td></tr>
+<tr><td>One helper contract vs payload-specific policy</td><td>Centralize configured-secret redaction in one helper, but let each surface decide whether to preserve metadata, redact inline content, store an artifact, or withhold a payload.</td></tr>
+</tbody></table>
+<h3 id="clm-026-examples">CLM-026 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>TBD: final examples should be generated from accepted fixtures after implementation. Candidate examples:</p>
+<ul>
+<li>- Provider auth error containing a configured API key is stored as typed <code>SDK_FAILURE</code> details with the key replaced by the accepted redaction token.</li>
+<li>- SDK stderr line containing an encoded key variant is logged with the encoded variant redacted.</li>
+<li>- Tool result containing a secret-like configured value is not persisted as raw inline <code>HarnessEvent.data</code>; the event stores redacted preview and metadata or withholds the payload according to policy.</li>
+</ul>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code></td><td>Human runtime instruction</td><td>All documents using PRD evidence</td><td>Use PRD as accessible source with warning; do not derive unsupported details from it alone.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-021 SOW-041 OBJ-003 OBJ-008</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

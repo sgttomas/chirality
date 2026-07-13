@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="fbfc8b759f12c725abaf36f0fdb86cfd965d19248d77385142b75073df4a0bc7">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>fbfc8b759f12c725abaf36f0fdb86cfd965d19248d77385142b75073df4a0bc7</code>.</p>
+<h1 id="scope-of-work-del-06-05">Scope of Work — DEL-06-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-06-05</code> in service of project scope [SOW-062] and package objectives [OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Bash governance policy evidence covering default denial, governed enablement, timeout and capture policy, output metadata tests, interruption behavior, and audit behavior.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-05-bash-governance-and-timeout-policy">CLM-001 — Datasheet: DEL-06-05 Bash Governance and Timeout Policy</h3>
+<h4 id="datasheet-del-06-05-bash-governance-and-timeout-policy">Datasheet: DEL-06-05 Bash Governance and Timeout Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-05</td></tr>
+<tr><td>Deliverable name</td><td>Bash Governance and Timeout Policy</td></tr>
+<tr><td>Package</td><td>PKG-06 Permissioned Tools, MCP, and Hooks</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>Responsible party</td><td>TBD</td></tr>
+<tr><td>Decomposition variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Scope items</td><td>SOW-062</td></tr>
+<tr><td>Objective context</td><td>OBJ-005</td></tr>
+<tr><td>Anticipated artifacts</td><td>Bash deny/default tests; timeout/capture policy; output metadata tests</td></tr>
+</tbody></table>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot; and scope ledger row SOW-062.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Governed tool</td><td>SDK built-in <code>Bash</code> where available</td><td><code>docs/SPEC.md</code> Section 14.1</td></tr>
+<tr><td>Default posture</td><td>Bash denied by default even though the SDK ships the tool</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1</td></tr>
+<tr><td>Enablement prerequisites</td><td>Timeout, output capture, result storage, interrupt behavior, and audit events</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1; <code>docs/PLAN.md</code> R4</td></tr>
+<tr><td>Denied modes</td><td><code>readOnly</code> and <code>dontAsk</code> deny Bash/shell unless a future governed rule says otherwise</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-4 and K-PERM-5; <code>docs/PLAN.md</code> R4 acceptance</td></tr>
+<tr><td>Restriction mechanism</td><td><code>allowedTools</code> is not sufficient; restriction requires disallowed tools, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> posture</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>Permission decision record</td><td><code>HarnessPermissionDecision</code> with decision, reason, source, timestamp, and optional safe metadata</td><td><code>docs/TYPES.md</code> Section 8.2</td></tr>
+<tr><td>Tool result policy</td><td>Small outputs inline; medium/large outputs previewed or stored as session artifacts with metadata</td><td><code>docs/PRD.md</code> FR-096, MATCH status; <code>docs/PLAN.md</code> R4 — reconciled under D-APP-38</td></tr>
+<tr><td>Audit mirror</td><td><code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> remains the product-owned audit record</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-4; <code>docs/PRD.md</code> FR-121, MATCH status — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Constraint</td><td>Source</td></tr>
+<tr><td>PRD source state</td><td><code>docs/PRD.md</code> is accessible but has MATCH in <code>_REFERENCES.md</code>; PRD-derived details are treated as source-state evidence, not as unqualified accepted truth.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+<tr><td>Bash before R4 readiness</td><td>Bash must not be exposed before governance, hooks, event logging, result storage, timeout, audit logging, and packaging checks are reliable.</td><td><code>docs/DIRECTIVE.md</code> Section 4.2; <code>docs/PLAN.md</code> R4</td></tr>
+<tr><td>Denied execution</td><td>Denied Bash must not spawn.</td><td><code>docs/PLAN.md</code> R4 acceptance; <code>docs/PRD.md</code> FR-100, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Timeout value</td><td>Exact default timeout and override semantics are TBD; source material requires a timeout but does not provide a Bash-specific value.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1; <code>docs/PLAN.md</code> R4</td></tr>
+<tr><td>Output channels</td><td>Allowed Bash captures stdout and stderr separately.</td><td><code>docs/PLAN.md</code> R4 implementation targets; <code>docs/PRD.md</code> FR-100, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Interrupt behavior</td><td>Allowed Bash can be interrupted when possible; exact SDK/process mechanics are TBD.</td><td><code>docs/PLAN.md</code> R4 acceptance; <code>docs/PRD.md</code> FR-100, MATCH status — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction note</td><td>Source</td></tr>
+<tr><td>Tool-surface resolver</td><td>Expose <code>Bash</code> only when session/persona/mode/options/policy permit it; otherwise omit or hard-deny.</td><td><code>docs/SPEC.md</code> Sections 13.2, 14.3, and 15.1</td></tr>
+<tr><td>Deny policy</td><td>Explicit denies from policy, path containment, hooks, governance, SDK deny rules, or human gates block Bash execution.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1</td></tr>
+<tr><td>Bash preflight</td><td>Enforce mode, command name/length, timeout, redirection/path-token counts, output capture, network-command and URL-scheme posture, and audit metadata before spawning.</td><td><code>frontend/src/lib/harness/tool-shell-policy.ts</code>; <code>frontend/src/__tests__/lib/chirality-hooks.test.ts</code>; <code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1</td></tr>
+<tr><td>Execution capture</td><td>Capture stdout and stderr separately and classify terminal outcome as success, failure, timeout, interruption, or cancellation where available.</td><td><code>docs/PLAN.md</code> R4; <code>docs/SPEC.md</code> Section 10.1</td></tr>
+<tr><td>Result storage</td><td>Apply <code>ToolResultStore</code> policy so large output is stored under session artifacts and represented by preview plus schema-versioned metadata: tool/use/turn IDs, byte lengths, truncation, SHA-256, relative path, and stdout/stderr stream labels.</td><td>D-APP-42; <code>frontend/src/lib/harness/tool-result-artifacts.ts</code>; <code>frontend/src/lib/harness/tool-evidence.ts</code></td></tr>
+<tr><td>Audit events</td><td>Persist permission, started, completed/failed, interruption/timeout, and artifact metadata in Chirality-owned events; an SDK Bash result with <code>interrupted: true</code> maps to <code>tool.failed</code> with safe stream/artifact evidence.</td><td>ADQ-11; D-APP-43; <code>frontend/src/lib/harness/sdk-message-mapper.ts</code></td></tr>
+<tr><td>Tests</td><td>Include deny/default tests, timeout/capture tests, output metadata tests, and denied-never-spawns tests. Exact test paths: TBD.</td><td><code>_CONTEXT.md</code>; <code>docs/PLAN.md</code> R4 acceptance</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td><td>Source state</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8, 2.9, 4.1, 4.2, and 5</td><td>Product-owned runtime governance, reliance boundaries, bash exposure sequencing</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code> Sections 1.5 and 1.6</td><td>Binding event, permission, hook, path, and Bash invariants</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code> Sections 10, 13, 14, and 15</td><td>Engine responsibilities, option/tool resolution, tool names, mode mapping, hooks</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code> Sections 7 and 8</td><td>Event vocabulary, permission modes, decision records, tool terms, artifact path fields</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code> R4</td><td>Sequencing, implementation targets, and Bash acceptance criteria</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code> Sections 8.15 and R4</td><td>Product requirements for Bash, result storage, context mirror, and audit behavior</td><td>MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Deliverable scope, SOW coverage, package boundaries</td><td>accepted v3.2 working surface</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-06-05-bash-governance-and-timeout-policy">CLM-007 — Specification: DEL-06-05 Bash Governance and Timeout Policy</h3>
+<h4 id="specification-del-06-05-bash-governance-and-timeout-policy">Specification: DEL-06-05 Bash Governance and Timeout Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-06-05 specifies the security-control policy for enabling SDK <code>Bash</code> in Chirality. It covers default denial, mode-based exposure, pre-execution governance, timeout requirement, stdout/stderr capture, output storage, interruption behavior, terminal outcome persistence, and audit evidence.</p>
+<p>In scope:</p>
+<ul>
+<li>- Keep Bash denied by default and denied in <code>readOnly</code> / <code>dontAsk</code>.</li>
+<li>- Permit Bash only in explicitly governed modes after permission, hook, timeout, result-storage, interrupt, and audit checks pass.</li>
+<li>- Ensure denied Bash never spawns.</li>
+<li>- Define timeout/capture/output metadata expectations for allowed Bash.</li>
+<li>- Provide tests for default denial, timeout/capture behavior, result artifact metadata, and denied non-execution.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- General permission overlay semantics and mode mapping owned by DEL-06-01, except where they are applied to Bash.</li>
+<li>- Read tool resolver and MCP read tools owned by DEL-06-02 and DEL-06-03.</li>
+<li>- Write/edit path policy owned by DEL-06-04, except Bash must still obey path/hook denies when command execution could mutate the filesystem.</li>
+<li>- Hook lifecycle and compaction mirror implementation owned by DEL-06-06, except this deliverable must emit or require Bash-relevant events.</li>
+<li>- Remote MCP, plugin marketplace, and broad remote execution, which remain out of current scope without governed amendment.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06 row DEL-06-05 and SOW-062; <code>docs/CONTRACT.md</code> Section 1.6; <code>docs/SPEC.md</code> Sections 14 and 15; <code>docs/PLAN.md</code> R4; <code>docs/PRD.md</code> Section 8.15 with MATCH status. (reconciled under D-APP-38).</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-06-05-REQ-001</td><td>Bash MUST be denied by default even when the SDK ships or supports a <code>Bash</code> tool.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1</td></tr>
+<tr><td>DEL-06-05-REQ-002</td><td>Bash MUST be denied or omitted from tool exposure in <code>readOnly</code> mode.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-4; <code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>DEL-06-05-REQ-003</td><td>Bash MUST be denied without prompting in <code>dontAsk</code> unless an accepted future policy explicitly defines a safe shell subset. Current source material defines no such subset.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-5; <code>docs/PLAN.md</code> R4 acceptance</td></tr>
+<tr><td>DEL-06-05-REQ-004</td><td>Bash MUST NOT be enabled by <code>allowedTools</code> alone; restriction and enablement MUST be mediated by disallowed tools, permission mode, Chirality policy, hooks, <code>canUseTool</code>, and/or human gate as applicable.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>DEL-06-05-REQ-005</td><td>A denied Bash request MUST NOT spawn a process.</td><td><code>docs/PLAN.md</code> R4 acceptance; <code>docs/PRD.md</code> FR-100, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-05-REQ-006</td><td>Enabling Bash MUST require a timeout before execution. The accepted default is <code>120000</code> ms and the maximum override is <code>600000</code> ms.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1; D-APP-56 R4-P09; <code>frontend/src/lib/harness/tool-shell-policy.ts</code></td></tr>
+<tr><td>DEL-06-05-REQ-007</td><td>Allowed Bash execution MUST capture stdout and stderr separately.</td><td><code>docs/PLAN.md</code> R4 implementation targets; <code>docs/PRD.md</code> FR-100, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-05-REQ-008</td><td>Medium or large Bash output MUST be previewed or stored under session artifacts rather than streamed unbounded into chat/model context.</td><td><code>docs/PRD.md</code> FR-096, MATCH status; <code>docs/PLAN.md</code> R4 — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-05-REQ-009</td><td>Bash output metadata MUST include safe artifact lookup and terminal-outcome data. D-APP-42 assigns the artifact schema (<code>toolName</code>, <code>toolUseId</code>, <code>turnId</code>, byte lengths, truncation flag, SHA-256, relative artifact path, and stdout/stderr stream labels); ADQ-11/D-APP-43 establishes <code>interrupted</code> Bash results as <code>tool.failed</code> terminal evidence.</td><td><code>docs/TYPES.md</code> <code>outputArtifactPath</code>; D-APP-42; <code>Evidence_ADQ-11_Permission_Tool_Residuals.md</code>; D-APP-43</td></tr>
+<tr><td>DEL-06-05-REQ-010</td><td>Allowed Bash execution MUST support interrupt/cancel where the SDK or process runner exposes that capability; where interruption cannot be performed, Chirality MUST persist the terminal failure, cancellation, or residual-risk outcome that actually occurred rather than claiming successful interruption.</td><td><code>docs/SPEC.md</code> Section 10.1; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-3; <code>docs/PLAN.md</code> R4 acceptance</td></tr>
+<tr><td>DEL-06-05-REQ-011</td><td>Bash permission, start, completion, failure, timeout, and interruption behavior MUST be auditable in product-owned Chirality event records.</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-2 through K-EVENT-4; <code>docs/TYPES.md</code> event vocabulary</td></tr>
+<tr><td>DEL-06-05-REQ-012</td><td>Hook failures MUST fail closed for shell actions.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-06-05-REQ-013</td><td>Bash commands that can affect filesystem state MUST remain subject to working-root containment, instruction-root protection, symlink write rejection, redaction, provenance, and hook policy where applicable.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1, K-PATH-2, K-PATH-3; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-06-05-REQ-014</td><td>Public Chirality APIs, permission records, and audit events MUST remain product-owned; SDK Bash names and transcript fields are adapter metadata.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8 and 2.10; <code>docs/SPEC.md</code> Sections 10.1 and 10.2</td></tr>
+<tr><td>DEL-06-05-REQ-015</td><td>Tests MUST cover default deny, <code>readOnly</code> deny, <code>dontAsk</code> deny, denied-never-spawns, timeout, stdout/stderr separation, output artifact metadata, and interruption behavior where technically available.</td><td><code>_CONTEXT.md</code>; <code>docs/PLAN.md</code> R4 acceptance</td></tr>
+<tr><td>DEL-06-05-REQ-016</td><td>Bash preflight MUST enforce the implemented command metadata and network posture checks: command name/length, timeout, redirection/path-token counts, network-command denial, and URL-scheme denial.</td><td><code>frontend/src/lib/harness/tool-shell-policy.ts</code>; <code>frontend/src/__tests__/lib/chirality-hooks.test.ts</code>; <code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Section 1.6</td><td>Binding permission, tool exposure, hook, path, and Bash invariants.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Section 1.5</td><td>Runtime event and audit mirror invariants.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 14 and 15</td><td>SDK tool naming, tool surface rules, permission mode mapping, required hooks, and fail-closed hook behavior.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 8</td><td>Permission mode vocabulary, permission decision shape, tool-surface terms, and <code>ToolResultStore</code>.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R4</td><td>Roadmap sequencing and acceptance criteria for Bash, result budgeting, and context mirror behavior.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.15</td><td>Product requirements for tool output storage, Bash, context management, and audit mirror; use with MATCH status from <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-06-05-REQ-001 through REQ-004</td><td>Unit or integration tests assert <code>Bash</code> is absent or denied by default, in <code>readOnly</code>, and in <code>dontAsk</code>; tests prove <code>allowedTools</code> cannot bypass denial.</td></tr>
+<tr><td>DEL-06-05-REQ-005</td><td>Spawn-suppression test instruments the command runner and asserts denied Bash requests never create a process.</td></tr>
+<tr><td>DEL-06-05-REQ-006</td><td>Timeout preflight tests assert no allowed Bash request can execute without the accepted <code>120000</code> ms default / <code>600000</code> ms maximum policy.</td></tr>
+<tr><td>DEL-06-05-REQ-007</td><td>Capture tests run a controlled command that writes separately to stdout and stderr and assert separate capture channels.</td></tr>
+<tr><td>DEL-06-05-REQ-008, REQ-009</td><td>Tool-result budget tests assert large output is stored as an artifact and chat/event payloads contain preview plus safe artifact metadata.</td></tr>
+<tr><td>DEL-06-05-REQ-010</td><td>Interrupt tests assert active Bash can be cancelled or interrupted when supported; fallback tests assert unsupported interruption persists the actual terminal failure, cancellation, or residual-risk outcome.</td></tr>
+<tr><td>DEL-06-05-REQ-011</td><td>Runtime event tests assert permission/start/completed/failed or interrupted evidence is written to Chirality-owned event records.</td></tr>
+<tr><td>DEL-06-05-REQ-012, REQ-013</td><td>Hook/path tests assert hook failure and path-policy denial block Bash execution or filesystem mutation.</td></tr>
+<tr><td>DEL-06-05-REQ-014</td><td>Contract tests assert public event/permission schemas do not become SDK-shaped except for safe adapter metadata.</td></tr>
+<tr><td>DEL-06-05-REQ-015</td><td>Traceability check verifies test names or metadata cite DEL-06-05 and SOW-062; concrete test names, fixtures, and harness paths remain TBD until implementation planning assigns them.</td></tr>
+<tr><td>DEL-06-05-REQ-016</td><td>Preflight-contract review verifies command metadata fields and network posture checks are either implemented from an accepted contract or explicitly deferred with cited ownership.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required implementation evidence:</p>
+<ul>
+<li>- Bash governance policy or options-builder slice showing default denial and explicit enablement rules.</li>
+<li>- Timeout/capture policy with explicit default and override constraints once human-approved or source-defined.</li>
+<li>- Output metadata schema or fixture for stdout/stderr preview and artifact storage, including PRD-derived artifact metadata fields only while the REF-006 MATCH status remains visible. (reconciled under D-APP-38).</li>
+<li>- Denied-never-spawns test evidence.</li>
+<li>- Timeout/capture and interruption test evidence.</li>
+<li>- Hook/path interface evidence showing composition with DEL-06-04 and DEL-06-06 once those interfaces are accepted.</li>
+<li>- Residual-risk note for <code>docs/PRD.md</code> MATCH under the reconciled D-APP-38 source state. (reconciled under D-APP-38).</li>
+</ul>
+<h3 id="clm-013-traceability">CLM-013 — Traceability</h3>
+<h5 id="traceability">Traceability</h5>
+<table><tbody>
+<tr><td>Source item</td><td>Covered by</td></tr>
+<tr><td>SOW-062 Bash denied by default and governed when enabled</td><td>DEL-06-05-REQ-001 through REQ-015</td></tr>
+<tr><td>OBJ-005 Runtime tool execution governance</td><td>DEL-06-05-REQ-001 through REQ-014</td></tr>
+<tr><td>K-BASH-1 Bash default denial and enablement prerequisites</td><td>DEL-06-05-REQ-001, REQ-006 through REQ-011, REQ-015</td></tr>
+<tr><td>FR-100 Bash denied by default, capture, timeout, storage, interrupt</td><td>DEL-06-05-REQ-001, REQ-005 through REQ-010</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — The output demonstrates that Bash is denied by default and, when enabled, is governed by explicit mode, timeout, separate output capture, result storage, interruption handling, and audit behavior.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-06-05-bash-governance-and-timeout-policy">CLM-014 — Procedure: DEL-06-05 Bash Governance and Timeout Policy</h3>
+<h4 id="procedure-del-06-05-bash-governance-and-timeout-policy">Procedure: DEL-06-05 Bash Governance and Timeout Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-06-05 Bash governance implementation and timeout/capture policy evidence. It is written for the deliverable artifact, not as an end-user shell runbook.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted DEL-06-05 scope and source references</td><td>Available in <code>_CONTEXT.md</code> and <code>_REFERENCES.md</code></td></tr>
+<tr><td>Binding Bash invariant</td><td>Available in <code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1</td></tr>
+<tr><td>Permission/mode vocabulary</td><td>Available in <code>docs/TYPES.md</code> Section 8 and <code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>Tool-surface rules</td><td>Available in <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>R4 sequencing and acceptance criteria</td><td>Available in <code>docs/PLAN.md</code>; <code>docs/PRD.md</code> is current and MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Declared upstream dependencies</td><td>Extracted ACTIVE upstream rows exist in <code>_DEPENDENCIES.md</code>; declared upstream remains TBD until dependency satisfaction is accepted.</td></tr>
+<tr><td>Exact implementation file paths</td><td>TBD</td></tr>
+<tr><td>Exact test fixture paths</td><td>TBD</td></tr>
+<tr><td>Bash-specific numeric timeout default and maximum</td><td>TBD - required by policy but not specified in accessible sources</td></tr>
+</tbody></table>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Establish the default-deny posture.</p>
+<ul>
+<li>- Ensure SDK <code>Bash</code> is not exposed by default.</li>
+<li>- Add explicit denial for Bash in <code>readOnly</code> and <code>dontAsk</code>.</li>
+<li>- Verify denial is enforced by runtime policy, not prompt text.</li>
+</ul>
+<p>2. Resolve Bash tool exposure through the permission overlay.</p>
+<ul>
+<li>- Treat SDK <code>Bash</code> as a governed tool candidate, not as automatically available.</li>
+<li>- Apply <code>disallowedTools</code>, permission mode, Chirality policy, hooks, and <code>canUseTool</code> mediation as applicable.</li>
+<li>- Do not rely on <code>allowedTools</code> as a restriction mechanism.</li>
+</ul>
+<p>3. Implement Bash preflight.</p>
+<ul>
+<li>- Require explicit mode or session capability that permits Bash.</li>
+<li>- Require a timeout policy before execution.</li>
+<li>- Require stdout/stderr capture plan.</li>
+<li>- Require result storage or preview policy for medium/large outputs.</li>
+<li>- Require audit metadata sufficient to record permission, start, terminal outcome, and artifact references.</li>
+<li>- Treat command metadata fields and network posture checks as unresolved preflight slots until an accepted contract defines them or assigns them outside DEL-06-05. PRD R4 mentions both, but REF-006 remains MATCH-confirmed. (reconciled under D-APP-38).</li>
+</ul>
+<p>4. Enforce denied-never-spawns.</p>
+<ul>
+<li>- Place denial checks before process creation.</li>
+<li>- Instrument tests or runner seams so a denied Bash request proves no child process was started.</li>
+</ul>
+<p>5. Execute governed Bash only after preflight passes.</p>
+<ul>
+<li>- Start the process with the resolved timeout.</li>
+<li>- Capture stdout and stderr separately.</li>
+<li>- Track exit code, timeout, interruption, cancellation, and failure classifications where available.</li>
+<li>- If the SDK or process runner cannot interrupt an active Bash process, persist the actual terminal failure, cancellation, or residual-risk outcome instead of reporting successful interruption.</li>
+<li>- Redact secrets from logs, tool outputs, and event records where policy requires.</li>
+</ul>
+<p>6. Store and summarize output.</p>
+<ul>
+<li>- Inline only small safe outputs.</li>
+<li>- Preview medium/large outputs.</li>
+<li>- Store raw large outputs under session artifacts and persist safe metadata such as artifact path, byte counts, truncation status, and channel labels where the accepted schema permits.</li>
+<li>- Apply the D-APP-42 artifact schema (<code>toolName</code>, <code>toolUseId</code>, <code>turnId</code>, byte lengths, truncation, SHA-256, relative path, stdout/stderr labels) and the ADQ-11/D-APP-43 mapping of <code>interrupted: true</code> to <code>tool.failed</code> terminal evidence.</li>
+</ul>
+<p>7. Persist audit evidence.</p>
+<ul>
+<li>- Persist permission evidence before allowing execution.</li>
+<li>- Persist tool started/completed/failed events and terminal success/failure/interruption/cancellation outcomes.</li>
+<li>- Keep SDK transcript linkage secondary to Chirality-owned event records.</li>
+</ul>
+<p>8. Add tests and traceability.</p>
+<ul>
+<li>- Add default deny, <code>readOnly</code> deny, <code>dontAsk</code> deny, denied-never-spawns, timeout-required, stdout/stderr separation, output artifact metadata, and interruption tests.</li>
+<li>- Tag or name tests with DEL-06-05 or SOW-062 where local test conventions allow.</li>
+<li>- Record the PRD MATCH status in implementation or review notes. (reconciled under D-APP-38).</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Default posture</td><td>Bash is denied or omitted with no explicit enablement.</td></tr>
+<tr><td><code>readOnly</code> behavior</td><td>Bash cannot execute.</td></tr>
+<tr><td><code>dontAsk</code> behavior</td><td>Bash denies without prompting.</td></tr>
+<tr><td><code>allowedTools</code> misconception</td><td>Tests show <code>allowedTools</code> cannot enable or restrict Bash by itself and cannot bypass deny policy.</td></tr>
+<tr><td>Denied-never-spawns</td><td>Denied Bash request creates no child process.</td></tr>
+<tr><td>Timeout preflight</td><td>Allowed Bash cannot start without a resolved timeout policy.</td></tr>
+<tr><td>Capture channels</td><td>stdout and stderr are captured separately.</td></tr>
+<tr><td>Output budget</td><td>Large output is stored as an artifact and represented by preview/metadata.</td></tr>
+<tr><td>Interrupt behavior</td><td>Active Bash can be interrupted when supported, and terminal outcome is persisted.</td></tr>
+<tr><td>Audit records</td><td>Permission, start, completion/failure/interruption, and artifact metadata are persisted in Chirality-owned event shape.</td></tr>
+<tr><td>Hook fail-closed</td><td>Hook failure blocks shell execution.</td></tr>
+<tr><td>PRD warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Bash governance policy or options-builder slice: TBD.</li>
+<li>- Bash preflight hook or equivalent enforcement point: TBD.</li>
+<li>- Timeout default and override policy: TBD.</li>
+<li>- stdout/stderr capture evidence: TBD.</li>
+<li>- Tool output artifact metadata fixture: TBD.</li>
+<li>- Denied-never-spawns test evidence: TBD.</li>
+<li>- Interruption/timeout terminal outcome test evidence: TBD.</li>
+<li>- Hook/path composition evidence with DEL-06-04 and DEL-06-06: TBD.</li>
+<li>- Concrete test names, fixtures, and harness paths for DEL-06-05 / SOW-062 traceability: TBD.</li>
+<li>- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (reconciled under D-APP-38).</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Review the Bash deny/default, timeout/capture, output metadata, interruption, and audit evidence against the accepted SOW-062 and OBJ-005 basis.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-06-05-bash-governance-and-timeout-policy">CLM-020 — Guidance: DEL-06-05 Bash Governance and Timeout Policy</h3>
+<h4 id="guidance-del-06-05-bash-governance-and-timeout-policy">Guidance: DEL-06-05 Bash Governance and Timeout Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-06-05 exists to prevent the SDK <code>Bash</code> surface from becoming an accidental escape hatch. Bash is powerful enough to read, write, delete, invoke networks, spawn long-running work, and produce unbounded output, so Chirality treats it as denied by default and enables it only after product-owned governance, timeout, result storage, interruption, and audit behavior are ready.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition row SOW-062; <code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1; <code>docs/PLAN.md</code> R4.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Denied Bash must be a non-event at the process layer. A policy denial is only effective if no shell process starts. Sources: <code>docs/PLAN.md</code> R4 acceptance; <code>docs/PRD.md</code> FR-100, MATCH status. (reconciled under D-APP-38).</p>
+<p>2. Bash exposure follows capability-forward permission semantics with explicit hard-deny precedence. Any explicit deny from policy, hook, path check, governance, SDK deny rule, or human gate blocks execution. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1.</p>
+<p>3. <code>allowedTools</code> is not a security boundary. Bash must not become available merely because it appears in a tool list; the overlay, disallowed tools, mode policy, hooks, and approval mediation remain controlling. Sources: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3.</p>
+<p>4. Timeout and result storage are part of authorization, not post-processing. A Bash request without a timeout/capture/storage plan is not ready to execute. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1.</p>
+<p>5. Auditability is product-owned. SDK transcripts may help debugging and resume, but Chirality event records remain canonical for runtime governance. Sources: <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-4; <code>docs/PRD.md</code> FR-121, MATCH status. (reconciled under D-APP-38).</p>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<h3 id="clm-024-mode-behavior">CLM-024 — Mode Behavior</h3>
+<h6 id="mode-behavior">Mode Behavior</h6>
+<table><tbody>
+<tr><td>Mode</td><td>Guidance</td><td>Source</td></tr>
+<tr><td><code>readOnly</code></td><td>Bash should be unavailable or hard-denied. Treat shell as write/network-capable even when a proposed command appears read-like.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-4; <code>docs/TYPES.md</code> Section 8.1</td></tr>
+<tr><td><code>dontAsk</code></td><td>Bash should deny without prompting. The accessible sources do not define an approved safe-shell subset.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-5; <code>docs/PLAN.md</code> R4</td></tr>
+<tr><td><code>ask</code></td><td>Bash may request approval only after the command has passed policy preflight and the approval decision can be persisted before SDK allow/deny return.</td><td><code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td><code>workspaceWrite</code></td><td>Bash still needs explicit Bash governance; write permission does not imply shell permission.</td><td><code>docs/SPEC.md</code> Section 15.1; <code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1</td></tr>
+<tr><td><code>bypass</code></td><td>Developer-local only, never ordinary shipped behavior, and still subject to Chirality deny hooks and disallowed tools.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-6</td></tr>
+</tbody></table>
+<h3 id="clm-025-timeout-and-capture-policy">CLM-025 — Timeout And Capture Policy</h3>
+<h6 id="timeout-and-capture-policy">Timeout And Capture Policy</h6>
+<p>The accessible sources require a timeout but do not provide a Bash-specific numeric default or maximum. Keep numeric values as <code>TBD</code> until accepted source or human ruling supplies them. The implementation should nevertheless require a timeout field or resolved timeout policy before a command can start.</p>
+<p>Stdout and stderr should be captured separately so users and replay tooling can distinguish normal command output from warnings/errors. Large output should be stored under session artifacts and represented by safe metadata, not streamed unbounded into chat or model context.</p>
+<h3 id="clm-026-hooks-and-path-policy">CLM-026 — Hooks And Path Policy</h3>
+<h6 id="hooks-and-path-policy">Hooks And Path Policy</h6>
+<p>Bash-specific governance should compose with the broader hook model. If a command can write, delete, traverse outside the project, touch the instruction root, follow symlink writes, or invoke prohibited network behavior, the same capability-forward posture with explicit hard-deny precedence applies. Hook failures fail closed for shell actions.</p>
+<h3 id="clm-027-prd-hash-status">CLM-027 — PRD Hash Status</h3>
+<h6 id="prd-hash-status">PRD Hash Status</h6>
+<p><code>docs/PRD.md</code> is listed as MATCH in <code>_REFERENCES.md</code>. FR-096, FR-100, FR-121, and R4 implementation targets are useful product direction for this draft, but any implementation detail that depends only on PRD wording should be rechecked after source-state reconciliation. (reconciled under D-APP-38).</p>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Omit Bash vs expose and deny</td><td>Prefer omission where possible to reduce accidental model attempts, but still enforce runtime denial because tool visibility is not enough.</td></tr>
+<tr><td>Single global timeout vs command-class timeout</td><td>A single default is simpler, but command-class overrides may be needed. Source material does not decide this; mark numeric policy as TBD.</td></tr>
+<tr><td>Inline output vs artifact storage</td><td>Inline small output for usability; preview/store medium or large output so chat and model context remain bounded.</td></tr>
+<tr><td>User approval vs policy denial</td><td>Do not ask the user to approve a command that fails policy preflight. Approval should only mediate commands that are otherwise governable.</td></tr>
+<tr><td>SDK transcript vs Chirality events</td><td>Use SDK transcript linkage for resume/debugging, but rely on Chirality events for accepted-turn, permission, tool, artifact, and terminal outcome audit.</td></tr>
+</tbody></table>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected result</td></tr>
+<tr><td>A new session starts with no explicit Bash enablement</td><td><code>Bash</code> is omitted or denied.</td></tr>
+<tr><td><code>readOnly</code> session requests <code>Bash</code> for <code>ls</code></td><td>Deny or omit; use read tools such as <code>LS</code>, <code>Glob</code>, or <code>Grep</code> where available instead.</td></tr>
+<tr><td><code>dontAsk</code> session requests <code>Bash</code> for any command</td><td>Deny without prompting under current source policy.</td></tr>
+<tr><td><code>ask</code> session requests a command without timeout metadata</td><td>Deny before approval because timeout is a prerequisite.</td></tr>
+<tr><td>Governed mode requests Bash with timeout, capture, and result-storage policy</td><td>Run only if policy, hooks, path checks, and approval mediation pass; capture stdout/stderr separately and persist audit events.</td></tr>
+<tr><td>Command output exceeds inline budget</td><td>Store raw output under session artifacts and surface preview plus safe artifact metadata.</td></tr>
+<tr><td>Active Bash is interrupted</td><td>Persist interrupted/cancelled terminal outcome and retain available output metadata according to result policy.</td></tr>
+</tbody></table>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>TBD</td><td>No direct source conflict identified during P1/P2. PRD has a MATCH source state.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> sections used above</td><td>All PRD-cited requirements and guidance</td><td>Treat PRD as a current MATCH source under the reconciled D-APP-38 source state.</td><td>TBD — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-05-TIMEOUT-001</td><td>Bash timeout values were formerly TBD.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-BASH-1; D-APP-56 R4-P09</td><td>Live policy enforces default <code>120000</code> ms and maximum <code>600000</code> ms.</td><td><code>Specification.md</code> REQ-006; <code>frontend/src/lib/harness/tool-shell-policy.ts</code></td><td>Ratified by D-APP-56; preserve this row as resolved history.</td><td>RESOLVED 2026-07-12</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-062 OBJ-005</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

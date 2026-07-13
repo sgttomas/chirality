@@ -1,0 +1,21 @@
+{
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "AUTHOR-DEL-05-02",
+  "deliverable_id": "DEL-05-02",
+  "status": "PASS",
+  "terminal": true,
+  "manifest_complete": true,
+  "candidate_path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG05/DEL-05-02/ScopeOfWork.md",
+  "candidate_sha256": "5ee2edf0f3b734a2572485256a3d9a8731f04b9385e37fc46361c22401f54449",
+  "mapping_count": 27,
+  "source_line_count": 340,
+  "source_status_identity": true,
+  "schema_verdict": "PASS",
+  "project_content_authority_verdict": "PASS",
+  "preservation_verdict": "PASS",
+  "execution_substrate_verdict": "PASS",
+  "containment_verdict": "PASS",
+  "blockers": [],
+  "waivers": [],
+  "reruns_required": []
+}

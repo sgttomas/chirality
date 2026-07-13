@@ -1,0 +1,31 @@
+{
+  "schema": "chirality-sow-negative-tests/v1",
+  "candidate_sha256": "a12f7b2c1d4139c95df897fea97b57484918e05ec8348338ea6b171e3e05aa0f",
+  "tests": [
+    {
+      "id": "unauthorized_dual",
+      "input_state": "complete dual format without isolated-migration authority",
+      "exit_code": 1,
+      "output_artifact": "ABSENT",
+      "expected_error_class": "AMBIGUOUS",
+      "verdict": "PASS_FAIL_CLOSED"
+    },
+    {
+      "id": "wrong_authority",
+      "input_state": "complete dual format with nonmatching authority",
+      "exit_code": 1,
+      "output_artifact": "ABSENT",
+      "expected_error_class": "AMBIGUOUS_AUTHORITY_MISMATCH",
+      "verdict": "PASS_FAIL_CLOSED"
+    },
+    {
+      "id": "partial_legacy",
+      "input_state": "ScopeOfWork plus three of four legacy production documents; Procedure.md absent",
+      "exit_code": 1,
+      "output_artifact": "ABSENT",
+      "expected_error_class": "INVALID_PARTIAL_LEGACY",
+      "verdict": "PASS_FAIL_CLOSED"
+    }
+  ],
+  "pass": true
+}

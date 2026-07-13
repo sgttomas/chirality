@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-working-items-graph/v1",
+  "version": 1,
+  "status": "FROZEN",
+  "selection_authority": "accepted A2 package activation plus WORKING_ITEMS intra-package judgment",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "package": "APP-PKG-06",
+  "basis": "0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+  "nodes": [
+    {"id":"AUTHOR-DEL-06-01","depends_on":[],"writes":["candidates/W_A2/APP-PKG06/DEL-06-01/**","instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-01/**"],"gate":"terminal author PASS"},
+    {"id":"VERIFY-DEL-06-01","depends_on":["AUTHOR-DEL-06-01"],"writes":["instances/WORKING-A2-PKG06/children/VERIFY-DEL-06-01/**"],"gate":"terminal independent verifier PASS"},
+    {"id":"AUTHOR-DEL-06-02","depends_on":[],"writes":["candidates/W_A2/APP-PKG06/DEL-06-02/**","instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-02/**"],"gate":"terminal author PASS"},
+    {"id":"VERIFY-DEL-06-02","depends_on":["AUTHOR-DEL-06-02"],"writes":["instances/WORKING-A2-PKG06/children/VERIFY-DEL-06-02/**"],"gate":"terminal independent verifier PASS"},
+    {"id":"AUTHOR-DEL-06-03","depends_on":[],"writes":["candidates/W_A2/APP-PKG06/DEL-06-03/**","instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-03/**"],"gate":"terminal author PASS"},
+    {"id":"VERIFY-DEL-06-03","depends_on":["AUTHOR-DEL-06-03"],"writes":["instances/WORKING-A2-PKG06/children/VERIFY-DEL-06-03/**"],"gate":"terminal independent verifier PASS"},
+    {"id":"AUTHOR-DEL-06-04","depends_on":[],"writes":["candidates/W_A2/APP-PKG06/DEL-06-04/**","instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-04/**"],"gate":"terminal author PASS"},
+    {"id":"VERIFY-DEL-06-04","depends_on":["AUTHOR-DEL-06-04"],"writes":["instances/WORKING-A2-PKG06/children/VERIFY-DEL-06-04/**"],"gate":"terminal independent verifier PASS"},
+    {"id":"AUTHOR-DEL-06-05","depends_on":[],"writes":["candidates/W_A2/APP-PKG06/DEL-06-05/**","instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-05/**"],"gate":"terminal author PASS"},
+    {"id":"VERIFY-DEL-06-05","depends_on":["AUTHOR-DEL-06-05"],"writes":["instances/WORKING-A2-PKG06/children/VERIFY-DEL-06-05/**"],"gate":"terminal independent verifier PASS"},
+    {"id":"AUTHOR-DEL-06-06","depends_on":[],"writes":["candidates/W_A2/APP-PKG06/DEL-06-06/**","instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-06/**"],"gate":"terminal author PASS"},
+    {"id":"VERIFY-DEL-06-06","depends_on":["AUTHOR-DEL-06-06"],"writes":["instances/WORKING-A2-PKG06/children/VERIFY-DEL-06-06/**"],"gate":"terminal independent verifier PASS"},
+    {"id":"PACKAGE-FAN-IN","depends_on":["VERIFY-DEL-06-01","VERIFY-DEL-06-02","VERIFY-DEL-06-03","VERIFY-DEL-06-04","VERIFY-DEL-06-05","VERIFY-DEL-06-06"],"writes":["instances/WORKING-A2-PKG06/**"],"gate":"6/6 pairs, package checks, manifests, containment, portability"}
+  ],
+  "concurrency": "authors have disjoint targets; each verifier is later and fresh; package fan-in serialized",
+  "escalation": "source/status/lifecycle/authority/profile drift, semantic conflict, failed check, nonterminal child, or out-of-scope write"
+}
+

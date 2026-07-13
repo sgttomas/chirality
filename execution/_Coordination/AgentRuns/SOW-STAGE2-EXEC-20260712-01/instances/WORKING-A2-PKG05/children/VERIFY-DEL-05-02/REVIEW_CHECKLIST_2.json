@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-05-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 246,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ee2edf0f3b734a2572485256a3d9a8731f04b9385e37fc46361c22401f54449"
+      },
+      "text": "The migrated contract preserves every line of the four legacy production documents and defines the accepted-turn, terminal-outcome, append-only JSONL, malformed-tail replay, UIEvent separation, and secret-exclusion expectations without changing lifecycle authority.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-05-02-VER-001",
+          "source_line": 375,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Verify source-marker parity, schema and identifier closure, then apply the legacy kit’s schema, writer, accepted-turn, terminal-outcome, malformed-tail replay, UI/runtime separation, and secret-safety verification methods."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-05-02",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-05",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "5ee2edf0f3b734a2572485256a3d9a8731f04b9385e37fc46361c22401f54449"
+  },
+  "tool_version": "1"
+}

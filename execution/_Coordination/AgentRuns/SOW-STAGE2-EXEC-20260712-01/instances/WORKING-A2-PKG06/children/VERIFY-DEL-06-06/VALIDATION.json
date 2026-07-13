@@ -1,0 +1,6 @@
+{
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "target": "isolation/DEL-06-06/ScopeOfWork.md",
+  "valid": true
+}

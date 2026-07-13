@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="e9346004a2a32f9b703c38d80ad0730dfc01aafc54123578c31378b3682ad3c5">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>e9346004a2a32f9b703c38d80ad0730dfc01aafc54123578c31378b3682ad3c5</code>.</p>
+<h1 id="scope-of-work-del-06-02">Scope of Work — DEL-06-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-06-02</code> in service of project scope [SOW-047, SOW-049, SOW-050] and package objectives [OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A deterministic SDK read-tool surface resolver and validation contract that maps registered SDK and Chirality MCP names, rejects unknown names, orders exposure stably, and exposes read tools before write, edit, or bash capability.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-02-sdk-read-tool-surface-and-tool-validation">CLM-001 — Datasheet: DEL-06-02 SDK Read Tool Surface and Tool Validation</h3>
+<h4 id="datasheet-del-06-02-sdk-read-tool-surface-and-tool-validation">Datasheet: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-02</td></tr>
+<tr><td>Deliverable name</td><td>SDK Read Tool Surface and Tool Validation</td></tr>
+<tr><td>Package</td><td>PKG-06 Permissioned Tools, MCP, and Hooks</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Responsible party</td><td>TBD</td></tr>
+<tr><td>Decomposition variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Scope items</td><td>SOW-047, SOW-049, SOW-050</td></tr>
+<tr><td>Objective context</td><td>OBJ-005</td></tr>
+<tr><td>Anticipated artifacts</td><td>Tool resolver; unknown-tool tests; deterministic ordering fixtures</td></tr>
+</tbody></table>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot; and scope ledger rows SOW-047 through SOW-050.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary feature</td><td>Resolve <code>opts.tools</code> to registered SDK built-ins or Chirality MCP names.</td><td><code>_CONTEXT.md</code>; decomposition DEL-06-02</td></tr>
+<tr><td>Unknown-tool behavior</td><td>Unknown tool names produce structured validation errors and are not silently passed through.</td><td><code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> Section 8.13, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>SDK built-in candidates</td><td><code>Read</code>, <code>LS</code>, <code>Glob</code>, <code>Grep</code>, <code>Write</code>, <code>Edit</code>, <code>Bash</code> where available.</td><td><code>docs/SPEC.md</code> Section 14.1; <code>docs/TYPES.md</code> Section 8.3</td></tr>
+<tr><td>Initial read surface</td><td>SDK read tools plus Chirality read MCP tools are enabled before write/edit/bash capability.</td><td><code>docs/PRD.md</code> Section 8.13, MATCH status; <code>docs/PLAN.md</code> R2 — reconciled under D-APP-38</td></tr>
+<tr><td>Chirality MCP namespace</td><td>Chirality-specific deterministic tools use <code>mcp__chirality__*</code> names.</td><td><code>docs/SPEC.md</code> Section 14.1; <code>docs/TYPES.md</code> Section 8.4</td></tr>
+<tr><td>Initial Chirality MCP read candidates</td><td><code>mcp__chirality__status_read</code>, <code>mcp__chirality__deps_read</code>, <code>mcp__chirality__scope_scan</code>, and scaffold preview/dry-run where appropriate.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Determinism condition</td><td>Tool-surface ordering, naming, MCP server IDs, and allow/deny lists are stable for a given session, persona, mode, and option set.</td><td><code>docs/PRD.md</code> Section 8.13, MATCH status; decomposition SOW-049 — reconciled under D-APP-38</td></tr>
+<tr><td>Exposure boundary</td><td>Tool implementation availability does not imply model exposure.</td><td>decomposition SOW-049; <code>docs/CONTRACT.md</code> Section 1.6 K-TOOL-2</td></tr>
+<tr><td>Restriction boundary</td><td><code>allowedTools</code> alone is not a restriction boundary.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Constraint</td><td>Source</td></tr>
+<tr><td>PRD source state</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+<tr><td>Package boundary</td><td>DEL-06-02 is bounded to tool exposure and validation; domain-engine operation semantics are excluded except protected-path hooks in adjacent scopes.</td><td><code>_CONTEXT.md</code>; decomposition PKG-06</td></tr>
+<tr><td>Permission overlay dependency</td><td>Capability-forward policy with explicit hard-deny precedence mode semantics and <code>canUseTool</code> mediation are adjacent policy inputs, primarily owned by DEL-06-01.</td><td>decomposition DEL-06-01 and DEL-06-02</td></tr>
+<tr><td>MCP implementation boundary</td><td>Chirality MCP tool definitions are adjacent to this resolver, primarily owned by DEL-06-03.</td><td>decomposition DEL-06-03</td></tr>
+<tr><td>Write/bash sequencing</td><td>Write/edit and bash capability remain later-phase surfaces and must not be exposed by the read-first resolver until the required hooks and governance land.</td><td><code>docs/PRD.md</code> Section 8.13, MATCH status; <code>docs/PLAN.md</code> R2/R3 — reconciled under D-APP-38</td></tr>
+<tr><td>Shipped runtime posture</td><td><code>readOnly</code> mode exposes or allows read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied.</td><td><code>docs/PRD.md</code> Section 8.14, MATCH status; <code>docs/TYPES.md</code> Section 8.1 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction note</td><td>Source</td></tr>
+<tr><td>Tool registry</td><td>Maintain an explicit registry of SDK built-ins and Chirality MCP tool names eligible for resolution. Exact registry file path: TBD.</td><td><code>docs/SPEC.md</code> Sections 14.1 and 14.2</td></tr>
+<tr><td>Resolver input</td><td>Consume resolved runtime options, including <code>opts.tools</code>, plus session/persona/mode/policy context needed for deterministic exposure. Exact interface shape: TBD.</td><td><code>docs/PRD.md</code> FR-023 and Section 8.13, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Name validation</td><td>Reject unknown <code>opts.tools</code> entries with structured validation errors before SDK request construction.</td><td><code>docs/SPEC.md</code> Section 14.3; decomposition SOW-047</td></tr>
+<tr><td>Deterministic ordering</td><td>Normalize the visible tool list into stable order for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-TOOL-1; <code>docs/PRD.md</code> FR-080, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Read-first filtering</td><td>Build the initial exposed surface from SDK read tools and Chirality read MCP tools; exclude or deny write/edit/bash until later phases.</td><td><code>docs/PRD.md</code> Section 8.13, MATCH status; <code>docs/PLAN.md</code> R2 — reconciled under D-APP-38</td></tr>
+<tr><td>Permission handoff</td><td>Feed the resolved tool surface into the Chirality permission overlay; do not rely on <code>allowedTools</code> alone for restriction.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>Tests</td><td>Include unknown-tool tests and deterministic ordering fixtures. Exact test paths: TBD.</td><td><code>_CONTEXT.md</code>; decomposition DEL-06-02</td></tr>
+</tbody></table>
+<h3 id="clm-006-pending-implementation-evidence">CLM-006 — Pending Implementation Evidence</h3>
+<h6 id="pending-implementation-evidence">Pending Implementation Evidence</h6>
+<table><tbody>
+<tr><td>Evidence slot</td><td>Current disposition</td><td>Source</td></tr>
+<tr><td>Implementation, registry, metadata, and fixture paths</td><td>TBD until implementation ownership assigns concrete files; do not infer paths from planned artifact names. (P3: B-001)</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/CONTRACT.md</code> K-INVENT-1</td></tr>
+<tr><td>Terminology boundary</td><td>Use &quot;read-first&quot; for sequencing, &quot;read-only&quot; for capability class, and <code>readOnly</code> only for the runtime mode token. (P3: B-002)</td><td><code>docs/TYPES.md</code> Section 8.1; <code>docs/PLAN.md</code> R2</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td><td>Source state</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code> Sections 2 and 4</td><td>Product-owned runtime governance, filesystem truth, read-before-powerful-tool posture</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code> Section 1.6</td><td>Binding permission, tool, and MCP invariants</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code> Sections 14 and 15</td><td>Tool names, MCP tools, surface rules, mode mapping</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code> Section 8</td><td>Permission modes and tool-surface vocabulary</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code> R2/R3</td><td>Implementation sequencing and acceptance context</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code> Sections 8.13, 8.14, R2, KG-005, KG-023</td><td>Product requirements and implementation direction</td><td>MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Deliverable scope, SOW coverage, package boundaries</td><td>accepted v3.2 working surface</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-06-02-sdk-read-tool-surface-and-tool-validation">CLM-008 — Specification: DEL-06-02 SDK Read Tool Surface and Tool Validation</h3>
+<h4 id="specification-del-06-02-sdk-read-tool-surface-and-tool-validation">Specification: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-06-02 specifies the read-first SDK tool-surface resolver and validation behavior for PKG-06. It covers mapping <code>opts.tools</code> to registered SDK built-ins or Chirality MCP names, rejecting unknown names, producing deterministic tool exposure for a resolved runtime context, and enabling read tools before write/edit/bash capability.</p>
+<p>In scope:</p>
+<ul>
+<li>- Resolve requested tool names against explicit SDK built-in and Chirality MCP registries.</li>
+<li>- Reject unknown tool names with structured validation errors before SDK request construction.</li>
+<li>- Produce deterministic tool-surface ordering for stable session/persona/mode/policy inputs.</li>
+<li>- Expose SDK read tools and Chirality read MCP tools as the initial user-visible tool surface.</li>
+<li>- Ensure implementation availability does not itself imply model exposure.</li>
+<li>- Add unknown-tool tests and deterministic ordering fixtures.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Capability-forward policy with explicit hard-deny precedence permission decision semantics, mode mapping, and <code>canUseTool</code> approval mediation, except where this resolver consumes or forwards their policy outputs. Those are primarily DEL-06-01.</li>
+<li>- In-process MCP tool implementation details and wrapper metadata, which are primarily DEL-06-03.</li>
+<li>- Write/edit path hooks and provenance capture, which are DEL-06-04.</li>
+<li>- Bash enablement and timeout/capture policy, which are DEL-06-05.</li>
+<li>- Remote MCP, plugins, broad tool search, marketplace extension, and remote execution, which remain out of current scope without governed amendment.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06 rows; <code>docs/SPEC.md</code> Sections 14 and 15; <code>docs/CONTRACT.md</code> Section 1.6; <code>docs/PRD.md</code> Section 8.13 with MATCH status. (reconciled under D-APP-38).</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-06-02-REQ-001</td><td>The resolver MUST map <code>opts.tools</code> entries only to registered SDK built-ins or registered Chirality MCP tool names.</td><td>decomposition SOW-047; <code>docs/PRD.md</code> FR-078, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-002</td><td>Unknown <code>opts.tools</code> names MUST produce structured validation errors and MUST NOT be silently passed through to SDK configuration or model context.</td><td><code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> FR-078, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-003</td><td>SDK built-in mappings MUST use SDK names where available, including read candidates <code>Read</code>, <code>LS</code>, <code>Glob</code>, and <code>Grep</code>, and later powerful candidates <code>Write</code>, <code>Edit</code>, and <code>Bash</code>.</td><td><code>docs/SPEC.md</code> Section 14.1; <code>docs/TYPES.md</code> Section 8.3</td></tr>
+<tr><td>DEL-06-02-REQ-004</td><td>Chirality-specific deterministic tools MUST use the <code>mcp__chirality__*</code> naming convention and resolve only from the accepted Chirality MCP registry.</td><td><code>docs/SPEC.md</code> Sections 14.1 and 14.2; <code>docs/TYPES.md</code> Section 8.4</td></tr>
+<tr><td>DEL-06-02-REQ-005</td><td>Tool-surface construction MUST be deterministic for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-TOOL-1; <code>docs/PRD.md</code> FR-080, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-006</td><td>Tool implementation availability MUST NOT imply model exposure; a tool must pass resolver and permission-surface checks before exposure.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-TOOL-2; decomposition SOW-049</td></tr>
+<tr><td>DEL-06-02-REQ-007</td><td>Initial user-visible capability MUST expose read-only SDK tools and Chirality read MCP tools before write/edit/bash capability.</td><td>decomposition SOW-050; <code>docs/PRD.md</code> FR-082, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-008</td><td>Write/edit and bash tools MUST remain excluded or denied by the read-first surface until the later write/bash governance phases activate them.</td><td><code>docs/PRD.md</code> Section 8.13, MATCH status; <code>docs/PLAN.md</code> R2/R3 — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-009</td><td>The resolver MUST NOT treat SDK <code>allowedTools</code> alone as a restriction boundary. Restriction requires disallowed tools, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> posture from the permission layer.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>DEL-06-02-REQ-010</td><td>Denied tools SHOULD be omitted from model context where possible, while runtime denial remains required for safety.</td><td><code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> FR-081, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-011</td><td>In <code>readOnly</code> mode, the resolved surface MUST expose or allow read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied.</td><td><code>docs/TYPES.md</code> Section 8.1; <code>docs/PRD.md</code> FR-091, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-012</td><td>Resolver outputs SHOULD be represented in safe runtime metadata or boot fingerprints, including actual SDK tool names/versions and MCP server versions where available.</td><td><code>docs/SPEC.md</code> Section 13; <code>docs/PRD.md</code> FR-029, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-02-REQ-013</td><td>Tests MUST cover unknown tool names, deterministic ordering, and read-before-write/bash sequencing.</td><td><code>_CONTEXT.md</code>; decomposition DEL-06-02; <code>docs/PLAN.md</code> R2 acceptance</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Section 1.6</td><td>Binding permission/tool/MCP invariants, including deterministic exposure, implementation-vs-exposure separation, and <code>allowedTools</code> limitation.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 14</td><td>SDK built-in names, Chirality MCP names, initial tool set, and surface rules.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 15</td><td>Mode mapping and hook context consumed by tool-surface filtering.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 8</td><td>Tool-surface vocabulary, permission modes, and initial MCP names.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R2/R3</td><td>Sequencing: permission-gated read surface before controlled writes and bash.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.13</td><td>Product requirements for tool-surface behavior; use with MATCH status from <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-06-02-REQ-001, REQ-003, REQ-004</td><td>Unit tests feed known SDK built-in and <code>mcp__chirality__*</code> names and assert canonical resolver outputs.</td></tr>
+<tr><td>DEL-06-02-REQ-002</td><td>Unknown-tool tests assert structured validation error shape and assert unknown names are absent from emitted SDK options/model context.</td></tr>
+<tr><td>DEL-06-02-REQ-005</td><td>Deterministic ordering fixtures vary input order and assert stable normalized output for the same session/persona/mode/policy context.</td></tr>
+<tr><td>DEL-06-02-REQ-006</td><td>Tests assert registered implementation availability is insufficient unless resolver and permission-surface checks include the tool.</td></tr>
+<tr><td>DEL-06-02-REQ-007, REQ-008, REQ-011</td><td>Read-first sequencing tests assert read tools can resolve in initial mode and write/edit/bash tools remain excluded or hard-denied until later policies are active.</td></tr>
+<tr><td>DEL-06-02-REQ-009</td><td>Tests assert <code>allowedTools</code> is not treated as containment and cannot bypass deny inputs from the permission layer.</td></tr>
+<tr><td>DEL-06-02-REQ-010</td><td>Surface-filtering tests assert denied tools are omitted where possible and still rejected if called.</td></tr>
+<tr><td>DEL-06-02-REQ-012</td><td>Metadata or boot-fingerprint tests assert resolved tool names/versions and MCP server identifiers are stable and safe to record. Exact metadata path: TBD.</td></tr>
+<tr><td>DEL-06-02-REQ-013</td><td>Test suite includes DEL-06-02 traceability markers or fixture names. Exact test paths: TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-013-pass-3-verification-evidence-disposition">CLM-013 — Pass 3 Verification Evidence Disposition</h3>
+<h6 id="pass-3-verification-evidence-disposition">Pass 3 Verification Evidence Disposition</h6>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Source reread evidence</td></tr>
+<tr><td>C-001</td><td>Incorporated as a verification-evidence requirement while concrete implementation paths remain TBD. Resolver, registry, deterministic-ordering, and read-first evidence must be named before closure.</td><td><code>docs/CONTRACT.md</code> K-TOOL-1/K-TOOL-2; <code>docs/SPEC.md</code> Sections 13 and 14.3</td></tr>
+<tr><td>D-001</td><td>Incorporated as explicit tests for permission-boundary bypass cases: <code>allowedTools</code> cannot override deny inputs, and implementation availability alone cannot expose a tool.</td><td><code>docs/CONTRACT.md</code> K-PERM-3 and K-TOOL-2; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>E-001</td><td>Converted to a metadata-path TBD. Safe metadata or boot-fingerprint evidence is required, but the exact record path is not assigned in the current sources.</td><td><code>docs/SPEC.md</code> Section 13; <code>docs/PRD.md</code> FR-128 with MATCH status — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required implementation evidence:</p>
+<ul>
+<li>- Tool resolver or equivalent deterministic tool-surface builder.</li>
+<li>- Registry of supported SDK built-ins and Chirality MCP names.</li>
+<li>- Structured validation error contract for unknown tool names.</li>
+<li>- Deterministic ordering fixtures.</li>
+<li>- Read-first sequencing tests.</li>
+<li>- Residual-risk note for <code>docs/PRD.md</code> MATCH under the reconciled D-APP-38 source state. (reconciled under D-APP-38).</li>
+</ul>
+<p>Concrete evidence locations remain TBD until implementation ownership assigns files. The documentation package must not close DEL-06-02 solely on planned artifact names or decomposition prose. (P3: B-001, C-001, E-001)</p>
+<h3 id="clm-015-traceability">CLM-015 — Traceability</h3>
+<h5 id="traceability">Traceability</h5>
+<table><tbody>
+<tr><td>Source item</td><td>Covered by</td></tr>
+<tr><td>SOW-047 Tool option mapping</td><td>DEL-06-02-REQ-001 through REQ-004</td></tr>
+<tr><td>SOW-049 Deterministic tool surface</td><td>DEL-06-02-REQ-005, REQ-006, REQ-010, REQ-012</td></tr>
+<tr><td>SOW-050 Read tools before writes/bash</td><td>DEL-06-02-REQ-007, REQ-008, REQ-011, REQ-013</td></tr>
+<tr><td>OBJ-005 Tool governance objective</td><td>DEL-06-02-REQ-001 through REQ-013</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — For identical resolved runtime context and requested registered tool set, the resolver produces stable ordered SDK and MCP exposure; unknown names yield structured validation errors before SDK request construction; and read-first or readOnly posture excludes or hard-denies write, edit, bash, and network-capable tools.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-06-02-sdk-read-tool-surface-and-tool-validation">CLM-016 — Procedure: DEL-06-02 SDK Read Tool Surface and Tool Validation</h3>
+<h4 id="procedure-del-06-02-sdk-read-tool-surface-and-tool-validation">Procedure: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-06-02 SDK read tool-surface resolver and validation evidence. It is written for the deliverable artifact, not as an end-user operation runbook.</p>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted DEL-06-02 scope and source references</td><td>Available in <code>_CONTEXT.md</code> and <code>_REFERENCES.md</code></td></tr>
+<tr><td>Tool-surface vocabulary</td><td>Available in <code>docs/TYPES.md</code> Section 8</td></tr>
+<tr><td>Binding permission/tool/MCP invariants</td><td>Available in <code>docs/CONTRACT.md</code> Section 1.6</td></tr>
+<tr><td>SDK and MCP tool naming specification</td><td>Available in <code>docs/SPEC.md</code> Section 14</td></tr>
+<tr><td>Mode and hook context</td><td>Available in <code>docs/SPEC.md</code> Section 15</td></tr>
+<tr><td>Roadmap sequencing for R2/R3</td><td>Available in <code>docs/PLAN.md</code>; <code>docs/PRD.md</code> is current and MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Declared upstream dependencies</td><td>TBD - <code>_DEPENDENCIES.md</code> lists no accepted upstream edges yet</td></tr>
+<tr><td>Exact implementation file paths</td><td>TBD</td></tr>
+<tr><td>Exact test fixture paths</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Establish the accepted tool-name registry.</p>
+<ul>
+<li>- Include SDK built-in candidates from <code>docs/SPEC.md</code> Section 14.1: <code>Read</code>, <code>LS</code>, <code>Glob</code>, <code>Grep</code>, <code>Write</code>, <code>Edit</code>, and <code>Bash</code> where available.</li>
+<li>- Include accepted Chirality MCP names from <code>docs/SPEC.md</code> Section 14.2 and <code>docs/TYPES.md</code> Section 8.4.</li>
+<li>- Do not introduce aliases or remote/plugin tool names without an accepted source update.</li>
+</ul>
+<p>2. Define the resolver input and output.</p>
+<ul>
+<li>- Input should include resolved runtime options, especially <code>opts.tools</code>, plus context needed for deterministic ordering and policy filtering.</li>
+<li>- Keep the exact interface shape TBD until the runtime owner assigns the object or function boundary carrying <code>opts.tools</code>, session, persona, mode, SDK version, MCP server set, and permission policy. (P3: F-001)</li>
+<li>- Output should identify SDK built-ins and Chirality MCP tools in the form required by SDK options/MCP configuration.</li>
+<li>- Keep SDK-specific values as adapter metadata, not public Chirality contract terms.</li>
+</ul>
+<p>3. Validate requested names.</p>
+<ul>
+<li>- For each <code>opts.tools</code> entry, resolve against the accepted registry.</li>
+<li>- If a name is unknown, produce a structured validation error and stop before SDK request construction.</li>
+<li>- Keep the exact structured validation error type and fixture assertion shape TBD until the implementation contract is named. (P3: C-002)</li>
+<li>- Ensure unknown names are not present in emitted SDK options or model context.</li>
+</ul>
+<p>4. Apply read-first sequencing.</p>
+<ul>
+<li>- Permit initial exposure of SDK read candidates (<code>Read</code>, <code>LS</code>, <code>Glob</code>, <code>Grep</code>) where available.</li>
+<li>- Permit initial exposure of Chirality read MCP tools such as status read, dependency read, scope scan, and scaffold preview/dry-run where supported by registry policy.</li>
+<li>- Exclude or deny <code>Write</code>, <code>Edit</code>, and <code>Bash</code> until later write/bash governance phases activate them.</li>
+</ul>
+<p>5. Preserve permission policy boundaries.</p>
+<ul>
+<li>- Do not treat <code>allowedTools</code> alone as restriction.</li>
+<li>- Hand the resolved surface to capability policy with explicit hard-deny precedence, disallowed tools, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> posture as applicable.</li>
+<li>- Ensure implementation availability does not override policy filtering.</li>
+</ul>
+<p>6. Normalize deterministic ordering.</p>
+<ul>
+<li>- Sort or otherwise canonicalize the final visible tool surface after validation and filtering.</li>
+<li>- Use stable inputs: session, persona, mode, option set, SDK version, MCP server set, and permission policy.</li>
+<li>- Record safe metadata or fingerprints when required by the runtime contract. Exact metadata path: TBD.</li>
+</ul>
+<p>7. Add unknown-tool tests.</p>
+<ul>
+<li>- Verify unknown names produce structured validation errors.</li>
+<li>- Verify unknown names are absent from SDK options and model context.</li>
+<li>- Include at least one unknown SDK-like name and one unknown <code>mcp__chirality__*</code> name.</li>
+</ul>
+<p>8. Add deterministic ordering fixtures.</p>
+<ul>
+<li>- Feed the same set of tools in varied input orders.</li>
+<li>- Assert stable normalized output for identical context.</li>
+<li>- Add fixture coverage for mixed SDK built-ins and Chirality MCP names.</li>
+</ul>
+<p>9. Add read-first sequencing tests.</p>
+<ul>
+<li>- Verify read candidates resolve in the initial surface.</li>
+<li>- Verify write/edit/bash do not appear or are hard-denied in read-first/read-only posture.</li>
+<li>- Verify <code>allowedTools</code> cannot cause a denied or unsupported tool to execute.</li>
+</ul>
+<p>10. Record residual gaps.</p>
+<ul>
+<li>- Keep exact implementation and fixture paths as <code>TBD</code> until assigned.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Registry validation</td><td>Only registered SDK built-ins and accepted <code>mcp__chirality__*</code> names resolve.</td></tr>
+<tr><td>Unknown-tool behavior</td><td>Unknown names produce structured validation errors and are not passed to the SDK.</td></tr>
+<tr><td>Determinism</td><td>Same context and tool set produce stable output ordering and identifiers.</td></tr>
+<tr><td>Read-first sequencing</td><td>Initial surface contains read tools only; write/edit/bash are excluded or hard-denied.</td></tr>
+<tr><td>Permission boundary</td><td><code>allowedTools</code> does not restrict by itself and cannot bypass deny policy.</td></tr>
+<tr><td>Implementation-vs-exposure</td><td>SDK/tool implementation availability does not imply model exposure.</td></tr>
+<tr><td>MCP parity</td><td>Chirality MCP names pass through the same surface and permission path as SDK built-ins.</td></tr>
+<tr><td>PRD warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Tool resolver implementation path: TBD.</li>
+<li>- SDK built-in and Chirality MCP registry path: TBD.</li>
+<li>- Structured validation error contract: TBD. (P3: C-002)</li>
+<li>- Unknown-tool test path: TBD. (P3: F-002)</li>
+<li>- Deterministic ordering fixture path: TBD. (P3: F-002)</li>
+<li>- Read-first sequencing test path: TBD. (P3: F-002)</li>
+<li>- Safe metadata or boot-fingerprint path for SDK names, versions, and MCP identifiers: TBD. (P3: E-001)</li>
+<li>- Trace package tying resolver, registry, error contract, fixtures, sequencing tests, and PRD warning note to implementation evidence: TBD. (P3: X-001)</li>
+<li>- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (P3: A-001, D-002, E-002) (reconciled under D-APP-38).</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Run unit and fixture tests for registered and unknown names, permuted input ordering, implementation-versus-exposure separation, and read-first or readOnly deny behavior; inspect safe runtime metadata or boot fingerprints for stable tool and MCP identifiers.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-06-02-sdk-read-tool-surface-and-tool-validation">CLM-022 — Guidance: DEL-06-02 SDK Read Tool Surface and Tool Validation</h3>
+<h4 id="guidance-del-06-02-sdk-read-tool-surface-and-tool-validation">Guidance: DEL-06-02 SDK Read Tool Surface and Tool Validation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-06-02 exists to make <code>opts.tools</code> meaningful without letting SDK defaults or tool implementation availability define Chirality&#x27;s runtime authority. It is the read-first tool-surface slice of PKG-06: it validates requested names, normalizes deterministic exposure, and hands the resulting surface to permission policy before model execution.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06; <code>docs/CONTRACT.md</code> Section 1.6; <code>docs/SPEC.md</code> Section 14; <code>docs/PRD.md</code> Section 8.13 with MATCH status. (reconciled under D-APP-38).</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Resolve before request construction. Tool names should be validated and normalized before SDK options or model context are built. Sources: decomposition SOW-047; <code>docs/PRD.md</code> FR-078, MATCH status. (reconciled under D-APP-38).</p>
+<p>2. Unknown is an error, not a fallback. Unknown tool names should produce structured validation errors rather than being silently passed through. Source: <code>docs/SPEC.md</code> Section 14.3.</p>
+<p>3. Determinism is part of the contract. Stable inputs should produce stable tool ordering, names, MCP server IDs, and allow/deny lists. Sources: decomposition SOW-049; <code>docs/CONTRACT.md</code> Section 1.6 K-TOOL-1.</p>
+<p>4. Read tools come first. Initial exposure should be SDK read tools plus Chirality read MCP tools; write/edit/bash wait for later governance phases. Sources: decomposition SOW-050; <code>docs/PRD.md</code> FR-082, MATCH status. (reconciled under D-APP-38).</p>
+<p>5. Exposure is separate from implementation. A tool being implemented or available in the SDK does not mean it belongs in model context. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-TOOL-2.</p>
+<p>6. <code>allowedTools</code> is not a safety boundary. Treat it as SDK posture/auto-approval input only; restriction still requires deny rules, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code>. Sources: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3.</p>
+<p>7. MCP is not a bypass. Chirality MCP names are transport exposure for deterministic operations, not a path around policy. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1.</p>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<h3 id="clm-026-resolver-shape">CLM-026 — Resolver Shape</h3>
+<h6 id="resolver-shape">Resolver Shape</h6>
+<p>The resolver should be small and auditable:</p>
+<table><tbody>
+<tr><td>Concern</td><td>Guidance</td></tr>
+<tr><td>Registry ownership</td><td>Keep SDK built-in names and Chirality MCP names in an explicit registry or catalog. Exact path: TBD.</td></tr>
+<tr><td>Alias policy</td><td>Avoid implicit aliases unless a source file defines them. Current sources name SDK candidates and <code>mcp__chirality__*</code> names directly.</td></tr>
+<tr><td>Error shape</td><td>Return structured validation errors for unknown names. Exact error type: TBD.</td></tr>
+<tr><td>Ordering</td><td>Sort or otherwise normalize deterministically after validation and policy filtering.</td></tr>
+<tr><td>Output</td><td>Emit SDK-facing names and MCP server/tool identifiers as adapter metadata, not public product semantics.</td></tr>
+</tbody></table>
+<h3 id="clm-027-read-first-surface">CLM-027 — Read-First Surface</h3>
+<h6 id="read-first-surface">Read-First Surface</h6>
+<p>Initial read candidates are <code>Read</code>, <code>LS</code>, <code>Glob</code>, and <code>Grep</code> where available, plus Chirality read MCP tools such as status read, dependency read, scope scan, and scaffold preview/dry-run. Do not use this deliverable to expose <code>Write</code>, <code>Edit</code>, or <code>Bash</code>; those require later hooks, path policy, output storage, and audit behavior.</p>
+<h3 id="clm-028-relationship-to-adjacent-deliverables">CLM-028 — Relationship to Adjacent Deliverables</h3>
+<h6 id="relationship-to-adjacent-deliverables">Relationship to Adjacent Deliverables</h6>
+<table><tbody>
+<tr><td>Adjacent deliverable</td><td>Interface point</td></tr>
+<tr><td>DEL-06-01</td><td>Provides capability policy with explicit hard-deny precedence and mode policy that this resolver must consume or preserve.</td></tr>
+<tr><td>DEL-06-03</td><td>Provides Chirality MCP read tool definitions that this resolver registers or references.</td></tr>
+<tr><td>DEL-06-04</td><td>Provides write/edit hooks and path policy needed before powerful write tools can be exposed.</td></tr>
+<tr><td>DEL-06-05</td><td>Provides bash governance needed before <code>Bash</code> can be exposed.</td></tr>
+<tr><td>DEL-05-05</td><td>Provides tool result budget/artifact policy referenced by later tool-result handling.</td></tr>
+</tbody></table>
+<h3 id="clm-029-prd-hash-status">CLM-029 — PRD Hash Status</h3>
+<h6 id="prd-hash-status">PRD Hash Status</h6>
+<p><code>docs/PRD.md</code> is listed as MATCH in <code>_REFERENCES.md</code>. Its R2/Section 8.13 content aligns with matching SPEC, CONTRACT, TYPES, PLAN, and decomposition slices used here, but PRD-only implementation details should be reviewed after source-state reconciliation. (reconciled under D-APP-38).</p>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h3 id="clm-030-terminology-normalization">CLM-030 — Terminology Normalization</h3>
+<h6 id="terminology-normalization">Terminology Normalization</h6>
+<p>Use the following terms distinctly:</p>
+<table><tbody>
+<tr><td>Term</td><td>Use</td></tr>
+<tr><td>read-first</td><td>Sequencing posture: read tools are enabled before write/edit/bash capability.</td></tr>
+<tr><td>read-only</td><td>Capability class: tools that do not write, shell out, or perform network-capable side effects.</td></tr>
+<tr><td><code>readOnly</code></td><td>Runtime mode token from the permission vocabulary.</td></tr>
+</tbody></table>
+<p>This normalization preserves the difference between staged rollout, tool capability, and runtime mode policy. (P3: B-002)</p>
+<h3 id="clm-031-trade-offs">CLM-031 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Omit denied tools vs include and deny at call time</td><td>Prefer omission where possible to reduce context and accidental attempts, but never rely on omission alone; runtime denial must still hold.</td></tr>
+<tr><td>Strict registry vs permissive passthrough</td><td>Use strict registry behavior. Passthrough conflicts with SOW-047 and makes unknown tool names hard to audit.</td></tr>
+<tr><td>Resolver owns permission vs resolver consumes permission</td><td>Keep the resolver focused on validation and deterministic exposure. Capability-forward policy with explicit hard-deny precedence semantics belong to permission policy, but resolver output must not bypass it.</td></tr>
+<tr><td>SDK-specific names vs Chirality contracts</td><td>SDK names are adapter metadata. Public runtime contracts and event schemas should stay Chirality-owned.</td></tr>
+<tr><td>Read convenience vs staged governance</td><td>Exposing read tools first is useful, but it must not become a back door to write/bash or remote tool expansion.</td></tr>
+</tbody></table>
+<h3 id="clm-032-examples">CLM-032 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected result</td></tr>
+<tr><td><code>opts.tools</code> contains <code>Read</code>, <code>Grep</code>, and <code>mcp__chirality__status_read</code> in read-first mode</td><td>Resolver accepts registered names and emits deterministic SDK/MCP surface order, subject to permission filtering.</td></tr>
+<tr><td><code>opts.tools</code> contains <code>Read</code> and <code>UnknownSearch</code></td><td>Resolver returns a structured validation error for <code>UnknownSearch</code>; unknown name is not sent to the SDK.</td></tr>
+<tr><td>SDK supports <code>Write</code>, but current mode is read-first/read-only</td><td>Resolver excludes or marks <code>Write</code> denied according to policy; implementation availability does not imply exposure.</td></tr>
+<tr><td><code>allowedTools</code> includes a tool that Chirality policy denies</td><td>Final exposed/executable surface respects deny policy; <code>allowedTools</code> does not bypass restriction.</td></tr>
+<tr><td>A new <code>mcp__chirality__domain_*</code> name appears before governed domain amendment</td><td>Treat as unsupported/TBD unless accepted source updates authorize future domain tools.</td></tr>
+</tbody></table>
+<h3 id="clm-033-conflict-table-for-human-ruling">CLM-033 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>TBD</td><td>No direct source conflict identified during P1/P2. PRD has a MATCH source state.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> sections used above</td><td>All PRD-cited requirements and guidance</td><td>Treat PRD as a current MATCH source under the reconciled D-APP-38 source state.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-034-d-app-56-roster-clarification-2026-07-12">CLM-034 — D-APP-56 roster clarification (2026-07-12)</h3>
+<h5 id="d-app-56-roster-clarification-2026-07-12">D-APP-56 roster clarification (2026-07-12)</h5>
+<p>R4-P27 reconciles the former unsupported/TBD domain-tool roster wording: PKG-10 owns the ruled domain-profile registry and proposal-tool roster. DEL-06-02 remains the SDK read-tool and validation owner and does not duplicate that ownership.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-047 SOW-049 SOW-050 OBJ-005</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

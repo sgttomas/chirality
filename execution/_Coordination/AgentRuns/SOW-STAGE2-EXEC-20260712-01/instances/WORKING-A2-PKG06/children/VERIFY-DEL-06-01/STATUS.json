@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "instance_id": "VERIFY-DEL-06-01",
+  "parent_instance_id": "WORKING-A2-PKG06",
+  "status": "PASS",
+  "terminal": true,
+  "verdict": "PASS_UNCHANGED",
+  "candidate_sha256": "083c90fda686a7ecc53e6b1b361872341c01da11da64c41a789178b06afa807a",
+  "mapping_rows": 33,
+  "source_lines": 341,
+  "schema_mechanical": "PASS",
+  "project_content_authority": "PASS",
+  "preservation_containment": "PASS",
+  "execution_substrate": "PASS",
+  "candidate_repaired": false,
+  "blockers": [],
+  "rerun_required": false,
+  "updated_at": "2026-07-13T14:13:50-06:00"
+}

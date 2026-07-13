@@ -1,0 +1,49 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A2-PKG06",
+  "child_instance_id": "VERIFY-DEL-06-05",
+  "agent": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "VERIFY",
+  "terminal": true,
+  "status": "PASS",
+  "verdict": "PASS_UNCHANGED",
+  "completed_at": "2026-07-13T14:25:46-06:00",
+  "candidate": {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG06/DEL-06-05/ScopeOfWork.md",
+    "sha256_before": "fbfc8b759f12c725abaf36f0fdb86cfd965d19248d77385142b75073df4a0bc7",
+    "sha256_after": "fbfc8b759f12c725abaf36f0fdb86cfd965d19248d77385142b75073df4a0bc7",
+    "repaired": false
+  },
+  "authority": {
+    "decomposition_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4",
+    "scope_refs": ["SOW-062"],
+    "objective_refs": ["OBJ-005"],
+    "format_authority_ref": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "source_state": "IN_PROGRESS"
+  },
+  "metrics": {
+    "mappings": 30,
+    "source_lines": 332,
+    "acceptance_criteria": 1,
+    "dependency_rows": 8,
+    "parity_issues": 0
+  },
+  "verdicts": {
+    "schema": "PASS",
+    "content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS",
+    "semantic_additions": "PASS",
+    "containment": "PASS",
+    "negative_partial": "PASS_FAIL_CLOSED",
+    "negative_unauthorized_dual": "PASS_FAIL_CLOSED"
+  },
+  "rerun_requirements": [],
+  "blockers": [],
+  "candidate_state": "DERIVATIVE_MIGRATION_DUAL_ONLY",
+  "integration_authorized": false,
+  "manifest": "MANIFEST.tsv"
+}
+

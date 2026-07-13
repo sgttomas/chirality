@@ -1,0 +1,21 @@
+{
+  "agent_role": "TASK",
+  "blockers": [],
+  "candidate_path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG05/DEL-05-05/ScopeOfWork.md",
+  "candidate_sha256": "c79ebad285c9a7ec0fb53b890c98794f6ac8f2a696cb7d08fea031ff577740b9",
+  "containment_verdict": "PASS",
+  "deliverable_id": "DEL-05-05",
+  "instance_id": "VERIFY-DEL-05-05",
+  "manifest": "COMPLETE_SELF_EXCLUDING",
+  "mapping_count": 32,
+  "preservation_verdict": "PASS",
+  "project_content_authority_verdict": "PASS",
+  "reruns_required": [],
+  "schema_mechanical_verdict": "PASS",
+  "source_line_count": 314,
+  "status": "PASS",
+  "substrate_verdict": "PASS",
+  "terminal": true,
+  "verifier_disposition": "PASS_UNCHANGED",
+  "waivers": []
+}

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="5ee2edf0f3b734a2572485256a3d9a8731f04b9385e37fc46361c22401f54449">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>5ee2edf0f3b734a2572485256a3d9a8731f04b9385e37fc46361c22401f54449</code>.</p>
+<h1 id="scope-of-work-del-05-02">Scope of Work — DEL-05-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-05-02</code> in service of project scope [SOW-014, SOW-015, SOW-039] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A provider-neutral HarnessEvent schema and append-only JSONL persistence surface that records accepted turns, ordered runtime events, and durable terminal outcomes for the declared project scope and package objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-02-harnessevent-schema-and-append-only-jsonl">CLM-001 — Datasheet: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h3>
+<h4 id="datasheet-del-05-02-harnessevent-schema-and-append-only-jsonl">Datasheet: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-05-02</td></tr>
+<tr><td>DeliverableName</td><td>HarnessEvent Schema and Append-Only JSONL</td></tr>
+<tr><td>PackageID</td><td>PKG-05</td></tr>
+<tr><td>PackageName</td><td>Session Audit, Replay, and Tool Result Records</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>ScopeItems</td><td>SOW-014, SOW-015, SOW-039</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-003</td></tr>
+<tr><td>AnticipatedArtifacts</td><td>Event schema; JSONL writer; accepted-turn and terminal-event tests</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Runtime audit mirror path</td><td><code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> under the canonical vNext session layout</td><td><code>docs/SPEC.md</code> Section 8.2, 8.4; <code>docs/CONTRACT.md</code> K-EVENT-4</td></tr>
+<tr><td>Event record type</td><td><code>HarnessEvent</code></td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Schema version</td><td><code>schemaVersion: 1</code></td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Required fields</td><td><code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, <code>timestamp</code>, <code>type</code>, <code>data</code></td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Optional fields</td><td><code>turnId</code>, <code>parentEventId</code></td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Data payload</td><td><code>Record&lt;string, unknown&gt;</code>; payload contents are event-type specific and must avoid secrets</td><td><code>docs/SPEC.md</code> Section 9.1, 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+<tr><td>Initial event categories</td><td><code>session.created</code>, <code>session.resumed</code>, <code>turn.accepted</code>, <code>turn.started</code>, <code>sdk.system.init</code>, <code>model.request.started</code>, <code>model.delta</code>, <code>model.completed</code>, <code>turn.completed</code>, <code>turn.failed</code>, <code>turn.cancelled</code></td><td><code>docs/SPEC.md</code> Section 9.3; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Later event categories</td><td>Tool, hook, compaction, subagent, and SDK mirror events listed by SPEC/TYPES</td><td><code>docs/SPEC.md</code> Section 9.4; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Storage format</td><td>Append-only newline-delimited JSON</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>Ordering rule</td><td>JSONL writes append in write sequence</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>Replay tolerance</td><td>Replay ignores malformed trailing lines and surfaces diagnostics</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>Browser-event separation</td><td>Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s are separate contracts</td><td><code>docs/CONTRACT.md</code> K-EVENT-1; <code>docs/PRD.md</code> FR-074 (MATCH source status) — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Accepted-turn durability</td><td>Persist <code>turn.accepted</code> before SDK/model execution starts</td><td><code>docs/SPEC.md</code> Section 10.1; <code>docs/CONTRACT.md</code> K-EVENT-2</td></tr>
+<tr><td>Terminal durability</td><td>Every accepted turn ends with durable success, failure, cancellation, or interruption state</td><td><code>docs/CONTRACT.md</code> K-EVENT-3; decomposition SOW-015</td></tr>
+<tr><td>Canonicality</td><td>Chirality <code>events.jsonl</code> is the product-owned runtime audit mirror; SDK transcripts are secondary unless imported into <code>HarnessEvent</code> form</td><td><code>docs/SPEC.md</code> Section 8.4; <code>docs/DIRECTIVE.md</code> Section 2.3</td></tr>
+<tr><td>Secret handling</td><td>Secrets and API keys must not be stored in runtime event payloads, logs, provider errors, or tool artifacts</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6, K-KEY-1</td></tr>
+<tr><td>Large payload handling</td><td>Large payloads are stored as artifacts and referenced by path</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>Event evolution</td><td>Backward-compatible or explicitly versioned schema evolution</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>PRD source state</td><td><code>docs/PRD.md</code> is accessible but marked <code>MATCH</code> in <code>_REFERENCES.md</code>; PRD-derived items are used only where aligned with matching SPEC/TYPES/CONTRACT evidence</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Artifact</td><td>Construction Target</td><td>Source</td></tr>
+<tr><td>Event schema</td><td>Define <code>HarnessEvent</code> type target with stable versioned fields and event categories</td><td><code>docs/SPEC.md</code> Section 9.1-9.4; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>JSONL writer</td><td>Append newline-delimited event records in write sequence; ensure unique event IDs and no secret payloads</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>Replay reader support</td><td>Ignore malformed trailing lines while preserving valid prior events and surfacing diagnostics</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>Accepted-turn test</td><td>Verify <code>turn.accepted</code> exists before model/SDK execution begins</td><td><code>docs/CONTRACT.md</code> K-EVENT-2; decomposition SOW-014</td></tr>
+<tr><td>Terminal-event test</td><td>Verify accepted turns persist terminal success/failure/cancellation/interruption outcome</td><td><code>docs/CONTRACT.md</code> K-EVENT-3; decomposition SOW-015</td></tr>
+<tr><td>UI/runtime separation test</td><td>Verify browser <code>UIEvent</code> contracts remain separate from persisted <code>HarnessEvent</code>s</td><td><code>docs/CONTRACT.md</code> K-EVENT-1</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3, governance principles</td><td>Runtime event authority and professional-boundary context</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code> K-EVENT, K-ENGINE, K-KEY invariants</td><td>Binding event/storage/redaction constraints</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code> Sections 8.2-8.4, 9, 10.1</td><td>Canonical layout, event schema, JSONL rules, runtime contract responsibilities</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code> Section 7.3</td><td><code>HarnessEvent</code> type target and event categories</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code> R1</td><td>Sequencing context for SDK adoption and session events</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code> Sections 8.12, 9.4, FR-072-FR-076</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>REF-007</td><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context only</td></tr>
+</tbody></table>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-124 replaces provider-shaped kit wording with the corpus-current provider-neutral HarnessEvent names. UPD-125 records DEP-05-02-007 retired and the 11 ACTIVE / 1 RETIRED register state.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-05-02-harnessevent-schema-and-append-only-jsonl">CLM-008 — Specification: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h3>
+<h4 id="specification-del-05-02-harnessevent-schema-and-append-only-jsonl">Specification: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the product-owned <code>HarnessEvent</code> schema and append-only JSONL persistence surface for Chirality runtime audit records.</p>
+<p>In scope:</p>
+<ul>
+<li>- Persist accepted user input as <code>turn.accepted</code> before SDK/model execution begins.</li>
+<li>- Persist runtime events and terminal turn outcomes as ordered append-only JSONL.</li>
+<li>- Define event schema fields, event category baseline, writer rules, replay tolerance, and tests for accepted-turn and terminal-event durability.</li>
+<li>- Preserve the separation between compact browser <code>UIEvent</code>s and richer persisted <code>HarnessEvent</code>s.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Tool permission semantics, except where event records must support future permission/tool event categories.</li>
+<li>- Redaction implementation details owned by DEL-05-03, except this deliverable must not permit secrets in event payloads.</li>
+<li>- Runtime replay/transcript view implementation owned by DEL-05-04, except this deliverable must provide replay-safe JSONL semantics.</li>
+<li>- Tool-result artifact budget/storage implementation owned by DEL-05-05, except this deliverable must reference artifacts for large payloads.</li>
+<li>- SDK transcript placement and migration details owned by adjacent session-layout/linkage deliverables, except Chirality <code>events.jsonl</code> remains canonical.</li>
+</ul>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-05-02-RQ-001</td><td>The event record type shall be named <code>HarnessEvent</code> and include <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code>.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>DEL-05-02-RQ-002</td><td><code>HarnessEvent</code> may include <code>turnId</code> and <code>parentEventId</code> when applicable.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>DEL-05-02-RQ-003</td><td>The initial schema version shall be <code>1</code>.</td><td><code>docs/SPEC.md</code> Section 9.1</td></tr>
+<tr><td>DEL-05-02-RQ-004</td><td>Event IDs shall be unique per event.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-05-02-RQ-005</td><td>Session event storage shall append newline-delimited JSON records in write sequence.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/PRD.md</code> FR-073 (MATCH source status) — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-05-02-RQ-006</td><td><code>turn.accepted</code> shall be persisted before SDK/model execution starts.</td><td><code>docs/SPEC.md</code> Section 10.1; <code>docs/CONTRACT.md</code> K-EVENT-2</td></tr>
+<tr><td>DEL-05-02-RQ-007</td><td>Every accepted turn shall persist a durable terminal success, failure, cancellation, or interruption outcome.</td><td><code>docs/CONTRACT.md</code> K-EVENT-3; decomposition SOW-015</td></tr>
+<tr><td>DEL-05-02-RQ-008</td><td>Replay shall ignore malformed trailing JSONL lines, preserve valid prior records, and surface diagnostics.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>DEL-05-02-RQ-009</td><td>Event payloads shall not store secrets or API keys.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6, K-KEY-1</td></tr>
+<tr><td>DEL-05-02-RQ-010</td><td>Large event payloads shall be stored as artifacts and referenced by path.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-05-02-RQ-011</td><td>Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s shall remain separate contracts.</td><td><code>docs/CONTRACT.md</code> K-EVENT-1</td></tr>
+<tr><td>DEL-05-02-RQ-012</td><td>Core runtime APIs, events, tests, and records shall use Chirality terms; provider/SDK-specific terms may appear only as adapter metadata.</td><td><code>docs/CONTRACT.md</code> K-CORE-1, K-ENGINE-4</td></tr>
+<tr><td>DEL-05-02-RQ-013</td><td>Event schema evolution shall be backward-compatible or explicitly versioned.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-05-02-RQ-014</td><td>The canonical runtime audit mirror shall be <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> or an explicitly configured Chirality-controlled session path.</td><td><code>docs/DIRECTIVE.md</code> Section 2.3; <code>docs/SPEC.md</code> Section 8.2, 8.4</td></tr>
+<tr><td>DEL-05-02-RQ-015</td><td>Event schema fixtures shall keep later tool, hook, compaction, subagent, and SDK mirror event categories representable without asserting payload-specific semantics before their owning deliverables mature.</td><td><code>docs/SPEC.md</code> Section 9.4; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Chirality <code>HarnessEvent</code> type target</td><td>Governs the event record shape and event category vocabulary</td><td><code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>SPEC Runtime Event Schema</td><td>Governs JSONL append rules, event IDs, replay tolerance, secret exclusion, large payload references, and versioning</td><td><code>docs/SPEC.md</code> Section 9</td></tr>
+<tr><td>CONTRACT K-EVENT invariants</td><td>Binding constraints for UI/runtime separation, accepted-turn persistence, terminal durability, canonical audit mirror, malformed-tail replay, redaction, and tool-result payload handling</td><td><code>docs/CONTRACT.md</code> K-EVENT-1 through K-EVENT-7</td></tr>
+<tr><td>Runtime Engine Contract</td><td>Requires runtime boundary to persist accepted turns and terminal outcomes while yielding UI events</td><td><code>docs/SPEC.md</code> Section 10.1</td></tr>
+<tr><td>PRD runtime requirements</td><td>Product requirements FR-072 through FR-076 and related SDK mapping requirements; use with hash warning</td><td><code>docs/PRD.md</code> Section 9 / FR table; <code>_REFERENCES.md</code> REF-006 MATCH — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification Approach</td></tr>
+<tr><td>DEL-05-02-RQ-001 through RQ-004</td><td>Event schema unit tests and serialization fixtures verify required/optional fields, <code>schemaVersion: 1</code>, and unique <code>eventId</code> behavior.</td></tr>
+<tr><td>DEL-05-02-RQ-005</td><td>JSONL writer tests verify append-only newline-delimited writes and write-sequence ordering.</td></tr>
+<tr><td>DEL-05-02-RQ-006</td><td>Accepted-turn lifecycle test verifies <code>turn.accepted</code> is written before the SDK/model request begins.</td></tr>
+<tr><td>DEL-05-02-RQ-007</td><td>Terminal-event tests cover success, failure, cancellation, and interruption outcomes.</td></tr>
+<tr><td>DEL-05-02-RQ-008</td><td>Replay tests include a malformed trailing line fixture and confirm valid prior records survive with diagnostics.</td></tr>
+<tr><td>DEL-05-02-RQ-009</td><td>Redaction/secret-safety tests or fixtures verify API keys and configured secrets are absent from event payloads. ASSUMPTION: detailed redaction helper tests are owned by DEL-05-03; exact helper or fixture contract remains TBD until that deliverable is accepted.</td></tr>
+<tr><td>DEL-05-02-RQ-010</td><td>Large-payload tests verify artifact references instead of inline oversized payloads. ASSUMPTION: storage thresholds are finalized by DEL-05-05; numeric threshold source remains TBD until that deliverable is accepted.</td></tr>
+<tr><td>DEL-05-02-RQ-011 through RQ-012</td><td>Mapper/API contract tests verify browser <code>UIEvent</code>s remain compact and SDK/provider terms do not leak into canonical event fields except adapter metadata.</td></tr>
+<tr><td>DEL-05-02-RQ-013</td><td>Compatibility tests verify older event fixtures replay after additive schema evolution, or require explicit version handling for breaking changes.</td></tr>
+<tr><td>DEL-05-02-RQ-014</td><td>Session layout tests verify <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> placement or configured Chirality-controlled override.</td></tr>
+<tr><td>DEL-05-02-RQ-015</td><td>Fixture coverage plan verifies later event category names can serialize and replay as versioned <code>HarnessEvent</code>s while category-specific payload schemas remain TBD until source or implementation acceptance.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required deliverable artifacts:</p>
+<ul>
+<li>- <code>event-schema.ts</code> or equivalent <code>HarnessEvent</code> type definition.</li>
+<li>- <code>session-events.ts</code> or equivalent append/replay JSONL API.</li>
+<li>- Serialization fixtures covering initial event categories.</li>
+<li>- Accepted-turn persistence test.</li>
+<li>- Terminal-event persistence test.</li>
+<li>- Malformed-tail replay test.</li>
+<li>- UI/runtime separation test.</li>
+<li>- Later-category fixture coverage plan for tool, hook, compaction, subagent, and SDK mirror event names, with payload-specific fixtures marked TBD until owning deliverables mature.</li>
+<li>- Redaction helper or fixture contract reference from DEL-05-03, currently TBD.</li>
+<li>- Source notes documenting the <code>docs/PRD.md</code> MATCH status if PRD text is used to justify implementation behavior not also present in matching sources. (reconciled under D-APP-38).</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The migrated contract preserves every line of the four legacy production documents and defines the accepted-turn, terminal-outcome, append-only JSONL, malformed-tail replay, UIEvent separation, and secret-exclusion expectations without changing lifecycle authority.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-05-02-harnessevent-schema-and-append-only-jsonl">CLM-014 — Procedure: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h3>
+<h4 id="procedure-del-05-02-harnessevent-schema-and-append-only-jsonl">Procedure: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define and verify the deliverable implementation for <code>HarnessEvent</code> schema and append-only JSONL runtime event storage. The procedure covers producing the event schema, writer/replay API, and tests required for accepted-turn and terminal-event durability.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Deliverable context: <code>_CONTEXT.md</code> for DEL-05-02.</li>
+<li>- Decomposition entry: <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code>, DEL-05-02 row.</li>
+<li>- Authoritative sources:</li>
+<li>- <code>docs/SPEC.md</code> Sections 8.2-8.4, 9, 10.1.</li>
+<li>- <code>docs/TYPES.md</code> Section 7.3.</li>
+<li>- <code>docs/CONTRACT.md</code> K-EVENT, K-CORE, K-ENGINE, K-KEY invariants.</li>
+<li>- <code>docs/DIRECTIVE.md</code> Section 2.3.</li>
+<li>- <code>docs/PRD.md</code> Sections 8.12, 9.4, FR-072-FR-076, with HASH_MISMATCH warning from <code>_REFERENCES.md</code>.</li>
+<li>- Declared upstream dependencies: TBD - no accepted dependency edges have been extracted yet.</li>
+<li>- Declared downstream dependencies: TBD - no accepted dependency edges have been extracted yet.</li>
+<li>- Extracted active dependency edges are recorded in <code>Dependencies.csv</code> and summarized in <code>_DEPENDENCIES.md</code>: upstream/interface or constraint edges to DEL-05-01, DEL-03-04, DEL-05-03, DEL-05-05, DEL-03-03, and DEL-04-03, plus downstream enablement of DEL-05-04. Treat these as accepted only to the maturity and satisfaction state recorded in the dependency register.</li>
+</ul>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the event storage location.</p>
+<ul>
+<li>- Use <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> under the canonical vNext session layout, unless a governed Chirality-controlled session root override applies.</li>
+<li>- Source: <code>docs/SPEC.md</code> Sections 8.2 and 8.4.</li>
+</ul>
+<p>2. Define the <code>HarnessEvent</code> schema.</p>
+<ul>
+<li>- Include <code>schemaVersion: 1</code>, <code>eventId</code>, <code>sessionId</code>, optional <code>turnId</code>, optional <code>parentEventId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code>.</li>
+<li>- Keep provider/SDK-specific names out of canonical fields except as adapter metadata.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3; <code>docs/CONTRACT.md</code> K-CORE-1 and K-ENGINE-4.</li>
+</ul>
+<p>3. Define the supported initial event categories.</p>
+<ul>
+<li>- Include the initial categories listed in SPEC/TYPES: session, accepted turn, turn started, SDK system init, model request/delta/completion, and terminal turn categories.</li>
+<li>- Leave later tool/hook/compaction/subagent categories representable without implementing unrelated deliverable behavior.</li>
+<li>- Source: <code>docs/SPEC.md</code> Sections 9.3 and 9.4; <code>docs/TYPES.md</code> Section 7.3.</li>
+</ul>
+<p>4. Implement or specify the append API.</p>
+<ul>
+<li>- Append one newline-delimited JSON event per write.</li>
+<li>- Preserve write-sequence ordering.</li>
+<li>- Ensure event IDs are unique.</li>
+<li>- Prevent secrets from being written into payloads.</li>
+<li>- Store large payloads as artifacts and reference them by path.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-6 and K-KEY-1.</li>
+</ul>
+<p>5. Implement or specify the replay/read API.</p>
+<ul>
+<li>- Parse valid prior JSONL records.</li>
+<li>- Ignore malformed trailing lines.</li>
+<li>- Surface diagnostics for malformed tail records.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5.</li>
+</ul>
+<p>6. Connect accepted-turn persistence to the runtime lifecycle.</p>
+<ul>
+<li>- Persist <code>turn.accepted</code> before SDK/model execution starts.</li>
+<li>- Treat this as a P0 audit boundary, not a UI-only event.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 10.1; <code>docs/CONTRACT.md</code> K-EVENT-2.</li>
+</ul>
+<p>7. Connect terminal-outcome persistence to the runtime lifecycle.</p>
+<ul>
+<li>- Persist a durable terminal event for success, failure, cancellation, or interruption after an accepted turn.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> K-EVENT-3; decomposition SOW-015.</li>
+</ul>
+<p>8. Preserve UI/runtime separation.</p>
+<ul>
+<li>- Keep browser SSE event names and compact <code>UIEvent</code> payloads separate from persisted <code>HarnessEvent</code> payloads.</li>
+<li>- Ensure SDK messages are mapped through an adapter rather than treated as the browser or persisted event contract.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> K-EVENT-1; <code>docs/PRD.md</code> Section 9.4 (HASH_MISMATCH source state).</li>
+</ul>
+<p>9. Document unresolved implementation choices.</p>
+<ul>
+<li>- Mark event payload schemas by type as TBD unless already supported by source or accepted implementation, including payload-specific schemas for later tool, hook, compaction, subagent, and SDK mirror categories.</li>
+<li>- Mark artifact threshold values as TBD unless owned and accepted by DEL-05-05.</li>
+<li>- Mark redaction mechanism details as TBD unless owned and accepted by DEL-05-03.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<ul>
+<li>- Schema test confirms required fields, optional fields, <code>schemaVersion: 1</code>, and event ID uniqueness.</li>
+<li>- Writer test confirms ordered append-only newline-delimited JSON.</li>
+<li>- Lifecycle test confirms <code>turn.accepted</code> is persisted before SDK/model execution.</li>
+<li>- Terminal tests confirm success, failure, cancellation, and interruption outcomes are persisted.</li>
+<li>- Replay test confirms malformed trailing JSONL does not discard prior valid events and does surface diagnostics.</li>
+<li>- Separation test confirms browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s remain separate contracts.</li>
+<li>- Secret-safety test confirms API keys and configured secrets are absent from event payload fixtures.</li>
+<li>- Later-category fixture plan confirms tool, hook, compaction, subagent, and SDK mirror event names remain serializable/replayable while category-specific payload schemas remain TBD.</li>
+<li>- Source-state check records that <code>docs/PRD.md</code> is HASH_MISMATCH if PRD text is used for verification expectations.</li>
+</ul>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> for DEL-05-02.</li>
+<li>- Event schema file or equivalent implementation artifact.</li>
+<li>- JSONL writer/replay implementation artifact.</li>
+<li>- Accepted-turn test fixture/results.</li>
+<li>- Terminal-event test fixture/results.</li>
+<li>- Malformed-tail replay fixture/results.</li>
+<li>- UI/runtime separation test fixture/results.</li>
+<li>- Dependency-edge register snapshot used for implementation handoff.</li>
+<li>- Later-category fixture coverage plan with TBD payload-schema slots.</li>
+<li>- DEL-05-03 redaction helper or fixture contract reference, currently TBD.</li>
+<li>- DEL-05-05 artifact threshold source, currently TBD.</li>
+<li>- TASK run record under <code>_run_records/</code>.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Verify source-marker parity, schema and identifier closure, then apply the legacy kit’s schema, writer, accepted-turn, terminal-outcome, malformed-tail replay, UI/runtime separation, and secret-safety verification methods.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-05-02-harnessevent-schema-and-append-only-jsonl">CLM-020 — Guidance: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h3>
+<h4 id="guidance-del-05-02-harnessevent-schema-and-append-only-jsonl">Guidance: DEL-05-02 HarnessEvent Schema and Append-Only JSONL</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-05-02 exists to make Chirality runtime work auditable through a product-owned event log. The core outcome is a stable, provider-neutral <code>HarnessEvent</code> schema and append-only JSONL writer that records accepted turns, runtime events, and terminal outcomes in <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code>.</p>
+<p>This deliverable supports OBJ-003: making accepted turns, SDK messages, terminal outcomes, tool activity, and replay auditable through Chirality-owned session records.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Chirality events are runtime audit records, not project approval records.</p>
+<p>Source: <code>docs/DIRECTIVE.md</code> Section 2.3.</p>
+<p>2. <code>events.jsonl</code> is canonical for Chirality runtime governance; SDK transcripts are secondary unless imported into <code>HarnessEvent</code> form.</p>
+<p>Source: <code>docs/SPEC.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-EVENT-4.</p>
+<p>3. Persist <code>turn.accepted</code> before calling the model/SDK so killed or interrupted turns leave recoverable evidence.</p>
+<p>Source: <code>docs/CONTRACT.md</code> K-EVENT-2; <code>docs/SPEC.md</code> Section 10.1.</p>
+<p>4. Every accepted turn should have a terminal persisted outcome so replay can distinguish success, failure, cancellation, and interruption.</p>
+<p>Source: <code>docs/CONTRACT.md</code> K-EVENT-3.</p>
+<p>5. Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s must stay separate. The browser stream stays compact; the runtime audit log may be richer and versioned.</p>
+<p>Source: <code>docs/CONTRACT.md</code> K-EVENT-1.</p>
+<p>6. Provider/SDK terms should be translated at adapter boundaries. Canonical event fields should remain Chirality-owned and provider-neutral.</p>
+<p>Source: <code>docs/CONTRACT.md</code> K-CORE-1 and K-ENGINE-4.</p>
+<p>7. Secret hygiene applies at the schema boundary. The event API should make it difficult to persist API keys, configured secrets, or unredacted sensitive data.</p>
+<p>Source: <code>docs/CONTRACT.md</code> K-EVENT-6 and K-KEY-1.</p>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- <code>docs/PRD.md</code> is marked <code>MATCH</code> in <code>_REFERENCES.md</code>. PRD requirements such as FR-072 through FR-076 align with matching SPEC/CONTRACT/TYPES sources, but PRD-only interpretations should remain provisional until the hash state is resolved. (reconciled under D-APP-38).</li>
+<li>- <code>turn.accepted</code> is part of this deliverable&#x27;s core slice; broader interrupt cleanup and lifecycle lock release are adjacent concerns owned by DEL-03-04.</li>
+<li>- Redaction is adjacent but not optional. DEL-05-02 should define the event API so redaction can be enforced by DEL-05-03 without schema churn.</li>
+<li>- Tool permission, hook, compaction, subagent, and SDK mirror categories are listed as later event categories in SPEC/TYPES. The initial implementation should not block those categories, but should avoid over-implementing behavior owned by later deliverables.</li>
+<li>- Malformed-tail tolerance matters because append-only JSONL can be interrupted mid-write. Replay should preserve valid prior records and surface diagnostics rather than failing the whole session.</li>
+<li>- Append-only JSONL is sufficient for interrupted-write recovery only when accepted-turn and terminal events are written in sequence and replay treats the final malformed line as diagnostic context rather than as authority over earlier valid records. This bounds recovery to reconstructing durable prior events; it does not approve project state or replace human gate evidence.</li>
+<li>- Large payloads should be artifact references, not inline event blobs. Thresholds and storage policy are deferred to DEL-05-05 unless already established by adjacent implementation.</li>
+</ul>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Direction</td></tr>
+<tr><td>Rich event payloads vs. stable replay</td><td>Prefer stable minimal required fields with event-type-specific <code>data</code>; keep schema evolution versioned or backward-compatible.</td></tr>
+<tr><td>SDK transcript richness vs. Chirality canonicality</td><td>Keep SDK transcripts linked as secondary artifacts; import only selected data into <code>HarnessEvent</code> when needed.</td></tr>
+<tr><td>Immediate category completeness vs. bounded slice</td><td>Implement the initial event categories required for accepted turns and terminal outcomes; leave later tool/hook/subagent semantics to their owning deliverables.</td></tr>
+<tr><td>Inline data vs. artifact references</td><td>Inline small safe data only; reference large or sensitive data through governed artifact metadata.</td></tr>
+<tr><td>PRD detail vs. hash status: MATCH</td><td>Use PRD only where corroborated by matching sources, or mark PRD-only details as TBD/ASSUMPTION. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Example <code>HarnessEvent</code> shape from <code>docs/SPEC.md</code> Section 9.1 and <code>docs/TYPES.md</code> Section 7.3:</p>
+<p>```ts</p>
+<p>type HarnessEvent = {</p>
+<p>schemaVersion: 1;</p>
+<p>eventId: string;</p>
+<p>sessionId: string;</p>
+<p>turnId?: string;</p>
+<p>parentEventId?: string;</p>
+<p>timestamp: string;</p>
+<p>type: string;</p>
+<p>data: Record&lt;string, unknown&gt;;</p>
+<p>};</p>
+<p>```</p>
+<p>Example event categories from matching SPEC/TYPES sources:</p>
+<ul>
+<li>- Initial: <code>session.created</code>, <code>session.resumed</code>, <code>turn.accepted</code>, <code>turn.started</code>, <code>sdk.system.init</code>, <code>model.request.started</code>, <code>model.delta</code>, <code>model.completed</code>, <code>turn.completed</code>, <code>turn.failed</code>, <code>turn.cancelled</code>.</li>
+<li>- Later: <code>tool.queued</code>, <code>tool.permission</code>, <code>tool.started</code>, <code>tool.progress</code>, <code>tool.completed</code>, <code>tool.failed</code>, <code>hook.started</code>, <code>hook.completed</code>, <code>context.compacted</code>, <code>subagent.started</code>, <code>subagent.completed</code>, <code>sdk.mirror.error</code>.</li>
+</ul>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source-content conflicts were identified during P1/P2 drafting.</p>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>SOURCE-WARN-001</td><td><code>docs/PRD.md</code> is listed as MATCH in <code>_REFERENCES.md</code>; PRD content aligns with matching SPEC/CONTRACT/TYPES slices used here but source state is not clean.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> Sections 8.12, 9.4, FR-072-FR-076</td><td>Datasheet References; Specification Standards/Requirements; Guidance Considerations</td><td>Use PRD only as corroborating context until reference hash is reconciled.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-027-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-027 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-124 replaces provider-shaped kit wording with the corpus-current provider-neutral HarnessEvent names. UPD-125 records DEP-05-02-007 retired and the 11 ACTIVE / 1 RETIRED register state.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-014 SOW-015 SOW-039 OBJ-003</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>
