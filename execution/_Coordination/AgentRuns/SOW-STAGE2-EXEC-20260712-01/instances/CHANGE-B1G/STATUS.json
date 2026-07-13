@@ -1,19 +1,43 @@
 {
   "instance_id": "CHANGE-B1G",
   "role": "CHANGE",
-  "status": "READY_FOR_REMOTE",
-  "terminal": false,
+  "status": "PASS",
+  "terminal": true,
   "parent": "SOW-STAGE2-EXEC-20260712-01",
   "node": "B1G",
   "brief_version": 1,
+  "depends_on": [
+    "ORCHESTRATOR-B1_PASS",
+    "RECON-B1_PASS",
+    "HUMAN_STEER_001"
+  ],
   "branch": "codex/sow-stage2-b1",
   "base_sha": "9349594530dc19e55baf9c2ef0b7eb4716f48a17",
-  "candidate_paths": 27,
+  "evidence_commit": "103b33dfa3af08ef1e0b41ec8bee8f37e46aca63",
+  "pr": 222,
+  "pr_url": "https://github.com/sgttomas/chirality/pull/222",
+  "merge_commit": "30dba0628cd5aa9856ac96dfdb5851d5b80b1340",
+  "merged_at": "2026-07-13T09:22:58Z",
+  "required_checks": {
+    "governance-harness / harness": "SUCCESS"
+  },
+  "remote_changed_paths": 28,
   "accepted_hashes": "17/17 PASS",
   "internal_p3_hashes": "6/6 PASS",
-  "row_equality": "154/154 PASS; zero delta",
+  "row_equality": "154/154 PASS; byte-equal; zero delta",
+  "synchronized_merge_refs": "local main = origin/main = remote main = 30dba0628cd5aa9856ac96dfdb5851d5b80b1340; divergence +0/-0",
+  "postmerge_evidence_paths": 3,
+  "postmerge_evidence_commit": "containing ordinary closeout commit",
   "blockers": [],
   "unknowns": [],
   "waivers": [],
-  "next_owner": "CHANGE-B1G remote integration"
+  "rollback": "revert merge and/or evidence closeout through new approved ordinary commits; no history rewrite or force push",
+  "rerun_if": [
+    "accepted or internal manifest hash changes",
+    "manager contract or row comparison changes",
+    "required check, PR, or merge identity changes",
+    "exact path inventory changes",
+    "postmerge handoff changes"
+  ],
+  "next_owner": "HELP_HUMAN for pilot release"
 }
