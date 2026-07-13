@@ -41,7 +41,7 @@ The PROPOSAL: pattern is the canonical recommendation format for deliverable-loc
 | `FocusDocs` | Limit analysis to named docs (e.g., `Specification.md,Guidance.md`) | all production docs |
 | `IncludeLensTags` | Add `Lens:` tags even when semantic lensing is not active | `false` |
 | `ProposalDepth` | `summary` (title + status only) or `full` (all fields) | `full` |
-| `ProductionFormat` | `LEGACY_FOUR_DOC` or authorized `SOW_V1_CANDIDATE` | `LEGACY_FOUR_DOC` |
+| `ProductionFormat` | resolver-selected `LEGACY_FOUR_DOC`, `SOW_V1`, or authorized `MIGRATION_DUAL` | resolver result |
 
 ## Tool usage
 

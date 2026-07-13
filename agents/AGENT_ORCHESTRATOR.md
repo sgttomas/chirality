@@ -128,12 +128,15 @@ The orchestrator must never “fill gaps” by inference. When it proposes candi
 
 Recommended lifecycle ownership (may vary by project):
 - **PREPARATION** may set `OPEN` when creating deliverable folders.
-- **`four-documents` skill (Pass 1+2)** may set `INITIALIZED` when drafts exist.
-- During Stage 1, `scope-of-work` is candidate-only and may run solely under a
-  committed path-scoped variance. It does not change lifecycle state and does
-  not replace the ratified four-document trigger.
+- **`scope-of-work`, `MODE=INIT`** is the new PROJECT/SOFTWARE production
+  initialization route and may support `INITIALIZED` only after validated
+  `SOW_V1` exists under the human-confirmed lifecycle policy.
+- **`four-documents`** remains compatibility-only for an existing complete
+  `LEGACY_FOUR_DOC`; it does not initialize new production or advance state.
 - **Semantic matrix generation** (`TASK + semantic-matrix-build`, Phase 2.3) produces the `_SEMANTIC.md` lens scaffold and may append `_STATUS.md` history, but must not advance the lifecycle state to `SEMANTIC_READY` unless the human-confirmed project policy explicitly makes semantic-matrix validation the readiness gate.
-- **Semantic enrichment completion** (commonly `four-documents` skill Pass 3 after `_SEMANTIC_LENSING.md`) may set `SEMANTIC_READY` when the semantic artifacts exist and have been applied.
+- **Semantic enrichment completion** (the selected production skill after
+  `_SEMANTIC_LENSING.md`) may set `SEMANTIC_READY` when the semantic artifacts
+  exist and the human-confirmed policy authorizes it.
 - Humans decide whether/when to set `IN_PROGRESS`, `CHECKING`, `ISSUED` (or delegate via a dedicated state manager).
 
 ---
@@ -293,16 +296,17 @@ skipped.
 #### Phase 2.2: Dispatch document drafting (Pass 1 + Pass 2)
 
 **Action (variant-routed):**
-- **PROJECT_DECOMP / SOFTWARE_DECOMP:** After human confirmation, dispatch TASK for each deliverable with:
-  - `TaskSkill: four-documents`
+- **PROJECT_DECOMP / SOFTWARE_DECOMP:** After human confirmation, dispatch TASK for each new deliverable with:
+  - `TaskSkill: scope-of-work`
   - `ScopePath: {DELIVERABLE_PATH}`
-  - `RUN_PASSES: P1_P2`
+  - `MODE: INIT`
   - `DECOMP_VARIANT: {variant}`
-  - If and only if the activation cites the committed Stage-1 variance, a
-    separate candidate dispatch may use `TaskSkill: scope-of-work`, the frozen
-    four-document source basis, `STATUS_POLICY: NO_STATUS_TOUCH`, and one
-    `ScopeOfWork.md` write target. Never infer this mode from file presence.
-  - The skill executes Pass 1 (draft four docs) and Pass 2 (cross-reference consistency) only. Pass 3 is NOT executed in this step (it runs in Phase 2.5 with `RUN_PASSES: P3_ONLY`).
+  - `STATUS_POLICY` and exact `ScopeOfWork.md` write target
+  - Existing `LEGACY_FOUR_DOC` maintenance may use `four-documents` only when
+    the resolver confirms a complete legacy-only contract; never infer mode
+    from a filename or create a new legacy kit.
+  - Conversion is a separate `MODE=CONVERT` isolated workflow with exact
+    authority, lossless mapping, status preservation, and atomic integration.
 - **DOMAIN_DECOMP:** After human confirmation, dispatch TASK for each Knowledge Type with:
   - `TaskSkill: domain-documents`
   - `ScopePath: {KTY_PATH}`
@@ -315,7 +319,8 @@ skipped.
   - The `domain-documents` skill does not use the semantic lensing pipeline; Phases 2.3, 2.4, and 2.5 are skipped for DOMAIN variants.
   - **Halt cadence:** halt-per-KTY by default (review the KTY's full KA set before the next dispatch). Relax to per-batch only after the first 2–3 KTYs prove the protocol clean end-to-end.
 
-See `skills/four-documents/SKILL.md` and `skills/domain-documents/SKILL.md` for the method contracts.
+See `skills/scope-of-work/SKILL.md`, the retained compatibility
+`skills/four-documents/SKILL.md`, and `skills/domain-documents/SKILL.md`.
 
 **Gate question:** “Pass 1+2 complete. Ready to generate semantic lenses (if using semantic lensing)?”
 
@@ -393,7 +398,7 @@ ExpectedOutputs:
 ```
 
 **Status policy:**
-- Default PROJECT/SOFTWARE setup pipeline policy: Phase 2.3 preserves the current lifecycle state. `_SEMANTIC.md` validation alone does not set `SEMANTIC_READY`; semantic readiness is normally advanced only after Phase 2.4 (`lens-register`) and Phase 2.5 (`four-documents` Pass 3) when semantic lensing has been applied.
+- Default PROJECT/SOFTWARE setup pipeline policy: Phase 2.3 preserves the current lifecycle state. `_SEMANTIC.md` validation alone does not set `SEMANTIC_READY`; semantic readiness is normally advanced only after Phase 2.4 (`lens-register`) and Phase 2.5 enrichment of the resolver-selected production contract.
 - If a project explicitly chooses semantic-matrix validation as the readiness gate, the TASK brief must say so directly by replacing `STATUS_POLICY` with `SET_SEMANTIC_READY_ON_AUDIT_PASS`, authorizing the exact `_STATUS.md` change, and listing `_STATUS.md` as an allowed write target. Do not silently rely on the skill default when project policy is ambiguous.
 
 **Required post-run review:**
@@ -434,16 +439,16 @@ See `skills/lens-register/SKILL.md` for the method contract.
 #### Phase 2.5: Dispatch document enrichment (Pass 3 only — apply semantic lensing)
 
 **Action (variant-routed):**
-- **PROJECT_DECOMP / SOFTWARE_DECOMP:** Dispatch TASK for each deliverable with:
-  - `TaskSkill: four-documents`
+- **PROJECT_DECOMP / SOFTWARE_DECOMP:** Dispatch TASK for each deliverable with
+  the skill selected by the resolver:
+  - `TaskSkill: scope-of-work` for `SOW_V1`, or `four-documents` only for
+    existing complete `LEGACY_FOUR_DOC`
   - `ScopePath: {DELIVERABLE_PATH}`
   - `RUN_PASSES: P3_ONLY`
   - `DECOMP_VARIANT: {variant}`
-  - Under an explicit candidate variance, target registered section/claim IDs
-    in `ScopeOfWork.md` through one integration owner; render HTML only as an
-    on-demand derivative after validation. The candidate pass remains
-    lifecycle-neutral.
-  - The skill applies `_SEMANTIC_LENSING.md` warranted enrichments and performs a final consistency sweep.
+  - For `SOW_V1`, target registered section/claim IDs in `ScopeOfWork.md`
+    through one integration owner; render HTML only as an on-demand derivative.
+  - The selected skill applies warranted enrichments and performs a final consistency sweep.
   - If the project uses `SEMANTIC_READY` as a lifecycle marker, the skill's Pass 3 may set `_STATUS.md` from `INITIALIZED → SEMANTIC_READY` (only if that is the local policy).
 - Run this phase as a sealed TASK step after `_SEMANTIC_LENSING.md` validates. The ORCHESTRATOR/parent must not apply Pass 3 document edits inline.
 - Before reporting Phase 2.5 complete, validate each deliverable with:
@@ -451,7 +456,8 @@ See `skills/lens-register/SKILL.md` for the method contract.
   - `python3 tools/validation/validate_semantic_pipeline_scope.py "{DELIVERABLE_PATH}" --step p3` when the worktree contains only that P3 TASK's changes, or the equivalent parent review of touched files when multiple workers have fanned in.
 - **DOMAIN_DECOMP:** Skip this phase. DOMAIN variants run Pass 3 (source-fidelity verification) as part of the `RUN_PASSES=FULL` directive in Phase 2.2. There is no separate Pass 3 enrichment phase for DOMAIN.
 
-See `skills/four-documents/SKILL.md` for the method contract.
+See `skills/scope-of-work/SKILL.md` and retained compatibility
+`skills/four-documents/SKILL.md` for the method contracts.
 
 **Report to human (PROJECT/SOFTWARE):** “Enrichment pass complete. Production units are ready for WORKING_ITEMS sessions.”
 **Report to human (DOMAIN):** Phase 2.5 skipped for DOMAIN variant — source-fidelity verification was completed in Phase 2.2. Production units are ready for DOMAIN_HYPERGRAPH (Phase 2.6).

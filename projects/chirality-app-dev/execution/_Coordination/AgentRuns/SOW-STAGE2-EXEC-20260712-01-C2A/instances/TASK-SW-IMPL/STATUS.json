@@ -1,0 +1,11 @@
+{
+  "instance_id": "TASK-SW-IMPL",
+  "role": "TASK",
+  "task_skill": "software-bounded-implementation",
+  "parent": "WORKING-C2A",
+  "brief_version": 1,
+  "status": "FAILED_DURATION_SUBSTRATE_FALLBACK",
+  "dependencies": ["C1G_ACCEPTED"],
+  "return": "RETURN.md",
+  "terminal": true
+}

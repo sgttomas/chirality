@@ -9,7 +9,7 @@ import re
 import sys
 from pathlib import Path
 
-from common import SCHEMA, SowError, parse_sow, validate_document
+from common import SCHEMA, SowError, parse_sow, resolve_production_format, validate_document
 
 RENDERER_VERSION = "chirality-sow-renderer/v1"
 
@@ -95,8 +95,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--isolated-migration", action="store_true")
+    parser.add_argument("--migration-authority", default="")
     args = parser.parse_args()
     try:
+        resolution = resolve_production_format(
+            args.source.parent,
+            isolated_migration=args.isolated_migration,
+            migration_authority=args.migration_authority,
+        )
+        if resolution.state not in {"SOW_V1", "MIGRATION_DUAL"} or not resolution.valid:
+            raise SowError(f"format state is {resolution.state}: {'; '.join(resolution.issues)}")
         output = render(args.source)
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)

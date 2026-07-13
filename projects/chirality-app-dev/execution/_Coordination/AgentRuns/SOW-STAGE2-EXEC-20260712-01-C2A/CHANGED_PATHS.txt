@@ -1,0 +1,4 @@
+projects/chirality-app-dev/frontend/src/__tests__/api/project/deliverables-route.test.ts
+projects/chirality-app-dev/frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts
+projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx
+projects/chirality-app-dev/frontend/src/lib/workspace/filesystem.ts

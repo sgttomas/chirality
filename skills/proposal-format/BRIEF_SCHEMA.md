@@ -7,7 +7,7 @@
 | `ScopePath` | Brief | Run/context anchor, normally the deliverable folder |
 | `TaskSkill` | Brief | `proposal-format` |
 | `RuntimeOverrides.DELIVERABLE_PATH` | Brief | Absolute path to the deliverable folder |
-| `RuntimeOverrides.ProductionFormat` | Brief | `LEGACY_FOUR_DOC` or `SOW_V1_CANDIDATE` |
+| `RuntimeOverrides.ProductionFormat` | Brief | resolver-selected `LEGACY_FOUR_DOC`, `SOW_V1`, or authorized `MIGRATION_DUAL` |
 
 ## Optional fields
 
@@ -20,7 +20,7 @@
 | `RuntimeOverrides.FocusDocs` | all | Restrict to named docs |
 | `RuntimeOverrides.ProposalDepth` | `full` | `summary` or `full` |
 | `RuntimeOverrides.IncludeLensTags` | `false` | Lens tags without full lensing |
-| `RuntimeOverrides.VarianceRef` | empty | Required as `D-GOV-15@<accepted-sha>` for `SOW_V1_CANDIDATE` |
+| `RuntimeOverrides.FormatAuthorityRef` | empty | Required only for authorized `MIGRATION_DUAL` |
 
 ## Example brief (targeted)
 

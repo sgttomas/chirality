@@ -13,10 +13,9 @@ from common import (
     SCHEMA,
     SowDocument,
     SowError,
-    VARIANCE_REF_RE,
     load_catalog,
     parse_sow,
-    resolve_format,
+    resolve_production_format,
     section_text,
     validate_document,
 )
@@ -83,7 +82,7 @@ def matrix_links(doc: SowDocument, width: int) -> dict[str, dict[str, list[str]]
     return links
 
 
-def derive(doc: SowDocument, format_state: str, variance_ref: str) -> dict[str, object]:
+def derive(doc: SowDocument, format_state: str, migration_authority: str) -> dict[str, object]:
     catalog = load_catalog()
     definitions = definition_records(doc, ("AC", "VER"), catalog.width)
     links = matrix_links(doc, catalog.width)
@@ -144,7 +143,7 @@ def derive(doc: SowDocument, format_state: str, variance_ref: str) -> dict[str, 
             "deliverable_id": deliverable_id,
             "package_id": str(doc.frontmatter["package_id"]),
             "format": format_state,
-            "variance_ref": variance_ref or None,
+            "migration_authority": migration_authority or None,
         },
         "item_count": len(items),
         "items": items,
@@ -154,33 +153,33 @@ def derive(doc: SowDocument, format_state: str, variance_ref: str) -> dict[str, 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("target", type=Path, help="ScopeOfWork.md or its deliverable directory")
-    parser.add_argument("--pilot-variance", action="store_true")
-    parser.add_argument("--variance-ref", default="")
+    parser.add_argument("--isolated-migration", action="store_true")
+    parser.add_argument("--migration-authority", default="")
     parser.add_argument("--output", type=Path, help="Write checklist JSON here instead of stdout")
     args = parser.parse_args()
 
     deliverable = args.target if args.target.is_dir() else args.target.parent
     sow_path = deliverable / "ScopeOfWork.md" if args.target.is_dir() else args.target
-    variance_ref = args.variance_ref.strip()
+    migration_authority = args.migration_authority
     try:
-        if variance_ref and not args.pilot_variance:
-            raise SowError("--variance-ref requires --pilot-variance")
-        if args.pilot_variance and not VARIANCE_REF_RE.fullmatch(variance_ref):
-            raise SowError("--variance-ref must match D-GOV-15@<accepted-sha>")
-        format_state = resolve_format(deliverable, args.pilot_variance, variance_ref)
-        if format_state in {"INVALID", "AMBIGUOUS", "LEGACY_FOUR_DOC"}:
-            raise SowError(f"format state is {format_state}; validated ScopeOfWork.md is required")
+        resolution = resolve_production_format(
+            deliverable,
+            isolated_migration=args.isolated_migration,
+            migration_authority=migration_authority,
+        )
+        if resolution.state not in {"SOW_V1", "MIGRATION_DUAL"} or not resolution.valid:
+            detail = "; ".join(resolution.issues)
+            raise SowError(
+                f"format state is {resolution.state}; validated ScopeOfWork.md is required"
+                + (f": {detail}" if detail else "")
+            )
         if not sow_path.is_file():
             raise SowError(f"missing ScopeOfWork.md: {sow_path}")
         doc = parse_sow(sow_path)
         issues = validate_document(doc)
-        if format_state == "PILOT_DUAL":
-            marker = f"<!-- pilot-variance: {variance_ref} -->"
-            if marker not in doc.body:
-                issues.append("candidate pilot-variance marker does not match --variance-ref")
         if issues:
             raise SowError("invalid ScopeOfWork.md: " + "; ".join(issues))
-        report = derive(doc, format_state, variance_ref)
+        report = derive(doc, resolution.state, migration_authority)
         rendered = json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)

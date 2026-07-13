@@ -1,0 +1,35 @@
+{
+  "run_id": "SOW-STAGE2-EXEC-20260712-01-C2A-R1",
+  "version": 1,
+  "selection_authority": "C2F-REMEDIATION-001 and WORKING-C2A-R1 sealed brief",
+  "posture": "SEQUENTIAL_MANAGER_REPAIR_THEN_TERMINAL_REVIEW",
+  "package_id": "APP-FRONTEND-RUNTIME",
+  "nodes": [
+    {
+      "id": "MANAGER_REPAIR",
+      "owner": "WORKING-C2A-R1",
+      "status": "PASS",
+      "depends_on": ["C2F_BLOCKED"],
+      "read_scope": ["accepted D-GOV-16 items 4 and 8", "initial C2A evidence", "RECON-C2F and EVAL-C2F findings", "two authorized source paths"],
+      "write_scope": ["frontend/src/lib/workspace/filesystem.ts", "frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts", "C2A-R1 evidence roots"],
+      "expected_return": "exact-authority repair and regression evidence",
+      "fan_in_gate": "focused and registered checks PASS with exact containment"
+    },
+    {
+      "id": "TASK_SW_REVIEW",
+      "owner": "TASK software-code-review",
+      "status": "PASS_AFTER_REPAIR",
+      "depends_on": ["MANAGER_REPAIR_CHECKS_PASS"],
+      "read_scope": ["two authorized source paths", "manager check evidence", "accepted authority contract"],
+      "write_scope": ["instances/TASK-SW-REVIEW/**"],
+      "expected_return": "read-only source review with findings and verdict",
+      "fan_in_gate": "terminal schema-valid return; no source writes"
+    }
+  ],
+  "edges": [
+    {"from": "MANAGER_REPAIR", "to": "TASK_SW_REVIEW", "gate": "manager focused checks PASS"}
+  ],
+  "concurrency": "NONE",
+  "integration_owner": "WORKING-C2A-R1",
+  "escalation": "Any new caller, additional write path, semantic authority conflict, or required-check failure"
+}

@@ -55,10 +55,11 @@ to the human.
 - **Claim-level audit.** Requirements and stable scope claims are atomic audit
   units. Deliverable/package summaries are derived from claim rows and never
   replace them.
-- **Format-aware preservation.** During an authorized Scope-of-Work pilot,
-  legacy path/section claims remain authoritative and candidate stable IDs are
-  derivative mappings. Every source claim receives exactly one explicit
-  preservation disposition; candidate output never silently supersedes source.
+- **Format-aware preservation.** During authorized conversion, legacy
+  path/section claims remain the bound source and candidate stable IDs are
+  derivative mappings. Every source claim receives exactly one disposition;
+  atomic replacement alone selects `SOW_V1`. Unauthorized dual, silent loss,
+  or semantic change fails closed.
 - **Discovery is read-only.** Calibration, inventory, claim concordance, and
   synthesis do not repair the target corpus.
 - **Evidence is not authority.** Implementation and tests are evidence, not
@@ -232,8 +233,8 @@ A concordance run is valid only when:
 11. Backcheck covers every changed claim reference and proves exact multiset
     equality to the authorized repair manifest; authorized no-change rows are
     separately and explicitly accounted for.
-    A Scope-of-Work pilot proves 100% source-claim disposition and source-hash
-    equality without treating candidate documents as accepted deliverable truth.
+    A conversion candidate proves 100% source-claim disposition and source-hash
+    equality without treating isolated dual-format output as accepted truth.
 12. Every deliverable appears in the final Remaining census, including an
     explicit `NONE` row where applicable; project-specific riders and stale
     assessments are dispositioned without historical recoding.

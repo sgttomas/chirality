@@ -1,0 +1,8 @@
+9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744  source/ScopeOfWork.md
+89dcfa817e5cd2249ab6f861870bd7a2a97a412dfa6a2f94c14939dae008c080  run-1/DEL-07-01.json
+89dcfa817e5cd2249ab6f861870bd7a2a97a412dfa6a2f94c14939dae008c080  run-2/DEL-07-01.json
+d0788014e4b75b89d62ec4e5b2ed4475d59c19845a9ebbd3a62ddcc63e5c730f  ../../../_Coordination/AgentRuns/SOW-STAGE1-20260712/instances/HELPS-CHECKLIST/evidence/checklists/DEL-07-01.json
+0ce012e63d873919c7ca589ce05cf1f2775259eee8312e2148677c17ab224438  ../../../../tools/scope_of_work/derive_review_checklist.py
+c996955374833be390d8a9c0fdbb8ed0acef629204b38de8e312a963d6ea3214  ../../../../tools/scope_of_work/common.py
+40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab  ../../../../agents/AGENT_REVIEW.md
+e287ee48331475fb84b17f1b4d0a180a0864174914e15153d092a831e95efa78  negative/fixture/PKG-07/DEL-07-03_Test/ScopeOfWork.md

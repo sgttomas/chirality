@@ -1,0 +1,39 @@
+{
+  "instance_id": "HELPS-C2R-R1",
+  "role": "HELPS_HUMANS",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2R-R1",
+  "brief_version": 1,
+  "amendment": "C2F-REMEDIATION-001 scope clarification 001-A",
+  "status": "PASS",
+  "objective": "Repair exact root migration authority enforcement and ISSUED accepted-basis binding",
+  "depends_on": ["C2F_BLOCKED"],
+  "return": "RETURN.md",
+  "changed_source_paths": {
+    "tools/scope_of_work/common.py": "5bef3676c6119861535aa6178f939b523c470704f318cf1523a12d8eebb088e2",
+    "tools/scope_of_work/convert_four_documents_to_scope_of_work.py": "4118282e1e4e42b602707d6f509628133c0acc4ed273c54cfc3a4af4338b61e3",
+    "tools/scope_of_work/test_scope_of_work_tools.py": "b646ee8af63a70d553042bfc77621a3f26973a512f54806b3a08bd51ad7b2013",
+    "tools/reporting/test_generate_coverage_csv.py": "9d7263c359c9d38b7ef1918b8ef01915e21c5bb2048491902c0fb4b2003065ce"
+  },
+  "checks": {
+    "focused": "17 passed",
+    "full_tools": "790 passed",
+    "python_compile": "PASS",
+    "diff_hygiene": "PASS",
+    "containment": "PASS"
+  },
+  "blockers_closed": [
+    "arbitrary self-bound D-GOV-16 migration authority",
+    "missing ISSUED accepted-basis binding",
+    "001-A synthetic reporting fixture mismatch"
+  ],
+  "blockers": [],
+  "rerun_if": [
+    "ruled authority changes",
+    "ISSUED accepted-basis contract changes",
+    "repaired source hash changes",
+    "focused fixture changes"
+  ],
+  "next": ["PARENT_FAN_IN", "C2F_R1_AFTER_C2A_R1_PASS"],
+  "completed_at": "2026-07-13"
+}

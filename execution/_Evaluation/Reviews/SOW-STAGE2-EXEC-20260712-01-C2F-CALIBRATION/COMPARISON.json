@@ -1,0 +1,49 @@
+{
+  "schema": "chirality-review-consumer-calibration/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "REVIEW-C2F",
+  "deliverable_id": "DEL-07-01",
+  "verdict": "PASS",
+  "source_sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744",
+  "expected_source_sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744",
+  "run_1_sha256": "03ba80bf3e72bc31f401895c970f96706ec0900dac157eef829bdca2ff864841",
+  "run_2_sha256": "03ba80bf3e72bc31f401895c970f96706ec0900dac157eef829bdca2ff864841",
+  "stage_1_sha256": "d0788014e4b75b89d62ec4e5b2ed4475d59c19845a9ebbd3a62ddcc63e5c730f",
+  "checklist_schema": "chirality-review-checklist/v1",
+  "item_count": 1,
+  "item_ids_in_order": ["AC-001"],
+  "qualified_ids_in_order": ["DEL-07-01-AC-001"],
+  "checks": {
+    "two_run_byte_identity": true,
+    "schema_exact": true,
+    "source_hash_exact": true,
+    "item_count_integrity": true,
+    "stage_1_item_count_exact": true,
+    "stage_1_item_array_exact": true,
+    "item_order_exact": true,
+    "qualified_ids_exact": true,
+    "criterion_text_exact": true,
+    "source_line_and_section_exact": true,
+    "output_linkage_exact": true,
+    "verification_linkage_exact": true,
+    "consumer_invokes_or_consumes_registered_tool": true,
+    "consumer_prohibits_agentic_sow_extraction": true
+  },
+  "metadata_only_delta": {
+    "stage_1_format": "PILOT_DUAL",
+    "stage_2_format": "SOW_V1",
+    "stage_1_authority_key": "variance_ref",
+    "stage_2_authority_key": "migration_authority",
+    "authority_value_exact": true
+  },
+  "blockers": [],
+  "rerun_required_on_change": [
+    "frozen source object or expected hash",
+    "Stage-1 comparison artifact",
+    "derive_review_checklist.py or common.py",
+    "AGENT_REVIEW.md",
+    "accepted format basis",
+    "checklist schema"
+  ],
+  "next_owner": "HELP_HUMAN C2F fan-in"
+}

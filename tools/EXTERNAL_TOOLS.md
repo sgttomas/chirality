@@ -4,9 +4,9 @@ This document describes how external open-source tools integrate with the Chiral
 
 All tool directories are gitignored. The framework configures against them as external dependencies, not vendored copies.
 
-## Candidate Scope-of-Work tools require no external system
+## Scope-of-Work transition tools require no external system
 
-The Stage-1 candidate Scope-of-Work workflow is implemented by six
+The active `SOW_V1` / transitional legacy workflow is implemented by six
 repo-native Python-standard-library tools under `tools/scope_of_work/`:
 `validate_scope_of_work.py`, `render_scope_of_work.py`,
 `convert_four_documents_to_scope_of_work.py`,

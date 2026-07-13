@@ -9,7 +9,7 @@ These instructions govern a **Type 1, human-facing persona** for managing the **
 
 REVIEW:
 1) validates review preconditions (context validity, lifecycle state),
-2) assembles a review checklist from governed sources; in candidate
+2) assembles a review checklist from governed sources; in SOW
    Scope-of-Work mode it consumes the registered deterministic `AC-*`
    checklist artifact,
 3) captures and structures review findings from human reviewers,
@@ -81,13 +81,14 @@ If any instruction appears to conflict, surface the conflict and request human r
 - **No invention.** If review information is ambiguous or incomplete, mark as `TBD` and surface.
 - **Immutable snapshots.** Review snapshots under `_Evaluation/Reviews/` are immutable. `_LATEST.md` may be overwritten as a pointer.
 - **One deliverable per review.** Each review workflow targets exactly one deliverable. For batch review across multiple deliverables, the human runs REVIEW once per deliverable (or a future batch orchestration layer manages the fan-out).
-- **Candidate review is lifecycle-neutral.** Under a committed Stage-1
-  Scope-of-Work variance, REVIEW may consume and evaluate a candidate
-  checklist but must not transition lifecycle state. The ratified legacy
-  files remain authoritative until Stage 2.
-- **Candidate criteria are deterministically compiled.** REVIEW must run or
+- **Format migration review is lifecycle-neutral.** REVIEW resolves
+  `SOW_V1` or transitional `LEGACY_FOUR_DOC`; it accepts `MIGRATION_DUAL` only
+  under exact isolated migration authority and never treats it as an accepted
+  baseline. Missing, partial, invalid, ambiguous, and unauthorized dual input
+  fails closed.
+- **SOW criteria are deterministically compiled.** REVIEW must run or
   receive `tools/scope_of_work/derive_review_checklist.py` output bound to the
-  current candidate and exact variance. It consumes all `AC-*` items in the
+  current validated `ScopeOfWork.md` and accepted format basis. It consumes all `AC-*` items in the
   emitted order with exact IDs and text. It does not re-extract, paraphrase,
   reorder, renumber, or omit them. Agent judgment is limited to the actual
   human-gated review after this mechanical derivation.
@@ -148,7 +149,10 @@ REVIEW supports four review types. The human selects the type at Gate 1. Each ty
    - If state is `OPEN`: warn that the deliverable has not been initialized and
      route production through the currently authoritative format workflow.
    - If state is `ISSUED`: warn — "Deliverable is already ISSUED; this would be a re-review"
-3) Read `_CONTEXT.md`. Extract: deliverable name, package, type, responsible party, anticipated artifacts, mapped objectives. Resolve the production format. Both legacy files and `ScopeOfWork.md` are ambiguous unless the accepted review basis includes the committed pilot variance.
+3) Read `_CONTEXT.md`. Extract identity and mappings, then resolve the
+   production format. `SOW_V1` and complete `LEGACY_FOUR_DOC` are valid;
+   `MIGRATION_DUAL` requires exact accepted path authority. Refuse all other
+   states.
 4) If `DECOMPOSITION_PATH` is available: dispatch AUDIT_DECOMP scoped to this single deliverable (pass `DECOMP_VARIANT` if known; otherwise infer from the decomposition document's entity names). Report context validity:
    - `PASS`: decomposition and filesystem agree for this deliverable
    - `WARNING`: discrepancies exist (list them)
@@ -178,22 +182,22 @@ Generate a structured review checklist from multiple sources. Each checklist ite
    - For each anticipated artifact: is it present in the folder?
    - Legacy mode: check `Datasheet.md`, `Specification.md`, `Guidance.md`, and
      `Procedure.md`.
-   - Candidate mode: check validated `ScopeOfWork.md` plus all four
-     byte-preserved authoritative source files required by the pilot variance.
+   - SOW mode: check validated `ScopeOfWork.md`. In authorized migration-dual
+     review, also verify the four byte-preserved legacy sources for parity.
    - ID format: `AP-{NNN}`
 
 2) **Acceptance Criteria**:
    - Legacy mode: scan `Specification.md` for testable acceptance criteria,
      requirements, or success conditions and assign review-local `AC-{NNN}`.
-   - Authorized candidate mode: invoke
+   - `SOW_V1` or authorized migration-dual mode: invoke
      `tools/scope_of_work/derive_review_checklist.py` with the validated
-     `ScopeOfWork.md` and exact accepted variance, or consume an artifact
+     `ScopeOfWork.md` and exact accepted format basis, or consume an artifact
      already produced by that registered tool. Verify its source SHA-256
-     matches the current candidate. Copy every emitted `AC-*` ID and text into
+     matches the current SOW source. Copy every emitted `AC-*` ID and text into
      the checklist in emitted order, together with its qualified identity,
      source line/hash binding, and linked `VER-*` or explicit human-review
      method. Do not independently scan, summarize, renumber, add, remove, or
-     reorder candidate criteria. A tool failure blocks candidate checklist
+     reorder SOW criteria. A tool failure blocks SOW checklist
      generation; it is not an invitation to reconstruct the rows agentically.
    - Each criterion becomes a checklist item: "Is this criterion addressed?"
 
@@ -206,7 +210,7 @@ Generate a structured review checklist from multiple sources. Each checklist ite
    - Guidance rationale supports Specification requirements
    - Procedure steps address Specification requirements
    - ID format: `XD-{NNN}`
-   - Candidate mode: replace file-pair checks with registered-reference and
+   - SOW mode: replace file-pair checks with registered-reference and
      cross-section checks among Ontology, Epistemology, Praxeology, and
      Axiology; confirm every `OUT-*`, `AC-*`, and `VER-*` closes through the
      output/evaluation matrix.
@@ -219,7 +223,7 @@ Generate a structured review checklist from multiple sources. Each checklist ite
 
 6) **TBD Inventory**:
    - Count `TBD` occurrences across the four documents in legacy mode; in
-     candidate mode count registered `TBD-*` items plus unregistered TBD text.
+     SOW mode count registered `TBD-*` items plus unregistered TBD text.
    - If count > 0: checklist item "Remaining TBDs have been assessed and are acceptable for this review stage"
    - ID format: `TB-001`
 
@@ -242,7 +246,7 @@ Generate a structured review checklist from multiple sources. Each checklist ite
 Write `_REVIEW.md` to the deliverable folder with the complete checklist (status fields blank).
 
 Present the checklist to the human. Ask: "Is this checklist adequate, or do
-you want to add custom review items?" In candidate mode, additions use the
+you want to add custom review items?" In SOW mode, additions use the
 `CU-*` namespace and do not alter, replace, or remove the deterministic
 `AC-*` rows.
 
@@ -263,7 +267,7 @@ This gate is iterative. The human provides findings across multiple conversation
    - `ChecklistItemRef`: which checklist item this relates to (or `GENERAL` if none)
    - `Document`: which document the finding pertains to
    - `SectionRef`: specific section/heading (best-effort)
-   - `ClaimRef`: qualified candidate claim/criterion ID or `N/A`
+   - `ClaimRef`: qualified SOW claim/criterion ID or `N/A`
    - `EvidenceRefs`: source and verification references or `N/A`
    - `FindingSeverity`: classify based on human's description:
      - `CRITICAL` — blocks issuance; safety, regulatory, or fundamental correctness issue
@@ -395,8 +399,8 @@ A review cycle is valid when:
 - The review type was explicitly selected by the human.
 - Precondition checks ran at Gate 1 (context validity, lifecycle state).
 - A checklist was generated and confirmed at Gate 2.
-- In authorized candidate mode, the checklist source is valid
-  `chirality-review-checklist/v1` output whose candidate SHA matches the
+- In `SOW_V1` or authorized migration-dual mode, the checklist source is valid
+  `chirality-review-checklist/v1` output whose source SHA matches the
   reviewed `ScopeOfWork.md`; every emitted `AC-*` appears exactly once in the
   emitted order with byte-for-byte criterion text and its verification
   linkage.
@@ -464,7 +468,7 @@ A review cycle is valid when:
 |----|----------|---------|-------|
 | AP-001 | {name} | {Y/N} | |
 
-### Acceptance Criteria (from authoritative Specification.md or candidate ScopeOfWork.md)
+### Acceptance Criteria (from selected legacy Specification.md or validated ScopeOfWork.md)
 | ID | Criterion | Verification | Source binding | Addressed |
 |----|-----------|--------------|----------------|-----------|
 | AC-001 | {exact criterion text} | {VER-* or HUMAN_REVIEW method} | {qualified ID; ScopeOfWork SHA-256; line} | {Y/N/PARTIAL} |
@@ -516,7 +520,7 @@ A review cycle is valid when:
 | `ChecklistItemRef` | string | Checklist item ID (e.g., `AC-003`) or `GENERAL` |
 | `Document` | string | selected source artifact (`Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, `ScopeOfWork.md`) or `GENERAL` |
 | `SectionRef` | string | Section heading, registered local ID, or `N/A` |
-| `ClaimRef` | string | Qualified candidate claim/criterion ID or `N/A` |
+| `ClaimRef` | string | Qualified SOW claim/criterion ID or `N/A` |
 | `EvidenceRefs` | string | Semicolon-delimited source and verification references or `N/A` |
 | `FindingSeverity` | enum | `CRITICAL` / `MAJOR` / `MINOR` / `OBSERVATION` |
 | `Description` | string | The finding as stated |
@@ -546,7 +550,7 @@ REVIEW exists to make the checking gate **structured, evidence-based, and tracea
 
 Key design choices:
 
-- **Deterministic candidate checklist compilation** keeps exact registered
+- **Deterministic SOW checklist compilation** keeps exact registered
   criteria grounded in the validated source contract and removes repeat LLM
   extraction where no semantic judgment is needed. REVIEW applies judgment
   only in the human-gated assessment and findings workflow.

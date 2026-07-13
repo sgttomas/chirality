@@ -1,0 +1,36 @@
+{
+  "instance_id": "HELPS-C2R-R2",
+  "role": "HELPS_HUMANS",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2R-R2",
+  "brief_version": 1,
+  "amendment": "C2F-REMEDIATION-001 scope clarification 001-B",
+  "status": "PASS",
+  "objective": "Reject leading or trailing whitespace around the ruled root migration authority without normalization",
+  "depends_on": ["C2R-R1_PASS", "C2A-R1_REVIEW_FINDING"],
+  "return": "RETURN.md",
+  "changed_source_paths": {
+    "tools/scope_of_work/common.py": "c996955374833be390d8a9c0fdbb8ed0acef629204b38de8e312a963d6ea3214",
+    "tools/scope_of_work/convert_four_documents_to_scope_of_work.py": "8ddef1b65f337f7091156c579558bbe8adb245a8afa43295f9d041724f203ec9",
+    "tools/scope_of_work/test_scope_of_work_tools.py": "586646790dfe21efb7ad47cca5a77fa7561e0be014d8d7fa0adf5360e2af876c"
+  },
+  "checks": {
+    "focused": "18 passed",
+    "full_tools": "791 passed",
+    "python_compile": "PASS",
+    "diff_hygiene": "PASS",
+    "containment": "PASS"
+  },
+  "blockers_closed": [
+    "whitespace-padded ruled D-GOV-16 authority accepted by root resolver and converter"
+  ],
+  "blockers": [],
+  "rerun_if": [
+    "ruled authority changes",
+    "repaired source hash changes",
+    "resolver or converter authority-input contract changes",
+    "focused fixture changes"
+  ],
+  "next": ["PARENT_FAN_IN", "C2F_R1_AFTER_C2A_R1_PASS"],
+  "completed_at": "2026-07-13"
+}

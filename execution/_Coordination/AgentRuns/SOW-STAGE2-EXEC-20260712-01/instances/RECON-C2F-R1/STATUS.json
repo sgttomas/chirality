@@ -1,0 +1,39 @@
+{
+  "instance_id": "RECON-C2F-R1",
+  "role": "RECONCILIATION",
+  "status": "BLOCKED",
+  "terminal": true,
+  "brief_version": 1,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2F-R1",
+  "return": "RETURN.md",
+  "evidence_root": "execution/_Reconciliation/DeliverableConcordance/SOW-STAGE2-EXEC-20260712-01-C2F-R1",
+  "outcomes": {
+    "schema_mechanical": "PASS",
+    "content_authority": "BLOCKED",
+    "preservation_containment": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "caller_coverage": {
+    "root": "64/64",
+    "app": "9/9",
+    "unclassified": 0
+  },
+  "blockers_closed": [
+    "root direct arbitrary self-bound D-GOV-16 authority",
+    "root direct whitespace-padded ruled authority",
+    "App arbitrary and whitespace-padded authority",
+    "missing ISSUED accepted-basis binding",
+    "stale initial root C2A return pointer"
+  ],
+  "blockers": [
+    "derive_review_checklist.py strips caller-supplied migration authority before exact resolution and accepts a padded ruled token"
+  ],
+  "next": [
+    "HELP_HUMAN_ROUTE_BOUNDED_ROOT_CALLER_REPAIR",
+    "REVIEW_CALIBRATION_ON_FINAL_SOURCE",
+    "INDEPENDENT_C2F_RERUN"
+  ],
+  "c2g": "PARKED",
+  "completed_at": "2026-07-13T07:57:09Z"
+}

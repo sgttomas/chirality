@@ -18,6 +18,8 @@ type RouteBody = {
     deliverableId: string;
     path: string;
     valid: boolean;
+    documentFormat: string;
+    selectedProductionDocuments: Array<{ fileName: string }>;
     errorCount: number;
     warningCount: number;
     findings: Array<{
@@ -53,6 +55,42 @@ function statusDocument(state: string): string {
 
 ## History
 - 2026-02-24 - State set to ${state} (WORKING_ITEMS)
+`;
+}
+
+function scopeOfWorkDocument(): string {
+  return `---
+schema: chirality-deliverable-sow/v1
+deliverable_id: DEL-07-03
+package_id: PKG-07
+decomposition_basis: execution/_Decomposition/example.md@abc1234
+project_scope_refs: [SOW-026]
+package_objective_refs: [OBJ-006]
+---
+
+# Scope of Work
+
+## Purpose and Objective Traceability
+
+- **OUT-001** — Produce the declared contract.
+
+## Deliverable Definition — Ontology
+
+## Completion and Reliance Basis — Epistemology
+
+- **AC-001** — Human review confirms completeness.
+
+## Production and Verification Method — Praxeology
+
+- **VER-001** — Perform the human review.
+
+## Governing Values and Decisions — Axiology
+
+## Output and Evaluation Matrix
+
+| Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
+|---|---|---|---|---|---|
+| OUT-001 | SOW-026 OBJ-006 | OUT-001 | AC-001 | VER-001 | Review record |
 `;
 }
 
@@ -229,7 +267,7 @@ describe('GET /api/project/deliverables', () => {
       deliverableId: 'DEL-07-03',
       path: deliverablePath,
       valid: false,
-      errorCount: 2
+      errorCount: 3
     });
     expect(contract?.findings).toEqual(
       expect.arrayContaining([
@@ -263,6 +301,42 @@ describe('GET /api/project/deliverables', () => {
           path: path.join(deliverablePath, '_REFERENCES.md'),
           severity: 'warning'
         })
+      ])
+    );
+  });
+
+  it('never infers an authorized migration from a normal project route scan', async () => {
+    const deliverablePath = await createDeliverable(
+      'PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies',
+      'DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts',
+      'IN_PROGRESS',
+      [
+        '_CONTEXT.md',
+        '_DEPENDENCIES.md',
+        '_REFERENCES.md',
+        '_SEMANTIC.md',
+        'Datasheet.md',
+        'Specification.md',
+        'Guidance.md',
+        'Procedure.md',
+        'ScopeOfWork.md',
+        'MEMORY.md'
+      ]
+    );
+    await writeFile(path.join(deliverablePath, 'ScopeOfWork.md'), scopeOfWorkDocument(), 'utf8');
+
+    const response = await requestDeliverables(projectRoot);
+    const contract = response.body.deliverableContracts?.[0];
+
+    expect(response.status).toBe(200);
+    expect(contract).toMatchObject({
+      documentFormat: 'AMBIGUOUS',
+      valid: false,
+      selectedProductionDocuments: []
+    });
+    expect(contract?.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ condition: 'ambiguous_deliverable_format', severity: 'error' })
       ])
     );
   });

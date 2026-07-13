@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shared parsers and contracts for candidate Scope-of-Work tools."""
+"""Shared parsers and production-format contracts for Scope-of-Work tools."""
 
 from __future__ import annotations
 
@@ -38,7 +38,13 @@ MATRIX_COLUMNS = (
 )
 BEGIN_RE = re.compile(r"^<!-- sow-source-begin (\{.*\}) -->$")
 END_MARKER = "<!-- sow-source-end -->"
-VARIANCE_REF_RE = re.compile(r"D-GOV-15@[0-9a-f]{7,40}")
+MIGRATION_AUTHORITY = "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+# Retain the imported name for callers while narrowing it to the exact ruled
+# authority. A syntactically valid but unruled D-GOV-16 token is unauthorized.
+MIGRATION_AUTHORITY_RE = re.compile(re.escape(MIGRATION_AUTHORITY))
+MIGRATION_MARKER_PREFIX = "<!-- migration-authority: "
+ACCEPTED_FORMATS = ("SOW_V1", "LEGACY_FOUR_DOC")
+PRODUCTION_FORMATS = (*ACCEPTED_FORMATS, "MIGRATION_DUAL", "AMBIGUOUS", "INVALID")
 
 
 class SowError(ValueError):
@@ -77,6 +83,28 @@ class SowDocument:
     @property
     def sha256(self) -> str:
         return sha256_bytes(self.raw.encode("utf-8"))
+
+
+@dataclass(frozen=True)
+class FormatResolution:
+    """Fail-closed resolution of one PROJECT/SOFTWARE production contract."""
+
+    state: str
+    issues: tuple[str, ...]
+    legacy_files: tuple[str, ...]
+    has_scope_of_work: bool
+
+    @property
+    def valid(self) -> bool:
+        return self.state in (*ACCEPTED_FORMATS, "MIGRATION_DUAL") and not self.issues
+
+    @property
+    def selected_files(self) -> tuple[str, ...]:
+        if self.state == "LEGACY_FOUR_DOC":
+            return LEGACY_FILES
+        if self.state in {"SOW_V1", "MIGRATION_DUAL"}:
+            return ("ScopeOfWork.md",)
+        return ()
 
 
 def repo_root() -> Path:
@@ -265,22 +293,89 @@ def read_lifecycle_state(deliverable: Path) -> str | None:
     return None
 
 
-def resolve_format(deliverable: Path, pilot_variance: bool = False, variance_ref: str = "") -> str:
-    legacy = [name for name in LEGACY_FILES if (deliverable / name).is_file()]
-    sow = (deliverable / "ScopeOfWork.md").is_file()
-    if legacy and len(legacy) != len(LEGACY_FILES):
-        return "INVALID"
-    if len(legacy) == len(LEGACY_FILES) and sow:
-        return (
-            "PILOT_DUAL"
-            if pilot_variance and VARIANCE_REF_RE.fullmatch(variance_ref.strip())
-            else "AMBIGUOUS"
-        )
-    if len(legacy) == len(LEGACY_FILES):
-        return "LEGACY_FOUR_DOC"
-    if sow:
-        return "SOW_V1"
-    return "INVALID"
+def migration_marker(authority: str) -> str:
+    return f"{MIGRATION_MARKER_PREFIX}{authority} -->"
+
+
+def resolve_production_format(
+    deliverable: Path,
+    *,
+    isolated_migration: bool = False,
+    migration_authority: str = "",
+) -> FormatResolution:
+    """Resolve and validate the production format for one deliverable.
+
+    Dual format is authorized only when both an isolated-workspace assertion
+    and an exact D-GOV-16 authority reference are supplied, and the validated
+    ScopeOfWork.md binds that same authority. Accepted baselines therefore
+    resolve dual content to AMBIGUOUS by default.
+    """
+
+    deliverable = Path(deliverable)
+    legacy = tuple(name for name in LEGACY_FILES if (deliverable / name).is_file())
+    sow_path = deliverable / "ScopeOfWork.md"
+    has_sow = sow_path.is_file()
+    complete_legacy = len(legacy) == len(LEGACY_FILES)
+    partial_legacy = bool(legacy) and not complete_legacy
+    issues: list[str] = []
+    sow_doc: SowDocument | None = None
+
+    if has_sow:
+        try:
+            sow_doc = parse_sow(sow_path)
+            issues.extend(validate_document(sow_doc))
+        except (OSError, UnicodeError, SowError) as exc:
+            issues.append(f"invalid ScopeOfWork.md: {exc}")
+
+    if partial_legacy:
+        missing = [name for name in LEGACY_FILES if name not in legacy]
+        issues.insert(0, "partial legacy production kit; missing: " + ", ".join(missing))
+        return FormatResolution("INVALID", tuple(issues), legacy, has_sow)
+
+    if complete_legacy and has_sow:
+        if issues:
+            return FormatResolution("INVALID", tuple(issues), legacy, has_sow)
+        authority = migration_authority
+        authority_valid = authority == MIGRATION_AUTHORITY
+        marker_valid = sow_doc is not None and migration_marker(authority) in sow_doc.body
+        if isolated_migration and authority_valid and marker_valid:
+            return FormatResolution("MIGRATION_DUAL", (), legacy, has_sow)
+        dual_issues = ["dual production formats require an isolated conversion workspace and exact migration authority"]
+        if migration_authority and not authority_valid:
+            dual_issues.append(f"migration authority must equal {MIGRATION_AUTHORITY}")
+        if isolated_migration and authority_valid and not marker_valid:
+            dual_issues.append("ScopeOfWork.md does not bind the supplied migration authority")
+        return FormatResolution("AMBIGUOUS", tuple(dual_issues), legacy, has_sow)
+
+    if complete_legacy:
+        return FormatResolution("LEGACY_FOUR_DOC", (), legacy, has_sow)
+    if has_sow:
+        if issues:
+            return FormatResolution("INVALID", tuple(issues), legacy, has_sow)
+        return FormatResolution("SOW_V1", (), legacy, has_sow)
+    return FormatResolution("INVALID", ("missing production contract",), legacy, has_sow)
+
+
+def require_requested_format(resolution: FormatResolution, requested: str) -> FormatResolution:
+    """Fail closed when a caller's declared format disagrees with resolution."""
+
+    if requested != "AUTO" and requested != resolution.state:
+        raise SowError(f"requested production format {requested} resolves as {resolution.state}")
+    return resolution
+
+
+def resolve_format(
+    deliverable: Path,
+    isolated_migration: bool = False,
+    migration_authority: str = "",
+) -> str:
+    """Compatibility wrapper returning only the fail-closed state string."""
+
+    return resolve_production_format(
+        deliverable,
+        isolated_migration=isolated_migration,
+        migration_authority=migration_authority,
+    ).state
 
 
 def split_source_sections(text: str) -> list[tuple[int, int, str, str]]:

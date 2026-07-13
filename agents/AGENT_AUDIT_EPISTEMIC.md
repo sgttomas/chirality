@@ -46,13 +46,13 @@ If a human instruction conflicts with this document, obey the human and record t
 ## Mission
 
 Given one or more deliverable folders, audit the epistemic state of the
-production contract selected by the accepted basis (legacy four-document kit
-or authorized candidate `ScopeOfWork.md`) and `Dependencies.csv` against the
+production contract selected by the accepted basis (`SOW_V1` or transitional
+`LEGACY_FOUR_DOC`) and `Dependencies.csv` against the
 epistemic ontology in `TYPES.md` §10.
 
-When the accepted audit basis includes a committed Stage-1 Scope-of-Work
-variance, audit candidate `ScopeOfWork.md` as a single structured production
-contract while retaining the four source documents as authority.
+In an exactly authorized isolated `MIGRATION_DUAL` workspace, audit the
+candidate `ScopeOfWork.md` and verify the four source documents for parity.
+Missing, partial, invalid, ambiguous, and unauthorized dual states fail closed.
 
 Produce:
 - an epistemic audit report with findings across seven audit passes,
@@ -104,8 +104,8 @@ NOTES:
 
 If `SCOPE` is missing or empty: write `Brief.md` with `RUN_STATUS = FAILED_INPUTS` and return.
 
-If a deliverable in scope has neither a complete legacy kit nor an authorized,
-validated candidate production contract, record `NOT_INITIALIZED` in coverage
+If a deliverable in scope has neither a complete legacy kit nor a validated
+SOW production contract, record `NOT_INITIALIZED` in coverage
 and skip epistemic analysis. Partial or unauthorized dual formats are
 `INVALID`, not `NOT_INITIALIZED`.
 
@@ -144,8 +144,8 @@ Pointer (overwrite allowed; pointer only):
 1) Resolve `EXECUTION_ROOT` (default `execution/`).
 2) Resolve deliverables in scope:
    - For each deliverable ID or path, locate the deliverable folder.
-   - Resolve `LEGACY_FOUR_DOC | SOW_V1 | AMBIGUOUS | INVALID`; accept
-     `AMBIGUOUS` only when the brief cites the exact path-scoped variance.
+   - Resolve `LEGACY_FOUR_DOC | SOW_V1 | MIGRATION_DUAL | AMBIGUOUS | INVALID`;
+     accept dual only when the brief cites exact path-scoped migration authority.
    - Check for Dependencies.csv if `INCLUDE_DEPENDENCIES_CSV=true`.
 3) Record inventory: for each deliverable, note which files are present and which are absent.
 4) If zero deliverables resolve: write `Brief.md` with `RUN_STATUS = FAILED_INPUTS` and stop.
@@ -159,7 +159,7 @@ Pointer (overwrite allowed; pointer only):
 
 For each production source: the four files in legacy mode, or each registered
 claim and substantive prose block in validated `ScopeOfWork.md` under the
-accepted candidate variance:
+accepted SOW/authorized migration basis:
 
 1) Identify **non-trivial claims** — assertions about parameters, requirements, constraints, acceptance criteria, design choices, scope boundaries, or technical values. Exclude boilerplate headings, template placeholders, and structural markup.
 2) For each non-trivial claim, determine whether it carries an epistemic label: `FACT`, `ASSUMPTION`, `PROPOSAL`, or `TBD`.
@@ -209,7 +209,7 @@ Compute **gap count** = total explicit TBD markers + potential unwarranted claim
 ### Pass 4 — Conflict detection
 
 In legacy mode, compare key parameters, requirements, and constraints **across
-documents within the deliverable**. In candidate mode, perform the same checks
+documents within the deliverable**. In SOW mode, perform the same checks
 across registered claims and the Ontology, Epistemology, Praxeology, and
 Axiology sections:
 
@@ -255,12 +255,12 @@ In legacy mode, compare across the four document kit files for:
 
 Record inconsistencies as findings with evidence from both documents.
 
-For an authorized Scope-of-Work candidate, replace this pass with cross-section
+For `SOW_V1` or an authorized migration-dual candidate, replace this pass with cross-section
 and reference-graph consistency: unique registered IDs; resolved compound
 references; output-to-objective coverage; requirement/claim-to-criterion
 coverage; criterion-to-verification coverage; source/warrant coverage; and
 contradictions among Ontology, Epistemology, Praxeology, and Axiology sections.
-REVIEW's `AC-*` namespace is the same candidate acceptance-criterion registry,
+REVIEW's `AC-*` namespace is the same SOW acceptance-criterion registry,
 not a parallel audit-generated namespace.
 
 ---

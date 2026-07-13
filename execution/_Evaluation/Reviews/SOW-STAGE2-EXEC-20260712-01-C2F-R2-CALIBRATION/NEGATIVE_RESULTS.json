@@ -1,0 +1,25 @@
+{
+  "schema": "chirality-review-consumer-negative-calibration/v1",
+  "migration_authority_marker": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "fixture_scope_of_work_sha256": "e287ee48331475fb84b17f1b4d0a180a0864174914e15153d092a831e95efa78",
+  "exact_marker_line": 96,
+  "cases": [
+    {
+      "name": "leading_space",
+      "supplied_authority": " D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+      "exit_code": 1,
+      "requested_output": "negative/leading-padded-output.json",
+      "output_exists": false,
+      "stderr_contains_exact_required_authority": true
+    },
+    {
+      "name": "trailing_space",
+      "supplied_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176 ",
+      "exit_code": 1,
+      "requested_output": "negative/trailing-padded-output.json",
+      "output_exists": false,
+      "stderr_contains_exact_required_authority": true
+    }
+  ],
+  "verdict": "PASS"
+}

@@ -1,0 +1,16 @@
+{
+  "instance_id": "HELPS-C2R",
+  "role": "HELPS_HUMANS",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "brief_version": 1,
+  "status": "PASS",
+  "objective": "Prepare and verify complete root consumer/tool activation lane",
+  "dependencies": ["C1G_ACCEPTED"],
+  "return": "RETURN.md",
+  "caller_rows": 64,
+  "tracked_source_paths": 48,
+  "blockers": [],
+  "next": ["C2A_IF_OPEN", "C2F"],
+  "execution_substrate": "SUBSTRATE_FALLBACK_PASS",
+  "completed_at": "2026-07-13"
+}

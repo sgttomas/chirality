@@ -1,0 +1,28 @@
+{
+  "instance_id": "EVAL-C2F-R1",
+  "role": "EVALUATION",
+  "status": "BLOCKED",
+  "terminal": true,
+  "brief_version": 1,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2F-R1",
+  "return": "RETURN.md",
+  "report": "execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C2F-R1/EVALUATION_REPORT.md",
+  "findings": "execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C2F-R1/FINDINGS.csv",
+  "original_blockers_closed": [
+    "EVAL-C2F-001",
+    "EVAL-C2F-002",
+    "EVAL-C2F-003"
+  ],
+  "open_blockers": [
+    "EVAL-C2F-R1-001"
+  ],
+  "material_unknowns": [],
+  "next_owner": "HELPS_HUMANS",
+  "next": [
+    "REPAIR_ROOT_CHECKLIST_RAW_AUTHORITY",
+    "RERUN_C2F_R1"
+  ],
+  "c2g": "PARKED",
+  "completed_at": "2026-07-13"
+}

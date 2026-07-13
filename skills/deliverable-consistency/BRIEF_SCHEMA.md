@@ -41,9 +41,9 @@ EXCLUSIONS:
 - `ScopePath`
 - `TaskSkill: deliverable-consistency`
 - `RuntimeOverrides.DELIVERABLE_PATH`
-- `RuntimeOverrides.ProductionFormat` — `LEGACY_FOUR_DOC` or
-  `SOW_V1_CANDIDATE`; candidate mode also requires
-  `RuntimeOverrides.VarianceRef: D-GOV-15@<accepted-sha>`.
+- `RuntimeOverrides.ProductionFormat` — resolver-selected `LEGACY_FOUR_DOC`,
+  `SOW_V1`, or authorized `MIGRATION_DUAL`; dual mode also requires
+  `RuntimeOverrides.FormatAuthorityRef`.
 
 ## Typical tasks
 

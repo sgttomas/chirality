@@ -87,18 +87,25 @@ These values are not aspirational. They are enforced as architectural invariants
 
 ### The Fractal Property
 
-The four-document kit that agents produce for every deliverable mirrors the philosophical structure of the system itself:
+The selected PROJECT/SOFTWARE production contract mirrors the philosophical
+structure of the system. In `SOW_V1`, the four practical lenses are sections
+of one `ScopeOfWork.md`; transitional `LEGACY_FOUR_DOC` expresses the same
+lenses across four files:
 
-| Philosophical Pillar | Document Kit Instantiation |
+| Philosophical Pillar | Production-contract instantiation |
 |---|---|
 | Ontology — what is this thing? | **Datasheet** — key parameters, identification, structured metadata |
 | Epistemology — what must be true? how do we verify? | **Specification** — technical requirements, acceptance criteria, scope definition |
 | Axiology — why these choices? what principles govern? | **Guidance** — design rationale, best practices, contextual direction |
 | Praxiology — how do we execute? | **Procedure** — step-by-step workflow, sequencing, checklists |
 
-This is not a coincidence. The production format reflects the philosophical architecture because both emerge from the same question: what does a professional need in order to take responsibility for work? They need to know what exists (ontology / datasheet), what can be verified (epistemology / specification), why it was done this way (axiology / guidance), and how to execute and maintain it (praxiology / procedure).
+This is not a coincidence. The production contract reflects the philosophical
+architecture because both emerge from the same responsibility question. The
+file layout may transition; the four practical questions remain stable.
 
-The system practices what it produces. Its governance documents follow the same structure that it imposes on deliverables through the document kit. This fractal property is a sign of architectural coherence — the principles are not external rules applied to the system, but the logic the system is built from.
+The system practices what it produces. Its governance documents follow the
+same structure that it imposes through the production contract. This fractal
+property is a sign of architectural coherence.
 
 ### How the Pillars Relate
 

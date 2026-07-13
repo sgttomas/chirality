@@ -1,0 +1,31 @@
+{
+  "instance_id": "REVIEW-C2F-R2",
+  "role": "REVIEW",
+  "status": "PASS",
+  "brief_version": 1,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2F-R2",
+  "mode": "LIFECYCLE_NEUTRAL_EXACT_CONSUMER_FINAL_CALIBRATION",
+  "delegation": "none",
+  "source_sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744",
+  "run_sha256": "89dcfa817e5cd2249ab6f861870bd7a2a97a412dfa6a2f94c14939dae008c080",
+  "two_run_byte_identity": true,
+  "item_count": 1,
+  "stage_1_item_array_exact": true,
+  "leading_padded_exit": 1,
+  "leading_padded_output_absent": true,
+  "trailing_padded_exit": 1,
+  "trailing_padded_output_absent": true,
+  "consumer_verdict": "PASS",
+  "blockers": [],
+  "rerun_if": [
+    "frozen object or expected hash changes",
+    "Stage-1 artifact changes",
+    "checklist tool or resolver changes",
+    "REVIEW instructions change",
+    "accepted format basis or authority changes",
+    "checklist schema or negative fixture changes"
+  ],
+  "next_owner": "HELP_HUMAN C2F-R2 fan-in",
+  "evidence": "execution/_Evaluation/Reviews/SOW-STAGE2-EXEC-20260712-01-C2F-R2-CALIBRATION"
+}
