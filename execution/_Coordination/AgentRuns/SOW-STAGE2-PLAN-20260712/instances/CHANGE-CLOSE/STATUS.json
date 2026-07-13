@@ -1,0 +1,8 @@
+{
+  "run_id": "SOW-STAGE2-PLAN-20260712",
+  "instance": "CHANGE-CLOSE",
+  "role": "CHANGE",
+  "parent": "HELP_HUMAN",
+  "status": "DISPATCHED",
+  "objective": "Commit and bind the plan-only D-GOV-16 Stage-2 orchestration package without integration or execution."
+}

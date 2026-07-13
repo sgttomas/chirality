@@ -1,0 +1,14 @@
+{
+  "run_id": "SOW-STAGE2-PLAN-20260712",
+  "instance": "ORCHESTRATOR-PLAN",
+  "role": "ORCHESTRATOR",
+  "parent": "HELP_HUMAN",
+  "status": "PASS",
+  "terminal_state": "PLAN_PRESENTED — NO_STAGE2_DISPATCH",
+  "objective": "Create and present the governed D-GOV-16 Stage-2 orchestration plan from synchronized main without dispatching implementation.",
+  "next_owner": "HUMAN_VIA_HELP_HUMAN",
+  "blockers": [],
+  "decision_requests": [
+    "Accept, amend, defer, or reject the proposed Stage-2 execution plan before dispatch."
+  ]
+}
