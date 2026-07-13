@@ -1,0 +1,16 @@
+{
+  "instance_id": "RECON-B1",
+  "role": "RECONCILIATION",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "B1",
+  "brief_version": 1,
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "basis_commit": "9349594530dc19e55baf9c2ef0b7eb4716f48a17",
+  "reconciliation_handoff": "../../../../../_Reconciliation/DeliverableConcordance/SOW-STAGE2-EXEC-20260712-01-B1/HANDOFF.md",
+  "return": "RETURN.md",
+  "next_owner": "HELP_HUMAN B1 fan-in"
+}

@@ -1,0 +1,6 @@
+finding_id,severity,category,status,subject,evidence,impact,authority_needed,disposition
+RECON-B1-001,INFO,SCHEMA_CONTENT,CLOSED,P3 execution manifest,"154/154 rows and all twelve fields equal P0; P3 execution manifest is byte-equal to P0",none,none,PASS
+RECON-B1-002,INFO,CALLER_SUPERSESSION,CLOSED,root and App caller manifests,"Six per-lane hash cells are superseded by exact accepted App or C2A-R1 overlays; zero unexplained hash",none,none,PASS
+RECON-B1-003,INFO,CALLER_CLASSIFICATION,CLOSED,commit-bound active caller search,"Original 5389 and targeted 196 paths reproduce; active-root non-manifest rows map exactly to accepted historical or independent-schema aggregates",none,none,PASS
+RECON-B1-004,INFO,PRESERVATION,CLOSED,C2-to-current subject range,"236 changed paths and zero governed deliverable path; fresh source/status/lifecycle equality",none,none,PASS
+RECON-B1-005,INFO,EXECUTION_SUBSTRATE,CLOSED,P3 and ORCHESTRATOR evidence,"P3 6/6 bindings exact; JSON and TSV structure valid; evidence portable; H1/H2 unapproved",none,none,PASS
