@@ -1,6 +1,6 @@
 # CHANGE-C2G Integration Return
 
-Verdict: `IN_PROGRESS`
+Verdict: `READY_FOR_REMOTE`
 Node: `C2G`
 Role: `CHANGE` (Agent 1)
 Branch: `codex/sow-stage2-consumers`
@@ -19,8 +19,17 @@ reported terminal blank lines in six C2F-R1 evidence files listed in
 normalization under `C2F-REMEDIATION-001` 001-D; restaged diff hygiene passed.
 `.claude-worktrees/` remains untouched.
 
-The binding commit, PR, merge commit, and synchronized-main SHA are pending.
-B1 is not yet released.
+The sealed evidence-binding commit is
+`75c74fa2784c802494e3e0d3892b858081891eb4`. It contains only the accepted
+commit-3 evidence roots. The branch has exactly three source/evidence tranches,
+231 changed paths against its base, and no fourth semantic tranche. It is
+tracked-clean except the pre-existing untracked `.claude-worktrees/`
+container. The final source-binding-only record commit, PR, merge commit, and
+synchronized-main SHA are pending. B1 is not yet released.
 
-Next action: evidence binding and downstream remote/merge/synchronization
-gates. No conversion, lifecycle, H1, H2, release, or retirement action occurs.
+Next action: final source binding and downstream remote/merge/synchronization
+gates. On rollback after merge, revert the merge commit through a new approved
+change; never rewrite or force-push history. Rerun readiness if any named
+source commit, authority, bound hash, manifest, required check, or remote base
+changes. No conversion, lifecycle, H1, H2, release, or retirement action
+occurs.

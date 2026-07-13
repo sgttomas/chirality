@@ -33,6 +33,9 @@ Basis: `codex/sow-stage2-consumers` from
 - Commit 2 path containment and staged diff hygiene passed; commit
   `bb8ae7424de427ffe656fbbb6c22abc51266a851` contains exactly the four App
   source paths.
+- Commit 3 evidence containment, P2 manifest hashes, and cached diff hygiene
+  passed; commit `75c74fa2784c802494e3e0d3892b858081891eb4` contains only the sealed
+  evidence-binding roots.
 
 The current-hash-bound producer evidence for the full suites remains 792 root
 tests and 713 App tests plus four skips; C2G did not rerun those full suites.
@@ -56,6 +59,8 @@ the six is bound by `P2_CONSUMERS/MANIFEST.tsv`; no finding, verdict, claim,
 evidence reference, or accepted manifest hash changed. Restaged diff hygiene,
 manifest hashes, and containment passed.
 
-The preintegration gate is closed. Continue with evidence binding, remote
-checks, PR merge, and synchronized-main verification. No conversion,
-lifecycle, H1/H2, release, or retirement action is authorized.
+The preintegration gate is closed. The branch has exactly three source/evidence
+tranches and 231 changed paths against the base; no fourth semantic tranche is
+present. Continue with final source binding, remote checks, PR merge, and
+synchronized-main verification. No conversion, lifecycle, H1/H2, release, or
+retirement action is authorized.
