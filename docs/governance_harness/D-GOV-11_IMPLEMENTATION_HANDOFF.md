@@ -1,8 +1,10 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: FINAL COMPLETION AUDIT PASS / READY FOR PR #188 MERGE
+Status: COMPLETE / MERGED TO MAIN
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
+IntegrationPR: `#188`
+IntegrationCommit: `a0dc7be326a8aa05e0c34ee2fbc7085264aad888`
 
 ## Accepted Direction
 
@@ -118,14 +120,15 @@ non-rewriting merge of `main` satisfies D-GOV-14 item 8 in place of a literal
 history-rewriting rebase, preserving the SHA-bound D-GOV-13/D-GOV-14 ruling
 commits. PR #188 must not merge until full packaging, live-premerge,
 piping-sensitive, independent public-staging, and completion-audit validation
-passes. Those local gates now pass; the remaining gate is the hosted check on
-the pushed completion-audit commit.
+passes. Those local gates and the hosted governance check passed. PR #188 was
+merged to `main` with history-preserving merge commit
+`a0dc7be326a8aa05e0c34ee2fbc7085264aad888` on 2026-07-12.
 
 ## Required Resume Sequence
 
-1. Push the completion-audit commit and require its hosted check to pass.
-2. Merge PR #188 with a history-preserving merge.
-3. Publish the merge commit SHA in a narrow provenance closeout.
+All required resume steps are complete: the completion-audit commit was pushed,
+the hosted check passed, PR #188 merged with history preserved, and this narrow
+provenance closeout records the integration commit.
 
 ## Closure Verdict
 
@@ -133,7 +136,7 @@ Instruction tranche: OWNER-RULED; COMPLETION AUDIT PASS.
 RECONCILIATION activation: COMPLETE.
 Runtime bridge: REMEDIATED; FULL LOCAL ACCEPTANCE PASS.
 Overall D-GOV-11 implementation: owner-approved; both proto-runs integrated;
-ready for hosted validation and PR #188 merge.
+merged to `main` at `a0dc7be326a8aa05e0c34ee2fbc7085264aad888`.
 
 ## Known Non-Blocking Residuals
 

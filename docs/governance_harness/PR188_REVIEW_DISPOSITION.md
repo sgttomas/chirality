@@ -1,6 +1,7 @@
 # PR #188 Review Disposition
 
-Status: ALL NUMBERED FINDINGS DISPOSITIONED / OWNER RULINGS BOUND / VALIDATION PASS / READY FOR MERGE
+Status: ALL NUMBERED FINDINGS DISPOSITIONED / OWNER RULINGS BOUND / VALIDATION PASS / MERGED
+MergeCommit: `a0dc7be326a8aa05e0c34ee2fbc7085264aad888`
 ReviewedHead: `5f20ce750896da797319e535898e2959995bc521`
 Sources: the 2026-07-11 PR #188 multi-agent review and consolidated PR #188
 review feedback in the commissioning checkout
@@ -75,8 +76,9 @@ findings, and its independent staging tree passes agent, skill, entrypoint, and
 and V01-V08 all appear in this disposition. D-GOV-13 and D-GOV-14 remain bound
 to `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
 
-All local closure gates are satisfied. PR #188 may merge after the hosted check
-passes on the pushed completion-audit commit. App-dev's pre-existing missing
+All local closure gates and the hosted governance check passed. PR #188 merged
+to `main` with history-preserving commit
+`a0dc7be326a8aa05e0c34ee2fbc7085264aad888`. App-dev's pre-existing missing
 KG-001 `examples/` source asset and piping's existing npm advisories/chunk-size
 warning remain routed product residuals; they do not weaken or expand this
 governance tranche's acceptance claim.
