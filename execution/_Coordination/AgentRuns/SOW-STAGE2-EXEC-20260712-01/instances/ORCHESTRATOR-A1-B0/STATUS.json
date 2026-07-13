@@ -1,0 +1,13 @@
+{
+  "instance_id": "ORCHESTRATOR-A1-B0",
+  "role": "ORCHESTRATOR",
+  "status": "RELEASED_PENDING_ACCEPTANCE_BINDING",
+  "terminal": false,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "W-A1-B0",
+  "brief_version": 1,
+  "wave": "A1",
+  "members": 15,
+  "blockers": [],
+  "next_gate": "P4 acceptance binding then read-only A1 preflight"
+}

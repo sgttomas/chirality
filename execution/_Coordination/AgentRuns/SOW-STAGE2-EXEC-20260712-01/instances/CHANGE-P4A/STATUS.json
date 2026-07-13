@@ -1,0 +1,25 @@
+{
+  "instance_id": "CHANGE-P4A",
+  "role": "CHANGE",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "P4-ACCEPTANCE-BINDING",
+  "brief_version": 1,
+  "basis_commit": "b4efb8e554354399aadf1f624c107f63ede3230d",
+  "acceptance_bindings": "11/11 PASS",
+  "live_pilots": {
+    "members": 10,
+    "sow_v1": "10/10 PASS",
+    "legacy_files_absent": "40/40 PASS",
+    "status_identity": "10/10 PASS",
+    "lifecycle": "10/10 IN_PROGRESS"
+  },
+  "staged_paths": 8,
+  "diff_hygiene": "PASS — four exact unbound Markdown line endings normalized",
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "dispatch ORCHESTRATOR-A1-B0 read-only preflight only"
+}
