@@ -23,31 +23,24 @@ DELIVERABLE_CONCORDANCE_2026-07-11_1305`
 Enter through the project’s current loop instructions. Then read, in authority
 order:
 
-- latest 3 loop Receipts (23–25);
-- the run folder’s `RUN_BASIS.md` end-to-end (including the W3-complete,
-  addendum-9 incident, and pause entries);
+- latest 3 loop Receipts (25–27);
+- the run folder’s `RUN_BASIS.md` end-to-end (including the W4-complete,
+  addendum-9 incident, and current pause/concurrency entries);
 - `R1_CONVENTIONS.md` Parts A–D;
-- the W1–W3 calibration carry-forward in `PACKAGE_SUMMARIES/PKG-00..08.md`
+- the W1–W4 calibration carry-forward in `PACKAGE_SUMMARIES/PKG-00..12.md`
   (each summary’s "Cross-ledger risks carried forward" section is binding
-  calibration for W4);
+  calibration for W5);
 - R0/R0b review files for calibration context;
 - the pinned plan §§6–8 at
   `551f84ef6be656f1603ce0acfa5e3935aa9683c7`.
 
 <last-work>
-PAUSED at owner direction after W3 (Receipt 24). Waves W1–W3 are complete: 55
-of 101 ledgers (W1 504 rows, W2 242, W3 399 post-correction), all fan-ins
-clean, package summaries PKG-00..08 written. W3: 19/19 SOUND, 199 PASS / 49
-QUALIFIED / 7 FAIL (all string-corrected by owning pilots), Part-C SECURITY
-spot-check of DEL-08-05 convention-6 encoding PASS.
-
-PR #198 (W3 wave boundary) was merged to main by owner direction as
-`0129780f38d`; PR #199 (model-agnostic conversion; Receipt 25) was merged to
-main by owner direction as `a58eab87c` — the revised LOOP_INIT §7 and
-Receipt 25 are now on main. Note for wave-boundary PRs ahead: the Receipt-22 standing
-self-merge grant is on record, but this session's permission layer blocked
-the orchestrator's self-merge; expect to merge per-PR yourself or re-confirm
-the grant in-session.
+PAUSED at owner direction after W4 (Receipt 26). Waves W1–W4 are complete: 75
+of 101 ledgers; W4 added 20 corrected ledgers / 491 rows across PKG-09..12,
+four package fan-ins, package summaries PKG-09..12, full-wave revalidation,
+and durable closeout. PR #207 was merged to main by owner direction as
+`b3db98c7b75347e79db0727bed7b92ae874960ab`. W5 has not been dispatched and
+no W5 artifacts or agents are in flight.
 
 Owner acts pending before/at resume:
 1. **Frozen-tree restoration (addendum-9 incident):** six untracked
@@ -66,32 +59,28 @@ Owner acts pending before/at resume:
    repair it without owner direction; the calibration content of those
    summaries is unaffected and remains binding.
 
-Next work on resume: dispatch R2 W4 (PKG-09..12, 20 deliverables) in ≤4
-concurrency batches. Model assignment is MODEL-AGNOSTIC per LOOP_INIT §7
-(owner direction 2026-07-12; the prior Receipt-17 named-model steer is
-rescinded going forward — see Receipt 25): the owner names the model(s) at
-session or dispatch time; absent that, standard capability tier for
-discovery pilots, highest available capability tier for the fan-in
-verification and anything recorded as fact. NOTE the steer's risk shape
-survives model-agnostically: PKG-12 (security/privacy, F-PIP-1
-fence-adjacent) warrants the highest-capability tier for its discovery
-pilots too — confirm with the owner at dispatch. W4 brief must carry:
-R1_CONVENTIONS + the W1–W3 calibration items from PKG-00..08 summaries + the
-addendum-9 mitigations now binding (porcelain checks with
-`--ignored=matching` and the six known paths allow-listed until restored;
-cargo re-execution on lockless crates only via copy-out; `pytest -p
-no:cacheprovider`; no in-tree `py_compile`). Then the high-effort fan-in
-(one verifier per package; scope: all self-flagged rows, all non-ALIGNED
-rows, ≥2 ALIGNED rows per ledger), owning-pilot corrections, full-wave
-revalidation, package summaries, RUN_BASIS entry, receipt (recording which
-model performed each role), wave-boundary commit/push/PR. After W4: W5
-(PKG-13..17, 26), then R3 synthesis and R6 backcheck per the durable method,
-RUN_SUMMARY.md, and STOP.
+Next work on resume: dispatch R2 W5 (PKG-13..17, 26 deliverables) under the
+owner's 2026-07-12 concurrency direction (Receipt 27): **for each package,
+dispatch one deliverable-grained pilot per deliverable and run every pilot in
+that package concurrently**. The former ≤4-concurrency cap is superseded for
+all remaining waves. Keep packages as the fan-in/checkpoint units; do not
+combine multiple deliverables into one pilot. Model assignment remains
+MODEL-AGNOSTIC per LOOP_INIT §7: the owner names model(s) at session or
+dispatch time; absent that, use the capability-tier fallback and record the
+model used for every role. W5 briefs must carry R1_CONVENTIONS + the binding
+W1–W4 calibration items from PKG-00..12 summaries + addendum-9 mitigation
+(porcelain `--ignored=matching`; six known paths allow-listed until restored;
+lockless cargo only via copy-out; `pytest -p no:cacheprovider`; no in-tree
+`py_compile`). After package-concurrent discovery, run the high-effort fan-in
+(one verifier per package; all self-flagged rows, all non-ALIGNED rows, ≥2
+ALIGNED rows per ledger), owning-pilot corrections, full-wave revalidation,
+package summaries, RUN_BASIS entry, receipt/model attribution, and
+wave-boundary commit/push/PR. Then complete R3 synthesis and R6 backcheck per
+the durable method, write RUN_SUMMARY.md, and STOP.
 
-Durable working artifacts from the last session (recreate if absent; the
-scratchpad copies may be gone): the W3 pilot/fan-in/corrections briefs were
-reconstructed from durable records alone — R1_CONVENTIONS, R0B_CONVENTIONS,
-package summaries, and the W2/W3 verification reports as exemplars. The
+Durable working artifacts from prior sessions are sufficient; scratchpad
+copies may be absent. Reconstruct W5 briefs from R1_CONVENTIONS,
+R0B_CONVENTIONS, PKG-00..12 summaries, and W2–W4 verification reports. The
 structural validator is re-derivable: 20-column header byte-exact to any
 committed ledger; enums from R0B conventions + addenda; ClaimID
 `DEL-XX-XX-<REQ|ACC|EXC|DECL|REM>-NNN` contiguous per token and matching

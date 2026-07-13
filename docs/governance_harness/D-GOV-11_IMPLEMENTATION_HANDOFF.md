@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: OWNER RULINGS TRANSCRIBED / PROTO-RUN INTEGRATION AND FINAL VALIDATION PENDING
+Status: OWNER RULINGS TRANSCRIBED / PROTO-RUNS INTEGRATED / FINAL VALIDATION IN PROGRESS
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -104,28 +104,26 @@ claim about the current unvalidated remediation tree:
 The owner ratified the three standards and approved D-GOV-13 through D-GOV-14,
 published at `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
 The app-dev proto-run is `CLOSED / PASS`; its accepted changes and R6 terminal
-handoff are integrated from `main`. The owner confirmed on 2026-07-12 that a
+handoff are integrated from `main`. The piping D-41 proto-run is also closed;
+its distributed terminal package and accepted R4/R5 changes are integrated
+from `main`. The owner confirmed on 2026-07-12 that a
 non-rewriting merge of `main` satisfies D-GOV-14 item 8 in place of a literal
 history-rewriting rebase, preserving the SHA-bound D-GOV-13/D-GOV-14 ruling
-commits. The piping proto-run remains active under its pinned method. PR #188
-must not merge until piping produces a stable terminal handoff, its accepted
-changes integrate through the same non-rewriting method, and full packaging,
-live-premerge, piping-sensitive, and independent public-staging validation
+commits. PR #188 must not merge until full packaging, live-premerge,
+piping-sensitive, independent public-staging, and completion-audit validation
 passes.
 
 ## Required Resume Sequence
 
-1. Allow the piping reconciliation proto-run to finish under its pinned method
-   and produce the D-GOV-14 item 8 terminal evidence.
-2. Integrate its accepted changes through a non-rewriting `main` merge and
-   resolve any instruction, loop, index, runtime, or export conflicts.
-3. Regenerate and validate every affected root and project surface, then merge
+1. Regenerate and validate every affected root and project surface.
+2. Re-audit every PR #188 review finding against the final integrated tree.
+3. Merge
    PR #188 only when hosted and local acceptance evidence is green.
 
 ## Closure Verdict
 
-Instruction tranche: OWNER-RULED; INTEGRATION HOLD ACTIVE.
+Instruction tranche: OWNER-RULED; FINAL VALIDATION IN PROGRESS.
 RECONCILIATION activation: COMPLETE.
 Runtime bridge: REMEDIATED; CORE TESTS PASS, FULL ACCEPTANCE PENDING.
-Overall D-GOV-11 implementation: owner-approved; app-dev integrated; pending
-piping terminal integration, full acceptance validation, and merge.
+Overall D-GOV-11 implementation: owner-approved; both proto-runs integrated;
+pending completion audit, full acceptance validation, and merge.

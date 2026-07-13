@@ -1,6 +1,6 @@
 # PR #188 Review Disposition
 
-Status: REMEDIATION IMPLEMENTED / OWNER RULINGS TRANSCRIBED / FINAL INTEGRATION PENDING
+Status: REMEDIATION IMPLEMENTED / OWNER RULINGS TRANSCRIBED / PROTO-RUNS INTEGRATED / FINAL AUDIT IN PROGRESS
 ReviewedHead: `5f20ce750896da797319e535898e2959995bc521`
 Sources: the 2026-07-11 PR #188 multi-agent review and consolidated PR #188
 review feedback in the commissioning checkout
@@ -33,12 +33,12 @@ duplicate findings by remedy while preserving the source IDs for audit.
 
 | Findings | Disposition and evidence surface |
 |---|---|
-| C01, C16, C18, C42, C43, C49, C50 | Both resumed concordance proto-runs are explicitly grandfathered under pinned methods/steers/write surfaces and existing TASK execution; old §7 steer references alias to current §8. D-GOV-14 item 8 requires terminal basis/closure/lesson handoffs, integration, PR #188 rebase, and full revalidation rather than a mid-run retrofit. |
+| C01, C16, C18, C42, C43, C49, C50 | Both concordance proto-runs completed under pinned methods/steers/write surfaces and existing TASK execution; old §7 steer references alias to current §8. D-GOV-14 item 8 terminal evidence is integrated through owner-approved non-rewriting `main` merges, preserving ruling SHAs; neither run was retrofitted. |
 | C05, C28, C29, C54 | Public export excludes private-project CI, loop launchers, TRB briefs, and development backlog; it uses a public-only init prompt and generalized private-home detection. D-GOV-14 item 9 approves public decisions, handoff, and human-authority records. |
 | C06 | K-AGENTS-1 and TYPES implement the D-GOV-14 item 6 ruling: root AGENTS carries the Agent 0/1/2 hierarchy/index; the 3×4 matrix is deployment UI vocabulary only, not runtime authority grammar. |
 | C07, C21, C22, C25, C33, C34, C35, C41, C45, C57, C58 | Stale role, pause-boundary, ID-width, migration-state, glossary, ConsumerHint, matrix, and fallback language was corrected; D-GOV-10 was restored to its bound content except its publication-SHA backfill. |
 | C10 | All PR-added software skill/tool files now have exactly one terminal newline; merge-range `git diff --check` is a required closure gate. |
-| C11, C12, C13, C14, C15, C26, C27, C32, C47, C53, CR app-doc coverage | Human approval semantics are restored; runtime metadata is not represented as authenticating a human act; consequential categories are defined; claim vocabularies and ruling language are separated; DBM anchors and professional-practice narratives were updated to the current runtime. |
+| C11, C12, C13, C14, C15, C26, C27, C32, C47, C53, C59, CR app-doc coverage | Human approval semantics are restored; `approvalRef` and approval booleans are explicitly structural citation metadata, not authentication or proof of a human act; consequential categories are defined; claim vocabularies and ruling language are separated; DBM anchors and professional-practice narratives were updated to the current runtime. |
 | C31 | Deleted component-persona sources are `NO,RETIRED` in the Chirality domain source manifest with explicit D-GOV-11 replacement notes. |
 | C36, C51 | SCHEDULING retirement is documented in the implementation handoff and submitted for explicit confirmation in D-GOV-14 item 5 without editing the SHA-bound D-GOV-11 ruling. |
 
@@ -73,9 +73,8 @@ findings. Independent export validation is rerun at each integration boundary.
 D-GOV-13 and D-GOV-14 are bound to ruling publication commit
 `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
 
-1. Allow the active piping reconciliation proto-run to reach a stable handoff
-   and integrate its accepted changes through a non-rewriting `main` merge.
-2. Run the complete root, app-dev, piping-sensitive, packaging, live premerge,
+1. Run the complete root, app-dev, piping-sensitive, packaging, live premerge,
    export-regeneration, and independent staging validation suites.
+2. Re-audit every source-review finding against the final integrated tree.
 3. Update this record and the D-GOV-11 handoff with exact post-integration
    evidence, push PR #188, and require green hosted checks before merge.

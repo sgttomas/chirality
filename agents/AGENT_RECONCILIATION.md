@@ -69,10 +69,18 @@ to the human.
 - **Human-calibrated conventions.** Scale-out occurs only after the human
   accepts the project convention set and named repairs/addenda.
 - **Bounded waves.** Partition the corpus into package/tranche waves with
-  disjoint run-artifact writes and declared dependencies.
+  disjoint run-artifact writes and declared dependencies. When runtime slot
+  capacity is lower than the preferred package fan-out, use capacity-bounded
+  batches while preserving one owning worker per deliverable and independent
+  package fan-in; do not treat a temporary capacity variance as a standing
+  orchestration-policy rewrite.
 - **Validated fan-in.** Every wave receives structural checks and a bounded
   adversarial/semantic verifier. Defective ledgers are rerun; they are not
   silently patched by the manager.
+- **Containment includes ignored state.** Check tracked changes, untracked
+  non-ignored paths, and ignored-path allowlists. Keep frozen evidence trees
+  unchanged; use copy-out or external cache/target roots when validation would
+  otherwise contaminate them.
 - **Independent progress.** Blocked claims or packages do not halt independent
   work. Declared dependants remain held.
 - **No invented repair authority.** R4 human/engineering decisions authorize
@@ -161,7 +169,10 @@ one declared integration owner. Update normative/declared surfaces only under
 their ruling; update implementation/tests only under accepted production
 briefs; update Remaining and lifecycle only through their owning contracts.
 Do not edit agent instructions, skills, or root governance from a product
-repair tranche.
+repair tranche. Protect ISSUED or otherwise formally accepted baselines through
+their governing change path. Account for completed, held, and deferred repair
+rows and affected claims exactly; mechanical selectability is never execution
+authority.
 
 ### R6 — Backcheck and close
 
@@ -172,6 +183,11 @@ manifest. Record authorized no-change or no-repair rows explicitly rather than
 dropping them from accounting. Rerun required checks, verify decision and
 Remaining updates, and audit project-specific riders, stale assessments, and
 other preserved conditions.
+
+Perform this final post-repair backcheck even if discovery already produced an
+R6 or equivalent coverage backcheck. Preserve the earlier discovery closeout
+as upstream evidence; a project-local phase label does not substitute for
+verification of the repaired state.
 
 Produce a corpus-wide Remaining census with every deliverable represented,
 including explicit `NONE` rows where no residual remains. Reproduce
@@ -201,6 +217,8 @@ A concordance run is valid only when:
 9. Conflicts, unknowns, stale inputs, unmapped implementation, lifecycle
    issues, and Remaining mismatches remain visible.
 10. Repairs cite the authorizing human decision and respect owning workflows.
+    Held and deferred rows retain their exact claim populations, gates, and
+    non-activation evidence; issued baselines use their formal change path.
 11. Backcheck covers every changed claim reference and proves exact multiset
     equality to the authorized repair manifest; authorized no-change rows are
     separately and explicitly accounted for.
@@ -210,7 +228,9 @@ A concordance run is valid only when:
 13. The accepted discovery snapshot remains immutable and R6 is a new
     source-state-bound derivative snapshot.
 14. Closure records unresolved blockers, waivers, reruns, derivative status,
-    and next owner without making reliance claims.
+    validation limitations, and next owner without making reliance claims.
+    Routed authority residuals may remain open when their non-activation is
+    proven and the run's closure meaning is explicitly bounded.
 
 [[END:SPEC]]
 
@@ -239,6 +259,8 @@ A concordance run is valid only when:
     CHANGED_CLAIM_REEXTRACTION.csv
     DETAILED_EVIDENCE.csv
     RIDER_AND_ASSESSMENT_AUDIT.md
+    HELD_AND_DEFERRED_AUDIT.md
+    CONTAINMENT_AUDIT.md
     REMAINING_WORK_CENSUS.csv
     BACKCHECK.md
     HANDOFF.md
@@ -262,12 +284,13 @@ integrated. Its R6 derivative at
 provides the changed-claim multiset, rider/assessment audit, Remaining census,
 source-basis binding, and handoff requirements incorporated above.
 
-The active piping proto-run
-`DELIVERABLE_CONCORDANCE_2026-07-11_1305` predates this final structure. It
-retains its pinned method revision, directory layout, owner steers, and write
-surfaces through closure. At terminal handoff it records accepted source-state
-basis, closure state, unresolved blockers, and lessons for this contract. It
-is not retrofitted merely to resemble the unmerged template.
+The piping proto-run `DELIVERABLE_CONCORDANCE_2026-07-11_1305` is closed and
+integrated. Its distributed terminal package—`RUN_SUMMARY.md`, DEC-074,
+`R5_RUN_SUMMARY.md`, T1–T9 closeouts, `RUN_BASIS.md`, and Receipt 42—provides
+the exact repair/hold/deferral accounting, frozen/active containment evidence,
+ISSUED-baseline protection, capacity-bounded fan-out evidence, limitations,
+and routed-residual posture incorporated above. Historical files are not
+renamed or retrofitted merely to resemble this template.
 
 [[END:STRUCTURE]]
 
