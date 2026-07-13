@@ -2,7 +2,7 @@
 
 Status:       PROPOSED — AWAITING OWNER RULING
 HumanRuling:  TBD
-Proposed SHA: TBD — bind the exact decision slate at publication if ruled
+Proposed SHA: c4c5dd2df28586116d24321ba31a4a296aacbd18
 Date:         2026-07-12
 FramedBy:     deliverable Scope-of-Work architecture assessment and Stage-1 plan
 EvidenceBasis: `67ba77e5107f941e6fcc7382ef467b6b018e972d`

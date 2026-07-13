@@ -26,7 +26,8 @@
 ### Receipt 0 — 2026-07-12 — Stage-1 candidate machinery prepared
 
 - Basis: `origin/main@67ba77e5107f941e6fcc7382ef467b6b018e972d`.
-- Worktree/branch: `chirality-sow-stage1` / `codex/deliverable-sow-stage1`.
+- Worktree/branch: `chirality-sow-stage1` / `codex/deliverable-sow-stage1`;
+  candidate snapshot `c4c5dd2df28586116d24321ba31a4a296aacbd18`.
 - Authority: owner instruction to implement the Stage-1 plan; pilot variance
   remains inactive pending D-GOV-15 ruling.
 - Evidence: sizing report, four-document consumer inventory, proposed D-GOV-15,
