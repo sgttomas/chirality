@@ -1,0 +1,11 @@
+{
+  "instance_id": "TOOL-CORE",
+  "parent": "HELPS-C2R",
+  "agent_type": 2,
+  "form": "ephemeral_generalist",
+  "status": "INTERRUPTED_MANAGER_VALIDATED",
+  "dependency": "C1G_ACCEPTED",
+  "return": "RETURN.md",
+  "verdict": "PARTIAL",
+  "manager_fan_in": "PASS"
+}

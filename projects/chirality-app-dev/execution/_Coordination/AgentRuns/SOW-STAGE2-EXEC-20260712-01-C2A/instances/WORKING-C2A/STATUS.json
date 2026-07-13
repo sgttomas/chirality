@@ -1,0 +1,13 @@
+{
+  "instance_id": "WORKING-C2A",
+  "role": "WORKING_ITEMS",
+  "package_id": "APP-FRONTEND-RUNTIME",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "brief_version": 1,
+  "status": "PASS",
+  "dependencies": ["C1G_ACCEPTED"],
+  "return": "RETURN.md",
+  "terminal": true,
+  "derivative": true,
+  "next_owner": "HELP_HUMAN_C2F"
+}

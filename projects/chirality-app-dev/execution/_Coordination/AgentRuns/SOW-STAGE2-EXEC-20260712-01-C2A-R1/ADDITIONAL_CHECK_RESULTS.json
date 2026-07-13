@@ -1,0 +1,41 @@
+{
+  "profile": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/software-workflow.json",
+  "project_root": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 9.514,
+      "exit_code": 0,
+      "id": "frontend-build",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@0.1.0 build\n> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron\n\n  \u25b2 Next.js 14.2.35\n\n   Creating an optimized production build ...\n \u2713 Compiled successfully\n   Linting and checking validity of types ...\n   Collecting page data ...\n   Generating static pages (0/23) ...\n   Generating static pages (5/23) \n   Generating static pages (11/23) \n   Generating static pages (17/23) \n \u2713 Generating static pages (23/23)\n   Finalizing page optimization ...\n   Collecting build traces ...\n\nRoute (app)                                          Size     First Load JS\n\u250c \u25cb /                                                1.19 kB         172 kB\n\u251c \u25cb /_not-found                                      137 B          87.4 kB\n\u251c \u0192 /api/harness/agents                              0 B                0 B\n\u251c \u0192 /api/harness/interrupt                           0 B                0 B\n\u251c \u0192 /api/harness/permission                          0 B                0 B\n\u251c \u0192 /api/harness/scaffold                            0 B                0 B\n\u251c \u0192 /api/harness/session/[id]                        0 B                0 B\n\u251c \u0192 /api/harness/session/[id]/events                 0 B                0 B\n\u251c \u0192 /api/harness/session/boot                        0 B                0 B\n\u251c \u0192 /api/harness/session/create                      0 B                0 B\n\u251c \u0192 /api/harness/session/list                        0 B                0 B\n\u251c \u0192 /api/harness/turn                                0 B                0 B\n\u251c \u0192 /api/project/deliverables                        0 B                0 B\n\u251c \u0192 /api/working-root/deliverable/content            0 B                0 B\n\u251c \u0192 /api/working-root/deliverable/dependencies       0 B                0 B\n\u251c \u0192 /api/working-root/deliverable/status             0 B                0 B\n\u251c \u0192 /api/working-root/deliverable/status/transition  0 B                0 B\n\u251c \u0192 /api/working-root/scope                          0 B                0 B\n\u251c \u0192 /api/working-root/tree                           0 B                0 B\n\u251c \u0192 /api/working-root/validate                       0 B                0 B\n\u251c \u25cb /chat                                            1.1 kB          172 kB\n\u251c \u25cb /pipeline                                        637 B           172 kB\n\u2514 \u25cb /workbench                                       629 B           172 kB\n+ First Load JS shared by all                        87.3 kB\n  \u251c chunks/117-deba928370be3d31.js                   31.7 kB\n  \u251c chunks/fd9d1056-880a6ea229a9dddc.js              53.7 kB\n  \u2514 other shared chunks (total)                      1.89 kB\n\n\n\u25cb  (Static)   prerendered as static content\n\u0192  (Dynamic)  server-rendered on demand\n\n\n> chirality-frontend@0.1.0 build:electron\n> tsc -p tsconfig.electron.json\n\n",
+      "timeout_seconds": 1200.0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": ".",
+      "duration_seconds": 69.787,
+      "exit_code": 0,
+      "id": "harness-pytest",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "........................................................................ [ 27%]\n........................................................................ [ 54%]\n........................................................................ [ 81%]\n................................................                         [100%]\n264 passed in 69.15s (0:01:09)\n",
+      "timeout_seconds": 1200.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "/Users/ryan/ai-env/projects/chirality"
+}

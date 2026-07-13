@@ -1,0 +1,67 @@
+{
+  "schema": "chirality-review-consumer-calibration/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "REVIEW-C2F-R1",
+  "deliverable_id": "DEL-07-01",
+  "verdict": "BLOCKED",
+  "positive_exact_input_calibration": "PASS",
+  "source_sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744",
+  "expected_source_sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744",
+  "run_1_sha256": "89dcfa817e5cd2249ab6f861870bd7a2a97a412dfa6a2f94c14939dae008c080",
+  "run_2_sha256": "89dcfa817e5cd2249ab6f861870bd7a2a97a412dfa6a2f94c14939dae008c080",
+  "stage_1_sha256": "d0788014e4b75b89d62ec4e5b2ed4475d59c19845a9ebbd3a62ddcc63e5c730f",
+  "checklist_schema": "chirality-review-checklist/v1",
+  "resolved_format": "SOW_V1",
+  "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "item_count": 1,
+  "item_ids_in_order": ["AC-001"],
+  "qualified_ids_in_order": ["DEL-07-01-AC-001"],
+  "verification_qualified_ids_in_order": ["DEL-07-01-VER-001"],
+  "checks": {
+    "two_run_byte_identity": true,
+    "schema_exact": true,
+    "format_sow_v1": true,
+    "authority_exact": true,
+    "source_hash_exact": true,
+    "item_count_integrity": true,
+    "stage_1_item_count_exact": true,
+    "stage_1_item_array_exact": true,
+    "item_order_exact": true,
+    "qualified_ids_exact": true,
+    "criterion_text_exact": true,
+    "source_identity_exact": true,
+    "output_linkage_exact": true,
+    "verification_linkage_exact": true,
+    "consumer_invokes_or_consumes_registered_tool": true,
+    "consumer_prohibits_agentic_sow_extraction": true,
+    "consumer_instructions_require_exact_basis": true,
+    "registered_tool_preserves_authority_input_exactly": false,
+    "end_to_end_exact_authority_consumer": false
+  },
+  "metadata_only_delta": {
+    "stage_1_format": "PILOT_DUAL",
+    "current_format": "SOW_V1",
+    "stage_1_authority_key": "variance_ref",
+    "stage_1_authority_value": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674",
+    "current_authority_key": "migration_authority",
+    "current_authority_value": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+  },
+  "blockers": [
+    {
+      "id": "REVIEW-C2F-R1-001",
+      "description": "derive_review_checklist.py strips --migration-authority before calling resolve_production_format, so a padded ruled token is normalized before the resolver's byte-for-byte comparison",
+      "source": "tools/scope_of_work/derive_review_checklist.py:163-168",
+      "claim_status": "REPRODUCED_BY_EVAL_C2F_R1_AND_CONFIRMED_BY_SOURCE_INSPECTION",
+      "repair_attempted": false
+    }
+  ],
+  "rerun_required_on_change": [
+    "frozen source object or expected hash",
+    "Stage-1 comparison artifact",
+    "derive_review_checklist.py or common.py",
+    "AGENT_REVIEW.md",
+    "accepted format basis or authority",
+    "checklist schema"
+  ],
+  "next_owner": "HELP_HUMAN C2F-R1 fan-in and lawful checklist-caller repair routing"
+}

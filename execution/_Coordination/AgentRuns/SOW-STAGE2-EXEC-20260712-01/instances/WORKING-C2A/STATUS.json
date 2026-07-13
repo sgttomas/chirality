@@ -1,0 +1,14 @@
+{
+  "instance_id": "WORKING-C2A",
+  "role": "WORKING_ITEMS",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "project_run": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01-C2A",
+  "brief_version": 1,
+  "status": "PASS",
+  "dependencies": ["C1G_ACCEPTED"],
+  "return": "RETURN.md",
+  "terminal": true,
+  "derivative": true,
+  "next_owner": "HELP_HUMAN_C2F",
+  "source_return": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01-C2A/instances/WORKING-C2A/RETURN.md"
+}

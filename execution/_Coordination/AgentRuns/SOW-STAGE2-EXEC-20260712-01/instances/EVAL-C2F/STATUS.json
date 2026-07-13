@@ -1,0 +1,24 @@
+{
+  "instance_id": "EVAL-C2F",
+  "role": "EVALUATION",
+  "status": "BLOCKED",
+  "terminal": true,
+  "brief_version": 1,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2F",
+  "verdict": "BLOCKED",
+  "gate": "C2G_NOT_ELIGIBLE",
+  "return": "RETURN.md",
+  "evaluation_root": "execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C2F",
+  "finding_count": 4,
+  "blocking_findings": [
+    "EVAL-C2F-001",
+    "EVAL-C2F-002",
+    "EVAL-C2F-003"
+  ],
+  "next_owners": [
+    "HELPS_HUMANS",
+    "APP_WORKING_ITEMS",
+    "C2F_RERUN"
+  ]
+}

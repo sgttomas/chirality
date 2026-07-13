@@ -1,0 +1,34 @@
+{
+  "run_id": "SOW-STAGE2-EXEC-20260712-01-C2A",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "package_id": "APP-FRONTEND-RUNTIME",
+  "package_path": "projects/chirality-app-dev/frontend",
+  "nodes": [
+    {
+      "id": "IMPL",
+      "owner": "TASK-SW-IMPL",
+      "skill": "software-bounded-implementation",
+      "status": "FAILED_DURATION_RECON_ACCEPTED_MANAGER_FALLBACK_PASS",
+      "depends_on": [],
+      "writes": "nine exact runtime/test paths plus child evidence",
+      "fan_in": "behavior matrix and registered checks pass; exact containment"
+    },
+    {
+      "id": "REVIEW",
+      "owner": "TASK-SW-REVIEW",
+      "skill": "software-code-review",
+      "status": "BLOCKED_FINDING_REPAIRED_MANAGER_BACKCHECK_PASS",
+      "depends_on": ["IMPL_PASS"],
+      "writes": "review evidence only",
+      "fan_in": "no unresolved correctness, authority, fail-closed, or containment finding"
+    },
+    {
+      "id": "PACKAGE_FANIN",
+      "owner": "WORKING-C2A",
+      "status": "PASS",
+      "depends_on": ["IMPL_PASS", "REVIEW_PASS"]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "instance_id": "TASK-SW-REVIEW",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "parent": "WORKING-C2A-R1",
+  "brief_version": 1,
+  "status": "PASS_AFTER_REPAIR",
+  "depends_on": ["MANAGER_REPAIR_CHECKS_PASS"],
+  "return": "RETURN.md",
+  "terminal": true,
+  "completed_at": "2026-07-13T07:45:56Z",
+  "verdict": "PASS_AFTER_REPAIR",
+  "scope_validation": "PASS",
+  "evidence_coverage": "PASS",
+  "blocking_findings": 0,
+  "non_blocking_findings": 0,
+  "focused_tests": "PASS — 7 files / 76 tests; scanner 15/15",
+  "final_frontend": "PASS — 713 passed / 4 skipped",
+  "typecheck": "PASS"
+}

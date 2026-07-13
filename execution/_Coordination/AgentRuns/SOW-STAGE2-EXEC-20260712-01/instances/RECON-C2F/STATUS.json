@@ -1,0 +1,26 @@
+{
+  "instance_id": "RECON-C2F",
+  "role": "RECONCILIATION",
+  "status": "BLOCKED",
+  "brief_version": 1,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2F",
+  "terminal": true,
+  "return": "RETURN.md",
+  "evidence_root": "execution/_Reconciliation/DeliverableConcordance/SOW-STAGE2-EXEC-20260712-01-C2F",
+  "caller_rows": 64,
+  "app_caller_rows": 9,
+  "unclassified_callers": 0,
+  "root_source_paths": 48,
+  "app_source_paths": 4,
+  "ownership_overlap": 0,
+  "containment": "PASS",
+  "compatibility": "PARTIAL_BLOCKED_AUTHORITY",
+  "execution_substrate": "SUBSTRATE_FALLBACK_PASS_WITH_TRACE_NOTE",
+  "blockers": [
+    "C2R and C2A do not prove migration authority equals the accepted D-GOV-16 SHA",
+    "C2R ISSUED preparation omits the required accepted-basis binding"
+  ],
+  "next_owner": "HELP_HUMAN",
+  "downstream": "C2G_PARKED"
+}

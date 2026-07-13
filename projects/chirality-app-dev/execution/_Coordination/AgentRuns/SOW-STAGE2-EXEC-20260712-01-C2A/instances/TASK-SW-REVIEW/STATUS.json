@@ -1,0 +1,17 @@
+{
+  "instance_id": "TASK-SW-REVIEW",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "parent": "WORKING-C2A",
+  "brief_version": 1,
+  "status": "PASS_AFTER_REPAIR",
+  "dependencies": ["MANAGER_SUBSTRATE_IMPLEMENTATION_FOCUSED_PASS"],
+  "return": "RETURN.md",
+  "terminal": true,
+  "completed_at": "2026-07-13T07:11:37Z",
+  "verdict": "PASS_AFTER_REPAIR",
+  "scope_validation": "PASS",
+  "blocking_findings": 0,
+  "focused_tests": "PASS — 7 files / 70 tests",
+  "typecheck": "PASS"
+}

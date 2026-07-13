@@ -1,0 +1,22 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/lib/workspace/filesystem.ts",
+    "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/api/project/deliverables-route.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-read-mcp.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/dependencies-register-contract.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/workspace-deliverable-api.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/lib/workspace/filesystem.ts",
+    "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+    "projects/chirality-app-dev/frontend/src/__tests__/api/project/deliverables-route.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

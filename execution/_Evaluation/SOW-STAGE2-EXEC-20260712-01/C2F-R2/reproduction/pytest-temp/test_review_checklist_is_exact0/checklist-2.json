@@ -1,0 +1,62 @@
+{
+  "item_count": 2,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 52,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "f16355eb86c21c882747e6fa32e6115c897c1b0efce4a275f496580a3345162f"
+      },
+      "text": "The mapped source content is complete and internally resolvable.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-03-VER-001",
+          "source_line": 72,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the deterministic claim map and parity report."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 53,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "f16355eb86c21c882747e6fa32e6115c897c1b0efce4a275f496580a3345162f"
+      },
+      "text": "Human approval is recorded exactly.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "owner inspects approval evidence"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "f16355eb86c21c882747e6fa32e6115c897c1b0efce4a275f496580a3345162f"
+  },
+  "tool_version": "1"
+}

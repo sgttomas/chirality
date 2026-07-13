@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 52,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e287ee48331475fb84b17f1b4d0a180a0864174914e15153d092a831e95efa78"
+      },
+      "text": "The mapped source content is complete and internally resolvable.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-03-VER-001",
+          "source_line": 71,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the deterministic claim map and parity report."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "e287ee48331475fb84b17f1b4d0a180a0864174914e15153d092a831e95efa78"
+  },
+  "tool_version": "1"
+}
