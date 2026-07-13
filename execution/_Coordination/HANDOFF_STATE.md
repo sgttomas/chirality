@@ -7,6 +7,8 @@ Status: `READY_FOR_NEW_SESSION`
 - D-GOV-15: all nine items approved by the human owner on 2026-07-12.
 - Candidate proposal snapshot:
   `c4c5dd2df0d7b5424d48672c38d1eef37262e2f6`.
+- Published ruling snapshot:
+  `58aa81d62f4a32e3c2d687e4356a1e4be8141674`.
 - Current branch: `codex/deliverable-sow-stage1`.
 - Root standing plan:
   `execution/_Coordination/WORKPLAN_2026-07-12_scope_of_work_stage1.md`.
@@ -36,7 +38,7 @@ deliverable was edited and no variance was exercised in that session.
 - Re-run applicable root and project checks against the continuation session's
   actual commits.
 - Bind every candidate and variance reference to the published D-GOV-15 ruling
-  SHA once backfilled.
+  SHA above.
 - The only current blocker is deliberate session transfer; the human ruling is
   complete.
 

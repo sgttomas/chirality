@@ -3,7 +3,7 @@
 Status:       RULED
 HumanRuling:  APPROVED — owner response, 2026-07-12: "I rule APPROVED for all nine. Incorporate this, but do not proceed with implementation."
 Proposed SHA: c4c5dd2df0d7b5424d48672c38d1eef37262e2f6
-Ruling SHA:   TBD — backfill after ruling publication commit
+Ruling SHA:   58aa81d62f4a32e3c2d687e4356a1e4be8141674
 Date:         2026-07-12
 FramedBy:     deliverable Scope-of-Work architecture assessment and Stage-1 plan
 EvidenceBasis: `67ba77e5107f941e6fcc7382ef467b6b018e972d`

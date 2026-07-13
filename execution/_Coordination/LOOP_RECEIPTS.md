@@ -45,7 +45,8 @@
 - Owner ruling: "I rule APPROVED for all nine. Incorporate this, but do not
   proceed with implementation."
 - Decision: `D-GOV-15`, proposed snapshot
-  `c4c5dd2df0d7b5424d48672c38d1eef37262e2f6`; all nine items approved.
+  `c4c5dd2df0d7b5424d48672c38d1eef37262e2f6`, published ruling
+  `58aa81d62f4a32e3c2d687e4356a1e4be8141674`; all nine items approved.
 - Effect: the exact pilot variance and Stage-1 execution contract are
   authorized, but no pilot worktree or conversion was started in this session.
 - State: `HANDOFF_READY`; next session must inspect live Git/project-loop state,
