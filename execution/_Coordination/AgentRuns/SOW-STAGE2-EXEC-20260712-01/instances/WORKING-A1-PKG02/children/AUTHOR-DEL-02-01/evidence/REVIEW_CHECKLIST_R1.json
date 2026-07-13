@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 243,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6e47e1c1e7528f13f8ed0240a9c3f1c425999d70b70ddb83a2c4a6dc9893e378"
+      },
+      "text": "The DEL-02-01 migration candidate preserves every legacy source range, has no silent claim loss, and validates under SOW_V1 for SOW-001, SOW-005, and OBJ-001.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-01-VER-001",
+          "source_line": 362,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the DEL-02-01 candidate, generate its complete claim map and parity report, and derive its deterministic review checklist."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "6e47e1c1e7528f13f8ed0240a9c3f1c425999d70b70ddb83a2c4a6dc9893e378"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="73afaf56db4dc000688eeaedb4e7c688029e07986bb01f390b85701169e0114a">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-02-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>73afaf56db4dc000688eeaedb4e7c688029e07986bb01f390b85701169e0114a</code>.</p>
+<h1 id="scope-of-work-del-02-04">Scope of Work — DEL-02-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-02-04</code> in service of project scope [SOW-004, SOW-008, SOW-016] and package objectives [OBJ-001, OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Toolkit-options and local-UI-state contract for DEL-02-04, traceable to SOW-004, SOW-008, SOW-016, OBJ-001, and OBJ-004.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-02-04-toolkit-options-and-local-ui-state">CLM-001 — Datasheet: DEL-02-04 Toolkit Options and Local UI State</h3>
+<h4 id="datasheet-del-02-04-toolkit-options-and-local-ui-state">Datasheet: DEL-02-04 Toolkit Options and Local UI State</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-02-04</td></tr>
+<tr><td>DeliverableName</td><td>Toolkit Options and Local UI State</td></tr>
+<tr><td>PackageID</td><td>PKG-02</td></tr>
+<tr><td>PackageName</td><td>Desktop Shell, Navigation, and Operator State</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>ContextEnvelope</td><td>S</td></tr>
+<tr><td>ScopeItems</td><td>SOW-004, SOW-008, SOW-016</td></tr>
+<tr><td>Objectives</td><td>OBJ-001, OBJ-004</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary UI surfaces</td><td>File Tree, Toolkit, and Chat panes for layout behavior; Toolkit panel for runtime options.</td><td><code>docs/PRD.md</code> Section 8.1 FR-005; Section 8.7 FR-041</td></tr>
+<tr><td>Runtime option categories exposed by Toolkit</td><td>model, tools, max turns, mode, persona, governance metadata as supported by runtime.</td><td><code>docs/PRD.md</code> Section 8.7 FR-041</td></tr>
+<tr><td>Runtime option fallback behavior</td><td>Model, tools, and max-turn options follow deterministic fallback chains.</td><td><code>docs/PRD.md</code> Section 8.4 FR-023; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW-016</td></tr>
+<tr><td>Unknown option behavior</td><td>Unknown option keys are ignored with warnings.</td><td><code>docs/PRD.md</code> Section 8.4 FR-024; <code>docs/SPEC.md</code> runtime option rules, line 681</td></tr>
+<tr><td>Local persistence scope</td><td>Toolkit settings, pane widths, chat drafts, attachment selections, and local presets are local convenience state.</td><td><code>docs/PRD.md</code> Section 8.1 FR-005; Section 8.7 FR-042 and FR-043; <code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/SPEC.md</code> Section 1.3</td></tr>
+<tr><td>Accessibility expectation</td><td>Keyboard users can resize/collapse panes; resize handles are focusable separators with arrow/Home/End behavior.</td><td><code>docs/PRD.md</code> Section 11.4 NFR-019</td></tr>
+<tr><td>UI-quality evidence</td><td>Current component/render evidence plus risk-based browser or screenshot review; checklist presence alone is not acceptance.</td><td><code>docs/ui/UI_POLISH_EXECUTION_PLAN.md</code>; <code>docs/ISSUE_READINESS_PROFILES.md</code> Section 4</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Authority boundary</td><td>Local UI state is non-authoritative and must not override governance enforcement or project truth.</td><td><code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/SPEC.md</code> Section 1.3; <code>docs/PRD.md</code> Section 8.7 FR-042</td></tr>
+<tr><td>Professional reliance boundary</td><td>Agent outputs and UI/runtime state remain draft or decision-support material until accepted by an accountable human.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3 and 2.4; <code>docs/PRD.md</code> Section 15 KG-015</td></tr>
+<tr><td>Storage failure behavior</td><td>Storage failures for chat drafts and attachment selections warn without breaking chat.</td><td><code>docs/PRD.md</code> Section 8.7 FR-043</td></tr>
+<tr><td>Malformed local records</td><td>Malformed draft/attachment records are dropped.</td><td><code>docs/PRD.md</code> Section 8.7 FR-043</td></tr>
+<tr><td>Runtime governance</td><td>Toolkit mode controls must map to permission policy modes once the policy engine exists.</td><td><code>docs/PRD.md</code> Section 8.7 FR-044</td></tr>
+<tr><td>PRD source status</td><td>Reconciled: expected and actual SHA-256 values match.</td><td><code>_REFERENCES.md</code> REF-006</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component or Artifact</td><td>Required Content</td><td>Source</td></tr>
+<tr><td>Toolkit controls</td><td>UI controls for per-turn runtime options supported by the runtime. Exact component names and implementation files are TBD.</td><td><code>docs/PRD.md</code> Section 8.7 FR-041</td></tr>
+<tr><td>Pane state controls</td><td>Drag and keyboard resize/collapse support for File Tree, Toolkit, and Chat panes, with locally persisted widths.</td><td><code>docs/PRD.md</code> Section 8.1 FR-005; Section 11.4 NFR-019</td></tr>
+<tr><td>Draft and preset guards</td><td>Local persistence keyed per root/persona/mode for drafts and attachment selections; malformed records dropped; storage failures warn.</td><td><code>docs/PRD.md</code> Section 8.7 FR-043</td></tr>
+<tr><td>Governance guard</td><td>Local presets and visibility of options cannot become authoritative or override runtime governance.</td><td><code>docs/PRD.md</code> Section 8.7 FR-042; <code>docs/SPEC.md</code> runtime UI option rule, line 431</td></tr>
+<tr><td>Deterministic option handoff</td><td>Runtime option keys follow accepted fallback behavior; unknown keys warn and do not silently mutate behavior.</td><td><code>docs/PRD.md</code> Section 8.4 FR-023 and FR-024</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/DIRECTIVE.md</code> Sections 2.3, 2.4, 2.5, 2.6, 4.2.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants K-NOMEM-1, K-SDK-1, K-PERM-3, K-TOOL-1.</li>
+<li>- <code>docs/SPEC.md</code> Sections 1.2, 1.3 and runtime option rules around UI option authority and unknown keys.</li>
+<li>- <code>docs/TYPES.md</code> lifecycle state definitions.</li>
+<li>- <code>docs/PRD.md</code> Sections 8.1, 8.4, 8.7, 11.4, 15, 16.</li>
+<li>- <code>docs/ui/UI_POLISH_EXECUTION_PLAN.md</code> for UI-quality evidence routing.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-02-04, SOW-004, SOW-008, SOW-016, OBJ-001, OBJ-004.</li>
+</ul>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-109 records the ruled loop-first layout: File Tree and Chat are the resizable panes; Tool Kit is a right-sidebar tab. UPD-111 records that the 14-row derivative dependency register exists. UPD-110 is implemented by the governed <code>AppShell</code> keyboard-resize interaction test.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-02-04-toolkit-options-and-local-ui-state">CLM-008 — Specification: DEL-02-04 Toolkit Options and Local UI State</h3>
+<h4 id="specification-del-02-04-toolkit-options-and-local-ui-state">Specification: DEL-02-04 Toolkit Options and Local UI State</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable covers the UX/UI slice that exposes runtime options and preserves pane layout, chat drafts, attachment selections, and local presets as non-authoritative convenience state for the Chirality desktop shell.</p>
+<p>Included:</p>
+<ul>
+<li>- Toolkit controls for per-turn runtime options.</li>
+<li>- Local pane resize/collapse state for File Tree, Toolkit, and Chat panes.</li>
+<li>- Local draft, attachment-selection, and preset persistence guards.</li>
+<li>- UI behavior that respects deterministic runtime option fallback and warnings.</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>- Runtime engine internals.</li>
+<li>- SDK-specific option builder implementation, except where the UI must not contradict accepted runtime option behavior.</li>
+<li>- API key entry/status UI, secure-storage feedback, and typed runtime error display assigned to DEL-02-05.</li>
+<li>- Dependency extraction; this run intentionally does not create <code>Dependencies.csv</code>.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Sections 8.1, 8.4, 8.7; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-02-04.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-02-04-REQ-001</td><td>The shell shall support resizable and collapsible File Tree, Toolkit, and Chat panes.</td><td><code>docs/PRD.md</code> Section 8.1 FR-005</td></tr>
+<tr><td>DEL-02-04-REQ-002</td><td>Pane resize/collapse behavior shall support drag and keyboard operation; Home collapses, End expands, and widths are persisted locally.</td><td><code>docs/PRD.md</code> Section 8.1 FR-005; Section 11.4 NFR-019</td></tr>
+<tr><td>DEL-02-04-REQ-003</td><td>The Toolkit panel shall expose per-turn options for model, tools, max turns, and governance metadata as supported by runtime; mode and persona are supplied by the persona picker and session controls.</td><td><code>docs/PRD.md</code> Section 8.7 FR-041; D-APP-56 R4-P07</td></tr>
+<tr><td>DEL-02-04-REQ-004</td><td>Toolkit settings and presets shall persist locally and remain non-authoritative.</td><td><code>docs/PRD.md</code> Section 8.7 FR-042; <code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/SPEC.md</code> Section 1.3</td></tr>
+<tr><td>DEL-02-04-REQ-005</td><td>Local presets shall not override governance enforcement or project truth.</td><td><code>docs/PRD.md</code> Section 8.7 FR-042; <code>docs/CONTRACT.md</code> K-NOMEM-1</td></tr>
+<tr><td>DEL-02-04-REQ-006</td><td>Chat drafts and attachment selections shall persist locally per root/persona/mode.</td><td><code>docs/PRD.md</code> Section 8.7 FR-043</td></tr>
+<tr><td>DEL-02-04-REQ-007</td><td>Malformed local draft or attachment-selection records shall be dropped.</td><td><code>docs/PRD.md</code> Section 8.7 FR-043</td></tr>
+<tr><td>DEL-02-04-REQ-008</td><td>Local storage failures shall warn without breaking chat.</td><td><code>docs/PRD.md</code> Section 8.7 FR-043</td></tr>
+<tr><td>DEL-02-04-REQ-009</td><td>Mode supplied by the persona picker and session controls shall map to the enforced permission policy; Toolkit-local mode controls are not required.</td><td><code>docs/PRD.md</code> Section 8.7 FR-044; D-APP-56 R4-P07</td></tr>
+<tr><td>DEL-02-04-REQ-010</td><td>Toolkit mode controls shall not be treated as mere prompt hints when permission policy enforcement exists.</td><td><code>docs/PRD.md</code> Section 8.7 FR-044</td></tr>
+<tr><td>DEL-02-04-REQ-011</td><td>Runtime option fallback chains represented or initiated by the UI shall remain deterministic.</td><td><code>docs/PRD.md</code> Section 8.4 FR-023; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW-016</td></tr>
+<tr><td>DEL-02-04-REQ-012</td><td>Unknown option keys shall be ignored with warnings and shall not silently mutate behavior.</td><td><code>docs/PRD.md</code> Section 8.4 FR-024; <code>docs/SPEC.md</code> Section 13.1</td></tr>
+<tr><td>DEL-02-04-REQ-013</td><td>UI visibility of an option shall be non-authoritative; governance and permission policy remain authoritative.</td><td><code>docs/SPEC.md</code> Section 7.4</td></tr>
+<tr><td>DEL-02-04-REQ-014</td><td>The UI shall preserve a professional, dense-but-readable interface for the shell surfaces.</td><td><code>docs/PRD.md</code> Section 8.1 FR-006</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Source</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>Chirality Directive</td><td>Human authority, evidence posture, and non-authoritative convenience state.</td><td>Accessible: <code>docs/DIRECTIVE.md</code></td></tr>
+<tr><td>Chirality Contract</td><td>Binding invariants for hidden memory, SDK/settings posture, permissions, and tool exposure.</td><td>Accessible: <code>docs/CONTRACT.md</code></td></tr>
+<tr><td>Chirality Spec</td><td>Runtime configuration state, working-root truth, option visibility, and unknown-option behavior.</td><td>Accessible: <code>docs/SPEC.md</code></td></tr>
+<tr><td>Chirality PRD</td><td>Product requirements for desktop shell, runtime options, Toolkit, and local UI state.</td><td>Accessible: <code>_REFERENCES.md</code> REF-006 is reconciled and records <code>MATCH</code>.</td></tr>
+<tr><td>Active SOFTWARE_DECOMP v3.2</td><td>DEL-02-04 scope, SOW coverage, objective mapping, and package boundary.</td><td>Accessible: <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td></tr>
+<tr><td>DEL-02-04-REQ-001, DEL-02-04-REQ-002</td><td>UI tests or interaction checks for drag resizing, keyboard arrow resize if implemented, Home collapse, End expand, persistence after reload, and focusable separator semantics.</td></tr>
+<tr><td>DEL-02-04-REQ-003</td><td>Component or integration tests confirming the Toolkit can set only supported runtime options and labels unsupported/unavailable options without inventing behavior.</td></tr>
+<tr><td>DEL-02-04-REQ-004, DEL-02-04-REQ-005, DEL-02-04-REQ-013</td><td>Tests or review checks proving local presets do not write project truth files, do not override governance enforcement, and cannot be treated as authoritative runtime policy.</td></tr>
+<tr><td>DEL-02-04-REQ-006, DEL-02-04-REQ-007, DEL-02-04-REQ-008</td><td>Local-storage tests for root/persona/mode keying, malformed-record discard, and storage-failure warning behavior.</td></tr>
+<tr><td>DEL-02-04-REQ-009, DEL-02-04-REQ-010</td><td>Policy-mode integration tests prove persona-picker/session-control input reaches the enforced permission policy and cannot be treated as a prompt hint.</td></tr>
+<tr><td>DEL-02-04-REQ-011, DEL-02-04-REQ-012</td><td>Option-handoff tests confirming deterministic fallback display/submit behavior and warnings for unknown keys; test records must show that unknown keys are warned, ignored, and do not silently mutate runtime behavior.</td></tr>
+<tr><td>DEL-02-04-REQ-014</td><td>Review against <code>docs/ui/UI_POLISH_EXECUTION_PLAN.md</code>, including D-APP-36 component/render evidence and browser or screenshot evidence where layout risk warrants it. The checklist makes verification repeatable; REQ-014 remains unproven until current evidence is recorded.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Toolkit controls.</li>
+<li>- Pane resize/collapse state behavior.</li>
+<li>- Draft and preset storage guards.</li>
+<li>- Tests or verification notes for local-state non-authority and option fallback behavior.</li>
+<li>- Any unresolved policy-mode wiring notes marked <code>TBD</code> until the permission policy engine exists.</li>
+<li>- Policy-mode acceptance evidence after the permission policy engine exists, including the accepted enum/contract source, Toolkit mode-to-policy mapping, and evidence that controls are enforced by runtime policy rather than prompt text alone.</li>
+<li>- Option-handoff evidence for deterministic fallback and unknown-key handling, including the submitted option payload, warning behavior, and unchanged runtime behavior for ignored keys.</li>
+</ul>
+<h3 id="clm-014-assumptions-and-tbds">CLM-014 — Assumptions and TBDs</h3>
+<h5 id="assumptions-and-tbds">Assumptions and TBDs</h5>
+<ul>
+<li>- ASSUMPTION: UI implementation will key local draft and attachment-selection persistence by normalized root/persona/mode, matching PRD FR-043. Exact local storage namespace, key format, value schema, migration behavior, and retention policy are TBD.</li>
+<li>- ASSUMPTION: Toolkit controls will present only runtime-supported option fields or clearly disabled/unavailable fields. Exact runtime-supported control inventory is TBD; current source support names model, tools, max turns, mode, persona, and governance metadata as candidate option categories.</li>
+<li>- TBD: Exact file/component names for Toolkit controls and pane state implementation.</li>
+<li>- TBD: Exact permission policy mode enum and enforcement integration until the policy engine is accepted.</li>
+</ul>
+<h3 id="clm-015-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-015 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-109 records the ruled loop-first layout: File Tree and Chat are the resizable panes; Tool Kit is a right-sidebar tab. UPD-111 records that the 14-row derivative dependency register exists. UPD-110 is implemented by the <code>AppShell</code> interaction test covering focusable separator semantics, Home collapse, End expand, and Arrow resize.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The migration candidate preserves and traces all legacy source content to SOW-004, SOW-008, SOW-016, OBJ-001, and OBJ-004 without adding scope, reliance claims, lifecycle meaning, or obligations.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-02-04-toolkit-options-and-local-ui-state">CLM-016 — Procedure: DEL-02-04 Toolkit Options and Local UI State</h3>
+<h4 id="procedure-del-02-04-toolkit-options-and-local-ui-state">Procedure: DEL-02-04 Toolkit Options and Local UI State</h4>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce and verify the Toolkit Options and Local UI State UX/UI slice while preserving the non-authoritative status of local UI convenience state.</p>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Accepted source basis available locally:</li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/PLAN.md</code></li>
+<li>- <code>docs/PRD.md</code> with reconciled source state in <code>_REFERENCES.md</code></li>
+<li>- <code>docs/ui/UI_POLISH_EXECUTION_PLAN.md</code></li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></li>
+<li>- Declared upstream dependencies: <code>_DEPENDENCIES.md</code> reports no accepted human-declared upstream dependency edges outside the extracted register. The extracted register is present and lists active source prerequisites plus <code>DEP-02-04-014</code> for TBD adjacent runtime option contracts and permission policy integration points.</li>
+<li>- Runtime option contracts and permission policy integration points available from adjacent deliverables: TBD per <code>DEP-02-04-014</code>.</li>
+<li>- ResponsibleParty: TBD.</li>
+</ul>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm scope boundaries.</p>
+<ul>
+<li>- Include Toolkit controls, pane resize/collapse state, local draft/preset guards, and UI handling of runtime option fallback.</li>
+<li>- Exclude runtime engine internals and DEL-02-05 API key/error-feedback UI.</li>
+<li>- Sources: <code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Sections 8.1, 8.4, 8.7.</li>
+</ul>
+<p>2. Implement or review pane resize/collapse behavior.</p>
+<ul>
+<li>- Provide File Tree, Toolkit, and Chat pane resize/collapse affordances.</li>
+<li>- Support drag behavior and keyboard behavior, including Home collapse and End expand.</li>
+<li>- Persist widths locally.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 8.1 FR-005; Section 11.4 NFR-019.</li>
+</ul>
+<p>3. Implement or review Toolkit per-turn option controls.</p>
+<ul>
+<li>- Expose model, tools, max turns, mode, persona, and governance metadata only as supported by runtime.</li>
+<li>- Treat exact component structure and labels as TBD until implementation files are selected.</li>
+<li>- Record the runtime-supported option inventory used by the UI, or explicitly mark unavailable controls as TBD/disabled.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 8.7 FR-041.</li>
+</ul>
+<p>4. Align Toolkit option handoff with deterministic runtime behavior.</p>
+<ul>
+<li>- Confirm model, tools, and max-turn fallback chains remain deterministic.</li>
+<li>- Confirm unknown option keys warn and are ignored.</li>
+<li>- Preserve test evidence that unknown keys do not silently mutate runtime behavior.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 8.4 FR-023 and FR-024; <code>docs/SPEC.md</code> Section 13.1.</li>
+</ul>
+<p>5. Guard local presets and Toolkit settings.</p>
+<ul>
+<li>- Persist settings locally only as non-authoritative convenience state.</li>
+<li>- Confirm local presets cannot override governance enforcement or project truth.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 8.7 FR-042; <code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/SPEC.md</code> Section 1.3.</li>
+</ul>
+<p>6. Guard drafts and attachment selections.</p>
+<ul>
+<li>- Persist chat drafts and attachment selections locally per root/persona/mode.</li>
+<li>- Drop malformed records.</li>
+<li>- Warn on storage failures without breaking chat.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 8.7 FR-043.</li>
+</ul>
+<p>7. Prepare permission-mode integration without overclaiming.</p>
+<ul>
+<li>- Map Toolkit mode controls to permission policy modes once the policy engine exists.</li>
+<li>- Mark enforcement as TBD until the policy engine and accepted enums/contracts are available.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 8.7 FR-044.</li>
+</ul>
+<p>8. Check professional and project-truth boundaries.</p>
+<ul>
+<li>- Confirm UI copy, tests, and implementation do not imply local state, presets, drafts, or agent outputs are approved project truth.</li>
+<li>- Sources: <code>docs/DIRECTIVE.md</code> Sections 2.3, 2.4, 2.6; <code>docs/PRD.md</code> Section 15 KG-015.</li>
+</ul>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Pane drag resize</td><td>File Tree, Toolkit, and Chat panes resize without layout breakage.</td></tr>
+<tr><td>Pane keyboard resize/collapse</td><td>Resize handles are focusable; keyboard resize works where implemented; Home collapses; End expands.</td></tr>
+<tr><td>Pane state persistence</td><td>Width/collapse state persists locally and remains non-authoritative.</td></tr>
+<tr><td>Toolkit option controls</td><td>UI exposes only supported per-turn options or marks unsupported items as unavailable/TBD.</td></tr>
+<tr><td>Deterministic option handoff</td><td>Runtime receives supported options; fallback behavior remains deterministic; unknown keys warn and are ignored.</td></tr>
+<tr><td>Local preset authority</td><td>Presets do not write project truth and cannot override governance enforcement.</td></tr>
+<tr><td>Draft/attachment local persistence</td><td>Records are keyed per root/persona/mode; malformed records are dropped; storage failures warn without breaking chat.</td></tr>
+<tr><td>Permission-mode controls</td><td>If policy engine exists, controls map to enforced modes; if not, enforcement remains clearly TBD.</td></tr>
+<tr><td>UI polish evidence</td><td>Component/render tests cover changed controls and states; browser or screenshot review records route, viewport, states, and outcome where layout risk warrants it.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Toolkit controls implementation or review notes: TBD.</li>
+<li>- Pane resize/collapse implementation or review notes: TBD.</li>
+<li>- Draft/preset storage guard tests: TBD.</li>
+<li>- Runtime option handoff tests, including unknown-key warning/ignore evidence: TBD.</li>
+<li>- Accessibility checks for keyboard resize/collapse: TBD.</li>
+<li>- Local-state non-authority tests for presets, drafts, attachment selections, fallback behavior, accessibility, and storage guards: TBD.</li>
+<li>- Policy-mode mapping evidence after the permission policy engine exists: TBD.</li>
+<li>- UI polish checklist review and current component/browser evidence: TBD.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, followed by human review against the accepted legacy basis.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-02-04-toolkit-options-and-local-ui-state">CLM-022 — Guidance: DEL-02-04 Toolkit Options and Local UI State</h3>
+<h4 id="guidance-del-02-04-toolkit-options-and-local-ui-state">Guidance: DEL-02-04 Toolkit Options and Local UI State</h4>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-02-04 exists to make runtime options and local operator conveniences visible and usable without turning those conveniences into project truth. The slice supports OBJ-001 by preserving clear desktop-shell operator behavior and supports OBJ-004 where Toolkit options touch deterministic runtime option handling.</p>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-02-04, OBJ-001, OBJ-004; <code>docs/PRD.md</code> Sections 8.1, 8.4, 8.7.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Treat local state as convenience, not authority.</p>
+<p>UI drafts, local presets, pane widths, SDK transcripts, API keys, runtime logs, and caches are non-authoritative unless governed project files import relevant content. Sources: <code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/SPEC.md</code> Section 1.3.</p>
+<p>2. Keep governance stronger than UI choice.</p>
+<p>Toolkit settings and visible options may help the operator express intent, but they cannot override governance enforcement, permission policy, or project truth. Sources: <code>docs/PRD.md</code> Section 8.7 FR-042; <code>docs/SPEC.md</code> Section 7.4.</p>
+<p>3. Prefer explicit warnings over silent behavior changes.</p>
+<p>Unknown option keys should warn and be ignored instead of mutating behavior. Storage failures should warn without breaking chat. Sources: <code>docs/PRD.md</code> Section 8.4 FR-024; Section 8.7 FR-043.</p>
+<p>4. Preserve drafts for operator continuity, not approval.</p>
+<p>Draft and attachment-selection persistence improves recovery and retry behavior, but it does not approve work or create project truth. Sources: <code>docs/DIRECTIVE.md</code> Sections 2.3, 2.4, 2.6; <code>docs/PRD.md</code> Section 8.7 FR-043.</p>
+<p>5. Make pane controls accessible.</p>
+<p>Resize/collapse affordances should be usable by keyboard users through focusable separators and keyboard behavior. Sources: <code>docs/PRD.md</code> Section 8.1 FR-005; Section 11.4 NFR-019.</p>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Runtime option controls should distinguish &quot;operator selected,&quot; &quot;runtime defaulted,&quot; and &quot;governance enforced&quot; states where the source model supports that distinction. Exact UI copy and state model are TBD.</li>
+<li>- Local storage should degrade gracefully. A blocked quota, private-window limitation, or parse error should not make chat unusable; malformed records should be dropped and failures should warn. Source: <code>docs/PRD.md</code> Section 8.7 FR-043.</li>
+<li>- The Toolkit should not imply that SDK or permission modes are prompt hints only. PRD FR-044 requires runtime enforcement once the permission policy engine exists.</li>
+<li>- The PRD source is reconciled in <code>_REFERENCES.md</code>; avoid over-claiming details not present in the accessible text.</li>
+<li>- PRD FR-006 routes polish evidence through <code>docs/ui/UI_POLISH_EXECUTION_PLAN.md</code>. Treat its checklist as evidence routing, not as substitute product authority or as proof that current UI acceptance has passed.</li>
+</ul>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Convenience persistence vs. project truth</td><td>Persist pane widths, drafts, and presets locally, but never write them as authoritative deliverable state unless a governed import occurs.</td><td><code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/SPEC.md</code> Section 1.3</td></tr>
+<tr><td>Rich Toolkit controls vs. runtime authority</td><td>Surface options that improve operator control, but let runtime fallback, validation, and permission policy remain authoritative.</td><td><code>docs/PRD.md</code> Section 8.4 FR-023 and FR-024; Section 8.7 FR-042 and FR-044</td></tr>
+<tr><td>Strict local parsing vs. operator continuity</td><td>Drop malformed local records and warn on storage failures, but avoid breaking chat when local persistence fails.</td><td><code>docs/PRD.md</code> Section 8.7 FR-043</td></tr>
+<tr><td>Keyboard support vs. compact shell layout</td><td>Keep resize/collapse controls accessible even in a dense desktop shell.</td><td><code>docs/PRD.md</code> Section 11.4 NFR-019</td></tr>
+</tbody></table>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<ul>
+<li>- Supported example: a user adjusts Toolkit max turns for one turn. The UI may submit that option, but runtime fallback and policy decide final behavior. Source: <code>docs/PRD.md</code> Section 8.4 FR-023; Section 8.7 FR-041.</li>
+<li>- Supported example: a malformed local draft record is encountered. The UI drops the malformed record and continues with a warning if needed. Source: <code>docs/PRD.md</code> Section 8.7 FR-043.</li>
+<li>- Supported example: pane widths persist locally after keyboard resize. Source: <code>docs/PRD.md</code> Section 8.1 FR-005; Section 11.4 NFR-019.</li>
+<li>- Unsupported as project truth: a local Toolkit preset that attempts to bypass governance or override permission policy. Source: <code>docs/PRD.md</code> Section 8.7 FR-042; <code>docs/SPEC.md</code> Section 7.4.</li>
+</ul>
+<h3 id="clm-028-resolved-source-state-note">CLM-028 — Resolved source-state note</h3>
+<h5 id="resolved-source-state-note">Resolved source-state note</h5>
+<p>The earlier REF-006 hash conflict is closed in the live <code>_REFERENCES.md</code>, where expected and actual</p>
+<p>PRD SHA-256 values now match. Historical run records and the dated inspection assessment retain the</p>
+<p>state observed when they were written.</p>
+<h3 id="clm-029-rulings-needed">CLM-029 — Rulings Needed</h3>
+<h5 id="rulings-needed">Rulings Needed</h5>
+<ul>
+<li>- Human ruling needed if local presets should have a specific retention duration, storage namespace, or migration policy; no accessible source defines those details.</li>
+</ul>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-004 SOW-008 SOW-016 OBJ-001 OBJ-004</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

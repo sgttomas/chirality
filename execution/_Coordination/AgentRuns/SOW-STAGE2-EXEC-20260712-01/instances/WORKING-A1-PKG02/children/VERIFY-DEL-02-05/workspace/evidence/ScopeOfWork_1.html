@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="5b158b9ef5f6922abe8a56bf84b55dd6af55df42ea5546b4caa42d3487742446">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-02-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>5b158b9ef5f6922abe8a56bf84b55dd6af55df42ea5546b4caa42d3487742446</code>.</p>
+<h1 id="scope-of-work-del-02-05">Scope of Work — DEL-02-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-02-05</code> in service of project scope [SOW-013, SOW-019] and package objectives [OBJ-001, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — API-key UI and runtime-feedback contract for DEL-02-05, traceable to SOW-013, SOW-019, OBJ-001, and OBJ-008.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-02-05-api-key-ui-and-runtime-feedback">CLM-001 — Datasheet: DEL-02-05 API Key UI and Runtime Feedback</h3>
+<h4 id="datasheet-del-02-05-api-key-ui-and-runtime-feedback">Datasheet: DEL-02-05 API Key UI and Runtime Feedback</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-02-05</td></tr>
+<tr><td>DeliverableName</td><td>API Key UI and Runtime Feedback</td></tr>
+<tr><td>PackageID</td><td>PKG-02</td></tr>
+<tr><td>PackageName</td><td>Desktop Shell, Navigation, and Operator State</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ContextEnvelope</td><td>S</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary UI surfaces</td><td>API key settings panel; typed error display; secure-storage error UI</td><td><code>_CONTEXT.md</code> Deliverable Scope and Anticipated Artifacts; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-02-05 row</td></tr>
+<tr><td>Scope items covered</td><td>SOW-013 typed runtime errors; SOW-019 API key storage and resolution</td><td><code>_CONTEXT.md</code> Traceability; decomposition SOW ledger</td></tr>
+<tr><td>Objective support</td><td>OBJ-001 and OBJ-008</td><td><code>_CONTEXT.md</code> Traceability; decomposition objectives table</td></tr>
+<tr><td>Key status values</td><td><code>ui</code>, <code>env</code>, <code>none</code></td><td><code>docs/PRD.md</code> Section 7.7; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>API key precedence</td><td>UI safeStorage key, then <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code></td><td><code>docs/PRD.md</code> FR-030; <code>docs/SPEC.md</code> Section 12.3</td></tr>
+<tr><td>Browser-facing turn error event</td><td><code>turn:error</code></td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4</td></tr>
+<tr><td>Terminal stream event</td><td><code>process:exit</code></td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>API key material must remain outside project truth</td><td>Required</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/SPEC.md</code> Section 16.2; <code>docs/PRD.md</code> NFR-002</td></tr>
+<tr><td>Secure key storage location</td><td><code>app.getPath(&#x27;userData&#x27;)/credentials/api-key.enc</code></td><td><code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>Secure-storage mechanism</td><td>Electron <code>safeStorage</code></td><td><code>docs/PRD.md</code> Section 7.7; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>Runtime errors preserve retry context</td><td>Required for drafts and attachments</td><td><code>docs/PRD.md</code> Section 7.3 and FR-020; decomposition SOW-013</td></tr>
+<tr><td>Runtime event/log redaction</td><td>API keys and configured secrets must be redacted</td><td><code>docs/PRD.md</code> FR-075 and NFR-002; <code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+<tr><td>PRD source integrity</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; dispatch override — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction Notes</td><td>Source</td></tr>
+<tr><td>API key settings panel</td><td>Must allow user key storage through Electron IPC and expose key source/status without exposing key material. Specific component path is TBD.</td><td><code>docs/PRD.md</code> Section 7.7; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>Secure-storage feedback</td><td>Must report secure-storage unavailability as a user-visible error. Exact copy and visual treatment are TBD.</td><td><code>docs/PRD.md</code> Section 7.7</td></tr>
+<tr><td>Typed runtime error display</td><td>Must map harness errors to title, message, and next-step text. Exact error taxonomy and component path are TBD for this UI slice.</td><td><code>docs/PRD.md</code> FR-020; decomposition SOW-013</td></tr>
+<tr><td>Retry-preserving failure state</td><td>Must preserve drafts and attachments after runtime errors so the user can retry. Exact local state owner and final evidence path are TBD.</td><td><code>docs/PRD.md</code> FR-020; decomposition SOW-013 and SOW-023</td></tr>
+<tr><td>SSE compatibility</td><td>UI behavior must preserve existing browser-facing SSE event names during runtime changes.</td><td><code>docs/SPEC.md</code> Section 11; decomposition acceptance checklist</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>docs/PLAN.md</code></li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+</ul>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-112 resolves the SOW-023 traceability delta in favor of inclusion because decomposition v3.2 explicitly maps SOW-023 to DEL-02-05; the new anchor is derivative traceability, not a lifecycle decision.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-02-05-api-key-ui-and-runtime-feedback">CLM-008 — Specification: DEL-02-05 API Key UI and Runtime Feedback</h3>
+<h4 id="specification-del-02-05-api-key-ui-and-runtime-feedback">Specification: DEL-02-05 API Key UI and Runtime Feedback</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable covers the user-facing UI slice for API key entry/status, secure-storage feedback, typed runtime errors, and retry-preserving failure states in PKG-02.</p>
+<p>In scope:</p>
+<ul>
+<li>- API key settings/status UI for UI safeStorage and environment fallback state.</li>
+<li>- User-visible secure-storage error feedback.</li>
+<li>- Typed runtime error presentation with actionable title/message/next-step content.</li>
+<li>- UI state preservation needed to retry after runtime failure.</li>
+<li>- Browser-facing event compatibility where this UI consumes turn stream outcomes.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Runtime engine internals.</li>
+<li>- Provider wrapper implementation.</li>
+<li>- Redaction helper implementation.</li>
+<li>- Network allowlist enforcement.</li>
+<li>- Dependency extraction and <code>Dependencies.csv</code> creation.</li>
+<li>- Remove-stored-key and reveal/hide controls are deliberate, unrequired</li>
+</ul>
+<p>convenience UI. They do not add a product requirement or test obligation</p>
+<p>under D-APP-56 R4-P01.</p>
+<p>Sources: <code>_CONTEXT.md</code> Deliverable Scope; decomposition DEL-02-05 row; <code>docs/PRD.md</code> Sections 7.3 and 7.7; <code>docs/SPEC.md</code> Sections 11, 12.3, and 16.2.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Priority</td><td>Source</td></tr>
+<tr><td>DEL-02-05-R01</td><td>The UI must provide an API key settings surface that allows key storage through Electron IPC without writing key material to the working root.</td><td>P0</td><td><code>docs/PRD.md</code> Section 7.7; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>DEL-02-05-R02</td><td>The UI must display API key source/status as one of <code>ui</code>, <code>env</code>, or <code>none</code> without displaying key material.</td><td>P0</td><td><code>docs/PRD.md</code> Section 7.7; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>DEL-02-05-R03</td><td>The UI must reflect API key precedence: UI safeStorage first, <code>ANTHROPIC_API_KEY</code> second, and <code>CHIRALITY_ANTHROPIC_API_KEY</code> third.</td><td>P0</td><td><code>docs/PRD.md</code> FR-030; <code>docs/SPEC.md</code> Section 12.3</td></tr>
+<tr><td>DEL-02-05-R04</td><td>If secure storage is unavailable, the UI must report an error.</td><td>P0</td><td><code>docs/PRD.md</code> Section 7.7</td></tr>
+<tr><td>DEL-02-05-R05</td><td>Runtime errors shown in the UI must be typed and actionable, mapped to title, message, and next-step text.</td><td>P1</td><td><code>docs/PRD.md</code> FR-020; decomposition SOW-013</td></tr>
+<tr><td>DEL-02-05-R06</td><td>Runtime error states must preserve draft prompt content and attachments for retry.</td><td>P1</td><td><code>docs/PRD.md</code> Section 7.3 and FR-020</td></tr>
+<tr><td>DEL-02-05-R07</td><td>UI error handling must preserve browser-facing SSE compatibility for <code>turn:error</code> and <code>process:exit</code> outcomes.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4</td></tr>
+<tr><td>DEL-02-05-R08</td><td>UI surfaces must not treat API keys, runtime logs, UI state, SDK transcripts, or chat drafts as authoritative project truth.</td><td>P0</td><td><code>docs/DIRECTIVE.md</code> Project Truth sections; <code>docs/TYPES.md</code> Section 1.7; <code>docs/CONTRACT.md</code> K-FS-1 and K-KEY-1</td></tr>
+<tr><td>DEL-02-05-R09</td><td>Any user-facing provider/SDK error detail exposed by this UI must be redacted for secrets.</td><td>P0</td><td><code>docs/PRD.md</code> FR-075 and NFR-002; <code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+<tr><td>DEL-02-05-R10</td><td>This UI slice MUST consume the product-owned <code>HarnessErrorType</code> from <code>@chirality/harness-contract</code> and MUST NOT redefine the canonical runtime taxonomy; provider-native errors remain adapter metadata.</td><td>P1</td><td><code>frontend/packages/harness-contract/src/types.ts</code>; <code>frontend/packages/harness-contract/src/errors.ts</code>; <code>Evidence_ORN-08_Runtime_Error_Taxonomy_Ownership.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Project truth boundary</td><td>API keys and runtime convenience state are not authoritative project state.</td><td><code>docs/DIRECTIVE.md</code>; <code>docs/TYPES.md</code>; <code>docs/CONTRACT.md</code> K-FS-1 and K-KEY-1</td></tr>
+<tr><td>API key storage policy</td><td>UI safeStorage and environment fallback must keep key material out of working-root files, logs, and runtime events.</td><td><code>docs/SPEC.md</code> Sections 12.3 and 16.2; <code>docs/PRD.md</code> FR-030, FR-031, NFR-002</td></tr>
+<tr><td>Browser SSE event contract</td><td>Existing browser-facing event names remain compatible.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4</td></tr>
+<tr><td>Runtime redaction policy</td><td>Secrets are redacted from provider errors, logs, event records, and relevant tool outputs.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/PRD.md</code> FR-075</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification Approach</td></tr>
+<tr><td>DEL-02-05-R01</td><td>UI/integration test confirms key save path uses Electron IPC and does not create working-root key material.</td></tr>
+<tr><td>DEL-02-05-R02</td><td>UI test covers status rendering for <code>ui</code>, <code>env</code>, and <code>none</code>; no key value appears in rendered text or captured events. Final fixture/module path is TBD until the API key settings surface is implemented.</td></tr>
+<tr><td>DEL-02-05-R03</td><td>Integration or mocked status test covers precedence order. Final fixture/command is TBD until the API key settings surface is implemented.</td></tr>
+<tr><td>DEL-02-05-R04</td><td>Mock unavailable safeStorage and verify visible error state.</td></tr>
+<tr><td>DEL-02-05-R05</td><td>Unit test maps representative typed errors to title/message/next-step fields.</td></tr>
+<tr><td>DEL-02-05-R06</td><td>UI state test confirms draft and attachment metadata remain available after a runtime error.</td></tr>
+<tr><td>DEL-02-05-R07</td><td>SSE/turn UI test confirms <code>turn:error</code> and terminal <code>process:exit</code> are handled without renaming browser events.</td></tr>
+<tr><td>DEL-02-05-R08</td><td>Static or integration check confirms API key UI state is local convenience state and not written to deliverable/project truth files.</td></tr>
+<tr><td>DEL-02-05-R09</td><td>Redaction fixture verifies visible/logged error strings do not expose API keys.</td></tr>
+<tr><td>DEL-02-05-R10</td><td>Contract/import review confirms runtime, adapter, API, and UI layers use the canonical harness-contract error type; representative error-display, route, adapter, and mapper tests remain green.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- API key settings panel.</li>
+<li>- Typed error display.</li>
+<li>- Secure-storage error UI.</li>
+</ul>
+<p>Documentation or implementation details still TBD:</p>
+<ul>
+<li>- Exact component/module paths.</li>
+<li>- Exact typed error enum consumed by the UI.</li>
+<li>- Exact secure-storage unavailable copy.</li>
+<li>- Exact retry state owner for drafts and attachments.</li>
+<li>- Final evidence paths or commands for key status precedence, key storage secrecy, runtime redaction, and non-authoritative UI state checks.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The migration candidate preserves and traces all legacy source content to SOW-013, SOW-019, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-02-05-api-key-ui-and-runtime-feedback">CLM-014 — Procedure: DEL-02-05 API Key UI and Runtime Feedback</h3>
+<h4 id="procedure-del-02-05-api-key-ui-and-runtime-feedback">Procedure: DEL-02-05 API Key UI and Runtime Feedback</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure to produce and verify the API key UI and runtime feedback slice for DEL-02-05 without expanding into runtime engine internals or dependency extraction.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Accepted deliverable context in <code>_CONTEXT.md</code>.</li>
+<li>- Source corpus listed in <code>_REFERENCES.md</code>.</li>
+<li>- Current <code>_STATUS.md</code> state permits work.</li>
+<li>- Runtime/API contracts for key status, typed errors, and SSE events are available or mocked for UI work.</li>
+<li>- Declared upstream dependencies: TBD - no accepted dependency edges have been extracted yet (<code>_DEPENDENCIES.md</code>).</li>
+</ul>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the UI scope.</p>
+<ul>
+<li>- Verify that work remains limited to API key settings/status UI, secure-storage feedback, typed runtime error presentation, and retry-preserving failure states.</li>
+<li>- Source: <code>_CONTEXT.md</code>; decomposition DEL-02-05 row.</li>
+</ul>
+<p>2. Define the key status UI contract.</p>
+<ul>
+<li>- Display key status/source as <code>ui</code>, <code>env</code>, or <code>none</code>.</li>
+<li>- Do not display key material.</li>
+<li>- Reflect precedence: UI safeStorage, then <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 7.7 and FR-030; <code>docs/SPEC.md</code> Sections 12.3 and 16.2.</li>
+</ul>
+<p>3. Implement secure-storage feedback.</p>
+<ul>
+<li>- Route key storage through Electron IPC and safeStorage-capable runtime surfaces.</li>
+<li>- Show a user-visible error when secure storage is unavailable.</li>
+<li>- Keep exact copy as TBD until product copy is approved.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 7.7; <code>docs/SPEC.md</code> Section 16.2.</li>
+</ul>
+<p>4. Implement typed runtime error display.</p>
+<ul>
+<li>- Map typed runtime/provider errors to title, message, and next-step text.</li>
+<li>- Redact or avoid raw provider detail that may contain secrets.</li>
+<li>- ASSUMPTION: consume taxonomy from runtime/provider layers rather than defining it here.</li>
+<li>- Sources: <code>docs/PRD.md</code> FR-020 and FR-075; <code>docs/CONTRACT.md</code> K-EVENT-6.</li>
+</ul>
+<p>5. Preserve retry state after failure.</p>
+<ul>
+<li>- Keep draft prompt text and attachment metadata available after runtime errors.</li>
+<li>- Do not make draft or attachment UI state authoritative project truth.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 7.3 and FR-020; <code>docs/DIRECTIVE.md</code> Project Truth sections.</li>
+</ul>
+<p>6. Preserve event compatibility.</p>
+<ul>
+<li>- Handle existing browser-facing SSE events, including <code>turn:error</code> and <code>process:exit</code>.</li>
+<li>- Do not expose SDK-specific message names as the browser UI contract.</li>
+<li>- Sources: <code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4.</li>
+</ul>
+<p>7. Check project-truth and secret boundaries.</p>
+<ul>
+<li>- Verify no key material is written to working-root files, runtime event payloads, logs, or tool artifacts.</li>
+<li>- Verify UI state remains non-authoritative convenience state.</li>
+<li>- Sources: <code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/PRD.md</code> NFR-002; <code>docs/TYPES.md</code> Section 1.7.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Four-document traceability</td><td>Datasheet, Specification, Guidance, and Procedure cite the same source-backed status values, precedence order, and retry requirements.</td></tr>
+<tr><td>Key status UI</td><td>Tests or review cover <code>ui</code>, <code>env</code>, and <code>none</code>; key value never appears.</td></tr>
+<tr><td>SafeStorage unavailable</td><td>Mocked unavailable secure storage produces visible error feedback.</td></tr>
+<tr><td>Runtime error UI</td><td>Representative typed errors map to title/message/next-step text and preserve retry context.</td></tr>
+<tr><td>Retry state</td><td>Draft and attachment state remain available after a runtime error.</td></tr>
+<tr><td>SSE compatibility</td><td><code>turn:error</code> and <code>process:exit</code> remain accepted browser-facing event names.</td></tr>
+<tr><td>Secret hygiene</td><td>Redaction checks confirm no API keys in project files, logs, runtime events, or UI error details.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- API key settings panel implementation and tests.</li>
+<li>- Typed error display implementation and tests.</li>
+<li>- Secure-storage error UI implementation and tests.</li>
+<li>- Evidence that key material is not written to working root, logs, runtime events, or tool artifacts.</li>
+<li>- Human rulings for <code>Guidance.md</code> Conflict Table entries CT001 and CT002.</li>
+</ul>
+<h3 id="clm-020-evidence-binding-table">CLM-020 — Evidence Binding Table</h3>
+<h6 id="evidence-binding-table">Evidence Binding Table</h6>
+<table><tbody>
+<tr><td>Evidence Need</td><td>Required Record</td><td>Current Binding</td></tr>
+<tr><td>API key settings surface</td><td>Component/module path and test path for the settings panel that routes key storage through Electron IPC.</td><td>TBD - implementation path not yet accepted.</td></tr>
+<tr><td>Key source/status and precedence</td><td>Test or review evidence covering <code>ui</code>, <code>env</code>, <code>none</code>, and precedence order.</td><td>TBD - final fixture or command not yet accepted.</td></tr>
+<tr><td>Secure-storage unavailable feedback</td><td>Test or review evidence proving unavailable safeStorage produces visible error feedback.</td><td>TBD - final fixture or command not yet accepted.</td></tr>
+<tr><td>Typed runtime error mapping</td><td>Test or review evidence mapping representative typed errors to title, message, and next-step fields.</td><td>TBD - runtime/provider taxonomy owner not yet accepted.</td></tr>
+<tr><td>Retry preservation</td><td>Test or review evidence proving draft prompt text and attachment metadata remain available after runtime error.</td><td>TBD - exact retry state owner not yet accepted.</td></tr>
+<tr><td>SSE compatibility</td><td>Test or review evidence proving <code>turn:error</code> and <code>process:exit</code> remain browser-facing event names.</td><td>TBD - final compatibility fixture not yet accepted.</td></tr>
+<tr><td>Secret hygiene and project-truth boundary</td><td>Static, unit, integration, or review evidence proving key material, logs, drafts, transcripts, and UI state do not become project truth.</td><td>TBD - final evidence paths or commands not yet accepted.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, followed by human review against the accepted legacy basis.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-02-05-api-key-ui-and-runtime-feedback">CLM-021 — Guidance: DEL-02-05 API Key UI and Runtime Feedback</h3>
+<h4 id="guidance-del-02-05-api-key-ui-and-runtime-feedback">Guidance: DEL-02-05 API Key UI and Runtime Feedback</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable gives operators a clear UI for API key status and runtime failure recovery while preserving Chirality&#x27;s governance boundary: key material and runtime convenience state are useful for operation, but they are not project truth.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition DEL-02-05 row; <code>docs/DIRECTIVE.md</code> Project Truth sections; <code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/PRD.md</code> Sections 7.3 and 7.7.</p>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep key material invisible. The UI may show whether a key comes from <code>ui</code>, <code>env</code>, or <code>none</code>, but must not display, log, or persist the key value. Sources: <code>docs/PRD.md</code> Section 7.7; <code>docs/SPEC.md</code> Section 16.2.</li>
+<li>- Separate user-facing feedback from runtime authority. UI messages can help the operator recover, but runtime policy remains in the engine/provider/session layers. Sources: <code>_CONTEXT.md</code> Exclusions; <code>docs/SPEC.md</code> Section 10 and Section 11.</li>
+<li>- Preserve retry context. Runtime errors should not destroy draft prompt text or attachment state needed for retry. Sources: <code>docs/PRD.md</code> Section 7.3 and FR-020.</li>
+<li>- Use stable browser-facing events. UI handling should consume the established SSE names, including <code>turn:error</code> and <code>process:exit</code>, instead of exposing SDK-specific message semantics. Sources: <code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4.</li>
+<li>- REF-006 records the PRD hash as <code>MATCH</code> under D-APP-38. Use PRD content with the normal SPEC/CONTRACT/TYPES authority relationships. Source: <code>_REFERENCES.md</code> REF-006.</li>
+</ul>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The API key UI is a presentation/control surface. Actual key storage, provider handoff, redaction, and network policy belong to adjacent runtime/security deliverables.</li>
+<li>- Secure-storage unavailability needs a clear visible error because the PRD acceptance criteria explicitly require it, but the exact wording is not specified in the accessible source corpus.</li>
+<li>- Typed runtime error copy should be actionable without leaking secret-bearing provider detail.</li>
+<li>- The UI can show status and next steps, but should avoid language that suggests the app has approved, certified, or externally validated work.</li>
+<li>- Retry preservation should account for both draft text and attachments; attachment server validation remains outside this deliverable.</li>
+</ul>
+<h3 id="clm-025-trade-offs">CLM-025 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Detail vs. secrecy in key/error feedback</td><td>Prefer source/status and next-step text over raw provider details or key fragments.</td><td><code>docs/CONTRACT.md</code> K-KEY-1 and K-EVENT-6</td></tr>
+<tr><td>UI convenience vs. project truth</td><td>Store only non-authoritative UI convenience state; never write API key material into project files.</td><td><code>docs/DIRECTIVE.md</code>; <code>docs/TYPES.md</code> Section 1.7</td></tr>
+<tr><td>Error specificity vs. taxonomy ownership</td><td>Show typed actionable UI states, but do not invent canonical runtime error enums in this deliverable.</td><td><code>_CONTEXT.md</code> Exclusions; decomposition package boundaries</td></tr>
+<tr><td>Backward compatibility vs. runtime refactor</td><td>Preserve browser-facing SSE names while runtime internals move behind <code>TurnEngine</code>.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/PRD.md</code> FR-071</td></tr>
+</tbody></table>
+<h3 id="clm-026-examples">CLM-026 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>TBD: The accessible source corpus defines required status values and behavior, but does not provide approved UI copy examples, component names, screenshots, or visual states.</p>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>CT001</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Dispatch instruction for this TASK run</td><td>All PRD-cited requirements</td><td>Use PRD only with warning; prefer corroborated SPEC/CONTRACT/TYPES for implementation detail.</td><td>TBD — reconciled under D-APP-38</td></tr>
+<tr><td>CT002</td><td>Deliverable covers API key UI/status, but SOW-019 primary package is PKG-09 with related implementation deliverables DEL-04-05 and DEL-09-06.</td><td>Decomposition DEL-02-05 row</td><td>Decomposition SOW ledger for SOW-019</td><td>Specification scope and verification ownership</td><td>Treat DEL-02-05 as UI feedback surface only; leave provider-wrapper behavior to DEL-04-05 and DEL-09-06.</td><td><strong>RULED 2026-07-12 (D-APP-56 R4-P35): proposed split ratified.</strong></td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-013 SOW-019 OBJ-001 OBJ-008</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

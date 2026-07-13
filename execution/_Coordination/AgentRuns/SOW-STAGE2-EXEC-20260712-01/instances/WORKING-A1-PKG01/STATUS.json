@@ -1,1 +1,36 @@
-{"instance_id":"WORKING-A1-PKG01","role":"WORKING_ITEMS","status":"RELEASED_PENDING_BINDING","terminal":false,"parent":"SOW-STAGE2-EXEC-20260712-01","node":"W-A1-PKG01","package":"APP-PKG-01","members":4,"blockers":[]}
+{
+  "instance_id": "WORKING-A1-PKG01",
+  "role": "WORKING_ITEMS",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "W-A1-PKG01",
+  "package": "APP-PKG-01",
+  "canonical_package_id": "PKG-01",
+  "members": 4,
+  "authors_accepted": 4,
+  "verifiers_accepted": 4,
+  "candidate_sha256": {
+    "DEL-01-01": "34e41b8e7efe65ea58eb36856bde2bbd7e2e0d21052331c676d245b106813b65",
+    "DEL-01-02": "a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64",
+    "DEL-01-03": "8eeb463884aa9549a8ebf79d8c454bf60fdc6e0dd5a5e7359734ead1d23e47b0",
+    "DEL-01-04": "13a2a49d1cb74fc83b9c64dc39c25f8ae98107b5b666b5b7352a95b4e626a068"
+  },
+  "mapping_rows": 145,
+  "source_lines": 1539,
+  "replacement_rows": 20,
+  "rollback_rows": 20,
+  "project_checks": "PASS",
+  "check_evidence_r2": {
+    "status": "PASS",
+    "project_checks_sha256": "94e56cfbc1b67b7c6c9d5da81c8aa032cd867117c9accd816a5ee97df78f035d",
+    "project_checks_premerge_sha256": "ec6372e7a1e1de38b17580a8b8ef39e06218d71019856725c40231a89ca8f606",
+    "recon_rerun_required": true
+  },
+  "portability": "PASS_WITH_PRESERVED_SOURCE_LITERAL_INVENTORY",
+  "project_writes": 0,
+  "blockers": [],
+  "waivers": [],
+  "needs_human_ruling": [],
+  "next_owner": "HELP_HUMAN_THEN_RECONCILIATION"
+}

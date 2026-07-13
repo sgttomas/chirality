@@ -1,0 +1,46 @@
+{
+  "instance_id": "AUTHOR-DEL-02-02",
+  "role": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "CONVERT",
+  "status": "PASS",
+  "terminal": true,
+  "completed_at": "2026-07-13T07:51:37-06:00",
+  "parent": "WORKING-A1-PKG02",
+  "brief_version": 1,
+  "criteria_version": "A1-PACKAGE-ACTIVATION-001",
+  "deliverable_id": "DEL-02-02",
+  "package_id": "PKG-02",
+  "candidate_sha256": "6146778246cb79838073b9fa268b7067b8ac5f9d94f9e424dc4540962ae30846",
+  "verdicts": {
+    "schema": "PASS",
+    "project_content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "metrics": {
+    "seeded_inputs_exact": 9,
+    "mapping_rows": 28,
+    "source_lines": 279,
+    "parity_failures": 0,
+    "checklist_items": 1,
+    "checklist_byte_stable": true,
+    "render_byte_stable": true,
+    "preserved_source_literals": 2,
+    "generated_metadata_absolute_literals": 0,
+    "project_writes": 0
+  },
+  "blockers": [],
+  "missing": [],
+  "needs_human_ruling": [],
+  "rerun_requirements": [
+    "Rerun if any accepted basis, manifest row, source/status/control hash, decomposition reference, authority, skill/tool byte, or candidate byte changes."
+  ],
+  "outputs": [
+    "candidates/W_A1/APP-PKG02/DEL-02-02/ScopeOfWork.md",
+    "instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-02/evidence/",
+    "instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-02/workspace/_run_records/TASK_RUN_2026-07-13_0748.md",
+    "instances/WORKING-A1-PKG02/children/AUTHOR-DEL-02-02/RETURN.md"
+  ],
+  "next_owner": "WORKING-A1-PKG02"
+}

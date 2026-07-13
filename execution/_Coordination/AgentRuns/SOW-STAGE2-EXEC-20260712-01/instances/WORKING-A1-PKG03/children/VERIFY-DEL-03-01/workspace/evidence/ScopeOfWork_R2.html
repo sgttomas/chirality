@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52</code>.</p>
+<h1 id="scope-of-work-del-03-01">Scope of Work — DEL-03-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-03-01</code> in service of project scope [SOW-037] and package objectives [OBJ-002].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A product-owned AgentEnginePort / RuntimeEngineContract, runtime contract documentation, and conformance tests for stub and provider/SDK-backed adapters.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-01-agentengineport-and-engine-conformance-suite">CLM-001 — Datasheet: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h3>
+<h4 id="datasheet-del-03-01-agentengineport-and-engine-conformance-suite">Datasheet: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-03-01</td></tr>
+<tr><td>DeliverableName</td><td>AgentEnginePort and Engine Conformance Suite</td></tr>
+<tr><td>PackageID</td><td>PKG-03</td></tr>
+<tr><td>PackageName</td><td>Runtime Engine Contract and Turn Lifecycle</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-037</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-002</td></tr>
+<tr><td>AnticipatedArtifacts</td><td><code>agent-engine-port.ts</code>; runtime contract docs; conformance tests</td></tr>
+</tbody></table>
+<p>Source: <code>_CONTEXT.md</code> and <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> section &quot;PKG-03 Runtime Engine Contract and Turn Lifecycle&quot;.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Contract identity</td><td><code>AgentEnginePort</code> / <code>RuntimeEngineContract</code></td><td><code>docs/SPEC.md</code> section 10.1; <code>docs/TYPES.md</code> section 7.1</td></tr>
+<tr><td>Contract ownership</td><td>Chirality owns the runtime contract; SDK APIs do not define public harness semantics.</td><td><code>docs/DIRECTIVE.md</code> section 2.8; <code>docs/CONTRACT.md</code> K-ENGINE-1</td></tr>
+<tr><td>Adapter role</td><td><code>EngineAdapter</code> is provider/SDK-specific implementation behind <code>AgentEnginePort</code>.</td><td><code>docs/TYPES.md</code> section 7.1; <code>docs/SPEC.md</code> section 10.3</td></tr>
+<tr><td>Primary operation</td><td><code>startTurn(input: AgentEngineRunInput): AsyncIterable&lt;UIEvent&gt;</code></td><td><code>docs/SPEC.md</code> section 10.2; D-APP-40</td></tr>
+<tr><td>Optional operation</td><td><code>interrupt?(sessionId: string): Promise&lt;void&gt;</code></td><td><code>docs/SPEC.md</code> section 10.2</td></tr>
+<tr><td>Browser stream contract</td><td><code>UIEvent</code> stream using stable SSE names.</td><td><code>docs/SPEC.md</code> section 11; <code>docs/TYPES.md</code> section 7.4</td></tr>
+<tr><td>Canonical runtime record</td><td><code>HarnessEvent</code> records in product-owned event JSONL.</td><td><code>docs/SPEC.md</code> section 9; <code>docs/TYPES.md</code> section 7.3</td></tr>
+<tr><td>Required conformance subject</td><td>Stub adapter and SDK-backed adapter.</td><td><code>docs/SPEC.md</code> section 10.3; <code>docs/PRD.md</code> section 12.5</td></tr>
+<tr><td>Production-default gate</td><td>SDK-backed adapter must pass engine conformance before default production use.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-2; <code>docs/PRD.md</code> FR-123</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Requirement / Constraint</td><td>Source</td></tr>
+<tr><td>Provider-neutral core</td><td>Public APIs, canonical event schemas, session storage contracts, permission decision records, and governance rules must not become SDK-shaped.</td><td><code>docs/DIRECTIVE.md</code> section 2.10; <code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>Route compatibility</td><td>Existing <code>/api/harness/*</code> route shapes remain stable during SDK adoption and TurnEngine extraction.</td><td><code>docs/PRD.md</code> section 9.1; <code>docs/SPEC.md</code> section 10.4</td></tr>
+<tr><td>SSE compatibility</td><td>Browser-facing SSE event names remain compatible during SDK adoption.</td><td><code>docs/SPEC.md</code> section 11; <code>docs/PRD.md</code> section 9.3</td></tr>
+<tr><td>Terminal outcomes</td><td>Accepted turns must persist terminal success, failure, cancellation, or interruption outcomes.</td><td><code>docs/CONTRACT.md</code> K-EVENT-3; <code>docs/PRD.md</code> FR-123</td></tr>
+<tr><td>Accepted-turn persistence</td><td>Accepted user input must be persisted before SDK/model execution begins.</td><td><code>docs/CONTRACT.md</code> K-EVENT-2; <code>docs/PRD.md</code> section 12.6</td></tr>
+<tr><td>SDK metadata boundary</td><td>SDK identifiers, message names, permission modes, tool names, transcript paths, and session IDs are adapter metadata.</td><td><code>docs/DIRECTIVE.md</code> section 2.10; <code>docs/SPEC.md</code> section 10.3</td></tr>
+<tr><td>Source-state status</td><td><code>docs/PRD.md</code> is reconciled under the current D-APP-38 authority corpus; PRD-derived runtime details are accepted for this tranche.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Target / Shape</td><td>Source / Status</td></tr>
+<tr><td>Runtime contract module</td><td><code>agent-engine-port.ts</code> or equivalent product-owned runtime contract.</td><td><code>execution/_Decomposition/...v3_2.md</code> DEL-03-01; <code>docs/PLAN.md</code> R1; <code>docs/PRD.md</code> R1</td></tr>
+<tr><td>TypeScript interface</td><td><code>AgentEnginePort</code> with <code>startTurn(input: AgentEngineRunInput)</code> and optional <code>interrupt</code>.</td><td><code>docs/SPEC.md</code> section 10.2; D-APP-40</td></tr>
+<tr><td>Turn input type</td><td>Must include active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.</td><td><code>docs/SPEC.md</code> section 10.2</td></tr>
+<tr><td>Conformance suite</td><td><code>engine-conformance.ts</code> or equivalent tests for stub and SDK-backed adapters.</td><td><code>docs/PLAN.md</code> R1; <code>docs/PRD.md</code> section 12.5</td></tr>
+<tr><td>Stub adapter</td><td>Deterministic adapter retained for tests.</td><td><code>docs/SPEC.md</code> section 10.3</td></tr>
+<tr><td>SDK-backed adapter</td><td>Provider implementation behind the product-owned contract.</td><td><code>docs/SPEC.md</code> section 10.3</td></tr>
+<tr><td>Exact final source path</td><td>ACCEPTED PLACEMENT (2026-07-03): D-APP-46 extraction accepted <code>frontend/packages/harness-contract/src/agent-engine-port.ts</code> as the package-owned source. The original app-dev path <code>frontend/src/lib/harness/agent-engine-port.ts</code> remains as a back-compat shim that re-exports <code>@chirality/harness-contract/agent-engine-port</code>.</td><td>D-APP-46 ruling; <code>frontend/packages/harness-contract/src/agent-engine-port.ts</code>; <code>frontend/src/lib/harness/agent-engine-port.ts</code></td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Status / Note</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>MATCH; sections 2.8-2.11 used.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>MATCH; sections 1.4-1.5 and enforcement map used.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>MATCH; sections 9-13 used.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>MATCH; sections 7 and 12 used.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>MATCH; sections 2-4, 6.2, and 8 used.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>MATCH under the current D-APP-38 authority corpus; sections 8.16, 9, 12, and 13 used.</td></tr>
+<tr><td>REF-007</td><td><code>agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>MATCH; not used for content requirements beyond decomposition provenance.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-03-01-agentengineport-and-engine-conformance-suite">CLM-007 — Specification: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h3>
+<h4 id="specification-del-03-01-agentengineport-and-engine-conformance-suite">Specification: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable defines the product-owned runtime boundary for harness turn execution and the conformance suite any engine adapter must satisfy before use as the default production path.</p>
+<p>In scope:</p>
+<ul>
+<li>- <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> API contract.</li>
+<li>- Adapter boundary rules for stub and SDK-backed implementations.</li>
+<li>- Conformance expectations for accepted-turn persistence, terminal outcomes, SSE compatibility, SDK message mapping, permission/tool boundary behavior, interrupt/cancel behavior, session resume/linkage, and redaction.</li>
+<li>- Runtime contract documentation and tests associated with the contract.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- SDK-specific message translation implementation details, except as conformance inputs and adapter-boundary expectations.</li>
+<li>- Full <code>TurnEngine</code> extraction and session locking implementation, owned by DEL-03-02.</li>
+<li>- Browser API/SSE route adapter fixtures, owned by DEL-03-03 except where conformance verifies compatibility.</li>
+<li>- Interrupt/cancel cleanup implementation, owned by DEL-03-04 except where conformance verifies required adapter behavior.</li>
+<li>- SDK probe/version decision details, owned by DEL-04-01.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-03-01; <code>docs/SPEC.md</code> sections 10-12; <code>docs/PRD.md</code> sections 8.16, 9, and 12.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-03-01-REQ-001</td><td>Chirality SHALL define <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> separate from SDK APIs.</td><td><code>docs/SPEC.md</code> section 10.1; <code>docs/PRD.md</code> FR-122</td></tr>
+<tr><td>DEL-03-01-REQ-002</td><td>Public harness semantics SHALL remain Chirality-owned; SDK APIs, message names, transcript shape, and tool names SHALL NOT define public semantics.</td><td><code>docs/DIRECTIVE.md</code> sections 2.8 and 2.10; <code>docs/CONTRACT.md</code> K-ENGINE-1 and K-ENGINE-4</td></tr>
+<tr><td>DEL-03-01-REQ-003</td><td><code>AgentEnginePort</code> SHALL expose <code>startTurn(input: AgentEngineRunInput): AsyncIterable&lt;UIEvent&gt;</code>.</td><td><code>docs/SPEC.md</code> section 10.2; D-APP-40</td></tr>
+<tr><td>DEL-03-01-REQ-004</td><td><code>AgentEnginePort</code> MAY expose <code>interrupt?(sessionId: string): Promise&lt;void&gt;</code> when the adapter can support interruption.</td><td><code>docs/SPEC.md</code> section 10.2</td></tr>
+<tr><td>DEL-03-01-REQ-005</td><td><code>AgentEngineRunInput</code> SHALL carry active session identity, resolved runtime options, and content blocks; normalized project root, persona, mode, and attachment summaries are carried through <code>SessionRecord</code>/resolved options, while interrupt and stream cancellation are out of band.</td><td><code>docs/SPEC.md</code> section 10.2</td></tr>
+<tr><td>DEL-03-01-REQ-006</td><td>The contract SHALL cover accepted turn input, browser <code>UIEvent</code> yield, canonical <code>HarnessEvent</code> persistence, permission enforcement or invocation, permitted tool exposure, SDK session metadata linkage, interrupt/cancel behavior, and terminal outcomes.</td><td><code>docs/SPEC.md</code> section 10.1; <code>docs/TYPES.md</code> section 7.1</td></tr>
+<tr><td>DEL-03-01-REQ-007</td><td>SDK-specific names, IDs, permission modes, transcript paths, tool names, and hook names SHALL appear only as explicit adapter metadata.</td><td><code>docs/SPEC.md</code> section 10.3; <code>docs/DIRECTIVE.md</code> section 2.10</td></tr>
+<tr><td>DEL-03-01-REQ-008</td><td>The SDK-backed adapter SHALL pass the engine conformance suite before becoming the default production path.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-2; <code>docs/SPEC.md</code> section 10.3; <code>docs/PRD.md</code> FR-123</td></tr>
+<tr><td>DEL-03-01-REQ-009</td><td>A deterministic stub adapter SHALL remain available for tests.</td><td><code>docs/SPEC.md</code> section 10.3</td></tr>
+<tr><td>DEL-03-01-REQ-010</td><td>Engine conformance tests SHALL cover accepted-turn persistence before SDK/model execution, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume, and redaction.</td><td><code>docs/PRD.md</code> FR-123; <code>docs/PRD.md</code> section 12.5</td></tr>
+<tr><td>DEL-03-01-REQ-011</td><td>The contract and tests SHALL preserve the stable browser SSE names: <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code>, and the additive redacted <code>harness:event</code> bridge.</td><td><code>docs/SPEC.md</code> section 11; <code>docs/TYPES.md</code> section 7.4; D-APP-40</td></tr>
+<tr><td>DEL-03-01-REQ-012</td><td><code>/api/harness/turn</code> SHALL remain a transport adapter; runtime policy belongs behind the contract and <code>TurnEngine</code>, not in the route.</td><td><code>docs/SPEC.md</code> section 10.4; <code>docs/PRD.md</code> section 9.1</td></tr>
+<tr><td>DEL-03-01-REQ-013</td><td>The conformance suite SHALL reject provider-shaped leakage in public APIs and canonical <code>HarnessEvent</code> fields except as explicit adapter metadata.</td><td><code>docs/PRD.md</code> section 12.5; <code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>DEL-03-01-REQ-014</td><td>The contract documentation SHALL record fallback criteria when SDK behavior cannot satisfy or verify a product-critical boundary.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-5; <code>docs/PLAN.md</code> R0 acceptance; <code>docs/PRD.md</code> FR-126</td></tr>
+<tr><td>DEL-03-01-REQ-015</td><td>Requirements derived from <code>docs/PRD.md</code> SHALL use the current D-APP-38 authority-corpus reference state.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Source</td><td>Applicability</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code> sections 2.8-2.11</td><td>Runtime ownership, reliance boundaries, provider-neutral core, product identity.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> sections 1.4-1.5</td><td>Binding invariants for engine boundary and runtime events.</td></tr>
+<tr><td><code>docs/SPEC.md</code> sections 9-13</td><td>Event schema, runtime engine contract, SSE names, SDK settings posture, runtime options/persona composition.</td></tr>
+<tr><td><code>docs/TYPES.md</code> section 7</td><td>Canonical runtime vocabulary and type targets.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R0/R1</td><td>Roadmap and sequencing constraints for engine contract and conformance.</td></tr>
+<tr><td><code>docs/PRD.md</code> sections 8.16, 9, 12, and 13</td><td>Product requirements and validation expectations; REF-006 is reconciled under D-APP-38.</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td></tr>
+<tr><td>REQ-001, REQ-002, REQ-007, REQ-013</td><td>Type/API review and tests proving public contract types do not expose SDK-shaped names except adapter metadata.</td></tr>
+<tr><td>REQ-003, REQ-004, REQ-005, REQ-006</td><td>Unit tests around <code>AgentEnginePort</code>/<code>RuntimeEngineContract</code> type fixtures and adapter test harness inputs.</td></tr>
+<tr><td>REQ-008, REQ-009, REQ-010</td><td>Engine conformance suite runs against stub and SDK-backed adapters before production-default enablement.</td></tr>
+<tr><td>REQ-011, REQ-012</td><td>Integration or compatibility tests proving <code>/api/harness/turn</code> shape and browser SSE event names are unchanged.</td></tr>
+<tr><td>REQ-014</td><td>Runtime contract documentation includes fallback criteria and cross-reference to reliance-boundary register.</td></tr>
+<tr><td>REQ-015</td><td>D-APP-38 confirms the current <code>docs/PRD.md</code> authority-corpus state before closing the deliverable.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required deliverable artifacts:</p>
+<ul>
+<li>- <code>agent-engine-port.ts</code> or equivalent product-owned runtime contract.</li>
+<li>- Runtime contract documentation describing ownership, adapter boundary, input/output shape, and fallback criteria.</li>
+<li>- Engine conformance suite covering stub and SDK-backed adapters.</li>
+<li>- Test index or validation reference for <code>section9.runtime_engine_contract</code> once Section 9 runtime validation is implemented.</li>
+</ul>
+<p>Conformance evidence schema:</p>
+<ul>
+<li>- Adapter subject: <code>stub</code>, <code>SDK-backed</code>, or <code>blocked SDK-backed case</code>.</li>
+<li>- Case coverage: accepted-turn persistence, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume/linkage, redaction, and SDK-shaped leakage checks.</li>
+<li>- Result status: <code>PASS</code>, <code>FAIL</code>, or <code>BLOCKED_TBD</code>; blocked cases must name the missing DEL-04-01 probe detail or other upstream blocker.</li>
+<li>- Closure evidence: test output path or <code>TBD</code>, runtime contract documentation link, fallback/risk note when a product-critical boundary cannot be verified, REF-006 human ruling status, and <code>section9.runtime_engine_contract</code> linkage status once available.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Final implementation path if not <code>frontend/src/lib/harness/agent-engine-port.ts</code>.</li>
+<li>- Exact SDK-backed adapter fixture shape until DEL-04-01 confirms SDK probe details.</li>
+<li>- Exact session-link metadata fields accepted by the conformance suite until DEL-04-01/DEL-05 work confirms transcript/store placement.</li>
+<li>- Accepting party for staged SDK-dependent conformance cases beyond the current scripted adapter coverage.</li>
+<li>- Section 9 runtime validation linkage remains through the current <code>section9.adapter_*</code> validation IDs until a later governed rename.</li>
+</ul>
+<h3 id="clm-013-source-state-warning">CLM-013 — Source-State Warning</h3>
+<h5 id="source-state-warning">Source-State Warning</h5>
+<p>D-APP-38 established the authority-corpus reference model. Current <code>_REFERENCES.md</code> records REF-006 as <code>MATCH</code>; future authority-document edits require a corpus bump/apply before acceptance.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The product-owned runtime boundary keeps SDK-shaped semantics behind explicit adapter metadata, and the stub and SDK-backed adapters satisfy the source-defined conformance suite before production-default use.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-03-01-agentengineport-and-engine-conformance-suite">CLM-014 — Procedure: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h3>
+<h4 id="procedure-del-03-01-agentengineport-and-engine-conformance-suite">Procedure: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define and verify the product-owned engine boundary and conformance suite for stub and SDK-backed runtime adapters while preserving Chirality-owned semantics, stable route/SSE behavior, and adapter replaceability.</p>
+<p>Sources: <code>docs/SPEC.md</code> sections 10-12; <code>docs/PRD.md</code> sections 8.16, 9, 12, and 13; <code>docs/CONTRACT.md</code> sections 1.4-1.5.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Note</td></tr>
+<tr><td>Deliverable state allows drafting</td><td>Current <code>_STATUS.md</code> state was <code>OPEN</code> before this P1/P2 run.</td></tr>
+<tr><td>Authoritative sources available</td><td>REF-001 through REF-007 are locally accessible.</td></tr>
+<tr><td>PRD source state acknowledged</td><td>REF-006 is MATCH under the current D-APP-38 authority corpus.</td></tr>
+<tr><td>Declared upstream dependencies</td><td><code>_DEPENDENCIES.md</code> lists declared upstream as TBD; no accepted dependency edges have been extracted yet.</td></tr>
+<tr><td>SDK probe details</td><td>TBD; exact SDK message categories, session store behavior, and interrupt behavior depend on DEL-04-01.</td></tr>
+<tr><td>Acceptance authority for staged SDK cases</td><td>TBD; human acceptance is required for any <code>BLOCKED_TBD</code> SDK-backed conformance case until DEL-04-01 supplies the missing probe detail.</td></tr>
+</tbody></table>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the scope boundary.</p>
+<ul>
+<li>- Use DEL-03-01 only for the engine contract and conformance suite.</li>
+<li>- Keep <code>TurnEngine</code> implementation, route adapter fixtures, SDK probe decision, and event store implementation in their owning deliverables unless needed as conformance references.</li>
+</ul>
+<p>2. Draft the runtime contract.</p>
+<ul>
+<li>- Define <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> as product-owned.</li>
+<li>- Include <code>startTurn(input: AgentEngineRunInput): AsyncIterable&lt;UIEvent&gt;</code>.</li>
+<li>- Include optional <code>interrupt?(sessionId: string): Promise&lt;void&gt;</code> when adapter support exists.</li>
+<li>- Define <code>TurnInput</code> with active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.</li>
+</ul>
+<p>3. Define adapter boundary rules.</p>
+<ul>
+<li>- Keep SDK/provider message names, tool names, permission modes, transcript paths, hook names, and session IDs outside public APIs and canonical event fields except under explicit adapter metadata.</li>
+<li>- Preserve the stub adapter as deterministic conformance baseline.</li>
+<li>- Mark exact SDK-backed fixture details as <code>TBD</code> until DEL-04-01 confirms SDK behavior.</li>
+</ul>
+<p>4. Specify the conformance suite.</p>
+<ul>
+<li>- Test accepted-turn persistence before SDK/model execution.</li>
+<li>- Test terminal success, failure, cancellation, and interruption persistence.</li>
+<li>- Test browser SSE compatibility and stable UI event names.</li>
+<li>- Test SDK message mapping into product-owned UI/runtime events.</li>
+<li>- Test permission denial and permitted tool exposure behavior at the contract boundary.</li>
+<li>- Test session resume/linkage metadata without making SDK transcripts canonical.</li>
+<li>- Test redaction and absence of SDK-shaped leakage in public contracts and canonical events.</li>
+</ul>
+<p>5. Align with route and event contracts.</p>
+<ul>
+<li>- Confirm <code>/api/harness/turn</code> remains a transport adapter.</li>
+<li>- Confirm browser-facing event names remain <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code>, and the additive redacted <code>harness:event</code> bridge.</li>
+<li>- Confirm canonical runtime records use <code>HarnessEvent</code> shape and product-owned event categories.</li>
+</ul>
+<p>6. Record fallback and source-state caveats.</p>
+<ul>
+<li>- Document fallback criteria if SDK behavior cannot satisfy a product-critical boundary.</li>
+<li>- If future authority documents change, run the D-APP-38 corpus bump/apply before acceptance.</li>
+</ul>
+<p>7. Prepare deliverable records.</p>
+<ul>
+<li>- Produce or update runtime contract docs.</li>
+<li>- Produce or update <code>agent-engine-port.ts</code> or equivalent.</li>
+<li>- Produce or update engine conformance tests.</li>
+<li>- Link the conformance suite to <code>section9.runtime_engine_contract</code> once Section 9 validation exists.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Contract shape check</td><td><code>AgentEnginePort</code> exposes <code>startTurn</code> and optional <code>interrupt</code> with inputs/outputs matching <code>docs/SPEC.md</code> section 10.2.</td></tr>
+<tr><td>Provider-neutrality check</td><td>Public APIs and canonical <code>HarnessEvent</code> fields do not contain SDK-shaped names except explicit adapter metadata.</td></tr>
+<tr><td>Stub conformance</td><td>Stub adapter passes the same conformance suite used for SDK-backed adapter where applicable.</td></tr>
+<tr><td>SDK-backed conformance</td><td>SDK-backed adapter passes before default production enablement; cases blocked by SDK probe details remain <code>TBD</code> until DEL-04-01 closes.</td></tr>
+<tr><td>SSE compatibility</td><td>Browser event names and <code>/api/harness/turn</code> route shape remain stable.</td></tr>
+<tr><td>Event persistence</td><td>Accepted turn and terminal outcomes are persisted in Chirality-owned event form.</td></tr>
+<tr><td>Redaction</td><td>Provider/SDK errors and runtime records do not store API keys or secrets.</td></tr>
+<tr><td>Authority-corpus check</td><td>REF-006 is reconciled under D-APP-38; future authority-doc edits trigger corpus bump/apply.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Required records for closure:</p>
+<ul>
+<li>- Runtime contract source file: <code>agent-engine-port.ts</code> or equivalent.</li>
+<li>- Runtime contract documentation.</li>
+<li>- Engine conformance test file or suite.</li>
+<li>- Test output showing stub adapter pass.</li>
+<li>- Test output showing SDK-backed adapter pass, or a <code>BLOCKED_TBD</code> record naming the DEL-04-01 blocker, affected conformance case, fallback/risk note, and accepting party status.</li>
+<li>- Conformance evidence matrix covering adapter subject, case coverage, result status, test output path or <code>TBD</code>, fallback/risk note, D-APP-38 authority-corpus status, and Section 9 linkage status.</li>
+<li>- Section 9 validation linkage when <code>section9.runtime_engine_contract</code> exists, or a <code>TBD</code> linkage record naming DEL-09-02 as the unavailable validation surface.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Run the source-defined type/API, adapter-conformance, route/SSE compatibility, persistence, permission, tool-exposure, interrupt/cancel, resume/linkage, redaction, and provider-neutrality checks.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-03-01-agentengineport-and-engine-conformance-suite">CLM-020 — Guidance: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h3>
+<h4 id="guidance-del-03-01-agentengineport-and-engine-conformance-suite">Guidance: DEL-03-01 AgentEnginePort and Engine Conformance Suite</h4>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-03-01 exists to make the runtime engine replaceable by construction while allowing the Claude Agent SDK to serve as the preferred implementation substrate when it satisfies Chirality-owned governance, audit, permission, session, and route-compatibility requirements.</p>
+<p>The decomposition assigns this deliverable to SOW-037 and OBJ-002: define the product-owned <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> and conformance tests before SDK behavior becomes production default.</p>
+<p>Sources: <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-03-01; <code>docs/DIRECTIVE.md</code> sections 2.8-2.10; <code>docs/PLAN.md</code> sections 2-4.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Chirality terms at the core</td><td>Contract names, public APIs, browser events, persisted events, permission decisions, and session records should use Chirality vocabulary. SDK details belong behind <code>EngineAdapter</code>.</td><td><code>docs/CONTRACT.md</code> K-CORE-1 and K-ENGINE-4; <code>docs/TYPES.md</code> section 7</td></tr>
+<tr><td>Conformance before default</td><td>Treat SDK adoption as conditional. The SDK-backed adapter is not default until it passes conformance tests.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-2; <code>docs/SPEC.md</code> section 10.3</td></tr>
+<tr><td>Route stability</td><td>Keep <code>/api/harness/turn</code> as transport and compatibility surface. Runtime policy should be owned by <code>TurnEngine</code> and the engine boundary.</td><td><code>docs/SPEC.md</code> section 10.4; <code>docs/PRD.md</code> section 9.1</td></tr>
+<tr><td>Event separation</td><td>Keep compact browser <code>UIEvent</code>s distinct from richer persisted <code>HarnessEvent</code>s.</td><td><code>docs/CONTRACT.md</code> K-EVENT-1; <code>docs/SPEC.md</code> sections 9 and 11</td></tr>
+<tr><td>Adapter metadata quarantine</td><td>SDK session IDs, transcript paths, tool names, permission modes, message categories, and hook names may be retained only as explicit adapter metadata.</td><td><code>docs/DIRECTIVE.md</code> section 2.10; <code>docs/SPEC.md</code> section 10.3</td></tr>
+<tr><td>Reliance boundaries are test subjects</td><td>Product-critical boundaries must be testable in Chirality terms, not only described in prompts or assumed from SDK defaults.</td><td><code>docs/DIRECTIVE.md</code> section 2.9; <code>docs/CONTRACT.md</code> K-RELIANCE-2</td></tr>
+</tbody></table>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Keep the initial <code>AgentEnginePort</code> narrow. A small boundary makes stub and SDK-backed adapters easier to compare and keeps SDK-specific behavior from leaking into the product contract.</li>
+<li>- Make the conformance suite adapter-agnostic. Tests should assert Chirality outcomes: accepted-turn persistence, stable UI events, canonical event records, terminal outcomes, permission denial, redaction, and absence of SDK-shaped leakage.</li>
+<li>- Expect some tests to be staged. SDK message categories, resume behavior, <code>SessionStore</code>, <code>CLAUDE_CONFIG_DIR</code>, and interrupt behavior depend on DEL-04-01 probe findings, so mark unsupported cases as <code>TBD</code> rather than hard-coding assumptions.</li>
+<li>- Preserve the stub adapter. It is the deterministic baseline for contract tests and fallback analysis.</li>
+<li>- Keep PRD-derived details visible and source-bound. D-APP-38 confirms the current authority corpus for <code>docs/PRD.md</code>; implementation proof still needs deliverable-local evidence.</li>
+</ul>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred Direction</td><td>Rationale</td></tr>
+<tr><td>Thin contract vs broad SDK wrapper</td><td>Prefer thin product-owned contract.</td><td>Reduces SDK lock-in and supports provider-neutral conformance.</td></tr>
+<tr><td>Full SDK parity vs governed subset</td><td>Prefer governed subset.</td><td>PLAN states Chirality does not chase Claude Code feature parity; it adopts SDK mechanics where they accelerate the product-owned contract.</td></tr>
+<tr><td>Unit-only tests vs mixed conformance</td><td>Use both type/unit tests and route/SSE compatibility checks.</td><td>Contract correctness must cover adapter behavior and user-visible stream compatibility.</td></tr>
+<tr><td>Early implementation specificity vs <code>TBD</code></td><td>Use <code>TBD</code> until SDK probe results exist.</td><td>Prevents inaccessible or unstable SDK behavior from becoming accepted project truth.</td></tr>
+<tr><td>Fallback criteria in docs vs tests only</td><td>Keep fallback criteria in runtime contract documentation and verify them through conformance where possible.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-5 and <code>docs/PRD.md</code> FR-126 make fallback a governed acceptance judgment, not just a test failure outcome; documentation must state when an unverifiable SDK boundary triggers fallback or residual-risk review.</td></tr>
+</tbody></table>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Illustrative interface shape from <code>docs/SPEC.md</code> section 10.2:</p>
+<p>```ts</p>
+<p>interface AgentEnginePort {</p>
+<p>startTurn(input: AgentEngineRunInput): AsyncIterable&lt;UIEvent&gt;;</p>
+<p>interrupt?(sessionId: string): Promise&lt;void&gt;;</p>
+<p>}</p>
+<p>```</p>
+<p>Example conformance assertions:</p>
+<ul>
+<li>- A stub adapter yields only stable browser <code>UIEvent</code> names and does not expose provider-specific fields in public stream payloads.</li>
+<li>- An SDK-backed adapter persists <code>turn.accepted</code> before invoking SDK/model execution.</li>
+<li>- An SDK-backed adapter maps SDK result/failure/interruption outcomes into product-owned terminal <code>HarnessEvent</code> records; explicit user interruption terminates as <code>turn.interrupted</code> per D-APP-40.</li>
+<li>- A leakage test fails if public APIs or canonical <code>HarnessEvent</code> fields expose SDK message names, permission modes, transcript paths, tool names, or session IDs outside explicit adapter metadata.</li>
+</ul>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CT-001</td><td>Resolved by D-APP-38: REF-006 now matches the authority corpus.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> sections 8.16, 9, 12, 13</td><td>Datasheet Conditions/References; Specification Requirements/Verification; Procedure Prerequisites</td><td>Apply D-APP-38 corpus workflow for future authority edits.</td><td>Ruled 2026-06-20</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-037 OBJ-002</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

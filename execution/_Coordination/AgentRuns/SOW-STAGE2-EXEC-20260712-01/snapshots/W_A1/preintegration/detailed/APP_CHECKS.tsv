@@ -1,0 +1,7 @@
+check	accepted_attempt	status	exit_code	result	execution_posture
+harness-self-check	initial	PASS	0	structural self-check completed	live repository read-only; PYTHONDONTWRITEBYTECODE=1
+harness-pytest	initial	PASS	0	264 passed in 70.41s	live repository read-only; PYTHONDONTWRITEBYTECODE=1; pytest cache disabled
+frontend-typecheck	initial	PASS	0	TypeScript application and Electron checks completed	copy-on-write isolated frontend
+frontend-test	R1	PASS	0	97 files passed; 1 skipped; 713 tests passed; 4 skipped	canonical isolated-root/projects/chirality-app-dev/frontend layout
+frontend-build	initial	PASS	0	Next production build and Electron TypeScript build completed	copy-on-write isolated frontend
+frontend-premerge	R4	PASS	0	Section 8 PASS 8/8; Section 9 report-only PASS 16/16	isolated canonical layout; temporary local Next API; keyless stub provider; natural split-root detection

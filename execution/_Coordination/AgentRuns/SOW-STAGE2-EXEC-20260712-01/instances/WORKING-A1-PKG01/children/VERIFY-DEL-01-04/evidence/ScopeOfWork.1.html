@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="13a2a49d1cb74fc83b9c64dc39c25f8ae98107b5b666b5b7352a95b4e626a068">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-01-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>13a2a49d1cb74fc83b9c64dc39c25f8ae98107b5b666b5b7352a95b4e626a068</code>.</p>
+<h1 id="scope-of-work-del-01-04">Scope of Work — DEL-01-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-01-04</code> in service of project scope [SOW-065, SOW-076, SOW-077, SOW-078] and package objectives [OBJ-009].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A source-grounded scope-boundary and retired-scope register with amendment-trigger records, traceable to SOW-065, SOW-076, SOW-077, SOW-078, and OBJ-009.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-01-04-scope-boundary-and-retired-scope-register">CLM-001 — Datasheet: DEL-01-04 Scope Boundary and Retired Scope Register</h3>
+<h4 id="datasheet-del-01-04-scope-boundary-and-retired-scope-register">Datasheet: DEL-01-04 Scope Boundary and Retired Scope Register</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-01-04</td></tr>
+<tr><td>DeliverableName</td><td>Scope Boundary and Retired Scope Register</td></tr>
+<tr><td>PackageID</td><td>PKG-01</td></tr>
+<tr><td>PackageName</td><td>Product Governance and Reliance Boundaries</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>DOC_UPDATE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>S</td></tr>
+<tr><td>Primary Objective</td><td>OBJ-009: preserve professional boundary, product identity, and reliance-boundary ownership in docs, UI, runtime, and release behavior.</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable purpose</td><td>Keep remote MCP, plugins, shipped bypass, non-macOS packaging, domain operations, and retired PKG-08 items outside active scope unless amended.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-01 / DEL-01-04</td></tr>
+<tr><td>Anticipated artifacts</td><td>Out-of-scope register; retired-scope notes; amendment triggers.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-01 / DEL-01-04</td></tr>
+<tr><td>Covered scope items</td><td>SOW-065, SOW-076, SOW-077, SOW-078.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §Scope Item Ledger</td></tr>
+<tr><td>Remote MCP/plugins status</td><td>Out of current scope; remote MCP, plugins, remote execution, marketplace extension, and shell-network expansion require governed future scope.</td><td><code>docs/PRD.md</code> §3.2, §6.4; <code>docs/CONTRACT.md</code> §1.9 K-NET-1</td></tr>
+<tr><td>Shipped bypass/settings status</td><td>Shipped builds must not load ambient Claude settings or use ordinary <code>bypassPermissions</code>; developer-only bypass remains guarded.</td><td><code>docs/PRD.md</code> §3.2; <code>docs/CONTRACT.md</code> §1.4 K-SDK-1 and §1.6 K-PERM-6</td></tr>
+<tr><td>Retired PKG-08 status</td><td>Retired execution-scope items remain out of scope unless reactivated by governed amendment; runtime event logging does not reactivate retired hardening scope.</td><td><code>docs/PRD.md</code> §3.2 and §12.1; <code>docs/PLAN.md</code> §9 / PKG-08 status; <code>docs/CONTRACT.md</code> §1.9 K-RETIRED-1</td></tr>
+<tr><td>Non-macOS packaging status</td><td>Windows/Linux packaging is out of scope until amended; current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG.</td><td><code>docs/PRD.md</code> §6.4; <code>docs/CONTRACT.md</code> §1.9 K-RELEASE-1</td></tr>
+<tr><td>Domain operation status</td><td>Domain-engine integration and operation execution are future-amendment scope; agents must not write protected domain-engine model truth and applying domain operations requires explicit human acceptance.</td><td><code>docs/PRD.md</code> §6.4 and R7; <code>docs/CONTRACT.md</code> §1.10</td></tr>
+<tr><td>Amendment authority</td><td>Changes that alter scope, release target, data contracts, professional-boundary posture, runtime engine semantics, permission behavior, transcript canonicality, or retired/active execution scope require governed product change.</td><td><code>docs/DIRECTIVE.md</code> §7</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Reference integrity</td><td><code>docs/PRD.md</code> is REF-006 and matches the current the current D-APP-38 corpus snapshot in <code>_REFERENCES.md</code>.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-38</td></tr>
+<tr><td>Dependency extraction</td><td>Existing derivative <code>Dependencies.csv</code> is owned by the separate dependency-extract workflow; this checklist normalization does not create, edit, satisfy, or retire rows.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code></td></tr>
+<tr><td>Human authority</td><td>Agents and tools may draft and organize records, but humans approve, issue, sign, seal, and accept reliance.</td><td><code>docs/TYPES.md</code> §3.3; <code>docs/DIRECTIVE.md</code> §3</td></tr>
+<tr><td>Unknown values</td><td>Unknown values remain <code>TBD</code>; agents and tools must not invent scope items, dependency targets, parameters, or professional conclusions.</td><td><code>docs/CONTRACT.md</code> §1.7 K-INVENT-1</td></tr>
+<tr><td>Scope conflicts</td><td>Source conflicts must be surfaced rather than silently resolved.</td><td><code>docs/CONTRACT.md</code> §1.7 K-CONFLICT-1</td></tr>
+<tr><td>Review checklist</td><td>Scope-boundary and professional-boundary review uses <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>; completion is evidence only, not issuance or release/professional approval.</td><td>ADQ-03</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>The register should be constructed as a documentary control surface with at least these record families:</p>
+<table><tbody>
+<tr><td>Record Family</td><td>Minimum Fields</td><td>Status</td></tr>
+<tr><td>Out-of-scope items</td><td>Scope item ID, boundary statement, source reference, amendment trigger, current status, human ruling.</td><td>ASSUMPTION: structure inferred from anticipated artifacts and source-control needs.</td></tr>
+<tr><td>Retired-scope notes</td><td>Retired item, prohibited reactivation path, allowed adjacent infrastructure, source reference, human ruling.</td><td>ASSUMPTION: structure inferred from SOW-077 and PKG-08 notes.</td></tr>
+<tr><td>Amendment triggers</td><td>Trigger condition, affected boundary, required governed change surface, review evidence, approval status.</td><td>ASSUMPTION: structure inferred from <code>docs/DIRECTIVE.md</code> §7.</td></tr>
+</tbody></table>
+<h3 id="clm-006-boundary-register-rows">CLM-006 — Boundary Register Rows</h3>
+<h6 id="boundary-register-rows">Boundary Register Rows</h6>
+<p>For this four-document kit, the concrete register-row artifact is this <code>Datasheet.md</code> section. Later publication may move these rows into a dedicated register file, but until amended this table is the inspection surface for boundary-row verification.</p>
+<p>ADQ-03 also materialized <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> as the normalized review checklist for</p>
+<p>scope-boundary and professional-boundary checks. The human ruling fields below remain <code>TBD</code> until an</p>
+<p>accountable human records rulings or explicit deferrals.</p>
+<table><tbody>
+<tr><td>RowID</td><td>Boundary Item</td><td>Boundary Statement</td><td>Source Reference</td><td>Amendment Trigger</td><td>Current Status</td><td>Human Ruling</td></tr>
+<tr><td>DEL-01-04-BR-001</td><td>SOW-065 remote MCP/plugins/tool expansion</td><td>Remote MCP servers, plugins, remote execution, plugin marketplace, and broad tool search remain outside current scope until local SDK governance, permissions, hooks, event logging, and result storage are reliable.</td><td><code>docs/PRD.md</code> §3.2 and §6.4; <code>docs/CONTRACT.md</code> §1.9 K-NET-1; <code>docs/PLAN.md</code> §11</td><td>Governed amendment that admits remote or expanded tool scope and updates governance, tests, release checks, and implementation artifacts.</td><td>OUT</td><td>DEFERRED 2026-07-12 — D-APP-56 R4-P22; no scope amendment authorized.</td></tr>
+<tr><td>DEL-01-04-BR-002</td><td>SOW-076 ambient settings and shipped bypass</td><td>Shipped builds must not load ambient Claude settings and must not use <code>bypassPermissions</code> in shipped or ordinary operator workflows; developer-local bypass remains guarded.</td><td><code>docs/PRD.md</code> §3.2 and FR-117; <code>docs/CONTRACT.md</code> §1.4 K-SDK-1 and §1.6 K-PERM-6</td><td>Governed amendment plus SDK option, hook, environment guard, and release-check updates.</td><td>OUT</td><td>DEFERRED 2026-07-12 — D-APP-56 R4-P22; no scope amendment authorized.</td></tr>
+<tr><td>DEL-01-04-BR-003</td><td>SOW-077 retired PKG-08 scope</td><td>Retired PKG-08 execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record, and staleness propagation tooling remain retired; harness runtime event logging does not reactivate them.</td><td><code>docs/PRD.md</code> §3.2 and KG-012; <code>docs/PLAN.md</code> §9; <code>docs/CONTRACT.md</code> §1.9 K-RETIRED-1</td><td>Governed amendment that explicitly reactivates retired execution scope and updates active decomposition/package commitments.</td><td>OUT</td><td>DEFERRED 2026-07-12 — D-APP-56 R4-P22; no scope amendment authorized.</td></tr>
+<tr><td>DEL-01-04-BR-004</td><td>SOW-078 Windows/Linux packaging</td><td>Windows/Linux release packaging remains outside current release scope; current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG.</td><td><code>docs/PRD.md</code> §6.4 and KG-014; <code>docs/CONTRACT.md</code> §1.9 K-RELEASE-1</td><td>Governed release-scope amendment with packaging, validation, and instruction-root integrity updates.</td><td>OUT</td><td>DEFERRED 2026-07-12 — D-APP-56 R4-P22; no release-scope amendment authorized.</td></tr>
+<tr><td>DEL-01-04-BR-005</td><td>Domain operation execution and protected domain paths</td><td>Domain-engine integration as a shipping feature, direct protected-domain-path writes, and domain operation execution remain future-amendment scope; ruled staged read tools and loopback propose/refresh/validate tools are in scope, while apply and direct protected-path writes remain out.</td><td><code>docs/PRD.md</code> §6.4 and FR-106 through FR-115; <code>docs/CONTRACT.md</code> §1.10; <code>docs/PLAN.md</code> R7; D-APP-49 through D-APP-52</td><td>Governed domain-profile amendment with protected-path, proposal, deterministic-adapter, and human-gate controls.</td><td>OUT, except ruled staged read/proposal surface</td><td>RULED 2026-07-12 — D-APP-56 R4-P22/P25 ratifies the staged carve-in; apply and protected-path writes remain OUT.</td></tr>
+<tr><td>DEL-01-04-BR-006</td><td>Provider/residency expansion and Pi runtime use</td><td>Concrete provider/residency expansion is default-closed and requires explicit owner configuration/ruling under D-APP-44 F1. Pi remains pattern-corpus-only: no adapter, import, fork, Node 22 sidecar, runtime-floor migration, or spike is authorized.</td><td>SCA-APP-001; D-APP-01; D-APP-02; D-APP-44 F1; <code>docs/PRD.md</code> §3.2</td><td>Explicit owner provider/residency authorization plus bounded implementation and verification; a separate scope reversal is required for any Pi runtime use.</td><td>OUT except explicitly owner-permitted provider/residency configurations</td><td>RULED 2026-07-12 — D-APP-56 R4-P06(f); retain default-closed posture and Pi prohibition.</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Product intent, professional authority, out-of-scope and change discipline.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for settings, permissions, retired scope, domain boundaries, and unknown/conflict handling.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Runtime mechanics and boundary surfaces; used only where source slices were relevant.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Authority model and vocabulary.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Roadmap sequencing, PKG-08 retirement notes, and future-amendment exclusions.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Current vNext product requirements and explicit non-goals; the current D-APP-38 corpus snapshot records a matching authority-doc hash.</td></tr>
+<tr><td>REF-007</td><td><code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method reference; no deliverable-specific requirements extracted.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-01-04-scope-boundary-and-retired-scope-register">CLM-008 — Specification: DEL-01-04 Scope Boundary and Retired Scope Register</h3>
+<h4 id="specification-del-01-04-scope-boundary-and-retired-scope-register">Specification: DEL-01-04 Scope Boundary and Retired Scope Register</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable defines a documentary scope boundary and retired-scope register for DEL-01-04. It covers SOW-065, SOW-076, SOW-077, and SOW-078, and supports OBJ-009.</p>
+<p>In scope:</p>
+<ul>
+<li>- Record that remote MCP, plugins, remote execution, broad tool search before mature local governance, and marketplace extension are outside current scope unless amended.</li>
+<li>- Record that shipped ambient Claude settings and ordinary shipped <code>bypassPermissions</code> operation are outside current scope and forbidden by product invariants.</li>
+<li>- Record that retired PKG-08 execution-scope items remain retired unless a governed amendment explicitly reactivates them.</li>
+<li>- Record that Windows/Linux release packaging is outside current release scope unless amended.</li>
+<li>- Record that domain operation execution and protected-domain-path writes are future-amendment concerns, not current shipping scope.</li>
+<li>- Define amendment triggers for attempts to cross these boundaries.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Implementing runtime guardrails, release packaging, domain-engine adapters, plugin systems, remote MCP servers, or dependency extraction.</li>
+<li>- Creating <code>Dependencies.csv</code>.</li>
+<li>- Assigning <code>ResponsibleParty</code>; it remains <code>TBD</code> until a human assigns ownership.</li>
+<li>- Treating this document as an approval record or release authorization.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-01 / DEL-01-04; <code>docs/PRD.md</code> §3.2 and §6.4.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Verification</td><td>Source</td></tr>
+<tr><td>DEL-01-04-REQ-001</td><td>The register must include SOW-065, SOW-076, SOW-077, and SOW-078 as boundary items.</td><td>Inspect register rows against decomposition scope item ledger.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §Scope Item Ledger</td></tr>
+<tr><td>DEL-01-04-REQ-002</td><td>Remote MCP, plugins, remote execution, marketplace extension, and shell-network expansion must remain outside current scope unless a governed future amendment explicitly permits them.</td><td>Confirm each item appears as out of scope with amendment trigger.</td><td><code>docs/PRD.md</code> §3.2, §6.4; <code>docs/CONTRACT.md</code> §1.9 K-NET-1</td></tr>
+<tr><td>DEL-01-04-REQ-003</td><td>Shipped builds must not load ambient <code>~/.claude/settings.json</code> or <code>.claude/settings.local.json</code>.</td><td>Confirm boundary row cites shipped settings prohibition and routes change attempts to governed amendment.</td><td><code>docs/PRD.md</code> §3.2; <code>docs/CONTRACT.md</code> §1.4 K-SDK-1</td></tr>
+<tr><td>DEL-01-04-REQ-004</td><td>Shipped builds and ordinary operator workflows must not use <code>bypassPermissions</code>; developer-only bypass remains guarded by explicit local configuration and Chirality deny hooks.</td><td>Confirm boundary row distinguishes shipped/ordinary operation from developer-local guarded use.</td><td><code>docs/PRD.md</code> §3.2; <code>docs/CONTRACT.md</code> §1.6 K-PERM-6</td></tr>
+<tr><td>DEL-01-04-REQ-005</td><td>Retired execution-scope items, including retired PKG-08 deliverables, must remain out of scope unless reactivated by governed amendment.</td><td>Confirm retired-scope notes identify prohibited reactivation and allowed adjacent runtime event logging.</td><td><code>docs/PRD.md</code> §3.2, §12.1; <code>docs/PLAN.md</code> §9; <code>docs/CONTRACT.md</code> §1.9 K-RETIRED-1</td></tr>
+<tr><td>DEL-01-04-REQ-006</td><td>Harness runtime event logging must not be treated as reactivating retired unified pipeline run records or broader PKG-08 hardening scope.</td><td>Confirm retired PKG-08 note separates runtime event logging from retired pipeline hardening scope.</td><td><code>docs/PLAN.md</code> §9; <code>docs/PRD.md</code> §3.2</td></tr>
+<tr><td>DEL-01-04-REQ-007</td><td>Windows/Linux release packaging must remain out of current release scope until amended; current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG.</td><td>Confirm packaging boundary row names current release target and amendment condition.</td><td><code>docs/PRD.md</code> §6.4; <code>docs/CONTRACT.md</code> §1.9 K-RELEASE-1</td></tr>
+<tr><td>DEL-01-04-REQ-008</td><td>Domain-engine operation execution must remain future-amendment scope; domain operations require proposal records and explicit human acceptance before application.</td><td>Confirm domain boundary row cites future-amendment status and human gate.</td><td><code>docs/PRD.md</code> §6.4 and R7; <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-3</td></tr>
+<tr><td>DEL-01-04-REQ-009</td><td>The register must not imply automated professional approval, code compliance, external validation, or solver truth owned by Chirality.</td><td>Review copy for professional-boundary language.</td><td><code>docs/DIRECTIVE.md</code> §3; <code>docs/CONTRACT.md</code> §1.2 K-AUTH-1 and K-PROF-1</td></tr>
+<tr><td>DEL-01-04-REQ-010</td><td>Unknown or unsupported scope facts must remain <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, conflict, or human-ruling-needed entries rather than invented content.</td><td>Inspect rows and notes for unsupported facts.</td><td><code>docs/CONTRACT.md</code> §1.7 K-INVENT-1 and K-CONFLICT-1</td></tr>
+<tr><td>DEL-01-04-REQ-011</td><td>The concrete boundary rows for this four-document kit must be inspectable in <code>Datasheet.md</code> under <code>Boundary Register Rows</code> until a governed amendment or publication step moves them into a dedicated register artifact.</td><td>Inspect <code>Datasheet.md</code> <code>Boundary Register Rows</code> for RowID, boundary item, source reference, amendment trigger, current status, and human ruling fields.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-01 / DEL-01-04; <code>docs/DIRECTIVE.md</code> §7; <code>docs/CONTRACT.md</code> §1.7 K-INVENT-1</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Authority</td><td>Applicability</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Governs founding intent, professional responsibility, out-of-scope posture, and change discipline.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Governs binding invariants for scope boundaries, settings, permissions, retired scope, and human authority.</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Governs current vNext product requirements and explicit non-goals; source hash warning applies.</td></tr>
+<tr><td><code>docs/PLAN.md</code></td><td>Governs roadmap sequencing and retired PKG-08 interpretation.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Governs agent authority vocabulary and domain proposal vocabulary.</td></tr>
+<tr><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Governs DEL-01-04 identity, scope item mapping, and objective mapping.</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>Verification is documentary and review-based for this phase:</p>
+<table><tbody>
+<tr><td>Verification Item</td><td>Method</td></tr>
+<tr><td>Four-doc kit completeness</td><td>Confirm <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> exist and are non-empty.</td></tr>
+<tr><td>Boundary coverage</td><td>Trace SOW-065, SOW-076, SOW-077, and SOW-078 from decomposition to register requirements.</td></tr>
+<tr><td>Source fidelity</td><td>Confirm non-trivial requirements cite source files and sections.</td></tr>
+<tr><td>Conservative drafting</td><td>Confirm unsupported facts are marked <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, conflict, or human-ruling-needed.</td></tr>
+<tr><td>Boundary-row inspection</td><td>Confirm the concrete register rows are present in <code>Datasheet.md</code> under <code>Boundary Register Rows</code> and include source reference, amendment trigger, current status, and human ruling fields.</td></tr>
+<tr><td>Boundary review checklist</td><td>Confirm <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> covers scope-boundary and professional-boundary review without treating checklist completion as approval.</td></tr>
+<tr><td>Scope containment</td><td>Confirm this run does not satisfy or mutate dependency rows and does not modify files outside the authorized tranche scope.</td></tr>
+<tr><td>Status transition</td><td>Read current state from <code>_STATUS.md</code>; this work makes no transition, and any future human-gate transition requires governed approval evidence.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/TASK_RUN_*.md</code></li>
+<li>- <code>Datasheet.md</code> <code>Boundary Register Rows</code> section as the concrete inspection surface for this kit</li>
+<li>- <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> as the normalized review checklist and evidence template</li>
+</ul>
+<p>Existing derivative artifact:</p>
+<ul>
+<li>- <code>Dependencies.csv</code> is maintained by the separate dependency-extract workflow. This Pass 3 enrichment must not create or edit it.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — Preservation and traceability to SOW-065, SOW-076, SOW-077, SOW-078, and OBJ-009 are demonstrated without adding scope, reliance claims, lifecycle meaning, or obligations.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-01-04-scope-boundary-and-retired-scope-register">CLM-014 — Procedure: DEL-01-04 Scope Boundary and Retired Scope Register</h3>
+<h4 id="procedure-del-01-04-scope-boundary-and-retired-scope-register">Procedure: DEL-01-04 Scope Boundary and Retired Scope Register</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define how to produce and maintain the Scope Boundary and Retired Scope Register for DEL-01-04 without expanding current scope, inventing unsupported facts, assigning human ownership, or reactivating retired work.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Deliverable-local context exists at <code>_CONTEXT.md</code>.</td><td>Available.</td></tr>
+<tr><td>Authoritative source pointers exist at <code>_REFERENCES.md</code>.</td><td>Available; REF-006 <code>docs/PRD.md</code> matches under the current D-APP-38 corpus snapshot.</td></tr>
+<tr><td>Decomposition entry exists for DEL-01-04.</td><td>Available in <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code>.</td></tr>
+<tr><td>Human-declared upstream dependencies.</td><td>TBD; <code>_DEPENDENCIES.md</code> declares none extracted yet.</td></tr>
+<tr><td>ResponsibleParty assignment.</td><td>TBD; must remain TBD until human assignment.</td></tr>
+</tbody></table>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity.</p>
+<ul>
+<li>- Verify <code>DeliverableID=DEL-01-04</code>, <code>PackageID=PKG-01</code>, <code>Type=DOC_UPDATE</code>, and <code>ResponsibleParty=TBD</code> in <code>_CONTEXT.md</code>.</li>
+</ul>
+<p>2. Confirm overwrite safety.</p>
+<ul>
+<li>- Read <code>_STATUS.md</code>.</li>
+<li>- Proceed with P1/P2 authoring only if the current state is allowed by the task brief and skill contract.</li>
+</ul>
+<p>3. Read source authority.</p>
+<ul>
+<li>- Read <code>_REFERENCES.md</code>.</li>
+<li>- Read accessible source slices from <code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/PRD.md</code>, <code>docs/PLAN.md</code>, <code>docs/TYPES.md</code>, and the decomposition entry.</li>
+<li>- Confirm REF-006 <code>docs/PRD.md</code> matches the current D-APP-38 corpus version.</li>
+</ul>
+<p>4. Build the out-of-scope register content.</p>
+<ul>
+<li>- Materialize the concrete register-row artifact in <code>Datasheet.md</code> under <code>Boundary Register Rows</code> unless a governed publication step moves the rows to a dedicated register file.</li>
+<li>- Include SOW-065 for remote MCP, plugins, remote execution, marketplace extension, and broad tool search before mature governance.</li>
+<li>- Include SOW-076 for ambient Claude settings and shipped/ordinary <code>bypassPermissions</code>.</li>
+<li>- Include SOW-078 for Windows/Linux release packaging.</li>
+<li>- Mark amendment requirements from <code>docs/DIRECTIVE.md</code> §7 and <code>docs/PRD.md</code> §12.1.</li>
+</ul>
+<p>5. Build retired-scope notes.</p>
+<ul>
+<li>- Include SOW-077.</li>
+<li>- Record that retired PKG-08 execution-scope items remain retired unless amended.</li>
+<li>- Record that harness runtime event logging is separate runtime infrastructure and does not reactivate retired unified pipeline run records or broader PKG-08 hardening scope.</li>
+</ul>
+<p>6. Build domain-operation boundary notes.</p>
+<ul>
+<li>- Record domain-engine operation execution as future-amendment scope.</li>
+<li>- Record that agents may write proposals and summaries, not protected model truth.</li>
+<li>- Record that applying domain operations requires explicit human acceptance.</li>
+</ul>
+<p>7. Preserve unknowns and conflicts.</p>
+<ul>
+<li>- Use <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, or conflict-table entries for unsupported facts.</li>
+<li>- Do not create new scope items or assign ResponsibleParty.</li>
+</ul>
+<p>8. Cross-check the four documents.</p>
+<ul>
+<li>- Confirm the same boundary items and terminology appear consistently in <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</li>
+<li>- Confirm requirements in <code>Specification.md</code> have corresponding production and verification hooks here.</li>
+<li>- Use <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> as the normalized scope-boundary/professional-boundary review checklist.</li>
+</ul>
+<p>9. Preserve current lifecycle state.</p>
+<ul>
+<li>- Current lifecycle state is <code>CHECKING</code>.</li>
+<li>- Do not perform a state regression or human-gate transition.</li>
+<li>- Any future human-gate transition requires the governed status workflow and its required human approval evidence.</li>
+</ul>
+<p>10. Defer dependency extraction.</p>
+<ul>
+<li>- Do not create or edit <code>Dependencies.csv</code> during this four-documents run.</li>
+<li>- Treat any existing <code>Dependencies.csv</code> as output of the separate <code>TASK + dependency-extract</code> workflow described in <code>_DEPENDENCIES.md</code>.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Document existence</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> exist and are non-empty.</td></tr>
+<tr><td>Boundary coverage</td><td>SOW-065, SOW-076, SOW-077, and SOW-078 are represented.</td></tr>
+<tr><td>Source grounding</td><td>Non-trivial boundary statements cite source files and sections.</td></tr>
+<tr><td>ResponsibleParty</td><td>Remains <code>TBD</code>.</td></tr>
+<tr><td>Boundary-row artifact</td><td><code>Datasheet.md</code> includes concrete <code>Boundary Register Rows</code> with source reference, amendment trigger, current status, and human ruling fields.</td></tr>
+<tr><td>Boundary review checklist</td><td><code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> exists and preserves checklist completion as evidence only.</td></tr>
+<tr><td>Dependency extraction</td><td>This run does not create or edit <code>Dependencies.csv</code>; if present, it remains owned by the separate dependency-extract workflow.</td></tr>
+<tr><td>Status</td><td>Current state is read from <code>_STATUS.md</code>; no lifecycle transition occurs in this checklist normalization.</td></tr>
+<tr><td>Conflicts</td><td>Active path mismatch is surfaced for human ruling; historical PRD hash mismatch is closed by the current D-APP-38 corpus snapshot.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Records produced or updated by this procedure:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_STATUS.md</code> (read-only lifecycle evidence for this checklist normalization)</li>
+<li>- <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code></li>
+<li>- <code>_run_records/TASK_RUN_*.md</code></li>
+</ul>
+<p>Related derivative record owned by a separate workflow:</p>
+<ul>
+<li>- <code>Dependencies.csv</code></li>
+</ul>
+<h3 id="clm-020-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-020 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-104 supersedes the setup-era statement that no dependency rows had been extracted: the 13-row derivative register exists and remains owned by the separate dependency workflow.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic validation, claim mapping, parity, checklist derivation, and rendering checks, followed by human review.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-01-04-scope-boundary-and-retired-scope-register">CLM-021 — Guidance: DEL-01-04 Scope Boundary and Retired Scope Register</h3>
+<h4 id="guidance-del-01-04-scope-boundary-and-retired-scope-register">Guidance: DEL-01-04 Scope Boundary and Retired Scope Register</h4>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable is a scope guard. It keeps known out-of-scope and retired items visible so they are not accidentally reintroduced through implementation enthusiasm, runtime event logging, release packaging, plugin/tool expansion, SDK settings behavior, or future domain-engine work.</p>
+<p>The controlling objective is OBJ-009: preserve professional boundary, product identity, and reliance-boundary ownership in docs, UI, runtime, and release behavior. Source: <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §Objectives and §PKG-01 / DEL-01-04.</p>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Treat boundary rows as negative scope controls, not implementation backlog.</p>
+<p>Source: <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> marks SOW-065, SOW-076, SOW-077, and SOW-078 as <code>OUT</code>.</p>
+<p>2. A future-facing statement is not current shipping scope.</p>
+<p>Domain-engine profiles, plugin-like extension points, and remote MCP may be described as future-compatible concepts, but implementation requires amendment and mature local governance first. Sources: <code>docs/PRD.md</code> §6.4, §8.14 FR-105, R7; <code>docs/PLAN.md</code> R7.</p>
+<p>3. Runtime event logging is allowed runtime infrastructure, but it does not revive retired pipeline hardening work.</p>
+<p>Source: <code>docs/PLAN.md</code> §9; <code>docs/PRD.md</code> §3.2.</p>
+<p>4. Shipped safety posture cannot depend on SDK defaults, ambient user settings, ordinary bypass behavior, or prompt text alone.</p>
+<p>Sources: <code>docs/CONTRACT.md</code> §1.4 K-SDK-1, §1.6 K-PERM-2/K-PERM-3/K-PERM-6; <code>docs/PRD.md</code> §3.2.</p>
+<p>5. Human authority remains non-delegable.</p>
+<p>This register can guide amendment and review, but it cannot approve professional work or create reliance by itself. Sources: <code>docs/DIRECTIVE.md</code> §3; <code>docs/TYPES.md</code> §3.3; <code>docs/CONTRACT.md</code> §1.2.</p>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Boundary-row placement</td><td>Inspect the concrete boundary rows in <code>Datasheet.md</code> under <code>Boundary Register Rows</code>; that section is the current register-row artifact unless a governed publication step moves the rows elsewhere.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-01 / DEL-01-04; <code>docs/DIRECTIVE.md</code> §7</td></tr>
+<tr><td>Remote MCP and plugins</td><td>Keep as out of current scope until local/in-process SDK integration, permission policy, hooks, event logging, and result storage are stable and a governed amendment permits expansion.</td><td><code>docs/PRD.md</code> §3.2, §6.4; <code>docs/PLAN.md</code> §11</td></tr>
+<tr><td>Broad tool search</td><td>Treat as deferred; if later introduced, it must reveal only currently allowed tools and never denied tools.</td><td><code>docs/PRD.md</code> §8.14 FR-103</td></tr>
+<tr><td>Shipped settings</td><td>Do not allow shipped builds to load ambient Claude settings. A change attempt should trigger governance review before implementation.</td><td><code>docs/PRD.md</code> §3.2; <code>docs/CONTRACT.md</code> §1.4 K-SDK-1</td></tr>
+<tr><td>Bypass permissions</td><td>Separate developer-local guarded bypass from shipped or ordinary operator workflows. Do not blur this distinction in copy, config, or tests.</td><td><code>docs/PRD.md</code> §3.2; <code>docs/CONTRACT.md</code> §1.6 K-PERM-6</td></tr>
+<tr><td>Retired PKG-08 items</td><td>Keep retired execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record, and staleness propagation tooling out of current commitments.</td><td><code>docs/PLAN.md</code> §9; <code>docs/PRD.md</code> KG-012</td></tr>
+<tr><td>Release targets</td><td>Treat macOS 15+ Apple Silicon DMG as the current release target; Windows/Linux packaging needs amendment.</td><td><code>docs/CONTRACT.md</code> §1.9 K-RELEASE-1; <code>docs/PRD.md</code> §6.4</td></tr>
+<tr><td>Domain operations</td><td>Keep domain operation execution behind future profile, proposal, deterministic checks, and human acceptance.</td><td><code>docs/CONTRACT.md</code> §1.10; <code>docs/PRD.md</code> R7</td></tr>
+<tr><td>Boundary review checklist</td><td>Use <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> for repeatable scope-boundary and professional-boundary review evidence. Checklist completion is not a human ruling, dependency closure, lifecycle issuance, or release/professional approval.</td><td>ADQ-03</td></tr>
+</tbody></table>
+<h3 id="clm-025-trade-offs">CLM-025 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred Position</td><td>Rationale</td></tr>
+<tr><td>Future compatibility vs current scope discipline</td><td>Preserve future vocabulary, but mark implementation as future-amendment scope.</td><td>Prevents premature implementation while keeping architectural runway.</td></tr>
+<tr><td>Developer convenience vs shipped safety</td><td>Allow only guarded developer-local bypass; forbid shipped/ordinary bypass behavior.</td><td>Maintains product-owned permission boundaries and release posture.</td></tr>
+<tr><td>Event logging vs retired pipeline scope</td><td>Permit runtime audit event logging; keep retired pipeline run records and hardening tools retired.</td><td>Preserves auditability without reactivating retired work.</td></tr>
+<tr><td>Cross-platform ambition vs release certainty</td><td>Keep Windows/Linux packaging out of current scope.</td><td>Current release invariant names macOS 15+ Apple Silicon DMG unless amended.</td></tr>
+</tbody></table>
+<h3 id="clm-026-examples">CLM-026 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Register Disposition</td></tr>
+<tr><td>A developer proposes adding a plugin marketplace before local permission hooks are stable.</td><td>Mark as blocked by SOW-065; requires governed amendment after local governance maturity.</td></tr>
+<tr><td>A packaged build reads <code>.claude/settings.local.json</code> from the working root.</td><td>Mark as forbidden by SOW-076 / K-SDK-1; requires correction, not amendment-by-default.</td></tr>
+<tr><td>Runtime events are added under <code>.chirality/sessions/&lt;id&gt;/events.jsonl</code>.</td><td>Allowed as runtime audit infrastructure if aligned with runtime contract; do not relabel as unified pipeline run records.</td></tr>
+<tr><td>A release issue asks for Windows packaging in the current slice.</td><td>Mark as out of scope under SOW-078; requires release-scope amendment.</td></tr>
+<tr><td>A domain adapter attempts to write directly to protected domain-engine model paths.</td><td>Mark as out of current scope and prohibited by domain boundary policy; future work must use proposal records and human acceptance.</td></tr>
+</tbody></table>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CF-001</td><td>Dispatch path names <code>PKG-01_Governance_and_Product_Boundaries</code>, but the only matching deliverable folder on disk is under <code>PKG-01_Product_Governance_and_Reliance_Boundaries</code>.</td><td>TASK dispatch</td><td>Filesystem path and <code>_CONTEXT.md</code> PackageName</td><td>Run record, final report</td><td>Use the located deliverable folder for this run and surface the stale path as a warning.</td><td>TBD</td></tr>
+</tbody></table>
+<p>Closed historical conflict: <code>CF-002</code> is superseded by the current D-APP-38 corpus snapshot; current <code>_REFERENCES.md</code></p>
+<p>records REF-006 <code>docs/PRD.md</code> as <code>MATCH</code>.</p>
+<h3 id="clm-028-normalized-checklist-artifact">CLM-028 — Normalized Checklist Artifact</h3>
+<h5 id="normalized-checklist-artifact">Normalized Checklist Artifact</h5>
+<p>ADQ-03 materialized <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> as the shared review checklist package. For</p>
+<p>DEL-01-04, it supplies the scope-boundary checklist, amendment-trigger prompts, and finding template.</p>
+<p>The boundary-row human ruling fields remain <code>TBD</code> until an accountable human records rulings or</p>
+<p>explicit deferrals.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-065 SOW-076 SOW-077 SOW-078 OBJ-009</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="8eeb463884aa9549a8ebf79d8c454bf60fdc6e0dd5a5e7359734ead1d23e47b0">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-01-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>8eeb463884aa9549a8ebf79d8c454bf60fdc6e0dd5a5e7359734ead1d23e47b0</code>.</p>
+<h1 id="scope-of-work-del-01-03">Scope of Work — DEL-01-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-01-03</code> in service of project scope [SOW-071, SOW-074] and package objectives [OBJ-009, OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Product-identity and professional-boundary copy guidance and review record for DEL-01-03, traceable to SOW-071, SOW-074, OBJ-009, and OBJ-010.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-01-03-product-identity-and-professional-boundary-copy">CLM-001 — Datasheet: DEL-01-03 Product Identity and Professional Boundary Copy</h3>
+<h4 id="datasheet-del-01-03-product-identity-and-professional-boundary-copy">Datasheet: DEL-01-03 Product Identity and Professional Boundary Copy</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>PackageID</td><td>PKG-01</td></tr>
+<tr><td>PackageName</td><td>Product Governance and Reliance Boundaries</td></tr>
+<tr><td>DeliverableID</td><td>DEL-01-03</td></tr>
+<tr><td>DeliverableName</td><td>Product Identity and Professional Boundary Copy</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>DOC_UPDATE</td></tr>
+<tr><td>ContextEnvelope</td><td>S</td></tr>
+<tr><td>Current lifecycle state</td><td>Read from <code>_STATUS.md</code> (currently <code>IN_PROGRESS</code>; prior states remain historical evidence)</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary product identity</td><td>Chirality desktop harness and bundled agent operating system</td><td><code>docs/DIRECTIVE.md</code> header; <code>docs/PRD.md</code> header</td></tr>
+<tr><td>Product posture</td><td>Local-first governed desktop harness for running AI agents against a user-selected filesystem workspace</td><td><code>docs/DIRECTIVE.md</code> Section 1; <code>docs/PRD.md</code> Section 2</td></tr>
+<tr><td>Identity boundary</td><td>User-facing text must identify the product as Chirality, not Claude Code, Anthropic, a vendor CLI, or a feature-parity target</td><td><code>docs/DIRECTIVE.md</code> Section 2.11; <code>docs/CONTRACT.md</code> K-SDK-4; <code>docs/PRD.md</code> Section 3.2</td></tr>
+<tr><td>Professional authority posture</td><td>Agents propose; humans approve and retain binding decision rights</td><td><code>docs/DIRECTIVE.md</code> Section 3; <code>docs/CONTRACT.md</code> K-AUTH-1 through K-GATE-1</td></tr>
+<tr><td>Draft status of agent outputs</td><td>Agent outputs are drafts and decision support until accepted by an accountable human</td><td><code>docs/DIRECTIVE.md</code> Section 3.1 and Section 3.4; <code>docs/PRD.md</code> Section 2</td></tr>
+<tr><td>Reliance-boundary posture</td><td>Product-critical boundaries must be documented, implemented, and tested in Chirality terms; prompt text alone is insufficient</td><td><code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/CONTRACT.md</code> K-RELIANCE-1 and K-RELIANCE-2</td></tr>
+<tr><td>Domain-engine boundary posture</td><td>Domain engines own domain truth; Chirality governs interaction, proposals, records, and human gates</td><td><code>docs/CONTRACT.md</code> K-DOMAIN-1 through K-DOMAIN-4; <code>docs/SPEC.md</code> Section 18</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Required treatment</td><td>Source</td></tr>
+<tr><td>UI, documentation, packaging, runtime messages, and future domain notices mention the product</td><td>Use Chirality-owned product language; do not imply the product is Claude Code or an Anthropic product</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>docs/DIRECTIVE.md</code> Section 2.11; <code>docs/PRD.md</code> FR-127</td></tr>
+<tr><td>Agent output, runtime event, validator result, SDK transcript, or domain-adapter output is presented to a user</td><td>Preserve draft/non-binding wording unless a human approval record exists</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3 and 3; <code>docs/CONTRACT.md</code> K-BIND-1</td></tr>
+<tr><td>Copy refers to approval, certification, code compliance, external validation, issuance, signature, seal, transmittal, or release for reliance</td><td>Reserve the action for accountable humans; do not attribute it to Chirality, agents, SDKs, tools, validators, runtime events, or domain adapters</td><td><code>docs/DIRECTIVE.md</code> Section 3.2; <code>docs/CONTRACT.md</code> K-AUTH-1 and K-PROF-1</td></tr>
+<tr><td>Copy refers to SDK integration</td><td>Describe SDK use as implementation/provider detail behind Chirality-owned contracts, not as product identity or governance authority</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8 and 2.11; <code>docs/CONTRACT.md</code> K-ENGINE-3</td></tr>
+<tr><td>Copy refers to future domain engines</td><td>State that domain-operation acceptance is human-gated and domain outputs are not Chirality-owned solver truth</td><td><code>docs/PRD.md</code> Section 8.17; <code>docs/SPEC.md</code> Section 18</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>The deliverable is a documentation and copy-boundary package. Anticipated artifacts from <code>_CONTEXT.md</code> are:</p>
+<ul>
+<li>- UI copy guidelines.</li>
+<li>- Release review checklist.</li>
+<li>- Boundary notice examples.</li>
+</ul>
+<p>ADQ-03 materialized the shared checklist and example package at <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</p>
+<p>That file is review evidence only; it does not assign <code>ResponsibleParty</code>, satisfy dependencies, issue</p>
+<p>this deliverable, or approve release/professional reliance.</p>
+<table><tbody>
+<tr><td>Artifact</td><td>Current location in this deliverable</td><td>Final destination path</td><td>Source</td></tr>
+<tr><td>UI copy guidelines</td><td><code>Guidance.md</code> Principles, Considerations, Trade-offs, and Examples</td><td><code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> Professional Boundary Checklist and Boundary Notice Examples</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; decomposition DEL-01-03 AnticipatedArtifacts</td></tr>
+<tr><td>Release review checklist</td><td><code>Procedure.md</code> Verification and Release Review Evidence Template</td><td><code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> Review Evidence Template</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/DIRECTIVE.md</code> Sections 2.4 and 3.2</td></tr>
+<tr><td>Boundary notice examples</td><td><code>Guidance.md</code> Examples</td><td><code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> Boundary Notice Examples</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/CONTRACT.md</code> K-AUTH-1 and K-DOMAIN-4</td></tr>
+<tr><td>Review notes</td><td><code>Procedure.md</code> Review Note Record Template</td><td><code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> Finding Template</td><td><code>docs/DIRECTIVE.md</code> Section 2.5; <code>docs/CONTRACT.md</code> K-INVENT-1 and K-CONFLICT-1</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Founding intent, product identity, professional responsibility, evidence posture</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for authority, identity, reliance boundaries, domain boundaries</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Physical structures, persona composer professional-boundary reminders, domain future boundary</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Stable identifiers, project truth, artifact vocabulary, human approval authority</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Product identity and release/local-check posture</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Product requirements and accepted vNext runtime direction; the current D-APP-38 corpus snapshot records a matching authority-doc hash</td></tr>
+<tr><td>REF-007</td><td><code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context; no copy requirements extracted</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-01-03-product-identity-and-professional-boundary-copy">CLM-007 — Specification: DEL-01-03 Product Identity and Professional Boundary Copy</h3>
+<h4 id="specification-del-01-03-product-identity-and-professional-boundary-copy">Specification: DEL-01-03 Product Identity and Professional Boundary Copy</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies copy requirements for preserving Chirality product identity and human-only professional authority across UI, documentation, packaging, runtime messages, and future domain notices.</p>
+<p>Included:</p>
+<ul>
+<li>- Product identity language for Chirality-owned surfaces.</li>
+<li>- Professional-boundary language for draft output, human approval, reliance, and release.</li>
+<li>- Boundary notice requirements for future domain-engine surfaces.</li>
+<li>- Release-review checks for identity and professional-boundary copy.</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>- Runtime implementation details except where copy must reflect product-owned boundaries.</li>
+<li>- Dependency satisfaction closure; <code>Dependencies.csv</code> exists, but its rows remain <code>SatisfactionStatus=TBD</code> pending downstream FULL_GRAPH/cycle checks and any human closure decisions.</li>
+<li>- Final assignment of <code>ResponsibleParty</code>; it remains TBD.</li>
+<li>- Current-release domain operation implementation.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-01</td><td>User-facing copy MUST identify the product as Chirality and describe Chirality&#x27;s governed-work posture.</td><td><code>docs/DIRECTIVE.md</code> Section 2.11; <code>docs/PLAN.md</code> Section 6.5</td></tr>
+<tr><td>REQ-02</td><td>User-facing copy MUST NOT make Chirality appear to be Claude Code, an Anthropic product, a vendor CLI, or a feature-parity target.</td><td><code>docs/DIRECTIVE.md</code> Section 2.11; <code>docs/PRD.md</code> Section 3.2; <code>docs/CONTRACT.md</code> K-SDK-4</td></tr>
+<tr><td>REQ-03</td><td>SDK references, when needed, MUST be framed as implementation/provider detail behind Chirality-owned contracts.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8 and 2.10; <code>docs/CONTRACT.md</code> K-ENGINE-1 through K-ENGINE-4</td></tr>
+<tr><td>REQ-04</td><td>Copy MUST state or preserve that agent outputs are drafts or decision support until accepted by an accountable human through a governed process.</td><td><code>docs/DIRECTIVE.md</code> Sections 3.1 and 3.4; <code>docs/PRD.md</code> Section 2</td></tr>
+<tr><td>REQ-05</td><td>Copy MUST NOT state or imply that an AI system, agent, tool, SDK, transcript, runtime event, deterministic validator, or domain adapter can approve, certify, sign, seal, issue, transmit, externally validate, or release professional work for reliance.</td><td><code>docs/DIRECTIVE.md</code> Section 3.2; <code>docs/CONTRACT.md</code> K-AUTH-1; <code>docs/PRD.md</code> Section 3.2</td></tr>
+<tr><td>REQ-06</td><td>Copy MUST distinguish non-binding records such as drafts, proposals, summaries, and runtime transcripts from binding approval records.</td><td><code>docs/CONTRACT.md</code> K-BIND-1; <code>docs/DIRECTIVE.md</code> Sections 2.3 and 3</td></tr>
+<tr><td>REQ-07</td><td>Copy that describes reliance boundaries MUST NOT imply prompt text or opaque SDK defaults are sufficient enforcement for product-critical safety, audit, filesystem, lifecycle, transcript, settings, subagent, or human-gate semantics.</td><td><code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/CONTRACT.md</code> K-RELIANCE-2; <code>docs/PRD.md</code> FR-124 and FR-125</td></tr>
+<tr><td>REQ-08</td><td>Future domain-engine notices MUST state that domain engines own authoritative domain truth and Chirality does not own solver truth, code compliance, external validation, or professional approval.</td><td><code>docs/CONTRACT.md</code> K-DOMAIN-1 and K-DOMAIN-4; <code>docs/SPEC.md</code> Section 18; <code>docs/PRD.md</code> FR-115</td></tr>
+<tr><td>REQ-09</td><td>Copy for future domain operations MUST preserve explicit human acceptance before any domain operation is applied.</td><td><code>docs/CONTRACT.md</code> K-DOMAIN-3; <code>docs/SPEC.md</code> Section 18; <code>docs/PRD.md</code> FR-113</td></tr>
+<tr><td>REQ-10</td><td>Copy and review artifacts MUST preserve explicit uncertainty when source support is missing; unknowns remain <code>TBD</code>, assumptions are labeled, and conflicts are surfaced.</td><td><code>docs/DIRECTIVE.md</code> Section 2.5; <code>docs/CONTRACT.md</code> K-INVENT-1 and K-CONFLICT-1</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / authority</td><td>Status</td><td>Application</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Accessible</td><td>Governs intent, product identity, professional responsibility, evidence posture</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Accessible</td><td>Governs binding copy invariants</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Accessible</td><td>Governs runtime/document structures and future domain specification boundary</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Accessible</td><td>Governs vocabulary for project truth, artifacts, stable IDs, and authority</td></tr>
+<tr><td><code>docs/PLAN.md</code></td><td>Accessible</td><td>Governs roadmap/release copy checks</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Accessible; the current D-APP-38 corpus snapshot records matching REF-006 authority-doc hashes</td><td>Governs product requirements and accepted vNext direction</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>REQ-01, REQ-02</td><td>Review UI labels, empty states, permission prompts, status-transition messages, runtime/session summaries, documentation, packaging metadata, release notes, and future domain notices for Chirality-owned identity and absence of Claude Code/Anthropic product-identity claims.</td></tr>
+<tr><td>REQ-03</td><td>Review SDK-related copy for implementation-detail framing and Chirality-owned contract language.</td></tr>
+<tr><td>REQ-04 through REQ-06</td><td>Review copy for draft/non-binding language and human-only approval language.</td></tr>
+<tr><td>REQ-07</td><td>Review reliance-boundary copy for non-prompt-only enforcement language and concrete ownership references.</td></tr>
+<tr><td>REQ-08, REQ-09</td><td>Review future domain notices for domain-truth separation and explicit human acceptance.</td></tr>
+<tr><td>REQ-10</td><td>Review deliverable and downstream copy for <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, and conflict labeling where source support is incomplete.</td></tr>
+</tbody></table>
+<p>Closure evidence before downstream production copy updates:</p>
+<ul>
+<li>- <code>ResponsibleParty</code> assigned by an accountable human: TBD.</li>
+<li>- Final destination paths for UI copy guidelines, release review checklist, boundary notice examples, and review notes: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> (ADQ-03 review evidence only).</li>
+<li>- <code>Dependencies.csv</code> satisfaction and any project-level FULL_GRAPH/cycle checks closed or explicitly deferred by a human: TBD.</li>
+<li>- Conflict Table CT-001 path-label ruling recorded or explicitly deferred: TBD. Historical CT-002 PRD hash warning is closed by the current D-APP-38 corpus snapshot.</li>
+<li>- Release review evidence record completed for the checked surfaces and source sections: TBD.</li>
+</ul>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required or anticipated artifacts:</p>
+<ul>
+<li>- UI copy guidelines: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+<li>- Release review checklist: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+<li>- Boundary notice examples: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+<li>- Review notes template: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Human assignment of <code>ResponsibleParty</code>.</li>
+<li>- Human closure decision for <code>Dependencies.csv</code> rows whose <code>SatisfactionStatus</code> remains <code>TBD</code>.</li>
+</ul>
+<h3 id="clm-013-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-013 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-103 records the post-D-APP-53 state: the dependency-reconciliation act is human-closed and the earlier INSP-03 dependency wording is historical. This does not imply every dependency is satisfied or any lifecycle transition.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The migration candidate preserves the DEL-01-03 legacy source content and traceability to SOW-071, SOW-074, OBJ-009, and OBJ-010.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-01-03-product-identity-and-professional-boundary-copy">CLM-014 — Procedure: DEL-01-03 Product Identity and Professional Boundary Copy</h3>
+<h4 id="procedure-del-01-03-product-identity-and-professional-boundary-copy">Procedure: DEL-01-03 Product Identity and Professional Boundary Copy</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and use product-identity and professional-boundary copy for DEL-01-03 without inventing unsupported claims or weakening Chirality&#x27;s governance posture.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Read <code>_CONTEXT.md</code> for deliverable identity, scope, artifacts, and <code>ResponsibleParty: TBD</code>.</li>
+<li>- Read <code>_REFERENCES.md</code> for the authoritative source corpus and hash status.</li>
+<li>- Read <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code>; dependency extraction has produced active rows, but satisfaction status remains <code>TBD</code> pending downstream FULL_GRAPH/cycle checks and human closure decisions.</li>
+<li>- Read relevant source slices from:</li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/PLAN.md</code></li>
+<li>- <code>docs/PRD.md</code> under the current D-APP-38 corpus snapshot</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></li>
+</ul>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm stable identity.</p>
+<ul>
+<li>- Use <code>DEL-01-03</code>, <code>PKG-01</code>, and the canonical deliverable name from <code>_CONTEXT.md</code>.</li>
+<li>- Keep <code>ResponsibleParty</code> as <code>TBD</code> until a human assigns ownership.</li>
+</ul>
+<p>2. Establish source authority.</p>
+<ul>
+<li>- Use <code>docs/DIRECTIVE.md</code> for intent, product identity, professional responsibility, evidence posture, and source hierarchy.</li>
+<li>- Use <code>docs/CONTRACT.md</code> for binding invariants.</li>
+<li>- Use <code>docs/PRD.md</code> for accepted vNext product requirements under the current the current D-APP-38 corpus snapshot reference state.</li>
+</ul>
+<p>3. Draft or review product identity copy.</p>
+<ul>
+<li>- Confirm the surface names Chirality as the product.</li>
+<li>- Confirm SDK/provider references are implementation detail, not product identity.</li>
+<li>- Remove or flag copy that makes Chirality appear to be Claude Code, Anthropic, a vendor CLI, or a feature-parity target.</li>
+</ul>
+<p>4. Draft or review professional-boundary copy.</p>
+<ul>
+<li>- State that agent outputs are drafts, proposals, or decision support until accepted by an accountable human.</li>
+<li>- Reserve approval, certification, signature, seal, issue, transmittal, release for reliance, residual-risk acceptance, and professional judgment for humans.</li>
+<li>- Flag copy that conflates runtime events, transcripts, validators, or generated artifacts with approval records.</li>
+</ul>
+<p>5. Draft or review reliance-boundary copy.</p>
+<ul>
+<li>- Confirm product-critical boundaries are described as Chirality-owned or verified through concrete enforcement surfaces.</li>
+<li>- Flag statements that rely on prompt text, model behavior, or opaque SDK defaults alone for safety or authority.</li>
+</ul>
+<p>6. Draft or review future domain-engine notices.</p>
+<ul>
+<li>- State that domain engines own authoritative domain truth where applicable.</li>
+<li>- State that Chirality governs interaction, proposals, records, and human gates.</li>
+<li>- State that domain-engine outputs are not Chirality-owned solver truth, code compliance, external validation, or professional approval.</li>
+</ul>
+<p>7. Preserve uncertainty.</p>
+<ul>
+<li>- Mark missing target paths, owner assignments, and unsupported implementation details as <code>TBD</code>.</li>
+<li>- Mark inferred guidance as <code>ASSUMPTION</code>.</li>
+<li>- Add conflicts requiring judgment to the Conflict Table in <code>Guidance.md</code>.</li>
+</ul>
+<p>8. Prepare release review evidence.</p>
+<ul>
+<li>- Record the surfaces checked.</li>
+<li>- Record source sections used.</li>
+<li>- Record any <code>TBD</code>, <code>ASSUMPTION</code>, or human-ruling-needed item.</li>
+<li>- Record reviewer name or role, review date, pass/fail result, findings, proposed copy, and human ruling status.</li>
+<li>- Include authority-corpus status and Conflict Table status as explicit evidence checkpoints.</li>
+</ul>
+<p>9. Route authority-sensitive wording.</p>
+<ul>
+<li>- If copy uses approve, certify, sign, seal, issue, transmit, release, externally validate, code-compliant, solver truth, or safe for reliance, record the exact phrase and route it to the accountable human or human review body.</li>
+<li>- If no accountable role has been assigned, record <code>TBD</code> rather than approving the wording.</li>
+<li>- Do not close the item until the human ruling or deferral is recorded.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass condition</td><td>Evidence fields</td></tr>
+<tr><td>Identity check</td><td>Product-facing copy names Chirality and does not present the app as Claude Code, Anthropic, or a vendor CLI.</td><td>Surface; copy excerpt; source section; pass/fail; finding ID</td></tr>
+<tr><td>SDK framing check</td><td>SDK references are implementation/provider detail behind Chirality-owned contracts.</td><td>Surface; SDK phrase; source section; pass/fail; finding ID</td></tr>
+<tr><td>Human authority check</td><td>No copy claims automated approval, certification, issue, signature, seal, external validation, code compliance, or release for reliance.</td><td>Surface; authority-sensitive phrase; routed-to human role; ruling status</td></tr>
+<tr><td>Binding-record check</td><td>Drafts, proposals, summaries, transcripts, runtime events, and validator results are not described as approval records.</td><td>Record type; proposed label; source section; pass/fail</td></tr>
+<tr><td>Reliance-boundary check</td><td>Product-critical boundaries are not described as prompt-only or SDK-default-only.</td><td>Boundary; enforcement surface if known; unsupported claims marked <code>TBD</code></td></tr>
+<tr><td>Domain-boundary check</td><td>Domain-engine notices preserve human acceptance and do not assign solver truth or professional approval to Chirality.</td><td>Domain surface; notice text; human-gate statement; pass/fail</td></tr>
+<tr><td>Uncertainty check</td><td>Unsupported facts remain <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, conflict, or human-ruling-needed.</td><td>Item; label used; owner/ruling field; closure status</td></tr>
+<tr><td>Source-status check</td><td>D-APP-38 corpus status and active Conflict Table status are visible in review evidence.</td><td>REF-006 corpus status; CT-001 status; human ruling status</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Create or maintain these records as applicable:</p>
+<ul>
+<li>- UI copy guidelines: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+<li>- Release review checklist: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+<li>- Boundary notice examples: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+<li>- Review notes with checked surfaces and source sections: <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code>.</li>
+<li>- Human rulings for Conflict Table entries: TBD.</li>
+<li>- <code>Dependencies.csv</code> satisfaction closure notes: TBD.</li>
+</ul>
+<h3 id="clm-020-release-review-evidence-template">CLM-020 — Release Review Evidence Template</h3>
+<h6 id="release-review-evidence-template">Release Review Evidence Template</h6>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Review ID</td><td>TBD</td></tr>
+<tr><td>Reviewer / accountable role</td><td>TBD</td></tr>
+<tr><td>Review date</td><td>TBD</td></tr>
+<tr><td>Release or surface set</td><td>TBD</td></tr>
+<tr><td>Surfaces checked</td><td>TBD</td></tr>
+<tr><td>Source sections used</td><td>TBD</td></tr>
+<tr><td>Authority-corpus treatment</td><td>REF-006 matches under the current D-APP-38 corpus snapshot; rerun reconciliation if authority docs change</td></tr>
+<tr><td>Conflict Table status</td><td>CT-001 TBD; historical CT-002 closed by the current D-APP-38 corpus snapshot</td></tr>
+<tr><td>Overall result</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-021-review-note-record-template">CLM-021 — Review Note Record Template</h3>
+<h6 id="review-note-record-template">Review Note Record Template</h6>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Checked surface</td><td>TBD</td></tr>
+<tr><td>Source basis</td><td>TBD</td></tr>
+<tr><td>Issue type</td><td>Identity / SDK framing / human authority / binding record / reliance boundary / domain boundary / uncertainty / source status</td></tr>
+<tr><td>Current copy excerpt</td><td>TBD</td></tr>
+<tr><td>Proposed copy</td><td>TBD</td></tr>
+<tr><td>Finding</td><td>TBD</td></tr>
+<tr><td>Human ruling</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-022-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-022 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-103 records the post-D-APP-53 state: the dependency-reconciliation act is human-closed and the earlier INSP-03 dependency wording is historical. This does not imply every dependency is satisfied or any lifecycle transition.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic Scope-of-Work validation, claim mapping, parity, checklist, and rendering checks, followed by human review of the candidate.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-01-03-product-identity-and-professional-boundary-copy">CLM-023 — Guidance: DEL-01-03 Product Identity and Professional Boundary Copy</h3>
+<h4 id="guidance-del-01-03-product-identity-and-professional-boundary-copy">Guidance: DEL-01-03 Product Identity and Professional Boundary Copy</h4>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable gives product and release writers a conservative boundary for Chirality copy. Its purpose is to preserve Chirality identity and human-only professional authority across UI, documentation, packaging, runtime messages, and future domain notices.</p>
+<p>The governing posture is:</p>
+<ul>
+<li>- Chirality is a governed desktop harness, not a vendor CLI wrapper.</li>
+<li>- The SDK may be privileged as implementation substrate, but Chirality owns product semantics, runtime contracts, audit posture, permission policy, professional-boundary language, and user-facing product identity.</li>
+<li>- Agents, tools, SDKs, validators, transcripts, and runtime events assist; accountable humans decide what can be relied upon.</li>
+</ul>
+<p>Sources: <code>docs/DIRECTIVE.md</code> Sections 1, 2.8, 2.11, and 3; <code>docs/CONTRACT.md</code> K-AUTH-1, K-ENGINE-3, K-SDK-4.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Name Chirality first</td><td>Use &quot;Chirality&quot; for product identity. Mention external SDK/provider details only when useful and only as implementation detail.</td><td><code>docs/DIRECTIVE.md</code> Section 2.11</td></tr>
+<tr><td>Keep assistance non-binding</td><td>Prefer &quot;draft&quot;, &quot;proposal&quot;, &quot;decision support&quot;, &quot;review&quot;, &quot;evidence&quot;, and &quot;human acceptance&quot; over &quot;approved&quot;, &quot;certified&quot;, &quot;issued&quot;, or &quot;validated&quot; unless referring to a human approval record.</td><td><code>docs/DIRECTIVE.md</code> Section 3; <code>docs/CONTRACT.md</code> K-BIND-1</td></tr>
+<tr><td>Preserve human gates</td><td>Copy should make clear that humans approve reliance-affecting transitions, release actions, issue actions, residual risk, and professional judgments.</td><td><code>docs/DIRECTIVE.md</code> Section 3.2; <code>docs/CONTRACT.md</code> K-GATE-1</td></tr>
+<tr><td>Avoid prompt-only safety claims</td><td>Do not describe prompt text, model instruction, or SDK default behavior as sufficient enforcement for product-critical boundaries.</td><td><code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/CONTRACT.md</code> K-RELIANCE-2</td></tr>
+<tr><td>Separate runtime evidence from approval</td><td>Runtime events and transcripts explain what happened; they do not approve work.</td><td><code>docs/DIRECTIVE.md</code> Section 2.3; <code>docs/CONTRACT.md</code> K-BIND-1</td></tr>
+<tr><td>Keep domain truth separate</td><td>Future domain-engine copy should distinguish Chirality interaction governance from domain-engine truth and professional review.</td><td><code>docs/CONTRACT.md</code> K-DOMAIN-1 through K-DOMAIN-4</td></tr>
+</tbody></table>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Copy can disclose SDK usage when it improves transparency, diagnostics, implementation context, or release evidence. It risks product-identity drift when the SDK brand becomes the subject of the product claim, appears to own governance semantics, or makes Chirality look like Claude Code, an Anthropic product, a vendor CLI, or a feature-parity target.</li>
+<li>- Professional-boundary copy should be visible where a user could confuse output generation, validation, event logging, or domain-engine results with approval.</li>
+<li>- Release review should include UI labels, empty states, permission prompts, status-transition messages, runtime/session summaries, documentation, packaging metadata, and domain-engine future notices. The checked-surface inventory for a given release remains TBD until the release owner identifies the affected surfaces.</li>
+<li>- ASSUMPTION: &quot;Boundary notice examples&quot; will be used as reusable copy snippets, not as a substitute for implementation enforcement. This is inferred from the deliverable scope and the reliance-boundary requirements.</li>
+</ul>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred posture</td></tr>
+<tr><td>Transparent SDK disclosure vs. product identity drift</td><td>Disclose SDK use where appropriate, but keep Chirality as the product and contract owner.</td></tr>
+<tr><td>Concise UI copy vs. professional-boundary clarity</td><td>Use concise language, but do not remove human-review and non-binding qualifiers where reliance confusion is plausible. For very short UI strings, pair concise labels with nearby help text, tooltip text, empty-state copy, or release notes when the label alone cannot carry the boundary without becoming misleading.</td></tr>
+<tr><td>Friendly automation language vs. authority confusion</td><td>Prefer &quot;helps draft&quot;, &quot;organizes&quot;, &quot;records&quot;, &quot;checks&quot;, and &quot;proposes&quot; over &quot;approves&quot;, &quot;certifies&quot;, &quot;issues&quot;, or &quot;validates for reliance&quot;.</td></tr>
+<tr><td>Future domain-engine capability vs. current scope</td><td>Present domain engines as future-boundary scope until governed amendment and implementation evidence exist.</td></tr>
+</tbody></table>
+<h3 id="clm-028-term-normalization">CLM-028 — Term Normalization</h3>
+<h5 id="term-normalization">Term Normalization</h5>
+<table><tbody>
+<tr><td>Term</td><td>Copy treatment</td><td>Source basis</td></tr>
+<tr><td>Draft</td><td>Non-binding working output that requires accountable human acceptance before reliance.</td><td><code>docs/DIRECTIVE.md</code> Section 3.1; <code>docs/CONTRACT.md</code> K-BIND-1</td></tr>
+<tr><td>Proposal</td><td>A suggested change, operation, or copy treatment requiring review or acceptance.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-GATE-1</td></tr>
+<tr><td>Decision support</td><td>Assistance that informs judgment but does not replace accountable human decision rights.</td><td><code>docs/DIRECTIVE.md</code> Section 3.4</td></tr>
+<tr><td>Summary</td><td>Non-authoritative condensation unless imported into governed project files and accepted.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.5 and 2.6</td></tr>
+<tr><td>Transcript</td><td>Runtime or SDK record used for diagnosis/review, not an approval record.</td><td><code>docs/DIRECTIVE.md</code> Section 2.3; <code>docs/CONTRACT.md</code> K-SDK-3</td></tr>
+<tr><td>Runtime event</td><td>Audit evidence of what happened during a turn; not approval, issuance, code compliance, external validation, or reliance clearance.</td><td><code>docs/DIRECTIVE.md</code> Section 2.3</td></tr>
+<tr><td>Validator result</td><td>Deterministic check evidence; not professional approval or external validation.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.4 and 3.2; <code>docs/CONTRACT.md</code> K-AUTH-1</td></tr>
+<tr><td>Approval record</td><td>Human-authored binding evidence tied to specific content, normally a git SHA.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2</td></tr>
+</tbody></table>
+<p>Validators and runtime events cannot be treated as external validation or approval records because the sources separate evidence from human authority. They can show what was checked or what happened, but gate-relevant decisions still require versioned project files and accountable human acceptance.</p>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Acceptable examples, grounded in source posture:</p>
+<table><tbody>
+<tr><td>Context</td><td>Example copy</td><td>Source basis</td></tr>
+<tr><td>Product description</td><td>&quot;Chirality is a governed desktop harness for AI-assisted project work over local files.&quot;</td><td><code>docs/DIRECTIVE.md</code> Section 1</td></tr>
+<tr><td>Draft output notice</td><td>&quot;This output is draft assistance. An accountable human must review and accept it before reliance.&quot;</td><td><code>docs/DIRECTIVE.md</code> Section 3.1</td></tr>
+<tr><td>SDK disclosure</td><td>&quot;This runtime may use an SDK-backed engine behind Chirality-owned contracts and audit records.&quot;</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8 and 2.10</td></tr>
+<tr><td>Runtime event notice</td><td>&quot;Runtime events record what happened during the turn; they are not approval records.&quot;</td><td><code>docs/DIRECTIVE.md</code> Section 2.3</td></tr>
+<tr><td>Domain notice</td><td>&quot;Domain-engine results require human review and do not represent Chirality-owned solver truth or professional approval.&quot;</td><td><code>docs/CONTRACT.md</code> K-DOMAIN-4; <code>docs/PRD.md</code> FR-115</td></tr>
+<tr><td>Validator result notice</td><td>&quot;This validator result is check evidence, not external validation or professional approval.&quot;</td><td><code>docs/DIRECTIVE.md</code> Sections 2.4 and 3.2; <code>docs/CONTRACT.md</code> K-AUTH-1</td></tr>
+</tbody></table>
+<p>Avoid examples:</p>
+<table><tbody>
+<tr><td>Context</td><td>Avoid</td><td>Reason</td></tr>
+<tr><td>Product identity</td><td>&quot;Chirality is Claude Code for professional workflows.&quot;</td><td>Violates product identity boundary.</td></tr>
+<tr><td>Approval</td><td>&quot;The agent approved this deliverable.&quot;</td><td>Violates human-only approval boundary.</td></tr>
+<tr><td>Validation</td><td>&quot;Chirality certifies this result as code-compliant.&quot;</td><td>Violates professional-boundary and domain-truth boundaries.</td></tr>
+<tr><td>Reliance boundary</td><td>&quot;The prompt prevents unsafe writes.&quot;</td><td>Prompt text alone is not a sufficient safety boundary.</td></tr>
+</tbody></table>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CT-001</td><td>Dispatch path used <code>PKG-01_Governance_and_Product_Boundaries</code>, but the matching folder on disk is <code>PKG-01_Product_Governance_and_Reliance_Boundaries</code>.</td><td>User dispatch path</td><td><code>_CONTEXT.md</code> PackageName and actual folder path</td><td>Run record; final report</td><td>Treat actual matching DEL-01-03 folder as resolved scope; preserve stable PackageID/DeliverableID.</td><td><strong>RULED 2026-07-12 (D-APP-56 R4-P35): proposed authority ratified.</strong></td></tr>
+</tbody></table>
+<p>Closed historical conflict: <code>CT-002</code> is superseded by the current D-APP-38 corpus snapshot; current <code>_REFERENCES.md</code></p>
+<p>records REF-006 <code>docs/PRD.md</code> as <code>MATCH</code>.</p>
+<h3 id="clm-031-normalized-checklist-artifact">CLM-031 — Normalized Checklist Artifact</h3>
+<h5 id="normalized-checklist-artifact">Normalized Checklist Artifact</h5>
+<p>ADQ-03 materialized <code>docs/BOUNDARY_REVIEW_CHECKLISTS.md</code> as the shared professional-boundary and</p>
+<p>scope-boundary checklist package. For DEL-01-03, that file supplies the UI copy review checklist,</p>
+<p>release review evidence template, boundary notice examples, and finding template. It is CHECKING-stage</p>
+<p>review evidence only; it does not assign <code>ResponsibleParty</code>, satisfy dependencies, issue this</p>
+<p>deliverable, or approve release/professional reliance.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-071 SOW-074 OBJ-009 OBJ-010</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

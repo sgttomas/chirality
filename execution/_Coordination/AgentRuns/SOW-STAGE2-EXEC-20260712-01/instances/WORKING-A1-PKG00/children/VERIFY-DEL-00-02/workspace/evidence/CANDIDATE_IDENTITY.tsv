@@ -1,0 +1,4 @@
+binding	path	sha256	lines	byte_equal
+manager_accepted_candidate	candidates/W_A1/APP-PKG00/DEL-00-02/ScopeOfWork.md	acd4fc457339b6aa9c1d29c6b598f2dc0e7ba51bada2fb719fab0d297e466045	462	true
+verifier_workspace	workspace/ScopeOfWork.md	acd4fc457339b6aa9c1d29c6b598f2dc0e7ba51bada2fb719fab0d297e466045	462	true
+accepted_author_workspace	children/AUTHOR-DEL-00-02/workspace/ScopeOfWork.md	acd4fc457339b6aa9c1d29c6b598f2dc0e7ba51bada2fb719fab0d297e466045	462	true

@@ -1,0 +1,2 @@
+artifact	repair	occurrences	pre_bytes	pre_sha256	post_bytes	post_sha256	reverse_sha256	direct_binding
+children/AUTHOR-DEL-01-02/workspace/_run_records/TASK_RUN_2026-07-13_0657.md	CHECKOUT_ROOT_PREFIX -> ~/	3	4329	2a1ddb8f2125540a646ad3bacc66f82eeb321534ea1e38fc75edfb816ce808e9	4221	7f37750893fe84b6b0d423693a9232cd5446df63de9a250420cd9c8f047058f2	2a1ddb8f2125540a646ad3bacc66f82eeb321534ea1e38fc75edfb816ce808e9	NONE

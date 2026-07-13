@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 234,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3ae8810ad33dec6323804d5177344b0c5da05858ec776698b93a524ca0bf0f22"
+      },
+      "text": "The DEL-03-04 outputs preserve the public interrupt route and SSE compatibility, release active-turn state across terminal paths, persist Chirality-owned terminal outcomes for accepted turns, and redact secrets, as specified by the exact legacy source.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-04-VER-001",
+          "source_line": 383,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Verify using the legacy source-defined interrupt, cancel cleanup, terminal trigger matrix, event mapper, replay, redaction, and SSE compatibility checks."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-04",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "3ae8810ad33dec6323804d5177344b0c5da05858ec776698b93a524ca0bf0f22"
+  },
+  "tool_version": "1"
+}

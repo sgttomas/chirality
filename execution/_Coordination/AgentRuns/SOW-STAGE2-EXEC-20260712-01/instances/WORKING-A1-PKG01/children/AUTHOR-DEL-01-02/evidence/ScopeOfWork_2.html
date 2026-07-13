@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-01-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64</code>.</p>
+<h1 id="scope-of-work-del-01-02">Scope of Work — DEL-01-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-01-02</code> in service of project scope [SOW-037, SOW-045, SOW-054, SOW-057, SOW-074] and package objectives [OBJ-002, OBJ-005, OBJ-009].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — The source-grounded reliance-boundary register, enforcement matrix, and test index.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-01-02-reliance-boundary-register">CLM-001 — Datasheet: DEL-01-02 Reliance Boundary Register</h3>
+<h4 id="datasheet-del-01-02-reliance-boundary-register">Datasheet: DEL-01-02 Reliance Boundary Register</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-01-02</td></tr>
+<tr><td>DeliverableName</td><td>Reliance Boundary Register</td></tr>
+<tr><td>PackageID</td><td>PKG-01</td></tr>
+<tr><td>PackageName</td><td>Product Governance and Reliance Boundaries</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>REQ_SLICE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>Current lifecycle source</td><td><code>_STATUS.md</code></td></tr>
+<tr><td>Draft pass</td><td>P1/P2</td></tr>
+<tr><td>Primary artifact</td><td><code>docs/harness/reliance_boundary_register.md</code></td></tr>
+<tr><td>Supporting artifacts</td><td>enforcement matrix and test index embedded in <code>docs/harness/reliance_boundary_register.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<h3 id="clm-004-source-state">CLM-004 — Source State</h3>
+<h6 id="source-state">Source State</h6>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Status</td><td>Use in this datasheet</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>MATCH</td><td>Product intent, authority, reliance-boundary and professional-boundary rules</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>MATCH</td><td>Binding invariants and enforcement expectations</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>MATCH</td><td>Runtime structures, API/file contracts, hooks, settings, validation IDs</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>MATCH</td><td>Vocabulary and type targets</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>MATCH</td><td>Runtime roadmap and R0 reliance-boundary deliverable expectations</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>MATCH</td><td>Current product requirements and approved vNext scope under the current D-APP-38 corpus snapshot</td></tr>
+<tr><td>REF-007</td><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>MATCH</td><td>Decomposition discipline and no-invention constraints</td></tr>
+</tbody></table>
+<h3 id="clm-005-decomposition-traceability">CLM-005 — Decomposition Traceability</h3>
+<h6 id="decomposition-traceability">Decomposition Traceability</h6>
+<table><tbody>
+<tr><td>Trace item</td><td>Value</td></tr>
+<tr><td>Scope description</td><td>Map every P0 audit, permission, filesystem, lifecycle, transcript, settings, subagent, and human-gate boundary to a concrete enforcement surface.</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-037, SOW-045, SOW-054, SOW-057, SOW-074</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-002, OBJ-005, OBJ-009</td></tr>
+<tr><td>Directional objective context</td><td>ASSUMPTION: OBJ-002, OBJ-005, and OBJ-009 are relevant because the decomposition entry explicitly lists them for DEL-01-02.</td></tr>
+</tbody></table>
+<h3 id="clm-006-boundary-taxonomy">CLM-006 — Boundary Taxonomy</h3>
+<h6 id="boundary-taxonomy">Boundary Taxonomy</h6>
+<table><tbody>
+<tr><td>Boundary ID</td><td>Boundary</td><td>Product-critical semantic</td><td>Primary enforcement surface</td><td>Source support</td></tr>
+<tr><td>RB-ENGINE</td><td>Runtime engine contract</td><td>SDK APIs must not define public Chirality semantics.</td><td><code>AgentEnginePort</code> / <code>RuntimeEngineContract</code>; engine conformance tests; adapter boundary</td><td>REF-001 §2.8-2.10; REF-002 K-ENGINE-1/K-ENGINE-4; REF-006 FR-122/FR-123</td></tr>
+<tr><td>RB-AUDIT</td><td>Runtime audit mirror</td><td>Accepted turns and runtime outcomes must be recoverable in Chirality terms.</td><td><code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code>; <code>HarnessEvent</code> schema; replay tests</td><td>REF-001 §2.7-2.9; REF-002 K-EVENT-4; REF-003 §8.4/§19.3; REF-006 FR-072-FR-074/FR-121</td></tr>
+<tr><td>RB-PERMISSION</td><td>Permission decisions</td><td>Tool and runtime permissions are structured, persisted, and governed by capability-forward policy with explicit hard-deny precedence.</td><td><code>ChiralityPermissionOverlay</code>; <code>HarnessPermissionDecision</code>; <code>tool.permission</code> events</td><td>REF-002 K-PERM-1/K-PERM-3; REF-003 §15; REF-004 §8; REF-006 FR-087-FR-092</td></tr>
+<tr><td>RB-FILESYSTEM</td><td>Filesystem writes and roots</td><td>Writes must stay inside the active project root and must not mutate instruction-root assets.</td><td>Path containment helpers; <code>PreToolUse</code> hooks; MCP wrappers; symlink write rejection</td><td>REF-001 §2.7/§5; REF-002 K-ROOT-2/K-PATH-2/K-PATH-3; REF-003 §15.2; REF-006 FR-095/FR-097</td></tr>
+<tr><td>RB-LIFECYCLE</td><td>Deliverable lifecycle and gates</td><td><code>_STATUS.md</code> is canonical and human gates are non-delegable.</td><td>Status parser; status transition API/MCP; approval SHA checks for human-gate states</td><td>REF-002 K-STATUS-1/K-STATUS-2/K-GATE-1; REF-003 lifecycle sections; REF-001 §3</td></tr>
+<tr><td>RB-TRANSCRIPT</td><td>SDK transcript separation</td><td>SDK transcripts are secondary and must not displace the Chirality audit mirror.</td><td>SDK session linkage metadata; local <code>SessionStore</code>/<code>CLAUDE_CONFIG_DIR</code> where reliable; residual-risk register entry when default SDK paths remain</td><td>REF-001 §2.8-2.10; REF-002 K-SDK-3; REF-003 §8.4/§12.4; REF-006 FR-118/FR-121/KG-024</td></tr>
+<tr><td>RB-SETTINGS</td><td>SDK settings isolation</td><td>Shipped builds must not load ambient user/global or local Claude Code settings.</td><td><code>settingSources: []</code>; <code>SdkOptionsBuilder</code> tests; release verification</td><td>REF-001 §4.2/§5; REF-002 K-SDK-1; REF-003 §12.2; REF-006 FR-117/KG-022</td></tr>
+<tr><td>RB-SUBAGENT</td><td>Subagent delegation</td><td>Type 2 child runs cannot expand authority or inherit unsafe tool posture.</td><td><code>evaluateSubagentGovernance</code>; subagent hooks; restricted child tools/cwd; child run records</td><td>REF-002 K-SEAL-1/K-SUBAGENT-1/K-SUBAGENT-2; REF-003 §15.2; REF-004 subagent terms; REF-006 FR-101/FR-102/KG-027</td></tr>
+<tr><td>RB-HUMAN-GATE</td><td>Human authority</td><td>No agent, SDK, tool, runtime event, or validator can approve, certify, sign, seal, issue, or externally validate work for reliance.</td><td>Human approval workflow; status transition policy; UI/document copy; release checks</td><td>REF-001 §3; REF-002 K-AUTH-1/K-BIND-1/K-GATE-1/K-PROF-1; REF-006 KG-015</td></tr>
+<tr><td>RB-TOOL-SURFACE</td><td>Tool exposure</td><td>Tool availability must be deterministic and permission-filtered; <code>allowedTools</code> alone is not a restriction boundary.</td><td>Tool resolver; <code>disallowedTools</code>; mode policy; <code>canUseTool</code>; hooks; tests</td><td>REF-002 K-TOOL-1/K-TOOL-2/K-PERM-3; REF-003 §14.3; REF-006 FR-078-FR-083/KG-023</td></tr>
+<tr><td>RB-HOOKS</td><td>Hook lifecycle and fail-closed behavior</td><td>Hook failures block write, shell, domain, and subagent actions.</td><td>SDK hook callbacks mapped through Chirality hooks; hook events; failure triage</td><td>REF-002 K-HOOK-1; REF-003 §15.2; REF-004 §8.5; REF-006 FR-093-FR-095</td></tr>
+<tr><td>RB-REDACTION</td><td>Secrets and sensitive runtime records</td><td>API keys and secret variants must not be persisted in logs, events, SDK transcripts if avoidable, or tool artifacts.</td><td>SafeStorage/env precedence; redaction helper; run logger tests; event/log redaction</td><td>REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075</td></tr>
+<tr><td>RB-FALLBACK</td><td>SDK fallback</td><td>A governed fallback/custom-runtime path remains necessary if an SDK behavior cannot satisfy a critical boundary.</td><td>R0/R1 first-adapter probe; fallback criteria; conformance suite; reliance-boundary register residual-risk entries</td><td>REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030</td></tr>
+</tbody></table>
+<h3 id="clm-007-conditions">CLM-007 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td></tr>
+<tr><td>P0 boundary rule</td><td>P0 reliance boundaries cannot be prompt-only or opaque SDK-default-only.</td></tr>
+<tr><td>Register coverage rule</td><td>The register must identify ownership for product-critical semantics and record the enforcement surface type.</td></tr>
+<tr><td>Settings isolation condition</td><td>Shipped SDK options use <code>settingSources: []</code>; <code>user</code> and <code>local</code> setting sources are not used in shipped builds.</td></tr>
+<tr><td>Permission condition</td><td>Permission decisions are recorded as <code>allow</code>, <code>deny</code>, or application-level <code>ask</code>; deny rules override allow decisions.</td></tr>
+<tr><td>Transcript condition</td><td>SDK transcripts may support resume/debugging but <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> remains canonical unless imported into <code>HarnessEvent</code> form.</td></tr>
+<tr><td>Human-gate condition</td><td>Reliance-affecting approval remains human-only and evidence-bound.</td></tr>
+<tr><td>Authority-corpus condition</td><td>Authority-doc references, including REF-006 <code>docs/PRD.md</code>, are reconciled to the current D-APP-38 corpus snapshot at this source state.</td></tr>
+<tr><td>Source trace acceptance condition</td><td>Register rows that cite <code>docs/PRD.md</code> must cite REF-006 and should be rechecked if a later authority-corpus audit reports drift.</td></tr>
+<tr><td>Register artifact condition</td><td>ADQ-02 generated <code>docs/harness/reliance_boundary_register.md</code> as CHECKING-stage evidence, not issuance or dependency closure.</td></tr>
+<tr><td>Implementation-surface completion condition</td><td>Exact module paths, hook/check names, and validation file names remain <code>TBD</code> until downstream runtime and Section 9 deliverables produce inspectable artifacts.</td></tr>
+</tbody></table>
+<h3 id="clm-008-construction">CLM-008 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<h3 id="clm-009-minimum-register-fields">CLM-009 — Minimum Register Fields</h3>
+<h6 id="minimum-register-fields">Minimum Register Fields</h6>
+<table><tbody>
+<tr><td>Field</td><td>Purpose</td><td>Status</td></tr>
+<tr><td>BoundaryID</td><td>Stable identifier for each reliance boundary</td><td>Required</td></tr>
+<tr><td>BoundaryCategory</td><td>Audit, permission, filesystem, lifecycle, transcript, settings, subagent, human-gate, engine, tool-surface, hook, redaction, fallback</td><td>Required</td></tr>
+<tr><td>ProductSemantic</td><td>Chirality-owned behavior being protected</td><td>Required</td></tr>
+<tr><td>SourceRefs</td><td>Evidence locations from directive, contract, spec, PRD, types, plan, and decomposition</td><td>Required</td></tr>
+<tr><td>EnforcementOwner</td><td>Chirality code, SDK option, SDK hook/callback, MCP wrapper, human gate, release check, prompt support, or mixed</td><td>Required</td></tr>
+<tr><td>EnforcementSurface</td><td>Concrete module/API/file/test/check where enforcement is expected</td><td>Required; <code>TBD</code> until implemented</td></tr>
+<tr><td>PromptOnlyAllowed</td><td>Must be <code>NO</code> for P0 boundaries</td><td>Required</td></tr>
+<tr><td>SDKDefaultOnlyAllowed</td><td>Must be <code>NO</code> for P0 boundaries</td><td>Required</td></tr>
+<tr><td>ValidationID</td><td>Section 9 or other test/check ID</td><td>Required where available; otherwise <code>TBD</code></td></tr>
+<tr><td>ResidualRisk</td><td>Known unresolved risk or source-state warning</td><td>Required when applicable</td></tr>
+<tr><td>DecisionStatus</td><td><code>TBD</code>, <code>PROPOSED</code>, <code>ACCEPTED</code>, or <code>CONFLICT</code></td><td>Required</td></tr>
+</tbody></table>
+<h3 id="clm-010-deferred-completion-fields">CLM-010 — Deferred Completion Fields</h3>
+<h6 id="deferred-completion-fields">Deferred Completion Fields</h6>
+<table><tbody>
+<tr><td>Deferred field</td><td>Current handling</td><td>Closure evidence required</td></tr>
+<tr><td>ResponsibleParty</td><td><code>TBD</code> by scaffold policy until human assignment.</td><td>Human-maintained ownership update in deliverable status/context or accepted downstream ownership record.</td></tr>
+<tr><td>Exact enforcement file paths</td><td>ADQ-02 register rows name current inspectable runtime paths where present and preserve <code>TBD</code> where downstream modules do not yet exist.</td><td>Downstream implementation paths or register rows verified against produced modules and hooks.</td></tr>
+<tr><td>Exact validation file/test names</td><td>Current implemented Section 9 IDs are listed in the ADQ-02 register test index; future IDs remain <code>TBD</code> where not yet produced.</td><td>Section 9 validation additions or accepted test index entries.</td></tr>
+<tr><td>PRD-derived rows</td><td>May be drafted from REF-006 under the current D-APP-38 corpus snapshot with current <code>MATCH</code> status.</td><td>Re-run D-APP-38 reconciliation if an authority document changes before issue-readiness reliance.</td></tr>
+<tr><td>SDK transcript/storage decision</td><td>Residual risk until R0/R1 probe evidence is available.</td><td>Accepted first-adapter probe result naming transcript placement or mirroring policy.</td></tr>
+</tbody></table>
+<h3 id="clm-011-candidate-validation-index">CLM-011 — Candidate Validation Index</h3>
+<h6 id="candidate-validation-index">Candidate Validation Index</h6>
+<table><tbody>
+<tr><td>Validation ID</td><td>Boundary coverage</td></tr>
+<tr><td><code>section9.runtime_engine_contract</code></td><td>RB-ENGINE, RB-FALLBACK</td></tr>
+<tr><td><code>section9.adapter_turn_engine_event_log</code></td><td>RB-AUDIT, RB-TRANSCRIPT</td></tr>
+<tr><td><code>section9.adapter_message_mapper</code></td><td>RB-ENGINE, RB-AUDIT</td></tr>
+<tr><td><code>section9.session_event_replay</code></td><td>RB-AUDIT</td></tr>
+<tr><td><code>section9.reliance_boundary_register</code></td><td>Future/TBD validator ID; ADQ-02 generated the document artifact and cross-check table but did not add this ID to the current Section 9 script.</td></tr>
+<tr><td><code>section9.settingsources_isolation</code></td><td>RB-SETTINGS</td></tr>
+<tr><td><code>section9.sdk_session_link_resume</code></td><td>Future/TBD session-linkage validator ID; not implemented in the current Section 9 script.</td></tr>
+<tr><td><code>section9.permission_overlay_hard_deny_precedence</code></td><td>RB-PERMISSION, RB-TOOL-SURFACE</td></tr>
+<tr><td><code>section9.tool_runtime_read_file</code></td><td>RB-TOOL-SURFACE, RB-FILESYSTEM</td></tr>
+<tr><td><code>section9.chirality_mcp_status_dependencies</code></td><td>RB-LIFECYCLE, RB-TOOL-SURFACE</td></tr>
+<tr><td><code>section9.path_containment_hook</code></td><td>RB-FILESYSTEM, RB-HOOKS</td></tr>
+<tr><td><code>section9.instruction_root_protection_hook</code></td><td>RB-FILESYSTEM, RB-HOOKS</td></tr>
+<tr><td><code>section9.tool_result_budget</code></td><td>RB-AUDIT, RB-REDACTION</td></tr>
+<tr><td><code>section9.context_compaction_boundary</code></td><td>RB-AUDIT, RB-HOOKS</td></tr>
+<tr><td><code>section9.subagent_governance_hook</code></td><td>RB-SUBAGENT, RB-HOOKS</td></tr>
+</tbody></table>
+<h3 id="clm-012-references">CLM-012 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- REF-001: <code>docs/DIRECTIVE.md</code>, especially §§2.7-2.11, §3, §4.2, and §5.</li>
+<li>- REF-002: <code>docs/CONTRACT.md</code>, especially K-AUTH, K-BIND, K-GATE, K-PROF, K-ENGINE, K-RELIANCE, K-SDK, K-EVENT, K-PERM, K-HOOK, K-STATUS, K-WRITE, K-SEAL, K-SUBAGENT, K-KEY.</li>
+<li>- REF-003: <code>docs/SPEC.md</code>, especially §§8.4, 9, 10, 12, 14, 15, and 19.3.</li>
+<li>- REF-004: <code>docs/TYPES.md</code>, especially runtime, permission, hook, SDK, subagent, and validation terms.</li>
+<li>- REF-005: <code>docs/PLAN.md</code>, especially R0/R1 reliance-boundary deliverables and acceptance.</li>
+<li>- REF-006: <code>docs/PRD.md</code>, especially §§8.12-8.16 and §15, under the current D-APP-38 corpus snapshot MATCH status.</li>
+<li>- REF-007: <code>AGENT_SOFTWARE_DECOMP.md</code>, especially no-invention and scope-boundary protocol.</li>
+</ul>
+<h3 id="clm-013-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-013 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-100/101/102 supersede the earlier future/TBD cells: <code>section9.sdk_session_link_resume</code> and <code>section9.domain_profile_validation</code> are implemented and registered under their ruled scopes; Bash is mode-gated with live default <code>ask</code> and workspace-write auto-allow only after hooks, not flatly denied by default.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-014-specification-del-01-02-reliance-boundary-register">CLM-014 — Specification: DEL-01-02 Reliance Boundary Register</h3>
+<h4 id="specification-del-01-02-reliance-boundary-register">Specification: DEL-01-02 Reliance Boundary Register</h4>
+<h3 id="clm-015-scope">CLM-015 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-01-02 defines the requirements for a Reliance Boundary Register that maps product-critical Chirality semantics to concrete enforcement surfaces. The register covers P0 audit, permission, filesystem, lifecycle, transcript, settings, subagent, human-gate, runtime-engine, tool-surface, hook, redaction, and fallback boundaries.</p>
+<p>This specification covers the content and verification expectations for <code>docs/harness/reliance_boundary_register.md</code>, the enforcement matrix, and the test index. It does not implement the runtime modules themselves except to name the expected enforcement surfaces and validation hooks those modules must satisfy.</p>
+<h3 id="clm-016-in-scope">CLM-016 — In Scope</h3>
+<h6 id="in-scope">In Scope</h6>
+<ul>
+<li>- Boundary taxonomy and stable boundary identifiers.</li>
+<li>- Mapping from governance/source requirements to enforcement owner and enforcement surface.</li>
+<li>- Explicit identification of product-owned versus SDK-provided behavior.</li>
+<li>- P0 checks that prevent prompt-only or opaque SDK-default-only enforcement.</li>
+<li>- Residual-risk entries where SDK behavior, transcript placement, or source-state evidence is not yet verified.</li>
+<li>- Validation index entries for Section 9 runtime validation IDs where available.</li>
+</ul>
+<h3 id="clm-017-out-of-scope">CLM-017 — Out of Scope</h3>
+<h6 id="out-of-scope">Out of Scope</h6>
+<ul>
+<li>- Implementing <code>AgentEnginePort</code>, <code>TurnEngine</code>, <code>SdkOptionsBuilder</code>, permission overlay, MCP tools, hooks, event store, or subagent bridge.</li>
+<li>- Claiming acceptance of unresolved first-adapter probe items.</li>
+<li>- Treating authority-doc references as current after a future authority-doc edit without rerunning the D-APP-38 reconciliation flow.</li>
+<li>- Issuing professional approval or external validation.</li>
+</ul>
+<h3 id="clm-018-requirements">CLM-018 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>RBR-001</td><td>The register shall identify each P0 reliance boundary with a stable <code>BoundaryID</code>, category, product semantic, source references, enforcement owner, enforcement surface, validation ID, residual risk, and decision status.</td><td>REF-002 K-RELIANCE-1; REF-006 FR-124</td><td>Review generated register schema and row completeness.</td></tr>
+<tr><td>RBR-002</td><td>No P0 boundary shall be marked enforceable by prompt text alone.</td><td>REF-001 §2.9; REF-002 K-RELIANCE-2/K-PERM-2; REF-006 FR-124</td><td>Check <code>PromptOnlyAllowed=NO</code> for every P0 row; flag exceptions as <code>CONFLICT</code>.</td></tr>
+<tr><td>RBR-003</td><td>No P0 boundary shall rely on opaque SDK defaults alone.</td><td>REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-125</td><td>Check enforcement owner/surface for Chirality code, verified SDK callback/hook, MCP wrapper, release check, or human gate.</td></tr>
+<tr><td>RBR-004</td><td>Runtime engine boundaries shall preserve <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> as product-owned and provider-neutral.</td><td>REF-001 §2.8-2.10; REF-002 K-ENGINE-1/K-ENGINE-4; REF-006 FR-122/FR-123</td><td><code>section9.runtime_engine_contract</code>; engine conformance suite review.</td></tr>
+<tr><td>RBR-005</td><td>Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s shall remain separate contracts and shall not become SDK-shaped except as adapter metadata.</td><td>REF-002 K-ENGINE-4; REF-003 §10.3; REF-006 FR-074/FR-116/FR-122</td><td>Mapper tests; event-schema review; <code>section9.adapter_message_mapper</code>.</td></tr>
+<tr><td>RBR-006</td><td>Accepted turns and terminal outcomes shall be persisted in an append-only Chirality audit mirror.</td><td>REF-001 §2.7-2.9; REF-002 K-EVENT-3/K-EVENT-4; REF-006 FR-072/FR-073</td><td><code>section9.adapter_turn_engine_event_log</code>; replay validation.</td></tr>
+<tr><td>RBR-007</td><td>SDK transcripts shall be treated as secondary resume/debug artifacts unless explicitly imported into <code>HarnessEvent</code> form.</td><td>REF-001 §2.7-2.10; REF-002 K-SDK-3; REF-003 §8.4; REF-006 FR-121/KG-024</td><td>Transcript-linkage tests remain <code>TBD</code>; register residual risk where default SDK paths remain.</td></tr>
+<tr><td>RBR-008</td><td>Shipped SDK options shall use <code>settingSources: []</code>; <code>user</code> and <code>local</code> setting sources shall not be used in shipped builds.</td><td>REF-001 §4.2/§5; REF-002 K-SDK-1; REF-003 §12.2; REF-006 FR-117/KG-022</td><td><code>section9.settingsources_isolation</code>; release verification.</td></tr>
+<tr><td>RBR-009</td><td>Permission decisions shall be structured, persisted, and recorded as <code>allow</code>, <code>deny</code>, or application-level <code>ask</code>.</td><td>REF-004 §8.2; REF-006 FR-087/FR-092; SOW-054</td><td><code>tool.permission</code> event tests; permission decision schema tests.</td></tr>
+<tr><td>RBR-010</td><td>Deny rules shall override all allow decisions, including persona/session/operator allows and developer-local bypass.</td><td>REF-002 K-PERM-1; REF-006 FR-089</td><td><code>section9.permission_overlay_hard_deny_precedence</code>; targeted deny precedence tests.</td></tr>
+<tr><td>RBR-011</td><td><code>allowedTools</code> alone shall not be treated as a restriction boundary.</td><td>REF-002 K-PERM-3; REF-003 §14.3; REF-006 FR-081/KG-023</td><td>SDK options builder tests showing restriction requires deny/mode/hook/callback policy.</td></tr>
+<tr><td>RBR-012</td><td>Filesystem write/edit behavior shall enforce active project-root containment, instruction-root protection, and initial symlink write rejection.</td><td>REF-002 K-ROOT-2/K-PATH-2/K-PATH-3; REF-003 §15.2; REF-006 FR-095/FR-097</td><td><code>section9.path_containment_hook</code>; <code>section9.instruction_root_protection_hook</code>; write/edit tests.</td></tr>
+<tr><td>RBR-013</td><td>Hook denials and hook failures shall fail closed for write, shell, domain, and subagent actions.</td><td>REF-002 K-HOOK-1; REF-003 §15.2; REF-006 FR-093-FR-095</td><td>Hook lifecycle tests; denied action must not execute.</td></tr>
+<tr><td>RBR-014</td><td>Bash shall remain denied by default until timeout, capture, storage, interrupt, and audit behavior are implemented and validated.</td><td>REF-002 K-BASH-1; REF-006 FR-100</td><td>Bash deny/default tests; result-budget tests before enablement.</td></tr>
+<tr><td>RBR-015</td><td>In-process Chirality MCP tools shall pass through the same permission, hook, redaction, and event logging policy as SDK built-ins.</td><td>REF-002 K-MCP-1; REF-003 §14.2; REF-006 FR-104/FR-119</td><td>MCP wrapper tests; event and hook evidence.</td></tr>
+<tr><td>RBR-016</td><td>Subagent execution shall fail closed unless governance, context sealing, approval reference, child tool restriction, and child cwd restriction pass.</td><td>REF-002 K-SEAL-1/K-SUBAGENT-1/K-SUBAGENT-2; REF-006 FR-101/FR-102/KG-027</td><td><code>section9.subagent_governance_hook</code>; child run record tests.</td></tr>
+<tr><td>RBR-017</td><td><code>_STATUS.md</code> shall remain the canonical lifecycle state file and human-gate transitions shall require human evidence.</td><td>REF-002 K-STATUS-1/K-STATUS-2/K-GATE-1; REF-001 §3</td><td>Status transition API/MCP tests; approval SHA checks.</td></tr>
+<tr><td>RBR-018</td><td>No agent, SDK, tool, runtime event, validator, or domain adapter shall claim to approve, certify, sign, seal, issue, transmit, or externally validate professional work.</td><td>REF-001 §3; REF-002 K-AUTH-1/K-PROF-1</td><td>UI/docs copy review; human-gate checklist.</td></tr>
+<tr><td>RBR-019</td><td>Runtime events, logs, tool artifacts, provider errors, and SDK interaction metadata shall redact API keys and configured secret variants.</td><td>REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075</td><td>Redaction tests; run logger tests; artifact inspection.</td></tr>
+<tr><td>RBR-020</td><td>The register shall preserve fallback criteria for SDK replacement if a product-critical boundary cannot be governed or verified.</td><td>REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030</td><td>R0/R1 first-adapter probe review; fallback criteria row in register.</td></tr>
+<tr><td>RBR-021</td><td>The register shall record the current D-APP-38 corpus version for authority-doc references, including REF-006 <code>docs/PRD.md</code>.</td><td><code>_REFERENCES.md</code>; D-APP-38</td><td>Register metadata cites the current corpus snapshot and <code>MATCH</code> status.</td></tr>
+<tr><td>RBR-022</td><td>The register shall distinguish current corpus-matched source support from any future drift or warning-limited source support in row-level traces where PRD content affects acceptance.</td><td>REF-001 §2.1/§2.7; REF-002 K-REF-1/K-INVENT-1; <code>_REFERENCES.md</code> REF-006</td><td>Source trace review confirms PRD-cited rows cite REF-006 and the current corpus version, or preserve a drift warning if reconciliation later reports one.</td></tr>
+<tr><td>RBR-023</td><td>Final acceptance shall include evidence that no P0 boundary is enforced only by prompt text or by opaque SDK defaults.</td><td>REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-124/FR-125</td><td>Generated register review includes explicit <code>PromptOnlyAllowed=NO</code>, <code>SDKDefaultOnlyAllowed=NO</code>, and non-empty enforcement-surface evidence for every P0 row.</td></tr>
+<tr><td>RBR-024</td><td>Inspectable implementation file paths, hook names, check names, and validation files shall be recorded and kept current; only genuinely absent or unassigned surfaces may remain <code>TBD</code>, with a downstream closure path or accepted conflict entry.</td><td>REF-002 K-INVENT-1; REF-003 §19.3; decomposition DEL-03/DEL-04/DEL-06/DEL-09 rows</td><td>Register maintenance verifies each concrete path exists and each remaining <code>TBD</code> has a downstream closure path or accepted conflict entry.</td></tr>
+<tr><td>RBR-025</td><td>After <code>docs/harness/reliance_boundary_register.md</code> is generated, each register row shall be cross-checked against this specification, the datasheet field schema, and the test index.</td><td>REF-003 §19.3; REF-005 R0/R1 acceptance notes</td><td>Review record shows all rows map to requirements, source references, validation IDs or <code>TBD</code>, and residual risks.</td></tr>
+</tbody></table>
+<h3 id="clm-019-standards">CLM-019 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / authority</td><td>Applicability</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Product intent, reliance-boundary principles, human authority, provider-neutral core.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariant catalog; primary normative requirements for this specification.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Runtime structures, settings, hooks, MCP, validation IDs, and API/file contracts.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Terms and target type names used in the register.</td></tr>
+<tr><td><code>docs/PLAN.md</code></td><td>Runtime roadmap and R0/R1 reliance-boundary acceptance expectations.</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Product requirements and risk register, reconciled as REF-006 under the current D-APP-38 corpus snapshot.</td></tr>
+<tr><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition discipline; no-invention and scope-boundary rules.</td></tr>
+</tbody></table>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected evidence</td></tr>
+<tr><td>Schema completeness</td><td>Every register row includes the fields listed in <code>Datasheet.md</code> &quot;Minimum Register Fields.&quot;</td></tr>
+<tr><td>Coverage completeness</td><td>Rows exist for audit, permission, filesystem, lifecycle, transcript, settings, subagent, human-gate, runtime-engine, tool-surface, hooks, redaction, and fallback boundaries.</td></tr>
+<tr><td>Source traceability</td><td>Each row cites at least one governance/source reference and uses <code>location TBD</code> where exact implementation files are unavailable.</td></tr>
+<tr><td>P0 enforcement posture</td><td>P0 rows have <code>PromptOnlyAllowed=NO</code> and <code>SDKDefaultOnlyAllowed=NO</code>.</td></tr>
+<tr><td>Prompt/SDK-default exclusion evidence</td><td>Acceptance evidence proves the row has a Chirality-owned, verified SDK callback/hook, MCP wrapper, release check, or human gate beyond prompt-only or opaque SDK-default behavior.</td></tr>
+<tr><td>PRD source-state trace</td><td>Rows using REF-006 cite the current corpus-matched source state or explicitly preserve any future drift warning.</td></tr>
+<tr><td>Validation mapping</td><td>Rows map to implemented Section 9 validation IDs where available; SPEC/PRD-listed future IDs remain <code>TBD</code> until the Section 9 script implements them.</td></tr>
+<tr><td>Residual-risk surfacing</td><td>Authority-corpus drift, SDK transcript placement, SDK API drift, and inherited subagent permission risks are recorded instead of silently resolved.</td></tr>
+<tr><td>Cross-document consistency</td><td>Datasheet boundary IDs, Specification requirement IDs, Guidance principles, and Procedure verification steps use the same terminology.</td></tr>
+</tbody></table>
+<h3 id="clm-021-documentation">CLM-021 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>The ADQ-02 work package includes:</p>
+<ul>
+<li>- <code>docs/harness/reliance_boundary_register.md</code></li>
+<li>- embedded enforcement matrix</li>
+<li>- test index keyed to current Section 9 validation IDs and future/TBD IDs</li>
+<li>- residual-risk notes for unresolved first-adapter probe findings</li>
+<li>- authority-corpus version note for <code>docs/PRD.md</code> and any future drift warning</li>
+</ul>
+<h3 id="clm-022-open-items">CLM-022 — Open Items</h3>
+<h5 id="open-items">Open Items</h5>
+<table><tbody>
+<tr><td>ID</td><td>Item</td><td>Status</td></tr>
+<tr><td>OI-RBR-001</td><td>Closed by the current D-APP-38 corpus snapshot; REF-006 currently matches. Reopen only if a future corpus audit reports drift.</td><td>CLOSED</td></tr>
+<tr><td>OI-RBR-002</td><td>Fill exact implementation file paths for enforcement surfaces after the relevant runtime modules exist.</td><td>TBD</td></tr>
+<tr><td>OI-RBR-003</td><td>Confirm SDK transcript placement decision after R1 probe.</td><td>TBD</td></tr>
+<tr><td>OI-RBR-004</td><td>Current implemented Section 9 validation IDs are indexed in <code>docs/harness/reliance_boundary_register.md</code>; future <code>section9.reliance_boundary_register</code> and <code>section9.sdk_session_link_resume</code> remain TBD until validator/session-linkage work lands.</td><td>PARTIAL</td></tr>
+<tr><td>OI-RBR-005</td><td>Generated register rows cite the current D-APP-38 corpus snapshot and distinguish current corpus-matched evidence from future drift warnings.</td><td>CLOSED</td></tr>
+</tbody></table>
+<h3 id="clm-023-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-023 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-100/101/102 supersede the earlier future/TBD cells: <code>section9.sdk_session_link_resume</code> and <code>section9.domain_profile_validation</code> are implemented and registered under their ruled scopes; Bash is mode-gated with live default <code>ask</code> and workspace-write auto-allow only after hooks, not flatly denied by default.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The conversion preserves and traces the legacy source content to the frozen project scope references [SOW-037, SOW-045, SOW-054, SOW-057, SOW-074] and package objective references [OBJ-002, OBJ-005, OBJ-009].</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-024-procedure-del-01-02-reliance-boundary-register">CLM-024 — Procedure: DEL-01-02 Reliance Boundary Register</h3>
+<h4 id="procedure-del-01-02-reliance-boundary-register">Procedure: DEL-01-02 Reliance Boundary Register</h4>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce, review, and maintain the Reliance Boundary Register for DEL-01-02. It is a production workflow for the register artifact, enforcement matrix, and test index, not a runtime implementation procedure.</p>
+<h3 id="clm-026-prerequisites">CLM-026 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / source</td></tr>
+<tr><td>Deliverable-local context</td><td><code>_CONTEXT.md</code> read for identity, scope, anticipated artifacts, and traceability.</td></tr>
+<tr><td>Lifecycle state</td><td>Read from <code>_STATUS.md</code> (currently <code>IN_PROGRESS</code>); this procedure performs no transition.</td></tr>
+<tr><td>References</td><td><code>_REFERENCES.md</code> read; REF-001 through REF-007 available.</td></tr>
+<tr><td>Dependency declarations</td><td><code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code> read; extracted rows remain active/TBD dependency evidence.</td></tr>
+<tr><td>Decomposition entry</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-01-02 row read.</td></tr>
+<tr><td>Reference integrity</td><td>the current D-APP-38 corpus snapshot records REF-006 <code>docs/PRD.md</code> as <code>MATCH</code>.</td></tr>
+<tr><td>Required source review</td><td>Directive, Contract, Spec, Types, Plan, PRD, and Software Decomp source slices reviewed.</td></tr>
+</tbody></table>
+<h3 id="clm-027-steps">CLM-027 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<h3 id="clm-028-1-confirm-scope-and-status">CLM-028 — 1. Confirm Scope and Status</h3>
+<h6 id="1-confirm-scope-and-status">1. Confirm Scope and Status</h6>
+<p>1. Read <code>_CONTEXT.md</code> and confirm:</p>
+<ul>
+<li>- <code>DeliverableID = DEL-01-02</code></li>
+<li>- <code>DeliverableName = Reliance Boundary Register</code></li>
+<li>- <code>Type = REQ_SLICE</code></li>
+<li>- anticipated artifact includes <code>docs/harness/reliance_boundary_register.md</code></li>
+</ul>
+<p>2. Read <code>_STATUS.md</code>.</p>
+<p>3. Proceed only if the current state permits drafting under the authorized overwrite set.</p>
+<p>4. If current state is beyond the authorized set, stop and surface <code>SKIPPED_PROTECT_HUMAN_WORK</code>.</p>
+<h3 id="clm-029-2-load-authoritative-source-slices">CLM-029 — 2. Load Authoritative Source Slices</h3>
+<h6 id="2-load-authoritative-source-slices">2. Load Authoritative Source Slices</h6>
+<p>1. Read <code>_REFERENCES.md</code>.</p>
+<p>2. Verify each listed source path is locally accessible.</p>
+<p>3. Record hash status for every reference.</p>
+<p>4. Confirm REF-006 <code>docs/PRD.md</code> matches the current D-APP-38 authority corpus.</p>
+<p>5. Read source slices for:</p>
+<ul>
+<li>- reliance-boundary definition and provider-neutral runtime ownership;</li>
+<li>- invariant catalog entries for engine, audit, permission, settings, hooks, lifecycle, filesystem, subagent, human gates, redaction, fallback;</li>
+<li>- runtime event, SDK option, hook, MCP, and validation requirements;</li>
+<li>- decomposition SOW/OBJ/DEL traceability.</li>
+</ul>
+<h3 id="clm-030-3-build-boundary-inventory">CLM-030 — 3. Build Boundary Inventory</h3>
+<h6 id="3-build-boundary-inventory">3. Build Boundary Inventory</h6>
+<p>1. Create candidate rows for at least:</p>
+<ul>
+<li>- runtime engine contract;</li>
+<li>- runtime audit mirror;</li>
+<li>- structured permission decisions;</li>
+<li>- filesystem containment and instruction-root protection;</li>
+<li>- lifecycle status and human gates;</li>
+<li>- SDK transcript separation;</li>
+<li>- SDK settings isolation;</li>
+<li>- subagent governance;</li>
+<li>- deterministic tool surface and MCP wrappers;</li>
+<li>- hook lifecycle and fail-closed behavior;</li>
+<li>- secret redaction and key handling;</li>
+<li>- SDK fallback criteria.</li>
+</ul>
+<p>2. Assign stable <code>BoundaryID</code> values.</p>
+<p>3. For each row, define the protected Chirality product semantic in Chirality terms.</p>
+<p>4. Cite source references.</p>
+<p>5. Mark exact implementation file paths as <code>TBD</code> where downstream deliverables have not produced them yet.</p>
+<h3 id="clm-031-4-assign-enforcement-surfaces">CLM-031 — 4. Assign Enforcement Surfaces</h3>
+<h6 id="4-assign-enforcement-surfaces">4. Assign Enforcement Surfaces</h6>
+<p>For each boundary row:</p>
+<p>1. Identify the enforcement owner:</p>
+<ul>
+<li>- Chirality code;</li>
+<li>- SDK option;</li>
+<li>- SDK hook/callback;</li>
+<li>- MCP wrapper;</li>
+<li>- human gate;</li>
+<li>- release check;</li>
+<li>- prompt support;</li>
+<li>- mixed.</li>
+</ul>
+<p>2. Identify the concrete enforcement surface.</p>
+<p>3. If the only surface is prompt support, mark the row incomplete for P0.</p>
+<p>4. If the only surface is opaque SDK default behavior, mark the row incomplete for P0.</p>
+<p>5. Add residual-risk notes where SDK behavior is not yet empirically verified.</p>
+<h3 id="clm-032-5-attach-validation-evidence">CLM-032 — 5. Attach Validation Evidence</h3>
+<h6 id="5-attach-validation-evidence">5. Attach Validation Evidence</h6>
+<p>1. Map rows to existing Section 9 validation IDs where available:</p>
+<ul>
+<li>- <code>section9.runtime_engine_contract</code></li>
+<li>- <code>section9.adapter_turn_engine_event_log</code></li>
+<li>- <code>section9.adapter_message_mapper</code></li>
+<li>- <code>section9.session_event_replay</code></li>
+<li>- <code>section9.settingsources_isolation</code></li>
+<li>- <code>section9.permission_overlay_hard_deny_precedence</code></li>
+<li>- <code>section9.tool_runtime_read_file</code></li>
+<li>- <code>section9.chirality_mcp_status_dependencies</code></li>
+<li>- <code>section9.path_containment_hook</code></li>
+<li>- <code>section9.instruction_root_protection_hook</code></li>
+<li>- <code>section9.tool_result_budget</code></li>
+<li>- <code>section9.context_compaction_boundary</code></li>
+<li>- <code>section9.subagent_governance_hook</code></li>
+</ul>
+<p>2. Record SPEC/PRD-listed future validation IDs as <code>TBD</code> unless the current Section 9 script implements them:</p>
+<ul>
+<li>- <code>section9.reliance_boundary_register</code></li>
+<li>- <code>section9.sdk_session_link_resume</code></li>
+</ul>
+<p>3. Use <code>TBD</code> for validation IDs not yet implemented or not yet named.</p>
+<p>4. Add test index rows that connect each validation ID to one or more boundary IDs.</p>
+<h3 id="clm-033-6-cross-check-against-specification">CLM-033 — 6. Cross-Check Against Specification</h3>
+<h6 id="6-cross-check-against-specification">6. Cross-Check Against Specification</h6>
+<p>1. Verify every Datasheet boundary ID has a corresponding Specification requirement or verification entry.</p>
+<p>2. Verify every Specification requirement is reflected in either the boundary matrix, test index, residual-risk notes, or open items.</p>
+<p>3. Verify Guidance principles do not overstate accepted implementation state.</p>
+<p>4. Verify no source-warning item has been silently converted into accepted truth.</p>
+<p>5. Verify all unsupported details remain <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, or conflict entries.</p>
+<p>6. Verify PRD-cited rows cite REF-006 and the current D-APP-38 corpus version, or explicitly preserve any future drift warning.</p>
+<p>7. Verify no candidate Section 9 validation label is represented as an implemented test until the downstream validation deliverable supplies the file or test name.</p>
+<h3 id="clm-034-7-produce-artifacts">CLM-034 — 7. Produce Artifacts</h3>
+<h6 id="7-produce-artifacts">7. Produce Artifacts</h6>
+<p>1. Draft or update <code>docs/harness/reliance_boundary_register.md</code> from the schema and requirements in the four-document kit.</p>
+<p>2. Create an enforcement matrix view suitable for implementation review.</p>
+<p>3. Create a test index keyed by validation ID and boundary ID.</p>
+<p>4. Carry forward:</p>
+<ul>
+<li>- D-APP-38 corpus version and any authority-corpus drift warning;</li>
+<li>- SDK transcript placement residual risk;</li>
+<li>- SDK API drift residual risk;</li>
+<li>- subagent inherited-permission residual risk;</li>
+<li>- implementation-surface <code>TBD</code>s.</li>
+</ul>
+<p>5. Record row-level completion criteria for any downstream <code>TBD</code>, including the expected source of closure evidence.</p>
+<h3 id="clm-035-8-review-and-close">CLM-035 — 8. Review and Close</h3>
+<h6 id="8-review-and-close">8. Review and Close</h6>
+<p>1. Run a consistency review across register rows, enforcement matrix, and test index.</p>
+<p>2. Confirm there are no P0 rows with prompt-only or SDK-default-only enforcement.</p>
+<p>3. Confirm human-gate and professional-boundary rows do not imply automated approval.</p>
+<p>4. Confirm REF-006 is current under the current D-APP-38 corpus snapshot, or preserve any future drift warning.</p>
+<p>5. Confirm the generated register, enforcement matrix, and test index can be traced back to the datasheet fields and specification requirements.</p>
+<p>6. Move the deliverable to the next lifecycle state only through the authorized status workflow.</p>
+<h3 id="clm-036-verification">CLM-036 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Pass condition</td></tr>
+<tr><td>Scope confirmation</td><td>DEL-01-02 identity and scope match <code>_CONTEXT.md</code> and decomposition row.</td></tr>
+<tr><td>Source access</td><td>All listed sources are accessible, with REF-006 corpus status recorded.</td></tr>
+<tr><td>Boundary coverage</td><td>All required boundary categories have rows.</td></tr>
+<tr><td>Enforcement mapping</td><td>Each P0 row names a non-prompt-only and non-opaque-SDK-default enforcement surface.</td></tr>
+<tr><td>Validation mapping</td><td>Each row has a validation ID or <code>TBD</code> with residual-risk explanation.</td></tr>
+<tr><td>Human authority</td><td>No row states or implies automated professional approval, certification, issuance, or external validation.</td></tr>
+<tr><td>Cross-document consistency</td><td>Datasheet, Specification, Guidance, and Procedure use the same boundary IDs and terms.</td></tr>
+<tr><td>Source-state handling</td><td>REF-006 PRD usage cites D-APP-38 corpus status; future drift is warning-limited until reconciled.</td></tr>
+<tr><td>Generated-register closure</td><td>Downstream register rows are cross-checked against requirements, field schema, and test index before final acceptance.</td></tr>
+</tbody></table>
+<h3 id="clm-037-records">CLM-037 — Records</h3>
+<h5 id="records">Records</h5>
+<table><tbody>
+<tr><td>Record</td><td>Purpose</td></tr>
+<tr><td><code>Datasheet.md</code></td><td>Boundary taxonomy, source state, minimum fields, candidate validation index.</td></tr>
+<tr><td><code>Specification.md</code></td><td>Normative requirements and verification expectations.</td></tr>
+<tr><td><code>Guidance.md</code></td><td>Drafting principles, trade-offs, examples, conflict/source-warning table.</td></tr>
+<tr><td><code>Procedure.md</code></td><td>Workflow for producing and maintaining the register.</td></tr>
+<tr><td><code>docs/harness/reliance_boundary_register.md</code></td><td>ADQ-02 generated register artifact with embedded enforcement matrix and test index.</td></tr>
+<tr><td>Enforcement matrix</td><td>Reviewable mapping of boundaries to owners/surfaces.</td></tr>
+<tr><td>Test index</td><td>Validation ID to boundary coverage map.</td></tr>
+<tr><td>TASK run records</td><td>Evidence of bounded drafting and source-state history.</td></tr>
+</tbody></table>
+<h3 id="clm-038-remaining-blockers">CLM-038 — Remaining Blockers</h3>
+<h5 id="remaining-blockers">Remaining Blockers</h5>
+<table><tbody>
+<tr><td>ID</td><td>Blocker</td><td>Required action</td></tr>
+<tr><td>BLK-RBR-001</td><td>REF-006 source-state</td><td>Closed by the current D-APP-38 corpus snapshot; reopen only if future authority-corpus status reports drift.</td></tr>
+<tr><td>BLK-RBR-002</td><td>Exact implementation surfaces not yet complete</td><td>Downstream runtime implementation deliverables must fill file paths and tests.</td></tr>
+<tr><td>BLK-RBR-003</td><td>SDK transcript and settings behavior require empirical probe</td><td>R0/R1 first-adapter probe and validation must confirm behavior before final acceptance.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Deterministic validation, claim mapping, parity reporting, review-checklist derivation, and HTML-render checks, followed by human review.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-039-guidance-del-01-02-reliance-boundary-register">CLM-039 — Guidance: DEL-01-02 Reliance Boundary Register</h3>
+<h4 id="guidance-del-01-02-reliance-boundary-register">Guidance: DEL-01-02 Reliance Boundary Register</h4>
+<h3 id="clm-040-purpose">CLM-040 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>The Reliance Boundary Register exists to prevent product-critical Chirality semantics from drifting into prompt-only instruction, opaque SDK defaults, transient runtime state, or undocumented human assumptions. It should make the enforcement ownership of each boundary inspectable before implementation choices harden.</p>
+<p>The register is especially important because Chirality intentionally privileges the Claude Agent SDK as a runtime substrate while keeping product semantics, auditability, permission decisions, working-root policy, lifecycle rules, subagent governance, and professional-boundary language under Chirality ownership.</p>
+<h3 id="clm-041-principles">CLM-041 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<h3 id="clm-042-1-register-product-semantics-not-vendor-mechanics">CLM-042 — 1. Register Product Semantics, Not Vendor Mechanics</h3>
+<h6 id="1-register-product-semantics-not-vendor-mechanics">1. Register Product Semantics, Not Vendor Mechanics</h6>
+<p>Use Chirality terms for public behavior and canonical records. SDK tool names, message names, session IDs, transcript paths, hook names, and permission modes may appear as adapter metadata, but they should not become the register&#x27;s primary semantics.</p>
+<h3 id="clm-043-2-p0-boundaries-need-enforceable-surfaces">CLM-043 — 2. P0 Boundaries Need Enforceable Surfaces</h3>
+<h6 id="2-p0-boundaries-need-enforceable-surfaces">2. P0 Boundaries Need Enforceable Surfaces</h6>
+<p>For P0 audit, permission, filesystem, lifecycle, transcript, settings, subagent, and human-gate boundaries, prompt text can support user understanding but cannot be the enforcement surface. Each P0 row should name a concrete code path, hook, option, MCP wrapper, validation check, release check, or human gate.</p>
+<h3 id="clm-044-3-deny-first-means-deny-overrides-all-allows">CLM-044 — 3. Deny-First Means Deny Overrides All Allows</h3>
+<h6 id="3-deny-first-means-deny-overrides-all-allows">3. Deny-First Means Deny Overrides All Allows</h6>
+<p>The register should treat deny rules as the controlling policy for dangerous actions. A row that relies only on <code>allowedTools</code>, default SDK behavior, or persona instruction should be marked incomplete until paired with mode policy, <code>disallowedTools</code>, <code>canUseTool</code>, hooks, path checks, or equivalent Chirality-owned enforcement.</p>
+<h3 id="clm-045-4-canonical-audit-is-chirality-owned">CLM-045 — 4. Canonical Audit Is Chirality-Owned</h3>
+<h6 id="4-canonical-audit-is-chirality-owned">4. Canonical Audit Is Chirality-Owned</h6>
+<p>SDK transcripts can help with resume/debugging, but the canonical runtime audit mirror is the Chirality event log unless SDK content is imported into <code>HarnessEvent</code> form. The register should call out transcript placement and mirror reliability as residual risk until empirically proven.</p>
+<h3 id="clm-046-5-human-authority-is-not-runtime-automatable">CLM-046 — 5. Human Authority Is Not Runtime Automatable</h3>
+<h6 id="5-human-authority-is-not-runtime-automatable">5. Human Authority Is Not Runtime Automatable</h6>
+<p>No runtime event, validation pass, agent output, or SDK callback can approve, sign, seal, issue, certify, transmit, or externally validate professional work. Human-gate rows should focus on preserving evidence-bound review and preventing misleading product copy or state transitions.</p>
+<h3 id="clm-047-6-unknowns-stay-visible">CLM-047 — 6. Unknowns Stay Visible</h3>
+<h6 id="6-unknowns-stay-visible">6. Unknowns Stay Visible</h6>
+<p>If a module, validation ID, SDK behavior, transcript location, or release check does not yet exist, use <code>TBD</code> or a residual-risk note. Do not smooth over gaps by assuming later implementation will satisfy the boundary.</p>
+<h3 id="clm-048-considerations">CLM-048 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<h3 id="clm-049-source-state-handling">CLM-049 — Source-State Handling</h3>
+<h6 id="source-state-handling">Source-State Handling</h6>
+<p><code>docs/PRD.md</code> is accessible and contains detailed runtime requirements and known gaps. D-APP-38 corpus</p>
+<p><code>v1</code> reconciled the authority-doc reference corpus, and current <code>_REFERENCES.md</code> records REF-006</p>
+<p><code>docs/PRD.md</code> as <code>MATCH</code>.</p>
+<p>Rows that depend on PRD content should cite REF-006 and the current corpus version. Future</p>
+<p>authority-doc edits must rerun the D-APP-38 reconciliation flow before issue-readiness reliance is</p>
+<p>claimed.</p>
+<h3 id="clm-050-boundary-granularity">CLM-050 — Boundary Granularity</h3>
+<h6 id="boundary-granularity">Boundary Granularity</h6>
+<p>Rows should be fine-grained enough that a reviewer can answer:</p>
+<ul>
+<li>- What product semantic is protected?</li>
+<li>- What could go wrong if this boundary is delegated to SDK defaults or prompt text?</li>
+<li>- Which component enforces it?</li>
+<li>- Which test or human review proves it?</li>
+<li>- What residual risk remains?</li>
+</ul>
+<p>Rows should not be so granular that every implementation function becomes its own governance item. Use one boundary row per product-critical semantic, then point to multiple enforcement surfaces when needed.</p>
+<p>For required register fields, use mandatory completion criteria rather than advisory wording: each row must name the protected product semantic, source evidence, enforcement owner, enforcement surface, prompt-only posture, SDK-default-only posture, validation evidence or <code>TBD</code>, residual risk, and decision status.</p>
+<h3 id="clm-051-current-implementation-surfaces-and-path-maintenance">CLM-051 — Current Implementation Surfaces And Path Maintenance</h3>
+<h6 id="current-implementation-surfaces-and-path-maintenance">Current Implementation Surfaces And Path Maintenance</h6>
+<p>Keep concrete register paths synchronized with the inspectable tree. Use <code>TBD</code> only for a genuinely absent or unassigned surface, and retain a downstream closure path for every such entry.</p>
+<table><tbody>
+<tr><td>Surface</td><td>Current implementation path</td></tr>
+<tr><td><code>AgentEnginePort</code></td><td><code>frontend/packages/harness-contract/src/agent-engine-port.ts</code></td></tr>
+<tr><td><code>RuntimeEngineContract</code></td><td><code>frontend/src/lib/harness/agent-runtime-contract.ts</code></td></tr>
+<tr><td><code>TurnEngine</code></td><td><code>frontend/src/lib/harness/turn-engine.ts</code></td></tr>
+<tr><td><code>SdkOptionsBuilder</code></td><td><code>frontend/src/lib/harness/sdk-options-builder.ts</code></td></tr>
+<tr><td><code>ChiralityPermissionOverlay</code></td><td><code>frontend/src/lib/harness/permission-overlay.ts</code></td></tr>
+<tr><td><code>ChiralityHooks</code> / hook runner</td><td><code>frontend/src/lib/harness/chirality-hooks.ts</code></td></tr>
+<tr><td><code>evaluateSubagentGovernance</code> bridge</td><td><code>frontend/src/lib/harness/subagent-governance.ts</code></td></tr>
+</tbody></table>
+<h3 id="clm-052-residual-risk-topics">CLM-052 — Residual Risk Topics</h3>
+<h6 id="residual-risk-topics">Residual Risk Topics</h6>
+<p>Track these explicitly until closed:</p>
+<ul>
+<li>- SDK API drift and message/category changes.</li>
+<li>- SDK settings leakage if project/user/local setting sources are accidentally enabled.</li>
+<li>- SDK transcript placement outside the working root.</li>
+<li>- SDK permission semantics being necessary but insufficient.</li>
+<li>- SDK subagents inheriting powerful parent permissions.</li>
+<li>- Thin-wrapper drift where product identity becomes SDK-shaped.</li>
+<li>- Authority-doc corpus drift if a future edit changes <code>docs/PRD.md</code> or another corpus source without rerunning D-APP-38 reconciliation.</li>
+<li>- Section 9 validation IDs or test file names still being candidate labels rather than implemented checks.</li>
+</ul>
+<h3 id="clm-053-trade-offs">CLM-053 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>SDK leverage vs. product-owned semantics</td><td>Use SDK mechanics where verified, but keep public contracts, events, permissions, and records in Chirality terms.</td></tr>
+<tr><td>Early register completeness vs. implementation uncertainty</td><td>Draft all required boundary rows now; use <code>TBD</code> for exact implementation files until downstream deliverables exist.</td></tr>
+<tr><td>Human gate clarity vs. runtime automation</td><td>Automate evidence capture and state-transition checks, but keep binding approval human-only.</td></tr>
+<tr><td>Prompt support vs. hard enforcement</td><td>Prompt support is acceptable as an explanatory layer, not as the enforcement surface for P0 boundaries.</td></tr>
+<tr><td>Local audit mirror vs. SDK transcript richness</td><td>Keep Chirality JSONL canonical; link or mirror SDK transcripts only as secondary artifacts.</td></tr>
+</tbody></table>
+<h3 id="clm-054-examples">CLM-054 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<h3 id="clm-055-example-register-row-pattern">CLM-055 — Example Register Row Pattern</h3>
+<h6 id="example-register-row-pattern">Example Register Row Pattern</h6>
+<table><tbody>
+<tr><td>Field</td><td>Example</td></tr>
+<tr><td>BoundaryID</td><td>RB-SETTINGS</td></tr>
+<tr><td>BoundaryCategory</td><td>settings</td></tr>
+<tr><td>ProductSemantic</td><td>Shipped builds must not load ambient user/global or local Claude Code settings.</td></tr>
+<tr><td>SourceRefs</td><td><code>docs/SPEC.md</code> §12.2; <code>docs/CONTRACT.md</code> K-SDK-1; <code>docs/PRD.md</code> FR-117 under the current D-APP-38 corpus snapshot</td></tr>
+<tr><td>EnforcementOwner</td><td>Chirality code + SDK option + release validation</td></tr>
+<tr><td>EnforcementSurface</td><td><code>SdkOptionsBuilder</code> sets <code>settingSources: []</code>; settings isolation test; release verification</td></tr>
+<tr><td>PromptOnlyAllowed</td><td>NO</td></tr>
+<tr><td>SDKDefaultOnlyAllowed</td><td>NO</td></tr>
+<tr><td>ValidationID</td><td><code>section9.settingsources_isolation</code></td></tr>
+<tr><td>ResidualRisk</td><td>SDK option behavior must be empirically confirmed on pinned SDK version.</td></tr>
+<tr><td>DecisionStatus</td><td>TBD until implementation and probe pass</td></tr>
+</tbody></table>
+<h3 id="clm-056-example-incomplete-row">CLM-056 — Example Incomplete Row</h3>
+<h6 id="example-incomplete-row">Example Incomplete Row</h6>
+<table><tbody>
+<tr><td>Field</td><td>Example</td></tr>
+<tr><td>BoundaryID</td><td>RB-SUBAGENT</td></tr>
+<tr><td>Incomplete signal</td><td>Enforcement surface says only &quot;tell subagents not to write outside scope.&quot;</td></tr>
+<tr><td>Required correction</td><td>Add <code>evaluateSubagentGovernance</code>, restricted child tools/cwd, hook evidence, and child run record validation.</td></tr>
+</tbody></table>
+<h3 id="clm-057-closed-source-state-note">CLM-057 — Closed Source-State Note</h3>
+<h5 id="closed-source-state-note">Closed Source-State Note</h5>
+<p>Historical conflict <code>CONF-RBR-001</code> is superseded by the current D-APP-38 corpus snapshot: <code>_REFERENCES.md</code> now records</p>
+<p>REF-006 <code>docs/PRD.md</code> as <code>MATCH</code>. That source-state reconciliation did not by itself generate the</p>
+<p>reliance-boundary register or satisfy dependency rows; it only removed the stale PRD hash blocker from</p>
+<p>the local-kit wording.</p>
+<h3 id="clm-058-generated-artifact-note">CLM-058 — Generated Artifact Note</h3>
+<h5 id="generated-artifact-note">Generated Artifact Note</h5>
+<p>ADQ-02 generated <code>docs/harness/reliance_boundary_register.md</code> with the central row register, embedded</p>
+<p>enforcement matrix, current Section 9 test index, and future/TBD validation-ID notes. This is</p>
+<p>CHECKING-stage evidence only; it does not mutate <code>_STATUS.md</code>, satisfy dependency rows, or authorize</p>
+<p>issuance, release readiness, professional approval, certification, sealing, authentication, or</p>
+<p>code-compliance acceptance.</p>
+<h3 id="clm-059-assumptions-and-tbds">CLM-059 — Assumptions and TBDs</h3>
+<h5 id="assumptions-and-tbds">Assumptions and TBDs</h5>
+<table><tbody>
+<tr><td>ID</td><td>Item</td><td>Disposition</td></tr>
+<tr><td>ASSUMPTION-RBR-001</td><td>The decomposition-listed objectives OBJ-002, OBJ-005, and OBJ-009 are directionally relevant to DEL-01-02.</td><td>Supported by DEL-01-02 decomposition row; not an extra hard requirement beyond cited source requirements.</td></tr>
+<tr><td>TBD-RBR-001</td><td>Exact implementation file paths for runtime contract, permissions, hooks, settings, event log, and subagent bridge.</td><td>RESOLVED for the currently named surfaces above; keep their register citations current and use <code>TBD</code> only for a genuinely absent or unassigned future surface.</td></tr>
+<tr><td>TBD-RBR-002</td><td>Exact SDK transcript storage/mirroring decision.</td><td>Resolve after R1 first-adapter probe and session linkage work.</td></tr>
+<tr><td>TBD-RBR-003</td><td>Final Section 9 validation file/test names.</td><td>Current implemented IDs are indexed in <code>docs/harness/reliance_boundary_register.md</code>; future <code>section9.reliance_boundary_register</code> and <code>section9.sdk_session_link_resume</code> remain TBD.</td></tr>
+<tr><td>TBD-RBR-004</td><td>Generated-register completion evidence.</td><td>ADQ-02 generated and cross-checked <code>docs/harness/reliance_boundary_register.md</code>; future validator automation remains downstream.</td></tr>
+</tbody></table>
+<h3 id="clm-060-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-060 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-100/101/102 supersede the earlier future/TBD cells: <code>section9.sdk_session_link_resume</code> and <code>section9.domain_profile_validation</code> are implemented and registered under their ruled scopes; Bash is mode-gated with live default <code>ask</code> and workspace-write auto-allow only after hooks, not flatly denied by default.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-037 SOW-045 SOW-054 SOW-057 SOW-074 OBJ-002 OBJ-005 OBJ-009</td><td>CLM-014</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

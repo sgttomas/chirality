@@ -1,0 +1,21 @@
+{
+  "instance_id": "AUTHOR-DEL-00-01",
+  "role": "TASK",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "WORKING-A1-PKG00",
+  "package": "APP-PKG-00",
+  "deliverable": "DEL-00-01",
+  "brief_version": 1,
+  "candidate_sha256": "2e51af467ef3ccfd8c79e7b2fe04bcbfed5d56af2e66fbf3792e74ae2600c838",
+  "mapping_rows": 26,
+  "source_lines": 250,
+  "verdicts": {
+    "schema": "PASS",
+    "content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "blockers": [],
+  "rerun_requirements": []
+}

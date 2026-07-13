@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 219,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "9231e130a981f58a58bd1f0e87bab2dbc417f2121263e4aa425e2a40109e0d40"
+      },
+      "text": "DEL-03-03 is acceptable when the preserved legacy requirements for the harness API and SSE compatibility adapter are satisfied and the route adapter tests, SSE compatibility fixtures, and UI event contract documentation provide the specified verification evidence.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-001",
+          "source_line": 351,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the preserved legacy requirements and execute the specified route adapter, SSE compatibility, stream integration, mapper/contract, and artifact checks, retaining TBD where fixture capture or baseline evidence remains unresolved."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "9231e130a981f58a58bd1f0e87bab2dbc417f2121263e4aa425e2a40109e0d40"
+  },
+  "tool_version": "1"
+}

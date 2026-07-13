@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 210,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "34e41b8e7efe65ea58eb36856bde2bbd7e2e0d21052331c676d245b106813b65"
+      },
+      "text": "The converted contract preserves all legacy source content and traceability to SOW-074, SOW-075, and OBJ-009 without changing lifecycle or dependency state.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-001",
+          "source_line": 333,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, then perform human review against the accepted legacy basis."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "34e41b8e7efe65ea58eb36856bde2bbd7e2e0d21052331c676d245b106813b65"
+  },
+  "tool_version": "1"
+}

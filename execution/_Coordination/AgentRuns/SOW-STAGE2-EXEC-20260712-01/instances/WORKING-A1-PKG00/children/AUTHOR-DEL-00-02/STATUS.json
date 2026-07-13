@@ -1,0 +1,14 @@
+{
+  "candidate_path": "candidates/W_A1/APP-PKG00/DEL-00-02/ScopeOfWork.md",
+  "candidate_sha256": "acd4fc457339b6aa9c1d29c6b598f2dc0e7ba51bada2fb719fab0d297e466045",
+  "child_instance_id": "AUTHOR-DEL-00-02",
+  "deliverable_id": "DEL-00-02",
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "package_id": "PKG-00",
+  "parent_instance_id": "WORKING-A1-PKG00",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "status": "PASS",
+  "terminal": true,
+  "timestamp": "2026-07-13T06:29:21-06:00"
+}

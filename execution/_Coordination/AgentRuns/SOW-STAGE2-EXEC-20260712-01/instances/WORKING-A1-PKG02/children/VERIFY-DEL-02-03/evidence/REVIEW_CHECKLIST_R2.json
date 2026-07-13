@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 258,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "090a041bfda14f2ff1397378d74c79e9b394d4986bc3356a6e5243547d90f173"
+      },
+      "text": "The DEL-02-03 migration candidate preserves every legacy source range and its traceability to SOW-002, SOW-003, OBJ-001, and OBJ-006 without changing lifecycle, dependency, or authority state.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-001",
+          "source_line": 393,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run deterministic schema validation, complete source mapping and parity checks, repeated checklist derivation and render stability checks, then conduct human review against the accepted legacy basis."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "090a041bfda14f2ff1397378d74c79e9b394d4986bc3356a6e5243547d90f173"
+  },
+  "tool_version": "1"
+}

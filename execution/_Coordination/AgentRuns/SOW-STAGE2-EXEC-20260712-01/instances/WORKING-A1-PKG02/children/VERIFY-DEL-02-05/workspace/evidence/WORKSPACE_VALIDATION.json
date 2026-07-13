@@ -1,0 +1,7 @@
+{
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "target": "~/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace",
+  "valid": true,
+  "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+}

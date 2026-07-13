@@ -1,0 +1,3 @@
+# Execution Substrate Verdict — PASS
+
+The active tool order and scope-of-work allowlist were followed. Checklist derivation is byte-identical at SHA-256 `b67d6bee10e53344a7a332845146956db5bda41568f8917b61468de3db988c28`; it contains exact `AC-001` once in source order, binds the candidate identity and exact text, and links `VER-001`. HTML render is byte-identical at SHA-256 `801d6872a5a9bea13f22e74d466bf14b7359a139bc9a67097274e26a2bbb196e`, candidate-hash-bound, script-free, form-free, and external-resource-free. Partial legacy and unauthorized dual fixtures fail closed with exit code 1 and no checklist output. The exact five-row replacement excludes status/control files. All writes are verifier-local.

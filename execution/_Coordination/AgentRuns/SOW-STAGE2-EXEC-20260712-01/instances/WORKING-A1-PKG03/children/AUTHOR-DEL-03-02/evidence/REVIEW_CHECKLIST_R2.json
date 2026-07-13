@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 245,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "fa2694dc3b1e7145587c3ba48074122884c234e3461d2134b83f7fb82bccbfab"
+      },
+      "text": "The DEL-03-02 output satisfies the exact legacy source requirements bound to SOW-009, SOW-010, SOW-011, SOW-038, and OBJ-002 without adding scope or lifecycle meaning.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-001",
+          "source_line": 390,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the candidate schema, complete source-marker disposition, claim mapping, parity, and the legacy verification methods preserved in this candidate."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-02",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "fa2694dc3b1e7145587c3ba48074122884c234e3461d2134b83f7fb82bccbfab"
+  },
+  "tool_version": "1"
+}
