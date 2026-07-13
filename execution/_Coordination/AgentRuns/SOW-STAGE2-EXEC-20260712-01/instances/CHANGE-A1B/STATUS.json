@@ -1,0 +1,36 @@
+{
+  "instance_id": "CHANGE-A1B",
+  "role": "CHANGE",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "A1-PREFLIGHT-ACCEPTANCE-BINDING",
+  "brief_version": 1,
+  "basis_commit": "0724f26f6ef79d733c8f1c513b29d837fd43c8eb",
+  "acceptance_bindings": "8/8 PASS",
+  "live_basis": {
+    "members": 15,
+    "package_counts": {
+      "PKG-00": 2,
+      "PKG-01": 4,
+      "PKG-02": 5,
+      "PKG-03": 4
+    },
+    "legacy_source_hashes": "60/60 PASS",
+    "status_hashes": "15/15 PASS",
+    "legacy_four_doc": "15/15 PASS",
+    "live_sow": 0,
+    "lifecycle": "15/15 IN_PROGRESS"
+  },
+  "orchestrator_a1_b0": "TERMINAL PASS",
+  "work_graph_version": 12,
+  "staged_paths": 23,
+  "diff_hygiene": "PASS",
+  "portability": "PASS",
+  "project_paths_staged": 0,
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "bounded dispatch of WORKING-A1-PKG00 through WORKING-A1-PKG03"
+}

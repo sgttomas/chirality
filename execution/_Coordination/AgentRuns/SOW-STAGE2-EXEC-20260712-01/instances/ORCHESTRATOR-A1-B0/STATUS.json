@@ -1,13 +1,33 @@
 {
   "instance_id": "ORCHESTRATOR-A1-B0",
   "role": "ORCHESTRATOR",
-  "status": "RELEASED_PENDING_ACCEPTANCE_BINDING",
-  "terminal": false,
+  "status": "PASS",
+  "terminal": true,
   "parent": "SOW-STAGE2-EXEC-20260712-01",
   "node": "W-A1-B0",
   "brief_version": 1,
   "wave": "A1",
   "members": 15,
+  "package_counts": {
+    "PKG-00": 2,
+    "PKG-01": 4,
+    "PKG-02": 5,
+    "PKG-03": 4
+  },
+  "legacy_sources_verified": 60,
+  "status_hashes_verified": 15,
+  "legacy_four_doc": 15,
+  "live_sow": 0,
+  "pilots_excluded_and_verified": 10,
+  "packages_frozen": 4,
+  "dispatch_basis": "0724f26f6ef79d733c8f1c513b29d837fd43c8eb",
+  "accepted_project_truth_parent": "b4efb8e554354399aadf1f624c107f63ede3230d",
+  "snapshot_status": "CANDIDATE_AWAITING_HELP_HUMAN_A1_B0_FAN_IN",
+  "snapshot_manifest_sha256": "2f567949b9632d3ce10435510641ab3ab204b56169295052fc71cd0ef25dbaf4",
+  "drift": [],
   "blockers": [],
-  "next_gate": "P4 acceptance binding then read-only A1 preflight"
+  "unknowns": [],
+  "waivers": [],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "HELP_HUMAN A1-B0 fan-in; package managers remain PARKED"
 }
