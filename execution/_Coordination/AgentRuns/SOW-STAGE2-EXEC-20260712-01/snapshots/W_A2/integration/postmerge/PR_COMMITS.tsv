@@ -1,0 +1,19 @@
+ordinal	sha	message
+1	c6aa2050d23910423bd86c83f09da0247cbfe89e	Bind W-A2 accepted integration evidence
+2	548caa731e1f4bd9f6c5ec3ea781d7629785a68c	Migrate DEL-04-01 to ScopeOfWork v1
+3	fe4bdee53fd6ee5fb7411ece5956fdbf006b4e2f	Migrate DEL-04-02 to ScopeOfWork v1
+4	6033847873ae330df97fa0d7d5f50fff9780c1a7	Migrate DEL-04-03 to ScopeOfWork v1
+5	222a26b53a3ac989e47c69ddba544e2e0becb394	Migrate DEL-04-04 to ScopeOfWork v1
+6	036e0769c6f5dbec600537b97bea140ad280982c	Migrate DEL-04-05 to ScopeOfWork v1
+7	8c8b0ef2216790a953d5ffcbf387f4a30279995b	Migrate DEL-05-01 to ScopeOfWork v1
+8	0da38db4d64fc4cd4e4214cfbdd12ced7ea7b0cf	Migrate DEL-05-02 to ScopeOfWork v1
+9	e9b9e302cc986397a1c58e287d5f95c7648ae5cf	Migrate DEL-05-03 to ScopeOfWork v1
+10	fcf656e883246da842eed0f8392395047bc125df	Migrate DEL-05-04 to ScopeOfWork v1
+11	0287478b2f3c4c766f3a768908d390cd7177510e	Migrate DEL-05-05 to ScopeOfWork v1
+12	5bc5ac6c9865928828014072fb542642adf87789	Migrate DEL-06-01 to ScopeOfWork v1
+13	d3349a60755e0852665d77e9287724f2c0c53649	Migrate DEL-06-02 to ScopeOfWork v1
+14	6f59f29712e20bfc215826118eec6398d08562a4	Migrate DEL-06-03 to ScopeOfWork v1
+15	8cf7fcf2b103497affb18ce91b3d75eaf3c8bbf4	Migrate DEL-06-04 to ScopeOfWork v1
+16	57ab140fdde844e7eb018dccce786f3b468b806b	Migrate DEL-06-05 to ScopeOfWork v1
+17	99c59cc372f969a4a05c5d58c3e51b0f1e659a67	Migrate DEL-06-06 to ScopeOfWork v1
+18	f496282e458fc27af48fb650ad4db7f182746f13	Record W-A2 premerge integration evidence
