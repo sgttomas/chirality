@@ -1,7 +1,7 @@
 {
   "instance_id": "CHANGE-P-G",
   "role": "CHANGE",
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_REMOTE",
   "terminal": false,
   "parent": "SOW-STAGE2-EXEC-20260712-01",
   "node": "P-G",
@@ -20,6 +20,37 @@
     "current_formats": "10/10 LEGACY_FOUR_DOC",
     "lifecycle": "10/10 IN_PROGRESS"
   },
+  "evidence_binding_commit": "7bfb128d4ad0bf02dd12364713fa328ec7c4dfa2",
+  "content_commits": [
+    "df06513599551b97b408d7904ffe1e3ab10ee9ee",
+    "a5bd9c408d7c24ec67e617a618fd8df91efaa1b1",
+    "67e9ad0e18693a9207e95b82b88f0b465fed869d",
+    "bffc9f7f32e9133bb36ad964e181ca177a1777ba",
+    "8cb9cdaf07a29cae936de186684cd44f0904f4e9",
+    "14e94bd0be813280a84051fd95e0684fb408331e",
+    "22fcc7d575fcc628a3007c94334398938072358c",
+    "32303ad73a360927b87c6366cf915bdeb52165e2",
+    "6736cf094df7930726168fd09824004118763ff4",
+    "46f87d1b349e9cd20e4bf18bb442cb76cdb18556"
+  ],
+  "post_state": {
+    "sow_v1": 10,
+    "legacy": 0,
+    "dual_partial_invalid": 0,
+    "status_identity": "10/10 PASS",
+    "lifecycle": "10/10 IN_PROGRESS",
+    "project_paths": "50/50 exact"
+  },
+  "checks": {
+    "app_focused": "20/20 PASS",
+    "app_full": "713 PASS; 4 skipped",
+    "app_typecheck_build": "PASS",
+    "scope_of_work_tools": "18/18 PASS",
+    "piping_dependencies": "14/18/14/20 rows PASS",
+    "self_check": "PASS — unchanged baseline; no BLOCK",
+    "governance_harness": "264/264 PASS",
+    "diff_hygiene": "PASS under P-G-DIFF-HYGIENE-001 exact six-line allowlist"
+  },
   "blockers": [],
-  "next_gate": "evidence binding commit, then ten serial atomic replacements"
+  "next_gate": "push, PR path/commit/check validation, merge, synchronized postmerge closure"
 }

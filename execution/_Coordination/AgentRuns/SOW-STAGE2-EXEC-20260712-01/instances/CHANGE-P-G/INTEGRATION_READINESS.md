@@ -1,9 +1,9 @@
 # CHANGE-P-G Integration Readiness
 
-Session: `2026-07-13_CHANGE-P-G`  
-Verdict: `READY`  
-Branch: `codex/sow-stage2-pilots`  
-Integration branch: `main`  
+Session: `2026-07-13_CHANGE-P-G`
+Verdict: `READY`
+Branch: `codex/sow-stage2-pilots`
+Integration branch: `main`
 Exact basis: `0d260eb024d8b8dada0df477b70ac880a6906ffa`
 
 ## Observations
