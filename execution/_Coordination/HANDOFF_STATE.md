@@ -13,7 +13,7 @@ Status: `STAGE1_PASS_AWAITING_D-GOV-16_RULING`
 - Piping pilot evidence branch/commit:
   `codex/sow-piping-pilot@31c35ea9798c29cd0af16b7089186f3942dcfcb1`.
 - Stage-1 proposal/evidence snapshot:
-  `a43b7431b7ec3be8b250042bf83fcf02f2fe78c8` on
+  `31e5efd986b7c59fc709f4fe967575c59659aae0` on
   `codex/sow-stage1-execution`.
 
 ## Closure verdict
@@ -38,6 +38,9 @@ human-decision truth.
 is `PROPOSED — NO EFFECT WITHOUT OWNER RULING`, bound to the proposal snapshot
 above. Its evidence index and exact inactive successor-standard/TYPES/SPEC
 proposal artifacts reside under `docs/governance_harness/_PROPOSALS/D-GOV-16/`.
+The proposal revision preserves the originally proposed target bytes and changes
+only the two patch artifacts to a whitespace-clean zero-context representation;
+they require `git apply --unidiff-zero --check` against the frozen base.
 
 ## Remaining blocker and stop
 

@@ -1,0 +1,10 @@
+{
+  "run_id":"SOW-STAGE1-20260712",
+  "version":7,
+  "supersedes":"WORK_GRAPH_v6.json",
+  "change":"Revise inactive D-GOV-16 patch artifacts without changing their target bytes, then rebind the proposal and current handoff",
+  "nodes_updated":[{"id":"CHANGE-CLOSE","status":"CLOSED_AWAITING_OWNER_D_GOV_16","brief_version":3,"proposal_revision":"31e5efd986b7c59fc709f4fe967575c59659aae0","return":"instances/CHANGE-CLOSE/RETURN.md"}],
+  "terminal_handoff":"HANDOFF_STATE.md",
+  "next_gate":"HUMAN-D-GOV-16",
+  "stage2_and_canon_denials":"unchanged until owner ruling"
+}

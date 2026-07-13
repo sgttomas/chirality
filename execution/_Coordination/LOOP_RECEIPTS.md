@@ -72,3 +72,15 @@
 - Handoff: RECONCILIATION PASS and D-GOV-16 proposal/evidence package are
   decision-ready. Stage 2, canon application, corpus conversion, and pilot
   integration remain unauthorized pending the owner ruling.
+
+### Receipt 3 — 2026-07-12 — D-GOV-16 patch-artifact revision
+
+- Proposal revision: `31e5efd986b7c59fc709f4fe967575c59659aae0` re-encodes
+  only the inactive TYPES/SPEC unified-diff artifacts as whitespace-clean
+  zero-context patches; their target bytes are unchanged.
+- Validation: both patches reproduce their prior targets and pass
+  `git apply --unidiff-zero --check` against a tree read directly from frozen
+  `main@2770fda4c63c98ee9f18cffbafd14c9aa59f497f`.
+- Handoff: D-GOV-16 binds this revised proposal snapshot. No RECON evidence,
+  project/pilot path, ratified canon, lifecycle, integration, or Stage-2 act
+  changed; the owner ruling remains the sole release gate.
