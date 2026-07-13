@@ -1,0 +1,19 @@
+{
+  "instance_id": "CHANGE-B1G",
+  "role": "CHANGE",
+  "status": "READY_FOR_REMOTE",
+  "terminal": false,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "B1G",
+  "brief_version": 1,
+  "branch": "codex/sow-stage2-b1",
+  "base_sha": "9349594530dc19e55baf9c2ef0b7eb4716f48a17",
+  "candidate_paths": 27,
+  "accepted_hashes": "17/17 PASS",
+  "internal_p3_hashes": "6/6 PASS",
+  "row_equality": "154/154 PASS; zero delta",
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "next_owner": "CHANGE-B1G remote integration"
+}
