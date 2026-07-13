@@ -1,6 +1,6 @@
 {
-  "profile": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/software-workflow.json",
-  "project_root": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev",
+  "profile": "~/projects/chirality-app-dev/software-workflow.json",
+  "project_root": "~/projects/chirality-app-dev",
   "results": [
     {
       "command": [
@@ -37,5 +37,5 @@
   ],
   "schema": "chirality-software-check-evidence/v1",
   "status": "PASS",
-  "workspace_root": "/Users/ryan/ai-env/projects/chirality"
+  "workspace_root": "~"
 }

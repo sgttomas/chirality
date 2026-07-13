@@ -1,0 +1,47 @@
+{
+  "instance_id": "HELPS-C2G-P1",
+  "role": "HELPS_HUMANS",
+  "status": "PASS",
+  "terminal": true,
+  "brief_version": 1,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "C2G-P1",
+  "accepted_basis": [
+    "D-GOV-16",
+    "P2_CONSUMERS_C2F-R2_PASS",
+    "PR_221_SOURCE_HEAD_42c347ad8e75d95ea4605868463a0380f682d69f",
+    "C2G-EVIDENCE-PORTABILITY-001",
+    "C2G-EVIDENCE-PORTABILITY-001-A",
+    "C2G-EVIDENCE-PORTABILITY-001-B"
+  ],
+  "changed_evidence_files": 12,
+  "checkout_prefix": {
+    "before": 97,
+    "after": 0
+  },
+  "temporary_prefix": {
+    "before": 14,
+    "after": 0
+  },
+  "hash_bindings_found": 0,
+  "semantic_delta": false,
+  "checks": {
+    "focused_live_anchors": "2 passed in 9.95s",
+    "practitioner_harness": "264 passed in 65.59s",
+    "self_check_review": 27,
+    "gen8_files": 24,
+    "exact_substitution_equivalence": "PASS",
+    "json_parse": "PASS",
+    "scoped_diff_check": "PASS"
+  },
+  "blockers": [],
+  "waivers": [],
+  "rerun_if": [
+    "either normalized literal reappears in either App run root",
+    "any of the twelve evidence files changes before integration",
+    "a downstream hash binding is introduced",
+    "the live self-check or GEN8 baseline moves",
+    "the PR source head changes"
+  ],
+  "next_owner": "CHANGE-C2G"
+}

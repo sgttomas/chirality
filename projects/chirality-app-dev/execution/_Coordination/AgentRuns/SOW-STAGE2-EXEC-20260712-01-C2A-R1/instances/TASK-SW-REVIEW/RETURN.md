@@ -8,9 +8,9 @@ TaskProfile: `NONE`
 
 TaskSkill: `software-code-review`
 
-ScopePath: `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01-C2A-R1/instances/TASK-SW-REVIEW`
+ScopePath: `~/projects/chirality-app-dev/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01-C2A-R1/instances/TASK-SW-REVIEW`
 
-ResolvedSkillPath: `/Users/ryan/ai-env/projects/chirality/skills/software-code-review`
+ResolvedSkillPath: `~/skills/software-code-review`
 
 ResolvedSkillVersion: `1`
 

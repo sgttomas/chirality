@@ -64,3 +64,31 @@ tranches and 231 changed paths against the base; no fourth semantic tranche is
 present. Continue with final source binding, remote checks, PR merge, and
 synchronized-main verification. No conversion, lifecycle, H1/H2, release, or
 retirement action is authorized.
+
+## Evidence-portability retry
+
+PR #221 initially returned `Harness pre-merge: SUCCESS` and
+`governance-harness: FAILURE`. The failed job reported two live-baseline
+assertions because newly tracked C2A/C2A-R1 run evidence exposed ten additional
+checkout-specific absolute-path surfaces.
+
+HELP_HUMAN released `HELPS-C2G-P1` under
+`C2G-EVIDENCE-PORTABILITY-001`, including scope correction 001-A and temporary
+prefix clarification 001-B. Its terminal return is `PASS`: exactly twelve
+evidence files received only the authorized repository-neutral substitutions;
+no verdict, count, authority, lifecycle state, or P2-bound hash changed.
+
+CHANGE retry gates passed on the uncommitted additive tranche:
+
+- exact pre-CHANGE changed-path containment: 17 paths, comprising the twelve
+  evidence repairs, amendment, three HELPS-C2G-P1 records, and work graph;
+- checkout and temporary prefix absence in both App run roots: `PASS`;
+- all changed JSON parses: `PASS`;
+- focused live self-check severity and GEN8 anchors: `2 passed`;
+- existing `P2_CONSUMERS/MANIFEST.tsv` hashes: `PASS`;
+- working diff hygiene: `PASS`.
+
+The additive commit also includes only these CHANGE retry records:
+`PREINTEGRATION_CHECKS.md`, `RETURN.md`, `STATUS.json`, and the P2 integration
+handoff. After cached containment and hygiene pass, push the ordinary commit to
+the existing PR and require every new remote check to pass before merge.

@@ -1,6 +1,6 @@
 # P2_CONSUMERS Integration Handoff
 
-Verdict: `PASS — READY FOR REMOTE PR INTEGRATION`
+Verdict: `PASS — READY FOR REMOTE PR RETRY`
 
 The accepted upstream snapshot remains `P2_CONSUMERS`, an immutable derivative
 package at C2F-R2 PASS, source-bound to the validated 48-root-plus-four-App
@@ -34,3 +34,18 @@ rerun the affected readiness and remote gates.
 B1 is the next dependency after C2G remote merge and synchronized-main PASS.
 This handoff authorizes no conversion, lifecycle mutation, H1, H2, release, or
 legacy retirement.
+
+## PR #221 portability retry
+
+The first remote validation left PR #221 open and unmerged: Harness pre-merge
+passed, while governance-harness failed because ten newly tracked App run
+evidence files carried checkout-specific absolute paths. Parent fan-in accepted
+`HELPS-C2G-P1 PASS` under `C2G-EVIDENCE-PORTABILITY-001` 001-A/001-B.
+
+The repair is a derivative-evidence portability tranche only: exact literal
+substitutions in twelve already-bound App evidence files plus the amendment,
+HELPS-C2G-P1 records, work graph, and CHANGE retry records. Existing P2 hashes,
+source commits, verdicts, counts, authority, and lifecycle meaning remain
+unchanged. Local containment, JSON parse, prefix absence, focused live anchors,
+P2 hashes, and diff hygiene passed. Blockers and waivers: none. Remote merge
+remains contingent on every required check passing against the new PR head.

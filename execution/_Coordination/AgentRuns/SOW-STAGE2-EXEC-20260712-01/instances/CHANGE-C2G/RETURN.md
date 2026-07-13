@@ -1,6 +1,6 @@
 # CHANGE-C2G Integration Return
 
-Verdict: `READY_FOR_REMOTE`
+Verdict: `READY_FOR_REMOTE_RETRY`
 Node: `C2G`
 Role: `CHANGE` (Agent 1)
 Branch: `codex/sow-stage2-consumers`
@@ -33,3 +33,18 @@ change; never rewrite or force-push history. Rerun readiness if any named
 source commit, authority, bound hash, manifest, required check, or remote base
 changes. No conversion, lifecycle, H1, H2, release, or retirement action
 occurs.
+
+PR #221 was opened at source head
+`42c347ad8e75d95ea4605868463a0380f682d69f`; its Harness pre-merge check
+passed, but governance-harness failed two live-baseline assertions caused by
+checkout-specific prefixes in newly tracked App run evidence. The PR remained
+open and unmerged; main remained at the sealed base.
+
+Parent fan-in now accepts `HELPS-C2G-P1 PASS`. The additive retry contains only
+the twelve evidence files named by its return, the active portability
+amendment, HELPS-C2G-P1 brief/return/status, work graph, and these four CHANGE
+retry records. Local exact containment, JSON parse, prefix absence, focused
+anchors, P2 hashes, and diff hygiene pass. No source, canon, deliverable,
+lifecycle, H1/H2, release, or retirement path changed. Push the ordinary
+additive commit to PR #221 and merge only if every new required check and
+merge-protection gate passes.
