@@ -1,0 +1,10 @@
+{
+  "run_id":"SOW-STAGE1-20260712",
+  "version":6,
+  "supersedes":"WORK_GRAPH_v5.json",
+  "change":"CHANGE-CLOSE committed Stage-1 evidence/proposal snapshot a43b7431b7ec3be8b250042bf83fcf02f2fe78c8 and closes the binding handoff",
+  "nodes_updated":[{"id":"CHANGE-CLOSE","status":"CLOSED_AWAITING_OWNER_D_GOV_16","brief_version":2,"commit_1":"a43b7431b7ec3be8b250042bf83fcf02f2fe78c8","return":"instances/CHANGE-CLOSE/RETURN.md"}],
+  "terminal_handoff":"HANDOFF_STATE.md",
+  "next_gate":"HUMAN-D-GOV-16",
+  "stage2_and_canon_denials":"unchanged until owner ruling"
+}

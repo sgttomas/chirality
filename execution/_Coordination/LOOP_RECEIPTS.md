@@ -54,3 +54,21 @@
   before any frozen-schema wave.
 - Stop gate remains: no candidate pilot deliverable merges to `main`; stop for
   D-GOV-16 after preservation audit and Stage-2 evidence assembly.
+
+### Receipt 2 — 2026-07-12 — Stage-1 PASS; D-GOV-16 proposed
+
+- Basis: frozen `main@2770fda4c63c98ee9f18cffbafd14c9aa59f497f`; ruled
+  D-GOV-15 `58aa81d62f4a32e3c2d687e4356a1e4be8141674`; proposal snapshot
+  `a43b7431b7ec3be8b250042bf83fcf02f2fe78c8`.
+- Pilot evidence: App `fb83ffca8a7f674db13c6cda775ca7b7d7c8ef26`; Piping
+  `31c35ea9798c29cd0af16b7089186f3942dcfcb1`; neither branch is merged.
+- Result: 10 candidates, 325/325 PRESERVED mappings and 3,466/3,466 source
+  lines; statuses/sources preserved; no fresh conversion or verifier rerun.
+- Governance correction: deterministic AC checklist compiler is authoritative;
+  REVIEW consumes it and reserves judgment for human-gated review.
+- Checks: root tools 785 passed; full preservation, consumer, HTML, agent,
+  skill, path, export, App, and Piping evidence PASS; substrate fallback is
+  separately recorded from schema/content PASS.
+- Handoff: RECONCILIATION PASS and D-GOV-16 proposal/evidence package are
+  decision-ready. Stage 2, canon application, corpus conversion, and pilot
+  integration remain unauthorized pending the owner ruling.
