@@ -1,0 +1,29 @@
+{
+  "partial_legacy_validator": {
+    "exit_code": 1,
+    "format": "INVALID",
+    "valid": false,
+    "expected_issue": "partial legacy production kit; missing: Guidance.md",
+    "pass": true
+  },
+  "unauthorized_dual_validator": {
+    "exit_code": 1,
+    "format": "AMBIGUOUS",
+    "valid": false,
+    "expected_issue": "dual production formats require an isolated conversion workspace and exact migration authority",
+    "pass": true
+  },
+  "unauthorized_dual_checklist": {
+    "exit_code": 1,
+    "output_created": false,
+    "expected_issue": "format state is AMBIGUOUS",
+    "pass": true
+  },
+  "unauthorized_conversion": {
+    "exit_code": 1,
+    "output_created": false,
+    "expected_issue": "dual-format conversion requires --isolated-migration and exact D-GOV-16 authority",
+    "pass": true
+  },
+  "overall": "PASS"
+}

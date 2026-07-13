@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="4f1505dfcba0704cc49bac089e7f5ab68608c14e4f7828e486fa0861574b4ffd">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>4f1505dfcba0704cc49bac089e7f5ab68608c14e4f7828e486fa0861574b4ffd</code>.</p>
+<h1 id="scope-of-work-del-06-03">Scope of Work — DEL-06-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-06-03</code> in service of project scope [SOW-048, SOW-050] and package objectives [OBJ-005, OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Initial Chirality MCP read-tool slice comprising deterministic descriptors, wrapper metadata, status read, dependency read, bounded scope scan, scaffold preview/dry-run behavior, and associated verification evidence.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-03-initial-chirality-mcp-read-tools">CLM-001 — Datasheet: DEL-06-03 Initial Chirality MCP Read Tools</h3>
+<h4 id="datasheet-del-06-03-initial-chirality-mcp-read-tools">Datasheet: DEL-06-03 Initial Chirality MCP Read Tools</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-06-03</td></tr>
+<tr><td>DeliverableName</td><td>Initial Chirality MCP Read Tools</td></tr>
+<tr><td>PackageID</td><td>PKG-06</td></tr>
+<tr><td>PackageName</td><td>Permissioned Tools, MCP, and Hooks</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>Scope</td><td>Expose in-process deterministic MCP tools for status read, dependency read, scope scan, and scaffold preview/dry-run.</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>MCP naming namespace</td><td><code>mcp__chirality__*</code></td><td><code>docs/SPEC.md</code> Section 14.1; <code>docs/TYPES.md</code> Section 8.4</td></tr>
+<tr><td>Initial tool names in scope</td><td><code>mcp__chirality__status_read</code>, <code>mcp__chirality__deps_read</code>, <code>mcp__chirality__scope_scan</code>, <code>mcp__chirality__scaffold</code> preview/dry-run behavior where applicable</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Adjacent tool names not implemented as read-tool scope</td><td><code>mcp__chirality__status_transition</code> and <code>mcp__chirality__deps_write</code> are write/gated tools and belong to later or adjacent write/lifecycle surfaces.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PRD.md</code> Sections 8.13 and 8.14</td></tr>
+<tr><td>Required wrapper metadata</td><td>Schema, permissions, read-only behavior, concurrency behavior, interruption behavior, execution behavior, and summarization behavior.</td><td><code>docs/PRD.md</code> Section 8.13 FR-079</td></tr>
+<tr><td>Tool-surface ordering</td><td>Deterministic ordering, naming, MCP server IDs, and allow/deny lists for a given session/persona/mode/option set.</td><td><code>docs/PRD.md</code> Section 8.13 FR-080; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>Permission posture</td><td>MCP is a transport, not a bypass; tools pass through permission, hook, path, redaction, and event logging policy.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/DIRECTIVE.md</code> Section 14</td></tr>
+<tr><td>Read-before-write sequencing</td><td>Read-only capability lands before write/edit/shell capability; write/edit and bash stay denied until later phases activate them.</td><td><code>docs/PRD.md</code> Section 8.13 FR-082; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Validation marker</td><td><code>section9.chirality_mcp_status_dependencies</code> is a runtime validation ID for status/dependency MCP behavior.</td><td><code>docs/SPEC.md</code> Section 19.3</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Permission mode compatibility</td><td><code>readOnly</code> exposes or allows read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied.</td><td><code>docs/PRD.md</code> Section 8.14 FR-091; <code>docs/TYPES.md</code> Section 8.1</td></tr>
+<tr><td>Deny precedence</td><td>Explicit denies from policy, path containment, hook, governance, SDK deny rule, or human gate block execution.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1; <code>docs/PRD.md</code> Section 8.14 FR-089</td></tr>
+<tr><td><code>allowedTools</code> limitation</td><td><code>allowedTools</code> is not a restriction boundary by itself.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>Status truth source</td><td><code>_STATUS.md</code> is canonical human-readable lifecycle state.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-STATUS-1</td></tr>
+<tr><td>Dependency truth source</td><td>Deliverable-local <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code> are authoritative for dependencies.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-DEP-1</td></tr>
+<tr><td>Scaffold posture</td><td><code>mcp__chirality__scaffold</code> is gated; this deliverable should cover preview/dry-run behavior where appropriate, not uncontrolled scaffold writes.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Source-state warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; task brief — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Expected Shape</td><td>Source</td></tr>
+<tr><td>MCP definitions</td><td>In-process SDK MCP tool definitions using <code>createSdkMcpServer()</code> / <code>tool()</code> or equivalent SDK APIs.</td><td><code>docs/PRD.md</code> Section 8.13 FR-119</td></tr>
+<tr><td>Wrapper contract</td><td>Shared wrapper metadata for tool descriptors, permission classification, execution, result summarization, and event/redaction behavior.</td><td><code>docs/PRD.md</code> Section 8.13 FR-079; <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1</td></tr>
+<tr><td>Status read</td><td>Read <code>_STATUS.md</code> snapshot. Exact parser/API adapter TBD and should align with the status lifecycle API owner.</td><td><code>docs/SPEC.md</code> Sections 14.2 and 17.2</td></tr>
+<tr><td>Dependency read</td><td>Read and validate <code>Dependencies.csv</code> when present. If only <code>_DEPENDENCIES.md</code> exists, return an explicit secondary-summary / not-structured-tracked result rather than inventing rows; final API shape remains TBD pending DEL-07-05.</td><td><code>docs/SPEC.md</code> Sections 14.2 and 17.2; <code>docs/CONTRACT.md</code> Section 1.7 K-DEP-1; <code>_DEPENDENCIES.md</code> Extracted Dependency Register</td></tr>
+<tr><td>Scope scan</td><td>Run bounded workspace scope scan. Exact scanner interface TBD and should align with workspace scope API.</td><td><code>docs/SPEC.md</code> Sections 14.2 and 17.2</td></tr>
+<tr><td>Scaffold preview/dry-run</td><td>Wrap scaffold service or dry-run preview without opening uncontrolled write behavior. Exact preview schema TBD.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Tests</td><td>MCP tool definitions and wrapper metadata are unit-tested and deterministic.</td><td><code>docs/PRD.md</code> Section 8.13 FR-079</td></tr>
+</tbody></table>
+<h3 id="clm-006-pass-3-notes">CLM-006 — Pass 3 Notes</h3>
+<h5 id="pass-3-notes">Pass 3 Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>C-001</td><td>Incorporated with TBD boundary</td><td>Dependency read fallback now states the safe executable behavior for <code>_DEPENDENCIES.md</code>-only state and keeps final API shape <code>TBD</code> pending DEL-07-05. Source reread: <code>docs/SPEC.md</code> Sections 14.2 and 17.2; <code>docs/CONTRACT.md</code> Section 1.7 K-DEP-1; <code>_DEPENDENCIES.md</code> Extracted Dependency Register.</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, package scope, and anticipated artifacts.</li>
+<li>- <code>_REFERENCES.md</code> for source corpus and source-state warning.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Sections 6, 7, 9, and 10A for objective, deliverable, SOW, and invariant-family mapping.</li>
+<li>- <code>docs/DIRECTIVE.md</code> Sections 13-14 for runtime integration boundaries and capability-forward MCP posture with explicit hard-deny precedence.</li>
+<li>- <code>docs/CONTRACT.md</code> Sections 1.6-1.7 for binding tool, MCP, permission, status, dependency, and invention invariants.</li>
+<li>- <code>docs/SPEC.md</code> Sections 14, 15, 17.2, and 19.3 for tool names, modes, API surfaces, and validation IDs.</li>
+<li>- <code>docs/TYPES.md</code> Sections 8.1-8.4 for permission and MCP vocabulary.</li>
+<li>- <code>docs/PLAN.md</code> R2 and R6 for sequencing and MCP extension boundaries.</li>
+<li>- <code>docs/PRD.md</code> Sections 8.13-8.14 and R2 traceability; MATCH status recorded in <code>_REFERENCES.md</code>. (reconciled under D-APP-38).</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-06-03-initial-chirality-mcp-read-tools">CLM-008 — Specification: DEL-06-03 Initial Chirality MCP Read Tools</h3>
+<h4 id="specification-del-06-03-initial-chirality-mcp-read-tools">Specification: DEL-06-03 Initial Chirality MCP Read Tools</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the initial in-process Chirality MCP read-tool slice for PKG-06. It covers deterministic MCP tool descriptors, wrapper metadata, execution behavior, and tests for status read, dependency read, bounded scope scan, and scaffold preview/dry-run behavior.</p>
+<p>In scope:</p>
+<ul>
+<li>- Define Chirality MCP tools using the <code>mcp__chirality__*</code> naming convention.</li>
+<li>- Implement or expose read-safe deterministic operations for status read, dependency read, bounded scope scan, and scaffold preview/dry-run.</li>
+<li>- Route the tools through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.</li>
+<li>- Preserve read-before-write sequencing by excluding write/edit/bash capability from this deliverable.</li>
+<li>- Provide deterministic wrapper metadata and MCP tool tests.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Status transition and dependency write execution except as adjacent naming/context for exclusion.</li>
+<li>- General SDK built-in read-tool resolver behavior owned by DEL-06-02.</li>
+<li>- Write/edit path hooks owned by DEL-06-04.</li>
+<li>- Bash governance owned by DEL-06-05.</li>
+<li>- Remote MCP, plugins, and domain-engine operations.</li>
+</ul>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-06-03-001</td><td>Chirality-specific deterministic operations in this slice MUST use <code>mcp__chirality__*</code> names.</td><td><code>docs/SPEC.md</code> Section 14.1; <code>docs/TYPES.md</code> Section 8.4</td></tr>
+<tr><td>REQ-06-03-002</td><td>The initial read-tool set MUST include <code>mcp__chirality__status_read</code>, <code>mcp__chirality__deps_read</code>, and <code>mcp__chirality__scope_scan</code>.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PRD.md</code> Section 8.13 FR-119</td></tr>
+<tr><td>REQ-06-03-003</td><td>The scaffold surface in this deliverable MUST be limited to preview/dry-run behavior where applicable and MUST NOT open uncontrolled scaffold writes.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>REQ-06-03-004</td><td>Chirality-owned tool definitions MUST declare schema, permissions, read-only behavior, concurrency behavior, interruption behavior, execution behavior, and summarization behavior.</td><td><code>docs/PRD.md</code> Section 8.13 FR-079</td></tr>
+<tr><td>REQ-06-03-005</td><td>Tool-surface construction MUST be deterministic for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-TOOL-1; <code>docs/PRD.md</code> Section 8.13 FR-080</td></tr>
+<tr><td>REQ-06-03-006</td><td>MCP tools MUST pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/PRD.md</code> Section 8.13 FR-119</td></tr>
+<tr><td>REQ-06-03-007</td><td>Denied tools MUST NOT execute and SHOULD be omitted from model context where possible.</td><td><code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> Section 8.13 FR-081</td></tr>
+<tr><td>REQ-06-03-008</td><td><code>allowedTools</code> MUST NOT be treated as a restriction boundary by itself; restriction MUST rely on deny rules, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> posture.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>REQ-06-03-009</td><td>In <code>readOnly</code> mode, these tools MUST NOT expose or allow write/edit/bash/network-capable actions.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-4; <code>docs/PRD.md</code> Section 8.14 FR-091</td></tr>
+<tr><td>REQ-06-03-010</td><td>Tool permission/start/completion/failure activity SHOULD be persisted as Chirality runtime events when the runtime event plumbing is available.</td><td><code>docs/PLAN.md</code> R2; <code>docs/PRD.md</code> Section 8.13 FR-083</td></tr>
+<tr><td>REQ-06-03-011</td><td>Status read behavior MUST treat <code>_STATUS.md</code> as the canonical lifecycle state source.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-STATUS-1; <code>docs/SPEC.md</code> Section 14.2</td></tr>
+<tr><td>REQ-06-03-012</td><td>Dependency read behavior MUST treat deliverable-local <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code> as dependency truth sources, with <code>Dependencies.csv</code> read/validation behavior where present.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-DEP-1; <code>docs/SPEC.md</code> Section 14.2</td></tr>
+<tr><td>REQ-06-03-013</td><td>Scope scan behavior MUST be bounded to the workspace/project root contract and must not scan arbitrary external locations.</td><td><code>docs/SPEC.md</code> Sections 14.2 and 17.2; <code>docs/CONTRACT.md</code> Section 1.6 K-PATH-2</td></tr>
+<tr><td>REQ-06-03-014</td><td>Unknown or unsupported MCP tool names MUST fail with structured validation errors rather than silent pass-through.</td><td><code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> Section 8.13 FR-078</td></tr>
+<tr><td>REQ-06-03-015</td><td>Dependency-read behavior MUST expose explicit structured absence or secondary-summary status when <code>Dependencies.csv</code> is absent and <code>_DEPENDENCIES.md</code> exists; it MUST NOT infer structured dependency rows from prose. Final result schema remains TBD pending DEL-07-05.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-DEP-1; <code>docs/SPEC.md</code> Sections 14.2 and 17.2; <code>_DEPENDENCIES.md</code> Extracted Dependency Register</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>SDK tool surface and Chirality MCP contract</td><td>Governs tool naming, initial tool set, deterministic ordering, and tool-surface rules.</td><td><code>docs/SPEC.md</code> Section 14</td></tr>
+<tr><td>Permission modes and hooks</td><td>Governs readOnly, workspaceWrite, dontAsk, ask, and bypass mapping to overlay policy.</td><td><code>docs/SPEC.md</code> Section 15</td></tr>
+<tr><td>Permission/tool/MCP invariants</td><td>Binding constraints for explicit hard-deny precedence, tool exposure, and MCP wrapper enforcement.</td><td><code>docs/CONTRACT.md</code> Section 1.6</td></tr>
+<tr><td>Lifecycle/dependency invariants</td><td>Binding constraints for <code>_STATUS.md</code>, dependency truth, provenance, and no-invention posture.</td><td><code>docs/CONTRACT.md</code> Section 1.7</td></tr>
+<tr><td>Permission and tool vocabulary</td><td>Defines permission modes, decision records, tool-surface terms, and MCP names.</td><td><code>docs/TYPES.md</code> Section 8</td></tr>
+<tr><td>R2 roadmap sequence</td><td>Requires permission-gated read surface and first MCP tools before write/bash expansion.</td><td><code>docs/PLAN.md</code> R2; <code>docs/PRD.md</code> roadmap row R2</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement(s)</td><td>Verification Approach</td></tr>
+<tr><td>REQ-06-03-001 through REQ-06-03-004</td><td>Unit-test exported MCP descriptors/wrapper metadata for names, schemas, permission class, read/write classification, concurrency/interruption declarations, execution binding, and summarization metadata. Proposed tests: <code>chirality-mcp-descriptor-schema</code>, <code>chirality-mcp-permission-class</code>, <code>chirality-mcp-readonly-classification</code>, <code>chirality-mcp-concurrency-interruption</code>, <code>chirality-mcp-execution-binding</code>, and <code>chirality-mcp-summarization-metadata</code>; final file paths TBD.</td></tr>
+<tr><td>REQ-06-03-005</td><td>Snapshot or table-driven tests proving deterministic ordering for a fixed session/persona/mode/option set.</td></tr>
+<tr><td>REQ-06-03-006 through REQ-06-03-010</td><td>Integration or adapter tests proving tools pass through permission overlay/hook/path/redaction/event paths and denied tools do not execute. Acceptance evidence should include permission decision records, hook invocation records, path-containment rejection fixtures, redaction assertions, event mirror records, and denied-execution assertions; final fixture paths TBD.</td></tr>
+<tr><td>REQ-06-03-011</td><td>Status read tests using <code>_STATUS.md</code> fixtures, including missing/malformed status handling.</td></tr>
+<tr><td>REQ-06-03-012 and REQ-06-03-015</td><td>Dependency read tests using absent, valid, and malformed <code>Dependencies.csv</code> fixtures, plus <code>_DEPENDENCIES.md</code>-only fixtures that assert explicit secondary-summary / not-structured-tracked behavior without invented rows. Final behavior must align with DEL-07-05 when its dependency API contract is accepted.</td></tr>
+<tr><td>REQ-06-03-013</td><td>Scope scan tests proving bounded root behavior and rejection of out-of-root scan requests.</td></tr>
+<tr><td>REQ-06-03-014</td><td>Unknown-tool validation tests asserting structured errors.</td></tr>
+<tr><td>Section 9 marker</td><td>Add or map runtime validation coverage to <code>section9.chirality_mcp_status_dependencies</code> when the Section 9 runner is active.</td></tr>
+</tbody></table>
+<h3 id="clm-013-acceptance-evidence-register">CLM-013 — Acceptance Evidence Register</h3>
+<h6 id="acceptance-evidence-register">Acceptance Evidence Register</h6>
+<table><tbody>
+<tr><td>Evidence Area</td><td>Required Evidence</td><td>Status</td></tr>
+<tr><td>Descriptor and wrapper metadata</td><td>Named tests or fixtures for schema, permission class, read-only behavior, concurrency, interruption, execution binding, and summarization metadata.</td><td>TBD - proposed test names listed above; implementation file paths not assigned.</td></tr>
+<tr><td>Policy traversal</td><td>Permission decision records, hook traversal records, path-containment evidence, redaction assertions, and event mirror records for Chirality MCP tool execution.</td><td>TBD - requires implementation and runtime event path availability.</td></tr>
+<tr><td>Section 9 coverage</td><td>Mapping to <code>section9.chirality_mcp_status_dependencies</code> for status/dependency MCP behavior.</td><td>TBD - active when Section 9 runner accepts this validation ID.</td></tr>
+<tr><td>Dependency fallback</td><td>Fixture proving <code>_DEPENDENCIES.md</code>-only state returns explicit non-structured / secondary-summary status and does not synthesize <code>Dependencies.csv</code> rows.</td><td>TBD - final schema depends on DEL-07-05.</td></tr>
+</tbody></table>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts:</p>
+<ul>
+<li>- <code>mcp__chirality__*</code> tool definitions for the read-tool slice.</li>
+<li>- Wrapper metadata documenting schema, permissions, read-only behavior, concurrency, interruption, execution, and summarization behavior.</li>
+<li>- MCP tool tests and fixtures for status read, dependency read, bounded scope scan, scaffold preview/dry-run, deterministic ordering, and denial behavior.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-015-conflict-table">CLM-015 — Conflict Table</h3>
+<h5 id="conflict-table">Conflict Table</h5>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h3 id="clm-016-pass-3-notes">CLM-016 — Pass 3 Notes</h3>
+<h5 id="pass-3-notes">Pass 3 Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>F-001</td><td>Converted to named TBD evidence</td><td>Concrete descriptor/wrapper metadata test names were added, while final implementation paths remain <code>TBD</code>. Source reread: <code>docs/PRD.md</code> Section 8.13 FR-079; <code>docs/SPEC.md</code> Section 14.</td></tr>
+<tr><td>F-002</td><td>Incorporated with TBD artifact paths</td><td>Acceptance evidence for permission, hook, path, redaction, and event-policy traversal is now explicit. Source reread: <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/SPEC.md</code> Section 14.3.</td></tr>
+<tr><td>X-002</td><td>Incorporated with TBD closure paths</td><td>Verification now names concrete evidence categories and Section 9 mapping while preserving implementation paths as <code>TBD</code>. Source reread: <code>docs/SPEC.md</code> Section 19.3; <code>docs/PRD.md</code> Section 8.13 FR-079 and FR-083.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — The converted contract preserves every legacy source line with hash-bound migration markers, retains the initial read-tool scope and exclusions, and provides verification coverage for naming, wrapper metadata, permission and deny behavior, lifecycle and dependency reads, bounded scans, no-write scaffold preview, and unresolved dependency closure.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-06-03-initial-chirality-mcp-read-tools">CLM-017 — Procedure: DEL-06-03 Initial Chirality MCP Read Tools</h3>
+<h4 id="procedure-del-06-03-initial-chirality-mcp-read-tools">Procedure: DEL-06-03 Initial Chirality MCP Read Tools</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure for producing and verifying the DEL-06-03 MCP read-tool implementation artifacts. The procedure is constrained to the read-tool slice: status read, dependency read, bounded scope scan, and scaffold preview/dry-run.</p>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Source</td></tr>
+<tr><td>Accepted decomposition scope for DEL-06-03</td><td>Available in <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Section 7.6 and Section 9.</td></tr>
+<tr><td>Source contracts for MCP tools and permissions</td><td>Available in <code>docs/SPEC.md</code> Sections 14-15, <code>docs/CONTRACT.md</code> Section 1.6, and <code>docs/PRD.md</code> Sections 8.13-8.14.</td></tr>
+<tr><td>Runtime sequence context</td><td>R2 requires permission-gated read surface before writes/bash; see <code>docs/PLAN.md</code> R2.</td></tr>
+<tr><td>Declared upstream dependencies</td><td>Active unresolved interfaces are recorded in <code>_DEPENDENCIES.md</code>: DEL-06-01 permission overlay integration, DEL-07-05 dependency reader behavior, UNKNOWN/TBD status lifecycle API owner, and UNKNOWN/TBD Chirality runtime event path. Closure requires human or upstream acceptance of these states.</td></tr>
+<tr><td>Implementation module locations</td><td>TBD - no implementation path is specified in the accessible sources for this deliverable.</td></tr>
+<tr><td>PRD source state</td><td><code>docs/PRD.md</code> is <code>MATCH</code> in <code>_REFERENCES.md</code> under D-APP-38.</td></tr>
+</tbody></table>
+<h3 id="clm-020-implementation-location-worklist">CLM-020 — Implementation Location Worklist</h3>
+<h6 id="implementation-location-worklist">Implementation Location Worklist</h6>
+<table><tbody>
+<tr><td>Component</td><td>Expected Location Evidence</td><td>Status</td></tr>
+<tr><td>MCP definitions</td><td>Module exporting <code>mcp__chirality__status_read</code>, <code>mcp__chirality__deps_read</code>, <code>mcp__chirality__scope_scan</code>, and scaffold preview/dry-run descriptor.</td><td>TBD - owner/path not assigned in accessible sources.</td></tr>
+<tr><td>Wrapper metadata</td><td>Shared metadata table or builder for schema, permissions, read-only class, concurrency, interruption, execution, summarization, redaction, and events.</td><td>TBD - owner/path not assigned in accessible sources.</td></tr>
+<tr><td>Status reader</td><td>Adapter/parser for <code>_STATUS.md</code> snapshot read; final ownership should align with DEL-07-04.</td><td>TBD - status lifecycle API owner unresolved in <code>_DEPENDENCIES.md</code>.</td></tr>
+<tr><td>Dependency reader</td><td>Adapter/parser for <code>Dependencies.csv</code> plus <code>_DEPENDENCIES.md</code>-only absence/secondary-summary behavior; final ownership should align with DEL-07-05.</td><td>TBD - DEL-07-05 alignment unresolved in <code>_DEPENDENCIES.md</code>.</td></tr>
+<tr><td>Scope scan</td><td>Bounded workspace scope scanner or adapter.</td><td>TBD - owner/path not assigned in accessible sources.</td></tr>
+<tr><td>Scaffold preview</td><td>Dry-run/preview adapter that does not apply filesystem writes.</td><td>TBD - owner/path not assigned in accessible sources.</td></tr>
+</tbody></table>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the active scope.</p>
+<p>Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, and the DEL-06-03 decomposition row. Confirm the scope remains &quot;Expose in-process deterministic MCP tools for status read, dependency read, scope scan, and scaffold preview/dry-run.&quot;</p>
+<p>2. Establish the tool inventory.</p>
+<p>Include <code>mcp__chirality__status_read</code>, <code>mcp__chirality__deps_read</code>, <code>mcp__chirality__scope_scan</code>, and scaffold preview/dry-run behavior for <code>mcp__chirality__scaffold</code> where applicable. Exclude write/gated operations unless they are represented only as denied or adjacent metadata.</p>
+<p>3. Define wrapper metadata.</p>
+<p>For each tool, declare schema, permissions, read-only behavior, concurrency behavior, interruption behavior, execution behavior, summarization behavior, redaction/event metadata, and denial behavior.</p>
+<p>4. Wire permission evaluation.</p>
+<p>Route each tool through the Chirality permission overlay, deny rules, relevant hooks, and mode policy. Confirm <code>allowedTools</code> is not used as a standalone restriction boundary.</p>
+<p>5. Implement status read.</p>
+<p>Read <code>_STATUS.md</code> as canonical lifecycle truth. Return a structured result with source path, parsed state, warnings, and malformed/missing handling. Do not apply lifecycle transitions in this tool.</p>
+<p>6. Implement dependency read.</p>
+<p>Read and validate <code>Dependencies.csv</code> when present. If it is absent but <code>_DEPENDENCIES.md</code> exists, return an explicit missing/not-tracked status and do not infer dependency rows. Align final behavior with the dependency contract owner when available.</p>
+<p>7. Implement bounded scope scan.</p>
+<p>Run a workspace/project-root bounded scan that reports package/deliverable identities and rejects out-of-root or non-project scan targets. Preserve stable IDs as identity.</p>
+<p>8. Implement scaffold preview/dry-run.</p>
+<p>Produce a preview of scaffold effects without applying filesystem writes. If the underlying scaffold service can write, enforce dry-run mode or deny write execution in this deliverable.</p>
+<p>9. Emit runtime events where available.</p>
+<p>Persist or adapt permission, started, completed, and failed tool events through the Chirality runtime event path. The runtime event path owner is currently <code>UNKNOWN/TBD</code> in <code>_DEPENDENCIES.md</code>; until accepted upstream ownership exists, keep this as a tracked closure blocker and add tests around the expected event contract rather than silently treating event persistence as complete.</p>
+<p>10. Add tests.</p>
+<p>Cover descriptors, deterministic ordering, permission denial, readOnly behavior, unknown-tool errors, status fixtures, dependency fixtures, bounded scan rejection, scaffold preview/no-write behavior, and relevant Section 9 validation mapping.</p>
+<p>11. Re-check cross-deliverable boundaries.</p>
+<p>Confirm the implementation has not absorbed DEL-06-01 permission policy ownership, DEL-06-02 SDK built-in tool resolver ownership, DEL-06-04 write/path hook ownership, DEL-06-05 bash governance, or remote/domain MCP scope.</p>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Tool names</td><td>Only accepted Chirality MCP names use the <code>mcp__chirality__*</code> namespace; unknown names fail with structured errors.</td></tr>
+<tr><td>Descriptor completeness</td><td>Each Chirality-owned tool declares schema, permissions, read-only behavior, concurrency, interruption, execution, and summarization behavior.</td></tr>
+<tr><td>Deterministic surface</td><td>Tool ordering and metadata are stable for fixed session/persona/mode/option input.</td></tr>
+<tr><td>Capability policy with explicit hard-deny precedence</td><td>Denied tools do not execute; <code>allowedTools</code> alone is not treated as restriction.</td></tr>
+<tr><td>Read-only mode</td><td>Write/edit/bash/network-capable behavior is unavailable or hard-denied.</td></tr>
+<tr><td>Status read</td><td><code>_STATUS.md</code> is the only lifecycle truth source.</td></tr>
+<tr><td>Dependency read</td><td><code>Dependencies.csv</code> is read/validated when present; absence is explicit rather than inferred.</td></tr>
+<tr><td>Scope scan</td><td>Out-of-root scans are rejected.</td></tr>
+<tr><td>Scaffold preview</td><td>Dry-run/preview does not apply filesystem writes.</td></tr>
+<tr><td>Runtime events</td><td>Permission/start/completion/failure events are persisted or an explicit pending integration contract is tested.</td></tr>
+<tr><td>Upstream dependency closure</td><td>DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership are accepted or recorded as closure blockers.</td></tr>
+<tr><td>Source-state status</td><td><code>docs/PRD.md</code> REF-006 is <code>MATCH</code> under D-APP-38.</td></tr>
+</tbody></table>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- MCP tool definitions.</li>
+<li>- Wrapper metadata.</li>
+<li>- Unit/API/integration test fixtures.</li>
+<li>- Validation output for deterministic ordering and denial behavior.</li>
+<li>- Status/dependency/scope/scaffold preview test results.</li>
+<li>- Section 9 validation mapping, including <code>section9.chirality_mcp_status_dependencies</code> where applicable.</li>
+<li>- Source-state note: <code>docs/PRD.md</code> REF-006 is <code>MATCH</code> under D-APP-38; dated mismatch history remains in prior run records.</li>
+<li>- Implementation location map for MCP definitions, wrapper metadata, status reader, dependency reader, scope scan, and scaffold preview.</li>
+<li>- Upstream closure record for DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership.</li>
+<li>- Runtime event contract blocker record if the Chirality runtime event path remains unavailable.</li>
+</ul>
+<h3 id="clm-024-pass-3-notes">CLM-024 — Pass 3 Notes</h3>
+<h5 id="pass-3-notes">Pass 3 Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>D-001</td><td>Converted to TBD worklist</td><td>Implementation module locations are named as required closure evidence, with all paths kept <code>TBD</code> because accessible sources do not assign ownership. Source reread: <code>_CONTEXT.md</code> Anticipated Artifacts; decomposition row <code>DEL-06-03</code>; <code>Procedure.md</code> Prerequisites and Records.</td></tr>
+<tr><td>D-002</td><td>Incorporated as closure blocker</td><td>Upstream dependency state now names DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership as closure blockers or acceptance requirements. Source reread: <code>_DEPENDENCIES.md</code> Extracted Dependency Register and Open dependency closure items.</td></tr>
+<tr><td>E-001</td><td>Converted to tracked blocker</td><td>Runtime-event wording now requires a cited event path or explicit blocker/test contract rather than treating availability as optional. Source reread: <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/PRD.md</code> Section 8.13 FR-083; <code>_DEPENDENCIES.md</code> open runtime event path item.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the SOW schema and source parity; inspect deterministic descriptor, permission, hook, path, redaction, event, status, dependency, bounded-scan, scaffold-preview, and Section 9 evidence, with human review of unresolved TBD dependency interfaces.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-06-03-initial-chirality-mcp-read-tools">CLM-025 — Guidance: DEL-06-03 Initial Chirality MCP Read Tools</h3>
+<h4 id="guidance-del-06-03-initial-chirality-mcp-read-tools">Guidance: DEL-06-03 Initial Chirality MCP Read Tools</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-026-purpose">CLM-026 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-06-03 provides the first Chirality-owned in-process MCP read tools so the runtime can expose deterministic project-state operations without opening write, edit, shell, remote MCP, plugin, or domain-operation capability. The deliverable supports OBJ-005 by keeping tool exposure behind capability policy with explicit hard-deny precedence and MCP wrappers, and OBJ-006 by reading filesystem-native project truth.</p>
+<p>Source basis: <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Sections 6-7 and 9; <code>docs/PLAN.md</code> R2; <code>docs/PRD.md</code> Sections 8.13-8.14.</p>
+<h3 id="clm-027-principles">CLM-027 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Read tools come first.</p>
+<p>The R2 slice enables SDK read tools and Chirality read MCP tools before write/edit/bash capability. Treat this deliverable as a read-surface and descriptor/wrapper contract, not a general tool expansion.</p>
+<p>2. MCP is a transport, not a policy escape.</p>
+<p>In-process Chirality MCP tools must go through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. A tool being implemented locally does not make it safe to expose.</p>
+<p>3. Determinism is part of the contract.</p>
+<p>Tool naming, ordering, server IDs, wrapper metadata, and allow/deny behavior should be table-driven or otherwise stable for a fixed runtime configuration.</p>
+<p>4. Explicit hard-deny precedence is non-negotiable.</p>
+<p><code>allowedTools</code> may auto-approve, but it is not a restriction boundary. Denies from policy, hooks, path containment, governance, SDK deny rules, or human gates must win.</p>
+<p>5. Filesystem truth remains local and inspectable.</p>
+<p>Status and dependency tools should read the canonical project files, not hidden runtime state. Unknowns and malformed records should produce explicit results rather than inferred project truth.</p>
+<h3 id="clm-028-considerations">CLM-028 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Tool boundaries</td><td>Keep <code>status_transition</code> and <code>deps_write</code> out of this read-tool slice except as excluded adjacent tools.</td><td><code>docs/SPEC.md</code> Section 14.2</td></tr>
+<tr><td>Scaffold behavior</td><td><code>mcp__chirality__scaffold</code> is listed as gated. For this deliverable, implement only preview/dry-run behavior where applicable unless a later write-surface gate authorizes more.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R2</td></tr>
+<tr><td>Dependency reads</td><td>Prefer a clear <code>Dependencies.csv</code> validation result. Behavior when the deliverable has <code>_DEPENDENCIES.md</code> but no <code>Dependencies.csv</code> is TBD and should align with DEL-07-05.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-DEP-1; <code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>Status reads</td><td>Read <code>_STATUS.md</code> as canonical lifecycle state. Do not infer status from folder names, chat state, runtime events, or document presence.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-STATUS-1</td></tr>
+<tr><td>Scope scan</td><td>Scope scan should stay bounded to the selected working root and stable deliverable IDs.</td><td><code>docs/SPEC.md</code> Sections 17.2 and 14.2; <code>docs/CONTRACT.md</code> K-PATH-2</td></tr>
+<tr><td>Runtime events</td><td>Permission/start/completion/failure event persistence may depend on R1/R2 runtime plumbing. If not available, expose a typed integration seam and tests around the expected behavior.</td><td><code>docs/PLAN.md</code> R2; <code>docs/PRD.md</code> Section 8.13 FR-083</td></tr>
+<tr><td>PRD hash warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code>; task brief — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-029-source-state-posture">CLM-029 — Source-State Posture</h3>
+<h6 id="source-state-posture">Source-State Posture</h6>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision Area</td><td>Trade-off</td><td>Recommended Posture</td></tr>
+<tr><td>Single wrapper vs per-tool wrappers</td><td>A shared wrapper improves consistent permission/event/redaction behavior; per-tool wrappers can drift.</td><td>Use a shared wrapper contract with per-tool metadata and execution handlers.</td></tr>
+<tr><td>Scaffold included vs deferred</td><td>SPEC lists scaffold as gated; PLAN R2 calls for scaffold preview/dry-run where appropriate.</td><td>Include dry-run/preview only, with write execution denied or delegated to later gated surfaces.</td></tr>
+<tr><td>Dependency file absence</td><td><code>Dependencies.csv</code> may not exist early in a deliverable lifecycle.</td><td>Return an explicit &quot;not present / not tracked yet&quot; result; do not fabricate dependencies.</td></tr>
+<tr><td>Event coupling</td><td>Full event persistence may not be complete when read tools are first drafted.</td><td>Keep event emission/adaptation explicit and testable; mark unavailable runtime pieces <code>TBD</code> instead of embedding hidden behavior.</td></tr>
+<tr><td>SDK-specific APIs</td><td>PRD references SDK MCP APIs, but Chirality contracts must remain product-owned.</td><td>Use SDK APIs behind product-owned wrappers and tests; do not leak SDK-shaped public contracts.</td></tr>
+</tbody></table>
+<h3 id="clm-031-scaffold-boundary-rationale">CLM-031 — Scaffold Boundary Rationale</h3>
+<h6 id="scaffold-boundary-rationale">Scaffold Boundary Rationale</h6>
+<p>Scaffold preview belongs in this read-tool slice only as a non-mutating planning surface. <code>docs/SPEC.md</code> Section 14.2 classifies <code>mcp__chirality__scaffold</code> as gated, while <code>docs/PLAN.md</code> R2 sequences read and preview capability before write/edit/bash expansion. The practical boundary is therefore: allow a deterministic preview of intended scaffold effects, deny or defer filesystem mutation, and move any write-capable scaffold execution to the later governed write/path-hook surface.</p>
+<h3 id="clm-032-examples">CLM-032 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Example read-tool inventory:</p>
+<table><tbody>
+<tr><td>Tool</td><td>Expected Result Shape</td></tr>
+<tr><td><code>mcp__chirality__status_read</code></td><td>Parsed <code>_STATUS.md</code> snapshot plus source path, parse warnings, and raw/normalized state fields.</td></tr>
+<tr><td><code>mcp__chirality__deps_read</code></td><td><code>Dependencies.csv</code> validation summary when present; explicit missing/not-tracked status when absent; warnings sourced to files.</td></tr>
+<tr><td><code>mcp__chirality__scope_scan</code></td><td>Bounded package/deliverable scan summary with stable IDs and rejected out-of-root requests.</td></tr>
+<tr><td><code>mcp__chirality__scaffold</code></td><td>Preview/dry-run plan showing intended scaffold effects without applying filesystem writes.</td></tr>
+</tbody></table>
+<p>Example wrapper metadata fields:</p>
+<ul>
+<li>- Tool name.</li>
+<li>- MCP server ID.</li>
+<li>- Input schema.</li>
+<li>- Permission class.</li>
+<li>- Read/write classification.</li>
+<li>- Concurrency policy.</li>
+<li>- Interruption policy.</li>
+<li>- Execution handler reference.</li>
+<li>- Result summarization behavior.</li>
+<li>- Redaction/event metadata.</li>
+<li>- Denial behavior.</li>
+</ul>
+<h3 id="clm-033-conflict-table-for-human-ruling">CLM-033 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>N/A</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Task brief</td><td>References and source confidence</td><td>Treat as warning per task brief; re-check hash before implementation closure.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-034-pass-3-notes">CLM-034 — Pass 3 Notes</h3>
+<h5 id="pass-3-notes">Pass 3 Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>X-001</td><td>Incorporated as source-state posture</td><td>PRD MATCH handling is now explicit before PRD-only policy detail can be used for closure. Source reread: <code>_REFERENCES.md</code> REF-006; <code>docs/PRD.md</code> Section 8.13; <code>docs/CONTRACT.md</code> Section 1.6. — reconciled under D-APP-38</td></tr>
+<tr><td>E-002</td><td>Incorporated</td><td>Scaffold preview rationale now explains why preview/dry-run is in scope while write-capable scaffold execution remains gated. Source reread: <code>docs/SPEC.md</code> Section 14.2; <code>docs/PLAN.md</code> R2.</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-048 SOW-050 OBJ-005 OBJ-006</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

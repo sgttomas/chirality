@@ -1,0 +1,20 @@
+{
+  "status": "SUCCESS",
+  "terminal": true,
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A2-PKG04",
+  "child_instance_id": "AUTHOR-DEL-04-04",
+  "package_id": "PKG-04",
+  "deliverable_id": "DEL-04-04",
+  "candidate_sha256": "9d7a5de67db2b656f86246b1f2f466862ae60e53102d011be6910555afab15b6",
+  "format": "MIGRATION_DUAL",
+  "lifecycle": "IN_PROGRESS",
+  "schema_verdict": "PASS",
+  "content_authority_verdict": "PASS",
+  "preservation_verdict": "PASS",
+  "execution_substrate_verdict": "PASS",
+  "mapping_rows": 30,
+  "manifest": "COMPLETE",
+  "manifest_rows": 23,
+  "blockers": []
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 264,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "45157c90dfbb088b522d8299d5b9df5c06acb04dd61bc7c6610ff9c33685cd75"
+      },
+      "text": "The DEL-04-01 evidence package records the first-adapter probe results and a version-pinned adoption decision, including provider/SDK message mapping, SDK session link and transcript placement, fallback triggers, future-provider criteria, and residual-risk notes, for SOW-018, SOW-044, SOW-046 and OBJ-004.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-04-01-VER-001",
+          "source_line": 441,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the DEL-04-01 evidence package against SOW-018, SOW-044, SOW-046, OBJ-004, and the preserved legacy requirements to confirm the probe notes, pinned-version decision, mappings, transcript treatment, fallback and future-provider criteria, and residual-risk notes are present."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-04-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-04",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "45157c90dfbb088b522d8299d5b9df5c06acb04dd61bc7c6610ff9c33685cd75"
+  },
+  "tool_version": "1"
+}

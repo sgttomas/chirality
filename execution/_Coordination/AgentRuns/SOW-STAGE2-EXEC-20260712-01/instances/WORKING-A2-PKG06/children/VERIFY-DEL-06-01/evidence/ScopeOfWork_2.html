@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="083c90fda686a7ecc53e6b1b361872341c01da11da64c41a789178b06afa807a">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>083c90fda686a7ecc53e6b1b361872341c01da11da64c41a789178b06afa807a</code>.</p>
+<h1 id="scope-of-work-del-06-01">Scope of Work — DEL-06-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-06-01</code> in service of project scope [SOW-054, SOW-055, SOW-056, SOW-058] and package objectives [OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Permission overlay module; decision records; readOnly/dontAsk/ask tests; hard-deny precedence tests.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-01-chiralitypermissionoverlay-and-mode-mapping">CLM-001 — Datasheet: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h3>
+<h4 id="datasheet-del-06-01-chiralitypermissionoverlay-and-mode-mapping">Datasheet: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-01</td></tr>
+<tr><td>Deliverable name</td><td>ChiralityPermissionOverlay and Mode Mapping</td></tr>
+<tr><td>Package</td><td>PKG-06 Permissioned Tools, MCP, and Hooks</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>Responsible party</td><td>TBD</td></tr>
+<tr><td>Decomposition variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Scope items</td><td>SOW-054, SOW-055, SOW-056, SOW-058</td></tr>
+<tr><td>Objective context</td><td>OBJ-005</td></tr>
+<tr><td>Anticipated artifacts</td><td>Permission overlay module; decision records; readOnly/dontAsk/ask tests</td></tr>
+</tbody></table>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot; and scope ledger rows SOW-054 through SOW-058.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary control</td><td><code>ChiralityPermissionOverlay</code></td><td><code>docs/PRD.md</code> Section 9.4, MATCH status; decomposition glossary — reconciled under D-APP-38</td></tr>
+<tr><td>Decision record</td><td><code>HarnessPermissionDecision</code> with <code>allow</code>, <code>deny</code>, or application-level <code>ask</code></td><td><code>docs/TYPES.md</code> Section 8.2</td></tr>
+<tr><td>Decision sources</td><td><code>sdk-option</code>, <code>sdk-callback</code>, <code>chirality-policy</code>, <code>hook</code>, <code>human</code>, <code>prompt-support</code></td><td><code>docs/TYPES.md</code> Section 8.2</td></tr>
+<tr><td>Permission modes in scope</td><td><code>readOnly</code>, <code>workspaceWrite</code>, <code>dontAsk</code>, <code>ask</code>, <code>bypass</code></td><td><code>docs/TYPES.md</code> Section 8.1; <code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>Core precedence rule</td><td>Deny overrides allow</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1; <code>docs/PRD.md</code> NFR-007, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Restriction boundary</td><td><code>allowedTools</code> alone is not a restriction boundary</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3; <code>docs/PRD.md</code> KG-023, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Interactive approval path</td><td><code>canUseTool</code> mediates application approval; decision must be persisted before returning SDK allow/deny</td><td><code>docs/SPEC.md</code> Section 15.1; decomposition row SOW-058</td></tr>
+<tr><td>Event obligation</td><td>Persist <code>tool.permission</code> events for governed tool attempts</td><td><code>docs/PRD.md</code> R2 acceptance, MATCH status; decomposition row SOW-056 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Constraint</td><td>Source</td></tr>
+<tr><td>PRD source state</td><td><code>docs/PRD.md</code> is accessible but has MATCH in <code>_REFERENCES.md</code>; PRD-derived details are treated as source-state evidence, not as unqualified accepted truth.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+<tr><td>Read-only mode</td><td>Must not expose or allow write/edit/bash/network-capable actions.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-4; <code>docs/TYPES.md</code> Section 8.1</td></tr>
+<tr><td><code>dontAsk</code> mode</td><td>Denies unapproved actions without prompting; unapproved writes, shell, network, and unknown tools deny.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-5; <code>docs/TYPES.md</code> Section 8.1</td></tr>
+<tr><td><code>ask</code> mode</td><td>Application may request interactive approval for governed actions; SDK callback ultimately returns allow or deny.</td><td><code>docs/TYPES.md</code> Sections 8.1 and 8.2</td></tr>
+<tr><td><code>bypass</code> mode</td><td>Developer-local only, never shipped ordinary mode, and still subject to Chirality denies.</td><td><code>docs/TYPES.md</code> Section 8.1; <code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>Hook separation</td><td>DEL-06-01 covers permission policy and approval mediation; detailed hook implementation is assigned to DEL-06-04 and DEL-06-06.</td><td><code>_CONTEXT.md</code>; decomposition PKG-06 rows</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction note</td><td>Source</td></tr>
+<tr><td>Overlay input</td><td>Session, optional turn, selected Chirality mode, requested tool name, resolved tool-surface posture, and explicit policy/hook/human-gate signals needed to decide tool permission. Exact TypeScript interface shape remains TBD until implementation ownership is assigned.</td><td><code>docs/TYPES.md</code> Section 8.2; <code>docs/SPEC.md</code> Sections 14.3 and 15.1; <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1</td></tr>
+<tr><td>Mode mapper</td><td>Maps Chirality modes to SDK posture plus overlay behavior.</td><td><code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>Deny evaluation</td><td>Any explicit deny from policy, path containment, hook, governance, SDK deny rule, or human gate blocks execution.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1</td></tr>
+<tr><td>Decision persistence</td><td>A structured permission decision is recorded before downstream execution or before returning an SDK approval result.</td><td><code>docs/TYPES.md</code> Section 8.2; decomposition rows SOW-054 and SOW-058</td></tr>
+<tr><td>Event integration</td><td>Tool attempts emit permission/start/completion/failure events in the R2 scope.</td><td><code>docs/PRD.md</code> R2 implementation targets, MATCH status; <code>docs/TYPES.md</code> Section 7.3 later event categories — reconciled under D-APP-38</td></tr>
+<tr><td>Tests</td><td>Include readOnly, dontAsk, and ask behavior tests. Exact test paths and fixtures: TBD.</td><td><code>_CONTEXT.md</code>; decomposition DEL-06-01 anticipated artifacts</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td><td>Source state</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code> Section 1.6</td><td>Binding permission, tool, MCP, hook, path, and bash invariants</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code> Sections 14 and 15</td><td>Tool names, MCP tools, tool surface rules, mode mapping, hook requirements</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code> Section 8</td><td>Permission modes, decision record, tool-surface terms</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code> R2 and R3</td><td>Sequencing and acceptance context</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code> Sections 9.4, R2, R3, NFR-007, KG-023</td><td>Product requirements and implementation direction</td><td>MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Deliverable scope, SOW coverage, package boundaries</td><td>accepted v3.2 working surface</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-06-01-chiralitypermissionoverlay-and-mode-mapping">CLM-007 — Specification: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h3>
+<h4 id="specification-del-06-01-chiralitypermissionoverlay-and-mode-mapping">Specification: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-06-01 specifies the Chirality permission overlay and mode mapping needed to mediate governed tool use in PKG-06. It covers structured permission decisions, explicit hard-deny precedence, Chirality-to-SDK mode posture, <code>canUseTool</code> approval mediation, and permission-event persistence for governed tool attempts.</p>
+<p>In scope:</p>
+<ul>
+<li>- Produce a permission overlay module that can return structured allow, deny, or application-level ask decisions.</li>
+<li>- Map <code>readOnly</code>, <code>workspaceWrite</code>, <code>dontAsk</code>, <code>ask</code>, and developer-local <code>bypass</code> to SDK posture plus Chirality overlay behavior.</li>
+<li>- Ensure explicit denies override SDK or policy allows.</li>
+<li>- Persist permission decisions and <code>tool.permission</code> event evidence before execution continues.</li>
+<li>- Provide tests for <code>readOnly</code>, <code>dontAsk</code>, and <code>ask</code> behavior.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Detailed path containment, instruction-root protection, symlink rejection, write provenance, and hook lifecycle implementation, which belong to DEL-06-04 and DEL-06-06.</li>
+<li>- Tool resolver, deterministic tool ordering, read MCP implementations, and unknown-tool validation, except where their outputs feed this overlay. Those belong primarily to DEL-06-02 and DEL-06-03.</li>
+<li>- Remote MCP, plugin marketplace, and broad tool search, which are out of current scope without governed amendment.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06 rows; <code>docs/SPEC.md</code> Sections 14 and 15; <code>docs/PRD.md</code> R2/R3 with MATCH status. (reconciled under D-APP-38).</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-06-01-REQ-001</td><td>The permission overlay MUST produce or persist a structured <code>HarnessPermissionDecision</code> with <code>decisionId</code>, <code>sessionId</code>, <code>toolName</code>, <code>decision</code>, <code>reason</code>, <code>source</code>, <code>decidedAt</code>, and optional safe metadata.</td><td><code>docs/TYPES.md</code> Section 8.2; decomposition SOW-054</td></tr>
+<tr><td>DEL-06-01-REQ-002</td><td>The decision value MUST be one of <code>allow</code>, <code>deny</code>, or application-level <code>ask</code>; <code>ask</code> MUST resolve to an SDK allow or deny before SDK callback return.</td><td><code>docs/TYPES.md</code> Section 8.2; decomposition SOW-058</td></tr>
+<tr><td>DEL-06-01-REQ-003</td><td>Deny MUST override allow when any explicit deny is produced by policy, path containment, hook, governance, SDK deny rule, or human gate.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1</td></tr>
+<tr><td>DEL-06-01-REQ-004</td><td>The overlay MUST NOT treat <code>allowedTools</code> alone as a restriction boundary. Restriction MUST use disallowed tools, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> posture.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3</td></tr>
+<tr><td>DEL-06-01-REQ-005</td><td>In <code>readOnly</code>, write/edit/bash/network-capable tools and unexpected tools MUST be denied or not exposed.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-4; <code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>DEL-06-01-REQ-006</td><td>In <code>dontAsk</code>, exact safe tools may be pre-approved, and everything else MUST deny without prompting.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-5; <code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>DEL-06-01-REQ-007</td><td>In <code>ask</code>, governed writes or shell requests MUST be mediated through <code>canUseTool</code> and UI approval, and the decision MUST be persisted before returning allow or deny.</td><td><code>docs/SPEC.md</code> Section 15.1; decomposition SOW-058</td></tr>
+<tr><td>DEL-06-01-REQ-008</td><td>In <code>workspaceWrite</code>, SDK edit acceptance MUST be allowed only after write hooks pass; otherwise explicit approval posture is required.</td><td><code>docs/SPEC.md</code> Section 15.1; <code>docs/PRD.md</code> R3, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-01-REQ-009</td><td><code>bypass</code> MUST be developer-local only, never shipped as ordinary operator behavior, and still subject to Chirality denies.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-6; <code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td>DEL-06-01-REQ-010</td><td>Governed tool attempts MUST produce <code>tool.permission</code> evidence including source, reason, and safe SDK metadata when available.</td><td>decomposition SOW-056; <code>docs/PRD.md</code> R2 implementation targets, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-01-REQ-011</td><td>Prompt text MUST NOT be treated as a safety boundary for filesystem writes, tool exposure, bash, subagents, or domain operations.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-2</td></tr>
+<tr><td>DEL-06-01-REQ-012</td><td>In-process Chirality MCP tools MUST pass through the same permission policy as SDK built-ins when the overlay evaluates them.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/SPEC.md</code> Section 14.2</td></tr>
+<tr><td>DEL-06-01-REQ-013</td><td>The permission overlay MUST keep public Chirality contracts product-owned rather than SDK-shaped, with SDK-specific values translated as adapter metadata where needed.</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-ENGINE-4; <code>docs/PRD.md</code> Section 9.4, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-01-REQ-014</td><td>Tests MUST cover <code>readOnly</code>, <code>dontAsk</code>, and <code>ask</code> mode behavior, including denied tool non-execution and permission-event persistence.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> R2 acceptance, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-01-REQ-015</td><td>The overlay input contract MUST include enough product-owned context to evaluate session identity, optional turn identity, requested tool name, Chirality mode, resolved tool-surface posture, and explicit deny/approval signals without making SDK request objects the public contract.</td><td><code>docs/TYPES.md</code> Section 8.2; <code>docs/SPEC.md</code> Sections 14.3 and 15.1; <code>docs/CONTRACT.md</code> Section 1.5 K-ENGINE-4</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Section 1.6</td><td>Binding invariants for permission, tool exposure, hooks, MCP, path, and bash behavior.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 8</td><td>Vocabulary and target shape for permission modes, permission decisions, tool terms, and <code>canUseTool</code>.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 14 and 15</td><td>Runtime tool surface, MCP tool names, tool surface rules, and Chirality-to-SDK mode mapping.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R2/R3</td><td>Roadmap sequencing: permission-gated read surface before controlled writes and hooks.</td></tr>
+<tr><td><code>docs/PRD.md</code> R2/R3</td><td>Product implementation direction; use with MATCH status from <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-06-01-REQ-001, REQ-002</td><td>Unit tests assert decision record shape, allowed enum values, <code>ask</code> resolution, and safe metadata handling.</td></tr>
+<tr><td>DEL-06-01-REQ-003</td><td>Precedence tests inject simultaneous allow and deny sources and assert final deny.</td></tr>
+<tr><td>DEL-06-01-REQ-004</td><td>Tests prove <code>allowedTools</code> does not restrict by itself and that <code>disallowedTools</code>, mode policy, hooks, <code>canUseTool</code>, or <code>dontAsk</code> enforce restriction.</td></tr>
+<tr><td>DEL-06-01-REQ-005</td><td><code>readOnly</code> tests assert write/edit/bash/network-capable and unexpected tools deny or remain unexposed.</td></tr>
+<tr><td>DEL-06-01-REQ-006</td><td><code>dontAsk</code> tests assert only exact safe tools are allowed and unknown/unapproved actions deny without UI approval.</td></tr>
+<tr><td>DEL-06-01-REQ-007</td><td><code>ask</code> tests assert UI-mediated approval path persists the decision before SDK callback return.</td></tr>
+<tr><td>DEL-06-01-REQ-008</td><td>Integration or contract tests assert <code>workspaceWrite</code> cannot allow edits unless hooks report pass. Hook internals remain owned by DEL-06-04.</td></tr>
+<tr><td>DEL-06-01-REQ-009</td><td>Release/configuration tests assert ordinary shipped modes cannot select SDK <code>bypassPermissions</code>; developer-local use still applies Chirality denies.</td></tr>
+<tr><td>DEL-06-01-REQ-010</td><td>Runtime event tests assert <code>tool.permission</code> records source, reason, and safe SDK metadata for governed attempts.</td></tr>
+<tr><td>DEL-06-01-REQ-011</td><td>Negative tests assert prompt-only permission claims cannot authorize tool exposure or execution.</td></tr>
+<tr><td>DEL-06-01-REQ-012</td><td>MCP wrapper tests assert Chirality MCP tool attempts pass through overlay evaluation.</td></tr>
+<tr><td>DEL-06-01-REQ-013</td><td>Type or conformance tests assert public <code>HarnessEvent</code>, permission decision, and API contracts do not leak SDK-shaped names except adapter metadata.</td></tr>
+<tr><td>DEL-06-01-REQ-014</td><td>Test suite includes readOnly/dontAsk/ask fixtures named or tagged for DEL-06-01 traceability. Exact paths: TBD.</td></tr>
+<tr><td>DEL-06-01-REQ-015</td><td>Type or unit tests assert the overlay accepts a product-owned input shape and translates SDK-specific values only at the adapter boundary. Exact implementation path remains TBD.</td></tr>
+</tbody></table>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required implementation evidence:</p>
+<ul>
+<li>- Permission overlay module or equivalent product-owned runtime component.</li>
+<li>- Mode mapping table or tested mapping fixture for <code>readOnly</code>, <code>workspaceWrite</code>, <code>dontAsk</code>, <code>ask</code>, and developer-local <code>bypass</code>.</li>
+<li>- Permission decision record type or schema.</li>
+<li>- <code>tool.permission</code> event schema/mapping evidence.</li>
+<li>- <code>canUseTool</code> approval mediation tests.</li>
+<li>- ReadOnly/dontAsk/ask behavioral tests.</li>
+<li>- Residual-risk note for <code>docs/PRD.md</code> MATCH under the reconciled D-APP-38 source state. (reconciled under D-APP-38).</li>
+</ul>
+<h3 id="clm-013-pass-3-semantic-lensing-disposition">CLM-013 — Pass 3 Semantic Lensing Disposition</h3>
+<h5 id="pass-3-semantic-lensing-disposition">Pass 3 Semantic Lensing Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence and source reread</td></tr>
+<tr><td>C-001</td><td>Incorporated as bounded interface requirements while preserving exact implementation shape as TBD.</td><td>Datasheet Construction and DEL-06-01-REQ-015 now identify the minimum product-owned context. Reread: <code>docs/TYPES.md</code> Section 8.2; <code>docs/SPEC.md</code> Sections 14.3 and 15.1; <code>docs/CONTRACT.md</code> Section 1.5.</td></tr>
+<tr><td>F-001</td><td>Incorporated as verification evidence for workspaceWrite hook-pass gating, with hook internals deferred to DEL-06-04.</td><td>Verification keeps hook implementation out of this deliverable but requires contract/integration proof before edits can allow. Reread: <code>docs/SPEC.md</code> Section 15.1; decomposition PKG-06 rows for DEL-06-04.</td></tr>
+<tr><td>X-002</td><td>Converted to explicit path-TBD verification evidence requirements rather than invented test names.</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>E-002</td><td>Incorporated as MCP parity verification with concrete source obligation and adjacent wrapper ownership.</td><td>DEL-06-01-REQ-012 and verification require parity; wrapper detail remains with DEL-06-03. Reread: <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/SPEC.md</code> Section 14.2; decomposition PKG-06 rows for DEL-06-03.</td></tr>
+</tbody></table>
+<h3 id="clm-014-traceability">CLM-014 — Traceability</h3>
+<h5 id="traceability">Traceability</h5>
+<table><tbody>
+<tr><td>Source item</td><td>Covered by</td></tr>
+<tr><td>SOW-054 Structured permission decisions</td><td>DEL-06-01-REQ-001, REQ-002, REQ-013, REQ-015</td></tr>
+<tr><td>SOW-055 Permission modes and capability policy with explicit hard-deny precedence</td><td>DEL-06-01-REQ-003 through REQ-009, REQ-011, REQ-015</td></tr>
+<tr><td>SOW-056 Tool permission events</td><td>DEL-06-01-REQ-010</td></tr>
+<tr><td>SOW-058 Interactive approval through <code>canUseTool</code></td><td>DEL-06-01-REQ-002, REQ-007</td></tr>
+</tbody></table>
+<h3 id="clm-015-d-app-56-permission-class-amendment-2026-07-12">CLM-015 — D-APP-56 permission-class amendment (2026-07-12)</h3>
+<h5 id="d-app-56-permission-class-amendment-2026-07-12">D-APP-56 permission-class amendment (2026-07-12)</h5>
+<p>R4-P33 adds the D-APP-10-governed subagent/Agent class to REQ-005: delegated children are allowed only under <code>workspaceWrite</code>; other modes hard-deny through <code>evaluateSubagentPreflight</code>. DEL-06-01 owns the declaration and DEL-08-04 consumes it.</p>
+<ul>
+<li>- <strong>AC-001</strong> — Verification evidence demonstrates structured permission decisions, explicit deny precedence, capability-policy mode mapping, canUseTool approval mediation, and the prescribed readOnly/dontAsk/ask behavior.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-06-01-chiralitypermissionoverlay-and-mode-mapping">CLM-016 — Procedure: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h3>
+<h4 id="procedure-del-06-01-chiralitypermissionoverlay-and-mode-mapping">Procedure: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-06-01 permission overlay implementation and mode mapping evidence. It is written for the deliverable artifact, not as an end-user operation runbook.</p>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted DEL-06-01 scope and source references</td><td>Available in <code>_CONTEXT.md</code> and <code>_REFERENCES.md</code></td></tr>
+<tr><td>Authoritative permission vocabulary</td><td>Available in <code>docs/TYPES.md</code> Section 8</td></tr>
+<tr><td>Binding permission invariants</td><td>Available in <code>docs/CONTRACT.md</code> Section 1.6</td></tr>
+<tr><td>Tool surface and mode mapping specification</td><td>Available in <code>docs/SPEC.md</code> Sections 14 and 15</td></tr>
+<tr><td>Roadmap sequencing for R2/R3</td><td>Available in <code>docs/PLAN.md</code>; <code>docs/PRD.md</code> is current and MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Declared upstream dependencies</td><td>Available as extracted dependency records in <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code>; human-declared upstream lists remain TBD pending closure ruling</td></tr>
+<tr><td>Exact implementation file paths</td><td>TBD</td></tr>
+<tr><td>Exact test fixture paths</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Establish the source-controlled mode vocabulary.</p>
+<ul>
+<li>- Use <code>readOnly</code>, <code>workspaceWrite</code>, <code>dontAsk</code>, <code>ask</code>, and developer-local <code>bypass</code> from <code>docs/TYPES.md</code> Section 8.1.</li>
+<li>- Do not introduce new modes without a governed source update.</li>
+</ul>
+<p>2. Define or locate the structured permission decision record.</p>
+<ul>
+<li>- Align with <code>HarnessPermissionDecision</code> from <code>docs/TYPES.md</code> Section 8.2.</li>
+<li>- Include safe SDK metadata only when it does not leak secrets or SDK-shaped public contract fields.</li>
+</ul>
+<p>3. Implement the capability policy with explicit hard-deny precedence.</p>
+<ul>
+<li>- Evaluate explicit denies from Chirality policy, path containment, hooks, governance, SDK deny rules, and human gates.</li>
+<li>- If any explicit deny is present, return or persist <code>deny</code> even when an SDK or tool option would otherwise allow.</li>
+</ul>
+<p>4. Implement the mode mapping.</p>
+<ul>
+<li>- Map <code>readOnly</code> to read-tool posture with write/edit/bash/network-capable and unexpected tools denied.</li>
+<li>- Map <code>dontAsk</code> to exact safe-tool pre-approval with all other actions denied without prompting.</li>
+<li>- Map <code>ask</code> to <code>canUseTool</code> or equivalent application mediation, with decision persistence before SDK callback return.</li>
+<li>- Map <code>workspaceWrite</code> only after write hooks can prove project-root containment, instruction-root protection, symlink policy, and provenance behavior.</li>
+<li>- Keep <code>bypass</code> developer-local and still subject to Chirality deny rules.</li>
+</ul>
+<p>5. Integrate permission-event persistence.</p>
+<ul>
+<li>- Persist <code>tool.permission</code> evidence for governed attempts with source, reason, and safe SDK metadata when available.</li>
+<li>- Use the product-owned <code>HarnessEvent</code> JSONL surface for persisted permission evidence when the owning PKG-05/PKG-03 writer contract is available; exact call path remains TBD and is a tracked blocker rather than an accepted implementation fact.</li>
+</ul>
+<p>6. Integrate MCP and SDK tool evaluation points.</p>
+<ul>
+<li>- Ensure SDK built-ins and in-process <code>mcp__chirality__*</code> tools are evaluated by equivalent overlay policy.</li>
+<li>- Keep detailed MCP wrapper implementation in DEL-06-03 unless this deliverable owns a shared permission hook point.</li>
+</ul>
+<p>7. Add tests.</p>
+<ul>
+<li>- Verify <code>readOnly</code> denies write/edit/bash/network-capable and unexpected tools.</li>
+<li>- Verify <code>dontAsk</code> denies unknown or unapproved tools without prompting.</li>
+<li>- Verify <code>ask</code> persists the UI/human decision before returning SDK allow or deny.</li>
+<li>- Verify explicit hard-deny precedence when <code>allowedTools</code> or SDK posture conflicts with Chirality deny policy.</li>
+<li>- Verify <code>tool.permission</code> event records include decision source and reason.</li>
+<li>- Verify in-process Chirality MCP tool attempts pass through the same overlay decision path as SDK built-ins, with detailed wrapper fixtures owned by DEL-06-03 unless this deliverable defines a shared hook point.</li>
+</ul>
+<p>8. Record residual gaps.</p>
+<ul>
+<li>- Keep exact file paths, fixture names, and implementation ownership as <code>TBD</code> until assigned.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Decision schema</td><td>Permission decisions conform to <code>docs/TYPES.md</code> Section 8.2.</td></tr>
+<tr><td>Deny precedence</td><td>Any explicit deny produces final <code>deny</code>.</td></tr>
+<tr><td><code>allowedTools</code> misconception</td><td>Tests show <code>allowedTools</code> does not restrict by itself and cannot bypass deny policy.</td></tr>
+<tr><td><code>readOnly</code> behavior</td><td>Write/edit/bash/network-capable and unexpected tools do not execute.</td></tr>
+<tr><td><code>dontAsk</code> behavior</td><td>Unapproved and unknown tools deny without prompting.</td></tr>
+<tr><td><code>ask</code> behavior</td><td>Approval mediation persists the decision before SDK callback return.</td></tr>
+<tr><td>Event persistence</td><td>Governed attempts produce <code>tool.permission</code> evidence.</td></tr>
+<tr><td>MCP parity</td><td>Chirality MCP tool attempts pass through the same permission overlay as SDK built-ins.</td></tr>
+<tr><td>PRD warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Permission overlay module or equivalent implementation path: TBD.</li>
+<li>- Mode mapping fixture or table: TBD.</li>
+<li>- <code>HarnessPermissionDecision</code> schema/type evidence: TBD.</li>
+<li>- Permission event tests: TBD.</li>
+<li>- readOnly/dontAsk/ask behavior tests: TBD.</li>
+<li>- WorkspaceWrite hook-pass gating evidence: TBD, dependent on DEL-06-04 hook result interface.</li>
+<li>- MCP parity evidence: TBD, dependent on DEL-06-03 wrapper points or a shared overlay hook point.</li>
+<li>- Dependency closure ruling: TBD for human-declared upstream status; extracted rows are present in <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code>.</li>
+<li>- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (reconciled under D-APP-38).</li>
+</ul>
+<h3 id="clm-022-pass-3-semantic-lensing-disposition">CLM-022 — Pass 3 Semantic Lensing Disposition</h3>
+<h5 id="pass-3-semantic-lensing-disposition">Pass 3 Semantic Lensing Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence and source reread</td></tr>
+<tr><td>D-001</td><td>Converted to explicit Records blockers rather than invented paths.</td><td>Records now name required implementation, fixture, hook-gating, MCP parity, and decision-schema evidence as TBD. Reread: <code>_CONTEXT.md</code> anticipated artifacts; <code>docs/SPEC.md</code> Sections 14 and 15; decomposition PKG-06 rows.</td></tr>
+<tr><td>D-002</td><td>Incorporated as a dependency closure distinction.</td><td>Prerequisites now distinguish extracted dependency records from still-TBD human-declared upstream closure. Reread: <code>_DEPENDENCIES.md</code> Dependency Tracking and Extracted Dependency Register; <code>Dependencies.csv</code> v3.1.</td></tr>
+<tr><td>E-001</td><td>Converted from ASSUMPTION to tracked blocker.</td><td>Step 5 no longer states the event writer/session JSONL API as accepted fact; it depends on the owning writer contract and keeps exact call path TBD. Reread: <code>docs/SPEC.md</code> Section 9.2 and Section 9.4; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-4; <code>_DEPENDENCIES.md</code> DEP-06-01-014 warning.</td></tr>
+<tr><td>E-002</td><td>Incorporated as explicit MCP parity procedure and record evidence.</td><td>Step 7 and Records require MCP parity evidence while leaving wrapper points to DEL-06-03 or a shared overlay hook point. Reread: <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/SPEC.md</code> Section 14.2; decomposition PKG-06 rows for DEL-06-03.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Inspect the permission overlay module and decision records, then run readOnly/dontAsk/ask and hard-deny precedence tests.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-06-01-chiralitypermissionoverlay-and-mode-mapping">CLM-023 — Guidance: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h3>
+<h4 id="guidance-del-06-01-chiralitypermissionoverlay-and-mode-mapping">Guidance: DEL-06-01 ChiralityPermissionOverlay and Mode Mapping</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-06-01 exists to make runtime tool permission decisions explicit, persisted, and governed by Chirality-owned policy rather than SDK defaults or prompt text. It is the permission-policy slice of PKG-06: hooks, write path policy, bash governance, and MCP implementation details are adjacent deliverables, but this deliverable defines the overlay semantics they must feed.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06; <code>docs/CONTRACT.md</code> Section 1.6; <code>docs/SPEC.md</code> Sections 14 and 15.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Capability-forward policy with explicit hard-deny precedence is the controlling rule. If any authoritative policy, hook, governance, SDK deny rule, path boundary, or human gate says deny, the final decision is deny. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1.</p>
+<p>2. Prompt text is never enough. Permission-sensitive behavior must be enforced by runtime code, policy, hooks, callback mediation, or human gates. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-2.</p>
+<p>3. <code>allowedTools</code> is convenience, not containment. Treat it as possible auto-approval only; use disallowed tools, mode posture, hooks, <code>canUseTool</code>, and <code>dontAsk</code> to restrict execution. Sources: <code>docs/CONTRACT.md</code> Section 1.6 K-PERM-3; <code>docs/SPEC.md</code> Section 14.3.</p>
+<p>4. Product-owned records are the durable truth. <code>HarnessPermissionDecision</code> and <code>tool.permission</code> events should remain Chirality-shaped even when SDK metadata is attached. Sources: <code>docs/TYPES.md</code> Section 8.2; <code>docs/PRD.md</code> Section 9.4, MATCH status. (reconciled under D-APP-38).</p>
+<p>5. MCP is not a bypass. Chirality MCP tools and SDK built-ins must pass through equivalent permission and hook policy. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1.</p>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<h3 id="clm-027-mode-mapping">CLM-027 — Mode Mapping</h3>
+<h6 id="mode-mapping">Mode Mapping</h6>
+<table><tbody>
+<tr><td>Mode</td><td>Practical guidance</td><td>Source</td></tr>
+<tr><td><code>readOnly</code></td><td>Prefer pre-approved read tools only; deny write/edit/bash/network-capable and unexpected tools.</td><td><code>docs/SPEC.md</code> Section 15.1; <code>docs/TYPES.md</code> Section 8.1</td></tr>
+<tr><td><code>workspaceWrite</code></td><td>Allow governed writes only after write hooks pass and project-root/instruction-root/symlink policy is satisfied. Hook internals are not owned by this deliverable.</td><td><code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td><code>dontAsk</code></td><td>Use for non-interactive denial posture. Unknown and unapproved actions should deny without prompting.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-5</td></tr>
+<tr><td><code>ask</code></td><td>Use when the application can present an approval request and persist the answer before the SDK callback returns allow or deny.</td><td><code>docs/SPEC.md</code> Section 15.1</td></tr>
+<tr><td><code>bypass</code></td><td>Keep developer-local only; never treat it as shipped operator behavior; Chirality denies still apply.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-6</td></tr>
+</tbody></table>
+<h3 id="clm-028-decision-provenance">CLM-028 — Decision Provenance</h3>
+<h6 id="decision-provenance">Decision Provenance</h6>
+<p>Use the <code>source</code> field deliberately. A decision from <code>chirality-policy</code> should not be mislabeled as <code>human</code>, and SDK callback mediation should be captured distinctly from hook denials. Human approvals remain non-delegable in the broader governance model; automated permission decisions should not be described as approvals for reliance.</p>
+<h3 id="clm-029-prd-hash-status">CLM-029 — PRD Hash Status</h3>
+<h6 id="prd-hash-status">PRD Hash Status</h6>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<p>Current disposition: keep PRD-derived implementation direction warning-qualified and require review evidence before using PRD-only details as closure proof. CONTRACT, TYPES, SPEC, PLAN, and the accepted decomposition remain the unqualified sources for binding permission vocabulary, invariants, mode mapping, sequencing, and deliverable scope.</p>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Omit denied tools vs expose and deny at call time</td><td>Prefer omission where possible to reduce model context and accidental attempts, but still enforce denial at runtime because exposure control alone is not a safety boundary. Source: <code>docs/SPEC.md</code> Section 14.3.</td></tr>
+<tr><td>SDK mode vs Chirality overlay</td><td>Use SDK posture where it helps, but preserve Chirality-owned capability policy with explicit hard-deny precedence, decision records, event logs, path containment, and human-gate semantics. Sources: <code>docs/PLAN.md</code> risk table; <code>docs/PRD.md</code> KG-026, MATCH status. — reconciled under D-APP-38</td></tr>
+<tr><td><code>ask</code> UX vs deterministic execution</td><td>Interactive approval can be appropriate for governed actions, but only if the persisted decision precedes SDK allow/deny return. Non-interactive contexts should use <code>dontAsk</code> denial rather than inventing approval.</td></tr>
+<tr><td>Mode mapping now vs future SDK drift</td><td>Keep mapping centralized and tested because SDK permission behavior may change. Source: <code>docs/PRD.md</code> KG-021, MATCH status. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected overlay result</td></tr>
+<tr><td><code>readOnly</code> session attempts <code>Read</code> on an allowed project file</td><td><code>allow</code> if the tool surface and path policy permit it; persist permission evidence if governed. Exact path-policy integration: TBD.</td></tr>
+<tr><td><code>readOnly</code> session attempts <code>Write</code>, <code>Edit</code>, <code>Bash</code>, or a network-capable tool</td><td><code>deny</code>; do not execute.</td></tr>
+<tr><td><code>dontAsk</code> session attempts an unknown tool</td><td><code>deny</code> without prompting; unknown-tool structured validation may be owned by DEL-06-02.</td></tr>
+<tr><td><code>ask</code> session attempts a governed write</td><td><code>ask</code> at application level, persist the human/UI decision, then return SDK allow or deny.</td></tr>
+<tr><td>SDK <code>allowedTools</code> includes a tool that Chirality policy denies</td><td>Final decision is <code>deny</code>; <code>allowedTools</code> does not bypass deny policy.</td></tr>
+<tr><td>Developer-local <code>bypass</code> is enabled</td><td>SDK bypass may be used only in developer-local mode; Chirality deny hooks and disallowed tools still apply.</td></tr>
+</tbody></table>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>TBD</td><td>No direct source conflict identified during P1/P2. PRD has a MATCH source state.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> sections used above</td><td>All PRD-cited requirements and guidance</td><td>Treat PRD as a current MATCH source under the reconciled D-APP-38 source state.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-033-pass-3-semantic-lensing-disposition">CLM-033 — Pass 3 Semantic Lensing Disposition</h3>
+<h5 id="pass-3-semantic-lensing-disposition">Pass 3 Semantic Lensing Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence and source reread</td></tr>
+<tr><td>X-001</td><td>Incorporated as an explicit PRD MATCH disposition.</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-054 SOW-055 SOW-056 SOW-058 OBJ-005</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

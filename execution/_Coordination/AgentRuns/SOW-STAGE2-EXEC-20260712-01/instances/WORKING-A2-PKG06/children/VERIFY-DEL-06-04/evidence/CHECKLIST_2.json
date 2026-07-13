@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 255,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "869bd9079ab1a2f600c03ef9ccc8680064601853479a0d77b64ee0499c1b786b"
+      },
+      "text": "The write/edit surface denies unauthorized or unsafe mutation before execution, preserves prior content on failed gates, and emits the required verification and provenance evidence.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-04-VER-001",
+          "source_line": 389,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate path containment, instruction-root protection, symlink rejection, exact edit preconditions, deny precedence, mode behavior, MCP parity, and provenance using the source-defined checks and fixtures."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "869bd9079ab1a2f600c03ef9ccc8680064601853479a0d77b64ee0499c1b786b"
+  },
+  "tool_version": "1"
+}

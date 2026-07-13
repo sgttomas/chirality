@@ -1,0 +1,9 @@
+{
+  "format": "AMBIGUOUS",
+  "issues": [
+    "format state is AMBIGUOUS",
+    "dual production formats require an isolated conversion workspace and exact migration authority"
+  ],
+  "target": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG04/children/VERIFY-DEL-04-02/workspace/fixtures/unauthorized_dual",
+  "valid": false
+}

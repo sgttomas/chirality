@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="5f04c8f7105de8ce1da380031fde21974d16af1056f50c6804ffa0de5eac6402">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-06</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>5f04c8f7105de8ce1da380031fde21974d16af1056f50c6804ffa0de5eac6402</code>.</p>
+<h1 id="scope-of-work-del-06-06">Scope of Work — DEL-06-06</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-06-06</code> in service of project scope [SOW-057, SOW-061] and package objectives [OBJ-003, OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A hook lifecycle and compaction mirror that records hook start, progress, completion or failure outcomes, Stop/finalization, and available compaction boundaries as Chirality-owned HarnessEvent records while preserving append-only replay.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-06-hook-lifecycle-and-compaction-mirror">CLM-001 — Datasheet: DEL-06-06 Hook Lifecycle and Compaction Mirror</h3>
+<h4 id="datasheet-del-06-06-hook-lifecycle-and-compaction-mirror">Datasheet: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-06</td></tr>
+<tr><td>Deliverable name</td><td>Hook Lifecycle and Compaction Mirror</td></tr>
+<tr><td>Package</td><td>PKG-06 Permissioned Tools, MCP, and Hooks</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Responsible party</td><td>TBD</td></tr>
+<tr><td>Decomposition variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Scope items</td><td>SOW-057, SOW-061</td></tr>
+<tr><td>Objective context</td><td>OBJ-003, OBJ-005</td></tr>
+<tr><td>Anticipated artifacts</td><td>Hook lifecycle mapper; <code>context.compacted</code> tests; terminal hook fixtures</td></tr>
+</tbody></table>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> sections &quot;PKG-06 Permissioned Tools, MCP, and Hooks&quot; and scope ledger rows SOW-057 and SOW-061.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary concern</td><td>Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events.</td><td><code>_CONTEXT.md</code>; decomposition DEL-06-06 row</td></tr>
+<tr><td>Canonical runtime audit mirror</td><td><code>.chirality/sessions/&lt;id&gt;/events.jsonl</code> is the product-owned Chirality runtime audit mirror.</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-4; <code>docs/SPEC.md</code> Section 8.4</td></tr>
+<tr><td>Event record shape</td><td><code>HarnessEvent</code> with <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, optional <code>turnId</code>, optional <code>parentEventId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code>.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Event write behavior</td><td>Runtime events are appended as newline-delimited JSONL in write sequence; event IDs are unique.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>Hook event categories</td><td><code>hook.started</code>, <code>hook.completed</code>, and <code>context.compacted</code> are listed as later event categories.</td><td><code>docs/SPEC.md</code> Section 9.4; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Hook lifecycle terms</td><td><code>PreToolUse</code>, <code>PostToolUse</code>, <code>PostToolUseFailure</code>, <code>PreCompact</code>, <code>Stop</code>, <code>SubagentStart</code>, and <code>SubagentStop</code>.</td><td><code>docs/TYPES.md</code> Section 8.5</td></tr>
+<tr><td>Required hook behaviors in scope</td><td>PreCompact mirror persists compaction boundary when available; Stop/finalization persists terminal outcome.</td><td><code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Fail-closed rule</td><td>Hook failures fail closed for write, shell, domain, and subagent actions.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Compaction mirror obligation</td><td>Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when emitted.</td><td><code>docs/PRD.md</code> Section 8.15, MATCH status; <code>docs/PLAN.md</code> R4 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Constraint</td><td>Source</td></tr>
+<tr><td>PRD source state</td><td><code>docs/PRD.md</code> is accessible but has MATCH in <code>_REFERENCES.md</code>; PRD-derived details are treated as source-state evidence, not as unqualified accepted truth.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+<tr><td>Product-owned contract</td><td>SDK messages, external hook names, and SDK-specific IDs must be translated into Chirality-owned contracts; SDK values may appear only as explicit adapter metadata.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> Section 1.4 K-ENGINE-4</td></tr>
+<tr><td>Audit authority</td><td>SDK transcripts are secondary runtime artifacts unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/CONTRACT.md</code> Section 1.4 K-SDK-3; <code>docs/SPEC.md</code> Section 8.4</td></tr>
+<tr><td>Secret handling</td><td>Runtime events and logs must not store secrets; large payloads must be stored as artifacts and referenced by path.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-6 and K-EVENT-7</td></tr>
+<tr><td>Terminal outcome linkage</td><td>Every accepted turn must end with a durable success, failure, cancellation, or interruption event.</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-3</td></tr>
+<tr><td>Hook separation</td><td>Path containment and write/edit preconditions are owned primarily by DEL-06-04; DEL-06-06 mirrors lifecycle, failure, terminal, and compaction boundaries into events.</td><td><code>_CONTEXT.md</code>; decomposition PKG-06 rows</td></tr>
+<tr><td>Dependency state</td><td><code>_DEPENDENCIES.md</code> lists no accepted upstream or downstream edges yet.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction note</td><td>Source</td></tr>
+<tr><td>Hook lifecycle mapper</td><td><code>frontend/src/lib/harness/chirality-hooks.ts</code> and <code>sdk-message-mapper.ts</code> map SDK/adapter hook callbacks into product-owned <code>HarnessEvent</code> records.</td><td><code>docs/SPEC.md</code> Sections 9 and 10.3; cited implementation paths</td></tr>
+<tr><td>Hook started event</td><td>Records safe start evidence for hook execution. Exact payload fields: TBD, but must conform to <code>HarnessEvent</code> and avoid secrets.</td><td><code>docs/SPEC.md</code> Section 9.1 and 9.2; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Hook completed/failure event</td><td>Records hook completion or failure outcome; failure handling must preserve fail-closed behavior for write, shell, domain, and subagent actions. Exact failure taxonomy: TBD.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>PreCompact mirror</td><td>Emits <code>context.compacted</code> when the SDK/model compaction boundary is available. Boundary metadata, preserved recent turns, and replay implications are PRD-specified but source-state qualified.</td><td><code>docs/SPEC.md</code> Sections 9.4 and 15.2; <code>docs/PRD.md</code> Section 8.15, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Stop/finalization mapper</td><td>Connects Stop/finalization callbacks to terminal outcome persistence without replacing TurnEngine terminal records. Exact parent/child event relation: TBD.</td><td><code>docs/SPEC.md</code> Section 15.2; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-3</td></tr>
+<tr><td>Event append integration</td><td>Uses <code>frontend/src/lib/harness/session-events.ts</code> <code>appendHarnessEvent</code> for append-only replay-compatible JSONL and <code>tool-result-artifacts.ts</code> for session artifact records.</td><td><code>docs/SPEC.md</code> Sections 8.4 and 9.2; cited implementation paths</td></tr>
+<tr><td>Validation</td><td>Mapper/terminal/compaction fixtures live in <code>chirality-hooks.test.ts</code> and <code>sdk-message-mapper.test.ts</code>; replay and artifact checks live in <code>session-events.test.ts</code> and <code>tool-result-artifacts.test.ts</code>; Section 9 runs through <code>scripts/validate-harness-section9.mjs</code>.</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> Section 19; cited test/runner paths</td></tr>
+</tbody></table>
+<h3 id="clm-006-pass-3-disposition">CLM-006 — Pass 3 Disposition</h3>
+<h5 id="pass-3-disposition">Pass 3 Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence reread</td></tr>
+<tr><td>C-001</td><td>Converted to an explicit implementation blocker: the hook lifecycle mapper is required, but the exact module path remains <code>TBD</code> until implementation ownership assigns the adapter surface.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-06-06 row; <code>docs/SPEC.md</code> Sections 9, 10.3, and 15.2; <code>docs/TYPES.md</code> Sections 7.3 and 8.5</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td><td>Source state</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code> Sections 1.4 through 1.6</td><td>Binding engine, event, SDK, permission, hook, and audit invariants</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code> Sections 8 through 10, 15, and 19</td><td>Session layout, <code>HarnessEvent</code> schema, adapter translation rules, required hooks, validation IDs</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code> Sections 7.1 through 7.3 and 8.5</td><td>Runtime vocabulary, event categories, hook terms</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code> R4 and risk table</td><td>Sequencing and compaction acceptance context</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code> Sections 8.15 and runtime event requirements</td><td>Product requirements for compaction and hook event recording</td><td>MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Deliverable scope, SOW coverage, package boundaries</td><td>accepted v3.2 working surface</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-06-06-hook-lifecycle-and-compaction-mirror">CLM-008 — Specification: DEL-06-06 Hook Lifecycle and Compaction Mirror</h3>
+<h4 id="specification-del-06-06-hook-lifecycle-and-compaction-mirror">Specification: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-06-06 specifies the backend feature slice that mirrors SDK or adapter hook lifecycle, terminal finalization, and context-compaction boundaries into Chirality-owned runtime events. It covers hook start, completion, and failure event mapping; <code>PreCompact</code> boundary mirroring; Stop/finalization evidence; JSONL append semantics; replay-safe event payload discipline; and tests for <code>context.compacted</code> and terminal hook fixtures.</p>
+<p>In scope:</p>
+<ul>
+<li>- Produce or specify a hook lifecycle mapper that translates hook callbacks into Chirality <code>HarnessEvent</code> records.</li>
+<li>- Emit safe <code>hook.started</code> and <code>hook.completed</code> event evidence, including failure outcome handling where supported.</li>
+<li>- Mirror SDK/model compaction boundaries into <code>context.compacted</code> events when the boundary is available.</li>
+<li>- Preserve the product-owned audit mirror in <code>.chirality/sessions/&lt;id&gt;/events.jsonl</code>; SDK transcripts remain secondary unless imported into <code>HarnessEvent</code> form.</li>
+<li>- Connect Stop/finalization callbacks to durable terminal outcome evidence without making SDK hook names the public contract.</li>
+<li>- Provide <code>context.compacted</code> tests and terminal hook fixtures.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Permission-mode decision semantics and <code>canUseTool</code> approval mediation, owned by DEL-06-01.</li>
+<li>- Write/edit path containment, instruction-root protection, symlink rejection, and edit preconditions, owned primarily by DEL-06-04.</li>
+<li>- Bash timeout/capture policy, owned by DEL-06-05.</li>
+<li>- Subagent governance bridge behavior beyond preserving hook event compatibility, owned by PKG-08 deliverables.</li>
+<li>- Custom context-compaction implementation unless a later governed source update requires fallback behavior.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06 rows; <code>docs/SPEC.md</code> Sections 8 through 10 and 15; <code>docs/CONTRACT.md</code> Sections 1.4 through 1.6; <code>docs/TYPES.md</code> Sections 7 and 8.5; <code>docs/PRD.md</code> Section 8.15 with MATCH status. (reconciled under D-APP-38).</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-06-06-REQ-001</td><td>The hook lifecycle mapper MUST emit Chirality-owned <code>HarnessEvent</code> records rather than exposing SDK hook names as the persisted event contract.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> Section 1.4 K-ENGINE-4</td></tr>
+<tr><td>DEL-06-06-REQ-002</td><td>Each emitted runtime event MUST conform to the <code>HarnessEvent</code> shape: <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, optional <code>turnId</code>, optional <code>parentEventId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code>.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>DEL-06-06-REQ-003</td><td>Runtime event writes MUST append newline-delimited JSONL in write sequence and use unique event IDs.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-06-06-REQ-004</td><td>Hook lifecycle event mapping MUST include <code>hook.started</code>, <code>hook.progress</code>, and <code>hook.completed</code> categories where hook execution evidence is available. Progress mapping MUST preserve available stdout, stderr, and output fields in provider-neutral <code>HarnessEvent</code> data.</td><td><code>docs/SPEC.md</code> Section 9.4; <code>docs/TYPES.md</code> Section 7.3; D-APP-56 R4-P04</td></tr>
+<tr><td>DEL-06-06-REQ-005</td><td>Hook failure outcomes MUST preserve fail-closed behavior for write, shell, domain, and subagent actions.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-06-06-REQ-006</td><td>The mapper MUST support <code>PreToolUse</code>, <code>PostToolUse</code>, <code>PostToolUseFailure</code>, <code>PreCompact</code>, <code>Stop</code>, and subagent hook terms without making exact SDK callback names authoritative in public APIs.</td><td><code>docs/TYPES.md</code> Section 8.5; <code>docs/SPEC.md</code> Section 10.3</td></tr>
+<tr><td>DEL-06-06-REQ-007</td><td><code>PreCompact</code> mirroring MUST persist a compaction boundary when available.</td><td><code>docs/SPEC.md</code> Section 15.2; decomposition SOW-061</td></tr>
+<tr><td>DEL-06-06-REQ-008</td><td><code>context.compacted</code> events MUST be persisted for compaction boundaries and record replay implications where knowable.</td><td><code>docs/SPEC.md</code> Section 9.4; <code>docs/PRD.md</code> Section 8.15, MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-06-REQ-009</td><td>Full Chirality event log replay MUST remain possible after compaction; SDK transcript linkage may be preserved but cannot displace <code>events.jsonl</code>.</td><td><code>docs/CONTRACT.md</code> Section 1.4 K-SDK-3 and Section 1.5 K-EVENT-4; <code>docs/PLAN.md</code> R4</td></tr>
+<tr><td>DEL-06-06-REQ-010</td><td>Stop/finalization mapping MUST preserve durable terminal outcome evidence for success, failure, cancellation, or interruption.</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-3; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-06-06-REQ-011</td><td>Runtime event payloads MUST NOT store secrets, and large or sensitive payloads MUST be stored as artifacts or redacted according to policy.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-6 and K-EVENT-7</td></tr>
+<tr><td>DEL-06-06-REQ-012</td><td>SDK-specific values MAY be retained only as explicit adapter metadata fields, not as Chirality public contract identifiers.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> Section 1.4 K-CORE-1</td></tr>
+<tr><td>DEL-06-06-REQ-013</td><td>Tests MUST cover <code>context.compacted</code> event production and terminal hook fixtures.</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> Section 19 <code>section9.context_compaction_boundary</code></td></tr>
+<tr><td>DEL-06-06-REQ-014</td><td>Implementation MUST record the <code>docs/PRD.md</code> MATCH status for any behavior that depends only on PRD Section 8.15 details.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-06-06-REQ-015</td><td>Implementation evidence identifies mapper components (<code>chirality-hooks.ts</code>, <code>sdk-message-mapper.ts</code>), mapper/terminal/compaction tests (<code>chirality-hooks.test.ts</code>, <code>sdk-message-mapper.test.ts</code>), replay validation (<code>session-events.ts</code> / <code>session-events.test.ts</code>), artifact/redaction checks (<code>tool-result-artifacts.ts</code> / tests), and the Section 9 runner (<code>scripts/validate-harness-section9.mjs</code>).</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> Sections 9.2 and 19; cited live paths</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Sections 1.4 through 1.6</td><td>Binding invariants for engine contract ownership, runtime audit mirror, SDK transcript secondary status, event durability, redaction, and hook fail-closed behavior.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 8 through 10</td><td>Session storage, <code>events.jsonl</code>, <code>HarnessEvent</code> shape, event append rules, event categories, and adapter translation rules.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 15.2</td><td>Required hooks, including PreCompact mirror and Stop/finalization behavior.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Sections 7 and 8.5</td><td>Runtime vocabulary, event categories, hook terms, and adapter boundary vocabulary.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R4</td><td>Sequencing and acceptance for compaction mirror and replay preservation.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.15</td><td>Product requirements for compaction event persistence; use with MATCH status from <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-06-06-REQ-001, REQ-012</td><td>Type or mapper tests assert persisted event types use Chirality-owned names and SDK details appear only under explicit adapter metadata.</td></tr>
+<tr><td>DEL-06-06-REQ-002</td><td>Schema tests validate every emitted hook/compaction/terminal event against <code>HarnessEvent</code>.</td></tr>
+<tr><td>DEL-06-06-REQ-003</td><td>Session event writer tests assert newline-delimited append order and unique event IDs.</td></tr>
+<tr><td>DEL-06-06-REQ-004</td><td>Mapper and persistence tests assert <code>hook.progress</code> is emitted and replayed with available stdout, stderr, and output fields, alongside start and completion evidence.</td></tr>
+<tr><td>DEL-06-06-REQ-005</td><td>Failure fixtures assert failed hook outcomes do not silently allow write, shell, domain, or subagent execution.</td></tr>
+<tr><td>DEL-06-06-REQ-006</td><td>Mapper tests cover <code>PreToolUse</code>, <code>PostToolUse</code>, <code>PostToolUseFailure</code>, <code>PreCompact</code>, <code>Stop</code>, and subagent hook term handling where runtime support exists.</td></tr>
+<tr><td>DEL-06-06-REQ-007, REQ-008</td><td><code>context.compacted</code> tests assert a compaction boundary event is persisted when the SDK/model emits the boundary.</td></tr>
+<tr><td>DEL-06-06-REQ-009</td><td>Replay tests assert event log replay remains possible after a compaction event and does not require SDK transcript data as canonical truth.</td></tr>
+<tr><td>DEL-06-06-REQ-010</td><td>Terminal hook fixtures assert Stop/finalization evidence aligns with durable terminal turn outcomes.</td></tr>
+<tr><td>DEL-06-06-REQ-011</td><td>Redaction and payload-budget tests assert secrets are excluded and large payloads are artifact-referenced.</td></tr>
+<tr><td>DEL-06-06-REQ-013</td><td>Section 9 validation includes or points to <code>section9.context_compaction_boundary</code>; exact runner path: TBD.</td></tr>
+<tr><td>DEL-06-06-REQ-014</td><td>Review evidence records the PRD hash warning when PRD-only behavior is cited.</td></tr>
+<tr><td>DEL-06-06-REQ-015</td><td>Closure review verifies the cited mapper, fixture, replay, artifact/redaction, and Section 9 runner paths exist and remain testable.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required implementation evidence:</p>
+<ul>
+<li>- Hook lifecycle mapper: <code>frontend/src/lib/harness/chirality-hooks.ts</code>; adapter mapping: <code>frontend/src/lib/harness/sdk-message-mapper.ts</code>.</li>
+<li>- Schema/mapper and terminal/compaction fixtures: <code>frontend/src/__tests__/lib/chirality-hooks.test.ts</code> and <code>sdk-message-mapper.test.ts</code>.</li>
+<li>- Replay validation: <code>frontend/src/lib/harness/session-events.ts</code> and <code>frontend/src/__tests__/lib/session-events.test.ts</code>.</li>
+<li>- Artifact/redaction and payload-budget checks: <code>frontend/src/lib/harness/tool-result-artifacts.ts</code>, its tests, and <code>chirality-hooks.test.ts</code>.</li>
+<li>- Section 9 runner: <code>frontend/scripts/validate-harness-section9.mjs</code> with <code>harness-section9-manifest.json</code>.</li>
+<li>- Residual-risk note for <code>docs/PRD.md</code> MATCH under the reconciled D-APP-38 source state. (reconciled under D-APP-38).</li>
+</ul>
+<h3 id="clm-014-pass-3-disposition">CLM-014 — Pass 3 Disposition</h3>
+<h5 id="pass-3-disposition">Pass 3 Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence reread</td></tr>
+<tr><td>F-001</td><td>Converted to a concrete verification obligation without inventing paths: <code>context.compacted</code> and terminal hook evidence must point to exact runner or fixture paths before closure; current path remains <code>TBD</code>.</td><td><code>docs/SPEC.md</code> Section 19 <code>section9.context_compaction_boundary</code>; <code>_CONTEXT.md</code> anticipated artifacts</td></tr>
+<tr><td>F-002</td><td>Incorporated as DEL-06-06-REQ-015 and documentation evidence blockers for mapper, schema tests, terminal fixtures, replay, and redaction or payload-budget checks.</td><td><code>docs/SPEC.md</code> Sections 9.2 and 19; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-6 and K-EVENT-7</td></tr>
+<tr><td>X-002</td><td>Already covered in validation intent but not in path evidence; retained as <code>TBD</code> runner/fixture evidence tied to <code>section9.context_compaction_boundary</code>.</td><td><code>docs/SPEC.md</code> Section 19; <code>docs/PRD.md</code> Section 8.14/8.15 validation list, MATCH status — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-015-traceability">CLM-015 — Traceability</h3>
+<h5 id="traceability">Traceability</h5>
+<table><tbody>
+<tr><td>Source item</td><td>Covered by</td></tr>
+<tr><td>SOW-057 Hooks and fail-closed behavior</td><td>DEL-06-06-REQ-001 through REQ-006, REQ-010 through REQ-013</td></tr>
+<tr><td>SOW-061 Compaction mirror</td><td>DEL-06-06-REQ-007 through REQ-009, REQ-013</td></tr>
+<tr><td>OBJ-003 Audit and session objective</td><td>DEL-06-06-REQ-002, REQ-003, REQ-008 through REQ-010</td></tr>
+<tr><td>OBJ-005 Tool governance objective</td><td>DEL-06-06-REQ-004 through REQ-006, REQ-011</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — The mirror satisfies the preserved DEL-06-06 requirements when hook lifecycle, failure, terminal, and compaction events validate against HarnessEvent, append safely to events.jsonl, preserve fail-closed and replay semantics, avoid secrets, and the cited tests and Section 9 evidence pass.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-06-06-hook-lifecycle-and-compaction-mirror">CLM-016 — Procedure: DEL-06-06 Hook Lifecycle and Compaction Mirror</h3>
+<h4 id="procedure-del-06-06-hook-lifecycle-and-compaction-mirror">Procedure: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-06-06 hook lifecycle and compaction mirror implementation. It is written for the deliverable artifact, not as an end-user operation runbook.</p>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted DEL-06-06 scope and source references</td><td>Available in <code>_CONTEXT.md</code> and <code>_REFERENCES.md</code></td></tr>
+<tr><td>Runtime event schema and event categories</td><td>Available in <code>docs/SPEC.md</code> Section 9 and <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Session audit mirror rules</td><td>Available in <code>docs/SPEC.md</code> Section 8.4 and <code>docs/CONTRACT.md</code> Section 1.5</td></tr>
+<tr><td>Hook vocabulary and required hook behavior</td><td>Available in <code>docs/TYPES.md</code> Section 8.5 and <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Engine adapter translation rules</td><td>Available in <code>docs/SPEC.md</code> Section 10.3</td></tr>
+<tr><td>Compaction mirror product direction</td><td>Available in <code>docs/PLAN.md</code> R4; <code>docs/PRD.md</code> Section 8.15 is current and MATCH — reconciled under D-APP-38</td></tr>
+<tr><td>Declared upstream dependencies</td><td>Human-declared upstream dependencies remain <code>TBD</code>; extracted ACTIVE upstream edges exist in <code>_DEPENDENCIES.md</code> and must be closure-checked before final acceptance.</td></tr>
+<tr><td>Exact implementation file paths</td><td><code>frontend/src/lib/harness/chirality-hooks.ts</code>; <code>sdk-message-mapper.ts</code>; <code>session-events.ts</code>; <code>tool-result-artifacts.ts</code></td></tr>
+<tr><td>Exact test fixture paths</td><td><code>frontend/src/__tests__/lib/chirality-hooks.test.ts</code>; <code>sdk-message-mapper.test.ts</code>; <code>session-events.test.ts</code>; <code>tool-result-artifacts.test.ts</code>; <code>frontend/scripts/validate-harness-section9.mjs</code></td></tr>
+</tbody></table>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the event contract boundary.</p>
+<ul>
+<li>- Use <code>HarnessEvent</code> as the persisted runtime event shape.</li>
+<li>- Keep SDK callback names, SDK transcript IDs, and SDK compaction metadata as adapter metadata rather than public Chirality contract fields.</li>
+<li>- Preserve <code>events.jsonl</code> as the canonical audit mirror.</li>
+</ul>
+<p>2. Define or locate the hook lifecycle mapper.</p>
+<ul>
+<li>- Map supported hook terms from <code>docs/TYPES.md</code> Section 8.5: <code>PreToolUse</code>, <code>PostToolUse</code>, <code>PostToolUseFailure</code>, <code>PreCompact</code>, <code>Stop</code>, <code>SubagentStart</code>, and <code>SubagentStop</code>.</li>
+<li>- Keep detailed policy enforcement ownership aligned with adjacent deliverables; this mapper records lifecycle and boundary evidence.</li>
+<li>- Exact module path: TBD.</li>
+</ul>
+<p>3. Implement hook start evidence.</p>
+<ul>
+<li>- Emit or stage <code>hook.started</code> evidence when a supported hook begins.</li>
+<li>- Include session and turn linkage where available.</li>
+<li>- Include safe hook term and target context where available.</li>
+<li>- Do not include secrets or large raw payloads.</li>
+</ul>
+<p>4. Implement hook completion and failure evidence.</p>
+<ul>
+<li>- Emit <code>hook.completed</code> evidence for successful completion.</li>
+<li>- For failure outcomes, record safe diagnostics and outcome status without inventing an unregistered public event type unless the event registry is updated.</li>
+<li>- Ensure failed hooks preserve fail-closed behavior for write, shell, domain, and subagent actions.</li>
+</ul>
+<p>5. Implement <code>PreCompact</code> mirroring.</p>
+<ul>
+<li>- When the SDK/model exposes a compaction boundary, persist <code>context.compacted</code>.</li>
+<li>- Record boundary metadata and replay implications when safe and available.</li>
+<li>- Mark unavailable SDK-specific fields as <code>TBD</code>; do not infer hidden transcript state.</li>
+</ul>
+<p>6. Implement Stop/finalization mapping.</p>
+<ul>
+<li>- Record finalization evidence associated with the relevant session and turn.</li>
+<li>- Preserve the existing terminal event contract: accepted turns end with success, failure, cancellation, or interruption evidence.</li>
+<li>- Avoid duplicate or contradictory terminal outcomes.</li>
+</ul>
+<p>7. Integrate with append-only session event storage.</p>
+<ul>
+<li>- Append JSONL events in write sequence with unique event IDs.</li>
+<li>- Keep replay tolerant of malformed trailing lines as required by the session event contract.</li>
+<li>- Store large or sensitive payloads as session artifacts or redact them according to policy.</li>
+<li>- Event writer/session-artifact call paths are resolved: <code>session-events.ts</code> <code>appendHarnessEvent</code> and <code>tool-result-artifacts.ts</code>.</li>
+</ul>
+<p>8. Add tests and fixtures.</p>
+<ul>
+<li>- Add hook lifecycle mapper tests for start, completion, and failure outcomes.</li>
+<li>- Add <code>context.compacted</code> tests for boundary persistence and replay implications.</li>
+<li>- Add terminal hook fixtures for Stop/finalization behavior.</li>
+<li>- Add redaction or payload-budget checks for hook/compaction payloads.</li>
+<li>- Include Section 9 validation linkage for <code>section9.context_compaction_boundary</code> where the validation runner expects it.</li>
+</ul>
+<p>9. Record residual gaps and source warnings.</p>
+<ul>
+<li>- Keep only genuinely unsupported payload fields or linkage policy as <code>TBD</code>; the mapper, fixture, replay, artifact, and runner paths above are assigned.</li>
+<li>- Record the <code>docs/PRD.md</code> MATCH status anywhere PRD-only compaction payload details are used. (reconciled under D-APP-38).</li>
+</ul>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Event schema</td><td>Hook, compaction, and terminal mirror events conform to <code>HarnessEvent</code>.</td></tr>
+<tr><td>Event append behavior</td><td>Events append as newline-delimited JSONL in order with unique event IDs.</td></tr>
+<tr><td>Product-owned names</td><td>Persisted event types use Chirality names, with SDK details only in adapter metadata.</td></tr>
+<tr><td>Hook start</td><td>Supported hook execution emits or stages <code>hook.started</code> evidence.</td></tr>
+<tr><td>Hook completion/failure</td><td>Supported hook completion records outcome; failures preserve fail-closed semantics for write, shell, domain, and subagent actions.</td></tr>
+<tr><td>Compaction boundary</td><td>SDK/model compaction boundary emits <code>context.compacted</code> when available.</td></tr>
+<tr><td>Replay preservation</td><td>Full Chirality event replay remains possible after compaction without relying on SDK transcript as canonical truth.</td></tr>
+<tr><td>Stop/finalization</td><td>Finalization evidence aligns with exactly one durable terminal outcome for the accepted turn.</td></tr>
+<tr><td>Redaction and payload budget</td><td>Secrets are absent and large payloads are artifact-referenced or redacted.</td></tr>
+<tr><td>PRD warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Hook lifecycle mapper implementation: <code>frontend/src/lib/harness/chirality-hooks.ts</code> and <code>sdk-message-mapper.ts</code>.</li>
+<li>- Event schema/mapper and <code>context.compacted</code> tests: <code>frontend/src/__tests__/lib/chirality-hooks.test.ts</code> and <code>sdk-message-mapper.test.ts</code>.</li>
+<li>- Terminal hook fixtures: <code>frontend/src/__tests__/lib/sdk-message-mapper.test.ts</code>.</li>
+<li>- Session event replay validation: <code>frontend/src/lib/harness/session-events.ts</code> and <code>frontend/src/__tests__/lib/session-events.test.ts</code>.</li>
+<li>- Redaction/payload-budget validation: <code>frontend/src/lib/harness/tool-result-artifacts.ts</code>, its test, and <code>chirality-hooks.test.ts</code>.</li>
+<li>- Section 9 validation: <code>frontend/scripts/validate-harness-section9.mjs</code> and <code>harness-section9-manifest.json</code>.</li>
+<li>- Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (reconciled under D-APP-38).</li>
+<li>- Dependency-closure note: human-declared upstream dependency status is TBD; extracted ACTIVE edges in <code>_DEPENDENCIES.md</code> must be reconciled before closure.</li>
+</ul>
+<h3 id="clm-022-pass-3-disposition">CLM-022 — Pass 3 Disposition</h3>
+<h5 id="pass-3-disposition">Pass 3 Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence reread</td></tr>
+<tr><td>D-001</td><td>Converted to a dependency-closure blocker: the deliverable is not asserted dependency-free; human-declared edges remain <code>TBD</code>, while extracted ACTIVE upstream edges require closure review.</td><td><code>_DEPENDENCIES.md</code> Declared Upstream and Extracted Dependency Register</td></tr>
+<tr><td>D-002</td><td>Rejected as an implementation assumption and replaced with a blocker: event writer/session artifact APIs must be cited from PKG-05/PKG-03 ownership before closure.</td><td><code>docs/SPEC.md</code> Sections 8.4 and 9.2; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-4 through K-EVENT-7</td></tr>
+<tr><td>E-002</td><td>Incorporated as an explicit records and verification obligation for redaction or payload-budget validation evidence on hook and compaction payloads; evidence path remains <code>TBD</code>.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-6 and K-EVENT-7</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Run the cited mapper, schema, replay, redaction/payload-budget, terminal-fixture, context.compacted, and Section 9 validation checks against the preserved source requirements.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-06-06-hook-lifecycle-and-compaction-mirror">CLM-023 — Guidance: DEL-06-06 Hook Lifecycle and Compaction Mirror</h3>
+<h4 id="guidance-del-06-06-hook-lifecycle-and-compaction-mirror">Guidance: DEL-06-06 Hook Lifecycle and Compaction Mirror</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-06-06 exists to make hook execution, failure, terminal finalization, and SDK/model compaction boundaries auditable in Chirality-owned runtime events. It is an event-mirroring slice, not the owner of every hook policy: path/write hook enforcement is primarily DEL-06-04, permission mediation is DEL-06-01, and this deliverable ensures those hook and compaction boundaries become replayable evidence in <code>events.jsonl</code>.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition PKG-06; <code>docs/SPEC.md</code> Sections 8 through 10 and 15.2; <code>docs/CONTRACT.md</code> Sections 1.4 through 1.6.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Chirality event names are the durable contract. SDK hook names and SDK transcript details may be adapter metadata, but persisted runtime semantics should remain <code>HarnessEvent</code> records in Chirality terms. Sources: <code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> Section 1.4 K-ENGINE-4.</p>
+<p>2. The audit mirror stays canonical. <code>.chirality/sessions/&lt;id&gt;/events.jsonl</code> remains the product-owned audit record even when SDK transcripts assist resume or debugging. Sources: <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-4; <code>docs/SPEC.md</code> Section 8.4.</p>
+<p>3. Hook failure is safety-relevant. Failed hooks cannot be reduced to diagnostics when the attempted action is write, shell, domain, or subagent execution; fail-closed behavior must be preserved. Sources: <code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2.</p>
+<p>4. Compaction must not erase replay. Context compaction can reduce model context, but the full Chirality event log must remain on disk and replayable. Sources: <code>docs/PLAN.md</code> R4; <code>docs/PRD.md</code> Section 8.15, MATCH status. (reconciled under D-APP-38).</p>
+<p>5. Terminal outcomes remain durable. Stop/finalization evidence should support, not replace, the TurnEngine/session event obligation that every accepted turn ends in a durable terminal event. Source: <code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-3.</p>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<h3 id="clm-027-event-boundary">CLM-027 — Event Boundary</h3>
+<h6 id="event-boundary">Event Boundary</h6>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Event type names</td><td>Use <code>hook.started</code>, <code>hook.completed</code>, and <code>context.compacted</code> where they apply. If a distinct failure event type is proposed, treat it as PROPOSAL until the event category registry accepts it; meanwhile encode failure as outcome data under an accepted event type or a versioned extension.</td><td><code>docs/SPEC.md</code> Section 9.4; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>Payload content</td><td>Keep payloads replay-useful but safe: IDs, timestamps, hook term, action/tool context, outcome, duration, adapter metadata, and artifact references are plausible; exact fields are TBD until implementation defines the event schema.</td><td><code>docs/SPEC.md</code> Section 9.1 and 9.2</td></tr>
+<tr><td>SDK metadata</td><td>Store SDK hook names, transcript keys, or compaction metadata only under explicit adapter metadata fields.</td><td><code>docs/SPEC.md</code> Section 10.3</td></tr>
+<tr><td>Parent linkage</td><td>Use <code>parentEventId</code> or turn/session IDs where useful to connect hook events to tool, turn, terminal, or subagent events. Exact linkage policy is TBD until the mapper owns the relationship between hook callbacks and event-writer records.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Sections 7.3 and 8.5</td></tr>
+</tbody></table>
+<h3 id="clm-028-compaction-mirror">CLM-028 — Compaction Mirror</h3>
+<h6 id="compaction-mirror">Compaction Mirror</h6>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h3 id="clm-029-terminal-hook-handling">CLM-029 — Terminal Hook Handling</h3>
+<h6 id="terminal-hook-handling">Terminal Hook Handling</h6>
+<p>Stop/finalization hooks should be mapped carefully so they do not race or duplicate terminal <code>turn.completed</code>, <code>turn.failed</code>, <code>turn.cancelled</code>, or interruption records. A useful implementation pattern is to make the finalization mapper attach safe hook evidence to the same turn/session lineage while preserving the TurnEngine as terminal outcome owner. Exact implementation: TBD.</p>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Separate failure event type vs outcome field</td><td>The current listed categories include <code>hook.started</code> and <code>hook.completed</code> but not <code>hook.failed</code>. Prefer accepted event categories unless the event registry is explicitly extended. Preserve failure in outcome/status data when needed.</td></tr>
+<tr><td>Rich payloads vs redaction</td><td>Prefer minimal replay-relevant metadata plus artifact references. Do not store secrets or large raw tool outputs in hook events. Source: <code>docs/SPEC.md</code> Section 9.2.</td></tr>
+<tr><td>SDK transcript reliance vs Chirality mirror</td><td>Use SDK transcript linkage for resume/debug metadata, but never make it the only source needed to replay Chirality runtime history.</td></tr>
+<tr><td>Compaction mirror vs custom compaction</td><td>Mirror SDK compaction first. Custom compaction is not required by current sources and should remain TBD unless a governed update adds it. Source: <code>docs/PLAN.md</code> alternatives table.</td></tr>
+<tr><td>Hook enforcement vs hook evidence</td><td>DEL-06-06 should not absorb DEL-06-04&#x27;s path enforcement scope. It records lifecycle/failure/finalization evidence and preserves fail-closed semantics at the mirror boundary.</td></tr>
+</tbody></table>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected mirror behavior</td></tr>
+<tr><td><code>PreToolUse</code> starts for a governed write attempt</td><td>Emit or stage <code>hook.started</code> evidence tied to the session/turn/tool context. The path enforcement decision itself is owned by the hook policy implementation.</td></tr>
+<tr><td><code>PreToolUse</code> denies or fails for a write action</td><td>Preserve fail-closed outcome and record safe diagnostics in hook completion/failure evidence; the write must not execute.</td></tr>
+<tr><td><code>PostToolUse</code> completes after a read tool</td><td>Record hook completion evidence where runtime support exists; large tool output remains budgeted or artifact-referenced rather than copied into the hook event.</td></tr>
+<tr><td>SDK emits a compaction boundary</td><td>Persist <code>context.compacted</code> with boundary metadata that is safe and available; preserve replay implications and keep full <code>events.jsonl</code> on disk.</td></tr>
+<tr><td>Stop/finalization callback fires</td><td>Record finalization evidence associated with the turn/session while ensuring the durable terminal event remains success, failure, cancellation, or interruption.</td></tr>
+<tr><td>SDK transcript is available under a configured store</td><td>Cross-reference the transcript linkage as adapter metadata only; <code>events.jsonl</code> remains canonical.</td></tr>
+</tbody></table>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>TBD</td><td>No direct source conflict identified during P1/P2. PRD has a MATCH source state.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> Section 8.15 and runtime event requirements</td><td>PRD-cited compaction payload details and acceptance wording</td><td>Treat PRD as a current MATCH source under the reconciled D-APP-38 source state; prefer CONTRACT/SPEC/TYPES for binding schema and invariants.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-033-pass-3-disposition">CLM-033 — Pass 3 Disposition</h3>
+<h5 id="pass-3-disposition">Pass 3 Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence reread</td></tr>
+<tr><td>C-002</td><td>Already covered as a registry blocker: <code>hook.failed</code> is not in the current listed event categories, so failures remain outcome data under accepted event types unless a governed event-registry extension is accepted.</td><td><code>docs/SPEC.md</code> Section 9.4; <code>docs/TYPES.md</code> Section 7.3; <code>docs/CONTRACT.md</code> Section 1.6 K-HOOK-1</td></tr>
+<tr><td>X-001</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/PRD.md</code> Section 8.15; <code>docs/SPEC.md</code> Sections 9.4 and 15.2 — reconciled under D-APP-38</td></tr>
+<tr><td>E-001</td><td>Converted to a tracked linkage-policy blocker: parent/child linkage may use <code>parentEventId</code>, <code>turnId</code>, or <code>sessionId</code>, but the exact policy remains <code>TBD</code> until mapper implementation assigns callback-to-event lineage.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Sections 7.3 and 8.5</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-057 SOW-061 OBJ-003 OBJ-005</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

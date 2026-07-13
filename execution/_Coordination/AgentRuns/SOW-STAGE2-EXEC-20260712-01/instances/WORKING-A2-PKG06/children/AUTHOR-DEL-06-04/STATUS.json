@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "instance_id": "AUTHOR-DEL-06-04",
+  "parent_instance_id": "WORKING-A2-PKG06",
+  "agent": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "CONVERT",
+  "terminal": true,
+  "status": "PASS",
+  "candidate_sha256": "869bd9079ab1a2f600c03ef9ccc8680064601853479a0d77b64ee0499c1b786b",
+  "mapping_count": 31,
+  "source_line_count": 338,
+  "blockers": [],
+  "waivers": [],
+  "return_path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-04/RETURN.md"
+}

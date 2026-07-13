@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="72c083f28a597583abf1b6e950f0ce0965221f9cd2fee0233408954336aaa100">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>72c083f28a597583abf1b6e950f0ce0965221f9cd2fee0233408954336aaa100</code>.</p>
+<h1 id="scope-of-work-del-04-03">Scope of Work — DEL-04-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-04-03</code> in service of project scope [SOW-040, SOW-044, SOW-051] and package objectives [OBJ-002, OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Lossless SOW_V1 representation of the DEL-04-03 legacy production contract, traceable to SOW-040, SOW-044, SOW-051, OBJ-002, and OBJ-004.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-03-sdkmessagemapper-and-provider-neutral-translation">CLM-001 — Datasheet: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h3>
+<h4 id="datasheet-del-04-03-sdkmessagemapper-and-provider-neutral-translation">Datasheet: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-04-03</td></tr>
+<tr><td>Deliverable Name</td><td>SdkMessageMapper and Provider-Neutral Translation</td></tr>
+<tr><td>Package ID</td><td>PKG-04</td></tr>
+<tr><td>Package Name</td><td>SDK Adapter, Prompt, Provider, and Settings</td></tr>
+<tr><td>Decomposition Variant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>Decomposition Revision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Responsible Party</td><td>TBD</td></tr>
+<tr><td>Context Envelope</td><td>M</td></tr>
+<tr><td>Current Source State</td><td>REF-006 <code>docs/PRD.md</code> has <code>HASH_MISMATCH</code>; this run treats it as a source-state warning per task brief.</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary implementation artifact</td><td><code>sdk-message-mapper.ts</code></td><td><code>_CONTEXT.md</code>; decomposition DEL-04-03</td></tr>
+<tr><td>Test artifacts</td><td>Mapper tests; provider-neutral leakage tests</td><td><code>_CONTEXT.md</code>; decomposition DEL-04-03</td></tr>
+<tr><td>Scope items covered</td><td>SOW-040, SOW-044, SOW-051</td><td><code>_CONTEXT.md</code>; decomposition DEL-04-03</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-002, OBJ-004</td><td><code>_CONTEXT.md</code>; decomposition DEL-04-03</td></tr>
+<tr><td>Browser-facing output contract</td><td>Compact <code>UIEvent</code>s / SSE events: <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code></td><td>REF-003 Section 11; REF-004 Section 7.4</td></tr>
+<tr><td>Persisted runtime output contract</td><td>Versioned <code>HarnessEvent</code> records with <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, optional <code>turnId</code>, optional <code>parentEventId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code></td><td>REF-003 Section 10; REF-004 Section 7.3</td></tr>
+<tr><td>SDK-specific data posture</td><td>SDK message names, session IDs, transcript paths, permission modes, hook names, and tool names remain adapter metadata, not public Chirality contracts</td><td>REF-001 Sections 2.8-2.10; REF-003 Section 10.3; REF-004 Section 9</td></tr>
+<tr><td>Known SDK input categories</td><td><code>SDKSystemMessage</code>, <code>SDKAssistantMessage</code>, <code>SDKPartialAssistantMessage</code>, <code>SDKResultMessage</code>, permission-denial, hook, compact-boundary, tool-progress, and subagent messages</td><td>REF-006 Section 8.12, source-state warning applies</td></tr>
+<tr><td>Exact observed SDK message sequence</td><td>TBD pending DEL-04-01 first-adapter probe / OI-001; current named categories are planning targets until probe-backed fixtures are accepted.</td><td>Decomposition OI-001; SOW-044; REF-006 FR-116, HASH_MISMATCH warning applies</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Route compatibility</td><td>Existing <code>/api/harness/turn</code> route shapes and SSE event names remain stable during SDK adoption.</td><td>REF-003 Sections 10.4 and 11; REF-006 Section 8.12</td></tr>
+<tr><td>Runtime boundary</td><td>Mapping operates behind <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code>; SDK APIs do not define public semantics.</td><td>REF-003 Section 10; REF-001 Section 2.8</td></tr>
+<tr><td>Event separation</td><td>Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s are separate contracts.</td><td>SOW-040; REF-003 Sections 10.3 and 11; REF-006 FR-074</td></tr>
+<tr><td>SDK model/tool loop</td><td>SDK supplies the model/tool loop when conformance passes; Chirality mirrors SDK tool-use, tool-result, permission-denial, hook, result, and compact-boundary messages into events.</td><td>SOW-051; REF-006 FR-083</td></tr>
+<tr><td>Redaction boundary</td><td>Runtime event data and logs must not expose API keys or configured secret variants.</td><td>REF-006 FR-075; REF-005 Section 6.3</td></tr>
+<tr><td>Conformance boundary</td><td>SDK-backed adapter must pass engine conformance tests before production default use.</td><td>REF-003 Section 10.3</td></tr>
+<tr><td>Dependency state</td><td><code>Dependencies.csv</code> exists with 11 ACTIVE extracted rows; satisfaction remains <code>TBD</code> for all rows, including ACTIVE upstream execution dependencies DEL-04-01, DEL-03-01, DEL-03-03, and DEL-04-02.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code></td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected Construction</td></tr>
+<tr><td>Mapper module</td><td>A backend module, anticipated as <code>sdk-message-mapper.ts</code>, that translates SDK stream/message inputs into Chirality-owned <code>UIEvent</code> and <code>HarnessEvent</code> outputs.</td></tr>
+<tr><td>UI mapping surface</td><td>A deterministic mapping to the stable browser SSE event names without exposing SDK message names in the browser contract.</td></tr>
+<tr><td>Runtime-event mapping surface</td><td>A deterministic mapping to versioned <code>HarnessEvent</code> categories, including model, tool, permission, hook, compact-boundary, terminal, and SDK metadata records where source-supported.</td></tr>
+<tr><td>Adapter metadata handling</td><td>SDK-specific identifiers and paths appear only under explicit adapter metadata fields or equivalent confined metadata structures.</td></tr>
+<tr><td>Leakage tests</td><td>Tests assert that public APIs, UI events, and canonical runtime events do not become SDK-shaped.</td></tr>
+<tr><td>Probe-dependent cases</td><td>ASSUMPTION: cases for exact SDK message payload shapes will be completed after DEL-04-01 confirms observed SDK message categories.</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source Slice Used</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8, 2.9, 2.10 and the decision record table covering product-owned contracts, provider-neutral core, SDK metadata posture, and audit mirror canonicality.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code> Sections 10, 11, 12, 14, 15, and 19.3 covering runtime engine boundary, SSE events, SDK settings, tool surface, permission mapping, and validation IDs.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code> Sections 7.1, 7.2, 7.3, 7.4, and 9 covering <code>SdkMessageMapper</code>, <code>HarnessEvent</code>, <code>UIEvent</code>, SDK transcript, and adapter vocabulary.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code> R1 targets and Section 6.3 covering <code>sdk-message-mapper.ts</code>, event mapping, and redaction.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code> Sections 8.12 and 8.13, used with HASH_MISMATCH warning per task brief.</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-04-03, SOW-040, SOW-044, SOW-051, OBJ-002, OBJ-004, and OI-001.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-04-03-sdkmessagemapper-and-provider-neutral-translation">CLM-007 — Specification: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h3>
+<h4 id="specification-del-04-03-sdkmessagemapper-and-provider-neutral-translation">Specification: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the backend mapping surface that translates SDK stream messages into stable browser <code>UIEvent</code>s and provider-neutral persisted <code>HarnessEvent</code>s without allowing SDK message shapes, provider identifiers, transcript paths, or tool names to define Chirality&#x27;s public or canonical contracts.</p>
+<p>In scope:</p>
+<ul>
+<li>- <code>sdk-message-mapper.ts</code> or equivalent mapper module.</li>
+<li>- Deterministic mapping from SDK message categories to browser-facing <code>UIEvent</code>s.</li>
+<li>- Deterministic mapping from SDK message categories to versioned <code>HarnessEvent</code>s.</li>
+<li>- Mapper tests and provider-neutral leakage tests.</li>
+<li>- Handling of SDK session and transcript linkage only as adapter metadata when relevant to mapped events.</li>
+<li>- Mapping hooks for SDK tool-use, tool-result, permission-denial, hook, result, compact-boundary, terminal, and subagent lifecycle messages where source-supported.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Defining the product-owned <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> itself; that is owned by DEL-03-01.</li>
+<li>- Persisting the append-only JSONL event log; that is owned by PKG-05, with this deliverable supplying mapping outputs compatible with it.</li>
+<li>- Building SDK options and settings isolation; that is owned by DEL-04-02.</li>
+<li>- Confirming exact SDK package behavior and message sequence; that is owned by DEL-04-01 / OI-001.</li>
+<li>- Expanding tool permissions, MCP wrappers, write/edit/bash behavior, or permission overlay depth beyond mapper-visible event inputs.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Verification</td></tr>
+<tr><td>DEL-04-03-REQ001</td><td>The mapper MUST keep SDK messages separate from the browser contract; SDK messages are not browser <code>UIEvent</code>s.</td><td>Unit tests assert SDK input names do not appear as browser event names.</td></tr>
+<tr><td>DEL-04-03-REQ002</td><td>The mapper MUST keep SDK messages separate from the canonical persisted event contract; SDK messages are not <code>HarnessEvent</code>s without translation.</td><td>Unit tests assert canonical event <code>type</code> values are Chirality-owned categories.</td></tr>
+<tr><td>DEL-04-03-REQ003</td><td>The mapper MUST translate external message names, session IDs, tool names, permission modes, transcript paths, and hook names into Chirality-owned contracts or explicit adapter metadata fields.</td><td>Provider-neutral leakage tests inspect mapped outputs for unapproved top-level SDK fields.</td></tr>
+<tr><td>DEL-04-03-REQ004</td><td>Browser-facing output MUST use the stable SSE / <code>UIEvent</code> event names already defined for turn streams: <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, and <code>process:exit</code>.</td><td>Compatibility fixture tests compare emitted event names against the SPEC/TYPES list.</td></tr>
+<tr><td>DEL-04-03-REQ005</td><td>Persisted runtime output MUST use versioned <code>HarnessEvent</code> records with the fields defined by the target type.</td><td>Schema tests validate <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code>, with optional turn/parent links.</td></tr>
+<tr><td>DEL-04-03-REQ006</td><td>The mapper MUST support initial <code>HarnessEvent</code> categories for session, turn, SDK system initialization, model request, model delta, model completion, turn completion, turn failure, and turn cancellation where corresponding source inputs are present.</td><td>Unit tests cover each initial category with representative fixtures or mark probe-dependent fixtures as <code>TBD</code>.</td></tr>
+<tr><td>DEL-04-03-REQ007</td><td>The mapper SHOULD prepare for later categories for tool, permission, hook, compaction, subagent, and SDK mirror error events without making unsupported cases appear complete.</td><td>Tests or TODO fixtures label probe-dependent categories as <code>TBD</code> pending DEL-04-01.</td></tr>
+<tr><td>DEL-04-03-REQ008</td><td>The mapper MUST deterministically map SDK messages into UI and runtime events.</td><td>Golden fixture tests assert identical input sequences produce identical ordered output sequences.</td></tr>
+<tr><td>DEL-04-03-REQ009</td><td>The mapper MUST mirror SDK model/tool loop activity into Chirality events when SDK supplies the model/tool loop.</td><td>Tests cover SDK tool-use, tool-result, permission-denial, hook, result, and compact-boundary inputs once probe fixtures are available.</td></tr>
+<tr><td>DEL-04-03-REQ010</td><td>The mapper MUST NOT treat SDK transcripts as canonical project truth or canonical runtime events.</td><td>Tests assert transcript path/store linkage is metadata only and does not replace <code>HarnessEvent</code> output.</td></tr>
+<tr><td>DEL-04-03-REQ011</td><td>The mapper MUST preserve route and SSE compatibility during SDK adoption.</td><td>Integration or adapter tests assert existing route event shapes remain readable by the UI.</td></tr>
+<tr><td>DEL-04-03-REQ012</td><td>Runtime event outputs MUST be compatible with redaction policy; secrets and API key material must not be emitted by mapper outputs.</td><td>Redaction fixture tests include SDK error/tool payload examples and assert configured secret variants are absent.</td></tr>
+<tr><td>DEL-04-03-REQ013</td><td>The mapper MUST expose enough terminal outcome information for success, failure, interruption, and cancellation to be persisted by the runtime event log, but it MUST NOT own upstream <code>TurnEngine</code> lock cleanup, cancellation-source classification, or accepted-turn persistence semantics.</td><td>Unit tests cover mapper-owned terminal inputs and resulting <code>turn.completed</code>, <code>turn.failed</code>, or <code>turn.cancelled</code> style outputs; integration/conformance tests owned by <code>TurnEngine</code> prove accepted-turn persistence, interrupt/cancel cleanup, and terminal durability.</td></tr>
+<tr><td>DEL-04-03-REQ014</td><td>ASSUMPTION: Exact SDK message payload fixtures will be derived from the DEL-04-01 first-adapter probe; until then, exact payload-field mappings remain <code>TBD</code>.</td><td>Open test fixture list references OI-001.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Product-owned runtime boundary</td><td>SDK-backed adapter behavior must satisfy Chirality contracts rather than defining them.</td><td>REF-001 Sections 2.8-2.10; REF-003 Section 10</td></tr>
+<tr><td>Browser SSE event contract</td><td>UI mapping must preserve stable browser event names during SDK adoption.</td><td>REF-003 Section 11; REF-004 Section 7.4</td></tr>
+<tr><td><code>HarnessEvent</code> target type</td><td>Runtime mapping must emit versioned, canonical Chirality events.</td><td>REF-004 Section 7.3; REF-003 Section 10</td></tr>
+<tr><td>SDK adapter vocabulary boundary</td><td>SDK terms remain adapter-boundary metadata.</td><td>REF-004 Section 9</td></tr>
+<tr><td>PRD FR-074 / FR-116 / FR-083</td><td>Event separation, deterministic Provider/SDK message mapping, and SDK model/tool loop mirroring.</td><td>REF-006 Section 8.12 and 8.13, HASH_MISMATCH warning applies</td></tr>
+<tr><td>Section 9 validation IDs</td><td>Runtime validation includes the active ID <code>section9.adapter_message_mapper</code>; older <code>section9.sdk_message_mapper</code> wording is superseded by ADQ-04 reconciliation.</td><td>REF-003 Section 19.3; <code>frontend/scripts/validate-harness-section9.mjs</code>; <code>docs/harness/runtime_evidence_reconciliation.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Method</td><td>Status</td></tr>
+<tr><td>UI event compatibility</td><td>Golden tests for browser event names and payload shape.</td><td>TBD implementation</td></tr>
+<tr><td>Runtime event schema</td><td>Schema tests for <code>HarnessEvent</code> output fields and category values.</td><td>TBD implementation</td></tr>
+<tr><td>Determinism</td><td>Same SDK fixture sequence produces same ordered UI/runtime event outputs.</td><td>TBD implementation</td></tr>
+<tr><td>Provider-neutral leakage</td><td>Tests fail on unapproved SDK-shaped top-level fields, public event names, or canonical event types.</td><td>TBD implementation</td></tr>
+<tr><td>Probe-backed SDK categories</td><td>Fixtures populated from DEL-04-01 first-adapter probe for exact message sequence and payloads.</td><td>BLOCKED/TBD by OI-001</td></tr>
+<tr><td>Redaction compatibility</td><td>Mapper output examples exclude API keys and configured secret variants.</td><td>TBD implementation</td></tr>
+<tr><td>Conformance integration</td><td>Engine conformance suite includes mapper coverage before SDK-backed adapter becomes production default.</td><td>TBD implementation</td></tr>
+<tr><td>Terminal boundary ownership</td><td>Mapper unit tests verify translation from supported terminal SDK/runtime inputs to Chirality terminal event categories; <code>TurnEngine</code> integration/conformance tests verify cancellation source, client disconnect cleanup, accepted-turn survival, and durable terminal persistence.</td><td>TBD implementation; source-supported by REF-002 K-EVENT-2/K-EVENT-3, REF-003 Sections 9-10, REF-005 R1 acceptance, and REF-006 FR-022/FR-123; REF-006 HASH_MISMATCH warning applies</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required documentation and artifacts:</p>
+<ul>
+<li>- <code>sdk-message-mapper.ts</code> or equivalent implementation file.</li>
+<li>- Mapper fixture documentation describing supported input categories and their source/probe basis.</li>
+<li>- Mapper tests covering UI output and runtime event output.</li>
+<li>- Provider-neutral leakage tests.</li>
+<li>- A <code>TBD</code> or open-issue list for any SDK message category not yet confirmed by DEL-04-01.</li>
+<li>- Section 9 validation coverage entry for <code>section9.adapter_message_mapper</code>, the current implemented mapper validation ID.</li>
+</ul>
+<h3 id="clm-013-d-app-56-event-lane-amendment-2026-07-12">CLM-013 — D-APP-56 event-lane amendment (2026-07-12)</h3>
+<h5 id="d-app-56-event-lane-amendment-2026-07-12">D-APP-56 event-lane amendment (2026-07-12)</h5>
+<p>R4-P34 adds the <code>message.delta</code>, <code>message.completed</code>, and <code>queue.enqueued</code> lane emitted by <code>sdk-message-mapper.ts</code> to the REQ-006 event-category mapping, parallel to the existing <code>model.*</code> lane.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The conversion preserves and traces all legacy source content for DEL-04-03 to SOW-040, SOW-044, SOW-051, OBJ-002, and OBJ-004 without adding semantic scope, reliance claims, lifecycle meaning, or obligations.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-04-03-sdkmessagemapper-and-provider-neutral-translation">CLM-014 — Procedure: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h3>
+<h4 id="procedure-del-04-03-sdkmessagemapper-and-provider-neutral-translation">Procedure: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure to implement and verify the <code>SdkMessageMapper</code> deliverable so SDK stream messages are translated into stable browser <code>UIEvent</code>s and provider-neutral <code>HarnessEvent</code>s without leaking SDK shape into Chirality core contracts.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Notes</td></tr>
+<tr><td>Deliverable context</td><td>Available in <code>_CONTEXT.md</code>.</td></tr>
+<tr><td>Authoritative references</td><td>Available in <code>_REFERENCES.md</code>; REF-006 <code>docs/PRD.md</code> has HASH_MISMATCH and is used as a warning-qualified source per task brief.</td></tr>
+<tr><td>Accepted dependency register</td><td><code>Dependencies.csv</code> exists with ACTIVE extracted edges, but all satisfaction statuses remain <code>TBD</code>; implementation closure should verify upstream satisfaction before closing this deliverable.</td></tr>
+<tr><td>Declared upstream dependencies</td><td>Extracted ACTIVE upstream execution dependencies include DEL-04-01, DEL-03-01, DEL-03-03, and DEL-04-02. Their satisfaction remains <code>TBD</code> in <code>_DEPENDENCIES.md</code> / <code>Dependencies.csv</code>.</td></tr>
+<tr><td>first-adapter probe results</td><td>TBD / pending DEL-04-01 and OI-001 for exact SDK message categories and payload fields.</td></tr>
+<tr><td>Engine contract target</td><td>Product-owned <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> is defined by PKG-03 / DEL-03-01, not by this deliverable.</td></tr>
+<tr><td>Runtime event schema target</td><td><code>HarnessEvent</code> target type is available in REF-004 and REF-003.</td></tr>
+<tr><td>Browser event target</td><td>Stable browser SSE event names are available in REF-003 and REF-004.</td></tr>
+<tr><td>Implementation path discovery</td><td>Concrete mapper module path, UI/HarnessEvent type import paths, and mapper test locations are <code>TBD</code> until code discovery confirms the accepted backend/runtime layout.</td></tr>
+</tbody></table>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm mapping boundaries.</p>
+<ul>
+<li>- Read the accepted <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> once available.</li>
+<li>- Confirm the mapper is an adapter component and not the owner of route policy, event persistence, SDK option construction, or permission enforcement.</li>
+<li>- Before implementation closure, confirm <code>Dependencies.csv</code> has no unsatisfied blocker for the upstream runtime contract, SSE compatibility adapter, SDK options/settings isolation, or first-adapter probe evidence.</li>
+</ul>
+<p>2. Create the mapper module.</p>
+<ul>
+<li>- Add <code>sdk-message-mapper.ts</code> or equivalent in the accepted backend runtime location.</li>
+<li>- Record the accepted mapper path, UI event type import path, <code>HarnessEvent</code> type import path, mapper unit-test path, and provider-neutral leakage-test path in implementation notes or fixture documentation once code discovery is complete.</li>
+<li>- Define input types for SDK-side messages using probe-backed fixtures where available.</li>
+<li>- Define output types for browser <code>UIEvent</code> and <code>HarnessEvent</code> results using Chirality-owned types.</li>
+</ul>
+<p>3. Implement browser event mapping.</p>
+<ul>
+<li>- Map assistant deltas, completions, session initialization, tool result summaries, terminal errors, and process completion into the stable SSE event names.</li>
+<li>- Do not emit SDK message names as browser event names.</li>
+<li>- Mark any unconfirmed SDK input shape as <code>TBD</code> until DEL-04-01 provides probe evidence.</li>
+</ul>
+<p>4. Implement runtime event mapping.</p>
+<ul>
+<li>- Emit versioned <code>HarnessEvent</code> records for accepted categories such as <code>sdk.system.init</code>, <code>model.request.started</code>, <code>model.delta</code>, <code>model.completed</code>, <code>turn.completed</code>, <code>turn.failed</code>, and <code>turn.cancelled</code> where inputs support them.</li>
+<li>- Prepare explicit cases or fixture placeholders for later categories such as tool, permission, hook, compaction, subagent, and SDK mirror error events.</li>
+<li>- Keep SDK-specific fields under explicit adapter metadata, not top-level canonical fields unless the schema accepts them.</li>
+</ul>
+<p>5. Handle unknown and probe-dependent SDK inputs.</p>
+<ul>
+<li>- For unknown categories, return a structured mapper error or safe diagnostic output according to the runtime contract.</li>
+<li>- Do not pass raw SDK messages through to browser events or canonical runtime events.</li>
+<li>- Record unconfirmed categories in a <code>TBD</code> fixture list tied to DEL-04-01 / OI-001.</li>
+</ul>
+<p>6. Apply redaction-compatible handling.</p>
+<ul>
+<li>- Avoid copying API keys, configured secret variants, provider error bodies, or raw tool output blobs into mapped events.</li>
+<li>- Preserve enough non-secret metadata for diagnosis, replay, and terminal outcome handling.</li>
+</ul>
+<p>7. Write mapper tests.</p>
+<ul>
+<li>- Cover each stable browser event name expected from supported SDK input fixtures.</li>
+<li>- Cover each supported <code>HarnessEvent</code> category and required schema field.</li>
+<li>- Cover deterministic ordering for repeated runs over the same input sequence.</li>
+<li>- Cover mapper-owned terminal success, failure, interruption, and cancellation translation cases.</li>
+<li>- Leave accepted-turn persistence, client-disconnect cleanup, cancellation-source classification, lock cleanup, and terminal durability to <code>TurnEngine</code> / engine conformance tests; reference those results rather than duplicating ownership in the mapper.</li>
+</ul>
+<p>8. Write provider-neutral leakage tests.</p>
+<ul>
+<li>- Assert public event names are Chirality event names, not SDK message names.</li>
+<li>- Assert canonical event types are Chirality categories, not SDK raw categories.</li>
+<li>- Assert SDK session IDs, transcript paths, SDK tool names, and provider names appear only in approved adapter metadata locations.</li>
+</ul>
+<p>9. Integrate with validation.</p>
+<ul>
+<li>- Use <code>section9.adapter_message_mapper</code> as the active Section 9 runtime validation ID for mapper coverage.</li>
+<li>- Ensure mapper tests are part of local premerge validation once the runtime validation suite lands.</li>
+</ul>
+<p>10. Reconcile with first-adapter probe updates.</p>
+<ul>
+<li>- When DEL-04-01 provides observed SDK message fixtures, replace <code>TBD</code> cases with probe-backed tests.</li>
+<li>- If SDK behavior cannot support required product-owned mapping semantics, surface the issue through the reliance-boundary/fallback process rather than weakening provider neutrality.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Four output categories</td><td>Mapper produces browser UI events, canonical runtime events, structured mapper errors, or explicit <code>TBD</code> probe cases; it does not raw-pass SDK messages.</td></tr>
+<tr><td>UI compatibility</td><td>Stable SSE event names remain unchanged.</td></tr>
+<tr><td>Runtime schema</td><td><code>HarnessEvent</code> records validate against the target type.</td></tr>
+<tr><td>Provider-neutral leakage</td><td>No unapproved SDK-shaped top-level fields or event names appear in public/canonical outputs.</td></tr>
+<tr><td>Determinism</td><td>Identical SDK input fixtures produce identical ordered mapping outputs.</td></tr>
+<tr><td>Redaction</td><td>Secret-like values do not appear in mapper outputs.</td></tr>
+<tr><td>Probe completeness</td><td>All SDK categories named by the accepted probe have a mapping, structured rejection, or documented <code>TBD</code> requiring human/architecture action.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Expected records and evidence from implementation:</p>
+<ul>
+<li>- <code>sdk-message-mapper.ts</code> or equivalent implementation.</li>
+<li>- Mapper unit tests.</li>
+<li>- Provider-neutral leakage tests.</li>
+<li>- Fixture files or inline fixtures derived from DEL-04-01 first-adapter probe outputs.</li>
+<li>- <code>TBD</code> list for SDK message categories or payload fields not yet confirmed.</li>
+<li>- Section 9 validation entry or follow-up for <code>section9.adapter_message_mapper</code>.</li>
+<li>- Notes on any fallback or reliance-boundary concerns if SDK behavior cannot be mapped without weakening Chirality-owned contracts.</li>
+<li>- Implementation path record naming the accepted mapper module, UI/HarnessEvent type import paths, mapper unit-test path, and provider-neutral leakage-test path.</li>
+<li>- Dependency closure note confirming whether ACTIVE upstream dependencies remain <code>TBD</code>, blocked, or satisfied at implementation closeout.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the candidate schema and exact identity/reference bindings, then verify complete source-marker coverage and byte-for-byte source text parity against the four manifest-bound legacy documents.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-04-03-sdkmessagemapper-and-provider-neutral-translation">CLM-020 — Guidance: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h3>
+<h4 id="guidance-del-04-03-sdkmessagemapper-and-provider-neutral-translation">Guidance: DEL-04-03 SdkMessageMapper and Provider-Neutral Translation</h4>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to create a narrow SDK adapter mapping surface: SDK stream messages can power the runtime, but Chirality&#x27;s browser stream and persisted runtime events remain product-owned, stable, and provider-neutral. The mapper is one of the control points that prevents SDK defaults, transcript shape, message names, or tool names from silently redefining Chirality behavior.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Keep SDK shape at the adapter boundary.</p>
+<ul>
+<li>- SDK message names, tool names, permission modes, transcript paths, and session IDs are implementation metadata. They may be retained only where explicitly modeled as adapter metadata.</li>
+</ul>
+<p>2. Preserve the browser contract.</p>
+<ul>
+<li>- Browser <code>UIEvent</code>s are compact and stable. The mapper should emit only the established SSE event names unless a later governed UI compatibility change accepts an addition.</li>
+</ul>
+<p>3. Preserve the canonical runtime contract.</p>
+<ul>
+<li>- Persisted <code>HarnessEvent</code>s are Chirality-owned records. They may include richer runtime detail than UI events, but the event schema and category vocabulary must remain product-owned.</li>
+</ul>
+<p>4. Treat SDK transcripts as secondary.</p>
+<ul>
+<li>- SDK transcript paths, store keys, and session IDs support resume/debugging. They do not replace append-only Chirality events.</li>
+</ul>
+<p>5. Map deterministically.</p>
+<ul>
+<li>- Given the same SDK message sequence and the same mapper version, output ordering and event categories should be stable. If SDK concurrent tool activity complicates ordering, preserve source order or explicitly document the ordering rule.</li>
+</ul>
+<p>6. Fail closed on unknown provider shape.</p>
+<ul>
+<li>- Unknown SDK message categories should become structured mapper errors, <code>TBD</code> probe cases, or safe diagnostic runtime events only when that behavior is accepted by the runtime contract. They should not leak raw SDK payloads into public contracts.</li>
+</ul>
+<p>7. Keep redaction upstream and downstream in view.</p>
+<ul>
+<li>- The mapper should not be the only redaction boundary, but it must avoid copying secrets from SDK errors, tool outputs, or provider metadata into UI/runtime events.</li>
+</ul>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source Basis</td></tr>
+<tr><td>UI versus audit detail</td><td>Use UI events for compact browser streaming; use <code>HarnessEvent</code>s for richer runtime records such as model, tool, permission, hook, terminal, and SDK metadata events.</td><td>REF-003 Sections 10-11; REF-004 Sections 7.3-7.4</td></tr>
+<tr><td>first-adapter probe dependency</td><td>The exact SDK message categories and payload fields remain dependent on DEL-04-01 / OI-001. Design fixture gaps as explicit <code>TBD</code>s rather than guessing payload details.</td><td>Decomposition SOW-044 / OI-001</td></tr>
+<tr><td>Probe-backed category promotion slot</td><td>After DEL-04-01 / OI-001 is accepted, update this deliverable&#x27;s mapper fixtures and documentation with the observed SDK message categories that are supported inputs. Until then, the currently named SDK-side categories remain warning-qualified and must not be treated as accepted observed payload schemas.</td><td>REF-006 FR-116 and FR-123, HASH_MISMATCH warning applies; decomposition OI-001</td></tr>
+<tr><td>Provider neutrality</td><td>Prefer Chirality terms for public event names and canonical event types. Use adapter metadata for values like <code>sdkSessionId</code>, <code>sdkTranscriptPath</code>, and SDK tool names.</td><td>REF-001 Section 2.10; REF-004 Section 9</td></tr>
+<tr><td>Error handling</td><td>Convert SDK/provider failures into Chirality terminal or diagnostic events that preserve operator meaning without exposing secrets.</td><td>REF-006 FR-075, HASH_MISMATCH warning applies</td></tr>
+<tr><td>Test strategy</td><td>Start with SPEC/TYPES event contracts and PRD/decomposition requirements; add probe-derived fixtures after DEL-04-01 confirms real SDK streams.</td><td>REF-003 Section 19.3; REF-005 R1 acceptance</td></tr>
+</tbody></table>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred Direction</td><td>Rationale</td></tr>
+<tr><td>Raw SDK passthrough versus translation</td><td>Translate.</td><td>Raw passthrough would make SDK shape part of the product contract.</td></tr>
+<tr><td>Rich UI stream versus compact UI stream</td><td>Keep UI compact.</td><td>SPEC and TYPES define stable browser event names; richer audit detail belongs in <code>HarnessEvent</code>s.</td></tr>
+<tr><td>Early broad category support versus probe-backed precision</td><td>Use explicit <code>TBD</code>s for unconfirmed cases.</td><td>SOW-044 is marked open until the first-adapter probe confirms categories.</td></tr>
+<tr><td>Mapper-local redaction versus central redaction only</td><td>Do both where practical.</td><td>Event records and logs must not expose API keys or secrets; mapper copying should be conservative.</td></tr>
+<tr><td>SDK session data omitted versus captured as metadata</td><td>Capture only explicit metadata.</td><td>Resume/debug linkage is useful, but SDK identifiers remain adapter metadata.</td></tr>
+</tbody></table>
+<h3 id="clm-025-adapter-metadata-rationale">CLM-025 — Adapter Metadata Rationale</h3>
+<h5 id="adapter-metadata-rationale">Adapter Metadata Rationale</h5>
+<p>SDK identifiers, transcript paths, tool names, permission modes, hook names, and provider identifiers are useful for resume, diagnosis, conformance, and audit review, but they are not Chirality identity or event vocabulary. Keep them in explicit adapter metadata because REF-001 Sections 2.8-2.10 and REF-003 Section 10 make the runtime boundary, <code>UIEvent</code> schema, <code>HarnessEvent</code> schema, permission semantics, session canonicality, and audit mirror product-owned. REF-004 Section 9 also names SDK terms as adapter-boundary vocabulary. This allows the mapper to preserve needed implementation detail while leakage tests can reject SDK-shaped public event names, canonical event types, or top-level fields.</p>
+<h3 id="clm-026-examples">CLM-026 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Illustrative mappings, subject to DEL-04-01 probe confirmation:</p>
+<table><tbody>
+<tr><td>SDK-side input category</td><td>Browser <code>UIEvent</code> direction</td><td><code>HarnessEvent</code> direction</td><td>Notes</td></tr>
+<tr><td>SDK system/session initialization</td><td><code>session:init</code> if the UI needs session start metadata</td><td><code>sdk.system.init</code> with adapter metadata</td><td>Exact payload fields TBD pending first-adapter probe.</td></tr>
+<tr><td>Partial assistant text</td><td><code>chat:delta</code></td><td><code>model.delta</code></td><td>Preserve text ordering; avoid embedding raw SDK message object.</td></tr>
+<tr><td>Assistant completion/result</td><td><code>chat:complete</code> or <code>session:complete</code> as appropriate</td><td><code>model.completed</code> and/or <code>turn.completed</code></td><td>Terminal split depends on TurnEngine contract.</td></tr>
+<tr><td>Tool result/progress</td><td><code>tool:result</code> for compact UI feedback</td><td><code>tool.progress</code>, <code>tool.completed</code>, or <code>tool.failed</code></td><td>Later category support should be fixture-backed.</td></tr>
+<tr><td>Permission denial</td><td><code>turn:error</code> only if it is turn-terminal or UI-actionable</td><td><code>tool.permission</code> or <code>turn.failed</code> depending on contract</td><td>Capability-forward policy with explicit hard-deny precedence semantics are owned by policy, not the SDK name.</td></tr>
+<tr><td>Compact boundary</td><td>Usually no direct UI event unless UI compatibility accepts it</td><td><code>context.compacted</code></td><td>Probe exact SDK compact message shape.</td></tr>
+<tr><td>Subagent lifecycle</td><td>TBD for UI</td><td><code>subagent.started</code> / <code>subagent.completed</code></td><td>Governed subagent support is later-phase and must remain restricted.</td></tr>
+</tbody></table>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>B-001</td><td>REF-006 <code>docs/PRD.md</code> is accessible but has a recorded hash mismatch, while production documents use PRD-derived runtime and SDK-message requirements. This is a source-state conflict/blocker, not a resolved content contradiction.</td><td><code>_REFERENCES.md</code> REF-006 status</td><td>REF-006 Sections 8.12 and 8.13 as cited by current production documents</td><td>Datasheet references and conditions; Specification requirements/standards; Guidance considerations/examples; Procedure prerequisites</td><td>Continue using PRD-derived slices only with HASH_MISMATCH warning and keep probe-dependent details as <code>TBD</code> until source reconciliation and DEL-04-01 / OI-001 acceptance.</td><td>TBD</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-040 SOW-044 SOW-051 OBJ-002 OBJ-004</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

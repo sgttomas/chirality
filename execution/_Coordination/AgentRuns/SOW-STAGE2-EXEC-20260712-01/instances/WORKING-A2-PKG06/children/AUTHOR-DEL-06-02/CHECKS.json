@@ -1,0 +1,47 @@
+{
+  "schema": "chirality-sow-author-checks/v1",
+  "child_instance_id": "AUTHOR-DEL-06-02",
+  "verdict": "PASS",
+  "schema_mechanical": {
+    "verdict": "PASS",
+    "candidate_sha256": "e9346004a2a32f9b703c38d80ad0730dfc01aafc54123578c31378b3682ad3c5",
+    "format": "SOW_V1",
+    "claim_map_rows": 34,
+    "parity_checks": 34,
+    "source_lines_covered": 369,
+    "checklist_items": 1,
+    "html_script_free": true,
+    "html_external_resources": 0,
+    "twice_run_determinism": "PASS"
+  },
+  "project_content_authority": {
+    "verdict": "PASS",
+    "project_scope_refs": ["SOW-047", "SOW-049", "SOW-050"],
+    "package_objective_refs": ["OBJ-005"],
+    "substantive_conflicts": 0,
+    "tbd_preserved": true
+  },
+  "preservation_containment": {
+    "verdict": "PASS",
+    "source_and_control_bindings": 9,
+    "changed_bindings": 0,
+    "live_project_writes": 0,
+    "candidate_writes": 1,
+    "candidate_and_portable_artifact_absolute_repo_roots": 0,
+    "task_run_record_required_absolute_fields": 2,
+    "negative_unauthorized_dual": "PASS_FAIL_CLOSED_NO_OUTPUT"
+  },
+  "execution_substrate": {
+    "verdict": "PASS",
+    "method": "registered local deterministic Python tools",
+    "network_used": false,
+    "fallback_used": false
+  },
+  "artifacts": {
+    "validation_sha256": "92ea14c6e1e99ff66ae2e240905cdc892f1924bddcc827c5de97f5b9ace246ce",
+    "claim_map_sha256": "3c7454be5138c1b6b6959898df0188718e6206a507aa8be725663c6dc7b34909",
+    "parity_sha256": "645bf26421004cb89b6040e84cafed847355d7d1205947305c16a1815d445ece",
+    "checklist_sha256": "a6ed14db05ad231756f132e99fee7fb0d1795834c5e1383443c0f10ddb33a304",
+    "html_sha256": "db38a2267852422562c46f07a3e2d199fd5251529a75cd5b05432242ec3540e4"
+  }
+}

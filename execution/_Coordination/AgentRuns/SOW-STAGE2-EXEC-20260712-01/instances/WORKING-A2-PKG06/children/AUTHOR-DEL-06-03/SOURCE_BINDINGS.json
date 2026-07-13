@@ -1,0 +1,26 @@
+{
+  "schema": "chirality-sow-author-source-bindings/v1",
+  "deliverable_id": "DEL-06-03",
+  "package_id": "PKG-06",
+  "basis_commit": "0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+  "decomposition_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4",
+  "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "source_state": "IN_PROGRESS",
+  "project_scope_refs": ["SOW-048", "SOW-050"],
+  "package_objective_refs": ["OBJ-005", "OBJ-006"],
+  "source_files": {
+    "Datasheet.md": {"sha256_before": "ced04d0a44f3aa580cfcb4f9b9052c7775c1eb3b8e5a7c441768e3b6daef3650", "sha256_after": "ced04d0a44f3aa580cfcb4f9b9052c7775c1eb3b8e5a7c441768e3b6daef3650", "lines": 73},
+    "Specification.md": {"sha256_before": "f6e519ac392f3d5eba0217044f0fcf47e2b0059c1850e7fd98ab3285e1b14080", "sha256_after": "f6e519ac392f3d5eba0217044f0fcf47e2b0059c1850e7fd98ab3285e1b14080", "lines": 97},
+    "Guidance.md": {"sha256_before": "3be2d4db7184faf14299a04e513404488427735e0528e316153f6f7f5d6a91bc", "sha256_after": "3be2d4db7184faf14299a04e513404488427735e0528e316153f6f7f5d6a91bc", "lines": 99},
+    "Procedure.md": {"sha256_before": "0b231b934cb54462dc7aab7bb6194583c3eee6d78399bfd9614baa6670bc2382", "sha256_after": "0b231b934cb54462dc7aab7bb6194583c3eee6d78399bfd9614baa6670bc2382", "lines": 113}
+  },
+  "control_files": {
+    "_STATUS.md": {"sha256_before": "86ebfd26a1236b761dd8c4ee06d1c22866bde729a8eea7356ba7e026054a4611", "sha256_after": "86ebfd26a1236b761dd8c4ee06d1c22866bde729a8eea7356ba7e026054a4611"},
+    "_CONTEXT.md": {"sha256_before": "b593ab85523197ad0753c02dfeac8aa91d0d364861fd6fadca62149a998c456a", "sha256_after": "b593ab85523197ad0753c02dfeac8aa91d0d364861fd6fadca62149a998c456a"},
+    "_REFERENCES.md": {"sha256_before": "c60da38a6d820314d822e4b9b9cac131a9424946d9c1e869159022376b3bc1e5", "sha256_after": "c60da38a6d820314d822e4b9b9cac131a9424946d9c1e869159022376b3bc1e5"},
+    "_DEPENDENCIES.md": {"sha256_before": "9dc38450f2525d2d59cd8356b94e4331ec789b0de41d070b3ebc451dbbc18e9c", "sha256_after": "9dc38450f2525d2d59cd8356b94e4331ec789b0de41d070b3ebc451dbbc18e9c"},
+    "Dependencies.csv": {"sha256_before": "b9802d035476e9781c89e71cb49415bcb98206c0ad310420ae61b1bf8361918c", "sha256_after": "b9802d035476e9781c89e71cb49415bcb98206c0ad310420ae61b1bf8361918c", "data_rows": 9}
+  },
+  "source_line_total": 382,
+  "verdict": "PASS"
+}

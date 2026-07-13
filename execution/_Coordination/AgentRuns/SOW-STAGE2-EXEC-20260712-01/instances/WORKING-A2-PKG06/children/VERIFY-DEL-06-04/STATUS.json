@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-agent-status/v1",
+  "instance_id": "VERIFY-DEL-06-04",
+  "agent": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "VERIFY",
+  "terminal": true,
+  "status": "PASS",
+  "result": "PASS_UNCHANGED",
+  "candidate_sha256": "869bd9079ab1a2f600c03ef9ccc8680064601853479a0d77b64ee0499c1b786b",
+  "mapping_count": 31,
+  "source_line_count": 338,
+  "schema_verdict": "PASS",
+  "project_content_authority_verdict": "PASS",
+  "preservation_verdict": "PASS",
+  "execution_substrate_verdict": "PASS",
+  "containment_verdict": "PASS",
+  "candidate_changed": false,
+  "live_project_changed": false,
+  "blockers": [],
+  "waivers": []
+}

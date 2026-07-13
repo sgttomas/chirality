@@ -1,0 +1,11 @@
+{
+  "schema": "chirality-package-checks/v1",
+  "package": "APP-PKG-05",
+  "basis": "main@0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+  "status": "PASS",
+  "substrate_rerun": true,
+  "server": {"command": "CHIRALITY_HARNESS_PROVIDER=stub npm run dev:next", "cwd": "projects/chirality-app-dev/frontend", "port": 3000, "stopped_after_run": true},
+  "results": [
+    {"check": "frontend-premerge", "command": "npm run harness:validate:premerge", "cwd": "projects/chirality-app-dev/frontend", "status": "PASS", "exit_code": 0, "section8_tests": 8, "section9_tests": 16, "section9_report_only": true}
+  ]
+}

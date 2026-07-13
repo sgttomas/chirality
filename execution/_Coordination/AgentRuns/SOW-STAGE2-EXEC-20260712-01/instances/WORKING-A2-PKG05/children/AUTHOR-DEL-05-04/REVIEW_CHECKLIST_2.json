@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-05-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 236,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2"
+      },
+      "text": "The runtime replay and transcript view preserves canonical Chirality event precedence, valid-event ordering, malformed-tail tolerance, redaction, adapter-only SDK linkage, compact artifact references, and recorded implementation and fixture paths.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-05-04-VER-001",
+          "source_line": 362,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate schema and traceability; map and parity-check every legacy source line; derive the deterministic REVIEW checklist; render script-free HTML; and confirm source/control byte preservation."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-05-04",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-05",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2"
+  },
+  "tool_version": "1"
+}

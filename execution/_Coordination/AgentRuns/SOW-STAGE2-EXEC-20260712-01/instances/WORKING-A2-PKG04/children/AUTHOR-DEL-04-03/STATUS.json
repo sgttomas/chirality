@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A2-PKG04",
+  "child_instance_id": "AUTHOR-DEL-04-03",
+  "package_id": "APP-PKG-04",
+  "deliverable_id": "DEL-04-03",
+  "status": "SUCCESS",
+  "terminal": true,
+  "candidate_path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG04/DEL-04-03/ScopeOfWork.md",
+  "candidate_sha256": "72c083f28a597583abf1b6e950f0ce0965221f9cd2fee0233408954336aaa100",
+  "resolved_format": "MIGRATION_DUAL",
+  "lifecycle": "IN_PROGRESS",
+  "verdicts": {
+    "schema_mechanical": "PASS",
+    "project_content_authority": "PASS",
+    "preservation_containment": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "blockers": [],
+  "missing": [],
+  "needs_human_ruling": [],
+  "rerun_requirements": []
+}

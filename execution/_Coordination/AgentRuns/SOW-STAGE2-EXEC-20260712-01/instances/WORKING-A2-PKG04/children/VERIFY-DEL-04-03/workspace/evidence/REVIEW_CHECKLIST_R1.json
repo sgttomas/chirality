@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 231,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "72c083f28a597583abf1b6e950f0ce0965221f9cd2fee0233408954336aaa100"
+      },
+      "text": "The conversion preserves and traces all legacy source content for DEL-04-03 to SOW-040, SOW-044, SOW-051, OBJ-002, and OBJ-004 without adding semantic scope, reliance claims, lifecycle meaning, or obligations.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-04-03-VER-001",
+          "source_line": 362,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the candidate schema and exact identity/reference bindings, then verify complete source-marker coverage and byte-for-byte source text parity against the four manifest-bound legacy documents."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-04-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-04",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "72c083f28a597583abf1b6e950f0ce0965221f9cd2fee0233408954336aaa100"
+  },
+  "tool_version": "1"
+}

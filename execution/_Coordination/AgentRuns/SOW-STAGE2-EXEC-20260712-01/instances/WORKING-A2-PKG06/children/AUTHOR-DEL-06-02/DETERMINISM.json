@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-sow-determinism/v1",
+  "runs": 2,
+  "candidate_sha256_run_1": "e9346004a2a32f9b703c38d80ad0730dfc01aafc54123578c31378b3682ad3c5",
+  "candidate_sha256_run_2": "e9346004a2a32f9b703c38d80ad0730dfc01aafc54123578c31378b3682ad3c5",
+  "claim_map_sha256_run_1": "3c7454be5138c1b6b6959898df0188718e6206a507aa8be725663c6dc7b34909",
+  "claim_map_sha256_run_2": "3c7454be5138c1b6b6959898df0188718e6206a507aa8be725663c6dc7b34909",
+  "checklist_sha256_run_1": "794ef6f02881bf387a641c7a6da4010306e48f7f897f0c598022dd678ca2ea43",
+  "checklist_sha256_run_2": "794ef6f02881bf387a641c7a6da4010306e48f7f897f0c598022dd678ca2ea43",
+  "html_sha256_run_1": "db38a2267852422562c46f07a3e2d199fd5251529a75cd5b05432242ec3540e4",
+  "html_sha256_run_2": "db38a2267852422562c46f07a3e2d199fd5251529a75cd5b05432242ec3540e4",
+  "normalized_validation_sha256_run_1": "784e5149362c7ba0177679a49ed3d867d9bf67c4f7b9b5f3c57c6199de2be454",
+  "normalized_validation_sha256_run_2": "784e5149362c7ba0177679a49ed3d867d9bf67c4f7b9b5f3c57c6199de2be454",
+  "normalized_parity_sha256_run_1": "aa182cbf15a8e6ebc0036ab6d88a41e27e3b59fec3317fa4fc4b022c8a18ee53",
+  "normalized_parity_sha256_run_2": "aa182cbf15a8e6ebc0036ab6d88a41e27e3b59fec3317fa4fc4b022c8a18ee53",
+  "normalization": "Only the literal run1/run2 workspace path segment was replaced with runX before hashing path-bearing JSON evidence.",
+  "verdict": "PASS_BYTE_IDENTICAL"
+}

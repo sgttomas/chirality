@@ -1,0 +1,37 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "instance_id": "AUTHOR-DEL-05-04",
+  "agent_type": "TASK",
+  "terminal": true,
+  "status": "PASS",
+  "candidate": {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG05/DEL-05-04/ScopeOfWork.md",
+    "sha256": "94baf4311a930042e165b6026d24e135fe77047c0449ded7cb7d8c9bb44798f2",
+    "line_count": 467,
+    "byte_count": 38684
+  },
+  "metrics": {
+    "mapping_count": 27,
+    "source_line_count": 296,
+    "source_file_count": 4,
+    "control_file_count": 5,
+    "parity_pass_count": 27,
+    "acceptance_criterion_count": 1
+  },
+  "verdicts": {
+    "schema": "PASS",
+    "content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS",
+    "containment": "PASS",
+    "portability": "PASS"
+  },
+  "blockers": [],
+  "waivers": [],
+  "rerun_requirements": [],
+  "authority": {
+    "dispatch_commit": "0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "source_state": "IN_PROGRESS"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "chirality-sow-conversion-receipt/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A2-PKG06",
+  "child_instance_id": "AUTHOR-DEL-06-01",
+  "deliverable_id": "DEL-06-01",
+  "package_id": "PKG-06",
+  "mode": "CONVERT",
+  "source_state": "IN_PROGRESS",
+  "format_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "brief_amendment": "BRIEF_AMENDMENT_v2.md: accepted dependency CSV is Dependencies.csv; no authority, scope, write, or acceptance change",
+  "decomposition_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4",
+  "project_scope_refs": ["SOW-054", "SOW-055", "SOW-056", "SOW-058"],
+  "package_objective_refs": ["OBJ-005"],
+  "source_bindings": {
+    "Datasheet.md": "53ff89bbc1333a662cc90b6b071f26293492a77ba15d473a2d1360bb2dfedb3f",
+    "Specification.md": "5aac8ffa03bfcc86a5fbc0a41503f09fe28dd986a026cfba0bb1323b5a0c8013",
+    "Procedure.md": "2691233a5c520e08c7b2bba98182cc451aa477119d2d7bb0d4234b8c8bc21736",
+    "Guidance.md": "399897ebd0e823f59666618fe1fb4cac92f1b518ade4cefc29736c97be349b54",
+    "_STATUS.md": "fe271a0a61f70dd02d5bdb0f0d87f81e009c6bb3337b060181f0ce5db0d3303e",
+    "_CONTEXT.md": "4c4142895997d31ec14cc8a0778677f46d5bdb8d66dd97e6cf0061b8dd535db4",
+    "_REFERENCES.md": "b84dbe91557a52e107696ebe6d17193225415f0b23af59902fd92d470a42bb4c",
+    "_DEPENDENCIES.md": "898c584f5ea4e9041c691920337f8641a52ff9d994ec0c2979f6cdf5a3fe8c59",
+    "Dependencies.csv": "273c94a23b9c552c34c71afea56cbd1fe3fcd36f057df4285586db3eefe9338d"
+  },
+  "candidate": {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG06/DEL-06-01/ScopeOfWork.md",
+    "sha256": "083c90fda686a7ecc53e6b1b361872341c01da11da64c41a789178b06afa807a",
+    "bytes": 41548,
+    "isolated_format": "MIGRATION_DUAL",
+    "released_format": "SOW_V1"
+  },
+  "metrics": {
+    "source_files": 4,
+    "source_lines": 341,
+    "source_ranges": 33,
+    "preserved_ranges": 33,
+    "claim_map_rows": 33,
+    "checklist_items": 1,
+    "output_definitions": 1,
+    "acceptance_definitions": 1,
+    "verification_definitions": 1
+  },
+  "determinism": {
+    "checklist_sha256": "eb6878c966d39e027882ba85b447c83b223c135333440bf2879ba707d24a94f7",
+    "checklist_repeat_identical": true,
+    "render_sha256": "2e57fac3f4e1f1814a9085e70e4193661257d6314c8e4037ccebe638273547eb",
+    "render_repeat_identical": true,
+    "render_script_free": true,
+    "render_external_resource_free": true
+  },
+  "verdicts": {
+    "schema": "PASS: candidate validates chirality-deliverable-sow/v1; matrix and IDs close",
+    "content_authority": "PASS: seed definitions are conservative restatements of accepted decomposition and preserved source-kit obligations; no new scope or conflict introduced",
+    "preservation": "PASS: all 341 lines in 33 ranges are PRESERVED with exact text/hash parity; four sources and _STATUS.md remain byte-identical",
+    "execution_substrate": "PASS: all six registered tools completed; repeated checklist/render bytes match; four negative probes fail closed without unauthorized outputs",
+    "write_boundary": "PASS: writes are limited to this child folder and the exact isolated candidate target",
+    "overall": "PASS"
+  },
+  "blockers": [],
+  "waivers": [],
+  "rerun_requirements": []
+}

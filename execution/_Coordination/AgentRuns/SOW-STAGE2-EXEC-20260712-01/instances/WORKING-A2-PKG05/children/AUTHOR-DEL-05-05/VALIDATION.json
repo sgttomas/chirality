@@ -1,0 +1,8 @@
+{
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "repetitions": 2,
+  "stable": true,
+  "target": "instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-05/workspace",
+  "valid": true
+}

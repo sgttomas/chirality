@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-05-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 321,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "1c0e1a3bf9bd915ea23f9ace4ff0284e029efa36c661dca4ac7a78a65ce770a6"
+      },
+      "text": "Review and focused tests confirm that new sessions use the canonical folder layout and list, retrieve, resume, save, and delete operations convert legacy flat records while preserving stable session identity and defined duplicate-record precedence.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-05-01-VER-001",
+          "source_line": 475,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run focused session-manager tests for canonical creation, legacy conversion across supported operations, duplicate merge and cleanup, root override, stable identity, SDK metadata separation, and unsafe session-ID traversal guards; review the resulting evidence against SOW-009, SOW-043, SOW-046, and OBJ-003."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-05-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-05",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "1c0e1a3bf9bd915ea23f9ace4ff0284e029efa36c661dca4ac7a78a65ce770a6"
+  },
+  "tool_version": "1"
+}

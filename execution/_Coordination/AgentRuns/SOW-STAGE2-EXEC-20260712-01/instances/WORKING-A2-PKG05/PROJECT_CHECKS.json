@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-package-checks/v1",
+  "package": "APP-PKG-05",
+  "basis": "main@0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+  "status": "FAIL",
+  "preserved_initial_run": true,
+  "results": [
+    {"check": "harness-self-check", "command": "python3 tools/practitioner_harness/harness.py self-check", "status": "PASS", "exit_code": 0},
+    {"check": "harness-pytest", "command": "python3 -m pytest -q tools/practitioner_harness", "status": "PASS", "exit_code": 0, "passed": 264},
+    {"check": "frontend-typecheck", "command": "npm run typecheck", "cwd": "projects/chirality-app-dev/frontend", "status": "PASS", "exit_code": 0},
+    {"check": "frontend-test", "command": "npm test", "cwd": "projects/chirality-app-dev/frontend", "status": "PASS", "exit_code": 0, "test_files_passed": 97, "test_files_skipped": 1, "tests_passed": 713, "tests_skipped": 4},
+    {"check": "frontend-build", "command": "npm run build", "cwd": "projects/chirality-app-dev/frontend", "status": "PASS", "exit_code": 0},
+    {"check": "frontend-premerge", "command": "npm run harness:validate:premerge", "cwd": "projects/chirality-app-dev/frontend", "status": "FAIL", "exit_code": 1, "tests": 0, "cause": "No API server was listening at 127.0.0.1:3000; execution substrate unavailable."}
+  ]
+}

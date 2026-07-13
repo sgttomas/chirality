@@ -1,0 +1,5 @@
+classification	path	occurrences	verdict
+accepted_live_source	projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/_REFERENCES.md	1	PRESERVED_IMMUTABLE
+isolated_byte_identical_source_copy	workspace/DEL-05-03/_REFERENCES.md	1	PRESERVED_IMMUTABLE
+generated_non_source_evidence	instance tree excluding workspace/DEL-05-03/_REFERENCES.md	0	PORTABLE
+candidate	candidates/W_A2/APP-PKG05/DEL-05-03/ScopeOfWork.md	0	PORTABLE

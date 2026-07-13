@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="1095591a196fb61fbfbe30aaa779e3eaeba99c27c79864da428a74ac70c25157">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>1095591a196fb61fbfbe30aaa779e3eaeba99c27c79864da428a74ac70c25157</code>.</p>
+<h1 id="scope-of-work-del-04-05">Scope of Work — DEL-04-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-04-05</code> in service of project scope [SOW-019, SOW-020, SOW-021] and package objectives [OBJ-004, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Provider wrapper, key handoff tests, base URL/network tests, provider-expansion guard tests, and redaction fixtures for DEL-04-05 that preserve API key precedence, current Anthropic network policy, provider error classification, no unauthorized provider/network expansion, and redacted adapter environment handoff for SOW-019, SOW-020, SOW-021 and supporting OBJ-004, OBJ-008.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-05-anthropic-provider-key-base-url-and-network-bridge">CLM-001 — Datasheet: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h3>
+<h4 id="datasheet-del-04-05-anthropic-provider-key-base-url-and-network-bridge">Datasheet: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-04-05</td></tr>
+<tr><td>DeliverableName</td><td>Anthropic Provider Key, Base URL, and Network Bridge</td></tr>
+<tr><td>PackageID</td><td>PKG-04</td></tr>
+<tr><td>PackageName</td><td>SDK Adapter, Prompt, Provider, and Settings</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>ScopeItems</td><td>SOW-019, SOW-020, SOW-021</td></tr>
+<tr><td>Objectives</td><td>OBJ-004, OBJ-008</td></tr>
+</tbody></table>
+<p>Source: <code>_CONTEXT.md</code> &quot;Identity&quot;, &quot;Traceability&quot;; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> row <code>DEL-04-05</code>.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>API key precedence</td><td>UI safeStorage key first, then <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</td><td><code>docs/SPEC.md</code> Section 12.3; <code>docs/PRD.md</code> Section 8.5 FR-030</td></tr>
+<tr><td>API key state class</td><td>Non-project convenience state; not project truth.</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>API key storage target</td><td>Electron <code>app.getPath(&#x27;userData&#x27;)/credentials/api-key.enc</code> when UI storage is used.</td><td><code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>API key status values</td><td><code>ui</code>, <code>env</code>, or <code>none</code>.</td><td><code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>Allowed Anthropic base URL</td><td><code>https://api.anthropic.com</code> with no credentials and port empty or 443.</td><td><code>docs/PRD.md</code> Section 8.5 FR-032</td></tr>
+<tr><td>Renderer network policy</td><td>Allow loopback and Anthropic API path; cancel non-allowlisted outbound requests.</td><td><code>docs/SPEC.md</code> Section 16.3; <code>docs/PRD.md</code> Section 8.5 FR-033</td></tr>
+<tr><td>Node/SDK network policy</td><td>Node/SDK provider calls must not silently broaden network policy.</td><td><code>docs/SPEC.md</code> Section 16.3</td></tr>
+<tr><td>Provider error classes</td><td>Auth, rate limit, timeout, API error, network error, invalid base URL, policy violation.</td><td><code>docs/PRD.md</code> Section 8.5 FR-034</td></tr>
+<tr><td>SDK boundary</td><td>Provider integration is wrapped by the SDK-backed turn boundary, isolated in <code>TurnEngine</code>, <code>sdk-options-builder</code>, and <code>sdk-message-mapper</code>.</td><td><code>docs/PRD.md</code> Section 8.5 FR-035</td></tr>
+<tr><td>Redaction scope</td><td>Provider errors, SDK errors, logs, runtime events, and SDK stderr/debug output must redact secrets.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/PLAN.md</code> Section 6.3; <code>docs/PRD.md</code> FR-075</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Shipped SDK settings isolation</td><td>Shipped builds use <code>settingSources: []</code>.</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1</td></tr>
+<tr><td>SDK adapter promotion gate</td><td>SDK-backed adapter must pass engine conformance tests before becoming the default production path.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-2; <code>docs/SPEC.md</code> Section 12.1</td></tr>
+<tr><td>Product boundary</td><td>Public APIs, UI events, harness events, session storage, permission decisions, and governance records remain Chirality-owned, not SDK-shaped.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>Broader network tools</td><td>Remote MCP, plugins, and non-Anthropic network tools require governed future scope.</td><td><code>docs/SPEC.md</code> Section 16.3; <code>docs/CONTRACT.md</code> K-NET-1</td></tr>
+<tr><td>Packaging condition</td><td>Packaged app must prove SDK execution and API key handoff without leaking secrets.</td><td><code>docs/PLAN.md</code> Section 6.4</td></tr>
+<tr><td>Source-state warning</td><td><code>docs/PRD.md</code> is locally accessible but has <code>MATCH</code> in <code>_REFERENCES.md</code>; claims from it are used as scoped source guidance and should be reverified before final acceptance.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Expected Content</td></tr>
+<tr><td>Provider wrapper</td><td>A provider boundary that resolves API key source, validates Anthropic base URL, supplies SDK environment only for the active turn, normalizes provider/SDK failures, and emits redacted details. Exact module name: TBD.</td></tr>
+<tr><td>Key handoff tests</td><td>Tests proving UI key precedence, environment fallback order, absence of working-root writes, and redacted SDK environment/log/event handoff. Exact test paths: TBD.</td></tr>
+<tr><td>Base URL/network tests</td><td>Tests proving only <code>https://api.anthropic.com</code> with no credentials and empty/443 port is accepted, renderer outbound requests are loopback or current shipped Anthropic path only, and Node/SDK calls do not broaden policy. Exact test paths: TBD.</td></tr>
+<tr><td>Redaction fixtures</td><td>Fixtures covering key material, provider error messages, SDK stderr/debug output, and policy-denial metadata. Exact fixture shape: TBD.</td></tr>
+<tr><td>Status metadata</td><td>Safe status source values are <code>ui</code>, <code>env</code>, or <code>none</code>; no key value is recorded.</td></tr>
+</tbody></table>
+<p>ASSUMPTION: &quot;Provider wrapper&quot; may be implemented as an SDK adapter helper, a <code>TurnEngine</code> collaborator, or a dedicated provider module. The decomposition names the artifact but the source corpus does not prescribe the exact file path.</p>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>SectionRef</td><td>Status</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Sections 1.4, 1.9; K-ENGINE-2, K-ENGINE-4, K-EVENT-6, K-NET-1, K-KEY-1</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Sections 12.1-12.4, 16.2-16.3</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Sections 6.3-6.4; R1 implementation targets</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Section 8.5 FR-030 through FR-035; FR-075; NFR-002 through NFR-003; NFR-028 through NFR-030</td><td>MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>SOW-019 through SOW-021; OBJ-004, OBJ-008; row <code>DEL-04-05</code></td><td>accepted decomposition reference</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-04-05-anthropic-provider-key-base-url-and-network-bridge">CLM-007 — Specification: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h3>
+<h4 id="specification-del-04-05-anthropic-provider-key-base-url-and-network-bridge">Specification: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable covers the security and provider-boundary behavior for Anthropic SDK execution in PKG-04:</p>
+<ul>
+<li>- API key precedence and SDK environment handoff.</li>
+<li>- Anthropic base URL validation.</li>
+<li>- Renderer and Node/SDK network policy bridge.</li>
+<li>- Provider and SDK error classification with redaction.</li>
+<li>- Tests and fixtures demonstrating the above behavior.</li>
+</ul>
+<p>This deliverable excludes:</p>
+<ul>
+<li>- General SDK option construction and settings isolation except where required for safe provider handoff; those are primarily DEL-04-02.</li>
+<li>- Provider/SDK message mapping except where provider errors cross into stable runtime/UI events; that is primarily DEL-04-03.</li>
+<li>- UI API key settings behavior except for the stored-key precedence contract; that is shared with DEL-02-05.</li>
+<li>- Redacted run logger ownership except for provider-boundary fixtures and requirements; that is shared with DEL-05-03.</li>
+<li>- Project event-store internals beyond redacted metadata handoff, per <code>_CONTEXT.md</code>.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code> &quot;Deliverable Scope&quot;; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> row <code>DEL-04-05</code>.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Priority</td><td>Source</td></tr>
+<tr><td>DEL-04-05-RQ-001</td><td>The runtime must resolve the Anthropic API key in this order: UI safeStorage key, <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 12.3; <code>docs/PRD.md</code> Section 8.5 FR-030</td></tr>
+<tr><td>DEL-04-05-RQ-002</td><td>Key material must not be written to the working root, docs, logs, runtime event payloads, git-tracked execution files, or tool artifacts.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/SPEC.md</code> Section 16.2; <code>docs/PRD.md</code> FR-031 and NFR-002</td></tr>
+<tr><td>DEL-04-05-RQ-003</td><td>UI-stored key material must use Electron <code>safeStorage</code> at <code>app.getPath(&#x27;userData&#x27;)/credentials/api-key.enc</code>.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>DEL-04-05-RQ-004</td><td>Key source status may expose only <code>ui</code>, <code>env</code>, or <code>none</code>, never the key value or reversible key material.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>DEL-04-05-RQ-005</td><td>SDK environment key handoff must occur only as needed for an active turn and must be redacted from logs and events.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 12.3; <code>docs/PLAN.md</code> R1 implementation targets</td></tr>
+<tr><td>DEL-04-05-RQ-006</td><td>Anthropic base URL validation must accept only <code>https://api.anthropic.com</code> with no credentials and port empty or 443.</td><td>P0</td><td><code>docs/PRD.md</code> Section 8.5 FR-032</td></tr>
+<tr><td>DEL-04-05-RQ-007</td><td>Invalid base URLs must fail with a typed provider/runtime error and must not initiate provider network execution.</td><td>P0</td><td><code>docs/PRD.md</code> Section 8.5 FR-032, FR-034</td></tr>
+<tr><td>DEL-04-05-RQ-008</td><td>Renderer outbound traffic must be canceled unless it targets loopback or the Anthropic API path; logged policy metadata must not contain secrets.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 16.3; <code>docs/PRD.md</code> Section 8.5 FR-033; <code>docs/CONTRACT.md</code> K-NET-1</td></tr>
+<tr><td>DEL-04-05-RQ-009</td><td>Node/SDK provider calls must not silently broaden the network policy beyond explicit product scope.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 16.3</td></tr>
+<tr><td>DEL-04-05-RQ-010</td><td>Remote MCP, plugins, and non-Anthropic network tools must remain out of current scope unless separately governed.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 16.3; <code>docs/CONTRACT.md</code> K-NET-1</td></tr>
+<tr><td>DEL-04-05-RQ-011</td><td>Provider and SDK failures must be classified at least as auth, rate limit, timeout, API error, network error, invalid base URL, or policy violation.</td><td>P1</td><td><code>docs/PRD.md</code> Section 8.5 FR-034</td></tr>
+<tr><td>DEL-04-05-RQ-012</td><td>Classified provider failures must produce typed <code>SDK_FAILURE</code> details with key redaction.</td><td>P1</td><td><code>docs/PRD.md</code> Section 8.5 FR-034</td></tr>
+<tr><td>DEL-04-05-RQ-013</td><td>Provider integration must remain behind the SDK-backed turn boundary and must not move provider-specific semantics into the HTTP route.</td><td>P0</td><td><code>docs/PRD.md</code> Section 8.5 FR-035</td></tr>
+<tr><td>DEL-04-05-RQ-014</td><td>Provider/SDK-specific identifiers and failure details must remain adapter metadata and must not redefine public Chirality event or API contracts.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-ENGINE-4; <code>docs/SPEC.md</code> Sections 10 and 12.4</td></tr>
+<tr><td>DEL-04-05-RQ-015</td><td>Shipped builds must keep SDK settings isolated with <code>settingSources: []</code>; provider key/base URL behavior must not depend on ambient user/local Claude settings.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-SDK-1</td></tr>
+<tr><td>DEL-04-05-RQ-016</td><td>The implementation must include key handoff, base URL/network, and redaction fixtures/tests. Exact file paths are TBD.</td><td>P0</td><td><code>_CONTEXT.md</code> &quot;Anticipated Artifacts&quot;; decomposition row <code>DEL-04-05</code></td></tr>
+<tr><td>DEL-04-05-RQ-017</td><td>ASSUMPTION: The provider wrapper should expose only redacted metadata to <code>HarnessEvent</code>, <code>UIEvent</code>, run logging, and test assertions.</td><td>P0</td><td>Inferred from <code>docs/CONTRACT.md</code> K-EVENT-6 and K-ENGINE-4</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Chirality runtime engine boundary</td><td>Provider integration must remain behind product-owned <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> and adapter boundaries.</td><td><code>docs/CONTRACT.md</code> Section 1.4</td></tr>
+<tr><td>Chirality API key and network invariants</td><td>API keys are non-project convenience state; network is loopback plus Anthropic API path unless amended.</td><td><code>docs/CONTRACT.md</code> Section 1.9</td></tr>
+<tr><td>SDK runtime configuration contract</td><td><code>settingSources: []</code>, active-turn-only API key handoff, safe metadata recording.</td><td><code>docs/SPEC.md</code> Section 12</td></tr>
+<tr><td>Attachments, API keys, and network policy</td><td>Electron safeStorage location, key logging prohibitions, renderer and Node/SDK network policy.</td><td><code>docs/SPEC.md</code> Section 16</td></tr>
+<tr><td>PRD Anthropic provider policy</td><td>FR-030 through FR-035 describe key precedence, base URL, renderer network policy, provider error classes, and SDK turn boundary.</td><td><code>docs/PRD.md</code> Section 8.5, MATCH status — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td><td>Evidence Expected</td></tr>
+<tr><td>RQ-001, RQ-003, RQ-004, RQ-005</td><td>Unit tests for key source resolution and SDK environment construction.</td><td>Key handoff tests prove UI key precedence, fallback to <code>ANTHROPIC_API_KEY</code>, fallback to <code>CHIRALITY_ANTHROPIC_API_KEY</code>, and <code>none</code> status with no key.</td></tr>
+<tr><td>RQ-002, RQ-005, RQ-012, RQ-017</td><td>Redaction tests and fixture snapshots.</td><td>No cleartext key or configured secret variant appears in logs, <code>HarnessEvent</code>, <code>UIEvent</code>, SDK error details, stderr/debug output, or tool artifacts.</td></tr>
+<tr><td>RQ-006, RQ-007</td><td>Base URL validation tests.</td><td>Accepted: <code>https://api.anthropic.com</code> with empty or 443 port and no credentials. Rejected: other host, scheme, credentials, non-443 port, malformed URL.</td></tr>
+<tr><td>RQ-008, RQ-009, RQ-010</td><td>Electron/network guard tests and SDK provider bridge tests.</td><td>Renderer non-loopback/non-Anthropic requests are canceled; provider bridge tests show Node/SDK calls do not silently broaden policy.</td></tr>
+<tr><td>RQ-011, RQ-012</td><td>Provider error classification tests.</td><td>Auth, rate limit, timeout, API, network, invalid base URL, and policy violation map to typed <code>SDK_FAILURE</code> details with redaction.</td></tr>
+<tr><td>RQ-013, RQ-014, RQ-015</td><td>Integration/conformance tests and code review.</td><td>HTTP route remains transport/lifecycle adapter; provider-specific data stays in adapter metadata; shipped SDK options use <code>settingSources: []</code>.</td></tr>
+<tr><td>RQ-016</td><td>Artifact existence and coverage review.</td><td>Provider wrapper, key handoff tests, base URL/network tests, and redaction fixtures exist in implementation paths selected by the owning code change.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Provider wrapper or equivalent SDK adapter boundary module.</li>
+<li>- Key handoff tests.</li>
+<li>- Base URL and network tests.</li>
+<li>- Provider error classification tests.</li>
+<li>- Redaction fixtures.</li>
+<li>- Notes identifying final implementation paths and any residual risk from SDK behavior, if applicable.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Exact module paths.</li>
+<li>- Exact test filenames.</li>
+<li>- Whether provider/base URL policy is implemented as a shared helper, <code>TurnEngine</code> collaborator, Electron guard module, or a combination.</li>
+<li>- Final SDK error object shapes from the accepted SDK package version.</li>
+</ul>
+<h3 id="clm-013-pass-3-enrichment-disposition">CLM-013 — Pass 3 Enrichment Disposition</h3>
+<h5 id="pass-3-enrichment-disposition">Pass 3 Enrichment Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Specification Impact</td><td>Source Reread Evidence</td></tr>
+<tr><td>F-001</td><td>converted to TBD</td><td>Exact provider wrapper, key handoff test, base URL/network test, and redaction fixture paths remain required artifacts, but final paths cannot be filled until the owning implementation selects them.</td><td><code>_CONTEXT.md</code> &quot;Anticipated Artifacts&quot;; decomposition row <code>DEL-04-05</code>; <code>Specification.md</code> &quot;Documentation&quot;.</td></tr>
+<tr><td>D-001</td><td>already covered</td><td>The <code>Source-State Warning</code> remains a final-acceptance blocker for PRD-derived provider-policy rows rather than a specification fact to resolve in P3.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/PRD.md</code> Section 8.5; <code>Specification.md</code> &quot;Source-State Warning&quot;.</td></tr>
+<tr><td>D-003</td><td>converted to TBD</td><td>Final SDK error object shapes remain TBD pending the accepted SDK package/version probe; the requirement keeps the stable classification classes without freezing SDK object shapes.</td><td><code>docs/PRD.md</code> Section 8.5 FR-034; <code>docs/CONTRACT.md</code> K-ENGINE-4; <code>Specification.md</code> &quot;Documentation&quot;.</td></tr>
+<tr><td>E-001</td><td>converted to TBD</td><td>Redaction evidence is required for logs, events, SDK/provider errors, stderr/debug output, and tool artifacts, but no completed fixture or validation artifact is present in this deliverable folder.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6 and K-KEY-1; <code>docs/PRD.md</code> FR-075; <code>Specification.md</code> &quot;Verification&quot;.</td></tr>
+</tbody></table>
+<h3 id="clm-014-source-state-warning">CLM-014 — Source-State Warning</h3>
+<h5 id="source-state-warning">Source-State Warning</h5>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-04-05 evidence package contains a provider wrapper, key handoff tests, base URL/network tests, provider-expansion guard tests, and redaction fixtures demonstrating API key precedence, current Anthropic network policy, provider error classification, no unauthorized provider/network expansion, and redacted adapter environment handoff for SOW-019, SOW-020, SOW-021 and OBJ-004, OBJ-008.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-04-05-anthropic-provider-key-base-url-and-network-bridge">CLM-015 — Procedure: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h3>
+<h4 id="procedure-del-04-05-anthropic-provider-key-base-url-and-network-bridge">Procedure: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Produce and verify the provider-boundary implementation for Anthropic key resolution, base URL validation, network policy bridging, provider error classification, and redacted SDK environment handoff.</p>
+<p>Sources: <code>_CONTEXT.md</code> &quot;Deliverable Scope&quot; and &quot;Anticipated Artifacts&quot;; <code>docs/SPEC.md</code> Sections 12 and 16; <code>docs/PRD.md</code> Section 8.5.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Notes</td></tr>
+<tr><td>Accepted decomposition reference</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> row <code>DEL-04-05</code>.</td></tr>
+<tr><td>Source documents</td><td><code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/PLAN.md</code>, and <code>docs/PRD.md</code> are locally accessible.</td></tr>
+<tr><td>PRD source warning</td><td><code>docs/PRD.md</code> is <code>MATCH</code>; treat PRD-specific implementation detail as needing revalidation before final acceptance. — reconciled under D-APP-38</td></tr>
+<tr><td>Upstream dependency edges</td><td>TBD - <code>_DEPENDENCIES.md</code> has no accepted upstream/downstream edges yet.</td></tr>
+<tr><td>first-adapter probe/version decision</td><td>TBD - required for exact SDK error object shapes and packaged SDK behavior.</td></tr>
+<tr><td>Final implementation paths</td><td>TBD - provider wrapper, tests, and fixtures paths are not fixed by accessible source text.</td></tr>
+</tbody></table>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source and scope.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and the decomposition row for <code>DEL-04-05</code>.</li>
+<li>- Confirm this deliverable remains limited to API key precedence, current shipped Anthropic network policy, provider error classification, and redacted SDK environment handoff.</li>
+</ul>
+<p>2. Define the provider-boundary API.</p>
+<ul>
+<li>- Select the implementation path for the provider wrapper or equivalent SDK adapter boundary.</li>
+<li>- Keep provider-specific and SDK-specific details inside adapter metadata.</li>
+<li>- Do not move provider integration into the HTTP route.</li>
+<li>- Mark final path in implementation notes when selected.</li>
+</ul>
+<p>3. Implement API key resolution.</p>
+<ul>
+<li>- Resolve UI safeStorage key first.</li>
+<li>- Resolve <code>ANTHROPIC_API_KEY</code> second.</li>
+<li>- Resolve <code>CHIRALITY_ANTHROPIC_API_KEY</code> third.</li>
+<li>- Return safe status metadata only: <code>ui</code>, <code>env</code>, or <code>none</code>.</li>
+<li>- Do not write key material to working root, docs, logs, runtime events, SDK transcripts if avoidable, or tool artifacts.</li>
+</ul>
+<p>4. Implement SDK environment handoff.</p>
+<ul>
+<li>- Supply key material to SDK environment only for the active turn.</li>
+<li>- Keep shipped SDK settings isolated with <code>settingSources: []</code>.</li>
+<li>- Route SDK stderr/debug/error text through redaction before durable recording.</li>
+<li>- Record only safe SDK metadata such as version, permission posture, settings-source posture, and session linkage where applicable.</li>
+</ul>
+<p>5. Implement base URL validation.</p>
+<ul>
+<li>- Parse candidate URLs with a structured URL parser.</li>
+<li>- Accept only <code>https://api.anthropic.com</code> with no username/password and empty or 443 port.</li>
+<li>- Reject malformed URLs, non-HTTPS schemes, non-Anthropic hosts, embedded credentials, and non-443 ports.</li>
+<li>- Ensure rejected base URLs do not initiate provider execution.</li>
+</ul>
+<p>6. Implement renderer network policy.</p>
+<ul>
+<li>- Preserve allowlisting for loopback and Anthropic API path.</li>
+<li>- Cancel non-allowlisted outbound renderer requests.</li>
+<li>- Log only policy metadata without secrets.</li>
+<li>- Keep remote MCP, plugins, and non-Anthropic network tools out of current scope.</li>
+</ul>
+<p>7. Implement Node/SDK network bridge.</p>
+<ul>
+<li>- Ensure Node/SDK provider calls do not silently broaden current shipped network policy.</li>
+<li>- ASSUMPTION: If SDK internals cannot expose all network calls directly, rely on a product-owned wrapper, environment restriction, and tests/probes to demonstrate policy behavior; record any residual risk for human review.</li>
+</ul>
+<p>8. Implement provider error classification.</p>
+<ul>
+<li>- Classify at least auth, rate limit, timeout, API error, network error, invalid base URL, and policy violation.</li>
+<li>- Emit typed <code>SDK_FAILURE</code> details with redaction.</li>
+<li>- Preserve retry/debug context without cleartext keys or raw provider payloads.</li>
+</ul>
+<p>9. Add tests and fixtures.</p>
+<ul>
+<li>- Add key handoff tests for precedence and no project writes.</li>
+<li>- Add base URL validation tests for accepted and rejected URL shapes.</li>
+<li>- Add renderer/network policy tests for allowlisted and canceled requests.</li>
+<li>- Add provider classification tests for each required class.</li>
+<li>- Add redaction fixtures for key material, SDK/provider errors, stderr/debug output, and policy-denial metadata.</li>
+</ul>
+<p>10. Run focused validation.</p>
+<ul>
+<li>- Run the selected unit/API test command for the touched implementation paths.</li>
+<li>- Run typecheck if provider-boundary types, runtime event details, or SDK option shapes changed.</li>
+<li>- If available for this slice, run the harness/security validation covering network/key behavior.</li>
+</ul>
+<p>11. Record residuals.</p>
+<ul>
+<li>- Document exact implementation paths.</li>
+<li>- Record any first-adapter probe dependency, PRD hash revalidation need, or Node/SDK network-enforcement residual risk.</li>
+<li>- Keep unresolved values as <code>TBD</code> rather than inferring final acceptance.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td><td>Source</td></tr>
+<tr><td>Key precedence</td><td>UI safeStorage key wins over <code>ANTHROPIC_API_KEY</code>, which wins over <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</td><td><code>docs/SPEC.md</code> Section 12.3</td></tr>
+<tr><td>Key non-persistence</td><td>No key material appears in project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts.</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>SDK handoff</td><td>Key is supplied only for active turns and redacted from emitted records.</td><td><code>docs/SPEC.md</code> Section 12.3</td></tr>
+<tr><td>Base URL</td><td>Only <code>https://api.anthropic.com</code> with no credentials and empty/443 port is accepted.</td><td><code>docs/PRD.md</code> Section 8.5 FR-032</td></tr>
+<tr><td>Renderer network</td><td>Non-loopback/non-Anthropic renderer outbound requests are canceled and logged without secrets.</td><td><code>docs/PRD.md</code> Section 8.5 FR-033</td></tr>
+<tr><td>Node/SDK network</td><td>Provider calls do not broaden explicit product network scope.</td><td><code>docs/SPEC.md</code> Section 16.3</td></tr>
+<tr><td>Error classification</td><td>Auth, rate limit, timeout, API error, network error, invalid base URL, and policy violation produce typed redacted <code>SDK_FAILURE</code> details.</td><td><code>docs/PRD.md</code> Section 8.5 FR-034</td></tr>
+<tr><td>Adapter boundary</td><td>Provider-specific semantics stay behind <code>TurnEngine</code>, <code>sdk-options-builder</code>, <code>sdk-message-mapper</code>, or equivalent adapter boundary and do not define public API/event contracts.</td><td><code>docs/PRD.md</code> FR-035; <code>docs/CONTRACT.md</code> K-ENGINE-4</td></tr>
+<tr><td>Settings isolation</td><td>Shipped SDK options use <code>settingSources: []</code>.</td><td><code>docs/SPEC.md</code> Section 12.2</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<p>The implementation owner should produce or update these records:</p>
+<ul>
+<li>- Provider wrapper or equivalent adapter-boundary code.</li>
+<li>- Key resolution and SDK environment handoff tests.</li>
+<li>- Base URL validation tests.</li>
+<li>- Renderer and Node/SDK network policy tests.</li>
+<li>- Provider error classification tests.</li>
+<li>- Redaction fixture set.</li>
+<li>- Validation command output or CI artifact references.</li>
+<li>- Residual risk notes for SDK behavior that cannot be directly enforced or observed.</li>
+</ul>
+<h3 id="clm-021-pass-3-evidence-closure">CLM-021 — Pass 3 Evidence Closure</h3>
+<h5 id="pass-3-evidence-closure">Pass 3 Evidence Closure</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Procedure Impact</td><td>Source Reread Evidence</td></tr>
+<tr><td>D-001</td><td>already covered</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/PRD.md</code> Section 8.5; <code>Procedure.md</code> &quot;Human Rulings Needed&quot;. — reconciled under D-APP-38</td></tr>
+<tr><td>D-002</td><td>converted to TBD</td><td>Node/SDK network enforcement remains an implementation-specific decision. The procedure requires the implementation owner to record the selected mechanism and residual risk instead of assuming SDK internals expose direct hooks.</td><td><code>docs/SPEC.md</code> Section 16.3; <code>docs/CONTRACT.md</code> K-NET-1; <code>Procedure.md</code> Steps 7 and 11.</td></tr>
+<tr><td>X-001</td><td>converted to TBD</td><td>Validation record references for redaction fixture output, SDK stderr/debug redaction, and policy-denial metadata remain TBD until tests run and artifacts exist.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6 and K-KEY-1; <code>docs/PLAN.md</code> Section 6.3; <code>Procedure.md</code> &quot;Verification&quot; and &quot;Records&quot;.</td></tr>
+<tr><td>X-002</td><td>converted to TBD</td><td>Evidence that Node/SDK provider calls do not broaden network scope must be produced by the selected wrapper, environment restriction, tests, or probes; no completed evidence exists in this deliverable folder.</td><td><code>docs/SPEC.md</code> Section 16.3; <code>docs/PRD.md</code> Section 12.2 required checks; <code>Procedure.md</code> Steps 7 and 10.</td></tr>
+<tr><td>E-001</td><td>converted to TBD</td><td>Audit evidence for absence of cleartext key material across logs, events, SDK errors, stderr/debug output, and tool artifacts remains required but unproduced.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6 and K-KEY-1; <code>docs/PRD.md</code> FR-075 and NFR-002; <code>Procedure.md</code> &quot;Verification&quot; and &quot;Records&quot;.</td></tr>
+</tbody></table>
+<h3 id="clm-022-human-rulings-needed">CLM-022 — Human Rulings Needed</h3>
+<h5 id="human-rulings-needed">Human Rulings Needed</h5>
+<table><tbody>
+<tr><td>ID</td><td>Ruling</td><td>Why</td></tr>
+<tr><td>HR-DEL-04-05-001</td><td>Confirm accepted PRD source snapshot or update <code>_REFERENCES.md</code> after source-state reconciliation.</td><td><code>docs/PRD.md</code> is <code>MATCH</code>, but this deliverable depends on PRD Section 8.5 details. — reconciled under D-APP-38</td></tr>
+<tr><td>HR-DEL-04-05-002</td><td>Confirm final implementation path for the provider wrapper and tests.</td><td>Accessible sources define behavior and anticipated artifacts, not file layout.</td></tr>
+<tr><td>HR-DEL-04-05-003</td><td>Confirm how Node/SDK network policy is enforced if SDK internals do not expose direct network hooks.</td><td><code>docs/SPEC.md</code> requires no silent broadening, but mechanism is implementation-specific.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Verify the provider wrapper, key handoff tests, base URL/network tests, provider-expansion guard tests, and redaction fixtures against SOW-019, SOW-020, SOW-021 and OBJ-004, OBJ-008 for key precedence, current Anthropic network policy, provider error classification, no unauthorized provider/network expansion, and redacted adapter environment handoff.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-04-05-anthropic-provider-key-base-url-and-network-bridge">CLM-023 — Guidance: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h3>
+<h4 id="guidance-del-04-05-anthropic-provider-key-base-url-and-network-bridge">Guidance: DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable keeps Anthropic provider access inside Chirality-owned runtime governance while adopting the Claude Agent SDK as the preferred engine substrate. It protects API keys, constrains network access, keeps provider/SDK details behind adapter boundaries, and gives downstream validation clear evidence for key precedence, base URL policy, network policy, and redacted failure handling.</p>
+<p>Sources: <code>docs/DIRECTIVE.md</code> Section 2.8; <code>docs/CONTRACT.md</code> Sections 1.4 and 1.9; <code>docs/SPEC.md</code> Sections 12 and 16; decomposition row <code>DEL-04-05</code>.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<h3 id="clm-026-preserve-chirality-ownership">CLM-026 — Preserve Chirality Ownership</h3>
+<h6 id="preserve-chirality-ownership">Preserve Chirality Ownership</h6>
+<p>The SDK may host generic runtime mechanics, but Chirality owns the product contract. Provider key handling, network policy, event semantics, redaction, and public APIs must remain Chirality-defined rather than SDK-shaped.</p>
+<p>Sources: <code>docs/DIRECTIVE.md</code> Section 2.8; <code>docs/CONTRACT.md</code> K-ENGINE-1 through K-ENGINE-5.</p>
+<h3 id="clm-027-treat-keys-as-convenience-state-not-project-truth">CLM-027 — Treat Keys as Convenience State, Not Project Truth</h3>
+<h6 id="treat-keys-as-convenience-state-not-project-truth">Treat Keys as Convenience State, Not Project Truth</h6>
+<p>API keys are runtime convenience state. They must not be written into the working root, document kit, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts. Tests should prove both positive behavior, such as correct source precedence, and negative behavior, such as absence from project files and emitted records.</p>
+<p>Sources: <code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/SPEC.md</code> Sections 12.3 and 16.2.</p>
+<h3 id="clm-028-fail-closed-on-provider-boundary-violations">CLM-028 — Fail Closed on Provider Boundary Violations</h3>
+<h6 id="fail-closed-on-provider-boundary-violations">Fail Closed on Provider Boundary Violations</h6>
+<p>Invalid base URLs, non-allowlisted renderer requests, policy violations, and provider failures should become typed failures that preserve retry/debug context without exposing secrets. Invalid base URL and policy-violation cases should stop execution before provider calls proceed.</p>
+<p>Sources: <code>docs/PRD.md</code> Section 8.5 FR-032 through FR-034; <code>docs/CONTRACT.md</code> K-NET-1.</p>
+<h3 id="clm-029-keep-network-scope-narrow">CLM-029 — Keep Network Scope Narrow</h3>
+<h6 id="keep-network-scope-narrow">Keep Network Scope Narrow</h6>
+<p>Current shipped network scope is loopback plus the Anthropic API path. Remote MCP, plugins, and non-Anthropic network tools are future-governed scope and should not be introduced as part of this deliverable.</p>
+<p>Sources: <code>docs/SPEC.md</code> Section 16.3; <code>docs/CONTRACT.md</code> K-NET-1.</p>
+<h3 id="clm-030-redact-at-every-boundary">CLM-030 — Redact at Every Boundary</h3>
+<h6 id="redact-at-every-boundary">Redact at Every Boundary</h6>
+<p>Redaction should apply before details cross from provider/SDK internals into <code>HarnessEvent</code>, <code>UIEvent</code>, run logs, fixtures, or diagnostics. A provider wrapper should be suspicious of SDK errors and stderr/debug text because upstream message shapes can drift.</p>
+<p>Sources: <code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/PLAN.md</code> Section 6.3; <code>docs/PRD.md</code> FR-075 and KG-021.</p>
+<h3 id="clm-031-considerations">CLM-031 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>UI key precedence</td><td>Prefer a simple resolver contract that returns <code>{ source, env }</code> or equivalent safe metadata, never raw values in status objects.</td><td><code>docs/SPEC.md</code> Sections 12.3 and 16.2</td></tr>
+<tr><td>Environment variable names</td><td>Support both <code>ANTHROPIC_API_KEY</code> and <code>CHIRALITY_ANTHROPIC_API_KEY</code> in the documented order.</td><td><code>docs/SPEC.md</code> Section 12.3</td></tr>
+<tr><td>Base URL parsing</td><td>Use a URL parser rather than string prefix checks so credentials, scheme, host, and port are validated explicitly.</td><td><code>docs/PRD.md</code> Section 8.5 FR-032</td></tr>
+<tr><td>Renderer guard</td><td>Renderer guard logging should capture safe policy metadata only, such as category and redacted URL classification, not headers or credentials.</td><td><code>docs/PRD.md</code> Section 8.5 FR-033</td></tr>
+<tr><td>Node/SDK bridge</td><td>Treat Node/SDK provider network calls as in-scope only when they remain within Anthropic provider policy. The exact enforcement mechanism is TBD.</td><td><code>docs/SPEC.md</code> Section 16.3</td></tr>
+<tr><td>Error mapping</td><td>Normalize provider/SDK failures to typed application details without leaking upstream SDK object shape into public contracts.</td><td><code>docs/CONTRACT.md</code> K-ENGINE-4; <code>docs/PRD.md</code> FR-034</td></tr>
+<tr><td>SDK drift</td><td>Keep classification logic version-aware and covered by tests because SDK API and error shapes may change.</td><td><code>docs/PRD.md</code> KG-021; <code>docs/CONTRACT.md</code> K-SDK-2</td></tr>
+<tr><td>Settings isolation</td><td>Do not allow ambient Claude settings to alter key, base URL, or network policy behavior in shipped builds.</td><td><code>docs/SPEC.md</code> Section 12.2</td></tr>
+</tbody></table>
+<h3 id="clm-032-trade-offs">CLM-032 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Cost / Risk</td><td>Recommended Posture</td></tr>
+<tr><td>Single provider wrapper</td><td>Centralizes redaction, key handoff, base URL validation, and provider error mapping.</td><td>May become too broad if it absorbs turn lifecycle or Provider/SDK message mapping.</td><td>Keep wrapper provider-boundary focused and delegate turn lifecycle to <code>TurnEngine</code>.</td></tr>
+<tr><td>Separate helpers for key, URL, network, and error classification</td><td>Easier unit testing and clearer ownership.</td><td>Requires careful integration tests to prove boundary behavior as a whole.</td><td>Prefer small helpers plus provider-boundary integration tests.</td></tr>
+<tr><td>Rely on SDK defaults for network/key behavior</td><td>Lower initial code volume.</td><td>Violates product-owned governance and may be opaque or version-sensitive.</td><td>Do not rely on opaque SDK defaults for product-critical behavior.</td></tr>
+<tr><td>Allow configurable base URL</td><td>Useful for mocks and future providers.</td><td>Current product requirement accepts only Anthropic production API for shipped policy.</td><td>Keep shipped validation strict; test or dev-only escape hatches require explicit governance if introduced.</td></tr>
+<tr><td>Log rich provider errors</td><td>Improves diagnosis.</td><td>High secret-leak risk and SDK-shape leakage.</td><td>Log typed/redacted metadata and keep raw provider payloads out of durable records unless redaction is proven.</td></tr>
+</tbody></table>
+<h3 id="clm-033-examples">CLM-033 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Supported examples from available sources:</p>
+<ul>
+<li>- Key precedence example: if a UI safeStorage key exists, it is used before <code>ANTHROPIC_API_KEY</code>; if no UI key exists, <code>ANTHROPIC_API_KEY</code> is used before <code>CHIRALITY_ANTHROPIC_API_KEY</code>. Source: <code>docs/SPEC.md</code> Section 12.3.</li>
+<li>- Safe status example: API key status may report <code>ui</code>, <code>env</code>, or <code>none</code>; it must not report the key. Source: <code>docs/SPEC.md</code> Section 16.2.</li>
+<li>- Base URL example: <code>https://api.anthropic.com</code> with empty or 443 port and no credentials is accepted; non-Anthropic hosts, embedded credentials, or non-443 ports are rejected. Source: <code>docs/PRD.md</code> Section 8.5 FR-032.</li>
+<li>- Network example: renderer outbound requests are restricted to loopback and Anthropic API path; broader remote MCP/plugin/network access is future scope. Source: <code>docs/SPEC.md</code> Section 16.3.</li>
+</ul>
+<h3 id="clm-034-conflict-table-for-human-ruling">CLM-034 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>TBD</td><td>No source conflict identified during P1/P2 drafting.</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-035-open-items">CLM-035 — Open Items</h3>
+<h5 id="open-items">Open Items</h5>
+<table><tbody>
+<tr><td>ID</td><td>Item</td><td>Reason</td></tr>
+<tr><td>OI-DEL-04-05-001</td><td>Exact provider wrapper module path is TBD.</td><td>Decomposition names the artifact, but source corpus does not prescribe file layout.</td></tr>
+<tr><td>OI-DEL-04-05-002</td><td>Exact Node/SDK network enforcement mechanism is TBD.</td><td><code>docs/SPEC.md</code> requires Node/SDK calls not to broaden policy, but implementation mechanism is not fixed in the accessible sources.</td></tr>
+<tr><td>OI-DEL-04-05-003</td><td>Exact SDK error object taxonomy is TBD.</td><td>SDK version/probe results belong to adjacent R0/R1 work and may affect classifier details.</td></tr>
+<tr><td>OI-DEL-04-05-004</td><td>PRD-derived claims require revalidation before final acceptance.</td><td><code>_REFERENCES.md</code> reports <code>docs/PRD.md</code> <code>MATCH</code>. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-019 SOW-020 SOW-021 OBJ-004 OBJ-008</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

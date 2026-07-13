@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A2-PKG06",
+  "child_instance_id": "VERIFY-DEL-06-02",
+  "agent": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "VERIFY",
+  "terminal": true,
+  "status": "PASS_UNCHANGED",
+  "candidate_sha256": "e9346004a2a32f9b703c38d80ad0730dfc01aafc54123578c31378b3682ad3c5",
+  "source_line_count": 369,
+  "claim_map_rows": 34,
+  "validation": "PASS",
+  "parity": "PASS",
+  "semantic_review": "PASS",
+  "write_containment": "PASS",
+  "candidate_repaired": false,
+  "blockers": [],
+  "waivers": [],
+  "completed_at": "2026-07-13T20:15:16Z"
+}

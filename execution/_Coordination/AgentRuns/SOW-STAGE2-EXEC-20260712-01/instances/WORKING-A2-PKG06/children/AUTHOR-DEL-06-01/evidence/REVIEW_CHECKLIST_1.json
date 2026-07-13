@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 271,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "083c90fda686a7ecc53e6b1b361872341c01da11da64c41a789178b06afa807a"
+      },
+      "text": "Verification evidence demonstrates structured permission decisions, explicit deny precedence, capability-policy mode mapping, canUseTool approval mediation, and the prescribed readOnly/dontAsk/ask behavior.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-01-VER-001",
+          "source_line": 406,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the permission overlay module and decision records, then run readOnly/dontAsk/ask and hard-deny precedence tests."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "083c90fda686a7ecc53e6b1b361872341c01da11da64c41a789178b06afa807a"
+  },
+  "tool_version": "1"
+}

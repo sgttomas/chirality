@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 248,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "15796b93739a7a3481c288aafc8550baae34a440b159f4d80adbe7698c17428d"
+      },
+      "text": "The DEL-04-02 output satisfies the legacy production-contract requirements and checks for deterministic runtime option fallback, provider/SDK settings isolation, registered tool option mapping, and max-turn guards for SOW-016, SOW-045, SOW-047, and SOW-052.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-001",
+          "source_line": 399,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Verify with the legacy-defined options-builder tests and records covering fallback and unknown-option behavior, shipped and development settings isolation, registered tool mapping and ordering, max-turn propagation, and safe visible metadata."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-04-02",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-04",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "15796b93739a7a3481c288aafc8550baae34a440b159f4d80adbe7698c17428d"
+  },
+  "tool_version": "1"
+}

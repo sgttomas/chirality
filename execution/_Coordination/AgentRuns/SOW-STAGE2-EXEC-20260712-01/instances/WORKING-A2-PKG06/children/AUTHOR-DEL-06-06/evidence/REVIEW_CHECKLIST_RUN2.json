@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 275,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5f04c8f7105de8ce1da380031fde21974d16af1056f50c6804ffa0de5eac6402"
+      },
+      "text": "The mirror satisfies the preserved DEL-06-06 requirements when hook lifecycle, failure, terminal, and compaction events validate against HarnessEvent, append safely to events.jsonl, preserve fail-closed and replay semantics, avoid secrets, and the cited tests and Section 9 evidence pass.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-06-VER-001",
+          "source_line": 419,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the cited mapper, schema, replay, redaction/payload-budget, terminal-fixture, context.compacted, and Section 9 validation checks against the preserved source requirements."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-06",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "5f04c8f7105de8ce1da380031fde21974d16af1056f50c6804ffa0de5eac6402"
+  },
+  "tool_version": "1"
+}

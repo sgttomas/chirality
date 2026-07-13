@@ -1,0 +1,33 @@
+{
+  "schema": "chirality-sow-conversion-receipt/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "child_instance_id": "AUTHOR-DEL-06-02",
+  "deliverable_id": "DEL-06-02",
+  "package_id": "PKG-06",
+  "mode": "CONVERT",
+  "source_state": "IN_PROGRESS",
+  "format_authority_ref": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "decomposition_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4",
+  "project_scope_refs": ["SOW-047", "SOW-049", "SOW-050"],
+  "package_objective_refs": ["OBJ-005"],
+  "accepted_preflight_snapshot": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A2/preflight/ACCEPTANCE.md",
+  "accepted_preflight_manifest": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A2/preflight/A2_MANIFEST.tsv",
+  "brief_amendment": "BRIEF_AMENDMENT_v2.md: Dependencies.csv is the accepted structured dependency input; no authority or scope changed",
+  "source_bindings": "SOURCE_BINDINGS.tsv",
+  "candidate": {
+    "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG06/DEL-06-02/ScopeOfWork.md",
+    "sha256": "e9346004a2a32f9b703c38d80ad0730dfc01aafc54123578c31378b3682ad3c5",
+    "line_count": 575,
+    "schema": "chirality-deliverable-sow/v1"
+  },
+  "preservation": {
+    "source_marker_count": 34,
+    "source_line_count": 369,
+    "disposition": "PRESERVED",
+    "silent_drops": 0,
+    "text_mismatches": 0
+  },
+  "lifecycle_changed": false,
+  "live_project_writes": 0,
+  "verdict": "PASS_DERIVATIVE_CANDIDATE"
+}

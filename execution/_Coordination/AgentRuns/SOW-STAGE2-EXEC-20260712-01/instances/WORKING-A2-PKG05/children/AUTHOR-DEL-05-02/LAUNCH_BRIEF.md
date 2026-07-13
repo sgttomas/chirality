@@ -1,0 +1,13 @@
+# TASK Author Brief — DEL-05-02
+
+RequestedBy: `WORKING-A2-PKG05`; RunID: `SOW-STAGE2-EXEC-20260712-01`; ChildInstanceID: `AUTHOR-DEL-05-02`.
+
+Act as Agent 2 TASK; do not delegate. Read complete `agents/AGENT_TASK.md` and all four `skills/scope-of-work/*` method files. Use `TaskSkill: scope-of-work`, `MODE=CONVERT`, `ApplyEdits: true`.
+
+Exact accepted row: the `DEL-05-02` row in `snapshots/W_A2/preflight/A2_MANIFEST.tsv`. Exact live source folder is its `live_path`; it is read-only. Accepted authority is `D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176`; decomposition, scope, objective, lifecycle, and nine hashes are exactly the row values. Dispatch basis is `main@0af23f4709e1c95f6b2e0f19db80779bd4c968fa`.
+
+AllowedWriteTargets: only `candidates/W_A2/APP-PKG05/DEL-05-02/ScopeOfWork.md` and `instances/WORKING-A2-PKG05/children/AUTHOR-DEL-05-02/**`. Exclude every live project write, Git, other deliverables/packages, `.claude-worktrees`, H1/H2, lifecycle, integration, release, and retirement.
+
+Objective: verify the exact row hashes, build an isolated copy of the four legacy documents plus `_STATUS.md` and required `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `Dependencies.csv`; run the deterministic converter with conservative `OUT-001`/`AC-001`/`VER-001` seed text grounded only in the row, deliverable identity, and legacy sources; run validator, mapper, parity, checklist twice, and renderer twice under exact migration authority. Require byte-stable repetitions, exact source-marker coverage and claim disposition, exact checklist order/linkage, script-free/no-external render, source/status identity, and separate schema/content-authority/preservation/substrate verdicts. Copy only the final `ScopeOfWork.md` to the candidate target.
+
+ExpectedOutputs under your evidence root: frozen `INIT-TASK.md`; isolated workspace; `_run_records` TASK record; `SOURCE_HASHES.tsv`; `VALIDATION.json`; `CLAIM_MAP.csv`; `PARITY.json`; `PARITY.md`; two checklist JSONs; two HTML renders; `CHECKS.md`; self-excluding `MANIFEST.tsv` binding all governed outputs except itself; terminal `STATUS.json` (`PASS|BLOCKED`, `terminal:true`, manifest complete); and structured `RETURN.md` with candidate SHA, mapping count, source-line count, verdict classes, containment, blockers/waivers/reruns. Keep generated evidence portable using repo-relative paths or `${REPO_ROOT}` tokens; immutable copied source/control content may retain literals but inventory them. Preserve initial failures and perform evidence-only terminalization if necessary; never change the accepted candidate merely to close record metadata.

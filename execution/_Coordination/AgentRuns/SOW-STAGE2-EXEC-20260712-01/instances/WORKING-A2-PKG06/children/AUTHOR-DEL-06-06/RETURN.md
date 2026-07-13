@@ -1,0 +1,66 @@
+# AUTHOR-DEL-06-06 Return
+
+RUN_STATUS: `SUCCESS`
+
+ControlSurface: `FILE`  
+TaskProfile: `NONE`  
+TaskSkill: `scope-of-work`  
+ScopePath: `{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A2-PKG06/children/AUTHOR-DEL-06-06`  
+ResolvedSkillPath: `{REPO_ROOT}/skills/scope-of-work`  
+ResolvedSkillVersion: `1`  
+ResolvedTaskProfileRequirement: `NONE`  
+CompanionFiles: `BRIEF_SCHEMA.md (found), TOOL_POLICY.md (found), QA_CHECKS.md (found)`  
+AllowedTools: skill-declared six deterministic Scope-of-Work tools  
+ToolPolicyCompliance: `PASS`  
+WriteAuthorization: `ALLOWED_WRITE_TARGETS`
+
+## Outcome
+
+`PASS` — exact DEL-06-06 derivative candidate created at:
+
+`execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A2/APP-PKG06/DEL-06-06/ScopeOfWork.md`
+
+Candidate SHA-256: `5f04c8f7105de8ce1da380031fde21974d16af1056f50c6804ffa0de5eac6402`; bytes: `45,771`; lines: `555`.
+
+## Evidence Summary
+
+- Exact frozen source/status/control hashes match the accepted A2 row before and after.
+- Two fresh conversions are byte-identical.
+- Validator PASS: authorized isolated `MIGRATION_DUAL`; copied candidate `SOW_V1`; zero issues.
+- Claim mapping and parity PASS: 33/33 `PRESERVED` mappings cover 354/354 source lines with no text mismatch or silent drop.
+- Deterministic checklist PASS twice: exact single `AC-001`, source order/text/identity, candidate hash, and `AC-001 -> OUT-001 -> VER-001` linkage.
+- HTML PASS twice: byte-identical, source-hash-bound, script-free, and without external resources.
+- Negative checks PASS: partial legacy and unauthorized dual fail closed; unauthorized-dual checklist derivation emits no output.
+- Schema/mechanical, project-content/authority, preservation/containment, and execution-substrate verdicts are each PASS.
+- No live project, lifecycle, control, Git, or other candidate/package path was written.
+
+## Tools Used
+
+- `python3 tools/scope_of_work/convert_four_documents_to_scope_of_work.py`
+- `python3 tools/scope_of_work/validate_scope_of_work.py`
+- `python3 tools/scope_of_work/map_scope_of_work_claims.py`
+- `python3 tools/scope_of_work/report_scope_of_work_parity.py`
+- `python3 tools/scope_of_work/derive_review_checklist.py`
+- `python3 tools/scope_of_work/render_scope_of_work.py`
+
+## Applied Changes
+
+- Exact candidate `ScopeOfWork.md`.
+- Author-local durable evidence, run record, manifest, status, and return.
+
+## Missing
+
+none
+
+## Needs Human Ruling
+
+none
+
+## Dependency Notes
+
+Extracted ACTIVE dependency rows remain preserved delivery context. Representation conversion did not change or resolve them, and no cycle/order ruling was needed.
+
+## Blockers / Conflicts / Waivers / Rerun
+
+none / none / none / not required
+
