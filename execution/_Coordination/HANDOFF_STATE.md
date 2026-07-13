@@ -1,4 +1,4 @@
-# Scope-of-Work Stage-1 Handoff State
+# Root Scope-of-Work Governance Handoff State
 
 Status: `STAGE2_LOOP_ACTIVE — READY_FOR_FRESH_EXECUTION_SESSION`
 
