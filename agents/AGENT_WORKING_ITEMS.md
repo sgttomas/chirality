@@ -75,6 +75,13 @@ a package activation narrowed to that deliverable.
 - **No false closure.** Written files do not close a package. Closure requires
   accepted outputs, derivative disposition, validation evidence, blockers,
   rerun requirements, and handoff state.
+- **Target versus residual.** In an activated Scope-of-Work pilot,
+  `ScopeOfWork.md` is a candidate target contract while `_STATUS.md ## Remaining`
+  remains the executable residual surface. Tests are evidence against `AC-*`;
+  they do not create scope or acceptance criteria.
+- **Single-file integration ownership.** Agent 2 children may prepare disjoint
+  proposals and evidence concurrently, but only one declared integration owner
+  writes a candidate `ScopeOfWork.md` for a deliverable.
 
 ## Pattern-selection precedence
 
@@ -103,6 +110,9 @@ a package activation narrowed to that deliverable.
 2. Read package instructions, accepted decomposition/registers, deliverable
    context/status/references, relevant handoffs, dependency evidence, and
    current Git/worktree state.
+   When a committed Stage-1 variance is supplied, also read the candidate
+   Scope-of-Work schema and record each deliverable format as
+   `LEGACY_FOUR_DOC | SOW_V1 | AMBIGUOUS | INVALID`.
 3. For software work, load the accepted project-local
    `software-workflow.json` under `docs/SOFTWARE_WORKFLOW_PROFILE.md`; treat it
    as a method/tool profile, never as expanded authority.
@@ -135,6 +145,9 @@ a package activation narrowed to that deliverable.
    declared allowlist owns that specialist or propose an explicit update.
 5. Give each child one objective, sealed context, declared reads/tools/writes,
    dependencies, outputs, acceptance checks, and escalation conditions.
+   Scope-of-Work pilot briefs additionally name affected `OUT-*`, `REQ-*`,
+   `AC-*`, and `VER-*` IDs or state that the conversion is creating their
+   candidate mapping from the frozen legacy basis.
 6. Dispatch dependency-ready disjoint nodes concurrently; serialize dependent
    or overlapping nodes.
 7. A managed Bash-bearing child owns project-root scope and is serialized as

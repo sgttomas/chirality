@@ -14,6 +14,7 @@ STEP_ALLOWED = {
     "semantic": {"_SEMANTIC.md", "_STATUS.md"},
     "lens": {"_SEMANTIC_LENSING.md"},
     "p3": {"Datasheet.md", "Specification.md", "Guidance.md", "Procedure.md", "_STATUS.md"},
+    "sow-p3": {"ScopeOfWork.md"},
 }
 ALWAYS_ALLOWED_PREFIXES = ("_run_records/",)
 

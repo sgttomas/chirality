@@ -13,7 +13,7 @@ echo "Total deliverable folders: $total"
 echo ""
 
 for file in _STATUS.md _CONTEXT.md _DEPENDENCIES.md _REFERENCES.md \
-            Datasheet.md Specification.md Guidance.md Procedure.md \
+            Datasheet.md Specification.md Guidance.md Procedure.md ScopeOfWork.md \
             Dependencies.csv _MEMORY.md _SEMANTIC.md _SEMANTIC_LENSING.md; do
   count=$(find "$EXROOT" -path "*/1_Working/DEL-*/$file" -type f | wc -l | tr -d ' ')
   echo "$file: $count / $total"

@@ -74,6 +74,7 @@ export type DeliverableContractFindingCategory =
   | 'required_metadata'
   | 'preparation_baseline'
   | 'document_kit'
+  | 'scope_of_work'
   | 'canonical_memory'
   | 'optional_file'
   | 'prohibited_file'
@@ -109,9 +110,17 @@ export type DeliverableContractScanResult = {
   requiredMetadata: DeliverableContractFileState[];
   preparationBaseline: DeliverableContractFileState[];
   documentKit: DeliverableContractFileState[];
+  documentFormat: 'LEGACY_FOUR_DOC' | 'SOW_V1' | 'AMBIGUOUS' | 'INVALID';
+  scopeOfWork: DeliverableContractFileState;
   canonicalMemory: DeliverableContractFileState;
   optionalFiles: DeliverableContractFileState[];
   findings: DeliverableContractFinding[];
+};
+
+export type ScopeOfWorkPilotActivation = {
+  mode: 'PILOT_DUAL';
+  varianceRef: string;
+  allowedDeliverablePaths: readonly string[];
 };
 
 export type KnowledgeTypeOption = {
@@ -154,6 +163,28 @@ const DOCUMENT_KIT_FILES = [
   'Procedure.md'
 ] as const;
 
+const SCOPE_OF_WORK_FILE = 'ScopeOfWork.md';
+const SCOPE_OF_WORK_SCHEMA = 'chirality-deliverable-sow/v1';
+const SCOPE_OF_WORK_VARIANCE_REF = /^D-GOV-15@[0-9a-f]{7,40}$/;
+const SCOPE_OF_WORK_SECTIONS = [
+  'Purpose and Objective Traceability',
+  'Deliverable Definition — Ontology',
+  'Completion and Reliance Basis — Epistemology',
+  'Production and Verification Method — Praxeology',
+  'Governing Values and Decisions — Axiology',
+  'Output and Evaluation Matrix'
+] as const;
+const SCOPE_OF_WORK_REQUIRED_FRONTMATTER = [
+  'schema',
+  'deliverable_id',
+  'package_id',
+  'decomposition_basis',
+  'project_scope_refs',
+  'package_objective_refs'
+] as const;
+const SCOPE_OF_WORK_LOCAL_ID = /\b(?:OUT|CLM|REQ|AC|VER|AX|TBD|CON|REM)-\d{3}\b/g;
+const SCOPE_OF_WORK_DEFINITION = /^(?:[-*]\s+\*\*|#{3,6}\s+)((?:OUT|CLM|REQ|AC|VER|AX|TBD|CON|REM)-\d{3})(?:\*\*)?\s+[—-]\s+/gm;
+
 const OPTIONAL_DELIVERABLE_FILES = [
   'Dependencies.csv',
   '_SEMANTIC_LENSING.md',
@@ -168,6 +199,11 @@ const KNOWLEDGE_TYPE_BUCKETS: Array<{
   label: string;
   matches: (fileNames: Set<string>) => boolean;
 }> = [
+  {
+    id: 'scope-of-work',
+    label: 'Scope of Work',
+    matches: (fileNames) => fileNames.has(SCOPE_OF_WORK_FILE)
+  },
   {
     id: 'datasheet',
     label: 'Datasheet',
@@ -536,6 +572,7 @@ function addReferenceWarnings(input: {
 export async function scanDeliverableDocumentKitContract(input: {
   deliverableId: string;
   deliverablePath: string;
+  scopeOfWorkPilot?: ScopeOfWorkPilotActivation;
 }): Promise<DeliverableContractScanResult> {
   const fileNames = await readDirectoryFileSet(input.deliverablePath);
   const findings: DeliverableContractFinding[] = [];
@@ -557,6 +594,7 @@ export async function scanDeliverableDocumentKitContract(input: {
     fileNames
   );
   const documentKit = buildFileStates(input.deliverablePath, DOCUMENT_KIT_FILES, fileNames);
+  const scopeOfWork = buildFileStates(input.deliverablePath, [SCOPE_OF_WORK_FILE], fileNames)[0];
   const optionalFiles = buildFileStates(input.deliverablePath, OPTIONAL_DELIVERABLE_FILES, fileNames);
   const canonicalMemory = buildFileStates(input.deliverablePath, [CANONICAL_MEMORY_FILE], fileNames)[0];
 
@@ -596,6 +634,143 @@ export async function scanDeliverableDocumentKitContract(input: {
         })
       );
     }
+  }
+
+  const hasAllLegacy = documentKit.every((file) => file.present);
+  const hasAnyLegacy = documentKit.some((file) => file.present);
+  const pilotPathAllowed = input.scopeOfWorkPilot?.mode === 'PILOT_DUAL'
+    && SCOPE_OF_WORK_VARIANCE_REF.test(input.scopeOfWorkPilot.varianceRef.trim())
+    && input.scopeOfWorkPilot.allowedDeliverablePaths
+      .map((allowedPath) => path.resolve(allowedPath))
+      .includes(path.resolve(input.deliverablePath));
+  const documentFormat = scopeOfWork.present
+    ? hasAllLegacy
+      ? 'AMBIGUOUS'
+      : hasAnyLegacy
+        ? 'INVALID'
+      : 'SOW_V1'
+    : hasAllLegacy
+      ? 'LEGACY_FOUR_DOC'
+      : 'INVALID';
+
+  let validScopeOfWork = false;
+  if (scopeOfWork.present) {
+    try {
+      const content = await readFile(scopeOfWork.path, 'utf8');
+      const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+      const frontmatter = new Map<string, string>();
+      for (const line of frontmatterMatch?.[1].split(/\r?\n/) ?? []) {
+        const separator = line.indexOf(':');
+        if (separator > 0) {
+          frontmatter.set(line.slice(0, separator).trim(), line.slice(separator + 1).trim());
+        }
+      }
+      const headings = [...content.matchAll(/^##\s+(.+?)\s*$/gm)].map((match) => match[1]);
+      const requiredHeadings = headings.filter((heading) =>
+        (SCOPE_OF_WORK_SECTIONS as readonly string[]).includes(heading)
+      );
+      const definitions = [...content.matchAll(SCOPE_OF_WORK_DEFINITION)].map((match) => match[1]);
+      const references = [...content.matchAll(SCOPE_OF_WORK_LOCAL_ID)].map((match) => match[0]);
+      const defined = new Set(definitions);
+      const matrixSection = content.split('## Output and Evaluation Matrix')[1] ?? '';
+      const matrixRows = matrixSection.split(/\r?\n/).filter((line) => /^\|\s*OUT-\d{3}\s*\|/.test(line));
+      const requiredKinds = ['OUT-', 'AC-', 'VER-'];
+      validScopeOfWork = Boolean(frontmatterMatch)
+        && SCOPE_OF_WORK_REQUIRED_FRONTMATTER.every((key) => {
+          const value = frontmatter.get(key);
+          return typeof value === 'string' && value.length > 0 && value !== '[]';
+        })
+        && frontmatter.get('schema') === SCOPE_OF_WORK_SCHEMA
+        && requiredHeadings.join('\n') === SCOPE_OF_WORK_SECTIONS.join('\n')
+        && requiredHeadings.length === SCOPE_OF_WORK_SECTIONS.length
+        && new Set(definitions).size === definitions.length
+        && references.every((reference) => defined.has(reference))
+        && requiredKinds.every((prefix) => definitions.some((definition) => definition.startsWith(prefix)))
+        && matrixRows.length > 0
+        && matrixRows.every((row) => /\|\s*AC-\d{3}\s*\|\s*VER-\d{3}\s*\|/.test(row));
+      if (!validScopeOfWork) {
+        findings.push(
+          buildFinding({
+            deliverableId: input.deliverableId,
+            deliverablePath: input.deliverablePath,
+            fileName: SCOPE_OF_WORK_FILE,
+            category: 'scope_of_work',
+            condition: 'invalid_scope_of_work_candidate',
+            lifecycleState,
+            severity: 'error',
+            sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md',
+            evidence: `${SCOPE_OF_WORK_FILE} lacks the candidate schema marker or required sections`,
+            message: `${SCOPE_OF_WORK_FILE} does not satisfy the candidate v1 structural contract.`
+          })
+        );
+      }
+    } catch {
+      findings.push(
+        buildFinding({
+          deliverableId: input.deliverableId,
+          deliverablePath: input.deliverablePath,
+          fileName: SCOPE_OF_WORK_FILE,
+          category: 'scope_of_work',
+          condition: 'unreadable_scope_of_work_candidate',
+          lifecycleState,
+          severity: 'error',
+          sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md',
+          evidence: `${SCOPE_OF_WORK_FILE} could not be read`,
+          message: `${SCOPE_OF_WORK_FILE} is present but unreadable.`
+        })
+      );
+    }
+  }
+
+  if (documentFormat === 'AMBIGUOUS') {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: SCOPE_OF_WORK_FILE,
+        category: 'scope_of_work',
+        condition: pilotPathAllowed
+          ? 'dual_format_pilot_variance'
+          : 'ambiguous_deliverable_format',
+        lifecycleState,
+        severity: pilotPathAllowed ? 'info' : 'error',
+        sourceRef: 'docs/governance_harness/_DECISIONS/D-GOV-15_scope_of_work_stage1.md',
+        evidence: `${SCOPE_OF_WORK_FILE} and all four legacy production documents coexist`,
+        message: pilotPathAllowed
+          ? 'Dual format is visible under an explicit Stage-1 pilot variance.'
+          : 'Dual format is ambiguous outside an explicit Stage-1 pilot variance.'
+      })
+    );
+  } else if (documentFormat === 'SOW_V1') {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: SCOPE_OF_WORK_FILE,
+        category: 'scope_of_work',
+        condition: 'scope_of_work_not_activated',
+        lifecycleState,
+        severity: 'error',
+        sourceRef: 'docs/SPEC.md#section-2.1',
+        evidence: `${SCOPE_OF_WORK_FILE} is the only production contract`,
+        message: 'Scope-of-Work-only format is not authoritative before Stage-2 activation.'
+      })
+    );
+  } else if (documentFormat === 'INVALID' && scopeOfWork.present) {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: SCOPE_OF_WORK_FILE,
+        category: 'scope_of_work',
+        condition: 'invalid_mixed_production_format',
+        lifecycleState,
+        severity: 'error',
+        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution',
+        evidence: `${SCOPE_OF_WORK_FILE} coexists with only part of the legacy four-document kit`,
+        message: 'Partial legacy coexistence is invalid and is not covered by the pilot variance.'
+      })
+    );
   }
 
   for (const file of documentKit) {
@@ -733,6 +908,8 @@ export async function scanDeliverableDocumentKitContract(input: {
     requiredMetadata,
     preparationBaseline,
     documentKit,
+    documentFormat,
+    scopeOfWork,
     canonicalMemory,
     optionalFiles,
     findings
@@ -740,11 +917,15 @@ export async function scanDeliverableDocumentKitContract(input: {
 }
 
 function buildKnowledgeTypeOptions(
-  rows: Array<{ key: string; fileNames: Set<string> }>
+  rows: Array<{ key: string; fileNames: Set<string> }>,
+  includeScopeOfWork = false
 ): KnowledgeTypeOption[] {
+  const buckets = includeScopeOfWork
+    ? KNOWLEDGE_TYPE_BUCKETS
+    : KNOWLEDGE_TYPE_BUCKETS.filter((bucket) => bucket.id !== 'scope-of-work');
   const byBucket = new Map<string, { label: string; keys: Set<string> }>();
 
-  for (const bucket of KNOWLEDGE_TYPE_BUCKETS) {
+  for (const bucket of buckets) {
     byBucket.set(bucket.id, {
       label: bucket.label,
       keys: new Set<string>()
@@ -752,14 +933,14 @@ function buildKnowledgeTypeOptions(
   }
 
   for (const row of rows) {
-    for (const bucket of KNOWLEDGE_TYPE_BUCKETS) {
+    for (const bucket of buckets) {
       if (bucket.matches(row.fileNames)) {
         byBucket.get(bucket.id)?.keys.add(row.key);
       }
     }
   }
 
-  return KNOWLEDGE_TYPE_BUCKETS.map((bucket) => {
+  return buckets.map((bucket) => {
     const entry = byBucket.get(bucket.id);
     return {
       id: bucket.id,
@@ -877,7 +1058,8 @@ export async function scanProjectScopes(projectRoot: string): Promise<ScopeScanR
 }
 
 export async function scanProjectDeliverables(
-  projectRoot: string
+  projectRoot: string,
+  options: { scopeOfWorkPilot?: ScopeOfWorkPilotActivation } = {}
 ): Promise<ProjectDeliverablesScanResult> {
   const deliverables: ProjectDeliverable[] = [];
   const visited = new Set<string>();
@@ -959,7 +1141,8 @@ export async function scanProjectDeliverables(
     deliverables.map((deliverable) =>
       scanDeliverableDocumentKitContract({
         deliverableId: deliverable.id,
-        deliverablePath: deliverable.path
+        deliverablePath: deliverable.path,
+        scopeOfWorkPilot: options.scopeOfWorkPilot
       })
     )
   );
@@ -972,7 +1155,7 @@ export async function scanProjectDeliverables(
       enabled: knowledgeMarkerFile !== null,
       markerFile: knowledgeMarkerFile
     },
-    knowledgeTypes: buildKnowledgeTypeOptions(knowledgeRows),
+    knowledgeTypes: buildKnowledgeTypeOptions(knowledgeRows, Boolean(options.scopeOfWorkPilot)),
     truncated
   };
 }

@@ -9,8 +9,9 @@ if str(VALIDATION_DIR) not in sys.path:
     sys.path.insert(0, str(VALIDATION_DIR))
 
 from validate_lens_register import validate_lens_register  # noqa: E402
-from validate_p3_disposition import validate_p3_disposition  # noqa: E402
-from validate_semantic_matrix import validate_semantic_file  # noqa: E402
+from scan_deliverable_consistency import main as consistency_main  # noqa: E402
+from validate_p3_disposition import main as p3_main, validate_p3_disposition  # noqa: E402
+from validate_semantic_matrix import main as semantic_main, validate_semantic_file  # noqa: E402
 from validate_semantic_pipeline_scope import validate_changed_paths  # noqa: E402
 
 
@@ -200,3 +201,30 @@ def test_scope_validator_rejects_dirty_outside_when_strict() -> None:
         strict_repo=True,
     )
     assert any(f.category == "DIRTY_OUTSIDE_DELIVERABLE" for f in findings)
+
+
+def test_candidate_semantic_cli_requires_accepted_variance(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["validate_semantic_matrix.py", str(tmp_path), "--production-format", "SOW_V1_CANDIDATE"],
+    )
+    assert semantic_main() == 2
+
+
+def test_candidate_p3_cli_requires_accepted_variance(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["validate_p3_disposition.py", str(tmp_path), "--production-format", "SOW_V1_CANDIDATE"],
+    )
+    assert p3_main() == 2
+
+
+def test_candidate_consistency_cli_requires_accepted_variance(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["scan_deliverable_consistency.py", str(tmp_path), "--production-format", "SOW_V1_CANDIDATE"],
+    )
+    assert consistency_main() == 2

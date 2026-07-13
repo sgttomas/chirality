@@ -18,8 +18,12 @@ describe('repo-root harness premerge workflow', () => {
 
     expect(workflow).toContain('pull_request:');
     expect(workflow).toContain('CHIRALITY_HARNESS_PROVIDER: stub');
-    expect(workflow).toContain('HARNESS_PROJECT_ROOT: ${{ runner.temp }}/chirality-harness-workroot');
+    expect(workflow).toContain(
+      'echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"'
+    );
+    expect(workflow).not.toContain('${{ runner.temp }}');
     expect(workflow).toContain('mkdir -p "${HARNESS_PROJECT_ROOT}"');
+    expect(workflow).toContain('"${REPO_ROOT}/AGENTS.md" "${REPO_ROOT}/CLAUDE.md"');
     expect(workflow).toContain('run: npm run typecheck');
     expect(workflow).toContain('run: npm run test -- --testTimeout=60000');
     expect(workflow).toContain('npm run instruction-root:integrity --');

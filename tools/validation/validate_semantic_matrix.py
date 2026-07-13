@@ -49,6 +49,13 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate one deliverable _SEMANTIC.md file.")
     parser.add_argument("deliverable_path", help="Path to a deliverable folder")
     parser.add_argument("--json", action="store_true", help="Reserved for future machine-readable output")
+    parser.add_argument(
+        "--production-format",
+        choices=["LEGACY_FOUR_DOC", "SOW_V1_CANDIDATE"],
+        default="LEGACY_FOUR_DOC",
+        help="Production contract whose provenance must appear in Inputs Read.",
+    )
+    parser.add_argument("--variance-ref", default="", help="Required D-GOV-15@<accepted-sha> in candidate mode")
     return parser.parse_args()
 
 
@@ -218,7 +225,7 @@ def validate_work_section(name: str, section: str) -> list[Finding]:
     return findings
 
 
-def validate_semantic_file(deliverable_path: Path) -> list[Finding]:
+def validate_semantic_file(deliverable_path: Path, *, production_format: str = "LEGACY_FOUR_DOC") -> list[Finding]:
     semantic_path = deliverable_path / "_SEMANTIC.md"
     if not semantic_path.is_file():
         return [Finding("MISSING_FILE", f"{semantic_path} does not exist")]
@@ -228,7 +235,12 @@ def validate_semantic_file(deliverable_path: Path) -> list[Finding]:
 
     if "**Inputs Read:**" not in text:
         findings.append(Finding("MISSING_INPUTS_READ", "_SEMANTIC.md lacks Inputs Read provenance"))
-    for filename in ["_CONTEXT.md", "_STATUS.md", "Datasheet.md", "Specification.md", "Guidance.md", "Procedure.md"]:
+    production_inputs = (
+        ["ScopeOfWork.md"]
+        if production_format == "SOW_V1_CANDIDATE"
+        else ["Datasheet.md", "Specification.md", "Guidance.md", "Procedure.md"]
+    )
+    for filename in ["_CONTEXT.md", "_STATUS.md", *production_inputs]:
         if filename not in text:
             findings.append(Finding("MISSING_INPUT_REF", f"Inputs Read does not list {filename}"))
     if "**Audit:** PASS" not in text and "Audit: PASS" not in text:
@@ -268,7 +280,15 @@ def main() -> int:
         return 2
 
     deliverable_path = Path(args.deliverable_path)
-    findings = validate_semantic_file(deliverable_path)
+    if args.production_format == "SOW_V1_CANDIDATE":
+        if not re.fullmatch(r"D-GOV-15@[0-9a-f]{7,40}", args.variance_ref):
+            print("ERROR: candidate mode requires --variance-ref D-GOV-15@<accepted-sha>", file=sys.stderr)
+            return 2
+        sow = deliverable_path / "ScopeOfWork.md"
+        if not sow.is_file() or f"<!-- pilot-variance: {args.variance_ref} -->" not in sow.read_text(encoding="utf-8"):
+            print("ERROR: candidate ScopeOfWork.md does not bind the supplied variance", file=sys.stderr)
+            return 2
+    findings = validate_semantic_file(deliverable_path, production_format=args.production_format)
     if findings:
         print(f"INVALID: {deliverable_path / '_SEMANTIC.md'}")
         for finding in findings:

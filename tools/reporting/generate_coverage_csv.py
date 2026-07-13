@@ -64,7 +64,7 @@ if __name__ == '__main__':
         writer.writerow([
             'DeliverableID', 'Package', 'HasDependenciesCsv', 'HasSemantic',
             'HasEstimate', 'EstimateCount', 'HasDatasheet', 'HasSpecification',
-            'HasGuidance', 'HasProcedure'
+            'HasGuidance', 'HasProcedure', 'HasScopeOfWork', 'ProductionFormatState'
         ])
 
         stats = {'total': 0, 'has_deps': 0, 'has_sem': 0, 'has_est': 0, 'has_kit': 0}
@@ -78,6 +78,16 @@ if __name__ == '__main__':
             has_sp = check_artifact(d['path'], 'Specification.md')
             has_gu = check_artifact(d['path'], 'Guidance.md')
             has_pr = check_artifact(d['path'], 'Procedure.md')
+            has_sow = check_artifact(d['path'], 'ScopeOfWork.md')
+            has_all_legacy = has_ds and has_sp and has_gu and has_pr
+            has_any_legacy = has_ds or has_sp or has_gu or has_pr
+            format_state = (
+                'AMBIGUOUS' if has_sow and has_all_legacy
+                else 'INVALID' if has_sow and has_any_legacy
+                else 'SOW_V1' if has_sow
+                else 'LEGACY_FOUR_DOC' if has_all_legacy
+                else 'INVALID'
+            )
 
             if has_deps: stats['has_deps'] += 1
             if has_sem: stats['has_sem'] += 1
@@ -94,6 +104,8 @@ if __name__ == '__main__':
                 'Y' if has_sp else 'N',
                 'Y' if has_gu else 'N',
                 'Y' if has_pr else 'N',
+                'Y' if has_sow else 'N',
+                format_state,
             ])
 
     t = stats['total']

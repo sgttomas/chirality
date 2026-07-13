@@ -127,6 +127,13 @@ Software example:
 Legacy skills:
 - `dbm-concordance-seed` — marked `chirality-skill-status: LEGACY`; no longer dispatched by DBM_PUBLISHER. Concordance has moved from pre-authoring gate to post-authoring evidence bundle review.
 
+Candidate Stage-1 skill:
+- `scope-of-work` — converts and verifies one project deliverable's legacy
+  four-document kit as a candidate `ScopeOfWork.md` only under an explicit,
+  path-scoped pilot variance. It does not activate the candidate schema,
+  change lifecycle state, apply to DOMAIN/KTY surfaces, or authorize
+  corpus-wide conversion.
+
 ## Discovery guidance
 
 Treat `skills/` as a live skill root rather than relying on hard-coded skill lists in narrative documents.

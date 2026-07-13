@@ -36,9 +36,15 @@ This is an LLM-driven lensing-register skill. The agent reasons over:
 
 The skill treats matrix cells as lenses, not authorities. It records warranted gaps, conflicts, weak statements, normalization risks, and questions; it does not rewrite production documents.
 
+`ProductionFormat=LEGACY_FOUR_DOC` selects the four legacy production files.
+`ProductionFormat=SOW_V1_CANDIDATE` selects validated `ScopeOfWork.md` and
+requires `VarianceRef=D-GOV-15@<accepted-sha>` plus path membership. Candidate
+targets use section and claim IDs; absence of the variance fails closed.
+
 ## Disallowed use
 
-- Do not modify production documents (`Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`).
+- Do not modify production documents (`Datasheet.md`, `Specification.md`,
+  `Guidance.md`, `Procedure.md`, or `ScopeOfWork.md`).
 - Do not modify `_SEMANTIC.md`.
 - Do not modify `_STATUS.md`; normal policy is `STATUS_POLICY=NO_STATUS_TOUCH`.
 - Do not read, compare, or scan sibling deliverables.

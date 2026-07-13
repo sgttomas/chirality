@@ -69,6 +69,10 @@ If instructions conflict, do not silently reconcile. Report the contradiction.
 
 If absent, default to `PROJECT`, but report the default in the run report.
 
+- `PRODUCTION_FORMAT` — `LEGACY_FOUR_DOC` (default) or
+  `SOW_V1_CANDIDATE`. Candidate mode also requires `VARIANCE_REF`, an exact
+  in-scope path, and `STATUS_POLICY=NO_STATUS_TOUCH`; otherwise fail closed.
+
 ### Status policy runtime override
 
 `STATUS_POLICY` controls `_STATUS.md` behavior.
@@ -94,9 +98,13 @@ Read in this order when present:
 5. `MEMORY.md` — if absent, record `not present` in Inputs Read.
 6. Production documents:
    - `PROJECT` / `SOFTWARE`: `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`
+   - Authorized `SOW_V1_CANDIDATE`: `ScopeOfWork.md`; treat its four named
+     philosophical sections and registered IDs as the production contract.
    - `DOMAIN`: all non-metadata `.md` files not prefixed with `_`, typically `Scoping.md` and `KA-*.md`
 
 Missing production documents are recorded as absent; they do not fail the run. Do not read sibling deliverable folders. Do not compare across deliverables.
+Both candidate and legacy production forms are ambiguous unless the brief
+cites the committed pilot variance.
 
 ## Write scope
 

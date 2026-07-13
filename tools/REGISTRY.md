@@ -57,6 +57,21 @@ Profile-driven deterministic support for WORKING_ITEMS software activations. The
 | `validate_domain_decomposition_integrity.py` | Python 3 | Validate DOMAIN decomposition annex referential integrity, lifecycle/cardinality constraints, coverage telemetry reconciliation, active snapshot artifact completeness, `_LATEST.md` parity, and KTY remediation rollup consistency. Optional `--package-subfolder NAME` flag for transitional dual-layout support; auto-descends into a single eligible subfolder when annexes not at root | `--decomposition-root`, `[--scope-change-snapshot]`, `--output-report`, `--output-findings`, `[--package-subfolder]` | DOMAIN integrity report markdown + findings CSV; exit 0/1/2 |
 | `validate_domain_engine_profile.py` | Python 3 | Validate a DomainEngineProfile YAML against the canonical profile contract: required fields, path taxonomy, declared deterministic tools, enums, operation proposal contract, and professional boundary | `profile_yaml`, `--output-report`, `[--repo-root]` | VALID/INVALID exit code plus machine-readable JSON report under `_DomainEngines/`; exit 0/1/2 |
 
+## Deliverable Scope of Work — Candidate Stage 1
+
+These tools implement the candidate contract in
+`docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md`. They do not activate that
+contract, supersede the ratified four-document kit, or authorize corpus-wide
+conversion.
+
+| Name | Language | Purpose | Inputs | Outputs |
+|------|----------|---------|--------|---------|
+| `scope_of_work/validate_scope_of_work.py` | Python 3 | Resolve legacy/SOW/ambiguous format state and validate candidate frontmatter, ordered sections, catalog-driven IDs, references, and output/evaluation matrix | `target`, `[--pilot-variance]`, `[--variance-ref]`, `[--json]` | PASS/FAIL report; exit 0/1 |
+| `scope_of_work/render_scope_of_work.py` | Python 3 | Render validated canonical Markdown into deterministic, source-hash-bound, script-free HTML for on-demand viewing | `source`, `[--output]` | HTML on stdout or at the explicit output path; exit 0/1 |
+| `scope_of_work/convert_four_documents_to_scope_of_work.py` | Python 3 | Produce a lifecycle-neutral, lossless candidate from one `IN_PROGRESS` legacy kit under an explicit pilot variance; refuses `ISSUED` and preserves `_STATUS.md` | `--deliverable`, identity/basis/objective fields, grounded output/acceptance/verification text, `--pilot-variance`, `--variance-ref`, `[--force]` | Deliverable-local candidate `ScopeOfWork.md`; exit 0/1 |
+| `scope_of_work/map_scope_of_work_claims.py` | Python 3 | Emit source-range, source-hash, target-ID, target-hash, and migration-disposition mappings from embedded candidate markers | `--scope-of-work`, `--source-dir`, `--output-csv` | Deterministic claim-map CSV; exit 0/1 |
+| `scope_of_work/report_scope_of_work_parity.py` | Python 3 | Verify source hashes, exact mapped text, line coverage, target IDs, and schema validity without changing authoritative inputs | `--scope-of-work`, `--source-dir`, `--output-json`, `[--output-md]` | Machine-readable parity JSON and optional Markdown summary; exit 0/1 |
+
 ## Reporting
 
 | Name | Language | Purpose | Inputs | Outputs |

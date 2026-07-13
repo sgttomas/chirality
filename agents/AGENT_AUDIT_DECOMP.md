@@ -258,7 +258,11 @@ For each deliverable with a matched folder:
 For each deliverable with a matched folder:
 - Read the `AnticipatedArtifacts` list from the Production Units section
 - Scan the folder for files matching each anticipated artifact name (fuzzy filename match)
-- For PROJECT_DECOMP and SOFTWARE_DECOMP: also check for the standard four-doc set (`Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`)
+- For PROJECT_DECOMP and SOFTWARE_DECOMP: normally check for the standard
+  four-doc set (`Datasheet.md`, `Specification.md`, `Guidance.md`,
+  `Procedure.md`). Under an explicit committed Scope-of-Work variance, instead
+  report the format state and validate the candidate `ScopeOfWork.md`; both
+  formats without that variance are ambiguous and nonconformant.
 - For DOMAIN_DECOMP: check against the Knowledge Type's anticipated Knowledge Subjects (no standard four-doc set assumed)
 - Record: `DeliverableID, ArtifactName, Present (true/false), MatchedFile`
 - If absent: issue `INFO` — "Anticipated artifact '{name}' not found in {folder}"

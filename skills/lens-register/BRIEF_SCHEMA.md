@@ -17,6 +17,8 @@ Use TASK generic shell for normal ORCHESTRATOR dispatch. This skill supplies its
 
 - `RuntimeOverrides.DECOMP_VARIANT` — `PROJECT` | `SOFTWARE` (default `PROJECT`).
 - `RuntimeOverrides.STATUS_POLICY` — `NO_STATUS_TOUCH` for normal Phase 2.4.
+- `RuntimeOverrides.PRODUCTION_FORMAT` — `LEGACY_FOUR_DOC` (default) or
+  `SOW_V1_CANDIDATE`; candidate mode requires `VARIANCE_REF`.
 - `AllowedWriteTargets` — include only:
   - `{deliverable_folder}/_SEMANTIC_LENSING.md`
   - `{deliverable_folder}/_run_records/` (TASK shell output)
@@ -83,6 +85,8 @@ Recommended / contextual:
 - `_CONTEXT.md` — deliverable identity.
 - `_STATUS.md` — read-only lifecycle state.
 - `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` — standard production document set. Missing docs produce `[WARNING] MISSING_DOC`, not failure.
+- `ScopeOfWork.md` — candidate production contract only when the brief cites
+  the committed Stage-1 variance.
 - `_REFERENCES.md` — deliverable-local metadata only; list pointers but do not expand them.
 
 ## Output location

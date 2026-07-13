@@ -18,6 +18,7 @@ ApplyEdits: false
 
 RuntimeOverrides:
   DELIVERABLE_PATH: /abs/path/to/DEL-XXX_Name
+  ProductionFormat: LEGACY_FOUR_DOC
   FocusDocs:
     - Datasheet.md
     - Specification.md
@@ -40,6 +41,9 @@ EXCLUSIONS:
 - `ScopePath`
 - `TaskSkill: deliverable-consistency`
 - `RuntimeOverrides.DELIVERABLE_PATH`
+- `RuntimeOverrides.ProductionFormat` — `LEGACY_FOUR_DOC` or
+  `SOW_V1_CANDIDATE`; candidate mode also requires
+  `RuntimeOverrides.VarianceRef: D-GOV-15@<accepted-sha>`.
 
 ## Typical tasks
 
