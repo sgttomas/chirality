@@ -1,0 +1,14 @@
+{
+  "instance_id": "EVAL-C1V",
+  "role": "EVALUATION",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "brief_version": 1,
+  "status": "PASS",
+  "objective": "Independently validate exact canon candidate and C1V gate",
+  "dependencies": ["C1_PASS"],
+  "evidence_root": "execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C1V",
+  "return": "RETURN.md",
+  "findings": 0,
+  "blockers": [],
+  "next_owner": "CHANGE"
+}

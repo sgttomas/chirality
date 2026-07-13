@@ -1,0 +1,14 @@
+{
+  "instance_id": "CHANGE-C1G",
+  "role": "CHANGE",
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "brief_version": 1,
+  "status": "SOURCE_BOUND_READY_FOR_PR",
+  "objective": "Integrate and bind exact D-GOV-16 canon through an approved PR",
+  "dependencies": ["C1V_PASS", "HUMAN_STEER_001"],
+  "basis_sha": "c5f5bbd6e636916a76c34a04295f6ddd2a3d0983",
+  "activation_commit": "2404f4e92b79c41e295a9bf3102407a0cd8b54db",
+  "integration_handoff": "snapshots/P1_CANON/INTEGRATION_HANDOFF.md",
+  "next_gate": "Push exact two-commit branch, open one non-draft PR, verify and merge under HUMAN-STEER-001, then synchronize main",
+  "return": "RETURN.md"
+}

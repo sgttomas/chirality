@@ -1,0 +1,71 @@
+{
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "accepted_plan": "execution/_Coordination/AgentRuns/SOW-STAGE2-PLAN-20260712/WORK_GRAPH.v1.md",
+  "human_gates": [
+    {"id": "H1", "state": "UNAPPROVED", "meaning": "ISSUED DEL-01-01 administrative representation replacement"},
+    {"id": "H2", "state": "UNAPPROVED", "meaning": "legacy retirement"}
+  ],
+  "nodes": [
+    {
+      "id": "B0",
+      "owner": "ORCHESTRATOR-B0",
+      "role": "ORCHESTRATOR",
+      "status": "PASS",
+      "depends_on": ["H0_ACCEPTED"],
+      "read_scope": ["Git refs", "D-GOV-16 ruled package", "accepted Stage-2 plan", "tracked App Dev and Piping trees", "active caller surfaces", "Stage-1 candidate evidence"],
+      "write_scope": ["execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/basis/**", "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/P0_BASIS/**", "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/ORCHESTRATOR-B0/RETURN.md", "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/ORCHESTRATOR-B0/STATUS.json"],
+      "tools": ["read", "bounded shell diagnostics", "apply_patch"],
+      "expected_return": "PASS, PARTIAL, BLOCKED, or DECISION_REQUIRED with frozen manifests and exact checks",
+      "fan_in_gate": "G0: refs synchronized; ruled hashes and patches exact; census 154/10/144; lifecycle 153 IN_PROGRESS + one named ISSUED; digest exact; no unclassified caller",
+      "escalation": "Any ref, membership, lifecycle, companion, candidate/hash, patch-context, conflict, or unclassified-caller delta"
+    },
+    {
+      "id": "C1",
+      "owner": "HELPS-C1",
+      "role": "HELPS_HUMANS",
+      "status": "PASS",
+      "depends_on": ["B0_PASS"],
+      "read_scope": ["P0_BASIS", "D-GOV-16 exact ruled standard and patches", "live docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md", "live docs/TYPES.md", "live docs/SPEC.md"],
+      "write_scope": ["execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/P1_CANON/**", "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/HELPS-C1/RETURN.md", "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/HELPS-C1/STATUS.json"],
+      "tools": ["read", "bounded shell diagnostics", "apply_patch"],
+      "expected_return": "exact-copy/exact-patch candidate with before/after hashes and containment manifest",
+      "fan_in_gate": "C1 candidate contains only the three exact canon successors; live canon and all other paths unchanged",
+      "escalation": "Any patch mismatch, target-byte mismatch, extra path, authority conflict, or need for interpretation"
+    },
+    {
+      "id": "C1V",
+      "owner": "EVAL-C1V",
+      "role": "EVALUATION",
+      "status": "PASS",
+      "depends_on": ["C1_PASS"],
+      "read_scope": ["P0_BASIS", "C1 candidate and handoff", "D-GOV-16 exact ruled artifacts", "live root governance canon and applicable validators"],
+      "write_scope": ["execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C1V/**", "runtime-persisted instance return"],
+      "tools": ["read", "bounded shell diagnostics", "deterministic validators"],
+      "expected_return": "independent exact-byte, patch-result, normative-consistency, containment, and applicable-root-check verdict",
+      "fan_in_gate": "C1V PASS with evidence-linked zero finding/blocker or fully classified findings",
+      "escalation": "Any byte mismatch, normative contradiction, failed required check, candidate/live containment breach, or unknown material evidence"
+    },
+    {
+      "id": "C1G",
+      "owner": "CHANGE-C1G",
+      "role": "CHANGE",
+      "status": "RELEASED",
+      "depends_on": ["C1V_PASS"],
+      "read_scope": ["P0_BASIS", "C1 candidate/return", "C1V evaluation", "HUMAN-STEER-001", "live Git and GitHub PR state"],
+      "write_scope": ["docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md", "docs/TYPES.md", "docs/SPEC.md", "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/**", "execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C1V/**", "Git branch/commits/PR integration state"],
+      "tools": ["read", "apply_patch", "bounded shell diagnostics", "git", "gh"],
+      "expected_return": "dedicated exact-canon commit, SHA-binding commit, merged PR, synchronized main, P1_CANON integration handoff",
+      "fan_in_gate": "source PR contains only exact canon plus run/evaluation evidence; required checks PASS; merge under HUMAN-STEER-001; main synchronized and clean except declared pre-existing untracked container",
+      "escalation": "Any source SHA drift, extra tracked path, check failure, merge conflict, protection/auth failure, or candidate/live mismatch"
+    },
+    {"id": "C2R_C2A_C2F_C2G", "status": "PARKED", "depends_on": ["C1G_ACCEPTED"]},
+    {"id": "B1", "owner": "ORCHESTRATOR", "status": "PARKED", "depends_on": ["C2G_ACCEPTED"]},
+    {"id": "PILOTS_AND_WAVES", "status": "PARKED", "depends_on": ["B1_ACCEPTED"]},
+    {"id": "I0", "owner": "Piping PKG-01 WORKING_ITEMS", "status": "PARKED", "depends_on": ["W_P1_ACCEPTED"]},
+    {"id": "I1", "owner": "CHANGE", "status": "PARKED_HUMAN_GATE", "depends_on": ["I0_PASS", "H1_APPROVED"]},
+    {"id": "LEGACY_RETIREMENT", "status": "PARKED_HUMAN_GATE", "depends_on": ["CONVERSION_AND_ROLLBACK_CLOSED", "H2_APPROVED"]}
+  ]
+}
