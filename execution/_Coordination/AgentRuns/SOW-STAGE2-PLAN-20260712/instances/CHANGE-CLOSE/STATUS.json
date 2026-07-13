@@ -3,6 +3,8 @@
   "instance": "CHANGE-CLOSE",
   "role": "CHANGE",
   "parent": "HELP_HUMAN",
-  "status": "DISPATCHED",
-  "objective": "Commit and bind the plan-only D-GOV-16 Stage-2 orchestration package without integration or execution."
+  "status": "STAGE2_PLAN_PRESENTED_AWAITING_ACCEPTANCE",
+  "objective": "Commit and bind the plan-only D-GOV-16 Stage-2 orchestration package without integration or execution.",
+  "plan_snapshot": "27f03730c956447b9a9696422cc9c63b8f061939",
+  "result": "Plan snapshot bound; no Stage-2 node dispatched pending human acceptance, amendment, deferral, or rejection."
 }

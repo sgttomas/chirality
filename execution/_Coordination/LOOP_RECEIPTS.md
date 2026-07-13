@@ -119,3 +119,17 @@
   and exact TYPES/SPEC patches remain approved but unapplied.
 - Stop: publication is not Stage-2 implementation. A fresh governed plan from
   synchronized `main` remains the only release gate.
+
+### Receipt 7 — 2026-07-12 — D-GOV-16 Stage-2 plan presented
+
+- Basis: synchronized `main@c9af689118e4e87f329e1ab4c6e71fea331b2674`;
+  plan snapshot `27f03730c956447b9a9696422cc9c63b8f061939` on
+  `codex/sow-stage2-plan`.
+- Evidence: `AgentRuns/SOW-STAGE2-PLAN-20260712/`, with sealed plan, graph,
+  census, caller, traceability, and handoff outputs.
+- Checks: 10/10 D-GOV-16 traceability; 10 pilots + 143 ordinary + 1 ISSUED =
+  154; sealed output hashes match the ORCHESTRATOR return.
+- State: `STAGE2_PLAN_PRESENTED_AWAITING_ACCEPTANCE`; no Stage-2 node was
+  dispatched and no canon, project, lifecycle, pilot, or remote state changed.
+- Release gate: human accepts or amends this plan, then a fresh governed
+  execution run reruns synchronized-main basis checks before dispatch.

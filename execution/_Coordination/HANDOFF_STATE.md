@@ -1,6 +1,6 @@
 # Scope-of-Work Stage-1 Handoff State
 
-Status: `D-GOV-16_RULED_STAGE2_PLAN_REQUIRED`
+Status: `STAGE2_PLAN_PRESENTED_AWAITING_ACCEPTANCE`
 
 ## Accepted upstream basis
 
@@ -18,6 +18,10 @@ Status: `D-GOV-16_RULED_STAGE2_PLAN_REQUIRED`
 - D-GOV-16 owner ruling, 2026-07-12: items 1–10 `APPROVED` exactly as
   proposed; published ruling snapshot:
   `7584718aa32b112e415331736d1a8e68c12ac176`.
+- Synchronized planning basis: `main@c9af689118e4e87f329e1ab4c6e71fea331b2674`.
+- Presented Stage-2 plan branch/snapshot:
+  `codex/sow-stage2-plan@27f03730c956447b9a9696422cc9c63b8f061939`;
+  package `execution/_Coordination/AgentRuns/SOW-STAGE2-PLAN-20260712/`.
 
 ## Closure verdict
 
@@ -35,6 +39,10 @@ contract. Ten-pilot reproduction passes byte-for-byte. The full evidence is
 derivative and does not replace deliverable, decomposition, lifecycle, or
 human-decision truth.
 
+The fresh D-GOV-16 Stage-2 orchestration plan is now presented and SHA-bound.
+It passed its basis, arithmetic, and traceability checks, but no Stage-2 node
+was dispatched and the plan is not execution authority.
+
 ## D-GOV-16 ruled package
 
 `docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md`
@@ -48,17 +56,17 @@ basis.
 
 ## Required stop and release condition
 
-The owner directed a stop after ruling publication. Stage-2 implementation may
-begin only after a fresh governed orchestration plan is presented from a
-synchronized `main` containing the published ruling. Until that release gate
-is satisfied, `docs/TYPES.md` and `docs/SPEC.md` remain unchanged; no
-remaining-corpus conversion, consumer migration, candidate-pilot integration,
-ISSUED representation replacement, lifecycle act, or legacy retirement
-occurs.
+The required fresh governed plan has been presented from synchronized `main`,
+but it remains awaiting human acceptance, amendment, deferral, or rejection.
+Until an accepted plan starts a fresh governed execution run, `docs/TYPES.md`
+and `docs/SPEC.md` remain unchanged; no remaining-corpus conversion, consumer
+migration, candidate-pilot integration, ISSUED representation replacement,
+lifecycle act, or legacy retirement occurs.
 
 ## Rerun requirements
 
-If a relied-on pilot candidate/source/status, frozen parser/catalog/checklist
-contract, ruled exact byte, or accepted basis changes before execution,
-re-run the affected validator, claim map, parity, HTML, checklist, verifier,
-and RECONCILIATION fan-in. Otherwise no Stage-1 rerun is required.
+Before any accepted execution run dispatches a child, rerun synchronized-main,
+census, lifecycle, companion, candidate/hash, patch-applicability, and active
+caller checks. A changed membership, lifecycle population, source/candidate
+hash, patch context, conflict, or unclassified active caller requires a
+scoped plan amendment or human decision; it is not silently absorbed.
