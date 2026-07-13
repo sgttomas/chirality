@@ -6,6 +6,8 @@ import { scanDeliverableDocumentKitContract } from '../../lib/workspace/filesyst
 
 let tmpRoot = '';
 let deliverablePath = '';
+const ACCEPTED_MIGRATION_AUTHORITY =
+  'D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176';
 
 function statusDocument(state = 'IN_PROGRESS'): string {
   return `# Status: DEL-07-03 Deliverable Contract Scanner
@@ -18,7 +20,7 @@ function statusDocument(state = 'IN_PROGRESS'): string {
 `;
 }
 
-function scopeOfWorkDocument(): string {
+function scopeOfWorkDocument(migrationAuthority = ''): string {
   return `---
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-07-03
@@ -29,6 +31,8 @@ package_objective_refs: [OBJ-006]
 ---
 
 # Scope of Work
+
+${migrationAuthority ? `<!-- migration-authority: ${migrationAuthority} -->\n` : ''}
 
 ## Purpose and Objective Traceability
 
@@ -78,7 +82,7 @@ afterEach(async () => {
 });
 
 describe('scanDeliverableDocumentKitContract', () => {
-  it('keeps Scope-of-Work-only non-authoritative during the Stage-1 pilot', async () => {
+  it('accepts Scope-of-Work-only as SOW_V1 and selects the canonical document', async () => {
     await writeDeliverableFiles({
       '_STATUS.md': statusDocument('IN_PROGRESS'),
       '_CONTEXT.md': '# Context\n',
@@ -89,32 +93,24 @@ describe('scanDeliverableDocumentKitContract', () => {
       'MEMORY.md': '# Memory\n'
     });
 
-    const candidate = await scanDeliverableDocumentKitContract({
-      deliverableId: 'DEL-07-03',
-      deliverablePath,
-      scopeOfWorkPilot: {
-        mode: 'PILOT_DUAL',
-        varianceRef: 'D-GOV-15@0123456',
-        allowedDeliverablePaths: [deliverablePath]
-      }
-    });
-    expect(candidate.documentFormat).toBe('SOW_V1');
-    expect(candidate.valid).toBe(false);
-    expect(candidate.scopeOfWork.present).toBe(true);
-
-    const unactivated = await scanDeliverableDocumentKitContract({
+    const result = await scanDeliverableDocumentKitContract({
       deliverableId: 'DEL-07-03',
       deliverablePath
     });
-    expect(unactivated.valid).toBe(false);
-    expect(unactivated.findings).toEqual(
+    expect(result.documentFormat).toBe('SOW_V1');
+    expect(result.valid).toBe(true);
+    expect(result.scopeOfWork.present).toBe(true);
+    expect(result.selectedProductionDocuments.map((file) => file.fileName)).toEqual([
+      'ScopeOfWork.md'
+    ]);
+    expect(result.findings).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ condition: 'scope_of_work_not_activated', severity: 'error' })
+        expect.objectContaining({ condition: 'scope_of_work_activated', severity: 'info' })
       ])
     );
   });
 
-  it('fails dual-format ambiguity unless the Stage-1 variance is explicit', async () => {
+  it('fails ordinary dual-format ambiguity and accepts only exact authorized isolated migration dual', async () => {
     await writeDeliverableFiles({
       '_STATUS.md': statusDocument('IN_PROGRESS'),
       '_CONTEXT.md': '# Context\n',
@@ -125,7 +121,7 @@ describe('scanDeliverableDocumentKitContract', () => {
       'Specification.md': '# Specification\n',
       'Guidance.md': '# Guidance\n',
       'Procedure.md': '# Procedure\n',
-      'ScopeOfWork.md': scopeOfWorkDocument(),
+      'ScopeOfWork.md': scopeOfWorkDocument(ACCEPTED_MIGRATION_AUTHORITY),
       'MEMORY.md': '# Memory\n'
     });
 
@@ -136,25 +132,104 @@ describe('scanDeliverableDocumentKitContract', () => {
     expect(normal.documentFormat).toBe('AMBIGUOUS');
     expect(normal.valid).toBe(false);
 
-    const pilot = await scanDeliverableDocumentKitContract({
+    const migration = await scanDeliverableDocumentKitContract({
       deliverableId: 'DEL-07-03',
       deliverablePath,
-      scopeOfWorkPilot: {
-        mode: 'PILOT_DUAL',
-        varianceRef: 'D-GOV-15@0123456',
+      scopeOfWorkMigration: {
+        mode: 'MIGRATION_DUAL',
+        isolatedWorkspace: true,
+        authorityRef: ACCEPTED_MIGRATION_AUTHORITY,
         allowedDeliverablePaths: [deliverablePath]
       }
     });
-    expect(pilot.documentFormat).toBe('AMBIGUOUS');
-    expect(pilot.valid).toBe(true);
-    expect(pilot.findings).toEqual(
+    expect(migration.documentFormat).toBe('MIGRATION_DUAL');
+    expect(migration.valid).toBe(true);
+    expect(migration.selectedProductionDocuments.map((file) => file.fileName)).toEqual([
+      'ScopeOfWork.md'
+    ]);
+    expect(migration.findings).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ condition: 'dual_format_pilot_variance', severity: 'info' })
+        expect.objectContaining({ condition: 'migration_dual_authorized', severity: 'info' })
       ])
     );
   });
 
-  it('refuses partial legacy coexistence and a variance for a different path', async () => {
+  it.each([
+    ['unruled valid-looking authority', 'D-GOV-16@0123456', true, true],
+    ['malformed authority', 'D-GOV-16@not-a-sha', true, true],
+    ['missing authority', '', true, true],
+    ['non-isolated mode', ACCEPTED_MIGRATION_AUTHORITY, false, true],
+    ['wrong deliverable path', ACCEPTED_MIGRATION_AUTHORITY, true, false]
+  ])('fails closed for %s', async (_caseName, authorityRef, isolatedWorkspace, useExactPath) => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('IN_PROGRESS'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'Datasheet.md': '# Datasheet\n',
+      'Specification.md': '# Specification\n',
+      'Guidance.md': '# Guidance\n',
+      'Procedure.md': '# Procedure\n',
+      'ScopeOfWork.md': scopeOfWorkDocument(authorityRef),
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const result = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath,
+      scopeOfWorkMigration: {
+        mode: 'MIGRATION_DUAL',
+        isolatedWorkspace: isolatedWorkspace as true,
+        authorityRef,
+        allowedDeliverablePaths: [
+          useExactPath ? deliverablePath : path.join(tmpRoot, 'different-deliverable')
+        ]
+      }
+    });
+
+    expect(result.documentFormat).toBe('AMBIGUOUS');
+    expect(result.valid).toBe(false);
+    expect(result.selectedProductionDocuments).toEqual([]);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ condition: 'ambiguous_deliverable_format', severity: 'error' })
+      ])
+    );
+  });
+
+  it('fails closed instead of trimming a whitespace-padded accepted authority', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('IN_PROGRESS'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'Datasheet.md': '# Datasheet\n',
+      'Specification.md': '# Specification\n',
+      'Guidance.md': '# Guidance\n',
+      'Procedure.md': '# Procedure\n',
+      'ScopeOfWork.md': scopeOfWorkDocument(ACCEPTED_MIGRATION_AUTHORITY),
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const result = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath,
+      scopeOfWorkMigration: {
+        mode: 'MIGRATION_DUAL',
+        isolatedWorkspace: true,
+        authorityRef: ` ${ACCEPTED_MIGRATION_AUTHORITY} `,
+        allowedDeliverablePaths: [deliverablePath]
+      }
+    });
+
+    expect(result.documentFormat).toBe('AMBIGUOUS');
+    expect(result.valid).toBe(false);
+    expect(result.selectedProductionDocuments).toEqual([]);
+  });
+
+  it('refuses partial legacy coexistence and migration authority for a different path', async () => {
     await writeDeliverableFiles({
       '_STATUS.md': statusDocument('IN_PROGRESS'),
       '_CONTEXT.md': '# Context\n',
@@ -169,9 +244,10 @@ describe('scanDeliverableDocumentKitContract', () => {
     const partial = await scanDeliverableDocumentKitContract({
       deliverableId: 'DEL-07-03',
       deliverablePath,
-      scopeOfWorkPilot: {
-        mode: 'PILOT_DUAL',
-        varianceRef: 'D-GOV-15@0123456',
+      scopeOfWorkMigration: {
+        mode: 'MIGRATION_DUAL',
+        isolatedWorkspace: true,
+        authorityRef: ACCEPTED_MIGRATION_AUTHORITY,
         allowedDeliverablePaths: [path.join(tmpRoot, 'different-deliverable')]
       }
     });
@@ -179,7 +255,7 @@ describe('scanDeliverableDocumentKitContract', () => {
     expect(partial.valid).toBe(false);
   });
 
-  it('rejects a structurally incomplete Scope of Work even with an exact pilot path', async () => {
+  it('rejects a structurally incomplete Scope of Work even with exact migration authority', async () => {
     await writeDeliverableFiles({
       '_STATUS.md': statusDocument('IN_PROGRESS'),
       '_CONTEXT.md': '# Context\n',
@@ -197,9 +273,10 @@ describe('scanDeliverableDocumentKitContract', () => {
     const result = await scanDeliverableDocumentKitContract({
       deliverableId: 'DEL-07-03',
       deliverablePath,
-      scopeOfWorkPilot: {
-        mode: 'PILOT_DUAL',
-        varianceRef: 'D-GOV-15@0123456',
+      scopeOfWorkMigration: {
+        mode: 'MIGRATION_DUAL',
+        isolatedWorkspace: true,
+        authorityRef: ACCEPTED_MIGRATION_AUTHORITY,
         allowedDeliverablePaths: [deliverablePath]
       }
     });
@@ -209,6 +286,90 @@ describe('scanDeliverableDocumentKitContract', () => {
         expect.objectContaining({ condition: 'invalid_scope_of_work_candidate', severity: 'error' })
       ])
     );
+  });
+
+  it('fails closed for mismatched authority binding and a misleading requested format', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('IN_PROGRESS'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'Datasheet.md': '# Datasheet\n',
+      'Specification.md': '# Specification\n',
+      'Guidance.md': '# Guidance\n',
+      'Procedure.md': '# Procedure\n',
+      'ScopeOfWork.md': scopeOfWorkDocument('D-GOV-16@0123456'),
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const result = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath,
+      requestedFormat: 'SOW_V1',
+      scopeOfWorkMigration: {
+        mode: 'MIGRATION_DUAL',
+        isolatedWorkspace: true,
+        authorityRef: ACCEPTED_MIGRATION_AUTHORITY,
+        allowedDeliverablePaths: [deliverablePath]
+      }
+    });
+
+    expect(result.documentFormat).toBe('AMBIGUOUS');
+    expect(result.valid).toBe(false);
+    expect(result.selectedProductionDocuments).toEqual([]);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ condition: 'ambiguous_deliverable_format', severity: 'error' }),
+        expect.objectContaining({ condition: 'requested_format_mismatch', severity: 'error' })
+      ])
+    );
+  });
+
+  it('fails closed when an initialized deliverable has no production contract', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('INITIALIZED'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const result = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath
+    });
+
+    expect(result.documentFormat).toBe('INVALID');
+    expect(result.valid).toBe(false);
+    expect(result.selectedProductionDocuments).toEqual([]);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ condition: 'missing_production_contract', severity: 'error' })
+      ])
+    );
+  });
+
+  it('never reports INVALID as valid when an OPEN deliverable has no production contract', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('OPEN'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const result = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath
+    });
+
+    expect(result.documentFormat).toBe('INVALID');
+    expect(result.errorCount).toBe(0);
+    expect(result.valid).toBe(false);
+    expect(result.selectedProductionDocuments).toEqual([]);
   });
 
   it('accepts complete metadata, document-kit, and canonical-memory files', async () => {
@@ -237,6 +398,13 @@ describe('scanDeliverableDocumentKitContract', () => {
     expect(result.requiredMetadata.every((file) => file.present)).toBe(true);
     expect(result.preparationBaseline.every((file) => file.present)).toBe(true);
     expect(result.documentKit.every((file) => file.present)).toBe(true);
+    expect(result.documentFormat).toBe('LEGACY_FOUR_DOC');
+    expect(result.selectedProductionDocuments.map((file) => file.fileName)).toEqual([
+      'Datasheet.md',
+      'Specification.md',
+      'Guidance.md',
+      'Procedure.md'
+    ]);
     expect(result.canonicalMemory.present).toBe(true);
     expect(result.optionalFiles.every((file) => !file.present)).toBe(true);
     expect(result.findings).toEqual(
@@ -276,7 +444,7 @@ describe('scanDeliverableDocumentKitContract', () => {
     const conditions = result.findings.map((finding) => finding.condition);
 
     expect(result.valid).toBe(false);
-    expect(result.errorCount).toBe(2);
+    expect(result.errorCount).toBe(3);
     expect(conditions).toEqual(
       expect.arrayContaining([
         'missing_required_metadata',

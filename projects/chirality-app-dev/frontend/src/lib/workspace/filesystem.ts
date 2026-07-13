@@ -110,16 +110,25 @@ export type DeliverableContractScanResult = {
   requiredMetadata: DeliverableContractFileState[];
   preparationBaseline: DeliverableContractFileState[];
   documentKit: DeliverableContractFileState[];
-  documentFormat: 'LEGACY_FOUR_DOC' | 'SOW_V1' | 'AMBIGUOUS' | 'INVALID';
+  documentFormat: DeliverableProductionFormat;
+  selectedProductionDocuments: DeliverableContractFileState[];
   scopeOfWork: DeliverableContractFileState;
   canonicalMemory: DeliverableContractFileState;
   optionalFiles: DeliverableContractFileState[];
   findings: DeliverableContractFinding[];
 };
 
-export type ScopeOfWorkPilotActivation = {
-  mode: 'PILOT_DUAL';
-  varianceRef: string;
+export type DeliverableProductionFormat =
+  | 'LEGACY_FOUR_DOC'
+  | 'SOW_V1'
+  | 'MIGRATION_DUAL'
+  | 'AMBIGUOUS'
+  | 'INVALID';
+
+export type ScopeOfWorkMigrationActivation = {
+  mode: 'MIGRATION_DUAL';
+  isolatedWorkspace: true;
+  authorityRef: string;
   allowedDeliverablePaths: readonly string[];
 };
 
@@ -165,7 +174,8 @@ const DOCUMENT_KIT_FILES = [
 
 const SCOPE_OF_WORK_FILE = 'ScopeOfWork.md';
 const SCOPE_OF_WORK_SCHEMA = 'chirality-deliverable-sow/v1';
-const SCOPE_OF_WORK_VARIANCE_REF = /^D-GOV-15@[0-9a-f]{7,40}$/;
+const ACCEPTED_SCOPE_OF_WORK_MIGRATION_AUTHORITY =
+  'D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176';
 const SCOPE_OF_WORK_SECTIONS = [
   'Purpose and Objective Traceability',
   'Deliverable Definition — Ontology',
@@ -572,7 +582,8 @@ function addReferenceWarnings(input: {
 export async function scanDeliverableDocumentKitContract(input: {
   deliverableId: string;
   deliverablePath: string;
-  scopeOfWorkPilot?: ScopeOfWorkPilotActivation;
+  scopeOfWorkMigration?: ScopeOfWorkMigrationActivation;
+  requestedFormat?: DeliverableProductionFormat | 'AUTO';
 }): Promise<DeliverableContractScanResult> {
   const fileNames = await readDirectoryFileSet(input.deliverablePath);
   const findings: DeliverableContractFinding[] = [];
@@ -638,12 +649,14 @@ export async function scanDeliverableDocumentKitContract(input: {
 
   const hasAllLegacy = documentKit.every((file) => file.present);
   const hasAnyLegacy = documentKit.some((file) => file.present);
-  const pilotPathAllowed = input.scopeOfWorkPilot?.mode === 'PILOT_DUAL'
-    && SCOPE_OF_WORK_VARIANCE_REF.test(input.scopeOfWorkPilot.varianceRef.trim())
-    && input.scopeOfWorkPilot.allowedDeliverablePaths
+  const migrationAuthority = input.scopeOfWorkMigration?.authorityRef ?? '';
+  const migrationPathAllowed = input.scopeOfWorkMigration?.mode === 'MIGRATION_DUAL'
+    && input.scopeOfWorkMigration.isolatedWorkspace === true
+    && migrationAuthority === ACCEPTED_SCOPE_OF_WORK_MIGRATION_AUTHORITY
+    && input.scopeOfWorkMigration.allowedDeliverablePaths
       .map((allowedPath) => path.resolve(allowedPath))
       .includes(path.resolve(input.deliverablePath));
-  const documentFormat = scopeOfWork.present
+  let documentFormat: DeliverableProductionFormat = scopeOfWork.present
     ? hasAllLegacy
       ? 'AMBIGUOUS'
       : hasAnyLegacy
@@ -654,6 +667,7 @@ export async function scanDeliverableDocumentKitContract(input: {
       : 'INVALID';
 
   let validScopeOfWork = false;
+  let scopeOfWorkBindsMigrationAuthority = false;
   if (scopeOfWork.present) {
     try {
       const content = await readFile(scopeOfWork.path, 'utf8');
@@ -688,6 +702,8 @@ export async function scanDeliverableDocumentKitContract(input: {
         && requiredKinds.every((prefix) => definitions.some((definition) => definition.startsWith(prefix)))
         && matrixRows.length > 0
         && matrixRows.every((row) => /\|\s*AC-\d{3}\s*\|\s*VER-\d{3}\s*\|/.test(row));
+      scopeOfWorkBindsMigrationAuthority = migrationAuthority.length > 0
+        && content.includes(`<!-- migration-authority: ${migrationAuthority} -->`);
       if (!validScopeOfWork) {
         findings.push(
           buildFinding({
@@ -722,6 +738,14 @@ export async function scanDeliverableDocumentKitContract(input: {
     }
   }
 
+  if (scopeOfWork.present && !validScopeOfWork) {
+    documentFormat = 'INVALID';
+  } else if (scopeOfWork.present && hasAllLegacy) {
+    documentFormat = migrationPathAllowed && scopeOfWorkBindsMigrationAuthority
+      ? 'MIGRATION_DUAL'
+      : 'AMBIGUOUS';
+  }
+
   if (documentFormat === 'AMBIGUOUS') {
     findings.push(
       buildFinding({
@@ -729,16 +753,29 @@ export async function scanDeliverableDocumentKitContract(input: {
         deliverablePath: input.deliverablePath,
         fileName: SCOPE_OF_WORK_FILE,
         category: 'scope_of_work',
-        condition: pilotPathAllowed
-          ? 'dual_format_pilot_variance'
-          : 'ambiguous_deliverable_format',
+        condition: 'ambiguous_deliverable_format',
         lifecycleState,
-        severity: pilotPathAllowed ? 'info' : 'error',
-        sourceRef: 'docs/governance_harness/_DECISIONS/D-GOV-15_scope_of_work_stage1.md',
+        severity: 'error',
+        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution-and-transition',
         evidence: `${SCOPE_OF_WORK_FILE} and all four legacy production documents coexist`,
-        message: pilotPathAllowed
-          ? 'Dual format is visible under an explicit Stage-1 pilot variance.'
-          : 'Dual format is ambiguous outside an explicit Stage-1 pilot variance.'
+        message: migrationPathAllowed && !scopeOfWorkBindsMigrationAuthority
+          ? 'Dual format is ambiguous because ScopeOfWork.md does not bind the supplied migration authority.'
+          : 'Dual format is ambiguous outside an exact authorized isolated migration workspace.'
+      })
+    );
+  } else if (documentFormat === 'MIGRATION_DUAL') {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: SCOPE_OF_WORK_FILE,
+        category: 'scope_of_work',
+        condition: 'migration_dual_authorized',
+        lifecycleState,
+        severity: 'info',
+        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution-and-transition',
+        evidence: `isolated workspace and ${migrationAuthority} are bound in ${SCOPE_OF_WORK_FILE}`,
+        message: 'Dual format is authorized only for this isolated migration workspace.'
       })
     );
   } else if (documentFormat === 'SOW_V1') {
@@ -748,27 +785,70 @@ export async function scanDeliverableDocumentKitContract(input: {
         deliverablePath: input.deliverablePath,
         fileName: SCOPE_OF_WORK_FILE,
         category: 'scope_of_work',
-        condition: 'scope_of_work_not_activated',
+        condition: 'scope_of_work_activated',
         lifecycleState,
-        severity: 'error',
-        sourceRef: 'docs/SPEC.md#section-2.1',
+        severity: 'info',
+        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution-and-transition',
         evidence: `${SCOPE_OF_WORK_FILE} is the only production contract`,
-        message: 'Scope-of-Work-only format is not authoritative before Stage-2 activation.'
+        message: 'ScopeOfWork.md is the selected canonical production contract.'
       })
     );
-  } else if (documentFormat === 'INVALID' && scopeOfWork.present) {
+  } else if (documentFormat === 'INVALID' && hasAnyLegacy && !hasAllLegacy) {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: scopeOfWork.present
+          ? SCOPE_OF_WORK_FILE
+          : documentKit.find((file) => !file.present)?.fileName ?? SCOPE_OF_WORK_FILE,
+        category: 'document_kit',
+        condition: scopeOfWork.present
+          ? 'invalid_mixed_production_format'
+          : 'partial_legacy_production_kit',
+        lifecycleState,
+        severity: 'error',
+        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution',
+        evidence: scopeOfWork.present
+          ? `${SCOPE_OF_WORK_FILE} coexists with only part of the legacy four-document kit`
+          : 'only part of the legacy four-document kit is present',
+        message: scopeOfWork.present
+          ? 'Partial legacy coexistence is invalid and cannot be authorized as a migration workspace.'
+          : 'A partial legacy four-document kit is not a valid production contract.'
+      })
+    );
+  }
+
+  if (documentFormat === 'INVALID' && !scopeOfWork.present && !hasAnyLegacy && lifecycleState !== 'OPEN') {
+    findings.push(
+      buildFinding({
+        deliverableId: input.deliverableId,
+        deliverablePath: input.deliverablePath,
+        fileName: SCOPE_OF_WORK_FILE,
+        category: 'document_kit',
+        condition: 'missing_production_contract',
+        lifecycleState,
+        severity: 'error',
+        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution-and-transition',
+        evidence: 'neither ScopeOfWork.md nor a complete legacy four-document kit is present',
+        message: 'A deliverable at or beyond INITIALIZED must have one valid production contract.'
+      })
+    );
+  }
+
+  const requestedFormat = input.requestedFormat ?? 'AUTO';
+  if (requestedFormat !== 'AUTO' && requestedFormat !== documentFormat) {
     findings.push(
       buildFinding({
         deliverableId: input.deliverableId,
         deliverablePath: input.deliverablePath,
         fileName: SCOPE_OF_WORK_FILE,
         category: 'scope_of_work',
-        condition: 'invalid_mixed_production_format',
+        condition: 'requested_format_mismatch',
         lifecycleState,
         severity: 'error',
-        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution',
-        evidence: `${SCOPE_OF_WORK_FILE} coexists with only part of the legacy four-document kit`,
-        message: 'Partial legacy coexistence is invalid and is not covered by the pilot variance.'
+        sourceRef: 'docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md#7-format-resolution-and-transition',
+        evidence: `requested ${requestedFormat}; resolved ${documentFormat}`,
+        message: 'The requested production format does not match the fail-closed resolver result.'
       })
     );
   }
@@ -896,12 +976,20 @@ export async function scanDeliverableDocumentKitContract(input: {
   const errorCount = countFindings(findings, 'error');
   const warningCount = countFindings(findings, 'warning');
   const infoCount = countFindings(findings, 'info');
+  const hasSelectableProductionFormat = documentFormat === 'LEGACY_FOUR_DOC'
+    || documentFormat === 'SOW_V1'
+    || documentFormat === 'MIGRATION_DUAL';
+  const selectedProductionDocuments = documentFormat === 'LEGACY_FOUR_DOC'
+    ? documentKit
+    : documentFormat === 'SOW_V1' || documentFormat === 'MIGRATION_DUAL'
+      ? [scopeOfWork]
+      : [];
 
   return {
     deliverableId: input.deliverableId,
     path: input.deliverablePath,
     lifecycleState,
-    valid: errorCount === 0,
+    valid: hasSelectableProductionFormat && errorCount === 0,
     errorCount,
     warningCount,
     infoCount,
@@ -909,6 +997,7 @@ export async function scanDeliverableDocumentKitContract(input: {
     preparationBaseline,
     documentKit,
     documentFormat,
+    selectedProductionDocuments,
     scopeOfWork,
     canonicalMemory,
     optionalFiles,
@@ -1059,7 +1148,10 @@ export async function scanProjectScopes(projectRoot: string): Promise<ScopeScanR
 
 export async function scanProjectDeliverables(
   projectRoot: string,
-  options: { scopeOfWorkPilot?: ScopeOfWorkPilotActivation } = {}
+  options: {
+    scopeOfWorkMigration?: ScopeOfWorkMigrationActivation;
+    requestedFormat?: DeliverableProductionFormat | 'AUTO';
+  } = {}
 ): Promise<ProjectDeliverablesScanResult> {
   const deliverables: ProjectDeliverable[] = [];
   const visited = new Set<string>();
@@ -1142,7 +1234,8 @@ export async function scanProjectDeliverables(
       scanDeliverableDocumentKitContract({
         deliverableId: deliverable.id,
         deliverablePath: deliverable.path,
-        scopeOfWorkPilot: options.scopeOfWorkPilot
+        scopeOfWorkMigration: options.scopeOfWorkMigration,
+        requestedFormat: options.requestedFormat
       })
     )
   );
@@ -1155,7 +1248,7 @@ export async function scanProjectDeliverables(
       enabled: knowledgeMarkerFile !== null,
       markerFile: knowledgeMarkerFile
     },
-    knowledgeTypes: buildKnowledgeTypeOptions(knowledgeRows, Boolean(options.scopeOfWorkPilot)),
+    knowledgeTypes: buildKnowledgeTypeOptions(knowledgeRows, true),
     truncated
   };
 }

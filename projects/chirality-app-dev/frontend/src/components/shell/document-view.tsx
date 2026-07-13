@@ -15,6 +15,10 @@ type Deliverable = {
 
 type DeliverablesResponse = {
   deliverables?: Deliverable[];
+  deliverableContracts?: Array<{
+    path: string;
+    selectedProductionDocuments: Array<{ fileName: string }>;
+  }>;
   error?: { message?: string };
 };
 
@@ -28,13 +32,8 @@ type ContentResponse = {
 // `lib/workspace/filesystem.ts`). `_STATUS.md` is always present; the rest are
 // offered so the viewer can open whichever the deliverable contains. A missing
 // file simply surfaces the endpoint's 404.
-const DOCUMENT_FILES = [
+const CONTROL_PLANE_DOCUMENT_FILES = [
   '_STATUS.md',
-  ...(process.env.NEXT_PUBLIC_SCOPE_OF_WORK_PILOT === '1' ? ['ScopeOfWork.md'] : []),
-  'Datasheet.md',
-  'Specification.md',
-  'Guidance.md',
-  'Procedure.md',
   '_CONTEXT.md',
   '_REFERENCES.md',
   '_DEPENDENCIES.md',
@@ -47,6 +46,9 @@ const DEFAULT_FILE = '_STATUS.md';
 export function DocumentView(): JSX.Element {
   const { projectRoot } = useWorkspace();
   const [deliverables, setDeliverables] = useState<Deliverable[]>([]);
+  const [canonicalDocumentsByPath, setCanonicalDocumentsByPath] = useState<
+    Record<string, string[]>
+  >({});
   const [rosterLoading, setRosterLoading] = useState(false);
   const [rosterError, setRosterError] = useState<string | null>(null);
   const [selectedPath, setSelectedPath] = useState<string>('');
@@ -60,6 +62,7 @@ export function DocumentView(): JSX.Element {
   useEffect(() => {
     let cancelled = false;
     setDeliverables([]);
+    setCanonicalDocumentsByPath({});
     setRosterError(null);
     setSelectedPath('');
     setContent(null);
@@ -87,6 +90,14 @@ export function DocumentView(): JSX.Element {
           throw new Error(payload.error?.message ?? 'Unable to load deliverables.');
         }
         setDeliverables(payload.deliverables);
+        setCanonicalDocumentsByPath(
+          Object.fromEntries(
+            (payload.deliverableContracts ?? []).map((contract) => [
+              contract.path,
+              contract.selectedProductionDocuments.map((file) => file.fileName)
+            ])
+          )
+        );
         setSelectedPath(payload.deliverables[0]?.path ?? '');
       } catch (error) {
         if (cancelled) {
@@ -156,6 +167,15 @@ export function DocumentView(): JSX.Element {
     };
   }, [projectRoot, selectedPath, selectedFile]);
 
+  const documentFiles = useMemo(
+    () => [
+      CONTROL_PLANE_DOCUMENT_FILES[0],
+      ...(canonicalDocumentsByPath[selectedPath] ?? []),
+      ...CONTROL_PLANE_DOCUMENT_FILES.slice(1)
+    ],
+    [canonicalDocumentsByPath, selectedPath]
+  );
+
   const body = useMemo(() => {
     const state = resolveDocumentViewState({
       hasProjectRoot: Boolean(projectRoot),
@@ -200,6 +220,7 @@ export function DocumentView(): JSX.Element {
                 value={selectedPath}
                 onChange={(event) => {
                   setSelectedPath(event.target.value);
+                  setSelectedFile(DEFAULT_FILE);
                 }}
               >
                 {deliverables.map((deliverable) => (
@@ -217,7 +238,7 @@ export function DocumentView(): JSX.Element {
                   setSelectedFile(event.target.value);
                 }}
               >
-                {DOCUMENT_FILES.map((file) => (
+                {documentFiles.map((file) => (
                   <option key={file} value={file}>
                     {file}
                   </option>
