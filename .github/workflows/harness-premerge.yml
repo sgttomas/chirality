@@ -66,7 +66,7 @@ jobs:
             "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk" \
             "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/${SDK_PLATFORM}"
 
-          cp "${REPO_ROOT}/AGENTS.md" "${REPO_ROOT}/README.md" \
+          cp "${REPO_ROOT}/AGENTS.md" "${REPO_ROOT}/CLAUDE.md" "${REPO_ROOT}/README.md" \
             "${REPO_ROOT}/PROFESSIONAL_ENGINEERING.md" "${BUNDLE_ROOT}/"
           cp "${REPO_ROOT}"/agents/AGENT_*.md "${BUNDLE_ROOT}/agents/"
           cp \
