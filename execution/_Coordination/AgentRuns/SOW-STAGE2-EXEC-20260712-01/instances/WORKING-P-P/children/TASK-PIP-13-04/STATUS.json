@@ -1,0 +1,22 @@
+{
+  "instance_id": "TASK-PIP-13-04",
+  "role": "TASK",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "WORKING-P-P",
+  "brief_version": 2,
+  "deliverable_id": "DEL-13-04",
+  "criteria_version": "PILOT-VALIDATION-001",
+  "candidate_sha256": "01ce58d6636f39535933c8f365735336118da7bf85223346bf6b7d1c78bdd046",
+  "schema_content_verdict": "PASS",
+  "preservation_containment_verdict": "PASS",
+  "execution_substrate_verdict": "PASS",
+  "mapping_rows": 48,
+  "source_lines_covered": 480,
+  "source_lines_total": 480,
+  "future_manifest_rows": 5,
+  "return": "RETURN.md",
+  "blockers": [],
+  "next_owner": "WORKING-P-P",
+  "completed_at": "2026-07-13T10:47:52Z"
+}

@@ -1,0 +1,34 @@
+{
+  "instance_id": "WORKING-P-A-R1",
+  "role": "WORKING_ITEMS",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "P-A-R1",
+  "package": "APP-PKG-07",
+  "brief_version": 1,
+  "criteria_version": "PF-EVIDENCE-PORTABILITY-001",
+  "repair": {
+    "literal_files": 13,
+    "accepted_evidence_files": 12,
+    "preserved_failed_files": 1,
+    "occurrences_replaced": 36,
+    "direct_binding_files": 1,
+    "bindings_refreshed": 6,
+    "checkout_prefix_remaining": 0,
+    "temporary_prefix_remaining": 0
+  },
+  "substantive_evidence": {
+    "accepted_terminal_pass": 6,
+    "mappings_passed": 191,
+    "source_lines_preserved": 2173,
+    "failed_v01a_classification_preserved": true
+  },
+  "blockers": [],
+  "rerun_requirements": [
+    "repaired file, direct binding, accepted package basis, or PF-EVIDENCE-PORTABILITY-001 change"
+  ],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "repair fan-in then RECON-PF-R1",
+  "integration_authorized": false
+}

@@ -1,0 +1,48 @@
+{
+  "instance_id": "RECON-PF",
+  "role": "RECONCILIATION",
+  "status": "BLOCKED",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "P-F",
+  "brief_version": 1,
+  "basis_commit": "0d260eb024d8b8dada0df477b70ac880a6906ffa",
+  "snapshot_status": "CANDIDATE — AWAITING HELP_HUMAN P-F FAN-IN",
+  "coverage": {
+    "app_members": 6,
+    "piping_members": 4,
+    "accepted_children": 10,
+    "source_hashes": "40/40 PASS",
+    "status_hashes": "10/10 PASS",
+    "lifecycle": "10/10 IN_PROGRESS",
+    "candidate_blobs": "10/10 PASS",
+    "mappings": "325/325 PRESERVED",
+    "source_lines": "3466/3466 PRESERVED",
+    "replacement_rows": 50,
+    "rollback_rows": 50,
+    "apply_simulations": "10/10 PASS",
+    "rollback_simulations": "10/10 PASS"
+  },
+  "verdict_classes": {
+    "schema_content": "10/10 PASS",
+    "preservation_containment": "10/10 PASS",
+    "execution_substrate": "10/10 PASS"
+  },
+  "blockers": [
+    {
+      "id": "PF-PORT-001",
+      "class": "EVIDENCE_PORTABILITY",
+      "literal_prefix": "/Users/ryan/ai-env/projects/chirality/",
+      "all_paths": 17,
+      "all_occurrences": 46,
+      "accepted_paths": 16,
+      "accepted_occurrences": 42,
+      "temporary_prefix_occurrences": 0
+    }
+  ],
+  "unknowns": [],
+  "waivers": [],
+  "p_g_released": false,
+  "rerun_required": "authorized evidence-only portability remediation and changed-evidence hash rebinding, then complete sealed P-F rerun",
+  "next_owner": "HELP_HUMAN"
+}

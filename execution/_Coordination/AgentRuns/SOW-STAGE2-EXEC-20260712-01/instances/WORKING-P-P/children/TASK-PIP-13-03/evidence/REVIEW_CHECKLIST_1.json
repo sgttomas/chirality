@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-13-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 271,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cde7f4b4332c5e89dbe72afca11f1dbc907b06a459f56962b1c1cd35fad0df4c"
+      },
+      "text": "All authoritative source content is preserved and mapped, and the implemented engine retains deterministic explicit diagnostics, provenance visibility, missing-data handling, protected/private-data boundaries, and professional-authority exclusions while formal runtime result-envelope integration remains deferred.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-13-03-VER-001",
+          "source_line": 407,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the candidate schema and claim map; confirm parity and source/status hashes; run the focused constraint-validation and dependency checks; and independently review source grounding and authority boundaries."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-13-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-13",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "cde7f4b4332c5e89dbe72afca11f1dbc907b06a459f56962b1c1cd35fad0df4c"
+  },
+  "tool_version": "1"
+}

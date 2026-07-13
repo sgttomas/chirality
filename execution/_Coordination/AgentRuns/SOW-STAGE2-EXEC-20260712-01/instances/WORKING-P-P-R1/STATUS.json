@@ -1,0 +1,18 @@
+{
+  "instance_id": "WORKING-P-P-R1",
+  "role": "WORKING_ITEMS",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "P-P-R1",
+  "package": "PIP-PKG-13",
+  "brief_version": 1,
+  "blockers": [],
+  "literal_repair_files": 4,
+  "literal_occurrences_before": 10,
+  "literal_occurrences_after": 0,
+  "summary_rebindings": 2,
+  "substantive_verdict": "UNCHANGED_PASS",
+  "outputs": ["REPAIR_MANIFEST.tsv", "CHECKS.md", "RETURN.md", "STATUS.json"],
+  "next_owner": "HELP_HUMAN:REPAIR_FANIN"
+}

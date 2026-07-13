@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 268,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744"
+      },
+      "text": "Working roots are validated for path form and access, roots inside the instruction root are rejected, tool and write paths cannot escape the active project root, instruction-root and symlink writes are denied, and enforcement failures fail closed with reviewable evidence.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-01-VER-001",
+          "source_line": 428,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the source-defined root-validation, instruction-root containment, path-policy, symlink, hook-denial, API, and fixture-completeness tests and review their evidence against the source requirements."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744"
+  },
+  "tool_version": "1"
+}

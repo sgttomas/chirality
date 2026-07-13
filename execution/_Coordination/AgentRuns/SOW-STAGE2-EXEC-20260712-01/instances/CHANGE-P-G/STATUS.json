@@ -1,0 +1,25 @@
+{
+  "instance_id": "CHANGE-P-G",
+  "role": "CHANGE",
+  "status": "IN_PROGRESS",
+  "terminal": false,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "P-G",
+  "brief_version": 1,
+  "basis_commit": "0d260eb024d8b8dada0df477b70ac880a6906ffa",
+  "branch": "codex/sow-stage2-pilots",
+  "preflight": {
+    "refs": "PASS — local main/origin/main/remote main exact basis",
+    "accepted_artifact_hashes": "15/15 PASS",
+    "members": "10/10 PASS",
+    "replacement_rows": "50/50 unique PASS",
+    "rollback_rows": "50/50 exact inverse PASS",
+    "source_preimages": "40/40 PASS",
+    "status_preimages": "10/10 PASS",
+    "candidate_blobs": "10/10 PASS",
+    "current_formats": "10/10 LEGACY_FOUR_DOC",
+    "lifecycle": "10/10 IN_PROGRESS"
+  },
+  "blockers": [],
+  "next_gate": "evidence binding commit, then ten serial atomic replacements"
+}

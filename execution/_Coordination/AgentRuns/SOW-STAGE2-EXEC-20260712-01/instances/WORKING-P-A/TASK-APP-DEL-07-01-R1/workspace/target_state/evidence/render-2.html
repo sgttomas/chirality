@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744</code>.</p>
+<h1 id="scope-of-work-del-07-01">Scope of Work — DEL-07-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This candidate defines <code>DEL-07-01</code> in service of project scope [SOW-002, SOW-027] and package objectives [OBJ-006, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Root validation tests, path policy helpers, and instruction-root protection fixtures enforcing working-root validity, root separation, containment, fail-closed hooks, and initial symlink-write rejection.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-01-working-root-validation-and-instruction-root-protection">CLM-001 — Datasheet: DEL-07-01 Working Root Validation and Instruction Root Protection</h3>
+<h4 id="datasheet-del-07-01-working-root-validation-and-instruction-root-protection">Datasheet: DEL-07-01 Working Root Validation and Instruction Root Protection</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-07-01</td></tr>
+<tr><td>DeliverableName</td><td>Working Root Validation and Instruction Root Protection</td></tr>
+<tr><td>PackageID</td><td>PKG-07</td></tr>
+<tr><td>PackageName</td><td>Filesystem Execution, Lifecycle, and Dependencies</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-002, SOW-027</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-006, OBJ-008</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary control subject</td><td>Working-root validity, root separation, path containment, and instruction-root write protection.</td><td><code>_CONTEXT.md</code> <code>Deliverable Scope</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> <code>PKG-07</code> table</td></tr>
+<tr><td>Working root meaning</td><td>User-selected local filesystem location for project execution state, sessions, artifacts, and git history.</td><td><code>docs/TYPES.md</code> Section 1.6</td></tr>
+<tr><td>Instruction root meaning</td><td>Release-managed app resource tree containing governance documents, agent instructions, and framework materials.</td><td><code>docs/TYPES.md</code> Section 1.5; <code>docs/SPEC.md</code> Section 1.1</td></tr>
+<tr><td>Ordinary project truth write location</td><td>Working root is the ordinary location where agents and tools write project truth.</td><td><code>docs/SPEC.md</code> Section 1.2; <code>docs/CONTRACT.md</code> K-ROOT-3</td></tr>
+<tr><td>Validation endpoint</td><td><code>/api/working-root/validate</code> validates and normalizes a working root.</td><td><code>docs/SPEC.md</code> API endpoints table; <code>docs/PRD.md</code> Section 7.1</td></tr>
+<tr><td>Runtime enforcement surfaces</td><td>Path helpers, PreToolUse hooks, MCP tools, and Chirality hooks.</td><td><code>docs/CONTRACT.md</code> K-PATH-2; <code>docs/CONTRACT.md</code> K-ROOT-2</td></tr>
+<tr><td>Anticipated artifacts</td><td>Root validation tests; path policy helpers; instruction-root protection fixtures.</td><td><code>_CONTEXT.md</code> <code>Anticipated Artifacts</code>; decomposition <code>DEL-07-01</code> row</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Required Behavior</td><td>Source</td></tr>
+<tr><td>Working-root path form</td><td>Working root must be an absolute existing directory.</td><td><code>docs/SPEC.md</code> Section 1.2; <code>docs/PRD.md</code> Section 7.1</td></tr>
+<tr><td>Working-root access</td><td>Working root must be readable and writable by the app.</td><td><code>docs/SPEC.md</code> Section 1.2; <code>docs/PRD.md</code> Section 7.1</td></tr>
+<tr><td>Root separation</td><td>Working root must not be inside the instruction root.</td><td><code>docs/SPEC.md</code> Section 1.2; <code>docs/CONTRACT.md</code> K-ROOT-1</td></tr>
+<tr><td>Instruction-root mutation</td><td>Ordinary project execution must not mutate the instruction root; writes under instruction root must be denied.</td><td><code>docs/SPEC.md</code> Section 1.1; <code>docs/CONTRACT.md</code> K-ROOT-2</td></tr>
+<tr><td>Path containment</td><td>Runtime tools must enforce working-root containment and reject writes outside the active project root.</td><td><code>docs/CONTRACT.md</code> K-PATH-2; <code>docs/PRD.md</code> FR-050</td></tr>
+<tr><td>Symlink writes</td><td>Symlink writes are rejected in the initial policy.</td><td><code>docs/CONTRACT.md</code> K-PATH-3; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Permission override</td><td>Deny decisions from policy, hooks, path containment, governance, SDK deny rules, or human gates override allows.</td><td><code>docs/PRD.md</code> Section 3; <code>docs/CONTRACT.md</code> K-PERM-1</td></tr>
+<tr><td>Source-state warning</td><td><code>docs/PRD.md</code> is usable for this draft but has a MATCH in <code>_REFERENCES.md</code>; content depending on it should remain review-aware.</td><td><code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction Notes</td><td>Source</td></tr>
+<tr><td>Root validator</td><td>Validate absolute path, existence, directory type, readability, writability, and instruction-root containment before use.</td><td><code>docs/PRD.md</code> Section 7.1; <code>docs/PRD.md</code> FR-003</td></tr>
+<tr><td>Path policy helper</td><td>Resolve project-relative and absolute tool paths and reject paths outside the active project root.</td><td><code>docs/PRD.md</code> FR-050; <code>docs/CONTRACT.md</code> K-PATH-2</td></tr>
+<tr><td>Instruction-root resolver/protection</td><td>Identify the active instruction root, including development override behavior, and deny ordinary writes beneath it.</td><td><code>docs/SPEC.md</code> Section 1.1; <code>docs/PRD.md</code> Section 10.1</td></tr>
+<tr><td>Hook integration</td><td>Apply containment, instruction-root protection, symlink rejection, and provenance policy through required hooks before governed writes.</td><td><code>docs/SPEC.md</code> Section 15.2; <code>docs/PRD.md</code> FR-095</td></tr>
+<tr><td>Test fixtures</td><td>Include invalid root cases, instruction-root-contained roots, outside-project paths, instruction-root write attempts, and symlink write attempts.</td><td><code>docs/PRD.md</code> FR-003, FR-050, FR-051, FR-095, FR-097</td></tr>
+<tr><td>Code locations</td><td>TBD - implementation files are not identified by the authoritative source slices read for this Phase 2.2 draft.</td><td>Source-grounding gap</td></tr>
+</tbody></table>
+<h3 id="clm-006-pass-3-semantic-lensing-notes">CLM-006 — Pass 3 Semantic Lensing Notes</h3>
+<h5 id="pass-3-semantic-lensing-notes">Pass 3 Semantic Lensing Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Datasheet Disposition</td><td>Evidence</td></tr>
+<tr><td>A-001</td><td>converted to TBD</td><td><code>Construction</code> keeps code locations as TBD because accessible sources identify required enforcement surfaces but not final runtime module, hook module, path helper, or test file names.</td></tr>
+<tr><td>E-002</td><td>incorporated</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>SourcePath</td><td>SectionRef</td><td>Notes</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Sections 2.6-2.9</td><td>Project truth, root separation, reliance boundaries.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Sections 1.3, 1.7; K-PATH/K-HOOK rows</td><td>Root separation, path containment, hooks, lifecycle invariants.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Sections 1.1, 1.2, 15.2; API endpoints table</td><td>Instruction-root and working-root contracts, hooks, API surfaces.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Sections 1.5, 1.6, 8.2</td><td>Vocabulary and permission-mode terms.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Implementation sequencing references to hooks and path containment</td><td>Context only; not used as primary authority for requirements.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Sections 7.1, 8.9, 8.15, 10.1, 10.2; FR-003, FR-050, FR-051, FR-095, FR-097</td><td>Product requirements. MATCH status recorded in <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>PKG-07 and DEL-07-01 rows; SOW mapping rows</td><td>Scope routing and deliverable identity.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-07-01-working-root-validation-and-instruction-root-protection">CLM-008 — Specification: DEL-07-01 Working Root Validation and Instruction Root Protection</h3>
+<h4 id="specification-del-07-01-working-root-validation-and-instruction-root-protection">Specification: DEL-07-01 Working Root Validation and Instruction Root Protection</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the security-control behavior for validating the active working root and protecting the release-managed instruction root during ordinary project execution.</p>
+<p>In scope:</p>
+<ul>
+<li>- Working-root validation for absolute path, existence, directory type, app read/write access, and instruction-root containment.</li>
+<li>- Runtime path containment for tools and governed writes under the active project root.</li>
+<li>- Instruction-root write protection for ordinary project execution.</li>
+<li>- Initial symlink-write rejection where write/edit tools are governed by hooks.</li>
+<li>- Root validation tests, path policy helpers, and instruction-root protection fixtures.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- UI presentation except scope scan results, per <code>_CONTEXT.md</code> package exclusions.</li>
+<li>- General write/edit governance beyond root/path policy. <code>DEL-06-04</code> covers the broader write/edit surface and path hooks in the decomposition.</li>
+<li>- Instruction-root packaging completeness and release integrity beyond protection behavior. <code>DEL-08-01</code> and release verification deliverables cover packaging conformance.</li>
+</ul>
+<h3 id="clm-010-terminology">CLM-010 — Terminology</h3>
+<h5 id="terminology">Terminology</h5>
+<p>Use these terms consistently in implementation notes and tests:</p>
+<table><tbody>
+<tr><td>Term</td><td>Meaning</td><td>Source</td></tr>
+<tr><td>Working root</td><td>User-selected local filesystem root for mutable project execution state.</td><td><code>docs/TYPES.md</code> Section 1.6; <code>docs/SPEC.md</code> Section 1.2</td></tr>
+<tr><td><code>projectRoot</code> / active project root</td><td>Normalized runtime representation of the accepted working root.</td><td><code>docs/TYPES.md</code> Section 1.6; <code>docs/SPEC.md</code> API/session sections</td></tr>
+<tr><td>Instruction root</td><td>Release-managed app resource tree that ordinary execution must not mutate.</td><td><code>docs/TYPES.md</code> Section 1.5; <code>docs/SPEC.md</code> Section 1.1</td></tr>
+<tr><td>Path containment</td><td>Policy that resolves tool/write paths against the active project root and rejects escapes.</td><td><code>docs/CONTRACT.md</code> K-PATH-2; <code>docs/PRD.md</code> FR-050</td></tr>
+</tbody></table>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-07-01-001</td><td>The working-root validator MUST reject non-absolute paths before a root is used for project execution.</td><td><code>docs/PRD.md</code> Section 7.1; <code>docs/SPEC.md</code> Section 1.2</td></tr>
+<tr><td>REQ-07-01-002</td><td>The working-root validator MUST reject missing paths, non-directory paths, and paths the app cannot read and write.</td><td><code>docs/PRD.md</code> Section 7.1; <code>docs/SPEC.md</code> Section 1.2</td></tr>
+<tr><td>REQ-07-01-003</td><td>The working-root validator MUST reject any working root inside the active instruction root.</td><td><code>docs/PRD.md</code> Section 7.1; <code>docs/SPEC.md</code> Section 1.2; <code>docs/CONTRACT.md</code> K-ROOT-1</td></tr>
+<tr><td>REQ-07-01-004</td><td>Ordinary project execution MUST NOT mutate the instruction root.</td><td><code>docs/DIRECTIVE.md</code> Section 2.7; <code>docs/SPEC.md</code> Section 1.1; <code>docs/CONTRACT.md</code> K-ROOT-2</td></tr>
+<tr><td>REQ-07-01-005</td><td>Runtime write/edit/tool paths MUST be resolved against the active project root and rejected when outside the allowed root.</td><td><code>docs/PRD.md</code> FR-050, FR-097; <code>docs/CONTRACT.md</code> K-PATH-2</td></tr>
+<tr><td>REQ-07-01-006</td><td>Writes under the instruction root MUST be blocked even when an SDK or developer-local permission mode would otherwise allow execution.</td><td><code>docs/PRD.md</code> FR-051; <code>docs/TYPES.md</code> Section 8.2; <code>docs/PRD.md</code> permission mapping table</td></tr>
+<tr><td>REQ-07-01-007</td><td>Initial write policy MUST reject symlink writes unless a governed amendment and tests approve relaxation.</td><td><code>docs/CONTRACT.md</code> K-PATH-3; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>REQ-07-01-008</td><td>Hook failures for write, shell, domain, and subagent actions MUST fail closed when they are part of path or instruction-root enforcement.</td><td><code>docs/CONTRACT.md</code> K-HOOK-1</td></tr>
+<tr><td>REQ-07-01-009</td><td>Path containment and instruction-root protection MUST be implemented in runtime code, hooks, and policy helpers, not only prompt text.</td><td><code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/PRD.md</code> Section 3</td></tr>
+<tr><td>REQ-07-01-010</td><td>Tests MUST cover valid and invalid working roots, instruction-root-contained roots, outside-project tool paths, instruction-root write attempts, and symlink write attempts.</td><td><code>docs/PRD.md</code> FR-003, FR-050, FR-051, FR-095, FR-097</td></tr>
+<tr><td>REQ-07-01-011</td><td>ASSUMPTION: The implementation should expose the validation behavior through <code>/api/working-root/validate</code> and reuse the same normalized root for tree, scan, chat session, scaffold, and contract APIs.</td><td><code>docs/PRD.md</code> Section 7.1; <code>docs/SPEC.md</code> API endpoints table</td></tr>
+</tbody></table>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Chirality root separation contract</td><td>Governs instruction-root and working-root separation.</td><td><code>docs/CONTRACT.md</code> Section 1.3</td></tr>
+<tr><td>Chirality filesystem/path contract</td><td>Governs working-root containment and symlink write policy.</td><td><code>docs/CONTRACT.md</code> K-PATH-2, K-PATH-3</td></tr>
+<tr><td>Chirality hook contract</td><td>Governs fail-closed hook behavior and required containment/protection hooks.</td><td><code>docs/CONTRACT.md</code> K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Chirality API contract</td><td>Provides working-root validation and deliverable filesystem API surfaces.</td><td><code>docs/SPEC.md</code> API endpoints table</td></tr>
+<tr><td>Product requirements</td><td>Establish P0/P1 acceptance for validation, containment, instruction-root protection, and safe writes.</td><td><code>docs/PRD.md</code> Sections 7.1, 8.9, 8.15; REF-006 MATCH status applies — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td><td>Evidence Record</td></tr>
+<tr><td>REQ-07-01-001, REQ-07-01-002</td><td>Unit tests for root validation input cases: relative path, missing path, file path, unreadable path, unwritable path, and valid directory.</td><td>Root validation test output; fixture list.</td></tr>
+<tr><td>REQ-07-01-003, REQ-07-01-004, REQ-07-01-006</td><td>Unit or integration tests with an instruction-root fixture and nested working-root/write-attempt cases.</td><td>Instruction-root protection fixture output.</td></tr>
+<tr><td>REQ-07-01-005</td><td>Unit tests for path helper resolution of project-relative, absolute-inside, absolute-outside, traversal, and normalized equivalent paths.</td><td>Path policy helper test output.</td></tr>
+<tr><td>REQ-07-01-007</td><td>Unit tests using symlink fixtures for write target rejection.</td><td>Symlink policy fixture output.</td></tr>
+<tr><td>REQ-07-01-008, REQ-07-01-009</td><td>Integration tests proving hooks fail closed and policy denials override permissive modes.</td><td>Hook failure triage and permission decision records.</td></tr>
+<tr><td>REQ-07-01-010</td><td>Test matrix review against required acceptance cases.</td><td>Coverage checklist stored with test fixtures.</td></tr>
+<tr><td>REQ-07-01-011</td><td>API test for <code>/api/working-root/validate</code> response shape and downstream normalized-root reuse.</td><td>API test output; ASSUMPTION remains pending until implementation design confirms reuse path.</td></tr>
+<tr><td>REQ-07-01-001 through REQ-07-01-011</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>Review note or run record naming <code>_REFERENCES.md</code> REF-006 disposition. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Root validation tests.</li>
+<li>- Path policy helpers.</li>
+<li>- Instruction-root protection fixtures.</li>
+<li>- Test coverage notes mapping fixtures to SOW-002 and SOW-027.</li>
+<li>- Source-state note that <code>docs/PRD.md</code> was available but marked <code>MATCH</code> in <code>_REFERENCES.md</code>. (reconciled under D-APP-38).</li>
+</ul>
+<p>Documentation gaps:</p>
+<ul>
+<li>- Code module names and final helper/API locations are TBD.</li>
+<li>- Endpoint reuse through <code>/api/working-root/validate</code> and downstream normalized-root consumers remains an ASSUMPTION until implementation design confirms the concrete path.</li>
+<li>- Final test command names and evidence record locations for root validation, path policy, instruction-root protection, hook failure, symlink fixtures, and PRD source-state review are TBD.</li>
+<li>- Responsible party is TBD and must not be assigned without human action.</li>
+</ul>
+<h3 id="clm-015-pass-3-semantic-lensing-notes">CLM-015 — Pass 3 Semantic Lensing Notes</h3>
+<h5 id="pass-3-semantic-lensing-notes">Pass 3 Semantic Lensing Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Specification Disposition</td><td>Evidence</td></tr>
+<tr><td>A-001</td><td>converted to TBD</td><td>Documentation gaps explicitly retain unknown code module names, helper/API locations, and test file names rather than inventing implementation paths.</td></tr>
+<tr><td>C-001</td><td>already covered</td><td><code>Standards</code>, <code>Verification</code>, and <code>Documentation</code> preserve the PRD MATCH status as review-aware source state. — reconciled under D-APP-38</td></tr>
+<tr><td>F-001</td><td>incorporated</td><td><code>Terminology</code> normalizes working root, <code>projectRoot</code> / active project root, instruction root, and path containment vocabulary for implementation use.</td></tr>
+<tr><td>D-001</td><td>converted to TBD</td><td>REQ-07-01-011 remains labeled ASSUMPTION and verification requires implementation confirmation of endpoint reuse.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — Working roots are validated for path form and access, roots inside the instruction root are rejected, tool and write paths cannot escape the active project root, instruction-root and symlink writes are denied, and enforcement failures fail closed with reviewable evidence.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-07-01-working-root-validation-and-instruction-root-protection">CLM-016 — Procedure: DEL-07-01 Working Root Validation and Instruction Root Protection</h3>
+<h4 id="procedure-del-07-01-working-root-validation-and-instruction-root-protection">Procedure: DEL-07-01 Working Root Validation and Instruction Root Protection</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce and verify the DEL-07-01 implementation artifacts: root validation tests, path policy helpers, and instruction-root protection fixtures.</p>
+<p>This procedure may be used by the implementer or reviewer to check that working-root validity, root separation, path containment, and instruction-root write protection are represented in code and tests.</p>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td><td>Source</td></tr>
+<tr><td>Accepted deliverable scope for DEL-07-01.</td><td>Available in <code>_CONTEXT.md</code> and decomposition.</td><td><code>_CONTEXT.md</code>; decomposition <code>DEL-07-01</code> row</td></tr>
+<tr><td>Current lifecycle state permits P3 enrichment.</td><td><code>INITIALIZED</code>; Phase 2.5 is <code>P3_ONLY</code> and preserves <code>_STATUS.md</code> under <code>NO_STATUS_TOUCH</code>.</td><td><code>_STATUS.md</code>; <code>_SEMANTIC_LENSING.md</code></td></tr>
+<tr><td>Authoritative source corpus is accessible.</td><td>Accessible; <code>docs/PRD.md</code> has MATCH status.</td><td><code>_REFERENCES.md</code> — reconciled under D-APP-38</td></tr>
+<tr><td>Declared upstream dependencies.</td><td>TBD - no accepted dependency edges extracted yet.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>Code module locations for implementation.</td><td>TBD.</td><td>Source-grounding gap</td></tr>
+</tbody></table>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source state.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and <code>_STATUS.md</code>.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<p>2. Identify the active instruction root.</p>
+<ul>
+<li>- Resolve the instruction root from packaged resources or <code>CHIRALITY_INSTRUCTION_ROOT</code> during development.</li>
+<li>- Confirm required instruction-root assets are treated as release-managed resources.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 1.1; <code>docs/PRD.md</code> Section 10.1.</li>
+</ul>
+<p>3. Validate candidate working roots before use.</p>
+<ul>
+<li>- Reject non-absolute paths.</li>
+<li>- Reject missing paths.</li>
+<li>- Reject non-directory paths.</li>
+<li>- Reject paths without app read/write access.</li>
+<li>- Reject paths inside the active instruction root.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 7.1; <code>docs/SPEC.md</code> Section 1.2.</li>
+</ul>
+<p>4. Normalize and bind the accepted project root.</p>
+<ul>
+<li>- Store the accepted root as the active <code>projectRoot</code> for file tree, scope scan, chat session, scaffold, and contract APIs.</li>
+<li>- ASSUMPTION: downstream API reuse should consume the same normalized root object or equivalent canonical string.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 7.1.</li>
+</ul>
+<p>5. Implement path containment checks for tool and write paths.</p>
+<ul>
+<li>- Resolve project-relative and absolute paths.</li>
+<li>- Deny paths outside the active project root.</li>
+<li>- Deny traversal or normalization results that escape the root.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> K-PATH-2; <code>docs/PRD.md</code> FR-050.</li>
+</ul>
+<p>6. Enforce instruction-root write protection.</p>
+<ul>
+<li>- Deny ordinary writes under the active instruction root.</li>
+<li>- Apply the denial even when SDK or developer-local modes would otherwise permit execution.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> K-ROOT-2; <code>docs/PRD.md</code> FR-051; <code>docs/TYPES.md</code> Section 8.2.</li>
+</ul>
+<p>7. Apply required hook behavior.</p>
+<ul>
+<li>- Ensure PreToolUse or equivalent Chirality hooks enforce path containment, instruction-root protection, symlink write rejection, and provenance policy before governed writes.</li>
+<li>- Ensure hook failures fail closed.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 15.2; <code>docs/CONTRACT.md</code> K-HOOK-1.</li>
+</ul>
+<p>8. Reject symlink writes in the initial policy.</p>
+<ul>
+<li>- Add fixtures for symlink write targets.</li>
+<li>- Deny unless a future governed amendment and tests explicitly authorize a narrower policy.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> K-PATH-3.</li>
+</ul>
+<p>9. Build the test matrix.</p>
+<ul>
+<li>- Include valid working root.</li>
+<li>- Include relative, missing, non-directory, unreadable, and unwritable working-root cases.</li>
+<li>- Include working root inside instruction root.</li>
+<li>- Include absolute outside-project write path.</li>
+<li>- Include traversal escape path.</li>
+<li>- Include instruction-root write attempt.</li>
+<li>- Include symlink write attempt.</li>
+<li>- Source: <code>docs/PRD.md</code> FR-003, FR-050, FR-051, FR-095, FR-097.</li>
+</ul>
+<p>10. Record verification evidence.</p>
+<ul>
+<li>- Store test output or summaries where the project test convention requires.</li>
+<li>- Record final test command names and evidence locations when implementation identifies them; until then they remain TBD.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Preserve source citations and any unresolved <code>TBD</code> items for later semantic/dependency passes.</li>
+</ul>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Condition</td><td>Records</td></tr>
+<tr><td>Root validation</td><td>Invalid roots are rejected with typed or inspectable errors; valid absolute readable/writable directory is accepted.</td><td>Root validation test output.</td></tr>
+<tr><td>Root separation</td><td>Working roots inside instruction root are rejected.</td><td>Instruction-root containment fixture output.</td></tr>
+<tr><td>Path containment</td><td>Writes/tool paths outside active project root are denied after normalization.</td><td>Path helper test output.</td></tr>
+<tr><td>Instruction-root protection</td><td>Writes beneath instruction root are denied across ordinary execution modes.</td><td>Hook or policy fixture output.</td></tr>
+<tr><td>Symlink write policy</td><td>Symlink writes are denied under the initial policy.</td><td>Symlink fixture output.</td></tr>
+<tr><td>Fail-closed hooks</td><td>Hook failure denies governed action and records triage.</td><td>Hook failure test output.</td></tr>
+<tr><td>PRD hash warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>Review note or run record. — reconciled under D-APP-38</td></tr>
+<tr><td>Fixture evidence completeness</td><td>Relative, missing, non-directory, unreadable, unwritable, instruction-root-contained, outside-root, traversal, instruction-root write, and symlink cases have output or summary records.</td><td>Test output, fixture list, or coverage checklist.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Expected records and artifacts:</p>
+<ul>
+<li>- Root validation tests.</li>
+<li>- Path policy helper implementation and tests.</li>
+<li>- Instruction-root protection fixtures.</li>
+<li>- Symlink write rejection fixtures.</li>
+<li>- Hook failure or policy denial evidence.</li>
+<li>- Documentation of <code>docs/PRD.md</code> hash warning.</li>
+</ul>
+<p>Records still TBD:</p>
+<ul>
+<li>- Final implementation file paths.</li>
+<li>- Final test command names.</li>
+<li>- Final evidence record locations for root validation, path policy, instruction-root protection, hook failure, symlink fixtures, and PRD source-state review.</li>
+<li>- Responsible party.</li>
+</ul>
+<h3 id="clm-022-pass-3-semantic-lensing-notes">CLM-022 — Pass 3 Semantic Lensing Notes</h3>
+<h5 id="pass-3-semantic-lensing-notes">Pass 3 Semantic Lensing Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Procedure Disposition</td><td>Evidence</td></tr>
+<tr><td>B-001</td><td>converted to TBD</td><td>Step 10 and Verification require concrete fixture output or summaries; final evidence is not invented before tests exist.</td></tr>
+<tr><td>D-001</td><td>converted to TBD</td><td>Verification requires API test output for <code>/api/working-root/validate</code> and downstream normalized-root reuse; implementation confirmation is still pending.</td></tr>
+<tr><td>X-001</td><td>converted to TBD</td><td><code>Records still TBD</code> now names final test command names and evidence locations for all fixture families.</td></tr>
+<tr><td>E-001</td><td>already covered</td><td>Step 8 and Verification preserve initial symlink rejection and require future amendment/test evidence before relaxation.</td></tr>
+<tr><td>E-002</td><td>incorporated</td><td>Step 10, Verification, and Records require preservation of the PRD hash status: MATCH status in review evidence. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Run the source-defined root-validation, instruction-root containment, path-policy, symlink, hook-denial, API, and fixture-completeness tests and review their evidence against the source requirements.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-07-01-working-root-validation-and-instruction-root-protection">CLM-023 — Guidance: DEL-07-01 Working Root Validation and Instruction Root Protection</h3>
+<h4 id="guidance-del-07-01-working-root-validation-and-instruction-root-protection">Guidance: DEL-07-01 Working Root Validation and Instruction Root Protection</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-07-01 exists to make the filesystem boundary trustworthy before agents, tools, MCP wrappers, hooks, or SDK-mediated actions operate on project files. It protects two project-critical distinctions:</p>
+<ul>
+<li>- The instruction root is release-managed and read-only during ordinary project execution.</li>
+<li>- The working root is the mutable project filesystem where project truth, deliverables, sessions, and tool artifacts live.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code> <code>Deliverable Scope</code>; <code>docs/DIRECTIVE.md</code> Sections 2.7-2.9; <code>docs/CONTRACT.md</code> K-ROOT-1 through K-ROOT-3.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Validate before use</td><td>Treat working-root validation as a gate before file tree, scan, chat session, scaffold, and contract APIs consume the root.</td><td><code>docs/PRD.md</code> Section 7.1</td></tr>
+<tr><td>Deny beats allow</td><td>A path-containment or instruction-root denial must override permissive SDK modes, user prompts, persona text, or tool availability.</td><td><code>docs/PRD.md</code> Section 3; <code>docs/CONTRACT.md</code> K-PERM-1</td></tr>
+<tr><td>Code owns the boundary</td><td>Prompts may explain safety posture, but enforcement belongs in runtime code, path helpers, hooks, and policy checks.</td><td><code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/PRD.md</code> Section 3</td></tr>
+<tr><td>Separate read policy from write policy</td><td>Instruction-root reads may be governed by explicit policy, but ordinary writes under the instruction root are blocked.</td><td><code>docs/PRD.md</code> FR-051; <code>docs/SPEC.md</code> Section 1.1</td></tr>
+<tr><td>Use project-root containment consistently</td><td>Tool and write paths should pass through one normalized containment model rather than ad hoc string checks.</td><td><code>docs/CONTRACT.md</code> K-PATH-2; <code>docs/PRD.md</code> FR-050</td></tr>
+<tr><td>Fail closed</td><td>Hook failures in enforcement paths should deny the action and record triage rather than continue silently.</td><td><code>docs/CONTRACT.md</code> K-HOOK-1; <code>docs/PRD.md</code> FR-095</td></tr>
+</tbody></table>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- The decomposition assigns SOW-002 and SOW-027 to DEL-07-01. SOW-002 covers working-root selection and validation; SOW-027 covers path containment and instruction-root protection.</li>
+<li>- <code>DEL-06-04</code> also references path hooks for write/edit execution. ASSUMPTION: DEL-07-01 should define reusable root/path policy expectations and tests, while DEL-06-04 applies them in the broader write/edit surface. This is an inferred coordination note from the decomposition, not an accepted dependency edge.</li>
+<li>- <code>_DEPENDENCIES.md</code> currently has no accepted upstream or downstream edges. Do not treat neighboring deliverables as formal dependencies until dependency extraction accepts them.</li>
+<li>- The relationship to <code>DEL-06-04</code> remains a coordination note, not an accepted dependency edge, until the dependency register is updated or a human ruling says otherwise.</li>
+<li>- The instruction root may be supplied through <code>CHIRALITY_INSTRUCTION_ROOT</code> during development and packaged under app resources in builds. Tests should cover both source-tree and packaged-root resolution if implementation supports both paths.</li>
+<li>- Initial symlink write rejection is explicit. Any future relaxation requires a governed amendment and tests.</li>
+</ul>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Risk or Cost</td><td>Preferred Posture</td></tr>
+<tr><td>Central path policy helper</td><td>Consistent containment behavior across APIs, hooks, and tools.</td><td>Requires careful normalization and test coverage.</td><td>Prefer central helper with fixture coverage.</td></tr>
+<tr><td>Enforcement in hooks and wrappers</td><td>Catches SDK built-ins and MCP/tool actions at runtime.</td><td>Hook failure paths must be tested and observable.</td><td>Required for reliance-boundary confidence.</td></tr>
+<tr><td>Strict instruction-root write block</td><td>Protects release-managed governance assets from ordinary project execution.</td><td>Release/governance updates need a separate controlled pathway.</td><td>Required by CONTRACT and SPEC.</td></tr>
+<tr><td>Reject symlink writes initially</td><td>Reduces path escape risk.</td><td>Blocks some advanced local workflows.</td><td>Required until governed relaxation exists.</td></tr>
+<tr><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>Allows Phase 2.2 drafting to proceed per brief.</td><td>Requirement rows may need revalidation when source state is resolved.</td><td>Record warning and cite source locations. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected Result</td><td>Source</td></tr>
+<tr><td>User selects <code>../project</code> or another relative path as working root.</td><td>Reject as invalid because relative paths are not accepted.</td><td><code>docs/PRD.md</code> Section 7.1</td></tr>
+<tr><td>User selects a missing path or a file path.</td><td>Reject because the working root must exist and be a directory.</td><td><code>docs/SPEC.md</code> Section 1.2</td></tr>
+<tr><td>User selects a directory nested inside the instruction root.</td><td>Reject because the working root must not be inside instruction root.</td><td><code>docs/PRD.md</code> Section 7.1; <code>docs/CONTRACT.md</code> K-ROOT-1</td></tr>
+<tr><td>Tool attempts to write outside active project root using an absolute path.</td><td>Deny through path containment.</td><td><code>docs/CONTRACT.md</code> K-PATH-2; <code>docs/PRD.md</code> FR-050</td></tr>
+<tr><td>Tool attempts to write under instruction root while <code>bypass</code> is active in developer-local mode.</td><td>Deny because Chirality denies still apply.</td><td><code>docs/TYPES.md</code> Section 8.2; <code>docs/PRD.md</code> permission mapping table</td></tr>
+<tr><td>Tool attempts to write through a symlink target.</td><td>Deny under initial symlink write policy.</td><td><code>docs/CONTRACT.md</code> K-PATH-3; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+</tbody></table>
+<h3 id="clm-029-source-state-warnings">CLM-029 — Source-State Warnings</h3>
+<h5 id="source-state-warnings">Source-State Warnings</h5>
+<table><tbody>
+<tr><td>Warning ID</td><td>Source</td><td>Warning</td><td>Impacted Sections</td><td>Human Ruling</td></tr>
+<tr><td>WARN-07-01-001</td><td><code>_REFERENCES.md</code> REF-006</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>Datasheet, Specification, Guidance, Procedure citations to <code>docs/PRD.md</code></td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<p>No direct source conflict was found among the accessible slices read for this draft.</p>
+<h3 id="clm-030-human-rulings-needed">CLM-030 — Human Rulings Needed</h3>
+<h5 id="human-rulings-needed">Human Rulings Needed</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Ruling Needed</td><td>Current Posture</td></tr>
+<tr><td>C-001</td><td>Accept, correct, replace, or explicitly bypass the <code>docs/PRD.md</code> REF-006 hash status: MATCH before PRD-dependent rows are treated as stable closure evidence.</td><td>Source-state warning preserved; no human ruling invented. — reconciled under D-APP-38</td></tr>
+<tr><td>X-002</td><td>Decide whether <code>DEL-06-04</code> remains only a coordination note or becomes an accepted dependency edge for write/edit hook enforcement.</td><td>No dependency edge accepted in <code>_DEPENDENCIES.md</code>; guidance keeps the relationship non-authoritative.</td></tr>
+<tr><td>E-001</td><td>If future symlink-write relaxation is proposed, identify the amendment reference and fixture evidence required for acceptance.</td><td>Initial symlink rejection remains required.</td></tr>
+</tbody></table>
+<h3 id="clm-031-pass-3-semantic-lensing-notes">CLM-031 — Pass 3 Semantic Lensing Notes</h3>
+<h5 id="pass-3-semantic-lensing-notes">Pass 3 Semantic Lensing Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Guidance Disposition</td><td>Evidence</td></tr>
+<tr><td>C-001</td><td>surfaced as human ruling</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>X-002</td><td>surfaced as human ruling</td><td><code>Considerations</code> and <code>Human Rulings Needed</code> state that <code>DEL-06-04</code> is not an accepted dependency edge unless later accepted.</td></tr>
+<tr><td>E-001</td><td>already covered</td><td><code>Considerations</code>, <code>Trade-offs</code>, <code>Examples</code>, and <code>Human Rulings Needed</code> keep symlink writes rejected until governed amendment and tests exist.</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-002 SOW-027 OBJ-006 OBJ-008</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>
