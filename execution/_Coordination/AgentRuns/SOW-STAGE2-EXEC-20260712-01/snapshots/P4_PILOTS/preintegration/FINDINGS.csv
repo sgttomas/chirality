@@ -1,0 +1,2 @@
+finding_id,severity,classification,status,scope,summary,evidence,required_action,next_owner,blocks_p_g
+PF-PORT-001,BLOCKER,EVIDENCE_PORTABILITY,OPEN,WORKING-P-A and WORKING-P-P child/run evidence,Checkout-specific /Users/ryan/ai-env/projects/chirality/ prefix occurs 46 times in 17 paths; accepted evidence alone has 42 occurrences in 16 paths.,PACKAGE_FANIN.md exact affected inventory,"HELP_HUMAN-authorized evidence-only normalization, hash rebinding, manager reclosure, then complete RECON-PF rerun",HELP_HUMAN,true

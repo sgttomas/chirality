@@ -1,0 +1,53 @@
+{
+  "instance_id": "RECON-PF-R1",
+  "role": "RECONCILIATION",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "P-F-R1",
+  "brief_version": 1,
+  "basis_commit": "0d260eb024d8b8dada0df477b70ac880a6906ffa",
+  "snapshot_status": "CANDIDATE — AWAITING HELP_HUMAN P-F-R1 FAN-IN",
+  "repair_verification": {
+    "managers": "2/2 PASS",
+    "literal_files": "17/17 PASS",
+    "literal_substitutions": "46/46 PASS",
+    "preimage_reconstruction": "17/17 PASS",
+    "checkout_prefix_remaining": 0,
+    "temporary_prefix_remaining": 0
+  },
+  "coverage": {
+    "app_members": 6,
+    "piping_members": 4,
+    "accepted_children": 10,
+    "source_hashes": "40/40 PASS",
+    "status_hashes": "10/10 PASS",
+    "lifecycle": "10/10 IN_PROGRESS",
+    "candidate_blobs": "10/10 PASS",
+    "format_states": "20/20 PASS",
+    "mappings": "325/325 PRESERVED",
+    "source_lines": "3466/3466 PRESERVED",
+    "replacement_rows": 50,
+    "rollback_rows": 50,
+    "apply_simulations": "10/10 PASS",
+    "rollback_simulations": "10/10 PASS"
+  },
+  "verdict_classes": {
+    "schema_content": "10/10 PASS",
+    "preservation_containment": "10/10 PASS",
+    "execution_substrate": "10/10 PASS"
+  },
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "p4_accepted": false,
+  "p_g_released": false,
+  "rerun_if": [
+    "accepted basis or amendment changes",
+    "manager/repair evidence or binding changes",
+    "candidate/source/status/lifecycle changes",
+    "tool/caller or project-check result changes",
+    "manifest, portability, containment, or handoff changes"
+  ],
+  "next_owner": "HELP_HUMAN for P-F-R1 fan-in"
+}

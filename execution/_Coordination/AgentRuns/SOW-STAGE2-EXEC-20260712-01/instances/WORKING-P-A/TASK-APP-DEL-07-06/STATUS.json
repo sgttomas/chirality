@@ -1,0 +1,18 @@
+{
+  "instance_id": "TASK-APP-DEL-07-06",
+  "role": "TASK",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "WORKING-P-A",
+  "deliverable": "DEL-07-06",
+  "brief_version": 2,
+  "criteria_version": "PILOT-VALIDATION-001",
+  "candidate_sha256": "6de59e2a9d6806fb620c673b1da4822337b4c531a41de3186c9f0fde8e10b93e",
+  "verdicts": {
+    "schema_project_content": "PASS",
+    "preservation_containment": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "blockers": [],
+  "rerun_requirements": []
+}

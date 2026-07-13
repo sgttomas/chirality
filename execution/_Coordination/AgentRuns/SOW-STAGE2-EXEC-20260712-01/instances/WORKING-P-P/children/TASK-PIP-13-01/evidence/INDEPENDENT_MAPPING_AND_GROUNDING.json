@@ -1,0 +1,74 @@
+{
+  "checks": {
+    "all_dispositions_preserved": true,
+    "all_mapping_source_hashes_current": true,
+    "all_mapping_target_hashes_current": true,
+    "all_mapping_targets_defined": true,
+    "all_source_lines_covered_exactly_once": true,
+    "current_decomposition_contains_del_13_01": true,
+    "current_decomposition_contains_obj_014": true,
+    "current_decomposition_contains_sow_067": true,
+    "defined_ids": {
+      "AC": [
+        "AC-001"
+      ],
+      "CLM_count": 26,
+      "OUT": [
+        "OUT-001"
+      ],
+      "VER": [
+        "VER-001"
+      ]
+    },
+    "frontmatter_objective_refs_exact": true,
+    "frontmatter_scope_refs_exact": true,
+    "mapping_row_count": 26,
+    "markers_match_mapping_rows": true,
+    "matrix_refs_resolve": true,
+    "matrix_row": [
+      "OUT-001",
+      "SOW-067 OBJ-014",
+      "CLM-007",
+      "AC-001",
+      "VER-001"
+    ],
+    "overall_pass": true,
+    "source_marker_count": 26
+  },
+  "schema": "task-pip-13-01-independent-check/v1",
+  "scope_of_work_sha256": "6c76b2c785acc56ee1e67aaba64930e457b8c2ca20d4d9e8b4156cebe579c43d",
+  "sources": {
+    "Datasheet.md": {
+      "coverage_exact_once": true,
+      "covered_line_instances": 68,
+      "line_count": 68,
+      "mapping_rows": 6,
+      "sha256": "560cff1a960783afda314264a666c86136f9965b64dd0fe6e63d75cc0724ea09",
+      "unique_covered_lines": 68
+    },
+    "Guidance.md": {
+      "coverage_exact_once": true,
+      "covered_line_instances": 47,
+      "line_count": 47,
+      "mapping_rows": 7,
+      "sha256": "665aca5cacb9b8bcb5c1bf2164e20346548352bfcec81118a16688c75c52e1c2",
+      "unique_covered_lines": 47
+    },
+    "Procedure.md": {
+      "coverage_exact_once": true,
+      "covered_line_instances": 92,
+      "line_count": 92,
+      "mapping_rows": 7,
+      "sha256": "b66dba678c2610278ada2c853f41cb414750b35a5d6904aa42bc121ae174033f",
+      "unique_covered_lines": 92
+    },
+    "Specification.md": {
+      "coverage_exact_once": true,
+      "covered_line_instances": 73,
+      "line_count": 73,
+      "mapping_rows": 6,
+      "sha256": "95779e47674f899c42c981bf2e9491695e9f974a5d444ce27c1c8da668859d9f",
+      "unique_covered_lines": 73
+    }
+  }
+}

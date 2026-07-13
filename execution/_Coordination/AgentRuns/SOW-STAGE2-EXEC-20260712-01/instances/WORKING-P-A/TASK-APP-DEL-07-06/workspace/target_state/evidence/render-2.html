@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="6de59e2a9d6806fb620c673b1da4822337b4c531a41de3186c9f0fde8e10b93e">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-06</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>6de59e2a9d6806fb620c673b1da4822337b4c531a41de3186c9f0fde8e10b93e</code>.</p>
+<h1 id="scope-of-work-del-07-06">Scope of Work — DEL-07-06</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This candidate defines <code>DEL-07-06</code> in service of project scope [SOW-032, SOW-033, SOW-034] and package objectives [OBJ-006, OBJ-009].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Snapshot and runbook notes, a reference-hash bypass convention, and a CHANGE/SHA checklist preserving deterministic tool continuity, immutable evidence, and human-only approval boundaries.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-06-reference-hash-and-snapshot-conventions">CLM-001 — Datasheet: DEL-07-06 Reference Hash and Snapshot Conventions</h3>
+<h4 id="datasheet-del-07-06-reference-hash-and-snapshot-conventions">Datasheet: DEL-07-06 Reference Hash and Snapshot Conventions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Package ID</td><td>PKG-07</td></tr>
+<tr><td>Package Name</td><td>Filesystem Execution, Lifecycle, and Dependencies</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-06</td></tr>
+<tr><td>Deliverable Name</td><td>Reference Hash and Snapshot Conventions</td></tr>
+<tr><td>Responsible Party</td><td>TBD</td></tr>
+<tr><td>Type</td><td>DOC_UPDATE</td></tr>
+<tr><td>Context Envelope</td><td>S</td></tr>
+<tr><td>Decomposition Variant</td><td>SOFTWARE_DECOMP v3.2</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable purpose</td><td>Preserve deterministic tools/scripts, reference hash behavior, immutable snapshots, and SHA approval conventions without reactivating retired scope.</td><td><code>_CONTEXT.md</code> Deliverable Scope; decomposition DEL-07-06 row</td></tr>
+<tr><td>Covered scope items</td><td>SOW-032 deterministic tools/scripts, SOW-033 immutable snapshots, SOW-034 CHANGE/publication SHA checks.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SSOW and SOW-to-deliverable rows</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-006 filesystem project truth; OBJ-009 professional boundary and reliance-boundary ownership.</td><td><code>_CONTEXT.md</code> Traceability; decomposition Objectives</td></tr>
+<tr><td>Anticipated artifacts</td><td>Snapshot/runbook notes; hash bypass convention; CHANGE/SHA checklist.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; decomposition DEL-07-06 row</td></tr>
+<tr><td>Reference hash bypass record</td><td>Deliverable folders may include <code>HASH_VERIFICATION_BYPASS.jsonl</code>; hash bypasses require human approval and durable bypass records.</td><td><code>docs/SPEC.md</code> Sections 3.1 and 5.3</td></tr>
+<tr><td>Snapshot convention</td><td>Snapshot-producing workflows should write timestamped immutable folders and may update <code>_LATEST.md</code> pointers.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/CONTRACT.md</code> K-SNAP-1; <code>docs/PRD.md</code> FR-062 with REF-006 hash warning</td></tr>
+<tr><td>Approval evidence convention</td><td>Human approvals bind to specific content evidence, normally a git SHA; human-gate lifecycle transitions require approval SHA evidence.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2 and K-STATUS-2; <code>docs/SPEC.md</code> Section 4.3</td></tr>
+<tr><td>Reference tool continuity</td><td>Accepted reference hash tooling and dependency-linter behavior remain in scope; retired hardening scope must not be reintroduced by runtime event logging.</td><td><code>docs/CONTRACT.md</code> K-REF-1; <code>docs/PLAN.md</code> Section 9</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Handling</td><td>Source</td></tr>
+<tr><td><code>docs/PRD.md</code> source state</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; task brief — reconciled under D-APP-38</td></tr>
+<tr><td>Unknown owner</td><td><code>ResponsibleParty</code> remains <code>TBD</code> until assigned by a human.</td><td><code>_CONTEXT.md</code> Source Authority</td></tr>
+<tr><td>Retired scope boundary</td><td>Do not reactivate execution-root validator, dependency graph generator, deliverable lock, unified pipeline run records, or staleness propagation as current commitments.</td><td><code>docs/PLAN.md</code> Section 9; <code>docs/PRD.md</code> Section 6.4 and KG-012 with REF-006 hash warning</td></tr>
+<tr><td>Human authority</td><td>No agent, SDK, tool, runtime event, validator, or adapter can author binding approval records.</td><td><code>docs/CONTRACT.md</code> K-AUTH-1; <code>docs/DIRECTIVE.md</code> Section 2.4</td></tr>
+</tbody></table>
+<h3 id="clm-005-pass-3-disposition-notes">CLM-005 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>Item ID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>A-002</td><td>Already covered; ownership remains <code>TBD</code> and is not assigned by this pass.</td><td>Identification table; <code>_CONTEXT.md</code> Source Authority</td></tr>
+</tbody></table>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected Content</td><td>Source</td></tr>
+<tr><td>Snapshot/runbook notes</td><td>Rules for timestamped immutable snapshot folders, optional <code>_LATEST.md</code> pointer updates, non-overwrite of accepted snapshots, and source-state warnings.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/CONTRACT.md</code> K-SNAP-1</td></tr>
+<tr><td>Hash bypass convention</td><td>When reference hash verification is bypassed, record human approval and durable evidence in deliverable-local <code>HASH_VERIFICATION_BYPASS.jsonl</code> where applicable.</td><td><code>docs/SPEC.md</code> Sections 3.1 and 5.3</td></tr>
+<tr><td>CHANGE/SHA checklist</td><td>Checklist confirming candidate content evidence, approval token/SHA, HEAD recheck before approved actions, and continued human-only authority.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.2 and 2.4; <code>docs/PRD.md</code> FR-063 with REF-006 hash warning</td></tr>
+<tr><td>Tool continuity notes</td><td>Notes confirming deterministic project tools/scripts remain indexed and locally executable when present. Exact registry membership is <code>TBD</code> unless verified by the owning implementation slice.</td><td><code>docs/PRD.md</code> FR-061 with REF-006 hash warning; decomposition SOW-032</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Sections Used</td><td>Source State</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Sections 2.1, 2.2, 2.4, 2.5</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>K-AUTH-1, K-AUTH-2, K-BIND-1, K-STATUS-1, K-STATUS-2, K-SNAP-1, K-REF-1</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Sections 2, 3.1, 4.3, 5.3</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Sections 1-2, 3.3</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Section 9</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Sections 6.4, 8.10, 10.8, 15</td><td>MATCH source state — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context</td><td>MATCH</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-07-06-reference-hash-and-snapshot-conventions">CLM-008 — Specification: DEL-07-06 Reference Hash and Snapshot Conventions</h3>
+<h4 id="specification-del-07-06-reference-hash-and-snapshot-conventions">Specification: DEL-07-06 Reference Hash and Snapshot Conventions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies documentation conventions for reference hash handling, snapshot immutability, deterministic script/tool continuity, and CHANGE/SHA approval evidence in PKG-07.</p>
+<p>In scope:</p>
+<ul>
+<li>- Preserve reference hash behavior and approved bypass conventions for deliverable-local references.</li>
+<li>- Preserve snapshot conventions for timestamped immutable folders and optional <code>_LATEST.md</code> pointers.</li>
+<li>- Preserve CHANGE/publication SHA checks and human-only approval boundaries.</li>
+<li>- Preserve notes that deterministic project tools/scripts remain indexed and locally executable when present.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Reintroducing retired execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record persistence, or automated staleness propagation.</li>
+<li>- Implementing the status transition API, dependency linter, or tool registry itself except as referenced conventions.</li>
+<li>- Claiming automated professional approval, external validation, or human-gate authority.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>docs/PLAN.md</code> Section 9; <code>docs/PRD.md</code> Sections 6.4 and 8.10 with REF-006 hash warning; decomposition DEL-07-06 row.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-07-06-REQ-001</td><td>Documentation for this deliverable MUST identify SOW-032, SOW-033, and SOW-034 as its covered scope items.</td><td><code>_CONTEXT.md</code> Traceability; decomposition DEL-07-06 row</td></tr>
+<tr><td>DEL-07-06-REQ-002</td><td>Reference-hash convention notes MUST keep <code>_REFERENCES.md</code> as the deliverable-local source reference and hash-note surface.</td><td><code>docs/SPEC.md</code> Sections 3.1 and 5.3</td></tr>
+<tr><td>DEL-07-06-REQ-003</td><td>Out-of-folder references SHOULD include content hashes when tooling is available.</td><td><code>docs/SPEC.md</code> Section 5.3</td></tr>
+<tr><td>DEL-07-06-REQ-004</td><td>Hash bypasses MUST require human approval and durable bypass records.</td><td><code>docs/SPEC.md</code> Section 5.3</td></tr>
+<tr><td>DEL-07-06-REQ-005</td><td><code>HASH_VERIFICATION_BYPASS.jsonl</code> MAY be used as the deliverable-local durable bypass record.</td><td><code>docs/SPEC.md</code> Section 3.1</td></tr>
+<tr><td>DEL-07-06-REQ-006</td><td>Snapshot-producing workflows SHOULD write timestamped immutable folders.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/CONTRACT.md</code> K-SNAP-1</td></tr>
+<tr><td>DEL-07-06-REQ-007</td><td>Snapshot-producing workflows MAY update mutable <code>_LATEST.md</code> pointers, but prior accepted snapshots MUST NOT be overwritten.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/CONTRACT.md</code> K-SNAP-1; <code>docs/PRD.md</code> FR-062 with REF-006 hash warning</td></tr>
+<tr><td>DEL-07-06-REQ-008</td><td>CHANGE/publication conventions MUST require explicit approval tokens and SHA checks.</td><td><code>docs/PRD.md</code> FR-063 with REF-006 hash warning; decomposition SOW-034</td></tr>
+<tr><td>DEL-07-06-REQ-009</td><td>Human approvals MUST bind to specific content evidence, normally a git SHA or equivalent immutable evidence.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2</td></tr>
+<tr><td>DEL-07-06-REQ-010</td><td>Content changed after approval MUST be treated as no longer approved until reviewed again.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2</td></tr>
+<tr><td>DEL-07-06-REQ-011</td><td>Human-gate lifecycle transitions to <code>CHECKING</code> or <code>ISSUED</code> MUST require approval SHA evidence.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/CONTRACT.md</code> K-STATUS-2</td></tr>
+<tr><td>DEL-07-06-REQ-012</td><td>Accepted reference hash tooling and dependency-linter tooling MUST remain available without reintroducing retired hardening scope.</td><td><code>docs/CONTRACT.md</code> K-REF-1; <code>docs/PLAN.md</code> Section 9</td></tr>
+<tr><td>DEL-07-06-REQ-013</td><td>Deterministic project tools and scripts SHOULD remain indexed and locally executable when present.</td><td><code>docs/PRD.md</code> FR-061 with REF-006 hash warning; decomposition SOW-032</td></tr>
+<tr><td>DEL-07-06-REQ-014</td><td>PRD-derived requirements MUST carry the REF-006 source-state warning until <code>docs/PRD.md</code> hash state is reconciled or accepted.</td><td><code>_REFERENCES.md</code> REF-006; task brief</td></tr>
+<tr><td>DEL-07-06-REQ-015</td><td>The deliverable MUST NOT state or imply that runtime events, tools, validators, SDKs, or agents approve, sign, seal, issue, certify, or externally validate work.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3-2.4; <code>docs/CONTRACT.md</code> K-AUTH-1 and K-BIND-1</td></tr>
+<tr><td>DEL-07-06-REQ-016</td><td>Exact deterministic tool/script registry membership MUST remain <code>TBD</code> unless verified by the owning implementation slice or an accepted registry source.</td><td><code>docs/PRD.md</code> FR-061 with REF-006 hash warning; <code>docs/PRD.md</code> KG-013 with REF-006 hash warning; <code>docs/CONTRACT.md</code> K-INVENT-1</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Lifecycle file contract</td><td>Approval SHA handling and forward-only status conventions referenced by CHANGE/SHA checklist.</td><td><code>docs/SPEC.md</code> Section 4</td></tr>
+<tr><td>Deliverable folder layout</td><td><code>_REFERENCES.md</code>, document kit, optional <code>HASH_VERIFICATION_BYPASS.jsonl</code>, and disabled <code>_MEMORY.md</code> expectations.</td><td><code>docs/SPEC.md</code> Section 3.1; <code>docs/PRD.md</code> Section 10.8 with REF-006 hash warning</td></tr>
+<tr><td>Filesystem project truth</td><td>Project state and approvals must land in versioned project files and accepted git history, not hidden memory or runtime logs alone.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.1-2.3; <code>docs/TYPES.md</code> Section 1</td></tr>
+<tr><td>Snapshot invariant</td><td>Immutable timestamped folders and mutable pointer convention.</td><td><code>docs/CONTRACT.md</code> K-SNAP-1</td></tr>
+<tr><td>Reference-tool invariant</td><td>Reference hash tooling continuity without retired scope reactivation.</td><td><code>docs/CONTRACT.md</code> K-REF-1</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement(s)</td><td>Verification Approach</td></tr>
+<tr><td>REQ-001</td><td>Traceability review confirms SOW/objective rows match <code>_CONTEXT.md</code> and decomposition DEL-07-06.</td></tr>
+<tr><td>REQ-002 through REQ-005</td><td>Documentation review confirms <code>_REFERENCES.md</code>, content hash, human approval, and <code>HASH_VERIFICATION_BYPASS.jsonl</code> conventions are present without inventing unaccepted bypass fields.</td></tr>
+<tr><td>REQ-006 through REQ-007</td><td>Snapshot/runbook review confirms timestamped immutable snapshot folders, optional <code>_LATEST.md</code>, and non-overwrite wording.</td></tr>
+<tr><td>REQ-008 through REQ-011</td><td>CHANGE/SHA checklist review confirms approval token/SHA evidence, HEAD/content evidence recheck, and human-gate SHA requirements.</td></tr>
+<tr><td>REQ-012 through REQ-013</td><td>Scope review confirms tool/script continuity is documented while exact registry membership remains <code>TBD</code> unless separately verified.</td></tr>
+<tr><td>REQ-014</td><td>Review confirms PRD-derived statements visibly carry the REF-006 hash warning.</td></tr>
+<tr><td>REQ-015</td><td>Professional-boundary review confirms no automated approval, issue, certification, external validation, or reliance claim is introduced.</td></tr>
+<tr><td>REQ-016</td><td>Registry review confirms exact tool/script membership is not asserted without accepted registry evidence.</td></tr>
+</tbody></table>
+<h3 id="clm-013-pass-3-disposition-notes">CLM-013 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>Item ID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>B-002</td><td>Converted to explicit <code>TBD</code> control by REQ-016; exact registry membership awaits owning implementation evidence.</td><td>Requirements and Verification tables</td></tr>
+<tr><td>C-001</td><td>Already covered and retained; REQ-014 and its verification row require visible REF-006 warning language for PRD-derived statements.</td><td>Requirements and Verification tables</td></tr>
+</tbody></table>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required outputs or records for this deliverable:</p>
+<ul>
+<li>- Snapshot/runbook notes covering immutable timestamped folders and <code>_LATEST.md</code> pointer behavior.</li>
+<li>- Hash bypass convention covering human approval, durable bypass records, and <code>HASH_VERIFICATION_BYPASS.jsonl</code>.</li>
+<li>- CHANGE/SHA checklist covering candidate SHA/action list, approval evidence, and HEAD/content recheck before approved actions.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Open-item note for exact deterministic tool/script registry membership if not verified by the owning implementation slice.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The convention retains _REFERENCES.md hash handling, human-approved durable bypass evidence, immutable timestamped snapshots with governed _LATEST pointers, SHA-bound approvals and renewed review after changes, deterministic-tool continuity, retired-scope exclusions, and human-only authority.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-07-06-reference-hash-and-snapshot-conventions">CLM-015 — Procedure: DEL-07-06 Reference Hash and Snapshot Conventions</h3>
+<h4 id="procedure-del-07-06-reference-hash-and-snapshot-conventions">Procedure: DEL-07-06 Reference Hash and Snapshot Conventions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Use this procedure to produce or review the DEL-07-06 convention notes: snapshot/runbook notes, hash bypass convention, and CHANGE/SHA checklist.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Source</td></tr>
+<tr><td>Deliverable-local context, references, dependencies, and status files are present.</td><td><code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code></td></tr>
+<tr><td>Current lifecycle state permits drafting.</td><td><code>_STATUS.md</code> was <code>OPEN</code> at P1/P2 start</td></tr>
+<tr><td>Authoritative sources are locally accessible.</td><td><code>_REFERENCES.md</code> REF-001 through REF-007; REF-006 has MATCH status — reconciled under D-APP-38</td></tr>
+<tr><td>Accepted dependency edges are available.</td><td>TBD: <code>_DEPENDENCIES.md</code> declares no accepted upstream/downstream edges yet</td></tr>
+<tr><td>Human owner is assigned.</td><td>TBD: <code>_CONTEXT.md</code> preserves <code>ResponsibleParty: TBD</code></td></tr>
+</tbody></table>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source state.</p>
+<ul>
+<li>- Read <code>_REFERENCES.md</code>.</li>
+<li>- Record the status of each authoritative reference.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<p>2. Confirm scope boundary.</p>
+<ul>
+<li>- Use <code>_CONTEXT.md</code> and the decomposition row for DEL-07-06.</li>
+<li>- Confirm the deliverable covers SOW-032, SOW-033, and SOW-034.</li>
+<li>- Confirm the work remains a <code>DOC_UPDATE</code>, not an implementation task.</li>
+</ul>
+<p>3. Draft snapshot/runbook notes.</p>
+<ul>
+<li>- State that snapshot-producing workflows should create timestamped immutable folders.</li>
+<li>- State that <code>_LATEST.md</code> pointers may move when the owning workflow permits.</li>
+<li>- State that accepted snapshots must not be overwritten.</li>
+<li>- Cite <code>docs/SPEC.md</code> Section 2 and <code>docs/CONTRACT.md</code> K-SNAP-1.</li>
+</ul>
+<p>4. Draft the hash bypass convention.</p>
+<ul>
+<li>- State that <code>_REFERENCES.md</code> carries source references and hash notes.</li>
+<li>- State that out-of-folder references should include content hashes when tooling is available.</li>
+<li>- State that hash bypasses require human approval and durable bypass records.</li>
+<li>- When a concrete bypass is used, confirm the review package includes both human approval evidence and the durable bypass record before treating the bypass as accepted.</li>
+<li>- Identify <code>HASH_VERIFICATION_BYPASS.jsonl</code> as the deliverable-local bypass record surface where applicable.</li>
+<li>- Cite <code>docs/SPEC.md</code> Sections 3.1 and 5.3.</li>
+</ul>
+<p>5. Draft the CHANGE/SHA checklist.</p>
+<ul>
+<li>- Confirm candidate content evidence and action list are recorded before approval.</li>
+<li>- Confirm human approval evidence is present and SHA-like where required.</li>
+<li>- Before any <code>CHECKING</code> or <code>ISSUED</code> transition, confirm approval SHA evidence exists for the exact candidate content under review.</li>
+<li>- Recheck HEAD/current candidate content before executing approved CHANGE/publication actions.</li>
+<li>- State that content changed after approval requires renewed review.</li>
+<li>- Cite <code>docs/DIRECTIVE.md</code> Section 2.4, <code>docs/CONTRACT.md</code> K-AUTH-2, and <code>docs/PRD.md</code> FR-063 with REF-006 hash warning.</li>
+</ul>
+<p>6. Guard retired scope.</p>
+<ul>
+<li>- Confirm the convention notes do not reactivate execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record persistence, or automated staleness propagation.</li>
+<li>- Cite <code>docs/PLAN.md</code> Section 9 and <code>docs/PRD.md</code> KG-012 with REF-006 hash warning.</li>
+</ul>
+<p>7. Confirm human-authority language.</p>
+<ul>
+<li>- Remove any wording implying that an agent, SDK, tool, runtime event, validator, or adapter approves, issues, certifies, signs, seals, or externally validates work.</li>
+<li>- Cite <code>docs/DIRECTIVE.md</code> Sections 2.3-2.4 and <code>docs/CONTRACT.md</code> K-AUTH-1/K-BIND-1.</li>
+</ul>
+<p>8. Run cross-document consistency check.</p>
+<ul>
+<li>- Confirm Datasheet attributes map to Specification requirements.</li>
+<li>- Confirm Specification verification rows have corresponding procedure steps.</li>
+<li>- Confirm Guidance source warnings match Datasheet and Specification warning language.</li>
+<li>- Leave unresolved values as <code>TBD</code> and list human rulings in Guidance.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Acceptance</td></tr>
+<tr><td>Source-state warning</td><td>REF-006 <code>docs/PRD.md</code> hash status: MATCH is visible anywhere PRD-derived requirements or examples are used. — reconciled under D-APP-38</td></tr>
+<tr><td>Snapshot convention</td><td>Notes include timestamped immutable folders, optional <code>_LATEST.md</code>, and non-overwrite of accepted snapshots.</td></tr>
+<tr><td>Hash bypass convention</td><td>Notes include human approval, durable bypass record, and <code>HASH_VERIFICATION_BYPASS.jsonl</code> where applicable.</td></tr>
+<tr><td>Hash bypass evidence</td><td>If a bypass is used, review confirms explicit human approval evidence and a durable bypass record exist before accepting the bypass.</td></tr>
+<tr><td>CHANGE/SHA checklist</td><td>Notes include candidate evidence, approval token/SHA, approval SHA evidence before <code>CHECKING</code> or <code>ISSUED</code>, HEAD/current-content recheck, and renewed review after content changes.</td></tr>
+<tr><td>Retired scope</td><td>No current commitment is made for retired execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record persistence, or automated staleness propagation.</td></tr>
+<tr><td>Human authority</td><td>No automated approval, signing, sealing, issue, certification, external validation, or professional reliance claim is introduced.</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> for DEL-07-06.</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code> capturing the TASK run and source-state warnings.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Future exact deterministic tool/script registry evidence: TBD unless produced by the owning implementation slice.</li>
+<li>- Future accepted dependency edge record source: TBD until <code>_DEPENDENCIES.md</code> or <code>Dependencies.csv</code> records accepted upstream/downstream edge availability.</li>
+</ul>
+<h3 id="clm-021-pass-3-disposition-notes">CLM-021 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>Item ID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>F-001</td><td>Converted to explicit <code>TBD</code>; dependency edge availability remains unresolved until an accepted dependency record source is present.</td><td>Prerequisites; Records</td></tr>
+<tr><td>D-001</td><td>Incorporated; the CHANGE/SHA checklist now requires approval SHA evidence before any <code>CHECKING</code> or <code>ISSUED</code> transition.</td><td>Steps; Verification</td></tr>
+<tr><td>X-001</td><td>Incorporated; bypass review now requires human approval evidence and a durable bypass record when a bypass is used.</td><td>Steps; Verification</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Review the source-defined traceability, reference-hash and bypass, snapshot non-overwrite, CHANGE/SHA, registry-TBD, retired-scope, source-state, and professional-boundary checks.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-07-06-reference-hash-and-snapshot-conventions">CLM-022 — Guidance: DEL-07-06 Reference Hash and Snapshot Conventions</h3>
+<h4 id="guidance-del-07-06-reference-hash-and-snapshot-conventions">Guidance: DEL-07-06 Reference Hash and Snapshot Conventions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable preserves the conventions that let filesystem project truth stay reviewable: reference hashes make source state explicit, snapshots preserve accepted point-in-time outputs, and approval SHA checks bind human decisions to concrete content evidence. The work is intentionally documentary and continuity-focused, not an implementation expansion.</p>
+<p>Sources: <code>_CONTEXT.md</code>; decomposition DEL-07-06; <code>docs/DIRECTIVE.md</code> Sections 2.1-2.4; <code>docs/CONTRACT.md</code> K-SNAP-1 and K-REF-1.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Evidence is stronger than plausible continuity.</p>
+<p>Reference hashes, durable bypass records, snapshot names, <code>_LATEST.md</code> pointers, and git SHA evidence are all project-truth aids. If an input is unknown, mark it <code>TBD</code> rather than inferring a value. Sources: <code>docs/DIRECTIVE.md</code> Section 2.5; <code>docs/CONTRACT.md</code> K-INVENT-1.</p>
+<p>2. Snapshot means preserved state, not a mutable workspace.</p>
+<p>A snapshot-producing workflow should create a new timestamped folder and may move a pointer. It should not overwrite a previously accepted snapshot. Sources: <code>docs/SPEC.md</code> Section 2; <code>docs/CONTRACT.md</code> K-SNAP-1.</p>
+<p>3. Hash bypass is exceptional and human-approved.</p>
+<p>A bypass should not silently downgrade source fidelity. When used, it needs human approval and a durable record, with <code>HASH_VERIFICATION_BYPASS.jsonl</code> available as the deliverable-local record surface. Source: <code>docs/SPEC.md</code> Sections 3.1 and 5.3.</p>
+<p>4. CHANGE/SHA checks are reliance controls, not ceremonial metadata.</p>
+<p>Approval evidence must bind to specific content, normally a git SHA or equivalent immutable evidence. Changed content needs renewed review. Sources: <code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2.</p>
+<p>5. Runtime audit records do not approve project work.</p>
+<p>Runtime logs may explain what happened, but they do not substitute for accepted project-state files or human approval records. Sources: <code>docs/DIRECTIVE.md</code> Section 2.3; <code>docs/CONTRACT.md</code> K-BIND-1.</p>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>PRD source warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; task brief — reconciled under D-APP-38</td></tr>
+<tr><td>Tool/script registry</td><td>State that deterministic tools/scripts remain indexed and locally executable when present, but keep exact registry membership <code>TBD</code> unless verified by the owning implementation slice.</td><td><code>docs/PRD.md</code> FR-061 with REF-006 hash warning; decomposition SOW-032</td></tr>
+<tr><td>Retired scope</td><td>Do not turn reference hashes or snapshot notes into commitments for retired execution-root validator, graph generator, deliverable lock, unified pipeline run records, or staleness propagation.</td><td><code>docs/PLAN.md</code> Section 9; <code>docs/PRD.md</code> KG-012 with REF-006 hash warning</td></tr>
+<tr><td>Human gate language</td><td>Use approval, issue, sign, seal, certify, and validate only for human-controlled processes; do not attribute those actions to agents or tools.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-1</td></tr>
+<tr><td>Pointers</td><td><code>_LATEST.md</code> is mutable convenience metadata; the timestamped snapshot folder is the durable point-in-time artifact.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/CONTRACT.md</code> K-SNAP-1</td></tr>
+</tbody></table>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Cost / Risk</td></tr>
+<tr><td>Use warning-qualified PRD text where corroborated</td><td>Keeps the draft aligned with active vNext direction.</td><td>Requires later source-hash reconciliation before final acceptance.</td></tr>
+<tr><td>Keep tool registry membership <code>TBD</code></td><td>Avoids inventing exact current script inventory from narrative sources.</td><td>Leaves implementation owner to confirm registry paths and tests.</td></tr>
+<tr><td>Allow mutable <code>_LATEST.md</code> pointers</td><td>Gives operators a convenient current pointer.</td><td>Review must distinguish the pointer from immutable snapshot evidence.</td></tr>
+<tr><td>Require durable bypass records</td><td>Makes source exceptions auditable.</td><td>Adds review overhead when a hash status: MATCH is intentionally accepted. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Situation</td><td>Recommended Handling</td></tr>
+<tr><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>A workflow reruns snapshot generation.</td><td>Create a new timestamped snapshot folder and update <code>_LATEST.md</code> if the workflow owns that pointer; do not overwrite an accepted prior snapshot.</td></tr>
+<tr><td>CHANGE is asked to publish after edits.</td><td>Confirm approval token/SHA evidence, compare the current candidate content to the approved evidence, and recheck HEAD before approved actions.</td></tr>
+<tr><td>A tool needs to ignore a hash status: MATCH.</td><td>Require explicit human approval and append a durable bypass record, using deliverable-local <code>HASH_VERIFICATION_BYPASS.jsonl</code> when applicable. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>SOURCE-WARN-001</td><td><code>docs/PRD.md</code> is accessible and needed for active vNext direction, but <code>_REFERENCES.md</code> reports a hash status: MATCH.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> current accessible text</td><td>All PRD-cited requirements and examples</td><td>Continue using PRD as warning-qualified source per task brief; require hash reconciliation or explicit acceptance before closure.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-029-pass-3-disposition-notes">CLM-029 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>Item ID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>A-001</td><td>Surfaced as conflict; SOURCE-WARN-001 remains open until hash reconciliation or explicit acceptance.</td><td>Conflict Table</td></tr>
+<tr><td>B-001</td><td>Surfaced as conflict; PRD-derived closure-ready statements remain warning-qualified.</td><td>Conflict Table; Considerations</td></tr>
+<tr><td>E-001</td><td>Surfaced as conflict; SOURCE-WARN-001 remains the active human-ruling item.</td><td>Conflict Table</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-032 SOW-033 SOW-034 OBJ-006 OBJ-009</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

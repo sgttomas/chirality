@@ -1,0 +1,18 @@
+{
+  "instance_id": "TASK-PIP-13-02",
+  "role": "TASK",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "WORKING-P-P",
+  "brief_version": 2,
+  "deliverable_id": "DEL-13-02",
+  "candidate_sha256": "43d9ea2fa0e4fa95c4906fb8f7abffabe7c23a92d7bbc6ea4a4c9f430293c6d8",
+  "schema_content_verdict": "PASS",
+  "preservation_containment_verdict": "PASS",
+  "execution_substrate_verdict": "PASS",
+  "return": "RETURN.md",
+  "evidence": "evidence/",
+  "blockers": [],
+  "human_rulings": [],
+  "next_owner": "WORKING-P-P"
+}

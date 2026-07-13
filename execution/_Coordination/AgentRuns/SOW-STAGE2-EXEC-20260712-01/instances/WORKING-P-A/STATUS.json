@@ -1,0 +1,26 @@
+{
+  "instance_id": "WORKING-P-A",
+  "role": "WORKING_ITEMS",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "P-A",
+  "package": "APP-PKG-07",
+  "brief_version": 1,
+  "criteria_version": "PILOT-VALIDATION-001",
+  "coverage": {
+    "selected_deliverables": 6,
+    "accepted_terminal_pass": 6,
+    "mappings_passed": 191,
+    "source_lines_preserved": 2173,
+    "replacement_rows": 30,
+    "rollback_rows": 30
+  },
+  "blockers": [],
+  "rerun_requirements": [
+    "accepted upstream, source/status/candidate, tool/catalog, D-GOV-16, or PILOT-VALIDATION-001 change"
+  ],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "P-F cross-package pilot fan-in",
+  "integration_authorized": false
+}

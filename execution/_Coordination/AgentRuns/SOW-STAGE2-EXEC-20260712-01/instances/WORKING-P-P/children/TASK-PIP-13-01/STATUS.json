@@ -1,0 +1,26 @@
+{
+  "instance_id": "TASK-PIP-13-01",
+  "role": "TASK",
+  "status": "PASS",
+  "terminal": true,
+  "completed_at": "2026-07-13T04:36:48-06:00",
+  "parent": "WORKING-P-P",
+  "brief_version": 2,
+  "criteria_version": "PILOT-VALIDATION-001",
+  "deliverable_id": "DEL-13-01",
+  "candidate_sha256": "6c76b2c785acc56ee1e67aaba64930e457b8c2ca20d4d9e8b4156cebe579c43d",
+  "verdicts": {
+    "schema_and_project_content": "PASS",
+    "preservation_and_containment": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "blockers": [],
+  "missing": [],
+  "needs_human_ruling": [],
+  "outputs": [
+    "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P-P/children/TASK-PIP-13-01/evidence/",
+    "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P-P/children/TASK-PIP-13-01/workspace/_run_records/TASK_RUN_2026-07-13_0432.md",
+    "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P-P/children/TASK-PIP-13-01/RETURN.md"
+  ],
+  "next_owner": "WORKING-P-P"
+}
