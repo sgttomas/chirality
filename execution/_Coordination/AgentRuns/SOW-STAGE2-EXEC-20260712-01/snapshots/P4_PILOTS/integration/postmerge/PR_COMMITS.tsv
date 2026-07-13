@@ -1,0 +1,13 @@
+ordinal	kind	commit	parent	subject
+1	evidence	7bfb128d4ad0bf02dd12364713fa328ec7c4dfa2	0d260eb024d8b8dada0df477b70ac880a6906ffa	chore(sow): bind accepted Stage 2 pilot evidence
+2	content	df06513599551b97b408d7904ffe1e3ab10ee9ee	7bfb128d4ad0bf02dd12364713fa328ec7c4dfa2	feat(sow): replace APP DEL-07-01 production contract
+3	content	a5bd9c408d7c24ec67e617a618fd8df91efaa1b1	df06513599551b97b408d7904ffe1e3ab10ee9ee	feat(sow): replace APP DEL-07-02 production contract
+4	content	67e9ad0e18693a9207e95b82b88f0b465fed869d	a5bd9c408d7c24ec67e617a618fd8df91efaa1b1	feat(sow): replace APP DEL-07-03 production contract
+5	content	bffc9f7f32e9133bb36ad964e181ca177a1777ba	67e9ad0e18693a9207e95b82b88f0b465fed869d	feat(sow): replace APP DEL-07-04 production contract
+6	content	8cb9cdaf07a29cae936de186684cd44f0904f4e9	bffc9f7f32e9133bb36ad964e181ca177a1777ba	feat(sow): replace APP DEL-07-05 production contract
+7	content	14e94bd0be813280a84051fd95e0684fb408331e	8cb9cdaf07a29cae936de186684cd44f0904f4e9	feat(sow): replace APP DEL-07-06 production contract
+8	content	22fcc7d575fcc628a3007c94334398938072358c	14e94bd0be813280a84051fd95e0684fb408331e	feat(sow): replace Piping DEL-13-01 production contract
+9	content	32303ad73a360927b87c6366cf915bdeb52165e2	22fcc7d575fcc628a3007c94334398938072358c	feat(sow): replace Piping DEL-13-02 production contract
+10	content	6736cf094df7930726168fd09824004118763ff4	32303ad73a360927b87c6366cf915bdeb52165e2	feat(sow): replace Piping DEL-13-03 production contract
+11	content	46f87d1b349e9cd20e4bf18bb442cb76cdb18556	6736cf094df7930726168fd09824004118763ff4	feat(sow): replace Piping DEL-13-04 production contract
+12	evidence	2ef5d2396a2faaa744bdbe53ae6dd293e50d8a35	46f87d1b349e9cd20e4bf18bb442cb76cdb18556	chore(sow): bind pilot integration evidence

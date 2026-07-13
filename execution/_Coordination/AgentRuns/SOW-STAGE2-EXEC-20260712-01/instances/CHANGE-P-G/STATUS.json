@@ -1,8 +1,8 @@
 {
   "instance_id": "CHANGE-P-G",
   "role": "CHANGE",
-  "status": "READY_FOR_REMOTE",
-  "terminal": false,
+  "status": "PASS",
+  "terminal": true,
   "parent": "SOW-STAGE2-EXEC-20260712-01",
   "node": "P-G",
   "brief_version": 1,
@@ -51,6 +51,27 @@
     "governance_harness": "264/264 PASS",
     "diff_hygiene": "PASS under P-G-DIFF-HYGIENE-001 exact six-line allowlist"
   },
+  "remote": {
+    "pr": 223,
+    "url": "https://github.com/sgttomas/chirality/pull/223",
+    "source_head": "2ef5d2396a2faaa744bdbe53ae6dd293e50d8a35",
+    "github_path_rows": 414,
+    "no_rename_endpoint_rows": 454,
+    "source_commits": 12,
+    "required_checks": "2/2 SUCCESS",
+    "merge_commit": "e3c338c5830fa407ed8e2126cc316aba0325cc99"
+  },
+  "postmerge": {
+    "refs_at_merge": "local main/origin/main/remote main synchronized; divergence 0/0",
+    "sow_v1": "10/10 PASS",
+    "legacy_dual_partial_invalid": 0,
+    "status_identity": "10/10 PASS",
+    "lifecycle": "10/10 IN_PROGRESS",
+    "postmerge_evidence_commit": "SELF — containing commit; exact SHA returned after push"
+  },
   "blockers": [],
-  "next_gate": "push, PR path/commit/check validation, merge, synchronized postmerge closure"
+  "unknowns": [],
+  "waivers": [],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "parent P-G fan-in then A1 ordinary-wave preflight only"
 }
