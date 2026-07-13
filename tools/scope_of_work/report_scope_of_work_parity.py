@@ -9,7 +9,16 @@ import re
 import sys
 from pathlib import Path
 
-from common import LEGACY_FILES, SowError, demote_headings, iter_source_blocks, parse_sow, sha256_file, validate_document
+from common import (
+    LEGACY_FILES,
+    SowError,
+    demote_headings,
+    iter_source_blocks,
+    parse_sow,
+    resolve_production_format,
+    sha256_file,
+    validate_document,
+)
 
 
 def normalized(text: str) -> str:
@@ -102,8 +111,17 @@ def main() -> int:
     parser.add_argument("--source-dir", type=Path, required=True)
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path)
+    parser.add_argument("--isolated-migration", action="store_true")
+    parser.add_argument("--migration-authority", default="")
     args = parser.parse_args()
     try:
+        resolution = resolve_production_format(
+            args.scope_of_work.parent,
+            isolated_migration=args.isolated_migration,
+            migration_authority=args.migration_authority,
+        )
+        if resolution.state not in {"SOW_V1", "MIGRATION_DUAL"} or not resolution.valid:
+            raise SowError(f"format state is {resolution.state}: {'; '.join(resolution.issues)}")
         report = build_report(args.scope_of_work, args.source_dir)
         args.output_json.parent.mkdir(parents=True, exist_ok=True)
         args.output_json.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")

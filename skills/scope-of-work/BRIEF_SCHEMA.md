@@ -4,17 +4,18 @@
 
 | Field | Meaning |
 |---|---|
-| `PURPOSE` | One candidate Stage-1 deliverable conversion or verification |
-| `ScopePath` | Exact deliverable folder under an authorized pilot package |
+| `PURPOSE` | One PROJECT/SOFTWARE `INIT`, `CONVERT`, or `VERIFY` operation |
+| `ScopePath` | Exact deliverable folder under accepted run authority |
 | `TaskSkill` | `scope-of-work` |
-| `AllowedWriteTargets` | Candidate and run-record paths only; never legacy or underscore files |
+| `AllowedWriteTargets` | Exact contract/run-record targets; never legacy or underscore files |
 | `RuntimeOverrides.DELIVERABLE_PATH` | Same resolved deliverable folder as `ScopePath` |
 | `RuntimeOverrides.DECOMPOSITION_BASIS` | Accepted decomposition path and commit |
 | `RuntimeOverrides.PROJECT_SCOPE_REFS` | Non-empty accepted project-scope references |
 | `RuntimeOverrides.PACKAGE_OBJECTIVE_REFS` | Non-empty accepted package-objective references |
-| `RuntimeOverrides.PILOT_VARIANCE_REF` | Accepted, exact path-scoped variance |
-| `RuntimeOverrides.SOURCE_STATE` | `IN_PROGRESS` |
-| `ExpectedOutputs` | Candidate, claim map, parity report, deterministic REVIEW checklist, receipt, and structured return |
+| `RuntimeOverrides.MODE` | `INIT`, `CONVERT`, or `VERIFY` |
+| `RuntimeOverrides.FORMAT_AUTHORITY_REF` | Required only for `CONVERT`/authorized `MIGRATION_DUAL`; exact path-scoped accepted authority |
+| `RuntimeOverrides.SOURCE_STATE` | Current lifecycle state; operation must be authorized for it |
+| `ExpectedOutputs` | Contract or verification result, applicable claim map/parity/checklist, receipt, and structured return |
 
 The brief also supplies or authorizes grounded determination of the initial
 `OUT-*`, `AC-*`, and `VER-*` definitions. Tests may implement a verification
@@ -25,16 +26,16 @@ method but may not create scope or acceptance criteria.
 | Field | Meaning | Default |
 |---|---|---|
 | `RuntimeOverrides.RENDER_HTML` | Produce an on-demand derivative | `false` |
-| `RuntimeOverrides.MODE` | `CONVERT`, `REFINE`, `VERIFY`, or `CHECKLIST` | `CONVERT` |
+| `RuntimeOverrides.ISSUED_PREPARATION_BINDING` | Required source commit, four source hashes, status hash, and accepted basis for `ISSUED` preparation; does not satisfy H1 | empty |
 | `CustomInstructions` | Deliverable-specific emphasis within the frozen scope | none |
 
 ## Write boundary
 
 Permitted targets are limited to:
 
-- `ScopeOfWork.md` in the isolated pilot worktree;
+- `ScopeOfWork.md` in the authorized initialization or isolated conversion workspace;
 - a requested untracked/on-demand `ScopeOfWork.html`; and
 - run-local claim-map, parity, deterministic checklist, receipt, and return
   artifacts.
 
-The four legacy documents and `_STATUS.md` are read-only inputs.
+The four legacy documents and `_STATUS.md` are always read-only inputs.

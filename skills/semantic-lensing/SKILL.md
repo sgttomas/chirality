@@ -18,12 +18,14 @@ This skill provides the structured method for interactive semantic lensing analy
 This skill is the **optional interactive proposal/review tool**, not the regular ORCHESTRATOR enrichment step. In the regular PROJECT/SOFTWARE setup workflow:
 
 - `skills/lens-register/` is the pipeline producer of `_SEMANTIC_LENSING.md`.
-- `skills/four-documents/` Pass 3 is the pipeline consumer that applies `_SEMANTIC_LENSING.md` as an enrichment worklist.
+- The resolver-selected production skill applies `_SEMANTIC_LENSING.md` as an enrichment worklist.
 - `skills/semantic-lensing/` is loaded only when a WORKING_ITEMS or TASK run needs human-facing `PROPOSAL:` blocks, focused review, or optional lens artifact updates.
 
-Put another way, `_SEMANTIC_LENSING.md` becomes useful to the four documents through `four-documents` Pass 3. This skill may also consume the same file, but only for interactive review. Both paths treat lensing entries as candidates, not evidence.
+Put another way, `_SEMANTIC_LENSING.md` becomes useful through enrichment of
+the selected production contract. This skill may also consume the same file,
+but only for interactive review. Both paths treat entries as candidates, not evidence.
 
-This skill is the **interactive, proposal-producing** contract in the semantic-lensing family. Its setup-time counterpart is `skills/lens-register/`, which generates the matrix-organized register (`_SEMANTIC_LENSING.md`) consumed by `four-documents` Pass 3 and optionally by this skill. Both skills are documented in `.Archive/SEMANTIC_PIPELINE_ARCHITECTURE.md`.
+This skill is the **interactive, proposal-producing** contract in the semantic-lensing family. Its setup-time counterpart is `skills/lens-register/`, which generates the matrix-organized register consumed by the selected production skill and optionally by this skill.
 
 ## Suitable agent shells
 
@@ -36,9 +38,9 @@ This skill is the **interactive, proposal-producing** contract in the semantic-l
 - `ScopePath`
 - `RuntimeOverrides.DELIVERABLE_PATH`
 - `_SEMANTIC.md` must exist in the deliverable folder (read-only)
-- `ProductionFormat` — `LEGACY_FOUR_DOC` or `SOW_V1_CANDIDATE`.
-- `VarianceRef` — required in candidate mode and bound to the accepted pilot
-  variance and revision.
+- `ProductionFormat` — resolver-selected `LEGACY_FOUR_DOC`, `SOW_V1`, or authorized `MIGRATION_DUAL`.
+- `FormatAuthorityRef` — required only for `MIGRATION_DUAL` and bound to exact
+  accepted path-scoped migration authority.
 
 ### Optional
 
@@ -65,7 +67,7 @@ Preferred method:
 - read `_SEMANTIC.md` to understand the matrix structure and question framework
 - read the production documents under `RuntimeOverrides.DELIVERABLE_PATH`
 - resolve production documents from `ProductionFormat`: the four legacy files
-  in legacy mode, or validated `ScopeOfWork.md` in candidate mode
+  in legacy mode, or validated `ScopeOfWork.md` in SOW/authorized dual mode
 - if `_SEMANTIC_LENSING.md` exists, read each entry as a candidate improvement
 - generate proposals with `Lens:` tags grounded in evidence from the production documents
 - do not treat lensing entries as evidence — they are candidates only
@@ -123,8 +125,8 @@ Item types and their handling:
 - Lens tags must use the `Matrix.Row.Column` format
 - Unknowns remain `TBD`
 - Conflicts must be surfaced, not reconciled silently
-- Candidate mode fails closed without an exact variance reference and path
-  membership; it never treats the candidate as accepted authority.
+- Dual mode fails closed without exact accepted authority and path membership;
+  it never treats the candidate as an accepted baseline.
 
 ## QA expectations
 

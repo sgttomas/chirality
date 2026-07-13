@@ -60,8 +60,9 @@ Run: `find {EXECUTION_ROOT} -path "*/1_Working/DEL-*" -maxdepth 4 -type d | sort
 Run: `tools/evaluation/count_deliverable_files.sh {EXECUTION_ROOT}` (or inline equivalent)
 This produces per-file counts for: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, `Dependencies.csv`, `_MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`.
 Also count `ScopeOfWork.md` separately and report each deliverable as
-`LEGACY_FOUR_DOC`, `SOW_V1`, `AMBIGUOUS`, or `INVALID`. Candidate recognition
-does not establish authority.
+`LEGACY_FOUR_DOC`, `SOW_V1`, authorized `MIGRATION_DUAL`, `AMBIGUOUS`, or
+`INVALID`. Dual recognition requires exact path-scoped authority and never
+establishes an accepted baseline.
 
 ### Step 3 — Extract lifecycle states
 Run: `tools/evaluation/extract_lifecycle_states.sh {EXECUTION_ROOT}` (or inline equivalent)
@@ -76,16 +77,16 @@ For each deliverable folder, verify existence of:
 - `_DEPENDENCIES.md` (MUST)
 - `_REFERENCES.md` (MUST)
 
-If state >= INITIALIZED, also verify:
-- `Datasheet.md` (MUST)
-- `Specification.md` (MUST)
-- `Guidance.md` (MUST)
-- `Procedure.md` (MUST)
+If state >= INITIALIZED, require exactly one valid selected production format:
+- one validated `ScopeOfWork.md` (`SOW_V1`); or
+- the complete four-file kit (`LEGACY_FOUR_DOC`) during transition.
 
-Only when a committed path-scoped variance is part of the accepted evaluation
-basis may a structurally valid `ScopeOfWork.md` satisfy the production-document
-presence check. Outside that variance, dual format is an error and the ratified
-four-document contract continues to govern.
+Partial, missing, invalid, ambiguous, or unauthorized dual formats fail.
+
+`SOW_V1` satisfies the production-contract presence check. Existing complete
+`LEGACY_FOUR_DOC` remains transitional. Dual format is allowed only in an
+isolated workspace with exact accepted migration authority and never satisfies
+an accepted-baseline check.
 
 ### Step 5 — Check SHOULD/MAY files
 - `Dependencies.csv` (SHOULD)

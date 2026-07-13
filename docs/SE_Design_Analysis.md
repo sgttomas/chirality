@@ -344,7 +344,7 @@ These types are not merely documentation — they constrain agent behavior throu
 The deliverable lifecycle is a formal state machine with authorized transition actors:
 
 ```
-OPEN ──[PREPARATION]──→ INITIALIZED ──[TASK+four-documents/domain-documents]──→
+OPEN ──[PREPARATION + validated selected production contract]──→ INITIALIZED ──[TASK+scope-of-work/domain-documents]──→
   SEMANTIC_READY ──[TASK+semantic-matrix-build]──→ IN_PROGRESS ──[human]──→
     CHECKING ──[REVIEW + human approval]──→ ISSUED ──[human]──→
 ```

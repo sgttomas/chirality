@@ -52,7 +52,7 @@ It helps the agent:
 | `MaxFindings` | Soft cap on reported findings | `10` |
 | `CheckIdentity` | Check folder/document naming consistency | `true` |
 | `CheckUnsourcedNumerics` | Flag numeric statements needing evidence review | `true` |
-| `ProductionFormat` | `LEGACY_FOUR_DOC` or authorized `SOW_V1_CANDIDATE` | `LEGACY_FOUR_DOC` |
+| `ProductionFormat` | resolver-selected `LEGACY_FOUR_DOC`, `SOW_V1`, or authorized `MIGRATION_DUAL` | resolver result |
 
 ## Tool usage
 
@@ -69,8 +69,9 @@ Disallowed behavior:
 - no widening scope beyond the single deliverable
 - no edits outside the effective bounded task brief's write authorization
 - no silent conflict resolution
-- candidate mode requires the committed variance reference and validates
-  cross-section/ID consistency in `ScopeOfWork.md` instead of assuming four files
+- `SOW_V1` validates cross-section/ID consistency in `ScopeOfWork.md`;
+  `MIGRATION_DUAL` additionally requires exact path-scoped accepted authority
+- missing, partial, invalid, ambiguous, and unauthorized dual input fail closed
 
 ## Outputs
 

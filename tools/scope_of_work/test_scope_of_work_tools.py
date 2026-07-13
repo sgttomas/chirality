@@ -8,7 +8,8 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-VARIANCE_REF = "D-GOV-15@0123456"
+MIGRATION_AUTHORITY = "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+ISSUED_ACCEPTED_BASIS = "execution/_Decomposition/SOFTWARE_DECOMP.md@abc123"
 CONVERT = HERE / "convert_four_documents_to_scope_of_work.py"
 VALIDATE = HERE / "validate_scope_of_work.py"
 RENDER = HERE / "render_scope_of_work.py"
@@ -52,40 +53,183 @@ def convert(deliverable: Path, *extra: str) -> subprocess.CompletedProcess[str]:
     )
 
 
-def test_converter_requires_variance_and_preserves_lifecycle(tmp_path: Path) -> None:
+def test_converter_requires_isolated_authority_and_preserves_lifecycle(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
     status_before = hashlib.sha256((deliverable / "_STATUS.md").read_bytes()).hexdigest()
     denied = convert(deliverable)
     assert denied.returncode == 1
-    assert "pilot-variance" in denied.stderr
+    assert "isolated-migration" in denied.stderr
     assert not (deliverable / "ScopeOfWork.md").exists()
 
-    result = convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    result = convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY)
     assert result.returncode == 0, result.stderr
     assert hashlib.sha256((deliverable / "_STATUS.md").read_bytes()).hexdigest() == status_before
     for name in ("Datasheet.md", "Specification.md", "Procedure.md", "Guidance.md"):
         assert (deliverable / name).is_file()
 
 
-def test_converter_refuses_issued(tmp_path: Path) -> None:
+def issued_binding_args(deliverable: Path) -> list[str]:
+    args = [
+        "--issued-source-commit", "7654321",
+        "--issued-status-sha256", hashlib.sha256((deliverable / "_STATUS.md").read_bytes()).hexdigest(),
+    ]
+    for name in ("Datasheet.md", "Specification.md", "Procedure.md", "Guidance.md"):
+        digest = hashlib.sha256((deliverable / name).read_bytes()).hexdigest()
+        args.extend(["--issued-source-sha256", f"{name}={digest}"])
+    return args
+
+
+def test_converter_rejects_unruled_migration_authorities(tmp_path: Path) -> None:
+    for index, authority in enumerate(
+        ("D-GOV-16@0123456", "D-GOV-16@" + "a" * 40, "D-GOV-16:malformed")
+    ):
+        deliverable = fixture(tmp_path / str(index))
+        result = convert(deliverable, "--isolated-migration", "--migration-authority", authority)
+        assert result.returncode == 1
+        assert MIGRATION_AUTHORITY in result.stderr
+        assert not (deliverable / "ScopeOfWork.md").exists()
+
+
+def test_converter_and_resolver_reject_padded_ruled_authority(tmp_path: Path) -> None:
+    for index, padded_authority in enumerate((f" {MIGRATION_AUTHORITY}", f"{MIGRATION_AUTHORITY}\t")):
+        converter_deliverable = fixture(tmp_path / "converter" / str(index))
+        denied = convert(
+            converter_deliverable,
+            "--isolated-migration",
+            "--migration-authority",
+            padded_authority,
+        )
+        assert denied.returncode == 1
+        assert MIGRATION_AUTHORITY in denied.stderr
+        assert not (converter_deliverable / "ScopeOfWork.md").exists()
+
+        resolver_deliverable = fixture(tmp_path / "resolver" / str(index))
+        authorized = convert(
+            resolver_deliverable,
+            "--isolated-migration",
+            "--migration-authority",
+            MIGRATION_AUTHORITY,
+        )
+        assert authorized.returncode == 0, authorized.stderr
+        candidate = (resolver_deliverable / "ScopeOfWork.md").read_text(encoding="utf-8")
+        assert f"<!-- migration-authority: {MIGRATION_AUTHORITY} -->" in candidate
+
+        resolution = run(
+            VALIDATE,
+            resolver_deliverable,
+            "--isolated-migration",
+            "--migration-authority",
+            padded_authority,
+            "--json",
+        )
+        assert resolution.returncode == 1
+        report = json.loads(resolution.stdout)
+        assert report["format"] == "AMBIGUOUS"
+        assert report["valid"] is False
+        assert MIGRATION_AUTHORITY in " ".join(report["issues"])
+
+
+def test_converter_requires_and_embeds_all_issued_bindings(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path, "ISSUED")
-    result = convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    result = convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY)
     assert result.returncode == 1
-    assert "refuses ISSUED" in result.stderr
+    assert "issued-accepted-basis" in result.stderr
+
+    missing_commit = convert(
+        deliverable,
+        "--isolated-migration",
+        "--migration-authority", MIGRATION_AUTHORITY,
+        "--issued-accepted-basis", ISSUED_ACCEPTED_BASIS,
+    )
+    assert missing_commit.returncode == 1
+    assert "issued-source-commit" in missing_commit.stderr
+
+    status_before = (deliverable / "_STATUS.md").read_bytes()
+    binding_args = issued_binding_args(deliverable)
+    missing_basis = convert(
+        deliverable,
+        "--isolated-migration",
+        "--migration-authority", MIGRATION_AUTHORITY,
+        *binding_args,
+    )
+    assert missing_basis.returncode == 1
+    assert "issued-accepted-basis" in missing_basis.stderr
+
+    authorized = convert(
+        deliverable,
+        "--isolated-migration",
+        "--migration-authority",
+        MIGRATION_AUTHORITY,
+        "--issued-accepted-basis", ISSUED_ACCEPTED_BASIS,
+        *binding_args,
+    )
+    assert authorized.returncode == 0, authorized.stderr
+    output = (deliverable / "ScopeOfWork.md").read_text(encoding="utf-8")
+    assert f"<!-- issued-preparation-accepted-basis: {ISSUED_ACCEPTED_BASIS} -->" in output
+    assert "<!-- issued-preparation-source-commit: 7654321 -->" in output
+    assert (deliverable / "_STATUS.md").read_bytes() == status_before
+    for name in ("Datasheet.md", "Specification.md", "Procedure.md", "Guidance.md"):
+        digest = hashlib.sha256((deliverable / name).read_bytes()).hexdigest()
+        assert f"<!-- issued-preparation-source-sha256: {name}={digest} -->" in output
+    status_digest = hashlib.sha256(status_before).hexdigest()
+    assert f"<!-- issued-preparation-status-sha256: {status_digest} -->" in output
 
 
-def test_format_resolution_fails_ambiguous_without_variance(tmp_path: Path) -> None:
+def test_converter_rejects_unsafe_issued_accepted_basis(tmp_path: Path) -> None:
+    for index, accepted_basis in enumerate((" leading", "two\nlines", "x" * 513, "basis --> escape")):
+        deliverable = fixture(tmp_path / str(index), "ISSUED")
+        result = convert(
+            deliverable,
+            "--isolated-migration",
+            "--migration-authority", MIGRATION_AUTHORITY,
+            "--issued-accepted-basis", accepted_basis,
+            *issued_binding_args(deliverable),
+        )
+        assert result.returncode == 1
+        assert "single-line value" in result.stderr
+        assert not (deliverable / "ScopeOfWork.md").exists()
+
+
+def test_format_resolution_fails_ambiguous_without_authority(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     ambiguous = run(VALIDATE, deliverable, "--json")
     assert ambiguous.returncode == 1
     assert json.loads(ambiguous.stdout)["format"] == "AMBIGUOUS"
-    allowed = run(VALIDATE, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF, "--json")
+    allowed = run(
+        VALIDATE,
+        deliverable,
+        "--isolated-migration",
+        "--migration-authority",
+        MIGRATION_AUTHORITY,
+        "--json",
+    )
     assert allowed.returncode == 0, allowed.stdout
-    assert json.loads(allowed.stdout)["format"] == "PILOT_DUAL"
-    wrong_ref = run(VALIDATE, deliverable, "--pilot-variance", "--variance-ref", "D-GOV-15:wrong", "--json")
-    assert wrong_ref.returncode == 1
-    assert "accepted-sha" in " ".join(json.loads(wrong_ref.stdout)["issues"])
+    assert json.loads(allowed.stdout)["format"] == "MIGRATION_DUAL"
+    for wrong_authority in ("D-GOV-16@0123456", "D-GOV-16@" + "b" * 40, "D-GOV-16:wrong"):
+        wrong_ref = run(
+            VALIDATE,
+            deliverable,
+            "--isolated-migration",
+            "--migration-authority",
+            wrong_authority,
+            "--json",
+        )
+        assert wrong_ref.returncode == 1
+        assert MIGRATION_AUTHORITY in " ".join(json.loads(wrong_ref.stdout)["issues"])
+
+    sow = deliverable / "ScopeOfWork.md"
+    sow.write_text(sow.read_text(encoding="utf-8").replace(MIGRATION_AUTHORITY, "D-GOV-16@0123456"), encoding="utf-8")
+    mismatched_marker = run(
+        VALIDATE,
+        deliverable,
+        "--isolated-migration",
+        "--migration-authority",
+        MIGRATION_AUTHORITY,
+        "--json",
+    )
+    assert mismatched_marker.returncode == 1
+    assert "does not bind" in " ".join(json.loads(mismatched_marker.stdout)["issues"])
 
 
 def test_legacy_and_sow_only_formats_are_valid_but_partial_legacy_is_not(tmp_path: Path) -> None:
@@ -94,7 +238,7 @@ def test_legacy_and_sow_only_formats_are_valid_but_partial_legacy_is_not(tmp_pat
     assert legacy.returncode == 0
     assert json.loads(legacy.stdout)["format"] == "LEGACY_FOUR_DOC"
 
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     for name in ("Datasheet.md", "Specification.md", "Procedure.md", "Guidance.md"):
         (deliverable / name).unlink()
     sow_only = run(VALIDATE, deliverable, "--json")
@@ -106,10 +250,30 @@ def test_legacy_and_sow_only_formats_are_valid_but_partial_legacy_is_not(tmp_pat
     assert partial.returncode == 1
     assert json.loads(partial.stdout)["format"] == "INVALID"
 
+    missing = tmp_path / "missing" / "DEL-07-04_Missing"
+    missing.mkdir(parents=True)
+    missing_result = run(VALIDATE, missing, "--json")
+    assert missing_result.returncode == 1
+    assert json.loads(missing_result.stdout)["issues"] == [
+        "format state is INVALID",
+        "missing production contract",
+    ]
+
+
+def test_invalid_scope_of_work_does_not_resolve_as_sow_v1(tmp_path: Path) -> None:
+    deliverable = tmp_path / "DEL-07-05_Invalid"
+    deliverable.mkdir()
+    (deliverable / "ScopeOfWork.md").write_text("# not the schema\n", encoding="utf-8")
+    result = run(VALIDATE, deliverable, "--json")
+    assert result.returncode == 1
+    report = json.loads(result.stdout)
+    assert report["format"] == "INVALID"
+    assert any("frontmatter" in issue for issue in report["issues"])
+
 
 def test_claim_map_and_parity_cover_every_source_line(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     mapping = tmp_path / "claim_map.csv"
     parity = tmp_path / "parity.json"
     map_result = run(MAP, "--scope-of-work", deliverable / "ScopeOfWork.md", "--source-dir", deliverable, "--output-csv", mapping)
@@ -118,18 +282,37 @@ def test_claim_map_and_parity_cover_every_source_line(tmp_path: Path) -> None:
     assert rows and {row["SourceFile"] for row in rows} == {
         "Datasheet.md", "Specification.md", "Procedure.md", "Guidance.md"
     }
-    parity_result = run(PARITY, "--scope-of-work", deliverable / "ScopeOfWork.md", "--source-dir", deliverable, "--output-json", parity)
+    parity_result = run(
+        PARITY,
+        "--scope-of-work",
+        deliverable / "ScopeOfWork.md",
+        "--source-dir",
+        deliverable,
+        "--output-json",
+        parity,
+        "--isolated-migration",
+        "--migration-authority",
+        MIGRATION_AUTHORITY,
+    )
     assert parity_result.returncode == 0, parity_result.stderr
     assert json.loads(parity.read_text(encoding="utf-8"))["pass"] is True
 
 
 def test_renderer_is_deterministic_source_bound_and_script_free(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     first = tmp_path / "first.html"
     second = tmp_path / "second.html"
     for output in (first, second):
-        result = run(RENDER, deliverable / "ScopeOfWork.md", "--output", output)
+        result = run(
+            RENDER,
+            deliverable / "ScopeOfWork.md",
+            "--output",
+            output,
+            "--isolated-migration",
+            "--migration-authority",
+            MIGRATION_AUTHORITY,
+        )
         assert result.returncode == 0, result.stderr
     assert first.read_bytes() == second.read_bytes()
     rendered = first.read_text(encoding="utf-8")
@@ -141,10 +324,10 @@ def test_renderer_is_deterministic_source_bound_and_script_free(tmp_path: Path) 
 
 def test_catalog_drives_unknown_reference_detection(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     sow = deliverable / "ScopeOfWork.md"
     sow.write_text(sow.read_text(encoding="utf-8") + "\nReference CLM-999.\n", encoding="utf-8")
-    result = run(VALIDATE, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    result = run(VALIDATE, deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY)
     assert result.returncode == 1
     assert "CLM-999" in result.stdout
 
@@ -156,9 +339,9 @@ def test_legacy_id_like_text_does_not_collide_with_candidate_catalog(tmp_path: P
         specification.read_text(encoding="utf-8") + "\nLegacy review note AC-999 remains historical text.\n",
         encoding="utf-8",
     )
-    result = convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    result = convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY)
     assert result.returncode == 0, result.stderr
-    validation = run(VALIDATE, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    validation = run(VALIDATE, deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY)
     assert validation.returncode == 0, validation.stdout
 
 
@@ -169,29 +352,29 @@ def test_orphan_output_acceptance_and_verification_definitions_fail(tmp_path: Pa
         ("- **VER-999** — Orphan verification method.", "VER-999"),
     ):
         deliverable = fixture(tmp_path / expected)
-        assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+        assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
         sow = deliverable / "ScopeOfWork.md"
         sow.write_text(sow.read_text(encoding="utf-8") + f"\n{definition}\n", encoding="utf-8")
-        result = run(VALIDATE, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+        result = run(VALIDATE, deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY)
         assert result.returncode == 1
         assert expected in result.stdout
 
 
 def test_explicit_human_review_can_replace_verification_definition(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     sow = deliverable / "ScopeOfWork.md"
     text = sow.read_text(encoding="utf-8")
     text = text.replace("- **VER-001** — Run the deterministic claim map and parity report.\n", "")
     text = text.replace("| AC-001 | VER-001 |", "| AC-001 | HUMAN_REVIEW: owner inspection |")
     sow.write_text(text, encoding="utf-8")
-    result = run(VALIDATE, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    result = run(VALIDATE, deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY)
     assert result.returncode == 0, result.stdout
 
 
 def test_review_checklist_is_exact_source_ordered_linked_and_deterministic(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     sow = deliverable / "ScopeOfWork.md"
     text = sow.read_text(encoding="utf-8")
     text = text.replace(
@@ -215,9 +398,9 @@ def test_review_checklist_is_exact_source_ordered_linked_and_deterministic(tmp_p
         result = run(
             CHECKLIST,
             deliverable,
-            "--pilot-variance",
-            "--variance-ref",
-            VARIANCE_REF,
+            "--isolated-migration",
+            "--migration-authority",
+            MIGRATION_AUTHORITY,
             "--output",
             output,
         )
@@ -233,10 +416,44 @@ def test_review_checklist_is_exact_source_ordered_linked_and_deterministic(tmp_p
         {"kind": "HUMAN_REVIEW", "method": "owner inspects approval evidence"}
     ]
 
+    for name in ("Datasheet.md", "Specification.md", "Procedure.md", "Guidance.md"):
+        (deliverable / name).unlink()
+    sow_only_first = tmp_path / "sow-only-checklist-1.json"
+    sow_only_second = tmp_path / "sow-only-checklist-2.json"
+    for output in (sow_only_first, sow_only_second):
+        result = run(CHECKLIST, deliverable, "--output", output)
+        assert result.returncode == 0, result.stderr
+    assert sow_only_first.read_bytes() == sow_only_second.read_bytes()
+    sow_only_report = json.loads(sow_only_first.read_text(encoding="utf-8"))
+    assert sow_only_report["source"]["format"] == "SOW_V1"
+    assert sow_only_report["items"] == report["items"]
 
-def test_review_checklist_fails_closed_for_ambiguous_invalid_and_wrong_variance(tmp_path: Path) -> None:
+
+def test_review_checklist_rejects_padded_ruled_authority_without_output(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
+    candidate = (deliverable / "ScopeOfWork.md").read_text(encoding="utf-8")
+    assert f"<!-- migration-authority: {MIGRATION_AUTHORITY} -->" in candidate
+
+    for index, padded_authority in enumerate((f" {MIGRATION_AUTHORITY}", f"{MIGRATION_AUTHORITY}\t")):
+        output = tmp_path / f"padded-checklist-{index}.json"
+        result = run(
+            CHECKLIST,
+            deliverable,
+            "--isolated-migration",
+            "--migration-authority",
+            padded_authority,
+            "--output",
+            output,
+        )
+        assert result.returncode == 1
+        assert MIGRATION_AUTHORITY in result.stderr
+        assert not output.exists()
+
+
+def test_review_checklist_fails_closed_for_ambiguous_invalid_and_wrong_authority(tmp_path: Path) -> None:
+    deliverable = fixture(tmp_path)
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
     output = tmp_path / "must-not-exist.json"
 
     ambiguous = run(CHECKLIST, deliverable, "--output", output)
@@ -244,17 +461,17 @@ def test_review_checklist_fails_closed_for_ambiguous_invalid_and_wrong_variance(
     assert "AMBIGUOUS" in ambiguous.stderr
     assert not output.exists()
 
-    wrong_variance = run(
+    wrong_authority = run(
         CHECKLIST,
         deliverable,
-        "--pilot-variance",
-        "--variance-ref",
-        "D-GOV-15@7654321",
+        "--isolated-migration",
+        "--migration-authority",
+        "D-GOV-16@7654321",
         "--output",
         output,
     )
-    assert wrong_variance.returncode == 1
-    assert "marker does not match" in wrong_variance.stderr
+    assert wrong_authority.returncode == 1
+    assert MIGRATION_AUTHORITY in wrong_authority.stderr
     assert not output.exists()
 
     sow = deliverable / "ScopeOfWork.md"
@@ -262,14 +479,14 @@ def test_review_checklist_fails_closed_for_ambiguous_invalid_and_wrong_variance(
     invalid = run(
         CHECKLIST,
         deliverable,
-        "--pilot-variance",
-        "--variance-ref",
-        VARIANCE_REF,
+        "--isolated-migration",
+        "--migration-authority",
+        MIGRATION_AUTHORITY,
         "--output",
         output,
     )
     assert invalid.returncode == 1
-    assert "invalid ScopeOfWork.md" in invalid.stderr
+    assert "format state is INVALID" in invalid.stderr
     assert not output.exists()
 
 
@@ -280,8 +497,14 @@ def test_review_checklist_ignores_id_shaped_definitions_inside_migrated_source(t
         guidance.read_text(encoding="utf-8") + "\n- **AC-001** — Historical source text, not a candidate definition.\n",
         encoding="utf-8",
     )
-    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
-    result = run(CHECKLIST, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
+    result = run(
+        CHECKLIST,
+        deliverable,
+        "--isolated-migration",
+        "--migration-authority",
+        MIGRATION_AUTHORITY,
+    )
     assert result.returncode == 0, result.stderr
     report = json.loads(result.stdout)
     assert report["items"][0]["text"] == "The mapped source content is complete and internally resolvable."

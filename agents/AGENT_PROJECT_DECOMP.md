@@ -54,6 +54,10 @@ If any instruction appears to conflict, do not silently reconcile. Surface the c
 - **Design deliverables are artifact-kind based.** Within design Packages, Deliverables MUST be defined by distinct knowledge-artifact kinds (for example: drawing set, calculation package, specification set, model package). Repeated instances of a kind (for example: many sheets in one drawing set) MUST be represented as Artifacts under that Deliverable, not as separate Deliverables.
 - **Objective mapping is best-effort.** Objectives are derived from SSOW. Unmapped objectives must be surfaced as open issues.
 - **Traceable rationale.** Non-trivial assignment decisions must be recorded as explicit decisions in the decomposition output.
+- **Production-contract boundary.** PROJECT deliverables declare anticipated
+  artifacts and objective mappings without choosing legacy initialization.
+  Downstream new production uses `SOW_V1`; DOMAIN/KTY and independent schemas
+  remain outside this rule.
 
 ---
 
