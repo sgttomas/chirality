@@ -6,7 +6,7 @@ This document is the authoritative specification for the physical structures, fi
 
 All agents, tools, and governance documents reference this specification. Where an agent instruction file defines a format inline, this document is the canonical version; agent instructions MUST conform.
 
-**Normative keywords:** MUST, MUST NOT, SHOULD, SHOULD NOT, MAY follow the conventions defined in `AGENT_HELPS_HUMANS.md`.
+**Normative keywords:** MUST, MUST NOT, SHOULD, SHOULD NOT, MAY follow the conventions defined in `WORKFLOW_COMPONENT_STANDARD.md`.
 
 ---
 
@@ -81,6 +81,7 @@ Agent instructions and skills reference roots through `{*_ROOT}` tokens. Each to
 | `{COORDINATION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Coordination/` |
 | `{DECOMP_ROOT}` / `{DECOMPOSITION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Decomposition/` (or a domain pack's `_Decomposition/`) |
 | `{AGGREGATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Aggregation/` |
+| `{EVALUATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Evaluation/` |
 | `{RECONCILIATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Reconciliation/` |
 | `{ESTIMATES_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Estimates/` |
 | `{SOURCE_AUDIT_ROOT}`, `{ASSETS_ROOT}`, `{PUBLICATION_ROOT}`, `{RESEARCH_ROOT}`, `{PLANNING_ROOT}`, `{RUN_ROOT}`, `{CONTEXT_ROOT}` | `WORKING_ROOT`-relative | domain/workspace-local roots bound by the owning agent/skill; MUST resolve under `WORKING_ROOT` |
@@ -118,7 +119,8 @@ An execution instance is a self-contained project workspace rooted at `{EXECUTIO
 ├── _Decomposition/                  # Project/domain decomposition document(s)
 │   └── _Archive/
 ├── _Estimates/                      # Cost estimate snapshots
-├── _Reconciliation/                 # Reconciliation reports, closure analysis
+├── _Evaluation/                     # Current audits, evaluations, and review snapshots
+├── _Reconciliation/                 # Deliverable-corpus concordance; historical audit snapshots are immutable
 ├── _Archive/                        # Baseline snapshots with checksums
 ├── _Scripts/                        # Deployment and analysis scripts
 └── _Sources/                        # Shared source/reference documents
@@ -153,16 +155,25 @@ Tool roots are workspace-level directories for derived outputs, resolved `{EXECU
 | `_Coordination/` | Coordination representation | ORCHESTRATOR |
 | `_Decomposition/` | Project/domain decomposition document(s) and companions | PROJECT_DECOMP / SOFTWARE_DECOMP / DOMAIN_DECOMP |
 | `_Estimates/` | Cost estimate snapshots | TASK + estimate skills |
-| `_Evaluation/` | Project evaluation reports and scored dimension snapshots | EVALUATION / EVALUATION_* |
-| `_Reconciliation/` | Reconciliation reports, closure analysis | RECONCILIATION |
-| `_Schedule/` | Schedule snapshots generated from the dependency graph | SCHEDULING |
+| `_Evaluation/` | Current evaluation reports plus structural, dependency, epistemic, governance, agent, coherence, and review snapshots | EVALUATION / EVALUATION_* / REVIEW / AUDIT_* |
+| `_Reconciliation/` | Calibrated deliverable-corpus concordance runs and historical immutable generic-audit artifacts | RECONCILIATION |
+| `_Schedule/` | Schedule snapshots generated from the dependency graph | ORCHESTRATOR scheduling workflow |
 | `_ScopeChange/` | Change-impact assessments and decomposition amendment snapshots | SCOPE_CHANGE |
 | `_Sources/` | Shared source/reference documents | Human / source-extraction pipelines |
 | `_LocalIndexes/` | Derived source-catalog and retrieval snapshots (domain packs) | DOMAIN_DECOMP / retrieval tools |
 | `_Archive/` | Baseline snapshots with checksums | Human / CHANGE |
 | `_Scripts/` | Deployment and analysis scripts | Human / tooling |
 
-**Nested audit/snapshot subtrees are legal.** A registered tool root MAY contain named subtrees that are themselves snapshot roots — e.g. `_Reconciliation/AgentAudit/`, `_Reconciliation/DepClosure/`, `_Reconciliation/ScopeClosureAudit/`, `_Reconciliation/HypergraphClosure/`, `_Reconciliation/EpistemicAudit/`, `_Reconciliation/GovernanceAudit/`, `_Reconciliation/DecompCoverage/`, `_Reconciliation/Reviews/`, and `_Aggregation/Hypergraph/`. An agent whose `WRITE_SCOPE` is parameterized to such a subtree (`tool-root-only ({EXECUTION_ROOT}/_Reconciliation/<subtree>/)`) satisfies the registry by way of its parent tool root. Tool roots not enumerated here that appear in a working root are extensions; a project that introduces one SHOULD register it in its working-root SPEC.
+**Nested audit/snapshot subtrees are legal.** A registered tool root MAY contain
+named subtrees that are themselves snapshot roots — e.g.
+`_Evaluation/AgentAudit/`, `_Evaluation/DepClosure/`,
+`_Evaluation/ScopeClosureAudit/`, `_Evaluation/HypergraphClosure/`,
+`_Evaluation/EpistemicAudit/`, `_Evaluation/GovernanceAudit/`,
+`_Evaluation/DecompCoverage/`, `_Evaluation/Reviews/`, and
+`_Aggregation/Hypergraph/`. An agent whose `WRITE_SCOPE` is parameterized to
+such a subtree satisfies the registry through its parent tool root. Legacy
+generic-audit subtrees under `_Reconciliation/` remain readable immutable
+evidence but are not current write destinations.
 
 ---
 
@@ -435,7 +446,7 @@ The `RegisterSchemaVersion` column MUST be present in every row and set to `v3.1
 | Column | Type | Description |
 |---|---|---|
 | `EstimateImpactClass` | enum | `BLOCKING`, `ADVISORY`, `INFO`, `TBD` |
-| `ConsumerHint` | enum | `TASK`, `TASK_ESTIMATING`, `AGGREGATION`, `RECONCILIATION`, `TBD` |
+| `ConsumerHint` | enum | `TASK`, `TASK_ESTIMATING`, `AGGREGATION`, `EVALUATION`, `RECONCILIATION_LEGACY`, `TBD` |
 
 ### 6.3 Canonical Enum Values
 
@@ -631,7 +642,11 @@ Rows are never deleted. Rows no longer observed in source text are marked `RETIR
 
 ## 9. Agent Instruction File Structure
 
-All agent instruction files (`AGENT_*.md`) MUST follow the structure defined by `AGENT_HELPS_HUMANS.md`. The agent index and governance surface `AGENTS.md` is a distinct, authoritative file with its own required contents (see `CONTRACT.md` K-AGENTS-1).
+All live agent instruction files currently implement the candidate structure in
+`WORKFLOW_COMPONENT_STANDARD.md` and are checked by the instruction validator.
+That implementation evidence does not ratify the candidate. HELPS_HUMANS is
+the applying/maintenance persona, not the constitutional source. `AGENTS.md`
+is a distinct authoritative runtime surface (K-AGENTS-1).
 
 ### 9.1 Required Header
 
@@ -682,10 +697,10 @@ PROTOCOL > SPEC > STRUCTURE > RATIONALE
 | `AGENT_TYPE` | `TYPE 0`, `TYPE 1`, `TYPE 2` | Architect / Manager / Specialist |
 | `AGENT_CLASS` | `PERSONA`, `TASK` | Interactive session vs. straight-through pipeline |
 | `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
-| `WRITE_SCOPE` | base values: `repo-wide`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `project-level`, `bounded-task-brief`, `none` | What the agent is allowed to write |
+| `WRITE_SCOPE` | base values: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none` | What the agent is allowed to write |
 | `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
 
-**`WRITE_SCOPE` parameterization.** A `tool-root-only` scope MAY be parameterized to a specific tool root or registered subtree — written `tool-root-only ({EXECUTION_ROOT}/_Reconciliation/<subtree>/)`. The parameterized form satisfies the `AUDIT_GOVERNANCE` registry check via its parent tool root (see §1.2). `bounded-task-brief` is the canonical scope of the `TASK` shell: writes are authorized only by the effective bounded task brief (`AllowedWriteTargets` or an explicitly named boundary), never by `ScopePath`/`DeliverablePath` alone, and always subject to ScopePath containment (§0.2.3).
+**`WRITE_SCOPE` parameterization.** A `tool-root-only` scope MAY be parameterized to a specific tool root or registered subtree — for example `tool-root-only ({EXECUTION_ROOT}/_Evaluation/<subtree>/)`. The parameterized form satisfies the `AUDIT_GOVERNANCE` registry check via its parent tool root (see §1.2). `bounded-task-brief` is the canonical scope of the `TASK` shell: writes are authorized only by the effective bounded task brief (`AllowedWriteTargets` or an explicitly named boundary), never by `ScopePath`/`DeliverablePath` alone, and always subject to ScopePath containment (§0.2.3).
 
 ### 9.6 Naming Convention
 
@@ -695,14 +710,44 @@ Use `AGENT_*` when referring to instruction files (e.g., `AGENT_CHANGE.md`). Use
 
 Harness runtime metadata parsing uses a split contract:
 
-- **YAML frontmatter** (machine fields consumed by runtime where present): `description`, `subagents`, `tools`, `model`, `max_turns`, `disallowed_tools`, `auto_approve_tools`.
+- **YAML frontmatter** (machine fields consumed by runtime where present): `description`, `subagents`, `tools`, `model`, `max_turns`, `disallowed_tools`, `auto_approve_tools`, `allow_generalist_agent2`, and `dedicated_agent2_approval`.
 - **Canonical body header/table**: the `AGENT_TYPE: {0|1|2}` line in the instruction body and the `AGENT_CLASS` value in the Agent Type table.
 
 Subagent registry safety rules:
-- Delegated subagents MUST declare `AGENT_TYPE: 2` in the body header.
-- `AGENT_CLASS: TASK` is preferred and validated as a warning-level rule (non-blocking).
+- The former SDK Agent compatibility bridge is disabled after managed-runtime
+  acceptance. The canonical managed runtime permits Agent 0 to launch named
+  Agent 1 sessions and Agent 1 to launch valid Agent 2 forms; historical Agent
+  tool requests fail closed.
+- Agent 1 delegates only Agent 2 forms. `AGENT_CLASS: TASK` remains preferred
+  for persistent Agent 2 packages.
 
-Delegation governance rule (fail closed): when subagents are enabled and a Type 1 persona is allowlisted for subagents, runtime injects subagents only if valid governance metadata is present (`contextSealed === true`, `pipelineRunApproved === true`, a non-empty `approvalRef`). Missing or invalid governance metadata MUST block subagent injection while allowing the parent turn to continue normally. Deployment-specific harness/runtime API and UI contracts (turn input, attachment handling, selector schemas) are defined in the owning project's runtime docs, not at the framework root.
+Delegation governance rule (fail closed): when subagents are enabled and a Type 1 persona is allowlisted for subagents, runtime injects subagents only if valid governance metadata is present (`contextSealed === true`, `pipelineRunApproved === true`, a non-empty `approvalRef`). The reference MUST cite the applicable human approval record; runtime presence checks are necessary but do not authenticate or create that human act. Missing or invalid governance metadata MUST block subagent injection while allowing the parent turn to continue normally. Deployment-specific harness/runtime API and UI contracts (turn input, attachment handling, selector schemas) are defined in the owning project's runtime docs, not at the framework root.
+
+### 9.8 Managed Multi-Agent Runtime Record
+
+The managed runtime persists one durable record tree per orchestration
+run under `{EXECUTION_ROOT}/_Coordination/AgentRuns/<RunID>/`. It contains the
+versioned orchestration plan, work graph, instance launch briefs/status/returns,
+coordination notices and dispositions, parent updates and acknowledgments,
+brief amendments, and final handoff state.
+
+Plans, briefs, returns, notices, dispositions, updates, amendments, and
+acknowledgments are immutable/versioned entries. `STATUS.json` and
+`HANDOFF_STATE.md` are runtime-owned materialized summaries reconstructed from
+those records and may advance as a child or run changes state.
+
+Every work graph records `RunID`, `PlanVersion`, selection authority,
+descriptive posture, accepted basis, agent-instance nodes, dependency edges,
+concurrency eligibility, read scopes, write ownership, expected returns,
+fan-in gates, and human decision points. Every managed instance records its
+logical parent, agent role/type, instruction or brief hash, declared context,
+tools, writes, output artifacts, and status.
+
+The runtime rejects direct sibling messaging, invalid parent/child type pairs,
+undeclared writes, concurrent path overlap (including ancestor containment),
+missing seals/approval references, capability inheritance, and fan-in over
+missing or invalid returns. Overlapping writes require an accepted predecessor
+or one declared integration owner.
 
 ---
 

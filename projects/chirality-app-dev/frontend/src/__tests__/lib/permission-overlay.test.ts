@@ -99,6 +99,19 @@ describe('permission overlay', () => {
     });
   });
 
+  it('denies mutating coordination tools outside workspaceWrite mode', () => {
+    const readOnly = decisionFor('mcp__chirality__delegate_agent', 'readOnly');
+    const writable = decisionFor('mcp__chirality__delegate_agent', 'workspaceWrite');
+    expect(readOnly).toMatchObject({
+      decision: 'deny',
+      safeMetadata: { denyClass: 'coordination-mode' }
+    });
+    expect(writable).toMatchObject({
+      decision: 'allow',
+      safeMetadata: { allowClass: 'coordination' }
+    });
+  });
+
   it('allows governed Bash only in workspaceWrite mode after shell hook policy', () => {
     const workspaceShell = decisionFor('Bash', 'workspaceWrite');
     const askShell = decisionFor('Bash', 'ask');
@@ -170,16 +183,16 @@ describe('permission overlay', () => {
       'unknown-tool'
     ]);
     expect(decisions[3]).toMatchObject({
-      reason: expect.stringContaining('not eligible')
+      reason: expect.stringContaining('legacy SDK Agent bridge is disabled')
     });
     expect(decisions[3].safeMetadata).toMatchObject({
       hardDeny: true,
-      executableBridge: true,
+      executableBridge: false,
       requiresSubagentPreflight: true
     });
   });
 
-  it('allows Agent only for delegated children in workspaceWrite mode', () => {
+  it('denies the retired Agent bridge in every mode', () => {
     const workspaceDecision = resolveHarnessPermissionDecision({
       sessionId,
       toolName: 'Agent',
@@ -193,12 +206,13 @@ describe('permission overlay', () => {
     });
 
     expect(workspaceDecision).toMatchObject({
-      decision: 'allow',
-      reason: expect.stringContaining('D-APP-10 Option C')
+      decision: 'deny',
+      reason: expect.stringContaining('legacy SDK Agent bridge is disabled')
     });
     expect(workspaceDecision.safeMetadata).toMatchObject({
-      allowClass: 'subagent-execution',
-      executionPosture: 'executable',
+      denyClass: 'subagent-execution',
+      executionPosture: 'hard-denied',
+      executableBridge: false,
       childToolNames: [],
       childCapabilityInheritance: false
     });
@@ -215,7 +229,7 @@ describe('permission overlay', () => {
     });
     expect(askDecision).toMatchObject({
       decision: 'deny',
-      reason: expect.stringContaining('workspaceWrite mode')
+      reason: expect.stringContaining('legacy SDK Agent bridge is disabled')
     });
   });
 
@@ -339,10 +353,12 @@ describe('permission overlay', () => {
 
   it('hard-denies path-bearing read callbacks outside the active project root', async () => {
     await useTempSessionRoot();
+    const projectRoot = path.join(tmpDir, 'project');
+    await mkdir(path.join(projectRoot, 'PKG-01'), { recursive: true });
     const canUseTool = createHarnessCanUseTool({
       sessionId,
       mode: 'readOnly',
-      projectRoot: '/tmp/project',
+      projectRoot,
       resolveDescriptor: getHarnessToolDescriptor
     });
 
@@ -408,6 +424,64 @@ describe('permission overlay', () => {
         descriptorName: 'list_files',
         adapterToolName: 'LS'
       }
+    });
+  });
+
+  it('enforces managed child read scopes, write targets, and fail-closed shell boundaries', async () => {
+    await useTempSessionRoot();
+    const projectRoot = path.join(tmpDir, 'project');
+    const packageRoot = path.join(projectRoot, 'PKG-01');
+    await mkdir(packageRoot, { recursive: true });
+    const canUseTool = createHarnessCanUseTool({
+      sessionId,
+      mode: 'workspaceWrite',
+      projectRoot,
+      allowedReadScopes: [packageRoot],
+      allowedWriteTargets: [packageRoot],
+      resolveDescriptor: getHarnessToolDescriptor
+    });
+
+    const options = (toolUseID: string) => ({
+      signal: new AbortController().signal,
+      toolUseID
+    });
+    await expect(
+      canUseTool('Read', { file_path: 'PKG-01/in.md' }, options('managed_read_inside'))
+    ).resolves.toMatchObject({ behavior: 'allow' });
+    await expect(
+      canUseTool('Read', { file_path: 'PKG-02/out.md' }, options('managed_read_outside'))
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('declared read scope')
+    });
+    await expect(
+      canUseTool('Glob', { pattern: '**/*.md' }, options('managed_unbounded_glob'))
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('requires an explicit path')
+    });
+    await expect(
+      canUseTool(
+        'Write',
+        { file_path: 'PKG-01/out.md', content: 'inside' },
+        options('managed_write_inside')
+      )
+    ).resolves.toMatchObject({ behavior: 'allow' });
+    await expect(
+      canUseTool(
+        'Write',
+        { file_path: 'PKG-02/out.md', content: 'outside' },
+        options('managed_write_outside')
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('declared write targets')
+    });
+    await expect(
+      canUseTool('Bash', { command: 'npm test' }, options('managed_shell'))
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('Bash is denied for a managed child')
     });
   });
 
@@ -486,8 +560,23 @@ describe('permission overlay', () => {
       message: expect.stringContaining('symbolic link')
     });
 
+    await expect(
+      canUseTool(
+        'Read',
+        { file_path: 'linked/target.md' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_symlink_read'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('symbolic link')
+    });
+
     const replay = await replayHarnessEvents(sessionId);
     expect(replay.events.map((event) => event.type)).toEqual([
+      'tool.permission',
       'tool.permission',
       'tool.permission',
       'tool.permission',
@@ -495,6 +584,7 @@ describe('permission overlay', () => {
     ]);
     expect(replay.events.map((event) => event.data.behavior)).toEqual([
       'allow',
+      'deny',
       'deny',
       'deny',
       'deny'
@@ -507,6 +597,9 @@ describe('permission overlay', () => {
     });
     expect(replay.events[3].data.safeMetadata).toMatchObject({
       denyClass: 'symlink-write'
+    });
+    expect(replay.events[4].data.safeMetadata).toMatchObject({
+      denyClass: 'symlink-read'
     });
   });
 });

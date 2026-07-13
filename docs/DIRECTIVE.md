@@ -4,7 +4,7 @@
 
 This document captures the founding intent, design philosophy, and structural constraints of the Chirality agent operating system. It is the "why" document — the principles that govern all other governance documents, agent instructions, and operational decisions.
 
-**Authority chain.** `DIRECTIVE.md` (this document — *why*) establishes the principles. `CONTRACT.md` binds them as K-* invariants. `SPEC.md` defines the physical structures, file formats, and path-anchoring conventions. `TYPES.md` defines the canonical vocabulary, identifiers, and enums. `PLAN.md` records the active roadmap. `AGENTS.md` and `agents/` are the live instruction surface; `skills/` and `tools/` are the method and deterministic layers. Where a lower document conflicts with this one, this document governs unless a governed change updates the relevant record; the conflict is surfaced, not silently reconciled.
+**Authority chain.** `DIRECTIVE.md` (this document — *why*) establishes the principles. `CONTRACT.md` binds them as K-* invariants. `SPEC.md` defines physical structures, formats, and path anchoring. `TYPES.md` defines canonical vocabulary. D-GOV-10 rules that workflow-component design be externalized; the exact `WORKFLOW_COMPONENT_STANDARD.md` text is a candidate pending explicit owner acceptance. `PLAN.md` records the active roadmap. `AGENTS.md` and `agents/` are the live instruction surface; `skills/` and `tools/` are method and deterministic layers. Where a candidate or lower document conflicts with ratified governance, ratified governance controls and the conflict is surfaced.
 
 ---
 
@@ -62,7 +62,14 @@ The formal epistemic ontology and warrant lifecycle are defined in `CHIRALITY_FR
 
 **Praxiology — how work is done.**
 
-The operational model separates three concerns: what the rules are (Type 0 — Architect), how work is orchestrated (Type 1 — Manager), and how bounded tasks are executed (Type 2 — Specialist). Authority flows downward; escalation flows upward. No type can exceed its authority — a Type 2 agent cannot modify rules set by Type 0, a Type 1 agent cannot approve deliverables for external reliance, and no agent of any type can bypass a human gate. `TASK` is the canonical Type 2 execution shell; it hydrates reusable methods through `TaskSkill: <name>` rather than proliferating bespoke task agents.
+The operational model distinguishes external standards from three runtime positions: Agent 0 Supervising Architect, Agent 1 Manager, and Agent 2 Specialist. HELP_HUMAN is the sole Agent 0; a human may instead enter through any Agent 1. Agent 0 delegates only to Agent 1, Agent 1 delegates bounded work to Agent 2, and Agent 2 does not delegate. Capabilities are explicit rather than inherited: named children use their approved role policy, generalists are bounded by their parent and brief, and no child capability becomes available to its parent. Escalation flows upward, and no agent may bypass a human gate or approve professional reliance. Agent 2 may be TASK plus a skill and brief, an ephemeral bounded generalist, or an explicitly approved dedicated specialist.
+
+Multi-agent workflows may use terminal fan-out/fan-in, supervised
+parent-mediated many-to-many agency, or any dependency-valid mixture of
+sequential and concurrent actions. The human may prescribe the graph or
+delegate its selection. Agent 0 owns cross-package coordination; Agent 1 owns
+coordination within its activated scope; durable artifacts and Git state
+complement live agency.
 
 Gate-controlled workflows ensure that humans make consequential decisions at defined junctions. Brief-driven pipelines make agent execution bounded, repeatable, and auditable — Type 2 agents receive structured inputs and return structured outputs with no mid-run human decisions required. Write quarantine contains failures within declared zones: every agent has an explicit write scope, tool roots are isolated from source truth, and no agent writes outside its declared zone.
 

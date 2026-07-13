@@ -92,12 +92,13 @@ function denyPath(input: {
   };
 }
 
-async function rejectSymlinkWritePath(input: {
+async function rejectSymlinkPath(input: {
   projectRoot: string;
   rawPath: string;
   resolvedPath: string;
   pathField: string;
   pathScope: HarnessToolDescriptor['pathScope'];
+  access: 'read' | 'write';
 }): Promise<HarnessToolPathPolicyResult | undefined> {
   const root = path.resolve(input.projectRoot);
   const relative = path.relative(root, input.resolvedPath);
@@ -113,8 +114,8 @@ async function rejectSymlinkWritePath(input: {
       const stats = await lstat(current);
       if (stats.isSymbolicLink()) {
         return denyPath({
-          reason: `Write path '${input.rawPath}' crosses symbolic link '${current}'.`,
-          denyClass: 'symlink-write',
+          reason: `${input.access === 'read' ? 'Read' : 'Write'} path '${input.rawPath}' crosses symbolic link '${current}'.`,
+          denyClass: `symlink-${input.access}`,
           projectRoot: input.projectRoot,
           pathField: input.pathField,
           rawPath: input.rawPath,
@@ -142,7 +143,7 @@ async function rejectSymlinkWritePath(input: {
       }
 
       return denyPath({
-        reason: `Write path '${input.rawPath}' could not be checked for symbolic links.`,
+          reason: `${input.access === 'read' ? 'Read' : 'Write'} path '${input.rawPath}' could not be checked for symbolic links.`,
         denyClass: 'path-stat-failed',
         projectRoot: input.projectRoot,
         pathField: input.pathField,
@@ -165,6 +166,8 @@ export async function evaluateToolPathPolicy(input: {
   toolInput: unknown;
   blockedPath?: string;
   instructionRoot?: string;
+  allowedReadScopes?: readonly string[];
+  allowedWriteTargets?: readonly string[];
 }): Promise<HarnessToolPathPolicyResult> {
   if (input.blockedPath) {
     return denyPath({
@@ -193,7 +196,37 @@ export async function evaluateToolPathPolicy(input: {
   }
 
   const pathField = readPrimaryPathField(input.toolInput);
+  const projectRoot = path.resolve(input.projectRoot);
+  const managedScopes =
+    pathScope === 'project-root-read'
+      ? input.allowedReadScopes
+      : pathScope === 'project-root-write'
+        ? input.allowedWriteTargets
+        : undefined;
   if (!pathField) {
+    if (input.descriptor?.permissions.includes('shell')) {
+      return {
+        allowed: true,
+        metadata: {
+          projectRoot,
+          pathScope
+        }
+      };
+    }
+    if (
+      managedScopes !== undefined &&
+      !managedScopes.some((scope) => path.resolve(scope) === projectRoot)
+    ) {
+      return denyPath({
+        reason: `${pathScope === 'project-root-read' ? 'Read' : 'Write'} tool requires an explicit path inside the managed child scope.`,
+        denyClass: 'managed-scope-path-required',
+        projectRoot: input.projectRoot,
+        pathScope,
+        extra: {
+          managedScopes: managedScopes.map((scope) => path.resolve(scope))
+        }
+      });
+    }
     return {
       allowed: true,
       metadata: {
@@ -224,6 +257,36 @@ export async function evaluateToolPathPolicy(input: {
     });
   }
 
+  if (
+    managedScopes !== undefined &&
+    !managedScopes.some((scope) => isWithinRoot(scope, resolvedPath))
+  ) {
+    return denyPath({
+      reason: `Path '${pathField.value}' is outside the managed child's declared ${pathScope === 'project-root-read' ? 'read scope' : 'write targets'}.`,
+      denyClass: pathScope === 'project-root-read' ? 'managed-read-scope' : 'managed-write-scope',
+      projectRoot: input.projectRoot,
+      pathField: pathField.field,
+      rawPath: pathField.value,
+      resolvedPath,
+      pathScope,
+      extra: {
+        managedScopes: managedScopes.map((scope) => path.resolve(scope))
+      }
+    });
+  }
+
+  const symlinkDeny = await rejectSymlinkPath({
+    projectRoot: input.projectRoot,
+    rawPath: pathField.value,
+    resolvedPath,
+    pathField: pathField.field,
+    pathScope,
+    access: pathScope === 'project-root-read' ? 'read' : 'write'
+  });
+  if (symlinkDeny) {
+    return symlinkDeny;
+  }
+
   if (pathScope !== 'project-root-write') {
     return {
       allowed: true,
@@ -245,17 +308,6 @@ export async function evaluateToolPathPolicy(input: {
         instructionRoot: path.resolve(instructionRoot)
       }
     });
-  }
-
-  const symlinkDeny = await rejectSymlinkWritePath({
-    projectRoot: input.projectRoot,
-    rawPath: pathField.value,
-    resolvedPath,
-    pathField: pathField.field,
-    pathScope
-  });
-  if (symlinkDeny) {
-    return symlinkDeny;
   }
 
   return {

@@ -8,6 +8,7 @@ import path from 'node:path';
 
 const REQUIRED_ROOT_FILES = [
   'AGENTS.md',
+  'CLAUDE.md',
   'README.md',
   'PROFESSIONAL_ENGINEERING.md'
 ];

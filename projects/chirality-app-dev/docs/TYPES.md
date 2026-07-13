@@ -96,9 +96,9 @@ The unsanitized canonical name belongs in `_CONTEXT.md` or the governing decompo
 
 | Type | Name | Role | Scope |
 |---|---|---|---|
-| **Type 0** | Architect | Defines and maintains rules, standards, contracts, and role boundaries. | Project-wide or system-wide. |
-| **Type 1** | Manager | Interprets intent, decomposes work, routes specialists, reconciles outputs. | Project, package, or workflow. |
-| **Type 2** | Specialist | Executes bounded briefs with minimal context and returns outputs plus evidence. | Deliverable-local or narrow task. |
+| **Type 0** | Supervising Architect | Aligns the human and workflow, supervises Agent 1 managers, brokers cross-package coordination, and returns consequential decisions. HELP_HUMAN is the sole canonical instance role. | Cross-manager and cross-package. |
+| **Type 1** | Manager | Owns one management scope, derives work graphs, routes specialists, coordinates evidence, and validates fan-in. | Package, project workflow, source campaign, or bounded management domain. |
+| **Type 2** | Specialist | Executes one sealed brief and returns outputs plus evidence without delegating. | Deliverable-local, page/sheet-local, or narrow task. |
 
 ### 3.2 Agent Classification Properties
 
@@ -111,14 +111,18 @@ The unsanitized canonical name belongs in `_CONTEXT.md` or the governing decompo
 
 ### 3.3 Authority Model
 
-Authority flows downward; escalation flows upward.
+Delegation flows downward; evidence, coordination notices, and escalation flow
+upward. Standards constrain every layer but do not occupy Agent 0.
 
-- Type 0 defines what “correct” means.
+- Type 0 aligns the human, scope, stakes, managers, and decision points.
 - Type 1 prepares, routes, and reconciles work.
 - Type 2 executes bounded work.
 - Humans approve, issue, sign, seal, and accept reliance.
 
-A Type 2 agent cannot modify Type 0 rules. A Type 1 agent cannot issue work for reliance. No agent can approve professional work.
+Agent 0 delegates only to named Agent 1 roles. Agent 1 delegates only to TASK,
+allowed ephemeral generalists, or approved dedicated Agent 2 roles. Agent 2
+does not delegate. A Type 1 agent cannot issue work for reliance. No agent can
+approve professional work.
 
 ### 3.4 Persona Alias Terms
 
@@ -336,6 +340,9 @@ Later event categories:
 - `context.compacted`
 - `subagent.started`
 - `subagent.completed`
+- `coordination.notice`
+- `coordination.update`
+- `coordination.acknowledged`
 - `runtime.mirror.error`
 
 ### 7.4 Browser `UIEvent` Terms
@@ -412,6 +419,10 @@ Initial in-process MCP tool names should use this namespace:
 - `mcp__chirality__deps_write`
 - `mcp__chirality__scope_scan`
 - `mcp__chirality__scaffold`
+- `mcp__chirality__delegate_agent`
+- `mcp__chirality__report_coordination_notice`
+- `mcp__chirality__send_agent_update`
+- `mcp__chirality__ack_agent_update`
 
 Future domain tools use `mcp__chirality__domain_*` only after a governed domain-profile amendment.
 
@@ -445,34 +456,32 @@ SDK terms belong at the adapter boundary. Public Chirality APIs and canonical ev
 
 ---
 
-## 10. Subagent Runtime Vocabulary
+## 10. Multi-Agent Runtime Vocabulary
 
 ```ts
 type ChildRunRecord = {
-  contractVersion: 1;
-  childRunId: string;
+  schema: 'chirality-agent-runs/v2';
+  orchestrationRunId: string;
+  planVersion: string;
+  childInstanceId: string;
   parentSessionId: string;
   parentTurnId?: string;
-  parentPersona: string;
-  agentName: string;
+  parentRole: string;
+  parentAgentType: 0 | 1;
+  childRole: string;
+  childAgentType: 1 | 2;
+  childKind: 'named' | 'task' | 'generalist';
   projectRoot: string;
   mode: string;
-  status: 'queued' | 'denied' | 'running' | 'completed' | 'failed' | 'cancelled';
-  capabilityPolicy: {
-    inheritParentCapabilities: false;
-    requestedToolNames: string[];
-    allowedToolNames: string[];
-    deniedCapabilities: string[];
-  };
-  governance: {
-    state: 'allowed' | 'denied' | 'adapter-observed';
-    gate?: string;
-    reason?: string;
-    approvalRef?: string;
-    approvedBy?: string;
-    allowlistedSubagents: string[];
-    delegatedSubagents: string[];
-  };
+  status: 'LAUNCHED' | 'RUNNING' | 'COMPLETED' | 'FAILED' | 'BLOCKED';
+  approvalRef: string;
+  instructionPath?: string;
+  instructionHash?: string;
+  briefHash: string;
+  declaredContext: string[];
+  declaredTools: string[];
+  allowedWriteTargets: string[];
+  requiredReturnMarkers: string[];
   outputArtifactPath?: string;
   adapter?: {
     adapterName: string;
@@ -487,13 +496,32 @@ type ChildRunRecord = {
 
 | Term | Meaning |
 |---|---|
-| `evaluateSubagentGovernance` | Authoritative fail-closed gate for delegation. |
-| Type 2 candidate | Agent instruction with `AGENT_TYPE: 2`; preferred `AGENT_CLASS: TASK`. |
+| `ManagedDelegationService` | Authoritative hierarchy, seal, capability, path, write-overlap, and durable-record policy for managed delegation. |
+| `evaluateSubagentGovernance` | Fail-closed gate retained for rejected legacy SDK Agent requests; it no longer launches children. |
+| Named child | Agent 1 or Agent 2 instantiated from its actual `AGENT_*.md` and recorded instruction hash. |
+| Generalist child | Ephemeral Agent 2 instantiated from the Agent 2 base contract and sealed brief without a persistent role file. |
 | Parent session | Session requesting delegation. |
-| Child run | Governed subagent execution record. |
+| Child run | Governed managed-session execution record. |
+| Work graph | Versioned nodes, dependencies, concurrency, ownership, returns, and gates for one orchestration run. |
+| Coordination notice | Typed child-to-parent information with claim status, evidence, affected scopes, and requested action. |
+| Parent update | Immutable relay or versioned amendment delivered to one direct child at a safe turn boundary. |
+| Update acknowledgment | Child response: `INCORPORATED`, `NO_EFFECT`, `BLOCKED`, `CONFLICT`, or `HUMAN_DECISION_REQUIRED`. |
+| Return markers | Brief-declared structural markers that a completed return must contain before fan-in can accept it. |
 | Context sealed | Required governance condition confirming bounded context. |
 | Pipeline run approved | Required governance condition for Type 2 task invocation. |
-| Approval reference | Non-empty human/gate evidence string required before delegation. |
+| Approval reference | Citation to the applicable human approval record; runtime validates presence/structure, not the human act. |
+
+Coordination claim statuses are distinct from epistemic and lifecycle status:
+`PROVISIONAL` is unvalidated; `VALIDATED` requires `validationRef`; `ACCEPTED`
+requires `humanAcceptanceRef` to a human act; `DISPUTED` preserves conflict.
+Every `RELAY` cites its source notice and preserves that status. These values
+do not mechanically accept a child return or advance lifecycle state.
+
+Every work graph includes `nodes`, `edges`, `concurrencyEligibility`,
+`expectedReturns`, `fanInGates`, and `humanDecisionPoints`. Every AMEND/REPLAN
+records `amendmentCategories` and a stable amendment or plan version; scope,
+risk, authority, shared-write, and acceptance categories require a human
+ruling reference.
 
 ---
 

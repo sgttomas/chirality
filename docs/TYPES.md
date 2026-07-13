@@ -50,11 +50,11 @@ The path model is specified in `SPEC.md` §0.2. The entities it defines:
 | **Instruction Root** | The shared, release-managed agent operating system — `AGENTS.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`. `= REPO_ROOT` in this monorepo; the app bundle in desktop builds (see `DIRECTIVE.md` §2.6). |
 | **Working Root** (`WORKING_ROOT`) | The active project or domain workspace — `projects/<name>/` or `domains/<name>/`, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. |
 | **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. |
-| **Tool Root** | A workspace-level directory for derived outputs under `{EXECUTION_ROOT}` (e.g. `_Decomposition/`, `_Reconciliation/`), isolated from source truth. The registry is `SPEC.md` §1.2. |
+| **Tool Root** | A workspace-level directory for derived outputs under `{EXECUTION_ROOT}` (e.g. `_Decomposition/`, `_Evaluation/`, `_Reconciliation/`), isolated from source truth. The registry is `SPEC.md` §1.2. |
 
 ### 1.5 Path Tokens
 
-Agent instructions and skills reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `REPO_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
+Agent instructions and skills reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{EVALUATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `REPO_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
 
 ---
 
@@ -70,7 +70,7 @@ Identifiers are assigned once and persist across renames, path changes, and rest
 | Scope Item | `SOW-NNN` | `SOW-003` | PROJECT_DECOMP |
 | Objective | `OBJ-NNN` | `OBJ-001` | PROJECT_DECOMP |
 
-Conforming decomposition variants define additional stable-ID families in their own contracts (e.g. domain-knowledge identifiers; see §8.2 and `AGENT_DECOMP_BASE.md`). The ID rules below apply to all families.
+Conforming decomposition variants define additional stable-ID families in their own contracts (e.g. domain-knowledge identifiers; see §8.2 and `docs/DECOMPOSITION_STANDARD.md`). The ID rules below apply to all families.
 
 ### 2.1 ID Rules
 
@@ -170,37 +170,74 @@ Candidate/non-gating graph dispositions are governance worklist states, not depe
 
 ## 4. Agent Roles
 
-Agents are classified into three types following the 0-1-2 model. See `AGENTS.md` for the live agent matrix and index.
+Agents are classified into three runtime positions following the 0-1-2 model.
+See `AGENTS.md` for the live hierarchy and index.
 
 ### 4.1 Agent Types
 
 | Type | Name | Role | Scope |
 |---|---|---|---|
-| **Type 0** | Architect | Defines and maintains standards, contracts, and role boundaries | Project-wide |
-| **Type 1** | Manager | Interprets intent, decomposes work, routes to specialists, merges results | Package or project scope |
-| **Type 2** | Specialist | Executes bounded briefs with minimal context; returns outputs + evidence | Single deliverable or narrow task |
+| **Type 0** | Supervising Architect | Aligns with the human, frames authority and decision points, supervises Agent 1 managers, and performs validated cross-manager fan-in | Human matter / workflow portfolio |
+| **Type 1** | Manager | Converts human-approved intent into a governed workflow, makes manager-level decisions at human gates, delegates bounded work, and validates fan-in | Package, project, or specialist workflow scope |
+| **Type 2** | Specialist | Executes a sealed bounded brief with declared context, tools, outputs, and write scope; returns outputs plus evidence and does not delegate | Single deliverable or narrow task |
 
-`TASK` is the canonical Type 2 execution shell; it hydrates reusable methods through `TaskSkill: <name>` rather than proliferating bespoke task agents.
+The type number is a runtime delegation position, not a document-authority class. Normative standards live outside the hierarchy and constrain every layer. HELP_HUMAN is the sole canonical Agent 0. Agent 1 roles are directly invokable by a human and may also run under Agent 0.
+
+Agent 2 has three valid construction forms: `TASK + skill + brief`; an ephemeral bounded generalist with no persistent `AGENT_*.md`; or an approved dedicated specialist instruction package. TASK is the default for recurring method work. A dedicated specialist requires evidence that TASK and ephemeral-generalist forms are inadequate, a HELPS_HUMANS proposal, and explicit human approval.
 
 ### 4.2 Classification Properties
 
 | Property | Values | Meaning |
 |---|---|---|
-| `AGENT_CLASS` | `PERSONA`, `TASK` | Persona agents run interactive sessions; Task agents run straight-through pipelines |
-| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
-| `WRITE_SCOPE` | base values: `repo-wide`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `project-level`, `bounded-task-brief`, `none` | What the agent is allowed to write |
+| `AGENT_CLASS` | `PERSONA`, `TASK` | Agent 0 and Agent 1 are interactive personas; persistent Agent 2 packages are straight-through specialists |
+| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | Type 0/1 may use chat; Type 2 is delegated or pipeline-invoked and is not a top-level chat persona |
+| `WRITE_SCOPE` | base values: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none` | What the agent is allowed to write |
 | `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
 
-A `tool-root-only` scope MAY be parameterized to a registered tool root or subtree — `tool-root-only ({EXECUTION_ROOT}/_Reconciliation/<subtree>/)`. `bounded-task-brief` is the `TASK` shell's scope: writes are authorized only by the effective bounded task brief and are always subject to ScopePath containment (`SPEC.md` §0.2.3, §9.5). The full enumeration and parameterization rules live in `SPEC.md` §9.5.
+A `tool-root-only` scope MAY be parameterized to a registered tool root or subtree — for example `tool-root-only ({EXECUTION_ROOT}/_Evaluation/<subtree>/)`. `bounded-task-brief` is the `TASK` shell's scope: writes are authorized only by the effective bounded task brief and are always subject to ScopePath containment (`SPEC.md` §0.2.3, §9.5). The full enumeration and parameterization rules live in `SPEC.md` §9.5.
 
 ### 4.3 Authority Model
 
-- Type 0 proposes rules (what "correct" means).
-- Type 1 prepares workspaces and orchestrates (what the specialist can see).
-- Type 2 does the work (within bounded scope).
-- Human approves at gates.
+- Normative governance documents and domain standards constrain Agent 0, Agent 1, and Agent 2; they are not runtime agents.
+- Agent 0 supervises only named Agent 1 managers.
+- Agent 1 may delegate to named Agent 2 specialists, TASK, or an explicitly permitted ephemeral generalist.
+- Agent 2 executes within its sealed brief and may not delegate.
+- Human authority remains the halting condition at consequential gates.
+  Consequential means at least: scope expansion, consequential-risk change,
+  authority change, unresolved shared-write/ownership conflict, or acceptance
+  criteria/lifecycle-acceptance change. Ambiguity returns to the human.
 
-Authority flows downward; escalation flows upward. A Type 2 agent cannot modify rules set by Type 0. A Type 1 agent cannot approve deliverables for external reliance.
+Authority and capability do not increase through delegation. Escalation flows upward. No agent may approve deliverables for external reliance on behalf of the accountable human.
+
+### 4.4 Multi-Agent Orchestration
+
+| Term | Meaning |
+|---|---|
+| `OrchestrationSelectionAuthority` | `HUMAN | AGENT_0 | AGENT_1` — who selected the current work graph |
+| `OrchestrationPosture` | `TERMINAL_FAN_OUT_IN | SUPERVISED_MANY_TO_MANY | MIXED` — descriptive label for the graph |
+| `CoordinationClaimStatus` | `PROVISIONAL | VALIDATED | ACCEPTED | DISPUTED` — relay disposition state, distinct from §10 epistemic labels and lifecycle status |
+| `CoordinationDisposition` | `RECORD | RELAY | AMEND | HOLD | REPLAN | ESCALATE | ROUTE` — parent action on a child notice |
+| `UpdateAcknowledgment` | `INCORPORATED | NO_EFFECT | BLOCKED | CONFLICT | HUMAN_DECISION_REQUIRED` — child response to a parent update |
+
+The work graph records actual sequencing and concurrency; the posture is not a
+complete execution language. Agent 0 owns cross-package graphs. A
+WORKING_ITEMS Agent 1 instance owns exactly one activated package and its
+intra-package graph.
+
+Coordination claim-status authority is explicit:
+
+- `PROVISIONAL`: an observation not yet validated; any managed child may report it.
+- `VALIDATED`: a manager or deterministic check has validated the observation;
+  the notice/update cites `validationRef`.
+- `ACCEPTED`: a human accepted the proposition for the governed workflow; the
+  notice/update cites `humanAcceptanceRef`. An agent may relay but never mint
+  this state.
+- `DISPUTED`: evidence conflicts or a recipient contests the proposition;
+  conflict evidence remains attached and no silent resolution occurs.
+
+An informational `RELAY` always cites its source `noticeId` and preserves the
+source status. Claim status does not itself advance lifecycle state or satisfy
+fan-in acceptance criteria.
 
 ---
 
@@ -280,7 +317,7 @@ The project decomposition document (produced by PROJECT_DECOMP) defines these en
 
 ### 8.2 Domain Decomposition Entities
 
-The decomposition protocol is shared across variants by `AGENT_DECOMP_BASE.md`; `DOMAIN_DECOMP` binds its abstract entities to domain-knowledge names. The handbook/domain variant defines:
+The decomposition protocol is shared across variants by `docs/DECOMPOSITION_STANDARD.md`; `DOMAIN_DECOMP` binds its abstract entities to domain-knowledge names. The handbook/domain variant defines:
 
 | Entity | ID Format | Purpose |
 |---|---|---|
@@ -290,13 +327,16 @@ The decomposition protocol is shared across variants by `AGENT_DECOMP_BASE.md`; 
 | **Handbook Unit (Atom)** | `HBA-<SOURCE_PREFIX>-NNNNN` | An atomic instruction/concept extracted from a source; the unit of coverage checking |
 | **Section Node** | `SEC-<SOURCE_PREFIX>-NNNN` | A source section in the reviewed skeleton; the section-level retrieval substrate |
 
-The base specification's abstract entities (Atomic Unit, Partition, Production Unit, Decomposition Ledger, Coverage & Telemetry, Vocabulary Map) and the seven-gate protocol are defined in `AGENT_DECOMP_BASE.md`; PROJECT_DECOMP, SOFTWARE_DECOMP, and DOMAIN_DECOMP bind them to domain-specific names and ID widths.
+The standard's abstract entities (Atomic Unit, Partition, Production Unit, Decomposition Ledger, Coverage & Telemetry, Vocabulary Map) and seven-gate protocol are defined in `docs/DECOMPOSITION_STANDARD.md`; PROJECT_DECOMP, SOFTWARE_DECOMP, and DOMAIN_DECOMP bind them to domain-specific names and ID widths.
 
 ---
 
 ## 9. UI Navigation Vocabulary
 
-The agent matrix and pipeline categories below are framework-level governance grammar (referenced by `AGENTS.md`); the desktop frontend uses them for matrix routing and pipeline selection. Deployment-specific selector and API details are owned by the runtime project's docs.
+The matrix and pipeline categories below are legacy-compatible desktop UI
+routing vocabulary. They are not the Agent 0/1/2 runtime hierarchy, do not
+classify document authority, and are not instantiated by root `AGENTS.md`.
+Deployment-specific selector and API details are owned by runtime-project docs.
 
 ### 9.1 Matrix Axes
 
@@ -305,7 +345,8 @@ The agent matrix and pipeline categories below are framework-level governance gr
 | `MatrixRow` | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE` | Epistemic-posture lane; also routes to WORKBENCH or PIPELINE |
 | `MatrixColumn` | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING` | Functional-role matrix column shared across all rows |
 
-The matrix is both a routing view and a governance grammar: NORMATIVE defines rules and standards, OPERATIVE executes bounded work within them, and EVALUATIVE audits, reconciles, and judges results (see `AGENTS.md`).
+The matrix is a routing view only. Runtime delegation and authority follow the
+Agent 0/1/2 hierarchy in `AGENTS.md`; standards constrain every layer.
 
 ### 9.2 Pipeline Selectors
 

@@ -121,6 +121,10 @@ describe('buildSdkOptions', () => {
       'mcp__chirality__deps_read',
       'mcp__chirality__scope_scan',
       'mcp__chirality__scaffold_preview',
+      'mcp__chirality__delegate_agent',
+      'mcp__chirality__report_coordination_notice',
+      'mcp__chirality__send_agent_update',
+      'mcp__chirality__ack_agent_update',
       'mcp__chirality__status_transition',
       'mcp__chirality__deps_write',
       ...DOMAIN_MCP_TOOL_NAMES,
@@ -433,7 +437,7 @@ describe('buildSdkOptions', () => {
     expect(askMode.permissionMode).toBe('default');
   });
 
-  it('attaches executable SDK agents definitions and exposes Agent only when delegated and requested', () => {
+  it('does not attach or expose the retired SDK Agent bridge', () => {
     const options = buildSdkOptions({
       session,
       opts: {
@@ -446,18 +450,10 @@ describe('buildSdkOptions', () => {
       systemPrompt: 'persona prompt'
     });
 
-    expect(options.agents).toMatchObject({
-      TASK: {
-        description: expect.stringContaining('TASK'),
-        tools: [],
-        disallowedTools: expect.arrayContaining(['Agent', 'Bash', 'Write']),
-        maxTurns: 1,
-        permissionMode: 'dontAsk'
-      }
-    });
-    expect(options.tools).toEqual(['Read', 'Agent']);
-    expect(options.allowedTools).toEqual(['Read', 'Agent']);
-    expect(options.disallowedTools).not.toContain('Agent');
+    expect(options.agents).toBeUndefined();
+    expect(options.tools).toEqual(['Read']);
+    expect(options.allowedTools).toEqual(['Read']);
+    expect(options.disallowedTools).toContain('Agent');
 
     const noDelegation = buildSdkOptions({
       session,
@@ -630,7 +626,7 @@ describe('buildSdkOptions', () => {
     expect(getPermissionBroker().pendingCount(callbackSession.sessionId)).toBe(0);
   });
 
-  it('allows Agent permission callbacks only for delegated children in workspaceWrite mode', async () => {
+  it('denies legacy Agent permission callbacks even for formerly eligible children', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-agent-options-'));
     const writableProjectRoot = path.join(tmpDir, 'project');
     await mkdir(writableProjectRoot, { recursive: true });
@@ -657,8 +653,8 @@ describe('buildSdkOptions', () => {
         }
       )
     ).resolves.toMatchObject({
-      behavior: 'allow',
-      toolUseID: 'tool_agent'
+      behavior: 'deny',
+      message: expect.stringContaining('legacy SDK Agent bridge is disabled')
     });
 
     await expect(
@@ -672,7 +668,7 @@ describe('buildSdkOptions', () => {
       )
     ).resolves.toMatchObject({
       behavior: 'deny',
-      message: expect.stringContaining('not eligible')
+      message: expect.stringContaining('legacy SDK Agent bridge is disabled')
     });
   });
 });

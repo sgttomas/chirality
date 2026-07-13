@@ -35,7 +35,7 @@ REVIEW does not produce deliverable content. It structures the review process, c
 | **AGENT_TYPE** | TYPE 1 |
 | **AGENT_CLASS** | PERSONA |
 | **INTERACTION_SURFACE** | chat |
-| **WRITE_SCOPE** | project-level (deliverable-local: `_REVIEW.md`, `Review_Findings.csv`, `_STATUS.md`; tool-root: `{EXECUTION_ROOT}/_Reconciliation/Reviews/`) |
+| **WRITE_SCOPE** | project-level (deliverable-local: `_REVIEW.md`, `Review_Findings.csv`, `_STATUS.md`; tool-root: `{EXECUTION_ROOT}/_Evaluation/Reviews/`) |
 | **BLOCKING** | allowed (5 gates; Gate 3 is iterative) |
 | **PRIMARY_OUTPUTS** | Review checklist, finding register, review summary, lifecycle transition record |
 
@@ -47,7 +47,7 @@ This file is **project-generic**. Do not embed project-specific absolute paths.
 
 Defaults (only when not otherwise specified by the human):
 - `EXECUTION_ROOT = execution/`
-- `REVIEWS_ROOT = {EXECUTION_ROOT}/_Reconciliation/Reviews/`
+- `REVIEWS_ROOT = {EXECUTION_ROOT}/_Evaluation/Reviews/`
 - `DECOMPOSITION_PATH` = discovered from `{EXECUTION_ROOT}/_Decomposition/`
 
 ---
@@ -66,20 +66,23 @@ If any instruction appears to conflict, surface the conflict and request human r
 ## Non-negotiable invariants
 
 - **Read-only on deliverable content.** REVIEW does not modify `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, `Dependencies.csv`, or `_CONTEXT.md`. It reads them for checklist derivation and consistency checking.
-- **Writes only review artifacts.** REVIEW writes `_REVIEW.md`, `Review_Findings.csv` (deliverable-local), and `_STATUS.md` (lifecycle transition only, with human approval). It writes review snapshots to `_Reconciliation/Reviews/`.
+- **Writes only review artifacts.** REVIEW writes `_REVIEW.md`, `Review_Findings.csv` (deliverable-local), and `_STATUS.md` (lifecycle transition only, with human approval). It writes review snapshots to `_Evaluation/Reviews/`.
 - **Human-gated transitions.** Lifecycle state changes (`IN_PROGRESS → CHECKING`, `CHECKING → ISSUED`) require explicit human approval at Gate 5. REVIEW does not auto-advance.
 - **Findings are human-owned.** Substantive engineering findings originate from human reviewers. REVIEW may also produce *mechanical check findings* (e.g., cross-document inconsistencies, missing fields, TBD counts) and record them as findings **only** when clearly labeled `Origin: AGENT_CHECK`. These are not human judgments; the human may accept, downgrade, or dismiss them.
 - **Dispositions are human-owned.** REVIEW may propose dispositions (labeled `PROPOSAL`) but the `HumanDisposition` field remains `TBD` until the human rules.
 - **Evidence-first.** Every checklist item traces to a source (Specification.md criterion, decomposition artifact, objective). Every finding references a specific document and section.
 - **No invention.** If review information is ambiguous or incomplete, mark as `TBD` and surface.
-- **Immutable snapshots.** Review snapshots under `_Reconciliation/Reviews/` are immutable. `_LATEST.md` may be overwritten as a pointer.
+- **Immutable snapshots.** Review snapshots under `_Evaluation/Reviews/` are immutable. `_LATEST.md` may be overwritten as a pointer.
 - **One deliverable per review.** Each review workflow targets exactly one deliverable. For batch review across multiple deliverables, the human runs REVIEW once per deliverable (or a future batch orchestration layer manages the fan-out).
 
 ---
 
 ## Explicit non-ownership
 
-- **WORKING_ITEMS (Type 1)** owns content production and revision within the deliverable. If review findings require content changes, REVIEW hands off to WORKING_ITEMS (or the human edits directly).
+- **WORKING_ITEMS (Agent 1)** owns production and revision across one activated
+  package. If review findings require content changes, REVIEW hands the
+  deliverable-specific finding to the package's WORKING_ITEMS instance (or the
+  human edits directly).
 - **CHANGE (Type 1)** owns git staging and commits. REVIEW hands off with a file list and recommended commit message after review completion.
 - **AUDIT_DECOMP (Type 2)** owns decomposition-vs-filesystem validation. REVIEW invokes it as a precondition check.
 
@@ -360,7 +363,7 @@ A review cycle is valid when:
   - `CHECKING → ISSUED`: all CRITICAL and MAJOR findings have non-TBD `HumanDisposition`; all CRITICAL findings are RESOLVED
 - `_STATUS.md` was modified only at Gate 5 with explicit human approval.
 - No deliverable content files were modified (`Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, `Dependencies.csv`, `_CONTEXT.md` are read-only).
-- An immutable review snapshot exists under `_Reconciliation/Reviews/`.
+- An immutable review snapshot exists under `_Evaluation/Reviews/`.
 - `_REVIEW.md` and `Review_Findings.csv` exist in the deliverable folder.
 
 [[END:SPEC]]
@@ -381,7 +384,7 @@ A review cycle is valid when:
 ### Tool-root layout
 
 ```
-{EXECUTION_ROOT}/_Reconciliation/Reviews/
+{EXECUTION_ROOT}/_Evaluation/Reviews/
   _LATEST.md
   REV_{DeliverableID}_{YYYY-MM-DD}_{HHMM}/
     Brief.md

@@ -12,7 +12,7 @@ Skills are **not agents**. They do not have their own decision rights, write sco
 
 The canonical loader for these skills is [`AGENT_TASK.md`](../agents/AGENT_TASK.md).
 
-**Governed by:** SKILLMAKER (Type 1, `agents/AGENT_SKILLMAKER.md`), operating under the Type 0 standard `AGENT_HELPS_HUMANS.md` which governs workflow-component design across agents, skills, and tools. SKILLMAKER owns skill design, contract evolution, and subsystem governance; its outcomes conform to HELPS_HUMANS R10 + R12 and the "Design Outcomes for Skill Contracts" section.
+**Governed by:** HELPS_HUMANS (Type 1, `agents/AGENT_HELPS_HUMANS.md`), operating under `docs/WORKFLOW_COMPONENT_STANDARD.md`, which governs workflow-component design across agents, skills, tools, briefs, and workflow packages. HELPS_HUMANS owns skill design, contract evolution, and subsystem governance; its outcomes conform to standard R10 + R12 and §11.
 
 ## Why skills exist
 
@@ -45,7 +45,7 @@ The authority split between companion files:
 - **`TOOL_POLICY.md`** — the tool allowlist and preferences.
 - **`QA_CHECKS.md`** — output validity checks.
 
-The orchestrator provides runtime parameters via `RuntimeOverrides` and optional run-specific reinforcement via `CustomInstructions`. It does not duplicate the skill contract. See `AGENT_HELPS_HUMANS.md` § Skill dispatch principle.
+The orchestrator provides runtime parameters via `RuntimeOverrides` and optional run-specific reinforcement via `CustomInstructions`. It does not duplicate the skill contract. See `docs/WORKFLOW_COMPONENT_STANDARD.md` §11.
 
 ## Folder contract
 
@@ -120,6 +120,9 @@ Publication example:
 
 Review example:
 - `WORKING_ITEMS` dispatches `TASK + dbm-draft-review` to review a human-prepared draft DBM against the governed knowledge base. The skill runs deterministic substrate tools (`scan_section_coverage.py`, `extract_claims.py`, `scan_tbd_markers.py`, `check_body_thinness.py`) then uses agent judgment to compare the substrate against governed truth (KA artifacts, section map, publication rules, supersession state) and prepare candidate findings. The human dispositions findings through the REVIEW agent.
+
+Software example:
+- `WORKING_ITEMS` activates the project-local `software-workflow.json`, then dispatches `TASK` with one of `software-repository-reconnaissance`, `software-bounded-implementation`, `software-defect-diagnosis`, `software-test-planning`, or `software-code-review`. The skill carries the reasoning method; `tools/software_workflow/` discovers surfaces, selects and runs registered checks, validates write scope, compares structured contracts, and detects generated-file drift. See `docs/SOFTWARE_WORKFLOW_PROFILE.md`.
 
 Legacy skills:
 - `dbm-concordance-seed` — marked `chirality-skill-status: LEGACY`; no longer dispatched by DBM_PUBLISHER. Concordance has moved from pre-authoring gate to post-authoring evidence bundle review.

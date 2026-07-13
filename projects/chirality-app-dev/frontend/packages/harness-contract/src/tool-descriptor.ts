@@ -2,12 +2,13 @@ import type { HarnessEventType } from './event-schema';
 import {
   toChiralityMcpAllowedToolName,
   type ChiralityMcpAllowedToolName,
+  type ChiralityMcpCoordinationToolName,
   type ChiralityMcpDomainToolName,
   type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v10.pec-proposal-tools-live';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v13.atomic-coordination';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -31,6 +32,7 @@ export type HarnessToolPermission =
   | 'network'
   | 'shell'
   | 'subagent'
+  | 'coordination'
   | 'danger';
 
 export type HarnessToolPathScope =
@@ -145,6 +147,12 @@ const CHIRALITY_MUTATING_MCP_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: true,
   reason:
     'Mutating Chirality MCP tools are exposed only when requested in workspaceWrite mode and enforced by the handler-level permission/evidence wrapper.'
+};
+
+const CHIRALITY_COORDINATION_MCP_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: true,
+  reason:
+    'Managed coordination tools require workspaceWrite mode, write runtime-owned control-plane records, and enforce hierarchy, seals, parentage, capabilities, and project path boundaries.'
 };
 
 const CHIRALITY_DOMAIN_DESCRIPTOR_ONLY_RUNTIME: HarnessToolRuntimeSupport = {
@@ -383,6 +391,42 @@ function chiralityMutatingMcpDescriptor(input: {
   };
 }
 
+function chiralityCoordinationMcpDescriptor(input: {
+  name: ChiralityMcpCoordinationToolName;
+  aliases: readonly string[];
+  description: string;
+  inputSchema: Record<string, unknown>;
+}): HarnessToolDescriptor {
+  return {
+    name: input.name,
+    aliases: uniqueDescriptorAliases({
+      name: input.name,
+      aliases: input.aliases,
+      adapterToolName: toChiralityMcpAllowedToolName(input.name)
+    }),
+    description: input.description,
+    surface: 'chirality-mcp',
+    permissions: ['coordination'],
+    pathScope: 'none',
+    idempotence: 'mutating',
+    concurrency: 'exclusive',
+    interruptBehavior: 'block',
+    resultBudget: READ_RESULT_BUDGET,
+    provenance: {
+      emits: TOOL_EVENTS,
+      storeInput: 'metadata',
+      storeOutput: 'inline-or-artifact',
+      recordsDiff: false
+    },
+    humanGate: { required: false },
+    adapter: {
+      claudeAgentSdk: { toolName: toChiralityMcpAllowedToolName(input.name) }
+    },
+    inputSchema: input.inputSchema,
+    runtime: CHIRALITY_COORDINATION_MCP_RUNTIME
+  };
+}
+
 function chiralityDomainDescriptorOnly(input: {
   name: string;
   aliases: readonly string[];
@@ -579,6 +623,52 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     outputSchema: {
       type: 'object',
       required: ['executionRoot', 'decompositionPath', 'planned', 'packages']
+    }
+  }),
+  chiralityCoordinationMcpDescriptor({
+    name: 'delegate_agent',
+    aliases: ['delegate', 'mcp.delegate_agent'],
+    description: 'Launch a governed direct child session under the Agent 0→1 or Agent 1→2 hierarchy and persist its work graph, brief, status, and return.',
+    inputSchema: {
+      type: 'object',
+      required: ['executionRoot', 'runId', 'planVersion', 'selectionAuthority', 'posture', 'acceptedBasis', 'childKind', 'purpose', 'brief', 'declaredContext', 'tools', 'writeTargets', 'dependencies', 'expectedOutput', 'acceptanceCriteria', 'requiredReturnMarkers', 'contextSealed', 'pipelineRunApproved', 'approvalRef']
+    }
+  }),
+  chiralityCoordinationMcpDescriptor({
+    name: 'report_coordination_notice',
+    aliases: ['coordination_notice', 'mcp.report_coordination_notice'],
+    description: 'Report a typed, evidence-linked coordination notice from a managed child to its direct parent.',
+    inputSchema: {
+      type: 'object',
+      required: ['noticeType', 'claimStatus', 'summary', 'evidenceRefs', 'affectedScopes', 'requestedAction', 'blocking', 'humanDecisionRequired', 'acceptedBasisRef'],
+      conditional: {
+        VALIDATED: ['validationRef'],
+        ACCEPTED: ['humanAcceptanceRef']
+      }
+    }
+  }),
+  chiralityCoordinationMcpDescriptor({
+    name: 'send_agent_update',
+    aliases: ['agent_update', 'mcp.send_agent_update'],
+    description: 'Relay information or a versioned amendment from a parent to one direct child.',
+    inputSchema: {
+      type: 'object',
+      required: ['childInstanceId', 'disposition', 'summary', 'claimStatus', 'evidenceRefs', 'consequential'],
+      conditional: {
+        RELAY: ['noticeId'],
+        AMEND_REPLAN: ['amendmentCategories', 'amendmentVersion or planVersion'],
+        VALIDATED: ['validationRef'],
+        ACCEPTED: ['humanAcceptanceRef']
+      }
+    }
+  }),
+  chiralityCoordinationMcpDescriptor({
+    name: 'ack_agent_update',
+    aliases: ['agent_update_ack', 'mcp.ack_agent_update'],
+    description: 'Acknowledge a parent update as incorporated, no-effect, blocked, conflicting, or requiring a human decision.',
+    inputSchema: {
+      type: 'object',
+      required: ['updateId', 'acknowledgment']
     }
   }),
   chiralityMutatingMcpDescriptor({

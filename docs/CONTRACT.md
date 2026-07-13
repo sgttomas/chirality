@@ -69,14 +69,14 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-SEAL-1** | No Type 2 agent execution before context is **sealed and gate-approved** by a human. | ORCHESTRATOR (seal check); human gate approval |
-| **K-GHOST-1** | Type 2 agent context is limited to **folder contents + declared references**. No ghost inputs. | Agent instruction constraints (WRITE_SCOPE, _REFERENCES.md); human review of diffs |
+| **K-SEAL-1** | No delegated child execution before context is **sealed**, the run is approved at the applicable human gate, and the launch cites that human approval record. A non-empty reference is necessary runtime metadata, not proof that approval occurred. | Human approval record and review; ManagedDelegationService structural checks; fail-closed legacy adapter |
+| **K-GHOST-1** | Agent 2 context is limited to declared read scopes and accepted references. No ghost inputs. | Managed child session metadata; permission overlay and path policy; sealed brief; human review |
 
 ### 1.4 Dependencies
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; aggregation is on-demand via `_Reconciliation/`. | TASK+dependency-extract (local writes only); RECONCILIATION agent (read-only aggregation) |
+| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; generic read-only aggregation is on-demand via `_Evaluation/`; a calibrated corpus-concordance run may also inventory dependencies under `_Reconciliation/DeliverableConcordance/`. | TASK+dependency-extract (local writes only); EVALUATION (generic audit); RECONCILIATION (activated corpus concordance) |
 | **K-DEP-2** | Dependency references to deliverables must **resolve to existing deliverable IDs**. Unresolvable targets use `TargetType=UNKNOWN`. | TASK+dependency-extract (Function 2); validation checks |
 
 ### 1.5 Status and Lifecycle
@@ -113,7 +113,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 |---|---|---|
 | **K-PROV-1** | Every non-trivial governed claim must cite evidence with a source path and best-effort section reference, or carry explicit `location TBD`. Dependency rows are a schema-specific instance of this rule and use **`EvidenceFile` + `SourceRef`** per `SPEC.md` §6.5. | Agent instruction constraints; TASK+dependency-extract row validation; governance audits; human review |
 | **K-INVENT-1** | Unknown values become **`TBD`**, not guessed. Agents must not invent scope items, dependency targets, parameter values, or engineering content. | All agent instruction invariants; human review |
-| **K-CONFLICT-1** | Conflicts between sources must be **surfaced, not silently resolved**. Agents expose disagreements with pointers to the conflicting sources. | Agent instruction invariants (HELPS_HUMANS R7); human adjudication |
+| **K-CONFLICT-1** | Conflicts between sources must be **surfaced, not silently resolved**. Agents expose disagreements with pointers to the conflicting sources. | Workflow-component standard R7; agent instruction invariants; human adjudication |
 | **K-CLAIM-1** | Claims, conclusions, and characterizations must not **overstate what the available warrant supports**. Statements of necessity, sufficiency, universality, completeness, exclusivity, or direct regulatory conclusiveness may be used only when the cited evidence supports that strength; otherwise they must be framed as interpretation, implementation-specific design, or proposal. | Agent instruction constraints; governance audits (AUDIT_GOVERNANCE); human review |
 
 ### 1.10 Write Scope and Snapshots
@@ -128,7 +128,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface, not merely an index**, and agents treat it as authoritative. The framework-root `AGENTS.md` MUST carry the agent matrix and index, the governance integration rules (derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution), and the canonical `TASK`-skill dispatch relationships. A working-root (`projects/*`, `domains/*`) `AGENTS.md` MAY overlay or specialize the suite for that workspace but MUST NOT weaken the framework governance integration rules. Where live registries (`agents/`, `skills/`, `tools/`) and narrative disagree, the live registry governs and the discrepancy is surfaced. | `AGENTS.md` (rule statements); AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
+| **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface, not merely an index**, and agents treat it as authoritative. Under D-GOV-11, the framework-root `AGENTS.md` MUST carry the Agent 0/1/2 runtime hierarchy and live index, governance integration rules (derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution), multi-agent orchestration rules, and canonical `TASK`-skill dispatch relationships. A working-root (`projects/*`, `domains/*`) `AGENTS.md` MAY overlay or specialize the suite for that workspace but MUST NOT weaken framework governance. UI matrices are deployment routing views, not runtime authority classes. Where live registries (`agents/`, `skills/`, `tools/`) and narrative disagree, the live registry governs and the discrepancy is surfaced. | `AGENTS.md`; D-GOV-11; AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
 
 ### 1.12 Domain Engine Integration
 

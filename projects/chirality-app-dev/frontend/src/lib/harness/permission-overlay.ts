@@ -9,7 +9,7 @@ import { evaluateShellCommandPolicy } from './tool-shell-policy';
 import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import { evaluateSubagentPreflight } from './subagent-bridge';
 
-export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v4.subagent';
+export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v7.coordination-mode';
 
 export type HarnessPermissionDecisionValue = 'allow' | 'deny' | 'ask';
 
@@ -220,6 +220,30 @@ export function resolveHarnessPermissionDecision(
     );
   }
 
+  if (hasDescriptorPermission(descriptor, 'coordination')) {
+    if (mode !== 'workspaceWrite') {
+      return createDecision(
+        input,
+        'deny',
+        `${descriptor.name} mutates the orchestration control plane and requires workspaceWrite mode.`,
+        {
+          hardDeny: true,
+          denyClass: 'coordination-mode',
+          requiresManagedDelegationPolicy: true
+        }
+      );
+    }
+    return createDecision(
+      input,
+      'allow',
+      `${descriptor.name} is admitted to handler-level hierarchy and control-plane validation.`,
+      {
+        allowClass: 'coordination',
+        requiresManagedDelegationPolicy: true
+      }
+    );
+  }
+
   if (hasDescriptorPermission(descriptor, 'workspace-write')) {
     if (mode === 'workspaceWrite') {
       return createDecision(
@@ -327,6 +351,8 @@ export function createHarnessCanUseTool(input: {
   sessionId: string;
   mode: string;
   projectRoot?: string;
+  allowedReadScopes?: readonly string[];
+  allowedWriteTargets?: readonly string[];
   delegatedSubagents?: readonly string[];
   resolveDescriptor: (toolName: string) => HarnessToolDescriptor | undefined;
   // When provided, an `ask` decision suspends until the operator returns a
@@ -342,14 +368,18 @@ export function createHarnessCanUseTool(input: {
       descriptor,
       projectRoot: input.projectRoot,
       toolInput,
-      blockedPath: options.blockedPath
+      blockedPath: options.blockedPath,
+      allowedReadScopes: input.allowedReadScopes,
+      allowedWriteTargets: input.allowedWriteTargets
     });
     const shellPolicy =
       pathPolicy.allowed && descriptor?.permissions.includes('shell')
         ? await evaluateShellCommandPolicy({
             descriptor,
             projectRoot: input.projectRoot,
-            toolInput
+            toolInput,
+            allowedReadScopes: input.allowedReadScopes,
+            allowedWriteTargets: input.allowedWriteTargets
           })
         : undefined;
     const explicitDeny = !pathPolicy.allowed || shellPolicy?.allowed === false;

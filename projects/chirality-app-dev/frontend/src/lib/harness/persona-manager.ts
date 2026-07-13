@@ -12,6 +12,7 @@ import { resolveHarnessToolPool } from './tool-pool';
 import { HARNESS_TOOL_REGISTRY_VERSION } from '@chirality/harness-contract/tool-descriptor';
 import { CHIRALITY_MCP_SERVER_NAME } from '@chirality/harness-contract/mcp/tool-names';
 import { IPersonaManager } from '@chirality/harness-contract/types';
+import { GENERALIST_AGENT2_PERSONA, UNTYPED_PERSONA } from './agent-roster';
 
 export const PERSONA_COMPOSER_VERSION = 'persona-composer.v1.instruction-root';
 
@@ -213,7 +214,15 @@ export class PersonaComposer implements IPersonaManager {
   ): Promise<string> {
     const instructionRoot = await assertInstructionRootReadable();
     const [personaInstruction, governanceResources] = await Promise.all([
-      readAgentInstruction(persona, instructionRoot),
+      [UNTYPED_PERSONA, GENERALIST_AGENT2_PERSONA].includes(persona.trim().toUpperCase())
+        ? Promise.resolve({
+            instructionRoot,
+            path: path.join(instructionRoot, 'AGENTS.md'),
+            content: persona.trim().toUpperCase() === UNTYPED_PERSONA
+              ? '# Untyped Direct Session\n\nFollow root AGENTS.md and current human steering. No persistent agent role is selected. Do not delegate until the human selects HELP_HUMAN or a named Agent 1 manager.'
+              : '# Ephemeral Generalist Agent 2\n\nFollow the Agent 2 base contract in root AGENTS.md and the sealed launch brief. You have no persistent role package. Use only declared context, tools, and write targets. Return to the direct parent and do not delegate.'
+          })
+        : readAgentInstruction(persona, instructionRoot),
       readGovernanceResources(instructionRoot)
     ]);
     const personaContentHash = sha256Hex(normalizeMarkdown(personaInstruction.content));

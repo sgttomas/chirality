@@ -22,6 +22,8 @@ export type AgentRosterEntry = {
 };
 
 const AGENT_FILE_PATTERN = /^AGENT_(.+)\.md$/;
+export const UNTYPED_PERSONA = 'UNTYPED';
+export const GENERALIST_AGENT2_PERSONA = 'GENERALIST_AGENT2';
 
 /**
  * Enumerate the agent roster from `<instructionRoot>/agents/AGENT_*.md`, parsing
@@ -99,6 +101,9 @@ export async function assertDirectChatPersona(
   persona: string,
   instructionRootOverride?: string
 ): Promise<void> {
+  if (persona.trim().toUpperCase() === UNTYPED_PERSONA) {
+    return;
+  }
   const instruction = await readAgentInstruction(persona, instructionRootOverride);
   const entry: AgentRosterEntry = {
     name: persona,

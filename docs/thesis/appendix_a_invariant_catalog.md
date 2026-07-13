@@ -1,14 +1,19 @@
 # Appendix A — Invariant Catalog
 
-This appendix consolidates the three layers of formally stated invariants that govern the Chirality agent instruction architecture. The invariants are organized by their layer of origin and scope of application: workflow design requirements (R1–R12) apply universally to all agents and all workflow designs; decomposition invariants (I1–I10) govern all decomposition agents; and system-wide invariants (K-*) are enforced across the full agent suite.
+This appendix consolidates the three layers of formally stated invariants that govern the Chirality agent instruction architecture. The invariants are organized by their layer of origin and scope of application: workflow design requirements (R1–R17) apply universally to workflow-component designs; decomposition invariants (I1–I10) govern decomposition; and system-wide invariants (K-*) are enforced across the full agent suite.
 
-The R- and I-series are reproduced from `AGENT_HELPS_HUMANS.md` and `AGENT_DECOMP_BASE.md` respectively. The K-* catalog and the enforcement map in §A.4 are reproduced from the live `docs/CONTRACT.md` as of 2026-07-02 (27 invariants across 12 subsections). `CONTRACT.md` is the maintained catalog and governs on any divergence; it was ratified in full by the owner on 2026-07-11, having earlier carried a ratified minimal basis per D-GOV-05 (ruled 2026-07-01) covering the source-of-truth rule, K-AUTH-1, K-AUTH-2, the generated-output rule, K-WRITE-2, K-PROV-1, K-STATUS-1, and the D-GOV-02 finding-severity taxonomy.
+The R-series is reproduced from the candidate
+`docs/WORKFLOW_COMPONENT_STANDARD.md`; the I-series is reproduced from the
+candidate `docs/DECOMPOSITION_STANDARD.md`. They remain candidate text pending
+explicit owner acceptance. The ratified K-* catalog in `docs/CONTRACT.md`
+governs on divergence.
 
 ---
 
-## A.1 Workflow Design Requirements (R1–R12)
+## A.1 Workflow Design Requirements (R1–R17)
 
-Defined in `AGENT_HELPS_HUMANS.md` (reproduced as of 2026-07-02). Apply to all agents and all workflow designs. A workflow design is considered compliant when all twelve requirements are satisfied.
+Defined in the ratified workflow-component standard. Apply to workflow
+component designs together with the ratified K-* invariants.
 
 | ID | Requirement | Rule |
 |----|-------------|------|
@@ -23,13 +28,18 @@ Defined in `AGENT_HELPS_HUMANS.md` (reproduced as of 2026-07-02). Apply to all a
 | R9 | Publication is hygienic | Version control publishing is reviewable and non-destructive by default. |
 | R10 | Skill tool policy is explicit | Every skill declares its tool policy — preferred, optional, and disallowed tools, and the conditions for falling back from tool execution to direct LLM reasoning. When present, `allowed-tools` in skill frontmatter is authoritative. |
 | R11 | Tool contract is explicit | Every deterministic tool declares its input/output contract, scope boundary, and idempotence posture. Tools fail fast with explicit exit codes and never write outside their declared scope. |
-| R12 | Skill/tool boundary is preserved | Skills identify tool needs; TOOLMAKER implements deterministic helpers; SKILLMAKER integrates the result. Skills do not embed inline deterministic logic; tools do not carry method-level guidance. |
+| R12 | Skill/tool boundary is preserved | Skills identify tool needs; HELPS_HUMANS implements deterministic helpers; HELPS_HUMANS integrates the result. Skills do not embed inline deterministic logic; tools do not carry method-level guidance. |
+| R13 | Claim strength is calibrated | Governed claims do not exceed their warrant under K-CLAIM-1. |
+| R14 | Multi-phase integration rules are explicit | Derivative, snapshot, handoff, closure, sequencing, and cycle rules are implemented where applicable. |
+| R15 | Registry lifecycle is explicit | Live membership, compatibility, deprecation, and retirement are mechanically visible. |
+| R16 | Active-checkout containment is enforced | Task writes remain inside the active checkout under K-WRITE-2. |
+| R17 | Design evidence is proportional and complete | Applicable authority, execution, QA, handoff, and retirement concerns are covered without unnecessary structure. |
 
 ---
 
 ## A.2 Decomposition Invariants (I1–I10)
 
-Defined in `AGENT_DECOMP_BASE.md`. Apply to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP). Verified by AUDIT_DECOMP. These invariants MUST hold across all conforming decomposition agents, regardless of domain.
+Defined in `docs/DECOMPOSITION_STANDARD.md`. Apply to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP). Verified by AUDIT_DECOMP. These invariants MUST hold across all conforming decomposition agents, regardless of domain.
 
 | ID | Invariant | Rule |
 |----|-----------|------|
@@ -69,14 +79,14 @@ Defined in `docs/CONTRACT.md` (reproduced here as of 2026-07-02; 27 invariants).
 
 | ID | Invariant | Enforcement |
 |----|-----------|-------------|
-| **K-SEAL-1** | No Type 2 agent execution before context is **sealed and gate-approved** by a human. | ORCHESTRATOR (seal check); human gate approval |
-| **K-GHOST-1** | Type 2 agent context is limited to **folder contents + declared references**. No ghost inputs. | Agent instruction constraints (WRITE_SCOPE, _REFERENCES.md); human review of diffs |
+| **K-SEAL-1** | No Agent 2 execution before context is sealed, the run is approved at the applicable human gate, and the launch cites that approval record. Runtime presence checks do not manufacture the human act. | Human approval record; ManagedDelegationService structural checks |
+| **K-GHOST-1** | Agent 2 context is limited to declared files/references and sealed brief content. No ghost inputs. | Managed declared context; agent instruction constraints; human review |
 
 ### A.3.4 Dependencies (CONTRACT §1.4)
 
 | ID | Invariant | Enforcement |
 |----|-----------|-------------|
-| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; aggregation is on-demand via `_Reconciliation/`. | TASK+dependency-extract (local writes only); RECONCILIATION agent (read-only aggregation) |
+| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; generic read-only aggregation is on-demand via `_Evaluation/`; a calibrated corpus-concordance run may also inventory dependencies under `_Reconciliation/DeliverableConcordance/`. | TASK+dependency-extract (local writes only); EVALUATION (generic audit); RECONCILIATION (activated corpus concordance) |
 | **K-DEP-2** | Dependency references to deliverables must **resolve to existing deliverable IDs**. Unresolvable targets use `TargetType=UNKNOWN`. | TASK+dependency-extract (Function 2); validation checks |
 
 ### A.3.5 Status and Lifecycle (CONTRACT §1.5)
@@ -128,7 +138,7 @@ Defined in `docs/CONTRACT.md` (reproduced here as of 2026-07-02; 27 invariants).
 
 | ID | Invariant | Enforcement |
 |----|-----------|-------------|
-| **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface, not merely an index**, and agents treat it as authoritative. The framework-root `AGENTS.md` MUST carry the agent matrix and index, the governance integration rules (derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution), and the canonical `TASK`-skill dispatch relationships. A working-root (`projects/*`, `domains/*`) `AGENTS.md` MAY overlay or specialize the suite for that workspace but MUST NOT weaken the framework governance integration rules. Where live registries (`agents/`, `skills/`, `tools/`) and narrative disagree, the live registry governs and the discrepancy is surfaced. | `AGENTS.md` (rule statements); AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
+| **K-AGENTS-1** | Root `AGENTS.md` carries the Agent 0/1/2 runtime hierarchy and live index, governance integration and multi-agent orchestration rules, and canonical TASK-skill dispatch relationships. Workspace overlays may specialize but not weaken that governance. UI matrices are deployment routing views, not runtime authority classes. Registry/narrative disagreement is surfaced and the live registry governs. | `AGENTS.md`; D-GOV-11; AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
 
 ### A.3.12 Domain Engine Integration (CONTRACT §1.12)
 

@@ -73,7 +73,7 @@ If any instruction appears to conflict, do not silently reconcile. Surface the c
 
 ## Package Architecture (PROJECT variant)
 
-PROJECT_DECOMP conforms to the package architecture defined in `AGENT_DECOMP_BASE.md`. The PROJECT canonical working package consists of:
+PROJECT_DECOMP conforms to the package architecture defined in `docs/DECOMPOSITION_STANDARD.md`. The PROJECT canonical working package consists of:
 
 - one concise main decomposition document (the working surface)
 - authoritative companion registers when heavy machine-truth warrants separate files (e.g., Scope Ledger CSV, objective mappings, coverage telemetry)

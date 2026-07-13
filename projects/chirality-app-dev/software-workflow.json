@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-software-workflow/v1",
+  "project_root": ".",
+  "workspace_root": "../..",
+  "checks": {
+    "frontend-build": {"cwd": "frontend", "command": ["npm", "run", "build"]},
+    "frontend-premerge": {"cwd": "frontend", "command": ["npm", "run", "harness:validate:premerge"]},
+    "frontend-test": {"cwd": "frontend", "command": ["npm", "test"]},
+    "frontend-typecheck": {"cwd": "frontend", "command": ["npm", "run", "typecheck"]},
+    "harness-pytest": {"cwd": "../..", "command": ["python3", "-m", "pytest", "-q", "tools/practitioner_harness"]},
+    "harness-self-check": {"cwd": "../..", "command": ["python3", "tools/practitioner_harness/harness.py", "self-check"]}
+  },
+  "always_checks": ["harness-self-check"],
+  "path_rules": [
+    {"paths": ["frontend/src/**", "frontend/electron/**", "frontend/packages/**"], "checks": ["frontend-test", "frontend-typecheck"]},
+    {"paths": ["frontend/package.json", "frontend/package-lock.json", "frontend/next.config.mjs", "frontend/tsconfig*.json"], "checks": ["frontend-build", "frontend-typecheck"]},
+    {"paths": ["execution/**", "docs/**", "AGENTS.md", "loop/**"], "checks": ["harness-pytest"]}
+  ]
+}

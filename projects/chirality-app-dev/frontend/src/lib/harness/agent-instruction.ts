@@ -67,12 +67,16 @@ const ALLOWED_AGENT_FRONTMATTER_KEYS = new Set([
   'model',
   'max_turns',
   'disallowed_tools',
-  'auto_approve_tools'
+  'auto_approve_tools',
+  'allow_generalist_agent2',
+  'dedicated_agent2_approval'
 ]);
 
 const ALLOWED_WRITE_SCOPES = new Set([
   'repo-wide',
   'project-level',
+  'package-level',
+  'bounded-task-brief',
   'deliverable-local',
   'tool-root-only',
   'workspace-scaffold-only',

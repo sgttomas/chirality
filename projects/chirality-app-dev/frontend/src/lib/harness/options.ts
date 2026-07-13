@@ -9,6 +9,7 @@ import {
   readAgentInstruction
 } from './agent-instruction';
 import { HarnessOpts, ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
+import { GENERALIST_AGENT2_PERSONA, UNTYPED_PERSONA } from './agent-roster';
 
 const DEFAULT_MODEL = 'haiku';
 const DEFAULT_TOOLS = ['read', 'write', 'bash'];
@@ -36,6 +37,9 @@ function asPositiveInteger(value: unknown): number | undefined {
 }
 
 async function readPersonaFrontmatter(persona: string): Promise<ParsedFrontmatter> {
+  if ([UNTYPED_PERSONA, GENERALIST_AGENT2_PERSONA].includes(persona.trim().toUpperCase())) {
+    return {};
+  }
   const { content } = await readAgentInstruction(persona);
   return parseFrontmatter(content, {
     warnPrefix: '[harness/options]'

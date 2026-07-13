@@ -4,7 +4,7 @@ import { resolveInstructionRootPath } from './instruction-root';
 import { evaluateToolPathPolicy } from './tool-path-policy';
 import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 
-export const HARNESS_SHELL_POLICY_VERSION = 'harness-shell.v1.bash';
+export const HARNESS_SHELL_POLICY_VERSION = 'harness-shell.v2.managed-child-scopes';
 export const DEFAULT_BASH_TIMEOUT_MS = 120_000;
 export const MAX_BASH_TIMEOUT_MS = 600_000;
 
@@ -159,6 +159,8 @@ export async function evaluateShellCommandPolicy(input: {
   projectRoot?: string;
   instructionRoot?: string;
   toolInput: unknown;
+  allowedReadScopes?: readonly string[];
+  allowedWriteTargets?: readonly string[];
 }): Promise<HarnessShellPolicyResult> {
   const command = readCommand(input.toolInput);
   if (!command) {
@@ -189,6 +191,28 @@ export async function evaluateShellCommandPolicy(input: {
       redirectionTargets,
       absolutePathTokens
     });
+  }
+
+  if (input.allowedReadScopes !== undefined || input.allowedWriteTargets !== undefined) {
+    const projectRoot = path.resolve(input.projectRoot);
+    const fullRead = input.allowedReadScopes?.some((scope) => path.resolve(scope) === projectRoot) ?? false;
+    const fullWrite = input.allowedWriteTargets?.some((scope) => path.resolve(scope) === projectRoot) ?? false;
+    if (!fullRead || !fullWrite) {
+      return deny({
+        command,
+        reason: 'Bash is denied for a managed child unless both declared read and write scope explicitly cover the project root; use bounded file tools or a deterministic registered tool instead.',
+        denyClass: 'managed-shell-scope',
+        timeout,
+        effectiveTimeoutMs,
+        timeoutSource,
+        redirectionTargets,
+        absolutePathTokens,
+        extra: {
+          allowedReadScopes: input.allowedReadScopes?.map((scope) => path.resolve(scope)) ?? [],
+          allowedWriteTargets: input.allowedWriteTargets?.map((scope) => path.resolve(scope)) ?? []
+        }
+      });
+    }
   }
 
   if (!Number.isInteger(effectiveTimeoutMs) || effectiveTimeoutMs <= 0) {
@@ -326,7 +350,9 @@ export async function evaluateShellCommandPolicy(input: {
       instructionRoot,
       toolInput: {
         path: target
-      }
+      },
+      allowedReadScopes: input.allowedReadScopes,
+      allowedWriteTargets: input.allowedWriteTargets
     });
     if (!pathPolicy.allowed) {
       return deny({

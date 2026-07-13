@@ -281,11 +281,13 @@ export class TurnEngine {
       const effectiveOpts = governanceDecision.allowed
         ? {
             ...resolvedOpts,
-            delegatedSubagents: governanceDecision.delegatedSubagents
+            delegatedSubagents: governanceDecision.delegatedSubagents,
+            delegatedAgentInstructions: governanceDecision.delegatedAgentInstructions
           }
         : {
             ...resolvedOpts,
-            delegatedSubagents: []
+            delegatedSubagents: [],
+            delegatedAgentInstructions: {}
           };
       const turnMessage =
         !hasExecutableAttachment && warningText

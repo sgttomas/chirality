@@ -2,7 +2,7 @@
 
 Use this template when creating a new repo-native skill under `skills/`.
 
-Skill contracts conform to the design outcomes specified in `AGENT_HELPS_HUMANS.md` (Type 0) under its "Design Outcomes for Skill Contracts" section and compliance requirements R10 + R12. `AGENT_SKILLMAKER.md` (Type 1 manager) owns skill contract evolution and subsystem governance. New skills must pass `tools/validation/validate_skill_metadata.py`.
+Skill contracts conform to `docs/WORKFLOW_COMPONENT_STANDARD.md` §11 and compliance requirements R10 + R12. `AGENT_HELPS_HUMANS.md` (Type 1 manager) owns skill contract evolution and subsystem governance. New skills must pass `tools/validation/validate_skill_metadata.py`.
 
 ## `SKILL.md`
 
@@ -68,7 +68,7 @@ Document:
 
 ## `TOOL_POLICY.md`
 
-**Required.** Every skill must include this file. Implicit tool assumptions are a design defect (see `AGENT_HELPS_HUMANS.md` Design Outcomes for Skill Contracts).
+**Required.** Every skill must include this file. Implicit tool assumptions are a design defect (see `docs/WORKFLOW_COMPONENT_STANDARD.md` §11).
 
 Use these canonical section headings (exact-string-match; case-sensitive):
 

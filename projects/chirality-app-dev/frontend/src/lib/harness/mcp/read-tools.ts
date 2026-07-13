@@ -59,10 +59,14 @@ import {
   type DomainProposalValidateArgs,
   type DomainProposeOperationArgs
 } from './domain-proposal-tools';
+import { buildCoordinationMcpTools } from './coordination-tools';
 
 export type ChiralityReadMcpContext = {
   projectRoot: string;
   sessionId: string;
+  persona?: string;
+  mode?: string;
+  tools?: readonly string[];
 };
 
 export type ChiralityMutatingMcpContext = ChiralityReadMcpContext & {
@@ -938,6 +942,17 @@ export function buildChiralityMcpTools(input: {
       )
     );
   }
+
+  tools.push(...buildCoordinationMcpTools({
+    context: {
+      projectRoot: input.context.projectRoot,
+      sessionId: input.context.sessionId,
+      persona: input.context.persona ?? '',
+      mode: input.mode ?? input.context.mode ?? 'readOnly',
+      tools: input.context.tools ?? []
+    },
+    allowedToolNames: allowed
+  }));
 
   const mutatingContext: ChiralityMutatingMcpContext = {
     ...input.context,

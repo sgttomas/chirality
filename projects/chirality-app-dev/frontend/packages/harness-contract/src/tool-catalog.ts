@@ -34,7 +34,8 @@ function modeSummary(descriptor: HarnessToolDescriptor): string {
   }
   if (
     descriptor.permissions.includes('workspace-write') ||
-    descriptor.permissions.includes('shell')
+    descriptor.permissions.includes('shell') ||
+    descriptor.permissions.includes('coordination')
   ) {
     return 'workspaceWrite';
   }

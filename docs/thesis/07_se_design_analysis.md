@@ -26,15 +26,20 @@ The Chirality architecture enforces three distinct separations, each of which el
 
 **Instruction versus execution.** The instruction root — a release-managed agent operating system distributed with the application — is physically separated from the working root, the user-controlled filesystem directory where agents read and write project state. Agents read their governing instructions from one location and write state to another. This separation, stated in `DIRECTIVE.md` §2.6 and enforced by the runtime architecture, ensures that the rules governing agent behavior are stable across projects and releases while project execution remains fully filesystem-native. An agent cannot modify its own governing instructions during execution because those instructions reside in a separate, write-protected location.
 
-**Source truth versus derived output.** Deliverable folders — the source truth of the project — are structurally isolated from tool roots, which contain agent-produced analysis and snapshots. Tool roots (`_Aggregation/`, `_Estimates/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) are explicitly designated zones for derived output. Source truth contains only human-accepted deliverable content. The boundary is enforced by invariant K-WRITE-1: every agent declares its write scope in its header block, and no agent may write outside that declared zone. This prevents derived analysis from silently contaminating the authoritative project record.
+**Source truth versus derived output.** Deliverable folders — the source truth of the project — are structurally isolated from tool roots, which contain agent-produced analysis and snapshots. Tool roots (`_Aggregation/`, `_Estimates/`, `_Evaluation/`, `_Reconciliation/`, `_Change/`, `_Schedule/`) are explicitly designated zones for derived output. Source truth contains only human-accepted deliverable content. The boundary is enforced by invariant K-WRITE-1 plus managed child read/write scopes, permission policy, and hooks. This prevents derived analysis from silently contaminating the authoritative project record.
 
-**Authority versus execution.** The Type 0/1/2 hierarchy separates standards definition (Type 0 — Architect agents), orchestration (Type 1 — Manager agents), and bounded task execution (Type 2 — Specialist agents). Authority flows downward: Type 0 constraints govern Type 1 behavior; Type 1 orchestration governs Type 2 task scope. Escalation flows upward. No agent of any type can exceed its authority tier, and no agent of any type can bypass a human gate. This separation, defined in `TYPES.md` §4.3 and enforced by agent instruction constraints and human gate authority, provides a formal model of delegation that mirrors classical SE authority hierarchy [CITE:SE_textbook].
+**Authority versus execution.** Standards constrain the system from outside the runtime hierarchy. Agent 0 aligns with the human and supervises Agent 1 managers; Agent 1 delegates bounded work to Agent 2; Agent 2 does not delegate. Authority and capability do not increase through delegation, escalation flows upward, and no agent may bypass a human gate.
 
 ### 7.2.2 Modularity and Encapsulation
 
 The atomic unit of work in the Chirality architecture is the **production unit folder** — a single deliverable or knowledge type. Each folder is self-contained, carrying identity (`_CONTEXT.md`), lifecycle state (`_STATUS.md`), dependency registers (`_DEPENDENCIES.md`, `Dependencies.csv`), references (`_REFERENCES.md`), working memory (`_MEMORY.md`), and production documents. This encapsulation pattern, in which every module carries its own state and interface declarations internally, is consistent with information-hiding principles applied to system decomposition [CITE:SE_textbook].
 
-Encapsulation is formally enforced by three invariant mechanisms. K-HIER-1 mandates a flat package-to-deliverable hierarchy — no nesting — ensuring that the system can never develop hidden coupling through intermediate levels. K-WRITE-1 restricts deliverable-local agents to writing only within their assigned folder. The WORKING_ITEMS invariant extends this by prohibiting cross-deliverable scanning or editing by default. The result is that a fault in any deliverable-local agent is structurally confined to that deliverable's folder; it cannot propagate to adjacent deliverables without an explicit cross-deliverable operation.
+Encapsulation is formally enforced at two management horizons. K-HIER-1
+mandates a flat package-to-deliverable hierarchy. WORKING_ITEMS is confined to
+one activated package, while each Agent 2 child receives explicit bounded write
+targets. Cross-package coordination remains with Agent 0. Shared reads are
+allowed, concurrent sibling writes must be disjoint, and overlapping writes
+are serialized or assigned to one integration owner.
 
 Cross-deliverable operations — reconciliation, aggregation, closure analysis — are explicit, opt-in, and write to isolated tool roots rather than to deliverable folders. This design ensures that integration operations are always auditable as distinct events in the project record, rather than being conflated with production work.
 
@@ -49,7 +54,7 @@ Interfaces between agents are defined by four mechanisms, each with explicit sem
 | Identity contract | `_CONTEXT.md` | Declares what a deliverable is, who owns it, and what it traces to |
 | Dependency contract | `Dependencies.csv` v3.1 (29 columns) | Machine-readable typed edges between deliverables |
 | Coordination contract | `_COORDINATION.md` | Project-level choreography semantics |
-| Brief contract | INIT-TASK briefs | Structured input for Type 2 agents with validated enumerations |
+| Brief contract | Sealed Agent 2 briefs | Structured objective, scope, context, tools, writes, outputs, and acceptance checks |
 
 Every interface is machine-checkable and carries explicit preconditions and postconditions. The dependency contract, discussed further in Section 7.8.3 in the context of the formal type system, defines a 29-column schema with fully enumerated type domains covering dependency class, anchor type, direction, dependency type, target type, confidence, origin, explicitness, status, and satisfaction status. This level of interface specification is characteristic of safety-critical systems design, where ambiguous interfaces are a primary source of integration failure [CITE:SE_textbook].
 
@@ -101,7 +106,7 @@ Verification determines whether a system has been built correctly relative to it
 
 ### 7.4.1 The V-Model
 
-The system implements a classic V-model: decomposition down the left side and integration with verification up the right. `AGENT_DECOMP_BASE.md` defines a seven-gate protocol that maps directly onto this structure.
+The system implements a classic V-model: decomposition down the left side and integration with verification up the right. `docs/DECOMPOSITION_STANDARD.md` defines a seven-gate protocol that maps directly onto this structure.
 
 **Decomposition (left leg)** — five phases drive requirements downward from source corpus to testable production units:
 
@@ -144,7 +149,7 @@ The five-gate structure is an instantiation of the stage-gate principle in SE pr
 
 Three complementary forms of coverage verification exist in the Chirality system.
 
-**Decomposition coverage** (DECOMP_BASE Phase 6) verifies that every in-scope atomic unit is mapped to exactly one partition and at least one production unit. Gaps are recorded as open issues with stable identifiers. Coverage is reported as a machine-checkable metric across the decomposition ledger.
+**Decomposition coverage** (Decomposition Standard Phase 6) verifies that every in-scope atomic unit is mapped to exactly one partition and at least one production unit. Gaps are recorded as open issues with stable identifiers. Coverage is reported as a machine-checkable metric across the decomposition ledger.
 
 **Dependency coverage** (TASK+dependency-extract Function 5) verifies that every active dependency row has associated evidence — an `EvidenceFile` field and a `SourceRef` field, or an explicit `location TBD` marker. Floating nodes, deliverables without an `IMPLEMENTS_NODE` anchor row, generate structured warnings. This form of coverage serves K-PROV-1: the provenance of every dependency claim must be traceable to a source.
 
@@ -176,14 +181,18 @@ The write scope architecture creates formal fault containment zones with precise
 
 | Containment Zone | Assigned Agents | Maximum Failure Impact |
 |---|---|---|
-| Deliverable-local | WORKING_ITEMS, TASK, TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register | Limited to one production unit folder |
-| Tool-root | ORCHESTRATOR, ESTIMATING, AGGREGATION, AUDIT_*, SCHEDULING | Limited to one tool root; source truth untouched |
+| Package-level | WORKING_ITEMS | Limited to one activated package and selected deliverables |
+| Deliverable-local | TASK, TASK+four-documents, TASK+dependency-extract, TASK+semantic-matrix-build, TASK+lens-register | Limited to brief-declared production-unit targets |
+| Tool-root | ORCHESTRATOR scheduling workflow, AGGREGATION, AUDIT_*, and TASK estimation skills | Limited to one tool root; source truth untouched |
 | Repository (approval-gated) | CHANGE | Requires explicit human approval token per action |
-| Read-only | HELP_HUMAN, HELPS_HUMANS, DECOMP_BASE | Zero write impact |
+| Read-only | HELP_HUMAN, HELPS_HUMANS, Decomposition Standard | Zero write impact |
 
 This zoning architecture is a direct application of the fault containment region concept in safety engineering [CITE:Leveson2011]: the system is partitioned such that a failure within any zone cannot propagate to adjacent zones without crossing a boundary enforced by an independent mechanism. In the Chirality implementation, the boundary between the tool-root zone and source truth is carried by K-WRITE-1 as a declared, auditable contract rather than by informal process discipline — a conforming agent has no write path outside its declared scope, bounded task writes are additionally path-contained by a deterministic TASK-shell check (K-WRITE-2), and deviations surface in diff review (Chapter 8, §8.6).
 
-The CHANGE agent occupies a distinctive position in this architecture. It is the sole path from derived analysis output to committed repository state, and every action requires an explicit human approval token (APPROVE: or APPROVE_DESTRUCTIVE:). A Type 2 agent failure cannot corrupt source truth because no Type 2 agent has a write path to source truth. The CHANGE agent's approval gate is the sole crossing point, and it requires active human authorization.
+CHANGE occupies a distinctive position as the governed Git-state manager.
+Agent 2 may write source content only inside explicit bounded targets; tool-root
+specialists remain quarantined. Committing records Git state but does not
+accept engineering content or advance lifecycle state.
 
 ### 7.5.2 Failure Mode Visibility
 
@@ -206,9 +215,12 @@ The `FAILED_INPUTS` halt behavior is particularly significant. When a Type 2 age
 
 Two invariants bound what a Type 2 agent can see and when it is permitted to run.
 
-K-SEAL-1 states: "No Type 2 agent execution before context is sealed and gate-approved by a human." The sealing operation requires that all inputs be explicitly declared via `_REFERENCES.md` and deliverable folder contents, and that a human confirm the sealed context before execution begins. This prevents agents from operating on an incomplete or evolving input set — a condition that, in an LLM-based system, is a primary source of unpredictable behavior.
+K-SEAL-1 requires sealed context, approval at the applicable human run gate,
+and a launch citation to that human approval record. Runtime checks verify the
+presence and structure of metadata, not the authenticity of the human act.
 
-K-GHOST-1 states: "Type 2 agent context is limited to folder contents and declared references. No ghost inputs." Ghost inputs — sources of information available to an agent at execution time but not declared in the sealed context — are structurally prohibited. The agent may not consult undeclared prior context, informal communications, or any information source not explicitly listed in `_REFERENCES.md`.
+K-GHOST-1 limits Agent 2 context to declared files, references, and sealed
+brief content. Prior chat state and undeclared sources are not implicit inputs.
 
 Together, K-SEAL-1 and K-GHOST-1 implement a formal context boundary analogous to the environmental control requirements imposed on safety-critical software [CITE:Leveson2011]. The context of execution is defined, bounded, and approved before execution begins.
 
@@ -220,7 +232,7 @@ Requirements engineering encompasses the processes of eliciting, analyzing, spec
 
 ### 7.6.1 Hierarchical Decomposition and Allocation
 
-The decomposition protocol (`AGENT_DECOMP_BASE.md`) implements formal requirements decomposition through four levels of progressive refinement:
+The decomposition protocol (`docs/DECOMPOSITION_STANDARD.md`) implements formal requirements decomposition through four levels of progressive refinement:
 
 ```
 Source Corpus (scope of work / handbook)
@@ -267,12 +279,12 @@ The system implements a closed-loop feedback control architecture spanning the c
 ORCHESTRATOR (Plant Setup)
   → WORKING_ITEMS (Actuator — produces content)
     → TASK+dependency-extract rerun (Sensor — updates dependency state)
-      → RECONCILIATION (Comparator — surfaces deviations)
+      → EVALUATION (Comparator — surfaces deviations)
         → CHANGE (Output — commits to baseline)
           → ORCHESTRATOR scan (Feedback — reports new state)
 ```
 
-Each element of this loop has a defined control function. The ORCHESTRATOR initializes the plant state — the workspace configuration and coordination representation — and provides the periodic scan that closes the loop by reporting current system state. WORKING_ITEMS is the primary actuator, producing content that advances deliverables toward their set points. The TASK+dependency-extract rerun after content changes functions as a sensor, updating the dependency state to reflect the new system state. RECONCILIATION is the comparator, differencing actual dependency state against expected dependency state and surfacing deviations as findings. CHANGE commits accepted states to baseline, making the output permanent. The ORCHESTRATOR scan then reports the new baseline state as feedback to the next iteration.
+Each element of this loop has a defined control function. ORCHESTRATOR initializes workspace and coordination state. Package-level WORKING_ITEMS instances are the primary actuators. TASK+dependency-extract reruns update dependency state as sensors. EVALUATION is the generic comparator, differencing observed state against the accepted basis and surfacing deviations. RECONCILIATION is activated only for the broader problem of corpus concordance. CHANGE records authorized file/Git state; a commit is not semantic acceptance. The next manager inspection closes the loop from accepted live state.
 
 ### 7.7.2 Control Variables and Set Points
 
@@ -281,7 +293,7 @@ The system manages five primary control variables, each with a defined set point
 | Controlled Variable | Set Point | Sensor | Actuator |
 |---|---|---|---|
 | Lifecycle state | ISSUED | `_STATUS.md` | REVIEW gate |
-| Dependency closure | All active dependencies satisfied | `Dependencies.csv` | RECONCILIATION |
+| Dependency closure | All active dependencies satisfied | `Dependencies.csv` | EVALUATION |
 | Decomposition fidelity | Zero unassigned atomic units | Decomposition Ledger | Human correction |
 | Work availability | No blocked deliverables | Blocker analysis | Tier sequencing |
 | Artifact completeness | All anticipated artifacts present | Folder scan | WORKING_ITEMS |
@@ -294,11 +306,24 @@ The control variable framework also illustrates why the epistemology pillar is s
 
 The control architecture includes both open-loop and closed-loop segments, serving different functional purposes.
 
-**Open-loop (within a session):** WORKING_ITEMS produces content within a single deliverable without cross-deliverable feedback. The agent is bounded by its deliverable scope and session objective. There is no real-time sensor reading from the broader project state. This open-loop characteristic is intentional — it prevents agents from being distracted by or making decisions based on the state of other deliverables during focused production work.
+**Terminal child execution:** an Agent 2 may execute one bounded objective
+without sibling feedback, followed by validated fan-in. **Supervised
+many-to-many execution:** active children report relevant findings to their
+parent, which selectively relays or amends affected work. WORKING_ITEMS owns
+this coordination within one package; HELP_HUMAN owns it across packages.
 
-**Closed-loop (across sessions):** The handoff mechanism (`NEXT_INSTANCE_STATE.md`) carries state between sessions. TASK+dependency-extract reruns after content changes update the dependency graph with current evidence. RECONCILIATION detects integration defects by comparing the updated dependency graph against expected satisfaction states. ORCHESTRATOR scans compute work availability for the next tier. The closed loop operates at the session boundary, not within a session.
+**Closed-loop (across sessions and active runs):** Durable handoffs carry state
+between sessions. During a managed run, Agent 2 notices return to Agent 1 and
+Agent 1 notices return to Agent 0; selected updates are delivered at safe turn
+boundaries and recorded with acknowledgments. TASK+dependency-extract updates
+the dependency sensor, EVALUATION detects generic integration defects, and
+manager inspections compute the next dependency-valid work graph.
 
-This architectural choice — confining closed-loop feedback to session boundaries — is consistent with a broader safety principle: feedback should be deferred to a point at which it can be evaluated with appropriate scope and authority. Real-time feedback within a production session would require the agent to make scope decisions it is not authorized to make.
+Feedback is therefore neither unrestricted real-time sibling messaging nor
+confined to terminal session boundaries. It is parent-mediated, claim-status
+preserving, and applied only at safe turn boundaries. Objective, authority,
+scope, ownership, risk, or acceptance changes require versioned amendments;
+consequential changes return to the human.
 
 ### 7.7.4 Human Authority as the Halting Condition
 
@@ -318,7 +343,13 @@ The architecture defines three layers of formally stated invariants, each govern
 
 **I1–I10 (Decomposition invariants)** are structural constraints on the decomposition process: human-validated gates (I1), no invention (I2), flat partitions (I3), exactly one partition per atomic unit (I4), stable identifiers (I5), deterministic ID coupling (I6), best-effort objective mapping (I7), traceable rationale (I8), machine-checkable ledger and telemetry (I9), and vocabulary discipline (I10). These invariants are enforced by decomposition agents during execution and verified by the AUDIT_DECOMP agent post-execution.
 
-**R1–R12 (Workflow design requirements)** are behavioral constraints on all agents in the system: human decision rights (R1), straight-through task execution (R2), write quarantine (R3), immutable snapshots (R4), mandatory provenance (R5), no invention (R6), conflict surfacing (R7), brief-driven execution (R8), hygienic publication (R9), and the skill/tool-boundary requirements — explicit skill tool policy (R10), explicit tool contract (R11), preserved skill/tool boundary (R12). These invariants are enforced by agent instruction design — they are embedded in the instruction logic of every agent rather than checked by a separate auditing mechanism.
+**R1–R17 (candidate workflow design requirements)** cover human decision
+rights, straight-through Agent 2 execution, write quarantine, snapshots,
+provenance, no invention, conflict surfacing, brief-driven execution,
+publication, skill/tool contracts and separation, claim calibration,
+multi-phase integration, registry lifecycle, checkout containment, and
+proportional design evidence. They become independently binding only after
+explicit owner acceptance; ratified K-* invariants govern meanwhile.
 
 **K-* (System-wide invariants)** form the named, stable invariant catalog maintained in `CONTRACT.md`, covering the full scope of system behavior: hierarchy (K-HIER-1, K-ID-1), authority (K-AUTH-1, K-AUTH-2, K-BIND-1), sealing (K-SEAL-1, K-GHOST-1), dependencies (K-DEP-1, K-DEP-2), status (K-STATUS-1), staleness (K-STALE-1, K-STALE-2, K-VAL-1), gates (K-GATE-1), merge (K-MERGE-1), provenance and claim discipline (K-PROV-1, K-CLAIM-1), invention (K-INVENT-1), conflicts (K-CONFLICT-1), write scope and path containment (K-WRITE-1, K-WRITE-2), snapshots (K-SNAP-1), the agent registry surface (K-AGENTS-1), and domain-engine boundaries (K-DOMAIN-1 through K-DOMAIN-4). K-* identifiers are stable and never reused; retired invariants are preserved in the catalog with retirement rationale. The full catalog as of this revision is reproduced in Appendix A.
 
@@ -567,7 +598,7 @@ Each SE discipline implemented in the Chirality architecture serves one or more 
 
 The Chirality instruction architecture is, in its entirety, a systems engineering artifact. The instruction files are formal specifications defining interfaces, state machines, invariants, preconditions, postconditions, containment zones, and authority boundaries. The governance documents — `DIRECTIVE.md`, the specification (`SPEC.md`), the type system (`TYPES.md`), and `CONTRACT.md` — form a coherent specification hierarchy: intent, physical structures, vocabulary, and binding invariants.
 
-What distinguishes this architecture from a conventional agent system is that the SE disciplines are not bolted on as compliance artifacts. They are the mechanism by which agents coordinate, the means by which failures are contained, and the basis on which humans maintain authority. The Type 0/1/2 hierarchy, the write scope architecture, the invariant system, the gate-controlled workflows, and the evidence-first epistemology are all instantiations of classical SE patterns adapted to the specific challenge of governing LLM-based agents in professional and regulated environments.
+What distinguishes this architecture from a conventional agent system is that the SE disciplines are not bolted on as compliance artifacts. They are the mechanism by which agents coordinate, the means by which failures are contained, and the basis on which humans maintain authority. The Agent 0/1/2 runtime hierarchy, the write scope architecture, the invariant system, the gate-controlled workflows, and the evidence-first epistemology are all instantiations of classical SE patterns adapted to the specific challenge of governing LLM-based agents in professional and regulated environments.
 
 The practical implication is significant: the systems engineering content of this architecture is not incidental overhead. It is what makes the system capable of supporting professional reliance. A system without content-addressed approval cannot provide reliable baselines. A system without fault containment zones cannot bound agent failures. A system without the formal type system cannot enforce consistent behavior across agent instances. A system without human gates cannot maintain professional accountability. The SE disciplines are not qualities added to the system; they are the properties that define it.
 

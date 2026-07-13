@@ -7,6 +7,8 @@ import {
   readAgentInstruction,
   tryReadAgentInstruction
 } from './agent-instruction';
+import { createHash } from 'node:crypto';
+import { GENERALIST_AGENT2_PERSONA, UNTYPED_PERSONA } from './agent-roster';
 
 export type GovernanceGateId =
   | 'ENVIRONMENT'
@@ -25,6 +27,12 @@ export type SubagentGovernanceDecision = {
   evaluationMs: number;
   allowlistedSubagents: string[];
   delegatedSubagents: string[];
+  delegatedAgentInstructions?: Record<string, {
+    path: string;
+    content: string;
+    sha256: string;
+    agentType: 1 | 2;
+  }>;
   approvalRef?: string;
   approvedBy?: string;
 };
@@ -59,7 +67,8 @@ function deny(
     reason,
     evaluationMs,
     allowlistedSubagents,
-    delegatedSubagents: []
+    delegatedSubagents: [],
+    delegatedAgentInstructions: {}
   };
 }
 
@@ -132,9 +141,11 @@ function formatAgentType(agentType: number | undefined): string {
 
 async function resolveDelegatedSubagents(
   subagents: string[],
-  instructionRoot: string
-): Promise<string[]> {
+  instructionRoot: string,
+  parentType: 0 | 1
+): Promise<{ names: string[]; instructions: NonNullable<SubagentGovernanceDecision['delegatedAgentInstructions']> }> {
   const delegated: string[] = [];
+  const instructions: NonNullable<SubagentGovernanceDecision['delegatedAgentInstructions']> = {};
 
   for (const subagentName of subagents) {
     const instruction = await tryReadAgentInstruction(subagentName, instructionRoot);
@@ -146,17 +157,18 @@ async function resolveDelegatedSubagents(
     }
 
     const agentType = parseAgentType(instruction.content);
-    if (agentType !== 2) {
+    const expectedType = parentType === 0 ? 1 : 2;
+    if (agentType !== expectedType) {
       console.error(
         `[harness/subagent-governance] Candidate subagent rejected: ${subagentName} declares AGENT_TYPE=${formatAgentType(
           agentType
-        )}; expected TYPE 2.`
+        )}; expected TYPE ${expectedType}.`
       );
       continue;
     }
 
     const agentClass = parseAgentClass(instruction.content);
-    if (agentClass !== 'TASK') {
+    if (expectedType === 2 && agentClass !== 'TASK') {
       const renderedClass = agentClass ?? 'missing';
       console.warn(
         `[harness/subagent-governance] Candidate subagent warning: ${subagentName} declares AGENT_CLASS=${renderedClass}; TASK is preferred.`
@@ -164,9 +176,15 @@ async function resolveDelegatedSubagents(
     }
 
     delegated.push(subagentName);
+    instructions[subagentName] = {
+      path: instruction.path,
+      content: instruction.content,
+      sha256: createHash('sha256').update(instruction.content).digest('hex'),
+      agentType: expectedType
+    };
   }
 
-  return delegated;
+  return { names: delegated, instructions };
 }
 
 export async function evaluateSubagentGovernance(
@@ -178,11 +196,30 @@ export async function evaluateSubagentGovernance(
   let allowlistedSubagents: string[] = [];
 
   try {
+    if ([UNTYPED_PERSONA, GENERALIST_AGENT2_PERSONA].includes(persona.trim().toUpperCase())) {
+      const denied = deny(
+        'PERSONA_ALLOWLIST',
+        'Untyped sessions and ephemeral Agent 2 instances may not delegate.',
+        [],
+        elapsedMs(startNs)
+      );
+      return finalizeDecision(persona, denied, env);
+    }
     const personaInstruction = await readAgentInstruction(persona);
     const frontmatter = parseFrontmatter(personaInstruction.content, {
       warnPrefix: '[harness/subagent-governance]'
     });
     allowlistedSubagents = normalizeSubagentList(frontmatter.subagents);
+    const parentType = parseAgentType(personaInstruction.content);
+    if (parentType !== 0 && parentType !== 1) {
+      const denied = deny(
+        'PERSONA_ALLOWLIST',
+        'Only Agent 0 and Agent 1 may delegate.',
+        allowlistedSubagents,
+        elapsedMs(startNs)
+      );
+      return finalizeDecision(persona, denied, env);
+    }
 
     if (env.CHIRALITY_ENABLE_SUBAGENTS !== 'true') {
       const denied = deny(
@@ -246,9 +283,10 @@ export async function evaluateSubagentGovernance(
     }
 
     const approvedBy = asNonEmptyString(subagentGovernance.approvedBy);
-    const delegatedSubagents = await resolveDelegatedSubagents(
+    const delegated = await resolveDelegatedSubagents(
       allowlistedSubagents,
-      personaInstruction.instructionRoot
+      personaInstruction.instructionRoot,
+      parentType
     );
     const allowed: SubagentGovernanceDecision = {
       allowed: true,
@@ -256,7 +294,8 @@ export async function evaluateSubagentGovernance(
       reason: 'All delegation governance gates passed.',
       evaluationMs: elapsedMs(startNs),
       allowlistedSubagents,
-      delegatedSubagents,
+      delegatedSubagents: delegated.names,
+      delegatedAgentInstructions: delegated.instructions,
       approvalRef,
       approvedBy
     };

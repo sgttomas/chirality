@@ -44,7 +44,7 @@ An owner-revision backlog for the thesis is catalogued in `plans/consistency_aud
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem
 2. **Regulatory mapping** — APEGA "Relying on the Work of Others" maps directly to AI agent governance; AI agents are "others" whose work the professional relies on
 3. **Four-pillar philosophical framework** — ontology/epistemology/praxiology/axiology with fractal instantiation through the document kit
-4. **Fault containment through write scope** — Type 0/1/2 hierarchy with formal blast radius containment
+4. **Fault containment through write scope** — Agent 0/1/2 runtime hierarchy with formal blast radius containment
 5. **Three-layer invariant system** — R1–R12, I1–I10, K-* with four-layer enforcement map
 
 ## Source Material
@@ -61,4 +61,4 @@ All thesis content draws from the Chirality project governance documents. Primar
 | `docs/TYPES.md` | 4 |
 | `PROFESSIONAL_ENGINEERING.md` | 6 |
 | `agents/AGENT_HELPS_HUMANS.md` | 4, 5 |
-| `agents/AGENT_DECOMP_BASE.md` | 4 |
+| `docs/DECOMPOSITION_STANDARD.md` | 4 |

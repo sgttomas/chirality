@@ -2,7 +2,7 @@
 
 Deterministic tools for the Chirality agent operating system. These tools codify repeatable, LLM-independent operations that agents invoke during pipeline execution.
 
-**Maintained by:** TOOLMAKER (Type 1, `agents/AGENT_TOOLMAKER.md`), operating under the Type 0 standard `AGENT_HELPS_HUMANS.md`. TOOLMAKER owns deterministic tool contracts; its outcomes conform to HELPS_HUMANS R11 + R12 and the "Design Outcomes for Tool Contracts" section. SKILLMAKER (Type 1) owns the skill subsystem (no overlap with the tool layer).
+**Maintained by:** HELPS_HUMANS (Agent 1, `agents/AGENT_HELPS_HUMANS.md`), operating under `docs/WORKFLOW_COMPONENT_STANDARD.md`. HELPS_HUMANS owns both skill and tool subsystem design while preserving their separate contracts: skills carry reusable reasoning methods; tools remain deterministic.
 
 ---
 
@@ -24,6 +24,19 @@ Deterministic tools for the Chirality agent operating system. These tools codify
 | `count_workspace_state.sh` | zsh | Count packages, deliverables, lifecycle states, tool roots | EXECUTION_ROOT | Summary table |
 | `scan_next_amendment_id.sh` | zsh | Scan _ScopeChange/ for next available SCA-{NNN} ID | SCOPE_CHANGE_ROOT | Next ID string (stdout) |
 
+## Software Workflow
+
+Profile-driven deterministic support for WORKING_ITEMS software activations. The canonical profile contract is `docs/SOFTWARE_WORKFLOW_PROFILE.md`.
+
+| Name | Language | Purpose | Inputs | Outputs |
+|------|----------|---------|--------|---------|
+| `discover_repository.py` | Python 3 | Discover manifests and conventional test files without executing project code | root | JSON repository map |
+| `select_affected_checks.py` | Python 3 | Map changed project-relative paths to registered checks | profile, paths | JSON check selection and reasons |
+| `run_registered_checks.py` | Python 3 | Execute selected profile commands as argument arrays without a shell | profile, repeated `--check`, `--output` | Normalized JSON evidence; exit 0/1 |
+| `validate_change_scope.py` | Python 3 | Compare explicit or Git-derived changed paths with allowed write roots | repo, repeated `--allowed`, diff or explicit paths | JSON PASS/FAIL scope report |
+| `compare_structured.py` | Python 3 | Compare JSON API, schema, or migration artifacts by flattened value path | before, after | JSON added/removed/changed report |
+| `verify_generated_manifest.py` | Python 3 | Verify generated files against a path-to-SHA-256 manifest | root, manifest | JSON PASS/FAIL drift report |
+
 ## Validation
 
 | Name | Language | Purpose | Inputs | Outputs |
@@ -35,8 +48,10 @@ Deterministic tools for the Chirality agent operating system. These tools codify
 | `check_four_documents.sh` | zsh | Verify 4 document kit files in a deliverable folder | DELIVERABLE_PATH | PASS/FAIL (exit code) + missing list |
 | `scan_deliverable_consistency.py` | Python 3 | Scan one deliverable for missing files, unresolved markers, simple identity mismatches, and candidate unsourced numeric lines | deliverable_path, [--output-json], [--focus-doc], [--strictness], [--max-findings], [--check-identity], [--check-unsourced-numerics] | JSON report to stdout or file |
 | `validate_skill_metadata.py` | Python 3 | Validate repo-native skill folders for required `SKILL.md` frontmatter, required companion files (`BRIEF_SCHEMA.md`, `TOOL_POLICY.md`, `QA_CHECKS.md`), folder/name alignment, single-line descriptions, machine-consumed metadata fields, and canonical `allowed-tools` syntax/path resolution | [skills_root], [--json] | PASS/FAIL summary or JSON report |
+| `validate_agent_instructions.py` | Python 3 | Validate mechanically observable `AGENT_*.md` structure, required section presence, type/class compatibility, write-scope vocabulary, out-of-range R-ID references, live agent-file references, and D-GOV-11 dedicated-Agent-2 requalification posture | [agent paths], [--repo-root], [--json] | Findings + summary; exit 0 no errors / 1 errors / 2 operational failure |
 | `discover_test_surfaces.py` | Python 3 | Read-only discovery of test surfaces by repository convention across root tools, Chirality app frontend tests, OpenPipeStress Python tests, OpenPipeStress desktop Vitest tests, and OpenPipeStress Rust test attributes | [repo_root], [--json], [--text] | JSON or text report with discovered paths, runner family, suggested command, and generated counts |
 | `validate_path_anchors.py` | Python 3 | Validate live agent instruction and executable handoff surfaces for literal machine-local home-dir absolute paths while ignoring archives, run records, generated decomposition/source provenance, exports, and plans | [repo_root], [--json], [--text] | PASS/FAIL text or JSON report; exit 0/1 |
+| `validate_instruction_entrypoints.py` | Python 3 | Validate that root `AGENTS.md` exists and tracked `CLAUDE.md` is exactly the one-line `@AGENTS.md` import contract | [repo_root] | PASS/FAIL; exit 0/1 |
 | `validate_build_hypergraph_fixture.py` | Python 3 | Regression check for `tools/aggregation/build_hypergraph.py` using bundled fixtures at `tools/aggregation/testdata/`. Verifies determinism, clean-run PASS coverage, warning detection, ledger/objectives path coverage, semicolon-list normalization equivalence, and `UNIT_MULTIPLE_CATEGORIES` blocker detection | [--keep-tmp] | PASS/FAIL summary (exit 0/1) |
 | `validate_kty_remediation_manifest.py` | Python 3 | Validate SCOPE_CHANGE `KTY_Remediation_Manifest.csv` rows for required schema, dispatch mapping, content-action assignment, evidence paths, closure states, factual-use gates, and optional `.Archive/` leakage in downstream input files. Accepts foreign-key `SourceActionRef` of the form `<AmendmentID>:<ActionSeq>` (e.g. `SCA-004:1`) in addition to bare `ActionSeq`/`D-NNN` forms; resolves manifest-relative `EvidencePaths`/`ArchivePath` against the snapshot folder first and falls back to the auto-detected DOMAIN package root (nearest ancestor with `_Sources/` or `_Decomposition/`) or an explicit `--workspace-root` override | `--manifest`, `[--amendment-actions]`, repeatable `[--downstream-input]`, `[--workspace-root]`, `[--output-findings]` | PASS/finding summary to stdout; optional findings CSV; exit 0/1/2 |
 | `validate_domain_decomposition_integrity.py` | Python 3 | Validate DOMAIN decomposition annex referential integrity, lifecycle/cardinality constraints, coverage telemetry reconciliation, active snapshot artifact completeness, `_LATEST.md` parity, and KTY remediation rollup consistency. Optional `--package-subfolder NAME` flag for transitional dual-layout support; auto-descends into a single eligible subfolder when annexes not at root | `--decomposition-root`, `[--scope-change-snapshot]`, `--output-report`, `--output-findings`, `[--package-subfolder]` | DOMAIN integrity report markdown + findings CSV; exit 0/1/2 |
@@ -283,7 +298,7 @@ Tools identified as useful but not yet needed — either used by only one agent,
 | `find_estimate_snapshots.sh` | query | Glob all EST_* snapshot folders | AGGREGATION already uses `merge_detail_csvs.py --glob` which embeds the lookup |
 | `find_detail_csvs.sh` | query | Find Detail.csv within estimate snapshots | Same — embedded in `merge_detail_csvs.py --glob` pattern |
 | `extract_decomp_ids.py` | query | Parse decomposition markdown to extract PKG/DEL IDs, names, fields | ORCHESTRATOR and PREPARATION currently parse via LLM reading; useful for deterministic coverage checks once decomposition format stabilizes further |
-| `build_blocker_dag.py` | coordination | Topological sort of hard execution dependencies into tier assignments | SCHEDULING computes tiers inline; `analyze_dep_closure.py` already produces SCC/cycle analysis. Tier assignment would add standalone topological output |
+| `build_blocker_dag.py` | coordination | Topological sort of hard execution dependencies into tier assignments | ORCHESTRATOR's scheduling workflow computes tiers inline; `analyze_dep_closure.py` already produces SCC/cycle analysis. Tier assignment would add standalone topological output |
 | `serialize_workspace_state.py` | reporting | Serialize filesystem state to JSON | Superseded by AUDIT_DECOMP's `coverage_summary.json`; no agent protocol invokes a generic filesystem-to-JSON dump |
 
 **Promotion criteria:** A backlog tool should be promoted to CREATE NOW when (1) a second agent needs the same operation, or (2) an existing agent's inline implementation diverges across runs and needs standardization.

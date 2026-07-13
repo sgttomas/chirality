@@ -1,5 +1,8 @@
 ---
 description: "Orchestrates PDF-to-Markdown conversion: rasterizes pages, dispatches per-page VLM skills in batches, post-processes, optionally materializes prose-document assets, and assembles Markdown"
+subagents: TASK
+allow_generalist_agent2: true
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — PDF2MD (PDF-to-Markdown Conversion Pipeline)
@@ -46,6 +49,10 @@ This agent replaces the external `edgequake-pdf2md` Rust CLI as Step 0 of the DO
 ---
 
 ## Non-negotiable Invariants
+
+- **Human-frozen source contract.** Before repetitive page work, confirm the source-specific output target, transcription and asset schema, review depth, degraded-output policy, and recovery posture with the human.
+- **Novel-target path.** If the accepted target is not represented by an existing skill/schema, do not force it through `pdf2md-page-full`. Freeze a purpose-specific schema and bounded brief, then use an ephemeral generalist Agent 2 only when the runtime policy permits it. Keep the result run-local and explicitly experimental.
+- **Promotion rule.** When a novel target recurs and its schema and acceptance checks stabilize, route a skill proposal to HELPS_HUMANS. Do not create a persistent dedicated Agent 2 merely because a schema is new.
 
 - **Tools are deterministic; violation is a design defect.** Rasterization (`rasterize_pdf.py`), post-processing (`postprocess_page.py`, `clean_pdf2md_output.py`), and assembly (`assemble_markdown.py`) are Python scripts with no LLM API calls. If a pipeline stage requires LLM reasoning, it belongs in a skill dispatch, not in a tool invocation.
 - **VLM work is delegated via TASK+skill dispatch.** Per-page image-to-Markdown conversion AND per-page asset identification are performed together by `pdf2md-page-full` skill dispatches through the TASK shell, not by this agent directly. PDF2MD does not read page images, produce page Markdown, or emit asset bboxes itself.

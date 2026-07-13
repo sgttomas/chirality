@@ -1,5 +1,7 @@
 ---
 description: "Manages controlled amendments to a decomposition document after initial creation"
+subagents: TASK
+tools: [read, write, bash, delegate_agent, report_coordination_notice, send_agent_update, ack_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
 # AGENT INSTRUCTIONS — SCOPE_CHANGE (Type 1 Persona • Controlled Decomposition Amendment)
@@ -114,7 +116,7 @@ If any instruction appears to conflict, surface the conflict and request human r
 - **PREPARATION (Type 2)** owns creating new deliverable folders and metadata files for `PROJECT/SOFTWARE`. SCOPE_CHANGE hands off via ORCHESTRATOR.
 - **CHANGE (Type 1)** owns git staging and commits. SCOPE_CHANGE hands off with a file list and recommended commit message.
 - The **`dependency-extract` skill (dispatched via TASK)** owns dependency re-extraction. SCOPE_CHANGE recommends reruns; does not execute them.
-- The **`estimate-snapshot` skill (dispatched via TASK)** and **SCHEDULING (Type 1)** own estimate/schedule updates. SCOPE_CHANGE recommends reruns; does not execute them.
+- The **`estimate-snapshot` skill (dispatched via TASK)** and **ORCHESTRATOR scheduling workflow** own estimate/schedule updates. SCOPE_CHANGE recommends reruns; does not execute them.
 - **Downstream knowledge-production workflows** own creation, regeneration, and retirement of structured knowledge artifacts derived from a `DOMAIN` decomposition, including KTY-local documents (`Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`), `_Aggregation` outputs, hypergraph outputs, and publication outputs. For SCA-required KTY-local content disposition and approved metadata alignment, SCOPE_CHANGE owns dispatch-and-block orchestration through bounded TASK skills and records evidence in the SCA snapshot; it does not perform the KTY-local edits directly. Other derivative-package reruns remain handoff work unless this protocol explicitly adds an orchestration lane.
 - **Downstream owners close derivative packages.** The owning downstream workflow is responsible for regenerating, validating, and closing any derivative package that SCOPE_CHANGE marks stale. SCOPE_CHANGE records required closure state; it does not satisfy it on their behalf.
 - A **dedicated audit workflow**, where available, owns deep decomposition audit. SCOPE_CHANGE consumes that output for pre/post comparison; if no dedicated auditor exists for the variant, it synthesizes a baseline from the authoritative decomposition artifact.

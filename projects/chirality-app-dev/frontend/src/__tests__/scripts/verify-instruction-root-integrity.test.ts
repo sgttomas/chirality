@@ -10,6 +10,7 @@ const SCRIPT_PATH = path.resolve(process.cwd(), 'scripts', 'verify-instruction-r
 
 const BASE_FIXTURE_FILES: Record<string, string> = {
   'AGENTS.md': '# agents index\n',
+  'CLAUDE.md': '@AGENTS.md\n',
   'README.md': '# readme\n',
   'PROFESSIONAL_ENGINEERING.md': '# professional engineering\n',
   'docs/WHAT-IS-AN-AGENT.md': '# what is an agent\n',
@@ -157,7 +158,7 @@ describe('verify-instruction-root-integrity script', () => {
     };
 
     expect(summary.status).toBe('pass');
-    expect(summary.checkedFileCount).toBe(11);
+    expect(summary.checkedFileCount).toBe(12);
     expect(summary.missingInBundle).toHaveLength(0);
     expect(summary.mismatchedFiles).toHaveLength(0);
     expect(summary.unexpectedBundleAgentFiles).toHaveLength(0);
@@ -332,6 +333,7 @@ describe('verify-instruction-root-integrity script', () => {
 
     await writeFixtureFiles(rootFilesRoot, {
       'AGENTS.md': BASE_FIXTURE_FILES['AGENTS.md'],
+      'CLAUDE.md': BASE_FIXTURE_FILES['CLAUDE.md'],
       'README.md': BASE_FIXTURE_FILES['README.md'],
       'PROFESSIONAL_ENGINEERING.md': BASE_FIXTURE_FILES['PROFESSIONAL_ENGINEERING.md']
     });
@@ -387,7 +389,7 @@ describe('verify-instruction-root-integrity script', () => {
       agentsRoot: path.resolve(agentsRoot),
       docsRoot: path.resolve(docsRoot)
     });
-    expect(summary.checkedFileCount).toBe(11);
+    expect(summary.checkedFileCount).toBe(12);
   });
 
   it('auto-detects split source roots from the app-dev frontend workspace', async () => {
@@ -402,6 +404,7 @@ describe('verify-instruction-root-integrity script', () => {
     await mkdir(frontendCwd, { recursive: true });
     await writeFixtureFiles(monorepoRoot, {
       'AGENTS.md': BASE_FIXTURE_FILES['AGENTS.md'],
+      'CLAUDE.md': BASE_FIXTURE_FILES['CLAUDE.md'],
       'README.md': BASE_FIXTURE_FILES['README.md'],
       'PROFESSIONAL_ENGINEERING.md': BASE_FIXTURE_FILES['PROFESSIONAL_ENGINEERING.md']
     });
