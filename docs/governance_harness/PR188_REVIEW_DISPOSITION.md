@@ -1,6 +1,6 @@
 # PR #188 Review Disposition
 
-Status: REMEDIATION IMPLEMENTED / OWNER RULINGS TRANSCRIBED / PROTO-RUNS INTEGRATED / FINAL AUDIT IN PROGRESS
+Status: ALL NUMBERED FINDINGS DISPOSITIONED / OWNER RULINGS BOUND / VALIDATION PASS / READY FOR MERGE
 ReviewedHead: `5f20ce750896da797319e535898e2959995bc521`
 Sources: the 2026-07-11 PR #188 multi-agent review and consolidated PR #188
 review feedback in the commissioning checkout
@@ -63,18 +63,20 @@ duplicate findings by remedy while preserving the source IDs for audit.
 
 ## Closure gates
 
-Current app-integrated ruled-candidate evidence: 97 frontend test files pass
-(one skipped), 699 frontend tests pass (four skipped), TypeScript typechecking
-and generated tool-catalog identity pass, the complete practitioner harness
-passes 264 tests, all 43 live skills validate, all 33 agent packages validate
-with zero errors and warnings, 434 live path-anchor surfaces pass, instruction
-entrypoints pass, and the 584-file public export regenerates with zero boundary
-findings. Independent export validation is rerun at each integration boundary.
-D-GOV-13 and D-GOV-14 are bound to ruling publication commit
-`d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
+The final ruled candidate passes 333 root governance/validation/software tests;
+all 43 skills, all 33 agent packages, instruction entrypoints, and 434 source
+path anchors; the complete 699-test app-dev suite plus typecheck, catalog,
+desktop packaging/building, 43-file instruction byte identity, and live
+premerge probes; and the piping sweep across 36 Rust manifests, 496 Python
+tests, 476 desktop tests, 18 development browser tests, one distribution WASM
+test, and the production build. The 586-file public derivative has zero boundary
+findings, and its independent staging tree passes agent, skill, entrypoint, and
+425 path-anchor validation. A dedicated test confirms that C01-C61, H01-H04,
+and V01-V08 all appear in this disposition. D-GOV-13 and D-GOV-14 remain bound
+to `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
 
-1. Run the complete root, app-dev, piping-sensitive, packaging, live premerge,
-   export-regeneration, and independent staging validation suites.
-2. Re-audit every source-review finding against the final integrated tree.
-3. Update this record and the D-GOV-11 handoff with exact post-integration
-   evidence, push PR #188, and require green hosted checks before merge.
+All local closure gates are satisfied. PR #188 may merge after the hosted check
+passes on the pushed completion-audit commit. App-dev's pre-existing missing
+KG-001 `examples/` source asset and piping's existing npm advisories/chunk-size
+warning remain routed product residuals; they do not weaken or expand this
+governance tranche's acceptance claim.

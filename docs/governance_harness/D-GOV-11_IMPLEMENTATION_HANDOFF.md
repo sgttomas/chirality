@@ -1,6 +1,6 @@
 # Handoff State — D-GOV-11 Agent Hierarchy Refactor
 
-Status: OWNER RULINGS TRANSCRIBED / PROTO-RUNS INTEGRATED / FINAL VALIDATION IN PROGRESS
+Status: FINAL COMPLETION AUDIT PASS / READY FOR PR #188 MERGE
 DecisionBasis: `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`; `docs/governance_harness/_DECISIONS/D-GOV-12_multi_agent_orchestration.md`
 Branch: `codex/agent-governance-redesign`
 
@@ -52,25 +52,32 @@ Branch: `codex/agent-governance-redesign`
 
 ## Validation Evidence
 
-The owner-ruled, SHA-bound candidate currently has the following verified
+The owner-ruled, SHA-bound candidate has the following verified completion
 evidence:
 
-- App-dev integration checkpoint: the complete merged Vitest suite passes 97
-  files (one skipped), 699 tests (four skipped); TypeScript typechecking and
-  generated tool-catalog identity pass. The D-APP-55 R6 handoff is
-  `CLOSED / PASS` with no concordance blocker.
-- Root governance/tool checks: instruction entrypoints pass; all 43 live skills
-  validate; all 33 agent packages validate with zero errors and warnings; 433
-  live path-anchor surfaces pass; 42 targeted review-remediation Python tests
-  pass; the complete practitioner governance harness passes 264 tests; and
-  `git diff --check origin/main` reports no whitespace errors.
-- After app-dev integration, 434 live path-anchor surfaces pass. The public
-  derivative regenerates with 584 files and zero boundary findings.
+- Root governance/tool checks: 333 practitioner-harness, validation, and
+  software-workflow tests pass; instruction entrypoints pass; all 43 live
+  skills validate; all 33 agent packages validate with zero errors or warnings;
+  434 source path-anchor surfaces pass; and every numbered review finding
+  (C01-C61, H01-H04, and V01-V08) has a tested disposition.
+- App-dev: the merged Vitest suite passes 97 files (one skipped), 699 tests
+  (four skipped); TypeScript typechecking, generated tool-catalog identity,
+  desktop packaging/building, and byte identity for all 43 packaged instruction
+  files pass. The live premerge probe passes all 8 Section 8 scenarios and all
+  16 Section 9 report-only gates. The D-APP-55 R6 handoff is `CLOSED / PASS`.
+- Piping: the post-integration evidence sweep passes tests for all 36 Rust crate
+  manifests, 496 Python tests, 476 desktop Vitest tests, 18 development
+  Playwright tests, the production-distribution WASM Playwright test, and the
+  production build. Its evidence is commit-bound to `b8a5e15d`.
+- The public derivative regenerates with 586 files and zero boundary findings.
   Its independent staging tree passes all 33 agent packages, all 43 skills,
-  canonical instruction entrypoints, and the exported path-anchor validator.
-- D-GOV-13 and D-GOV-14 are bound to ruling publication commit
-  `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`; the post-ruling validator no
-  longer emits `TYPE2_APPROVAL_NOT_RULED`.
+  canonical instruction entrypoints, and 425 exported path-anchor surfaces.
+- `CLAUDE.md` is exactly the one-line `@AGENTS.md` import, HELP_HUMAN is the
+  only live Agent 0, the standards are ratified at
+  `ee35409f5cf3a81ecb29a271527156b991df97b9`, and the D-GOV-13/D-GOV-14 ruling
+  publication commit resolves as
+  `d22f80bf5d6c1190ce151df75d936bfcf4d38bc3`.
+- The post-ruling validator no longer emits `TYPE2_APPROVAL_NOT_RULED`.
 
 The following was the accepted pre-review evidence at PR #188 head before the
 review-remediation tranche. It is retained as historical evidence, not as a
@@ -111,19 +118,29 @@ non-rewriting merge of `main` satisfies D-GOV-14 item 8 in place of a literal
 history-rewriting rebase, preserving the SHA-bound D-GOV-13/D-GOV-14 ruling
 commits. PR #188 must not merge until full packaging, live-premerge,
 piping-sensitive, independent public-staging, and completion-audit validation
-passes.
+passes. Those local gates now pass; the remaining gate is the hosted check on
+the pushed completion-audit commit.
 
 ## Required Resume Sequence
 
-1. Regenerate and validate every affected root and project surface.
-2. Re-audit every PR #188 review finding against the final integrated tree.
-3. Merge
-   PR #188 only when hosted and local acceptance evidence is green.
+1. Push the completion-audit commit and require its hosted check to pass.
+2. Merge PR #188 with a history-preserving merge.
+3. Publish the merge commit SHA in a narrow provenance closeout.
 
 ## Closure Verdict
 
-Instruction tranche: OWNER-RULED; FINAL VALIDATION IN PROGRESS.
+Instruction tranche: OWNER-RULED; COMPLETION AUDIT PASS.
 RECONCILIATION activation: COMPLETE.
-Runtime bridge: REMEDIATED; CORE TESTS PASS, FULL ACCEPTANCE PENDING.
+Runtime bridge: REMEDIATED; FULL LOCAL ACCEPTANCE PASS.
 Overall D-GOV-11 implementation: owner-approved; both proto-runs integrated;
-pending completion audit, full acceptance validation, and merge.
+ready for hosted validation and PR #188 merge.
+
+## Known Non-Blocking Residuals
+
+- App-dev instruction source-completeness remains `needs_remediation` solely
+  because the existing KG-001 `examples/` asset is absent. Packaged instruction
+  byte identity passes, so this is a product-content residual, not an
+  instruction-bundle mismatch or a release claim from this governance tranche.
+- Piping `npm ci` reports four existing audit advisories (two low, two high),
+  and the production build retains its existing chunk-size warning. No
+  dependency mutation or security-remediation claim is included in PR #188.
