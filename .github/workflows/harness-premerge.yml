@@ -21,12 +21,15 @@ jobs:
     timeout-minutes: 30
     env:
       HARNESS_BASE_URL: http://127.0.0.1:3000
-      HARNESS_PROJECT_ROOT: ${{ runner.temp }}/chirality-harness-workroot
       CHIRALITY_HARNESS_PROVIDER: stub
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Initialize runner paths
+        shell: bash
+        run: echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
