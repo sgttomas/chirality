@@ -1,11 +1,18 @@
 # D-GOV-16 — Deliverable Scope-of-Work Stage 2
 
-Status: `PROPOSED — NO EFFECT WITHOUT OWNER RULING`
+Status: `RULED`
 Date: 2026-07-12
+HumanRuling: `APPROVED` for items 1–10 exactly as proposed — owner response,
+2026-07-12: "I rule APPROVED for D-GOV-16 items 1–10 exactly as proposed.
+Publish the ruling, then stop before Stage-2 implementation until a fresh
+governed orchestration plan is presented from synchronized main."
 Proposed SHA: `31e5efd985db4cc7b25543e11a65933979e07e4f`
+Ruling SHA: `PENDING_PUBLICATION`
 FramedBy: D-GOV-15 Stage-1 PASS, owner checklist correction, and
 RECONCILIATION proposal-eligibility handoff
-AcceptedAuthority: none; this record is a decision request
+AcceptedAuthority: owner approval of all ten items exactly as proposed;
+publication activates those exact items, while execution remains stopped
+pending a fresh governed orchestration plan from synchronized `main`
 
 ## Decision requested
 
@@ -232,3 +239,24 @@ Recommended response:
 If the owner does not expressly approve an item, that item remains
 unauthorized. Silence, file creation, validation, a commit, or Git transport is
 not approval.
+
+## Owner ruling
+
+The human owner ruled `APPROVED` for items 1–10 exactly as proposed on
+2026-07-12 and directed:
+
+> I rule APPROVED for D-GOV-16 items 1–10 exactly as proposed. Publish the
+> ruling, then stop before Stage-2 implementation until a fresh governed
+> orchestration plan is presented from synchronized main.
+
+Publication ratifies the exact successor-standard bytes named in item 1 and
+approves the exact TYPES/SPEC patch bytes named in item 2 for a later governed
+implementation tranche. The patches remain unapplied. No conversion, consumer
+migration, pilot replacement, lifecycle act, ISSUED representation
+replacement, legacy retirement, or other Stage-2 implementation occurs in the
+ruling-publication run.
+
+The next lawful execution step is presentation of a fresh governed
+orchestration plan derived from a synchronized `main` that contains this
+published ruling. Approval of the ten-item architecture is not authority to
+bypass that planning and synchronization gate.

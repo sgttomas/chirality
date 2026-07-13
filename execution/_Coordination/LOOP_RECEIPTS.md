@@ -94,3 +94,18 @@
   No proposal artifact, target byte, validation result, RECON evidence,
   project/pilot path, ratified canon, lifecycle, integration, or Stage-2 act
   changed; the owner ruling remains the sole release gate.
+
+### Receipt 5 — 2026-07-12 — D-GOV-16 items 1–10 approved
+
+- Owner ruling: "I rule APPROVED for D-GOV-16 items 1–10 exactly as proposed.
+  Publish the ruling, then stop before Stage-2 implementation until a fresh
+  governed orchestration plan is presented from synchronized main."
+- Basis: proposal snapshot
+  `31e5efd985db4cc7b25543e11a65933979e07e4f`; ruling publication SHA is
+  `PENDING_PUBLICATION` until CHANGE binds it.
+- Effect: exact successor-standard bytes ratified; exact TYPES/SPEC patch bytes
+  approved but unapplied; items 3–10 approved exactly as recorded.
+- Stop: no Stage-2 implementation, conversion, consumer migration, pilot
+  integration, lifecycle act, or legacy retirement in the publication run.
+- Release gate: present a fresh governed orchestration plan derived from a
+  synchronized `main` that contains the published ruling.

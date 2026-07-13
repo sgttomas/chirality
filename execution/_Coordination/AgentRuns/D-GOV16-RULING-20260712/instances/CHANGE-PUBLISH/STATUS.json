@@ -1,0 +1,8 @@
+{
+  "run_id": "D-GOV16-RULING-20260712",
+  "instance": "CHANGE-PUBLISH",
+  "role": "CHANGE",
+  "parent": "HELP_HUMAN",
+  "status": "DISPATCHED",
+  "objective": "Commit and SHA-bind the exact D-GOV-16 ruling publication without integration or Stage-2 implementation."
+}
