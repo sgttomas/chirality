@@ -1,0 +1,8 @@
+{
+  "run_id": "SOW-STAGE2-PLAN-20260712",
+  "instance": "CHANGE-LOOP-ACTIVATE",
+  "role": "CHANGE",
+  "parent": "HELP_HUMAN",
+  "status": "DISPATCHED",
+  "objective": "Commit, bind, fast-forward, and push the accepted Stage-2 root-loop activation without executing Stage 2."
+}

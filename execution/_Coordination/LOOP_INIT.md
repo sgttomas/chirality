@@ -1,9 +1,9 @@
 # Root Governance Work Loop — session init
 
 You are resuming the root governance work loop that lives in this directory.
-Its goal and recorded owner intent are described by the newest standing
-`WORKPLAN_*.md` beside this file. Pursue the widest lawful tranche allowed by
-live authority, and stop at every human gate.
+Its goal and recorded owner intent are selected by `CURRENT_WORKPLAN.md`.
+Read that pointer and then the exact target it names. Pursue the widest lawful
+tranche allowed by live authority, and stop at every human gate.
 
 This file is orientation, not authority. Standards, decisions, accepted
 snapshots, live Git state, and current human direction govern on disagreement.
@@ -21,9 +21,15 @@ Plans, receipts, and run records are derivative coordination surfaces only.
 
 ## 2. Hand off to the standing plan
 
-Read the newest `WORKPLAN_*.md` in this directory. Run its Step 0 before
-selecting or dispatching work. Then read the newest entry in
+Read `{REPO_ROOT}/execution/_Coordination/CURRENT_WORKPLAN.md`. Resolve its
+`Target` relative to `{REPO_ROOT}`, read that exact workplan, and run its Step
+0 before selecting or dispatching work. Then read the newest entry in
 `LOOP_RECEIPTS.md`, if any.
+
+Do not select a workplan by filesystem modification time, directory order, or
+the phrase "newest workplan" in an older derivative surface. If the pointer is
+missing, malformed, escapes the repository, or names a missing file, stop and
+return the defect to the human.
 
 The standing plan records intent, protocol, constraints, gates, and source
 pointers. It carries no authority merely because it exists. A receipt records
