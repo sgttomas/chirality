@@ -1,0 +1,3 @@
+deliverable_id	author_status	verifier_status	candidate_sha256	mapping_rows	source_lines	replacement_rows	schema	content_authority	preservation	execution_substrate
+DEL-00-01	PASS_ACCEPTED	PASS_ACCEPTED	2e51af467ef3ccfd8c79e7b2fe04bcbfed5d56af2e66fbf3792e74ae2600c838	26	250	5	PASS	PASS	PASS	PASS
+DEL-00-02	PASS_ACCEPTED	PASS_ACCEPTED	acd4fc457339b6aa9c1d29c6b598f2dc0e7ba51bada2fb719fab0d297e466045	30	276	5	PASS	PASS	PASS	PASS

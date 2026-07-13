@@ -1,0 +1,3 @@
+attempt	package_argument	exit_status	output_survived	accepted_basis	result
+1	APP-PKG-00	1	false	false	ERROR: generated migration candidate failed validation: package_id must match PKG-<2-or-3 digits>
+2	PKG-00	0	true	true	PASS: accepted isolated MIGRATION_DUAL candidate produced under exact D-GOV-16 authority

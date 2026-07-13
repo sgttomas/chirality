@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="090a041bfda14f2ff1397378d74c79e9b394d4986bc3356a6e5243547d90f173">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-02-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>090a041bfda14f2ff1397378d74c79e9b394d4986bc3356a6e5243547d90f173</code>.</p>
+<h1 id="scope-of-work-del-02-03">Scope of Work — DEL-02-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-02-03</code> in service of project scope [SOW-002, SOW-003] and package objectives [OBJ-001, OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Working-root file-tree and scope-scan UI contract for DEL-02-03, traceable to SOW-002, SOW-003, OBJ-001, and OBJ-006.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-02-03-working-root-file-tree-and-scope-scan-ui">CLM-001 — Datasheet: DEL-02-03 Working Root File Tree and Scope Scan UI</h3>
+<h4 id="datasheet-del-02-03-working-root-file-tree-and-scope-scan-ui">Datasheet: DEL-02-03 Working Root File Tree and Scope Scan UI</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>PackageID</td><td>PKG-02</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>PackageName</td><td>Desktop Shell, Navigation, and Operator State</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-02</td></tr>
+<tr><td>DeliverableID</td><td>DEL-02-03</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>DeliverableName</td><td>Working Root File Tree and Scope Scan UI</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>ContextEnvelope</td><td>M</td><td><code>_CONTEXT.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary UI responsibility</td><td>Working-root selector integration, bounded file tree display, deliverable summaries, and scan-state feedback</td><td><code>_CONTEXT.md</code>; decomposition row for DEL-02-03</td></tr>
+<tr><td>Covered scope items</td><td>SOW-002, SOW-003</td><td><code>_CONTEXT.md</code>; decomposition SOW ledger</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-001, OBJ-006</td><td><code>_CONTEXT.md</code>; decomposition row for DEL-02-03</td></tr>
+<tr><td>Anticipated artifacts</td><td>File tree panel; deliverable summary widgets; scope scan integration</td><td><code>_CONTEXT.md</code>; decomposition row for DEL-02-03</td></tr>
+<tr><td>Workspace APIs surfaced by this UI</td><td><code>/api/working-root/validate</code>, <code>/api/working-root/tree</code>, <code>/api/working-root/scope</code>, <code>/api/project/deliverables</code></td><td><code>docs/SPEC.md</code> §17.2; <code>docs/PRD.md</code> §13</td></tr>
+<tr><td>Scope mode vocabulary consumed by scan UI</td><td><code>DELIVERABLES</code>, <code>KNOWLEDGE_TYPES</code></td><td><code>docs/TYPES.md</code> §8.2</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Working root validity</td><td>Must be an absolute existing directory, readable and writable by the app, and not inside the instruction root</td><td><code>docs/SPEC.md</code> §1.2; <code>docs/PRD.md</code> FR-003</td></tr>
+<tr><td>File tree traversal</td><td>Must be bounded; tree API skips <code>.git</code>, <code>.next</code>, <code>node_modules</code>, <code>dist</code>, <code>dist-electron</code>, and <code>out</code>; inaccessible directories mark truncation</td><td><code>docs/PRD.md</code> FR-004</td></tr>
+<tr><td>Dynamic selection behavior</td><td>Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state</td><td><code>docs/PRD.md</code> FR-013</td></tr>
+<tr><td>Scan runaway protection</td><td>File scans enforce depth/count limits</td><td><code>docs/PRD.md</code> NFR-012</td></tr>
+<tr><td>Authority boundary</td><td>UI consumes workspace APIs but remains presentation-focused</td><td><code>_CONTEXT.md</code>; decomposition row for DEL-02-03</td></tr>
+<tr><td>Source warning</td><td>PRD expected and observed PRD hashes match under D-APP-38; content using PRD is accepted for this run only as a warned source</td><td><code>_REFERENCES.md</code>; dispatch instruction</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected construction detail</td><td>Source</td></tr>
+<tr><td>Working-root selector integration</td><td>Allow path entry, Electron folder selection, apply, and clear actions; clearing the root disables runtime actions that require <code>projectRoot</code></td><td><code>docs/PRD.md</code> §7.1 and FR-002</td></tr>
+<tr><td>File tree panel</td><td>Render selected working root through bounded tree API results, including skipped and inaccessible/truncated directory feedback</td><td><code>docs/PRD.md</code> FR-004; <code>docs/SPEC.md</code> §17.2</td></tr>
+<tr><td>Scope scan integration</td><td>Consume scope scan results for deliverables and knowledge-type directories without inventing missing project truth</td><td><code>docs/SPEC.md</code> §17.2; <code>docs/TYPES.md</code> §8.2</td></tr>
+<tr><td>Deliverable summary widgets</td><td>Present deliverable identity, status/dependency snapshots where available, and routeable deliverable rows for TASK workflows</td><td><code>docs/PRD.md</code> §7.2; <code>docs/PRD.md</code> FR-010, FR-012</td></tr>
+<tr><td>Error feedback</td><td>Surface typed validation and scan errors in the UI; exact error copy is TBD</td><td><code>docs/PRD.md</code> FR-003, NFR-009</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>SectionRef</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>§§2, 5, 6</td><td>Working-root truth and instruction-root separation context</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>K-HIER-1, K-ID-1, K-PATH-1, K-FS-1, K-INVENT-1</td><td>Governance invariants for identity, path, and unknowns</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>§§1.2, 3.1, 17.2</td><td>Working-root rules, deliverable files, workspace APIs</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>§§1.1-1.2, 8.2</td><td>Package/deliverable and task-scope vocabulary</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>§§7.1-7.2, 8.1, 13, 11.2</td><td>User journeys, functional requirements, endpoint targets, scan limits</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>PKG-02 row; DEL-02-03 row; SOW ledger</td><td>Deliverable identity and decomposition scope</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-02-03-working-root-file-tree-and-scope-scan-ui">CLM-007 — Specification: DEL-02-03 Working Root File Tree and Scope Scan UI</h3>
+<h4 id="specification-del-02-03-working-root-file-tree-and-scope-scan-ui">Specification: DEL-02-03 Working Root File Tree and Scope Scan UI</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-02-03 covers the UI slice that connects the desktop shell to working-root selection, validation feedback, bounded file-tree browsing, deliverable summaries, and scan-state feedback.</p>
+<p>Included:</p>
+<ul>
+<li>- Working-root selector integration in the desktop shell.</li>
+<li>- Presentation of bounded file tree data for the selected working root.</li>
+<li>- Presentation of scope scan results for deliverables and knowledge-type directories.</li>
+<li>- Deliverable summary widgets sufficient for operator routing and read-only inspection.</li>
+<li>- UI handling for root changes, stale scan selections, invalid roots, and scan truncation.</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>- Runtime engine internals.</li>
+<li>- Filesystem policy enforcement internals owned by PKG-07.</li>
+<li>- Dependency extraction; <code>Dependencies.csv</code> creation is deferred.</li>
+<li>- Domain-engine future-scope behavior.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-02 and DEL-02-03; <code>docs/PRD.md</code> §§7.1, 8.1, 13.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-02-03-REQ-001</td><td>The UI shall expose working-root selection globally through path entry, Electron folder selection, apply, and clear controls.</td><td><code>docs/PRD.md</code> FR-002</td></tr>
+<tr><td>DEL-02-03-REQ-002</td><td>The UI shall present validation failures for non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths.</td><td><code>docs/PRD.md</code> FR-003; <code>docs/SPEC.md</code> §1.2</td></tr>
+<tr><td>DEL-02-03-REQ-003</td><td>Clearing the working root shall disable runtime actions that require <code>projectRoot</code>.</td><td><code>docs/PRD.md</code> §7.1</td></tr>
+<tr><td>DEL-02-03-REQ-004</td><td>The UI shall render a bounded file tree for the selected working root using the workspace tree API.</td><td><code>docs/PRD.md</code> FR-004; <code>docs/SPEC.md</code> §17.2</td></tr>
+<tr><td>DEL-02-03-REQ-005</td><td>File tree presentation shall account for skipped directories <code>.git</code>, <code>.next</code>, <code>node_modules</code>, <code>dist</code>, <code>dist-electron</code>, and <code>out</code>.</td><td><code>docs/PRD.md</code> FR-004</td></tr>
+<tr><td>DEL-02-03-REQ-006</td><td>File tree presentation shall indicate inaccessible directories or truncation when reported by the API.</td><td><code>docs/PRD.md</code> FR-004</td></tr>
+<tr><td>DEL-02-03-REQ-007</td><td>Scope scan UI shall present deliverables and knowledge-type directories without treating UI-local state as project truth.</td><td><code>docs/SPEC.md</code> §17.2; <code>docs/CONTRACT.md</code> K-FS-1; <code>docs/TYPES.md</code> §8.2</td></tr>
+<tr><td>DEL-02-03-REQ-008</td><td>Dynamic scope scan state shall clear invalid selections when the root changes, deliverables are removed, knowledge markers are disabled, or knowledge targets become stale.</td><td><code>docs/PRD.md</code> FR-013</td></tr>
+<tr><td>DEL-02-03-REQ-009</td><td>Deliverable summary widgets shall support routing to PIPELINE <code>TASK*</code> with a deliverable preselected when deliverables are present.</td><td><code>docs/PRD.md</code> §7.2</td></tr>
+<tr><td>DEL-02-03-REQ-010</td><td>The UI shall consume status and dependency contract snapshots read-only where applicable; transition controls belong only where supported by the active workflow.</td><td><code>docs/PRD.md</code> FR-010</td></tr>
+<tr><td>DEL-02-03-REQ-011</td><td>Scan and workspace errors surfaced by the UI shall preserve typed-error information where available.</td><td><code>docs/PRD.md</code> NFR-009</td></tr>
+<tr><td>DEL-02-03-REQ-012</td><td>File and scope scans shall avoid runaway traversal by respecting bounded depth/count behavior exposed by the runtime.</td><td><code>docs/PRD.md</code> NFR-012</td></tr>
+<tr><td>DEL-02-03-REQ-013</td><td>Stable deliverable IDs, not folder labels alone, shall drive deliverable identity in summary widgets and route targets.</td><td><code>docs/CONTRACT.md</code> K-ID-1, K-PATH-1; <code>docs/TYPES.md</code> §1.2</td></tr>
+<tr><td>DEL-02-03-REQ-014</td><td>ASSUMPTION: The UI should not expose dependency extraction as part of this deliverable; dependency extraction remains a later <code>TASK + dependency-extract</code> step.</td><td><code>_DEPENDENCIES.md</code>; dispatch instruction</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Authority</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Working-root contract</td><td>Governs selected root validity, containment, and project-truth placement</td><td><code>docs/SPEC.md</code> §1.2; <code>docs/CONTRACT.md</code> K-ROOT/K-FS surfaces</td></tr>
+<tr><td>Workspace API contract</td><td>Defines the read endpoints this UI consumes</td><td><code>docs/SPEC.md</code> §17.2</td></tr>
+<tr><td>PRD current product scope</td><td>Establishes working-root selection, file-tree browsing, deliverable scanning, and lifecycle/dependency contract API support as current scope</td><td><code>docs/PRD.md</code> §6.2</td></tr>
+<tr><td>Unknown-value discipline</td><td>Unsupported facts remain <code>TBD</code> rather than guesses</td><td><code>docs/CONTRACT.md</code> K-INVENT-1</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Verification Approach</td></tr>
+<tr><td>DEL-02-03-REQ-001</td><td>UI test or manual acceptance showing type path, choose folder, apply, and clear states.</td></tr>
+<tr><td>DEL-02-03-REQ-002</td><td>API/UI integration tests with invalid root cases and typed error display checks.</td></tr>
+<tr><td>DEL-02-03-REQ-003</td><td>State test confirming root-dependent actions become disabled after clear.</td></tr>
+<tr><td>DEL-02-03-REQ-004</td><td>API/UI integration test with representative tree data from <code>/api/working-root/tree</code>.</td></tr>
+<tr><td>DEL-02-03-REQ-005</td><td>Fixture tree test proving skipped directories are absent or marked according to API shape.</td></tr>
+<tr><td>DEL-02-03-REQ-006</td><td>Fixture or mocked response test for inaccessible/truncated directory indicators.</td></tr>
+<tr><td>DEL-02-03-REQ-007</td><td>Scope scan fixture test using deliverables and knowledge-type directories.</td></tr>
+<tr><td>DEL-02-03-REQ-008</td><td>State reset tests for root change, removed deliverable, disabled knowledge marker, and stale target cases.</td></tr>
+<tr><td>DEL-02-03-REQ-009</td><td>Routing test from deliverable row to PIPELINE <code>TASK*</code> preselection.</td></tr>
+<tr><td>DEL-02-03-REQ-010</td><td>Read-only contract snapshot rendering test; transition-control behavior TBD by owning workflow.</td></tr>
+<tr><td>DEL-02-03-REQ-011</td><td>Error rendering test preserving type/status/message/details where available.</td></tr>
+<tr><td>DEL-02-03-REQ-012</td><td>Runtime/API tests own depth/count enforcement; UI test verifies bounded-result feedback.</td></tr>
+<tr><td>DEL-02-03-REQ-013</td><td>Rename/path-label fixture test confirming route identity uses stable deliverable ID.</td></tr>
+<tr><td>DEL-02-03-REQ-014</td><td>Review check confirming no <code>Dependencies.csv</code> is created by this deliverable.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required deliverable artifacts:</p>
+<ul>
+<li>- File tree panel.</li>
+<li>- Deliverable summary widgets.</li>
+<li>- Scope scan integration.</li>
+<li>- UI tests or acceptance notes for selector, scan, truncation, stale-selection reset, and deliverable routing.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Exact component/module paths.</li>
+<li>- Exact API response shape details for skipped-directory, truncation, and inaccessible-directory markers.</li>
+<li>- Exact status/dependency summary widget fields; unsupported fields remain deferred rather than inferred.</li>
+</ul>
+<h3 id="clm-013-pass-3-disposition-notes">CLM-013 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>B-001</td><td>Converted to <code>TBD</code> / already covered: implementation-level component paths, API field names, and UI copy remain unresolved.</td><td><code>Specification.md</code> Documentation; <code>Guidance.md</code> Human-Ruling Needed; <code>Procedure.md</code> Steps.</td></tr>
+<tr><td>X-001</td><td>Incorporated as <code>TBD</code>: skipped-directory response-shape details were added to the API response shape unknowns.</td><td><code>docs/PRD.md</code> FR-004; <code>docs/SPEC.md</code> §17.2.</td></tr>
+<tr><td>X-002</td><td>Already covered: verification binds error rendering to preserving type/status/message/details where available.</td><td><code>docs/PRD.md</code> NFR-009; <code>Specification.md</code> Verification for DEL-02-03-REQ-011.</td></tr>
+<tr><td>E-001</td><td>Converted to <code>TBD</code> / deferred: exact status/dependency summary fields remain unresolved and unsupported fields must not be inferred.</td><td><code>docs/PRD.md</code> FR-010; <code>docs/SPEC.md</code> §17.2.</td></tr>
+</tbody></table>
+<h3 id="clm-014-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-014 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-108 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; the file-tree UI still does not own dependency extraction.</p>
+<h3 id="clm-015-d-app-56-launcher-confirmation-2026-07-12">CLM-015 — D-APP-56 launcher confirmation (2026-07-12)</h3>
+<h5 id="d-app-56-launcher-confirmation-2026-07-12">D-APP-56 launcher confirmation (2026-07-12)</h5>
+<p>R4-P29 confirms that the portal deliverable-rows launcher is within the existing DEL-02-03 REQ-009 claim. This is an ownership confirmation, not a new lifecycle or implementation claim.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-02-03 migration candidate preserves every legacy source range and its traceability to SOW-002, SOW-003, OBJ-001, and OBJ-006 without changing lifecycle, dependency, or authority state.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-02-03-working-root-file-tree-and-scope-scan-ui">CLM-016 — Procedure: DEL-02-03 Working Root File Tree and Scope Scan UI</h3>
+<h4 id="procedure-del-02-03-working-root-file-tree-and-scope-scan-ui">Procedure: DEL-02-03 Working Root File Tree and Scope Scan UI</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure to produce and verify the Working Root File Tree and Scope Scan UI slice without expanding into filesystem enforcement, dependency extraction, or runtime engine internals.</p>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Note</td><td>Source</td></tr>
+<tr><td>Accepted SOFTWARE_DECOMP v3.2 entry for DEL-02-03</td><td>Available</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td></tr>
+<tr><td>Working-root validation API contract</td><td>Available at contract level; implementation details TBD</td><td><code>docs/SPEC.md</code> §17.2; <code>docs/PRD.md</code> FR-003</td></tr>
+<tr><td>File-tree API contract</td><td>Available at contract level; response shape details TBD</td><td><code>docs/SPEC.md</code> §17.2; <code>docs/PRD.md</code> FR-004</td></tr>
+<tr><td>Scope-scan API contract</td><td>Available at contract level; response shape details TBD</td><td><code>docs/SPEC.md</code> §17.2; <code>docs/PRD.md</code> FR-013</td></tr>
+<tr><td>Declared upstream dependencies</td><td>TBD; no accepted dependency edges extracted yet</td><td><code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>PRD source hash acceptance</td><td>Human ruling needed; mismatch is warning for this run</td><td><code>_REFERENCES.md</code>; dispatch instruction</td></tr>
+</tbody></table>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the active deliverable identity.</p>
+<ul>
+<li>- Use <code>PackageID=PKG-02</code> and <code>DeliverableID=DEL-02-03</code> as stable identity.</li>
+<li>- Preserve <code>ResponsibleParty: TBD</code>.</li>
+<li>- If folder labels disagree with stable IDs, surface the mismatch rather than renaming during this deliverable.</li>
+</ul>
+<p>2. Wire or verify working-root selector integration.</p>
+<ul>
+<li>- Provide path entry, folder selection, apply, and clear controls.</li>
+<li>- On apply, call the working-root validation surface.</li>
+<li>- On clear, remove selected-root dependent UI state and disable root-dependent runtime actions.</li>
+</ul>
+<p>3. Render working-root validation feedback.</p>
+<ul>
+<li>- Show failures for non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths.</li>
+<li>- Preserve typed-error details when available.</li>
+<li>- Use exact error copy from implementation or UX source when available; otherwise mark copy as <code>TBD</code>.</li>
+</ul>
+<p>4. Render the bounded file tree.</p>
+<ul>
+<li>- Consume <code>/api/working-root/tree</code> or the local equivalent.</li>
+<li>- Display tree nodes within the bounded result set.</li>
+<li>- Reflect skipped, inaccessible, or truncated directories when represented in the API result.</li>
+<li>- Do not perform unbounded renderer-side traversal.</li>
+</ul>
+<p>5. Integrate scope scan results.</p>
+<ul>
+<li>- Consume <code>/api/working-root/scope</code> or the local equivalent.</li>
+<li>- Present deliverables and knowledge-type directories using canonical scope vocabulary.</li>
+<li>- Clear invalid selections after root changes, removed deliverables, disabled knowledge markers, or stale knowledge targets.</li>
+</ul>
+<p>6. Add deliverable summary widgets.</p>
+<ul>
+<li>- Show stable deliverable ID, name, package context, lifecycle state where available, and dependency snapshot status where available.</li>
+<li>- Route deliverable rows to PIPELINE <code>TASK*</code> with the deliverable preselected when supported.</li>
+<li>- Keep dependency extraction deferred; do not create <code>Dependencies.csv</code> as part of this procedure.</li>
+</ul>
+<p>7. Verify ownership boundaries.</p>
+<ul>
+<li>- Confirm UI code consumes workspace APIs rather than duplicating filesystem policy enforcement.</li>
+<li>- Confirm runtime/filesystem deliverables retain ownership of path containment, traversal bounds, status parsing, dependency parsing, and lifecycle transition enforcement.</li>
+</ul>
+<p>8. Record unresolved facts.</p>
+<ul>
+<li>- Mark missing implementation details as <code>TBD</code>.</li>
+<li>- Raise source/path/hash conflicts for human ruling.</li>
+</ul>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Working-root selection</td><td>Path entry, folder selection, apply, and clear states are available.</td></tr>
+<tr><td>Invalid root feedback</td><td>Invalid roots produce visible feedback with typed-error information where available.</td></tr>
+<tr><td>Clear root behavior</td><td>Root-dependent actions and stale scope selections are disabled or cleared.</td></tr>
+<tr><td>File tree bounds</td><td>Skipped directories and truncation/inaccessible indicators match API behavior.</td></tr>
+<tr><td>Scope scan reset</td><td>Removed or stale deliverable/knowledge selections are cleared.</td></tr>
+<tr><td>Deliverable routing</td><td>Deliverable summary row routes to PIPELINE <code>TASK*</code> with stable deliverable identity.</td></tr>
+<tr><td>Project truth boundary</td><td>UI state is not treated as authoritative project truth.</td></tr>
+<tr><td>Dependency deferral</td><td>No <code>Dependencies.csv</code> is created by this deliverable procedure.</td></tr>
+<tr><td>Unknown discipline</td><td>Unsupported facts remain <code>TBD</code>, <code>ASSUMPTION</code>, conflict, or human-ruling-needed.</td></tr>
+<tr><td>Acceptance evidence</td><td>Test or acceptance evidence for selector, invalid-root feedback, bounded tree behavior, scope reset, and deliverable routing is required; evidence artifact location is TBD until implementation/test output exists.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- UI implementation artifacts: file tree panel, deliverable summary widgets, scope scan integration.</li>
+<li>- Test or acceptance evidence for root selection, invalid root display, bounded tree behavior, scope reset behavior, and deliverable routing; artifact location TBD.</li>
+<li>- Conflict/human-ruling record for package-folder label MATCH and PRD hash status: MATCH. (reconciled under D-APP-38).</li>
+<li>- This four-document kit: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>.</li>
+</ul>
+<h3 id="clm-022-pass-3-disposition-notes">CLM-022 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>F-001</td><td>Incorporated as required evidence with <code>TBD</code> artifact location: Procedure now preserves acceptance evidence as required without implying it already exists.</td><td><code>Procedure.md</code> Verification and Records; <code>Specification.md</code> Verification.</td></tr>
+</tbody></table>
+<h3 id="clm-023-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-023 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-108 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; the file-tree UI still does not own dependency extraction.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic schema validation, complete source mapping and parity checks, repeated checklist derivation and render stability checks, then conduct human review against the accepted legacy basis.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-02-03-working-root-file-tree-and-scope-scan-ui">CLM-024 — Guidance: DEL-02-03 Working Root File Tree and Scope Scan UI</h3>
+<h4 id="guidance-del-02-03-working-root-file-tree-and-scope-scan-ui">Guidance: DEL-02-03 Working Root File Tree and Scope Scan UI</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable gives the operator a trustworthy, bounded view of the selected working root and the scanned deliverable scope. It supports the desktop shell by making filesystem project truth visible enough for routing and inspection while leaving enforcement and data mutation to the runtime and workflow-specific APIs.</p>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §DEL-02-03; <code>docs/PRD.md</code> §§7.1-7.2 and FR-002 through FR-004.</p>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the filesystem as project truth: render what the workspace APIs report; do not create hidden UI-only project truth. Source: <code>docs/CONTRACT.md</code> K-FS-1; <code>docs/PRD.md</code> §5.</li>
+<li>- Preserve stable identity: deliverable summaries and routing should key on deliverable IDs, not mutable labels or paths alone. Source: <code>docs/CONTRACT.md</code> K-ID-1, K-PATH-1.</li>
+<li>- Keep enforcement in the runtime: the UI should surface validation, containment, and scan-limit outcomes, while PKG-07/runtime slices own the underlying filesystem policy. Source: <code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> §1.2; decomposition SOW-002 note.</li>
+<li>- Prefer visible boundedness over silent omission: skipped directories, inaccessible nodes, and truncated scans should be visible enough for operator judgment when the API reports them. Source: <code>docs/PRD.md</code> FR-004, NFR-012.</li>
+<li>- Reset stale operator choices: root and scan changes must clear invalid selections rather than carrying stale scope into TASK dispatch. Source: <code>docs/PRD.md</code> FR-013.</li>
+<li>- Keep unsupported facts as <code>TBD</code>: exact component paths, response field names, and UI copy require source or implementation confirmation. Source: <code>docs/CONTRACT.md</code> K-INVENT-1.</li>
+</ul>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Working-root validation is a shared boundary. DEL-02-03 should integrate with validation feedback, but the security-control implementation is attributed to DEL-07-01 by the decomposition SOW ledger.</li>
+<li>- Scope scan results bridge PKG-02 and PKG-07. The UI is responsible for presentation and selection behavior; deterministic filesystem scanning and contract data belong to runtime/filesystem deliverables.</li>
+<li>- Deliverable summaries may need to show <code>_STATUS.md</code> and dependency snapshot information, but dependency extraction is explicitly deferred for this run.</li>
+<li>- The PRD source has a recorded hash status: MATCH. Use PRD requirements as warned local source material for this run; do not treat the MATCH as resolved. (reconciled under D-APP-38).</li>
+<li>- The dispatch path named <code>PKG-02_Desktop_UI_and_Local_Experience</code>, but the accessible scaffolded folder is <code>PKG-02_Desktop_Shell_Navigation_and_Operator_State</code>. Stable IDs match; package folder-name mismatch needs human confirmation.</li>
+</ul>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Dense scan UI vs. operator clarity</td><td>Favor a dense but readable operational panel; avoid hiding truncation or invalid-selection states behind decorative UI.</td><td><code>docs/PRD.md</code> FR-006, FR-013</td></tr>
+<tr><td>UI convenience state vs. project truth</td><td>Local UI state can remember view preferences, but project truth remains in working-root files and accepted git history.</td><td><code>docs/DIRECTIVE.md</code> §2; <code>docs/CONTRACT.md</code> K-FS-1</td></tr>
+<tr><td>Presentation ownership vs. runtime ownership</td><td>DEL-02-03 should not duplicate root validation, scan traversal, dependency parsing, or lifecycle transition logic; it should consume and represent API results.</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> §17.2</td></tr>
+<tr><td>Deliverable display by path vs. ID</td><td>Use paths for navigation context, but use stable IDs for identity and dispatch preselection.</td><td><code>docs/CONTRACT.md</code> K-ID-1, K-PATH-1</td></tr>
+</tbody></table>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected UI behavior</td><td>Source</td></tr>
+<tr><td>User clears the working root</td><td>Root-dependent runtime actions become disabled and stale scope selections clear.</td><td><code>docs/PRD.md</code> §7.1, FR-013</td></tr>
+<tr><td>Tree API reports skipped folders</td><td>The file tree omits or marks skipped folders according to API output; skipped set includes <code>.git</code>, <code>.next</code>, <code>node_modules</code>, <code>dist</code>, <code>dist-electron</code>, and <code>out</code>.</td><td><code>docs/PRD.md</code> FR-004</td></tr>
+<tr><td>Scope scan no longer contains selected deliverable</td><td>The prior selection is cleared rather than dispatched.</td><td><code>docs/PRD.md</code> FR-013</td></tr>
+<tr><td>Deliverables are present</td><td>A deliverable row can route to PIPELINE <code>TASK*</code> with that deliverable preselected.</td><td><code>docs/PRD.md</code> §7.2</td></tr>
+</tbody></table>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>DEL-02-03-CONFLICT-001</td><td>Dispatch path uses stale package folder label <code>PKG-02_Desktop_UI_and_Local_Experience</code>; scaffolded folder uses <code>PKG-02_Desktop_Shell_Navigation_and_Operator_State</code>.</td><td>Dispatch brief <code>DeliverablePath / ScopePath</code></td><td><code>_CONTEXT.md</code>; <code>docs/CONTRACT.md</code> K-ID-1/K-PATH-1; decomposition PKG-02</td><td>Datasheet Identification; run record; final report</td><td>Treat stable IDs <code>PKG-02</code> and <code>DEL-02-03</code> plus accessible scaffold as controlling for this run.</td><td>TBD</td></tr>
+<tr><td>DEL-02-03-CONFLICT-002</td><td>PRD hash status: MATCH exists for REF-006.</td><td><code>_REFERENCES.md</code> expected/actual hash row for REF-006</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>All PRD-derived requirements</td><td>Proceed with warned PRD source for P1/P2 drafting; leave hash acceptance unresolved.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-031-human-ruling-needed">CLM-031 — Human-Ruling Needed</h3>
+<h5 id="human-ruling-needed">Human-Ruling Needed</h5>
+<ul>
+<li>- Confirm whether the package-folder label mismatch should be normalized, renamed, or left as a path-history artifact.</li>
+<li>- Resolve or explicitly accept the PRD hash status: MATCH for future closure. (reconciled under D-APP-38).</li>
+<li>- Confirm exact UI component/module paths and API response field names before implementation-level acceptance.</li>
+</ul>
+<h3 id="clm-032-pass-3-disposition-notes">CLM-032 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>A-001</td><td>Already covered as conflict: the package-folder label mismatch remains in the Conflict Table for human ruling.</td><td><code>Guidance.md</code> Conflict Table; <code>_CONTEXT.md</code> Identity; <code>docs/CONTRACT.md</code> K-ID-1/K-PATH-1.</td></tr>
+<tr><td>X-003</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; <code>Guidance.md</code> Conflict Table; <code>Datasheet.md</code> Conditions; <code>Procedure.md</code> Prerequisites. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-002 SOW-003 OBJ-001 OBJ-006</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

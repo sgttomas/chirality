@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 208,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2e51af467ef3ccfd8c79e7b2fe04bcbfed5d56af2e66fbf3792e74ae2600c838"
+      },
+      "text": "Preserve and trace the accepted legacy source content to CONTROL-SCC-002 and DAG-CLOSURE without changing scope, reliance, lifecycle meaning, or semantic obligation.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-001",
+          "source_line": 306,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Deterministic validation, claim mapping, parity reporting, checklist derivation, and human review against the accepted legacy basis."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-00-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-00",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "2e51af467ef3ccfd8c79e7b2fe04bcbfed5d56af2e66fbf3792e74ae2600c838"
+  },
+  "tool_version": "1"
+}

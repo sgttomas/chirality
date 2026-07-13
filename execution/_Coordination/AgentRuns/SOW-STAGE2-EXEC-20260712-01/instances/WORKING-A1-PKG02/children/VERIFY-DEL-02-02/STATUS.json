@@ -1,0 +1,51 @@
+{
+  "instance_id": "VERIFY-DEL-02-02",
+  "role": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "VERIFY",
+  "status": "PASS",
+  "terminal": true,
+  "completed_at": "2026-07-13T08:03:18-06:00",
+  "parent": "WORKING-A1-PKG02",
+  "package": "APP-PKG-02",
+  "deliverable": "DEL-02-02",
+  "brief_version": 1,
+  "criteria_version": "A1-PACKAGE-ACTIVATION-001",
+  "author_dependency": "AUTHOR-DEL-02-02_ACCEPTED",
+  "candidate_sha256": "6146778246cb79838073b9fa268b7067b8ac5f9d94f9e424dc4540962ae30846",
+  "metrics": {
+    "seeded_inputs_exact": 9,
+    "mapping_rows": 28,
+    "source_lines": 279,
+    "parity_failures": 0,
+    "checklist_items": 1,
+    "checklist_byte_stable": true,
+    "render_byte_stable": true,
+    "negative_fixtures_fail_closed": 2,
+    "replacement_rows": 5,
+    "project_writes": 0,
+    "candidate_repairs": 0
+  },
+  "verdicts": {
+    "schema": "PASS",
+    "project_content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "negative_fixtures": {
+    "partial": "PASS_FAIL_CLOSED",
+    "unauthorized_dual": "PASS_FAIL_CLOSED"
+  },
+  "portability": {
+    "status": "PASS_WITH_PRESERVED_SOURCE_LITERAL_INVENTORY",
+    "generated_metadata_checkout_prefix_occurrences": 0,
+    "generated_metadata_temp_prefix_occurrences": 0
+  },
+  "blockers": [],
+  "missing": [],
+  "needs_human_ruling": [],
+  "rerun_requirements": [
+    "Rerun if any accepted basis, candidate, source, status, control, authority, lifecycle, skill, or tool identity changes."
+  ],
+  "next_owner": "WORKING-A1-PKG02"
+}

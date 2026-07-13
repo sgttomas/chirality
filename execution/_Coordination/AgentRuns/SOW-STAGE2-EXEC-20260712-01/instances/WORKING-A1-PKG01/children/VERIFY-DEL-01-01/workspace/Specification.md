@@ -1,0 +1,64 @@
+# Specification: DEL-01-01 Governance Alignment, Human Authority, and Project Truth
+
+## Scope
+
+This deliverable covers the governance-alignment work needed to keep `docs/PRD.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md`, and the active SOFTWARE_DECOMP v3.2 working surface mutually consistent as the runtime evolves.
+
+The scope is bounded to preserving human authority, filesystem project truth, accepted git history, runtime-audit boundaries, product identity, professional-boundary posture, and reliance-boundary ownership. Runtime implementation details are excluded except where they are necessary to define or check a governance boundary.
+
+ResponsibleParty remains `TBD` until assigned by a human.
+
+## Requirements
+
+| ReqID | Requirement | Source basis | Verification |
+|---|---|---|---|
+| DEL-01-01-REQ-001 | Governance alignment work must preserve the authority order: DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, PRD, then agent instructions and accepted execution records for concrete operations. | `docs/DIRECTIVE.md` Section 0. | Governance consistency notes identify any lower-authority conflict and proposed correction path. |
+| DEL-01-01-REQ-002 | Human approval, professional acceptance, issue/release actions, residual-risk acceptance, and judgment conflict rulings must remain human-only. | `docs/DIRECTIVE.md` Sections 2.4 and 3; `docs/CONTRACT.md` K-AUTH/K-GATE/K-PROF. | Human-authority checklist confirms no automated approval claim is introduced. |
+| DEL-01-01-REQ-003 | Agent, SDK, runtime, validator, deterministic tool, domain adapter, and runtime-event outputs must be described as drafts, evidence, diagnostics, or decision support unless accepted by a governed human process. | `docs/DIRECTIVE.md` Sections 2.3 and 3.1; `docs/CONTRACT.md` K-BIND-1. | Checklist reviews copy and document changes for binding/non-binding separation. |
+| DEL-01-01-REQ-004 | Project truth must remain in versioned project files under the working root and accepted git history; hidden app state, chat, SDK transcripts, runtime logs, caches, model context, API keys, and provider transcripts must not be treated as project truth unless imported through governance. | `docs/DIRECTIVE.md` Sections 2.1, 2.2, 2.6; `docs/TYPES.md` Project Truth. | Project-truth checklist verifies claims and storage locations. |
+| DEL-01-01-REQ-005 | Runtime events must support audit and replay without approving or issuing deliverables. | `docs/DIRECTIVE.md` Section 2.3; `docs/SPEC.md` Sections 8-10; `docs/PRD.md` session/audit requirements. | Runtime-audit checklist confirms `.chirality/sessions/<sessionId>/events.jsonl` is canonical and SDK transcripts are secondary unless imported. |
+| DEL-01-01-REQ-006 | Product-critical reliance boundaries must be Chirality-owned or verified at explicit enforcement surfaces; prompt text and opaque SDK defaults are not sufficient for P0 boundaries. | `docs/DIRECTIVE.md` Section 2.9; `docs/CONTRACT.md` K-RELIANCE-1/K-RELIANCE-2; `docs/PLAN.md` R0/R1. | Acceptance checklist verifies each P0 reliance boundary has a documented non-prompt-only enforcement plan or an open gap. |
+| DEL-01-01-REQ-007 | SDK adoption must remain privileged but replaceable; SDK APIs, transcript shape, tool names, and vendor defaults must not define Chirality public semantics or product identity. | `docs/DIRECTIVE.md` Sections 2.8-2.11; `docs/CONTRACT.md` K-ENGINE/K-SDK; `docs/PLAN.md` Controlling Runtime Direction. | Diff checklist verifies product-owned contracts and Chirality terminology remain intact. |
+| DEL-01-01-REQ-008 | Unknown, unsupported, or conflicting facts must be represented as `TBD`, `ASSUMPTION`, `PROPOSAL`, source warning, or human-ruling-needed. | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1/K-CONFLICT-1; `AGENT_SOFTWARE_DECOMP.md`. | Review checks the four-document kit and later governance notes for unsupported claims. |
+| DEL-01-01-REQ-009 | Lifecycle state must only transition according to SPEC; current state is read from `_STATUS.md`, while historical `CHECKING` admission is not issuance approval. | `docs/SPEC.md` Section 4; `_STATUS.md`; D-APP-54. | `_STATUS.md` remains the sole lifecycle authority during docs reconciliation; any human-gate transition requires its governed evidence. |
+| DEL-01-01-REQ-010 | Dependency-extract output is derivative evidence and must not be treated as authoritative decomposition truth or silently marked satisfied. | `_DEPENDENCIES.md`; `Dependencies.csv`; D-APP-38 reference-integrity model. | `Dependencies.csv` may exist, but this deliverable records row status without satisfying, retiring, or mutating rows outside a governed dependency/evidence tranche. |
+
+## Standards
+
+| Standard / governing source | Status |
+|---|---|
+| `docs/DIRECTIVE.md` | Accessible; hash match. |
+| `docs/CONTRACT.md` | Accessible; hash match. |
+| `docs/SPEC.md` | Accessible; hash match. |
+| `docs/TYPES.md` | Accessible; hash match. |
+| `docs/PLAN.md` | Accessible; hash match. |
+| `docs/PRD.md` | Accessible; the current D-APP-38 corpus snapshot records matching REF-006 authority-doc hashes. |
+| Active decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accessible. |
+| `AGENT_SOFTWARE_DECOMP.md` | Accessible; hash match. |
+
+## Verification
+
+| Verification item | Method | Acceptance |
+|---|---|---|
+| Four-document kit exists | File check | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist and are non-empty. |
+| Human-authority preservation | Checklist review | No automated actor is represented as able to approve, issue, certify, sign, seal, externally validate, or make professional work reliable. |
+| Project-truth preservation | Checklist review | Reliance-relevant facts are represented in project files and git evidence, not only runtime state or hidden memory. |
+| Runtime-audit boundary | Checklist review | Runtime audit is evidence/replay support only; it does not replace approval records. |
+| Cross-document consistency | Diff checklist | PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition remain aligned or conflicts are surfaced. |
+| Reference integrity handling | Reference-row check | Authority-doc references, including REF-006, match the current D-APP-38 corpus before issue-readiness reliance is claimed. |
+| Historical warning handling | Conflict/source-warning table | Historical PRD hash warnings are treated as superseded by the current D-APP-38 corpus snapshot; other path/source conflicts remain visible pending human ruling. |
+| Dependency-register handling | Scope check | This reconciliation does not satisfy, retire, or otherwise mutate local dependency rows. |
+
+## Documentation
+
+The expected documentation artifacts are:
+
+- Governance consistency notes.
+- Human-authority checklist.
+- Project-truth checklist.
+- Runtime-audit boundary checklist.
+- Document diff checklist.
+- Acceptance checklist.
+- Conflict/source-warning table for human rulings where source records disagree or source hashes are not accepted.
+
+`TBD`: final artifact filenames and destination locations for the above checklists are not specified by the available sources. This includes the governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table.

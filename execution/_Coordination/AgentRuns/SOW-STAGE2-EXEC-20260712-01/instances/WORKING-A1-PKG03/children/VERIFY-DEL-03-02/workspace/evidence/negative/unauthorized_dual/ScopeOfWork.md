@@ -1,0 +1,514 @@
+---
+schema: chirality-deliverable-sow/v1
+deliverable_id: DEL-03-02
+package_id: PKG-03
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@0724f26f6ef79d733c8f1c513b29d837fd43c8eb
+project_scope_refs: [SOW-009, SOW-010, SOW-011, SOW-038]
+package_objective_refs: [OBJ-002]
+---
+
+# Scope of Work — DEL-03-02
+
+## Purpose and Objective Traceability
+
+This migration candidate defines `DEL-03-02` in service of project scope [SOW-009, SOW-010, SOW-011, SOW-038] and package objectives [OBJ-002].
+
+- **OUT-001** — A thin TurnEngine and session-locking implementation for DEL-03-02 that fulfills SOW-009, SOW-010, SOW-011, and SOW-038 in support of OBJ-002.
+
+## Deliverable Definition — Ontology
+
+### CLM-001 — Datasheet: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Datasheet.md","line_end":2,"line_start":1,"source_sha256":"defb6358dab55c7526e2db7ac03ac0b87dc85c4c2868eac81dc9741ab9f483e0","target_id":"CLM-001"} -->
+#### Datasheet: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-end -->
+
+### CLM-002 — Identification
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Datasheet.md","line_end":18,"line_start":3,"source_sha256":"defb6358dab55c7526e2db7ac03ac0b87dc85c4c2868eac81dc9741ab9f483e0","target_id":"CLM-002"} -->
+##### Identification
+
+| Field | Value |
+|---|---|
+| Deliverable ID | DEL-03-02 |
+| Deliverable Name | Thin TurnEngine and Session Locking |
+| Package | PKG-03 Runtime Engine Contract and Turn Lifecycle |
+| Decomposition Variant | SOFTWARE_DECOMP v3.2 |
+| Type | BACKEND_FEATURE_SLICE |
+| Context Envelope | M |
+| Responsible Party | TBD |
+| Primary Objective | OBJ-002 - establish product-owned runtime contracts and thin route boundaries before SDK behavior becomes production default |
+| Scope Items | SOW-009, SOW-010, SOW-011, SOW-038 |
+
+Source: `_CONTEXT.md` Identity and Traceability; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-03-02 row and OBJ-002 row.
+
+<!-- sow-source-end -->
+
+### CLM-003 — Attributes
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Datasheet.md","line_end":33,"line_start":19,"source_sha256":"defb6358dab55c7526e2db7ac03ac0b87dc85c4c2868eac81dc9741ab9f483e0","target_id":"CLM-003"} -->
+##### Attributes
+
+| Attribute | Value | Source |
+|---|---|---|
+| Runtime owner | `TurnEngine` owns a single harness turn lifecycle and invokes the engine through the product-owned boundary. | `docs/TYPES.md` Section 7.1; `docs/PRD.md` FR-070 |
+| Engine boundary | `AgentEnginePort` / `RuntimeEngineContract` is separate from SDK APIs. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-ENGINE-1 |
+| Target adapter type | `AgentEnginePort.startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>` with optional `interrupt(sessionId)`. `TurnEngine.runTurn(request)` remains the route-independent lifecycle method above the adapter. | `docs/SPEC.md` Section 10.2; D-APP-40 |
+| Turn input content | Active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` Section 10.2 |
+| HTTP route role | `/api/harness/turn` remains a transport adapter that validates request shape, obtains session lock, forwards input to `TurnEngine`, writes SSE, and handles cleanup. | `docs/SPEC.md` Section 10.4 |
+| Session locking | Only one active turn may run per session; concurrent turn attempts return `TURN_IN_PROGRESS`. | `docs/PRD.md` FR-018 |
+| Browser stream contract | Browser-facing SSE event names remain compatible during SDK adoption. | `docs/SPEC.md` Section 11; `docs/PRD.md` FR-017, FR-071 |
+| Accepted-turn persistence | Accepted user input persists before model/provider/SDK execution. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021 |
+| Terminal outcomes | Success, failure, cancellation, and explicit user interruption persist as terminal runtime events; explicit user interruption uses `turn.interrupted`. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-022; D-APP-40 |
+| SDK isolation | SDK-specific messages, IDs, tool names, permission modes, transcript paths, and hook names are adapter metadata, not public Chirality contracts. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` K-CORE-1, K-ENGINE-4 |
+
+<!-- sow-source-end -->
+
+### CLM-004 — Conditions
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Datasheet.md","line_end":44,"line_start":34,"source_sha256":"defb6358dab55c7526e2db7ac03ac0b87dc85c4c2868eac81dc9741ab9f483e0","target_id":"CLM-004"} -->
+##### Conditions
+
+| Condition | Value | Source |
+|---|---|---|
+| Source state status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived runtime details are accepted for this tranche. | `_REFERENCES.md` REF-006; D-APP-38 |
+| Route compatibility constraint | Existing `/api/harness/*` route shapes remain stable during SDK adoption and TurnEngine extraction. | `docs/SPEC.md` Section 17.1 |
+| Event separation constraint | Browser `UIEvent`s and persisted `HarnessEvent`s are separate contracts. | `docs/SPEC.md` Sections 9 and 11; `docs/CONTRACT.md` K-EVENT-1 |
+| Session storage context | Legacy session records remain readable; vNext session layout is `.chirality/sessions/<sessionId>/` with `session.json`, `events.jsonl`, `turns/`, `artifacts/`, and `sdk/`. | `docs/SPEC.md` Sections 8.1 and 8.2 |
+| Settings isolation context | Shipped builds use SDK `settingSources: []`; ambient user/local SDK settings are not allowed in shipped builds. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
+| Implementation sequencing | R1 includes thin `TurnEngine`, engine contract, session event log, SDK message mapper, prompt composer, settings isolation, and run logger before tool expansion. | `docs/PLAN.md` R1; `docs/PRD.md` R1 |
+
+<!-- sow-source-end -->
+
+### CLM-005 — Construction
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Datasheet.md","line_end":66,"line_start":45,"source_sha256":"defb6358dab55c7526e2db7ac03ac0b87dc85c4c2868eac81dc9741ab9f483e0","target_id":"CLM-005"} -->
+##### Construction
+
+| Artifact / Surface | Expected Construction Detail | Status |
+|---|---|---|
+| `turn-engine.ts` | New or equivalent runtime service exposing `TurnEngine.runTurn()` outside HTTP and invoking `AgentEnginePort` / SDK-backed adapter through the product-owned boundary. | Path proposed by PRD/PLAN as `frontend/src/lib/harness/turn-engine.ts`; exact local code path TBD until implementation starts. |
+| Session lock | Active-turn lock obtained before forwarding to `TurnEngine`, released on completion, failure, cancellation, or route cleanup. | Source-supported behavior; current route uses an in-module `Set<string>` named `activeSessionTurns` in `frontend/src/app/api/harness/turn/route.ts`; this is current implementation context, not a final storage decision. |
+| Boot/session binding | Turn input carries active session and previously bound `projectRoot`, persona, mode, and resolved runtime options. | Source-supported behavior; exact session manager API TBD. |
+| SSE adapter | Route writes existing browser-facing event names and does not expose SDK messages as browser contract. | Source-supported behavior; exact adapter function names TBD. |
+| Accepted-turn event | `turn.accepted` is persisted before SDK/model execution begins. | Source-supported behavior; exact event-writer API TBD. |
+| Terminal event handling | Terminal success, failure, cancellation, and explicit user-interruption outcomes are persisted; explicit user interruption uses `turn.interrupted` per D-APP-40. | Source-supported behavior; implementation-specific cleanup coverage remains coordinated with DEL-03-04. |
+| Lock cleanup tests | Tests cover concurrent turn rejection and lock release on normal completion, error, and cancellation cleanup. | ASSUMPTION: test names/locations TBD; behavior grounded in PRD/SPEC. |
+| Session lifecycle tests | Tests cover session binding, boot metadata forwarding, and stable route/SSE behavior through `TurnEngine`. | ASSUMPTION: test names/locations TBD; behavior grounded in PRD/SPEC. |
+
+Current implementation pointers observed during Pass 3:
+
+- Route adapter and active-turn guard: `frontend/src/app/api/harness/turn/route.ts`.
+- Interrupt route: `frontend/src/app/api/harness/interrupt/route.ts`.
+- Stub active-turn manager: `frontend/src/lib/harness/agent-sdk-manager.ts`.
+- Anthropic active-turn manager: `frontend/src/lib/harness/anthropic-agent-sdk-manager.ts`.
+- Runtime interface types: `frontend/src/lib/harness/types.ts`.
+- Current route/interrupt tests: `frontend/src/__tests__/api/harness/routes.test.ts`.
+
+<!-- sow-source-end -->
+
+### CLM-006 — References
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Datasheet.md","line_end":77,"line_start":67,"source_sha256":"defb6358dab55c7526e2db7ac03ac0b87dc85c4c2868eac81dc9741ab9f483e0","target_id":"CLM-006"} -->
+##### References
+
+| RefID | Source | Sections Used | Status |
+|---|---|---|---|
+| REF-001 | `docs/DIRECTIVE.md` | 2.8-2.10 | MATCH |
+| REF-002 | `docs/CONTRACT.md` | 1.4-1.5 | MATCH |
+| REF-003 | `docs/SPEC.md` | 8-12, 17.1, 19.2-19.3 | MATCH |
+| REF-004 | `docs/TYPES.md` | 7.1-7.4 | MATCH |
+| REF-005 | `docs/PLAN.md` | R1 | MATCH |
+| REF-006 | `docs/PRD.md` | FR-014-FR-022, FR-070-FR-077, FR-116, FR-122-FR-128, R1, validation additions | MATCH under the current D-APP-38 authority corpus |
+| REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Not directly used for implementation requirements in this draft. | MATCH |
+<!-- sow-source-end -->
+
+## Completion and Reliance Basis — Epistemology
+
+### CLM-007 — Specification: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Specification.md","line_end":2,"line_start":1,"source_sha256":"1de0b2c6a5336ce726a204a074f793e32e859acfd8d609f396661f742b5261bc","target_id":"CLM-007"} -->
+#### Specification: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-end -->
+
+### CLM-008 — Scope
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Specification.md","line_end":26,"line_start":3,"source_sha256":"1de0b2c6a5336ce726a204a074f793e32e859acfd8d609f396661f742b5261bc","target_id":"CLM-008"} -->
+##### Scope
+
+This deliverable moves the harness turn lifecycle, session binding, boot metadata forwarding, and active-turn locking behind `TurnEngine` while keeping `/api/harness/turn` as a thin SSE transport adapter.
+
+In scope:
+
+- `TurnEngine.runTurn()` as the product-owned lifecycle surface outside HTTP.
+- Session-level active-turn locking and `TURN_IN_PROGRESS` behavior.
+- Binding active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal into `TurnInput`.
+- Preserving browser-facing SSE event names while SDK/provider behavior stays behind adapter boundaries.
+- Persisting accepted-turn and terminal turn records through the runtime event surface.
+- Lock cleanup tests and session lifecycle tests.
+
+Out of scope:
+
+- SDK-specific message translation details, assigned to adjacent adapter deliverables.
+- Full interrupt/cancel terminal semantics beyond the lock cleanup and cancellation-signal boundary, which overlap DEL-03-04.
+- Canonical session folder migration, assigned to PKG-05.
+- New user-visible write, bash, remote MCP, plugin, domain-operation, or subagent capability.
+- Durable terminal persistence by the deterministic UI-only stub adapter; its
+  UI-visible terminal outcomes are test scaffolding, not K-EVENT-3 parity.
+
+Sources: `_CONTEXT.md` Deliverable Scope and Package Scope; `docs/SPEC.md` Sections 10.1-10.4 and 17.1; `docs/PLAN.md` R1; `docs/PRD.md` FR-070-FR-071.
+
+<!-- sow-source-end -->
+
+### CLM-009 — Requirements
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Specification.md","line_end":43,"line_start":27,"source_sha256":"1de0b2c6a5336ce726a204a074f793e32e859acfd8d609f396661f742b5261bc","target_id":"CLM-009"} -->
+##### Requirements
+
+| ID | Requirement | Source | Verification |
+|---|---|---|---|
+| DEL-03-02-REQ-001 | Implement a `TurnEngine` or equivalent runtime service that owns harness turn lifecycle and can be unit-tested without HTTP. | `docs/PRD.md` FR-070; `docs/TYPES.md` Section 7.1 | Unit test `TurnEngine.runTurn()` without route invocation. |
+| DEL-03-02-REQ-002 | Invoke turn execution through the product-owned `IAgentSdkManager` port used by `TurnEngine`; SDK APIs must not define the public harness semantics. | `docs/SPEC.md` Sections 10.1-10.3; `docs/CONTRACT.md` K-ENGINE-1, K-ENGINE-4; D-APP-56 R4-P24 | Engine boundary/conformance tests reject SDK-shaped public event/session/API leakage. |
+| DEL-03-02-REQ-003 | Keep `/api/harness/turn` as a transport adapter responsible for request validation, session lock acquisition, forwarding input to `TurnEngine`, SSE writing, and cleanup. | `docs/SPEC.md` Section 10.4; `docs/PRD.md` FR-071 | Route integration test proves stable route behavior while lifecycle executes through `TurnEngine`. |
+| DEL-03-02-REQ-004 | Enforce one active turn per session; concurrent turn attempts for the same session return `TURN_IN_PROGRESS`. | `docs/PRD.md` FR-018; decomposition SOW-011 | Lock concurrency test covers duplicate active-turn request. |
+| DEL-03-02-REQ-005 | Ensure the session lock is released after normal completion, failure, cancellation cleanup, or route abort cleanup. | `docs/SPEC.md` Section 10.4; `docs/PRD.md` FR-019, FR-022; `docs/CONTRACT.md` K-EVENT-3 | Lock cleanup tests cover completion, failure, and cancellation/abort paths. Exact interrupt semantics TBD with DEL-03-04. |
+| DEL-03-02-REQ-006 | Bind turn input to active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable. | `docs/SPEC.md` Section 10.2; `docs/PRD.md` FR-015-FR-016 | Session lifecycle tests assert `TurnInput` construction and option forwarding. |
+| DEL-03-02-REQ-007 | Preserve existing browser-facing SSE event names during SDK adoption and TurnEngine extraction. | `docs/SPEC.md` Section 11 and 17.1; `docs/PRD.md` FR-017, FR-071 | Route/SSE compatibility fixtures verify event names and stream media type. |
+| DEL-03-02-REQ-008 | Persist `turn.accepted` before SDK/model/provider execution begins; terminal persistence is adapter-side under the accepted architecture. | `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021; D-APP-56 R4-P24 | Unit/integration test asserts event write precedes engine adapter invocation and the product adapter persists terminal outcomes. |
+| DEL-03-02-REQ-009 | Persist durable terminal outcome events for success, failure, cancellation, and explicit user interruption; explicit user interruption uses `turn.interrupted` per D-APP-40. | `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-022; D-APP-40 | Tests assert one terminal outcome for each accepted turn path. |
+| DEL-03-02-REQ-010 | Keep browser `UIEvent`s separate from persisted `HarnessEvent`s; SDK messages are not the browser contract and not the canonical persisted event contract. | `docs/SPEC.md` Sections 9, 10.3, 11; `docs/CONTRACT.md` K-EVENT-1 | Event schema and mapper tests verify separation. |
+| DEL-03-02-REQ-011 | Preserve legacy session readability while this slice interacts with active sessions. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 | Session lifecycle tests include legacy-readable session metadata where current code supports it. |
+| DEL-03-02-REQ-012 | Do not enable new user-visible local tool capability as part of this slice. | `docs/PLAN.md` R1 Acceptance; `docs/PRD.md` R1 Acceptance | Regression check confirms no new write/bash/subagent/domain capability is exposed by route refactor. |
+
+<!-- sow-source-end -->
+
+### CLM-010 — Standards
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Specification.md","line_end":56,"line_start":44,"source_sha256":"1de0b2c6a5336ce726a204a074f793e32e859acfd8d609f396661f742b5261bc","target_id":"CLM-010"} -->
+##### Standards
+
+| Standard / Contract Surface | Applicability |
+|---|---|
+| `docs/SPEC.md` Section 8 | Session metadata and canonicalization context for active session binding. |
+| `docs/SPEC.md` Section 9 | `HarnessEvent` shape and append-only event semantics relevant to accepted-turn and terminal event persistence. |
+| `docs/SPEC.md` Section 10 | Runtime engine contract, target type, adapter rules, and thin route rule. |
+| `docs/SPEC.md` Section 11 | Browser SSE event names and compatibility rule. |
+| `docs/SPEC.md` Section 17.1 | Harness API route shape stability. |
+| `docs/CONTRACT.md` K-CORE, K-ENGINE, K-EVENT | Product-owned runtime semantics, SDK isolation, accepted-turn persistence, terminal outcomes, and UI/runtime event separation. |
+| `docs/TYPES.md` Section 7 | Canonical vocabulary for `TurnEngine`, `AgentEnginePort`, `UIEvent`, `HarnessEvent`, session IDs, and SDK metadata. |
+| `docs/PRD.md` | Product requirements accepted under the current D-APP-38 authority corpus. |
+
+<!-- sow-source-end -->
+
+### CLM-011 — Verification
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Specification.md","line_end":72,"line_start":57,"source_sha256":"1de0b2c6a5336ce726a204a074f793e32e859acfd8d609f396661f742b5261bc","target_id":"CLM-011"} -->
+##### Verification
+
+Minimum verification set:
+
+- Unit test `TurnEngine.runTurn()` can execute without HTTP and uses a stub `AgentEnginePort`.
+- Unit or integration test proves concurrent turn on same session returns `TURN_IN_PROGRESS`.
+- Lock cleanup tests cover normal completion, adapter failure, route abort/cancellation cleanup, and subsequent turn acceptance.
+- Acceptance evidence for route abort/cancellation cleanup is limited in this slice to lock release and subsequent turn acceptance. Full interrupt/cancel terminal mapping remains a DEL-03-04 dependency and must not be claimed closed by DEL-03-02 alone.
+- Session lifecycle tests cover session binding, boot metadata forwarding, runtime option forwarding, and normalized project root preservation.
+- Event ordering test proves `turn.accepted` is persisted before engine adapter execution.
+- Terminal outcome tests prove success, failure, cancellation, and explicit user interruption each produce exactly one durable terminal event where the path accepts a turn.
+- Route/SSE compatibility tests preserve `/api/harness/turn` shape, `text/event-stream`, and existing event names.
+- Provider-neutral leakage test proves SDK-specific identifiers/names remain adapter metadata and do not define public APIs, `UIEvent`s, or canonical `HarnessEvent`s.
+
+ASSUMPTION: exact test runner, fixture paths, and function names will follow existing frontend test conventions; no source slice identifies the current local test file layout.
+
+<!-- sow-source-end -->
+
+### CLM-012 — Documentation
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Specification.md","line_end":86,"line_start":73,"source_sha256":"1de0b2c6a5336ce726a204a074f793e32e859acfd8d609f396661f742b5261bc","target_id":"CLM-012"} -->
+##### Documentation
+
+Required documentation/artifacts for this deliverable:
+
+- `turn-engine.ts` or equivalent runtime service file.
+- Lock cleanup tests.
+- Session lifecycle tests.
+- Notes or inline docs identifying route responsibilities that remain in `/api/harness/turn` versus lifecycle responsibilities moved to `TurnEngine`.
+- Any residual `TBD` decisions around lock storage, interrupt/cancel ownership, and exact session manager API.
+
+Source-state status:
+
+- D-APP-38 confirms the current authority corpus for `docs/PRD.md`; PRD requirements are accepted source content for this tranche.
+- Implementation closure still requires deliverable-local evidence for the runtime, locking, and persistence requirements.
+<!-- sow-source-end -->
+
+- **AC-001** — The DEL-03-02 output satisfies the exact legacy source requirements bound to SOW-009, SOW-010, SOW-011, SOW-038, and OBJ-002 without adding scope or lifecycle meaning.
+
+## Production and Verification Method — Praxeology
+
+### CLM-013 — Procedure: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Procedure.md","line_end":2,"line_start":1,"source_sha256":"9ad8fb4f8de49516842bdd7f07a204bcd291955af80f8bac51937da66754988f","target_id":"CLM-013"} -->
+#### Procedure: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-end -->
+
+### CLM-014 — Purpose
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Procedure.md","line_end":8,"line_start":3,"source_sha256":"9ad8fb4f8de49516842bdd7f07a204bcd291955af80f8bac51937da66754988f","target_id":"CLM-014"} -->
+##### Purpose
+
+Define the operational procedure to implement and verify the DEL-03-02 slice: extract a thin `TurnEngine`, preserve route/SSE compatibility, enforce session-level active-turn locking, bind session/boot metadata into turn input, and prove cleanup behavior.
+
+Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.1-10.4, 11, 17.1, 19.2-19.3; `docs/PRD.md` FR-014-FR-022, FR-070-FR-077; `docs/PLAN.md` R1.
+
+<!-- sow-source-end -->
+
+### CLM-015 — Prerequisites
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Procedure.md","line_end":20,"line_start":9,"source_sha256":"9ad8fb4f8de49516842bdd7f07a204bcd291955af80f8bac51937da66754988f","target_id":"CLM-015"} -->
+##### Prerequisites
+
+| Prerequisite | Status / Note |
+|---|---|
+| Accepted source basis for runtime engine boundary and route rule | Available in `docs/SPEC.md` Sections 10 and 17.1. |
+| Runtime vocabulary | Available in `docs/TYPES.md` Section 7. |
+| Product/runtime invariants | Available in `docs/CONTRACT.md` K-CORE, K-ENGINE, K-EVENT. |
+| PRD runtime requirements | Available in `docs/PRD.md` under the current D-APP-38 authority corpus. |
+| Declared upstream dependencies | `_DEPENDENCIES.md` / `Dependencies.csv` now list ACTIVE extracted upstream edges for PKG-03, SOW-009, SOW-010, SOW-011, SOW-038, DEL-03-01, and DEL-05-02; all remain `SatisfactionStatus=PENDING`. |
+| Current route/session implementation path | Current route path is `frontend/src/app/api/harness/turn/route.ts`; current route-level active-turn storage is the in-module `activeSessionTurns` set. Current session manager access is through `getHarnessRuntime().sessionManager` in the route. |
+| Existing test conventions | Current route and interrupt tests live in `frontend/src/__tests__/api/harness/routes.test.ts`; Section 8 harness validation lives in `frontend/scripts/validate-harness-section8.mjs`. |
+
+<!-- sow-source-end -->
+
+### CLM-016 — Steps
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Procedure.md","line_end":88,"line_start":21,"source_sha256":"9ad8fb4f8de49516842bdd7f07a204bcd291955af80f8bac51937da66754988f","target_id":"CLM-016"} -->
+##### Steps
+
+1. Locate the current `/api/harness/turn` implementation and current session manager/lock behavior.
+
+   Output: code pointers for route validation, active-turn guard, provider/engine invocation, SSE writing, and cleanup.  
+   Current code pointers: route validation/lock/SSE cleanup in `frontend/src/app/api/harness/turn/route.ts`; stub active-turn state in `frontend/src/lib/harness/agent-sdk-manager.ts`; Anthropic active-turn state and `AbortController` handling in `frontend/src/lib/harness/anthropic-agent-sdk-manager.ts`; route/interrupt tests in `frontend/src/__tests__/api/harness/routes.test.ts`.  
+   Verification: no implementation changes yet; mapping notes distinguish current route responsibilities from target `TurnEngine` responsibilities.
+
+2. Define the `TurnEngine` input/output boundary.
+
+   Include active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.  
+   Source: `docs/SPEC.md` Section 10.2.  
+   Verification: type/unit test can construct valid `TurnInput` without HTTP request objects.
+
+3. Implement `TurnEngine.runTurn()` as the lifecycle owner outside HTTP.
+
+   `TurnEngine` should invoke `AgentEnginePort.startTurn(input)` or equivalent product-owned adapter boundary and yield browser-facing `UIEvent`s.
+   Source: `docs/PRD.md` FR-070; `docs/SPEC.md` Section 10.1.  
+   Verification: unit test runs `TurnEngine.runTurn()` with a stub adapter and no route invocation.
+
+4. Refactor `/api/harness/turn` into a transport adapter.
+
+   Keep route responsibilities limited to request validation, session lock acquisition, attachment option forwarding, SSE encoding, cancellation cleanup, and error response handling.  
+   Source: `docs/SPEC.md` Section 10.4; `docs/PRD.md` FR-071.  
+   Verification: integration test confirms route shape and `text/event-stream` response remain compatible.
+
+5. Enforce session-level active-turn locking.
+
+   A concurrent turn attempt for the same session must return `TURN_IN_PROGRESS`.  
+   Source: `docs/PRD.md` FR-018.  
+   Verification: lock concurrency test starts one active turn and asserts the second same-session turn is rejected.
+
+6. Implement lock release on all covered cleanup paths.
+
+   Release the active-turn lock after normal completion, adapter failure, route abort, and cancellation cleanup.  
+   Source: `docs/SPEC.md` Section 10.4; `docs/CONTRACT.md` K-EVENT-3.  
+   Verification: lock cleanup tests prove a follow-up turn can start after each terminal or cleanup path. Current `routes.test.ts` covers overlapping same-session rejection, interrupt, stream drain, and a recovery turn after lock release; additional DEL-03-02 implementation closure should add or retain equivalent evidence after `TurnEngine` extraction.
+
+7. Persist accepted-turn before engine execution.
+
+   Ensure `turn.accepted` is written before SDK/model/provider execution begins.  
+   Source: `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021.  
+   Verification: ordering test uses a stub adapter and event writer spy or recorded event sequence.
+
+8. Persist terminal outcomes.
+
+   Persist durable terminal records for success, failure, and cancellation.  
+   Source: `docs/PRD.md` FR-022; `docs/CONTRACT.md` K-EVENT-3.  
+   Verification: terminal tests assert one terminal event for each accepted turn path. Interruption-specific mapping remains coordinated with DEL-03-04.
+
+9. Preserve browser-facing SSE event names.
+
+   Existing event names include `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`, and `harness:event`.
+   Source: `docs/SPEC.md` Section 11.  
+   Verification: compatibility fixture asserts event names do not regress.
+
+10. Check provider-neutral boundary.
+
+   SDK-specific message names, session IDs, tool names, permission modes, transcript paths, and hook names must remain adapter metadata and not define public APIs, browser events, or canonical event schemas.  
+   Source: `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` K-CORE-1, K-ENGINE-4.  
+   Verification: type/schema tests and code review reject SDK-shaped public leakage.
+
+11. Run the focused validation set.
+
+   Minimum checks: existing tests, Section 8 validation where available, route/SSE compatibility, `TurnEngine` unit tests, lock cleanup tests, session lifecycle tests, accepted-turn ordering, and terminal outcome tests.  
+   Source: `docs/SPEC.md` Sections 19.2-19.3; `docs/PRD.md` Sections 12.5-12.6.  
+   Verification: record exact commands and results in implementation handoff notes.
+
+<!-- sow-source-end -->
+
+### CLM-017 — Verification
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Procedure.md","line_end":101,"line_start":89,"source_sha256":"9ad8fb4f8de49516842bdd7f07a204bcd291955af80f8bac51937da66754988f","target_id":"CLM-017"} -->
+##### Verification
+
+| Verification Item | Required Evidence |
+|---|---|
+| `TurnEngine` unit-testable without HTTP | Passing unit test using stub engine adapter. |
+| Session lock rejects concurrent turn | Passing concurrency test asserting `TURN_IN_PROGRESS`. |
+| Lock cleanup works | Passing tests for completion, failure, cancellation/abort cleanup, and subsequent turn start. |
+| Accepted-turn ordering | Event sequence or spy proves `turn.accepted` precedes engine invocation. |
+| Terminal outcomes | Success, failure, cancellation, and explicit user interruption each produce one durable terminal event where the path accepts a turn. |
+| SSE compatibility | Route fixture confirms existing browser event names and stream behavior. |
+| Session lifecycle | Test confirms session binding and runtime option forwarding into `TurnInput`. |
+| Provider-neutral boundary | Test/review confirms SDK-specific fields are adapter metadata only. |
+
+<!-- sow-source-end -->
+
+### CLM-018 — Records
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Procedure.md","line_end":111,"line_start":102,"source_sha256":"9ad8fb4f8de49516842bdd7f07a204bcd291955af80f8bac51937da66754988f","target_id":"CLM-018"} -->
+##### Records
+
+Records to preserve for implementation closure:
+
+- Code paths changed for `TurnEngine`, route adapter, session lock, and event writer integration.
+- Test files and commands proving the verification items above.
+- Any source-state note applying D-APP-38 authority-corpus reconciliation.
+- Residual `TBD` decisions for final lock storage and interrupt/cancel ownership with DEL-03-04.
+- Handoff note carrying ACTIVE dependency edges from `Dependencies.csv`, including pending upstream DEL-03-01 and DEL-05-02 edges and downstream DEL-03-03, DEL-03-04, and DEL-09-03 edges.
+- REF-006 source-state status under the D-APP-38 authority corpus.
+<!-- sow-source-end -->
+
+- **VER-001** — Validate the candidate schema, complete source-marker disposition, claim mapping, parity, and the legacy verification methods preserved in this candidate.
+
+## Governing Values and Decisions — Axiology
+
+### CLM-019 — Guidance: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Guidance.md","line_end":2,"line_start":1,"source_sha256":"c91b5a857b1f4c4edc6e69c790fd889eda26b2960f34f178f062c29f203af6d5","target_id":"CLM-019"} -->
+#### Guidance: DEL-03-02 Thin TurnEngine and Session Locking
+
+<!-- sow-source-end -->
+
+### CLM-020 — Purpose
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Guidance.md","line_end":8,"line_start":3,"source_sha256":"c91b5a857b1f4c4edc6e69c790fd889eda26b2960f34f178f062c29f203af6d5","target_id":"CLM-020"} -->
+##### Purpose
+
+DEL-03-02 exists to make the harness turn lifecycle product-owned and testable outside HTTP. The route remains stable for the browser, but lifecycle behavior moves behind `TurnEngine` and the product-owned `AgentEnginePort` / `RuntimeEngineContract`.
+
+Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-03-02; `docs/SPEC.md` Section 10; `docs/PRD.md` FR-070-FR-071; `docs/PLAN.md` R1.
+
+<!-- sow-source-end -->
+
+### CLM-021 — Principles
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Guidance.md","line_end":34,"line_start":9,"source_sha256":"c91b5a857b1f4c4edc6e69c790fd889eda26b2960f34f178f062c29f203af6d5","target_id":"CLM-021"} -->
+##### Principles
+
+1. Route thinness is the design boundary.
+
+   `/api/harness/turn` should validate, lock, forward to `TurnEngine`, write SSE, and clean up. Runtime policy, engine invocation, event persistence ordering, and provider-specific behavior should not remain owned by the route. Source: `docs/SPEC.md` Section 10.4.
+
+2. Chirality terms own the public contract.
+
+   Public APIs, browser `UIEvent`s, canonical `HarnessEvent`s, session storage, permission decisions, and governance records must not become SDK-shaped except as adapter metadata. Source: `docs/CONTRACT.md` K-CORE-1, K-ENGINE-4; `docs/SPEC.md` Section 10.3.
+
+3. The lock protects session semantics, not just code paths.
+
+   The requirement is one active turn per session with `TURN_IN_PROGRESS` on concurrent attempts. Keep lock lifecycle tied to durable turn state and route cleanup so interrupted or failed paths cannot strand a session. Source: `docs/PRD.md` FR-018; `docs/SPEC.md` Section 10.4.
+
+4. Accepted-turn persistence is a reliance boundary.
+
+   Persist `turn.accepted` before SDK/model execution so killed or interrupted turns leave a recoverable record. This should be verified by ordering tests, not assumed from call structure. Source: `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021.
+
+5. SSE compatibility is not optional.
+
+   Browser event names remain stable during SDK adoption. The internal mapping may become richer, but browser-facing names stay compact and compatible. Source: `docs/SPEC.md` Section 11 and 17.1; `docs/PRD.md` FR-017.
+
+6. Do not use this slice to widen capability.
+
+   R1 explicitly preserves visible behavior and does not expose new user-visible local tool capability. Keep write, bash, remote MCP, subagent, and domain-operation surfaces out of this deliverable. Source: `docs/PLAN.md` R1 Acceptance; `docs/PRD.md` R1 Acceptance.
+
+<!-- sow-source-end -->
+
+### CLM-022 — Considerations
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Guidance.md","line_end":46,"line_start":35,"source_sha256":"c91b5a857b1f4c4edc6e69c790fd889eda26b2960f34f178f062c29f203af6d5","target_id":"CLM-022"} -->
+##### Considerations
+
+| Topic | Guidance | Source |
+|---|---|---|
+| Lock storage | Keep the lock associated with session identity and observable turn state. Current code uses an in-module `Set<string>` named `activeSessionTurns` in `frontend/src/app/api/harness/turn/route.ts`; treat this as observed implementation context, not an authoritative final storage mechanism. | `docs/PRD.md` FR-018; `docs/SPEC.md` Section 10.4; current code slice `frontend/src/app/api/harness/turn/route.ts` |
+| Cleanup ownership | The route handles cleanup, but terminal lifecycle persistence belongs behind the runtime boundary. Split responsibilities so both are testable. | `docs/SPEC.md` Sections 10.1 and 10.4 |
+| Cancellation signal | Include cancellation signal in `AgentEngineRunInput` where applicable; full interrupt behavior remains coordinated with DEL-03-04, with explicit user interruption persisted as `turn.interrupted` per D-APP-40. | `docs/SPEC.md` Section 10.2; decomposition DEL-03-04; D-APP-40 |
+| Boot metadata | Forward active session and resolved runtime options into `TurnInput`; boot fingerprint composition belongs to adjacent prompt/options work and should not be invented here. | `docs/SPEC.md` Sections 10.2 and 13.2; `docs/PRD.md` FR-016, FR-029 |
+| Legacy sessions | Do not break legacy session readability while extracting the lifecycle. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 |
+| Event persistence | Keep accepted-turn and terminal events durable. Exact writer API is TBD until implementation reads current code. | `docs/SPEC.md` Sections 9 and 10.1; `docs/CONTRACT.md` K-EVENT-2, K-EVENT-3 |
+| PRD authority corpus | Treat PRD-derived rows as accepted under the current D-APP-38 authority corpus. Do not escalate them into unsupported implementation details beyond cited requirement text. | `_REFERENCES.md` REF-006; D-APP-38 |
+
+<!-- sow-source-end -->
+
+### CLM-023 — Trade-offs
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Guidance.md","line_end":56,"line_start":47,"source_sha256":"c91b5a857b1f4c4edc6e69c790fd889eda26b2960f34f178f062c29f203af6d5","target_id":"CLM-023"} -->
+##### Trade-offs
+
+| Trade-off | Preferred Direction | Rationale |
+|---|---|---|
+| Thin route vs. route-owned lifecycle | Prefer thin route with lifecycle in `TurnEngine`. | Required by `docs/SPEC.md` Section 10.4 and `docs/PRD.md` FR-070-FR-071. |
+| Strict lock release vs. broad catch-all cleanup | Prefer explicit terminal-path cleanup plus route abort cleanup. | Avoids stranded sessions and supports testable active-turn semantics. |
+| SDK-shaped internal convenience vs. Chirality-owned public contract | Prefer adapter translation and metadata-only SDK leakage. | Required by `docs/SPEC.md` Section 10.3 and `docs/CONTRACT.md` K-ENGINE-4. |
+| Implement interrupt details now vs. defer full terminal semantics | Implement lock cleanup/cancellation signal boundary now; defer full interrupt/cancel outcome handling to DEL-03-04 where needed. | DEL-03-02 scope is thin `TurnEngine` and session locking; DEL-03-04 owns interrupt/cancel terminal handling. The boundary exists because DEL-03-02 must prove the active-turn guard cannot strand a session, while DEL-03-04 owns the broader terminal-event semantics for interrupts, client disconnects, failures, and cancellations. |
+| Add new capabilities during refactor vs. preserve behavior | Preserve behavior and avoid new capability exposure. | R1 acceptance forbids new user-visible local tool capability beyond current surface. |
+
+<!-- sow-source-end -->
+
+### CLM-024 — Examples
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Guidance.md","line_end":73,"line_start":57,"source_sha256":"c91b5a857b1f4c4edc6e69c790fd889eda26b2960f34f178f062c29f203af6d5","target_id":"CLM-024"} -->
+##### Examples
+
+Supported conceptual flow:
+
+```text
+POST /api/harness/turn
+  -> validate request shape
+  -> obtain session active-turn lock
+  -> construct TurnInput from session, project root, persona, mode, options, content, attachments, cancellation signal
+  -> call TurnEngine.runTurn(input)
+  -> stream yielded UIEvents as existing SSE names
+  -> persist accepted-turn and terminal records through runtime event layer
+  -> release lock on completion, failure, cancellation, or route cleanup
+```
+
+This is a conceptual flow only. Exact function names, file paths, and call ordering details beyond the cited requirements are TBD until implementation reads the current route and session manager code.
+
+<!-- sow-source-end -->
+
+### CLM-025 — Conflict Table (for human ruling)
+
+<!-- sow-source-begin {"disposition":"PRESERVED","file":"Guidance.md","line_end":79,"line_start":74,"source_sha256":"c91b5a857b1f4c4edc6e69c790fd889eda26b2960f34f178f062c29f203af6d5","target_id":"CLM-025"} -->
+##### Conflict Table (for human ruling)
+
+| Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| TBD | No direct content conflict found during Pass 1/2. D-APP-38 now provides the current authority-corpus reconciliation for `docs/PRD.md`. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | All PRD-derived requirements | Use PRD-derived details conservatively within cited requirement text. | D-APP-38 accepted current authority corpus |
+| B-001 | Former REF-006 source-state mismatch is resolved by D-APP-38 and is no longer a closure blocker for this tranche. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | Datasheet Conditions; Specification Documentation; Guidance Conflict Table; Procedure Prerequisites and Records | Use PRD-derived content under the current D-APP-38 authority corpus. | D-APP-38 accepted current authority corpus |
+<!-- sow-source-end -->
+
+## Output and Evaluation Matrix
+
+| Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
+|---|---|---|---|---|---|
+| OUT-001 | SOW-009 SOW-010 SOW-011 SOW-038 OBJ-002 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+
+<!-- migration-authority: D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176 -->

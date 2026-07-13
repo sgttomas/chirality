@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="34e41b8e7efe65ea58eb36856bde2bbd7e2e0d21052331c676d245b106813b65">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-01-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>34e41b8e7efe65ea58eb36856bde2bbd7e2e0d21052331c676d245b106813b65</code>.</p>
+<h1 id="scope-of-work-del-01-01">Scope of Work — DEL-01-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-01-01</code> in service of project scope [SOW-074, SOW-075] and package objectives [OBJ-009].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Governance-alignment record and human-authority, project-truth, and runtime-audit checklists grounded in SOW-074, SOW-075, and OBJ-009.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-01-01-governance-alignment-human-authority-and-project-truth">CLM-001 — Datasheet: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h3>
+<h4 id="datasheet-del-01-01-governance-alignment-human-authority-and-project-truth">Datasheet: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>DecompositionPath</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td></tr>
+<tr><td>PackageID</td><td>PKG-01</td></tr>
+<tr><td>PackageName</td><td>Product Governance and Reliance Boundaries</td></tr>
+<tr><td>DeliverableID</td><td>DEL-01-01</td></tr>
+<tr><td>DeliverableName</td><td>Governance Alignment, Human Authority, and Project Truth</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>DOC_UPDATE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CurrentLifecycleState</td><td>Read from <code>_STATUS.md</code> (currently <code>IN_PROGRESS</code>; prior states remain historical evidence)</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Source-grounded value</td></tr>
+<tr><td>Deliverable purpose</td><td>Keep <code>docs/PRD.md</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/PLAN.md</code>, and the active decomposition mutually consistent while preserving human authority, filesystem project truth, accepted git history, and runtime-audit boundaries.</td></tr>
+<tr><td>Package scope</td><td>Product intent, invariants, professional boundary, reliance-boundary ownership, and out-of-scope discipline.</td></tr>
+<tr><td>Inclusion criteria</td><td>Governance docs, acceptance checks, product identity, and scope boundaries.</td></tr>
+<tr><td>Exclusions</td><td>Runtime implementation details except as required for boundary enforcement.</td></tr>
+<tr><td>Covered scope items</td><td>SOW-074; SOW-075.</td></tr>
+<tr><td>Supported objective</td><td>OBJ-009.</td></tr>
+<tr><td>Anticipated artifacts</td><td>Governance consistency notes; human-authority checklist; project-truth checklist; doc diff checklist; acceptance checklist.</td></tr>
+<tr><td>Reference integrity</td><td>Authority-doc references were reconciled under the current D-APP-38 corpus snapshot; REF-006 <code>docs/PRD.md</code> is currently <code>MATCH</code> in <code>_REFERENCES.md</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td></tr>
+<tr><td>Human authority condition</td><td>Only humans may author binding approval records, approve issue/release actions, select governing standards, accept residual risk, adjudicate judgment conflicts, and decide whether work may be relied upon.</td></tr>
+<tr><td>Project truth condition</td><td>Gate-relevant project state must be represented in versioned project files under the working root and accepted git history. Hidden app state, chats, SDK transcripts, runtime logs, model context, caches, API keys, and provider transcripts are not project truth unless imported through a governed process.</td></tr>
+<tr><td>Runtime audit condition</td><td>Runtime events explain work and support replay, but they do not approve deliverables, issue work, prove code compliance, or substitute for accepted project files and human approval records.</td></tr>
+<tr><td>Reliance-boundary condition</td><td>Product-critical boundaries must be documented, implemented, and tested in Chirality terms; prompt text or opaque SDK defaults alone are insufficient for P0 boundaries.</td></tr>
+<tr><td>Lifecycle condition</td><td><code>_STATUS.md</code> is the canonical lifecycle file and the current state is read from it; any future human-gate transition remains non-delegable.</td></tr>
+<tr><td>Dependency-register condition</td><td><code>Dependencies.csv</code> is a derivative dependency-extract artifact. This reconciliation may describe it but must not mark rows satisfied or mutate dependency status.</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Required treatment</td></tr>
+<tr><td>Governance consistency notes</td><td>Compare the governing document set using the authority order in <code>docs/DIRECTIVE.md</code> and the invariant catalog in <code>docs/CONTRACT.md</code>; record conflicts rather than silently resolving them.</td></tr>
+<tr><td>Human-authority checklist</td><td>Verify no document, UI copy, runtime event, validator, SDK behavior, agent, tool, or domain adapter claims to approve, certify, sign, seal, issue, transmit, externally validate, or make professional work reliable by itself.</td></tr>
+<tr><td>Project-truth checklist</td><td>Verify reliance-relevant facts land in proper project files and accepted git history, not only in runtime state, chat, SDK transcripts, UI state, caches, or hidden memory.</td></tr>
+<tr><td>Runtime-audit checklist</td><td>Verify Chirality-owned <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> remains the canonical runtime audit mirror and that SDK transcripts remain secondary unless imported into <code>HarnessEvent</code> form.</td></tr>
+<tr><td>Diff/acceptance checklist</td><td>Verify PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition changes remain mutually consistent with SOW-074, SOW-075, OBJ-009, and CONTRACT invariant families owned by PKG-01.</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use in this datasheet</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Authority order, filesystem truth, human authority, evidence posture, reliance boundaries, professional responsibility.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for project truth, human authority, lifecycle, invention/conflict discipline, runtime boundaries, and professional boundaries.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Execution-root layout, deliverable file contract, lifecycle states, runtime audit and engine contracts.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Canonical vocabulary for project truth, runtime audit mirror, deliverables, stable IDs, and agent authority.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Roadmap acceptance principles, current R0/R1 focus, SDK-governance boundaries, out-of-scope items.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Current product requirements and acceptance criteria; the current D-APP-38 corpus snapshot records a matching authority-doc hash.</td></tr>
+<tr><td>REF-007</td><td><code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>SOFTWARE_DECOMP no-invention, human gate, stable-ID, bounded-deliverable method context.</td></tr>
+<tr><td>DEC-001</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>DEL-01-01 scope, SOW-074, SOW-075, OBJ-009, package scope, and anticipated artifacts.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-01-01-governance-alignment-human-authority-and-project-truth">CLM-007 — Specification: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h3>
+<h4 id="specification-del-01-01-governance-alignment-human-authority-and-project-truth">Specification: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable covers the governance-alignment work needed to keep <code>docs/PRD.md</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/PLAN.md</code>, and the active SOFTWARE_DECOMP v3.2 working surface mutually consistent as the runtime evolves.</p>
+<p>The scope is bounded to preserving human authority, filesystem project truth, accepted git history, runtime-audit boundaries, product identity, professional-boundary posture, and reliance-boundary ownership. Runtime implementation details are excluded except where they are necessary to define or check a governance boundary.</p>
+<p>ResponsibleParty remains <code>TBD</code> until assigned by a human.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source basis</td><td>Verification</td></tr>
+<tr><td>DEL-01-01-REQ-001</td><td>Governance alignment work must preserve the authority order: DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, PRD, then agent instructions and accepted execution records for concrete operations.</td><td><code>docs/DIRECTIVE.md</code> Section 0.</td><td>Governance consistency notes identify any lower-authority conflict and proposed correction path.</td></tr>
+<tr><td>DEL-01-01-REQ-002</td><td>Human approval, professional acceptance, issue/release actions, residual-risk acceptance, and judgment conflict rulings must remain human-only.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.4 and 3; <code>docs/CONTRACT.md</code> K-AUTH/K-GATE/K-PROF.</td><td>Human-authority checklist confirms no automated approval claim is introduced.</td></tr>
+<tr><td>DEL-01-01-REQ-003</td><td>Agent, SDK, runtime, validator, deterministic tool, domain adapter, and runtime-event outputs must be described as drafts, evidence, diagnostics, or decision support unless accepted by a governed human process.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3 and 3.1; <code>docs/CONTRACT.md</code> K-BIND-1.</td><td>Checklist reviews copy and document changes for binding/non-binding separation.</td></tr>
+<tr><td>DEL-01-01-REQ-004</td><td>Project truth must remain in versioned project files under the working root and accepted git history; hidden app state, chat, SDK transcripts, runtime logs, caches, model context, API keys, and provider transcripts must not be treated as project truth unless imported through governance.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.1, 2.2, 2.6; <code>docs/TYPES.md</code> Project Truth.</td><td>Project-truth checklist verifies claims and storage locations.</td></tr>
+<tr><td>DEL-01-01-REQ-005</td><td>Runtime events must support audit and replay without approving or issuing deliverables.</td><td><code>docs/DIRECTIVE.md</code> Section 2.3; <code>docs/SPEC.md</code> Sections 8-10; <code>docs/PRD.md</code> session/audit requirements.</td><td>Runtime-audit checklist confirms <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> is canonical and SDK transcripts are secondary unless imported.</td></tr>
+<tr><td>DEL-01-01-REQ-006</td><td>Product-critical reliance boundaries must be Chirality-owned or verified at explicit enforcement surfaces; prompt text and opaque SDK defaults are not sufficient for P0 boundaries.</td><td><code>docs/DIRECTIVE.md</code> Section 2.9; <code>docs/CONTRACT.md</code> K-RELIANCE-1/K-RELIANCE-2; <code>docs/PLAN.md</code> R0/R1.</td><td>Acceptance checklist verifies each P0 reliance boundary has a documented non-prompt-only enforcement plan or an open gap.</td></tr>
+<tr><td>DEL-01-01-REQ-007</td><td>SDK adoption must remain privileged but replaceable; SDK APIs, transcript shape, tool names, and vendor defaults must not define Chirality public semantics or product identity.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8-2.11; <code>docs/CONTRACT.md</code> K-ENGINE/K-SDK; <code>docs/PLAN.md</code> Controlling Runtime Direction.</td><td>Diff checklist verifies product-owned contracts and Chirality terminology remain intact.</td></tr>
+<tr><td>DEL-01-01-REQ-008</td><td>Unknown, unsupported, or conflicting facts must be represented as <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, source warning, or human-ruling-needed.</td><td><code>docs/DIRECTIVE.md</code> Section 2.5; <code>docs/CONTRACT.md</code> K-INVENT-1/K-CONFLICT-1; <code>AGENT_SOFTWARE_DECOMP.md</code>.</td><td>Review checks the four-document kit and later governance notes for unsupported claims.</td></tr>
+<tr><td>DEL-01-01-REQ-009</td><td>Lifecycle state must only transition according to SPEC; current state is read from <code>_STATUS.md</code>, while historical <code>CHECKING</code> admission is not issuance approval.</td><td><code>docs/SPEC.md</code> Section 4; <code>_STATUS.md</code>; D-APP-54.</td><td><code>_STATUS.md</code> remains the sole lifecycle authority during docs reconciliation; any human-gate transition requires its governed evidence.</td></tr>
+<tr><td>DEL-01-01-REQ-010</td><td>Dependency-extract output is derivative evidence and must not be treated as authoritative decomposition truth or silently marked satisfied.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code>; D-APP-38 reference-integrity model.</td><td><code>Dependencies.csv</code> may exist, but this deliverable records row status without satisfying, retiring, or mutating rows outside a governed dependency/evidence tranche.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / governing source</td><td>Status</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/PLAN.md</code></td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Accessible; the current D-APP-38 corpus snapshot records matching REF-006 authority-doc hashes.</td></tr>
+<tr><td>Active decomposition <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Accessible.</td></tr>
+<tr><td><code>AGENT_SOFTWARE_DECOMP.md</code></td><td>Accessible; hash match.</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Method</td><td>Acceptance</td></tr>
+<tr><td>Four-document kit exists</td><td>File check</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> exist and are non-empty.</td></tr>
+<tr><td>Human-authority preservation</td><td>Checklist review</td><td>No automated actor is represented as able to approve, issue, certify, sign, seal, externally validate, or make professional work reliable.</td></tr>
+<tr><td>Project-truth preservation</td><td>Checklist review</td><td>Reliance-relevant facts are represented in project files and git evidence, not only runtime state or hidden memory.</td></tr>
+<tr><td>Runtime-audit boundary</td><td>Checklist review</td><td>Runtime audit is evidence/replay support only; it does not replace approval records.</td></tr>
+<tr><td>Cross-document consistency</td><td>Diff checklist</td><td>PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition remain aligned or conflicts are surfaced.</td></tr>
+<tr><td>Reference integrity handling</td><td>Reference-row check</td><td>Authority-doc references, including REF-006, match the current D-APP-38 corpus before issue-readiness reliance is claimed.</td></tr>
+<tr><td>Historical warning handling</td><td>Conflict/source-warning table</td><td>Historical PRD hash warnings are treated as superseded by the current D-APP-38 corpus snapshot; other path/source conflicts remain visible pending human ruling.</td></tr>
+<tr><td>Dependency-register handling</td><td>Scope check</td><td>This reconciliation does not satisfy, retire, or otherwise mutate local dependency rows.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>The expected documentation artifacts are:</p>
+<ul>
+<li>- Governance consistency notes.</li>
+<li>- Human-authority checklist.</li>
+<li>- Project-truth checklist.</li>
+<li>- Runtime-audit boundary checklist.</li>
+<li>- Document diff checklist.</li>
+<li>- Acceptance checklist.</li>
+<li>- Conflict/source-warning table for human rulings where source records disagree or source hashes are not accepted.</li>
+</ul>
+<p><code>TBD</code>: final artifact filenames and destination locations for the above checklists are not specified by the available sources. This includes the governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The converted contract preserves all legacy source content and traceability to SOW-074, SOW-075, and OBJ-009 without changing lifecycle or dependency state.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-01-01-governance-alignment-human-authority-and-project-truth">CLM-013 — Procedure: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h3>
+<h4 id="procedure-del-01-01-governance-alignment-human-authority-and-project-truth">Procedure: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h4>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and use the DEL-01-01 governance-alignment artifacts while preserving human authority, project truth, accepted git evidence, and runtime-audit boundaries.</p>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Deliverable-local context files exist: <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, <code>_REFERENCES.md</code>, <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code></td><td>Present at P3 enrichment.</td></tr>
+<tr><td>Current lifecycle state permits documentation reconciliation</td><td>Read from <code>_STATUS.md</code> (currently <code>IN_PROGRESS</code>); this procedure performs no lifecycle transition.</td></tr>
+<tr><td>Authoritative references are locally accessible</td><td>Accessible; the current D-APP-38 corpus snapshot records REF-006 <code>docs/PRD.md</code> as <code>MATCH</code>.</td></tr>
+<tr><td>Upstream dependencies</td><td>See derivative <code>Dependencies.csv</code>; rows remain pending unless separately disposed.</td></tr>
+<tr><td>Downstream dependencies</td><td>No downstream deliverable edges are accepted in this reconciliation.</td></tr>
+<tr><td>Human owner</td><td><code>ResponsibleParty: TBD</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm scope identity.</p>
+<ul>
+<li>- Verify <code>PackageID=PKG-01</code>, <code>DeliverableID=DEL-01-01</code>, <code>Type=DOC_UPDATE</code>, and <code>ResponsibleParty=TBD</code> against <code>_CONTEXT.md</code> and SOFTWARE_DECOMP v3.2.</li>
+<li>- If path labels disagree but stable IDs match, record the mismatch as a source warning or human-ruling-needed item.</li>
+</ul>
+<p>2. Check source status.</p>
+<ul>
+<li>- Read <code>_REFERENCES.md</code>.</li>
+<li>- Confirm hash status for each source.</li>
+<li>- Confirm REF-006 <code>docs/PRD.md</code> is reconciled to the current D-APP-38 corpus version before issue-readiness reliance is claimed.</li>
+<li>- Treat older PRD hash-mismatch prose as historical if <code>_REFERENCES.md</code> records <code>MATCH</code>.</li>
+<li>- Mark any inaccessible or unsupported source-dependent content as <code>TBD</code>.</li>
+</ul>
+<p>3. Build governance consistency notes.</p>
+<ul>
+<li>- Compare changes against the authority order in <code>docs/DIRECTIVE.md</code>.</li>
+<li>- Check CONTRACT invariant families owned or co-owned by PKG-01: project truth, human authority, binding/non-binding records, gates, professional boundary, reliance boundaries, SDK identity, lifecycle, invention/conflict discipline, validation/release boundaries, and retired scope.</li>
+<li>- Record conflicts rather than resolving them silently.</li>
+</ul>
+<p>4. Build the human-authority checklist.</p>
+<ul>
+<li>- Check that no document, UI copy, runtime event, SDK behavior, tool, validator, agent, or domain adapter claims to approve, certify, sign, seal, issue, transmit, externally validate, or make professional work reliable by itself.</li>
+<li>- Check that CHECKING, ISSUED, domain-operation acceptance, residual-risk acceptance, and source-conflict rulings remain human-gated where applicable.</li>
+</ul>
+<p>5. Build the project-truth checklist.</p>
+<ul>
+<li>- Check that reliance-relevant facts land in versioned project files or accepted artifacts.</li>
+<li>- Check that hidden app state, chat, SDK transcripts, runtime logs, model context, caches, UI state, API keys, provider transcripts, and convenience state are not treated as project truth unless imported by governance.</li>
+<li>- Check that accepted decisions bind to git SHA or equivalent immutable evidence where approval is claimed.</li>
+</ul>
+<p>6. Build the runtime-audit boundary checklist.</p>
+<ul>
+<li>- Check that <code>.chirality/sessions/&lt;sessionId&gt;/events.jsonl</code> remains the Chirality-owned runtime audit mirror.</li>
+<li>- Check that SDK transcripts remain secondary runtime state unless imported into <code>HarnessEvent</code> form or a governed artifact.</li>
+<li>- Check that runtime events explain execution and do not approve deliverables.</li>
+</ul>
+<p>7. Build the document diff checklist.</p>
+<ul>
+<li>- Review <code>docs/PRD.md</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/PLAN.md</code>, and active SOFTWARE_DECOMP changes for mutual consistency.</li>
+<li>- Confirm SOW-074, SOW-075, and OBJ-009 remain satisfied.</li>
+<li>- Flag lower-authority conflicts with higher-authority sources for human ruling.</li>
+</ul>
+<p>8. Build the acceptance checklist.</p>
+<ul>
+<li>- Confirm every P0 reliance boundary referenced by this deliverable has a documented enforcement surface or open gap.</li>
+<li>- Confirm unknowns are marked <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, source warning, or human-ruling-needed.</li>
+<li>- Confirm dependency rows are not satisfied, retired, or otherwise mutated unless a later task explicitly authorizes dependency/evidence disposition.</li>
+</ul>
+<p>9. Record results.</p>
+<ul>
+<li>- Write outputs to authorized deliverable-local artifacts only.</li>
+<li>- Do not mark dependency rows satisfied or mutate <code>Dependencies.csv</code> during this documentation reconciliation.</li>
+<li>- Preserve <code>_STATUS.md</code> unless an explicit governed status policy authorizes a transition.</li>
+</ul>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass condition</td></tr>
+<tr><td>Four-doc kit</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> exist and are non-empty.</td></tr>
+<tr><td>Lifecycle</td><td><code>_STATUS.md</code> remains the sole lifecycle authority; no transition is performed.</td></tr>
+<tr><td>Reference integrity</td><td>REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> in <code>_REFERENCES.md</code>; historical PRD hash-warning prose is not carried forward as an active blocker.</td></tr>
+<tr><td>Responsible party</td><td><code>ResponsibleParty</code> remains <code>TBD</code>.</td></tr>
+<tr><td>Dependency-register handling</td><td>Existing <code>Dependencies.csv</code> rows are not satisfied, retired, or otherwise mutated.</td></tr>
+<tr><td>No invention</td><td>Unsupported facts are <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, conflict, source warning, or human-ruling-needed.</td></tr>
+<tr><td>Boundary posture</td><td>Human authority, project truth, and runtime-audit boundaries are not weakened by the drafted artifacts.</td></tr>
+<tr><td>Immutable acceptance evidence</td><td>Governance notes or checklist outputs used as acceptance evidence are bound to a git SHA or equivalent immutable evidence, and a separate accountable human approval record exists.</td></tr>
+</tbody></table>
+<h3 id="clm-018-records">CLM-018 — Records</h3>
+<h5 id="records">Records</h5>
+<table><tbody>
+<tr><td>Record</td><td>Status</td></tr>
+<tr><td><code>Datasheet.md</code></td><td>Active local-kit artifact; reconciled to current lifecycle/reference posture.</td></tr>
+<tr><td><code>Specification.md</code></td><td>Active local-kit artifact; reconciled to current lifecycle/reference posture.</td></tr>
+<tr><td><code>Guidance.md</code></td><td>Active local-kit artifact; preserves any unresolved conflicts as current only when still true.</td></tr>
+<tr><td><code>Procedure.md</code></td><td>Active local-kit artifact; reconciled to current lifecycle/reference posture.</td></tr>
+<tr><td><code>_STATUS.md</code></td><td>Not changed by this documentation reconciliation; current state is read from that file.</td></tr>
+<tr><td><code>_run_records/TASK_RUN_2026-05-20_1610.md</code></td><td>Durable run record for this task.</td></tr>
+<tr><td>P3 run record</td><td>Records semantic-lensing dispositions, source rereads, validation results, and status policy outcome.</td></tr>
+<tr><td>Dependency records</td><td>Not created or updated by this P3 run.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, then perform human review against the accepted legacy basis.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-019-guidance-del-01-01-governance-alignment-human-authority-and-project-truth">CLM-019 — Guidance: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h3>
+<h4 id="guidance-del-01-01-governance-alignment-human-authority-and-project-truth">Guidance: DEL-01-01 Governance Alignment, Human Authority, and Project Truth</h4>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Use this deliverable to keep the governing document set coherent while the Chirality App runtime moves toward the vNext SDK-privileged, contract-owned, Chirality-governed architecture. The work is not to add runtime implementation detail for its own sake. The work is to preserve the governance boundaries that make implementation acceptable: human authority, local filesystem project truth, accepted git history, runtime auditability, reliance-boundary ownership, product identity, and professional-boundary posture.</p>
+<h3 id="clm-021-principles">CLM-021 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Human approval remains non-delegable. Agents, SDKs, tools, validators, runtime events, and domain adapters may assist, draft, record, diagnose, or validate in limited ways, but they do not approve or issue work for reliance.</p>
+<p>2. Filesystem project truth controls. If a decision matters for reliance, it belongs in a proper versioned project file or accepted artifact, not only in chat, runtime logs, UI state, SDK transcripts, model context, caches, or hidden memory.</p>
+<p>3. Runtime audit records explain execution. They support replay, diagnosis, and review, but they are not approval records and do not make work code-compliant, safe for reliance, issued, or professionally adequate.</p>
+<p>4. Reliance boundaries are product semantics. They must be documented, implemented, and tested in Chirality terms. Do not treat prompt instructions, SDK defaults, or visible tool settings alone as sufficient boundary enforcement.</p>
+<p>5. Chirality product identity must remain explicit. SDK usage may be an implementation detail, but it must not redefine public APIs, UI events, persisted events, copy, or governance language as SDK-shaped behavior.</p>
+<p>6. Source uncertainty must remain visible. Use <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, source warnings, and human-ruling-needed records instead of smoothing over unsupported claims.</p>
+<h3 id="clm-022-considerations">CLM-022 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Area</td><td>Guidance</td></tr>
+<tr><td>Authority order</td><td>Start with <code>docs/DIRECTIVE.md</code>, then <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/PLAN.md</code>, and <code>docs/PRD.md</code>; use decomposition and agent instructions for scoped execution context.</td></tr>
+<tr><td>PRD reference integrity</td><td>the current D-APP-38 corpus snapshot reconciled REF-006; current <code>_REFERENCES.md</code> records <code>docs/PRD.md</code> as <code>MATCH</code>. Treat older hash-mismatch warnings as historical unless a fresh corpus audit reports drift.</td></tr>
+<tr><td>Accepted git history</td><td>When governance notes become acceptance evidence, bind them to a git SHA or equivalent immutable evidence. Content changes after approval require review again.</td></tr>
+<tr><td>Evidence roles</td><td>Runtime audit records support replay, diagnosis, and review; checklist outputs organize review evidence; accepted git history or equivalent immutable evidence binds any human approval to specific content. None of these records is approval by itself unless the accountable human approval record exists.</td></tr>
+<tr><td>Runtime implementation detail</td><td>Include runtime specifics only when they prove or preserve a boundary, such as accepted-turn persistence, event canonicality, settings isolation, permission denial, path containment, or SDK transcript non-authority.</td></tr>
+<tr><td>Scope discipline</td><td>Keep remote MCP, plugins, broad tool search, shipped bypass, Windows/Linux packaging, retired PKG-08 scope, and domain-operation execution out of this deliverable except as boundary examples.</td></tr>
+<tr><td>Responsible party</td><td>Keep <code>ResponsibleParty</code> as <code>TBD</code> until a human assigns ownership.</td></tr>
+</tbody></table>
+<h3 id="clm-023-trade-offs">CLM-023 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Recommended posture</td></tr>
+<tr><td>Faster runtime delivery vs. governance completeness</td><td>Prefer a smaller runtime slice that preserves human gates, audit, path policy, settings isolation, and product-owned contracts.</td></tr>
+<tr><td>SDK convenience vs. product-owned semantics</td><td>Use SDK mechanics only behind Chirality-owned contracts, mappers, events, permission overlay, hooks, and fallback criteria.</td></tr>
+<tr><td>Audit richness vs. approval clarity</td><td>Preserve rich runtime records while making clear that approval is a separate human-authored project record.</td></tr>
+<tr><td>Local-first truth vs. convenience state</td><td>Permit convenience state only when explicitly non-authoritative and unable to override governance.</td></tr>
+<tr><td>Broad guidance vs. executable deliverable</td><td>Keep this deliverable at governance-alignment level; send implementation-specific requirements to the owning runtime packages unless required for a boundary check.</td></tr>
+</tbody></table>
+<h3 id="clm-024-examples">CLM-024 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Situation</td><td>Acceptable treatment</td></tr>
+<tr><td>SDK transcript contains a useful event detail</td><td>Record or import the relevant detail into Chirality <code>HarnessEvent</code> form or a governed project artifact before treating it as reliance evidence.</td></tr>
+<tr><td>A document says a runtime event proves approval</td><td>Mark as nonconforming; runtime events explain work and do not approve work.</td></tr>
+<tr><td>A UI copy change implies Chirality certifies professional adequacy</td><td>Mark as nonconforming; preserve draft/decision-support posture and human authority.</td></tr>
+<tr><td>A dependency or source fact is plausible but unsupported</td><td>Mark <code>TBD</code> or <code>ASSUMPTION</code>; do not promote it to a requirement.</td></tr>
+<tr><td>A lower-authority artifact conflicts with the directive or contract</td><td>Surface the conflict and propose that the higher-authority source controls until a governed change updates the record.</td></tr>
+</tbody></table>
+<h3 id="clm-025-conflict-table-for-human-ruling">CLM-025 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-01-01-C002</td><td>Dispatch path used package label <code>PKG-01_Governance_and_Product_Boundaries</code>, but the existing deliverable folder and <code>_CONTEXT.md</code> use <code>PKG-01_Product_Governance_and_Reliance_Boundaries</code>.</td><td>TASK dispatch assignment path</td><td>Existing deliverable folder, <code>_CONTEXT.md</code>, and SOFTWARE_DECOMP v3.2 package name</td><td>Run record; all document Identification sections</td><td>Use stable IDs <code>PKG-01</code> and <code>DEL-01-01</code> plus existing <code>_CONTEXT.md</code>/decomposition package name; ask human to correct the stale dispatch label if needed.</td><td>TBD</td></tr>
+</tbody></table>
+<p>Closed historical conflict: <code>DEL-01-01-C001</code> is superseded by the current D-APP-38 corpus snapshot; REF-006</p>
+<p><code>docs/PRD.md</code> now matches in <code>_REFERENCES.md</code>.</p>
+<h3 id="clm-026-rulings-and-open-questions">CLM-026 — Rulings And Open Questions</h3>
+<h5 id="rulings-and-open-questions">Rulings And Open Questions</h5>
+<table><tbody>
+<tr><td>Ruling ID</td><td>Status / needed decision</td></tr>
+<tr><td>DEL-01-01-R001</td><td>Closed by the current D-APP-38 corpus snapshot; rerun authority-corpus status if an authority document changes.</td></tr>
+<tr><td>DEL-01-01-R002</td><td>Resolved by D-APP-56 R4-P48 on 2026-07-12: preserve stable IDs and the live package path; no obsolete dispatch label is needed to discover or execute remaining work.</td></tr>
+<tr><td>DEL-01-01-R003</td><td><code>ResponsibleParty</code> assignment explicitly deferred by D-APP-56 R4-P47 on 2026-07-12; retain <code>TBD</code> until an accountable human assigns it.</td></tr>
+<tr><td>DEL-01-01-R004</td><td>Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table.</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-074 SOW-075 OBJ-009</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

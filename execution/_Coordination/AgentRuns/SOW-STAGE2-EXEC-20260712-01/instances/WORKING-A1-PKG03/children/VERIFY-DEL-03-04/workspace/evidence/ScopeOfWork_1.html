@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="3ae8810ad33dec6323804d5177344b0c5da05858ec776698b93a524ca0bf0f22">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>3ae8810ad33dec6323804d5177344b0c5da05858ec776698b93a524ca0bf0f22</code>.</p>
+<h1 id="scope-of-work-del-03-04">Scope of Work — DEL-03-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-03-04</code> in service of project scope [SOW-012, SOW-015] and package objectives [OBJ-002, OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Interrupt tests, cancel cleanup tests, and a terminal event mapper for DEL-03-04 interrupt, cancellation/disconnect cleanup, lock release, and durable terminal outcomes.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-04-interrupt-cancel-and-terminal-outcome-handling">CLM-001 — Datasheet: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h3>
+<h4 id="datasheet-del-03-04-interrupt-cancel-and-terminal-outcome-handling">Datasheet: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-03-04</td></tr>
+<tr><td>DeliverableName</td><td>Interrupt, Cancel, and Terminal Outcome Handling</td></tr>
+<tr><td>PackageID</td><td>PKG-03</td></tr>
+<tr><td>PackageName</td><td>Runtime Engine Contract and Turn Lifecycle</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-012, SOW-015</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-002, OBJ-003</td></tr>
+<tr><td>AnticipatedArtifacts</td><td>Interrupt tests; cancel cleanup tests; terminal event mapper</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary runtime owner</td><td><code>TurnEngine</code> owns the harness turn lifecycle; <code>/api/harness/turn</code> remains a transport adapter.</td><td><code>docs/PRD.md</code> Section 8.12, FR-070 and FR-071; <code>docs/SPEC.md</code> Section 10.4</td></tr>
+<tr><td>Engine boundary</td><td><code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> is the product-owned boundary for turn execution, UI events, canonical <code>HarnessEvent</code>s, interrupt behavior, and terminal outcomes.</td><td><code>docs/PRD.md</code> Section 6.1; <code>docs/SPEC.md</code> Section 10.1</td></tr>
+<tr><td>Public interrupt route</td><td><code>/api/harness/interrupt</code> interrupts the active turn.</td><td><code>docs/PRD.md</code> Section 8.3, FR-019; <code>docs/SPEC.md</code> Section 17.1</td></tr>
+<tr><td>Turn stream route</td><td><code>/api/harness/turn</code> executes a turn and streams browser-facing UI events over SSE.</td><td><code>docs/PRD.md</code> Section 8.3, FR-017; <code>docs/SPEC.md</code> Section 17.1</td></tr>
+<tr><td>Session concurrency constraint</td><td>Only one active turn may run per session; concurrent attempts return <code>TURN_IN_PROGRESS</code>.</td><td><code>docs/PRD.md</code> Section 8.3, FR-018</td></tr>
+<tr><td>Accepted-turn durability</td><td>Accepted user input must be persisted before model/provider execution so an interrupted or killed turn is recoverable.</td><td><code>docs/PRD.md</code> Section 8.3, FR-021; <code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-2</td></tr>
+<tr><td>Terminal outcome durability</td><td>Every accepted turn must end with a durable success, failure, cancellation, or interruption outcome.</td><td><code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-3; <code>docs/PRD.md</code> Section 8.3, FR-022; <code>docs/SPEC.md</code> Section 10.1</td></tr>
+<tr><td>Product-owned audit mirror</td><td><code>.chirality/sessions/&lt;id&gt;/events.jsonl</code> is the canonical Chirality runtime audit mirror; SDK transcripts are secondary unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-4; <code>docs/SPEC.md</code> Section 8.4</td></tr>
+<tr><td>Browser event compatibility</td><td>Existing SSE event names must remain compatible during SDK adoption.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+<tr><td>PRD source state</td><td><code>docs/PRD.md</code> is accessible but hash-mismatched against <code>_REFERENCES.md</code>; use as source-state warning, not as rejection.</td><td><code>_REFERENCES.md</code> REF-006</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Required Handling</td><td>Source</td></tr>
+<tr><td>User interrupt</td><td><code>POST /api/harness/interrupt</code> aborts the active provider request, yields interrupted <code>process:exit</code>, and persists <code>turn.interrupted</code> for explicit user interruption.</td><td><code>docs/PRD.md</code> Section 8.3, FR-019; <code>docs/PRD.md</code> Section 7.4; D-APP-40</td></tr>
+<tr><td>Client disconnect</td><td>Stream cleanup must occur; once the event log exists, client disconnect cleanup must record cancellation.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+<tr><td>Runtime/provider failure after input acceptance</td><td>Accepted input remains recoverable and replay shows terminal failure/cancellation status.</td><td><code>docs/PRD.md</code> Section 7.10</td></tr>
+<tr><td>Concurrent turn attempt</td><td>Must not create a second active turn for the same session; return <code>TURN_IN_PROGRESS</code>.</td><td><code>docs/PRD.md</code> Section 8.3, FR-018</td></tr>
+<tr><td>Malformed trailing event log write</td><td>Replay ignores malformed trailing lines and preserves valid prior events.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/PRD.md</code> Section 7.10</td></tr>
+<tr><td>Secret-bearing error or payload</td><td>Runtime events, logs, tool artifacts, and provider errors must redact secrets and avoid storing API keys.</td><td><code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-6; <code>docs/SPEC.md</code> Section 9.2</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component / Artifact</td><td>Construction Target</td><td>Status</td></tr>
+<tr><td>Interrupt tests</td><td>Cover active-turn interrupt route, provider abort propagation, SSE <code>process:exit</code>, lock release, and durable terminal outcome.</td><td>ASSUMPTION: exact test file path TBD</td></tr>
+<tr><td>Cancel cleanup tests</td><td>Cover client disconnect and cancellation-signal cleanup, lock release, and durable cancellation record once event log exists.</td><td>ASSUMPTION: exact test file path TBD</td></tr>
+<tr><td>Terminal event mapper</td><td>Map completion, failure, cancellation, and interruption handling into browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s without SDK-shaped public semantics; explicit interruption uses <code>turn.interrupted</code>.</td><td><code>frontend/src/lib/harness/claude-agent-sdk-manager.ts</code>; <code>frontend/src/lib/harness/anthropic-agent-sdk-manager.ts</code>; D-APP-40</td></tr>
+<tr><td>Lock cleanup verification</td><td>Confirm interrupt, disconnect, failure, and cancellation all release session active-turn state.</td><td>Supported by DEL-03-04 scope and PRD FR-018/FR-019/FR-022</td></tr>
+<tr><td>Event log verification</td><td>Confirm terminal records append as newline-delimited JSONL with unique event IDs and no secrets.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/CONTRACT.md</code> Section 1.4 and 1.5, especially K-ENGINE-1 through K-ENGINE-4 and K-EVENT-2 through K-EVENT-6.</li>
+<li>- <code>docs/SPEC.md</code> Sections 8.4, 9, 10, 11, 17.1, 19.2, and 19.3.</li>
+<li>- <code>docs/TYPES.md</code> Sections 7.1 through 7.4.</li>
+<li>- <code>docs/PRD.md</code> Sections 5, 6.1, 7.4, 7.10, 8.3, and 8.12. REF-006 is reconciled under the current D-APP-38 authority corpus.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-03 / DEL-03-04 and SOW-012 / SOW-015 rows.</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-03-04-interrupt-cancel-and-terminal-outcome-handling">CLM-007 — Specification: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h3>
+<h4 id="specification-del-03-04-interrupt-cancel-and-terminal-outcome-handling">Specification: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies interrupt, client-disconnect, runtime-failure, cancellation, lock-release, and terminal-outcome behavior for the PKG-03 runtime lifecycle slice.</p>
+<p>In scope:</p>
+<ul>
+<li>- Handling user interrupt requests through <code>/api/harness/interrupt</code>.</li>
+<li>- Ensuring active turn cleanup releases the per-session active-turn lock.</li>
+<li>- Ensuring every accepted turn receives a durable terminal outcome where the event log is available.</li>
+<li>- Preserving browser-facing SSE compatibility while terminal outcomes are mapped into product-owned <code>HarnessEvent</code>s.</li>
+<li>- Producing interrupt tests, cancel cleanup tests, and a terminal event mapper.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- SDK-specific message translation details, except where mapper behavior must preserve Chirality-owned event semantics.</li>
+<li>- Broad session CRUD, boot metadata, and active-turn lock design assigned to DEL-03-02.</li>
+<li>- Route-shape and general SSE compatibility documentation assigned to DEL-03-03.</li>
+<li>- Append-only event store implementation assigned primarily to DEL-05-02, except as required to verify terminal outcomes for this slice.</li>
+<li>- Durable terminal persistence by the deterministic UI-only stub adapter; its</li>
+</ul>
+<p>UI-visible terminal outcomes are test scaffolding, not K-EVENT-3 parity.</p>
+<p>Source basis: <code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Section 8.3 and 8.12; <code>docs/SPEC.md</code> Sections 9 through 11; decomposition DEL-03-04 row.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-03-04-REQ-001</td><td>The implementation shall preserve the <code>/api/harness/interrupt</code> route as the public interrupt endpoint for active turns.</td><td><code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 8.3, FR-019</td></tr>
+<tr><td>DEL-03-04-REQ-002</td><td>Interrupt handling shall abort the active provider/model request for the target session when one exists.</td><td><code>docs/PRD.md</code> Section 8.3, FR-019; <code>docs/SPEC.md</code> Section 10.1</td></tr>
+<tr><td>DEL-03-04-REQ-003</td><td>Interrupt handling shall yield an interrupted <code>process:exit</code> browser-facing event where an active SSE turn stream is present.</td><td><code>docs/PRD.md</code> Section 8.3, FR-019; <code>docs/PRD.md</code> Section 7.4</td></tr>
+<tr><td>DEL-03-04-REQ-004</td><td>Client disconnect cleanup shall release runtime turn resources and record cancellation once the event log exists.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+<tr><td>DEL-03-04-REQ-005</td><td>Runtime failure after <code>turn.accepted</code> shall leave accepted user input recoverable and shall persist a terminal failure or cancellation status.</td><td><code>docs/PRD.md</code> Section 7.10; <code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-2 and K-EVENT-3</td></tr>
+<tr><td>DEL-03-04-REQ-006</td><td>Every accepted turn shall terminate durably with a success, failure, cancellation, or interruption outcome.</td><td><code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-3; decomposition SOW-015</td></tr>
+<tr><td>DEL-03-04-REQ-006A</td><td>Explicit user interruption shall persist terminal <code>turn.interrupted</code>; <code>turn.cancelled</code> is reserved for non-user cancellation such as disconnect or system cancellation.</td><td>D-APP-40; <code>docs/SPEC.md</code> Section 9.3; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>DEL-03-04-REQ-007</td><td>Terminal outcome persistence shall use Chirality-owned <code>HarnessEvent</code> semantics, not SDK message names as public or canonical contracts.</td><td><code>docs/CONTRACT.md</code> Section 1.4, K-ENGINE-4; <code>docs/SPEC.md</code> Section 10.3</td></tr>
+<tr><td>DEL-03-04-REQ-008</td><td>Terminal event records shall follow the versioned <code>HarnessEvent</code> shape: <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, optional <code>turnId</code>, optional <code>parentEventId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code>.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Section 7.3</td></tr>
+<tr><td>DEL-03-04-REQ-009</td><td>Terminal event writes shall append newline-delimited JSONL, use unique event IDs, avoid secrets, and remain replayable when a malformed trailing line exists.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-03-04-REQ-010</td><td>Browser-facing SSE event names shall remain compatible during the runtime pivot.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+<tr><td>DEL-03-04-REQ-011</td><td>Interrupt, disconnect, failure, and cancellation paths shall release the active turn state so the session is not left in <code>TURN_IN_PROGRESS</code>.</td><td><code>docs/PRD.md</code> Section 8.3, FR-018 and FR-019; decomposition SOW-012</td></tr>
+<tr><td>DEL-03-04-REQ-012</td><td>Terminal outcome handling shall redact secrets and avoid storing API keys in runtime events, logs, provider errors, or tool artifacts.</td><td><code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-6; <code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>DEL-03-04-REQ-013</td><td>The terminal event mapper shall translate SDK/provider terminal signals into Chirality <code>UIEvent</code> and <code>HarnessEvent</code> terms at the adapter boundary.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/TYPES.md</code> Section 7.4</td></tr>
+<tr><td>DEL-03-04-REQ-014</td><td>ASSUMPTION: The implementation should expose testable cleanup hooks or observable active-turn state sufficient to prove lock release after interrupt, disconnect, failure, and cancellation; exact hook or state API remains TBD.</td><td>Decomposition anticipated artifacts; <code>docs/PRD.md</code> Section 8.3, FR-018</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Product-owned runtime boundary</td><td>Terminal behavior belongs behind <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code>; SDK APIs do not define public semantics.</td><td><code>docs/CONTRACT.md</code> Section 1.4, K-ENGINE-1; <code>docs/SPEC.md</code> Section 10</td></tr>
+<tr><td>Runtime event and audit mirror contract</td><td>Terminal outcomes are persisted as Chirality <code>HarnessEvent</code>s in append-only JSONL.</td><td><code>docs/CONTRACT.md</code> Section 1.5; <code>docs/SPEC.md</code> Section 9</td></tr>
+<tr><td>Browser SSE compatibility contract</td><td>Existing browser event names remain compatible during SDK adoption.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+<tr><td>Route adapter rule</td><td><code>/api/harness/turn</code> validates, locks, forwards to <code>TurnEngine</code>, writes SSE, and handles cleanup without owning runtime policy.</td><td><code>docs/SPEC.md</code> Section 10.4</td></tr>
+<tr><td>Source-state status</td><td><code>docs/PRD.md</code> is reconciled under the current D-APP-38 authority corpus; PRD-derived terminal-outcome requirements are accepted for this tranche.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td></tr>
+<tr><td>DEL-03-04-REQ-001, DEL-03-04-REQ-002, DEL-03-04-REQ-003, DEL-03-04-REQ-007</td><td>API/integration test for <code>/api/harness/interrupt</code> during an active turn; assert provider/model abort through the product-owned runtime boundary, interrupted <code>process:exit</code> SSE behavior, and absence of SDK-shaped names in public API or event assertions.</td></tr>
+<tr><td>DEL-03-04-REQ-004, DEL-03-04-REQ-011, DEL-03-04-REQ-014</td><td>Terminal trigger matrix test covering successful completion, user interrupt, client disconnect, runtime/provider failure, and cancellation signal; assert each terminal path releases active-turn state through the selected observable hook/state API.</td></tr>
+<tr><td>DEL-03-04-REQ-005, DEL-03-04-REQ-006, DEL-03-04-REQ-008, DEL-03-04-REQ-009</td><td>Event-log replay test that simulates failure/cancellation after <code>turn.accepted</code>, appends or simulates a malformed trailing JSONL line after valid records, then confirms accepted input plus terminal outcome remain recoverable and diagnostics surface.</td></tr>
+<tr><td>DEL-03-04-REQ-006A, DEL-03-04-REQ-007, DEL-03-04-REQ-013</td><td>Mapper/unit tests using fixture cases for completion, failure, cancellation, and explicit interruption provider/runtime signals; assert Chirality-owned <code>UIEvent</code> / <code>HarnessEvent</code> outputs and keep provider-specific values only as adapter metadata where needed.</td></tr>
+<tr><td>DEL-03-04-REQ-010</td><td>SSE compatibility fixture asserting current event names remain stable: <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code>.</td></tr>
+<tr><td>DEL-03-04-REQ-012</td><td>Redaction test for terminal failure/error payloads, including provider error surfaces, runtime events, run logs, and tool artifacts; assert no API keys or configured secret variants are persisted.</td></tr>
+<tr><td>DEL-03-04-REQ-014</td><td>Unit or integration tests around <code>TurnEngine</code>/route cleanup observability; exact hook or state API is TBD and must be resolved before implementation closure.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Interrupt tests.</li>
+<li>- Cancel cleanup tests.</li>
+<li>- Terminal event mapper.</li>
+<li>- Mapper-facing terminal outcome documentation should cite D-APP-40 for explicit user interruption as <code>turn.interrupted</code>.</li>
+</ul>
+<p>Records to update or cross-link when implementation lands:</p>
+<ul>
+<li>- Runtime contract or mapper docs, exact path TBD.</li>
+<li>- Section 9 validation coverage for runtime engine event log and session replay, exact validation IDs from <code>docs/SPEC.md</code> Section 19.3.</li>
+<li>- Test fixtures demonstrating lock release and terminal outcome persistence.</li>
+</ul>
+<h3 id="clm-013-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-013 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-117 names the landed observability basis: <code>RunningHarnessTurn.cancel</code>, post-terminal same-session acceptance, and lock-release/terminal-outcome tests. The former exact-hook/state-API TBD is retired.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-03-04 outputs preserve the public interrupt route and SSE compatibility, release active-turn state across terminal paths, persist Chirality-owned terminal outcomes for accepted turns, and redact secrets, as specified by the exact legacy source.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-03-04-interrupt-cancel-and-terminal-outcome-handling">CLM-014 — Procedure: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h3>
+<h4 id="procedure-del-03-04-interrupt-cancel-and-terminal-outcome-handling">Procedure: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure for producing and verifying the DEL-03-04 backend feature slice: interrupt handling, cancellation/disconnect cleanup, lock release, and terminal outcome persistence.</p>
+<p>This procedure is for implementation and verification planning. It does not approve final runtime behavior; human review and normal change controls remain required.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<p>Required source context:</p>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, and anticipated artifacts.</li>
+<li>- <code>_REFERENCES.md</code> for authoritative source corpus.</li>
+<li>- <code>docs/CONTRACT.md</code> Section 1.4 and 1.5.</li>
+<li>- <code>docs/SPEC.md</code> Sections 9, 10, 11, 17.1, 19.2, and 19.3.</li>
+<li>- <code>docs/TYPES.md</code> Sections 7.1 through 7.4.</li>
+<li>- <code>docs/PRD.md</code> Sections 7.4, 7.10, 8.3, and 8.12.</li>
+<li>- Decomposition row for DEL-03-04 and SOW-012/SOW-015.</li>
+</ul>
+<p>Declared upstream dependencies:</p>
+<ul>
+<li>- TBD. <code>_DEPENDENCIES.md</code> reports no accepted upstream edges yet.</li>
+</ul>
+<p>Implementation prerequisites:</p>
+<ul>
+<li>- ASSUMPTION: DEL-03-01 should define or stabilize the <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> boundary before final mapper closure.</li>
+<li>- ASSUMPTION: DEL-03-02 should provide testable active-turn locking and cleanup surfaces.</li>
+<li>- ASSUMPTION: DEL-03-03 should preserve route shape and SSE compatibility fixtures.</li>
+<li>- ASSUMPTION: DEL-05-02 should provide the append-only <code>HarnessEvent</code> JSONL writer or a compatible test seam.</li>
+</ul>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm current runtime boundary.</p>
+<ul>
+<li>- Identify the active <code>TurnEngine</code>, <code>AgentEnginePort</code>, route adapter, and event writer surfaces.</li>
+<li>- Do not make SDK/provider message names part of public Chirality semantics.</li>
+<li>- Evidence target: source references to <code>docs/SPEC.md</code> Section 10 and <code>docs/CONTRACT.md</code> K-ENGINE invariants.</li>
+</ul>
+<p>2. Define terminal trigger matrix.</p>
+<ul>
+<li>- List triggers: successful completion, user interrupt, client disconnect, runtime/provider failure, cancellation signal.</li>
+<li>- For each trigger, define required lock release, browser event behavior, and persisted runtime event behavior.</li>
+<li>- Use one evidence artifact for the trigger matrix so every terminal path is tied to lock-release proof, terminal outcome persistence, and replay expectations.</li>
+<li>- Apply D-APP-40: explicit user interruption persists terminal <code>turn.interrupted</code>; non-user cancellation uses <code>turn.cancelled</code>.</li>
+</ul>
+<p>3. Implement or update interrupt handling.</p>
+<ul>
+<li>- Route: preserve <code>/api/harness/interrupt</code>.</li>
+<li>- Behavior: abort the active provider/model request for the session when present.</li>
+<li>- Stream effect: produce interrupted <code>process:exit</code> for an active browser stream where applicable.</li>
+<li>- Cleanup: release active-turn state.</li>
+</ul>
+<p>4. Implement or update client-disconnect and cancellation cleanup.</p>
+<ul>
+<li>- Ensure SSE disconnect/cancellation signal handling reaches runtime cleanup.</li>
+<li>- Release active-turn state even when no final browser event can be delivered because the client disconnected.</li>
+<li>- Record cancellation once event-log support exists, and verify cleanup through state/event evidence rather than relying on receipt of a final browser SSE event.</li>
+</ul>
+<p>5. Implement or update failure terminalization.</p>
+<ul>
+<li>- When execution fails after <code>turn.accepted</code>, write a terminal failure or cancellation record.</li>
+<li>- Preserve accepted input for replay.</li>
+<li>- Redact secrets from error payloads, runtime logs, and event data.</li>
+</ul>
+<p>6. Implement terminal event mapping.</p>
+<ul>
+<li>- Map runtime/provider terminal signals into Chirality-owned <code>HarnessEvent</code> categories and compact browser <code>UIEvent</code>s.</li>
+<li>- Use the <code>HarnessEvent</code> shape from <code>docs/SPEC.md</code> Section 9.1.</li>
+<li>- Ensure event IDs are unique and JSONL writes append newline-delimited records.</li>
+<li>- Keep SDK-specific values only as explicit adapter metadata when needed.</li>
+</ul>
+<p>7. Add interrupt tests.</p>
+<ul>
+<li>- Start or simulate an active turn.</li>
+<li>- Call <code>/api/harness/interrupt</code>.</li>
+<li>- Assert abort propagation, interrupted <code>process:exit</code>, active-turn lock release, and terminal outcome persistence.</li>
+<li>- Assert adapter-boundary behavior through Chirality-owned runtime/event terms; SDK/provider names may appear only as explicit adapter metadata.</li>
+<li>- Exact fixture/module path: TBD.</li>
+</ul>
+<p>8. Add cancel cleanup tests.</p>
+<ul>
+<li>- Simulate SSE client disconnect and/or cancellation signal.</li>
+<li>- Assert active-turn lock release.</li>
+<li>- Assert cancellation record when the event log exists.</li>
+<li>- Exact fixture/module path: TBD.</li>
+</ul>
+<p>9. Add terminal event mapper tests.</p>
+<ul>
+<li>- Cover fixture cases for completion, failure, non-user cancellation, and explicit user interruption.</li>
+<li>- Assert <code>UIEvent</code> names remain compatible.</li>
+<li>- Assert <code>HarnessEvent</code> output uses Chirality-owned event types and redacted data.</li>
+<li>- Exact fixture/module path: TBD.</li>
+</ul>
+<p>10. Add replay-oriented verification.</p>
+<ul>
+<li>- Simulate malformed trailing JSONL after valid accepted-turn and terminal failure/cancellation records.</li>
+<li>- Assert replay preserves valid prior events, preserves terminal outcome evidence, and surfaces diagnostics.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>Minimum checks before this deliverable is considered implementation-ready:</p>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td><td>Source</td></tr>
+<tr><td>Interrupt route test</td><td><code>/api/harness/interrupt</code> aborts active turn, yields interrupted <code>process:exit</code> where stream exists, releases lock, persists terminal outcome, and proves abort behavior without making SDK-shaped names part of the public contract.</td><td><code>docs/PRD.md</code> Section 8.3, FR-019; <code>docs/CONTRACT.md</code> K-EVENT-3; <code>docs/SPEC.md</code> Section 10.3</td></tr>
+<tr><td>Terminal trigger matrix</td><td>One evidence artifact covers completion, interrupt, disconnect, runtime/provider failure, and cancellation signal; each row records lock-release proof, browser-event expectation, persisted runtime outcome expectation, and source reference.</td><td><code>docs/PRD.md</code> Section 8.3, FR-018 and FR-019; <code>docs/SPEC.md</code> Section 10.1</td></tr>
+<tr><td>Disconnect cleanup test</td><td>SSE client disconnect releases active-turn state and records cancellation once event log exists; proof does not depend on delivering a final SSE event to the disconnected browser.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+<tr><td>Failure after acceptance test</td><td><code>turn.accepted</code> remains replayable and a terminal failure/cancellation status is present.</td><td><code>docs/PRD.md</code> Section 7.10</td></tr>
+<tr><td>Terminal mapper test</td><td>Completion, failure, cancellation, and explicit interruption fixtures map to Chirality <code>UIEvent</code> and <code>HarnessEvent</code> contracts, not SDK-shaped public semantics.</td><td><code>docs/SPEC.md</code> Section 10.3; D-APP-40</td></tr>
+<tr><td>JSONL append/replay test</td><td>Terminal records append newline-delimited events; malformed trailing writes after a valid terminal record do not break replay of accepted input or terminal outcome evidence.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5</td></tr>
+<tr><td>Redaction test</td><td>API keys and configured secret variants do not appear in terminal events, runtime logs, provider errors, or tool artifacts.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6</td></tr>
+<tr><td>SSE compatibility test</td><td>Existing event names remain compatible: <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code>, and <code>harness:event</code>.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Produce or update these records as part of implementation closure:</p>
+<ul>
+<li>- Interrupt tests.</li>
+<li>- Cancel cleanup tests.</li>
+<li>- Terminal event mapper and mapper tests.</li>
+<li>- Evidence that active-turn locks release after interrupt, disconnect, failure, and cancellation.</li>
+<li>- Evidence that terminal outcomes persist in append-only <code>HarnessEvent</code> JSONL.</li>
+<li>- D-APP-40 ruling record resolving DEL-03-04-CONFLICT-001.</li>
+<li>- Any Section 9 validation updates for runtime engine event log, session replay, and runtime contract validation.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Verify using the legacy source-defined interrupt, cancel cleanup, terminal trigger matrix, event mapper, replay, redaction, and SSE compatibility checks.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-03-04-interrupt-cancel-and-terminal-outcome-handling">CLM-020 — Guidance: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h3>
+<h4 id="guidance-del-03-04-interrupt-cancel-and-terminal-outcome-handling">Guidance: DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling</h4>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to make runtime turn termination explicit, testable, and auditable. Interrupts, client disconnects, provider failures, and cancellations must not leave a session locked forever or leave an accepted turn without a durable terminal outcome.</p>
+<p>The slice supports the PKG-03 runtime pivot: routes stay thin, <code>TurnEngine</code> owns lifecycle behavior, <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> protects product-owned semantics, and browser-facing SSE behavior remains compatible while richer runtime events are persisted.</p>
+<p>Source basis: decomposition DEL-03-04 row; <code>docs/PRD.md</code> Sections 5, 6.1, 7.4, 7.10, 8.3, and 8.12; <code>docs/SPEC.md</code> Sections 9 through 11.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Persist before execution.</p>
+<p>Accepted input must be recorded before model/provider execution begins. This is the recovery anchor for killed, failed, or interrupted turns. Source: <code>docs/PRD.md</code> Section 8.3, FR-021; <code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-2.</p>
+<p>2. Termination is a contract, not incidental cleanup.</p>
+<p>Every accepted turn needs a durable terminal outcome. Cleanup code should be treated as part of the turn lifecycle, not a route-only afterthought. Source: <code>docs/CONTRACT.md</code> Section 1.5, K-EVENT-3; <code>docs/SPEC.md</code> Section 10.1.</p>
+<p>3. Release locks in all terminal paths.</p>
+<p>Interrupt, client disconnect, provider failure, and cancellation are distinct triggers, but they share a session-liveness obligation: active-turn state must be released. Source: decomposition SOW-012; <code>docs/PRD.md</code> Section 8.3, FR-018 and FR-019.</p>
+<p>4. Keep public semantics Chirality-owned.</p>
+<p>SDK/provider messages may inform mapping, but <code>UIEvent</code>, <code>HarnessEvent</code>, route behavior, and terminal outcome names must remain Chirality contracts. Source: <code>docs/CONTRACT.md</code> Section 1.4, K-ENGINE-4; <code>docs/SPEC.md</code> Section 10.3.</p>
+<p>5. Preserve SSE compatibility.</p>
+<p>Browser event names are part of the compatibility surface. Terminal mapping can grow internally, but route streams must keep existing names compatible during SDK adoption. Source: <code>docs/SPEC.md</code> Section 11.</p>
+<p>6. Treat runtime events as audit records, not project truth.</p>
+<p>Session logs explain what happened at runtime; they do not approve, issue, or certify deliverables. Source: <code>docs/PRD.md</code> Section 5; <code>docs/DIRECTIVE.md</code> Sections 3 and 8.</p>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The terminal mapper should be small and deterministic. It should map completion, failure, cancellation, and interruption-adjacent provider signals into stable browser and runtime event outputs.</li>
+<li>- The interrupt path should be tested while an active turn is streaming, because the required browser symptom is an interrupted <code>process:exit</code> event and an updated UI state.</li>
+<li>- Client disconnect is not necessarily user intent to interrupt, but SPEC says disconnect cleanup must record cancellation once the event log exists. The implementation should avoid overstating disconnect as an explicit user cancellation unless the data model supports a reason field.</li>
+<li>- Use &quot;interruption&quot; for the user-visible active-turn interrupt path and &quot;cancellation&quot; for non-user cancellation paths. D-APP-40 amends the runtime taxonomy so explicit user interruption persists <code>turn.interrupted</code>; <code>turn.cancelled</code> remains available for non-user cancellation such as disconnect/system cancellation.</li>
+<li>- Terminal records must not store API keys, provider secrets, or raw error data that violates redaction policy.</li>
+<li>- Replay tolerance matters for failure paths: malformed trailing JSONL should not hide valid prior events or the accepted input that preceded failure.</li>
+<li>- <code>docs/PRD.md</code> is hash-mismatched in <code>_REFERENCES.md</code>. Use PRD content as an accessible source-state warning and reconfirm before closure of implementation work.</li>
+</ul>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Option</td><td>Benefit</td><td>Risk / Constraint</td></tr>
+<tr><td>Interruption taxonomy</td><td>Separate <code>turn.interrupted</code> event type</td><td>D-APP-40 selected this option; it directly matches decomposition and CONTRACT wording about interruption.</td><td>Requires schema/docs/tests to retain <code>turn.cancelled</code> only for non-user cancellation.</td></tr>
+<tr><td>Interruption taxonomy</td><td>Represent interruption as <code>turn.cancelled</code> with a reason such as <code>interrupted</code></td><td>Rejected by D-APP-40 for explicit user interruption.</td><td>May blur user interrupt versus transport/client cancellation unless reason semantics are explicit.</td></tr>
+<tr><td>Cleanup ownership</td><td>Centralize terminal cleanup in <code>TurnEngine</code></td><td>Keeps route thin and makes lifecycle behavior unit-testable.</td><td>Requires route adapter to reliably forward cancellation/disconnect signals.</td></tr>
+<tr><td>Route-level fallback cleanup</td><td>Keep defensive cleanup in route adapter</td><td>Protects against transport errors and stream failures.</td><td>Can duplicate policy if terminal mapping is not centralized behind the runtime contract.</td></tr>
+<tr><td>Event log write strictness</td><td>Fail closed on terminal event write failure</td><td>Avoids claiming terminal durability when no event exists.</td><td>Could make user-visible failures noisier; exact retry/fallback behavior is TBD.</td></tr>
+<tr><td>Terminal write recovery</td><td>PROPOSAL: permit retry only when the event writer can prove idempotent append behavior through unique event IDs and replay diagnostics</td><td>Preserves the durable-terminal-outcome requirement while avoiding duplicate terminal records.</td><td>Exact retry/fallback behavior remains TBD pending event-writer design and human ruling.</td></tr>
+</tbody></table>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<h3 id="clm-026-user-interrupt-during-active-stream">CLM-026 — User interrupt during active stream</h3>
+<h6 id="user-interrupt-during-active-stream">User interrupt during active stream</h6>
+<p>1. A turn has already persisted <code>turn.accepted</code>.</p>
+<p>2. The user calls <code>/api/harness/interrupt</code>.</p>
+<p>3. The active provider/model request is aborted.</p>
+<p>4. The browser stream receives interrupted <code>process:exit</code>.</p>
+<p>5. The active-turn lock is released.</p>
+<p>6. A terminal runtime outcome is persisted as <code>turn.interrupted</code>.</p>
+<p>Sources: <code>docs/PRD.md</code> Section 7.4 and Section 8.3; <code>docs/CONTRACT.md</code> Section 1.5.</p>
+<h3 id="clm-027-client-disconnect">CLM-027 — Client disconnect</h3>
+<h6 id="client-disconnect">Client disconnect</h6>
+<p>1. <code>/api/harness/turn</code> is streaming SSE.</p>
+<p>2. The client disconnects.</p>
+<p>3. Cleanup releases active-turn state.</p>
+<p>4. Once event logging exists, cancellation is recorded.</p>
+<p>5. Replay preserves prior valid events and surfaces diagnostics if a trailing write is malformed.</p>
+<p>Sources: <code>docs/SPEC.md</code> Section 11 and Section 9.2.</p>
+<h3 id="clm-028-provider-failure-after-acceptance">CLM-028 — Provider failure after acceptance</h3>
+<h6 id="provider-failure-after-acceptance">Provider failure after acceptance</h6>
+<p>1. Accepted user input is already durable.</p>
+<p>2. Provider/model execution fails.</p>
+<p>3. Terminal failure is mapped into Chirality-owned <code>HarnessEvent</code> form.</p>
+<p>4. Browser error/exit behavior remains SSE-compatible.</p>
+<p>5. Runtime replay can reconstruct accepted input and terminal failure/cancellation status.</p>
+<p>Sources: <code>docs/PRD.md</code> Section 7.10; <code>docs/SPEC.md</code> Section 9.</p>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-03-04-CONFLICT-001</td><td>Resolved by D-APP-40: explicit user interruption is a durable <code>turn.interrupted</code> terminal outcome; <code>turn.cancelled</code> is reserved for non-user cancellation.</td><td><code>execution/_Coordination/_DECISIONS/D-APP-40_RULING_2026-06-21.md</code></td><td><code>docs/SPEC.md</code> Section 9.3; <code>docs/TYPES.md</code> Section 7.3; <code>docs/PRD.md</code> Section 8.3 FR-022 after ADQ-05 reconciliation</td><td><code>Datasheet.md</code> Conditions; <code>Specification.md</code> Requirements and Verification; <code>Procedure.md</code> Steps and Verification</td><td>Apply D-APP-40 Option B.</td><td>Ruled 2026-06-21</td></tr>
+</tbody></table>
+<h3 id="clm-030-source-state-notes">CLM-030 — Source-State Notes</h3>
+<h5 id="source-state-notes">Source-State Notes</h5>
+<ul>
+<li>- <code>docs/PRD.md</code> is current under the D-APP-38 authority corpus; this draft uses it as PRD-derived source text while keeping implementation proof separate.</li>
+<li>- Exact code/module paths for interrupt tests, cancel cleanup tests, terminal event mapper, and lock-observability helpers are TBD because the authoritative source slices specify behavior and artifacts but not final file locations.</li>
+</ul>
+<h3 id="clm-031-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-031 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-117 names the landed observability basis: <code>RunningHarnessTurn.cancel</code>, post-terminal same-session acceptance, and lock-release/terminal-outcome tests. The former exact-hook/state-API TBD is retired.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-012 SOW-015 OBJ-002 OBJ-003</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A1-PKG01",
+  "instance_id": "AUTHOR-DEL-01-03",
+  "role": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "CONVERT",
+  "terminal": true,
+  "status": "PASS",
+  "candidate": {
+    "path": "~/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A1/APP-PKG01/DEL-01-03/ScopeOfWork.md",
+    "sha256": "8eeb463884aa9549a8ebf79d8c454bf60fdc6e0dd5a5e7359734ead1d23e47b0",
+    "format": "MIGRATION_DUAL_ISOLATED"
+  },
+  "verdicts": {
+    "schema": "PASS",
+    "project_content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS",
+    "portability": "PASS_WITH_RECORDED_PRESERVATION_EXCEPTIONS"
+  },
+  "source_status_sha256_before": "2f0454fad0f3f9b6fd8719b4c7701c10bfbacdd192e02ec900364106d4a0ce01",
+  "source_status_sha256_after": "2f0454fad0f3f9b6fd8719b4c7701c10bfbacdd192e02ec900364106d4a0ce01",
+  "claim_map_rows": 31,
+  "parity_checks": 31,
+  "checklist_sha256": "b2f8d1aea6c766659784090de014d2d6bf38ba2a9a16e65cbacc64fa41d06b51",
+  "render_sha256": "ca4d7205d46f4952f9f4b09bfb22e26442ded1bd02777a8a9d589fe42af51bd9",
+  "blockers": [],
+  "needs_human_ruling": [],
+  "next_gate": "WORKING-A1-PKG01 manager fan-in, then fresh VERIFY-DEL-01-03 only"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 249,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52"
+      },
+      "text": "The product-owned runtime boundary keeps SDK-shaped semantics behind explicit adapter metadata, and the stub and SDK-backed adapters satisfy the source-defined conformance suite before production-default use.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-001",
+          "source_line": 367,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the source-defined type/API, adapter-conformance, route/SSE compatibility, persistence, permission, tool-exposure, interrupt/cancel, resume/linkage, redaction, and provider-neutrality checks."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "763dc5f45a1b1b9e18240a79fcf77588f4a7490b52176aa48a9b77696c639f52"
+  },
+  "tool_version": "1"
+}

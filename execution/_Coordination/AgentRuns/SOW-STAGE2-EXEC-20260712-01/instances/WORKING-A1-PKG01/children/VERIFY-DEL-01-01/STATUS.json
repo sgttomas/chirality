@@ -1,0 +1,46 @@
+{
+  "instance_id": "VERIFY-DEL-01-01",
+  "role": "TASK",
+  "task_skill": "scope-of-work",
+  "mode": "VERIFY",
+  "status": "PASS",
+  "terminal": true,
+  "completed_at": "2026-07-13T07:24:53-06:00",
+  "parent": "WORKING-A1-PKG01",
+  "package": "APP-PKG-01",
+  "deliverable": "DEL-01-01",
+  "brief_version": 1,
+  "criteria_version": "A1-PACKAGE-ACTIVATION-001",
+  "author_dependency": "AUTHOR-DEL-01-01_ACCEPTED",
+  "candidate_sha256": "34e41b8e7efe65ea58eb36856bde2bbd7e2e0d21052331c676d245b106813b65",
+  "metrics": {
+    "seeded_inputs_exact": 9,
+    "mapping_rows": 26,
+    "source_lines": 281,
+    "parity_failures": 0,
+    "checklist_items": 1,
+    "checklist_byte_stable": true,
+    "render_byte_stable": true,
+    "negative_fixtures_fail_closed": 2,
+    "replacement_rows": 5,
+    "project_writes": 0,
+    "candidate_repairs": 0
+  },
+  "verdicts": {
+    "schema": "PASS",
+    "project_content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "negative_fixtures": {
+    "partial": "PASS_FAIL_CLOSED",
+    "unauthorized_dual": "PASS_FAIL_CLOSED"
+  },
+  "blockers": [],
+  "missing": [],
+  "needs_human_ruling": [],
+  "rerun_requirements": [
+    "Rerun if any accepted basis, candidate, source, status, control, authority, lifecycle, skill, or tool identity changes."
+  ],
+  "next_owner": "WORKING-A1-PKG01"
+}

@@ -1,0 +1,27 @@
+{
+  "instance_id": "VERIFY-DEL-00-01",
+  "role": "TASK",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "WORKING-A1-PKG00",
+  "package": "APP-PKG-00",
+  "deliverable": "DEL-00-01",
+  "brief_version": 1,
+  "author_dependency": "AUTHOR-DEL-00-01_ACCEPTED",
+  "candidate_sha256": "2e51af467ef3ccfd8c79e7b2fe04bcbfed5d56af2e66fbf3792e74ae2600c838",
+  "mapping_rows": 26,
+  "source_lines": 250,
+  "replacement_rows": 5,
+  "verdicts": {
+    "schema": "PASS",
+    "content_authority": "PASS",
+    "preservation": "PASS",
+    "execution_substrate": "PASS"
+  },
+  "negative_fixtures": {
+    "partial": "PASS_FAIL_CLOSED",
+    "unauthorized_dual": "PASS_FAIL_CLOSED"
+  },
+  "blockers": [],
+  "rerun_requirements": []
+}

@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="9231e130a981f58a58bd1f0e87bab2dbc417f2121263e4aa425e2a40109e0d40">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>9231e130a981f58a58bd1f0e87bab2dbc417f2121263e4aa425e2a40109e0d40</code>.</p>
+<h1 id="scope-of-work-del-03-03">Scope of Work — DEL-03-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-03-03</code> in service of project scope [SOW-011, SOW-040] and package objectives [OBJ-001, OBJ-002].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A harness API and SSE compatibility adapter package for DEL-03-03 comprising the route adapter tests, SSE compatibility fixtures, and UI event contract documentation defined by the preserved legacy source kit.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-03-harness-api-and-sse-compatibility-adapter">CLM-001 — Datasheet: DEL-03-03 Harness API and SSE Compatibility Adapter</h3>
+<h4 id="datasheet-del-03-03-harness-api-and-sse-compatibility-adapter">Datasheet: DEL-03-03 Harness API and SSE Compatibility Adapter</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-03-03</td></tr>
+<tr><td>DeliverableName</td><td>Harness API and SSE Compatibility Adapter</td></tr>
+<tr><td>PackageID</td><td>PKG-03</td></tr>
+<tr><td>PackageName</td><td>Runtime Engine Contract and Turn Lifecycle</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td></tr>
+<tr><td>ContextEnvelope</td><td>S</td></tr>
+<tr><td>ScopeItems</td><td>SOW-011, SOW-040</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-001, OBJ-002</td></tr>
+</tbody></table>
+<p>Source: <code>_CONTEXT.md</code> Identity and Traceability; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-03 deliverable table.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary subject</td><td>Compatibility adapter for harness API routes and browser-facing SSE event names while runtime policy moves behind services.</td><td><code>_CONTEXT.md</code> Deliverable Scope; decomposition DEL-03-03 entry</td></tr>
+<tr><td>API surface in scope</td><td><code>/api/harness/session/create</code>, <code>/api/harness/session/boot</code>, <code>/api/harness/session/list</code>, <code>/api/harness/session/[id]</code>, <code>/api/harness/turn</code>, <code>/api/harness/interrupt</code>, <code>/api/harness/scaffold</code>.</td><td><code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 9.1</td></tr>
+<tr><td>Turn route role</td><td><code>/api/harness/turn</code> remains a transport adapter that validates request shape, obtains session lock, forwards input to <code>TurnEngine</code>, writes SSE, and handles cleanup.</td><td><code>docs/SPEC.md</code> Section 10.4</td></tr>
+<tr><td>Browser SSE event names</td><td><code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code>, <code>harness:event</code>.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4; <code>docs/PRD.md</code> Section 9.3; D-APP-40</td></tr>
+<tr><td>Runtime/UI contract separation</td><td>Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s are separate contracts; UI events remain stable and compact.</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-1; <code>docs/PRD.md</code> Section 8.12 FR-074</td></tr>
+<tr><td>Adapter boundary</td><td>SDK messages are not the browser contract or canonical persisted event contract; provider/SDK fields belong at adapter metadata boundaries.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/DIRECTIVE.md</code> Sections 2.8 and 2.10</td></tr>
+<tr><td>Anticipated artifacts</td><td>Route adapter tests; SSE compatibility fixtures; UI event contract docs.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Compatibility condition</td><td>Existing route shapes and SSE event names remain stable during SDK adoption and <code>TurnEngine</code> extraction.</td><td><code>docs/SPEC.md</code> Sections 11 and 17.1; <code>docs/PRD.md</code> Sections 9.1 and 9.3</td></tr>
+<tr><td>Active-turn condition</td><td>Only one active turn may run per session; concurrent turn attempts return <code>TURN_IN_PROGRESS</code>.</td><td><code>docs/PRD.md</code> Section 8.3 FR-018</td></tr>
+<tr><td>Stream termination condition</td><td>The stream terminates with a process-level completion/error signal unless the client disconnects.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/PRD.md</code> Section 9.3</td></tr>
+<tr><td>Disconnect condition</td><td>Client disconnect cleanup records cancellation once the event log exists.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/PRD.md</code> Section 9.3</td></tr>
+<tr><td>Source-state status</td><td><code>docs/PRD.md</code> is reconciled under the current D-APP-38 authority corpus; PRD-derived route/SSE details are accepted for this tranche.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Construction Notes</td><td>Source</td></tr>
+<tr><td>Route adapter layer</td><td>Keep <code>/api/harness/turn</code> as SSE transport adapter; runtime policy belongs behind <code>TurnEngine</code> and engine contract services.</td><td><code>docs/SPEC.md</code> Section 10.4; <code>docs/PRD.md</code> Section 8.12 FR-071</td></tr>
+<tr><td>SSE encoder/fixture layer</td><td>Preserve named SSE events listed in SPEC/TYPES/PRD; additional tool progress events require UI compatibility handling.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/PRD.md</code> Section 9.3</td></tr>
+<tr><td>UI/runtime mapper boundary</td><td>Map SDK messages into browser <code>UIEvent</code>s and richer persisted <code>HarnessEvent</code>s without exposing SDK message names as public UI contract.</td><td><code>docs/PRD.md</code> Sections 8.12 FR-116 and 9.3</td></tr>
+<tr><td>Test artifacts</td><td>Build route adapter tests, SSE compatibility fixtures, and UI event contract docs. Exact fixture payloads are TBD pending current implementation capture.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/PRD.md</code> Section 12.6</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Source Slice Used</td><td>Status</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Sections 2.8, 2.10</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Section 1.5; Enforcement Map Summary</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Sections 10, 11, 17.1</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Sections 7.1, 7.2, 7.3, 7.4</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>R1 acceptance and route/SSE stability context</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Sections 8.3, 8.12, 9.1, 9.3, 12.5, 12.6, R1 roadmap</td><td>MATCH under the current D-APP-38 authority corpus</td></tr>
+<tr><td>REF-007</td><td><code>agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method reference only; no deliverable-specific details used</td><td>MATCH</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-03-03-harness-api-and-sse-compatibility-adapter">CLM-007 — Specification: DEL-03-03 Harness API and SSE Compatibility Adapter</h3>
+<h4 id="specification-del-03-03-harness-api-and-sse-compatibility-adapter">Specification: DEL-03-03 Harness API and SSE Compatibility Adapter</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the compatibility adapter contract for harness API routes and browser-facing SSE events during the runtime-engine pivot. It covers:</p>
+<ul>
+<li>- preserving <code>/api/harness/*</code> route shapes during SDK adoption and <code>TurnEngine</code> extraction;</li>
+<li>- keeping <code>/api/harness/turn</code> as the SSE transport adapter rather than the owner of runtime policy;</li>
+<li>- preserving browser SSE event names and compact <code>UIEvent</code> semantics;</li>
+<li>- separating browser <code>UIEvent</code>s from persisted <code>HarnessEvent</code>s;</li>
+<li>- defining route adapter tests, SSE compatibility fixtures, and UI event contract documentation.</li>
+</ul>
+<p>Source: <code>_CONTEXT.md</code> Deliverable Scope; <code>docs/SPEC.md</code> Sections 10.4, 11, 17.1; <code>docs/PRD.md</code> Sections 8.12, 9.1, 9.3.</p>
+<p>Out of scope:</p>
+<ul>
+<li>- SDK-specific message translation internals except where they must not leak into the browser contract.</li>
+<li>- <code>TurnEngine</code> lifecycle ownership and session locking internals, owned primarily by DEL-03-02.</li>
+<li>- interrupt/cancel terminal outcome handling, owned primarily by DEL-03-04.</li>
+<li>- persisted event schema implementation, owned primarily by PKG-05, except for compatibility assertions that UI and runtime event contracts remain separate.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Verification</td></tr>
+<tr><td>DEL-03-03-REQ-001</td><td>The adapter shall preserve the existing <code>/api/harness/*</code> route shapes during SDK adoption and <code>TurnEngine</code> extraction. Exact existing request/response schemas are TBD pending implementation fixture capture.</td><td>Route adapter regression tests compare current and post-extraction route shape fixtures.</td></tr>
+<tr><td>DEL-03-03-REQ-002</td><td><code>/api/harness/turn</code> shall remain a transport adapter responsible for request validation, session locking, attachment option forwarding where applicable, SSE encoding, cancellation cleanup, and error response handling.</td><td>Route tests and code review verify policy behavior is delegated to <code>TurnEngine</code>/services.</td></tr>
+<tr><td>DEL-03-03-REQ-003</td><td>Browser-facing turn streams shall emit compatible named SSE events: <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code>, and the additive redacted <code>harness:event</code> bridge. Event ordering is unconstrained in this deliverable except where current implementation fixtures or explicit source text later establish an order.</td><td>SSE compatibility fixtures assert event names and only source-backed order constraints; unconstrained event paths are recorded as <code>TBD</code> or &quot;order unconstrained.&quot;</td></tr>
+<tr><td>DEL-03-03-REQ-004</td><td>The SSE stream shall terminate with a process-level completion/error signal unless the client disconnects and cancel cleanup runs.</td><td>Stream integration test covers normal completion, error, and disconnect cases.</td></tr>
+<tr><td>DEL-03-03-REQ-005</td><td>Browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s shall remain separate contracts; persisted events may be richer and versioned, but UI events remain compact and compatible.</td><td>Mapper/contract tests reject SDK-shaped leakage into public UI event payloads except explicit adapter metadata where relevant.</td></tr>
+<tr><td>DEL-03-03-REQ-006</td><td>SDK messages shall not be treated as the browser contract or canonical persisted event contract. The concrete mapper boundary is expected to be <code>frontend/src/lib/harness/sdk-message-mapper.ts</code> during R1, or an explicitly documented equivalent if implementation naming changes.</td><td>Mapper tests verify known SDK message categories map through the selected boundary and do not expose SDK-shaped names in public UI events or canonical <code>HarnessEvent</code> fields except as adapter metadata.</td></tr>
+<tr><td>DEL-03-03-REQ-007</td><td>Additional tool progress events may be introduced only with UI compatibility handling: older clients must either ignore them safely, handle them behind opt-in UI behavior, or receive them only through a documented backward-compatible consumption path.</td><td>Compatibility review confirms existing UI consumers handle or ignore added events safely and records the selected handling mode.</td></tr>
+<tr><td>DEL-03-03-REQ-008</td><td>The compatibility kit shall include route adapter tests, SSE compatibility fixtures, and UI event contract docs.</td><td>Artifact review confirms files exist and reference the source-backed route/event contract.</td></tr>
+<tr><td>DEL-03-03-REQ-009</td><td>PRD-derived requirements shall use the current D-APP-38 authority-corpus reference state.</td><td>Documentation and test traceability cite the reconciled REF-006 state and rerun D-APP-38 bump/apply when authority documents change.</td></tr>
+<tr><td>DEL-03-03-REQ-010</td><td>The route adapter test index shall map each in-scope <code>/api/harness/*</code> route to a fixture path or <code>TBD</code> capture status before exact compatibility assertions are closed.</td><td>Artifact review confirms every route listed in SPEC Section 17.1 and PRD Section 9.1 appears in the route-to-fixture index.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Product-owned runtime contract</td><td>Adapter behavior must serve Chirality-owned <code>AgentEnginePort</code>/<code>RuntimeEngineContract</code>, not SDK public semantics.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.8 and 2.10; <code>docs/SPEC.md</code> Section 10</td></tr>
+<tr><td>Browser SSE event contract</td><td>Required event names and stream termination behavior.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4; <code>docs/PRD.md</code> Section 9.3</td></tr>
+<tr><td>Harness API route contract</td><td><code>/api/harness/*</code> route catalog and stability expectation.</td><td><code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 9.1</td></tr>
+<tr><td>Runtime/audit event separation</td><td>Browser <code>UIEvent</code> and persisted <code>HarnessEvent</code> are distinct contracts.</td><td><code>docs/CONTRACT.md</code> Section 1.5; <code>docs/PRD.md</code> Section 8.12</td></tr>
+<tr><td>Test/validation expectations</td><td>Route stream unchanged after SDK-backed <code>TurnEngine</code> extraction; SDK message mapper coverage.</td><td><code>docs/PRD.md</code> Sections 12.5 and 12.6</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Method</td><td>Source Basis</td></tr>
+<tr><td>Route shape compatibility</td><td>Capture current route request/response/SSE fixtures, then replay against the adapter after extraction. Exact schema capture remains TBD.</td><td><code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 9.1</td></tr>
+<tr><td>SSE event-name compatibility</td><td>Assert emitted event names include the documented stable set and preserve existing browser handling. Event order assertions are limited to source-backed or captured-fixture-backed paths; otherwise record order as unconstrained/TBD.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4; <code>docs/PRD.md</code> Section 9.3</td></tr>
+<tr><td>Turn route delegation</td><td>Unit or route test proves <code>/api/harness/turn</code> delegates lifecycle execution behind <code>TurnEngine</code> and does not own runtime policy.</td><td><code>docs/SPEC.md</code> Section 10.4; <code>docs/PRD.md</code> Section 8.12 FR-071</td></tr>
+<tr><td>UI/runtime separation</td><td>Mapper and public API tests reject SDK message names as public UI contracts and keep persisted event richness behind <code>HarnessEvent</code>; the selected mapper boundary is <code>sdk-message-mapper.ts</code> or an explicitly documented equivalent.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/CONTRACT.md</code> K-EVENT-1; <code>docs/PRD.md</code> Sections 9.3 and 12.5</td></tr>
+<tr><td>Disconnect/terminal behavior hook</td><td>Integration tests include normal completion, error, and disconnect paths; detailed terminal persistence belongs to DEL-03-04/PKG-05.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/PRD.md</code> Section 9.3</td></tr>
+<tr><td>Authority-corpus handling</td><td>Review confirms REF-006 is reconciled under D-APP-38 and unsupported details stay <code>TBD</code>.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required documentation artifacts:</p>
+<ul>
+<li>- UI event contract docs listing stable SSE event names, payload ownership, and compatibility rules.</li>
+<li>- Route adapter test index mapping each <code>/api/harness/*</code> route to preserved shape fixtures.</li>
+<li>- SSE compatibility fixture README describing fixture capture source, replay method, and expected event sequence.</li>
+<li>- Fixture coverage notes identifying the implementation baseline commit/SHA, route fixture path, SSE fixture path, order constraint status, and any payload/schema field marked compatibility-only.</li>
+<li>- Traceability note that PRD-derived requirements use the current D-APP-38 authority-corpus state and require corpus bump/apply after future authority-document edits.</li>
+</ul>
+<h3 id="clm-013-d-app-56-route-ownership-map-2026-07-12">CLM-013 — D-APP-56 route ownership map (2026-07-12)</h3>
+<h5 id="d-app-56-route-ownership-map-2026-07-12">D-APP-56 route ownership map (2026-07-12)</h5>
+<p>R4-P30 assigns the three live uncataloged <code>/api/harness/*</code> routes by backing capability: <code>session/[id]/events</code> to DEL-05-02 replay ownership, permission routes to the PKG-06 permission owner, and agents routes to the PKG-08 agent-roster owner. The corresponding SPEC 17.1 catalog amendment executes only through the separately governed R4-P06 corpus tranche; this kit note does not pre-apply that corpus edit.</p>
+<ul>
+<li>- <strong>AC-001</strong> — DEL-03-03 is acceptable when the preserved legacy requirements for the harness API and SSE compatibility adapter are satisfied and the route adapter tests, SSE compatibility fixtures, and UI event contract documentation provide the specified verification evidence.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-03-03-harness-api-and-sse-compatibility-adapter">CLM-014 — Procedure: DEL-03-03 Harness API and SSE Compatibility Adapter</h3>
+<h4 id="procedure-del-03-03-harness-api-and-sse-compatibility-adapter">Procedure: DEL-03-03 Harness API and SSE Compatibility Adapter</h4>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure for producing and validating the harness API and SSE compatibility adapter artifacts for DEL-03-03. The procedure is oriented to artifact production and compatibility verification, not to implementing the full <code>TurnEngine</code> or SDK adapter internals.</p>
+<p>Sources: <code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/SPEC.md</code> Sections 10.4, 11, 17.1; <code>docs/PRD.md</code> Sections 12.5 and 12.6.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Notes</td><td>Source</td></tr>
+<tr><td>Accepted deliverable scope</td><td>Available in <code>_CONTEXT.md</code>; ResponsibleParty remains TBD.</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Authoritative route/event source slices</td><td>Available from SPEC, TYPES, CONTRACT, DIRECTIVE, PLAN, and PRD with PRD hash warning.</td><td><code>_REFERENCES.md</code></td></tr>
+<tr><td>Current implementation fixture capture</td><td>BLOCKING for exact route payload, SSE payload, event-order, and compatibility-only field assertions. Baseline source SHA and fixture paths remain TBD.</td><td><code>docs/PRD.md</code> Sections 12.5 and 12.6; <code>docs/PLAN.md</code> R1 acceptance</td></tr>
+<tr><td>Upstream dependencies</td><td>TBD; no accepted dependency edges extracted yet.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>Sibling deliverable boundaries</td><td>DEL-03-02 owns thin <code>TurnEngine</code> and session locking; DEL-03-04 owns interrupt/cancel terminal handling.</td><td>Decomposition PKG-03 table</td></tr>
+</tbody></table>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source state.</p>
+<ul>
+<li>- Read <code>_REFERENCES.md</code> and record that <code>docs/PRD.md</code> is current under the D-APP-38 authority corpus.</li>
+<li>- Use PRD-derived details with traceability and keep unsupported details as <code>TBD</code>.</li>
+</ul>
+<p>2. Build the compatibility inventory.</p>
+<ul>
+<li>- List <code>/api/harness/*</code> routes from <code>docs/SPEC.md</code> Section 17.1 and <code>docs/PRD.md</code> Section 9.1.</li>
+<li>- List stable SSE event names from <code>docs/SPEC.md</code> Section 11, <code>docs/TYPES.md</code> Section 7.4, and <code>docs/PRD.md</code> Section 9.3.</li>
+</ul>
+<p>3. Capture current behavior fixtures.</p>
+<ul>
+<li>- Record the implementation baseline commit/SHA before capture; if unavailable, record <code>TBD</code> and do not close exact compatibility assertions.</li>
+<li>- Capture route request/response schemas for the in-scope <code>/api/harness/*</code> routes.</li>
+<li>- Capture representative SSE streams for successful turn, error, and disconnect/cancel paths where current implementation permits.</li>
+<li>- Record which implementation paths can emit successful turn, error, and disconnect/cancel streams; unresolved path availability remains <code>TBD</code>.</li>
+<li>- Mark any unavailable payload details as <code>TBD</code> rather than filling from assumption.</li>
+</ul>
+<p>4. Implement or review the route adapter boundary.</p>
+<ul>
+<li>- Keep <code>/api/harness/turn</code> responsible for request validation, session locking, attachment option forwarding where applicable, SSE encoding, cancellation cleanup, and error response handling.</li>
+<li>- Delegate runtime lifecycle behavior to <code>TurnEngine</code> or the agreed service boundary.</li>
+<li>- Reject SDK message names as browser event names.</li>
+</ul>
+<p>5. Implement or review UI event mapping.</p>
+<ul>
+<li>- Ensure SDK or engine messages map to compact browser <code>UIEvent</code>s and richer persisted <code>HarnessEvent</code>s through an adapter/mapper boundary.</li>
+<li>- Confirm public browser events remain compatible with the stable names.</li>
+</ul>
+<p>6. Add compatibility tests and docs.</p>
+<ul>
+<li>- Add route adapter tests for preserved route shapes.</li>
+<li>- Create a route adapter test index that maps each in-scope route to fixture path, capture status, and replay test status.</li>
+<li>- Add SSE compatibility fixtures for stable event names and terminal/error behavior.</li>
+<li>- Add UI event contract documentation that distinguishes browser <code>UIEvent</code>s from persisted <code>HarnessEvent</code>s.</li>
+</ul>
+<p>7. Run verification.</p>
+<ul>
+<li>- Run the relevant route/SSE tests.</li>
+<li>- Run mapper/conformance tests that prove SDK-specific names do not leak into the public browser contract.</li>
+<li>- Run broader validation only when this deliverable is integrated into the package-level or release-level check sequence.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td><td>Source</td></tr>
+<tr><td>Route inventory complete</td><td>In-scope <code>/api/harness/*</code> routes from SPEC/PRD are represented in docs or fixtures.</td><td><code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 9.1</td></tr>
+<tr><td>SSE event names stable</td><td>Fixtures include the stable event-name set or document why a path cannot emit a given event.</td><td><code>docs/SPEC.md</code> Section 11; <code>docs/TYPES.md</code> Section 7.4</td></tr>
+<tr><td>Turn route is an adapter</td><td><code>/api/harness/turn</code> delegates runtime lifecycle policy behind <code>TurnEngine</code>; route remains transport/SSE boundary.</td><td><code>docs/SPEC.md</code> Section 10.4</td></tr>
+<tr><td>UI/runtime separation preserved</td><td>Browser <code>UIEvent</code> payloads remain compact and distinct from persisted <code>HarnessEvent</code> records.</td><td><code>docs/CONTRACT.md</code> K-EVENT-1; <code>docs/PRD.md</code> FR-074</td></tr>
+<tr><td>Authority-corpus state preserved</td><td>Traceability records REF-006 under the current D-APP-38 corpus and unsupported payload/schema details remain <code>TBD</code>.</td><td><code>_REFERENCES.md</code>; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-019-route-adapter-test-index-template">CLM-019 — Route Adapter Test Index Template</h3>
+<h5 id="route-adapter-test-index-template">Route Adapter Test Index Template</h5>
+<p>Populate this table when implementation fixtures are captured. Until then, fixture paths, baseline SHA, and exact payload/schema assertions remain <code>TBD</code>.</p>
+<table><tbody>
+<tr><td>Route</td><td>Method</td><td>Fixture Path</td><td>Baseline SHA</td><td>Capture Status</td><td>Replay Test Status</td></tr>
+<tr><td><code>/api/harness/session/create</code></td><td>POST</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+<tr><td><code>/api/harness/session/boot</code></td><td>POST</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+<tr><td><code>/api/harness/session/list</code></td><td>GET</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+<tr><td><code>/api/harness/session/[id]</code></td><td>GET/DELETE</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+<tr><td><code>/api/harness/turn</code></td><td>POST</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+<tr><td><code>/api/harness/interrupt</code></td><td>POST</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+<tr><td><code>/api/harness/scaffold</code></td><td>POST</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+</tbody></table>
+<p>Source: <code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 9.1.</p>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Expected records and artifacts:</p>
+<ul>
+<li>- Route adapter tests.</li>
+<li>- SSE compatibility fixtures.</li>
+<li>- UI event contract docs.</li>
+<li>- Fixture capture notes identifying source commit or implementation baseline. Baseline source SHA is TBD and blocks exact compatibility closure until populated.</li>
+<li>- Route adapter test index mapping each in-scope route to preserved shape fixtures, capture status, replay test status, and unresolved <code>TBD</code> fields.</li>
+<li>- SSE stream fixture notes naming successful turn, error, and disconnect/cancel capture paths where current implementation permits; path availability is TBD until captured.</li>
+<li>- Compatibility decision notes for retained compatibility-only fields that constrain internal API shape.</li>
+<li>- Traceability notes mapping requirements to <code>_CONTEXT.md</code>, decomposition DEL-03-03, SPEC Sections 10/11/17.1, TYPES Section 7.4, CONTRACT K-EVENT-1, DIRECTIVE Sections 2.8/2.10, and PRD sections with hash warning.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Review the preserved legacy requirements and execute the specified route adapter, SSE compatibility, stream integration, mapper/contract, and artifact checks, retaining TBD where fixture capture or baseline evidence remains unresolved.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-03-03-harness-api-and-sse-compatibility-adapter">CLM-021 — Guidance: DEL-03-03 Harness API and SSE Compatibility Adapter</h3>
+<h4 id="guidance-del-03-03-harness-api-and-sse-compatibility-adapter">Guidance: DEL-03-03 Harness API and SSE Compatibility Adapter</h4>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable protects the browser-facing harness contract while internal runtime ownership changes. The route adapter should let <code>/api/harness/*</code> and named SSE events remain stable for the UI while <code>TurnEngine</code>, <code>AgentEnginePort</code>, SDK message mapping, and persisted <code>HarnessEvent</code> records take over runtime responsibilities behind the boundary.</p>
+<p>Sources: <code>_CONTEXT.md</code> Deliverable Scope; <code>docs/SPEC.md</code> Sections 10.4, 11, 17.1; <code>docs/PRD.md</code> Sections 8.12 and 9.3.</p>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Preserve the browser contract</td><td>Treat existing <code>/api/harness/*</code> route shapes and named SSE events as compatibility surfaces. Do not rename stable SSE events during the runtime pivot.</td><td><code>docs/SPEC.md</code> Sections 11 and 17.1</td></tr>
+<tr><td>Keep route and runtime ownership separate</td><td><code>/api/harness/turn</code> should validate, lock, encode SSE, forward to <code>TurnEngine</code>, and handle cleanup; it should not own runtime policy.</td><td><code>docs/SPEC.md</code> Section 10.4; <code>docs/PRD.md</code> Section 8.12 FR-071</td></tr>
+<tr><td>Keep SDK details behind adapters</td><td>SDK message names, session IDs, transcript paths, permission modes, and tool names are adapter metadata, not public Chirality UI contracts.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/DIRECTIVE.md</code> Section 2.10</td></tr>
+<tr><td>Treat UI and audit records differently</td><td>Browser <code>UIEvent</code>s should stay compact and compatible; persisted <code>HarnessEvent</code>s can be richer, versioned, and audit-oriented.</td><td><code>docs/CONTRACT.md</code> Section 1.5 K-EVENT-1</td></tr>
+<tr><td>Verify compatibility with fixtures</td><td>Prefer captured route/SSE fixtures and replay tests over prose-only review. Exact existing payload fixtures are TBD.</td><td><code>docs/PRD.md</code> Sections 12.5 and 12.6</td></tr>
+</tbody></table>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- <code>docs/PRD.md</code> is a current D-APP-38 authority-corpus source for the runtime pivot; keep PRD-derived details traceable and avoid treating unsupported details as implementation proof.</li>
+<li>- The stable event-name list is source-backed across SPEC, TYPES, and PRD: <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, <code>process:exit</code>, and the additive redacted <code>harness:event</code> bridge.</li>
+<li>- Compatibility should be tested from the browser-facing side: route shapes, status codes, SSE names, payload fields, and terminal/error behavior observable by existing UI consumers.</li>
+<li>- New internal <code>HarnessEvent</code> categories or SDK metadata should not force UI payload churn unless an explicit compatibility layer is documented and tested.</li>
+<li>- Some behavior belongs to sibling deliverables: active-turn locking and <code>TurnEngine</code> internals primarily belong to DEL-03-02; interrupt/cancel cleanup and terminal outcome persistence primarily belong to DEL-03-04 and PKG-05.</li>
+</ul>
+<h3 id="clm-025-trade-offs">CLM-025 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Risk / Mitigation</td></tr>
+<tr><td>Preserve route/SSE compatibility while refactoring internals</td><td>Reduces UI breakage during SDK adoption.</td><td>May constrain ideal internal API shape; mitigate by keeping compatibility adapters thin and source-backed.</td></tr>
+<tr><td>Keep <code>UIEvent</code> compact and separate from <code>HarnessEvent</code></td><td>Lets runtime audit expand without browser churn.</td><td>Requires mapper discipline; mitigate with tests that reject SDK-shaped public leakage.</td></tr>
+<tr><td>Capture exact current route fixtures before implementation changes</td><td>Makes compatibility measurable.</td><td>Fixture capture can ossify accidental behavior; mitigate by documenting which fields are contractual and which are compatibility-only TBD.</td></tr>
+<tr><td>Allow additional tool progress events only with compatibility handling</td><td>Enables future richer UI feedback.</td><td>Could surprise older clients; mitigate through opt-in handling or backward-compatible event consumption.</td></tr>
+</tbody></table>
+<p>Compatibility handling for additional tool progress events should name one accepted mode per event: ignored safely by existing clients, consumed only by opt-in UI behavior, or carried through a documented backward-compatible path. Source basis: <code>docs/PRD.md</code> Section 9.3 and <code>docs/PLAN.md</code> R2 acceptance context.</p>
+<p>Classify captured fixture fields before treating them as contract:</p>
+<table><tbody>
+<tr><td>Field Class</td><td>Criteria</td><td>Evidence</td></tr>
+<tr><td>Contractual</td><td>Named by SPEC, TYPES, CONTRACT, or PRD as part of the public route, SSE, <code>UIEvent</code>, or product-owned <code>HarnessEvent</code> contract.</td><td>Source section plus fixture assertion.</td></tr>
+<tr><td>Compatibility-only</td><td>Present in captured current behavior but not source-backed as a required public contract.</td><td>Fixture path, implementation baseline SHA, and rationale for retaining or ignoring.</td></tr>
+<tr><td>Adapter metadata</td><td>Provider/SDK identifiers, message names, transcript paths, session IDs, permission modes, or tool names that may appear only behind adapter boundaries.</td><td>DIRECTIVE Section 2.10; PRD Section 9.3; CONTRACT K-ENGINE-4.</td></tr>
+<tr><td>TBD</td><td>Field cannot yet be classified because current implementation capture or source location is unavailable.</td><td><code>TBD</code> with required source or fixture capture action.</td></tr>
+</tbody></table>
+<p>When a retained compatibility-only field constrains a cleaner internal API, add a decision note naming the field, source fixture, affected route/event, accepted risk, and why retaining it does not make the public contract SDK-shaped.</p>
+<h3 id="clm-026-examples">CLM-026 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Source-backed examples:</p>
+<ul>
+<li>- A turn stream uses named SSE events from <code>docs/SPEC.md</code> Section 11 and <code>docs/TYPES.md</code> Section 7.4.</li>
+<li>- <code>/api/harness/turn</code> remains the transport adapter while <code>TurnEngine.runTurn()</code> owns runtime lifecycle behind the route, per <code>docs/SPEC.md</code> Section 10.4 and <code>docs/PRD.md</code> Section 8.12.</li>
+</ul>
+<p>TBD examples:</p>
+<ul>
+<li>- Exact JSON payload examples for each SSE event are TBD pending current implementation fixture capture.</li>
+<li>- Exact request/response schemas for each <code>/api/harness/*</code> route are TBD pending current implementation fixture capture.</li>
+</ul>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CONFLICT-001</td><td>Resolved by D-APP-38: REF-006 now matches the authority corpus.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> Sections 8.3, 8.12, 9.1, 9.3</td><td>All PRD-derived requirements and verification notes</td><td>Apply D-APP-38 corpus workflow for future authority edits; do not invent unsupported payload/schema details.</td><td>Ruled 2026-06-20</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-011 SOW-040 OBJ-001 OBJ-002</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

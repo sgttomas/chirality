@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="6146778246cb79838073b9fa268b7067b8ac5f9d94f9e424dc4540962ae30846">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-02-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>6146778246cb79838073b9fa268b7067b8ac5f9d94f9e424dc4540962ae30846</code>.</p>
+<h1 id="scope-of-work-del-02-02">Scope of Work — DEL-02-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-02-02</code> in service of project scope [SOW-006, SOW-007] and package objectives [OBJ-001].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Workbench and Pipeline selection UX contract grounded in SOW-006, SOW-007, and OBJ-001.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-02-02-workbench-and-pipeline-selection-ux">CLM-001 — Datasheet: DEL-02-02 Workbench and Pipeline Selection UX</h3>
+<h4 id="datasheet-del-02-02-workbench-and-pipeline-selection-ux">Datasheet: DEL-02-02 Workbench and Pipeline Selection UX</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-02-02</td></tr>
+<tr><td>DeliverableName</td><td>Workbench and Pipeline Selection UX</td></tr>
+<tr><td>PackageID</td><td>PKG-02</td></tr>
+<tr><td>PackageName</td><td>Desktop Shell, Navigation, and Operator State</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>LifecycleState at authoring</td><td>OPEN</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary UI surfaces</td><td>WORKBENCH contract/context review and PIPELINE selection controls as right-sidebar/deep-link tertiary forms in the loop-first shell.</td><td><code>docs/PRD.md</code> Section 7.2; <code>docs/PRD.md</code> Section 8.2; <code>docs/TYPES.md</code> Section 4; D-APP-28/D-APP-31</td></tr>
+<tr><td>Workbench context display</td><td>Selected agent, row, and column are shown from query params with sensible defaults.</td><td><code>docs/PRD.md</code> Section 8.2 FR-009</td></tr>
+<tr><td>Workbench deliverable contract behavior</td><td>Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents; human-gated targets require approval SHA.</td><td><code>docs/PRD.md</code> Section 8.2 FR-010; ADQ-13 implementation evidence</td></tr>
+<tr><td>Pipeline categories</td><td><code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> category controls.</td><td><code>docs/PRD.md</code> Section 8.2 FR-011</td></tr>
+<tr><td>Pipeline task scope selectors</td><td><code>TASK</code> uses split selectors for task agent and scope. Scope mode is <code>DELIVERABLES</code> or <code>KNOWLEDGE_TYPES</code>; target deliverable is required for knowledge-type mode.</td><td><code>docs/PRD.md</code> Section 8.2 FR-012; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Unsupported variants</td><td>Unsupported options remain visible and disabled as coming soon.</td><td><code>docs/PRD.md</code> Section 7.2; <code>docs/PRD.md</code> Section 8.2 FR-011; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Stale selection behavior</td><td>Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state.</td><td><code>docs/PRD.md</code> Section 8.2 FR-013; <code>docs/PRD.md</code> Section 7.5</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Current release priority</td><td>Workbench agent context, pipeline category controls, and TASK split selectors are P0. Workbench contract APIs and stale selection reset are P1.</td><td><code>docs/PRD.md</code> Section 8.2</td></tr>
+<tr><td>Scope boundary</td><td>Includes UI and operator workflow behavior; excludes runtime engine internals.</td><td><code>_CONTEXT.md</code> Package Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Section 7</td></tr>
+<tr><td>Source warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> Authoritative Source Corpus — reconciled under D-APP-38</td></tr>
+<tr><td>Dispatch path warning</td><td>The dispatched path used stale package label <code>PKG-02_Desktop_UI_and_Local_Experience</code>; the unique live DEL-02-02 folder is under <code>PKG-02_Desktop_Shell_Navigation_and_Operator_State</code>.</td><td><code>execution/_Coordination/WORKSPACE_MANIFEST.csv</code>; <code>_CONTEXT.md</code> Identity</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component / artifact</td><td>Required content</td><td>Source</td></tr>
+<tr><td>Workbench context UI</td><td>Display selected agent context from row/column/agent query parameters with defaults in the Workbench sidebar/deep-link form.</td><td><code>docs/PRD.md</code> Section 8.2 FR-009; D-APP-28</td></tr>
+<tr><td>Workbench deliverable checks</td><td>Read-only status/dependency summaries, disabled lifecycle controls for unsupported agents, and approval-SHA enforcement for human-gated targets.</td><td><code>docs/PRD.md</code> Section 8.2 FR-010; <code>docs/SPEC.md</code> Section 17.2; ADQ-13 implementation evidence</td></tr>
+<tr><td>Pipeline category selector</td><td>Visible controls for operative categories.</td><td><code>docs/PRD.md</code> Section 8.2 FR-011</td></tr>
+<tr><td>Pipeline TASK selector</td><td>Separate task-agent and scope selection; scope modes for deliverables and knowledge types.</td><td><code>docs/PRD.md</code> Section 8.2 FR-012; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Stale-selection tests</td><td>Tests covering root change, removed deliverables, disabled knowledge markers, and stale knowledge targets.</td><td><code>docs/PRD.md</code> Section 8.2 FR-013; <code>_CONTEXT.md</code> Anticipated Artifacts</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, and anticipated artifacts.</li>
+<li>- <code>_REFERENCES.md</code> for source corpus and hash status.</li>
+<li>- <code>_DEPENDENCIES.md</code> for declared dependency state; dependency extraction is deferred.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Sections 7-9 for package, deliverable, and scope-ledger entries.</li>
+<li>- <code>docs/PRD.md</code> Sections 7.2, 7.5, 8.2, 14, and 16 for source requirements and traceability.</li>
+<li>- <code>docs/TYPES.md</code> Section 4 for navigation vocabulary.</li>
+<li>- <code>docs/SPEC.md</code> Section 17.2 for deliverable status/dependency workspace APIs.</li>
+<li>- <code>docs/CONTRACT.md</code> Section 1.7 for lifecycle/dependency/provenance invariants.</li>
+</ul>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-107 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; dependency extraction remains outside this UX slice&#x27;s product ownership.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-02-02-workbench-and-pipeline-selection-ux">CLM-008 — Specification: DEL-02-02 Workbench and Pipeline Selection UX</h3>
+<h4 id="specification-del-02-02-workbench-and-pipeline-selection-ux">Specification: DEL-02-02 Workbench and Pipeline Selection UX</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the user-facing UX slice for Workbench active-agent context and Pipeline selection controls in PKG-02. It covers:</p>
+<ul>
+<li>- WORKBENCH presentation of selected agent, row, and column context as a right-sidebar/deep-link tertiary form.</li>
+<li>- WORKBENCH read-only deliverable contract summaries and disabled lifecycle controls where the selected agent cannot perform transitions.</li>
+<li>- PIPELINE category controls for operative categories.</li>
+<li>- PIPELINE <code>TASK</code> split selectors for task agent and scope.</li>
+<li>- Stale selection reset behavior for root, deliverable, and knowledge-type changes.</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>- Runtime engine internals and SDK/provider behavior.</li>
+<li>- Authoritative dependency extraction and <code>Dependencies.csv</code> creation.</li>
+<li>- Agent-suite dispatch governance beyond the UI controls needed to select a category or task scope.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code> Package Scope and Deliverable Scope; <code>docs/PRD.md</code> Section 8.2; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Sections 7-9.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Priority / Status</td><td>Source</td></tr>
+<tr><td>DEL-02-02-REQ-001</td><td>WORKBENCH shall show the selected agent, matrix row, and matrix column from query parameters, with sensible defaults when parameters are absent or incomplete.</td><td>P0</td><td><code>docs/PRD.md</code> Section 8.2 FR-009</td></tr>
+<tr><td>DEL-02-02-REQ-002</td><td>Matrix routing inputs to this UX shall preserve the loop-first rule that NORMATIVE and EVALUATIVE cells select live-loop persona context, while OPERATIVE cells open PIPELINE. WORKBENCH remains available as a sidebar/deep-link contract review form.</td><td>P0</td><td><code>docs/PRD.md</code> Sections 7.2 and 8.2 FR-008; <code>docs/TYPES.md</code> Section 4; D-APP-28/D-APP-30/D-APP-31</td></tr>
+<tr><td>DEL-02-02-REQ-003</td><td>WORKBENCH shall consume deliverable contract APIs for read-only status/dependency checks when a deliverable is selected.</td><td>P1</td><td><code>docs/PRD.md</code> Section 8.2 FR-010; <code>docs/SPEC.md</code> Section 17.2</td></tr>
+<tr><td>DEL-02-02-REQ-004</td><td>WORKBENCH lifecycle transition controls shall be disabled for unsupported agents. Current implementation source is <code>frontend/src/lib/workspace/deliverable-api.ts</code> <code>canAgentTransitionLifecycle</code>; human-gated target states require approval SHA before submission.</td><td>P1</td><td><code>docs/PRD.md</code> Section 8.2 FR-010; <code>docs/SPEC.md</code> Section 17.2; <code>docs/CONTRACT.md</code> Section 1.7; ADQ-13 implementation evidence</td></tr>
+<tr><td>DEL-02-02-REQ-005</td><td>PIPELINE shall expose category controls for <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code>. Unsupported options shall remain visible and disabled as coming soon.</td><td>P0</td><td><code>docs/PRD.md</code> Section 8.2 FR-011; <code>docs/PRD.md</code> Section 7.2; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>DEL-02-02-REQ-006</td><td>PIPELINE <code>TASK</code> shall use split selectors for task agent and scope.</td><td>P0</td><td><code>docs/PRD.md</code> Section 8.2 FR-012</td></tr>
+<tr><td>DEL-02-02-REQ-007</td><td><code>TASK</code> scope mode shall be <code>DELIVERABLES</code> or <code>KNOWLEDGE_TYPES</code>; a target deliverable is required for knowledge-type mode.</td><td>P0</td><td><code>docs/PRD.md</code> Section 8.2 FR-012; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>DEL-02-02-REQ-008</td><td>Dynamic scope scans shall reset invalid selections caused by root changes, removed deliverables, disabled knowledge markers, or stale knowledge targets.</td><td>P1</td><td><code>docs/PRD.md</code> Section 8.2 FR-013; <code>docs/PRD.md</code> Section 7.5</td></tr>
+<tr><td>DEL-02-02-REQ-009</td><td>The UX shall preserve disabled or unsupported variants as visible non-selectable options rather than silently hiding roadmap scope.</td><td>P0/P1 context</td><td><code>docs/PRD.md</code> Section 7.2; <code>docs/PRD.md</code> Section 14; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>DEL-02-02-REQ-010</td><td>UI state used by this slice shall remain non-authoritative and must not replace project truth in deliverable files, status files, dependency records, or accepted git history.</td><td>Governance constraint</td><td><code>docs/DIRECTIVE.md</code> Sections 2.1, 2.2, and 2.6; <code>docs/CONTRACT.md</code> Section 1.7</td></tr>
+<tr><td>DEL-02-02-REQ-011</td><td>Workbench status/dependency summaries shall not be populated from UI convenience state while dependency extraction remains deferred; empty or missing dependency records must remain visibly <code>TBD</code>, unavailable, or sourced from the deliverable contract API.</td><td>Governance constraint</td><td><code>docs/PRD.md</code> Section 8.2 FR-010; <code>docs/SPEC.md</code> Section 17.2; <code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/CONTRACT.md</code> Section 1.7</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / contract</td><td>Application</td><td>Source</td></tr>
+<tr><td>Chirality UI navigation vocabulary</td><td>Rows, columns, matrix cells, pipeline categories, scope modes, and disabled options.</td><td><code>docs/TYPES.md</code> Section 4</td></tr>
+<tr><td>Chirality PRD functional requirements</td><td>Workbench and Pipeline requirements FR-007 through FR-013.</td><td><code>docs/PRD.md</code> Section 8.2</td></tr>
+<tr><td>Chirality workspace API contract</td><td>Read deliverable status/dependency summaries through workspace APIs.</td><td><code>docs/SPEC.md</code> Section 17.2</td></tr>
+<tr><td>Chirality lifecycle and dependency invariants</td><td><code>_STATUS.md</code> and dependency records remain authoritative project files, not UI convenience state.</td><td><code>docs/CONTRACT.md</code> Section 1.7</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td><td>Evidence target</td></tr>
+<tr><td>DEL-02-02-REQ-001</td><td>Route/query tests for missing, partial, and complete Workbench query params.</td><td>Workbench context UI tests</td></tr>
+<tr><td>DEL-02-02-REQ-002</td><td>Matrix navigation tests asserting destination by row class.</td><td>Matrix routing tests owned with DEL-02-01/DEL-08-02 as applicable</td></tr>
+<tr><td>DEL-02-02-REQ-003</td><td>UI/API integration tests or mocked API tests for status/dependency summary loading.</td><td>Workbench deliverable contract tests</td></tr>
+<tr><td>DEL-02-02-REQ-004</td><td>UI render tests confirm unsupported agents are read-only, human-gated targets require approval SHA, and non-human-gated targets keep SHA optional.</td><td><code>frontend/src/__tests__/components/workbench-surface.test.ts</code>; <code>frontend/src/__tests__/lib/workspace-deliverable-api.test.ts</code></td></tr>
+<tr><td>DEL-02-02-REQ-005</td><td>Pipeline selector render tests for visible categories and disabled coming-soon variants.</td><td><code>frontend/src/__tests__/components/pipeline-surface.test.ts</code></td></tr>
+<tr><td>DEL-02-02-REQ-006</td><td>Pipeline TASK selector tests confirming task-agent and scope controls are independently represented.</td><td><code>frontend/src/__tests__/components/pipeline-surface.test.ts</code>; <code>frontend/src/__tests__/lib/task-scope-selection.test.ts</code></td></tr>
+<tr><td>DEL-02-02-REQ-007</td><td>Scope-mode validation tests for deliverables, knowledge types, and required target deliverable.</td><td>Task-scope selector tests</td></tr>
+<tr><td>DEL-02-02-REQ-008</td><td>Stale selection tests for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets.</td><td>Stale selection tests</td></tr>
+<tr><td>DEL-02-02-REQ-010</td><td>Review that no UI state is treated as authoritative project truth.</td><td>ADQ-13 evidence note plus existing workspace deliverable API tests</td></tr>
+<tr><td>DEL-02-02-REQ-011</td><td>Mocked API or integration tests proving status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD when dependency extraction is deferred.</td><td><code>frontend/src/__tests__/lib/workspace-deliverable-api.test.ts</code>; <code>frontend/src/__tests__/components/workbench-surface.test.ts</code></td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required or anticipated artifacts:</p>
+<ul>
+<li>- Workbench context UI implementation and tests.</li>
+<li>- Pipeline selector behavior implementation and tests.</li>
+<li>- Stale selection tests.</li>
+<li>- Workbench contract boundary evidence showing that status/dependency summaries are not derived from local UI convenience state.</li>
+<li>- Notes for disabled coming-soon variants if implementation uses a visible option registry.</li>
+<li>- ADQ-13 evidence: <code>execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/Evidence_ADQ-13_UI_Specs_Render_Tests.md</code>.</li>
+<li>- Any human ruling needed for cross-package ownership of SOW-007 and matrix-routing overlap with PKG-08.</li>
+</ul>
+<h3 id="clm-014-d-app-56-pipeline-surface-amendment-2026-07-12">CLM-014 — D-APP-56 PIPELINE surface amendment (2026-07-12)</h3>
+<h5 id="d-app-56-pipeline-surface-amendment-2026-07-12">D-APP-56 PIPELINE surface amendment (2026-07-12)</h5>
+<p>R4-P28 assigns the PIPELINE Execution Root Scaffold form and the co-resident deliverable-contract/lifecycle-transition panels to DEL-02-02, parallel to the WORKBENCH selection requirements. Verification must include a PIPELINE transition render test meeting the D-APP-36 bar; this records the obligation and does not assert that test as complete.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The converted contract preserves all legacy source content and traceability to SOW-006, SOW-007, and OBJ-001 without changing lifecycle or dependency state.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-02-02-workbench-and-pipeline-selection-ux">CLM-015 — Procedure: DEL-02-02 Workbench and Pipeline Selection UX</h3>
+<h4 id="procedure-del-02-02-workbench-and-pipeline-selection-ux">Procedure: DEL-02-02 Workbench and Pipeline Selection UX</h4>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce and verify the Workbench and Pipeline Selection UX slice without expanding scope into runtime internals, dependency extraction, or PKG-08 dispatch governance.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Accepted working root with DEL-02-02 scaffolded under PKG-02.</li>
+<li>- Accessible source corpus from <code>_REFERENCES.md</code>, especially <code>docs/PRD.md</code>, <code>docs/TYPES.md</code>, <code>docs/SPEC.md</code>, and the active SOFTWARE_DECOMP file.</li>
+<li>- Current deliverable status and dependencies available through deliverable-local files or workspace APIs.</li>
+<li>- Declared upstream dependencies: TBD; <code>_DEPENDENCIES.md</code> says no accepted dependency edges have been extracted yet.</li>
+<li>- Declared downstream dependencies: TBD; <code>_DEPENDENCIES.md</code> says no accepted dependency edges have been extracted yet.</li>
+</ul>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source and scope.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_STATUS.md</code>, and <code>_DEPENDENCIES.md</code>.</li>
+<li>- Confirm <code>ResponsibleParty</code> remains <code>TBD</code>.</li>
+<li>- Confirm this slice covers Workbench context UI, Pipeline selector behavior, and stale selection tests.</li>
+</ul>
+<p>2. Implement or inspect Workbench context behavior.</p>
+<ul>
+<li>- Verify that selected agent, row, and column are read from query parameters.</li>
+<li>- Verify sensible defaults for incomplete or missing query parameters.</li>
+<li>- Verify the resolved active context is visible to the operator.</li>
+<li>- Verify Workbench can operate as a loop-first right-sidebar/deep-link tertiary form rather than a replacement primary pane.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 8.2 FR-009.</li>
+</ul>
+<p>3. Implement or inspect Workbench deliverable contract summaries.</p>
+<ul>
+<li>- Load selected-deliverable status/dependency summaries through workspace contract APIs where the UI supports deliverable context.</li>
+<li>- Keep lifecycle controls disabled for unsupported agents.</li>
+<li>- Use <code>frontend/src/lib/workspace/deliverable-api.ts</code> <code>canAgentTransitionLifecycle</code> as the current implementation source of truth for lifecycle-control actor support.</li>
+<li>- Verify human-gated transitions require approval SHA before submission.</li>
+<li>- Verify status/dependency summaries are not populated from local UI convenience state while dependency extraction remains deferred.</li>
+<li>- Do not treat UI state as authoritative lifecycle or dependency truth.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 8.2 FR-010; <code>docs/SPEC.md</code> Section 17.2; <code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/CONTRACT.md</code> Section 1.7.</li>
+</ul>
+<p>4. Implement or inspect Pipeline category controls.</p>
+<ul>
+<li>- Expose <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> category controls.</li>
+<li>- Keep unsupported options visible and disabled as coming soon.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 8.2 FR-011; <code>docs/TYPES.md</code> Section 4.4.</li>
+</ul>
+<p>5. Implement or inspect Pipeline TASK selectors.</p>
+<ul>
+<li>- Separate task-agent selection from scope selection.</li>
+<li>- Support scope modes <code>DELIVERABLES</code> and <code>KNOWLEDGE_TYPES</code>.</li>
+<li>- Require target deliverable selection for knowledge-type mode.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 8.2 FR-012.</li>
+</ul>
+<p>6. Implement or inspect stale selection reset behavior.</p>
+<ul>
+<li>- Reset invalid selection state when the working root changes.</li>
+<li>- Reset removed deliverables.</li>
+<li>- Reset disabled knowledge markers.</li>
+<li>- Reset stale knowledge targets.</li>
+<li>- Sources: <code>docs/PRD.md</code> Section 8.2 FR-013; <code>docs/PRD.md</code> Section 7.5.</li>
+</ul>
+<p>7. Preserve governance boundaries.</p>
+<ul>
+<li>- Do not create or update <code>Dependencies.csv</code> as part of this UX deliverable.</li>
+<li>- Do not infer dependency edges from UI selector behavior.</li>
+<li>- Record unknowns as <code>TBD</code>, <code>ASSUMPTION</code>, or conflicts for human ruling.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td><td>Source</td></tr>
+<tr><td>Workbench query context</td><td>Selected agent, row, and column are shown with sensible defaults.</td><td><code>docs/PRD.md</code> Section 8.2 FR-009</td></tr>
+<tr><td>Matrix routing boundary</td><td>NORMATIVE/EVALUATIVE select live-loop persona context; OPERATIVE routes to PIPELINE; WORKBENCH remains a tertiary review form.</td><td><code>docs/PRD.md</code> Section 7.2; <code>docs/PRD.md</code> Section 8.2 FR-008; D-APP-28/D-APP-30/D-APP-31</td></tr>
+<tr><td>Workbench contract summaries</td><td>Status/dependency summaries load for selected deliverables; unsupported transition controls are disabled; approval SHA is required for human-gated target states.</td><td><code>docs/PRD.md</code> Section 8.2 FR-010</td></tr>
+<tr><td>Workbench contract boundary</td><td>Status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD; UI convenience state is not used as dependency truth.</td><td><code>docs/SPEC.md</code> Section 17.2; <code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/CONTRACT.md</code> Section 1.7</td></tr>
+<tr><td>Pipeline categories</td><td><code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> are represented; unsupported variants are disabled.</td><td><code>docs/PRD.md</code> Section 8.2 FR-011</td></tr>
+<tr><td>TASK split selectors</td><td>Task agent and scope selectors are distinct; scope mode behavior matches <code>DELIVERABLES</code> / <code>KNOWLEDGE_TYPES</code>.</td><td><code>docs/PRD.md</code> Section 8.2 FR-012</td></tr>
+<tr><td>Stale selection reset</td><td>Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selections.</td><td><code>docs/PRD.md</code> Section 8.2 FR-013</td></tr>
+<tr><td>Project truth boundary</td><td>No local UI state overrides <code>_STATUS.md</code>, dependency records, deliverable files, or accepted git history.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.1, 2.2, and 2.6</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Workbench context UI implementation or inspection notes: <code>frontend/src/components/workbench/workbench-surface.tsx</code>; ADQ-13 evidence note.</li>
+<li>- Workbench context UI test evidence for query defaults: <code>frontend/src/__tests__/components/workbench-surface.test.ts</code>.</li>
+<li>- Workbench lifecycle-control source-of-truth fixture or registry evidence: <code>frontend/src/lib/workspace/deliverable-api.ts</code>; <code>frontend/src/__tests__/components/workbench-surface.test.ts</code>; <code>frontend/src/__tests__/lib/workspace-deliverable-api.test.ts</code>.</li>
+<li>- Workbench contract boundary evidence for status/dependency summaries: <code>frontend/src/__tests__/lib/workspace-deliverable-api.test.ts</code>; ADQ-13 evidence note.</li>
+<li>- Pipeline selector behavior implementation or inspection notes: <code>frontend/src/components/pipeline/pipeline-surface.tsx</code>; ADQ-13 evidence note.</li>
+<li>- Pipeline category and TASK split-selector test evidence: <code>frontend/src/__tests__/components/pipeline-surface.test.ts</code>; <code>frontend/src/__tests__/lib/task-scope-selection.test.ts</code>.</li>
+<li>- Stale selection test evidence for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets: <code>frontend/src/__tests__/lib/task-scope-selection.test.ts</code>.</li>
+<li>- Human rulings for conflict table entries in <code>Guidance.md</code>: TBD.</li>
+<li>- Dependency extraction remains deferred; <code>Dependencies.csv</code> is intentionally not produced by this run.</li>
+</ul>
+<h3 id="clm-021-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-107 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; dependency extraction remains outside this UX slice&#x27;s product ownership.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, then perform human review against the accepted legacy basis.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-02-02-workbench-and-pipeline-selection-ux">CLM-022 — Guidance: DEL-02-02 Workbench and Pipeline Selection UX</h3>
+<h4 id="guidance-del-02-02-workbench-and-pipeline-selection-ux">Guidance: DEL-02-02 Workbench and Pipeline Selection UX</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable keeps the Workbench and Pipeline selection experience coherent for operators moving from the matrix into interactive personas or operative task categories. The UX should preserve active agent context, make available pipeline choices visible, prevent stale or invalid selections, and keep UI convenience state subordinate to governed project files.</p>
+<p>Sources: <code>_CONTEXT.md</code> Deliverable Scope; <code>docs/PRD.md</code> Sections 7.2, 7.5, 8.2, and 14.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Preserve context at route boundaries: Workbench shall show selected agent, row, and column when opened as a sidebar/deep-link tertiary form; NORMATIVE/EVALUATIVE matrix cells now select live-loop persona context under the accepted loop-first pivot. Source: <code>docs/PRD.md</code> Section 8.2 FR-009; D-APP-28/D-APP-30.</li>
+<li>- Keep operative selection explicit: PIPELINE should expose <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code>, and <code>TASK</code> should separate agent choice from scope choice. Source: <code>docs/PRD.md</code> Section 8.2 FR-011 and FR-012.</li>
+<li>- Prefer disabled visibility over disappearance for unsupported options, so operators can see roadmap shape without being able to invoke unavailable behavior. Source: <code>docs/PRD.md</code> Section 7.2; <code>docs/TYPES.md</code> Section 4.4.</li>
+<li>- Reset stale selections rather than carrying invalid state across root or scan changes. Source: <code>docs/PRD.md</code> Section 8.2 FR-013 and Section 7.5.</li>
+<li>- Treat UI local state as non-authoritative convenience state. Project truth remains in working-root files and accepted git history. Source: <code>docs/DIRECTIVE.md</code> Sections 2.1, 2.2, and 2.6.</li>
+</ul>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- SOW-007 is listed in <code>_CONTEXT.md</code> as covered by DEL-02-02, while the decomposition scope ledger assigns SOW-007 to PKG-08 / DEL-08-03 as the primary package for agent dispatch. For this deliverable, treat Pipeline selectors as a UI presentation and selection concern; dispatch semantics remain with PKG-08 unless a human rules otherwise.</li>
+<li>- Workbench deliverable contract summaries depend on status and dependency APIs. This deliverable should verify UI behavior but not extract dependencies or create <code>Dependencies.csv</code>.</li>
+<li>- <code>KNOWLEDGE_TYPES</code> mode should not become selectable unless the source scan indicates a knowledge decomposition marker. Source: <code>docs/PRD.md</code> Section 7.5.</li>
+<li>- The PRD is usable for this run but has a recorded hash status: MATCH in <code>_REFERENCES.md</code>; source-backed content from the PRD should remain reviewable against the observed file. (reconciled under D-APP-38).</li>
+<li>- ADQ-13 inspected the current frontend surfaces for this deliverable and records implementation/test paths in <code>Evidence_ADQ-13_UI_Specs_Render_Tests.md</code>. Earlier source-warning and ownership conflicts remain visible; this does not assert dependency closure or lifecycle issuance.</li>
+</ul>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Visible disabled options vs. hiding unsupported scope</td><td>Prefer visible disabled options when a variant is unsupported or coming soon. This preserves operator awareness without enabling execution.</td><td><code>docs/PRD.md</code> Sections 7.2 and 14; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Local UI persistence vs. authoritative project state</td><td>Persist convenience state only when it cannot override <code>_STATUS.md</code>, dependency records, deliverable files, or accepted git history.</td><td><code>docs/DIRECTIVE.md</code> Section 2.6; <code>docs/CONTRACT.md</code> Section 1.7</td></tr>
+<tr><td>UX slice ownership vs. agent-dispatch ownership</td><td>Keep selector display and stale-selection behavior in this UX slice; keep dispatch governance and subagent behavior in PKG-08.</td><td><code>_CONTEXT.md</code>; decomposition scope ledger SOW-007</td></tr>
+<tr><td>Defaults vs. explicit context</td><td>Provide sensible defaults for incomplete Workbench query params, but visibly show the resolved agent/row/column so the operator knows active context.</td><td><code>docs/PRD.md</code> Section 8.2 FR-009</td></tr>
+</tbody></table>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected behavior</td><td>Source</td></tr>
+<tr><td>User clicks a NORMATIVE matrix cell</td><td>The mounted live loop receives the selected persona context; Workbench remains available for context/contract review.</td><td><code>docs/PRD.md</code> Sections 7.2 and 8.2; D-APP-28/D-APP-30</td></tr>
+<tr><td>User clicks an OPERATIVE matrix cell</td><td>App opens PIPELINE with the relevant category context.</td><td><code>docs/PRD.md</code> Section 7.2</td></tr>
+<tr><td>User opens PIPELINE TASK</td><td>UI shows split controls for task agent and scope; scope modes are deliverables or knowledge types.</td><td><code>docs/PRD.md</code> Section 8.2 FR-012</td></tr>
+<tr><td>Working root changes</td><td>Invalid deliverable or knowledge-type selections reset.</td><td><code>docs/PRD.md</code> Section 8.2 FR-013</td></tr>
+<tr><td>Unsupported pipeline option exists</td><td>Option remains visible but disabled as coming soon.</td><td><code>docs/PRD.md</code> Section 7.2; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+</tbody></table>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-02-02-CONFLICT-001</td><td>Dispatch path used stale package label <code>PKG-02_Desktop_UI_and_Local_Experience</code>, but the live scaffolded deliverable is under <code>PKG-02_Desktop_Shell_Navigation_and_Operator_State</code>.</td><td>User dispatch brief</td><td><code>_CONTEXT.md</code> Identity; <code>execution/_Coordination/WORKSPACE_MANIFEST.csv</code> row for DEL-02-02</td><td>All run-record scope references</td><td>Use the unique live DEL-02-02 path and preserve the path mismatch as a source warning.</td><td>TBD</td></tr>
+<tr><td>DEL-02-02-CONFLICT-002</td><td>PRD expected and observed PRD hashes match under D-APP-38. Dispatch says to treat this as a source status, not a blocker.</td><td><code>_REFERENCES.md</code> REF-006 row</td><td>User dispatch brief</td><td>All PRD-backed requirements</td><td>Continue using accessible <code>docs/PRD.md</code>, cite sections, and surface hash status: MATCH for review.</td><td>TBD</td></tr>
+<tr><td>DEL-02-02-CONFLICT-003</td><td><code>_CONTEXT.md</code> lists SOW-007 under DEL-02-02, while the decomposition scope ledger maps SOW-007 to PKG-08 / DEL-08-03 with PKG-08 as primary package.</td><td><code>_CONTEXT.md</code> Traceability</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Scope Ledger SOW-007</td><td>Specification scope, requirements, and ownership notes</td><td>Treat DEL-02-02 as UI selector owner and PKG-08 as dispatch semantics owner.</td><td><strong>RULED 2026-07-12 (D-APP-56 R4-P35): proposed split ratified.</strong></td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-006 SOW-007 OBJ-001</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

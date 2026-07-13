@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 249,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "13a2a49d1cb74fc83b9c64dc39c25f8ae98107b5b666b5b7352a95b4e626a068"
+      },
+      "text": "Preservation and traceability to SOW-065, SOW-076, SOW-077, SOW-078, and OBJ-009 are demonstrated without adding scope, reliance claims, lifecycle meaning, or obligations.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-001",
+          "source_line": 386,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run deterministic validation, claim mapping, parity, checklist derivation, and rendering checks, followed by human review."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-04",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "13a2a49d1cb74fc83b9c64dc39c25f8ae98107b5b666b5b7352a95b4e626a068"
+  },
+  "tool_version": "1"
+}

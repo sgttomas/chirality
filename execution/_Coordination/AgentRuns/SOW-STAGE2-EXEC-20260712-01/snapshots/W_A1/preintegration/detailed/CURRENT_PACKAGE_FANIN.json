@@ -1,0 +1,16 @@
+{
+  "aggregate_bindings": 189,
+  "bindings_reproduced": 189,
+  "historical_pre_r2_bindings": 186,
+  "package_counts": {
+    "00": 23,
+    "01": 40,
+    "02": 64,
+    "03": 62
+  },
+  "pkg01_generated_unclassified_prefixes": 0,
+  "pkg01_r1_to_r2_chain": "PASS",
+  "preserved_literal_files": 54,
+  "schema": "chirality-w-a1-current-package-fanin/v1",
+  "status": "PASS"
+}

@@ -1,0 +1,11 @@
+{
+  "command": "python3 tools/scope_of_work/validate_scope_of_work.py execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-03/fixtures/partial --json",
+  "exit_code": 1,
+  "format": "INVALID",
+  "valid": false,
+  "issues": [
+    "format state is INVALID",
+    "partial legacy production kit; missing: Procedure.md"
+  ],
+  "verdict": "PASS_FAIL_CLOSED"
+}

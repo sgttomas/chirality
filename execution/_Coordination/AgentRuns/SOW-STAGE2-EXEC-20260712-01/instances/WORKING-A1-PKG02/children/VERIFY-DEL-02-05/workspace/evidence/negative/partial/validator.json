@@ -1,0 +1,9 @@
+{
+  "format": "INVALID",
+  "issues": [
+    "format state is INVALID",
+    "partial legacy production kit; missing: Procedure.md"
+  ],
+  "target": "~/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A1-PKG02/children/VERIFY-DEL-02-05/workspace/evidence/negative/partial",
+  "valid": false
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 238,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "8eeb463884aa9549a8ebf79d8c454bf60fdc6e0dd5a5e7359734ead1d23e47b0"
+      },
+      "text": "The migration candidate preserves the DEL-01-03 legacy source content and traceability to SOW-071, SOW-074, OBJ-009, and OBJ-010.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-001",
+          "source_line": 407,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run deterministic Scope-of-Work validation, claim mapping, parity, checklist, and rendering checks, followed by human review of the candidate."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "8eeb463884aa9549a8ebf79d8c454bf60fdc6e0dd5a5e7359734ead1d23e47b0"
+  },
+  "tool_version": "1"
+}

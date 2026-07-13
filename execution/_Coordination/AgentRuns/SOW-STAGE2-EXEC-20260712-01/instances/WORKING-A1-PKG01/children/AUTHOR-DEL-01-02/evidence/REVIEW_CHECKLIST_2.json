@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 377,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64"
+      },
+      "text": "The conversion preserves and traces the legacy source content to the frozen project scope references [SOW-037, SOW-045, SOW-054, SOW-057, SOW-074] and package objective references [OBJ-002, OBJ-005, OBJ-009].",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-02-VER-001",
+          "source_line": 625,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Deterministic validation, claim mapping, parity reporting, review-checklist derivation, and HTML-render checks, followed by human review."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-02",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "a6c04d568d83dee81af68815fe5b2adaa13cbe771b3788b6a73d5571e0722b64"
+  },
+  "tool_version": "1"
+}

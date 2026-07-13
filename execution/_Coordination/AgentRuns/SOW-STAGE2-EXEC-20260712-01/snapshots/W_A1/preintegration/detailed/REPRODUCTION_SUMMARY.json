@@ -1,0 +1,15 @@
+{
+  "apply_simulations": "15/15 PASS",
+  "author_verifier_pairs": 30,
+  "authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "candidate_schema_map_parity_checklist_render_negative": "15/15 PASS",
+  "mappings": 456,
+  "members": 15,
+  "packages": 4,
+  "replacement_rows": 75,
+  "rollback_rows": 75,
+  "rollback_simulations": "15/15 PASS",
+  "schema": "chirality-w-a1-reconciliation-reproduction/v1",
+  "source_lines": 4817,
+  "status": "PASS"
+}
