@@ -16,7 +16,8 @@ Status: `D-GOV-16_RULED_STAGE2_PLAN_REQUIRED`
   `31e5efd985db4cc7b25543e11a65933979e07e4f` on
   `codex/sow-stage1-execution`.
 - D-GOV-16 owner ruling, 2026-07-12: items 1–10 `APPROVED` exactly as
-  proposed; publication SHA is `PENDING_PUBLICATION` until CHANGE binds it.
+  proposed; published ruling snapshot:
+  `7584718aa32b112e415331736d1a8e68c12ac176`.
 
 ## Closure verdict
 

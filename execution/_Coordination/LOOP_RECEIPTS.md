@@ -109,3 +109,13 @@
   integration, lifecycle act, or legacy retirement in the publication run.
 - Release gate: present a fresh governed orchestration plan derived from a
   synchronized `main` that contains the published ruling.
+
+### Receipt 6 — 2026-07-12 — D-GOV-16 ruling SHA binding
+
+- Binding: Receipt 5's owner ruling is published at
+  `7584718aa32b112e415331736d1a8e68c12ac176`; the D-GOV-16 decision and
+  register now cite that full SHA.
+- State: `D-GOV-16_RULED_STAGE2_PLAN_REQUIRED`; the exact standard is ratified
+  and exact TYPES/SPEC patches remain approved but unapplied.
+- Stop: publication is not Stage-2 implementation. A fresh governed plan from
+  synchronized `main` remains the only release gate.

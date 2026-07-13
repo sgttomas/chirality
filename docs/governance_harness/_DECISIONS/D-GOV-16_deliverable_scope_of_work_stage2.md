@@ -7,7 +7,7 @@ HumanRuling: `APPROVED` for items 1–10 exactly as proposed — owner response,
 Publish the ruling, then stop before Stage-2 implementation until a fresh
 governed orchestration plan is presented from synchronized main."
 Proposed SHA: `31e5efd985db4cc7b25543e11a65933979e07e4f`
-Ruling SHA: `PENDING_PUBLICATION`
+Ruling SHA: `7584718aa32b112e415331736d1a8e68c12ac176`
 FramedBy: D-GOV-15 Stage-1 PASS, owner checklist correction, and
 RECONCILIATION proposal-eligibility handoff
 AcceptedAuthority: owner approval of all ten items exactly as proposed;

@@ -3,6 +3,8 @@
   "instance": "CHANGE-PUBLISH",
   "role": "CHANGE",
   "parent": "HELP_HUMAN",
-  "status": "DISPATCHED",
-  "objective": "Commit and SHA-bind the exact D-GOV-16 ruling publication without integration or Stage-2 implementation."
+  "status": "D-GOV-16_RULED_STAGE2_PLAN_REQUIRED",
+  "objective": "Commit and SHA-bind the exact D-GOV-16 ruling publication without integration or Stage-2 implementation.",
+  "ruling_publication_sha": "7584718aa32b112e415331736d1a8e68c12ac176",
+  "result": "Ruling published and bound; Stage-2 remains stopped pending a fresh governed orchestration plan from synchronized main."
 }
