@@ -2,7 +2,7 @@
 
 Status: `PROPOSED — NO EFFECT WITHOUT OWNER RULING`
 Date: 2026-07-12
-Proposed SHA: `31e5efd986b7c59fc709f4fe967575c59659aae0`
+Proposed SHA: `31e5efd985db4cc7b25543e11a65933979e07e4f`
 FramedBy: D-GOV-15 Stage-1 PASS, owner checklist correction, and
 RECONCILIATION proposal-eligibility handoff
 AcceptedAuthority: none; this record is a decision request

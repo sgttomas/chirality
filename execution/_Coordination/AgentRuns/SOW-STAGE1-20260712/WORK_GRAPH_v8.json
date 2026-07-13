@@ -1,0 +1,10 @@
+{
+  "run_id":"SOW-STAGE1-20260712",
+  "version":8,
+  "supersedes":"WORK_GRAPH_v7.json",
+  "change":"Correct the full SHA binding for the already-created D-GOV-16 proposal revision",
+  "nodes_updated":[{"id":"CHANGE-CLOSE","status":"CLOSED_AWAITING_OWNER_D_GOV_16","brief_version":4,"proposal_revision":"31e5efd985db4cc7b25543e11a65933979e07e4f","return":"instances/CHANGE-CLOSE/RETURN.md"}],
+  "terminal_handoff":"HANDOFF_STATE.md",
+  "next_gate":"HUMAN-D-GOV-16",
+  "stage2_and_canon_denials":"unchanged until owner ruling"
+}

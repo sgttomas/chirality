@@ -13,7 +13,7 @@ Status: `STAGE1_PASS_AWAITING_D-GOV-16_RULING`
 - Piping pilot evidence branch/commit:
   `codex/sow-piping-pilot@31c35ea9798c29cd0af16b7089186f3942dcfcb1`.
 - Stage-1 proposal/evidence snapshot:
-  `31e5efd986b7c59fc709f4fe967575c59659aae0` on
+  `31e5efd985db4cc7b25543e11a65933979e07e4f` on
   `codex/sow-stage1-execution`.
 
 ## Closure verdict

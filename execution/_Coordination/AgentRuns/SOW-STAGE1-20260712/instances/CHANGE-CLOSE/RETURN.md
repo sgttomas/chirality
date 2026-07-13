@@ -9,11 +9,15 @@ checklist correction, the registered tool and validation evidence, the ten
 candidate preservation package, and the inactive D-GOV-16 decision package.
 
 The proposal revision
-`31e5efd986b7c59fc709f4fe967575c59659aae0` supersedes that first snapshot as
+`31e5efd985db4cc7b25543e11a65933979e07e4f` supersedes that first snapshot as
 the inactive D-GOV-16 packet basis. It preserves the proposed TYPES/SPEC target
 bytes while replacing only their patch encoding with whitespace-clean
 zero-context artifacts, validated with `git apply --unidiff-zero --check`
 against frozen main.
+
+The binding correction records this verified full identity after the prior
+record used an incorrect expansion of the same abbreviated prefix. No proposal
+artifact or Stage-1 evidence changed in that correction.
 
 The binding-closeout record adds D-GOV-16's `Proposed SHA`, Receipt 2, root and
 run terminal handoffs, this versioned amendment, the closed CHANGE status, and

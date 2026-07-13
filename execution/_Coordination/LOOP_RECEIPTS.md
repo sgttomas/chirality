@@ -84,3 +84,13 @@
 - Handoff: D-GOV-16 binds this revised proposal snapshot. No RECON evidence,
   project/pilot path, ratified canon, lifecycle, integration, or Stage-2 act
   changed; the owner ruling remains the sole release gate.
+
+### Receipt 4 — 2026-07-12 — D-GOV-16 binding identity correction
+
+- Correction: the full SHA for the Receipt 3 proposal revision is
+  `31e5efd985db4cc7b25543e11a65933979e07e4f`; its earlier expansion was
+  recorded incorrectly while sharing the same abbreviated prefix.
+- Effect: D-GOV-16 and current handoff state now bind the verified commit.
+  No proposal artifact, target byte, validation result, RECON evidence,
+  project/pilot path, ratified canon, lifecycle, integration, or Stage-2 act
+  changed; the owner ruling remains the sole release gate.
