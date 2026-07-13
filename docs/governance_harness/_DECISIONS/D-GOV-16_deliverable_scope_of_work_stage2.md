@@ -43,14 +43,15 @@ Approve, but do not treat as applied until the ruled implementation tranche,
 the exact patches:
 
 - `TYPES.proposed.patch` — SHA-256
-  `80643d9f08e1fcdbd2cc8891bce8d7a798c8fe839df4834ee6e5d6df54f569f3`;
+  `9614166c7db8340532d838768be2de52567862757fe0d5add3d3a90edea9d4b4`;
 - `SPEC.proposed.patch` — SHA-256
-  `8d9b8e680ef1fd7d91eaf7c2e7e8a51612c221e45c9524e105ab6dd7e8b8e620`.
+  `543200af8a617e2f5673db110eef2b0a5cf742c54e70ccda8bce0cad870d4b2e`.
 
-Both paths are under `docs/governance_harness/_PROPOSALS/D-GOV-16/` and apply
-cleanly to the current ratified files. Approval authorizes a later controlled
-application to `docs/TYPES.md` and `docs/SPEC.md`; this proposal does not apply
-them.
+Both zero-context paths are under
+`docs/governance_harness/_PROPOSALS/D-GOV-16/` and apply cleanly to the
+current ratified files with `git apply --unidiff-zero --check`. Approval
+authorizes a later controlled application to `docs/TYPES.md` and `docs/SPEC.md`;
+this proposal does not apply them.
 
 ### 3. Ratify deterministic checklist ownership and REVIEW consumption
 
@@ -194,7 +195,7 @@ The proposal evidence index is:
 `docs/governance_harness/_PROPOSALS/D-GOV-16/STAGE2_EVIDENCE_PACKAGE_INDEX.md`
 
 SHA-256:
-`c1f54d11c979511c2de656eaa213b32263ec6265602ccb547c7c0e9b0dc8674c`.
+`8a6e48ac8247fe5147afb4208d3e7c0b4f48cb1071b1e086b4f24a2ceeded806`.
 
 The direct findings are:
 

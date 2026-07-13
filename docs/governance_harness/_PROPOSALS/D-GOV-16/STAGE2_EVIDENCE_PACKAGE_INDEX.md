@@ -28,8 +28,8 @@ deliverable, decomposition, lifecycle, source, or human-decision truth.
 | Shared parser/validator contract | `tools/scope_of_work/common.py`, SHA-256 `70f0e41360ed70dc6d4ddf89aff094eb9f230bcc7958c8cf26e6c5095ea84bef` | Frozen candidate grammar |
 | Deterministic checklist compiler | SHA-256 `60b276b2d8b6497de820ed06d208f7afea9daa0277b20121798abdc4a9ce3ca6` | Owner-corrected REVIEW substrate |
 | Proposed ratified standard exact bytes | SHA-256 `7f74290167e3f410242bafe8bca153828a2a93e82099b8498ea6fd90eec85a6f` | Inactive unless D-GOV-16 item 1 is approved |
-| Proposed TYPES patch | SHA-256 `80643d9f08e1fcdbd2cc8891bce8d7a798c8fe839df4834ee6e5d6df54f569f3` | Applies cleanly to current `docs/TYPES.md`; inactive |
-| Proposed SPEC patch | SHA-256 `8d9b8e680ef1fd7d91eaf7c2e7e8a51612c221e45c9524e105ab6dd7e8b8e620` | Applies cleanly to current `docs/SPEC.md`; inactive |
+| Proposed TYPES patch | SHA-256 `9614166c7db8340532d838768be2de52567862757fe0d5add3d3a90edea9d4b4` | Zero-context patch; applies to current `docs/TYPES.md` with `git apply --unidiff-zero --check`; inactive |
+| Proposed SPEC patch | SHA-256 `543200af8a617e2f5673db110eef2b0a5cf742c54e70ccda8bce0cad870d4b2e` | Zero-context patch; applies to current `docs/SPEC.md` with `git apply --unidiff-zero --check`; inactive |
 
 The successor standard retains the v1 schema grammar proven by Stage 1 and
 changes authority, transition, ISSUED, integration, and retirement language

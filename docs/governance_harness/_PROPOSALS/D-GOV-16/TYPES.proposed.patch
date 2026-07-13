@@ -1,33 +1,18 @@
-diff --git a/docs/TYPES.md b/docs/TYPES.md
 --- a/docs/TYPES.md
 +++ b/docs/TYPES.md
-@@ -252,7 +252,7 @@ OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
- | State | Meaning |
- |---|---|
- | `OPEN` | Folder exists with minimum viable fileset; no content yet |
+@@ -255 +255 @@
 -| `INITIALIZED` | Document kit (Datasheet, Specification, Guidance, Procedure) has been drafted |
 +| `INITIALIZED` | The selected production contract exists and validates for its current format (`SOW_V1` or transitional `LEGACY_FOUR_DOC`) |
- | `SEMANTIC_READY` | Semantic lens (`_SEMANTIC.md`) has been generated |
- | `IN_PROGRESS` | Active human + agent work underway |
- | `CHECKING` | Frozen candidate under review against a declared basis |
-@@ -288,16 +288,46 @@ The framework separates **how teams coordinate** (schedule-first, declared depen
- 
- ---
- 
+@@ -291 +291 @@
 -## 7. Document Kit Types
 +## 7. Deliverable Production Contract Types
- 
+@@ -293 +293,3 @@
 -Each deliverable contains a standard four-document kit:
 +Each PROJECT or SOFTWARE deliverable contains exactly one canonical production
 +contract. DOMAIN/KTY surfaces and analogous packet/case schemas retain their
 +own independent production grammars.
- 
+@@ -295 +297,20 @@
 -| Document | Purpose |
--|---|---|
--| `Datasheet.md` | Key parameters, identification, structured metadata |
--| `Specification.md` | Technical requirements, scope definition, acceptance criteria |
--| `Guidance.md` | Design guidance, rationale, best practices, contextual direction |
--| `Procedure.md` | Step-by-step execution workflow, sequencing, checklists |
 +| Format | Files | Meaning |
 +|---|---|---|
 +| `SOW_V1` | One valid `ScopeOfWork.md` with schema `chirality-deliverable-sow/v1` | Canonical format for new and successfully converted PROJECT/SOFTWARE deliverables |
@@ -48,7 +33,11 @@ diff --git a/docs/TYPES.md b/docs/TYPES.md
 +for example `DEL-07-03-AC-001`.
 +
 +| Prefix | Meaning |
-+|---|---|
+@@ -297,4 +318,9 @@
+-| `Datasheet.md` | Key parameters, identification, structured metadata |
+-| `Specification.md` | Technical requirements, scope definition, acceptance criteria |
+-| `Guidance.md` | Design guidance, rationale, best practices, contextual direction |
+-| `Procedure.md` | Step-by-step execution workflow, sequencing, checklists |
 +| `OUT` | Expected output |
 +| `CLM` | Descriptive claim |
 +| `REQ` | Normative requirement |
@@ -58,10 +47,8 @@ diff --git a/docs/TYPES.md b/docs/TYPES.md
 +| `TBD` | Unresolved information |
 +| `CON` | Unresolved conflict |
 +| `REM` | Remaining item in `_STATUS.md`; not defined in `ScopeOfWork.md` |
-+
+@@ -301,0 +328,4 @@
 +Migration dispositions are `PRESERVED`, `MERGED`, `SPLIT`, `SUPERSEDED`,
 +`DEFERRED`, and `CONFLICT`. They describe migration handling only and are not
 +epistemic labels, lifecycle states, or human rulings.
- 
- ---
- 
++
