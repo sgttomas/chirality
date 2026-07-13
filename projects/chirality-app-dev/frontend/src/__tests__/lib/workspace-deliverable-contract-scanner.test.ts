@@ -18,6 +18,42 @@ function statusDocument(state = 'IN_PROGRESS'): string {
 `;
 }
 
+function scopeOfWorkDocument(): string {
+  return `---
+schema: chirality-deliverable-sow/v1
+deliverable_id: DEL-07-03
+package_id: PKG-07
+decomposition_basis: execution/_Decomposition/example.md@abc1234
+project_scope_refs: [SOW-026]
+package_objective_refs: [OBJ-006]
+---
+
+# Scope of Work
+
+## Purpose and Objective Traceability
+
+- **OUT-001** — Produce the declared contract.
+
+## Deliverable Definition — Ontology
+
+## Completion and Reliance Basis — Epistemology
+
+- **AC-001** — Human review confirms completeness.
+
+## Production and Verification Method — Praxeology
+
+- **VER-001** — Perform the human review.
+
+## Governing Values and Decisions — Axiology
+
+## Output and Evaluation Matrix
+
+| Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
+|---|---|---|---|---|---|
+| OUT-001 | SOW-026 OBJ-006 | OUT-001 | AC-001 | VER-001 | Review record |
+`;
+}
+
 async function writeDeliverableFiles(files: Record<string, string>): Promise<void> {
   for (const [fileName, content] of Object.entries(files)) {
     await writeFile(path.join(deliverablePath, fileName), content, 'utf8');
@@ -42,6 +78,139 @@ afterEach(async () => {
 });
 
 describe('scanDeliverableDocumentKitContract', () => {
+  it('keeps Scope-of-Work-only non-authoritative during the Stage-1 pilot', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('IN_PROGRESS'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'ScopeOfWork.md': scopeOfWorkDocument(),
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const candidate = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath,
+      scopeOfWorkPilot: {
+        mode: 'PILOT_DUAL',
+        varianceRef: 'D-GOV-15@0123456',
+        allowedDeliverablePaths: [deliverablePath]
+      }
+    });
+    expect(candidate.documentFormat).toBe('SOW_V1');
+    expect(candidate.valid).toBe(false);
+    expect(candidate.scopeOfWork.present).toBe(true);
+
+    const unactivated = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath
+    });
+    expect(unactivated.valid).toBe(false);
+    expect(unactivated.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ condition: 'scope_of_work_not_activated', severity: 'error' })
+      ])
+    );
+  });
+
+  it('fails dual-format ambiguity unless the Stage-1 variance is explicit', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('IN_PROGRESS'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'Datasheet.md': '# Datasheet\n',
+      'Specification.md': '# Specification\n',
+      'Guidance.md': '# Guidance\n',
+      'Procedure.md': '# Procedure\n',
+      'ScopeOfWork.md': scopeOfWorkDocument(),
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const normal = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath
+    });
+    expect(normal.documentFormat).toBe('AMBIGUOUS');
+    expect(normal.valid).toBe(false);
+
+    const pilot = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath,
+      scopeOfWorkPilot: {
+        mode: 'PILOT_DUAL',
+        varianceRef: 'D-GOV-15@0123456',
+        allowedDeliverablePaths: [deliverablePath]
+      }
+    });
+    expect(pilot.documentFormat).toBe('AMBIGUOUS');
+    expect(pilot.valid).toBe(true);
+    expect(pilot.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ condition: 'dual_format_pilot_variance', severity: 'info' })
+      ])
+    );
+  });
+
+  it('refuses partial legacy coexistence and a variance for a different path', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('IN_PROGRESS'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'Datasheet.md': '# Datasheet\n',
+      'ScopeOfWork.md': scopeOfWorkDocument(),
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const partial = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath,
+      scopeOfWorkPilot: {
+        mode: 'PILOT_DUAL',
+        varianceRef: 'D-GOV-15@0123456',
+        allowedDeliverablePaths: [path.join(tmpRoot, 'different-deliverable')]
+      }
+    });
+    expect(partial.documentFormat).toBe('INVALID');
+    expect(partial.valid).toBe(false);
+  });
+
+  it('rejects a structurally incomplete Scope of Work even with an exact pilot path', async () => {
+    await writeDeliverableFiles({
+      '_STATUS.md': statusDocument('IN_PROGRESS'),
+      '_CONTEXT.md': '# Context\n',
+      '_DEPENDENCIES.md': '# Dependencies\n',
+      '_REFERENCES.md': '# References\n',
+      '_SEMANTIC.md': '# Semantic\n',
+      'Datasheet.md': '# Datasheet\n',
+      'Specification.md': '# Specification\n',
+      'Guidance.md': '# Guidance\n',
+      'Procedure.md': '# Procedure\n',
+      'ScopeOfWork.md': scopeOfWorkDocument().replace('- **VER-001** — Perform the human review.\n', ''),
+      'MEMORY.md': '# Memory\n'
+    });
+
+    const result = await scanDeliverableDocumentKitContract({
+      deliverableId: 'DEL-07-03',
+      deliverablePath,
+      scopeOfWorkPilot: {
+        mode: 'PILOT_DUAL',
+        varianceRef: 'D-GOV-15@0123456',
+        allowedDeliverablePaths: [deliverablePath]
+      }
+    });
+    expect(result.valid).toBe(false);
+    expect(result.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ condition: 'invalid_scope_of_work_candidate', severity: 'error' })
+      ])
+    );
+  });
+
   it('accepts complete metadata, document-kit, and canonical-memory files', async () => {
     await writeDeliverableFiles({
       '_STATUS.md': statusDocument('IN_PROGRESS'),

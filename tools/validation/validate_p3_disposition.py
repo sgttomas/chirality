@@ -25,6 +25,12 @@ class Finding:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate P3 disposition evidence for one deliverable.")
     parser.add_argument("deliverable_path", help="Path to a deliverable folder")
+    parser.add_argument(
+        "--production-format",
+        choices=["LEGACY_FOUR_DOC", "SOW_V1_CANDIDATE"],
+        default="LEGACY_FOUR_DOC",
+    )
+    parser.add_argument("--variance-ref", default="", help="Required D-GOV-15@<accepted-sha> in candidate mode")
     return parser.parse_args()
 
 
@@ -38,8 +44,9 @@ def parse_warranted_item_ids(lens_path: Path) -> list[str]:
     return item_ids
 
 
-def disposition_files(deliverable_path: Path) -> list[Path]:
-    files = [deliverable_path / name for name in EVIDENCE_FILES if (deliverable_path / name).is_file()]
+def disposition_files(deliverable_path: Path, *, production_format: str = "LEGACY_FOUR_DOC") -> list[Path]:
+    names = (["ScopeOfWork.md"] if production_format == "SOW_V1_CANDIDATE" else FOUR_DOCS) + ["MEMORY.md", "_STATUS.md"]
+    files = [deliverable_path / name for name in names if (deliverable_path / name).is_file()]
     run_records = deliverable_path / "_run_records"
     if run_records.is_dir():
         files.extend(sorted(run_records.glob("*.md")))
@@ -55,7 +62,7 @@ def item_ids_in_files(files: list[Path]) -> dict[str, set[Path]]:
     return locations
 
 
-def validate_p3_disposition(deliverable_path: Path) -> list[Finding]:
+def validate_p3_disposition(deliverable_path: Path, *, production_format: str = "LEGACY_FOUR_DOC") -> list[Finding]:
     lens_path = deliverable_path / "_SEMANTIC_LENSING.md"
     if not lens_path.is_file():
         return [Finding("MISSING_LENS_REGISTER", f"{lens_path} does not exist")]
@@ -68,9 +75,9 @@ def validate_p3_disposition(deliverable_path: Path) -> list[Finding]:
     if len(warranted_ids) != len(set(warranted_ids)):
         findings.append(Finding("DUPLICATE_WARRANTED_ITEM", "Duplicate warranted item IDs found in _SEMANTIC_LENSING.md"))
 
-    evidence_files = disposition_files(deliverable_path)
+    evidence_files = disposition_files(deliverable_path, production_format=production_format)
     if not evidence_files:
-        findings.append(Finding("MISSING_DISPOSITION_EVIDENCE", "No four-doc, MEMORY, STATUS, or run-record files found"))
+        findings.append(Finding("MISSING_DISPOSITION_EVIDENCE", "No production, MEMORY, STATUS, or run-record files found"))
         return findings
 
     evidence_ids = item_ids_in_files(evidence_files)
@@ -90,7 +97,15 @@ def validate_p3_disposition(deliverable_path: Path) -> list[Finding]:
 def main() -> int:
     args = parse_args()
     deliverable_path = Path(args.deliverable_path)
-    findings = validate_p3_disposition(deliverable_path)
+    if args.production_format == "SOW_V1_CANDIDATE":
+        if not re.fullmatch(r"D-GOV-15@[0-9a-f]{7,40}", args.variance_ref):
+            print("ERROR: candidate mode requires --variance-ref D-GOV-15@<accepted-sha>", file=sys.stderr)
+            return 2
+        sow = deliverable_path / "ScopeOfWork.md"
+        if not sow.is_file() or f"<!-- pilot-variance: {args.variance_ref} -->" not in sow.read_text(encoding="utf-8"):
+            print("ERROR: candidate ScopeOfWork.md does not bind the supplied variance", file=sys.stderr)
+            return 2
+    findings = validate_p3_disposition(deliverable_path, production_format=args.production_format)
     if findings:
         print(f"INVALID: {deliverable_path}")
         for finding in findings:

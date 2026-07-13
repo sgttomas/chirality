@@ -7,7 +7,7 @@ remaining `<PLACEHOLDER>` tokens, and paste it as the first message.
 Six launchers live here:
 
 1. **Generic project launcher** — a fill-in template for any workspace/persona.
-2. **Root-governance WORKING_ITEMS launcher** — the standing WORKING_ITEMS entry.
+2. **Root-governance work loop launcher** — the standing root control-plane loop.
 3. **Bridge work loop launcher** — the app-dev ↔ piping tier-0 bridge loop.
    Its file is `_DomainEngines/bridge/LOOP_INIT.md` (note the order:
    `LOOP_INIT`, not `INIT_LOOP`).
@@ -42,23 +42,24 @@ Then read `{WORKING_ROOT}/<COORDINATION_PROMPT_SUBPATH>` and follow the instruct
 
 ---
 
-## 2. Root-governance WORKING_ITEMS launcher
+## 2. Root-governance work loop launcher — ACTIVE
+
+Paste-ready as written; replace `<none>` with a per-run steer if you want one.
 
 <init-prompt>
-Your goal is to complete the inherent goals of this project that you will discover as you follow those instructions.
-
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
 
-Set `WORKING_ROOT` to `{REPO_ROOT}`.
+Read `{REPO_ROOT}/execution/_Coordination/LOOP_INIT.md` and follow it: pursue
+the loop's inherent goals — recorded in its newest standing workplan — as far
+as live authority permits.
 
-Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
-
-Read `{WORKING_ROOT}/AGENTS.md`.
-
-Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
-
-Then read `{WORKING_ROOT}/execution/_Coordination/NEXT_INSTANCE_PROMPT.md` and follow the instructions.
+Steer (this run): <none>
 </init-prompt>
+
+The launcher is deliberately thin. Root `execution/_Coordination/` is a
+governance control plane, not a project package or decomposition root. Its
+LOOP_INIT and newest standing workplan select the appropriate Agent 0/1 role
+for each lane; root-wide WORKING_ITEMS entry is not permitted.
 
 ---
 

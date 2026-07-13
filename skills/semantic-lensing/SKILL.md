@@ -36,6 +36,9 @@ This skill is the **interactive, proposal-producing** contract in the semantic-l
 - `ScopePath`
 - `RuntimeOverrides.DELIVERABLE_PATH`
 - `_SEMANTIC.md` must exist in the deliverable folder (read-only)
+- `ProductionFormat` — `LEGACY_FOUR_DOC` or `SOW_V1_CANDIDATE`.
+- `VarianceRef` — required in candidate mode and bound to the accepted pilot
+  variance and revision.
 
 ### Optional
 
@@ -61,6 +64,8 @@ This is a reasoning-only skill. No deterministic tools are required or allowed.
 Preferred method:
 - read `_SEMANTIC.md` to understand the matrix structure and question framework
 - read the production documents under `RuntimeOverrides.DELIVERABLE_PATH`
+- resolve production documents from `ProductionFormat`: the four legacy files
+  in legacy mode, or validated `ScopeOfWork.md` in candidate mode
 - if `_SEMANTIC_LENSING.md` exists, read each entry as a candidate improvement
 - generate proposals with `Lens:` tags grounded in evidence from the production documents
 - do not treat lensing entries as evidence — they are candidates only
@@ -93,7 +98,8 @@ Matrices in `_SEMANTIC.md` (commonly A, B, C, F, D, X, E) are a tagging and anal
 
 Each row in `_SEMANTIC_LENSING.md` is a candidate improvement with an item type. Process each entry:
 
-1. Read the entry and identify the target document section(s)
+1. Read the entry and identify the target document section(s) or candidate
+   Scope-of-Work claim IDs
 2. Read the target section(s) in the production documents
 3. If the entry is supported by evidence from sources or production documents: generate a `PROPOSAL:` with the lens tag, evidence, and proposed change
 4. If the entry identifies a real gap: generate a `PROPOSAL:` with `TBD` content and the lens tag
@@ -117,6 +123,8 @@ Item types and their handling:
 - Lens tags must use the `Matrix.Row.Column` format
 - Unknowns remain `TBD`
 - Conflicts must be surfaced, not reconciled silently
+- Candidate mode fails closed without an exact variance reference and path
+  membership; it never treats the candidate as accepted authority.
 
 ## QA expectations
 

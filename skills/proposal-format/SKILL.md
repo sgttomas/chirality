@@ -41,6 +41,7 @@ The PROPOSAL: pattern is the canonical recommendation format for deliverable-loc
 | `FocusDocs` | Limit analysis to named docs (e.g., `Specification.md,Guidance.md`) | all production docs |
 | `IncludeLensTags` | Add `Lens:` tags even when semantic lensing is not active | `false` |
 | `ProposalDepth` | `summary` (title + status only) or `full` (all fields) | `full` |
+| `ProductionFormat` | `LEGACY_FOUR_DOC` or authorized `SOW_V1_CANDIDATE` | `LEGACY_FOUR_DOC` |
 
 ## Tool usage
 
@@ -74,7 +75,10 @@ Optional field (when semantic lensing is active or `IncludeLensTags: true`):
 
 ### Field rules
 
-- **Evidence** must cite a file and best-effort section/heading. If exact location is unknown, use `location TBD`. Never cite `_SEMANTIC_LENSING.md` as evidence — it is a worklist, not authority.
+- **Evidence** must cite a file and best-effort section/heading. Candidate-mode
+  proposals also cite the affected compound Scope-of-Work ID. If exact
+  location is unknown, use `location TBD`. Never cite `_SEMANTIC_LENSING.md`
+  as evidence — it is a worklist, not authority.
 - **Change** must be precise enough to apply without further interpretation. "Improve the specification" is not acceptable; "Add REQ-12: minimum wall thickness per CSA Z662 §7.1" is.
 - **Why** must name the improvement category (clarity, completeness, verification, consistency, source fidelity, etc.), not just restate the change.
 - **Risk** must name concrete downstream effects. "Low risk" without explanation is not acceptable; "Low — additive requirement; no existing content contradicted" is.

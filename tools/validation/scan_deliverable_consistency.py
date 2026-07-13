@@ -96,6 +96,13 @@ def parse_args() -> argparse.Namespace:
         help="How readily to flag candidate unsourced numeric lines",
     )
     parser.add_argument(
+        "--production-format",
+        choices=["LEGACY_FOUR_DOC", "SOW_V1_CANDIDATE"],
+        default="LEGACY_FOUR_DOC",
+        help="Production contract to scan.",
+    )
+    parser.add_argument("--variance-ref", default="", help="Required D-GOV-15@<accepted-sha> in candidate mode")
+    parser.add_argument(
         "--max-findings",
         type=int,
         default=10,
@@ -125,12 +132,17 @@ def infer_unit_id(deliverable_dir: Path) -> tuple[str | None, str | None]:
     return deliverable_id, package_id
 
 
-def find_production_docs(deliverable_dir: Path, focus_docs: list[str]) -> list[Path]:
+def find_production_docs(
+    deliverable_dir: Path,
+    focus_docs: list[str],
+    production_format: str = "LEGACY_FOUR_DOC",
+) -> list[Path]:
     if focus_docs:
         requested = [deliverable_dir / name for name in focus_docs]
         return [path for path in requested if path.is_file()]
 
-    standard_docs = [deliverable_dir / name for name in FOUR_DOCS if (deliverable_dir / name).is_file()]
+    names = ["ScopeOfWork.md"] if production_format == "SOW_V1_CANDIDATE" else FOUR_DOCS
+    standard_docs = [deliverable_dir / name for name in names if (deliverable_dir / name).is_file()]
     if standard_docs:
         return standard_docs
 
@@ -268,11 +280,27 @@ def main() -> int:
     if not deliverable_dir.is_dir():
         print(f"ERROR: Deliverable path is not a directory: {deliverable_dir}", file=sys.stderr)
         return 1
+    if args.production_format == "SOW_V1_CANDIDATE":
+        if not re.fullmatch(r"D-GOV-15@[0-9a-f]{7,40}", args.variance_ref):
+            print("ERROR: candidate mode requires --variance-ref D-GOV-15@<accepted-sha>", file=sys.stderr)
+            return 2
+        sow = deliverable_dir / "ScopeOfWork.md"
+        if not sow.is_file() or f"<!-- pilot-variance: {args.variance_ref} -->" not in safe_read(sow):
+            print("ERROR: candidate ScopeOfWork.md does not bind the supplied variance", file=sys.stderr)
+            return 2
 
     expected_deliverable_id, expected_package_id = infer_unit_id(deliverable_dir)
     missing_core_files = [name for name in CORE_FILES if not (deliverable_dir / name).is_file()]
-    missing_four_documents = [name for name in FOUR_DOCS if not (deliverable_dir / name).is_file()]
-    scanned_docs = find_production_docs(deliverable_dir, args.focus_docs)
+    missing_four_documents = (
+        []
+        if args.production_format == "SOW_V1_CANDIDATE"
+        else [name for name in FOUR_DOCS if not (deliverable_dir / name).is_file()]
+    )
+    missing_scope_of_work = (
+        args.production_format == "SOW_V1_CANDIDATE"
+        and not (deliverable_dir / "ScopeOfWork.md").is_file()
+    )
+    scanned_docs = find_production_docs(deliverable_dir, args.focus_docs, args.production_format)
 
     marker_findings = []
     identity_mismatches = []
@@ -302,9 +330,11 @@ def main() -> int:
         "production_unit_id": expected_deliverable_id,
         "package_id": expected_package_id,
         "strictness": args.strictness,
+        "production_format": args.production_format,
         "scanned_docs": [path.name for path in scanned_docs],
         "missing_core_files": missing_core_files,
         "missing_four_documents": missing_four_documents,
+        "missing_scope_of_work": missing_scope_of_work,
         "marker_findings": marker_findings,
         "identity_mismatches": identity_mismatches,
         "candidate_unsourced_numerics": candidate_unsourced_numerics,

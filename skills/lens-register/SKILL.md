@@ -37,6 +37,8 @@ Typical dispatcher: ORCHESTRATOR Phase 2.4 dispatches TASK with `TaskSkill: lens
 
 - `DECOMP_VARIANT` — `PROJECT` | `SOFTWARE` (default `PROJECT`). `DOMAIN` is not supported.
 - `STATUS_POLICY` — default `NO_STATUS_TOUCH`.
+- `PRODUCTION_FORMAT` — `LEGACY_FOUR_DOC` (default) or
+  `SOW_V1_CANDIDATE`; candidate mode requires `VARIANCE_REF`.
 - `DeliverablePath` — compatibility alias only; does not affect TASK write authorization.
 
 ### Files read
@@ -51,6 +53,8 @@ Contextual, read when present:
 - `{deliverable_folder}/Specification.md`
 - `{deliverable_folder}/Guidance.md`
 - `{deliverable_folder}/Procedure.md`
+- `{deliverable_folder}/ScopeOfWork.md` — read instead of the legacy set only
+  in authorized candidate mode.
 - `{deliverable_folder}/_REFERENCES.md` — metadata only; do not follow external paths.
 
 Missing production documents produce warnings, not failure.
@@ -91,6 +95,9 @@ TASK shell output:
 
 - **One deliverable per run.** Operate on exactly one folder.
 - **Read-only production documents.** Do not edit `Datasheet.md`, `Specification.md`, `Guidance.md`, or `Procedure.md`.
+- **Candidate target IDs.** In authorized candidate mode, apply lenses to
+  `ScopeOfWork.md` and record `AppliesToSection`, `TargetClaimRef`, and
+  `SuggestedTargetSection`; do not invent a second claim registry.
 - **Read-only `_SEMANTIC.md`.** It is a lens source, not an output target or engineering authority.
 - **Read-only `_STATUS.md`.** Normal Phase 2.4 policy is `NO_STATUS_TOUCH`.
 - **No external expansion.** Do not follow `_REFERENCES.md` paths or read outside the deliverable folder.

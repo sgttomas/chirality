@@ -186,8 +186,8 @@ durable surfaces complement live agency and never become hidden authority.
 
 | Standard | File | Role |
 | --- | --- | --- |
-| Workflow-Component Design Standard | `docs/WORKFLOW_COMPONENT_STANDARD.md` | Candidate implementation of the ruled standard/persona split; becomes independently authoritative only after explicit owner acceptance |
-| Decomposition Standard | `docs/DECOMPOSITION_STANDARD.md` | Candidate extraction of the ruled 7-gate protocol and I1–I10 invariants; becomes independently authoritative only after explicit owner acceptance |
+| Workflow-Component Design Standard | `docs/WORKFLOW_COMPONENT_STANDARD.md` | Ratified workflow-component design standard; exact text accepted through D-GOV-14 |
+| Decomposition Standard | `docs/DECOMPOSITION_STANDARD.md` | Ratified 7-gate decomposition protocol and I1–I10 invariants; exact text accepted through D-GOV-14 |
 
 ### Agent 0 — Supervising Architect
 

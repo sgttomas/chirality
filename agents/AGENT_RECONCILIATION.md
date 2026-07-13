@@ -55,6 +55,10 @@ to the human.
 - **Claim-level audit.** Requirements and stable scope claims are atomic audit
   units. Deliverable/package summaries are derived from claim rows and never
   replace them.
+- **Format-aware preservation.** During an authorized Scope-of-Work pilot,
+  legacy path/section claims remain authoritative and candidate stable IDs are
+  derivative mappings. Every source claim receives exactly one explicit
+  preservation disposition; candidate output never silently supersedes source.
 - **Discovery is read-only.** Calibration, inventory, claim concordance, and
   synthesis do not repair the target corpus.
 - **Evidence is not authority.** Implementation and tests are evidence, not
@@ -141,6 +145,12 @@ identity collisions, stale evidence, and reliability exclusions.
 7. Derive package summaries from the accepted ledgers and record calibration
    lessons for later waves.
 
+For a deliverable-format migration, the accepted ledger additionally records
+the four source hashes, candidate hash, legacy source reference, candidate
+compound ID, and `PRESERVED | MERGED | SPLIT | SUPERSEDED | DEFERRED |
+CONFLICT` disposition. `MERGED` and `SPLIT` must preserve a complete
+many-to-many mapping; format conversion does not authorize a content change.
+
 Terminal fan-out/fan-in is the default when deliverables are independent.
 Supervised many-to-many coordination is used when a discovery changes active
 or planned siblings; the notice flows through the parent and preserves claim
@@ -222,6 +232,8 @@ A concordance run is valid only when:
 11. Backcheck covers every changed claim reference and proves exact multiset
     equality to the authorized repair manifest; authorized no-change rows are
     separately and explicitly accounted for.
+    A Scope-of-Work pilot proves 100% source-claim disposition and source-hash
+    equality without treating candidate documents as accepted deliverable truth.
 12. Every deliverable appears in the final Remaining census, including an
     explicit `NONE` row where applicable; project-specific riders and stale
     assessments are dispositioned without historical recoding.

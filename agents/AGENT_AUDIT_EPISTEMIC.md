@@ -45,7 +45,14 @@ If a human instruction conflicts with this document, obey the human and record t
 
 ## Mission
 
-Given one or more deliverable folders, audit the epistemic state of their content — the document kit (Datasheet.md, Specification.md, Guidance.md, Procedure.md) and the dependency register (Dependencies.csv) — against the epistemic ontology defined in `TYPES.md` §10.
+Given one or more deliverable folders, audit the epistemic state of the
+production contract selected by the accepted basis (legacy four-document kit
+or authorized candidate `ScopeOfWork.md`) and `Dependencies.csv` against the
+epistemic ontology in `TYPES.md` §10.
+
+When the accepted audit basis includes a committed Stage-1 Scope-of-Work
+variance, audit candidate `ScopeOfWork.md` as a single structured production
+contract while retaining the four source documents as authority.
 
 Produce:
 - an epistemic audit report with findings across seven audit passes,
@@ -97,7 +104,10 @@ NOTES:
 
 If `SCOPE` is missing or empty: write `Brief.md` with `RUN_STATUS = FAILED_INPUTS` and return.
 
-If a deliverable in scope has no document kit (lifecycle state < INITIALIZED): record as `NOT_INITIALIZED` in coverage and skip epistemic analysis for that deliverable.
+If a deliverable in scope has neither a complete legacy kit nor an authorized,
+validated candidate production contract, record `NOT_INITIALIZED` in coverage
+and skip epistemic analysis. Partial or unauthorized dual formats are
+`INVALID`, not `NOT_INITIALIZED`.
 
 ---
 
@@ -134,17 +144,22 @@ Pointer (overwrite allowed; pointer only):
 1) Resolve `EXECUTION_ROOT` (default `execution/`).
 2) Resolve deliverables in scope:
    - For each deliverable ID or path, locate the deliverable folder.
-   - Confirm the document kit exists (Datasheet.md, Specification.md, Guidance.md, Procedure.md).
+   - Resolve `LEGACY_FOUR_DOC | SOW_V1 | AMBIGUOUS | INVALID`; accept
+     `AMBIGUOUS` only when the brief cites the exact path-scoped variance.
    - Check for Dependencies.csv if `INCLUDE_DEPENDENCIES_CSV=true`.
 3) Record inventory: for each deliverable, note which files are present and which are absent.
 4) If zero deliverables resolve: write `Brief.md` with `RUN_STATUS = FAILED_INPUTS` and stop.
-5) If deliverable is not initialized (no document kit): record `NOT_INITIALIZED` and skip to next deliverable.
+5) If no recognized production contract exists: record `NOT_INITIALIZED` and
+   skip. Record partial or unauthorized mixed formats as `INVALID` and stop
+   that deliverable's audit.
 
 ---
 
 ### Pass 1 — Epistemic label coverage scan
 
-For each document in the kit (Datasheet.md, Specification.md, Guidance.md, Procedure.md):
+For each production source: the four files in legacy mode, or each registered
+claim and substantive prose block in validated `ScopeOfWork.md` under the
+accepted candidate variance:
 
 1) Identify **non-trivial claims** — assertions about parameters, requirements, constraints, acceptance criteria, design choices, scope boundaries, or technical values. Exclude boilerplate headings, template placeholders, and structural markup.
 2) For each non-trivial claim, determine whether it carries an epistemic label: `FACT`, `ASSUMPTION`, `PROPOSAL`, or `TBD`.
@@ -193,7 +208,10 @@ Compute **gap count** = total explicit TBD markers + potential unwarranted claim
 
 ### Pass 4 — Conflict detection
 
-Compare key parameters, requirements, and constraints **across documents within the deliverable**:
+In legacy mode, compare key parameters, requirements, and constraints **across
+documents within the deliverable**. In candidate mode, perform the same checks
+across registered claims and the Ontology, Epistemology, Praxeology, and
+Axiology sections:
 
 1) Extract key-value assertions from each document (parameters, limits, acceptance criteria, scope statements, material/code references).
 2) For each key that appears in multiple documents, compare values.
@@ -201,7 +219,9 @@ Compare key parameters, requirements, and constraints **across documents within 
    - The conflicting key,
    - The value in each document (with file + section),
    - Whether a Conflict Table entry already exists for this key.
-4) If a conflict is found that has NOT been recorded in a Conflict Table (or equivalent), flag as `UNRECORDED_CONFLICT` (K-CONFLICT-1 violation).
+4) If a conflict is found that has NOT been recorded in a Conflict Table or a
+registered `CON-*` entry, flag as `UNRECORDED_CONFLICT` (K-CONFLICT-1
+violation).
 
 Compute **conflict count** = total parameter/value conflicts detected.
 
@@ -226,7 +246,7 @@ Produce a **warrant state distribution** for the deliverable:
 
 ### Pass 6 — Cross-document consistency
 
-Compare across the four document kit files for:
+In legacy mode, compare across the four document kit files for:
 
 1) **Scope boundaries:** Do Datasheet, Specification, Guidance, and Procedure agree on what is in scope and what is excluded?
 2) **Key parameters:** Do numeric values, material references, code/standard citations, and acceptance criteria match across documents?
@@ -234,6 +254,14 @@ Compare across the four document kit files for:
 4) **Design intent alignment:** Does the rationale in Guidance.md align with the requirements in Specification.md?
 
 Record inconsistencies as findings with evidence from both documents.
+
+For an authorized Scope-of-Work candidate, replace this pass with cross-section
+and reference-graph consistency: unique registered IDs; resolved compound
+references; output-to-objective coverage; requirement/claim-to-criterion
+coverage; criterion-to-verification coverage; source/warrant coverage; and
+contradictions among Ontology, Epistemology, Praxeology, and Axiology sections.
+REVIEW's `AC-*` namespace is the same candidate acceptance-criterion registry,
+not a parallel audit-generated namespace.
 
 ---
 

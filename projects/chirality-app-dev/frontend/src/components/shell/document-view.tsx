@@ -30,6 +30,7 @@ type ContentResponse = {
 // file simply surfaces the endpoint's 404.
 const DOCUMENT_FILES = [
   '_STATUS.md',
+  ...(process.env.NEXT_PUBLIC_SCOPE_OF_WORK_PILOT === '1' ? ['ScopeOfWork.md'] : []),
   'Datasheet.md',
   'Specification.md',
   'Guidance.md',
@@ -39,7 +40,7 @@ const DOCUMENT_FILES = [
   '_DEPENDENCIES.md',
   '_SEMANTIC.md',
   'MEMORY.md'
-] as const;
+];
 
 const DEFAULT_FILE = '_STATUS.md';
 

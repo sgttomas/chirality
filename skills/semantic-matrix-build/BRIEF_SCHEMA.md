@@ -21,6 +21,7 @@ Place these in `RuntimeOverrides` unless the local TASK convention passes them t
 | `decomposition_path` | Absolute path to the decomposition document, used for traceability only. |
 | `DECOMP_VARIANT` | `PROJECT`, `SOFTWARE`, or `DOMAIN`. |
 | `STATUS_POLICY` | `PRESERVE_CURRENT`, `ADVANCE_ON_PASS`, or `NO_STATUS_TOUCH`. Default for ORCHESTRATOR Phase 2.3 is `PRESERVE_CURRENT`. |
+| `PRODUCTION_FORMAT` | `LEGACY_FOUR_DOC` (default) or `SOW_V1_CANDIDATE`. Candidate mode requires a committed variance reference and `STATUS_POLICY=NO_STATUS_TOUCH`. |
 
 ## Normal ORCHESTRATOR Phase 2.3 brief
 
@@ -84,6 +85,7 @@ CustomInstructions:
 |---|---|---|
 | `PROJECT` | `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` | Standard four-document set. |
 | `SOFTWARE` | `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` | Same document set and terminology as PROJECT. |
+| `PROJECT` / `SOFTWARE` with `SOW_V1_CANDIDATE` | `ScopeOfWork.md` | Candidate-only; read its registered sections and IDs under the cited variance. |
 | `DOMAIN` | All non-metadata `.md` files not prefixed with `_`, typically `Scoping.md` and `KA-*.md` | Invoke only when explicitly requested; standard ORCHESTRATOR DOMAIN setup may skip semantic lensing. |
 
 ## Recommended CustomInstructions
