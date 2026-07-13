@@ -6,15 +6,15 @@ All tool directories are gitignored. The framework configures against them as ex
 
 ## Candidate Scope-of-Work tools require no external system
 
-The Stage-1 candidate Scope-of-Work workflow is implemented by five
+The Stage-1 candidate Scope-of-Work workflow is implemented by six
 repo-native Python-standard-library tools under `tools/scope_of_work/`:
 `validate_scope_of_work.py`, `render_scope_of_work.py`,
 `convert_four_documents_to_scope_of_work.py`,
-`map_scope_of_work_claims.py`, and `report_scope_of_work_parity.py`. They use no
-external executable, hosted service, network access, JavaScript runtime, or
-vendored dependency. Their authoritative interfaces are registered in
-`tools/REGISTRY.md`; this note prevents them from being mistaken for an
-unrecorded external integration.
+`map_scope_of_work_claims.py`, `report_scope_of_work_parity.py`, and
+`derive_review_checklist.py`. They use no external executable, hosted service,
+network access, JavaScript runtime, or vendored dependency. Their
+authoritative interfaces are registered in `tools/REGISTRY.md`; this note
+prevents them from being mistaken for an unrecorded external integration.
 
 For the authoritative pipeline specification — entity type registry, ID namespace rules, canonical CSV schemas, confidence level definitions, validation criteria per stage, execution model, and domain-specific tool configuration — see `PIPELINE_DESIGN.md`.
 

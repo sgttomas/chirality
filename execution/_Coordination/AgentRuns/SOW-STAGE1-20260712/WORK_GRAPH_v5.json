@@ -1,0 +1,8 @@
+{
+  "run_id":"SOW-STAGE1-20260712",
+  "version":5,
+  "supersedes":"WORK_GRAPH_v4.json",
+  "change":"Activate CHANGE-CLOSE after HELPS-DGOV16 proposal PASS",
+  "nodes_added":[{"id":"CHANGE-CLOSE","owner":"CHANGE","depends_on":["HELPS-DGOV16"],"writes":"root closeout branch only; two non-merging commits","fan_in":"HUMAN-D-GOV-16"}],
+  "stage2_and_canon_denials":"unchanged until owner ruling"
+}

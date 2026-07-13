@@ -1,0 +1,1 @@
+PASS pilots=10 deterministic=True summary=/Users/ryan/ai-env/projects/chirality-sow-stage1-execution/execution/_Coordination/AgentRuns/SOW-STAGE1-20260712/instances/HELPS-CHECKLIST/evidence/TEN_PILOT_CHECKLIST_REPRODUCTION.json

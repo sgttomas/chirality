@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 285,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d456e9d29262c0cb9d0fc3350ab52b1b5a36b9c3bfab1378476c2e3ae55a9342"
+      },
+      "text": "Status reads preserve canonical lifecycle fields; transitions follow the defined forward order, reject unknown, backward, or unauthorized actions, require exact human aliases and approval SHA evidence at human gates, and never represent tool or agent activity as human approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-04-VER-001",
+          "source_line": 453,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the source-defined parser, transition, actor-mapping, approval-SHA, API, MCP, schema-fixture, permission, hook, path-denial, event, and authority-boundary tests."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-04",
+    "document": "ScopeOfWork.md",
+    "format": "PILOT_DUAL",
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d456e9d29262c0cb9d0fc3350ab52b1b5a36b9c3bfab1378476c2e3ae55a9342",
+    "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+  },
+  "tool_version": "1"
+}

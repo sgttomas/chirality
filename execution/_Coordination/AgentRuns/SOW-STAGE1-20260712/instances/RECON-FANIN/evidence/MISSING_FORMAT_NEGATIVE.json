@@ -1,0 +1,9 @@
+{
+  "format": "INVALID",
+  "issues": [
+    "format state is INVALID",
+    "missing ScopeOfWork.md: /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.61sy8C3Ge0/ScopeOfWork.md"
+  ],
+  "target": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/tmp.61sy8C3Ge0",
+  "valid": false
+}

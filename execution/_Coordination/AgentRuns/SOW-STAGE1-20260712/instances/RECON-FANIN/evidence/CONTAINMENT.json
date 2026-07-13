@@ -1,0 +1,20 @@
+[
+  {
+    "base_to_final_changed_paths": 58,
+    "calibration_evidence_modified_in_frozen_wave": [],
+    "calibration_to_final_changed_paths": 50,
+    "domain_or_kty_changes": [],
+    "loop_receipt_append_only": true,
+    "project": "APP",
+    "unauthorized_changes": []
+  },
+  {
+    "base_to_final_changed_paths": 53,
+    "calibration_evidence_modified_in_frozen_wave": [],
+    "calibration_to_final_changed_paths": 39,
+    "domain_or_kty_changes": [],
+    "loop_receipt_append_only": true,
+    "project": "PIP",
+    "unauthorized_changes": []
+  }
+]

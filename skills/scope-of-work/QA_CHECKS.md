@@ -9,14 +9,17 @@
 7. `MERGED` and `SPLIT` mappings preserve all contributing references.
 8. Every `OUT-*` maps to declared scope/objective references.
 9. Every `AC-*` maps to `VER-*` or an explicit human-review method.
-10. REVIEW can consume the candidate `AC-*` definitions without minting new IDs.
+10. Deterministic checklist JSON contains every candidate `AC-*` exactly once,
+    in source order, with exact text, qualified/source identity, candidate
+    hash, and its matrix-linked `VER-*` or explicit human-review method.
 11. Parity passes with no silent drop or text mismatch.
 12. Repeated HTML rendering is byte-identical, source-hash-bound, script-free,
     and contains no external resource reference.
 13. The return distinguishes schema, project-content, and execution-substrate
     findings.
 14. No accepted branch is left in dual-format state.
+15. Repeated checklist derivation is byte-identical, and invalid or ambiguous
+    input without the exact variance fails without an output artifact.
 
 Any failure produces a failed return and rerun requirements; it does not
 silently weaken the acceptance gate.
-

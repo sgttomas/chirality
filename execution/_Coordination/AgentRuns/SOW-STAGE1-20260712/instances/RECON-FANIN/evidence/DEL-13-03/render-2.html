@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="cde7f4b4332c5e89dbe72afca11f1dbc907b06a459f56962b1c1cd35fad0df4c">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-13-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>cde7f4b4332c5e89dbe72afca11f1dbc907b06a459f56962b1c1cd35fad0df4c</code>.</p>
+<h1 id="scope-of-work-del-13-03">Scope of Work — DEL-13-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This candidate defines <code>DEL-13-03</code> in service of project scope [SOW-068] and package objectives [OBJ-014].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A deterministic constraint validation engine that reports provenance-aware messages for available connectivity, route, clearance, support-zone, slope/drain/vent, and missing-data constraints.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-13-03-constraint-validation-engine">CLM-001 — Datasheet: DEL-13-03 Constraint validation engine</h3>
+<h4 id="datasheet-del-13-03-constraint-validation-engine">Datasheet: DEL-13-03 Constraint validation engine</h4>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-13-03-DECL-002</code>.</p>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-13-03</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Constraint validation engine</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-13</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package name</td><td>Physical Design Knowledge and Constraint Engine</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row DEL-13-03</td></tr>
+<tr><td>Scope item</td><td>SOW-068</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW ledger</td></tr>
+<tr><td>Objective support</td><td>OBJ-014</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> objective map</td></tr>
+<tr><td>Context envelope</td><td>M</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Anticipated artifacts</td><td>constraint validation module; validation diagnostics tests</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row DEL-13-03</td></tr>
+</tbody></table>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current grounded value</td></tr>
+<tr><td>Primary function</td><td>Implement deterministic validation messages for available design constraints and missing data. Source: <code>_CONTEXT.md</code> Description.</td></tr>
+<tr><td>Validation scope categories</td><td>Connectivity, route conflicts, clearance conflicts, support-zone conflicts, slope/drain/vent conflicts, and missing required data. Source: SOW-068 in <code>_CONTEXT.md</code> and <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>.</td></tr>
+<tr><td>Message boundary</td><td>Constraint failures are validation messages, not hidden report prose or agent text. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-068 Notes.</td></tr>
+<tr><td>Authority boundary</td><td>The deliverable must not infer hidden owner standards, protected code requirements, or final engineering acceptance logic. Sources: <code>_CONTEXT.md</code> Context Envelope; <code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-DATA-1, OPS-K-AUTH-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3 and 6.</td></tr>
+<tr><td>Architecture basis</td><td>Rust core/application services, JSON Schema 2020-12 contracts, schema-first envelopes, canonical JSON/JCS-compatible hash basis where JSON payloads are hashed, and layered test gates apply as dispatch context. Source: <code>_CONTEXT.md</code> Architecture Basis Injection.</td></tr>
+<tr><td>Current implementation location</td><td><code>core/constraints/validation/engine.py</code>, exported through <code>core/constraints/validation/__init__.py</code>. Source: implementation evidence.</td></tr>
+<tr><td>Current validation API</td><td><code>validate_constraint_envelope(constraint_envelope, design_knowledge_envelope=None)</code> returns <code>ValidationResult</code>; <code>diagnostic_dicts(...)</code> serializes diagnostics for stable comparison. Source: <code>core/constraints/validation/engine.py</code>; <code>tests/test_constraint_validation.py</code>.</td></tr>
+<tr><td>Current diagnostic record shape</td><td>Implemented diagnostics carry <code>code</code>, <code>severity</code>, <code>class</code>, <code>affected_references</code>, <code>source_references</code>, <code>message</code>, and <code>remediation</code>; <code>ValidationResult.to_dict()</code> adds <code>has_blocking_findings</code>. Formal application result-envelope integration remains <code>TBD</code>. Source: <code>core/constraints/validation/engine.py</code>.</td></tr>
+<tr><td>Current severity values</td><td>The implemented validator emits <code>blocking</code>, <code>warning</code>, and <code>info</code>; release readiness and human-acceptance policy for those severities remains <code>TBD</code>. Source: <code>core/constraints/validation/engine.py</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Grounded constraint</td></tr>
+<tr><td>Input knowledge boundary</td><td>Validation is over available design knowledge and constraints; missing data is an explicit finding rather than a silently supplied default. Sources: SOW-068; <code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/SPEC.md</code> sections 4 and 4.3.</td></tr>
+<tr><td>Public/private data boundary</td><td>Public artifacts must not bundle protected standards text, protected tables, proprietary values, owner standards, or private project data. Sources: <code>docs/CONTRACT.md</code> OPS-K-IP-1 through OPS-K-IP-3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-6.</td></tr>
+<tr><td>Professional boundary</td><td>Software outputs are decision support and must not automatically claim certification, approval, sealing, authentication, code compliance, or professional reliance. Sources: <code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/SPEC.md</code> section 4.3; <code>docs/DIRECTIVE.md</code> Professional boundary.</td></tr>
+<tr><td>Unit and provenance controls</td><td>Domain-core and adapter paths may not bypass unit checks, provenance checks, or public/private data boundaries. Sources: <code>docs/SPEC.md</code> sections 1 and 4.</td></tr>
+<tr><td>Upstream evidence surface</td><td><code>Dependencies.csv</code> is a deliverable-local evidence surface under the current DAG-006 coordination basis. It preserves historical DAG-002 dependency IDs for audit while listing ACTIVE rows for architecture basis, design-knowledge schema/provenance, constraint entity/provenance, unit, diagnostics, and persistence predecessors. Source: <code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code>; <code>_COORDINATION.md</code>.</td></tr>
+<tr><td>Design-knowledge reference handling</td><td>The validator indexes supplied <code>design_knowledge.records</code> by <code>id</code> and emits unresolved-reference diagnostics when constraint references are absent from the supplied design-knowledge envelope. Source: <code>core/constraints/validation/engine.py</code>; <code>tests/test_constraint_validation.py</code>.</td></tr>
+<tr><td>Data-boundary handling</td><td>The validator checks data-boundary policy fields and emits <code>IP_BOUNDARY_WARNING</code> diagnostics for mismatches, protected-suspected provenance, private project data, or professional-boundary failures. Source: <code>core/constraints/validation/engine.py</code>; <code>tests/test_constraint_validation.py</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>Current product-code evidence exists and is limited to a stdlib-only Python validation slice. The implemented module accepts supplied mapping data so missing fields can become deterministic diagnostics instead of exceptions or hidden defaults.</p>
+<table><tbody>
+<tr><td>Expected construction element</td><td>Status</td></tr>
+<tr><td>Constraint validation module</td><td>Implemented at <code>core/constraints/validation/engine.py</code>; package exports are listed in <code>core/constraints/validation/__init__.py</code>.</td></tr>
+<tr><td>Validation diagnostics tests</td><td>Implemented in <code>tests/test_constraint_validation.py</code> using stdlib assertions and invented public test fixtures.</td></tr>
+<tr><td>Represented diagnostic classes</td><td>Tests cover <code>CONNECTIVITY_CONFLICT</code>, <code>CLEARANCE_CONFLICT</code>, <code>ROUTE_CONFLICT</code>, <code>SUPPORT_ZONE_CONFLICT</code>, <code>SLOPE_DRAIN_VENT_CONFLICT</code>, <code>CONSTRAINT_MISSING_DATA</code>, and <code>SCHEMA_VALIDATION</code>; implementation also emits <code>PROVENANCE_WARNING</code>, <code>UNIT_WARNING</code>, and <code>IP_BOUNDARY_WARNING</code>.</td></tr>
+<tr><td>Unit checks</td><td>Quantity parameters are checked for <code>value</code>, <code>unit</code>, <code>dimension</code>, and <code>provenance</code>; noncanonical dimensions produce <code>CV-UNIT-DIMENSION-UNKNOWN</code>. The validator does not convert units or invent tolerances.</td></tr>
+<tr><td>Dependency integration</td><td>Current documentation refresh does not edit dependency files. Local dependency rows remain an evidence surface under DAG-006 coordination, with preserved historical row IDs where present.</td></tr>
+<tr><td>Data examples</td><td>Executable invented fixtures exist in <code>tests/test_constraint_validation.py</code>. Publication-grade examples, owner/project examples, localization, full geometric conflict solving, runtime integration, release readiness, and human acceptance remain <code>TBD</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, scope, artifacts, architecture-basis injection.</li>
+<li>- <code>_REFERENCES.md</code> - governing reference list for this DEL folder.</li>
+<li>- <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code> - deliverable-local dependency evidence surface under the current DAG-006 coordination basis.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - accepted revision 0.7 package, scope, objective, and deliverable entries.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> - row DEL-13-03.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> - row SOW-068.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> - row DEL-13-03.</li>
+<li>- <code>docs/CONTRACT.md</code> - invariant catalog.</li>
+<li>- <code>docs/SPEC.md</code> - technical and agentic implementation specification.</li>
+<li>- <code>docs/TYPES.md</code> - vocabulary and epistemic labels.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> - protected-data and public/private data boundary policy.</li>
+<li>- <code>core/constraints/validation/engine.py</code> - implemented validation engine.</li>
+<li>- <code>core/constraints/validation/__init__.py</code> - implemented package export surface.</li>
+<li>- <code>tests/test_constraint_validation.py</code> - focused validation diagnostics tests and invented fixtures.</li>
+</ul>
+<h3 id="clm-008-d-41-r5-t2c-pdu-023-evidence-state">CLM-008 — D-41 R5 T2C PDU-023 Evidence State</h3>
+<h5 id="d-41-r5-t2c-pdu-023-evidence-state">D-41 R5 T2C PDU-023 Evidence State</h5>
+<p>Paired result-trace scalar paths are schema-valid and unpaired paths are rejected. Runtime envelope production remains <code>TBD</code> because this validator has no accepted producer/home.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-13-03-constraint-validation-engine">CLM-009 — Specification: DEL-13-03 Constraint validation engine</h3>
+<h4 id="specification-del-13-03-constraint-validation-engine">Specification: DEL-13-03 Constraint validation engine</h4>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-13-03-DECL-001</code>.</p>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-13-03 covers a backend feature slice for deterministic validation messages over available physical-design constraints and missing required data. The in-scope validation categories are connectivity, route conflicts, clearance conflicts, support-zone conflicts, slope/drain/vent conflicts, and missing required data. Sources: <code>_CONTEXT.md</code> Scope Detail; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> rows SOW-068 and DEL-13-03.</p>
+<p>Excluded from this deliverable are hidden owner standards, protected code requirements, protected standards content, proprietary project data, final engineering acceptance logic, and automatic professional/code-compliance claims. Sources: <code>_CONTEXT.md</code> Package Exclusions; <code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-DATA-1, OPS-K-AUTH-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3 and 6; <code>docs/SPEC.md</code> section 4.3.</p>
+<h3 id="clm-012-implementation-evidence">CLM-012 — Implementation Evidence</h3>
+<h5 id="implementation-evidence">Implementation Evidence</h5>
+<p>The current implementation evidence is <code>core/constraints/validation/engine.py</code>, exported through <code>core/constraints/validation/__init__.py</code>, and exercised by <code>tests/test_constraint_validation.py</code>. The module is a stdlib-only Python validation slice over supplied mapping data. It does not mutate accepted model state, compute geometric intersections, solve clearances, define owner criteria, or make final engineering decisions.</p>
+<p>The implemented API is <code>validate_constraint_envelope(constraint_envelope, design_knowledge_envelope=None) -&gt; ValidationResult</code>, with <code>diagnostic_dicts(...)</code> for deterministic test comparison. <code>Diagnostic.to_dict()</code> emits <code>code</code>, <code>severity</code>, <code>class</code>, <code>affected_references</code>, <code>source_references</code>, <code>message</code>, and <code>remediation</code>; <code>ValidationResult.to_dict()</code> emits <code>diagnostics</code> plus <code>has_blocking_findings</code>.</p>
+<p>The focused test file uses invented public fixtures for constraint and design-knowledge envelopes. It verifies deterministic output, represented conflict classes, explicit missing-data and unresolved-reference findings, unit metadata and PKG-02 dimension checks, protected/private provenance diagnostics, and absence of prohibited authority-claim text.</p>
+<h3 id="clm-013-requirements">CLM-013 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-13-03-R1</td><td>The validation engine shall validate available design knowledge for the SOW-068 categories: connectivity, route conflicts, clearance conflicts, support-zone conflicts, slope/drain/vent conflicts, and missing required data.</td><td><code>_CONTEXT.md</code> Scope Detail; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-068</td></tr>
+<tr><td>DEL-13-03-R2</td><td>Validation outputs shall be deterministic validation messages rather than hidden report prose or agent text.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-068 Notes; DEL-13-03 row</td></tr>
+<tr><td>DEL-13-03-R3</td><td>Missing required data shall be surfaced as explicit findings/diagnostics and shall not be silently defaulted.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/SPEC.md</code> sections 4 and 4.3</td></tr>
+<tr><td>DEL-13-03-R4</td><td>Validation shall preserve provenance visibility for messages where source or availability of design knowledge affects reliance.</td><td>SOW-068 provenance-aware message requirement; <code>docs/SPEC.md</code> sections 1 and 4</td></tr>
+<tr><td>DEL-13-03-R5</td><td>The engine shall not infer hidden owner standards, protected code requirements, protected standards values, proprietary values, or final engineering acceptance logic.</td><td><code>_CONTEXT.md</code> Context Envelope and Package Exclusions; <code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-DATA-1, OPS-K-AUTH-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3 and 6</td></tr>
+<tr><td>DEL-13-03-R6</td><td>Outputs shall remain compatible with the accepted schema-first architecture basis and diagnostics/result-envelope boundary. The current implementation exposes a Python diagnostic dict shape; formal runtime result-envelope integration remains <code>TBD</code>.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>docs/SPEC.md</code> sections 1, 4.3, and 9; <code>core/constraints/validation/engine.py</code></td></tr>
+<tr><td>DEL-13-03-R7</td><td>The deliverable shall include validation diagnostics tests covering the grounded message categories and boundary conditions.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/_Registers/Deliverables.csv</code> row DEL-13-03; <code>tests/test_constraint_validation.py</code></td></tr>
+<tr><td>DEL-13-03-R8</td><td>Documentation refresh and later bounded implementation work shall preserve current ACTIVE dependency rows in <code>Dependencies.csv</code> as predecessor evidence unless a later human-approved CHANGE process authorizes reclassification.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code>; project instruction for this run</td></tr>
+</tbody></table>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<p>No external engineering-code text, tables, values, or clause-level requirements are locally available for this deliverable. The governing local standards for this evidence refresh are project governance, architecture sources, and current implementation evidence:</p>
+<table><tbody>
+<tr><td>Reference</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for IP/data boundary, missing-data handling, units, authority boundaries, and agent non-invention.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data and protected-content boundary.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Technical architecture, domain-core boundary, unit/provenance controls, diagnostics/result-envelope posture, and no-compliance-claim boundary.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Epistemic labels and canonical vocabulary for protected data, user-supplied code data, diagnostics, and professional approval.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>Accepted revision 0.7 current decomposition basis for DEL-13-03 scope and exclusions.</td></tr>
+<tr><td><code>_CONTEXT.md</code></td><td>Deliverable-local identity, architecture-basis injection, and control-surface constraints.</td></tr>
+<tr><td><code>core/constraints/validation/engine.py</code></td><td>Current validation module, diagnostic record implementation, boundary checks, and deterministic ordering.</td></tr>
+<tr><td><code>tests/test_constraint_validation.py</code></td><td>Current focused validation diagnostics tests and invented public fixtures.</td></tr>
+</tbody></table>
+<h3 id="clm-015-verification">CLM-015 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-13-03-R1</td><td><code>tests/test_constraint_validation.py</code> verifies represented conflict classes and available records for connectivity, clearance, no-go/route, support-zone, slope/drain/vent, access, equipment-interface, and missing-required-data inputs.</td></tr>
+<tr><td>DEL-13-03-R2</td><td><code>test_validation_is_deterministic_and_covers_represented_classes</code> repeats validation over deep-copied inputs and compares <code>diagnostic_dicts(...)</code>.</td></tr>
+<tr><td>DEL-13-03-R3</td><td><code>test_missing_data_and_unresolved_references_are_explicit_findings</code> verifies missing fields, missing targets/parameters, unresolved design-knowledge references, and missing provenance become diagnostics.</td></tr>
+<tr><td>DEL-13-03-R4</td><td>Provenance and boundary tests verify diagnostics preserve <code>source_references</code> where supplied provenance carries source evidence.</td></tr>
+<tr><td>DEL-13-03-R5</td><td>Boundary tests verify protected/private provenance diagnostics and scan output text for prohibited authority-claim terms.</td></tr>
+<tr><td>DEL-13-03-R6</td><td>Current verification checks the Python diagnostic dict shape and <code>ValidationResult.to_dict()</code>; full application result-envelope integration remains <code>TBD</code>.</td></tr>
+<tr><td>DEL-13-03-R7</td><td>Validation diagnostics tests are recorded in <code>tests/test_constraint_validation.py</code> and executable directly with <code>python3 tests/test_constraint_validation.py</code>.</td></tr>
+<tr><td>DEL-13-03-R8</td><td>Dependency handling check confirms current ACTIVE local dependency rows remain unchanged unless a later human-approved CHANGE process replaces that instruction.</td></tr>
+</tbody></table>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required records and remaining deferrals:</p>
+<ul>
+<li>- Constraint validation module path and API boundary: <code>core/constraints/validation/engine.py</code>; <code>validate_constraint_envelope(...)</code>; <code>diagnostic_dicts(...)</code>.</li>
+<li>- Constraint diagnostic record shape: implemented Python dict fields are <code>code</code>, <code>severity</code>, <code>class</code>, <code>affected_references</code>, <code>source_references</code>, <code>message</code>, and <code>remediation</code>; formal result-envelope mapping remains <code>TBD</code>.</li>
+<li>- Validation diagnostics test inventory: <code>tests/test_constraint_validation.py</code>.</li>
+<li>- Public-safe validation fixtures: executable invented fixtures exist in <code>tests/test_constraint_validation.py</code>; publication-grade examples and owner/project examples remain <code>TBD</code> pending provenance review and human acceptance.</li>
+<li>- Assumptions and unsupported inputs: must be recorded as <code>TBD</code> or explicit findings rather than inferred defaults.</li>
+</ul>
+<h3 id="clm-017-d-41-r5-t2c-pdu-023-e6-evidence-2026-07-12">CLM-017 — D-41 R5 T2C PDU-023 E6 Evidence (2026-07-12)</h3>
+<h5 id="d-41-r5-t2c-pdu-023-e6-evidence-2026-07-12">D-41 R5 T2C PDU-023 E6 Evidence (2026-07-12)</h5>
+<p>Existing <code>ResultTraceLink</code> records may carry paired nonempty source/target scalar paths; schema tests reject unpaired paths. DEL-13-03 has no accepted runtime result-envelope producer/home, so R6 integration remains held and <code>ValidationResult.to_dict()</code> is not relabeled as an envelope.</p>
+<ul>
+<li>- Dependency evidence handling: preserve current ACTIVE local dependency rows during this evidence-refresh workflow.</li>
+<li>- Legitimate remaining <code>TBD</code> items include localization/message cataloging, full geometric conflict solving, owner criteria/rules, GUI presentation, physical-to-analytical transformation, runtime integration, release readiness, and human acceptance.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — All authoritative source content is preserved and mapped, and the implemented engine retains deterministic explicit diagnostics, provenance visibility, missing-data handling, protected/private-data boundaries, and professional-authority exclusions while formal runtime result-envelope integration remains deferred.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-018-procedure-del-13-03-constraint-validation-engine">CLM-018 — Procedure: DEL-13-03 Constraint validation engine</h3>
+<h4 id="procedure-del-13-03-constraint-validation-engine">Procedure: DEL-13-03 Constraint validation engine</h4>
+<h3 id="clm-019-d-41-r5-t7-pdu-055-current-declaration">CLM-019 — D-41 R5 T7 PDU-055 current declaration</h3>
+<h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-13-03-DECL-004</code>.</p>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to verify the current DEL-13-03 validation artifact set and how later bounded changes should proceed without exceeding the grounded scope. It is not authority for engineering values, protected standards content, release readiness, or professional acceptance claims.</p>
+<h3 id="clm-021-prerequisites">CLM-021 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Basis</td></tr>
+<tr><td>Deliverable scope and identity loaded from <code>_CONTEXT.md</code> and <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>.</td><td>Four-documents source hierarchy.</td></tr>
+<tr><td>Approved local dependency mirror available as <code>Dependencies.csv</code>.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code>.</td></tr>
+<tr><td>Architecture basis constraints applied only as applicable dispatch context.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection.</td></tr>
+<tr><td>No hidden owner standards, protected code requirements, proprietary values, or protected tables used as public defaults.</td><td><code>docs/CONTRACT.md</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+<tr><td>Current validation module and focused tests available.</td><td><code>core/constraints/validation/engine.py</code>; <code>core/constraints/validation/__init__.py</code>; <code>tests/test_constraint_validation.py</code>.</td></tr>
+<tr><td>Remaining <code>TBD</code> items are limited to deferred integration, presentation, engineering, release, and human-acceptance decisions.</td><td><code>_STATUS.md</code>; <code>MEMORY.md</code>; current evidence refresh.</td></tr>
+</tbody></table>
+<h3 id="clm-022-steps">CLM-022 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the current work is scoped to DEL-13-03 and SOW-068.</p>
+<ul>
+<li>- Evidence: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> DEL-13-03 and SOW-068 rows.</li>
+</ul>
+<p>2. Inspect the implemented validation surface.</p>
+<ul>
+<li>- Module: <code>core/constraints/validation/engine.py</code>.</li>
+<li>- Package export surface: <code>core/constraints/validation/__init__.py</code>.</li>
+<li>- Focused tests and invented fixtures: <code>tests/test_constraint_validation.py</code>.</li>
+</ul>
+<p>3. Load only available design-knowledge and constraint inputs supplied by accepted schemas or test fixtures.</p>
+<ul>
+<li>- Current API: <code>validate_constraint_envelope(constraint_envelope, design_knowledge_envelope=None)</code>.</li>
+<li>- If required schema or fixture details are unavailable, record <code>TBD</code> or emit diagnostics rather than inventing fields.</li>
+</ul>
+<p>4. Validate the SOW-068 categories when supporting input data exists:</p>
+<ul>
+<li>- connectivity;</li>
+<li>- route conflicts;</li>
+<li>- clearance conflicts;</li>
+<li>- support-zone conflicts;</li>
+<li>- slope/drain/vent conflicts;</li>
+<li>- missing required data.</li>
+</ul>
+<p>5. Emit deterministic validation diagnostics for observed findings.</p>
+<ul>
+<li>- Current diagnostic dict fields: <code>code</code>, <code>severity</code>, <code>class</code>, <code>affected_references</code>, <code>source_references</code>, <code>message</code>, and <code>remediation</code>.</li>
+<li>- <code>ValidationResult.to_dict()</code> also reports <code>has_blocking_findings</code>.</li>
+<li>- Messages must preserve source/provenance visibility where available and must not become hidden report prose or agent-only text.</li>
+</ul>
+<p>6. Treat missing required data as explicit findings.</p>
+<ul>
+<li>- Do not supply engineering defaults, code-specific values, owner-standard criteria, or proprietary values.</li>
+</ul>
+<p>7. Enforce public/private and professional-boundary checks on fixtures, messages, and documentation.</p>
+<ul>
+<li>- Reject or quarantine suspected protected content according to <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</li>
+<li>- Do not emit software-generated professional approval, code-compliance, certification, sealing, or authentication statuses.</li>
+</ul>
+<p>8. Maintain validation diagnostics tests.</p>
+<ul>
+<li>- Current coverage: deterministic output behavior, represented SOW-068 category handling, missing-data findings, unresolved references, provenance visibility, unit metadata and dimension checks, and boundary protection.</li>
+<li>- Public documentation examples remain <code>TBD</code> unless invented or otherwise permitted examples are separately reviewed.</li>
+</ul>
+<p>9. Preserve approved DAG-006 dependency evidence.</p>
+<ul>
+<li>- Do not retire, delete, reclassify, or normalize current ACTIVE local dependency rows during this evidence-refresh workflow.</li>
+</ul>
+<h3 id="clm-023-verification">CLM-023 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Scope check</td><td>Only files authorized by the active bounded brief are changed; product-code changes remain scoped to DEL-13-03 when a product-code brief authorizes them.</td></tr>
+<tr><td>Category check</td><td>SOW-068 categories are represented in requirements and tests.</td></tr>
+<tr><td>Determinism check</td><td>Repeated validation over deep-copied inputs yields identical <code>diagnostic_dicts(...)</code> output.</td></tr>
+<tr><td>Missing-data check</td><td>Required missing values produce explicit findings rather than defaults.</td></tr>
+<tr><td>Provenance check</td><td>Findings retain or reference input provenance through <code>source_references</code> where available.</td></tr>
+<tr><td>Boundary check</td><td>No protected standards text, owner defaults, proprietary values, or professional-approval/compliance statuses are introduced.</td></tr>
+<tr><td>Dependency check</td><td>Current dependency evidence remains ACTIVE and unchanged in <code>Dependencies.csv</code>; historical dependency IDs are preserved where present under the DAG-006 coordination basis.</td></tr>
+<tr><td>Syntax check</td><td><code>python3 -m py_compile core/constraints/validation/engine.py tests/test_constraint_validation.py</code> completes successfully.</td></tr>
+<tr><td>Focused test check</td><td><code>python3 tests/test_constraint_validation.py</code> completes successfully.</td></tr>
+</tbody></table>
+<h3 id="clm-024-records">CLM-024 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Constraint validation module: <code>core/constraints/validation/engine.py</code>.</li>
+<li>- Package export surface: <code>core/constraints/validation/__init__.py</code>.</li>
+<li>- Validation diagnostics tests and invented fixtures: <code>tests/test_constraint_validation.py</code>.</li>
+<li>- Test fixture provenance/review records: required before public examples are relied on outside executable test evidence.</li>
+<li>- <code>TBD</code> list for localization, full geometric conflict solving, owner criteria/rules, GUI presentation, physical-to-analytical transformation, runtime integration, release readiness, and human acceptance.</li>
+<li>- Local dependency validation result from <code>tools/validation/validate_dependencies_schema.py</code> when <code>Dependencies.csv</code> exists.</li>
+</ul>
+<h3 id="clm-025-d-41-r5-t2c-pdu-023-check">CLM-025 — D-41 R5 T2C PDU-023 Check</h3>
+<h5 id="d-41-r5-t2c-pdu-023-check">D-41 R5 T2C PDU-023 Check</h5>
+<p>Validate paired field paths at the existing result-trace schema boundary. Do not emit a runtime envelope from the constraint validator until an accepted producer/home exists.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the candidate schema and claim map; confirm parity and source/status hashes; run the focused constraint-validation and dependency checks; and independently review source grounding and authority boundaries.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-026-guidance-del-13-03-constraint-validation-engine">CLM-026 — Guidance: DEL-13-03 Constraint validation engine</h3>
+<h4 id="guidance-del-13-03-constraint-validation-engine">Guidance: DEL-13-03 Constraint validation engine</h4>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to make physical-design constraint validation visible, deterministic, and provenance-aware before downstream transformation or review workflows rely on model data. It supports OBJ-014 by contributing to a schema-backed piping design model that captures physical design context, design knowledge, constraints, assumptions, and analytical transformation traceability. Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OBJ-014 and DEL-13-03 rows.</p>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Validate available knowledge only</td><td>Treat available design knowledge and explicit constraints as the validation surface. Do not infer hidden owner standards or protected code criteria.</td><td><code>_CONTEXT.md</code>; SOW-068; <code>docs/CONTRACT.md</code> OPS-K-AGENT-1</td></tr>
+<tr><td>Missing data is a finding</td><td>Missing solve-required or rule-check-required values must become explicit diagnostics/findings, not silent defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/SPEC.md</code> sections 4 and 4.3</td></tr>
+<tr><td>Preserve provenance</td><td>Where records include source/provenance, diagnostics should preserve reviewable source visibility through <code>source_references</code> and affected object references. Broader GUI presentation remains <code>TBD</code>.</td><td>SOW-068; <code>docs/SPEC.md</code> sections 1 and 4; <code>core/constraints/validation/engine.py</code></td></tr>
+<tr><td>Keep authority boundaries visible</td><td>Constraint validation is not professional approval, code compliance, certification, sealing, or owner-standard interpretation.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/SPEC.md</code> section 4.3</td></tr>
+<tr><td>Keep public artifacts clean</td><td>Do not copy protected standards text, protected tables, proprietary values, private owner data, or code-specific defaults into public fixtures, messages, or docs.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3 and 6</td></tr>
+<tr><td>Use schema-first boundaries</td><td>The current implementation exposes a deterministic Python diagnostic dict shape and <code>ValidationResult.to_dict()</code>. Application runtime/result-envelope integration remains <code>TBD</code>.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>docs/SPEC.md</code> sections 1 and 9; <code>core/constraints/validation/engine.py</code></td></tr>
+</tbody></table>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The validation engine consumes supplied constraint and optional design-knowledge mapping envelopes. Current upstream DEL-13-02 evidence defines the constraint schema/provenance model; the local <code>Dependencies.csv</code> remains an evidence surface and is not edited by this refresh.</li>
+<li>- Constraint categories named by SOW-068 are scope categories, not complete engineering acceptance criteria. Any concrete clearance, slope, vent, drain, route, or support-zone value must come from user/project/private sources or later lawful public fixtures.</li>
+<li>- Provenance-aware messages can reveal where a value came from or that source evidence is missing, but they cannot create redistribution rights or legal clearance for protected data.</li>
+<li>- Deterministic ordering, stable <code>CV-*</code> diagnostic codes, and replayable tests now exist in the Python validation slice. Localization/message cataloging and release-grade diagnostic policy remain <code>TBD</code>.</li>
+<li>- The implementation validates represented conflict classes and referenced data availability; it does not perform full geometric conflict solving, route intersection, owner criteria/rule evaluation, GUI presentation, physical-to-analytical transformation, runtime integration, release readiness, or human acceptance.</li>
+</ul>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative direction</td></tr>
+<tr><td>Helpful defaults vs. engineering safety</td><td>Prefer explicit missing-data findings over defaults.</td></tr>
+<tr><td>Broad validation vs. source authority</td><td>Validate only what the available design knowledge and accepted schemas can support.</td></tr>
+<tr><td>User-facing clarity vs. protected-content risk</td><td>Explain the missing or conflicting condition without quoting protected standards or private owner criteria.</td></tr>
+<tr><td>Strict blocking vs. reviewable warning</td><td>Use the implemented <code>blocking</code>, <code>warning</code>, and <code>info</code> severities as current diagnostic evidence; release policy and human acceptance remain outside this module.</td></tr>
+<tr><td>Early implementation detail vs. architecture stability</td><td>Treat the current Python module/API and diagnostic fields as implementation evidence, while keeping formal runtime integration and release architecture decisions human-gated.</td></tr>
+</tbody></table>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Executable invented fixtures exist in <code>tests/test_constraint_validation.py</code> for deterministic validation, missing-data, unit, provenance, and authority-boundary checks. Public documentation examples remain <code>TBD</code>; any later published examples must use invented or otherwise permitted data with provenance/review status.</p>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No cross-source conflicts were identified in this evidence refresh. Remaining <code>TBD</code> items are bounded deferrals: localization, full geometric conflict solving, owner criteria/rules, GUI presentation, physical-to-analytical transformation, runtime integration, release readiness, and human acceptance.</p>
+<h3 id="clm-033-d-41-r5-t2c-pdu-023-boundary">CLM-033 — D-41 R5 T2C PDU-023 Boundary</h3>
+<h5 id="d-41-r5-t2c-pdu-023-boundary">D-41 R5 T2C PDU-023 Boundary</h5>
+<p>Schema capability is not runtime integration. Preserve the absent application-service/result-envelope home as a held residual.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-068 OBJ-014</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

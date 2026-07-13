@@ -1,0 +1,16 @@
+{
+  "run_id": "SOW-STAGE1-20260712",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "basis_sha": "2770fda4c63c98ee9f18cffbafd14c9aa59f497f",
+  "nodes": [
+    {"id":"APP-CAL","owner":"WORKING_ITEMS","depends_on":[],"writes":"codex/sow-app-pilot:PKG-07/DEL-07-03+run-records","fan_in":"ROOT-FREEZE"},
+    {"id":"PIP-CAL","owner":"WORKING_ITEMS","depends_on":[],"writes":"codex/sow-piping-pilot:PKG-13/DEL-13-01+run-records","fan_in":"ROOT-FREEZE"},
+    {"id":"ROOT-FREEZE","owner":"HELP_HUMAN","depends_on":["APP-CAL","PIP-CAL"],"writes":"codex/sow-stage1-execution:root-run-records","fan_in":"APP-FROZEN,PIP-FROZEN"},
+    {"id":"APP-FROZEN","owner":"WORKING_ITEMS","depends_on":["ROOT-FREEZE"],"writes":"codex/sow-app-pilot:PKG-07 ten-stage evidence","fan_in":"RECON-FANIN"},
+    {"id":"PIP-FROZEN","owner":"WORKING_ITEMS","depends_on":["ROOT-FREEZE"],"writes":"codex/sow-piping-pilot:PKG-13 ten-stage evidence","fan_in":"RECON-FANIN"},
+    {"id":"RECON-FANIN","owner":"RECONCILIATION","depends_on":["APP-FROZEN","PIP-FROZEN"],"writes":"codex/sow-stage1-execution:preservation-audit","fan_in":"CHANGE-CLOSE"},
+    {"id":"CHANGE-CLOSE","owner":"CHANGE","depends_on":["RECON-FANIN"],"writes":"three Stage-1 branches; no merges","fan_in":"HUMAN-D-GOV-16"}
+  ]
+}

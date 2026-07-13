@@ -14,6 +14,7 @@ VALIDATE = HERE / "validate_scope_of_work.py"
 RENDER = HERE / "render_scope_of_work.py"
 MAP = HERE / "map_scope_of_work_claims.py"
 PARITY = HERE / "report_scope_of_work_parity.py"
+CHECKLIST = HERE / "derive_review_checklist.py"
 
 
 def run(tool: Path, *args: object) -> subprocess.CompletedProcess[str]:
@@ -186,3 +187,101 @@ def test_explicit_human_review_can_replace_verification_definition(tmp_path: Pat
     sow.write_text(text, encoding="utf-8")
     result = run(VALIDATE, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
     assert result.returncode == 0, result.stdout
+
+
+def test_review_checklist_is_exact_source_ordered_linked_and_deterministic(tmp_path: Path) -> None:
+    deliverable = fixture(tmp_path)
+    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    sow = deliverable / "ScopeOfWork.md"
+    text = sow.read_text(encoding="utf-8")
+    text = text.replace(
+        "- **AC-001** — The mapped source content is complete and internally resolvable.\n",
+        "- **AC-001** — The mapped source content is complete and internally resolvable.\n"
+        "- **AC-002** — Human approval is recorded exactly.\n",
+    )
+    matrix_line = next(line for line in text.splitlines() if "| AC-001 | VER-001 |" in line)
+    requirement_ref = matrix_line.split("|")[3].strip()
+    text = text.replace(
+        matrix_line,
+        matrix_line + "\n"
+        f"| OUT-001 | SOW-001 OBJ-007 | {requirement_ref} | AC-002 | "
+        "HUMAN_REVIEW: owner inspects approval evidence | Human ruling |",
+    )
+    sow.write_text(text, encoding="utf-8")
+
+    first = tmp_path / "checklist-1.json"
+    second = tmp_path / "checklist-2.json"
+    for output in (first, second):
+        result = run(
+            CHECKLIST,
+            deliverable,
+            "--pilot-variance",
+            "--variance-ref",
+            VARIANCE_REF,
+            "--output",
+            output,
+        )
+        assert result.returncode == 0, result.stderr
+    assert first.read_bytes() == second.read_bytes()
+    report = json.loads(first.read_text(encoding="utf-8"))
+    assert report["source"]["sha256"] == hashlib.sha256(sow.read_bytes()).hexdigest()
+    assert [item["id"] for item in report["items"]] == ["AC-001", "AC-002"]
+    assert report["items"][0]["text"] == "The mapped source content is complete and internally resolvable."
+    assert report["items"][0]["verification"][0]["id"] == "VER-001"
+    assert report["items"][1]["text"] == "Human approval is recorded exactly."
+    assert report["items"][1]["verification"] == [
+        {"kind": "HUMAN_REVIEW", "method": "owner inspects approval evidence"}
+    ]
+
+
+def test_review_checklist_fails_closed_for_ambiguous_invalid_and_wrong_variance(tmp_path: Path) -> None:
+    deliverable = fixture(tmp_path)
+    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    output = tmp_path / "must-not-exist.json"
+
+    ambiguous = run(CHECKLIST, deliverable, "--output", output)
+    assert ambiguous.returncode == 1
+    assert "AMBIGUOUS" in ambiguous.stderr
+    assert not output.exists()
+
+    wrong_variance = run(
+        CHECKLIST,
+        deliverable,
+        "--pilot-variance",
+        "--variance-ref",
+        "D-GOV-15@7654321",
+        "--output",
+        output,
+    )
+    assert wrong_variance.returncode == 1
+    assert "marker does not match" in wrong_variance.stderr
+    assert not output.exists()
+
+    sow = deliverable / "ScopeOfWork.md"
+    sow.write_text(sow.read_text(encoding="utf-8").replace("- **AC-001**", "- **AC-999**"), encoding="utf-8")
+    invalid = run(
+        CHECKLIST,
+        deliverable,
+        "--pilot-variance",
+        "--variance-ref",
+        VARIANCE_REF,
+        "--output",
+        output,
+    )
+    assert invalid.returncode == 1
+    assert "invalid ScopeOfWork.md" in invalid.stderr
+    assert not output.exists()
+
+
+def test_review_checklist_ignores_id_shaped_definitions_inside_migrated_source(tmp_path: Path) -> None:
+    deliverable = fixture(tmp_path)
+    guidance = deliverable / "Guidance.md"
+    guidance.write_text(
+        guidance.read_text(encoding="utf-8") + "\n- **AC-001** — Historical source text, not a candidate definition.\n",
+        encoding="utf-8",
+    )
+    assert convert(deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF).returncode == 0
+    result = run(CHECKLIST, deliverable, "--pilot-variance", "--variance-ref", VARIANCE_REF)
+    assert result.returncode == 0, result.stderr
+    report = json.loads(result.stdout)
+    assert report["items"][0]["text"] == "The mapped source content is complete and internally resolvable."

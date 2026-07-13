@@ -1,0 +1,17 @@
+........................................................................ [ 24%]
+........................................................................ [ 49%]
+........................................................................ [ 73%]
+........................................................................ [ 98%]
+.....                                                                    [100%]
+293 passed in 33.97s
+
+Summary: 33 files, 0 errors, 0 warnings
+PASS: root instruction entrypoints are canonical
+PASS: no literal home-dir absolute paths found in 445 live path-anchor surfaces
+{
+  "checked_skill_count": 0,
+  "invalid_skill_count": 0,
+  "results": [],
+  "skills_root": "/Users/ryan/ai-env/projects/chirality-sow-stage1-execution/skills/scope-of-work",
+  "valid_skill_count": 0
+}

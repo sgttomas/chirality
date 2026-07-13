@@ -1,0 +1,8 @@
+{
+  "run_id":"SOW-STAGE1-20260712",
+  "version":4,
+  "supersedes":"WORK_GRAPH_v3.json",
+  "change":"Add HELPS-DGOV16 proposal-only node after validated RECON fan-in",
+  "nodes_added":[{"id":"HELPS-DGOV16","owner":"HELPS_HUMANS","depends_on":["RECON-FANIN"],"writes":"root proposal-only governance surfaces","fan_in":"CHANGE-CLOSE"}],
+  "stage2_and_canon_denials":"unchanged until owner D-GOV-16 ruling"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 240,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6de59e2a9d6806fb620c673b1da4822337b4c531a41de3186c9f0fde8e10b93e"
+      },
+      "text": "The convention retains _REFERENCES.md hash handling, human-approved durable bypass evidence, immutable timestamped snapshots with governed _LATEST pointers, SHA-bound approvals and renewed review after changes, deterministic-tool continuity, retired-scope exclusions, and human-only authority.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-06-VER-001",
+          "source_line": 372,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the source-defined traceability, reference-hash and bypass, snapshot non-overwrite, CHANGE/SHA, registry-TBD, retired-scope, source-state, and professional-boundary checks."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-06",
+    "document": "ScopeOfWork.md",
+    "format": "PILOT_DUAL",
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "6de59e2a9d6806fb620c673b1da4822337b4c531a41de3186c9f0fde8e10b93e",
+    "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+  },
+  "tool_version": "1"
+}

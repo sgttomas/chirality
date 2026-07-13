@@ -1,0 +1,228 @@
+{
+  "checked_skill_count": 44,
+  "invalid_skill_count": 0,
+  "results": [
+    {
+      "issues": [],
+      "skill_dir": "content-digest",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "dbm-concordance-seed",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "dbm-concordance-verify",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "dbm-draft-review",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "dbm-postauthor-concordance",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "dbm-publish",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "dbm-section-publish",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "decomposition-package-review",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "deliverable-consistency",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "dependency-extract",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "domain-documents",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "domain-prose-validate",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "domain-source-atomize",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "drawing-extract-page",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "drawing-titleblock-page",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "equation-bbox-detect",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "equation-flag-interpret",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "equipment-costing-extract",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "equipment-extract",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "estimate-prep",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "estimate-snapshot",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "four-documents",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "kty-content-remediate",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "kty-metadata-align",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "lens-register",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "pandid-valve-symbol-instance",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "pandid-valve-tile",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "pdf2md",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "pdf2md-folio-extract",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "pdf2md-page",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "pdf2md-page-assets",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "pdf2md-page-full",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "proposal-format",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "research-orchestration",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "scc-resolution-case",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "scope-change-packet",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "scope-of-work",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "semantic-lensing",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "semantic-matrix-build",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "software-bounded-implementation",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "software-code-review",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "software-defect-diagnosis",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "software-repository-reconnaissance",
+      "valid": true
+    },
+    {
+      "issues": [],
+      "skill_dir": "software-test-planning",
+      "valid": true
+    }
+  ],
+  "skills_root": "/Users/ryan/ai-env/projects/chirality-sow-stage1-execution/skills",
+  "valid_skill_count": 44
+}

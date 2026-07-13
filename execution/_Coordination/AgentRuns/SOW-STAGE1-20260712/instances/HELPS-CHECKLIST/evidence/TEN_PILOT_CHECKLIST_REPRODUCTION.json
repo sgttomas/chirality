@@ -1,0 +1,119 @@
+{
+  "all_deterministic": true,
+  "pilot_count": 10,
+  "pilots": [
+    {
+      "checklist_sha256": "d0788014e4b75b89d62ec4e5b2ed4475d59c19845a9ebbd3a62ddcc63e5c730f",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-07-01",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "9b75621a465553baf47b08b665bbbee8dc39f3d60a1d64b6610b9949c9226744",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "cdb340a9d37035dadd1b83ee209299ec2e9bc5ec745352acfb264a7efa088e95",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-07-02",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "80fbd86600af8516d75d2d11ccf53d304ec36426069728fbe30a8fceb846d952",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "024713a1c3996027648879df149950c49d6b9b3fd790c05ba6482785475a0e84",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-07-03",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "6fa7732954b95314176d81045edeb9492405785cf4568acf210968f903cc9ab0",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "fa5a84ff49bbd14876e648e49e7b7c9fc2baea5ead40cbc79804c50ad1984c0b",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-07-04",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "d456e9d29262c0cb9d0fc3350ab52b1b5a36b9c3bfab1378476c2e3ae55a9342",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "930c4e3a87c537ef1e7e7552372d60a8bd8ab06f3b038ac332698e380eada8e3",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-07-05",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "f38b0e741949abd9a892e8fea1a93c91be7da95bda668b3c80c2fd4dac7f450e",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "41fe5c712eaa8851c29c26d07d32d844f62ec8dac0b1c7417fae77ef5b1d0203",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-07-06",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "6de59e2a9d6806fb620c673b1da4822337b4c531a41de3186c9f0fde8e10b93e",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "1a03d0453254cf025efd1aba684207ecdf2b7dbe16c3a9ce43b4e58af3fff209",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-13-01",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "6c76b2c785acc56ee1e67aaba64930e457b8c2ca20d4d9e8b4156cebe579c43d",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "a6fc593477bba2b36d9f20d4fcf8f4d02d48cd075a6bbe8ba2e3fc82b224edb8",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-13-02",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "43d9ea2fa0e4fa95c4906fb8f7abffabe7c23a92d7bbc6ea4a4c9f430293c6d8",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "ca4a0415fcfe930c38455f2ec942bee01f243f21c15151f74cbd2f686d37e782",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-13-03",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "cde7f4b4332c5e89dbe72afca11f1dbc907b06a459f56962b1c1cd35fad0df4c",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    },
+    {
+      "checklist_sha256": "5b338fbbb147d696cd4bca8e9cbb8f04ee249b3e8d26a9d4a108665088134443",
+      "criterion_ids": [
+        "AC-001"
+      ],
+      "deliverable_id": "DEL-13-04",
+      "deterministic_repeat": true,
+      "item_count": 1,
+      "source_sha256": "01ce58d6636f39535933c8f365735336118da7bf85223346bf6b7d1c78bdd046",
+      "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+    }
+  ],
+  "schema": "chirality-stage1-checklist-reproduction/v1",
+  "tool": "tools/scope_of_work/derive_review_checklist.py",
+  "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+}

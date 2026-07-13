@@ -9,7 +9,9 @@
 4. Run `validate_scope_of_work.py` with the same variance reference.
 5. Run `map_scope_of_work_claims.py` and
    `report_scope_of_work_parity.py` independently of the authoring judgment.
-6. Run `render_scope_of_work.py` only when a derivative was requested.
+6. Run `derive_review_checklist.py` against the validated candidate; preserve
+   its exact `AC-*` order, text, source binding, and matrix linkage.
+7. Run `render_scope_of_work.py` only when a derivative was requested.
 
 ## Allowed tools
 
@@ -17,11 +19,14 @@
 - `tools/scope_of_work/validate_scope_of_work.py`
 - `tools/scope_of_work/map_scope_of_work_claims.py`
 - `tools/scope_of_work/report_scope_of_work_parity.py`
+- `tools/scope_of_work/derive_review_checklist.py`
 - `tools/scope_of_work/render_scope_of_work.py`
 
 The tools are deterministic and local. They do not use a network or LLM and
 do not modify lifecycle state. The converter alone writes
-`ScopeOfWork.md`; report tools write only their explicit output paths.
+`ScopeOfWork.md`; report and checklist tools write only their explicit output
+paths. Checklist derivation is idempotent and read-only on the candidate; it
+fails before output for invalid or unauthorized ambiguous input.
 
 ## Disallowed use
 
@@ -31,4 +36,3 @@ do not modify lifecycle state. The converter alone writes
 - No write to legacy production documents or underscore files.
 - No HTML tracking as canonical or accepted truth.
 - No removal of `skills/four-documents` or its callers during Stage 1.
-

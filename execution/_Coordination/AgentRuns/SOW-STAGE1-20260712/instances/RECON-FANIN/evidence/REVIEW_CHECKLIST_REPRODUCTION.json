@@ -1,0 +1,132 @@
+[
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-07-01",
+    "derivation_1_sha256": "f77ea2627e75204ef7a1bf684dcb14e4e19779cf26c5784664bd20909d50c881",
+    "derivation_2_sha256": "f77ea2627e75204ef7a1bf684dcb14e4e19779cf26c5784664bd20909d50c881",
+    "items": [
+      {
+        "criterion": "Working roots are validated for path form and access, roots inside the instruction root are rejected, tool and write paths cannot escape the active project root, instruction-root and symlink writes are denied, and enforcement failures fail closed with reviewable evidence.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-07-02",
+    "derivation_1_sha256": "ca3ef61f650e2ab18ecfd8736ed1b818a0e3fb86d737a3bbc2c6bc57393ffb17",
+    "derivation_2_sha256": "ca3ef61f650e2ab18ecfd8736ed1b818a0e3fb86d737a3bbc2c6bc57393ffb17",
+    "items": [
+      {
+        "criterion": "The accepted v3.2 decomposition shape produces the SPEC-conformant flat execution tree and PREPARATION fileset, preserves existing content on rerun, reports unsupported shapes and failures without guessing, and confines writes to the working root.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-07-03",
+    "derivation_1_sha256": "47544da1501e7bf0d02e530b1a977f23e9a192bbe5d0a61ea30fac75c3d66526",
+    "derivation_2_sha256": "47544da1501e7bf0d02e530b1a977f23e9a192bbe5d0a61ea30fac75c3d66526",
+    "items": [
+      {
+        "criterion": "The scanner identifies valid deliverable folders, requires canonical metadata, recognizes the semantic baseline and four-document kit, accepts MEMORY.md, rejects _MEMORY.md, treats optional files as non-required, preserves working-root containment, and surfaces warnings and unknown conditions.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-07-04",
+    "derivation_1_sha256": "86892174359d82ca4db879b8ca7ead05a4366e9d2a359f0f597c20dbbd56f10e",
+    "derivation_2_sha256": "86892174359d82ca4db879b8ca7ead05a4366e9d2a359f0f597c20dbbd56f10e",
+    "items": [
+      {
+        "criterion": "Status reads preserve canonical lifecycle fields; transitions follow the defined forward order, reject unknown, backward, or unauthorized actions, require exact human aliases and approval SHA evidence at human gates, and never represent tool or agent activity as human approval.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-07-05",
+    "derivation_1_sha256": "2874d22a7803d05ac680ccedd65d3faf68f208ddd3cf3bc49c46384f143a1875",
+    "derivation_2_sha256": "2874d22a7803d05ac680ccedd65d3faf68f208ddd3cf3bc49c46384f143a1875",
+    "items": [
+      {
+        "criterion": "Dependency registers validate v3.1 identity, enums, host, provenance, target, and lifecycle rules; writes preserve retired rows and extension columns, normalize legacy versions with warnings, retain unknowns as TBD, and obey permission, containment, hook, and instruction-root protections.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-07-06",
+    "derivation_1_sha256": "66f17aa94afcc926f899387c192aea6382d500cb8f230f53e7ff58f19d26f040",
+    "derivation_2_sha256": "66f17aa94afcc926f899387c192aea6382d500cb8f230f53e7ff58f19d26f040",
+    "items": [
+      {
+        "criterion": "The convention retains _REFERENCES.md hash handling, human-approved durable bypass evidence, immutable timestamped snapshots with governed _LATEST pointers, SHA-bound approvals and renewed review after changes, deterministic-tool continuity, retired-scope exclusions, and human-only authority.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-13-01",
+    "derivation_1_sha256": "ac0e3bad877e9a93adf2e8a1ac729d8afd49a0502e0688ab542aad68d7219103",
+    "derivation_2_sha256": "ac0e3bad877e9a93adf2e8a1ac729d8afd49a0502e0688ab542aad68d7219103",
+    "items": [
+      {
+        "criterion": "All authoritative source content is preserved and mapped, and the source-defined category, provenance, unit, missing-data, public/private-data, and professional-boundary checks remain intact while unsupported downstream behavior remains explicitly deferred.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-13-02",
+    "derivation_1_sha256": "f23c6e8fe69e0c5fe62b725ed67ea5a9726ab1f5ef9513ca0f7f05a4b47346b5",
+    "derivation_2_sha256": "f23c6e8fe69e0c5fe62b725ed67ea5a9726ab1f5ef9513ca0f7f05a4b47346b5",
+    "items": [
+      {
+        "criterion": "All authoritative source content is preserved and mapped, and the source-defined constraint categories, provenance, unit, missing-data, public/private-data, and professional-boundary requirements remain intact while runtime constraint validation remains deferred to DEL-13-03.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-13-03",
+    "derivation_1_sha256": "396d137e5e98f8ff22f63126b270641e2ff393cb82060641069158518f6e0d25",
+    "derivation_2_sha256": "396d137e5e98f8ff22f63126b270641e2ff393cb82060641069158518f6e0d25",
+    "items": [
+      {
+        "criterion": "All authoritative source content is preserved and mapped, and the implemented engine retains deterministic explicit diagnostics, provenance visibility, missing-data handling, protected/private-data boundaries, and professional-authority exclusions while formal runtime result-envelope integration remains deferred.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  },
+  {
+    "byte_identical": true,
+    "deliverable_id": "DEL-13-04",
+    "derivation_1_sha256": "9de42ba4c81d6aeaa4ebc1b2d7a329e7aca84640cba087412b107d47d980d462",
+    "derivation_2_sha256": "9de42ba4c81d6aeaa4ebc1b2d7a329e7aca84640cba087412b107d47d980d462",
+    "items": [
+      {
+        "criterion": "All authoritative source content is preserved and mapped, and the source-defined deterministic transform, warning, traceability, unit, missing-data, protected-content, and professional-boundary requirements remain intact while broader validation and runtime-result continuation remain explicitly deferred.",
+        "id": "AC-001"
+      }
+    ],
+    "source": "ScopeOfWork.md AC-* definitions"
+  }
+]

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="d456e9d29262c0cb9d0fc3350ab52b1b5a36b9c3bfab1378476c2e3ae55a9342">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>d456e9d29262c0cb9d0fc3350ab52b1b5a36b9c3bfab1378476c2e3ae55a9342</code>.</p>
+<h1 id="scope-of-work-del-07-04">Scope of Work — DEL-07-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This candidate defines <code>DEL-07-04</code> in service of project scope [SOW-028] and package objectives [OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A canonical _STATUS.md parser and deny-first status transition API/MCP tool with actor authorization, approval-SHA gates, policy integration, schemas, and acceptance tests.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-04-status-transition-api-and-mcp-tool">CLM-001 — Datasheet: DEL-07-04 Status Transition API and MCP Tool</h3>
+<h4 id="datasheet-del-07-04-status-transition-api-and-mcp-tool">Datasheet: DEL-07-04 Status Transition API and MCP Tool</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-07-04</td></tr>
+<tr><td>DeliverableName</td><td>Status Transition API and MCP Tool</td></tr>
+<tr><td>PackageID</td><td>PKG-07</td></tr>
+<tr><td>PackageName</td><td>Filesystem Execution, Lifecycle, and Dependencies</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>RuntimeDispatchVariant</td><td>SOFTWARE</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-028</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-006</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary subject</td><td>Parse <code>_STATUS.md</code> and enforce lifecycle transitions.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-07-04</td></tr>
+<tr><td>Canonical state source</td><td><code>_STATUS.md</code> is the canonical lifecycle state file for each deliverable.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-STATUS-1; <code>docs/SPEC.md</code> Section 4.3</td></tr>
+<tr><td>Status file fields</td><td>Parser must read <code>Current State</code>, <code>Last Updated</code>, and history.</td><td><code>docs/PRD.md</code> Section 8.9 FR-052; <code>docs/SPEC.md</code> Section 4.1</td></tr>
+<tr><td>Valid lifecycle chain</td><td><code>OPEN -&gt; INITIALIZED -&gt; SEMANTIC_READY -&gt; IN_PROGRESS -&gt; CHECKING -&gt; ISSUED</code>.</td><td><code>docs/SPEC.md</code> Section 4.2; <code>docs/TYPES.md</code> Section 4.1</td></tr>
+<tr><td>Transition rule</td><td>Transitions are forward-only and actor-authorized.</td><td><code>docs/PRD.md</code> Section 8.9 FR-053; <code>docs/SPEC.md</code> Section 4.3</td></tr>
+<tr><td>Human gate evidence</td><td>Transitions to <code>CHECKING</code> or <code>ISSUED</code> require approval SHA evidence; PRD acceptance calls for a 7-64 character hex SHA-like token.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/PRD.md</code> Section 8.9 FR-054</td></tr>
+<tr><td>API surface</td><td><code>GET /api/working-root/deliverable/status</code> reads status; <code>POST /api/working-root/deliverable/status/transition</code> applies allowed transition.</td><td><code>docs/PRD.md</code> API inventory; <code>docs/SPEC.md</code> Section 13</td></tr>
+<tr><td>MCP surface</td><td><code>mcp__chirality__status_read</code> reads <code>_STATUS.md</code>; <code>mcp__chirality__status_transition</code> applies authorized lifecycle transition with approval SHA where required.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/TYPES.md</code> Section 8.4</td></tr>
+<tr><td>MCP boundary</td><td>MCP is a transport, not a bypass; in-process Chirality MCP tools pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/DIRECTIVE.md</code> Design commitments</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Source hash warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>Dependency inputs</td><td><code>_DEPENDENCIES.md</code> declares no accepted upstream or downstream edges yet.</td></tr>
+<tr><td>Ownership</td><td>Responsible party is <code>TBD</code>; <code>_CONTEXT.md</code> says to preserve <code>ResponsibleParty: TBD</code> until human assignment.</td></tr>
+<tr><td>Semantic lensing</td><td><code>_SEMANTIC.md</code> is <code>NOT_GENERATED</code>; this P1/P2 run does not use semantic lensing.</td></tr>
+<tr><td>Existing implementation path</td><td>TBD. Source documents define required behavior but do not name the implementation files for this slice.</td></tr>
+<tr><td>Variant naming note</td><td><code>SOFTWARE_DECOMP</code> names the accepted decomposition family in this deliverable context; <code>SOFTWARE</code> is the four-documents runtime dispatch token.</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected role</td><td>Source grounding</td></tr>
+<tr><td>Status parser</td><td>Read <code>_STATUS.md</code>, extract current state, last updated date, and history entries.</td><td><code>docs/SPEC.md</code> Section 4.1; <code>docs/PRD.md</code> Section 8.9 FR-052</td></tr>
+<tr><td>Transition validator</td><td>Enforce valid states, forward-only ordering, actor authorization, and approval SHA requirements for human gates.</td><td><code>docs/SPEC.md</code> Sections 4.2-4.3; <code>docs/PRD.md</code> Section 8.9 FR-053/FR-054</td></tr>
+<tr><td>Status API</td><td>Provide read and transition endpoints for deliverable status contract access.</td><td><code>docs/PRD.md</code> API inventory; <code>docs/SPEC.md</code> Section 13</td></tr>
+<tr><td>Chirality MCP tools</td><td>Expose status read/transition through in-process deterministic <code>mcp__chirality__*</code> tooling.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/PRD.md</code> Section 8.13 FR-119</td></tr>
+<tr><td>Tests</td><td>Cover parser behavior, actor authorization, forward-only rejection, approval SHA gate, and MCP/API routing.</td><td><code>docs/PRD.md</code> Section 8.9 FR-052 through FR-054; decomposition DEL-07-04 anticipated artifacts</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>SourcePath</td><td>SectionRef</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Human authority and design commitments</td><td>Approval and MCP boundary posture</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Sections 1.2, 1.6, 1.7</td><td>Binding invariants for approvals, status, MCP wrappers</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Sections 4, 13, 14.2</td><td><code>_STATUS.md</code> format, lifecycle, API and MCP names</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Sections 4.1, 8.4</td><td>Lifecycle vocabulary and MCP tool naming</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>R3 implementation targets</td><td>Status transition tool target and approval SHA gate</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Sections 8.9, 8.13, API inventory</td><td>Product requirements; MATCH status applies — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>PKG-07 DEL-07-04; SOW-028</td><td>Scope and anticipated artifacts</td></tr>
+</tbody></table>
+<h3 id="clm-007-pass-3-disposition-notes">CLM-007 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>E-001</td><td>Incorporated as a normalization note distinguishing the accepted decomposition family from the runtime dispatch token.</td><td><code>_CONTEXT.md</code> Identification; <code>_SEMANTIC_LENSING.md</code> header; <code>skills/four-documents/SKILL.md</code> runtime override values.</td></tr>
+</tbody></table>
+<h3 id="clm-008-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-008 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-132 names the landed status-transition and MCP modules while leaving ResponsibleParty assignment human-owned.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-07-04-status-transition-api-and-mcp-tool">CLM-009 — Specification: DEL-07-04 Status Transition API and MCP Tool</h3>
+<h4 id="specification-del-07-04-status-transition-api-and-mcp-tool">Specification: DEL-07-04 Status Transition API and MCP Tool</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the backend slice that parses deliverable-local <code>_STATUS.md</code>, exposes status read/transition access through the working-root API and Chirality MCP tooling, and enforces lifecycle rules for state movement. The slice covers SOW-028 and supports OBJ-006 as recorded in <code>_CONTEXT.md</code> and the accepted SOFTWARE_DECOMP v3.2 entry for DEL-07-04.</p>
+<p>In scope:</p>
+<ul>
+<li>- <code>_STATUS.md</code> parser behavior for current state, last updated date, and history.</li>
+<li>- Lifecycle transition validation for valid state sequence, forward-only movement, authorized actors, and approval SHA evidence for human gates.</li>
+<li>- Status read and transition API contracts.</li>
+<li>- <code>mcp__chirality__status_read</code> and <code>mcp__chirality__status_transition</code> tool behavior.</li>
+<li>- Tests for parser, transition, actor authorization, approval SHA, and MCP/API exposure.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Dependency CSV parser/writer behavior except where status/dependency APIs share a contract surface.</li>
+<li>- UI presentation beyond consuming the API/tool result.</li>
+<li>- Remote MCP servers, plugin marketplaces, remote execution, or custom generic MCP transport.</li>
+<li>- Autonomous approval, issue, release, certification, or professional validation.</li>
+</ul>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-07-04-REQ-001</td><td>The status parser SHALL read <code>_STATUS.md</code> as the canonical human-readable lifecycle file for a deliverable.</td><td><code>docs/CONTRACT.md</code> Section 1.7 K-STATUS-1; <code>docs/SPEC.md</code> Section 4.3</td></tr>
+<tr><td>DEL-07-04-REQ-002</td><td>The parser SHALL extract <code>Current State</code>, <code>Last Updated</code>, and history entries from the <code>_STATUS.md</code> format.</td><td><code>docs/SPEC.md</code> Section 4.1; <code>docs/PRD.md</code> Section 8.9 FR-052</td></tr>
+<tr><td>DEL-07-04-REQ-003</td><td>The validator SHALL recognize the lifecycle order <code>OPEN -&gt; INITIALIZED -&gt; SEMANTIC_READY -&gt; IN_PROGRESS -&gt; CHECKING -&gt; ISSUED</code>.</td><td><code>docs/SPEC.md</code> Section 4.2; <code>docs/TYPES.md</code> Section 4.1</td></tr>
+<tr><td>DEL-07-04-REQ-004</td><td>The validator SHALL reject backward transitions unless a human explicitly amends the record.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/PRD.md</code> Section 8.9 FR-053</td></tr>
+<tr><td>DEL-07-04-REQ-005</td><td>The validator SHALL enforce actor authorization for lifecycle transitions according to SPEC Section 4.3.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/PRD.md</code> Section 8.9 FR-053</td></tr>
+<tr><td>DEL-07-04-REQ-006</td><td>Transitions to <code>CHECKING</code> or <code>ISSUED</code> SHALL require approval SHA evidence; the PRD acceptance criterion is a 7-64 character hex SHA-like token.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/PRD.md</code> Section 8.9 FR-054</td></tr>
+<tr><td>DEL-07-04-REQ-007</td><td>The implementation SHALL expose a status read API at <code>GET /api/working-root/deliverable/status</code>.</td><td><code>docs/PRD.md</code> API inventory; <code>docs/SPEC.md</code> Section 13</td></tr>
+<tr><td>DEL-07-04-REQ-008</td><td>The implementation SHALL expose a status transition API at <code>POST /api/working-root/deliverable/status/transition</code>.</td><td><code>docs/PRD.md</code> API inventory; <code>docs/SPEC.md</code> Section 13</td></tr>
+<tr><td>DEL-07-04-REQ-009</td><td>The implementation SHALL expose <code>mcp__chirality__status_read</code> and <code>mcp__chirality__status_transition</code> as Chirality MCP tool names.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/TYPES.md</code> Section 8.4</td></tr>
+<tr><td>DEL-07-04-REQ-010</td><td><code>mcp__chirality__status_transition</code> SHALL be write-gated and SHALL apply authorized lifecycle transitions with approval SHA where required.</td><td><code>docs/SPEC.md</code> Section 14.2; <code>docs/CONTRACT.md</code> Section 1.7 K-STATUS-2</td></tr>
+<tr><td>DEL-07-04-REQ-011</td><td>Chirality MCP status tools SHALL pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1; <code>docs/PRD.md</code> Section 8.13 FR-119</td></tr>
+<tr><td>DEL-07-04-REQ-012</td><td>Deny-first behavior SHALL be preserved for status transitions; denial from policy, path check, hook, governance, SDK deny rule, or human gate blocks execution.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-1; <code>docs/DIRECTIVE.md</code> Design commitments</td></tr>
+<tr><td>DEL-07-04-REQ-013</td><td>Status transition behavior SHALL NOT create or imply binding approval records by an agent, SDK, tool, runtime event, validator, or domain adapter.</td><td><code>docs/CONTRACT.md</code> Section 1.2 K-AUTH-1/K-BIND-1; <code>docs/DIRECTIVE.md</code> Human authority</td></tr>
+<tr><td>DEL-07-04-REQ-014</td><td>Approval evidence SHALL bind to specific content, normally a git SHA or equivalent immutable evidence; content changes after approval void approval until review.</td><td><code>docs/DIRECTIVE.md</code> Human authority; <code>docs/CONTRACT.md</code> Section 1.2 K-AUTH-2</td></tr>
+<tr><td>DEL-07-04-REQ-015</td><td>Tests SHALL cover parser success/failure, invalid state handling, unauthorized actor rejection, backward transition rejection, approval SHA enforcement, and API/MCP routing.</td><td><code>docs/PRD.md</code> Section 8.9 FR-052 through FR-054; decomposition DEL-07-04 anticipated artifacts</td></tr>
+<tr><td>DEL-07-04-REQ-016</td><td>Request and response payload schemas for status read, status transition, and MCP equivalents SHALL be captured as accepted schema fixtures before implementation acceptance; until accepted, exact fields remain <code>TBD</code>.</td><td><code>docs/SPEC.md</code> Sections 13 and 14.2; <code>docs/PRD.md</code> API inventory; <code>docs/PRD.md</code> FR-079</td></tr>
+<tr><td>DEL-07-04-REQ-017</td><td>Runtime actor identity mapping SHALL be explicit and fail closed for unmapped actors before transition authorization is treated as complete. The accepted human-gate string aliases are exactly <code>HUMAN</code>, <code>USER</code>, and <code>OPERATOR</code>; arbitrary <code>HUMAN*</code> prefixes are unmapped and MUST fail with <code>UNAUTHORIZED_ACTOR</code>.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/CONTRACT.md</code> K-STATUS-2; D-APP-56 R4-P19</td></tr>
+<tr><td>DEL-07-04-REQ-018</td><td>PRD-derived approval-SHA acceptance criteria SHALL NOT be treated as final implementation acceptance authority until the <code>docs/PRD.md</code> hash status: MATCH is reconciled or a human-approved bypass record is accepted.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/SPEC.md</code> Section 3.1 file inventory for <code>HASH_VERIFICATION_BYPASS.jsonl</code>; <code>docs/SPEC.md</code> Section 7 reference hash behavior — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or source</td><td>Applicability</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 4</td><td>Governs <code>_STATUS.md</code> format, lifecycle states, and transition rules.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 13 and 14.2</td><td>Governs status API and Chirality MCP tool names.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-STATUS-1/K-STATUS-2</td><td>Binding invariants for canonical status state and transition enforcement.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-MCP-1/K-PERM-1</td><td>Binding invariants for MCP wrapper and deny-first behavior.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.9</td><td>Product requirements for lifecycle and dependency contracts; MATCH status applies. — reconciled under D-APP-38</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 4.1</td><td>Defines lifecycle vocabulary and optional <code>INITIALIZED -&gt; IN_PROGRESS</code> route when semantic lensing is skipped.</td></tr>
+</tbody></table>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>REQ-001, REQ-002</td><td>Unit tests parse representative <code>_STATUS.md</code> files and return current state, last updated date, and history.</td></tr>
+<tr><td>REQ-003, REQ-004</td><td>Unit tests accept forward movement and reject backward or unknown-state transitions.</td></tr>
+<tr><td>REQ-005, REQ-006</td><td>Unit/API tests check authorized actors and require valid SHA-like approval evidence for <code>CHECKING</code> and <code>ISSUED</code>.</td></tr>
+<tr><td>REQ-007, REQ-008</td><td>API route tests verify request validation, status snapshot response, transition success, and transition denial results.</td></tr>
+<tr><td>REQ-009, REQ-010</td><td>MCP tool tests verify names, schemas, read/write mode, and gated transition behavior.</td></tr>
+<tr><td>REQ-011, REQ-012</td><td>Integration tests verify permission overlay, hook/path denials, and event logging behavior for MCP status operations.</td></tr>
+<tr><td>REQ-013, REQ-014</td><td>Tests or review checks verify output copy and event records do not present tool or agent actions as human approval.</td></tr>
+<tr><td>REQ-015</td><td>Test suite includes the anticipated artifacts from decomposition: status parser tests, transition API/tool tests, and approval SHA tests.</td></tr>
+<tr><td>REQ-016</td><td>Schema fixture tests cover status snapshot response, transition request, transition success response, transition denial response, and MCP input/output schemas after the accepted schemas exist.</td></tr>
+<tr><td>REQ-017</td><td>Actor authorization tests cover every SPEC Section 4.3 authorized transition plus unmapped/unsupported actor denial.</td></tr>
+<tr><td>REQ-018</td><td>Acceptance checklist verifies the PRD hash status: MATCH has been reconciled or explicitly bypassed before relying on PRD-specific SHA-token criteria as final. — reconciled under D-APP-38</td></tr>
+<tr><td>REQ-004, REQ-005, REQ-006, REQ-011, REQ-012</td><td>Denial fixtures assert typed reasons for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, policy/path denial, and malformed <code>_STATUS.md</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts:</p>
+<ul>
+<li>- Status parser.</li>
+<li>- Transition API/tool.</li>
+<li>- Approval SHA tests.</li>
+<li>- MCP tool contract notes or schema fixtures.</li>
+<li>- API contract tests for status read/transition.</li>
+<li>- Permission/hook/path policy tests for write-gated transition behavior.</li>
+<li>- PRD hash reconciliation or approved hash-bypass evidence before final PRD-derived acceptance claims.</li>
+</ul>
+<p>TBD:</p>
+<ul>
+<li>- Implementation module paths.</li>
+<li>- Exact request/response payload schemas for the status API and MCP tools.</li>
+<li>- Exact actor identity enum or policy mapping used by runtime callers.</li>
+<li>- Exact success and denial payload field names until schema fixtures are accepted.</li>
+</ul>
+<h3 id="clm-015-pass-3-disposition-notes">CLM-015 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>B-001</td><td>Converted to explicit <code>TBD</code> schema-fixture requirement rather than invented payload fields.</td><td><code>docs/SPEC.md</code> Sections 13 and 14.2; <code>docs/PRD.md</code> FR-079.</td></tr>
+<tr><td>B-002</td><td>Converted to explicit <code>TBD</code> actor-mapping requirement with fail-closed behavior.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/CONTRACT.md</code> K-STATUS-2.</td></tr>
+<tr><td>F-001</td><td>Incorporated as a PRD hash reconciliation acceptance check.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/SPEC.md</code> Section 3.1 and reference-hash behavior.</td></tr>
+<tr><td>F-002</td><td>Incorporated as schema fixture verification after schemas are accepted.</td><td><code>docs/SPEC.md</code> Sections 13 and 14.2; <code>docs/PRD.md</code> FR-079.</td></tr>
+<tr><td>X-001</td><td>Incorporated as denial-reason fixture coverage.</td><td><code>docs/CONTRACT.md</code> K-PERM-1/K-MCP-1/K-STATUS-2; <code>docs/SPEC.md</code> Sections 4.1-4.3.</td></tr>
+</tbody></table>
+<h3 id="clm-016-source-status">CLM-016 — Source Status</h3>
+<h5 id="source-status">Source Status</h5>
+<p><code>docs/PRD.md</code> is listed as <code>MATCH</code> in <code>_REFERENCES.md</code>. Requirements using PRD clauses are retained because the source is locally accessible and explicitly listed, but the MATCH should be reconciled before treating PRD-derived acceptance details as final implementation authority. (reconciled under D-APP-38).</p>
+<ul>
+<li>- <strong>AC-001</strong> — Status reads preserve canonical lifecycle fields; transitions follow the defined forward order, reject unknown, backward, or unauthorized actions, require exact human aliases and approval SHA evidence at human gates, and never represent tool or agent activity as human approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-07-04-status-transition-api-and-mcp-tool">CLM-017 — Procedure: DEL-07-04 Status Transition API and MCP Tool</h3>
+<h4 id="procedure-del-07-04-status-transition-api-and-mcp-tool">Procedure: DEL-07-04 Status Transition API and MCP Tool</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure to produce and verify the DEL-07-04 backend feature slice for status parsing, status transition enforcement, API exposure, and Chirality MCP tool exposure.</p>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted scope entry for DEL-07-04</td><td>Available in <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code>.</td></tr>
+<tr><td>Authoritative lifecycle contract</td><td>Available in <code>docs/SPEC.md</code> Section 4 and <code>docs/CONTRACT.md</code> Section 1.7.</td></tr>
+<tr><td>API/MCP contract references</td><td>Available in <code>docs/SPEC.md</code> Sections 13 and 14.2 and <code>docs/PRD.md</code> API inventory.</td></tr>
+<tr><td>Permission/MCP boundary references</td><td>Available in <code>docs/CONTRACT.md</code> Section 1.6 and <code>docs/DIRECTIVE.md</code> design commitments.</td></tr>
+<tr><td>Declared upstream dependencies</td><td>TBD; <code>_DEPENDENCIES.md</code> lists no accepted upstream edges yet.</td></tr>
+<tr><td>Implementation module location</td><td>TBD; implementation owner must identify accepted module paths for working-root status APIs and Chirality MCP tools before implementation closeout.</td></tr>
+<tr><td>Accepted schema fixtures</td><td>TBD; exact request/response fields remain unresolved until API and MCP schema fixtures are accepted.</td></tr>
+</tbody></table>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Locate the implementation area for working-root deliverable APIs and Chirality MCP tools.</p>
+<ul>
+<li>- If no established location exists, record candidate module paths as <code>TBD</code> until accepted by the responsible implementer.</li>
+</ul>
+<p>2. Implement or update the <code>_STATUS.md</code> parser.</p>
+<ul>
+<li>- Parse the SPEC Section 4.1 fields: title, <code>Current State</code>, <code>Last Updated</code>, and history.</li>
+<li>- Reject or report malformed files without inferring lifecycle state from other files.</li>
+</ul>
+<p>3. Implement lifecycle state validation.</p>
+<ul>
+<li>- Recognize <code>OPEN</code>, <code>INITIALIZED</code>, <code>SEMANTIC_READY</code>, <code>IN_PROGRESS</code>, <code>CHECKING</code>, and <code>ISSUED</code>.</li>
+<li>- Enforce the forward-only ordering from SPEC Section 4.2.</li>
+<li>- Include the TYPES Section 4.1 optional route from <code>INITIALIZED</code> to <code>IN_PROGRESS</code> when semantic lensing is skipped, subject to authorized actor rules.</li>
+</ul>
+<p>4. Implement actor authorization.</p>
+<ul>
+<li>- Use the authorized actor table in SPEC Section 4.3 as the baseline.</li>
+<li>- Preserve <code>TBD</code> for exact runtime actor identity mapping until the implementation surface defines caller identities.</li>
+</ul>
+<p>5. Implement human gate approval SHA checks.</p>
+<ul>
+<li>- Require approval SHA evidence for transitions to <code>CHECKING</code> or <code>ISSUED</code>.</li>
+<li>- Apply the PRD Section 8.9 FR-054 acceptance detail: 7-64 character hex SHA-like token. PRD hash status: MATCH status applies. (reconciled under D-APP-38).</li>
+</ul>
+<p>6. Implement the status API surface.</p>
+<ul>
+<li>- Provide <code>GET /api/working-root/deliverable/status</code> for read-only status snapshots.</li>
+<li>- Provide <code>POST /api/working-root/deliverable/status/transition</code> for allowed lifecycle transitions.</li>
+<li>- Return structured success and denial outcomes. Exact response schema is <code>TBD</code>.</li>
+<li>- After schema acceptance, add fixtures for status snapshot responses, transition requests, transition success responses, and transition denial responses.</li>
+</ul>
+<p>7. Implement the Chirality MCP status tools.</p>
+<ul>
+<li>- Provide <code>mcp__chirality__status_read</code> for reading <code>_STATUS.md</code>.</li>
+<li>- Provide <code>mcp__chirality__status_transition</code> for write-gated status transitions.</li>
+<li>- Route MCP execution through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.</li>
+<li>- Record test evidence for permission decisions, path containment, hook outcomes, redaction behavior, and tool/runtime event logging for status operations.</li>
+</ul>
+<p>8. Add tests for the deliverable acceptance surface.</p>
+<ul>
+<li>- Parser tests for valid and malformed <code>_STATUS.md</code>.</li>
+<li>- Transition tests for valid forward moves, invalid states, backward moves, unauthorized actors, missing approval SHA, and invalid SHA-like token.</li>
+<li>- API route tests for read and transition.</li>
+<li>- MCP tool tests for naming, schema, read/write mode, denial, and success.</li>
+<li>- Permission/path/hook tests for gated writes.</li>
+<li>- Denial payload tests for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, path/policy denial, and malformed <code>_STATUS.md</code>.</li>
+<li>- Success payload tests once accepted field names exist.</li>
+</ul>
+<p>9. Record unresolved implementation details.</p>
+<ul>
+<li>- Keep <code>TBD</code> for exact module paths, request/response schemas, and actor identity mapping until accepted by implementation owners or adjacent deliverables.</li>
+</ul>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Parser fixture: valid <code>_STATUS.md</code></td><td>Current state, last updated date, and history are returned.</td></tr>
+<tr><td>Parser fixture: malformed <code>_STATUS.md</code></td><td>Structured error is returned; no alternate file determines lifecycle state.</td></tr>
+<tr><td>Transition fixture: forward authorized transition</td><td>Transition succeeds when policy/path checks pass.</td></tr>
+<tr><td>Transition fixture: backward transition</td><td>Transition fails unless an explicit human amendment path exists.</td></tr>
+<tr><td>Transition fixture: <code>CHECKING</code> or <code>ISSUED</code> without approval SHA</td><td>Transition fails.</td></tr>
+<tr><td>Transition fixture: <code>CHECKING</code> or <code>ISSUED</code> with invalid SHA-like token</td><td>Transition fails under PRD FR-054 acceptance.</td></tr>
+<tr><td>API tests</td><td>Status read and transition endpoints behave consistently with parser/validator.</td></tr>
+<tr><td>MCP tests</td><td><code>mcp__chirality__status_read</code> and <code>mcp__chirality__status_transition</code> expose deterministic Chirality operations and preserve policy overlays.</td></tr>
+<tr><td>Boundary tests</td><td>Status transition does not imply human approval, professional validation, issue, or release.</td></tr>
+<tr><td>Schema fixture tests</td><td>After schemas are accepted, exact request/response fixtures cover API and MCP read, transition success, and transition denial.</td></tr>
+<tr><td>Audit overlay tests</td><td>Permission, hook, path-containment, redaction, and event logging evidence exists for MCP status operations.</td></tr>
+</tbody></table>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Expected records and artifacts:</p>
+<ul>
+<li>- Status parser implementation.</li>
+<li>- Transition validator implementation.</li>
+<li>- Status API route or service tests.</li>
+<li>- Chirality MCP status tool definitions and tests.</li>
+<li>- Approval SHA test fixtures.</li>
+<li>- Denial/success fixtures for actor authorization and forward-only lifecycle behavior.</li>
+<li>- Runtime/event logging evidence for write-gated status transitions when the implementation surface supports it.</li>
+<li>- Permission decision, hook outcome, path-containment, redaction, and event logging evidence for MCP status operations.</li>
+<li>- PRD hash reconciliation or approved bypass evidence before final PRD-derived acceptance claims.</li>
+</ul>
+<p>TBD records:</p>
+<ul>
+<li>- Exact implementation file paths.</li>
+<li>- Exact request/response schemas.</li>
+<li>- Exact actor identity mapping.</li>
+<li>- Exact success and denial payload fields.</li>
+</ul>
+<h3 id="clm-023-pass-3-disposition-notes">CLM-023 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>D-001</td><td>Converted to an explicit prerequisite and closeout blocker: accepted implementation module paths remain <code>TBD</code>.</td><td><code>_DEPENDENCIES.md</code> DEP-07-04-008; decomposition DEL-07-04 anticipated artifacts.</td></tr>
+<tr><td>F-002</td><td>Incorporated as post-schema fixture verification for API/MCP request and response schemas.</td><td><code>docs/SPEC.md</code> Sections 13 and 14.2; <code>docs/PRD.md</code> FR-079.</td></tr>
+<tr><td>X-002</td><td>Incorporated as audit evidence expectations for permission, hook, path, redaction, and event logging policy on MCP status operations.</td><td><code>docs/CONTRACT.md</code> K-MCP-1/K-PERM-1; <code>docs/PRD.md</code> FR-092, FR-093, FR-104.</td></tr>
+<tr><td>E-002</td><td>Converted to explicit <code>TBD</code> success/denial payload fields until schema acceptance.</td><td><code>docs/SPEC.md</code> API inventory; <code>docs/PRD.md</code> FR-079 and NFR-009.</td></tr>
+</tbody></table>
+<h3 id="clm-024-source-status">CLM-024 — Source Status</h3>
+<h5 id="source-status">Source Status</h5>
+<p><code>docs/PRD.md</code> is listed as <code>MATCH</code> in <code>_REFERENCES.md</code>; reconcile the source hash before final acceptance of PRD-derived acceptance details. (reconciled under D-APP-38).</p>
+<h3 id="clm-025-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-025 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-132 names the landed status-transition and MCP modules while leaving ResponsibleParty assignment human-owned.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Run the source-defined parser, transition, actor-mapping, approval-SHA, API, MCP, schema-fixture, permission, hook, path-denial, event, and authority-boundary tests.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-026-guidance-del-07-04-status-transition-api-and-mcp-tool">CLM-026 — Guidance: DEL-07-04 Status Transition API and MCP Tool</h3>
+<h4 id="guidance-del-07-04-status-transition-api-and-mcp-tool">Guidance: DEL-07-04 Status Transition API and MCP Tool</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to make deliverable lifecycle state a product-owned filesystem contract rather than an inferred UI or runtime condition. The accepted SOFTWARE_DECOMP v3.2 entry defines the slice as parsing <code>_STATUS.md</code> and enforcing forward-only, actor-authorized transitions with approval SHA for human gates. The source documents reinforce that <code>_STATUS.md</code> is canonical and that status transition behavior is a governed API/MCP surface, not prompt-only convention.</p>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Treat <code>_STATUS.md</code> as the only lifecycle authority.</p>
+<p>Source: <code>docs/CONTRACT.md</code> Section 1.7 K-STATUS-1; <code>docs/SPEC.md</code> Section 4.3.</p>
+<p>2. Keep transition enforcement in code and tests.</p>
+<p>Prompt instructions may reinforce the behavior, but <code>docs/DIRECTIVE.md</code> says runtime code enforces safety and prompt instructions are not sufficient enforcement.</p>
+<p>3. Preserve forward-only lifecycle movement.</p>
+<p>Source: <code>docs/SPEC.md</code> Section 4.3 and <code>docs/PRD.md</code> Section 8.9 FR-053.</p>
+<p>4. Treat human gates as non-delegable.</p>
+<p>Agents, SDKs, tools, validators, and runtime events must not author binding approval records. Source: <code>docs/CONTRACT.md</code> Section 1.2 K-AUTH-1/K-GATE-1 and <code>docs/DIRECTIVE.md</code> Human authority.</p>
+<p>5. Make MCP a governed transport.</p>
+<p><code>mcp__chirality__status_transition</code> should not bypass permission, hook, path, redaction, or event logging policy. Source: <code>docs/CONTRACT.md</code> Section 1.6 K-MCP-1 and <code>docs/DIRECTIVE.md</code> Design commitments.</p>
+<p>6. Keep dependency behavior separate.</p>
+<p>Dependency register behavior belongs primarily to DEL-07-05; this deliverable may share API patterns but should not absorb <code>Dependencies.csv</code> reader/writer scope. Source: decomposition DEL-07-04/DEL-07-05 split and <code>docs/PRD.md</code> Section 8.9 FR-055 through FR-057.</p>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Actor authorization should be explicit enough that unsupported actors fail closed. SPEC Section 4.3 lists authorized actors by transition; implementation-specific actor identity mapping remains <code>TBD</code>.</li>
+<li>- Approval SHA validation should follow the PRD acceptance detail of a 7-64 character hex SHA-like token for transitions to <code>CHECKING</code> or <code>ISSUED</code>. PRD hash status: MATCH status applies. (reconciled under D-APP-38).</li>
+<li>- The API and MCP tool should return structured denial information for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, path/policy denial, and malformed <code>_STATUS.md</code>. Exact response shape is <code>TBD</code>.</li>
+<li>- <code>INITIALIZED -&gt; SEMANTIC_READY</code> is optional according to <code>docs/TYPES.md</code> Section 4.1; if semantic lensing is skipped, deliverables may transition directly from <code>INITIALIZED -&gt; IN_PROGRESS</code> under SPEC actor rules.</li>
+<li>- Status transition writes should remain subject to project-root containment and instruction-root protection expectations from the filesystem and permission surfaces. Source: <code>docs/CONTRACT.md</code> K-PATH-2 and K-MCP-1; <code>docs/PLAN.md</code> R3 implementation targets.</li>
+<li>- Runtime/event records can support audit, but they are not substitutes for accepted project-state files or human approval records. Source: <code>docs/DIRECTIVE.md</code> runtime event discussion and human authority section.</li>
+<li>- If alternate immutable approval evidence is ever accepted instead of a git SHA-like token, treat it as a human-approved policy extension recorded in versioned project evidence. Do not accept arbitrary runtime text as approval evidence. Source: <code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2.</li>
+<li>- Review evidence should prove that status-transition outputs, tool events, hook events, and runtime records describe execution only. They must not use language that claims an agent, SDK, MCP tool, validator, or runtime event approved, issued, certified, or released work for reliance. Source: <code>docs/DIRECTIVE.md</code> Sections 2.3-2.4; <code>docs/CONTRACT.md</code> K-AUTH-1/K-BIND-1.</li>
+<li>- <code>SOFTWARE_DECOMP</code> is the accepted decomposition-family label in deliverable context, while <code>SOFTWARE</code> is the runtime dispatch token used by the four-documents task. Preserve both labels with their context rather than normalizing one into the other.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>API versus MCP</td><td>Maintain both surfaces because the PRD/SPEC list working-root API endpoints and Chirality MCP tools. Keep validation shared or behaviorally equivalent to avoid drift.</td><td><code>docs/PRD.md</code> API inventory; <code>docs/SPEC.md</code> Sections 13 and 14.2</td></tr>
+<tr><td>SHA gate strictness</td><td>Prefer strict SHA-like validation for human gate transitions; if a human chooses alternate immutable evidence, capture it as a deliberate policy extension rather than silently accepting arbitrary text.</td><td><code>docs/PRD.md</code> Section 8.9 FR-054; <code>docs/DIRECTIVE.md</code> Human authority</td></tr>
+<tr><td>Parser tolerance</td><td>Be tolerant enough to read the SPEC format, but report malformed or ambiguous status files rather than inferring state from other files.</td><td><code>docs/SPEC.md</code> Section 4.1; <code>docs/CONTRACT.md</code> K-STATUS-1</td></tr>
+<tr><td>Semantic-ready shortcut</td><td>Support the optional <code>INITIALIZED -&gt; IN_PROGRESS</code> route when semantic lensing is skipped, but only under authorized actor rules.</td><td><code>docs/TYPES.md</code> Section 4.1; <code>docs/SPEC.md</code> Section 4.3</td></tr>
+<tr><td>Event logs</td><td>Record tool/runtime outcomes for audit, but do not treat runtime events as approval records.</td><td><code>docs/DIRECTIVE.md</code> Runtime session logs and human authority</td></tr>
+<tr><td>Alternate approval evidence</td><td>Keep git SHA-like evidence as the default. Alternate immutable evidence requires human-approved policy extension and versioned evidence before implementation relies on it.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2</td></tr>
+<tr><td>PRD hash warning</td><td>Continue using PRD-derived statements as warned source material for drafting, but require reconciliation or an approved bypass before final PRD-derived acceptance claims.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/SPEC.md</code> reference hash behavior</td></tr>
+</tbody></table>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected outcome</td><td>Source</td></tr>
+<tr><td>Read a valid <code>_STATUS.md</code> with <code>Current State: INITIALIZED</code></td><td>Status read returns <code>INITIALIZED</code>, last updated date, and history.</td><td><code>docs/SPEC.md</code> Section 4.1; <code>docs/PRD.md</code> FR-052</td></tr>
+<tr><td>Transition <code>OPEN -&gt; INITIALIZED</code> by authorized document-initialization actor</td><td>Transition may be accepted if path/policy checks pass.</td><td><code>docs/SPEC.md</code> Section 4.3</td></tr>
+<tr><td>Transition <code>IN_PROGRESS -&gt; CHECKING</code> without approval SHA</td><td>Transition is denied.</td><td><code>docs/SPEC.md</code> Section 4.3; <code>docs/PRD.md</code> FR-054</td></tr>
+<tr><td>Transition <code>CHECKING -&gt; ISSUED</code> with a non-hex approval token</td><td>Transition is denied under PRD acceptance criterion.</td><td><code>docs/PRD.md</code> FR-054</td></tr>
+<tr><td>Transition <code>SEMANTIC_READY -&gt; INITIALIZED</code></td><td>Transition is denied as backward movement unless a human explicitly amends the record.</td><td><code>docs/SPEC.md</code> Section 4.3</td></tr>
+</tbody></table>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>TBD</td><td>No source conflict identified during P1/P2 drafting.</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-033-source-status">CLM-033 — Source Status</h3>
+<h5 id="source-status">Source Status</h5>
+<p><code>docs/PRD.md</code> is listed as <code>MATCH</code> in <code>_REFERENCES.md</code>. Use PRD acceptance details as warned source material until the reference hash is reconciled. (reconciled under D-APP-38).</p>
+<h3 id="clm-034-pass-3-disposition-notes">CLM-034 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>C-001</td><td>Incorporated as a policy-extension rule for alternate immutable approval evidence.</td><td><code>docs/DIRECTIVE.md</code> Section 2.4; <code>docs/CONTRACT.md</code> K-AUTH-2.</td></tr>
+<tr><td>D-002</td><td>Incorporated as review-evidence guidance separating runtime/event records from human approval records.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.3-2.4; <code>docs/CONTRACT.md</code> K-AUTH-1/K-BIND-1.</td></tr>
+<tr><td>E-001</td><td>Incorporated as contextual variant-label guidance.</td><td><code>_CONTEXT.md</code> Identification; <code>_SEMANTIC_LENSING.md</code> header.</td></tr>
+<tr><td>E-003</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; <code>docs/SPEC.md</code> reference hash behavior. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-028 OBJ-006</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "run_id":"SOW-STAGE1-20260712",
+  "version":2,
+  "supersedes":"WORK_GRAPH.json",
+  "change":"Add REVIEW-CHECKLIST evidence node discovered by RECON-FANIN",
+  "nodes_added":[{"id":"REVIEW-CHECKLIST","owner":"REVIEW","depends_on":["APP-FROZEN","PIP-FROZEN"],"writes":"root-run:REVIEW_CHECKLIST_EVIDENCE","fan_in":"RECON-FANIN"}],
+  "acceptance_and_denials":"unchanged"
+}

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="80fbd86600af8516d75d2d11ccf53d304ec36426069728fbe30a8fceb846d952">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>80fbd86600af8516d75d2d11ccf53d304ec36426069728fbe30a8fceb846d952</code>.</p>
+<h1 id="scope-of-work-del-07-02">Scope of Work — DEL-07-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This candidate defines <code>DEL-07-02</code> in service of project scope [SOW-024, SOW-025] and package objectives [OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A decomposition-driven execution-root scaffolder producing INIT.md, coordination, flat package and deliverable folders, minimum PREPARATION files, diagnostics, and idempotence evidence.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-02-execution-root-scaffolding-from-decomposition">CLM-001 — Datasheet: DEL-07-02 Execution Root Scaffolding from Decomposition</h3>
+<h4 id="datasheet-del-07-02-execution-root-scaffolding-from-decomposition">Datasheet: DEL-07-02 Execution Root Scaffolding from Decomposition</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-02</td></tr>
+<tr><td>Deliverable Name</td><td>Execution Root Scaffolding from Decomposition</td></tr>
+<tr><td>Package ID</td><td>PKG-07</td></tr>
+<tr><td>Package Name</td><td>Filesystem Execution, Lifecycle, and Dependencies</td></tr>
+<tr><td>Decomposition Variant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>Decomposition Revision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Responsible Party</td><td>TBD</td></tr>
+<tr><td>Context Envelope</td><td>M</td></tr>
+<tr><td>Covers Scope Items</td><td>SOW-024, SOW-025</td></tr>
+<tr><td>Supports Objectives</td><td>OBJ-006</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary function</td><td>Scaffold SPEC-conformant execution roots from decomposition markdown idempotently and recoverably.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-07 table</td></tr>
+<tr><td>Runtime surface</td><td><code>/api/harness/scaffold</code> POST endpoint wraps execution-root scaffolding.</td><td><code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 7.3</td></tr>
+<tr><td>Execution root contents</td><td><code>INIT.md</code>, flat package folders, and tool roots including <code>_Aggregation</code>, <code>_Change</code>, <code>_Coordination</code>, <code>_Decomposition</code>, <code>_Estimates</code>, <code>_Reconciliation</code>, <code>_Archive</code>, <code>_Scripts</code>, and <code>_Sources</code>.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/PRD.md</code> FR-045</td></tr>
+<tr><td>Coordination artifact</td><td><code>_Coordination/_COORDINATION.md</code> is part of the execution-root layout and scaffold output.</td><td><code>docs/SPEC.md</code> Section 2.2; <code>docs/PRD.md</code> Section 7.3</td></tr>
+<tr><td>Package layout</td><td>Flat <code>PKG-XX_Label</code> or <code>PKG-XXX_Label</code> folders; no nested package layer.</td><td><code>docs/SPEC.md</code> Section 2.1; <code>docs/PRD.md</code> FR-046; <code>docs/CONTRACT.md</code> K-HIER-1</td></tr>
+<tr><td>Deliverable layout</td><td>Deliverable folders are under <code>{PKG-ID}_{PkgLabel}/1_Working/{DEL-ID}_{DelLabel}/</code>.</td><td><code>docs/SPEC.md</code> Section 3</td></tr>
+<tr><td>Minimum deliverable fileset</td><td><code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, <code>_REFERENCES.md</code>, and <code>_SEMANTIC.md</code> placeholder.</td><td><code>docs/SPEC.md</code> Section 3.1</td></tr>
+<tr><td>Document kit files</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</td><td><code>docs/SPEC.md</code> Section 3.1; <code>docs/PRD.md</code> FR-049</td></tr>
+<tr><td>Metadata compatibility target</td><td>PREPARATION compatibility is reported before the user proceeds.</td><td><code>docs/PRD.md</code> Section 7.3</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Working-root basis</td><td>Project truth lives in plain files under the working root and accepted git history.</td><td><code>docs/DIRECTIVE.md</code> Sections 1 and 2.1; <code>docs/CONTRACT.md</code> K-FS-1</td></tr>
+<tr><td>Root separation</td><td>Instruction root and working root are separate; ordinary project execution must not mutate the instruction root.</td><td><code>docs/DIRECTIVE.md</code> Section 2.7; <code>docs/CONTRACT.md</code> K-ROOT-1 through K-ROOT-3</td></tr>
+<tr><td>Idempotence</td><td>Existing directories/files are preserved on rerun.</td><td><code>docs/PRD.md</code> Section 7.3; <code>docs/PRD.md</code> NFR-011</td></tr>
+<tr><td>Recovery diagnostics</td><td>Failures are fail-fast and include stage, target path, and created paths for recovery.</td><td><code>docs/PRD.md</code> Section 7.3</td></tr>
+<tr><td>Lifecycle state file</td><td><code>_STATUS.md</code> is the canonical lifecycle file.</td><td><code>docs/SPEC.md</code> Section 4; <code>docs/CONTRACT.md</code> K-STATUS-1</td></tr>
+<tr><td>Source warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; task brief — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected Construction</td><td>Source</td></tr>
+<tr><td>Scaffold parser</td><td>Parse decomposition markdown sufficiently to identify package rows and deliverable rows for v3.2 SOFTWARE_DECOMP. Exact parser implementation details are TBD.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/PRD.md</code> Section 7.3</td></tr>
+<tr><td>Root initializer</td><td>Create or validate <code>INIT.md</code> at execution root. Content schema is TBD from available sources.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/PRD.md</code> FR-045</td></tr>
+<tr><td>Coordination initializer</td><td>Create or validate <code>_Coordination/_COORDINATION.md</code>. Coordination mode values should align to TYPES vocabulary where applicable.</td><td><code>docs/SPEC.md</code> Section 2.2; <code>docs/TYPES.md</code> Section 13</td></tr>
+<tr><td>Package scaffolder</td><td>Create flat package folders using <code>{PKG-ID}_{Sanitize(PackageName)}/</code> and required/expected subfolders.</td><td><code>docs/SPEC.md</code> Section 2.1</td></tr>
+<tr><td>Deliverable scaffolder</td><td>Create deliverable folders under <code>1_Working/</code> and seed minimum PREPARATION fileset.</td><td><code>docs/SPEC.md</code> Section 3.1</td></tr>
+<tr><td>Validation summary</td><td>Return validation summaries, PREPARATION compatibility, issue counts, scaffold counts, created path inventory, and fail-fast recovery diagnostics including stage and target path.</td><td><code>docs/PRD.md</code> Section 7.3; <code>docs/SPEC.md</code> Section 17.1</td></tr>
+<tr><td>Idempotence tests</td><td>Tests should prove reruns preserve existing directories, file contents, and file metadata where applicable, and report compatibility without duplicating or corrupting files.</td><td><code>docs/PRD.md</code> Section 7.3; <code>docs/PRD.md</code> NFR-011</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/DIRECTIVE.md</code> Sections 1, 2.1, and 2.7.</li>
+<li>- <code>docs/CONTRACT.md</code> K-HIER-1, K-FS-1, K-ROOT-1 through K-ROOT-3, K-STATUS-1, K-INVENT-1, K-CONFLICT-1.</li>
+<li>- <code>docs/SPEC.md</code> Sections 2, 3, 4, 5, and 17.1.</li>
+<li>- <code>docs/TYPES.md</code> Sections 8.4 and 13.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-07-02 and SOW-024/SOW-025 rows.</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-07-02-execution-root-scaffolding-from-decomposition">CLM-007 — Specification: DEL-07-02 Execution Root Scaffolding from Decomposition</h3>
+<h4 id="specification-del-07-02-execution-root-scaffolding-from-decomposition">Specification: DEL-07-02 Execution Root Scaffolding from Decomposition</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the backend feature slice that scaffolds a SPEC-conformant execution root from accepted decomposition markdown for Chirality App vNext. The slice covers SOW-024 execution-root scaffolding and SOW-025 flat package/deliverable folder layout for PKG-07.</p>
+<p>In scope:</p>
+<ul>
+<li>- Parse the active decomposition markdown enough to derive packages and deliverables.</li>
+<li>- Create or validate <code>INIT.md</code>, tool roots, <code>_Coordination/_COORDINATION.md</code>, package folders, deliverable folders, and the minimum PREPARATION fileset.</li>
+<li>- Preserve flat package topology and deliverable folder naming.</li>
+<li>- Return diagnostics that support idempotent reruns and recovery after fail-fast errors.</li>
+<li>- Support the <code>/api/harness/scaffold</code> runtime route or its backend service layer.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- UI presentation beyond the scaffold API result surface.</li>
+<li>- Lifecycle transition enforcement beyond seeding the scaffold baseline; status transition APIs belong to DEL-07-04.</li>
+<li>- <code>Dependencies.csv</code> parser/writer behavior beyond creating or leaving dependency placeholders; dependency register behavior belongs to DEL-07-05.</li>
+<li>- Human assignment of <code>ResponsibleParty</code>, which remains <code>TBD</code> until assigned.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> Sections 2 and 3; <code>docs/PRD.md</code> Sections 7.3 and 8.8; decomposition DEL-07-02 row.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Verification</td><td>Source</td></tr>
+<tr><td>DEL-07-02-REQ-001</td><td>The scaffold operation MUST create or validate an execution root containing <code>INIT.md</code>, package folders, and the SPEC-listed tool roots.</td><td>Unit/API test checks resulting tree and layout validation payload.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/PRD.md</code> FR-045</td></tr>
+<tr><td>DEL-07-02-REQ-002</td><td>Package folders MUST be flat and named <code>{PKG-ID}_{Sanitize(PackageName)}/</code>; the scaffold operation MUST NOT introduce nested packages.</td><td>Fixture decomposition with multiple packages; resulting tree contains only flat package folders.</td><td><code>docs/SPEC.md</code> Section 2.1; <code>docs/CONTRACT.md</code> K-HIER-1; <code>docs/PRD.md</code> FR-046</td></tr>
+<tr><td>DEL-07-02-REQ-003</td><td>Each deliverable folder MUST be created under <code>{PKG-ID}_{PkgLabel}/1_Working/{DEL-ID}_{DelLabel}/</code>.</td><td>Fixture decomposition with deliverable rows; path assertions.</td><td><code>docs/SPEC.md</code> Section 3; <code>docs/PRD.md</code> FR-047</td></tr>
+<tr><td>DEL-07-02-REQ-004</td><td>Each newly scaffolded deliverable folder MUST include the minimum PREPARATION fileset: <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, <code>_REFERENCES.md</code>, and <code>_SEMANTIC.md</code>.</td><td>Fixture result verifies required files exist for every deliverable.</td><td><code>docs/SPEC.md</code> Section 3.1; <code>docs/PRD.md</code> FR-048</td></tr>
+<tr><td>DEL-07-02-REQ-005</td><td>New deliverable <code>_STATUS.md</code> files MUST represent the <code>OPEN</code> scaffold state and remain canonical lifecycle inputs for later status workflows.</td><td>Status parser test reads <code>Current State: OPEN</code> from scaffold output.</td><td><code>docs/SPEC.md</code> Section 4; <code>docs/CONTRACT.md</code> K-STATUS-1</td></tr>
+<tr><td>DEL-07-02-REQ-006</td><td>The scaffold operation MUST create or validate <code>_Coordination/_COORDINATION.md</code> under the execution root.</td><td>Tree assertion and coordination-file existence check.</td><td><code>docs/SPEC.md</code> Section 2; <code>docs/PRD.md</code> Section 7.3</td></tr>
+<tr><td>DEL-07-02-REQ-007</td><td>The scaffold operation MUST be idempotent for existing directories and files; reruns preserve existing paths and existing file contents unless a separately authorized workflow owns migration or repair.</td><td>Rerun test against a previously scaffolded root verifies no duplicate path creation, no destructive rewrite, and unchanged pre-existing file content hashes or byte comparisons.</td><td><code>docs/PRD.md</code> Section 7.3; <code>docs/PRD.md</code> NFR-011</td></tr>
+<tr><td>DEL-07-02-REQ-008</td><td>Failures MUST fail fast and return diagnostics including stage, target path, and created paths sufficient for recovery.</td><td>Conflict-path test asserts typed failure payload.</td><td><code>docs/PRD.md</code> Section 7.3</td></tr>
+<tr><td>DEL-07-02-REQ-009</td><td>The scaffold route MUST expose the operation through <code>POST /api/harness/scaffold</code>.</td><td>API route test posts request and verifies response.</td><td><code>docs/SPEC.md</code> Section 17.1; <code>docs/PRD.md</code> Section 17.1</td></tr>
+<tr><td>DEL-07-02-REQ-010</td><td>The scaffold operation SHOULD report PREPARATION compatibility before downstream TASK work proceeds.</td><td>Response payload contains compatibility readiness and issue count.</td><td><code>docs/PRD.md</code> Section 7.3</td></tr>
+<tr><td>DEL-07-02-REQ-011</td><td>Runtime tools involved in scaffolding MUST enforce working-root containment and must not mutate the instruction root during ordinary project execution.</td><td>Path-policy and write-denial tests.</td><td><code>docs/CONTRACT.md</code> K-ROOT-1 through K-ROOT-3; <code>docs/PRD.md</code> NFR-005 and NFR-006</td></tr>
+<tr><td>DEL-07-02-REQ-012</td><td>Unknown decomposition-derived values or unsupported parser details MUST be preserved as <code>TBD</code> or reported diagnostics rather than guessed.</td><td>Fixture with missing values verifies explicit <code>TBD</code> or typed issue.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1</td></tr>
+<tr><td>DEL-07-02-REQ-013</td><td>The parser support boundary MUST be explicit: the first supported input is the accepted v3.2 SOFTWARE_DECOMP package and deliverable table shape, with unsupported or ambiguous markdown shapes reported as compatibility issues instead of silently accepted.</td><td>Parser fixture tests include the accepted v3.2 table shape, missing-value rows, and unsupported table-shape diagnostics.</td><td><code>_CONTEXT.md</code>; decomposition DEL-07-02 row; <code>docs/PRD.md</code> Section 7.3; <code>docs/CONTRACT.md</code> K-INVENT-1</td></tr>
+</tbody></table>
+<h3 id="clm-010-scaffold-api-result-contract">CLM-010 — Scaffold API Result Contract</h3>
+<h5 id="scaffold-api-result-contract">Scaffold API Result Contract</h5>
+<p>The <code>POST /api/harness/scaffold</code> response shape remains an implementation contract to finalize, but tests should expect these source-backed semantic fields:</p>
+<table><tbody>
+<tr><td>Field Group</td><td>Expected Semantics</td><td>Status / Source</td></tr>
+<tr><td>Request echo</td><td>Execution root or working root target and decomposition path used for the scaffold operation.</td><td>Source-backed by <code>docs/PRD.md</code> Section 7.3 and <code>docs/SPEC.md</code> Section 17.1; exact field names TBD.</td></tr>
+<tr><td>Scaffold counts</td><td>Package count and deliverable count parsed from supported decomposition rows.</td><td>Source-backed by <code>docs/PRD.md</code> Section 7.3; exact field names TBD.</td></tr>
+<tr><td>Created/existing inventory</td><td>Created path inventory plus already-existing path/file indicators sufficient to verify idempotence.</td><td>Source-backed by <code>docs/PRD.md</code> Section 7.3 and NFR-011; exact field names TBD.</td></tr>
+<tr><td>Validation summaries</td><td>Layout validation and PREPARATION compatibility readiness, including issue count.</td><td>Source-backed by <code>docs/PRD.md</code> Section 7.3; exact field names TBD.</td></tr>
+<tr><td>Failure diagnostics</td><td>Fail-fast stage, target path, and created path inventory.</td><td>Source-backed by <code>docs/PRD.md</code> Section 7.3; exact field names TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Source</td></tr>
+<tr><td>Execution Root Layout</td><td>Governs root folders, package folders, tool roots, and deliverable paths.</td><td><code>docs/SPEC.md</code> Sections 2 and 3</td></tr>
+<tr><td>Lifecycle File Contract</td><td>Governs <code>_STATUS.md</code> scaffold state and later lifecycle transition compatibility.</td><td><code>docs/SPEC.md</code> Section 4</td></tr>
+<tr><td>Filesystem Execution Model</td><td>Product requirements for scaffold layout, package/deliverable structures, metadata files, document kits, and path policy.</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>Reliability Requirement NFR-011</td><td>Idempotent and recoverable scaffolding.</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>Invariant Catalog</td><td>Governs flat hierarchy, project truth, root separation, lifecycle canonicality, no invention, and conflict surfacing.</td><td><code>docs/CONTRACT.md</code> K-HIER-1, K-FS-1, K-ROOT-1 through K-ROOT-3, K-STATUS-1, K-INVENT-1, K-CONFLICT-1</td></tr>
+<tr><td>TYPES Vocabulary</td><td>Governs initial Chirality MCP tool names and coordination representation terms where the scaffold API exposes or records those concepts.</td><td><code>docs/TYPES.md</code> Sections 8.4 and 13</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>Required verification set:</p>
+<p>1. Scaffold route API test for <code>POST /api/harness/scaffold</code>.</p>
+<p>2. Unit test for parsing decomposition package and deliverable tables.</p>
+<p>3. Layout test for SPEC Section 2 execution-root tree.</p>
+<p>4. Package-layout test proving flat package folders and required/expected subfolders.</p>
+<p>5. Deliverable-layout test proving <code>1_Working/{DEL-ID}_{DelLabel}/</code> placement and minimum PREPARATION fileset.</p>
+<p>6. Idempotence test proving rerun preservation for existing directories and files.</p>
+<p>7. Fail-fast conflict test proving stage, target path, and created path inventory are reported.</p>
+<p>8. Path-policy test proving writes remain under the active working root and do not target the instruction root.</p>
+<p>9. PREPARATION compatibility test proving result summaries identify blockers before downstream TASK execution.</p>
+<p>10. Parser-boundary test proving unsupported decomposition table shapes produce compatibility issues rather than guessed package or deliverable records.</p>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required or expected artifacts:</p>
+<ul>
+<li>- Scaffold parser.</li>
+<li>- <code>INIT.md</code> creation/validation behavior.</li>
+<li>- <code>_Coordination/_COORDINATION.md</code> creation/validation behavior.</li>
+<li>- Package and deliverable folder creation behavior.</li>
+<li>- Idempotence tests.</li>
+<li>- Fail-fast recovery diagnostics.</li>
+<li>- API contract notes for <code>/api/harness/scaffold</code>.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-014-assumptions-and-tbds">CLM-014 — Assumptions and TBDs</h3>
+<h5 id="assumptions-and-tbds">Assumptions and TBDs</h5>
+<table><tbody>
+<tr><td>Item</td><td>Status</td></tr>
+<tr><td>Exact <code>INIT.md</code> content schema</td><td>TBD; sources identify required presence but not a complete content template.</td></tr>
+<tr><td>Exact <code>_COORDINATION.md</code> content schema for scaffold output</td><td>TBD; sources identify required presence and coordination vocabulary, but not a complete content template.</td></tr>
+<tr><td>Exact decomposition parser grammar</td><td>TBD; deliverable scope identifies decomposition markdown parsing, but implementation grammar is not specified in authoritative sources.</td></tr>
+<tr><td>C-001 parser grammar disposition</td><td>Converted to explicit support-boundary requirement and fixture expectation; complete grammar remains TBD pending implementation evidence.</td></tr>
+<tr><td>F-001 INIT schema disposition</td><td>Already covered as a named TBD; sources require <code>INIT.md</code> presence but do not provide a complete content schema.</td></tr>
+<tr><td>F-002 coordination schema disposition</td><td>Already covered as a named TBD; sources require <code>_Coordination/_COORDINATION.md</code> presence and coordination vocabulary but do not provide a complete template.</td></tr>
+<tr><td>F-003 idempotence disposition</td><td>Incorporated by requiring rerun tests to preserve existing file contents, not only paths.</td></tr>
+<tr><td>E-001 scaffold API response disposition</td><td>Incorporated as a semantic response-field contract with exact field names left TBD.</td></tr>
+<tr><td>Existing code surface</td><td>ASSUMPTION: existing frontend scaffold service and tests may be reusable, but code files are not listed as authoritative references for this deliverable kit.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — The accepted v3.2 decomposition shape produces the SPEC-conformant flat execution tree and PREPARATION fileset, preserves existing content on rerun, reports unsupported shapes and failures without guessing, and confines writes to the working root.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-07-02-execution-root-scaffolding-from-decomposition">CLM-015 — Procedure: DEL-07-02 Execution Root Scaffolding from Decomposition</h3>
+<h4 id="procedure-del-07-02-execution-root-scaffolding-from-decomposition">Procedure: DEL-07-02 Execution Root Scaffolding from Decomposition</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational workflow for implementing and verifying execution-root scaffolding from decomposition markdown for DEL-07-02. The procedure describes how to produce the backend feature slice and how the scaffold operation should behave when invoked.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Source</td></tr>
+<tr><td>Accepted decomposition markdown path is available.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code>; decomposition downstream execution notes</td></tr>
+<tr><td>Working root has been selected and validated.</td><td><code>docs/PRD.md</code> Section 7.3; <code>docs/SPEC.md</code> Section 1/2 context</td></tr>
+<tr><td>Instruction root and working root are distinct.</td><td><code>docs/DIRECTIVE.md</code> Section 2.7; <code>docs/CONTRACT.md</code> K-ROOT-1</td></tr>
+<tr><td>Scaffold operation target is under the active working root.</td><td><code>docs/CONTRACT.md</code> K-ROOT-3 and K-PATH-2</td></tr>
+<tr><td>Required source contracts are available.</td><td><code>_REFERENCES.md</code> REF-001 through REF-007; REF-006 warning noted</td></tr>
+<tr><td>Declared upstream dependencies for this deliverable.</td><td>TBD; <code>_DEPENDENCIES.md</code> declares no accepted upstream edges yet. X-001 disposition: keep this as an explicit readiness blocker until accepted upstream edges or a human ruling are available.</td></tr>
+</tbody></table>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the active decomposition reference.</p>
+<ul>
+<li>- Verify the operator-provided decomposition path resolves to the accepted v3.2 SOFTWARE_DECOMP working surface.</li>
+<li>- Preserve decomposition-derived IDs and names in scaffold output.</li>
+<li>- Source: decomposition downstream execution notes; <code>docs/CONTRACT.md</code> K-ID-1.</li>
+</ul>
+<p>2. Validate the target working root.</p>
+<ul>
+<li>- Confirm the root is absolute, accessible, and not inside the instruction root.</li>
+<li>- Reject scaffold writes outside the active working root.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> K-ROOT-1 through K-ROOT-3; <code>docs/PRD.md</code> NFR-005 and NFR-006.</li>
+</ul>
+<p>3. Parse decomposition package and deliverable rows.</p>
+<ul>
+<li>- Extract package ID, package name, deliverable ID, deliverable name, type, description, anticipated artifacts, scope items, objectives, and context envelope where present.</li>
+<li>- If a required value is missing, emit <code>TBD</code> or a typed compatibility issue rather than inventing it.</li>
+<li>- Treat the accepted v3.2 SOFTWARE_DECOMP package and deliverable table shape as the initial supported parser fixture boundary; unsupported markdown shapes should produce compatibility issues.</li>
+<li>- Source: decomposition DEL-07-02 row; <code>docs/CONTRACT.md</code> K-INVENT-1.</li>
+</ul>
+<p>4. Create or validate execution-root tool roots.</p>
+<ul>
+<li>- Ensure <code>INIT.md</code> and the SPEC-listed tool roots exist or are validated.</li>
+<li>- Ensure <code>_Coordination/_COORDINATION.md</code> exists or is validated.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 2; <code>docs/PRD.md</code> Section 7.3.</li>
+</ul>
+<p>5. Create or validate package folders.</p>
+<ul>
+<li>- Use <code>{PKG-ID}_{Sanitize(PackageName)}/</code>.</li>
+<li>- Create or validate required/expected package subfolders, especially <code>1_Working/</code>.</li>
+<li>- Do not create nested package layers.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 2.1; <code>docs/CONTRACT.md</code> K-HIER-1.</li>
+</ul>
+<p>6. Create or validate deliverable folders.</p>
+<ul>
+<li>- Place deliverables under <code>{PKG-ID}_{PkgLabel}/1_Working/{DEL-ID}_{DelLabel}/</code>.</li>
+<li>- Seed the minimum PREPARATION fileset for new deliverables.</li>
+<li>- Preserve existing directories and files on rerun.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 3.1; <code>docs/PRD.md</code> Section 7.3.</li>
+</ul>
+<p>7. Seed lifecycle state.</p>
+<ul>
+<li>- New deliverable <code>_STATUS.md</code> files should represent <code>OPEN</code> scaffold state.</li>
+<li>- Do not perform later lifecycle transitions as part of this scaffold slice.</li>
+<li>- Source: <code>docs/SPEC.md</code> Section 4; <code>docs/CONTRACT.md</code> K-STATUS-1.</li>
+</ul>
+<p>8. Return scaffold result diagnostics.</p>
+<ul>
+<li>- Report execution root, decomposition path, package count, deliverable count, created directory/file inventory, already-existing path/file indicators, layout validation, PREPARATION compatibility, and issue count.</li>
+<li>- On failure, report fail-fast stage, target path, and created path inventory.</li>
+<li>- Source: <code>docs/PRD.md</code> Section 7.3.</li>
+</ul>
+<p>9. Verify with tests.</p>
+<ul>
+<li>- Run unit tests for parser, layout creation, idempotence, fail-fast conflict handling, and path policy.</li>
+<li>- Run API route tests for <code>POST /api/harness/scaffold</code>.</li>
+<li>- Source: <code>docs/PRD.md</code> FR-045 through FR-048, FR-064; NFR-011.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td><td>Requirement Link</td></tr>
+<tr><td>Execution-root layout</td><td><code>INIT.md</code>, flat package folders, <code>_Coordination/_COORDINATION.md</code>, and tool roots exist.</td><td>DEL-07-02-REQ-001, DEL-07-02-REQ-006</td></tr>
+<tr><td>Package flatness</td><td>Package folders are not nested and use <code>PKG-XX_Label</code> or <code>PKG-XXX_Label</code> structure.</td><td>DEL-07-02-REQ-002</td></tr>
+<tr><td>Deliverable placement</td><td>Deliverables are under each package <code>1_Working/</code> folder with valid DEL prefixes.</td><td>DEL-07-02-REQ-003</td></tr>
+<tr><td>Minimum fileset</td><td>New deliverables include <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, <code>_REFERENCES.md</code>, and <code>_SEMANTIC.md</code>.</td><td>DEL-07-02-REQ-004</td></tr>
+<tr><td>Status baseline</td><td>New scaffolded deliverables start at <code>OPEN</code>.</td><td>DEL-07-02-REQ-005</td></tr>
+<tr><td>Idempotence</td><td>Rerun preserves existing paths/files and reports already-existing content without destructive rewrite.</td><td>DEL-07-02-REQ-007</td></tr>
+<tr><td>Fail-fast recovery</td><td>Filesystem conflicts return stage, target path, and created paths.</td><td>DEL-07-02-REQ-008</td></tr>
+<tr><td>API route</td><td><code>POST /api/harness/scaffold</code> invokes scaffold behavior and returns summary payload.</td><td>DEL-07-02-REQ-009</td></tr>
+<tr><td>Path policy</td><td>Writes outside active working root and instruction-root writes are rejected.</td><td>DEL-07-02-REQ-011</td></tr>
+<tr><td>Parser boundary</td><td>Accepted v3.2 SOFTWARE_DECOMP fixtures parse; unsupported table shapes return compatibility issues.</td><td>DEL-07-02-REQ-013</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Implementation should leave or update these records:</p>
+<ul>
+<li>- Source code for scaffold parser/service and route integration.</li>
+<li>- Unit and API test results for scaffold behavior.</li>
+<li>- Scaffold result payload examples or fixtures.</li>
+<li>- PREPARATION compatibility diagnostics.</li>
+<li>- Any human rulings for <code>INIT.md</code> or <code>_COORDINATION.md</code> content templates.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-021-open-items">CLM-021 — Open Items</h3>
+<h5 id="open-items">Open Items</h5>
+<table><tbody>
+<tr><td>Item</td><td>Needed Ruling or Evidence</td></tr>
+<tr><td><code>INIT.md</code> exact content schema</td><td>Human or source-backed template needed.</td></tr>
+<tr><td><code>_COORDINATION.md</code> exact scaffold template</td><td>Human or source-backed template needed.</td></tr>
+<tr><td>Parser grammar for decomposition markdown variants</td><td>Implementation decision and tests needed; current sources specify behavior but not full grammar.</td></tr>
+<tr><td>Scaffold API response field names</td><td>Implementation decision needed; current sources define response semantics for validation summaries, PREPARATION compatibility, issue counts, and fail-fast diagnostics but not exact field names.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Run the source-defined decomposition parser, scaffold API, layout, PREPARATION, idempotence, fail-fast recovery, path-policy, and unsupported-shape tests and review the resulting tree and diagnostics.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-07-02-execution-root-scaffolding-from-decomposition">CLM-022 — Guidance: DEL-07-02 Execution Root Scaffolding from Decomposition</h3>
+<h4 id="guidance-del-07-02-execution-root-scaffolding-from-decomposition">Guidance: DEL-07-02 Execution Root Scaffolding from Decomposition</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to turn accepted SOFTWARE_DECOMP markdown into a filesystem execution root that downstream Chirality workflows can inspect, validate, and continue. Its value is not the folder creation alone; it is the preservation of project truth as explicit files under the working root with stable package and deliverable identity.</p>
+<p>Sources: <code>docs/DIRECTIVE.md</code> Sections 1 and 2.1; <code>docs/CONTRACT.md</code> K-FS-1 and K-ID-1; decomposition DEL-07-02 row.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Filesystem truth first</td><td>Treat created files and folders under the working root as the project substrate. Runtime state, chats, and SDK transcripts do not replace governed project files.</td><td><code>docs/DIRECTIVE.md</code> Section 2.1; <code>docs/CONTRACT.md</code> K-FS-1</td></tr>
+<tr><td>Stable identifiers over path labels</td><td>Preserve package IDs and deliverable IDs even if labels or paths later change.</td><td><code>docs/CONTRACT.md</code> K-ID-1 and K-PATH-1</td></tr>
+<tr><td>Flat hierarchy</td><td>Keep the project hierarchy as packages containing deliverables; do not add phases or nested packages inside the scaffold output.</td><td><code>docs/CONTRACT.md</code> K-HIER-1; <code>docs/SPEC.md</code> Section 2.1</td></tr>
+<tr><td>Root separation</td><td>Enforce working-root containment and avoid instruction-root mutation during scaffold operations.</td><td><code>docs/DIRECTIVE.md</code> Section 2.7; <code>docs/CONTRACT.md</code> K-ROOT-1 through K-ROOT-3</td></tr>
+<tr><td>Idempotent recovery</td><td>Preserve existing paths on rerun and make partial failure recovery explicit through created-path inventories and stage diagnostics.</td><td><code>docs/PRD.md</code> Section 7.3; <code>docs/PRD.md</code> NFR-011</td></tr>
+<tr><td>Lifecycle compatibility</td><td>Seed <code>_STATUS.md</code> as the canonical lifecycle file so later status APIs and human gates operate on a consistent contract.</td><td><code>docs/SPEC.md</code> Section 4; <code>docs/CONTRACT.md</code> K-STATUS-1</td></tr>
+<tr><td>Unknowns stay visible</td><td>Missing values, parser uncertainties, or source gaps should produce <code>TBD</code>, diagnostics, or compatibility issues rather than invented project truth.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1 and K-CONFLICT-1</td></tr>
+</tbody></table>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Scaffold output is a boundary between decomposition truth and execution working state. The scaffold service should copy or reference the accepted decomposition snapshot without treating generated folders as a replacement for the decomposition authority.</li>
+<li>- PREPARATION compatibility should be treated as an operator-facing readiness check, not as proof that downstream deliverables are complete.</li>
+<li>- The scaffold operation should avoid over-owning adjacent responsibilities. Metadata contract validation belongs primarily to DEL-07-03, lifecycle transition enforcement to DEL-07-04, and <code>Dependencies.csv</code> v3.1 behavior to DEL-07-05.</li>
+<li>- ASSUMPTION: Because DEL-07-02 is a backend feature slice with multiple file outputs, tests should emphasize fixture coverage and recovery diagnostics more than UI presentation.</li>
+</ul>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Trade-off</td><td>Recommended Direction</td></tr>
+<tr><td>Strict failure vs. best-effort creation</td><td>Best-effort creation can leave ambiguous partial state; strict fail-fast behavior may require reruns.</td><td>Prefer fail-fast with created-path inventory, matching PRD acceptance.</td></tr>
+<tr><td>Preserve existing files vs. normalize on rerun</td><td>Rewriting existing files could repair drift but risks destroying human or agent work.</td><td>Preserve existing paths/files during scaffold rerun; report compatibility issues separately.</td></tr>
+<tr><td>Generated defaults vs. source fidelity</td><td>Rich defaults make folders look complete but can invent unsupported values.</td><td>Seed required files conservatively and use <code>TBD</code> where source data is missing.</td></tr>
+<tr><td>Route-owned behavior vs. service-owned behavior</td><td>Fat routes are easy to wire but hard to test and reuse.</td><td>Keep <code>/api/harness/scaffold</code> thin and place behavior in a reusable scaffold service, consistent with PRD route principles.</td></tr>
+<tr><td>Broad markdown parser vs. bounded fixture support</td><td>A broad parser may appear flexible but can silently reinterpret unsupported decomposition shapes.</td><td>Start with the accepted v3.2 SOFTWARE_DECOMP package/deliverable table shape, then report unsupported shapes as compatibility issues until additional grammars are source-backed.</td></tr>
+</tbody></table>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<h3 id="clm-028-expected-root-shape">CLM-028 — Expected root shape</h3>
+<h6 id="expected-root-shape">Expected root shape</h6>
+<p>```text</p>
+<p>{EXECUTION_ROOT}/</p>
+<p>├── INIT.md</p>
+<p>├── PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/</p>
+<p>│   └── 1_Working/</p>
+<p>│       └── DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/</p>
+<p>├── _Coordination/</p>
+<p>│   └── _COORDINATION.md</p>
+<p>└── _Decomposition/</p>
+<p>```</p>
+<p>Source: <code>docs/SPEC.md</code> Sections 2 and 3.</p>
+<h3 id="clm-029-expected-rerun-posture">CLM-029 — Expected rerun posture</h3>
+<h6 id="expected-rerun-posture">Expected rerun posture</h6>
+<p>On rerun, an existing package folder, deliverable folder, or metadata file should be preserved unless a separately authorized workflow owns migration or repair. The scaffold response should report what already existed, what was newly created, and what prevents PREPARATION compatibility.</p>
+<p>Source: <code>docs/PRD.md</code> Section 7.3 and NFR-011.</p>
+<p>P3 disposition: F-003 is incorporated here by making file-content preservation explicit, not only path preservation.</p>
+<h3 id="clm-030-dependency-readiness-posture">CLM-030 — Dependency-readiness posture</h3>
+<h6 id="dependency-readiness-posture">Dependency-readiness posture</h6>
+<p>Declared upstream dependencies remain unresolved for this deliverable. Treat <code>_DEPENDENCIES.md</code> as the current dependency evidence container and do not infer accepted upstream closure from extracted rows alone.</p>
+<p>Source: <code>_DEPENDENCIES.md</code> Declared Upstream and Extracted Dependency Register; <code>docs/CONTRACT.md</code> K-DEP-1.</p>
+<p>P3 disposition: X-001 is already covered in Procedure prerequisites and reinforced here as an explicit readiness posture.</p>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Task brief</td><td>All documents using PRD citations</td><td>Use PRD with explicit warning.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-024 SOW-025 OBJ-006</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

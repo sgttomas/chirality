@@ -1,0 +1,10 @@
+{
+  "run_id":"SOW-STAGE1-20260712",
+  "version":3,
+  "supersedes":"WORK_GRAPH_v2.json",
+  "human_authority":"amendments/RUN/v3.md",
+  "change":"Replace REVIEW-CHECKLIST with HELPS-CHECKLIST deterministic generator and REVIEW compatibility",
+  "nodes_removed":["REVIEW-CHECKLIST"],
+  "nodes_added":[{"id":"HELPS-CHECKLIST","owner":"HELPS_HUMANS","depends_on":["APP-FROZEN","PIP-FROZEN"],"writes":"root candidate tool/instructions/governance only","fan_in":"RECON-FANIN"}],
+  "stage2_and_canon_denials":"unchanged"
+}

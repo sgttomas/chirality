@@ -1,0 +1,89 @@
+diff --git a/docs/SPEC.md b/docs/SPEC.md
+--- a/docs/SPEC.md
++++ b/docs/SPEC.md
+@@ -193,10 +193,11 @@ Each deliverable occupies a folder at:
+ | `_CONTEXT.md` | MUST | PREPARATION | Identity, decomposition pointer, traceability |
+ | `_DEPENDENCIES.md` | MUST | PREPARATION | Dependency summary (human declarations + agent extractions) |
+ | `_REFERENCES.md` | MUST | PREPARATION | Source document pointers |
+-| `Datasheet.md` | MUST | TASK+four-documents | Key parameters and structured metadata |
+-| `Specification.md` | MUST | TASK+four-documents | Technical requirements and scope definition |
+-| `Guidance.md` | MUST | TASK+four-documents | Design guidance, rationale, and best practices |
+-| `Procedure.md` | MUST | TASK+four-documents | Step-by-step execution workflow |
++| `ScopeOfWork.md` | MUST* | TASK+scope-of-work | Canonical PROJECT/SOFTWARE production contract selected by schema marker |
++| `Datasheet.md` | MAY* | TASK+four-documents (legacy compatibility) | Legacy key parameters and structured metadata |
++| `Specification.md` | MAY* | TASK+four-documents (legacy compatibility) | Legacy technical requirements and scope definition |
++| `Guidance.md` | MAY* | TASK+four-documents (legacy compatibility) | Legacy design guidance, rationale, and best practices |
++| `Procedure.md` | MAY* | TASK+four-documents (legacy compatibility) | Legacy step-by-step execution workflow |
+ | `Dependencies.csv` | SHOULD | TASK+dependency-extract | Structured dependency register (v3.1 schema) |
+ | `_MEMORY.md` | SHOULD | PREPARATION | Working memory (shared by WORKING_ITEMS and deliverable-local task agents) |
+ | `_SEMANTIC.md` | MAY | TASK+semantic-matrix-build | Semantic lens with derivation work |
+@@ -205,7 +206,33 @@ Each deliverable occupies a folder at:
+ 
+ **Minimum viable fileset (PREPARATION):** `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md` (placeholder).
+ 
+-**Document kit (TASK+four-documents):** `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`.
++**Production contract:** At lifecycle state `INITIALIZED` or later, exactly one
++valid production format is required. `SOW_V1` is one valid `ScopeOfWork.md`.
++`LEGACY_FOUR_DOC` is the complete four-file kit retained only for an existing
++unconverted deliverable during the authorized transition. The `MUST*` and
++`MAY*` marks above are resolved by this exclusive format rule, not as five
++simultaneous file requirements.
++
++### 2.2 Production Format Resolution
++
++| Files present | State | Validity |
++|---|---|---|
++| Valid `ScopeOfWork.md` only | `SOW_V1` | Canonical |
++| Complete four-document kit only | `LEGACY_FOUR_DOC` | Transitional compatibility for an existing unconverted deliverable |
++| Both complete formats | `MIGRATION_DUAL` only in an isolated conversion workspace with exact accepted migration authority; otherwise `AMBIGUOUS` | Never an accepted deliverable baseline |
++| Partial legacy kit, invalid `ScopeOfWork.md`, or neither at or beyond `INITIALIZED` | `INVALID` | Invalid |
++
++New PROJECT/SOFTWARE deliverables use `SOW_V1`. A successful legacy conversion
++is prepared and verified in isolation, then integrated as one atomic
++replacement that adds `ScopeOfWork.md` and removes all four legacy production
++files. Git history and the migration receipt preserve the source basis. No
++accepted commit contains two competing canonical formats.
++
++Format migration is lifecycle-neutral and leaves `_STATUS.md` byte-identical.
++An `ISSUED` deliverable additionally requires an explicit human-approved
++administrative representation-replacement record bound to its accepted basis
++and source hashes. Any semantic change fails format migration and proceeds only
++through the governed scope-change process.
+ 
+ ---
+ 
+@@ -234,7 +261,7 @@ OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
+ | State | Meaning | Typical Trigger |
+ |---|---|---|
+ | `OPEN` | Folder exists, no content yet | PREPARATION creates folder |
+-| `INITIALIZED` | Draft documents generated | TASK+four-documents completes document kit |
++| `INITIALIZED` | Selected production contract exists and validates | TASK+scope-of-work completes `SOW_V1`; retained legacy deliverables preserve their existing state |
+ | `SEMANTIC_READY` | Semantic lens generated | TASK+semantic-matrix-build writes `_SEMANTIC.md` |
+ | `IN_PROGRESS` | Active human + agent work | Human or WORKING_ITEMS begins work |
+ | `CHECKING` | Frozen candidate under review against a declared basis | Human declares the checking basis and freezes the candidate (entry conditions: §3.4) |
+@@ -247,8 +274,8 @@ The `SEMANTIC_READY` state is optional in the lifecycle; a working root MAY omit
+ 
+ | Transition | Authorized Actor |
+ |---|---|
+ | `→ OPEN` | PREPARATION |
+-| `OPEN → INITIALIZED` | TASK+four-documents |
++| `OPEN → INITIALIZED` | TASK+scope-of-work after `SOW_V1` validation |
+ | `INITIALIZED → SEMANTIC_READY` | TASK+semantic-matrix-build |
+ | `INITIALIZED → IN_PROGRESS` | Human, WORKING_ITEMS (when semantic step is skipped) |
+ | `SEMANTIC_READY → IN_PROGRESS` | Human, WORKING_ITEMS |
+@@ -819,11 +846,10 @@ A deliverable folder is valid when:
+ - [ ] Contains `_DEPENDENCIES.md`
+ - [ ] Contains `_REFERENCES.md`
+ 
+-A deliverable folder is **initialized** (state >= `INITIALIZED`) when it additionally contains:
+-- [ ] `Datasheet.md`
+-- [ ] `Specification.md`
+-- [ ] `Guidance.md`
+-- [ ] `Procedure.md`
++A deliverable folder is **initialized** (state >= `INITIALIZED`) when it
++additionally resolves to exactly one valid production format under §2.2:
++`SOW_V1`, or `LEGACY_FOUR_DOC` during the authorized transition. New
++deliverables must resolve to `SOW_V1`.
+ 
+ A deliverable folder is **dependency-tracked** when it additionally contains:
+ - [ ] `Dependencies.csv` with valid v3.1 schema headers

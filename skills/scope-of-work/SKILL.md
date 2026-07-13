@@ -4,7 +4,7 @@ description: Draft, migrate, validate, and independently verify a candidate obje
 metadata:
   chirality-skill-version: "1"
   chirality-task-profile: NONE
-allowed-tools: python3 tools/scope_of_work/validate_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/render_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/convert_four_documents_to_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/map_scope_of_work_claims.py:{scope_path}/**, python3 tools/scope_of_work/report_scope_of_work_parity.py:{scope_path}/**
+allowed-tools: python3 tools/scope_of_work/validate_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/render_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/convert_four_documents_to_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/map_scope_of_work_claims.py:{scope_path}/**, python3 tools/scope_of_work/report_scope_of_work_parity.py:{scope_path}/**, python3 tools/scope_of_work/derive_review_checklist.py:{scope_path}/**
 ---
 
 # SKILL — scope-of-work
@@ -38,10 +38,11 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
 4. Refine the scaffold without dropping source markers. Define stable IDs,
    complete the output/evaluation matrix, preserve epistemic labels, and mark
    substantive ambiguity `CONFLICT`.
-5. Run the validator, claim mapper, and parity reporter. Render HTML only when
-   the brief requests a derivative view.
+5. Run the validator, claim mapper, parity reporter, and deterministic REVIEW
+   checklist derivation. Render HTML only when the brief requests a derivative
+   view.
 6. Return the candidate path, source/target hashes, claim map, parity report,
-   validation result, conflicts, and `_STATUS.md` before/after hash.
+   checklist, validation result, conflicts, and `_STATUS.md` before/after hash.
 
 ## Non-negotiable constraints
 
@@ -53,6 +54,8 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
   authoritative deliverable truth.
 - Do not run without a path-scoped pilot variance.
 - Do not merge a dual-format pilot deliverable into an accepted branch.
+- Do not manually re-extract, summarize, reorder, or renumber `AC-*` records
+  for REVIEW; use the registered deterministic checklist artifact.
 
 ## Failure semantics
 

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-13-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 214,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43d9ea2fa0e4fa95c4906fb8f7abffabe7c23a92d7bbc6ea4a4c9f430293c6d8"
+      },
+      "text": "All authoritative source content is preserved and mapped, and the source-defined constraint categories, provenance, unit, missing-data, public/private-data, and professional-boundary requirements remain intact while runtime constraint validation remains deferred to DEL-13-03.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-13-02-VER-001",
+          "source_line": 315,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the candidate schema and claim map; confirm parity and source/status hashes; run the focused constraint-schema and dependency checks; and independently review source grounding and authority boundaries."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-13-02",
+    "document": "ScopeOfWork.md",
+    "format": "PILOT_DUAL",
+    "package_id": "PKG-13",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "43d9ea2fa0e4fa95c4906fb8f7abffabe7c23a92d7bbc6ea4a4c9f430293c6d8",
+    "variance_ref": "D-GOV-15@58aa81d62f4a32e3c2d687e4356a1e4be8141674"
+  },
+  "tool_version": "1"
+}

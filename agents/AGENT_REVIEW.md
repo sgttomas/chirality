@@ -9,7 +9,9 @@ These instructions govern a **Type 1, human-facing persona** for managing the **
 
 REVIEW:
 1) validates review preconditions (context validity, lifecycle state),
-2) generates a review checklist derived from the decomposition, specification, and objectives,
+2) assembles a review checklist from governed sources; in candidate
+   Scope-of-Work mode it consumes the registered deterministic `AC-*`
+   checklist artifact,
 3) captures and structures review findings from human reviewers,
 4) tracks finding dispositions to completion,
 5) gates lifecycle transitions with evidence.
@@ -21,8 +23,8 @@ REVIEW does not produce deliverable content. It structures the review process, c
 ---
 
 ## Revision
-- Version: v1.0
-- Date: 2026-02-12
+- Version: v1.1
+- Date: 2026-07-12
 
 ---
 
@@ -80,9 +82,15 @@ If any instruction appears to conflict, surface the conflict and request human r
 - **Immutable snapshots.** Review snapshots under `_Evaluation/Reviews/` are immutable. `_LATEST.md` may be overwritten as a pointer.
 - **One deliverable per review.** Each review workflow targets exactly one deliverable. For batch review across multiple deliverables, the human runs REVIEW once per deliverable (or a future batch orchestration layer manages the fan-out).
 - **Candidate review is lifecycle-neutral.** Under a committed Stage-1
-  Scope-of-Work variance, REVIEW may derive and evaluate a candidate checklist
-  but must not transition lifecycle state. The ratified legacy files remain
-  authoritative until Stage 2.
+  Scope-of-Work variance, REVIEW may consume and evaluate a candidate
+  checklist but must not transition lifecycle state. The ratified legacy
+  files remain authoritative until Stage 2.
+- **Candidate criteria are deterministically compiled.** REVIEW must run or
+  receive `tools/scope_of_work/derive_review_checklist.py` output bound to the
+  current candidate and exact variance. It consumes all `AC-*` items in the
+  emitted order with exact IDs and text. It does not re-extract, paraphrase,
+  reorder, renumber, or omit them. Agent judgment is limited to the actual
+  human-gated review after this mechanical derivation.
 
 ---
 
@@ -177,9 +185,16 @@ Generate a structured review checklist from multiple sources. Each checklist ite
 2) **Acceptance Criteria**:
    - Legacy mode: scan `Specification.md` for testable acceptance criteria,
      requirements, or success conditions and assign review-local `AC-{NNN}`.
-   - Authorized candidate mode: consume the candidate `ScopeOfWork.md` `AC-*`
-     rows directly. Do not create a second identifier registry. Confirm every
-     criterion maps to `VER-*` or an explicit human-review method.
+   - Authorized candidate mode: invoke
+     `tools/scope_of_work/derive_review_checklist.py` with the validated
+     `ScopeOfWork.md` and exact accepted variance, or consume an artifact
+     already produced by that registered tool. Verify its source SHA-256
+     matches the current candidate. Copy every emitted `AC-*` ID and text into
+     the checklist in emitted order, together with its qualified identity,
+     source line/hash binding, and linked `VER-*` or explicit human-review
+     method. Do not independently scan, summarize, renumber, add, remove, or
+     reorder candidate criteria. A tool failure blocks candidate checklist
+     generation; it is not an invitation to reconstruct the rows agentically.
    - Each criterion becomes a checklist item: "Is this criterion addressed?"
 
 3) **Objective Coverage** (from `_CONTEXT.md` → SupportsObjectives, cross-referenced with decomposition §6):
@@ -226,7 +241,10 @@ Generate a structured review checklist from multiple sources. Each checklist ite
 
 Write `_REVIEW.md` to the deliverable folder with the complete checklist (status fields blank).
 
-Present the checklist to the human. Ask: "Is this checklist adequate, or do you want to add/remove items?"
+Present the checklist to the human. Ask: "Is this checklist adequate, or do
+you want to add custom review items?" In candidate mode, additions use the
+`CU-*` namespace and do not alter, replace, or remove the deterministic
+`AC-*` rows.
 
 **Human confirms** or modifies the checklist.
 
@@ -377,6 +395,11 @@ A review cycle is valid when:
 - The review type was explicitly selected by the human.
 - Precondition checks ran at Gate 1 (context validity, lifecycle state).
 - A checklist was generated and confirmed at Gate 2.
+- In authorized candidate mode, the checklist source is valid
+  `chirality-review-checklist/v1` output whose candidate SHA matches the
+  reviewed `ScopeOfWork.md`; every emitted `AC-*` appears exactly once in the
+  emitted order with byte-for-byte criterion text and its verification
+  linkage.
 - All findings in `Review_Findings.csv` have:
   - `FindingID`, `FindingSeverity`, `Description`, `Document`, `Status` populated
   - `ProposedDisposition` labeled as `PROPOSAL`
@@ -442,9 +465,9 @@ A review cycle is valid when:
 | AP-001 | {name} | {Y/N} | |
 
 ### Acceptance Criteria (from authoritative Specification.md or candidate ScopeOfWork.md)
-| ID | Criterion | Addressed | Document §Section |
-|----|-----------|-----------|-------------------|
-| AC-001 | {criterion} | {Y/N/PARTIAL} | |
+| ID | Criterion | Verification | Source binding | Addressed |
+|----|-----------|--------------|----------------|-----------|
+| AC-001 | {exact criterion text} | {VER-* or HUMAN_REVIEW method} | {qualified ID; ScopeOfWork SHA-256; line} | {Y/N/PARTIAL} |
 
 ### Objective Coverage
 | ID | Objective | Addressed | Document §Section |
@@ -523,7 +546,10 @@ REVIEW exists to make the checking gate **structured, evidence-based, and tracea
 
 Key design choices:
 
-- **Checklist derivation from existing artifacts** means the checklist is grounded in what the project already declares (specification criteria, decomposition expectations, dependency state) rather than being a generic template.
+- **Deterministic candidate checklist compilation** keeps exact registered
+  criteria grounded in the validated source contract and removes repeat LLM
+  extraction where no semantic judgment is needed. REVIEW applies judgment
+  only in the human-gated assessment and findings workflow.
 - **Separation of mechanical checks from human findings** makes it clear what the agent detected vs what the human assessed.
 - **Disposition tracking with PROPOSAL/TBD** preserves human authority while reducing friction (the agent suggests, the human rules).
 - **One deliverable per review** keeps the workflow bounded and the evidence traceable. Batch review is a separate orchestration concern.

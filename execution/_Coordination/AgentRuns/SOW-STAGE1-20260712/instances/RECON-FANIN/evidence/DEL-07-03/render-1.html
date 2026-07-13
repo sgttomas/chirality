@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="6fa7732954b95314176d81045edeb9492405785cf4568acf210968f903cc9ab0">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>6fa7732954b95314176d81045edeb9492405785cf4568acf210968f903cc9ab0</code>.</p>
+<h1 id="scope-of-work-del-07-03">Scope of Work — DEL-07-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This candidate defines <code>DEL-07-03</code> in service of project scope [SOW-026] and package objectives [OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Metadata scanner and document-kit contract implementation with evidence for required, baseline, optional, and prohibited deliverable-local file handling.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-03-deliverable-metadata-and-document-kit-contracts">CLM-001 — Datasheet: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h3>
+<h4 id="datasheet-del-07-03-deliverable-metadata-and-document-kit-contracts">Datasheet: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-03</td><td><code>_CONTEXT.md</code> / Identity</td></tr>
+<tr><td>Deliverable name</td><td>Deliverable Metadata and Document Kit Contracts</td><td><code>_CONTEXT.md</code> / Identity</td></tr>
+<tr><td>Package</td><td>PKG-07 Filesystem Execution, Lifecycle, and Dependencies</td><td><code>_CONTEXT.md</code> / Identity; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> / PKG-07</td></tr>
+<tr><td>Decomposition variant</td><td>SOFTWARE_DECOMP v3.2</td><td><code>_CONTEXT.md</code> / Identity</td></tr>
+<tr><td>Responsible party</td><td>TBD</td><td><code>_CONTEXT.md</code> / Identity</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td><td><code>_CONTEXT.md</code> / Identity</td></tr>
+<tr><td>Context envelope</td><td>M</td><td><code>_CONTEXT.md</code> / Identity</td></tr>
+<tr><td>Scope item</td><td>SOW-026</td><td><code>_CONTEXT.md</code> / Traceability; decomposition / SOW mapping</td></tr>
+<tr><td>Objective</td><td>OBJ-006</td><td><code>_CONTEXT.md</code> / Traceability</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary subject</td><td>Scan and validate deliverable metadata files, canonical memory, semantic placeholders, and document kit buckets.</td><td><code>_CONTEXT.md</code> / Deliverable Scope; decomposition / DEL-07-03 row</td></tr>
+<tr><td>Anticipated artifacts</td><td>Metadata scanners; document kit detection; <code>_MEMORY.md</code> rejection tests</td><td><code>_CONTEXT.md</code> / Anticipated Artifacts; decomposition / DEL-07-03 row</td></tr>
+<tr><td>Required metadata files</td><td><code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, <code>_REFERENCES.md</code></td><td><code>docs/PRD.md</code> / Section 10.8; <code>docs/SPEC.md</code> / Section 3.1</td></tr>
+<tr><td>Minimum PREPARATION fileset</td><td>Required metadata files plus <code>_SEMANTIC.md</code> placeholder</td><td><code>docs/PRD.md</code> / Section 10.8; <code>docs/SPEC.md</code> / Section 3.1</td></tr>
+<tr><td>Document kit files</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></td><td><code>docs/PRD.md</code> / Section 10.8; <code>docs/SPEC.md</code> / Section 3.1</td></tr>
+<tr><td>Canonical memory file</td><td><code>MEMORY.md</code></td><td><code>docs/SPEC.md</code> / Section 5.4</td></tr>
+<tr><td>Disabled memory file</td><td><code>_MEMORY.md</code> MUST NOT be created in this project profile.</td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 5.4; <code>docs/PRD.md</code> / Section 10.8</td></tr>
+<tr><td>Optional deliverable files</td><td><code>Dependencies.csv</code>, <code>MEMORY.md</code>, <code>_SEMANTIC_LENSING.md</code>, <code>HASH_VERIFICATION_BYPASS.jsonl</code></td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8</td></tr>
+<tr><td>Lifecycle states</td><td><code>OPEN</code>, <code>INITIALIZED</code>, <code>SEMANTIC_READY</code>, <code>IN_PROGRESS</code>, <code>CHECKING</code>, <code>ISSUED</code></td><td><code>docs/SPEC.md</code> / Section 4.2; <code>docs/TYPES.md</code> / lifecycle state table</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Working-root authority</td><td>Project truth is written under the working root; instruction-root writes are outside ordinary execution.</td><td><code>docs/DIRECTIVE.md</code> / Section 2.7; <code>docs/CONTRACT.md</code> / K-ROOT-1 through K-ROOT-3</td></tr>
+<tr><td>Evidence posture</td><td>Important claims and dependency evidence use source paths; assumptions, proposals, unknowns, and conflicts remain visible.</td><td><code>docs/DIRECTIVE.md</code> / Section 2.5; <code>docs/CONTRACT.md</code> / K-CONFLICT-1</td></tr>
+<tr><td>Lifecycle transition rule</td><td><code>_STATUS.md</code> is canonical; transitions are forward-only unless a human explicitly amends the record.</td><td><code>docs/SPEC.md</code> / Section 4.3; <code>docs/PRD.md</code> / FR-052 and FR-053</td></tr>
+<tr><td>Human gate rule</td><td><code>CHECKING</code> and <code>ISSUED</code> transitions require approval SHA evidence and cannot be authored by agents.</td><td><code>docs/SPEC.md</code> / Section 4.3; <code>docs/CONTRACT.md</code> / K-AUTH-1, K-GATE-1</td></tr>
+<tr><td>Reference hash posture</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> / REF-006 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected construction</td><td>Source</td></tr>
+<tr><td>Metadata scanner</td><td>Detect deliverable folders by valid <code>DEL-XX-YY_Label</code> or <code>DEL-XXX-YY_Label</code> prefix and presence of <code>_STATUS.md</code>; validate required metadata files against SPEC/PRD expectations.</td><td><code>docs/PRD.md</code> / FR-047, FR-048; <code>docs/SPEC.md</code> / Section 3.1</td></tr>
+<tr><td>Document kit detector</td><td>Treat <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> as first-class knowledge buckets.</td><td><code>docs/PRD.md</code> / FR-049; <code>docs/SPEC.md</code> / Section 3.1</td></tr>
+<tr><td>Memory contract validator</td><td>Accept <code>MEMORY.md</code> as canonical when present and reject <code>_MEMORY.md</code> in this project profile.</td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 5.4; <code>docs/PRD.md</code> / Section 10.8</td></tr>
+<tr><td>Semantic placeholder validator</td><td>Recognize <code>_SEMANTIC.md</code> as part of the PREPARATION baseline and <code>_SEMANTIC_LENSING.md</code> as optional semantic analysis narrative.</td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8</td></tr>
+<tr><td>Test coverage</td><td>Metadata scanner, document-kit detection, and <code>_MEMORY.md</code> rejection coverage lives in <code>frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts</code>; project-deliverables route integration is covered by <code>frontend/src/__tests__/api/project/deliverables-route.test.ts</code>.</td><td><code>_CONTEXT.md</code> / Anticipated Artifacts; decomposition / DEL-07-03 row</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td><td>Status</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Evidence, hidden-memory, root-separation posture</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Governance invariants for root, write scope, human gates, conflict surfacing</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Deliverable folder layout, lifecycle, context/dependency/reference/memory contracts</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Deliverable and lifecycle vocabulary</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Local source policy and PKG-07 roadmap context</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Filesystem requirements and deliverable folder layout</td><td>MATCH status in <code>_REFERENCES.md</code> — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context</td><td>MATCH; no deliverable-specific requirements used</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-07-03-deliverable-metadata-and-document-kit-contracts">CLM-007 — Specification: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h3>
+<h4 id="specification-del-07-03-deliverable-metadata-and-document-kit-contracts">Specification: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable covers backend support for scanning and validating deliverable-local filesystem contracts in PKG-07. The covered contracts are deliverable metadata files, canonical memory, semantic placeholders, and four-document kit buckets. Sources: <code>_CONTEXT.md</code> / Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> / DEL-07-03 row.</p>
+<p>In scope:</p>
+<ul>
+<li>- Detect and validate deliverable metadata files against SPEC/PRD file inventory expectations.</li>
+<li>- Detect the four-document kit as first-class knowledge buckets.</li>
+<li>- Validate canonical memory behavior by accepting <code>MEMORY.md</code> and rejecting <code>_MEMORY.md</code> for this project profile.</li>
+<li>- Recognize semantic baseline and optional semantic lens files.</li>
+<li>- Provide test coverage for metadata scanners, document kit detection, and <code>_MEMORY.md</code> rejection.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- UI presentation except scope scan results, per package exclusion. Source: <code>_CONTEXT.md</code> / Package Scope.</li>
+<li>- Status transition enforcement beyond the file-contract checks in this deliverable; that is covered by DEL-07-04. Source: decomposition / PKG-07 rows.</li>
+<li>- Dependency register read/write/lint behavior beyond recognizing optional <code>Dependencies.csv</code>; that is covered by DEL-07-05. Source: decomposition / PKG-07 rows.</li>
+<li>- Human approval, checking, or issued-state authorization. Agents must not author binding approvals. Source: <code>docs/CONTRACT.md</code> / K-AUTH-1 and K-GATE-1.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-07-03-REQ-001</td><td>The scanner shall identify deliverable folders by the valid <code>DEL-XX-YY_Label</code> or <code>DEL-XXX-YY_Label</code> structure and the presence of <code>_STATUS.md</code>.</td><td><code>docs/PRD.md</code> / FR-047; <code>docs/SPEC.md</code> / Section 3</td><td>Unit tests with valid and invalid folder names and missing <code>_STATUS.md</code> fixtures</td></tr>
+<tr><td>DEL-07-03-REQ-002</td><td>The validator shall require <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, and <code>_REFERENCES.md</code> as canonical metadata files for deliverable folders.</td><td><code>docs/PRD.md</code> / Section 10.8; <code>docs/SPEC.md</code> / Section 3.1</td><td>Metadata scanner tests for complete and incomplete metadata sets</td></tr>
+<tr><td>DEL-07-03-REQ-003</td><td>The validator shall recognize <code>_SEMANTIC.md</code> as part of the minimum PREPARATION fileset.</td><td><code>docs/PRD.md</code> / Section 10.8; <code>docs/SPEC.md</code> / Section 3.1</td><td>Fixture with missing <code>_SEMANTIC.md</code> reports the expected baseline warning or failure state; exact severity TBD</td></tr>
+<tr><td>DEL-07-03-REQ-004</td><td>The validator shall detect the document kit files <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> as first-class knowledge buckets.</td><td><code>docs/PRD.md</code> / FR-049 and Section 10.8; <code>docs/SPEC.md</code> / Section 3.1</td><td>Document kit detection tests for all-present, partially-present, and absent kit states</td></tr>
+<tr><td>DEL-07-03-REQ-005</td><td>The validator shall treat <code>MEMORY.md</code> as the canonical deliverable-local working memory file when present.</td><td><code>docs/SPEC.md</code> / Section 5.4; <code>docs/PRD.md</code> / Section 10.8</td><td>Fixture asserting <code>MEMORY.md</code> is accepted as canonical memory</td></tr>
+<tr><td>DEL-07-03-REQ-006</td><td>The validator shall reject <code>_MEMORY.md</code> in this project profile.</td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 5.4; <code>docs/PRD.md</code> / Section 10.8</td><td><code>_MEMORY.md</code> rejection tests</td></tr>
+<tr><td>DEL-07-03-REQ-007</td><td>The validator shall recognize <code>_SEMANTIC_LENSING.md</code> and <code>HASH_VERIFICATION_BYPASS.jsonl</code> as optional deliverable-local files, not required PREPARATION files.</td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8</td><td>Fixture showing optional files do not make a valid folder invalid when absent</td></tr>
+<tr><td>DEL-07-03-REQ-008</td><td>The implementation shall preserve working-root containment and must not mutate the instruction root during ordinary project execution.</td><td><code>docs/DIRECTIVE.md</code> / Section 2.7; <code>docs/CONTRACT.md</code> / K-ROOT-1 through K-ROOT-3; <code>docs/PRD.md</code> / FR-050 and FR-051</td><td>Path containment tests; instruction-root protection fixtures where this scanner accepts paths</td></tr>
+<tr><td>DEL-07-03-REQ-009</td><td>Validation output shall surface source/hash warnings and unsupported or unknown conditions instead of silently treating them as accepted truth.</td><td><code>docs/DIRECTIVE.md</code> / Section 2.5; <code>docs/CONTRACT.md</code> / K-CONFLICT-1; <code>_REFERENCES.md</code> / REF-006</td><td>Fixture or unit test for reference warning reporting; exact output schema TBD</td></tr>
+<tr><td>DEL-07-03-REQ-010</td><td>ASSUMPTION: Scanner outputs should be consumable by <code>/api/working-root/scope</code> or adjacent working-root/project APIs without changing their public route shapes.</td><td><code>docs/SPEC.md</code> / Section 17.2; <code>docs/PLAN.md</code> / current baseline; decomposition / DEL-07-03 anticipated artifacts</td><td>Integration test TBD after implementation location is selected</td></tr>
+</tbody></table>
+<h3 id="clm-010-scanner-finding-contract-p3">CLM-010 — Scanner Finding Contract (P3)</h3>
+<h5 id="scanner-finding-contract-p3">Scanner Finding Contract (P3)</h5>
+<p>This section records the Pass 3 contract shape needed for later implementation without selecting concrete files, public route changes, or final enum names. It responds to B-001, F-001, F-002, X-001, X-002, E-001, and E-002 from the current <code>_SEMANTIC_LENSING.md</code> worklist.</p>
+<h3 id="clm-011-finding-categories">CLM-011 — Finding Categories</h3>
+<h6 id="finding-categories">Finding Categories</h6>
+<table><tbody>
+<tr><td>Category</td><td>Applies to</td><td>Source basis</td><td>Severity posture</td></tr>
+<tr><td>Required metadata</td><td>Missing <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, or <code>_REFERENCES.md</code></td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8</td><td>Must be reported as invalid or blocking; exact enum name TBD</td></tr>
+<tr><td>Preparation baseline</td><td>Missing <code>_SEMANTIC.md</code></td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8</td><td>Must be reported as a baseline issue; exact severity TBD</td></tr>
+<tr><td>Lifecycle-conditioned document kit</td><td>Missing <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, or <code>Procedure.md</code></td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 4.2; <code>docs/PRD.md</code> / FR-049</td><td>Warning or failure depends on lifecycle state; exact state-to-severity map TBD</td></tr>
+<tr><td>Canonical memory</td><td>Present or missing <code>MEMORY.md</code></td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 5.4; <code>docs/PRD.md</code> / Section 10.8</td><td>Should be visible in output; exact requiredness TBD</td></tr>
+<tr><td>Prohibited memory</td><td>Present <code>_MEMORY.md</code></td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 5.4; <code>docs/PRD.md</code> / Section 10.8</td><td>Must be reported as prohibited for this profile</td></tr>
+<tr><td>Optional files</td><td>Present or absent <code>Dependencies.csv</code>, <code>_SEMANTIC_LENSING.md</code>, or <code>HASH_VERIFICATION_BYPASS.jsonl</code></td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8</td><td>Absence must not invalidate a folder solely by itself</td></tr>
+<tr><td>Source/hash warning</td><td>Reference hash status: MATCH, bypass record, or unsupported source state</td><td><code>_REFERENCES.md</code> / REF-006; <code>docs/CONTRACT.md</code> / K-CONFLICT-1</td><td>Must remain visible as warning evidence — reconciled under D-APP-38</td></tr>
+<tr><td>Unknown unsupported condition</td><td>File or state condition not covered by the accepted contract</td><td><code>docs/CONTRACT.md</code> / K-INVENT-1 and K-CONFLICT-1</td><td>Must surface as unknown/TBD, not silently accepted</td></tr>
+</tbody></table>
+<h3 id="clm-012-minimum-result-fields">CLM-012 — Minimum Result Fields</h3>
+<h6 id="minimum-result-fields">Minimum Result Fields</h6>
+<p>Until an implementation-specific schema is accepted, scanner findings should preserve at least: <code>deliverableId</code>, <code>path</code>, <code>category</code>, <code>condition</code>, <code>lifecycleState</code>, <code>severity</code>, <code>sourceRef</code>, <code>evidence</code>, and <code>message</code>. The exact TypeScript type, API response shape, and persisted test fixture names remain TBD. If the scanner output is exposed through <code>/api/working-root/scope</code> or <code>/api/project/deliverables</code>, route shape compatibility must be proven by implementation tests rather than assumed from this document.</p>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td><td>Location</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Primary physical file-layout, lifecycle, and deliverable-local contract source</td><td>Sections 3, 4, 5, 17.2</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Product requirements for filesystem execution and deliverable folder layout</td><td>Sections 8.8, 8.9, 10.8; MATCH status per <code>_REFERENCES.md</code> — reconciled under D-APP-38</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Vocabulary for deliverables, artifacts, lifecycle states, and dependency classes</td><td>Sections 1.2, 1.3, lifecycle state table</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Governance invariants for roots, authority, hidden truth, and conflicts</td><td>K-AUTH, K-ROOT, K-CONFLICT</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Evidence posture, no hidden memory, root separation, provider-neutral governance</td><td>Sections 2.5, 2.6, 2.7</td></tr>
+<tr><td><code>docs/PLAN.md</code></td><td>Roadmap and local source policy</td><td>Control-Plane Boundary; Local Source Policy; PKG-07 roadmap</td></tr>
+</tbody></table>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Required evidence</td><td>Related requirements</td></tr>
+<tr><td>Metadata scanner fixtures</td><td>Passing tests for required metadata files, missing metadata files, and valid/invalid deliverable folder identities</td><td>REQ-001, REQ-002</td></tr>
+<tr><td>Semantic placeholder fixtures</td><td>Test or documented validator behavior for <code>_SEMANTIC.md</code> baseline and optional <code>_SEMANTIC_LENSING.md</code></td><td>REQ-003, REQ-007</td></tr>
+<tr><td>Document kit detection fixtures</td><td>Passing tests for complete, partial, and absent four-document kits</td><td>REQ-004</td></tr>
+<tr><td>Memory contract fixtures</td><td>Passing test accepting <code>MEMORY.md</code> and rejecting <code>_MEMORY.md</code></td><td>REQ-005, REQ-006</td></tr>
+<tr><td>Path/root governance fixtures</td><td>Tests showing project-root containment and instruction-root write protection are preserved where this code handles paths</td><td>REQ-008</td></tr>
+<tr><td>Warning propagation</td><td>Test or review evidence that reference hash warnings and unknowns remain visible</td><td>REQ-009</td></tr>
+<tr><td>API compatibility</td><td>Integration or route-level evidence once implementation binding is selected</td><td>REQ-010</td></tr>
+</tbody></table>
+<h3 id="clm-015-p3-verification-additions">CLM-015 — P3 Verification Additions</h3>
+<h6 id="p3-verification-additions">P3 Verification Additions</h6>
+<table><tbody>
+<tr><td>Verification target</td><td>Required evidence before closure</td><td>Disposition</td></tr>
+<tr><td>B-001 normalized categories and severity names</td><td>Test fixture expectations must use one category/severity vocabulary for required, baseline, recommended, optional, prohibited, warning, and unknown findings.</td><td>Converted to explicit TBD contract above</td></tr>
+<tr><td>F-001 / E-001 scanner output schema</td><td>Accepted implementation type or schema and fixtures covering all finding categories.</td><td>Converted to minimum result fields; final schema TBD</td></tr>
+<tr><td>F-002 severity behavior</td><td>Fixtures for missing <code>_SEMANTIC.md</code>, initialized missing document-kit files, optional-file absence, <code>_MEMORY.md</code>, and source/hash warnings.</td><td>Converted to required verification evidence</td></tr>
+<tr><td>X-001 concrete tests</td><td>Passing test names, fixture paths, and command outputs from the implementation slice.</td><td>Deferred as closure evidence; exact paths/commands TBD</td></tr>
+<tr><td>X-002 warning propagation</td><td>Test or review evidence preserving REF-006 MATCH and unknown unsupported conditions.</td><td>Converted to required verification evidence — reconciled under D-APP-38</td></tr>
+<tr><td>E-002 API consumer contract</td><td>Integration evidence for <code>/api/working-root/scope</code> or an accepted adjacent API, if scanner output is exposed there.</td><td>Reframed as assumption pending implementation proof</td></tr>
+</tbody></table>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required or expected artifacts for closure:</p>
+<ul>
+<li>- Metadata scanner implementation.</li>
+<li>- Document kit detection implementation.</li>
+<li>- <code>_MEMORY.md</code> rejection tests.</li>
+<li>- Test fixtures covering valid, incomplete, optional, and prohibited deliverable-local files.</li>
+<li>- Documentation or inline contract comments for scanner output severity (<code>TBD</code> until implementation schema is selected).</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-017-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-017 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-131 supersedes the integration-test TBD: additive <code>/api/project/deliverables</code> binding exists and is fixture-locked.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The scanner identifies valid deliverable folders, requires canonical metadata, recognizes the semantic baseline and four-document kit, accepts MEMORY.md, rejects _MEMORY.md, treats optional files as non-required, preserves working-root containment, and surfaces warnings and unknown conditions.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-018-procedure-del-07-03-deliverable-metadata-and-document-kit-contracts">CLM-018 — Procedure: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h3>
+<h4 id="procedure-del-07-03-deliverable-metadata-and-document-kit-contracts">Procedure: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-019-purpose">CLM-019 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the working procedure for producing and verifying the DEL-07-03 backend feature slice: scanner/validator support for deliverable metadata files, canonical memory, semantic placeholders, and four-document kit buckets. Sources: <code>_CONTEXT.md</code> / Deliverable Scope; decomposition / DEL-07-03 row.</p>
+<h3 id="clm-020-prerequisites">CLM-020 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status or source</td></tr>
+<tr><td>Accepted decomposition entry for DEL-07-03</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> / DEL-07-03 row</td></tr>
+<tr><td>Governing file layout and lifecycle contract</td><td><code>docs/SPEC.md</code> / Sections 3, 4, 5</td></tr>
+<tr><td>Product requirements for filesystem execution model</td><td><code>docs/PRD.md</code> / Sections 8.8, 8.9, 10.8; MATCH status in <code>_REFERENCES.md</code> — reconciled under D-APP-38</td></tr>
+<tr><td>Vocabulary for deliverables, artifacts, and lifecycle states</td><td><code>docs/TYPES.md</code> / Sections 1.2, 1.3, lifecycle state table</td></tr>
+<tr><td>Governance posture for roots, memory, evidence, and conflicts</td><td><code>docs/DIRECTIVE.md</code> / Sections 2.5, 2.6, 2.7; <code>docs/CONTRACT.md</code> / K-ROOT, K-CONFLICT</td></tr>
+<tr><td>Declared upstream dependencies</td><td>TBD - no declared upstream dependency edges have been accepted by a human. Extracted ACTIVE rows exist in <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code>, but they are not accepted declared dependencies for this prerequisite row. Source: <code>_DEPENDENCIES.md</code> / Declared Upstream and Extracted Dependency Register</td></tr>
+<tr><td>Implementation location</td><td><code>frontend/src/lib/workspace/filesystem.ts</code> (<code>scanDeliverableDocumentKitContract</code>), consumed by the project-deliverables API scan.</td></tr>
+<tr><td>Scanner output schema</td><td>Minimum result fields are recorded in <code>Specification.md</code> / Scanner Finding Contract (P3); final implementation schema remains TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm scope and source contracts.</p>
+<ul>
+<li>- Read DEL-07-03 context, references, and decomposition row.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<p>2. Define fixture cases.</p>
+<ul>
+<li>- Include valid <code>OPEN</code> baseline, initialized four-doc kit, missing metadata file, missing recommended document kit file, prohibited <code>_MEMORY.md</code>, optional <code>_SEMANTIC_LENSING.md</code> absence, and optional <code>HASH_VERIFICATION_BYPASS.jsonl</code> presence.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8.</li>
+</ul>
+<p>3. Implement or update deliverable folder detection.</p>
+<ul>
+<li>- Detect <code>DEL-XX-YY_Label</code> or <code>DEL-XXX-YY_Label</code> deliverable folders with <code>_STATUS.md</code>.</li>
+<li>- Keep path handling within working-root containment.</li>
+<li>- Source basis: <code>docs/PRD.md</code> / FR-047 and FR-050.</li>
+</ul>
+<p>4. Implement metadata file validation.</p>
+<ul>
+<li>- Require <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, and <code>_REFERENCES.md</code>.</li>
+<li>- Recognize <code>_SEMANTIC.md</code> as part of the minimum PREPARATION fileset.</li>
+<li>- Distinguish required, recommended, optional, and prohibited files in output.</li>
+<li>- Use the Pass 3 finding categories in <code>Specification.md</code> as the working vocabulary until an implementation schema is accepted.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / FR-048 and Section 10.8.</li>
+</ul>
+<p>5. Implement document kit detection.</p>
+<ul>
+<li>- Detect <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> as document kit buckets.</li>
+<li>- Tie missing-kit findings to lifecycle state where available: missing kit in <code>OPEN</code> differs from missing kit after <code>INITIALIZED</code>.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> / Section 3.1 and Section 4.2; <code>docs/PRD.md</code> / FR-049.</li>
+</ul>
+<p>6. Implement memory contract checks.</p>
+<ul>
+<li>- Accept <code>MEMORY.md</code> as canonical when present.</li>
+<li>- Reject or flag <code>_MEMORY.md</code> as prohibited for this project profile.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> / Section 3.1 and Section 5.4.</li>
+</ul>
+<p>7. Implement semantic placeholder checks.</p>
+<ul>
+<li>- Recognize <code>_SEMANTIC.md</code> as baseline.</li>
+<li>- Recognize <code>_SEMANTIC_LENSING.md</code> as optional.</li>
+<li>- Source basis: <code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8.</li>
+</ul>
+<p>8. Preserve responsibility boundaries.</p>
+<ul>
+<li>- Do not implement lifecycle transition authorization in this slice except as read/report behavior; DEL-07-04 owns transitions.</li>
+<li>- Do not implement <code>Dependencies.csv</code> parser/writer behavior beyond optional-file recognition; DEL-07-05 owns dependency register behavior.</li>
+<li>- Source basis: decomposition / PKG-07 deliverable rows.</li>
+</ul>
+<p>9. Add tests and run verification.</p>
+<ul>
+<li>- Add metadata scanner tests, document kit detection tests, and <code>_MEMORY.md</code> rejection tests.</li>
+<li>- Add path/root containment fixtures if this code accepts filesystem paths.</li>
+<li>- Include fixture coverage for missing <code>_SEMANTIC.md</code>, initialized folders missing one or more document-kit files, optional-file absence, optional-file presence, prohibited <code>_MEMORY.md</code>, REF-006 MATCH propagation, and unknown unsupported conditions. (reconciled under D-APP-38).</li>
+<li>- Exact test command is TBD until implementation location is selected.</li>
+</ul>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Required metadata files complete</td><td>Validator reports required metadata present</td></tr>
+<tr><td>Required metadata file missing</td><td>Validator reports missing canonical metadata file</td></tr>
+<tr><td><code>_SEMANTIC.md</code> missing from PREPARATION baseline</td><td>Validator reports baseline semantic placeholder issue; severity TBD</td></tr>
+<tr><td>Four document kit complete</td><td>Validator detects all four knowledge buckets</td></tr>
+<tr><td>Four document kit partial</td><td>Validator reports missing bucket names</td></tr>
+<tr><td><code>MEMORY.md</code> present</td><td>Validator accepts canonical memory file</td></tr>
+<tr><td><code>_MEMORY.md</code> present</td><td>Validator rejects or flags prohibited file</td></tr>
+<tr><td><code>_SEMANTIC_LENSING.md</code> absent</td><td>Validator does not fail solely for optional absence</td></tr>
+<tr><td>PRD hash status: MATCH present in references</td><td>Output/report preserves source warning — reconciled under D-APP-38</td></tr>
+<tr><td>Instruction-root path supplied to write-capable path handling</td><td>Write operation is blocked or not available from this slice</td></tr>
+<tr><td>Extracted dependency rows present but declared sections remain TBD</td><td>Procedure treats extracted rows as evidence records, not accepted declared prerequisites</td></tr>
+<tr><td>Scanner result consumed by scope API or adjacent API</td><td>Compatibility is proven by implementation or route-level tests; no route-shape change is assumed here</td></tr>
+</tbody></table>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Maintain the following records for closure:</p>
+<ul>
+<li>- Source references and hash warning notes used by implementation.</li>
+<li>- Scanner/validator implementation diff.</li>
+<li>- Fixture list and test results.</li>
+<li>- Any unresolved <code>TBD</code> values from this procedure, especially implementation location, scanner output schema, and severity policy.</li>
+<li>- Evidence that <code>_MEMORY.md</code> rejection was tested.</li>
+<li>- P3 disposition trace for A-001, B-001, C-001, D-001, D-002, F-001, F-002, X-001, X-002, E-001, and E-002.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Run the metadata-scanner and project-deliverables route fixtures identified by the source kit, then review path-containment, warning-propagation, and API-compatibility evidence against the source requirements.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-07-03-deliverable-metadata-and-document-kit-contracts">CLM-024 — Guidance: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h3>
+<h4 id="guidance-del-07-03-deliverable-metadata-and-document-kit-contracts">Guidance: DEL-07-03 Deliverable Metadata and Document Kit Contracts</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-07-03 exists to make deliverable-local filesystem contracts machine-readable and testable. It turns the SPEC/PRD deliverable folder contract into backend scanner and validator behavior for metadata files, document kit buckets, canonical memory, and semantic placeholders. Sources: <code>_CONTEXT.md</code> / Deliverable Scope; decomposition / DEL-07-03 row; <code>docs/PRD.md</code> / FR-047 through FR-049.</p>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Preserve filesystem truth.</p>
+<ul>
+<li>- The working root is the mutable project-truth location; instruction-root mutation is outside ordinary execution. Source: <code>docs/DIRECTIVE.md</code> / Section 2.7; <code>docs/CONTRACT.md</code> / K-ROOT-1 through K-ROOT-3.</li>
+</ul>
+<p>2. Prefer explicit file contracts over inference.</p>
+<ul>
+<li>- Required metadata files, document kit files, optional files, and prohibited <code>_MEMORY.md</code> are named in SPEC/PRD. Scanner behavior should reflect those named contracts before adding heuristics. Source: <code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8.</li>
+</ul>
+<p>3. Keep lifecycle meaning separate from file presence.</p>
+<ul>
+<li>- <code>OPEN</code> means the minimum viable fileset exists; <code>INITIALIZED</code> means the document kit has been drafted or initialized. The scanner can report presence and state, but DEL-07-04 owns transition enforcement. Source: <code>docs/SPEC.md</code> / Section 4.2 and Section 4.3; decomposition / DEL-07-04 row.</li>
+</ul>
+<p>4. Treat memory strictly.</p>
+<ul>
+<li>- <code>MEMORY.md</code> is canonical deliverable-local working memory; <code>_MEMORY.md</code> is disabled in this project profile. A permissive fallback to <code>_MEMORY.md</code> would contradict the source contract. Source: <code>docs/SPEC.md</code> / Section 5.4; <code>docs/PRD.md</code> / Section 10.8.</li>
+</ul>
+<p>5. Surface uncertainty.</p>
+<ul>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Severity policy is partly source-defined and partly implementation-defined. Required metadata files are clearly required, document kit files are &quot;SHOULD when initialized&quot;, and optional files are not required. Exact scanner severity levels are TBD until the implementation schema is selected. Sources: <code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- The deliverable should not absorb sibling package responsibilities. Status transition authorization belongs to DEL-07-04; dependency register parsing and writing belongs to DEL-07-05. Source: decomposition / PKG-07 rows.</li>
+<li>- If scanner results feed <code>/api/working-root/scope</code> or <code>/api/project/deliverables</code>, keep route shapes stable unless the implementation task explicitly includes API contract changes. Source: <code>docs/SPEC.md</code> / Section 17.2; <code>docs/PLAN.md</code> / Current Baseline.</li>
+<li>- ASSUMPTION: The scanner should return structured findings that distinguish missing required files, missing recommended files, optional-file absence, prohibited-file presence, and source/hash warnings. This follows the source contracts but the exact data model is TBD.</li>
+<li>- Pass 3 normalization keeps the distinction between source-backed categories and implementation-selected enum names. B-001 is addressed by using required metadata, preparation baseline, lifecycle-conditioned document kit, canonical memory, prohibited memory, optional files, source/hash warning, and unknown unsupported condition as the working vocabulary; final enum names remain TBD until implementation.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Strict failure vs warning for missing document kit files</td><td>Treat missing document kit files as a condition tied to lifecycle state: expected when initialized, not necessarily invalid for <code>OPEN</code>. Exact severity TBD.</td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 4.2</td></tr>
+<tr><td>Required vs optional semantic files</td><td><code>_SEMANTIC.md</code> is part of the minimum PREPARATION fileset; <code>_SEMANTIC_LENSING.md</code> is optional.</td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / Section 10.8</td></tr>
+<tr><td>Memory compatibility vs project profile</td><td>Do not add compatibility support for <code>_MEMORY.md</code>; reject it for this profile.</td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 5.4</td></tr>
+<tr><td>Scanner ownership vs lifecycle ownership</td><td>Scanner may report state and file presence; lifecycle transition logic stays with the status API/tool slice.</td><td><code>docs/SPEC.md</code> / Section 4.3; decomposition / DEL-07-04</td></tr>
+<tr><td>Local requirements vs hash warning</td><td>Use local PRD content as requested source material but carry the MATCH status in output evidence.</td><td><code>_REFERENCES.md</code> / REF-006 — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-029-p3-disposition-guidance">CLM-029 — P3 Disposition Guidance</h3>
+<h5 id="p3-disposition-guidance">P3 Disposition Guidance</h5>
+<table><tbody>
+<tr><td>Item</td><td>Guidance disposition</td></tr>
+<tr><td>A-001</td><td>Rejected for this P3 text pass as an implementation binding: implementation location and owning backend surface remain TBD until the implementation slice selects files.</td></tr>
+<tr><td>B-001</td><td>Incorporated as normalized category vocabulary, with exact enum names and severity levels still TBD.</td></tr>
+<tr><td>C-001</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>D-001</td><td>Converted to closure evidence requirements for implementation files, fixtures, and commands; exact paths remain TBD.</td></tr>
+<tr><td>D-002</td><td>Reconciled as current-state language: extracted ACTIVE rows exist, while declared upstream/downstream dependency sections remain unaccepted/TBD.</td></tr>
+<tr><td>F-001</td><td>Incorporated as minimum result-field guidance; final scanner schema remains TBD.</td></tr>
+<tr><td>F-002</td><td>Converted to fixture/severity evidence requirements.</td></tr>
+<tr><td>X-001</td><td>Converted to required implementation test evidence.</td></tr>
+<tr><td>X-002</td><td>Converted to warning-propagation test evidence.</td></tr>
+<tr><td>E-001</td><td>Incorporated with F-001 as the minimum scanner result model.</td></tr>
+<tr><td>E-002</td><td>Reframed as an API compatibility assumption requiring implementation proof before closure.</td></tr>
+</tbody></table>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected scanner/validator disposition</td><td>Source</td></tr>
+<tr><td>Deliverable folder has <code>_STATUS.md</code>, <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, <code>_REFERENCES.md</code>, and <code>_SEMANTIC.md</code>, but no document kit, and status is <code>OPEN</code></td><td>Valid PREPARATION baseline; document kit not yet initialized.</td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 4.2</td></tr>
+<tr><td>Deliverable folder has status <code>INITIALIZED</code> but is missing <code>Specification.md</code></td><td>Report missing document kit bucket. Exact severity TBD.</td><td><code>docs/SPEC.md</code> / Section 3.1; <code>docs/PRD.md</code> / FR-049</td></tr>
+<tr><td>Deliverable folder contains <code>_MEMORY.md</code></td><td>Reject or flag as prohibited for this project profile.</td><td><code>docs/SPEC.md</code> / Section 3.1 and Section 5.4</td></tr>
+<tr><td>Deliverable folder lacks <code>_SEMANTIC_LENSING.md</code></td><td>Do not fail solely for that absence; it is optional.</td><td><code>docs/SPEC.md</code> / Section 3.1</td></tr>
+</tbody></table>
+<h3 id="clm-031-source-warning-notes">CLM-031 — Source Warning Notes</h3>
+<h5 id="source-warning-notes">Source Warning Notes</h5>
+<p>REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-026 OBJ-006</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

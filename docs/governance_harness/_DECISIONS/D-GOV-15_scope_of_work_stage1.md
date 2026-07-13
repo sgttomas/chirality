@@ -167,3 +167,34 @@ implementation in the current session. The path-scoped variance is therefore
 authorized but not yet exercised. A later session must resume from the ruled
 snapshot, derive a fresh execution graph, and preserve every Stage-1 fence and
 Stage-2 stop gate above.
+
+## Owner-authorized checklist correction addendum — 2026-07-12
+
+After pilot extraction and preservation evidence existed, the owner asked
+whether repeated agentic checklist derivation added value over deterministic
+extraction and expressly authorized revision of the governance while
+Chirality's core functionality is being revised. The durable direction is
+recorded in
+`execution/_Coordination/AgentRuns/SOW-STAGE1-20260712/amendments/RUN/v3.md`.
+
+For D-GOV-15 item 5 and the Stage-2 checklist gate, **derive** now means:
+
+1. a registered deterministic tool validates the candidate and compiles every
+   defined `AC-*` in source order into stable structured output;
+2. the output binds candidate hash, exact criterion text and source identity,
+   and the matrix-linked `VER-*` record or explicit human-review method;
+3. invalid, legacy-only, or ambiguous input without the exact accepted
+   D-GOV-15 variance fails closed before output; and
+4. REVIEW consumes that artifact without independently extracting,
+   paraphrasing, reordering, renumbering, or omitting candidate criteria.
+
+Repeated agentic extraction is not a Stage-1 value claim or gate. Stage 1
+instead proves byte-identical deterministic reproduction and REVIEW-contract
+compatibility. REVIEW adds semantic judgment only during an actual
+human-gated review.
+
+This addendum supersedes only the earlier implication that REVIEW itself
+performs candidate criterion extraction. It leaves all nine approved items,
+the pilot path variance, lifecycle/content neutrality, preservation audit,
+fail-closed behavior, Stage-2 reservation, exact-canon reservation, corpus
+boundary, and no-pilot-merge fence unchanged.

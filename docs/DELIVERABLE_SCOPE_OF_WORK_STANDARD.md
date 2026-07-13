@@ -93,12 +93,20 @@ within one Scope of Work.
 | `CON` | Unresolved conflict | Any substantive section |
 | `REM` | Remaining item in `_STATUS.md` | `_STATUS.md` only |
 
-REVIEW consumes the deliverable's `AC-*` definitions directly; it must not
-create a second acceptance-criterion namespace. Every `OUT-*` cites at least
-one project-scope and package-objective reference. Every `AC-*` cites at least
-one `VER-*` or uses the matrix syntax `HUMAN_REVIEW: <method>`. Every declared
-`OUT-*`, `AC-*`, and `VER-*` is consumed by at least one matrix row; orphan
-evaluation definitions fail validation.
+The registered deterministic checklist tool consumes the deliverable's
+validated `AC-*` definitions directly and emits them in source order with
+their exact text, qualified identity, candidate hash and source location, and
+the matrix-linked `VER-*` records or explicit `HUMAN_REVIEW: <method>`.
+REVIEW consumes that artifact; it must not mint a second
+acceptance-criterion namespace, re-extract, paraphrase, reorder, or silently
+omit criteria. Agent or human judgment begins only in an actual human-gated
+review and remains distinct from checklist derivation.
+
+Every `OUT-*` cites at least one project-scope and package-objective
+reference. Every `AC-*` cites at least one `VER-*` or uses the matrix syntax
+`HUMAN_REVIEW: <method>`. Every declared `OUT-*`, `AC-*`, and `VER-*` is
+consumed by at least one matrix row; orphan evaluation definitions fail
+validation.
 
 ## 5. Output and evaluation matrix
 
@@ -151,3 +159,9 @@ dispositioned, internal IDs and references resolve, objective mappings exist,
 the evaluation matrix closes, lifecycle bytes are unchanged, and independent
 parity checks pass. Silent claim loss, unresolved authority ambiguity,
 `_STATUS.md` mutation, or use outside the variance fails closed.
+
+Checklist derivation is read-only and idempotent. Identical validated source
+bytes and the same accepted format basis produce byte-identical
+`chirality-review-checklist/v1` JSON. Invalid candidates, legacy-only input,
+or dual-format ambiguity without the exact accepted D-GOV-15 variance fail
+without emitting an output artifact.
