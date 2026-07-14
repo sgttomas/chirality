@@ -22,7 +22,7 @@
         "execution/_Coordination/AgentRuns/SOW-RUNTIME-HARDENING-20260713-01/**"
       ],
       "fan_in": "CHANGE-CLOSE",
-      "status": "ACTIVE"
+      "status": "PASS"
     },
     {
       "id": "CHANGE-CLOSE",
@@ -30,7 +30,7 @@
       "depends_on": ["HELPS-RUNTIME-HARDENING"],
       "writes": ["git index", "main", "origin/main"],
       "fan_in": "HUMAN-HOLD",
-      "status": "PENDING"
+      "status": "PASS"
     }
   ],
   "human_gates": ["No Piping package execution resumes in this run"]

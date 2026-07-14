@@ -1,6 +1,6 @@
 # Runtime Hardening Terminal Handoff
 
-State: `IMPLEMENTATION_COMPLETE — VALIDATION_PASS — AWAITING_CHANGE_CLOSEOUT`
+State: `CLOSED — VALIDATION_PASS — HOLD_FOR_HUMAN`
 
 ## Result
 
@@ -41,5 +41,9 @@ Rerun the focused suites and real self-contained premerge check if the managed
 service runner, App profile, telemetry schema/tool, WORKING_ITEMS runtime
 contract, or RECONCILIATION sampling/escalation contract changes.
 
-Remaining blocker: CHANGE must perform scoped Git closeout. After closeout,
-hold for human instruction; do not resume Piping automatically.
+Git evidence: the 20-path implementation tranche is committed at
+`aa41b254233dcfcf5ca90c4ede1b40a865784a3c`; this terminal handoff, final
+manifest, and root receipt are bound by the immediate CHANGE closeout commit.
+
+Remaining blockers: none within this runtime-hardening tranche. The next gate
+is fresh human instruction. Do not resume Piping automatically.

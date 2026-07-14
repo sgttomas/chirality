@@ -1,6 +1,6 @@
 # Runtime Hardening Orchestration Plan
 
-Status: `ACTIVE`
+Status: `COMPLETE`
 Selection authority: `HUMAN`
 Posture: `SINGLE_MANAGER_SEQUENTIAL`
 Owner: `HELPS_HUMANS`

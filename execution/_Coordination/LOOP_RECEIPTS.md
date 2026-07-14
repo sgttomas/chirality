@@ -164,3 +164,17 @@
 - Git binding: the exact 58-path control-plane closeout was committed and
   pushed on synchronized `main` at
   `25bbb8b65f157ea522fe3e70bbca47cd0160cc33`.
+
+### Receipt 10 — 2026-07-13 — Agentic runtime hardening complete
+
+- Authority: owner direction captured at
+  `AgentRuns/SOW-RUNTIME-HARDENING-20260713-01/HUMAN_DIRECTION.md`.
+- Implementation: managed-service project checks, run-contained runtime
+  telemetry, and narrowed rare-escape RECON contract at
+  `aa41b254233dcfcf5ca90c4ede1b40a865784a3c`.
+- Checks: 19 focused tests; agent/path/entrypoint validation PASS; cold-substrate
+  App premerge PASS at 8 Section-8 + 16 report-only Section-9 tests; manifest
+  8/8.
+- State: `CLOSED — HOLD_FOR_HUMAN`; Piping execution, deliverables, lifecycle,
+  H1/H2, PKG-00, candidates, release, and retirement were unchanged.
+- Next gate: fresh human instruction; Piping does not resume automatically.
