@@ -194,3 +194,17 @@
   finalization and rebinding before later integration. Piping execution,
   project content, lifecycle, H1/H2, integration, and retirement remain
   unchanged and parked.
+
+### Receipt 12 — 2026-07-14 — Package-batch method adopted; PKG-01/02 integrated
+
+- Authority: owner accepted both bounded package experiments, their documented
+  whitespace warnings, and the PKG-01/02 integration; PKG-00 remains excluded.
+- Binding: PR #227 merged as `4296d3f4069b838ae2e0d1c4845ebe0b944aece9`;
+  both required checks passed on its final head.
+- Result: eight ordinary Piping members are clean `SOW_V1`; 32 legacy files
+  were removed and 40 control/dependency files remained byte-identical.
+- Method: one package manager, bounded package author, fresh 100% verifier, and
+  narrowed exception/final-member RECON are now the standing ordinary workflow.
+- Next: P1 PKG-03 is dependency-released as two consecutive batches,
+  `DEL-03-01..05` (1,267 lines) and `DEL-03-06..08` (699 lines).
+- Gates: `DEL-01-01` H1, lifecycle, release, retirement, and H2 remain parked.

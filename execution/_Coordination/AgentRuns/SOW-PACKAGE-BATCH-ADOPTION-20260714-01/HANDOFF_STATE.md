@@ -1,6 +1,6 @@
 # Package-Batch Adoption Integration Handoff
 
-Status: `PR OPEN — CI PENDING`
+Status: `COMPLETE — MERGED`
 
 Accepted upstream snapshots are the A2 package snapshot and A3 reconciliation
 snapshot identified in their immutable handoff states. Both remain derivative
@@ -25,6 +25,11 @@ Git binding:
   `https://github.com/sgttomas/chirality/pull/227` from
   `codex/adopt-pkg-batch-workflow` to `main`.
 
-Remaining blocker: required PR checks must pass. After CI, CHANGE may perform
-the human-authorized merge and synchronized-main confirmation. Do not bypass a
-failed or pending check.
+Merge binding: PR #227 merged to `main` as
+`4296d3f4069b838ae2e0d1c4845ebe0b944aece9` after both final-head required
+checks passed. The earlier pre-merge failure on the superseded head was a
+non-reproducing App Dev concurrency-test failure; it was neither suppressed nor
+used as merge evidence.
+
+Remaining blocker: none for adoption closure. The standing Stage-2 loop resumes
+at Piping PKG-03; H1/H2 and all existing lifecycle fences remain unchanged.
