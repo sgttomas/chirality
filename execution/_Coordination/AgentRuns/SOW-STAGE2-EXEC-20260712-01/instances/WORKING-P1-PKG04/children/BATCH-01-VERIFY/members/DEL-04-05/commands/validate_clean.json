@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/validate_scope_of_work.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-05/production/ScopeOfWork.md",
+    "--json"
+  ],
+  "duration_seconds": 0.035973,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "validate_clean",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-05/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+}

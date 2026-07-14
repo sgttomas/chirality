@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="afc3a2dad18a504e851e9b425a7e525b6857091e66e5d4b6af4edfd5e9af4970">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>afc3a2dad18a504e851e9b425a7e525b6857091e66e5d4b6af4edfd5e9af4970</code>.</p>
+<h1 id="scope-of-work-del-04-05">Scope of Work — DEL-04-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-04-05</code> in service of project scope [SOW-035] and package objectives [OBJ-003, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A sparse-solver performance and regression harness contract covering deterministic practical-model runs, reproducibility, performance and conditioning observations, lawful fixture provenance, solver/version/hash settings, diagnostics, limitations, and reviewable records is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-05-sparse-solver-performance-harness">CLM-001 — Datasheet: DEL-04-05 Sparse solver performance harness</h3>
+<blockquote><h4 id="datasheet-del-04-05-sparse-solver-performance-harness">Datasheet: DEL-04-05 Sparse solver performance harness</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-04-05-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-04-05</td></tr>
+<tr><td>Package ID</td><td>PKG-04</td></tr>
+<tr><td>Package</td><td>Solver Core and Numerical Methods</td></tr>
+<tr><td>Deliverable type</td><td>TEST_SUITE</td></tr>
+<tr><td>Decomposition basis</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</td></tr>
+<tr><td>Scope items</td><td>SOW-035</td></tr>
+<tr><td>Objectives</td><td>OBJ-003, OBJ-008</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Lifecycle state during setup</td><td>Draft setup evidence only; not implementation and not ISSUED</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Setup value</td></tr>
+<tr><td>Harness purpose</td><td>Define a deterministic performance/regression harness for sparse solver behavior on practical piping-model sizes and numerical-conditioning cases.</td></tr>
+<tr><td>Solver boundary</td><td>The harness observes solver behavior; it does not implement solver logic, select a numerical library, or change sparse solve algorithms.</td></tr>
+<tr><td>Determinism posture</td><td>Repeated runs for the same model, units, solver version, and settings must be reproducible enough for regression comparison; exact tolerances remain <code>TBD</code>.</td></tr>
+<tr><td>Performance target posture</td><td>Specific runtime, memory, scale, and conditioning thresholds are <code>TBD</code> pending solver prototype and human approval.</td></tr>
+<tr><td>Data posture</td><td>Fixtures must use original, invented, public-permissive, or otherwise lawful inputs; no proprietary benchmark data or protected standards examples are introduced.</td></tr>
+<tr><td>Reporting posture</td><td>Results and diagnostics must preserve warnings, assumptions, provenance, solver version, and limitations without claiming certification or code compliance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<p>The setup context authorizes only documentation of the future harness shape. It does not authorize benchmark implementation, threshold selection, dependency-version selection, or use of proprietary model data.</p>
+<p>The harness must remain compatible with the architecture-basis constraints for module boundaries, result/diagnostic envelopes, layered tests, and protected-content review. Numerical library choice, sparse-solver settings, conditioning metrics, practical model-size bands, timing methodology, hardware normalization, and CI gating thresholds remain <code>TBD</code>.</p></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construction item</td><td>Status</td></tr>
+<tr><td>Performance tests</td><td>Anticipated; no tests are implemented in this setup pass.</td></tr>
+<tr><td>Benchmark harness</td><td>Anticipated; module path, command shape, fixture format, and runner integration are <code>TBD</code>.</td></tr>
+<tr><td>Conditioning cases</td><td>Required conceptually by SOW-035; concrete matrices/models and acceptable ranges are <code>TBD</code>.</td></tr>
+<tr><td>Regression records</td><td>Required conceptually for OBJ-008; retention format and comparison policy are <code>TBD</code>.</td></tr>
+<tr><td>Diagnostics/result-envelope hooks</td><td>Required by AB-00-06; exact codes/classes for harness failures are <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, objectives, anticipated artifacts, and architecture-basis injection.</li>
+<li>- <code>_REFERENCES.md</code> for governing local references.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, rows for PKG-04, DEL-04-05, SOW-035, OBJ-003, OBJ-008, AB-00-01, AB-00-02, AB-00-06, and AB-00-08.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-04-05.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row SOW-035.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-04-05.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants OPS-K-SOLVER-1, OPS-K-UNIT-1, OPS-K-MECH-1, OPS-K-REPORT-1, OPS-K-AGENT-1..4, and OPS-K-IP-1.</li>
+</ul></blockquote>
+<h3 id="clm-008-open-setup-questions">CLM-008 — Open Setup Questions</h3>
+<blockquote><h5 id="open-setup-questions">Open Setup Questions</h5>
+<table><tbody>
+<tr><td>Question</td><td>Needed from</td></tr>
+<tr><td>Which sparse numerical library and solver settings are approved for implementation?</td><td>Solver lead / architecture decision</td></tr>
+<tr><td>What practical model-size bands and conditioning metrics are meaningful for release gates?</td><td>Solver lead / validation owner</td></tr>
+<tr><td>What deterministic timing methodology is acceptable across local and CI environments?</td><td>QA/release owner</td></tr>
+<tr><td>Which invented or public-permissive fixtures may represent practical piping models without protected data?</td><td>Validation/IP review owner</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-04-05-sparse-solver-performance-harness">CLM-009 — Specification: DEL-04-05 Sparse solver performance harness</h3>
+<blockquote><h4 id="specification-del-04-05-sparse-solver-performance-harness">Specification: DEL-04-05 Sparse solver performance harness</h4></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-04-05-DECL-001</code>.</p></blockquote>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies setup evidence for a future test-suite harness that will exercise sparse solver performance, reproducibility, and numerical-conditioning behavior for practical piping-model sizes.</p>
+<p>This setup pass does not implement a benchmark runner, add tests, choose thresholds, edit solver code, select a numerical library, or introduce proprietary/protected benchmark data.</p></blockquote>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source basis</td><td>Verification hook</td></tr>
+<tr><td>DEL-04-05-RQ-001</td><td>The harness shall be separate from solver logic and shall not modify production solver behavior.</td><td>DEL-04-05 context; PKG-04 note; AB-00-02</td><td>Module boundary review once implementation exists.</td></tr>
+<tr><td>DEL-04-05-RQ-002</td><td>Harness cases shall support deterministic regression comparison for the same model, unit system, solver version, and settings.</td><td>SOW-035; docs/SPEC.md section 4.5; OPS-K-SOLVER-1</td><td>Repeat-run tests with accepted tolerance policy; exact tolerances <code>TBD</code>.</td></tr>
+<tr><td>DEL-04-05-RQ-003</td><td>Performance and conditioning metrics shall be recorded without inventing release thresholds.</td><td>SOW-035; OI-005</td><td>Review that thresholds remain <code>TBD</code> until approved.</td></tr>
+<tr><td>DEL-04-05-RQ-004</td><td>Fixture data shall be invented, public-permissive, or otherwise lawful and shall not contain protected standards examples, protected tables, vendor data, or proprietary commercial benchmark data.</td><td>OPS-K-IP-1; docs/DIRECTIVE.md data-boundary rules</td><td>Protected-content and provenance review.</td></tr>
+<tr><td>DEL-04-05-RQ-005</td><td>Harness outputs shall preserve solver version, model/hash basis where available, warning/diagnostic classes, assumptions, provenance notes, and limitations.</td><td>AB-00-06; OPS-K-REPORT-1</td><td>Result-envelope/report-facing tests once result schema exists.</td></tr>
+<tr><td>DEL-04-05-RQ-006</td><td>Unit-sensitive fixture inputs and outputs shall pass the accepted unit-system/dimensional checks.</td><td>OPS-K-UNIT-1</td><td>Unit validation tests once fixture schema exists.</td></tr>
+<tr><td>DEL-04-05-RQ-007</td><td>The harness shall remain mechanics-only and shall not claim professional approval, certification, or code compliance.</td><td>OPS-K-MECH-1; OPS-K-AGENT-4; OPS-K-REPORT-1</td><td>Review of result labels, generated reports, and release notes.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standard text, proprietary benchmark suite, or vendor dataset is available in this deliverable-local setup context. Any future benchmark basis must be recorded with provenance, redistribution status, and human/IP review disposition. Clause-level or vendor-specific requirements are <code>TBD</code>.</p></blockquote>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification area</td><td>Minimum setup expectation</td></tr>
+<tr><td>Determinism</td><td>Define repeat-run evidence without setting unsupported numeric thresholds.</td></tr>
+<tr><td>Sparse performance</td><td>Capture timing/memory/scale observations once solver implementation exists; target values remain <code>TBD</code>.</td></tr>
+<tr><td>Conditioning</td><td>Record conditioning-related diagnostics or solver-status observations when supported by the solver/result envelope.</td></tr>
+<tr><td>Data boundary</td><td>Confirm all fixtures are invented, public-permissive, or otherwise lawful.</td></tr>
+<tr><td>Reporting</td><td>Confirm harness output does not imply certification, code compliance, or professional acceptance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Expected future artifacts, when implementation is authorized, are:</p>
+<ul>
+<li>- performance tests;</li>
+<li>- benchmark harness;</li>
+<li>- benchmark fixture provenance notes;</li>
+<li>- deterministic run records or comparable result snapshots.</li>
+</ul>
+<p>The exact module paths, runner command, fixture schema, metrics, and CI gates are <code>TBD</code> and must not be resolved by this setup pass.</p></blockquote>
+<h3 id="clm-016-conflict-table-for-human-ruling">CLM-016 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Issue</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in setup evidence.</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted observer-only harness boundary, deterministic regression intent, explicit units and provenance, no invented timing, memory, conditioning, model-size, or release thresholds, mechanics-only reporting, and formal-review, dimensional-validation, hosted-CI, and cross-machine policy residuals.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-04-05-sparse-solver-performance-harness">CLM-017 — Procedure: DEL-04-05 Sparse solver performance harness</h3>
+<blockquote><h4 id="procedure-del-04-05-sparse-solver-performance-harness">Procedure: DEL-04-05 Sparse solver performance harness</h4></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Describe how a future TASK worker should produce or use the sparse-solver performance harness once implementation is authorized, while preserving the current setup-only boundary.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Accepted solver/kernel interfaces from PKG-04 implementation deliverables.</li>
+<li>- Accepted unit-system and schema contracts for model fixtures and result envelopes.</li>
+<li>- Human-approved sparse solver/library and diagnostic policy, if implementation requires one.</li>
+<li>- Invented, public-permissive, or otherwise lawful benchmark fixtures with provenance.</li>
+<li>- Human-approved performance/conditioning threshold policy; current value is <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the sealed brief authorizes implementation and lists exact write targets.</p>
+<p>2. Read the accepted solver interface, result-envelope schema, diagnostics contract, and unit-system contract.</p>
+<p>3. Select or create benchmark fixtures only from invented, public-permissive, or otherwise lawful data.</p>
+<p>4. Record fixture provenance, model/hash basis where available, unit basis, solver version, and harness settings.</p>
+<p>5. Run repeated deterministic cases through the solver interface without changing solver logic.</p>
+<p>6. Capture performance observations, conditioning diagnostics, warnings, assumptions, and limitations.</p>
+<p>7. Compare repeated outputs using the approved tolerance/threshold policy; if no policy exists, record <code>TBD</code> rather than failing or passing on invented criteria.</p>
+<p>8. Emit run records suitable for regression review and release-gate evidence.</p>
+<p>9. Stop and escalate if protected data, proprietary benchmark content, missing engineering values, or compliance/certification wording appears.</p></blockquote>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected evidence</td></tr>
+<tr><td>Scope boundary</td><td>Harness code/tests do not modify solver logic or repo-level artifacts unless explicitly authorized.</td></tr>
+<tr><td>Determinism</td><td>Repeat-run comparison evidence is present; tolerance policy is cited or marked <code>TBD</code>.</td></tr>
+<tr><td>Fixture provenance</td><td>Each fixture records source/provenance and redistribution status.</td></tr>
+<tr><td>Unit safety</td><td>Fixture inputs and outputs pass accepted dimensional checks.</td></tr>
+<tr><td>Diagnostic/reporting boundary</td><td>Results include warnings/assumptions/limitations and avoid certification or compliance claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Performance/regression run records.</li>
+<li>- Fixture provenance index.</li>
+<li>- Solver version and settings record.</li>
+<li>- Conditioning diagnostic summary.</li>
+<li>- Review notes for threshold changes and human rulings.</li>
+</ul></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-054-current-declaration">CLM-023 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The sparse-solver performance harness now exists. Threshold selection, CI/release gating, platform policy, and validation remain held where recorded; existence of the harness does not establish a production-performance ruling.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, harness/solver separation, repeated-run determinism, performance and conditioning records, unit and fixture provenance, protected-content controls, diagnostics and limitations, no compliance claims, and all unresolved governed threshold and release items.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-04-05-sparse-solver-performance-harness">CLM-024 — Guidance: DEL-04-05 Sparse solver performance harness</h3>
+<blockquote><h4 id="guidance-del-04-05-sparse-solver-performance-harness">Guidance: DEL-04-05 Sparse solver performance harness</h4></blockquote>
+<h3 id="clm-025-d-41-r5-t7-pdu-055-current-declaration">CLM-025 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-04-05-DECL-003</code>.</p></blockquote>
+<h3 id="clm-026-purpose">CLM-026 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable prepares the evidence boundary for a future deterministic sparse-solver performance/regression harness. It exists to keep performance and conditioning checks observable, repeatable, and reviewable without coupling benchmark code to solver implementation choices.</p></blockquote>
+<h3 id="clm-027-principles">CLM-027 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the harness as an observer and regression surface, not as solver logic.</li>
+<li>- Prefer deterministic, schema-backed inputs and outputs so repeated runs can be compared.</li>
+<li>- Preserve unknowns as <code>TBD</code>; do not invent runtime, memory, model-size, or conditioning thresholds.</li>
+<li>- Use only invented, public-permissive, or otherwise lawful benchmark fixtures.</li>
+<li>- Keep result wording mechanics-focused and avoid certification, compliance, approval, or professional-reliance claims.</li>
+</ul></blockquote>
+<h3 id="clm-028-considerations">CLM-028 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>Sparse performance measurements are sensitive to solver library, hardware, compiler settings, platform, matrix ordering, and fixture structure. Those implementation variables are not resolved here. The setup kit should therefore describe evidence expected from a future harness while leaving thresholds and tool choices open.</p>
+<p>Conditioning cases should exercise solver diagnostic behavior without embedding protected standards examples or proprietary commercial models. If a fixture source cannot be proven redistributable, it should not enter the public harness.</p></blockquote>
+<h3 id="clm-029-trade-offs">CLM-029 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Deterministic regression vs benchmark realism</td><td>Prefer reproducible invented/public fixtures first; practical realism improves only when provenance and redistribution rights are clear.</td></tr>
+<tr><td>CI stability vs timing sensitivity</td><td>Timing gates are <code>TBD</code>; early harnesses may record metrics without failing builds on unsupported thresholds.</td></tr>
+<tr><td>Solver abstraction vs library-specific diagnostics</td><td>Keep common harness records stable; library-specific fields should be explicit and reviewable if introduced.</td></tr>
+<tr><td>Performance visibility vs professional claims</td><td>Publish observations and warnings, not certification, compliance, or engineering acceptance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Concrete benchmark models, numerical thresholds, matrix sizes, timing budgets, and conditioning acceptance values are <code>TBD</code>. Future examples must use invented or public-permissive data with provenance.</p></blockquote>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in setup evidence.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-032-open-enrichment-items">CLM-032 — Open Enrichment Items</h3>
+<blockquote><h5 id="open-enrichment-items">Open Enrichment Items</h5>
+<table><tbody>
+<tr><td>Item</td><td>Status</td></tr>
+<tr><td>Approved performance metrics and threshold policy</td><td>TBD</td></tr>
+<tr><td>Approved practical model-size taxonomy</td><td>TBD</td></tr>
+<tr><td>Approved sparse solver/library choice</td><td>TBD</td></tr>
+<tr><td>Public/permissive fixture source list</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-035 OBJ-003 OBJ-008</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

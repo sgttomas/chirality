@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `ACTIVE — PKG-03 INTEGRATED; PKG-04 RELEASED`
+Status: `ACTIVE — PKG-04 LOCAL INTEGRATION GATES PASS; PR PENDING`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v42`
+Graph version: `v46`
 
 ## Objective and accepted basis
 
@@ -60,6 +60,17 @@ check passed on head `413c7765c7df85a8a9ad6ef4e424f896f801e065`;
 the merge commit is `2826a12ba3f53720312737bd6e1480dc62d57a37`.
 Postmerge project, hash, control, format, and registered checks pass. PKG-04 is
 therefore dependency-released.
+
+`WORKING-P1-PKG04` and direct `RECON-P1-PKG04` both returned `PASS`; HELP_HUMAN
+reproduced and accepted the 84-row reconciliation snapshot at SHA-256
+`c30cacfbf26ceb9daa691cedf7688aba5e390d979c76c16142d67961084b94c4`.
+`CHANGE-P1-PKG04` created six ordered atomic five-path replacement commits on
+`codex/sow-p1-pkg04`. Exact replacement/inverse manifests, six rollback
+simulations, 178 mappings, 1,368 source lines, 264 practitioner tests, 20 root
+export/Scope-of-Work tests, root validators, and whole-diff hygiene pass. Two
+terminal-LF findings were mechanically normalized before evidence freeze with
+before/after hashes retained. The branch is ready for a PR; merge still
+requires every required remote check to pass on the exact final head.
 
 All later nodes remain parked behind the accepted graph edges. H1 and H2
 remain fresh human gates. CHANGE is the sole integration owner for every Git

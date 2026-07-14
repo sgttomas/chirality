@@ -1,0 +1,9 @@
+{
+  "check": "git diff --no-index --check /dev/null <each verifier-owned file>",
+  "files_checked_final": 401,
+  "normalization_ledger": "NORMALIZATION.tsv",
+  "scope": "BATCH-01-VERIFY/**",
+  "verdict": "PASS",
+  "warning_files": 0,
+  "warnings": []
+}

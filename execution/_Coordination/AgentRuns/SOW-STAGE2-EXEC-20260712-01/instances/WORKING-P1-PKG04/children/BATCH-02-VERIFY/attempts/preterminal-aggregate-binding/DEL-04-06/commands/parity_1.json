@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/report_scope_of_work_parity.py",
+    "--scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-06/evidence/ScopeOfWork.md",
+    "--production-scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-06/production/ScopeOfWork.md",
+    "--source-dir",
+    "{REPO_ROOT}/projects/chirality-piping/execution/PKG-04_Solver Core and Numerical Methods/1_Working/DEL-04-06_Solver diagnostics and singularity detection",
+    "--output-json",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG04/children/BATCH-02-VERIFY/members/DEL-04-06/parity_1.json",
+    "--output-md",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG04/children/BATCH-02-VERIFY/members/DEL-04-06/parity_1.md",
+    "--isolated-migration",
+    "--migration-authority",
+    "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+  ],
+  "duration_seconds": 0.040249,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "parity_1",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": "PASS checks=33\n"
+}

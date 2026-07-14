@@ -1,0 +1,25 @@
+{
+  "basis": "2a5e3825d8d2fc4943742a53ccad3b89c4c81902",
+  "blockers": [],
+  "branch": "codex/sow-p1-pkg04",
+  "instance_id": "CHANGE-P1-PKG04",
+  "members": 6,
+  "parent": "HELP_HUMAN",
+  "project_commits": [
+    "e768a4a56ea488574f115f8fde883653047c9ba0",
+    "df7316322eb3477328dab9a64da7b02c5cc25aae",
+    "6cb7a970f6a3b7659fee2831089717bc6ea7ecd4",
+    "fcb21c71703024e0d8f2cb25f3ab98fd8b10d83c",
+    "ebe723088d8985e48e72373f8ba442b9bb91f4c2",
+    "f4c6e79830fd3bff3ef0bf1bcaaa258fb8fd84ab"
+  ],
+  "replacement_rows": 30,
+  "required_checks": "PENDING",
+  "role": "CHANGE",
+  "rollback_rows": 30,
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "status": "READY_FOR_PR",
+  "terminal": false,
+  "unknowns": [],
+  "waivers": []
+}

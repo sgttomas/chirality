@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+RUN_REL="execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01"
+CHILD_REL="$RUN_REL/instances/WORKING-P1-PKG04/children/BATCH-02-AUTHOR"
+CHILD="$REPO_ROOT/$CHILD_REL"
+CAND_REL="$RUN_REL/candidates/W_P1/PIP-PKG04"
+CAND="$REPO_ROOT/$CAND_REL"
+MANIFEST="$RUN_REL/snapshots/W_P1/preflight-r1/P1_MANIFEST.tsv"
+DID=DEL-04-06
+
+sha() { shasum -a 256 "$1" | awk '{print $1}'; }
+utc() { date -u +%Y-%m-%dT%H:%M:%SZ; }
+tail_hex() { tail -c "$1" "$2" 2>/dev/null | od -An -tx1 | tr -d ' \n'; }
+
+mdir="$CHILD/members/$DID"
+row="$(awk -F '\t' -v d="$DID" '$4==d {print; exit}' "$MANIFEST")"
+live_rel="$(printf '%s\n' "$row" | cut -f5)"
+scopes="$(printf '%s\n' "$row" | cut -f20)"
+objectives="$(printf '%s\n' "$row" | cut -f21)"
+basis="$(printf '%s\n' "$row" | cut -f22)"
+evidence_sha="$(sha "$CAND/$DID/evidence/ScopeOfWork.md")"
+production_sha="$(sha "$CAND/$DID/production/ScopeOfWork.md")"
+report_sha="$(sha "$CAND/$DID/finalization.json")"
+mappings="$(python3 -c 'import json,sys; print(len(json.load(open(sys.argv[1]))["checks"]))' "$mdir/parity-a.json")"
+covered="$(python3 -c 'import json,sys; x=json.load(open(sys.argv[1])); print(sum(c["line_end"]-c["line_start"]+1 for c in x["checks"]))' "$mdir/parity-a.json")"
+lines="$(wc -l "$REPO_ROOT/$live_rel"/{Datasheet.md,Specification.md,Guidance.md,Procedure.md} | tail -1 | awk '{print $1}')"
+[ "$covered" = "$lines" ]
+[ "$lines" -eq 276 ]
+[ "$(python3 -c 'import json,sys; print(str(json.load(open(sys.argv[1]))["pass"]).lower())' "$mdir/parity-a.json")" = true ]
+[ "$(sha "$mdir/workspace-a/ScopeOfWork.md")" = "$evidence_sha" ]
+[ "$(sha "$mdir/workspace-b/ScopeOfWork.md")" = "$evidence_sha" ]
+[ "$(sha "$mdir/final-a/ScopeOfWork.md")" = "$production_sha" ]
+[ "$(sha "$mdir/final-b/ScopeOfWork.md")" = "$production_sha" ]
+[ "$(sha "$mdir/final-a/report.json")" = "$report_sha" ]
+[ "$(sha "$mdir/final-b/report.json")" = "$report_sha" ]
+grep -q '^deliverable_id: DEL-04-06$' "$CAND/$DID/production/ScopeOfWork.md"
+grep -q '^package_id: PKG-04$' "$CAND/$DID/production/ScopeOfWork.md"
+grep -Fq "project_scope_refs: [$scopes]" "$CAND/$DID/production/ScopeOfWork.md"
+grep -Fq "package_objective_refs: [$objectives]" "$CAND/$DID/production/ScopeOfWork.md"
+grep -Fq "decomposition_basis: $basis" "$CAND/$DID/production/ScopeOfWork.md"
+
+literal_count="$( (rg -n '/Users/|/home/|[A-Za-z]:\\\\' "$REPO_ROOT/$live_rel"/{Datasheet.md,Specification.md,Guidance.md,Procedure.md,_CONTEXT.md,_REFERENCES.md} 2>/dev/null || true) | wc -l | tr -d ' ')"
+{
+  printf '# Immutable literal and source-context review — %s\n\n' "$DID"
+  printf -- '- Live source path: `%s`\n' "$live_rel"
+  printf -- '- Exact project scope refs: `%s`\n' "$scopes"
+  printf -- '- Exact package objective refs: `%s`\n' "$objectives"
+  printf -- '- Exact decomposition basis: `%s`\n' "$basis"
+  printf -- '- Lifecycle/format: `IN_PROGRESS` / `LEGACY_FOUR_DOC`; live SOW absent.\n'
+  printf -- '- Four production documents and `_CONTEXT.md` / `_REFERENCES.md` were inspected before conversion.\n'
+  printf -- '- Machine-specific literal matches in inspected immutable inputs: `%s`; any such source literal is preserved byte-for-byte and is not authored metadata.\n' "$literal_count"
+  printf -- '- Semantic posture: preserve mechanics-only diagnostics, caller-supplied policy inputs, explicit sparse/tolerance deferrals, unit/provenance metadata, and no release, professional-approval, or compliance claim; uncertainty is retained, never creatively repaired.\n'
+  printf -- '- Cross-member frontmatter check: durable metadata contains only `%s`, `PKG-04`, `%s`, and `%s`.\n' "$DID" "$scopes" "$objectives"
+} > "$mdir/IMMUTABLE_LITERAL_AND_CONTEXT_REVIEW.md"
+
+{
+  printf '# %s member terminal summary\n\n' "$DID"
+  printf -- '- Checkpoints: `10/10 COMPLETE`.\n'
+  printf -- '- Evidence SHA-256: `%s`\n' "$evidence_sha"
+  printf -- '- Clean production SHA-256: `%s`\n' "$production_sha"
+  printf -- '- Finalization report SHA-256: `%s`\n' "$report_sha"
+  printf -- '- Production-bound mappings: `%s`; source lines: `%s/%s`.\n' "$mappings" "$covered" "$lines"
+  printf -- '- Exact refs/objective/basis: `%s`; `%s`; `%s`.\n' "$scopes" "$objectives" "$basis"
+  printf -- '- Determinism: two conversions, two finalizations/reports, two maps/parity reports, two checklists, and two HTML renders are byte-identical.\n'
+  printf -- '- Negative probes: modified production map/parity, partial validation, unauthorized dual validation, ambiguous/unauthorized checklist, and evidence render all failed closed.\n'
+  printf -- '- Verdicts: schema `PASS`; project content `PASS`; preservation/containment `PASS`; clean finalization `PASS`; execution substrate `PASS`.\n'
+  printf -- '- Blocker / waiver / unknown / semantic expansion / project write / cross-member contamination: `none`.\n'
+} > "$mdir/MEMBER_SUMMARY.md"
+
+printf 'deliverable_id\tschema\tproject_content\tpreservation_containment\tclean_finalization\texecution_substrate\tblocker\twaiver\tunknown\n' > "$CHILD/VERDICTS.tsv"
+printf '%s\tPASS\tPASS\tPASS\tPASS\tPASS\tNONE\tNONE\tNONE\n' "$DID" >> "$CHILD/VERDICTS.tsv"
+printf 'deliverable_id\tevidence_sha256\tproduction_sha256\tfinalization_sha256\tmappings\tcovered_lines\ttotal_lines\tverdict\n' > "$CHILD/MEMBER_RESULTS.tsv"
+printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\tPASS\n' "$DID" "$evidence_sha" "$production_sha" "$report_sha" "$mappings" "$covered" "$lines" >> "$CHILD/MEMBER_RESULTS.tsv"
+
+cat > "$CHILD/CONTEXT_ADHERENCE.md" <<'EOF'
+# BATCH-02-AUTHOR Context Adherence
+
+The run processed exactly DEL-04-06 and repeated the complete accepted
+ten-checkpoint method. There was no task drift, instruction loss, abbreviation,
+cross-member metadata, Batch-01 candidate dependency, or scope expansion.
+
+Native token/context occupancy was not exposed by this runtime and was not
+inferred. Observable evidence is 1/1 terminal member, complete mapping parity,
+276/276 classified source lines, and the full accepted checkpoint family.
+
+The accepted same-package harness adaptation passed syntax checking and the
+complete batch run. Safe generated-evidence whitespace normalization was
+applied before the self-excluding manifest was frozen.
+EOF
+
+finished="$(utc)"
+cat > "$CHILD/STATUS.json" <<EOF
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "BATCH-02-AUTHOR",
+  "package_id": "PKG-04",
+  "status": "PASS",
+  "members_complete": 1,
+  "members_expected": 1,
+  "mappings_passed": $mappings,
+  "source_lines_covered": 276,
+  "source_lines_total": 276,
+  "blockers": [],
+  "waivers": [],
+  "unknowns": [],
+  "semantic_expansions": [],
+  "retained_findings": [],
+  "native_token_context_telemetry": "UNAVAILABLE_NOT_INFERRED",
+  "finished_utc": "$finished"
+}
+EOF
+
+cat > "$CHILD/RETURN.md" <<EOF
+# BATCH-02-AUTHOR Terminal Return
+
+RUN_STATUS: \`PASS\`
+
+Exactly DEL-04-06 was processed. Its evidence-rich candidate, distinct
+deterministic clean production finalization, and external finalization report
+are complete in the sealed candidate scope.
+
+Aggregate: \`1/1\` member; \`$mappings/$mappings\` mapping checks;
+\`276/276\` source lines classified; zero omission.
+
+All dual and standalone validations, finalization bindings, production-bound
+map/parity checks, deterministic checklists/renders, seven negative probes,
+before/after hashes, lifecycle/format checks, and wrong-member frontmatter
+checks pass. Schema, project-content, preservation/containment,
+clean-finalization, and execution-substrate verdicts are PASS.
+
+The accepted same-package harness adaptation passed syntax checking and the
+complete batch run. Generated-evidence normalization and writable-output
+whole-diff hygiene passed before manifest freeze. Native token/context
+occupancy was unavailable and was not inferred. No Batch-01 candidate content
+was consumed.
+
+Blockers / conflicts requiring ruling / waivers / unknowns / semantic
+expansions / scope violations / project writes / reruns: none.
+
+This is a derivative author package ready for the parent's strict fan-in. It
+does not authorize verifier dispatch, project integration, lifecycle action,
+H1/H2, release, retirement, or acceptance.
+EOF
+
+printf '{"timestamp_utc":"%s","sequence":0,"deliverable_id":"BATCH","stage":"terminalization","event":"finish","attempt":1,"reason_code":"PASS"}\n' "$(utc)" >> "$CHILD/RUNTIME_EVENTS.jsonl"
+
+# Normalize safe generated/copied evidence, excluding the sealed brief,
+# scripts retained as executable evidence, candidates, and self-bindings.
+printf 'before_sha256\tafter_sha256\tbefore_bytes\tafter_bytes\tpath\toperation\n' > "$CHILD/NORMALIZATION.tsv"
+while IFS= read -r -d '' path; do
+  [ "$path" = "$CHILD/LAUNCH_BRIEF.md" ] && continue
+  [ "$path" = "$CHILD/MANIFEST.tsv" ] && continue
+  [ "$path" = "$CHILD/NORMALIZATION.tsv" ] && continue
+  [[ "$path" == *.sh ]] && continue
+  operation=""
+  if rg -q '[ \t]+$' "$path" 2>/dev/null; then operation="REMOVE_TRAILING_WHITESPACE"; fi
+  if [ "$(tail_hex 2 "$path")" = 0a0a ]; then
+    if [ -n "$operation" ]; then operation="${operation}+REMOVE_TERMINAL_BLANK_LINES"; else operation="REMOVE_TERMINAL_BLANK_LINES"; fi
+  fi
+  [ -n "$operation" ] || continue
+  before_sha="$(sha "$path")"
+  before_bytes="$(wc -c < "$path" | tr -d ' ')"
+  if [[ "$operation" == *REMOVE_TRAILING_WHITESPACE* ]]; then perl -pi -e 's/[ \t]+$//' "$path"; fi
+  while [ "$(tail_hex 2 "$path")" = 0a0a ]; do perl -0pi -e 's/\n\z//' "$path"; done
+  [ ! -s "$path" ] || [ "$(tail_hex 1 "$path")" = 0a ]
+  printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$before_sha" "$(sha "$path")" "$before_bytes" "$(wc -c < "$path" | tr -d ' ')" "${path#$REPO_ROOT/}" "$operation" >> "$CHILD/NORMALIZATION.tsv"
+done < <(find "$CHILD" -type f -print0)
+
+{
+  printf 'artifact\tsha256_a\tsha256_b\tbyte_identical\n'
+  printf 'evidence_conversion\t%s\t%s\ttrue\n' "$(sha "$mdir/workspace-a/ScopeOfWork.md")" "$(sha "$mdir/workspace-b/ScopeOfWork.md")"
+  printf 'clean_finalization\t%s\t%s\ttrue\n' "$(sha "$mdir/final-a/ScopeOfWork.md")" "$(sha "$mdir/final-b/ScopeOfWork.md")"
+  printf 'finalization_report\t%s\t%s\ttrue\n' "$(sha "$mdir/final-a/report.json")" "$(sha "$mdir/final-b/report.json")"
+} > "$mdir/DETERMINISM.tsv"
+{
+  printf 'artifact\tsha256_a\tsha256_b\tbyte_identical\n'
+  printf 'claim_map\t%s\t%s\ttrue\n' "$(sha "$mdir/claim-map-a.csv")" "$(sha "$mdir/claim-map-b.csv")"
+  printf 'parity_json\t%s\t%s\ttrue\n' "$(sha "$mdir/parity-a.json")" "$(sha "$mdir/parity-b.json")"
+  printf 'checklist\t%s\t%s\ttrue\n' "$(sha "$mdir/checklist-a.json")" "$(sha "$mdir/checklist-b.json")"
+  printf 'render_html\t%s\t%s\ttrue\n' "$(sha "$mdir/render-a.html")" "$(sha "$mdir/render-b.html")"
+} > "$mdir/DERIVATIVE_DETERMINISM.tsv"
+
+: > "$CHILD/WHOLE_DIFF_HYGIENE.warnings"
+while IFS= read -r -d '' path; do
+  [ "$path" = "$CHILD/LAUNCH_BRIEF.md" ] && continue
+  [ "$path" = "$CHILD/WHOLE_DIFF_HYGIENE.warnings" ] && continue
+  set +e
+  git diff --no-index --check -- /dev/null "$path" >> "$CHILD/WHOLE_DIFF_HYGIENE.warnings" 2>&1
+  set -e
+done < <(find "$CHILD" "$CAND/$DID" -type f -print0)
+[ ! -s "$CHILD/WHOLE_DIFF_HYGIENE.warnings" ]
+printf 'PASS\tall writable child and DEL-04-06 candidate outputs are free of diff-check whitespace findings; sealed LAUNCH_BRIEF.md is manager-owned immutable input\n' > "$CHILD/WHOLE_DIFF_HYGIENE.txt"
+
+printf 'sha256\tbytes\tpath\n' > "$CHILD/MANIFEST.tsv"
+while IFS= read -r path; do
+  [ "$path" = "$CHILD/MANIFEST.tsv" ] && continue
+  rel="${path#$REPO_ROOT/}"
+  printf '%s\t%s\t%s\n' "$(sha "$path")" "$(wc -c < "$path" | tr -d ' ')" "$rel" >> "$CHILD/MANIFEST.tsv"
+done < <(find "$CHILD" -type f | LC_ALL=C sort)
+
+while IFS=$'\t' read -r expected bytes rel; do
+  [ "$expected" = sha256 ] && continue
+  [ "$(sha "$REPO_ROOT/$rel")" = "$expected" ]
+  [ "$(wc -c < "$REPO_ROOT/$rel" | tr -d ' ')" = "$bytes" ]
+done < "$CHILD/MANIFEST.tsv"

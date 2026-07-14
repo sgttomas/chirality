@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 186,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c70ca62b6ecd0afae56eb13f17db839cc61b251e604f20a06aed8391dedcbefa"
+      },
+      "text": "The contract preserves the accepted implemented linear-support boundaries, unit-bearing quantities, no-default behavior, frame-kernel indexing and prescribed-displacement integration, rights-safe fixtures, and unresolved support-coordinate, sparse/result-envelope, release, and constant-effort-hanger work without implying nonlinear behavior or approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-04-03-VER-001",
+          "source_line": 256,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, all SOW-011 families, FrameDof and boundary surfaces, dimensional metadata, missing/invalid-data findings, deterministic test evidence, protected-content controls, linear/nonlinear separation, and surviving governed residuals."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-04-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-04",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "c70ca62b6ecd0afae56eb13f17db839cc61b251e604f20a06aed8391dedcbefa"
+  },
+  "tool_version": "1"
+}

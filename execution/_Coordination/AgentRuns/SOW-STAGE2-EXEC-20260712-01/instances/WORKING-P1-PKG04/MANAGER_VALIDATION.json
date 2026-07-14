@@ -1,0 +1,9 @@
+{
+  "mappings": 178,
+  "members": 6,
+  "replacement_rows": 30,
+  "rollback_rows": 30,
+  "simulations_pass": 6,
+  "source_lines": 1368,
+  "status": "PASS"
+}

@@ -1,0 +1,2 @@
+path	before_sha256	after_sha256	before_bytes	after_bytes	operation	semantic_change
+LAUNCH_BRIEF.md	599da9ac0cc8d9d3a3adbad281a7ddfa56468296965bbe828d917db77a0e7ad0	5378ea61832e87b5e59183d7dc6ad22f2b165926c9f5cdbdd2ca72697a1ab78d	3336	3335	remove exactly one terminal LF from a two-LF ending	false

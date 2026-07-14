@@ -1,0 +1,45 @@
+{
+  "basis": "2a5e3825d8d2fc4943742a53ccad3b89c4c81902",
+  "branch": "codex/sow-p1-pkg04",
+  "production": {
+    "DEL-04-01": {
+      "bytes": 21897,
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-01/production/ScopeOfWork.md",
+      "sha256": "f5d2906b5f33c235f3df2238fefb8e178f6efe2f4f3c1d4d0ee772588ad90a84"
+    },
+    "DEL-04-02": {
+      "bytes": 16102,
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-02/production/ScopeOfWork.md",
+      "sha256": "ff030c00a1f17cb85e427a4d3e985bf862056a33274a6c2a2671db6ef040b867"
+    },
+    "DEL-04-03": {
+      "bytes": 26188,
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-03/production/ScopeOfWork.md",
+      "sha256": "c70ca62b6ecd0afae56eb13f17db839cc61b251e604f20a06aed8391dedcbefa"
+    },
+    "DEL-04-04": {
+      "bytes": 17922,
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-04/production/ScopeOfWork.md",
+      "sha256": "23488618ae7f3f3b7249501181ff8ff2febac4bdaab9ea5221237cce5c265083"
+    },
+    "DEL-04-05": {
+      "bytes": 19759,
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-05/production/ScopeOfWork.md",
+      "sha256": "afc3a2dad18a504e851e9b425a7e525b6857091e66e5d4b6af4edfd5e9af4970"
+    },
+    "DEL-04-06": {
+      "bytes": 32968,
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG04/DEL-04-06/production/ScopeOfWork.md",
+      "sha256": "4d314c20a833c0c7a9addafd6d8d63f588d39859e8cf692cf8180b907dbc10f7"
+    }
+  },
+  "project_mutation_before": false,
+  "replacement_rows": 30,
+  "rollback_rows": 30,
+  "schema": "chirality-change-preflight/v1",
+  "snapshot_manifest_sha256": "c30cacfbf26ceb9daa691cedf7688aba5e390d979c76c16142d67961084b94c4",
+  "snapshot_rows": 84,
+  "source_binding_rows": 54,
+  "status_control_rows": 30,
+  "verdict": "PASS"
+}

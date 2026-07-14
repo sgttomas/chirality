@@ -1,0 +1,13 @@
+{
+  "basis": "main@2a5e3825d8d2fc4943742a53ccad3b89c4c81902",
+  "blockers": [],
+  "manager_reproduction": "PASS_FULL_PACKAGE_6_OF_6",
+  "next_owner": "HELP_HUMAN",
+  "snapshot": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG04-preintegration-r1",
+  "snapshot_manifest_rows": 84,
+  "snapshot_manifest_sha256": "c30cacfbf26ceb9daa691cedf7688aba5e390d979c76c16142d67961084b94c4",
+  "status": "PASS",
+  "terminal": true,
+  "unknowns": [],
+  "waivers": []
+}

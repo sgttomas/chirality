@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="23488618ae7f3f3b7249501181ff8ff2febac4bdaab9ea5221237cce5c265083">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>23488618ae7f3f3b7249501181ff8ff2febac4bdaab9ea5221237cce5c265083</code>.</p>
+<h1 id="scope-of-work-del-04-04">Scope of Work — DEL-04-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-04-04</code> in service of project scope [SOW-012] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A nonlinear-support classifier and state-oracle contract covering one-way restraints, gaps, lift-off, friction, state-switched transitions, convergence and non-convergence reporting, report-facing records, and integration-facing deterministic verification is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-04-nonlinear-support-active-set-solver">CLM-001 — Datasheet: DEL-04-04 Nonlinear support active-set solver</h3>
+<blockquote><h4 id="datasheet-del-04-04-nonlinear-support-active-set-solver">Datasheet: DEL-04-04 Nonlinear support active-set solver</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-04-04</td></tr>
+<tr><td>Name</td><td>Nonlinear support active-set solver</td></tr>
+<tr><td>Package</td><td>PKG-04 Solver Core and Numerical Methods</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Decomposition basis</td><td>execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7</td></tr>
+<tr><td>Scope item</td><td>SOW-012</td></tr>
+<tr><td>Objective</td><td>OBJ-003</td></tr>
+<tr><td>Context envelope</td><td>L; WATCH</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Solver role</td><td>Per-iteration active-set classifier/state oracle for nonlinear support behavior consumed by the global 3D centerline/frame solver integration loop.</td><td>_CONTEXT.md Description; ScopeLedger.csv SOW-012; DEC-044</td></tr>
+<tr><td>Covered behavior categories</td><td>One-way supports, gaps, lift-off, and friction.</td><td>Deliverables.csv DEL-04-04; ScopeLedger.csv SOW-012</td></tr>
+<tr><td>Reporting obligation</td><td>Convergence reporting, active-set state, and unresolved non-convergence reporting are in scope.</td><td>CONTRACT.md OPS-K-SOLVER-2; _CONTEXT.md Description</td></tr>
+<tr><td>Anticipated artifacts</td><td>Active-set classifier/state oracle; report-facing active-set records; classifier and integration-facing convergence tests.</td><td>_CONTEXT.md Anticipated Artifacts; DEC-044</td></tr>
+<tr><td>Explicit deferrals</td><td>Assembled loop ownership is re-pointed to <code>core/solver/nonlinear_integration</code>; sparse live-path adoption, class-tiered convergence values, and implementation-level defaults remain governed follow-on work.</td><td>_CONTEXT.md Architecture Basis Injection; DEC-044; DEC-046; human brief hard stops</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>The primary mechanics model remains a 3D centerline/frame model.</td><td>Required by OPS-K-MECH-1.</td></tr>
+<tr><td>The solver computes mechanics and does not decide professional compliance.</td><td>Required by OPS-K-MECH-2 and package exclusions.</td></tr>
+<tr><td>Missing solve-required values are findings, not silent defaults.</td><td>Required by OPS-K-DATA-2.</td></tr>
+<tr><td>Unit-bearing quantities must be unit-aware and dimensionally checked.</td><td>Required by OPS-K-UNIT-1.</td></tr>
+<tr><td>Nonlinear convergence tolerances, friction defaults, and case-specific values are not invented in this setup kit.</td><td>Required by OPS-K-AGENT-1 and human hard stops.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This setup kit defines the nonlinear active-set classifier boundary. The</p>
+<p>assembled nonlinear loop is owned by the PKG-04 integration tranche under</p>
+<p><code>DEC-044</code>; this deliverable remains the classifier/state-oracle surface.</p>
+<table><tbody>
+<tr><td>Construction element</td><td>Local setup position</td></tr>
+<tr><td>Active-set iteration loop</td><td>Re-pointed by <code>DEC-044</code>: assembled loop ownership is <code>core/solver/nonlinear_integration</code>; this deliverable supplies the per-iteration classifier/state oracle.</td></tr>
+<tr><td>Support activation state model</td><td>In scope for this deliverable; exact downstream integration contract is owned by the integration tranche.</td></tr>
+<tr><td>Gap/lift-off/one-way state transitions</td><td>In scope for this deliverable; rules must be evidence-backed and tested.</td></tr>
+<tr><td>Friction behavior</td><td>In scope as a named behavior category; numerical model, defaults, and limits are TBD.</td></tr>
+<tr><td>Convergence reporting</td><td>Required output surface; result-envelope integration follows AB-00-03 and diagnostics follow AB-00-06.</td></tr>
+<tr><td>Convergence tests</td><td>Required anticipated artifact; deterministic verification follows OPS-K-SOLVER-1 and AB-00-08.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- _CONTEXT.md for sealed deliverable identity, scope, objective, and architecture basis.</li>
+<li>- docs/_Registers/Deliverables.csv row DEL-04-04.</li>
+<li>- docs/_Registers/ScopeLedger.csv row SOW-012.</li>
+<li>- docs/_Registers/ContextBudgetQA.csv row DEL-04-04.</li>
+<li>- execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7 rows for PKG-04, DEL-04-04, SOW-012, OBJ-003, and AB-00-01/02/03/06/08.</li>
+<li>- docs/CONTRACT.md invariants OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-SOLVER-2, OPS-K-DATA-2, OPS-K-REPORT-1, and OPS-K-AGENT-1 through OPS-K-AGENT-4.</li>
+</ul></blockquote>
+<h3 id="clm-007-d-41-r5-t7-pdu-054-current-declaration">CLM-007 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The nonlinear support slice and DEC-067 Coulomb-friction basis (<code>±mu*N</code>) are implemented and evidenced. Broader nonlinear policies and validation thresholds survive only where explicitly recorded; this currentness declaration is not an engineering acceptance.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-04-04-nonlinear-support-active-set-solver">CLM-008 — Specification: DEL-04-04 Nonlinear support active-set solver</h3>
+<blockquote><h4 id="specification-del-04-04-nonlinear-support-active-set-solver">Specification: DEL-04-04 Nonlinear support active-set solver</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-04-04 covers the per-iteration active-set classifier/state oracle for</p>
+<p>nonlinear support behavior: one-way supports, gaps, lift-off, friction, and</p>
+<p>convergence reporting. Per <code>DEC-044</code>, the assembled nonlinear loop that wraps</p>
+<p>frame assembly/solve around this classifier is owned by the PKG-04 integration</p>
+<p>tranche <code>core/solver/nonlinear_integration</code>. This deliverable does not set</p>
+<p>numerical tolerances, choose friction defaults, or make certification/compliance</p>
+<p>claims.</p></blockquote>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-04-04-REQ-01</td><td>The deliverable shall preserve the 3D centerline/frame mechanics boundary for global piping analysis.</td><td>OPS-K-MECH-1; PKG-04 package scope</td><td>Architecture and solver-boundary tests confirm no local FEA substitution is introduced.</td></tr>
+<tr><td>DEL-04-04-REQ-02</td><td>The nonlinear support classifier shall address one-way restraints, lift-off, gaps, and friction for consumption by a controlled iterative method.</td><td>SOW-012; Deliverables.csv DEL-04-04; DEC-044</td><td>Classifier and integration tests cover invented representative cases for each behavior category.</td></tr>
+<tr><td>DEL-04-04-REQ-03</td><td>The implementation shall report convergence state, active-set state, and unresolved non-convergence.</td><td>OPS-K-SOLVER-2; AB-00-06</td><td>Result-envelope and diagnostic tests assert reported state fields and warning class behavior.</td></tr>
+<tr><td>DEL-04-04-REQ-04</td><td>Solver changes shall have deterministic verification tests before release use.</td><td>OPS-K-SOLVER-1; AB-00-08</td><td>Test inventory includes nonlinear support classifier and assembled-loop convergence/non-convergence regression cases.</td></tr>
+<tr><td>DEL-04-04-REQ-05</td><td>Missing solve-required nonlinear support inputs shall be explicit findings, never silent defaults.</td><td>OPS-K-DATA-2; AB-00-06</td><td>Negative tests assert missing data produces diagnostics rather than assumed values.</td></tr>
+<tr><td>DEL-04-04-REQ-06</td><td>Unit-bearing support, displacement, force, and friction-related quantities shall be unit-aware and dimensionally checked where applicable.</td><td>OPS-K-UNIT-1</td><td>Unit tests cover accepted, rejected, and missing unit metadata.</td></tr>
+<tr><td>DEL-04-04-REQ-07</td><td>The solver shall compute mechanics only; rule-pack acceptability and professional compliance remain outside this deliverable.</td><td>OPS-K-MECH-2; package exclusions</td><td>Reports and result labels avoid compliance/certification language.</td></tr>
+<tr><td>DEL-04-04-REQ-08</td><td>Result and diagnostic outputs shall support report disclosure of solver version, warnings, assumptions, limitations, and provenance notes.</td><td>OPS-K-REPORT-1; AB-00-06</td><td>Report-facing fixture tests confirm required metadata is present or explicitly TBD.</td></tr>
+<tr><td>DEL-04-04-REQ-09</td><td>Implementation choices for sparse live-path adoption, class-tiered convergence values, friction defaults, and final data contracts remain governed or TBD until later authorized work.</td><td>_CONTEXT.md Still TBD; OPS-K-AGENT-1; DEC-044; DEC-046; human hard stops</td><td>Review confirms no invented values or defaults appear in setup artifacts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standards text, formulas, tables, examples, or code-specific values are included in this setup kit. Public/protected data boundaries follow docs/CONTRACT.md. Any later code-specific or project-specific engineering values must be user-supplied or lawfully imported private data where applicable.</p></blockquote>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Verification shall include deterministic invented-example tests for active-set</p>
+<p>activation/deactivation, gap closure/opening, lift-off, one-way support</p>
+<p>behavior, friction state reporting, convergence, and non-convergence</p>
+<p>diagnostics. Per <code>DEC-067</code>, unilateral-support classification is</p>
+<p>state-switched: engaged supports (including closed gaps) classify on trial</p>
+<p>reaction sign and released supports classify on trial displacement penetration</p>
+<p>(or the explicit gap clearance), so re-engagement and lift-off transitions are</p>
+<p>observable and the converged state does not depend on seeded initial states;</p>
+<p>verification includes transition witnesses for re-engagement of a lifted</p>
+<p>one-way support, lift-off of a closed gap, and bounded +/- mu*N friction</p>
+<p>sliding. Assembled-loop verification is owned by</p>
+<p><code>core/solver/nonlinear_integration</code> under <code>DEC-044</code>; exact pass/fail</p>
+<p>thresholds, test matrices, and measured convergence values remain governed by</p>
+<p><code>DEC-046</code> and must not be invented by this setup pass.</p></blockquote>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required documentation artifacts for this setup are <code>Datasheet.md</code>,</p>
+<p><code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>, <code>_SEMANTIC.md</code>,</p>
+<p><code>_SEMANTIC_LENSING.md</code>, <code>_DEPENDENCIES.md</code>, <code>Dependencies.csv</code>, and</p>
+<p><code>_run_records/</code>. The assembled-loop integration artifact is</p>
+<p><code>core/solver/nonlinear_integration</code>.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted classifier versus assembled-loop ownership, implemented state-transition and bounded Coulomb-friction basis, unit and diagnostic boundaries, explicit missing inputs, mechanics-only posture, and unresolved path-history, convergence-threshold, sparse-live-path, and validation policies without inventing defaults or engineering acceptance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-04-04-nonlinear-support-active-set-solver">CLM-014 — Procedure: DEL-04-04 Nonlinear support active-set solver</h3>
+<blockquote><h4 id="procedure-del-04-04-nonlinear-support-active-set-solver">Procedure: DEL-04-04 Nonlinear support active-set solver</h4></blockquote>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the documentation setup procedure for DEL-04-04 without implementing nonlinear solver code.</p></blockquote>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and <code>_STATUS.md</code>.</li>
+<li>- Apply docs/CONTRACT.md invariants OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-SOLVER-2, OPS-K-DATA-2, OPS-K-REPORT-1, and OPS-K-AGENT-1 through OPS-K-AGENT-4.</li>
+<li>- Apply architecture basis AB-00-01, AB-00-02, AB-00-03, AB-00-06, and AB-00-08.</li>
+<li>- Keep all writes inside the DEL-04-04 folder.</li>
+</ul></blockquote>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity is DEL-04-04 under PKG-04.</p>
+<p>2. Confirm the setup scope is documentation only: four documents, semantic files, dependency artifacts, and run records.</p>
+<p>3. Capture nonlinear support behavior categories from SOW-012 and the deliverables register: one-way supports, gaps, lift-off, and friction. Per <code>DEC-067</code>, the implemented classifier decision boundary is state-switched (engaged supports classify on reaction sign, released supports on displacement penetration/clearance) and a sliding friction support carries the bounded <code>+/- mu*N</code> tangential force in the assembled loop rather than a full DOF release.</p>
+<p>4. Record future implementation needs as <code>TBD</code> when exact numerical library choices, convergence thresholds, friction defaults, or data contracts are not provided.</p>
+<p>5. Preserve mechanics/reporting boundaries: mechanics solved by solver, acceptability handled by rule packs or humans, and no compliance/certification claims.</p>
+<p>6. Generate dependency rows only from explicit scope, architecture, invariant, or local-document evidence.</p>
+<p>7. Run local schema validation for <code>Dependencies.csv</code>.</p></blockquote>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Four production documents exist and retain Datasheet, Specification, Guidance, and Procedure roles.</li>
+<li>- <code>_SEMANTIC.md</code> exists and separates semantic lensing from engineering authority.</li>
+<li>- <code>_SEMANTIC_LENSING.md</code> exists and records warranted enrichment items without rewriting production documents.</li>
+<li>- <code>Dependencies.csv</code> validates against v3.1 schema.</li>
+<li>- <code>_STATUS.md</code> is not advanced to <code>ISSUED</code>.</li>
+</ul></blockquote>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1015_*.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, nonlinear behavior categories and state transitions, classifier/integration ownership, convergence diagnostics, units and provenance, protected-content and professional boundaries, deterministic transition witnesses, and every surviving governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-04-04-nonlinear-support-active-set-solver">CLM-020 — Guidance: DEL-04-04 Nonlinear support active-set solver</h3>
+<blockquote><h4 id="guidance-del-04-04-nonlinear-support-active-set-solver">Guidance: DEL-04-04 Nonlinear support active-set solver</h4></blockquote>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable prepares a future nonlinear support active-set solver slice within PKG-04. Its value is to keep nonlinear mechanical behavior, diagnostics, unit handling, and result reporting bounded before implementation work begins.</p></blockquote>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat active-set matrices and support states as mechanics-solving concerns, not rule-pack compliance decisions.</li>
+<li>- Keep friction, gap, lift-off, and one-way support behavior explicit in state and diagnostics rather than hidden in defaults.</li>
+<li>- Use <code>TBD</code> for numerical tolerances, friction defaults, and exact data contracts until an authorized implementation brief supplies or derives them.</li>
+<li>- Preserve result-envelope discipline from AB-00-03 and diagnostic discipline from AB-00-06.</li>
+<li>- Use invented verification fixtures only; do not reproduce protected code examples, tables, or formulas.</li>
+</ul></blockquote>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The future implementation will likely need to coordinate with linear support models, the frame stiffness kernel, solver diagnostics, and sparse solver behavior. Those are execution relationships for later work; this setup pass records them without editing other deliverables or implementing code.</p>
+<p>Convergence reporting needs enough information for downstream diagnostics and reports to disclose unresolved non-convergence, assumptions, and limitations. It must not imply engineering approval or code compliance.</p></blockquote>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Setup guidance</td></tr>
+<tr><td>Scope size</td><td>DEL-04-04 is large but remains one numerical domain per ContextBudgetQA. Split only if later implementation crosses package boundaries or expands beyond nonlinear support behavior.</td></tr>
+<tr><td>Completeness vs invention</td><td>Prefer <code>TBD</code> over invented convergence tolerances, friction coefficients, or activation defaults.</td></tr>
+<tr><td>Diagnostic detail</td><td>Favor structured diagnostic/result fields over prose-only errors so AB-00-06 and OPS-K-SOLVER-2 remain testable.</td></tr>
+<tr><td>Test realism</td><td>Use invented mechanical examples sufficient for deterministic verification; do not copy protected benchmark tables or code examples.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Example cases are intentionally not specified in this setup pass. Future examples should use invented geometry, invented loads, and invented support properties, with explicit units and no protected standards content.</p></blockquote>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict detected in setup pass.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-d-41-r5-t7-pdu-054-current-declaration">CLM-027 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The nonlinear support slice and DEC-067 Coulomb-friction basis (<code>±mu*N</code>) are implemented and evidenced. Broader nonlinear policies and validation thresholds survive only where explicitly recorded; this currentness declaration is not an engineering acceptance.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-012 OBJ-003</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

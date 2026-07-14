@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 245
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the accepted frame-kernel requirements and current declarations, including unit and provenance boundaries, explicit missing-input and solver findings, rights-cleared verification data, and unresolved formulation, tolerance, sparse-policy, arc-pressure-thrust, and mechanics-assessment items without inventing engineering values or approval.",
+    "OUT-001": "A 3D frame-stiffness-kernel contract covering six-degree-of-freedom node mapping, global assembly, coordinate transforms, boundary conditions, sparse-solve interfaces, mechanics-only result envelopes, and deterministic verification is produced for the declared scope and objective.",
+    "VER-001": "Validate the contract and review source parity, frame/DOF and assembly coverage, coordinate and boundary interfaces, sparse/reproducibility obligations, units and diagnostics, protected-content and professional boundaries, and every unresolved governed item."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

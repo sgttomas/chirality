@@ -1,0 +1,6 @@
+sequence	deliverable_id	stage	started_utc	finished_utc	result	retries	remediation	blocker	waiver	evidence	terminal
+1	DEL-04-06	precheck	2026-07-14T14:55:29Z	2026-07-14T14:55:29Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-04-06/FROZEN_ROW.tsv;members/DEL-04-06/SOURCE_HASHES.tsv
+1	DEL-04-06	conversion	2026-07-14T14:55:29Z	2026-07-14T14:55:30Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-04-06/DETERMINISM.tsv
+1	DEL-04-06	finalization	2026-07-14T14:55:30Z	2026-07-14T14:55:30Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-04-06/final-a/report.json;members/DEL-04-06/DETERMINISM.tsv
+1	DEL-04-06	validation_mapping_qa	2026-07-14T14:55:30Z	2026-07-14T14:55:31Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-04-06/validation-sow-v1.json;members/DEL-04-06/parity-a.json;members/DEL-04-06/checklist-a.json;members/DEL-04-06/negative-*.exit
+1	DEL-04-06	postcheck_terminal	2026-07-14T14:55:31Z	2026-07-14T14:55:31Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-04-06/SOURCE_HASHES.tsv
