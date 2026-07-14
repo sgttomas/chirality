@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `H1 EVIDENCE PREPARED — CHANGE BINDING RELEASED`
+Status: `H1 APPROVED — RULING BINDING RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v50`
+Graph version: `v51`
 
 ## Objective and accepted basis
 
@@ -90,6 +90,15 @@ The explicit H1 evidence acceptance, decision slate, and handoff are frozen at
 `snapshots/I0/H1_EVIDENCE/`. The inherent workplan goal is substantively
 complete; CHANGE is released only to bind this derivative evidence and receipt
 to synchronized main. H1 remains unapproved and I1 remains parked.
+
+The human explicitly approved H1 for the exact `DEL-01-01` representation
+replacement bound at evidence commit
+`054ef5dd2de62f0803569573e162d613258b1b40`, agreed with the governed pause for
+the ISSUED deliverable, and directed the goal to resume. The exact ruling is
+recorded at `amendments/H1-APPROVAL-001.md`. CHANGE is released first to bind
+that ruling on synchronized main; I1 remains parked until that binding passes.
+The ruling does not authorize reissue, reauthentication, lifecycle change,
+release, reliance, retirement, or H2.
 
 `WORKING-I0-PKG01` returned PASS after a fresh author and fresh independent
 verifier. The exact ISSUED source/status/authority basis is preserved; the

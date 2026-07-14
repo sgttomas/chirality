@@ -1,0 +1,21 @@
+{
+  "basis": "054ef5dd2de62f0803569573e162d613258b1b40",
+  "blockers": [],
+  "branch": "codex/sow-p1-pkg04-closeout",
+  "h1_approved": true,
+  "h1_evidence_manifest_sha256": "4c9a71df041a37755cd0c291f3013130245b7d44156cc0bb558370c701394df2",
+  "instance_id": "CHANGE-H1-G",
+  "integration_permitted": true,
+  "integration_scope": "exact approved five-row DEL-01-01 representation replacement only",
+  "live_lifecycle": "ISSUED",
+  "live_project_delta": 0,
+  "next_node": "I1",
+  "parent": "HELP_HUMAN",
+  "recon_snapshot_manifest_sha256": "802656d604adcaed53bdfd6789a79d852da77dc252382387954f369fe603bc74",
+  "role": "CHANGE",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "status": "PASS",
+  "terminal": true,
+  "unknowns": [],
+  "waivers": []
+}

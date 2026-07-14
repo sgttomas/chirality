@@ -289,3 +289,18 @@
 - State: `H1_EVIDENCE_PREPARED — AWAITING_ISSUED_ADMINISTRATIVE_APPROVAL`.
   H1 is unapproved; integration, reissue, reauthentication, lifecycle action,
   release, reliance, retirement, and H2 remain prohibited.
+
+### Receipt 19 — 2026-07-14 — DEL-01-01 H1 approved
+
+- Owner ruling: “I APPROVE H1 for the exact DEL-01-01 representation
+  replacement bound at commit
+  `054ef5dd2de62f0803569573e162d613258b1b40`.” The owner also agreed with the
+  governed pause because the deliverable was `ISSUED` and directed the goal to
+  resume.
+- Effect: authorize only the exact five-row replacement using clean production
+  SHA-256 `23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21`,
+  with `_STATUS.md` byte-identical and lifecycle preserved as `ISSUED`.
+- Sequence: bind the ruling on synchronized main before releasing I1 CHANGE.
+- Fences: no candidate regeneration, semantic modification, reissue,
+  reauthentication, lifecycle change, release, reliance, rollback, retirement,
+  or H2 authorization is implied.
