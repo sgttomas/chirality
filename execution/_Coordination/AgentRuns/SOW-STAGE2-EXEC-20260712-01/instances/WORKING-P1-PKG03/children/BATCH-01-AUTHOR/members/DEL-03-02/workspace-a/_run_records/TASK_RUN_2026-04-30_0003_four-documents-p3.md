@@ -45,4 +45,3 @@ RUN_STATUS: SUCCESS
 ## Human Rulings Needed
 
 - Same as P1/P2: schema field layout, provenance/redistribution status taxonomy, protected-content gate behavior, and `_REFERENCES.md` revision cleanup.
-

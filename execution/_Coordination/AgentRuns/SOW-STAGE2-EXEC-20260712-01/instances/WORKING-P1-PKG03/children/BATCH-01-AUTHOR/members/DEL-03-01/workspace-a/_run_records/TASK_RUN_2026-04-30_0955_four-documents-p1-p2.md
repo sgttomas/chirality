@@ -52,4 +52,3 @@ N/A
 
 ## Applied Changes
 - Created four-document setup evidence only; no product implementation artifacts.
-

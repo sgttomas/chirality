@@ -46,4 +46,3 @@ and inverse rollback rows, simulations, required Piping checks, runtime
 telemetry, findings, and rerun conditions. Any source/status/control/dependency
 hash drift, semantic conflict, scope breach, failed required check, or verifier
 discrepancy blocks the affected batch and its dependants.
-

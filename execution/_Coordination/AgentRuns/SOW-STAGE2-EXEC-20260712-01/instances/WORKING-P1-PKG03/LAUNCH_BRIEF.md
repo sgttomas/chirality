@@ -64,4 +64,3 @@ Return `PASS`, `BLOCKED`, or `DECISION_REQUIRED` with package-level validation,
 all child returns, changed-path containment, blockers, rerun triggers,
 derivative status, and an explicit handoff. No partial or invalid child return
 may become PASS.
-

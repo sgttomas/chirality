@@ -8,8 +8,9 @@ Branch: `codex/sow-p1-pkg03`
 
 - Local `main`, local `origin/main`, and remote `refs/heads/main` were equal to
   the sealed basis before branch creation.
-- Accepted snapshot `MANIFEST.tsv` reproduced SHA-256
-  `39e29ecf82dffe8ecbeaaa1f944a7557c348e655eb6d4fef09943903a237195c`.
+- Accepted snapshot `MANIFEST.tsv` reproduces rebound SHA-256
+  `9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a`;
+  the pre-normalization identity is retained in branch history.
 - All 32 legacy source hashes, eight absent live `ScopeOfWork.md` states,
   eight clean-production hashes, and 40 status/control/dependency hashes
   reproduced before mutation.
@@ -53,15 +54,10 @@ Branch: `codex/sow-p1-pkg03`
 - Instruction entrypoints: canonical.
 - Public-export and Scope-of-Work tool tests: 20 passed.
 - Per-commit and live-project `git diff --check`: `PASS`.
-- Whole cached evidence `git diff --cached --check`: `BLOCKED`; it reports
-  exactly 56 `new blank line at EOF` findings in 56 immutable,
-  manifest-bound evidence files. No trailing-whitespace, conflict-marker,
-  live-project, or newly authored CHANGE-record finding is present.
+- Whole working diff `git diff --check`: `PASS` after the human-directed exact
+  56-file EOF normalization and complete transitive manifest rebinding.
 
-No semantic, preservation, schema, substrate, containment, or project-check
-blocker is present. The immutable-evidence whitespace variance is a required
-Git closeout decision: normalizing those bytes would invalidate accepted
-manifests, while retaining them requires fresh human acceptance for this
-PKG-03 tranche. No evidence commit, push, PR, or merge may occur until that
-decision is recorded. After resolution, all required remote checks must pass
-on the exact remote head before merge.
+No semantic, preservation, schema, substrate, containment, project-check, or
+diff-hygiene blocker remains. The pre-normalization blocked state and warning
+inventory are preserved at `ce4ea40f2c290eb41b6f9cd29f49d0f54d74a5ca`.
+All required remote checks must pass on the exact remote head before merge.

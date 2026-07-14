@@ -274,4 +274,3 @@ Formula: `L_C(i,j) = sum_k (A(i,k) * B(k,j)); C(i,j) = I(row_i, col_j, L_C(i,j))
 | **applying** | Practice Fact Trace | Provenance Context Signal | Schema Expertise Frame | Practice Discernment Frame |
 | **judging** | Decision Fact Trace | Assessment Context Signal | Decision Expertise Frame | Assessment Discernment Frame |
 | **reviewing** | Audit Fact Trace | Audit Context Signal | Audit Expertise Frame | Audit Discernment Frame |
-

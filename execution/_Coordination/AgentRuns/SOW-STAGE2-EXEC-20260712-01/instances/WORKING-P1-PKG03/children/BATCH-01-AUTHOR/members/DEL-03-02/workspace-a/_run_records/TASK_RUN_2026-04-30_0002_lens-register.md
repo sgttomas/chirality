@@ -36,4 +36,3 @@ RUN_STATUS: SUCCESS
 
 - Decide future schema field layout and public/private/protected-content review status vocabulary.
 - Resolve local `_REFERENCES.md` decomposition revision wording.
-

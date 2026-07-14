@@ -13,7 +13,11 @@ Piping project writes. All retained exception histories remain visible.
 Immutable derivative:
 `snapshots/W_P1/PKG03-preintegration-accepted/`. Its self-excluding manifest
 contains 16 bindings and has SHA-256
-`39e29ecf82dffe8ecbeaaa1f944a7557c348e655eb6d4fef09943903a237195c`.
+`9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a`
+after the exact human-directed EOF normalization and complete manifest
+rebinding. The pre-normalization identity
+`39e29ecf82dffe8ecbeaaa1f944a7557c348e655eb6d4fef09943903a237195c`
+remains preserved at commit `ce4ea40f2c290eb41b6f9cd29f49d0f54d74a5ca`.
 
 Blockers, waivers, conflicts, stale bindings, missing outputs, and semantic
 unknowns: none at the recorded identities. The interrupted extra child

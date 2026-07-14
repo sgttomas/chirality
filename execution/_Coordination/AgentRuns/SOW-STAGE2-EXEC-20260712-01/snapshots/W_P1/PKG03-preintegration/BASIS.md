@@ -18,4 +18,3 @@ decomposition, lifecycle, or integration authority.
 The retained two rejected Batch-02 author manifests and one verifier-local
 retry trigger full-package reproduction across both numeric batches. No sample
 reduction was used.
-

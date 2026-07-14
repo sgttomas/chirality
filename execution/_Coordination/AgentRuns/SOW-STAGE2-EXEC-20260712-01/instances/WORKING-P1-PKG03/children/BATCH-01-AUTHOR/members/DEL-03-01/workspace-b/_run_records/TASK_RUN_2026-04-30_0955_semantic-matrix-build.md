@@ -48,4 +48,3 @@ N/A
 ## Applied Changes
 - Replaced placeholder `_SEMANTIC.md` with matrix-based semantic lens.
 - Updated `_STATUS.md` safely without marking `ISSUED`.
-

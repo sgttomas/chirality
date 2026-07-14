@@ -57,4 +57,3 @@ integration. `CHANGE-P1-PKG03`, PKG-04, isolated ISSUED preparation, H1,
 later waves, closure, retirement, and H2 remain held by their declared gates.
 No project file, lifecycle, Git ref, branch, commit, push, PR, merge, H1/H2,
 release, or retirement state changed in this tranche.
-

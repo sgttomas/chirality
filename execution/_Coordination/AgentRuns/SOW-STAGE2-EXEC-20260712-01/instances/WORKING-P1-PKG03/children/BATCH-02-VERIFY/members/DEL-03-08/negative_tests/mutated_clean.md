@@ -377,4 +377,3 @@ This Scope of Work defines `DEL-03-08` in service of project scope [SOW-051, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-051 SOW-018 OBJ-004 OBJ-012 | CLM-009 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
-

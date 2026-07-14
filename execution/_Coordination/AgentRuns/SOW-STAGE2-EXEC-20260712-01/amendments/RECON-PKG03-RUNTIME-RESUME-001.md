@@ -16,4 +16,3 @@ Reconfirm no governed-input drift, launch that brief as an actual Agent 2,
 validate its return against the prior passing Agent-1 reproduction, and mint a
 new immutable acceptance snapshot only if every gate passes. CHANGE and all
 dependants remain held until that fan-in is accepted.
-

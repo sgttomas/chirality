@@ -19,4 +19,3 @@ as execution, and no acceptance snapshot was minted.
 
 The rerun, derivative status, closure verdict, and held dependants in
 `HANDOFF_STATE.md` remain unchanged.
-

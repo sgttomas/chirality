@@ -226,4 +226,3 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | E-001 | E:guiding:wisdom | RationaleGap | Guidance | Guidance | Explain decision criteria for public fixture acceptance versus quarantine/escalation. | The docs identify stop rules but do not explain how to choose among accept, reject, quarantine, or private-only handling. | Guidance.md; Procedure.md | Guidance `## Principles`; Procedure `## Steps` | N/A | Guidance | TBD |
 | E-002 | E:applying:knowledge | VerificationGap | Specification | Specification | Add example schema fragments using invented placeholder values only, or defer examples explicitly. | Future implementers need examples, but examples risk implying engineering data unless constrained. | Specification.md; Guidance.md | Specification `## Documentation`; Guidance `## Examples` | N/A | Specification | TBD |
-

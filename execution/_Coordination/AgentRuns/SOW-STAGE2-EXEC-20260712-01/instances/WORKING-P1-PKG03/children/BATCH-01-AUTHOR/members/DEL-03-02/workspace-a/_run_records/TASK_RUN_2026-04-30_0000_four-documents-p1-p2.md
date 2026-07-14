@@ -56,4 +56,3 @@ RUN_STATUS: SUCCESS
 
 - Resolve `_REFERENCES.md` revision wording (`v0.2`) versus sealed/current context (`revision 0.4`).
 - Approve future schema field layout, reusable unit-value reference, provenance statuses, and protected-content gate behavior.
-

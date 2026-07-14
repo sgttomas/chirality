@@ -21,4 +21,3 @@ goal turn and two automatic continuations. Resume requires an external runtime
 state change that makes one governed child slot genuinely available; then run
 the unchanged brief, validate fan-in, and mint a new immutable acceptance
 snapshot before CHANGE.
-

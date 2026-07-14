@@ -36,4 +36,3 @@ instances or an explicit accepted contract make delegation useful or required.
 The interrupted child launch produced no terminal return or substantive output
 beyond its frozen launch brief. That brief remains historical derivative
 evidence and is not treated as execution or acceptance.
-

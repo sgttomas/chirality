@@ -1,7 +1,9 @@
 {
   "acceptance_snapshot": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration-accepted",
   "acceptance_snapshot_manifest_bindings": 16,
-  "acceptance_snapshot_manifest_sha256": "39e29ecf82dffe8ecbeaaa1f944a7557c348e655eb6d4fef09943903a237195c",
+  "acceptance_snapshot_manifest_sha256": "9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a",
+  "pre_normalization_acceptance_snapshot_manifest_sha256": "39e29ecf82dffe8ecbeaaa1f944a7557c348e655eb6d4fef09943903a237195c",
+  "normalization_authority": "PKG03-DETERMINISTIC-EVIDENCE-NORMALIZATION-001",
   "basis": "main@5f124ad80fe84357f6dc33072dc4fbdbeb05d545",
   "blockers": [],
   "interrupted_child_disposition": "HISTORICAL_LAUNCH_BRIEF_ONLY",

@@ -20,4 +20,3 @@ for base, name in [
             data = path.read_bytes()
             writer.writerow([hashlib.sha256(data).hexdigest(), len(data), path.relative_to(root).as_posix()])
     print(f"{manifest.relative_to(root)}\t{len(files)}")
-

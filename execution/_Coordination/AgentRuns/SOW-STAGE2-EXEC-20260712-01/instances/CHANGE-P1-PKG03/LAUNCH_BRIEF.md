@@ -91,4 +91,3 @@ rollback binding, remaining dirty files, derivative status, closure verdict,
 rerun triggers, blockers, and next owner. Stop on any drift, unexpected path,
 hash mismatch, failed required check, conflict, remote-head change, protection/
 auth failure, or overlap with unrelated user work.
-

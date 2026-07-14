@@ -30,4 +30,3 @@ Each dispatch failed before child execution with `agent thread limit reached`.
 The sealed brief exists, but it is not claimed as executed. Under the runtime
 doctrine and parent direction, this blocks a reconciliation `PASS` despite the
 complete successful manager reproduction.
-

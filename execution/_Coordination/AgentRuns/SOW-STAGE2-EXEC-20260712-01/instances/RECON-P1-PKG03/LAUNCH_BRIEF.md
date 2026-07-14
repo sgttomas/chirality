@@ -70,4 +70,3 @@ acceptance snapshot, complete provenance and manifest, exact findings and
 exception dispositions, rerun triggers, blockers/waivers/unknowns, project
 containment, and explicit handoff to HELP_HUMAN. No partial or invalid return
 may become PASS.
-

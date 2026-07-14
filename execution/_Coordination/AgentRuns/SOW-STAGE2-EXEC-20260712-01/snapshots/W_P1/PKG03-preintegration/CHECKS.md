@@ -30,4 +30,3 @@ Verdict classes remain separate: schema `PASS`, content/authority `PASS`,
 preservation/containment `PASS`, execution substrate `PASS` for the manager
 reproduction. Package acceptance remains blocked solely because the required
 fresh governed Agent 2 verifier session could not be launched.
-

@@ -46,4 +46,3 @@ N/A
 
 ## Applied Changes
 - Created deliverable-local semantic lensing register.
-
