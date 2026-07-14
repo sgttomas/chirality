@@ -1,0 +1,8 @@
+path	sha256	bytes
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A3/integration/premerge/BASIS.md	31d20c9854f8a0fd5af37e85b5d9591ad2981c73ff764b0cdd65d704a7a07d7b	845
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A3/integration/premerge/CHECKS.md	fd8ab17bae8d822094ea3ec51dd6a57c5afe1071d8e304a1de08dbc1e490b7b1	2057
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A3/integration/premerge/COMMIT_LEDGER.tsv	95a4e524075215858a7ec82a994a4ead899c86956af9137273f1e239b9575776	5182
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A3/integration/premerge/HANDOFF_STATE.md	d3b89ed59357c9026287818170bd1116b26969b8cb87d70f2e1ef4d34dffa269	1544
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A3/integration/premerge/POST_STATE_LEDGER.tsv	764c606db04ce6733e9a7d8ffbea1d3ac05b83b8100994440e4f6a7394147c90	2853
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A3/integration/premerge/REPLACEMENT_MANIFEST.tsv	146755faccfcb0ec2fc3ca6e430f3b70ac44c91412d75fda5905dfcf8dbfb16f	21084
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_A3/integration/premerge/ROLLBACK_MANIFEST.tsv	4b7ccd0cecab9da79a449287352f774f2336e4c6dc0aa17d54d3fc7047d4964b	19547

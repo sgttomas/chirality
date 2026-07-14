@@ -9,8 +9,24 @@
   "branch": "codex/sow-stage2-a3-integration",
   "accepted_snapshot_manifest_sha256": "53fbec09f4d174f4de1744fdaf38b88f3d28ba2936b10cdc83087d1bbb76f10f",
   "acceptance_manifest_sha256": "37bfceeb53e8eedbdbb481e9b777889d2f7abaaa370b4ffcc156db1e32e23ffc",
+  "evidence_binding_commit": "0f8b1ddd8ddce76a7e8d2cac3fbd5bde65455ce0",
+  "content_commits": 16,
   "replacement_rows": 80,
   "rollback_rows": 80,
+  "post_state": {
+    "sow_v1": 16,
+    "legacy": 0,
+    "status_identity": "16/16 PASS",
+    "lifecycle": "16/16 IN_PROGRESS"
+  },
+  "local_checks": {
+    "self_check": "PASS_NO_BLOCK",
+    "governance_harness": "264/264 PASS",
+    "frontend_typecheck": "PASS",
+    "frontend_tests": "713 PASS; 4 skipped",
+    "frontend_build": "PASS",
+    "premerge": "Section 8 8/8; Section 9 16/16 PASS"
+  },
   "blockers": [],
   "unknowns": [],
   "waivers": []
