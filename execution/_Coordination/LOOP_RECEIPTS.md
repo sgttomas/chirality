@@ -233,3 +233,21 @@
 - Evidence: `snapshots/W_P1/PKG03-session-blocked/CONTINUATION_20260714_02.md`; no prior evidence was rewritten and no substitute child execution was claimed.
 - State: formally `BLOCKED_WITH_HANDOFF`; PKG-03 acceptance/integration and all declared dependants remain held.
 - Resume condition: external runtime capacity change providing one genuine child slot, followed by unchanged verifier execution, validated fan-in, and a new immutable acceptance snapshot.
+
+### Receipt 16 — 2026-07-14 — Piping PKG-03 integrated
+
+- Authority: the human clarified the manager topology, directed deterministic
+  evidence normalization instead of stopping, and granted blanket approval to
+  merge this run's PR after required checks passed.
+- Binding: ready PR #228 passed `governance-harness / harness` on source head
+  `413c7765c7df85a8a9ad6ef4e424f896f801e065` and merged as
+  `2826a12ba3f53720312737bd6e1480dc62d57a37`.
+- Result: eight PKG-03 members are clean `SOW_V1`; the project delta is exactly
+  eight additions plus 32 legacy deletions, with all 40 status/control/
+  dependency files byte-identical.
+- Evidence: 234 mappings, 1,966/1,966 source lines, 8/8 simulations, exact
+  40-row replacement/inverse manifests, 3,734 rebound manifest rows, 264
+  practitioner tests, and 20 export/Scope-of-Work tests pass. The exact
+  pre-normalization state remains at `ce4ea40f2`.
+- State: PKG-03 integration is closed and PKG-04 is released. `DEL-01-01`, H1,
+  lifecycle, release, retirement, and H2 remain parked.

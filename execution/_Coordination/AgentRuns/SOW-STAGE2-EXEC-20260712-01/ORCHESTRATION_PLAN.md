@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `ACTIVE — PKG-03 PREINTEGRATION ACCEPTED; CHANGE RELEASED`
+Status: `ACTIVE — PKG-03 INTEGRATED; PKG-04 RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v41`
+Graph version: `v42`
 
 ## Objective and accepted basis
 
@@ -54,8 +54,12 @@ replacement/inverse manifests, and 8/8 simulations. `RECON-P1-PKG03` completed
 a passing Agent-1 full-package reproduction. Human clarification
 `amendments/MANAGER-CHILD-TOPOLOGY-CLARIFICATION-001.md` confirms that RECON
 itself is the independent third layer and the orchestrator-added single-child
-fourth layer is not required. RECON manager closeout is released to mint a new
-immutable acceptance snapshot; CHANGE remains held until that fan-in passes.
+fourth layer is not required. RECON minted the accepted rebound snapshot.
+CHANGE integrated the exact replacement through PR #228 after its required
+check passed on head `413c7765c7df85a8a9ad6ef4e424f896f801e065`;
+the merge commit is `2826a12ba3f53720312737bd6e1480dc62d57a37`.
+Postmerge project, hash, control, format, and registered checks pass. PKG-04 is
+therefore dependency-released.
 
 All later nodes remain parked behind the accepted graph edges. H1 and H2
 remain fresh human gates. CHANGE is the sole integration owner for every Git
