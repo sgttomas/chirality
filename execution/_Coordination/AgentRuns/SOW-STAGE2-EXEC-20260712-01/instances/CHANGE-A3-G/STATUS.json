@@ -1,8 +1,8 @@
 {
   "instance_id": "CHANGE-A3-G",
   "role": "CHANGE",
-  "status": "IN_PROGRESS",
-  "terminal": false,
+  "status": "PASS",
+  "terminal": true,
   "parent": "SOW-STAGE2-EXEC-20260712-01",
   "node": "W-A3-G",
   "basis_commit": "193663b1d93299c18d64f59b543b36a0dd5f0ee1",
@@ -13,6 +13,13 @@
   "content_commits": 16,
   "replacement_rows": 80,
   "rollback_rows": 80,
+  "premerge_evidence_commit": "06dc10e90c60b933fdf0273d63fe164911bb68c3",
+  "remote": {
+    "pr": 226,
+    "url": "https://github.com/sgttomas/chirality/pull/226",
+    "required_checks": "2/2 SUCCESS",
+    "merge_commit": "c7e3c1317d2cb96b8cda4505b8a434d343a12fdf"
+  },
   "post_state": {
     "sow_v1": 16,
     "legacy": 0,
@@ -27,7 +34,18 @@
     "frontend_build": "PASS",
     "premerge": "Section 8 8/8; Section 9 16/16 PASS"
   },
+  "postmerge_checks": {
+    "self_check": "PASS_NO_BLOCK",
+    "governance_harness": "264/264 PASS",
+    "frontend_typecheck": "PASS",
+    "frontend_tests": "713 PASS; 4 skipped",
+    "frontend_build": "PASS",
+    "premerge": "Section 8 8/8; Section 9 16/16 PASS"
+  },
+  "postmerge_evidence_commit": "SELF — containing commit; exact SHA returned after push",
   "blockers": [],
   "unknowns": [],
-  "waivers": []
+  "waivers": [],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "parent W-A3-G acceptance before dependent wave"
 }
