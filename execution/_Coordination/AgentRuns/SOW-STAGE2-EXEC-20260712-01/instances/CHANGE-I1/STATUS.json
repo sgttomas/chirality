@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-change-return/v1",
+  "instance": "CHANGE-I1",
+  "status": "READY_FOR_PR",
+  "basis": "b776813d57124df94e9ba1b66a8a63e89487b388",
+  "branch": "codex/sow-i1-del0101",
+  "project_commit": "3c7f6abfbb7ba7926161369825742fcfd85cbd90",
+  "project_paths": 5,
+  "status_preserved": true,
+  "lifecycle": "ISSUED",
+  "rollback_executed": false,
+  "required_checks": "PENDING"
+}

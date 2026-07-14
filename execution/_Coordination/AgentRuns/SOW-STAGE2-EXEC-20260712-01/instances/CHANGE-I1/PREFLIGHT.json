@@ -1,0 +1,16 @@
+{
+  "basis": "b776813d57124df94e9ba1b66a8a63e89487b388",
+  "branch": "codex/sow-i1-del0101",
+  "candidate_sha256": "23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21",
+  "h1_manifest_rows": 3,
+  "h1_manifest_sha256": "4c9a71df041a37755cd0c291f3013130245b7d44156cc0bb558370c701394df2",
+  "lifecycle": "ISSUED",
+  "project_mutation_before": false,
+  "recon_manifest_rows": 29,
+  "recon_manifest_sha256": "802656d604adcaed53bdfd6789a79d852da77dc252382387954f369fe603bc74",
+  "replacement_rows": 5,
+  "rollback_rows": 5,
+  "schema": "chirality-change-i1-preflight/v1",
+  "status_sha256": "e63b1797b30c291b2a4510cd521951fd2736675025f0e2d07b810e64617b28a8",
+  "verdict": "PASS"
+}
