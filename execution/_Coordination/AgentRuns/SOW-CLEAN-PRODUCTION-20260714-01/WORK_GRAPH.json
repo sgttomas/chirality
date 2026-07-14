@@ -31,7 +31,7 @@
       "depends_on": ["HELPS-CLEAN-SOW-PRODUCTION"],
       "writes": ["git index", "main", "origin/main"],
       "fan_in": "HUMAN-HOLD",
-      "status": "PENDING"
+      "status": "PASS"
     }
   ],
   "human_gates": [

@@ -1,7 +1,7 @@
 # Clean Scope-of-Work Production Handoff
 
-Status: `READY_FOR_CHANGE`
-Closure verdict: `IMPLEMENTATION_COMPLETE_VALIDATED`
+Status: `COMPLETE — HOLD_FOR_HUMAN`
+Closure verdict: `IMPLEMENTED_VALIDATED_COMMITTED`
 
 ## Accepted upstream basis
 
@@ -19,6 +19,9 @@ binds evidence and production hashes. Mapping and parity can require exact
 production finalization; checklist and HTML consumers operate on clean
 production only. The existing 60 prepared candidates pass compatibility.
 
+Implementation commit:
+`8a8a3ee79aa8daa0a9909d7d624ad691530bfbc9`.
+
 ## Derivative status and rerun requirements
 
 All migration candidates, finalization reports, maps, parity reports,
@@ -33,7 +36,6 @@ artifact.
 
 ## Remaining gates
 
-- CHANGE closeout for this workflow correction.
 - Piping execution remains stopped pending a later human instruction.
 - H1/H2, lifecycle acceptance, integration, and legacy retirement remain
   parked at their existing human gates.

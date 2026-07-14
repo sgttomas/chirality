@@ -178,3 +178,19 @@
 - State: `CLOSED — HOLD_FOR_HUMAN`; Piping execution, deliverables, lifecycle,
   H1/H2, PKG-00, candidates, release, and retirement were unchanged.
 - Next gate: fresh human instruction; Piping does not resume automatically.
+
+### Receipt 11 — 2026-07-14 — Clean Scope-of-Work production boundary complete
+
+- Authority: owner direction recorded in
+  `AgentRuns/SOW-CLEAN-PRODUCTION-20260714-01/HUMAN_DIRECTION.md`.
+- Implementation: evidence-rich migration candidates are now deterministically
+  finalized into separate clean production contracts; migration metadata is
+  externalized and downstream evidence binds the production hash, at
+  `8a8a3ee79aa8daa0a9909d7d624ad691530bfbc9`.
+- Checks: 19 focused tests; skill, agent, path, entrypoint, compilation, and
+  whitespace validation PASS; all 60 prepared candidates finalize with 1,841
+  source blocks and zero compatibility findings.
+- State: `CLOSED — HOLD_FOR_HUMAN`; prepared candidates require fresh
+  finalization and rebinding before later integration. Piping execution,
+  project content, lifecycle, H1/H2, integration, and retirement remain
+  unchanged and parked.
