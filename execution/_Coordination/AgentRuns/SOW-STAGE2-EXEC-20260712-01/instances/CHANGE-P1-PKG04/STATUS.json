@@ -14,12 +14,17 @@
     "f4c6e79830fd3bff3ef0bf1bcaaa258fb8fd84ab"
   ],
   "replacement_rows": 30,
-  "required_checks": "PENDING",
+  "evidence_binding_sha256": "da59601ad5d3840db7668d40b34f11425b81bca9cb3ee37c7997d352fad01c96",
+  "merge_commit": "4c945be4c049b3ea04205f5de047d2c14d055754",
+  "postmerge_checks": "PASS",
+  "pull_request": 229,
+  "required_checks": "PASS",
   "role": "CHANGE",
   "rollback_rows": 30,
   "run_id": "SOW-STAGE2-EXEC-20260712-01",
-  "status": "READY_FOR_PR",
-  "terminal": false,
+  "source_head": "f2b1d22bd4c84298ba5b9eb4f133a82904086f79",
+  "status": "PASS",
+  "terminal": true,
   "unknowns": [],
   "waivers": []
 }

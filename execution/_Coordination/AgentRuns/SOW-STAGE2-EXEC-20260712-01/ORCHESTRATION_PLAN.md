@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `ACTIVE — PKG-04 LOCAL INTEGRATION GATES PASS; PR PENDING`
+Status: `ACTIVE — PKG-04 INTEGRATED; P1 POSTMERGE HANDOFF READY`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v46`
+Graph version: `v47`
 
 ## Objective and accepted basis
 
@@ -69,8 +69,11 @@ reproduced and accepted the 84-row reconciliation snapshot at SHA-256
 simulations, 178 mappings, 1,368 source lines, 264 practitioner tests, 20 root
 export/Scope-of-Work tests, root validators, and whole-diff hygiene pass. Two
 terminal-LF findings were mechanically normalized before evidence freeze with
-before/after hashes retained. The branch is ready for a PR; merge still
-requires every required remote check to pass on the exact final head.
+before/after hashes retained. Ready PR #229 passed its required governance
+harness on exact head `f2b1d22bd4c84298ba5b9eb4f133a82904086f79` and merged as
+`4c945be4c049b3ea04205f5de047d2c14d055754`. Postmerge project, format,
+hash, control, evidence-binding, practitioner, and root tests pass. PKG-04 is
+integrated and the P1 postmerge handoff is ready for HELP_HUMAN fan-in.
 
 All later nodes remain parked behind the accepted graph edges. H1 and H2
 remain fresh human gates. CHANGE is the sole integration owner for every Git

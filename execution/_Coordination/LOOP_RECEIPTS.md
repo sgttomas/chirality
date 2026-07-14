@@ -251,3 +251,21 @@
   pre-normalization state remains at `ce4ea40f2`.
 - State: PKG-03 integration is closed and PKG-04 is released. `DEL-01-01`, H1,
   lifecycle, release, retirement, and H2 remain parked.
+
+### Receipt 17 — 2026-07-14 — Piping PKG-04 integrated; P1 handoff ready
+
+- Binding: ready PR #229 passed `governance-harness / harness` on source head
+  `f2b1d22bd4c84298ba5b9eb4f133a82904086f79` and merged as
+  `4c945be4c049b3ea04205f5de047d2c14d055754`.
+- Result: six PKG-04 members are clean `SOW_V1`; the project delta is exactly
+  six additions plus 24 legacy deletions, with all 30 status/control/
+  dependency files byte-identical.
+- Evidence: 178 mappings, 1,368/1,368 source lines, 6/6 simulations, exact
+  30-row replacement/inverse manifests, 1,766 scoped binding rows, 264
+  practitioner tests, and 20 export/Scope-of-Work tests pass. Two terminal-LF
+  findings were mechanically fixed before freeze with exact byte deltas bound.
+- Handoff: `snapshots/W_P1/PKG04-integration-postmerge/`, manifest SHA-256
+  `e590866ae070c5284d6a19c9c61f34b6d9e0304667563086dbd2d41c341b4387`.
+- State: PKG-04 integration is closed and the P1 postmerge handoff is ready for
+  HELP_HUMAN fan-in. `DEL-01-01`, H1, lifecycle, release, retirement, and H2
+  remain parked.
