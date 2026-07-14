@@ -1,0 +1,42 @@
+{
+  "accepted_piping_predecessor_failures": 0,
+  "accepted_piping_predecessors": 4,
+  "control_bindings_expected": 120,
+  "control_bindings_present": 112,
+  "dependency_rows_present_registers": 278,
+  "dispatch_basis": "69ac259a7113d5a838fb22aa2e84df0e0f109713",
+  "excluded_issued_members": 1,
+  "expected_live_bindings": 270,
+  "legacy_source_bindings_verified": 120,
+  "missing_binding_details": [
+    "DEL-00-01:Dependencies.csv",
+    "DEL-00-02:Dependencies.csv",
+    "DEL-00-03:Dependencies.csv",
+    "DEL-00-04:Dependencies.csv",
+    "DEL-00-05:Dependencies.csv",
+    "DEL-00-06:Dependencies.csv",
+    "DEL-00-07:Dependencies.csv",
+    "DEL-00-08:Dependencies.csv"
+  ],
+  "missing_live_bindings": 8,
+  "p3_source_status_mismatches": [],
+  "package_counts": {
+    "PKG-00": 8,
+    "PKG-01": 3,
+    "PKG-02": 5,
+    "PKG-03": 8,
+    "PKG-04": 6
+  },
+  "present_live_bindings": 262,
+  "selected_format_counts": {
+    "LEGACY_FOUR_DOC": 30
+  },
+  "selected_lifecycle_counts": {
+    "IN_PROGRESS": 30
+  },
+  "selected_live_sow": 0,
+  "selected_members": 30,
+  "status_bindings_verified": 30,
+  "verdict": "DECISION_REQUIRED",
+  "wave": "P1"
+}

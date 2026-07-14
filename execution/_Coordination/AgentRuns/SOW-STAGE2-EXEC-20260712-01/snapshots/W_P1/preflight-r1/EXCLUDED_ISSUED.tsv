@@ -1,0 +1,2 @@
+project	package	deliverable_id	live_path	lifecycle	format	valid	dependency_rows	live_sow	p3_source_status_match	disposition
+PIP	PKG-01	DEL-01-01	projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline	ISSUED	LEGACY_FOUR_DOC	True	13	false	true	EXCLUDED_READ_ONLY_H1_PARKED

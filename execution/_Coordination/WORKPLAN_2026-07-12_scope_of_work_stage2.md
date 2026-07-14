@@ -5,6 +5,9 @@ Date: 2026-07-12
 Supervising role: `HELP_HUMAN` (Agent 0)
 Execution architecture: mixed manager graph under root `AGENTS.md`
 
+Amended: 2026-07-13 by the human PKG-00 ruling recorded at
+`execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/HUMAN-STEER-PKG00-EXCLUSION-001.md`.
+
 ## Goal
 
 Execute the accepted D-GOV-16 Stage-2 plan through preparation and independent
@@ -51,8 +54,12 @@ execution run.
 4. Reproduce the tracked census, lifecycle population, companion-file checks,
    candidate hashes, patch applicability, and caller classification on that
    synchronized basis.
-5. Require exactly 154 members, ten pilots, 144 remaining, 153
-   `IN_PROGRESS`, one named ISSUED Piping `DEL-01-01`, and sorted path digest
+5. Require exactly 154 tracked source-census members, of which eight Piping
+   `PKG-00` members are retained governance context outside the conversion
+   population. Require a 146-member conversion population: ten pilots, 135
+   ordinary-wave members, and one named ISSUED Piping `DEL-01-01`; retain the
+   observed full-census lifecycle population of 153 `IN_PROGRESS` and one
+   named ISSUED member; and reproduce sorted path digest
    `b6eca2504a5d7551d96f7c0978ba6b4bc48b0e36c4d51792177fdd7a91e8df31`,
    unless a human-approved amendment explicitly changes the basis.
 
@@ -111,7 +118,16 @@ independent verification, project checks, and RECONCILIATION fan-in precede
 CHANGE. CHANGE integrates one atomic replacement commit per deliverable:
 add `ScopeOfWork.md` and remove all four legacy production files together.
 
-### 5. Seven ordinary waves — 143 members
+### 5. Seven ordinary waves — 135 members
+
+Piping `PKG-00` is retained upstream governance/architecture-basis context,
+not a Stage-2 conversion package. It remains in the tracked source census but
+is excluded from conversion, integration, rollback, closure-population,
+legacy-retirement, and H1/H2 counts. Every actual Piping package (`PKG-01`
+through `PKG-17`) must depend on or incorporate applicable PKG-00 context;
+PKG-00 must not depend on another package or deliverable. This directional
+rule is a planning and validation invariant, not authority to create or amend
+project dependency truth silently.
 
 Run the accepted bounded sequence:
 
@@ -120,7 +136,7 @@ Run the accepted bounded sequence:
 | A1 | App PKG-00–03 | 15 |
 | A2 | App PKG-04–06 | 16 |
 | A3 | App PKG-08–10 | 16 |
-| P1 | Piping PKG-00–04 excluding `DEL-01-01` | 30 |
+| P1 | Piping PKG-01–04 excluding `DEL-01-01` | 22 |
 | P2 | Piping PKG-05–09 | 29 |
 | P3 | Piping PKG-10–12 | 15 |
 | P4 | Piping PKG-14–17 | 22 |
@@ -146,9 +162,12 @@ plan acceptance, loop activation, or silence.
 ### 7. Later closure boundaries
 
 Only after explicit H1 may CHANGE integrate the ISSUED representation
-replacement. Cross-wave closure then requires 154 valid `SOW_V1` members,
-zero legacy/dual/invalid members, complete receipts and rollback manifests,
-caller closure, and all applicable root/project/runtime checks.
+replacement. Cross-wave closure then requires 146 valid `SOW_V1` members in
+the amended conversion population, zero legacy/dual/invalid members within
+that population, complete receipts and rollback manifests, caller closure,
+and all applicable root/project/runtime checks. The eight retained Piping
+PKG-00 governance-context members are an explicit exemption, not conversion
+debt and not part of retirement closure.
 
 Legacy skills, readers, validators, and aliases remain supported throughout
 conversion and the rollback window. RECONCILIATION may prepare a retirement
@@ -173,6 +192,9 @@ proposal after closure, but implementation stops for separate H2 approval.
   continue.
 - Schema/content, preservation/containment, and execution-substrate outcomes
   remain separate classifications.
+- Piping PKG-00 is upstream-only context: actual packages consume its
+  applicable governance/architecture basis, while PKG-00 consumes no other
+  package or deliverable dependency.
 
 ## Hard fences
 

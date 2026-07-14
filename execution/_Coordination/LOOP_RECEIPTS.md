@@ -147,3 +147,17 @@
   node ran, and H1/H2 remain unapproved.
 - Release gate: a fresh governed execution run repeats Step 0 synchronized-main
   and census/caller preflight before it may dispatch a dependency-released node.
+
+### Receipt 9 — 2026-07-13 — Piping PKG-00 excluded from Stage-2 conversion
+
+- Owner ruling: Piping PKG-00 is retained upstream governance/architecture
+  context, not a conversion package; actual packages must incorporate it and
+  PKG-00 must depend on no other package or deliverable.
+- Plan effect: tracked census remains 154; conversion population is 146;
+  ordinary waves are 135; P1 begins at PKG-01 with 22 members split 3/5/8/6.
+- Evidence: revised P1 preflight PASS, 198/198 bindings, all PKG-01–17 with
+  active upstream PKG-00 basis, zero PKG-00 outbound contradictions; snapshot
+  manifest `3fad35f47088b1f1968bd2f8cef8b2fed3659891a4e96abffac88521fbb8ed77`.
+- Handoff: `WORKING-P1-PKG01` is next eligible but undispatched at the owner's
+  requested conversation boundary. PKG-02–04 remain serially parked; H1/H2
+  remain unapproved; no project, lifecycle, or dependency-truth edit occurred.

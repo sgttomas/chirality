@@ -1,0 +1,7 @@
+path	state	disposition
+domains/piping-design/_Sources/MWK_1956/audit/equations_flagged.json	MODIFIED	READ_ONLY_UNRELATED
+domains/piping-design/_Sources/MWK_1956/audit/equations_verified.json	MODIFIED	READ_ONLY_UNRELATED
+domains/piping-design/_Sources/Pipe-Stress-Engineering/audit/equations_flagged.json	UNTRACKED	READ_ONLY_UNRELATED
+domains/piping-design/_Sources/Pipe-Stress-Engineering/audit/equations_verified.json	UNTRACKED	READ_ONLY_UNRELATED
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/WORK_GRAPH.json	MODIFIED	PARENT_OWNED_READ_ONLY
+.claude-worktrees/	PRE_EXISTING_UNTRACKED_CONTAINER	EXCLUDED_NOT_INSPECTED_NOT_MODIFIED

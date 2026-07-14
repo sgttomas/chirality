@@ -1,0 +1,42 @@
+{
+  "accepted_piping_predecessor_failures": 0,
+  "accepted_piping_predecessors": 4,
+  "actual_packages_with_active_pkg00_basis": 17,
+  "dependency_registers": 22,
+  "dependency_rows": 278,
+  "dispatch_basis": "69ac259a7113d5a838fb22aa2e84df0e0f109713",
+  "excluded_issued_members": 1,
+  "excluded_pkg00_members": 8,
+  "expected_live_bindings": 198,
+  "legacy_source_bindings_verified": 88,
+  "missing_live_bindings": 0,
+  "p3_source_status_mismatches": [],
+  "package_counts": {
+    "PKG-01": 3,
+    "PKG-02": 5,
+    "PKG-03": 8,
+    "PKG-04": 6
+  },
+  "package_sequence": [
+    "PKG-01",
+    "PKG-02",
+    "PKG-03",
+    "PKG-04"
+  ],
+  "packages_frozen": 4,
+  "pkg00_outbound_contradictions": 0,
+  "pkg00_summary_direction_failures": 0,
+  "present_live_bindings": 198,
+  "revision": "R1",
+  "selected_format_counts": {
+    "LEGACY_FOUR_DOC": 22
+  },
+  "selected_lifecycle_counts": {
+    "IN_PROGRESS": 22
+  },
+  "selected_live_sow": 0,
+  "selected_members": 22,
+  "status_bindings_verified": 22,
+  "verdict": "PASS",
+  "wave": "P1"
+}

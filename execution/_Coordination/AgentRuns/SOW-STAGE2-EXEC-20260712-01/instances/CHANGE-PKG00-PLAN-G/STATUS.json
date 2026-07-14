@@ -1,0 +1,33 @@
+{
+  "instance_id": "CHANGE-PKG00-PLAN-G",
+  "role": "CHANGE",
+  "status": "PASS",
+  "terminal": true,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "G-PKG00-PLAN",
+  "basis_commit": "69ac259a7113d5a838fb22aa2e84df0e0f109713",
+  "branch": "main",
+  "upstream": "origin/main",
+  "predecessor_snapshot_manifest_sha256": "540848214dfc8185427c782b2cf7462b6658aa121f7171c52488192fbff7037a",
+  "accepted_revised_snapshot_manifest_sha256": "3fad35f47088b1f1968bd2f8cef8b2fed3659891a4e96abffac88521fbb8ed77",
+  "validation": {
+    "json_parse": "PASS",
+    "manifest_content_hashes_and_bytes": "PASS",
+    "revised_members": "22/22 PASS",
+    "revised_live_bindings": "198/198 PASS",
+    "package_direction_rows": "17/17 PASS",
+    "pkg00_outbound_contradictions": "0 PASS",
+    "diff_hygiene": "PASS",
+    "staged_scope": "exact authorized subset PASS"
+  },
+  "commit": "SELF — containing commit; exact SHA returned after push",
+  "push_target": "origin/main",
+  "project_writes": 0,
+  "lifecycle_writes": 0,
+  "dependency_truth_writes": 0,
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "next_owner": "HELP_HUMAN",
+  "next_gate": "Human-requested conversation boundary before WORKING-P1-PKG01 dispatch"
+}
