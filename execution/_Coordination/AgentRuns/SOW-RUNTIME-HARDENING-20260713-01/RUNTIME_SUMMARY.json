@@ -1,0 +1,45 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 1
+  },
+  "counts": {
+    "category": {
+      "PROJECT_CHECK_SUBSTRATE": 1,
+      "VALIDATION": 2
+    },
+    "event_type": {
+      "CHECK": 1,
+      "FINISH": 1,
+      "START": 1
+    },
+    "outcome": {
+      "PASS": 2,
+      "STARTED": 1
+    },
+    "reason_code": {
+      "ALL_REQUIRED_CHECKS_PASS": 1,
+      "MANAGED_SERVICE_LIFECYCLE_PASS": 1,
+      "OWNER_DIRECTED_RUNTIME_HARDENING": 1
+    }
+  },
+  "events": 3,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 145.433,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "HELPS-RUNTIME-HARDENING",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "HELPS_HUMANS",
+      "session_id": "HELPS-RUNTIME-HARDENING"
+    }
+  ],
+  "sessions": 1,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

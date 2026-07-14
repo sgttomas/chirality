@@ -1,0 +1,37 @@
+{
+  "schema": "chirality-root-work-graph/v1",
+  "run_id": "SOW-RUNTIME-HARDENING-20260713-01",
+  "selection_authority": "HUMAN",
+  "posture": "SINGLE_MANAGER_SEQUENTIAL",
+  "basis": "main@1bc6774465c9ebb68c79f733d2d1291522e6e1b1",
+  "nodes": [
+    {
+      "id": "HELPS-RUNTIME-HARDENING",
+      "owner": "HELPS_HUMANS",
+      "depends_on": [],
+      "writes": [
+        "tools/software_workflow/**",
+        "tools/workflow_runtime/**",
+        "tools/REGISTRY.md",
+        "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+        "agents/AGENT_WORKING_ITEMS.md",
+        "agents/AGENT_RECONCILIATION.md",
+        "projects/chirality-app-dev/software-workflow.json",
+        "execution/_Coordination/WORKPLAN_2026-07-12_scope_of_work_stage2.md",
+        "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/RUNTIME-EFFICIENCY-001.md",
+        "execution/_Coordination/AgentRuns/SOW-RUNTIME-HARDENING-20260713-01/**"
+      ],
+      "fan_in": "CHANGE-CLOSE",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "CHANGE-CLOSE",
+      "owner": "CHANGE",
+      "depends_on": ["HELPS-RUNTIME-HARDENING"],
+      "writes": ["git index", "main", "origin/main"],
+      "fan_in": "HUMAN-HOLD",
+      "status": "PENDING"
+    }
+  ],
+  "human_gates": ["No Piping package execution resumes in this run"]
+}

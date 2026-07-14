@@ -32,7 +32,7 @@ Profile-driven deterministic support for WORKING_ITEMS software activations. The
 |------|----------|---------|--------|---------|
 | `discover_repository.py` | Python 3 | Discover manifests and conventional test files without executing project code | root | JSON repository map |
 | `select_affected_checks.py` | Python 3 | Map changed project-relative paths to registered checks | profile, paths | JSON check selection and reasons |
-| `run_registered_checks.py` | Python 3 | Execute selected profile commands as argument arrays without a shell | profile, repeated `--check`, `--output` | Normalized JSON evidence; exit 0/1 |
+| `run_registered_checks.py` | Python 3 | Execute selected profile commands as argument arrays without a shell; optionally own one registered loopback service from automatic port allocation through readiness and guaranteed shutdown | profile, repeated `--check`, `--output` | Normalized JSON evidence; exit 0 PASS / 1 check failure; service setup is check exit 125 |
 | `validate_change_scope.py` | Python 3 | Compare explicit or Git-derived changed paths with allowed write roots | repo, repeated `--allowed`, diff or explicit paths | JSON PASS/FAIL scope report |
 | `compare_structured.py` | Python 3 | Compare JSON API, schema, or migration artifacts by flattened value path | before, after | JSON added/removed/changed report |
 | `verify_generated_manifest.py` | Python 3 | Verify generated files against a path-to-SHA-256 manifest | root, manifest | JSON PASS/FAIL drift report |
@@ -91,6 +91,7 @@ change, ISSUED replacement, integration, or legacy retirement.
 | Name | Language | Purpose | Inputs | Outputs |
 |------|----------|---------|--------|---------|
 | `analysis/analyze_agentic_runtime.py` | Python 3 | Deterministically inventory governed package/child records, aggregate command-level check durations and exits, bind a curated abnormal-event catalog to exact evidence text, calculate descriptive rates/Wilson intervals, and derive Git-bounded wave envelopes without modifying source truth | `--repo-root`, `--run-root`, `--event-catalog`, `--output-dir`, optional `--skip-git-runtime` | `summary.json`, normalized `events.csv`, `report.md`, `MANIFEST.tsv`; idempotent; exit 0 success / 1 invalid evidence / 2 operational error |
+| `workflow_runtime/runtime_telemetry.py` | Python 3 | Append concurrency-safe, run-contained session/check/retry/remediation events and summarize durations, failure categories, reason codes, and native context-occupancy availability without inferring missing telemetry | `record` or `summarize`, `--run-root`, stable event/session/instance IDs, event type/outcome, optional package/member/attempt/reason/token fields | `RUNTIME_EVENTS.jsonl`, `RUNTIME_SUMMARY.json`; exit 0 complete / 1 incomplete session pairs / 2 invalid or operational input |
 
 ## PDF-to-Markdown
 

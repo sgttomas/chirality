@@ -82,6 +82,13 @@ to the human.
 - **Validated fan-in.** Every wave receives structural checks and a bounded
   adversarial/semantic verifier. Defective ledgers are rerun; they are not
   silently patched by the manager.
+- **No blanket third-pass duplication.** When a representation-migration wave
+  already has 100% deterministic member validation plus a fresh evidence-only
+  verifier over every member, RECONCILIATION independently validates the full
+  aggregate evidence surface but does not automatically repeat every member's
+  complete semantic/deterministic suite. Fresh member reproduction is
+  exception-driven plus the deterministic sample below. This optimization
+  never removes the package verifier or weakens fail-closed escalation.
 - **Containment includes ignored state.** Check tracked changes, untracked
   non-ignored paths, and ignored-path allowlists. Keep frozen evidence trees
   unchanged; use copy-out or external cache/target roots when validation would
@@ -151,6 +158,29 @@ the four source hashes, candidate hash, legacy source reference, candidate
 compound ID, and `PRESERVED | MERGED | SPLIT | SUPERSEDED | DEFERRED |
 CONFLICT` disposition. `MERGED` and `SPLIT` must preserve a complete
 many-to-many mapping; format conversion does not authorize a content change.
+
+For a representation-migration wave that satisfies the prerequisite above,
+the narrowed third-layer fan-in is:
+
+1. Rehash 100% of package and child manifests and validate 100% of paths for
+   containment, portability, existence, uniqueness, and self-exclusion.
+2. Reproduce the full member census, terminal-result population, aggregate
+   mapping/source totals, candidate hashes, replacement rows, inverse rollback
+   rows, status/control preservation assertions, and project-write audit.
+3. Execute or independently verify apply/target/rollback simulation for every
+   member through the registered deterministic harness.
+4. Freshly reproduce every member with a verifier finding, retry,
+   remediation, failed check, hash/path discrepancy, unknown, or waiver.
+5. Freshly reproduce a deterministic clean sample of at least one member per
+   package, selecting the numerically final clean member to retain sensitivity
+   to late-batch context/task drift. Increase the sample when risk, package
+   heterogeneity, or prior escape evidence warrants it.
+6. Escalate any sample or aggregate failure to full affected-package
+   reproduction. Preserve the initial finding and remediation chain.
+
+This profile narrows only redundant third-layer member reproduction. It keeps
+100% independent package verification, 100% aggregate/manifest/simulation
+coverage, and rare-escape detection.
 
 Terminal fan-out/fan-in is the default when deliverables are independent.
 Supervised many-to-many coordination is used when a discovery changes active
@@ -223,7 +253,10 @@ A concordance run is valid only when:
    project-required validation/provenance is separately satisfied or flagged.
 5. Evidence and dispositions are bound to the actual source state.
 6. Project-specific reliability and professional-boundary rules are applied.
-7. Every wave passes structural validation and independent fan-in review.
+7. Every wave passes structural validation and independent fan-in review. A
+   narrowed representation-migration fan-in additionally proves its 100%
+   aggregate coverage, exception population, deterministic sample, and
+   escalation disposition.
 8. Package and corpus summaries reproduce from accepted claim rows.
 9. Conflicts, unknowns, stale inputs, unmapped implementation, lifecycle
    issues, and Remaining mismatches remain visible.

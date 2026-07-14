@@ -1,4 +1,5 @@
 import json
+import socket
 import subprocess
 import sys
 from pathlib import Path
@@ -82,3 +83,86 @@ def test_registered_checks_timeout_and_contain_output(tmp_path: Path) -> None:
     )
     assert outside.returncode != 0
     assert not outside_path.exists()
+
+
+def test_registered_check_owns_service_lifecycle(tmp_path: Path) -> None:
+    profile = tmp_path / "software-workflow.json"
+    profile.write_text(
+        json.dumps({
+            "schema": "chirality-software-workflow/v1",
+            "project_root": ".",
+            "workspace_root": ".",
+            "checks": {
+                "self-contained": {
+                    "cwd": ".",
+                    "command": [
+                        sys.executable,
+                        "-c",
+                        "import os, urllib.request; urllib.request.urlopen(os.environ['TEST_URL'])",
+                    ],
+                    "service": {
+                        "command": [sys.executable, "-m", "http.server", "{port}", "--bind", "127.0.0.1"],
+                        "ready_url": "http://127.0.0.1:{port}",
+                        "check_env": {"TEST_URL": "http://127.0.0.1:{port}"},
+                        "startup_timeout_seconds": 5,
+                    },
+                }
+            },
+        }),
+        encoding="utf-8",
+    )
+    script = Path(__file__).with_name("run_registered_checks.py")
+    completed = subprocess.run(
+        [sys.executable, str(script), str(profile), "--check", "self-contained", "--output", "evidence.json"],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert completed.returncode == 0, completed.stderr
+    report = json.loads((tmp_path / "evidence.json").read_text(encoding="utf-8"))
+    result = report["results"][0]
+    assert result["status"] == "PASS"
+    assert result["service"]["status"] == "READY"
+    assert result["service"]["stopped_after_run"] is True
+    assert str(tmp_path) not in json.dumps(report)
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+        probe.settimeout(0.5)
+        assert probe.connect_ex(("127.0.0.1", result["service"]["port"])) != 0
+
+
+def test_registered_check_stops_service_after_check_failure(tmp_path: Path) -> None:
+    profile = tmp_path / "software-workflow.json"
+    profile.write_text(
+        json.dumps({
+            "schema": "chirality-software-workflow/v1",
+            "project_root": ".",
+            "workspace_root": ".",
+            "checks": {
+                "failing": {
+                    "cwd": ".",
+                    "command": [sys.executable, "-c", "raise SystemExit(7)"],
+                    "service": {
+                        "command": [sys.executable, "-m", "http.server", "{port}", "--bind", "127.0.0.1"],
+                        "ready_url": "http://127.0.0.1:{port}",
+                        "startup_timeout_seconds": 5,
+                    },
+                }
+            },
+        }),
+        encoding="utf-8",
+    )
+    script = Path(__file__).with_name("run_registered_checks.py")
+    completed = subprocess.run(
+        [sys.executable, str(script), str(profile), "--check", "failing", "--output", "evidence.json"],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert completed.returncode == 1
+    report = json.loads((tmp_path / "evidence.json").read_text(encoding="utf-8"))
+    result = report["results"][0]
+    assert result["exit_code"] == 7
+    assert result["service"]["stopped_after_run"] is True
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+        probe.settimeout(0.5)
+        assert probe.connect_ex(("127.0.0.1", result["service"]["port"])) != 0

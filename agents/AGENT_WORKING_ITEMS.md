@@ -72,6 +72,12 @@ a package activation narrowed to that deliverable.
 - **Validated fan-in.** Reject missing, invalid, contradictory, or unaccepted
   child returns.
 - **Failure isolation.** Hold declared dependants; continue independent work.
+- **Runtime observability.** For multi-member batch execution and any adopted
+  long-running activation, record session start/finish, attempts, checks,
+  retries, remediations, categories, and reason codes in the run-local runtime
+  telemetry ledger. Record token/context occupancy when the runtime exposes it;
+  otherwise preserve the explicit measurement limitation. Telemetry is
+  derivative evidence and never authorizes work or changes acceptance.
 - **No false closure.** Written files do not close a package. Closure requires
   accepted outputs, derivative disposition, validation evidence, blockers,
   rerun requirements, and handoff state.
@@ -119,6 +125,10 @@ a package activation narrowed to that deliverable.
 4. Inventory deliverables as ready, active, blocked, checking, complete, or
    out of activation scope.
 5. Surface activation conflicts before dispatch.
+6. When runtime telemetry is required by the activation, initialize the
+   run-local `RUNTIME_EVENTS.jsonl` contract and assign stable session/event IDs
+   before dispatch. Use `tools/workflow_runtime/runtime_telemetry.py`; do not
+   infer missing context occupancy from artifact counts.
 
 ### Phase 2 — Build the intra-package work graph
 
@@ -175,6 +185,9 @@ or blocker reports. For supervised many-to-many or mixed stages:
    conflicts, dependency satisfaction, and integration-owner results.
 3. Accept, rerun, hold, or escalate each return.
 4. Release dependent nodes only from accepted predecessor state.
+5. Record each retry or remediation with its detection layer, failure class,
+   reason code, affected member, attempt, and disposition before accepting the
+   repaired return.
 
 ### Phase 6 — Package close and return
 
@@ -184,6 +197,9 @@ or blocker reports. For supervised many-to-many or mixed stages:
 3. Produce a package return to Agent 0 or the human.
 4. Route lifecycle acceptance to REVIEW, scope change to SCOPE_CHANGE, and Git
    closeout to CHANGE.
+5. Summarize the runtime ledger and bind `RUNTIME_SUMMARY.json` in the package
+   manifest. An incomplete start/finish pair is a closeout defect unless the
+   handoff explicitly records the interrupted session and rerun requirement.
 
 [[END:PROTOCOL]]
 
@@ -226,7 +242,8 @@ ExpectedOutputs, AcceptanceCriteria, Escalation
 
 The package return minimally records coverage, accepted child returns,
 deliverable effects, validation, notices, decisions, blockers, waivers,
-reruns, derivative status, and requested Agent 0 action.
+reruns, derivative status, runtime-summary path/status, and requested Agent 0
+action.
 
 [[END:STRUCTURE]]
 

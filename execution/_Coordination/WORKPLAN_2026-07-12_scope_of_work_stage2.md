@@ -8,6 +8,9 @@ Execution architecture: mixed manager graph under root `AGENTS.md`
 Amended: 2026-07-13 by the human PKG-00 ruling recorded at
 `execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/HUMAN-STEER-PKG00-EXCLUSION-001.md`.
 
+Amended: 2026-07-13 by the human runtime-efficiency direction recorded at
+`execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/RUNTIME-EFFICIENCY-001.md`.
+
 ## Goal
 
 Execute the accepted D-GOV-16 Stage-2 plan through preparation and independent
@@ -146,6 +149,14 @@ deterministic author TASK and a separate verifier TASK. Each wave ends in
 RECONCILIATION fan-in, an explicit single-format integration manifest,
 serialized CHANGE integration, post-integration checks, an immutable snapshot,
 and a handoff before the next release wave.
+
+For remaining Piping representation-migration work, runtime telemetry is
+required and RECONCILIATION uses the narrowed third-layer profile in
+`AGENT_RECONCILIATION.md`: 100% aggregate, manifest, containment, and
+apply/rollback coverage; fresh reproduction of every exception; at least the
+numerically final clean member per package; and automatic expansion to the
+affected full package on any sampled or aggregate failure. This does not
+remove or sample the fresh package verifier's 100% member review.
 
 ### 6. Isolated ISSUED preparation — stop at H1
 
