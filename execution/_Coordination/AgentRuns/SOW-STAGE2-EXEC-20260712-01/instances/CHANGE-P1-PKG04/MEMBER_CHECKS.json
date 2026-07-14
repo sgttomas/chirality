@@ -1,0 +1,44 @@
+{
+  "mappings": 178,
+  "members": [
+    {
+      "deliverable_id": "DEL-04-01",
+      "mappings": 29,
+      "source_lines": 245,
+      "verdict": "PASS"
+    },
+    {
+      "deliverable_id": "DEL-04-02",
+      "mappings": 28,
+      "source_lines": 199,
+      "verdict": "PASS"
+    },
+    {
+      "deliverable_id": "DEL-04-03",
+      "mappings": 29,
+      "source_lines": 216,
+      "verdict": "PASS"
+    },
+    {
+      "deliverable_id": "DEL-04-04",
+      "mappings": 27,
+      "source_lines": 200,
+      "verdict": "PASS"
+    },
+    {
+      "deliverable_id": "DEL-04-05",
+      "mappings": 32,
+      "source_lines": 232,
+      "verdict": "PASS"
+    },
+    {
+      "deliverable_id": "DEL-04-06",
+      "mappings": 33,
+      "source_lines": 276,
+      "verdict": "PASS"
+    }
+  ],
+  "schema": "chirality-change-member-checks/v1",
+  "source_lines": 1368,
+  "verdict": "PASS"
+}

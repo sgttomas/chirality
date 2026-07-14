@@ -1,0 +1,19 @@
+{
+  "agent": "BATCH-01-VERIFY",
+  "candidate_repairs": 0,
+  "candidate_writes": 0,
+  "discrepancies": 0,
+  "fail_closed_probes": 35,
+  "harness_attempts": 2,
+  "harness_failures": 1,
+  "harness_retries": 1,
+  "members_complete": 5,
+  "mappings": 145,
+  "native_context_occupancy": "unavailable",
+  "project_writes": 0,
+  "semantic_expansions": 0,
+  "source_lines": 1092,
+  "status": "PASS_UNCHANGED",
+  "waivers": 0,
+  "write_scope_warning_inventory": 0
+}

@@ -1,0 +1,19 @@
+{
+  "candidate_hashes": {
+    "clean": "23488618ae7f3f3b7249501181ff8ff2febac4bdaab9ea5221237cce5c265083",
+    "evidence": "6fe5c14cf08b00c06ae9c65e4a5aa382db063ba1447f70d0cd512f641d241449",
+    "report": "bfcbcc888efeef6b0262ed9e9a46723a00eafb6d97a541d92c9790e4531c3056"
+  },
+  "input_hashes": {
+    "Datasheet.md": "903a4644cd018175b13781bc5b13aa177d25bed5e0825ecb55565f557273560a",
+    "Dependencies.csv": "5d84f9425ab765c404ee355ce1a3d70e9da87681e8d7b8e0e0616e2177d6e03c",
+    "Guidance.md": "689f6fe4f398f940cc2f32859383ba4f698f8bb218c12592de64faa5edad350a",
+    "Procedure.md": "28cd10eeeeb0e011adba11d90b9b1aa67123b075c32a56fddf7baf4097e2f64b",
+    "Specification.md": "51c0fd3f7a582e18507e15183ccba59d9522fbb50769177a393a5c5329325f9d",
+    "_CONTEXT.md": "4ac6734191fcaa71a328397d514e906a9ed24834670ab8245aa4edd4003be8e2",
+    "_DEPENDENCIES.md": "cbbc83e7fce4ced88394de07b323a5974d89a5661c9c6f835c9d5ec9990d8980",
+    "_REFERENCES.md": "652597638ccb9605665392e37547b4a6d5f25e47b646580a94b6bdb65c3fb0b5",
+    "_STATUS.md": "cdbc3a2f3647f2bb6e64b1c4fd50ec0e7f3355a1e9ecd9f88b520adab9100979"
+  },
+  "live_sow_absent": true
+}

@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 216
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the accepted implemented linear-support boundaries, unit-bearing quantities, no-default behavior, frame-kernel indexing and prescribed-displacement integration, rights-safe fixtures, and unresolved support-coordinate, sparse/result-envelope, release, and constant-effort-hanger work without implying nonlinear behavior or approval.",
+    "OUT-001": "A linear-support and restraint contract covering anchors, guides, line stops, vertical supports, springs, imposed-displacement boundary data, frame-kernel DOF mapping, boundary preparation/application, explicit findings, and deterministic tests is produced for the declared scope and objective.",
+    "VER-001": "Validate the contract and review source parity, all SOW-011 families, FrameDof and boundary surfaces, dimensional metadata, missing/invalid-data findings, deterministic test evidence, protected-content controls, linear/nonlinear separation, and surviving governed residuals."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

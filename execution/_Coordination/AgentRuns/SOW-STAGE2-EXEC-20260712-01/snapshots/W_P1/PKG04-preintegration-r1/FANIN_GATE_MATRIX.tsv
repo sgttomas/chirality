@@ -1,0 +1,7 @@
+gate	requirement	evidence	verdict
+R2.1	100% package/child manifest rehash, path audit, and whitespace audit	5 manifests; 3117/3117 bindings; 1607 unique surfaces; zero portability, containment, existence, uniqueness, self-exclusion, byte, hash, or whitespace defects	PASS
+R2.2	complete aggregate population and exact contracts	6 members; 4 terminal returns; 178 mappings; 1368/1368 lines; 18 candidate/finalization bindings; exact 30 replacement and 30 inverse rollback rows	PASS
+R2.3	apply/target/control/rollback simulation for every member	6/6 complete simulations	PASS
+R2.4	full-package reproduction and attempt/normalization disposition	6/6 schema/map/parity/checklist/render/finalization suites; 12/12 negative probes; all retained mechanical attempts and normalization claims covered	PASS
+R2.5	required self-contained Piping checks and separated verdicts	self-check exit 0; practitioner harness 264/264; project tree 191216 files and 0bdb64423d995287242654be8449b9c6c2ac955e8dd2c1a88b1d30a13c4b9b01 unchanged; five verdict classes separately PASS	PASS
+R2.6	direct manager topology	RECON manager is the independent third layer; no redundant one-child fourth layer	PASS

@@ -1,0 +1,3 @@
+Attempt: rerun after correcting the aggregate member/probe counters.
+Result: expected fail-closed FileExistsError because the accepted harness does not overwrite an existing member evidence directory.
+Disposition: retained the complete preceding checkpoint set under attempts/preterminal-aggregate-binding, cleared the active member target by moving that evidence intact, and reran from a fresh active target.

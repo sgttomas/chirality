@@ -1,0 +1,18 @@
+{
+  "content_authority": "PASS",
+  "execution_substrate": "PASS",
+  "mappings": 178,
+  "members": 6,
+  "negative_probes_pass": 12,
+  "preservation_containment": "PASS",
+  "project_checks": "PASS",
+  "project_containment": "PASS",
+  "replacement_rows": 30,
+  "rollback_rows": 30,
+  "schema": "PASS",
+  "simulations_pass": 6,
+  "source_lines": 1368,
+  "status": "PASS",
+  "terminal_children": 4,
+  "upstream_manifests": 5
+}

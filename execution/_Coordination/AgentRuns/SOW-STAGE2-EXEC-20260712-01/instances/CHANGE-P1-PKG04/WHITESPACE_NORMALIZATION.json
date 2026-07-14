@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "after_bytes": 3692,
+      "after_sha256": "eaadeb6afeb559f1e21dff77cc04a9fd8b8616212b8cadf4f9112c9aea05d85a",
+      "before_bytes": 3693,
+      "before_sha256": "097c6d31a19c4a959e6861d718b7420e0b20ee80ee5547294c69f9d452da3257",
+      "operation": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/CHANGE-P1-PKG04/LAUNCH_BRIEF.md"
+    },
+    {
+      "after_bytes": 996,
+      "after_sha256": "21a2d8754b6a636f776c357625968105defe522fa7dc2a82dc080510bc84be1e",
+      "before_bytes": 997,
+      "before_sha256": "729813a9958af528601825d59ed1c9a6d6f6738ea9e481c04a7e00a34230b277",
+      "operation": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG04-preintegration-acceptance/HELP_HUMAN_ACCEPTANCE.md"
+    }
+  ],
+  "normalized_files": 2,
+  "pre_fix_diff_check": "two new-blank-line-at-EOF findings",
+  "schema": "chirality-evidence-whitespace-normalization/v1",
+  "semantic_project_candidate_change": false,
+  "verdict": "PASS"
+}

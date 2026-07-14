@@ -1,0 +1,42 @@
+{
+  "duration_seconds": 0.789819,
+  "fail_closed_probes": 7,
+  "failures": 0,
+  "mappings": 33,
+  "members": [
+    {
+      "candidate_hashes": {
+        "clean": "4d314c20a833c0c7a9addafd6d8d63f588d39859e8cf692cf8180b907dbc10f7",
+        "evidence": "66b02314562b8aa65e09e7cd3d450bc84d9c1d5964aa2dbb5c18342a6b70da07",
+        "report": "23dd49a6a4cec604a5ae563af542572f080ea9c58fcb1cc391eea9bcfae937ad"
+      },
+      "clean_finalization": "PASS",
+      "contamination": "NONE",
+      "deliverable_id": "DEL-04-06",
+      "drift": "NONE",
+      "duration_seconds": 0.775691,
+      "execution_substrate": "PASS",
+      "fail_closed_probes": 7,
+      "failures": 0,
+      "mappings": 33,
+      "omission": "NONE",
+      "preservation_containment": "PASS",
+      "project_content": "PASS",
+      "repairs": 0,
+      "retries": 0,
+      "schema": "PASS",
+      "sequence": 1,
+      "source_lines": 276,
+      "unknowns": [],
+      "unresolved": [],
+      "verdict": "PASS_UNCHANGED",
+      "waivers": [],
+      "wrong_ref_detection": "PASS"
+    }
+  ],
+  "members_complete": 1,
+  "native_context_occupancy": "unavailable",
+  "retries": 0,
+  "source_lines": 276,
+  "verdict": "PASS_UNCHANGED"
+}

@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 199
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the accepted straight-pipe mechanics and interface boundaries, including explicit units and lawful input provenance, no hidden load or engineering defaults, rights-cleared fixtures, mechanics-only outputs, and the unresolved governed solver-to-result-envelope integration.",
+    "OUT-001": "A straight-pipe-element contract covering local stiffness, explicit section-property integration, weight hooks, boundary metadata, spanned loads and axial effects, unit-aware end/station resultant recovery, and deterministic solver verification is produced for the declared scope and objective.",
+    "VER-001": "Validate the contract and review source parity, straight-pipe behavior and frame-kernel boundaries, section and weight interfaces, spanned-load and resultant coverage, dimensional checks, explicit findings, protected-content controls, and result-envelope residuals."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

@@ -1,0 +1,45 @@
+{
+  "project_paths": 30,
+  "replacement_rows": 30,
+  "rollback_rows": 30,
+  "schema": "chirality-change-replacement-simulation/v1",
+  "simulations": [
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-04-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-04-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-04-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-04-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-04-05",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-04-06",
+      "rollback": "PASS",
+      "target": "PASS"
+    }
+  ],
+  "verdict": "PASS"
+}

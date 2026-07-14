@@ -1,0 +1,1 @@
+Terminal audit attempt 1 used inherited shorthand paths `repro1/evidence` and `repro1/final` that do not exist in the accepted verifier evidence layout. It failed read-only with FileNotFoundError before changing any file. The corrected audit uses `workspaces/repro*/kit/ScopeOfWork.md` and `finalizations/repro*/{ScopeOfWork.md,finalization.json}`.

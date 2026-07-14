@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "BATCH-02-AUTHOR",
+  "package_id": "PKG-04",
+  "status": "PASS",
+  "members_complete": 1,
+  "members_expected": 1,
+  "mappings_passed": 33,
+  "source_lines_covered": 276,
+  "source_lines_total": 276,
+  "blockers": [],
+  "waivers": [],
+  "unknowns": [],
+  "semantic_expansions": [],
+  "retained_findings": [],
+  "native_token_context_telemetry": "UNAVAILABLE_NOT_INFERRED",
+  "finished_utc": "2026-07-14T15:11:17Z"
+}

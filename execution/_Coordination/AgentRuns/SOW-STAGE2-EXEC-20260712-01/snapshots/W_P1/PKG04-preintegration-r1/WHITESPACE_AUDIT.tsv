@@ -1,0 +1,2 @@
+scope	manifest_count	manifest_binding_rows	unique_surfaces_scanned	trailing_whitespace_findings	terminal_blank_line_findings	verdict
+WORKING-P1-PKG04-package-and-four-children	5	3117	1607	0	0	PASS

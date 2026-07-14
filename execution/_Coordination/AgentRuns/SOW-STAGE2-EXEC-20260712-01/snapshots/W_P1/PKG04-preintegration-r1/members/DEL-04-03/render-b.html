@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="c70ca62b6ecd0afae56eb13f17db839cc61b251e604f20a06aed8391dedcbefa">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>c70ca62b6ecd0afae56eb13f17db839cc61b251e604f20a06aed8391dedcbefa</code>.</p>
+<h1 id="scope-of-work-del-04-03">Scope of Work — DEL-04-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-04-03</code> in service of project scope [SOW-011] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A linear-support and restraint contract covering anchors, guides, line stops, vertical supports, springs, imposed-displacement boundary data, frame-kernel DOF mapping, boundary preparation/application, explicit findings, and deterministic tests is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-03-linear-support-and-restraint-models">CLM-001 — Datasheet: DEL-04-03 Linear support and restraint models</h3>
+<blockquote><h4 id="datasheet-del-04-03-linear-support-and-restraint-models">Datasheet: DEL-04-03 Linear support and restraint models</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-04-03</td></tr>
+<tr><td>Package ID</td><td>PKG-04</td></tr>
+<tr><td>Package name</td><td>Solver Core and Numerical Methods</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-011</td></tr>
+<tr><td>Objective</td><td>OBJ-003</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Anticipated artifacts</td><td>support model; linear restraint tests</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current value</td><td>Source</td></tr>
+<tr><td>Covered support families</td><td>Anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data.</td><td><code>_CONTEXT.md</code> Description; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-011</td></tr>
+<tr><td>Analysis basis</td><td>Support behavior is part of the primary 3D centerline/frame global model with six degrees of freedom per node.</td><td><code>docs/CONTRACT.md</code> OPS-K-MECH-1; <code>docs/SPEC.md</code> section 4.1</td></tr>
+<tr><td>Support implementation surface</td><td><code>core/solver/linear_supports</code> implements the bounded mechanics-boundary slice for linear support records, prepared boundary data, and dense-system support application.</td><td><code>core/solver/linear_supports/README.md</code>; <code>core/solver/linear_supports/src/lib.rs</code></td></tr>
+<tr><td>Frame DOF boundary</td><td><code>FrameDof</code> is re-exported from <code>open_pipe_stress_frame_kernel</code>; <code>NodeDof::global_index()</code> delegates to frame-kernel <code>node_dof_index</code>.</td><td><code>core/solver/linear_supports/src/lib.rs</code>; <code>_run_records/TASK_RUN_2026-06-05_0732_TP-DEL-04-03-04-06_SUPPORT-BOUNDARY-HARDENING_A.md</code></td></tr>
+<tr><td>Linear-only boundary</td><td>This deliverable covers implemented linear support/restraint behavior. Nonlinear one-way behavior, lift-off, gaps, and friction belong to DEL-04-04 unless explicitly deferred back by human authority.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> rows DEL-04-03 and DEL-04-04</td></tr>
+<tr><td>Unit metadata</td><td><code>SupportQuantity</code> retains dimension intent and can carry caller-supplied <code>UnitSystemRef</code> and <code>QuantityUnitMetadata</code>; it validates metadata dimension matches and does not convert or default values.</td><td><code>core/solver/linear_supports/src/lib.rs</code>; <code>core/solver/linear_supports/README.md</code></td></tr>
+<tr><td>Imposed displacement boundary data</td><td>Imposed displacement entries are prepared as prescribed DOFs with explicit displacement or rotation values for the frame-kernel prescribed-displacement boundary.</td><td><code>core/solver/linear_supports/src/lib.rs</code></td></tr>
+<tr><td>Default stiffness values</td><td>TBD. No invented support stiffness/defaults are introduced by the implementation or this document kit.</td><td><code>docs/CONTRACT.md</code> OPS-K-AGENT-1; human hard stop</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Public artifacts must not include protected standards text, protected tables, copied formulas, material allowables, SIF/flexibility tables, protected dimensional tables, or proprietary support/vendor data. Source: <code>docs/CONTRACT.md</code> OPS-K-IP-1.</li>
+<li>- Missing solve-required support data must become explicit findings or diagnostics, not silent defaults. Source: <code>docs/CONTRACT.md</code> OPS-K-DATA-2.</li>
+<li>- Numerical values affecting calculations must be unit-aware and dimensionally checked. Source: <code>docs/CONTRACT.md</code> OPS-K-UNIT-1.</li>
+<li>- Solver output remains a mechanics result; rule-pack acceptability and professional compliance remain outside this deliverable. Source: <code>docs/CONTRACT.md</code> OPS-K-MECH-2.</li>
+<li>- Solver changes require deterministic verification tests before release. Source: <code>docs/CONTRACT.md</code> OPS-K-SOLVER-1.</li>
+</ul></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construction slot</td><td>Current state</td></tr>
+<tr><td>Support model</td><td>Implemented Rust types cover rigid restraints, springs, and imposed displacement boundary data for the SOW-011 families. The crate remains mechanics-only and linear-only.</td></tr>
+<tr><td>DOF mapping</td><td>Support effects map to frame-kernel <code>FrameDof</code> values <code>Ux</code>, <code>Uy</code>, <code>Uz</code>, <code>Rx</code>, <code>Ry</code>, and <code>Rz</code>; global indices are computed through <code>node_dof_index</code>. Support coordinate policy beyond explicit node DOFs remains TBD.</td></tr>
+<tr><td>Boundary preparation</td><td><code>prepare_boundary</code> produces restrained DOFs, spring entries, imposed displacement entries, and deterministic support findings for missing, invalid, duplicate, or out-of-range support data.</td></tr>
+<tr><td>Boundary application</td><td><code>apply_linear_supports</code> validates a dense global system through the frame kernel, adds prepared spring stiffness to global stiffness diagonals, and reduces rigid plus imposed displacement DOFs through the frame-kernel prescribed-displacement boundary. Sparse solver integration and final result-envelope integration remain downstream.</td></tr>
+<tr><td>Diagnostics</td><td>Current crate findings include local support finding code, support ID, and message. AB-00-06 result-envelope mapping remains downstream integration work.</td></tr>
+<tr><td>Tests</td><td>Current evidence records <code>cargo test --manifest-path core/solver/linear_supports/Cargo.toml --locked</code> passing 14 tests, including frame-kernel DOF parity, unit metadata, boundary preparation, and boundary application coverage.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for sealed deliverable identity and applicable architecture basis IDs.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 for SOW-011, OBJ-003, PKG-04, DEL-04-03, and AB-00-01/02/03/06/08.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code>, <code>ScopeLedger.csv</code>, and <code>ContextBudgetQA.csv</code> for register rows.</li>
+<li>- <code>docs/CONTRACT.md</code> for applicable invariants.</li>
+<li>- <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, and <code>docs/INTENT.md</code> for public architecture and vocabulary slices.</li>
+</ul></blockquote>
+<h3 id="clm-007-d-41-r5-t7-pdu-054-current-declaration">CLM-007 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The linear-support slice implements the recorded support/restraint families and DEC-049 hanger user data. Its current evidence and residuals are those named by the implemented crate and tests; no review, validation, or lifecycle ruling is made here.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-04-03-linear-support-and-restraint-models">CLM-008 — Specification: DEL-04-03 Linear support and restraint models</h3>
+<blockquote><h4 id="specification-del-04-03-linear-support-and-restraint-models">Specification: DEL-04-03 Linear support and restraint models</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable provides the current linear support and restraint mechanics-boundary implementation for PKG-04. The implemented crate is <code>core/solver/linear_supports</code>; it covers anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data as listed in SOW-011.</p>
+<p>Out of scope:</p>
+<ul>
+<li>- Nonlinear active-set behavior such as one-way restraints, lift-off, gaps, and friction, assigned to DEL-04-04.</li>
+<li>- Sparse solver selection, performance harness work, final result-envelope integration, and support coordinate policy beyond explicit node DOFs.</li>
+<li>- Code compliance, certification, professional approval, or bundled protected standards/vendor values.</li>
+</ul></blockquote>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-04-03-R01</td><td>The support model shall cover the SOW-011 families: anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-011</td></tr>
+<tr><td>DEL-04-03-R02</td><td>Linear support data shall be expressible against the 3D centerline/frame model and the six node degrees of freedom through the frame-kernel <code>FrameDof</code> boundary.</td><td><code>docs/CONTRACT.md</code> OPS-K-MECH-1; <code>docs/SPEC.md</code> section 4.1; <code>core/solver/linear_supports/src/lib.rs</code></td></tr>
+<tr><td>DEL-04-03-R03</td><td>The support model shall keep mechanics solving separate from user-rule evaluation and human professional compliance judgment.</td><td><code>docs/CONTRACT.md</code> OPS-K-MECH-2</td></tr>
+<tr><td>DEL-04-03-R04</td><td>Support stiffnesses, imposed displacements, rotations, and related numerical data shall retain unit intent through <code>SupportQuantity</code>; caller-supplied unit metadata shall match the support quantity dimension.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>core/solver/linear_supports/src/lib.rs</code></td></tr>
+<tr><td>DEL-04-03-R05</td><td>Missing solve-required support data shall be reported as explicit findings or diagnostics, never silently filled by defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2</td></tr>
+<tr><td>DEL-04-03-R06</td><td>Public support examples and test fixtures shall avoid protected standards text, protected tables, copied formulas, proprietary vendor data, and unsupported default values.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1</td></tr>
+<tr><td>DEL-04-03-R07</td><td>Support findings shall remain explicit at the crate boundary; mapping those findings into final AB-00-06 result-envelope fields remains downstream integration work.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-06</td></tr>
+<tr><td>DEL-04-03-R08</td><td>The support model shall preserve module boundaries and inward dependencies toward domain contracts; adapters/plugins must not bypass validation, diagnostics, or governance.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-02</td></tr>
+<tr><td>DEL-04-03-R09</td><td>Solver-facing support changes shall be covered by deterministic verification tests before release use.</td><td><code>docs/CONTRACT.md</code> OPS-K-SOLVER-1; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-08</td></tr>
+<tr><td>DEL-04-03-R10</td><td>Unknown support coordinate policy, sparse solver integration points, final result-envelope integration, and release-readiness criteria shall remain <code>TBD</code> until resolved by a governed brief or human decision.</td><td><code>docs/CONTRACT.md</code> OPS-K-AGENT-1; <code>_CONTEXT.md</code> Still TBD</td></tr>
+<tr><td>DEL-04-03-R11</td><td>Documentation shall not imply nonlinear support behavior, a penalty method, sparse solver integration, release approval, professional approval, or code-compliance acceptance.</td><td>Human hard stop; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-01</td></tr>
+<tr><td>DEL-04-03-R12</td><td>Boundary preparation and application shall use <code>prepare_boundary</code> and <code>apply_linear_supports</code> as the current implemented surfaces for dense-system support handling.</td><td><code>core/solver/linear_supports/src/lib.rs</code>; <code>core/solver/linear_supports/README.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<ul>
+<li>- Public project invariants in <code>docs/CONTRACT.md</code> apply, especially OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-DATA-2, OPS-K-AGENT-1..4, and OPS-K-IP-1.</li>
+<li>- SCA-001 architecture basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-06, and AB-00-08 apply as dispatch constraints.</li>
+<li>- External piping design-code clauses, support stiffness defaults, and vendor support catalogs are not accessible sources for this deliverable kit; any such requirement is <code>TBD</code> and must be user-supplied or rights-cleared before use.</li>
+</ul></blockquote>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach / current evidence</td></tr>
+<tr><td>R01, R02</td><td>Implementation review confirms all SOW-011 support families are represented without leaving the six-DOF centerline model; <code>FrameDof</code> is re-exported from <code>open_pipe_stress_frame_kernel</code> and <code>NodeDof::global_index()</code> uses <code>node_dof_index</code>.</td></tr>
+<tr><td>R03</td><td>Result/status review confirms mechanics-solved state is not represented as rule-pass or professional approval.</td></tr>
+<tr><td>R04</td><td>Unit tests cover <code>SupportQuantity</code> finite/positive validation, canonical dimension IDs, caller-supplied unit metadata, and metadata dimension mismatch rejection.</td></tr>
+<tr><td>R05, R07</td><td>Negative tests omit required support data and verify explicit support findings; final result-envelope mapping remains deferred.</td></tr>
+<tr><td>R06</td><td>Protected-content/provenance review checks public examples and tests.</td></tr>
+<tr><td>R08</td><td>Architecture review checks dependency direction and no-bypass behavior.</td></tr>
+<tr><td>R09</td><td>June 5 evidence records <code>cargo test --manifest-path core/solver/linear_supports/Cargo.toml --locked</code> passing 14 tests.</td></tr>
+<tr><td>R10</td><td>Open policy and integration choices are tracked as <code>TBD</code> or decision-record inputs, not hidden assumptions.</td></tr>
+<tr><td>R11</td><td>Review confirms artifacts do not claim nonlinear behavior, release approval, professional approval, code compliance, sparse solver integration, or invented support stiffness/defaults.</td></tr>
+<tr><td>R12</td><td>Tests cover <code>prepare_boundary</code> output and <code>apply_linear_supports</code> spring diagonal application, imposed displacement force adjustment, rigid zero-displacement reduction, and blocking findings before reduction.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>The implemented evidence for this deliverable includes:</p>
+<ul>
+<li>- <code>core/solver/linear_supports/README.md</code>;</li>
+<li>- <code>core/solver/linear_supports/src/lib.rs</code>;</li>
+<li>- deliverable-local run records for the May 15 and June 5 implementation slices;</li>
+<li>- this four-document kit and <code>MEMORY.md</code>.</li>
+</ul>
+<p>Decision records are still required for any later resolution of support coordinate policy, sparse solver integration, final result-envelope integration, release criteria, or other governed choices outside the current bounded implementation.</p></blockquote>
+<h3 id="clm-014-d-41-r5-t7-pdu-054-current-declaration">CLM-014 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The linear-support slice implements the recorded support/restraint families and DEC-049 hanger user data. Its current evidence and residuals are those named by the implemented crate and tests; no review, validation, or lifecycle ruling is made here.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted implemented linear-support boundaries, unit-bearing quantities, no-default behavior, frame-kernel indexing and prescribed-displacement integration, rights-safe fixtures, and unresolved support-coordinate, sparse/result-envelope, release, and constant-effort-hanger work without implying nonlinear behavior or approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-04-03-linear-support-and-restraint-models">CLM-015 — Procedure: DEL-04-03 Linear support and restraint models</h3>
+<blockquote><h4 id="procedure-del-04-03-linear-support-and-restraint-models">Procedure: DEL-04-03 Linear support and restraint models</h4></blockquote>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this procedure to verify DEL-04-03 review-readiness evidence for the implemented linear support/restraint slice without expanding scope into nonlinear supports, sparse solver integration, final result-envelope integration, release approval, or professional/code-compliance claims.</p></blockquote>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the active scope is DEL-04-03 / PKG-04 and SOW-011 only.</li>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>docs/CONTRACT.md</code>, and the SOFTWARE_DECOMP rows for SOW-011, OBJ-003, DEL-04-03, DEL-04-04, and AB-00-01/02/03/06/08.</li>
+<li>- Confirm protected data and professional-compliance hard stops before drafting support examples or tests.</li>
+<li>- Confirm the current implementation evidence in <code>core/solver/linear_supports/README.md</code>, <code>core/solver/linear_supports/src/lib.rs</code>, and the June 5 support-boundary-hardening run record.</li>
+<li>- Confirm any support coordinate policy, sparse solver integration, final result-envelope integration, release-readiness criterion, or professional/code-compliance conclusion is either already accepted by a governed decision or marked <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the support family taxonomy in <code>LinearSupport</code> covers anchors, guides, line stops, vertical supports, springs, and imposed displacement boundary data.</p>
+<p>2. Confirm <code>FrameDof</code> is re-exported from <code>open_pipe_stress_frame_kernel</code> and <code>NodeDof::global_index()</code> delegates to frame-kernel <code>node_dof_index</code>.</p>
+<p>3. Confirm each support family maps to explicit node DOFs and that support coordinate policy beyond explicit DOF selection remains <code>TBD</code>.</p>
+<p>4. Confirm <code>SupportQuantity</code> preserves value, dimension, optional unit-system reference, and optional unit metadata; verify dimension mismatch is rejected rather than converted or defaulted.</p>
+<p>5. Confirm <code>prepare_boundary</code> returns restrained DOFs, spring entries, imposed displacement entries, and deterministic support findings for missing, invalid, duplicate, or out-of-range data.</p>
+<p>6. Confirm <code>apply_linear_supports</code> validates a dense global system through the frame kernel, adds spring stiffness to global diagonals, and reduces rigid plus imposed displacement DOFs through the frame-kernel prescribed-displacement boundary.</p>
+<p>7. Confirm current local evidence records 14 passing <code>linear_supports</code> tests and does not rely on protected support catalog values, code-derived defaults, or copied commercial benchmarks.</p>
+<p>8. Confirm nonlinear one-way, gap, lift-off, friction, active-set behavior, sparse solver integration, final result-envelope integration, support coordinate policy, release claims, and professional/code-compliance claims remain outside this deliverable alignment.</p>
+<p>9. Record any later resolved architecture or representation choices through the approved decision-record path. The exact repo-level ADR location is outside this task and remains <code>TBD</code>.</p></blockquote>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Four-document kit exists and uses consistent terminology for linear support/restraint models.</li>
+<li>- Required support-data gaps are represented as <code>TBD</code> or support findings, not defaults.</li>
+<li>- Current test evidence references deterministic mechanics verification and unit/dimensional checks for support stiffness and imposed displacement values.</li>
+<li>- Implementation evidence includes <code>prepare_boundary</code>, <code>apply_linear_supports</code>, frame-kernel <code>FrameDof</code> re-export, <code>node_dof_index</code> indexing, <code>SupportQuantity</code> unit metadata, and 14 passing <code>linear_supports</code> tests.</li>
+<li>- No protected standards text, copied formulas, protected tables, proprietary vendor data, or certification/compliance claims are introduced.</li>
+<li>- Nonlinear support behavior is not implemented or specified as part of this linear deliverable.</li>
+</ul></blockquote>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> historical semantic artifacts.</li>
+<li>- <code>Dependencies.csv</code> v3.1 and <code>_DEPENDENCIES.md</code>.</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code> entries for four-documents P1/P2, semantic matrix, lens register, four-documents P3, dependency extraction, implementation evidence, support boundary hardening, and this review-readiness alignment.</li>
+</ul></blockquote>
+<h3 id="clm-021-d-41-r5-t7-pdu-054-current-declaration">CLM-021 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The linear-support slice implements the recorded support/restraint families and DEC-049 hanger user data. Its current evidence and residuals are those named by the implemented crate and tests; no review, validation, or lifecycle ruling is made here.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, all SOW-011 families, FrameDof and boundary surfaces, dimensional metadata, missing/invalid-data findings, deterministic test evidence, protected-content controls, linear/nonlinear separation, and surviving governed residuals.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-04-03-linear-support-and-restraint-models">CLM-022 — Guidance: DEL-04-03 Linear support and restraint models</h3>
+<blockquote><h4 id="guidance-del-04-03-linear-support-and-restraint-models">Guidance: DEL-04-03 Linear support and restraint models</h4></blockquote>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable documents the implemented linear support/restraint slice of the global solver. It makes boundary conditions explicit enough for deterministic dense-system mechanics preparation and application while staying protected-data safe and outside professional/code-compliance judgment.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat supports as mechanics-boundary data in the 3D centerline/frame model, not as local shell/solid FEA features. Source: <code>docs/CONTRACT.md</code> OPS-K-MECH-1.</li>
+<li>- Keep the solver/rule/human boundary visible. A restraint reaction or displacement result is a mechanics result, not an automatic code-compliance finding. Source: OPS-K-MECH-2.</li>
+<li>- Prefer explicit required inputs over defaults. If a support stiffness, direction, coordinate basis, imposed displacement value, or target reference is required and absent, emit a finding. Source: OPS-K-DATA-2.</li>
+<li>- Keep every numerical support input unit-aware. Translational stiffness, rotational stiffness, displacement, and rotation units need dimensional checks before solve use. Source: OPS-K-UNIT-1.</li>
+<li>- Keep linear and nonlinear scope separate. Linear springs and fixed restraints belong here; activation, lift-off, gaps, one-way supports, and friction are DEL-04-04 unless a later sealed brief changes scope.</li>
+<li>- Use original or permissive test fixtures. Do not import protected support catalog values, code examples, vendor tables, or copied commercial benchmark cases. Source: OPS-K-IP-1.</li>
+<li>- Keep frame-kernel DOF authority centralized. <code>FrameDof</code> is re-exported from <code>open_pipe_stress_frame_kernel</code>, and support global DOF indices are computed through <code>node_dof_index</code>.</li>
+</ul></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- <code>core/solver/linear_supports</code> now represents anchors, guides, line stops, vertical supports, springs, and imposed displacements through explicit node DOFs, restrained DOF lists, spring entries, and imposed displacement entries.</li>
+<li>- <code>SupportQuantity</code> records value, quantity dimension, optional unit-system reference, and optional unit metadata. It validates finite or positive finite values and rejects unit metadata whose canonical dimension does not match the support quantity. It does not perform unit conversion or provide defaults.</li>
+<li>- <code>prepare_boundary</code> is the implemented preparation surface. It returns restrained DOFs, spring entries, imposed displacement entries, and findings for missing DOFs, missing stiffness/displacement values, invalid dimensions, repeated restraints, and out-of-range nodes.</li>
+<li>- <code>apply_linear_supports</code> is the implemented dense-system application surface. It validates through the frame kernel, adds spring stiffness to global stiffness diagonals, and reduces rigid and imposed displacement DOFs through the frame-kernel prescribed-displacement boundary.</li>
+<li>- Support coordinate policy remains TBD. The current crate maps explicit node DOFs and does not define arbitrary global, local, or user-defined support direction conventions.</li>
+<li>- Imposed displacement boundary data may interact with load-case handling in PKG-05, but this deliverable currently implements the support-side boundary data and frame-kernel prescribed-displacement reduction only.</li>
+<li>- Diagnostics should be useful to GUI, CLI, report, and adapter consumers through result-envelope fields required by AB-00-06.</li>
+<li>- Final result-envelope integration remains downstream; current <code>SupportFinding</code> values are crate-local findings with code, support ID, and message.</li>
+<li>- AB-00-01 requires accepted decisions to be recorded when this deliverable resolves deferred choices. This review-readiness alignment does not create repo-level ADR files.</li>
+</ul></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Risk / TBD</td></tr>
+<tr><td>Represent rigid restraints as prescribed zero displacements in dense boundary application</td><td>Clear mechanics boundary condition using the frame-kernel prescribed-displacement reducer.</td><td>Sparse-solver integration, final result-envelope mapping, and release criteria remain downstream.</td></tr>
+<tr><td>Represent linear springs as unit-bearing stiffness data</td><td>Keeps support behavior testable and explicit.</td><td>No default stiffnesses may be invented; source/provenance remains required.</td></tr>
+<tr><td>Keep nonlinear behavior out of this deliverable</td><td>Preserves a bounded linear slice.</td><td>Users may expect guides/stops to include gaps or one-way action; that expectation must route to DEL-04-04 or remain TBD.</td></tr>
+<tr><td>Use invented/public benchmark fixtures</td><td>Protects IP boundary.</td><td>Validation breadth is limited until lawful engineering examples are reviewed.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<ul>
+<li>- Valid example category: an invented frame/support fixture with public-domain dimensions and unit-bearing user-entered stiffness values.</li>
+<li>- Invalid example category: a copied support stiffness table, code-derived default, vendor catalog value without redistribution rights, or commercial software benchmark copied into public tests.</li>
+</ul></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source conflicts were identified during this alignment. Open policy and integration details remain <code>TBD</code>, not conflicts.</p></blockquote>
+<h3 id="clm-029-d-41-r5-t7-pdu-054-current-declaration">CLM-029 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The linear-support slice implements the recorded support/restraint families and DEC-049 hanger user data. Its current evidence and residuals are those named by the implemented crate and tests; no review, validation, or lifecycle ruling is made here.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-011 OBJ-003</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

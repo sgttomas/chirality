@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="f5d2906b5f33c235f3df2238fefb8e178f6efe2f4f3c1d4d0ee772588ad90a84">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>f5d2906b5f33c235f3df2238fefb8e178f6efe2f4f3c1d4d0ee772588ad90a84</code>.</p>
+<h1 id="scope-of-work-del-04-01">Scope of Work — DEL-04-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-04-01</code> in service of project scope [SOW-005, SOW-035] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A 3D frame-stiffness-kernel contract covering six-degree-of-freedom node mapping, global assembly, coordinate transforms, boundary conditions, sparse-solve interfaces, mechanics-only result envelopes, and deterministic verification is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-01-3d-frame-stiffness-kernel">CLM-001 — Datasheet: DEL-04-01 3D frame stiffness kernel</h3>
+<blockquote><h4 id="datasheet-del-04-01-3d-frame-stiffness-kernel">Datasheet: DEL-04-01 3D frame stiffness kernel</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-04-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-04-01</td></tr>
+<tr><td>Deliverable name</td><td>3D frame stiffness kernel</td></tr>
+<tr><td>Package ID</td><td>PKG-04</td></tr>
+<tr><td>Package name</td><td>Solver Core and Numerical Methods</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Decomposition basis</td><td>execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7</td></tr>
+<tr><td>Register basis</td><td>docs/_Registers/Deliverables.csv row DEL-04-01</td></tr>
+<tr><td>Scope items</td><td>SOW-005, SOW-035</td></tr>
+<tr><td>Objective support</td><td>OBJ-003</td></tr>
+<tr><td>Context envelope</td><td>L</td></tr>
+<tr><td>Context QA risk</td><td>WATCH</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current value</td></tr>
+<tr><td>Primary model class</td><td>3D centerline/frame model</td></tr>
+<tr><td>Nodal degrees of freedom</td><td>Six degrees of freedom per node</td></tr>
+<tr><td>Intended kernel responsibility</td><td>Global frame stiffness assembly, coordinate transforms, boundary conditions, and sparse solve interface</td></tr>
+<tr><td>Anticipated implementation location</td><td>core/solver/frame_kernel</td></tr>
+<tr><td>Anticipated verification artifacts</td><td>Unit tests</td></tr>
+<tr><td>Sparse performance scope</td><td>Required design concern; concrete performance targets are TBD</td></tr>
+<tr><td>Reproducibility scope</td><td>Required for practical piping models; exact reproducibility envelope is TBD</td></tr>
+<tr><td>Solver numerical library</td><td>TBD</td></tr>
+<tr><td>Tolerance policy</td><td>TBD; no numerical tolerances are defined by this setup kit</td></tr>
+<tr><td>Physical formulation details</td><td>TBD; future implementation must use lawful, source-grounded mechanics references and avoid protected formulas/data</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- This deliverable is bounded to the global stiffness kernel and sparse solve interface setup for a 3D centerline/frame system.</li>
+<li>- This deliverable does not implement straight pipe element mechanics, support families, nonlinear support active-set logic, load cases, stress recovery, diagnostics, rule-pack evaluation, GUI behavior, reports, or packaging except as interface constraints named by the sealed context.</li>
+<li>- The kernel must remain unit-aware and dimensionally checked through the project unit contracts.</li>
+<li>- Missing solve-required values must be surfaced as explicit findings rather than silently defaulted.</li>
+<li>- Solver mechanics and rule-pack acceptability decisions remain separated; this deliverable must not claim code compliance or professional certification.</li>
+<li>- Protected standards text, tables, figures, examples, copied code formulas, material allowables, SIF/flexibility tables, protected dimensional tables, and proprietary commercial data are out of bounds.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The setup kit identifies these future implementation surfaces without creating code:</p>
+<table><tbody>
+<tr><td>Surface</td><td>Setup expectation</td></tr>
+<tr><td>Model topology input</td><td>Node and element connectivity for a 3D frame/centerline model, details TBD</td></tr>
+<tr><td>Degree-of-freedom mapping</td><td>Stable six-DOF-per-node indexing contract, exact ordering TBD</td></tr>
+<tr><td>Coordinate transform handling</td><td>Transform interface for local-to-global assembly, convention TBD</td></tr>
+<tr><td>Boundary-condition handling</td><td>Interface for applying restraints/imposed conditions supplied by other deliverables, details TBD</td></tr>
+<tr><td>Sparse assembly</td><td>Sparse global matrix assembly interface, storage format TBD</td></tr>
+<tr><td>Sparse solve interface</td><td>Solver adapter boundary for selected numerical library, library TBD</td></tr>
+<tr><td>Result envelope</td><td>Must fit architecture-basis command/query/job result and diagnostic envelope constraints</td></tr>
+<tr><td>Verification</td><td>Deterministic unit tests are required before release use</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - local sealed context for DEL-04-01.</li>
+<li>- <code>_REFERENCES.md</code> - governing references and register pointers.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 - PKG-04, DEL-04-01, SOW-005, SOW-035, OBJ-003, AB-00-01, AB-00-02, AB-00-03, AB-00-06, AB-00-08.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> - row DEL-04-01.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> - rows SOW-005 and SOW-035.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> - row DEL-04-01.</li>
+<li>- <code>docs/CONTRACT.md</code> - applicable invariants named in the task brief.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-04-01-3d-frame-stiffness-kernel">CLM-008 — Specification: DEL-04-01 3D frame stiffness kernel</h3>
+<blockquote><h4 id="specification-del-04-01-3d-frame-stiffness-kernel">Specification: DEL-04-01 3D frame stiffness kernel</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This setup specification covers the future backend feature slice for a 3D frame stiffness kernel. The sealed scope is DEL-04-01 in PKG-04, implementing the global 3D frame stiffness assembly, coordinate transforms, boundary conditions, and sparse solve interface for a 3D centerline/frame model with six degrees of freedom per node.</p>
+<p>Out of scope for this deliverable:</p>
+<ul>
+<li>- Solver implementation in this setup run.</li>
+<li>- Numeric tolerances, convergence thresholds, performance targets, or solver library selection.</li>
+<li>- Protected standards formulas, examples, tables, or proprietary commercial data.</li>
+<li>- Straight pipe element details owned by DEL-04-02.</li>
+<li>- Support/restraint model families owned by DEL-04-03 and DEL-04-04.</li>
+<li>- Solver diagnostics layer owned by DEL-04-06.</li>
+<li>- Rule-pack acceptability, code compliance decisions, certification claims, and professional approval.</li>
+</ul></blockquote>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-04-01-REQ-001</td><td>Future implementation shall model the primary global analysis system as a 3D centerline/frame model.</td><td>SOW-005; OPS-K-MECH-1</td></tr>
+<tr><td>DEL-04-01-REQ-002</td><td>Future implementation shall represent each frame node with six degrees of freedom.</td><td>SOW-005</td></tr>
+<tr><td>DEL-04-01-REQ-003</td><td>Future implementation shall provide global stiffness assembly for the frame system.</td><td>Deliverables.csv row DEL-04-01</td></tr>
+<tr><td>DEL-04-01-REQ-004</td><td>Future implementation shall provide coordinate transform handling between local and global frame representations; exact convention is TBD.</td><td>Deliverables.csv row DEL-04-01</td></tr>
+<tr><td>DEL-04-01-REQ-005</td><td>Future implementation shall provide a boundary-condition application interface; supported restraint semantics are delegated to later support deliverables unless explicitly sealed in this deliverable.</td><td>Deliverables.csv row DEL-04-01; package scope</td></tr>
+<tr><td>DEL-04-01-REQ-006</td><td>Future implementation shall expose a sparse solve interface designed for sparse numerical performance and reproducible practical-model results; performance targets are TBD.</td><td>SOW-035</td></tr>
+<tr><td>DEL-04-01-REQ-007</td><td>Future implementation shall remain unit-aware and dimensionally checked.</td><td>OPS-K-UNIT-1</td></tr>
+<tr><td>DEL-04-01-REQ-008</td><td>Future implementation shall report missing solve-required values as explicit findings and shall not supply silent defaults.</td><td>OPS-K-DATA-2</td></tr>
+<tr><td>DEL-04-01-REQ-009</td><td>Solver outputs shall compute mechanics only and shall not decide rule-pack acceptability or professional compliance.</td><td>OPS-K-MECH-2</td></tr>
+<tr><td>DEL-04-01-REQ-010</td><td>Solver changes shall require deterministic verification tests before release.</td><td>OPS-K-SOLVER-1; AB-00-08</td></tr>
+<tr><td>DEL-04-01-REQ-011</td><td>Diagnostics and result envelopes crossing service boundaries shall preserve code, class, severity, source, affected object, message, remediation, and provenance fields where applicable.</td><td>AB-00-03; AB-00-06</td></tr>
+<tr><td>DEL-04-01-REQ-012</td><td>Future implementation shall not import protected formulas/data or embed protected standards text, tables, figures, examples, or proprietary data.</td><td>OPS-K-IP-1</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<ul>
+<li>- Project invariants in <code>docs/CONTRACT.md</code> are governing for this setup kit.</li>
+<li>- Decomposition and register rows cited in <code>_CONTEXT.md</code> are governing for scope and objectives.</li>
+<li>- External mechanics references for future implementation are TBD and must be lawful, source-grounded, and compatible with the protected-data boundary.</li>
+<li>- No code standard clause, protected formula, or professional compliance criterion is adopted by this setup kit.</li>
+</ul></blockquote>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>DEL-04-01-REQ-001, DEL-04-01-REQ-002</td><td>Unit tests should verify model topology and six-DOF mapping after implementation; exact cases TBD.</td></tr>
+<tr><td>DEL-04-01-REQ-003, DEL-04-01-REQ-004</td><td>Unit tests should verify deterministic assembly and transform behavior using rights-cleared fixtures; equations and expected values TBD.</td></tr>
+<tr><td>DEL-04-01-REQ-005</td><td>Unit tests should verify boundary-condition application semantics once restraint interfaces are sealed.</td></tr>
+<tr><td>DEL-04-01-REQ-006</td><td>Sparse performance and reproducibility checks should be coordinated with DEL-04-05; target sizes and metrics TBD.</td></tr>
+<tr><td>DEL-04-01-REQ-007</td><td>Unit and schema tests should verify dimensional compatibility and unit-aware inputs/outputs.</td></tr>
+<tr><td>DEL-04-01-REQ-008, DEL-04-01-REQ-011</td><td>Tests should verify missing-value and diagnostics/result-envelope behavior without silent defaults.</td></tr>
+<tr><td>DEL-04-01-REQ-009</td><td>Tests/reviews should verify mechanics outputs remain separate from rule-pack or compliance determinations.</td></tr>
+<tr><td>DEL-04-01-REQ-010</td><td>CI must include deterministic solver verification gates before release use.</td></tr>
+<tr><td>DEL-04-01-REQ-012</td><td>Protected-content review gates must check that fixtures, docs, and source comments contain no protected standards or proprietary data.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Future implementation should maintain:</p>
+<ul>
+<li>- <code>core/solver/frame_kernel</code> module documentation.</li>
+<li>- Unit test records for frame assembly, coordinate transforms, boundary conditions, unit handling, missing-value diagnostics, and sparse solve interface behavior.</li>
+<li>- Result-envelope and diagnostics examples that disclose assumptions, warnings, model/solver versions, and provenance without certification claims.</li>
+<li>- TBD register entries for unresolved formulation, tolerance, solver-library, and performance-target decisions.</li>
+</ul></blockquote>
+<h3 id="clm-014-d-41-r5-t7-pdu-054-current-declaration">CLM-014 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The 3D frame kernel, DOF contract, dense solution path, and DEC-023 sparse evidence now exist in the implemented slice. Sparse-as-default policy and any broader performance/validation thresholds remain held where recorded; lifecycle remains <code>IN_PROGRESS</code>.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted frame-kernel requirements and current declarations, including unit and provenance boundaries, explicit missing-input and solver findings, rights-cleared verification data, and unresolved formulation, tolerance, sparse-policy, arc-pressure-thrust, and mechanics-assessment items without inventing engineering values or approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-04-01-3d-frame-stiffness-kernel">CLM-015 — Procedure: DEL-04-01 3D frame stiffness kernel</h3>
+<blockquote><h4 id="procedure-del-04-01-3d-frame-stiffness-kernel">Procedure: DEL-04-01 3D frame stiffness kernel</h4></blockquote>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure defines how a future TASK worker should proceed from the local setup kit into implementation without expanding beyond DEL-04-01.</p></blockquote>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the active deliverable is DEL-04-01 and the write scope is the assigned deliverable or future implementation path explicitly authorized by a sealed brief.</li>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>, <code>_SEMANTIC.md</code>, and <code>_SEMANTIC_LENSING.md</code>.</li>
+<li>- Confirm applicable invariants: OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-DATA-2, OPS-K-REPORT-1, OPS-K-AGENT-1..4, and OPS-K-IP-1.</li>
+<li>- Confirm architecture basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-06, and AB-00-08.</li>
+<li>- Obtain or cite lawful mechanics/numerics references before implementing formulas, expected numerical values, tolerances, or benchmark thresholds.</li>
+</ul></blockquote>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Reconfirm scope boundaries against SOW-005 and SOW-035.</p>
+<p>2. Identify any implementation decisions still TBD, including DOF ordering, coordinate convention, sparse storage, solver library, error handling policy, tolerance policy, and reproducibility target.</p>
+<p>3. If a TBD decision is needed to write code, record it as a required human/architecture ruling rather than guessing.</p>
+<p>4. Define interfaces for model topology, six-DOF node mapping, frame assembly, coordinate transforms, boundary-condition application, sparse solve invocation, unit validation, and result/diagnostic output.</p>
+<p>5. Keep straight pipe element behavior, supports, nonlinear supports, loads, stress recovery, diagnostics specialization, reports, and rule packs at their assigned deliverable boundaries.</p>
+<p>6. Implement only from lawful, source-grounded mechanics and numerics references after the implementation brief authorizes code work.</p>
+<p>7. Create deterministic unit tests before release use; use rights-cleared fixtures with explicit units and no protected data.</p>
+<p>8. Ensure missing solve-required inputs produce explicit findings and do not become silent defaults.</p>
+<p>9. Ensure output envelopes preserve mechanics/rule/human approval separation and do not claim certification or compliance.</p>
+<p>10. Run protected-content and provenance checks before any release or handoff.</p></blockquote>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Confirm no implementation values were invented from this setup kit.</li>
+<li>- Confirm unit-aware and dimensionally checked interfaces are present in implementation scope.</li>
+<li>- Confirm deterministic tests exist for every implemented kernel behavior.</li>
+<li>- Confirm sparse performance and reproducibility checks are coordinated with DEL-04-05 when targets are sealed.</li>
+<li>- Confirm diagnostics/result envelopes align with AB-00-03 and AB-00-06.</li>
+<li>- Confirm protected-content review passes before release.</li>
+</ul></blockquote>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Implementation brief and sealed write scope.</li>
+<li>- Architecture decisions for TBD items.</li>
+<li>- Source/provenance records for mechanics and numerical references.</li>
+<li>- Unit test and CI results.</li>
+<li>- Protected-content review result.</li>
+<li>- Result-envelope and diagnostics samples.</li>
+</ul></blockquote>
+<h3 id="clm-021-d-41-r5-t7-pdu-054-current-declaration">CLM-021 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The 3D frame kernel, DOF contract, dense solution path, and DEC-023 sparse evidence now exist in the implemented slice. Sparse-as-default policy and any broader performance/validation thresholds remain held where recorded; lifecycle remains <code>IN_PROGRESS</code>.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, frame/DOF and assembly coverage, coordinate and boundary interfaces, sparse/reproducibility obligations, units and diagnostics, protected-content and professional boundaries, and every unresolved governed item.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-04-01-3d-frame-stiffness-kernel">CLM-022 — Guidance: DEL-04-01 3D frame stiffness kernel</h3>
+<blockquote><h4 id="guidance-del-04-01-3d-frame-stiffness-kernel">Guidance: DEL-04-01 3D frame stiffness kernel</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-04-01-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable prepares the bounded implementation surface for the central 3D frame stiffness kernel. Its value is to keep global centerline mechanics, sparse numerical behavior, reproducibility, units, diagnostics, protected-data controls, and professional-boundary language aligned before code is written.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep the global model line-element based unless a later handoff explicitly routes local analysis to shell/solid FEA.</li>
+<li>- Treat six degrees of freedom per node as a scope fact, not as permission to invent an ordering or sign convention.</li>
+<li>- Keep coordinate conventions, matrix storage format, solver library, tolerances, and benchmark targets as TBD until a source-backed implementation brief or human ruling seals them.</li>
+<li>- Separate mechanics computation from rule-pack evaluation and professional approval.</li>
+<li>- Use deterministic, rights-cleared verification fixtures. Do not use copied standards examples or protected commercial data.</li>
+<li>- Surface missing values, singular/ill-conditioned states, and assumptions as explicit result-envelope findings rather than silent behavior.</li>
+</ul></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The accessible source set is the decomposition, registers, contract, and local context. It does not provide detailed mechanics formulas, reference-element derivations, numerical tolerances, sparse storage formats, or benchmark thresholds. Future implementation must therefore source those details from lawful references or human-approved architecture decisions.</p>
+<p>Architecture basis rows constrain the future implementation shape:</p>
+<ul>
+<li>- AB-00-01 requires decision records for accepted architecture choices and reconsideration triggers.</li>
+<li>- AB-00-02 keeps dependencies pointed inward toward domain contracts and preserves layer responsibilities.</li>
+<li>- AB-00-03 separates commands, queries, jobs, result envelopes, progress/cancellation, and mechanics/rule/human approval states.</li>
+<li>- AB-00-06 requires structured diagnostics and avoids certification/compliance claims.</li>
+<li>- AB-00-08 requires layered solver tests and protected-content/provenance gates.</li>
+</ul></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Current guidance</td></tr>
+<tr><td>Sparse solver library</td><td>TBD. Choosing one now would exceed setup scope.</td></tr>
+<tr><td>Coordinate convention</td><td>TBD. Must be consistent across element, support, load, result, and report interfaces.</td></tr>
+<tr><td>Performance targets</td><td>TBD. SOW-035 requires sparse performance and reproducibility, but concrete thresholds are not available.</td></tr>
+<tr><td>Verification fixtures</td><td>Use invented, rights-cleared, non-authoritative fixtures only after implementation is scoped; label them as test fixtures, not engineering examples.</td></tr>
+<tr><td>Kernel boundaries</td><td>Keep element stiffness, support behavior, diagnostics, load application, and stress recovery in their assigned deliverables unless a human-approved change amends the decomposition.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<ul>
+<li>- <code>TBD</code>: A future fixture set may include a minimal frame topology to test DOF mapping, but this setup kit does not define values, tolerances, or expected results.</li>
+<li>- <code>TBD</code>: A future architecture decision may choose a sparse matrix representation, but this setup kit does not select one.</li>
+</ul></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict found in setup sources.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-005 SOW-035 OBJ-003</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

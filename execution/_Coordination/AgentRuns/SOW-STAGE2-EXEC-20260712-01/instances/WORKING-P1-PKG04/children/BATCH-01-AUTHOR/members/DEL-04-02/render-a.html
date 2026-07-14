@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="ff030c00a1f17cb85e427a4d3e985bf862056a33274a6c2a2671db6ef040b867">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-04-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>ff030c00a1f17cb85e427a4d3e985bf862056a33274a6c2a2671db6ef040b867</code>.</p>
+<h1 id="scope-of-work-del-04-02">Scope of Work — DEL-04-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-04-02</code> in service of project scope [SOW-006] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A straight-pipe-element contract covering local stiffness, explicit section-property integration, weight hooks, boundary metadata, spanned loads and axial effects, unit-aware end/station resultant recovery, and deterministic solver verification is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-04-02-straight-pipe-element">CLM-001 — Datasheet: DEL-04-02 Straight pipe element</h3>
+<blockquote><h4 id="datasheet-del-04-02-straight-pipe-element">Datasheet: DEL-04-02 Straight pipe element</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-04-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-04-02</td></tr>
+<tr><td>Package ID</td><td>PKG-04</td></tr>
+<tr><td>Package</td><td>Solver Core and Numerical Methods</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-006</td></tr>
+<tr><td>Objective</td><td>OBJ-003</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Anticipated artifacts</td><td>straight pipe element; solver tests</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Setup value</td></tr>
+<tr><td>Element family</td><td>Straight pipe centerline/frame element</td></tr>
+<tr><td>Analysis model boundary</td><td>3D centerline/frame mechanics with six degrees of freedom per node; shell/solid FEA remains a local-analysis handoff path.</td></tr>
+<tr><td>Covered mechanics</td><td>Local stiffness, section-property integration, weight hooks, and element force recovery.</td></tr>
+<tr><td>Excluded mechanics</td><td>Code compliance decisions, rule-pack acceptability, protected standard formulas/tables, and repo-bundled protected dimensional or material values.</td></tr>
+<tr><td>Unit policy</td><td>All inputs, intermediate values, and outputs are unit-aware and dimensionally checked. Exact unit API is <code>TBD</code>.</td></tr>
+<tr><td>Data provenance policy</td><td>Pipe dimensions, material values, and other solve inputs are user-supplied or lawfully imported private/project data.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Solver numerical library</td><td><code>TBD</code> from architecture/implementation decision.</td></tr>
+<tr><td>Section-property source contract</td><td><code>TBD</code>; must connect to user/project data or lawful library inputs.</td></tr>
+<tr><td>Weight-load integration contract</td><td><code>TBD</code>; must remain a hook to load-case behavior, not a hidden default load application.</td></tr>
+<tr><td>Element force recovery conventions</td><td><code>TBD</code>; must be unit-aware and consistent with solver result envelopes.</td></tr>
+<tr><td>Test fixture data</td><td>Must be synthetic, public-domain, or otherwise cleared for repository use.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The setup kit describes the future implementation boundary only. It does not implement solver code, choose element dimensions, choose material values, encode protected formulas, or create repo-level tests.</p>
+<p>The future element is expected to receive validated geometry, section properties, material/mechanical inputs, and load hooks through governed domain/service contracts. Missing solve-required values must produce explicit findings rather than silent defaults.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, artifacts, and architecture-basis injection.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-04-02</code>.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row <code>SOW-006</code>.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row <code>DEL-04-02</code>.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants listed in the sealed brief.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 architecture basis IDs <code>AB-00-01</code>, <code>AB-00-02</code>, <code>AB-00-03</code>, <code>AB-00-04</code>, <code>AB-00-06</code>, and <code>AB-00-08</code>.</li>
+</ul></blockquote>
+<h3 id="clm-008-open-setup-questions">CLM-008 — Open Setup Questions</h3>
+<blockquote><h5 id="open-setup-questions">Open Setup Questions</h5>
+<table><tbody>
+<tr><td>Question</td><td>Status</td></tr>
+<tr><td>Which upstream schema owns straight-pipe section-property inputs?</td><td><code>TBD</code></td></tr>
+<tr><td>Which solver-kernel interface owns local-to-global transformation and assembly handoff?</td><td><code>TBD</code></td></tr>
+<tr><td>Which load engine interface receives or invokes weight hooks?</td><td><code>TBD</code></td></tr>
+<tr><td>Which deterministic verification cases are accepted for the element without protected data?</td><td><code>TBD</code></td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-04-02-straight-pipe-element">CLM-009 — Specification: DEL-04-02 Straight pipe element</h3>
+<blockquote><h4 id="specification-del-04-02-straight-pipe-element">Specification: DEL-04-02 Straight pipe element</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the implemented straight pipe element backend slice. It covers straight pipe local stiffness, section-property integration, weight hooks, boundary metadata, end/station resultant recovery, spanned loads, and axial effects within the global 3D centerline/frame solver architecture.</p>
+<p>Current evidence lives in <code>core/solver/straight_pipe</code> with deterministic unit and witness-backed benchmark coverage. This documentation refresh does not edit solver code or fixtures, introduce protected formulas or tables, or make certification/compliance claims.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source basis</td><td>Verification hook</td></tr>
+<tr><td>DEL-04-02-RQ-001</td><td>The straight pipe element shall fit the 3D centerline/frame solver model and shall not bypass the solver kernel boundary.</td><td>SOW-006; OPS-K-MECH-1; AB-00-02</td><td>Architecture/module-boundary review once implementation paths are selected.</td></tr>
+<tr><td>DEL-04-02-RQ-002</td><td>Local stiffness behavior shall be derived only from open mechanics and user/project/lawfully imported input values.</td><td>SOW-006; OPS-K-IP-1; OPS-K-DATA-1</td><td>Protected-content review and fixture review.</td></tr>
+<tr><td>DEL-04-02-RQ-003</td><td>Section-property integration shall require explicit section-property inputs or validated upstream calculations; missing solve-required properties shall produce explicit findings.</td><td>SOW-006; OPS-K-DATA-2; OPS-K-UNIT-1</td><td>Negative tests for missing properties and units; exact cases <code>TBD</code>.</td></tr>
+<tr><td>DEL-04-02-RQ-004</td><td>Weight hooks shall expose the information needed for load-case application without silently applying hidden load defaults.</td><td>SOW-006; OPS-K-DATA-2; AB-00-03</td><td>Load-interface tests once the primitive load contract is accepted.</td></tr>
+<tr><td>DEL-04-02-RQ-005</td><td>Element force recovery shall return unit-aware mechanical result components suitable for downstream stress recovery, without encoding code stress checks.</td><td>SOW-006; OPS-K-MECH-2; OPS-K-UNIT-1</td><td>Solver result-envelope tests and downstream interface review.</td></tr>
+<tr><td>DEL-04-02-RQ-006</td><td>Solver changes shall include deterministic verification tests before release use.</td><td>OPS-K-SOLVER-1; AB-00-08</td><td>Deterministic solver tests using synthetic or cleared inputs.</td></tr>
+<tr><td>DEL-04-02-RQ-007</td><td>Diagnostics shall use governed result-envelope concepts and shall not claim professional approval, certification, or compliance.</td><td>AB-00-06; OPS-K-AGENT-4</td><td>Diagnostic/result-envelope review.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standard text, protected formulas, protected dimensional tables, material allowables, or proprietary commercial data are available in this deliverable-local setup context. Any future code or standard basis must be introduced only as a lawful private/project input or non-protected pointer with provenance. Clause-level requirements are <code>TBD</code>.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification area</td><td>Minimum setup expectation</td></tr>
+<tr><td>Solver boundary</td><td>Tests and reviews must show the element is a solver component, not a rule-pack or compliance component.</td></tr>
+<tr><td>Unit safety</td><td>Tests must cover dimensional checking for section properties, stiffness-related inputs, weight-related inputs, and recovered forces.</td></tr>
+<tr><td>Missing inputs</td><td>Tests must show explicit findings for missing solve-required values.</td></tr>
+<tr><td>Force recovery</td><td>Tests must show deterministic recovered mechanical result components; exact benchmark cases are <code>TBD</code>.</td></tr>
+<tr><td>IP/data boundary</td><td>Test data must be synthetic, public-domain, or otherwise cleared for redistribution.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Current implementation artifacts are:</p>
+<ul>
+<li>- <code>core/solver/straight_pipe</code>;</li>
+<li>- its deterministic crate tests and rights-safe straight-pipe mechanics witnesses.</li>
+</ul>
+<p>Module and test paths are now evidenced in-tree. Production numerical-library</p>
+<p>integration, final governed per-kind tolerances, and full solver-to-result-envelope</p>
+<p>binding remain <code>TBD</code> or separately recorded residual work.</p></blockquote>
+<h3 id="clm-015-conflict-table-for-human-ruling">CLM-015 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Issue</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in setup evidence.</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted straight-pipe mechanics and interface boundaries, including explicit units and lawful input provenance, no hidden load or engineering defaults, rights-cleared fixtures, mechanics-only outputs, and the unresolved governed solver-to-result-envelope integration.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-04-02-straight-pipe-element">CLM-016 — Procedure: DEL-04-02 Straight pipe element</h3>
+<blockquote><h4 id="procedure-del-04-02-straight-pipe-element">Procedure: DEL-04-02 Straight pipe element</h4></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the bounded maintenance and verification procedure for the implemented straight pipe element without expanding its mechanics scope.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the task names <code>DEL-04-02</code> and its authorized write scope.</li>
+<li>- Confirm upstream architecture basis constraints from <code>AB-00-01</code>, <code>AB-00-02</code>, <code>AB-00-03</code>, <code>AB-00-04</code>, <code>AB-00-06</code>, and <code>AB-00-08</code>.</li>
+<li>- Confirm the current <code>core/solver/straight_pipe</code> unit/domain and frame-kernel interfaces; unresolved integration items remain <code>TBD</code>.</li>
+<li>- Confirm all example dimensions, material values, and fixtures are synthetic, public-domain, or otherwise cleared.</li>
+</ul></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Re-read <code>_CONTEXT.md</code>, <code>Specification.md</code>, and <code>_DEPENDENCIES.md</code>.</p>
+<p>2. Identify the accepted module boundary for the straight pipe element and its relation to the global frame kernel.</p>
+<p>3. Identify required input contracts for section properties, material/mechanical values, units, weight hooks, diagnostics, and result envelopes.</p>
+<p>4. Maintain only the authorized straight-pipe local element behavior; do not broaden into stress-code or professional-acceptance logic.</p>
+<p>5. Add explicit findings for missing solve-required values and unit mismatches; do not apply silent defaults.</p>
+<p>6. Add deterministic solver tests with synthetic or cleared inputs.</p>
+<p>7. Verify recovered element forces remain mechanical results and do not claim code compliance.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected evidence</td></tr>
+<tr><td>Scope boundary</td><td>Implementation changes are limited to the approved implementation scope for DEL-04-02.</td></tr>
+<tr><td>Unit behavior</td><td>Unit-aware tests pass and dimensional mismatches fail explicitly.</td></tr>
+<tr><td>Missing input behavior</td><td>Missing solve-required properties produce findings.</td></tr>
+<tr><td>Solver result behavior</td><td>Element force recovery is deterministic for accepted synthetic/cleared cases.</td></tr>
+<tr><td>IP/data boundary</td><td>No protected tables, formulas, examples, material allowables, or proprietary data are added.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Implementation or maintenance run records for authorized code work.</li>
+<li>- Solver test results.</li>
+<li>- Fixture provenance notes.</li>
+<li>- Protected-content review evidence where applicable.</li>
+<li>- Any human rulings for <code>TBD</code> items.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, straight-pipe behavior and frame-kernel boundaries, section and weight interfaces, spanned-load and resultant coverage, dimensional checks, explicit findings, protected-content controls, and result-envelope residuals.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-04-02-straight-pipe-element">CLM-022 — Guidance: DEL-04-02 Straight pipe element</h3>
+<blockquote><h4 id="guidance-del-04-02-straight-pipe-element">Guidance: DEL-04-02 Straight pipe element</h4></blockquote>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to isolate the straight pipe element as one bounded solver feature slice. It should give the global 3D frame solver a governed, testable element behavior while keeping section data, units, diagnostics, load hooks, and downstream force recovery explicit.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep mechanics computation separate from rule-pack acceptability and human compliance judgment.</li>
+<li>- Treat dimensions, material values, and protected standard-derived values as external governed inputs, never public bundled defaults.</li>
+<li>- Prefer explicit <code>TBD</code> and explicit diagnostics over silent assumptions when solve-required values are missing.</li>
+<li>- Preserve unit and provenance information through element inputs and outputs.</li>
+<li>- Keep weight behavior as an interface hook until the load-case contract determines how loads are formed and applied.</li>
+</ul></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The implemented element consumes explicit section properties and mechanics inputs through the frame-kernel boundary, carries unit/boundary metadata, and supports deterministic force/resultant recovery and spanned-load behavior. Full application-service result-envelope production remains separate residual work.</p>
+<p>Verification should use open, synthetic, or cleared test cases. Any hand-check examples must avoid copying protected standard examples, tables, or protected formula presentations.</p></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Completeness vs data boundary</td><td>Record missing section or material values as findings rather than providing public defaults.</td></tr>
+<tr><td>Element scope vs solver kernel scope</td><td>Keep local element behavior here; keep global assembly, transforms, and sparse solve responsibilities in the solver kernel deliverable unless the accepted implementation boundary says otherwise.</td></tr>
+<tr><td>Load hooks vs load application</td><td>Expose weight-related information without creating hidden primitive load behavior inside the element.</td></tr>
+<tr><td>Force recovery vs stress checks</td><td>Recover mechanical element forces; downstream stress recovery and rule checks remain separate deliverables.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Rights-safe deterministic examples exist in the straight-pipe mechanics witness</p>
+<p>and benchmark families. They are software verification evidence, not design</p>
+<p>examples or professional acceptance, and must not be replaced with protected</p>
+<p>standards content.</p></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Issue</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No setup conflict found.</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-006 OBJ-003</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 200
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the accepted classifier versus assembled-loop ownership, implemented state-transition and bounded Coulomb-friction basis, unit and diagnostic boundaries, explicit missing inputs, mechanics-only posture, and unresolved path-history, convergence-threshold, sparse-live-path, and validation policies without inventing defaults or engineering acceptance.",
+    "OUT-001": "A nonlinear-support classifier and state-oracle contract covering one-way restraints, gaps, lift-off, friction, state-switched transitions, convergence and non-convergence reporting, report-facing records, and integration-facing deterministic verification is produced for the declared scope and objective.",
+    "VER-001": "Validate the contract and review source parity, nonlinear behavior categories and state transitions, classifier/integration ownership, convergence diagnostics, units and provenance, protected-content and professional boundaries, deterministic transition witnesses, and every surviving governed residual."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}
