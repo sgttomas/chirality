@@ -1,0 +1,605 @@
+{
+  "children": {
+    "baseline_child_roles": 94,
+    "documented_attempts": 99,
+    "extra_documented_attempts": 5,
+    "failed_status_records": 1,
+    "manager_evidence_closeouts": 14,
+    "manager_evidence_closeouts_by_wave": {
+      "A3": 14
+    },
+    "retry_named_attempts": 5,
+    "retry_named_attempts_by_wave": {
+      "A2": 3,
+      "A3": 2
+    },
+    "status_distribution": {
+      "FAILED_INPUTS": 1,
+      "MISSING": 4,
+      "PASS": 54,
+      "PASS_MANAGER_EVIDENCE_CLOSEOUT": 1,
+      "PASS_UNCHANGED": 10,
+      "SUCCESS": 16,
+      "SUCCESS_MANAGER_EVIDENCE_CLOSEOUT": 13
+    },
+    "status_records": 95
+  },
+  "claim_posture": "DESCRIPTIVE_DERIVATIVE_NOT_CAUSAL",
+  "events": {
+    "affected_deliverables": 18,
+    "affected_packages": 10,
+    "affected_units": 89,
+    "by_category": {
+      "BRIEF_OR_INPUT": {
+        "affected_units": 5,
+        "deliverables": 5,
+        "episodes": 5,
+        "packages": 4,
+        "subtypes": {
+          "failed_seed_inputs": 1,
+          "noncanonical_package_id": 1,
+          "workspace_anchor_missing": 1,
+          "wrong_dependency_filename": 2
+        }
+      },
+      "EVIDENCE_PORTABILITY": {
+        "affected_units": 46,
+        "deliverables": 3,
+        "episodes": 11,
+        "packages": 9,
+        "subtypes": {
+          "generated_check_paths": 2,
+          "generated_checkout_literal": 1,
+          "generated_local_prefixes": 1,
+          "generated_machine_paths": 6,
+          "incomplete_first_normalization": 1
+        }
+      },
+      "EVIDENCE_TERMINALIZATION": {
+        "affected_units": 27,
+        "deliverables": 9,
+        "episodes": 16,
+        "packages": 6,
+        "subtypes": {
+          "interrupted_before_manifest": 1,
+          "later_terminalization_lag": 1,
+          "manager_closeout_cluster": 1,
+          "manifest_closeout_missing": 1,
+          "manifest_digest_cells_empty": 1,
+          "manifest_incomplete": 1,
+          "manifest_missing": 2,
+          "repeated_terminalization_stall": 1,
+          "run_record_binding": 1,
+          "run_record_pending": 1,
+          "stalled_before_root_artifacts": 1,
+          "terminal_boolean_omitted": 1,
+          "terminal_evidence_incomplete": 2,
+          "terminal_metadata_missing": 1
+        }
+      },
+      "NEGATIVE_FIXTURE_SETUP": {
+        "affected_units": 1,
+        "deliverables": 1,
+        "episodes": 1,
+        "packages": 1,
+        "subtypes": {
+          "malformed_padded_fixture": 1
+        }
+      },
+      "PROJECT_CHECK_SUBSTRATE": {
+        "affected_units": 7,
+        "deliverables": 0,
+        "episodes": 7,
+        "packages": 7,
+        "subtypes": {
+          "missing_local_server": 7
+        }
+      },
+      "SUSPECTED_NOT_REPRODUCED": {
+        "affected_units": 1,
+        "deliverables": 1,
+        "episodes": 1,
+        "packages": 1,
+        "subtypes": {
+          "terminal_evidence_suspected": 1
+        }
+      },
+      "TOOL_INVOCATION": {
+        "affected_units": 2,
+        "deliverables": 1,
+        "episodes": 2,
+        "packages": 1,
+        "subtypes": {
+          "directory_passed_as_render_output": 1,
+          "precopy_validation_attempt": 1
+        }
+      }
+    },
+    "by_detection_layer": {
+      "child_self_check": 3,
+      "evidence_remediation": 3,
+      "manager_fan_in": 22,
+      "manager_supervision": 4,
+      "reconciliation": 1,
+      "registered_check": 7,
+      "runtime_normalization": 1,
+      "tool_guard": 2
+    },
+    "by_outcome": {
+      "brief_corrected": 2,
+      "failed_closed_then_passed": 2,
+      "failed_closed_then_relaunched": 1,
+      "field_added_and_rebound": 1,
+      "fixture_corrected_and_rerun": 1,
+      "fresh_verifier_relaunched": 1,
+      "manager_added_manifest": 1,
+      "manager_evidence_closeout": 3,
+      "manager_resume_finalized": 1,
+      "manifest_generated_and_reproduced": 1,
+      "normalized_and_rebound": 1,
+      "pass_unchanged": 1,
+      "preserved_nonacceptance_then_passed": 2,
+      "reentered_and_repaired": 2,
+      "repaired_and_rebound": 1,
+      "repaired_and_reconciled": 1,
+      "repaired_r1": 5,
+      "rerun_passed": 7,
+      "reversible_normalization": 8,
+      "reversible_repair": 1
+    },
+    "by_wave": {
+      "A1": {
+        "affected_units": 14,
+        "categories": {
+          "BRIEF_OR_INPUT": 2,
+          "EVIDENCE_PORTABILITY": 5,
+          "EVIDENCE_TERMINALIZATION": 2,
+          "PROJECT_CHECK_SUBSTRATE": 1
+        },
+        "episodes": 10
+      },
+      "A2": {
+        "affected_units": 36,
+        "categories": {
+          "BRIEF_OR_INPUT": 2,
+          "EVIDENCE_PORTABILITY": 3,
+          "EVIDENCE_TERMINALIZATION": 7,
+          "PROJECT_CHECK_SUBSTRATE": 3,
+          "SUSPECTED_NOT_REPRODUCED": 1
+        },
+        "episodes": 16
+      },
+      "A3": {
+        "affected_units": 39,
+        "categories": {
+          "BRIEF_OR_INPUT": 1,
+          "EVIDENCE_PORTABILITY": 3,
+          "EVIDENCE_TERMINALIZATION": 7,
+          "NEGATIVE_FIXTURE_SETUP": 1,
+          "PROJECT_CHECK_SUBSTRATE": 3,
+          "TOOL_INVOCATION": 2
+        },
+        "episodes": 17
+      }
+    },
+    "episodes": 43,
+    "reference_denominators": {
+      "baseline_child_roles": 94,
+      "members": 47,
+      "packages": 10
+    },
+    "substantive_episodes": 0
+  },
+  "intervals": {
+    "eventual_pass": {
+      "high": 1.0,
+      "low": 0.9244423958360037,
+      "rate": 1.0,
+      "successes": 47,
+      "trials": 47
+    },
+    "extra_attempt_overhead": {
+      "high": 0.11853648970259889,
+      "low": 0.022931748685590003,
+      "rate": 0.05319148936170213,
+      "successes": 5,
+      "trials": 94
+    },
+    "manager_closeout_status": {
+      "high": 0.2345988505755543,
+      "low": 0.09084047958659408,
+      "rate": 0.14893617021276595,
+      "successes": 14,
+      "trials": 94
+    },
+    "package_first_premerge_failure": {
+      "high": 0.8922087325936989,
+      "low": 0.39677814746114537,
+      "rate": 0.7,
+      "successes": 7,
+      "trials": 10
+    },
+    "project_check_failure": {
+      "high": 0.20031283048738022,
+      "low": 0.05153769768782859,
+      "rate": 0.1044776119402985,
+      "successes": 7,
+      "trials": 67
+    },
+    "substantive_failure": {
+      "high": 0.07555760416399632,
+      "low": 0.0,
+      "rate": 0.0,
+      "successes": 0,
+      "trials": 47
+    }
+  },
+  "inventory": {
+    "baseline_child_roles": 94,
+    "mappings": 1428,
+    "members": 47,
+    "package_passes": 10,
+    "packages": 10,
+    "project_writes": 0,
+    "replacement_rows": 235,
+    "rollback_rows": 235,
+    "run_root": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01",
+    "source_lines": 15386,
+    "waves": 3
+  },
+  "limits": {
+    "event_catalog_is_curated_and_exact_evidence_bound": true,
+    "git_windows_are_wall_clock_envelopes": true,
+    "native_context_occupancy": false,
+    "native_token_telemetry": false,
+    "per_agent_complete_timing": false
+  },
+  "packages": [
+    {
+      "instance": "WORKING-A1-PKG00",
+      "mappings": 56,
+      "members": 2,
+      "package": "APP-PKG-00",
+      "project_writes": 0,
+      "replacement_rows": 10,
+      "rollback_rows": 10,
+      "source_lines": 526,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A1"
+    },
+    {
+      "instance": "WORKING-A1-PKG01",
+      "mappings": 145,
+      "members": 4,
+      "package": "APP-PKG-01",
+      "project_writes": 0,
+      "replacement_rows": 20,
+      "rollback_rows": 20,
+      "source_lines": 1539,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A1"
+    },
+    {
+      "instance": "WORKING-A1-PKG02",
+      "mappings": 146,
+      "members": 5,
+      "package": "APP-PKG-02",
+      "project_writes": 0,
+      "replacement_rows": 25,
+      "rollback_rows": 25,
+      "source_lines": 1441,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A1"
+    },
+    {
+      "instance": "WORKING-A1-PKG03",
+      "mappings": 109,
+      "members": 4,
+      "package": "APP-PKG-03",
+      "project_writes": 0,
+      "replacement_rows": 20,
+      "rollback_rows": 20,
+      "source_lines": 1311,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A1"
+    },
+    {
+      "instance": "WORKING-A2-PKG04",
+      "mappings": 153,
+      "members": 5,
+      "package": "APP-PKG-04",
+      "project_writes": 0,
+      "replacement_rows": 25,
+      "rollback_rows": 25,
+      "source_lines": 1751,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A2"
+    },
+    {
+      "instance": "WORKING-A2-PKG05",
+      "mappings": 143,
+      "members": 5,
+      "package": "APP-PKG-05",
+      "project_writes": 0,
+      "replacement_rows": 25,
+      "rollback_rows": 25,
+      "source_lines": 1717,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A2"
+    },
+    {
+      "instance": "WORKING-A2-PKG06",
+      "mappings": 195,
+      "members": 6,
+      "package": "APP-PKG-06",
+      "project_writes": 0,
+      "replacement_rows": 30,
+      "rollback_rows": 30,
+      "source_lines": 2116,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A2"
+    },
+    {
+      "instance": "WORKING-A3-PKG08",
+      "mappings": 155,
+      "members": 5,
+      "package": "APP-PKG-08",
+      "project_writes": 0,
+      "replacement_rows": 25,
+      "rollback_rows": 25,
+      "source_lines": 1585,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A3"
+    },
+    {
+      "instance": "WORKING-A3-PKG09",
+      "mappings": 169,
+      "members": 6,
+      "package": "APP-PKG-09",
+      "project_writes": 0,
+      "replacement_rows": 30,
+      "rollback_rows": 30,
+      "source_lines": 1781,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A3"
+    },
+    {
+      "instance": "WORKING-A3-PKG10",
+      "mappings": 157,
+      "members": 5,
+      "package": "APP-PKG-10",
+      "project_writes": 0,
+      "replacement_rows": 25,
+      "rollback_rows": 25,
+      "source_lines": 1619,
+      "status": "PASS",
+      "terminal": true,
+      "wave": "A3"
+    }
+  ],
+  "project_checks": {
+    "by_check": {
+      "frontend-build": {
+        "count": 9,
+        "failures": 0,
+        "invocations": 10,
+        "max_seconds": 12.407,
+        "mean_seconds": 9.94,
+        "median_seconds": 9.714,
+        "min_seconds": 9.347,
+        "p95_seconds": 11.456,
+        "passes": 10,
+        "timed_invocations": 9,
+        "total_seconds": 89.459
+      },
+      "frontend-premerge": {
+        "count": 15,
+        "failures": 7,
+        "invocations": 17,
+        "max_seconds": 12.148,
+        "mean_seconds": 6.781,
+        "median_seconds": 10.694,
+        "min_seconds": 0.155,
+        "p95_seconds": 11.68,
+        "passes": 10,
+        "timed_invocations": 15,
+        "total_seconds": 101.721
+      },
+      "frontend-test": {
+        "count": 9,
+        "failures": 0,
+        "invocations": 10,
+        "max_seconds": 5.147,
+        "mean_seconds": 4.687,
+        "median_seconds": 4.624,
+        "min_seconds": 4.341,
+        "p95_seconds": 5.093,
+        "passes": 10,
+        "timed_invocations": 9,
+        "total_seconds": 42.182
+      },
+      "frontend-typecheck": {
+        "count": 9,
+        "failures": 0,
+        "invocations": 10,
+        "max_seconds": 2.873,
+        "mean_seconds": 2.75,
+        "median_seconds": 2.758,
+        "min_seconds": 2.567,
+        "p95_seconds": 2.847,
+        "passes": 10,
+        "timed_invocations": 9,
+        "total_seconds": 24.748
+      },
+      "harness-pytest": {
+        "count": 9,
+        "failures": 0,
+        "invocations": 10,
+        "max_seconds": 77.064,
+        "mean_seconds": 68.938,
+        "median_seconds": 68.273,
+        "min_seconds": 66.275,
+        "p95_seconds": 73.975,
+        "passes": 10,
+        "timed_invocations": 9,
+        "total_seconds": 620.446
+      },
+      "harness-self-check": {
+        "count": 9,
+        "failures": 0,
+        "invocations": 10,
+        "max_seconds": 9.477,
+        "mean_seconds": 8.129,
+        "median_seconds": 8.399,
+        "min_seconds": 5.095,
+        "p95_seconds": 9.089,
+        "passes": 10,
+        "timed_invocations": 9,
+        "total_seconds": 73.158
+      }
+    },
+    "duration": {
+      "count": 60,
+      "max_seconds": 77.064,
+      "mean_seconds": 15.862,
+      "median_seconds": 8.442,
+      "min_seconds": 0.155,
+      "p95_seconds": 68.856,
+      "total_seconds": 951.714
+    },
+    "failed_duration": {
+      "count": 6,
+      "max_seconds": 0.215,
+      "mean_seconds": 0.166,
+      "median_seconds": 0.157,
+      "min_seconds": 0.155,
+      "p95_seconds": 0.201,
+      "total_seconds": 0.995
+    },
+    "failures": 7,
+    "invocations": 67,
+    "packages_with_failed_first_premerge": [
+      "WORKING-A1-PKG00",
+      "WORKING-A2-PKG04",
+      "WORKING-A2-PKG05",
+      "WORKING-A2-PKG06",
+      "WORKING-A3-PKG08",
+      "WORKING-A3-PKG09",
+      "WORKING-A3-PKG10"
+    ],
+    "passes": 60,
+    "per_wave_cache_scenario": {
+      "assumption": "one successful invocation per wave/check identity; package candidates do not mutate the live project",
+      "avoidable_invocation_fraction": 0.7313432835820896,
+      "avoidable_invocations": 49,
+      "current_invocations": 67,
+      "measured_seconds_avoidable_lower_bound": 620.653,
+      "measured_seconds_retained_conservative": 331.061,
+      "retained_invocations": 18
+    },
+    "timed_invocations": 60,
+    "untimed_invocations": 7
+  },
+  "reconciliation": {
+    "apply_simulations": 47,
+    "instances": [
+      {
+        "apply_simulations": 15,
+        "instance": "RECON-A1-F",
+        "mappings": 456,
+        "members": 15,
+        "project_writes": 0,
+        "rollback_simulations": 15,
+        "source_lines": 4817,
+        "status": "PASS"
+      },
+      {
+        "apply_simulations": 16,
+        "instance": "RECON-A2-F",
+        "mappings": 491,
+        "members": 16,
+        "project_writes": 0,
+        "rollback_simulations": 16,
+        "source_lines": 5584,
+        "status": "PASS"
+      },
+      {
+        "apply_simulations": 16,
+        "instance": "RECON-A3-F",
+        "mappings": 481,
+        "members": 16,
+        "project_writes": 0,
+        "rollback_simulations": 16,
+        "source_lines": 4985,
+        "status": "PASS"
+      }
+    ],
+    "members": 47,
+    "passes": 3,
+    "project_writes": 0,
+    "rollback_simulations": 47
+  },
+  "schema": "chirality-agentic-runtime-analysis/v1",
+  "wave_windows": [
+    {
+      "activation_to_merge_seconds": 13467.0,
+      "basis_commit": "34b87ec77010035eeaa76f0fa65981ec57e78933",
+      "basis_time": "2026-07-13T06:18:49-06:00",
+      "binding_time": "2026-07-13T09:47:34-06:00",
+      "evidence_binding_commit": "63c26353b2930d03c8301478bae1f935918a9132",
+      "mappings": 456,
+      "members": 15,
+      "members_per_hour": 4.009801737580753,
+      "merge_commit": "3658f40fd492bf8d3db23892c2a9714f5ee915e6",
+      "merge_lag_seconds": 942.0,
+      "merge_time": "2026-07-13T10:03:16-06:00",
+      "preparation_seconds": 12525.0,
+      "source_lines": 4817,
+      "source_lines_per_minute_preparation": 23.07544910179641,
+      "wave": "A1"
+    },
+    {
+      "activation_to_merge_seconds": 16414.0,
+      "basis_commit": "0af23f4709e1c95f6b2e0f19db80779bd4c968fa",
+      "basis_time": "2026-07-13T10:33:21-06:00",
+      "binding_time": "2026-07-13T14:54:39-06:00",
+      "evidence_binding_commit": "c6aa2050d23910423bd86c83f09da0247cbfe89e",
+      "mappings": 491,
+      "members": 16,
+      "members_per_hour": 3.509199463872304,
+      "merge_commit": "e0f1d8be30879a943697fa9d85e63299f5b0a320",
+      "merge_lag_seconds": 736.0,
+      "merge_time": "2026-07-13T15:06:55-06:00",
+      "preparation_seconds": 15678.0,
+      "source_lines": 5584,
+      "source_lines_per_minute_preparation": 21.370072713356294,
+      "wave": "A2"
+    },
+    {
+      "activation_to_merge_seconds": 16539.0,
+      "basis_commit": "193663b1d93299c18d64f59b543b36a0dd5f0ee1",
+      "basis_time": "2026-07-13T15:29:00-06:00",
+      "binding_time": "2026-07-13T19:50:40-06:00",
+      "evidence_binding_commit": "0f8b1ddd8ddce76a7e8d2cac3fbd5bde65455ce0",
+      "mappings": 481,
+      "members": 16,
+      "members_per_hour": 3.4826773081806643,
+      "merge_commit": "c7e3c1317d2cb96b8cda4505b8a434d343a12fdf",
+      "merge_lag_seconds": 839.0,
+      "merge_time": "2026-07-13T20:04:39-06:00",
+      "preparation_seconds": 15700.0,
+      "source_lines": 4985,
+      "source_lines_per_minute_preparation": 19.050955414012737,
+      "wave": "A3"
+    }
+  ]
+}

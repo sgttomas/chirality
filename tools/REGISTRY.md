@@ -86,6 +86,12 @@ change, ISSUED replacement, integration, or legacy retirement.
 | `merge_equipment_costing_csv.py` | Python 3 | Merge per-KTY Equipment_Costing_Extract CSV files into a single consolidated CSV | OUTPUT_CSV, INPUT_DIR, [--sort-by COLUMN] | Consolidated Equipment_Costing_Extract.csv |
 | `synthesize_domain_coverage_json.py` | Python 3 | Serialize DOMAIN `annex_coverage_telemetry.csv` plus optional SCA KTY remediation manifest rollup into governed pre/post coverage JSON for SCOPE_CHANGE baselines. Optional `--package-subfolder NAME` flag for transitional dual-layout support; auto-descends into a single eligible subfolder when annexes not at root | `--decomposition-root`, `--output-json`, `[--scope-change-snapshot]`, `[--missing-manifest-state]`, `[--note]`, `[--package-subfolder]` | `Pre_Change_Coverage.json` or `Post_Change_Coverage.json`; exit 0/1 |
 
+## Runtime analysis
+
+| Name | Language | Purpose | Inputs | Outputs |
+|------|----------|---------|--------|---------|
+| `analysis/analyze_agentic_runtime.py` | Python 3 | Deterministically inventory governed package/child records, aggregate command-level check durations and exits, bind a curated abnormal-event catalog to exact evidence text, calculate descriptive rates/Wilson intervals, and derive Git-bounded wave envelopes without modifying source truth | `--repo-root`, `--run-root`, `--event-catalog`, `--output-dir`, optional `--skip-git-runtime` | `summary.json`, normalized `events.csv`, `report.md`, `MANIFEST.tsv`; idempotent; exit 0 success / 1 invalid evidence / 2 operational error |
+
 ## PDF-to-Markdown
 
 | Name | Language | Purpose | Inputs | Outputs |
