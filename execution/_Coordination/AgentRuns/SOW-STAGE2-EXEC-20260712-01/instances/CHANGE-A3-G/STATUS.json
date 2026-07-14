@@ -1,0 +1,17 @@
+{
+  "instance_id": "CHANGE-A3-G",
+  "role": "CHANGE",
+  "status": "IN_PROGRESS",
+  "terminal": false,
+  "parent": "SOW-STAGE2-EXEC-20260712-01",
+  "node": "W-A3-G",
+  "basis_commit": "193663b1d93299c18d64f59b543b36a0dd5f0ee1",
+  "branch": "codex/sow-stage2-a3-integration",
+  "accepted_snapshot_manifest_sha256": "53fbec09f4d174f4de1744fdaf38b88f3d28ba2936b10cdc83087d1bbb76f10f",
+  "acceptance_manifest_sha256": "37bfceeb53e8eedbdbb481e9b777889d2f7abaaa370b4ffcc156db1e32e23ffc",
+  "replacement_rows": 80,
+  "rollback_rows": 80,
+  "blockers": [],
+  "unknowns": [],
+  "waivers": []
+}

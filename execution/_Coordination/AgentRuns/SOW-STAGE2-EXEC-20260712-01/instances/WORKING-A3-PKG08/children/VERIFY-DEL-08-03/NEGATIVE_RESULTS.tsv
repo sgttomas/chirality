@@ -1,0 +1,7 @@
+fixture	operation	exit_code	resolved_format	output_artifact	verdict
+partial	validate	1	INVALID	validation JSON only	FAIL_CLOSED
+partial	derive_review_checklist	1	INVALID	ABSENT	FAIL_CLOSED
+partial	render	1	INVALID	ABSENT	FAIL_CLOSED
+unauthorized-dual	validate	1	AMBIGUOUS	validation JSON only	FAIL_CLOSED
+unauthorized-dual	derive_review_checklist	1	AMBIGUOUS	ABSENT	FAIL_CLOSED
+unauthorized-dual	render	1	AMBIGUOUS	ABSENT	FAIL_CLOSED

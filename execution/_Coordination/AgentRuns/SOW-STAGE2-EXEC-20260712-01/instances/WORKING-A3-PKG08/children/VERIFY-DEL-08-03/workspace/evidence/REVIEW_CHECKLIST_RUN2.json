@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 313,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3c0f7e68aaebcb4a92c2a48e017c310277d353c7894db66fcd4faceb8d9305bd"
+      },
+      "text": "Pipeline selector tests; knowledge-type discovery tests or fixtures; disabled option handling tests.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-001",
+          "source_line": 452,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Test inventory review with named category, TASK scope, discovery, disabled-option, and reset fixtures."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "3c0f7e68aaebcb4a92c2a48e017c310277d353c7894db66fcd4faceb8d9305bd"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,6 @@
+fixture	operation	exit_code	rejected_output_absent	verdict
+partial	validate	1	not_applicable	PASS
+unauthorized_dual	validate_wrong_authority	1	not_applicable	PASS
+partial	derive_checklist	1	true	PASS
+unauthorized_dual	derive_checklist_wrong_authority	1	true	PASS
+unauthorized_dual	render_wrong_authority	1	true	PASS

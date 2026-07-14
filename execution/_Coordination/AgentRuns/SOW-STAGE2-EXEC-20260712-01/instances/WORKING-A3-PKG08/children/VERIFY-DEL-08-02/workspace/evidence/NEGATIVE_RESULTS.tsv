@@ -1,0 +1,7 @@
+case	fixture	operation	authority	exit_code	requested_output_exists	result
+PARTIAL_VALIDATOR	negative/partial	validate	EXACT	1	N/A	PASS_FAIL_CLOSED
+PARTIAL_CHECKLIST	negative/partial	checklist	EXACT	1	false	PASS_FAIL_CLOSED
+UNAUTHORIZED_DUAL_VALIDATOR	negative/unauthorized-dual	validate	NONE	1	N/A	PASS_FAIL_CLOSED
+UNAUTHORIZED_DUAL_CHECKLIST	negative/unauthorized-dual	checklist	NONE	1	false	PASS_FAIL_CLOSED
+WRONG_AUTH_DUAL_VALIDATOR	negative/unauthorized-dual	validate	D-GOV-16@WRONG	1	N/A	PASS_FAIL_CLOSED
+WRONG_AUTH_DUAL_CHECKLIST	negative/unauthorized-dual	checklist	D-GOV-16@WRONG	1	false	PASS_FAIL_CLOSED

@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A3-PKG10",
+  "child_instance_id": "AUTHOR-DEL-10-02",
+  "deliverable_id": "DEL-10-02",
+  "status": "SUCCESS",
+  "terminal": true,
+  "completed_at": "2026-07-13T18:20:01-06:00",
+  "candidate_path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A3/APP-PKG10/DEL-10-02/ScopeOfWork.md",
+  "candidate_sha256": "204721c5221d1311ff94c93fa60ff3292d715ad2ab146032c7d6ba71f85582bb",
+  "return_path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-02/RETURN.md",
+  "manifest_path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-02/MANIFEST.tsv",
+  "rerun_required": false,
+  "blockers": []
+}

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="6b79194c67b73bbf85435ad5ceae221a68304c41f3294002825d4ad8917993a5">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>6b79194c67b73bbf85435ad5ceae221a68304c41f3294002825d4ad8917993a5</code>.</p>
+<h1 id="scope-of-work-del-09-03">Scope of Work — DEL-09-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-09-03</code> in service of project scope [SOW-011, SOW-012, SOW-014, SOW-015, SOW-022, SOW-028, SOW-029] and package objectives [OBJ-002, OBJ-003, OBJ-006, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A focused unit, API, and integration test expansion with fixtures and regression cases for TurnEngine, SSE compatibility, event replay, attachments, status lifecycle, dependencies, interrupts/cancellation, and denied actions, plus recorded behavior-group coverage decisions and validation evidence.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-03-unit-and-integration-test-expansion">CLM-001 — Datasheet: DEL-09-03 Unit and Integration Test Expansion</h3>
+<h4 id="datasheet-del-09-03-unit-and-integration-test-expansion">Datasheet: DEL-09-03 Unit and Integration Test Expansion</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-09-03</td></tr>
+<tr><td>DeliverableName</td><td>Unit and Integration Test Expansion</td></tr>
+<tr><td>PackageID</td><td>PKG-09</td></tr>
+<tr><td>PackageName</td><td>Validation, Packaging, Security, and Release</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>TEST_SUITE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Scope</td><td>Focused unit/API/integration tests for TurnEngine, SSE, event replay, attachments, status, dependencies, interrupts, and denied actions.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-09 row for DEL-09-03</td></tr>
+<tr><td>Anticipated artifacts</td><td>Jest/API/integration tests; fixtures; regression cases.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts</td></tr>
+<tr><td>Covered SOW items</td><td>SOW-011, SOW-012, SOW-014, SOW-015, SOW-022, SOW-028, SOW-029.</td><td><code>_CONTEXT.md</code> Traceability; decomposition SOW table</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-002, OBJ-003, OBJ-006, OBJ-008.</td><td><code>_CONTEXT.md</code> Traceability; decomposition objective table</td></tr>
+<tr><td>Test command context</td><td><code>npm run test</code> is the local unit/API test gate.</td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-VALIDATE-1</td></tr>
+<tr><td>Validation adjacency</td><td>Section 8 and Section 9 validation are adjacent validation surfaces, but this deliverable is scoped to unit/API/integration test expansion rather than authoring the Section 9 runner itself.</td><td><code>docs/PRD.md</code> Sections 12.3-12.6; decomposition rows DEL-09-02 and DEL-09-03</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>PRD source warning</td><td>Expected PRD hash <code>86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34</code>; observed <code>fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8</code>. Treated as source status per dispatch.</td><td><code>_REFERENCES.md</code>; TASK dispatch</td></tr>
+<tr><td>Dependency register output</td><td><code>Dependencies.csv</code> must not be created by this run. Dependency extraction remains deferred until later workflow.</td><td>TASK dispatch; <code>_DEPENDENCIES.md</code> InitialPopulationRule</td></tr>
+<tr><td>Source-grounding rule</td><td>Unsupported facts remain <code>TBD</code>, <code>ASSUMPTION</code>, or conflict entries.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1 and K-CONFLICT-1</td></tr>
+<tr><td>Lifecycle state</td><td>Initial state was <code>OPEN</code>; safe transition target after non-empty four-document initialization is <code>INITIALIZED</code>.</td><td><code>_STATUS.md</code>; <code>docs/SPEC.md</code> Section 4</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Test Area</td><td>Required Coverage Target</td><td>Source</td></tr>
+<tr><td>TurnEngine lifecycle</td><td>Unit-test <code>TurnEngine.runTurn()</code> without HTTP and verify accepted-turn persistence, UI event yield, canonical event persistence, permissions/tool exposure linkage, interrupt/cancel handling, and terminal outcomes.</td><td><code>docs/SPEC.md</code> Section 10; <code>docs/PRD.md</code> FR-070, FR-123, Section 12.5</td></tr>
+<tr><td>SSE compatibility</td><td>Integration-test <code>/api/harness/turn</code> as a transport adapter that preserves browser-facing SSE event names and terminates correctly.</td><td><code>docs/SPEC.md</code> Sections 10.4 and 11; <code>docs/PRD.md</code> Sections 9.1, 9.3, 12.6</td></tr>
+<tr><td>Event replay</td><td>Test append-only <code>events.jsonl</code> serialization/replay, malformed trailing JSONL tolerance, valid-prior-event preservation, and transcript reconstruction inputs.</td><td><code>docs/SPEC.md</code> Sections 9.1-9.4; <code>docs/CONTRACT.md</code> K-EVENT-4 and K-EVENT-5; <code>docs/PRD.md</code> FR-073, FR-076</td></tr>
+<tr><td>Attachments</td><td>Test server-side attachment resolver path validation, regular-file checks, symlink rejection, extension allowlist, readability, file-size budget, total-byte budget, and partial/all-failure behavior.</td><td><code>docs/SPEC.md</code> Section 16.1; <code>docs/CONTRACT.md</code> K-ATTACH-1; <code>docs/PRD.md</code> FR-064</td></tr>
+<tr><td>Status lifecycle</td><td>Test <code>_STATUS.md</code> parser and forward-only, actor-authorized transitions including approval SHA requirements for human gates.</td><td><code>docs/SPEC.md</code> Section 4; <code>docs/CONTRACT.md</code> K-STATUS-1 and K-STATUS-2; <code>docs/PRD.md</code> FR-052 through FR-054</td></tr>
+<tr><td>Dependencies</td><td>Test <code>Dependencies.csv</code> v3.1 parser/validator/writer behavior, provenance fields, host deliverable consistency, row retirement, and legacy normalization.</td><td><code>docs/SPEC.md</code> Section 6; <code>docs/CONTRACT.md</code> K-DEP-1, K-DEP-2, K-PROV-1; <code>docs/PRD.md</code> FR-055 through FR-057</td></tr>
+<tr><td>Interrupts/cancellation</td><td>Test interrupt endpoint behavior, cancellation cleanup, lock release, and terminal cancellation/failure persistence.</td><td><code>docs/PRD.md</code> FR-071, FR-073, Section 12.6; <code>docs/SPEC.md</code> Sections 10.1-10.2</td></tr>
+<tr><td>Denied actions</td><td>Test deny precedence, <code>dontAsk</code>, <code>readOnly</code>, denied writes, denied Bash, unknown tools, hook fail-closed behavior, and permission event persistence where runtime event support exists.</td><td><code>docs/SPEC.md</code> Sections 14-15; <code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-5, K-BASH-1, K-HOOK-1; <code>docs/PRD.md</code> FR-081, FR-087 through FR-092</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>docs/CONTRACT.md</code> Sections 1.5-1.9</li>
+<li>- <code>docs/SPEC.md</code> Sections 4, 6, 9-11, 14-16, 17</li>
+<li>- <code>docs/TYPES.md</code> Sections 7, 8, 12</li>
+<li>- <code>docs/PRD.md</code> Sections 8.9, 8.11-8.16, 9, 12.3-12.6</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-09 and SOW mapping rows</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-09-03-unit-and-integration-test-expansion">CLM-007 — Specification: DEL-09-03 Unit and Integration Test Expansion</h3>
+<h4 id="specification-del-09-03-unit-and-integration-test-expansion">Specification: DEL-09-03 Unit and Integration Test Expansion</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-09-03 shall define and implement focused unit, API, and integration test expansion for TurnEngine, SSE compatibility, event replay, attachment validation, status lifecycle behavior, dependency register behavior, interrupts/cancellation, and denied actions.</p>
+<p>This deliverable excludes feature implementation except test fixtures and packaging glue, and it shall not create or populate <code>Dependencies.csv</code> during this four-document initialization run. Source: <code>_CONTEXT.md</code> Package Scope and Deliverable Scope; decomposition row for DEL-09-03.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Verification</td></tr>
+<tr><td>DEL-09-03-REQ-001</td><td>Tests shall cover <code>TurnEngine.runTurn()</code> as a product-owned lifecycle boundary, separate from HTTP route ownership.</td><td>Unit tests instantiate or exercise TurnEngine without HTTP; assertions cover accepted-turn persistence, event yield, terminal outcomes, and adapter boundary behavior. Source: <code>docs/SPEC.md</code> Section 10; <code>docs/PRD.md</code> FR-070 and Section 12.5.</td></tr>
+<tr><td>DEL-09-03-REQ-002</td><td>Tests shall preserve <code>/api/harness/turn</code> SSE route compatibility, including stable browser event names.</td><td>API/integration tests assert <code>session:init</code>, <code>chat:delta</code>, <code>chat:complete</code>, <code>tool:result</code>, <code>session:complete</code>, <code>turn:error</code>, and <code>process:exit</code> behavior as applicable. Source: <code>docs/SPEC.md</code> Section 11; <code>docs/PRD.md</code> Section 9.3.</td></tr>
+<tr><td>DEL-09-03-REQ-003</td><td>Tests shall verify that accepted user input is persisted before SDK/model execution begins.</td><td>Integration or unit tests assert <code>turn.accepted</code> precedes model/request execution records. Source: <code>docs/CONTRACT.md</code> K-EVENT-2; <code>docs/PRD.md</code> Sections 8.12 and 12.6.</td></tr>
+<tr><td>DEL-09-03-REQ-004</td><td>Tests shall verify every accepted turn reaches a durable terminal success, failure, cancellation, or interruption event.</td><td>Tests assert terminal event persistence for success, failure, interrupt, and cancellation paths. Source: <code>docs/CONTRACT.md</code> K-EVENT-3; <code>docs/PRD.md</code> FR-073 and Section 12.6.</td></tr>
+<tr><td>DEL-09-03-REQ-005</td><td>Tests shall cover append-only <code>HarnessEvent</code> JSONL replay, including malformed trailing line tolerance and preservation of valid prior events.</td><td>Unit tests write valid events plus malformed tail and assert replay diagnostics without loss of valid prior events. Source: <code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5.</td></tr>
+<tr><td>DEL-09-03-REQ-006</td><td>Tests shall verify attachment resolver enforcement for path validation, regular-file status, symlink rejection, extension allowlist, readability, per-file 10 MB limit, total raw-byte 18 MB limit, partial failure, and all-failure empty-text rejection.</td><td>Attachment resolver unit/API tests use fixtures for allowed file types, symlink/path failures, budget failures, partial failure, and <code>ATTACHMENT_FAILURE</code>. Source: <code>docs/SPEC.md</code> Section 16.1; <code>docs/CONTRACT.md</code> K-ATTACH-1.</td></tr>
+<tr><td>DEL-09-03-REQ-007</td><td>Tests shall verify <code>_STATUS.md</code> parsing and forward-only lifecycle transition enforcement, including approval SHA requirements for <code>CHECKING</code> and <code>ISSUED</code>.</td><td>Status parser/API tests cover valid states, invalid/backward transitions, unauthorized actors, and SHA-like token requirements. Source: <code>docs/SPEC.md</code> Section 4; <code>docs/PRD.md</code> FR-052 through FR-054.</td></tr>
+<tr><td>DEL-09-03-REQ-008</td><td>Tests shall verify <code>Dependencies.csv</code> v3.1 parsing, validation, writing, provenance preservation, host deliverable consistency, row retirement, and legacy normalization.</td><td>Dependency parser/writer/linter tests assert required headers, enums, <code>FromDeliverableID</code> consistency, active extracted-row evidence fields, and retired-not-deleted behavior. Source: <code>docs/SPEC.md</code> Section 6; <code>docs/PRD.md</code> FR-055 through FR-057.</td></tr>
+<tr><td>DEL-09-03-REQ-009</td><td>Tests shall verify denied actions do not execute and, where runtime event support exists, emit permission/runtime events.</td><td>Permission tests cover deny-over-allow, <code>dontAsk</code>, <code>readOnly</code>, unknown tool names, denied writes, denied Bash, hook failure, and structured decisions. Source: <code>docs/SPEC.md</code> Sections 14-15; <code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-5 and K-BASH-1.</td></tr>
+<tr><td>DEL-09-03-REQ-010</td><td>Tests shall keep public APIs and canonical events provider-neutral, with SDK-specific names and IDs only as adapter metadata.</td><td>Conformance tests reject SDK-shaped leakage in public APIs and canonical <code>HarnessEvent</code> fields except explicit adapter metadata. Source: <code>docs/SPEC.md</code> Section 10.3; <code>docs/PRD.md</code> FR-122 and FR-123.</td></tr>
+<tr><td>DEL-09-03-REQ-011</td><td>Closure shall include at least one implemented or explicitly deferred test case for each required behavior group: TurnEngine, SSE compatibility, event replay, attachments, status lifecycle, dependencies, interrupts/cancellation, and denied actions.</td><td>Review the implemented test inventory against the eight behavior groups and record any group without executable coverage as <code>TBD</code>, deferred, or blocked with source-backed rationale. Source: <code>_CONTEXT.md</code> Deliverable Scope; <code>docs/PRD.md</code> Sections 12.5-12.6; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-09-03 row.</td></tr>
+<tr><td>DEL-09-03-REQ-012</td><td>Closure shall preserve stable validation evidence for <code>npm run test</code> after implementation paths are selected.</td><td>Implementation run record or PR notes capture passing command output or a stable validation artifact; until execution occurs, command evidence remains <code>TBD</code>. Source: <code>docs/CONTRACT.md</code> K-VALIDATE-1; <code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for event audit, permissions, lifecycle, dependencies, attachments, validation, and no-invention behavior.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Physical file/API/runtime contracts for <code>_STATUS.md</code>, <code>Dependencies.csv</code>, <code>HarnessEvent</code>, TurnEngine, SSE, tools, permissions, and attachments.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Vocabulary and canonical terms for runtime, session, permission, validation, and dependency concepts.</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Product requirements for validation/test coverage and runtime behavior; hash status: MATCH is a source status for this run. — reconciled under D-APP-38</td></tr>
+<tr><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Accepted decomposition routing, DEL-09-03 scope, SOW mapping, and objective mapping.</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Required Evidence</td></tr>
+<tr><td>Unit tests</td><td>Jest or equivalent unit tests for TurnEngine, event replay, attachment resolver, status parser, dependency parser/writer/linter, permission overlay, and hook behavior.</td></tr>
+<tr><td>API tests</td><td><code>/api/harness/turn</code>, <code>/api/harness/interrupt</code>, <code>/api/working-root/deliverable/status</code>, and <code>/api/working-root/deliverable/dependencies</code> route tests where implemented.</td></tr>
+<tr><td>Integration tests</td><td>Accepted-turn-before-execution, interrupt cancellation, SSE compatibility, denied write under <code>dontAsk</code>, denied Bash, and governed allowed-write paths when those phases are available.</td></tr>
+<tr><td>Regression fixtures</td><td>Files and runtime records for malformed JSONL, symlinks, budget-sized attachments, invalid dependency rows, invalid status transitions, unknown tools, and denied permission cases.</td></tr>
+<tr><td>Command gate</td><td><code>npm run test</code> from <code>frontend/</code> remains passing when dependencies and required instruction-root assets are present. Source: <code>docs/PRD.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-VALIDATE-1.</td></tr>
+<tr><td>Closure evidence</td><td>A behavior-group coverage table, final test source paths, fixture paths, and command evidence are recorded before closure; unavailable implementation surfaces remain <code>TBD</code> or explicitly deferred. Source: DEL-09-03-REQ-011 and DEL-09-03-REQ-012.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<ul>
+<li>- Test names or descriptions should cite the governing contract section or FR where practical.</li>
+<li>- Any unsupported implementation target remains <code>TBD</code> rather than being converted into a false requirement.</li>
+<li>- Test fixtures should be documented enough to distinguish source-derived requirements from assumptions.</li>
+<li>- ResponsibleParty remains TBD until assigned by a human.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — Each named behavior group has at least one implemented test or an explicit deferral or blocker, final test and fixture paths and validation command evidence are recorded or explicitly remain TBD with a blocker, and npm run test passes when dependencies and required instruction-root assets are present.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-09-03-unit-and-integration-test-expansion">CLM-013 — Procedure: DEL-09-03 Unit and Integration Test Expansion</h3>
+<h4 id="procedure-del-09-03-unit-and-integration-test-expansion">Procedure: DEL-09-03 Unit and Integration Test Expansion</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-09-03 test expansion artifacts while preserving the bounded scope, source-grounded requirements, and deferred dependency workflow.</p>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Note</td><td>Source</td></tr>
+<tr><td>Accepted DEL-09-03 scope</td><td>Available in <code>_CONTEXT.md</code> and decomposition v3.2.</td><td><code>_CONTEXT.md</code>; decomposition row DEL-09-03</td></tr>
+<tr><td>Authoritative source corpus</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code>; TASK dispatch — reconciled under D-APP-38</td></tr>
+<tr><td>Upstream dependencies</td><td><code>Dependencies.csv</code> exists with 13 ACTIVE extracted rows and all satisfaction statuses remain <code>TBD</code>; final release-readiness review must either satisfy, waive, or explicitly defer applicable dependency evidence.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code>; <code>_run_records/TASK_RUN_2026-05-20_2102.md</code></td></tr>
+<tr><td>Responsible party</td><td>TBD until human assignment.</td><td><code>_CONTEXT.md</code> Source Authority</td></tr>
+<tr><td>Implementation paths</td><td>TBD; exact frontend test directories/files must be identified during implementation work.</td><td>ASSUMPTION based on anticipated artifacts and <code>docs/PRD.md</code> Section 12.2</td></tr>
+</tbody></table>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the current source state.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and the DEL-09-03 decomposition row.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<p>2. Build the test inventory.</p>
+<ul>
+<li>- Map each test candidate to at least one source requirement or invariant.</li>
+<li>- Required behavior groups: TurnEngine, SSE compatibility, event replay, attachments, status lifecycle, dependencies, interrupts/cancellation, denied actions.</li>
+<li>- For closure, record at least one implemented test case, explicit deferral, or blocker for each required behavior group.</li>
+<li>- Mark unavailable or phase-dependent implementation surfaces as <code>TBD</code>.</li>
+</ul>
+<p>3. Create or update unit tests.</p>
+<ul>
+<li>- Add TurnEngine lifecycle tests for <code>runTurn()</code> without HTTP.</li>
+<li>- Add event replay tests for append-only JSONL, malformed trailing line tolerance, event schema shape, and terminal outcome records.</li>
+<li>- Add parser/validator tests for <code>_STATUS.md</code> lifecycle and <code>Dependencies.csv</code> v3.1.</li>
+<li>- Add attachment resolver and permission overlay tests using fixtures.</li>
+</ul>
+<p>4. Create or update API/integration tests.</p>
+<ul>
+<li>- Add <code>/api/harness/turn</code> SSE compatibility tests.</li>
+<li>- Add <code>/api/harness/interrupt</code> cancellation cleanup tests where implementation exists.</li>
+<li>- Add workspace status and dependency route tests where implementation exists.</li>
+<li>- Add denied-action integration tests for <code>dontAsk</code>, read-only posture, denied writes, denied Bash, and unknown tools where implementation exists.</li>
+</ul>
+<p>5. Create fixtures and regression cases.</p>
+<ul>
+<li>- Use small named fixtures for symlink attachments, unsupported extensions, budget excess, malformed JSONL tail, invalid dependency rows, invalid status transitions, and denied tool requests.</li>
+<li>- Replace fixture path <code>TBD</code>s only when actual fixture files exist; otherwise record the planned fixture class and the blocking implementation-path decision.</li>
+<li>- Avoid storing secrets, API keys, or source paths that violate project-root containment.</li>
+</ul>
+<p>6. Run local validation.</p>
+<ul>
+<li>- From <code>frontend/</code>, run <code>npm run test</code>.</li>
+<li>- Run <code>npm run typecheck</code> if touched test code requires TypeScript confidence or if source policy requires it for the change.</li>
+<li>- Run <code>npm run harness:validate:premerge</code> only when the change affects validation surfaces or route behavior.</li>
+</ul>
+<p>7. Record evidence.</p>
+<ul>
+<li>- Capture passing command output or stable artifacts in the implementation run record or PR notes.</li>
+<li>- Record final test source files, fixture files, behavior-group coverage decisions, and validation commands before closure.</li>
+<li>- Do not regenerate <code>Dependencies.csv</code> from this procedure; consume the existing dependency register as review context unless a separate dependency workflow is dispatched.</li>
+</ul>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Condition</td></tr>
+<tr><td>Scope check</td><td>Tests map to DEL-09-03 behaviors and do not implement unrelated features.</td></tr>
+<tr><td>Source check</td><td>Non-trivial assertions cite or trace to <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/PRD.md</code>, or decomposition v3.2.</td></tr>
+<tr><td>Event check</td><td>Accepted-turn, terminal, replay, and redaction tests align with product-owned <code>HarnessEvent</code> contracts.</td></tr>
+<tr><td>API check</td><td>SSE route tests preserve browser event names and route shape.</td></tr>
+<tr><td>Lifecycle check</td><td><code>_STATUS.md</code> and <code>Dependencies.csv</code> tests follow SPEC sections 4 and 6.</td></tr>
+<tr><td>Permission check</td><td>Explicit hard-deny precedence is tested as an enforcement boundary, not as prompt text.</td></tr>
+<tr><td>Fixture check</td><td>Fixtures are deterministic, small, and free of secrets.</td></tr>
+<tr><td>Command check</td><td><code>npm run test</code> passes when dependencies and required instruction-root assets are present.</td></tr>
+<tr><td>Closure evidence check</td><td>Test source paths, fixture paths, behavior-group coverage decisions, and command evidence are recorded, or explicitly remain <code>TBD</code> with a blocker.</td></tr>
+</tbody></table>
+<h3 id="clm-018-records">CLM-018 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Test source files: TBD until implementation work identifies exact paths.</li>
+<li>- Fixtures: TBD until implementation work identifies exact paths.</li>
+<li>- Command evidence: TBD until implementation work runs validation.</li>
+<li>- Behavior-group closure: TBD until implementation work records implemented tests, explicit deferrals, or blockers for TurnEngine, SSE compatibility, event replay, attachments, status lifecycle, dependencies, interrupts/cancellation, and denied actions.</li>
+<li>- Dependency review evidence: existing <code>Dependencies.csv</code> contains 13 ACTIVE rows with satisfaction <code>TBD</code>; final release-readiness review must resolve or explicitly defer applicable dependency evidence.</li>
+<li>- Four-document initialization run record: <code>_run_records/TASK_RUN_2026-05-20_1619.md</code>.</li>
+</ul>
+<h3 id="clm-019-pass-3-semantic-lensing-disposition">CLM-019 — Pass 3 Semantic Lensing Disposition</h3>
+<h5 id="pass-3-semantic-lensing-disposition">Pass 3 Semantic Lensing Disposition</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence / Reread</td></tr>
+<tr><td>A-001</td><td>Incorporated.</td><td>Added DEL-09-03-REQ-011 requiring one implemented or explicitly deferred test decision per required behavior group. Reread: <code>_CONTEXT.md</code> Deliverable Scope; <code>docs/PRD.md</code> Sections 12.5-12.6; decomposition DEL-09-03 row.</td></tr>
+<tr><td>B-001</td><td>Incorporated as closure evidence.</td><td>Records now require final test source files, fixture files, behavior-group coverage decisions, and command evidence, or explicit <code>TBD</code> blockers. Reread: Procedure Records; <code>docs/PRD.md</code> Section 12.2.</td></tr>
+<tr><td>C-001</td><td>Incorporated as prerequisite and fixture guard.</td><td>Procedure keeps implementation paths <code>TBD</code> until selected and Step 5 now blocks fixture path replacement until actual files exist. Reread: Procedure Prerequisites and Steps; <code>docs/PRD.md</code> Section 12.2.</td></tr>
+<tr><td>F-001</td><td>Incorporated.</td><td>Added DEL-09-03-REQ-012 and closure-evidence verification for stable <code>npm run test</code> evidence. Reread: <code>docs/CONTRACT.md</code> K-VALIDATE-1; <code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1.</td></tr>
+<tr><td>D-001</td><td>Already covered and preserved.</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td>X-001</td><td>Incorporated as closure evidence.</td><td>Records now require test source paths, fixture paths, behavior-group coverage decisions, and command evidence before determination closure, with blockers if still <code>TBD</code>. Reread: Procedure Records and Verification.</td></tr>
+<tr><td>E-001</td><td>Incorporated as fixture-path guard.</td><td>Step 5 now requires actual fixture files before replacing fixture path <code>TBD</code>s for symlink, budget, malformed JSONL, dependency, status, and denied-tool cases. Reread: <code>docs/SPEC.md</code> Sections 9.2 and 16.1; <code>docs/PRD.md</code> Sections 12.5-12.6.</td></tr>
+<tr><td>E-002</td><td>Incorporated with current dependency state.</td><td>Prerequisites and Records now note existing <code>Dependencies.csv</code>, 13 ACTIVE rows, and satisfaction <code>TBD</code>; final release-readiness review must resolve or explicitly defer applicable dependency evidence. Reread: <code>_DEPENDENCIES.md</code>, <code>Dependencies.csv</code>, and <code>_run_records/TASK_RUN_2026-05-20_2102.md</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-020-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-020 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-145 replaces closure-record TBDs with the existing GATE-TRANSCRIPT/ADQ-14 command evidence.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Review the test inventory and closure evidence against all eight named behavior groups, inspect recorded test paths, fixture paths, deferrals or blockers, and stable command evidence, and run npm run test when dependencies and required instruction-root assets are present.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-09-03-unit-and-integration-test-expansion">CLM-021 — Guidance: DEL-09-03 Unit and Integration Test Expansion</h3>
+<h4 id="guidance-del-09-03-unit-and-integration-test-expansion">Guidance: DEL-09-03 Unit and Integration Test Expansion</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-09-03 exists to make the vNext runtime, lifecycle, dependency, attachment, and permission behavior testable at focused unit/API/integration levels. The deliverable supports release readiness by expanding regression coverage for the named behaviors rather than by implementing those behaviors directly.</p>
+<p>Sources: <code>_CONTEXT.md</code> Deliverable Scope; <code>docs/PRD.md</code> Sections 8.11-8.16 and 12.5-12.6; decomposition row for DEL-09-03.</p>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Test product-owned contracts, not SDK defaults</td><td>Assertions should target <code>AgentEnginePort</code>, <code>TurnEngine</code>, browser <code>UIEvent</code>s, canonical <code>HarnessEvent</code>s, and permission decisions. SDK-specific values belong only in adapter metadata assertions.</td><td><code>docs/SPEC.md</code> Section 10.3; <code>docs/PRD.md</code> FR-122 and FR-123</td></tr>
+<tr><td>Preserve browser compatibility</td><td><code>/api/harness/turn</code> tests should protect stable SSE event names and route shape while allowing runtime internals to move behind TurnEngine.</td><td><code>docs/SPEC.md</code> Sections 10.4 and 11; <code>docs/PRD.md</code> Section 9.3</td></tr>
+<tr><td>Make audit order observable</td><td>Accepted-turn persistence, terminal outcomes, replay tolerance, and redaction are audit requirements and should be asserted as ordered records where possible.</td><td><code>docs/CONTRACT.md</code> K-EVENT-2 through K-EVENT-6</td></tr>
+<tr><td>Deny paths need first-class tests</td><td>Denied writes, denied Bash, unknown tools, failed hooks, <code>dontAsk</code>, and <code>readOnly</code> are not edge cases; they are product-critical boundaries.</td><td><code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-5, K-BASH-1, K-HOOK-1</td></tr>
+<tr><td>Fixture design should expose failure mode</td><td>Attachment, dependency, status, and JSONL fixtures should be small, named by failure condition, and reusable across unit/API tests.</td><td><code>docs/SPEC.md</code> Sections 4, 6, 9, 16</td></tr>
+</tbody></table>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Prefer narrow tests around a single invariant when the invariant is explicitly source-defined, such as <code>_STATUS.md</code> forward-only transitions or <code>Dependencies.csv</code> required columns.</li>
+<li>- Use integration tests when behavior depends on route cleanup, session locking, SSE termination, cancellation, or multiple services.</li>
+<li>- Use unit tests for deterministic parsers, mappers, permission resolution, fixture validation, and event replay.</li>
+<li>- Keep Section 9 validation IDs aligned with DEL-09-02; this deliverable can provide underlying unit/API/integration coverage, but authoring the runner/ID catalog belongs to DEL-09-02 unless a later human ruling changes scope.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Mark unimplemented or phase-dependent coverage as <code>TBD</code> or <code>ASSUMPTION</code> in planning notes rather than creating tests that assert unavailable behavior.</li>
+<li>- Treat missing implementation paths, fixture paths, and command output as closure evidence gaps, not as permission to invent paths. The implementation pass should replace those <code>TBD</code> values only after files and commands exist.</li>
+</ul>
+<h3 id="clm-025-trade-offs">CLM-025 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Broad matrix vs focused regression cases</td><td>Favor source-mapped regression cases for the named DEL-09-03 behaviors. Exhaustive cross-product matrices can be deferred unless a source requirement demands them.</td></tr>
+<tr><td>Mocked engine vs real SDK adapter</td><td>Use stubs for deterministic product-owned contract tests; use SDK-backed adapter tests only where the source requirement is adapter conformance or Provider/SDK message mapping.</td></tr>
+<tr><td>API route tests vs service tests</td><td>Keep route tests focused on request validation, locking, SSE encoding, cleanup, and stable shape. Put runtime policy assertions in TurnEngine/permission/event tests.</td></tr>
+<tr><td>Current behavior vs future phase behavior</td><td>Tests for future phase behavior should be pending/TBD or fixture-ready until the corresponding implementation deliverable lands.</td></tr>
+<tr><td>Minimum coverage vs unavailable surfaces</td><td>Require one implemented or explicitly deferred test decision for each DEL-09-03 behavior group, but keep future-phase surfaces marked <code>TBD</code> until the owning implementation exists.</td></tr>
+</tbody></table>
+<h3 id="clm-026-examples">CLM-026 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Example Test / Fixture</td><td>Expected Intent</td><td>Source</td></tr>
+<tr><td><code>turn-engine.accepted-before-query.test</code></td><td>Assert accepted input is written before model/SDK execution begins.</td><td><code>docs/CONTRACT.md</code> K-EVENT-2; <code>docs/PRD.md</code> Section 12.6</td></tr>
+<tr><td><code>sse.compatibility.events.test</code></td><td>Assert browser-facing SSE event names remain stable.</td><td><code>docs/SPEC.md</code> Section 11</td></tr>
+<tr><td><code>session-events.malformed-tail.test</code></td><td>Assert replay preserves valid prior events and reports malformed tail diagnostics.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td><code>attachments.symlink-budget.test</code></td><td>Assert symlink rejection and byte-budget failures are server-side.</td><td><code>docs/SPEC.md</code> Section 16.1</td></tr>
+<tr><td><code>status-transition.human-gate-sha.test</code></td><td>Assert <code>CHECKING</code>/<code>ISSUED</code> require approval SHA evidence and actor authorization.</td><td><code>docs/SPEC.md</code> Section 4</td></tr>
+<tr><td><code>dependencies-v31.provenance.test</code></td><td>Assert active extracted rows require evidence fields or explicit <code>location TBD</code>.</td><td><code>docs/SPEC.md</code> Section 6; <code>docs/CONTRACT.md</code> K-PROV-1</td></tr>
+<tr><td><code>permissions.dontask-denied-write.test</code></td><td>Assert denied writes do not execute under <code>dontAsk</code>.</td><td><code>docs/SPEC.md</code> Section 15.1; <code>docs/PRD.md</code> Section 12.6</td></tr>
+</tbody></table>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>CONFLICT-001</td><td>PRD reference hash status: MATCH: expected and observed SHA256 differ.</td><td><code>_REFERENCES.md</code> REF-006</td><td>TASK dispatch source-warning override</td><td>All source-grounded PRD references</td><td>Treat as source status for this run, per dispatch.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-011 SOW-012 SOW-014 SOW-015 SOW-022 SOW-028 SOW-029 OBJ-002 OBJ-003 OBJ-006 OBJ-008</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

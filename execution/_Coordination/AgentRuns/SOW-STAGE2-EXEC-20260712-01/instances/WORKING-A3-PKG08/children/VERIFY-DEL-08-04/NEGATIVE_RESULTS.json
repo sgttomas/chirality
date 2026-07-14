@@ -1,0 +1,18 @@
+{
+  "partial_legacy": {
+    "expected_format": "INVALID",
+    "validate_exit": 1,
+    "checklist_exit": 1,
+    "checklist_output_created": false,
+    "observed_issue": "partial legacy production kit; missing: Specification.md, Procedure.md, Guidance.md",
+    "verdict": "PASS_FAIL_CLOSED"
+  },
+  "unauthorized_dual": {
+    "expected_format": "AMBIGUOUS",
+    "validate_exit": 1,
+    "checklist_exit": 1,
+    "checklist_output_created": false,
+    "observed_issue": "dual production formats require an isolated conversion workspace and exact migration authority",
+    "verdict": "PASS_FAIL_CLOSED"
+  }
+}

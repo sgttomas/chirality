@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="2947f62aea6f7fe9b63708a713fa3cc769687cedb23a50507b07dc14e7579871">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-10-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>2947f62aea6f7fe9b63708a713fa3cc769687cedb23a50507b07dc14e7579871</code>.</p>
+<h1 id="scope-of-work-del-10-01">Scope of Work — DEL-10-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-10-01</code> in service of project scope [SOW-066, SOW-067] and package objectives [OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — The DEL-10-01 future-boundary generic DomainEngineProfile contract draft, comprising a profile schema draft, validation notes, and a future amendment checklist, while preserving future compatibility without immediate runtime implementation.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-10-01-domainengineprofile-contract-draft">CLM-001 — Datasheet: DEL-10-01 DomainEngineProfile Contract Draft</h3>
+<h4 id="datasheet-del-10-01-domainengineprofile-contract-draft">Datasheet: DEL-10-01 DomainEngineProfile Contract Draft</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-10-01</td></tr>
+<tr><td>DeliverableName</td><td>DomainEngineProfile Contract Draft</td></tr>
+<tr><td>PackageID</td><td>PKG-10</td></tr>
+<tr><td>PackageName</td><td>Domain Engine Future Boundary</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>Current posture</td><td>Future-boundary contract, not current implementation</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Contract subject</td><td>Future <code>DomainEngineProfile</code> profile contract conforming to framework-root canon at <code>77a327727</code>.</td><td><code>_CONTEXT.md</code>; <code>_REFERENCES.md</code> REF-008; <code>docs/TYPES.md</code> §11.1</td></tr>
+<tr><td>Canonical identity fields</td><td><code>schema_version</code>, <code>id</code>, <code>name</code>, <code>engine_type</code>, <code>profile_version</code>.</td><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> REF-008; <code>docs/TYPES.md</code> §11.1</td></tr>
+<tr><td>Profile lifecycle fields</td><td><code>profile_status</code> using `NONE</td><td>DRAFT</td><td>VALIDATED</td><td>ADOPTED</td><td>STALE</td><td>INVALID</td><td>UNKNOWN<code>; </code>integration_level<code> using </code>MANUAL_BRIDGE</td><td>READ_ONLY</td><td>DOMAIN_CONTROLLED_WRITE</td><td>OPERATION_PROPOSAL</td><td>EXTERNAL_RESULT_STATE`.</td><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> REF-008; <code>docs/TYPES.md</code> §11.1</td></tr>
+<tr><td>Path and artifact role fields</td><td><code>domain_root_patterns</code>, <code>authoritative_artifacts</code>, <code>chirality_readable_artifacts</code>, <code>protected_write_paths</code>, <code>agent_writable_paths</code>.</td><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> REF-008; <code>docs/CONTRACT.md</code> §1.10</td></tr>
+<tr><td>Tool contract fields</td><td><code>deterministic_tools[].id</code>, <code>mode</code>, <code>requires_human_confirmation</code>, <code>validate_result_schema</code>, and <code>apply_result_schema</code>.</td><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> REF-008; <code>docs/TYPES.md</code> §11.1</td></tr>
+<tr><td>Proposal contract field</td><td><code>operation_proposal_contract</code> with lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements.</td><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> REF-008; <code>docs/TYPES.md</code> §11.1</td></tr>
+<tr><td>Professional boundary field</td><td>Structured <code>professional_boundary.agent_must_not_claim</code> list.</td><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> REF-008; <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-4</td></tr>
+<tr><td>True future TBDs</td><td>Concrete profile instances, concrete schema refs, adapter implementations, tool stores, operation stores, and apply tooling remain TBD until governed amendment.</td><td><code>docs/PLAN.md</code> §R7; <code>docs/SPEC.md</code> §18</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Release scope</td><td>D-APP-49 through D-APP-52 rule source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools live. Endpoints, apply, direct protected-path writes/hooks, and general domain-runtime activation remain future/gated.</td><td><code>docs/SPEC.md</code> §18; D-APP-49 through D-APP-52</td></tr>
+<tr><td>Sequencing</td><td>The ruled staged surface is live; any broader Domain Engine Profile or operation workflow proceeds only through its own governed amendment.</td><td><code>docs/PLAN.md</code> §R7; <code>docs/PRD.md</code> §8.17</td></tr>
+<tr><td>Engine-specific integration</td><td>A generic <code>DomainEngineProfile</code> contract precedes any engine-specific integration.</td><td><code>docs/PRD.md</code> §8.17 FR-107</td></tr>
+<tr><td>Protected path posture</td><td>Protected domain paths are write-quarantined; agents write proposals, summaries, and review aids only under profile-approved <code>agent_writable_paths</code>.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2; REF-008</td></tr>
+<tr><td>Human gate posture</td><td>Accepted/applied proposal transitions require human approval bound to git SHA per K-AUTH-2 and domain-engine-controlled apply or external terminal acceptance records.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-3; REF-008</td></tr>
+<tr><td>Professional boundary</td><td>Domain-engine outputs must not be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-4; REF-008</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<h3 id="clm-006-canonical-profile-shape">CLM-006 — Canonical Profile Shape</h3>
+<h6 id="canonical-profile-shape">Canonical Profile Shape</h6>
+<p>```yaml</p>
+<p>domain_profile:</p>
+<p>schema_version: &quot;1.0&quot;</p>
+<p>id: &quot;&lt;domain_engine_id&gt;&quot;</p>
+<p>name: &quot;&lt;Domain Engine Name&gt;&quot;</p>
+<p>engine_type: &quot;&lt;domain classification&gt;&quot;</p>
+<p>profile_version: &quot;0.1&quot;</p>
+<p>profile_status: &quot;DRAFT&quot;</p>
+<p>integration_level: &quot;MANUAL_BRIDGE&quot;</p>
+<p>domain_root_patterns:</p>
+<ul>
+<li>- &quot;&lt;path or glob&gt;&quot;</li>
+</ul>
+<p>authoritative_artifacts:</p>
+<ul>
+<li>- &quot;&lt;engine-owned path or glob&gt;&quot;</li>
+</ul>
+<p>chirality_readable_artifacts:</p>
+<ul>
+<li>- &quot;&lt;manifest/summary/report path or glob&gt;&quot;</li>
+</ul>
+<p>protected_write_paths:</p>
+<ul>
+<li>- &quot;&lt;agent-prohibited path or glob&gt;&quot;</li>
+</ul>
+<p>agent_writable_paths:</p>
+<ul>
+<li>- &quot;&lt;proposal/review/checklist path or glob&gt;&quot;</li>
+</ul>
+<p>deterministic_tools:</p>
+<ul>
+<li>- id: &quot;&lt;tool.id&gt;&quot;</li>
+</ul>
+<p>mode: &quot;read_only&quot;</p>
+<p>requires_human_confirmation: false</p>
+<p>validate_result_schema: &quot;&lt;schema ref or TBD&gt;&quot;</p>
+<p>apply_result_schema: &quot;&lt;schema ref or TBD&gt;&quot;</p>
+<p>operation_proposal_contract:</p>
+<p>lifecycle: [&quot;draft&quot;, &quot;ready_for_review&quot;, &quot;accepted&quot;, &quot;rejected&quot;, &quot;applied&quot;]</p>
+<p>risk_classes: [&quot;engine_checkable&quot;, &quot;engine_silent&quot;]</p>
+<p>deterministic_check_result_schema: &quot;&lt;schema ref or TBD&gt;&quot;</p>
+<p>accepted_or_applied_requires:</p>
+<ul>
+<li>- &quot;human approval bound to git SHA per K-AUTH-2&quot;</li>
+<li>- &quot;domain-engine-controlled apply or external terminal acceptance record&quot;</li>
+</ul>
+<p>professional_boundary:</p>
+<p>agent_must_not_claim:</p>
+<ul>
+<li>- &quot;code compliant for reliance&quot;</li>
+<li>- &quot;professionally approved&quot;</li>
+<li>- &quot;externally validated&quot;</li>
+</ul>
+<p>```</p>
+<p>Source: <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code> and reflected in <code>docs/TYPES.md</code> §11.1.</p>
+<h3 id="clm-007-validation-notes">CLM-007 — Validation Notes</h3>
+<h6 id="validation-notes">Validation Notes</h6>
+<table><tbody>
+<tr><td>Check</td><td>Draft rule</td><td>Source</td></tr>
+<tr><td>Required fields present</td><td>A future validator should reject profiles missing identity, status, integration-level, path-role, deterministic-tool, operation-proposal-contract, or professional-boundary fields.</td><td>REF-008; <code>docs/PRD.md</code> §8.17 FR-108, FR-109</td></tr>
+<tr><td>Deterministic validation</td><td>Profile validation must be deterministic before runtime exposure.</td><td><code>docs/PRD.md</code> §8.17 FR-109; D-T0-06</td></tr>
+<tr><td>Result schema refs</td><td>Missing <code>validate_result_schema</code>, <code>apply_result_schema</code>, or deterministic-check result schemas remain explicit <code>TBD</code>; chat must not infer them.</td><td>REF-008</td></tr>
+<tr><td>Future-only exposure</td><td>Candidate domain endpoints/tools must remain provisional until governed future amendment.</td><td><code>docs/SPEC.md</code> §18</td></tr>
+<tr><td>Solver separation</td><td>Profile contract must preserve that domain engines own authoritative domain truth.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-1</td></tr>
+</tbody></table>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-10, SOW-066, SOW-067, DEC-006</li>
+<li>- <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code></li>
+<li>- <code>docs/CONTRACT.md</code> §1.10</li>
+<li>- <code>docs/SPEC.md</code> §18</li>
+<li>- <code>docs/TYPES.md</code> §11</li>
+<li>- <code>docs/PLAN.md</code> §R7</li>
+<li>- <code>docs/PRD.md</code> §8.17, §10.10, §R7, KG-016 through KG-020</li>
+</ul>
+<h3 id="clm-009-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-009 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-148 distinguishes supplied ruled-amendment fields (profile instances and hook-field schema references) from genuine remaining TBDs (adapters, stores, endpoints, apply tooling, and per-instance notice review).</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-010-specification-del-10-01-domainengineprofile-contract-draft">CLM-010 — Specification: DEL-10-01 DomainEngineProfile Contract Draft</h3>
+<h4 id="specification-del-10-01-domainengineprofile-contract-draft">Specification: DEL-10-01 DomainEngineProfile Contract Draft</h4>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies a future-boundary draft for <code>DomainEngineProfile</code>: profile identity,</p>
+<p>integration level, domain artifact roles, protected and agent-writable paths, deterministic tools,</p>
+<p>operation-proposal contract hooks, and professional-boundary notices.</p>
+<p>In scope:</p>
+<ul>
+<li>- Future <code>DomainEngineProfile</code> documentation contract conforming to framework-root</li>
+</ul>
+<p><code>agents/AGENT_DOMAIN_ENGINE.md</code> at commit <code>77a327727</code>.</p>
+<ul>
+<li>- App-dev vocabulary alignment in <code>docs/TYPES.md</code> §11.</li>
+<li>- Validation notes for deterministic profile acceptance.</li>
+<li>- Future amendment checklist for accepting concrete profile instances after core harness stability.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- <code>/api/domain/*</code> endpoints, operation apply, direct protected-path writes/hooks, and general domain-runtime activation. D-APP-49 through D-APP-52 separately authorize source types/guards, a closed registry, ruled read tools, and pec-scoped loopback propose/refresh/validate tools.</li>
+<li>- Engine-specific integration, including OpenPipeStress-specific runtime assumptions.</li>
+<li>- Direct writes to protected domain-engine model paths.</li>
+<li>- Professional approval, code compliance, certification, sealing, authentication, external validation, or</li>
+</ul>
+<p>solver-truth claims.</p>
+<p>Sources: <code>_CONTEXT.md</code>; <code>_REFERENCES.md</code> REF-008; <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at</p>
+<p><code>77a327727</code>; <code>docs/CONTRACT.md</code> §1.10; <code>docs/TYPES.md</code> §11; <code>docs/SPEC.md</code> §18; <code>docs/PRD.md</code> §8.17.</p>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Verification</td></tr>
+<tr><td>DEL-10-01-REQ-001</td><td>The contract draft MUST preserve <code>ResponsibleParty: TBD</code> until human assignment.</td><td>Inspect document identification sections.</td></tr>
+<tr><td>DEL-10-01-REQ-002</td><td>The contract draft MUST distinguish the D-APP-49 through D-APP-52 staged-live surface from the still-gated endpoints, apply, protected-path hooks/writes, and general domain runtime.</td><td>Inspect Scope, Conditions, and Procedure gate checks.</td></tr>
+<tr><td>DEL-10-01-REQ-003</td><td>A generic <code>DomainEngineProfile</code> contract MUST precede any engine-specific integration.</td><td>Confirm no OpenPipeStress-specific runtime assumptions are embedded in the generic profile contract.</td></tr>
+<tr><td>DEL-10-01-REQ-004</td><td>A future <code>DomainEngineProfile</code> MUST include canonical identity, status, integration-level, path-role, deterministic-tool, operation-proposal-contract, and professional-boundary fields from framework <code>AGENT_DOMAIN_ENGINE.md</code> at <code>77a327727</code>.</td><td>Validate field list against <code>docs/TYPES.md</code> §11.1 and <code>_REFERENCES.md</code> REF-008.</td></tr>
+<tr><td>DEL-10-01-REQ-005</td><td><code>profile_status</code> MUST use `NONE</td><td>DRAFT</td><td>VALIDATED</td><td>ADOPTED</td><td>STALE</td><td>INVALID</td><td>UNKNOWN<code>; integrated workflows require </code>ADOPTED<code>, while </code>MANUAL_BRIDGE` may explicitly record no adopted profile.</td><td>Inspect <code>docs/TYPES.md</code> §11.1 and future profile records.</td></tr>
+<tr><td>DEL-10-01-REQ-006</td><td><code>integration_level</code> MUST use `MANUAL_BRIDGE</td><td>READ_ONLY</td><td>DOMAIN_CONTROLLED_WRITE</td><td>OPERATION_PROPOSAL</td><td>EXTERNAL_RESULT_STATE` and MUST NOT skip levels.</td><td>Inspect profile documentation and future amendment packets.</td></tr>
+<tr><td>DEL-10-01-REQ-007</td><td>Protected domain paths MUST be write-quarantined, and agent writes MUST be limited to profile-approved <code>agent_writable_paths</code>.</td><td>Future path policy separates authoritative/readable/protected/agent-writable path roles.</td></tr>
+<tr><td>DEL-10-01-REQ-008</td><td>Declared deterministic tools MUST include <code>id</code>, <code>mode</code>, <code>requires_human_confirmation</code>, <code>validate_result_schema</code>, and <code>apply_result_schema</code>; missing schema refs remain explicit <code>TBD</code>, not inferred.</td><td>Inspect deterministic-tool records and validation notes.</td></tr>
+<tr><td>DEL-10-01-REQ-009</td><td>The profile MUST carry an <code>operation_proposal_contract</code> covering lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements.</td><td>Inspect profile contract section and DEL-10-03 alignment.</td></tr>
+<tr><td>DEL-10-01-REQ-010</td><td>Applying a domain operation MUST require explicit human acceptance bound to K-AUTH-2 evidence and domain-engine-controlled apply or external terminal acceptance records.</td><td>Future operation workflow links application to the human gate and accepted/applied requirements.</td></tr>
+<tr><td>DEL-10-01-REQ-011</td><td>Boundary notices MUST state that Chirality does not approve, certify, seal, code-validate, externally validate, or own solver truth.</td><td>Review <code>professional_boundary</code> copy in future profile instances.</td></tr>
+</tbody></table>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Source</td><td>Applicable authority</td><td>Notes</td></tr>
+<tr><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> at <code>77a327727</code></td><td>Canonical domain-engine persona, minimal profile shape, and profile/proposal governance</td><td>REF-008; framework-root canonical under D-T0-01.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> §1.10</td><td>App-dev K-DOMAIN invariants specializing framework K-DOMAIN without weakening them</td><td>Governs truth ownership, path quarantine, operation proposals, and professional boundary.</td></tr>
+<tr><td><code>docs/SPEC.md</code> §18</td><td>Future specification boundary and candidate endpoint families</td><td>Candidate endpoints are provisional and must not be implemented as current-release scope.</td></tr>
+<tr><td><code>docs/TYPES.md</code> §11</td><td>App-dev vocabulary target conforming to framework canon</td><td>Documents profile/proposal vocabulary only; it does not create source types.</td></tr>
+<tr><td><code>docs/PRD.md</code> §8.17</td><td>Product requirements FR-106 through FR-115</td><td>Current authority-corpus references are reconciled by D-APP-38.</td></tr>
+<tr><td><code>docs/PLAN.md</code> §R7</td><td>Future amendment sequencing</td><td>Domain profiles come after core harness stability and human-gated R7 activation.</td></tr>
+</tbody></table>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Method</td></tr>
+<tr><td>Four-document completeness</td><td>Confirm <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> are present and non-empty.</td></tr>
+<tr><td>Future-boundary preservation</td><td>Search for current-release implementation claims, source-type activation, MCP tool activation, path-hook implementation, or endpoint activation language; none should be present.</td></tr>
+<tr><td>Source grounding</td><td>Check each non-trivial requirement against cited source sections and REF-008.</td></tr>
+<tr><td>Canon conformance</td><td>Confirm the profile contract includes ProfileStatus, IntegrationLevel, role-classed paths, deterministic-tool schema hooks, operation-proposal contract, and structured professional boundary.</td></tr>
+<tr><td>True TBD preservation</td><td>Confirm concrete profile instances, concrete result schema refs, adapter implementations, stores, and apply tooling remain <code>TBD</code> until a governed amendment accepts them.</td></tr>
+<tr><td>Cross-document consistency</td><td>Confirm terminology uses <code>DomainEngineProfile</code>, <code>ProfileStatus</code>, <code>IntegrationLevel</code>, protected path, agent-writable path, deterministic tool, OperationProposal, and boundary notice consistently.</td></tr>
+<tr><td>Future profile-instance review data</td><td>When concrete profile fixtures exist, review instance-level <code>professional_boundary</code> copy and profile values rather than relying only on the generic illustrative skeleton.</td></tr>
+<tr><td>Status policy</td><td>Do not change <code>_STATUS.md</code> in this conformance tranche; <code>CHECKING -&gt; ISSUED</code> remains out of scope.</td></tr>
+</tbody></table>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Profile schema draft: this specification and the canonical shape recorded in <code>Datasheet.md</code>.</li>
+<li>- Validation notes: deterministic validation requirements and true future implementation <code>TBD</code> schema refs.</li>
+<li>- Future amendment checklist: operationalized in <code>Procedure.md</code>.</li>
+</ul>
+<p>Existing dependency registers are not changed by this conformance tranche.</p>
+<h3 id="clm-016-d-app-56-ownership-amendment-2026-07-12">CLM-016 — D-APP-56 ownership amendment (2026-07-12)</h3>
+<h5 id="d-app-56-ownership-amendment-2026-07-12">D-APP-56 ownership amendment (2026-07-12)</h5>
+<p>Under R4-P27, this deliverable owns the ruled <code>domain-profile.ts</code> source-type mirror and the <code>domain-profile-registry.ts</code> registration mechanism and gate. The mechanism/content boundary is explicit: PEC entry content and fixture-validation evidence remain DEL-10-04 scope.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The Scope of Work identifies DEL-10-01 as a future-boundary generic DomainEngineProfile contract, covers SOW-066 and SOW-067 for OBJ-010, and preserves all four legacy source documents without semantic addition or omission.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-10-01-domainengineprofile-contract-draft">CLM-017 — Procedure: DEL-10-01 DomainEngineProfile Contract Draft</h3>
+<h4 id="procedure-del-10-01-domainengineprofile-contract-draft">Procedure: DEL-10-01 DomainEngineProfile Contract Draft</h4>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the bounded procedure for maintaining the future <code>DomainEngineProfile</code> contract draft while preserving the F3 domain-engine implementation fence.</p>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Deliverable-local context is present.</td><td>Satisfied: <code>_CONTEXT.md</code> exists.</td></tr>
+<tr><td>Authoritative references are accessible.</td><td>Satisfied: <code>_REFERENCES.md</code> includes REF-008 for framework <code>AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code>.</td></tr>
+<tr><td>Framework precedence is known.</td><td>Satisfied: D-T0-01 makes framework-root <code>AGENT_DOMAIN_ENGINE.md</code> canonical; app-dev <code>docs/TYPES.md</code> Section 11 conforms to it.</td></tr>
+<tr><td>Current status posture is preserved.</td><td>Required: read current state from <code>_STATUS.md</code>; this tranche performs no lifecycle transition or release-readiness act.</td></tr>
+<tr><td>Current scope remains future-boundary.</td><td>Required by <code>docs/SPEC.md</code> Section 18, <code>docs/PLAN.md</code> R7, and D-APP-39 F3.</td></tr>
+</tbody></table>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm identity from <code>_CONTEXT.md</code>.</p>
+<ul>
+<li>- DeliverableID: DEL-10-01.</li>
+<li>- ResponsibleParty: TBD.</li>
+<li>- Type: API_CONTRACT.</li>
+<li>- Scope: future profile contract for engine identity, integration level, path/artifact roles, deterministic tools, operation-proposal contract, and professional boundary.</li>
+</ul>
+<p>2. Confirm source posture from <code>_REFERENCES.md</code>.</p>
+<ul>
+<li>- Use REF-008 as the canonical persona/profile source.</li>
+<li>- Use app-dev <code>docs/TYPES.md</code> Section 11 only as the local vocabulary target conforming to REF-008.</li>
+<li>- Do not create <code>Dependencies.csv</code>.</li>
+</ul>
+<p>3. Read source slices for the domain-engine future boundary.</p>
+<ul>
+<li>- <code>agents/AGENT_DOMAIN_ENGINE.md</code> at <code>77a327727</code> for Minimal Profile Shape, valid operation proposal table, lifecycle, and <code>operation_proposal_contract</code>.</li>
+<li>- <code>docs/CONTRACT.md</code> Section 1.10 for app-dev K-DOMAIN invariants, which specialize framework <code>docs/CONTRACT.md</code> Section 1.12 without weakening it.</li>
+<li>- <code>docs/SPEC.md</code> Section 18 for provisional future endpoint/tool boundary.</li>
+<li>- <code>docs/TYPES.md</code> Section 11 for app-dev vocabulary.</li>
+<li>- <code>docs/PLAN.md</code> R7 for future-amendment sequencing.</li>
+<li>- <code>docs/PRD.md</code> Section 8.17 for FR-106 through FR-115.</li>
+<li>- Decomposition PKG-10 / DEL-10-01 entry for local scope.</li>
+</ul>
+<p>4. Draft or maintain the profile contract.</p>
+<ul>
+<li>- Preserve canonical identity fields: <code>schema_version</code>, <code>id</code>, <code>name</code>, <code>engine_type</code>, and <code>profile_version</code>.</li>
+<li>- Preserve canonical <code>ProfileStatus</code>: <code>NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN</code>.</li>
+<li>- Preserve canonical <code>IntegrationLevel</code>: <code>MANUAL_BRIDGE | READ_ONLY | DOMAIN_CONTROLLED_WRITE | OPERATION_PROPOSAL | EXTERNAL_RESULT_STATE</code>.</li>
+<li>- Preserve path/artifact role fields: <code>domain_root_patterns</code>, <code>authoritative_artifacts</code>, <code>chirality_readable_artifacts</code>, <code>protected_write_paths</code>, and <code>agent_writable_paths</code>.</li>
+<li>- Preserve deterministic tool fields, including <code>validate_result_schema</code> and <code>apply_result_schema</code>.</li>
+<li>- Preserve <code>operation_proposal_contract</code>, including lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements.</li>
+<li>- Preserve structured <code>professional_boundary</code>.</li>
+</ul>
+<p>5. Mark only true future implementation details as <code>TBD</code>.</p>
+<ul>
+<li>- Concrete profile instances.</li>
+<li>- Concrete schema refs for validation/apply/deterministic-check results.</li>
+<li>- Adapters, MCP tools, stores, endpoint handlers, protected-path hooks, and apply tooling.</li>
+<li>- Concrete boundary notice copy for each accepted profile instance.</li>
+</ul>
+<p>6. Preserve future-boundary constraints.</p>
+<ul>
+<li>- Do not implement candidate endpoints.</li>
+<li>- Do not define executable tool behavior.</li>
+<li>- Do not authorize direct protected-path writes.</li>
+<li>- Do not represent domain output as professional approval, code compliance, certification, sealing, authentication, external validation, or Chirality-owned solver truth.</li>
+</ul>
+<p>7. Cross-check documents.</p>
+<ul>
+<li>- Confirm <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> use consistent canonical terms.</li>
+<li>- Confirm DEL-10-03 uses the same lifecycle and proposal contract fields.</li>
+<li>- Confirm old compact-draft blockers are not reintroduced as unresolved human-ruling blockers.</li>
+</ul>
+<p>8. Record the run without lifecycle transition.</p>
+<ul>
+<li>- Keep <code>_STATUS.md</code> unchanged.</li>
+<li>- Record conformance notes in <code>MEMORY.md</code> and coordination closeout.</li>
+<li>- Let D-APP-38 reconciliation update authority-corpus hashes after authority-doc edits.</li>
+</ul>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Four document files</td><td>Present and non-empty.</td></tr>
+<tr><td>Status state</td><td>Current state is read from <code>_STATUS.md</code>; no lifecycle transition is claimed.</td></tr>
+<tr><td>Responsible party</td><td>Remains <code>TBD</code>.</td></tr>
+<tr><td>Canon conformance</td><td>Profile vocabulary includes REF-008 identity, status, integration, path role, deterministic-tool, operation-proposal, and professional-boundary fields.</td></tr>
+<tr><td>True TBD posture</td><td>Concrete profiles, concrete schema refs, adapters, stores, path hooks, and apply tooling remain <code>TBD</code>.</td></tr>
+<tr><td>Dependency register</td><td>Existing <code>Dependencies.csv</code> remains separate derivative evidence and is not created or edited by this conformance tranche.</td></tr>
+<tr><td>Implementation activation</td><td>No domain-engine source type, endpoint, MCP tool, adapter, operation store, apply workflow, or protected-path write implementation is activated.</td></tr>
+</tbody></table>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>MEMORY.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- D-APP-45 closeout packet</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Verify the source-marker map and parity report against the four legacy documents, then verify the matrix binds OUT-001 and AC-001 to SOW-066, SOW-067, and OBJ-010.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-10-01-domainengineprofile-contract-draft">CLM-023 — Guidance: DEL-10-01 DomainEngineProfile Contract Draft</h3>
+<h4 id="guidance-del-10-01-domainengineprofile-contract-draft">Guidance: DEL-10-01 DomainEngineProfile Contract Draft</h4>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This guidance explains how to read and maintain the <code>DomainEngineProfile</code> contract draft as a future-boundary artifact. The draft preserves compatibility with future domain-engine integrations without activating domain execution in the current app-dev slice.</p>
+<p>Primary canon: <code>_REFERENCES.md</code> REF-008, <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code>. Under D-T0-01, the framework-root persona is canonical; app-dev <code>docs/TYPES.md</code> Section 11 conforms to it and must not weaken framework invariants.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Canon first</td><td>Maintain the profile shape from REF-008: identity fields, <code>ProfileStatus</code>, <code>IntegrationLevel</code>, path/artifact roles, deterministic tools, <code>operation_proposal_contract</code>, and professional boundary.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.1</td></tr>
+<tr><td>Generic first</td><td>Keep the profile contract generic before any engine-specific integration. OpenPipeStress may be a future concrete profile, but it must not shape Chirality core runtime assumptions.</td><td><code>docs/PRD.md</code> Section 8.17 FR-107</td></tr>
+<tr><td>Future gated</td><td>Treat endpoints, tools, validators, adapters, operation stores, and path hooks as future platform interfaces until a governed amendment accepts them.</td><td><code>docs/SPEC.md</code> Section 18; <code>docs/PLAN.md</code> R7</td></tr>
+<tr><td>Truth separation</td><td>Domain engines own authoritative domain truth; Chirality governs interaction, profile records, proposals, review aids, and human gates.</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-1</td></tr>
+<tr><td>Path quarantine</td><td>Protected paths and agent-writable paths must remain distinct. Agents may draft proposals and summaries only under approved writable proposal/review paths.</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-2; REF-008</td></tr>
+<tr><td>Human acceptance</td><td>Accepted/applied proposal states require explicit human approval bound to K-AUTH-2 evidence and a domain-engine-controlled apply or external terminal acceptance record.</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3; REF-008</td></tr>
+<tr><td>Professional boundary</td><td>Boundary notices must prevent solver outputs from being presented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality.</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4; REF-008</td></tr>
+</tbody></table>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Use <code>docs/TYPES.md</code> Section 11.1 as the app-dev vocabulary target, but resolve conflicts against REF-008.</li>
+<li>- The older compact draft fields <code>DomainEngineOperationDescriptor</code> and <code>manifestRules</code> are superseded by canonical <code>deterministic_tools</code>, path/artifact role sets, and <code>operation_proposal_contract</code>; they are no longer human-ruling blockers for DEL-10-01.</li>
+<li>- Keep <code>validate_result_schema</code>, <code>apply_result_schema</code>, and deterministic-check result schema references explicit. A concrete schema may remain <code>TBD</code>, but the schema hook itself is canonical.</li>
+<li>- Keep OpenPipeStress references fixture-level only. A concrete OpenPipeStress profile remains future/gated and must not become an app-dev runtime assumption in this tranche.</li>
+<li>- Any future validator should be deterministic and reject invalid or incomplete profiles before runtime exposure.</li>
+<li>- Preserve <code>_STATUS.md</code> as-is. This conformance tranche does not authorize <code>CHECKING -&gt; ISSUED</code>, release readiness, or R7 implementation.</li>
+</ul>
+<h3 id="clm-027-true-future-tbds">CLM-027 — True Future TBDs</h3>
+<h5 id="true-future-tbds">True Future TBDs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Conservative position</td><td>Risk if loosened</td></tr>
+<tr><td>Concrete profile instances</td><td>Leave engine instances, including OpenPipeStress, as future amendment scope.</td><td>An illustrative profile could be mistaken for accepted integration.</td></tr>
+<tr><td>Concrete schema refs</td><td>Record <code>validate_result_schema</code>, <code>apply_result_schema</code>, and deterministic-check result schema as explicit refs or <code>TBD</code>.</td><td>Prompt-inferred result schemas could become false contract surface.</td></tr>
+<tr><td>Adapter/tool implementation</td><td>Defer deterministic adapters, stores, MCP tools, endpoints, and path hooks.</td><td>Crosses F3 and activates domain runtime without tier-0 gate.</td></tr>
+<tr><td>Boundary notice copy</td><td>Require structured boundary fields now; review concrete text per profile instance later.</td><td>Generic copy may imply professional reliance in a domain-specific context.</td></tr>
+</tbody></table>
+<h3 id="clm-028-example-generic-skeleton">CLM-028 — Example Generic Skeleton</h3>
+<h5 id="example-generic-skeleton">Example Generic Skeleton</h5>
+<p>```yaml</p>
+<p>domain_profile:</p>
+<p>schema_version: &quot;1.0&quot;</p>
+<p>id: &quot;TBD&quot;</p>
+<p>name: &quot;TBD&quot;</p>
+<p>engine_type: &quot;TBD&quot;</p>
+<p>profile_version: &quot;0.1&quot;</p>
+<p>profile_status: &quot;DRAFT&quot;</p>
+<p>integration_level: &quot;MANUAL_BRIDGE&quot;</p>
+<p>domain_root_patterns: []</p>
+<p>authoritative_artifacts: []</p>
+<p>chirality_readable_artifacts: []</p>
+<p>protected_write_paths: []</p>
+<p>agent_writable_paths: []</p>
+<p>deterministic_tools:</p>
+<ul>
+<li>- id: &quot;TBD&quot;</li>
+</ul>
+<p>mode: &quot;read_only&quot;</p>
+<p>requires_human_confirmation: false</p>
+<p>validate_result_schema: &quot;TBD&quot;</p>
+<p>apply_result_schema: &quot;TBD&quot;</p>
+<p>operation_proposal_contract:</p>
+<p>lifecycle: [&quot;draft&quot;, &quot;ready_for_review&quot;, &quot;accepted&quot;, &quot;rejected&quot;, &quot;applied&quot;]</p>
+<p>deterministic_check_result_schema: &quot;TBD&quot;</p>
+<p>professional_boundary:</p>
+<p>agent_must_not_claim:</p>
+<ul>
+<li>- &quot;code compliant for reliance&quot;</li>
+<li>- &quot;professionally approved&quot;</li>
+<li>- &quot;externally validated&quot;</li>
+</ul>
+<p>```</p>
+<p>This example is illustrative only. It is not an accepted runtime fixture and must not be treated as implementation-ready.</p>
+<p>Cross-reference (2026-07-02, agent decision under <code>TRB-chirality-app-dev-DEL-10-01-2026-07-02</code>): a concrete ADOPTED instance of this contract now exists — <code>_DomainEngines/profiles/open_pipe_stress.yaml</code> (tier-0, ADOPTED per D-T0-06) — and the concrete result-schema refs the example marks <code>TBD</code> are published for that instance: <code>projects/chirality-piping/schemas/operation_outcome.schema.json</code> (<code>validate_result_schema</code> / <code>apply_result_schema</code>; operation_applier <code>OperationOutcome</code>) and <code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code> (<code>deterministic_check_result_schema</code>; rule_check_runner <code>RuleCheckRunResult</code>). The Rust sources govern on disagreement; the ADOPTED profile&#x27;s own hook fields still read <code>TBD</code> pending an owner tier-0 CHANGE. The example skeleton above stays as-is: its <code>TBD</code> placeholders are template positions, and other engines supply their own refs. Note the repo qualifier: piping DEL-10-03 (Local FEA handoff) published those schemas; app-dev DEL-10-03 is a different deliverable.</p>
+<h3 id="clm-029-references">CLM-029 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_REFERENCES.md</code> REF-008</li>
+<li>- <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code></li>
+<li>- <code>docs/CONTRACT.md</code> Section 1.10</li>
+<li>- <code>docs/SPEC.md</code> Section 18</li>
+<li>- <code>docs/TYPES.md</code> Section 11</li>
+<li>- <code>docs/PLAN.md</code> R7</li>
+<li>- <code>docs/PRD.md</code> Section 8.17, Section 10.10, KG-016 through KG-020</li>
+</ul>
+<h3 id="clm-030-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-030 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-148 distinguishes supplied ruled-amendment fields (profile instances and hook-field schema references) from genuine remaining TBDs (adapters, stores, endpoints, apply tooling, and per-instance notice review).</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-066 SOW-067 OBJ-010</td><td>CLM-010</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

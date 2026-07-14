@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="3d61ba8d613f42d57f6c5af3601efd33de613260867c8c8701c1f5205f3eed6e">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>3d61ba8d613f42d57f6c5af3601efd33de613260867c8c8701c1f5205f3eed6e</code>.</p>
+<h1 id="scope-of-work-del-08-01">Scope of Work — DEL-08-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-08-01</code> in service of project scope [SOW-030, SOW-031, SOW-073] and package objectives [OBJ-007, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Agent conformance validator, integrity fixtures, and source-completeness checklist that verify required instruction-root assets, agent metadata, write scopes, naming, and section markers.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-01-instruction-root-packaging-and-agent-conformance">CLM-001 — Datasheet: DEL-08-01 Instruction Root Packaging and Agent Conformance</h3>
+<h4 id="datasheet-del-08-01-instruction-root-packaging-and-agent-conformance">Datasheet: DEL-08-01 Instruction Root Packaging and Agent Conformance</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-08-01</td></tr>
+<tr><td>DeliverableName</td><td>Instruction Root Packaging and Agent Conformance</td></tr>
+<tr><td>PackageID</td><td>PKG-08</td></tr>
+<tr><td>PackageName</td><td>Agent Suite, Pipeline Dispatch, and Subagent Governance</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>TEST_SUITE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-030, SOW-031, SOW-073</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-007, OBJ-008</td></tr>
+</tbody></table>
+<p>Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> lines 340-344, 244-245.</p>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable purpose</td><td>Verify required instruction-root assets, agent metadata, write scopes, naming, and section markers.</td><td>Decomposition DEL-08-01 row, lines 340-344</td></tr>
+<tr><td>Anticipated artifacts</td><td>Agent conformance validator; integrity fixtures; source-completeness checklist.</td><td><code>_CONTEXT.md</code>; Decomposition DEL-08-01 row, lines 340-344</td></tr>
+<tr><td>Instruction root meaning</td><td>Release-managed resource set containing governance documents, agent instructions, and framework materials.</td><td><code>docs/SPEC.md</code> section 1.1; <code>docs/TYPES.md</code> section 1.5</td></tr>
+<tr><td>Ordinary mutation policy</td><td>Instruction root is read-only during ordinary project execution; writes must be blocked by runtime hooks and path policy.</td><td><code>docs/SPEC.md</code> section 1.1; <code>docs/CONTRACT.md</code> K-ROOT-2</td></tr>
+<tr><td>Required source-tree / packaged-app entries</td><td><code>AGENTS.md</code>, <code>README.md</code>, <code>agents/</code>, <code>docs/</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/PLAN.md</code>, <code>WHAT-IS-AN-AGENT.md</code> where required, and <code>PROFESSIONAL_ENGINEERING.md</code> where required.</td><td><code>docs/SPEC.md</code> section 1.1</td></tr>
+<tr><td>PRD packaging acceptance entries</td><td><code>agents/</code>, <code>docs/</code>, <code>AGENTS.md</code>, <code>README.md</code>, <code>WHAT-IS-AN-AGENT.md</code>, and <code>PROFESSIONAL_ENGINEERING.md</code> where required by integrity policy.</td><td><code>docs/PRD.md</code> FR-058; D-APP-38 source basis applies</td></tr>
+<tr><td>Agent instruction file naming</td><td>Agent instruction files use <code>AGENT_*.md</code> names.</td><td><code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>Required instruction header</td><td><code>[[DOC:AGENT_INSTRUCTIONS]]</code>, title, and `AGENT_TYPE: {0</td><td>1</td><td>2}`.</td><td><code>docs/SPEC.md</code> section 7.1</td></tr>
+<tr><td>Required agent type table fields</td><td><code>AGENT_TYPE</code>, <code>AGENT_CLASS</code>, <code>INTERACTION_SURFACE</code>, <code>WRITE_SCOPE</code>, <code>BLOCKING</code>, <code>PRIMARY_OUTPUTS</code>.</td><td><code>docs/SPEC.md</code> section 7.2</td></tr>
+<tr><td>Required section markers</td><td><code>[[BEGIN:PROTOCOL]]</code>, <code>[[BEGIN:SPEC]]</code>, <code>[[BEGIN:STRUCTURE]]</code>, <code>[[BEGIN:RATIONALE]]</code> and matching end markers.</td><td><code>docs/SPEC.md</code> section 7.3</td></tr>
+<tr><td>Type 2 candidate definition</td><td>Agent instruction with <code>AGENT_TYPE: 2</code>; preferred <code>AGENT_CLASS: TASK</code>.</td><td><code>docs/TYPES.md</code> Type 2 vocabulary</td></tr>
+<tr><td>Type 2 execution constraint</td><td>Type 2 task-agent execution requires sealed context and gate approval metadata.</td><td><code>docs/CONTRACT.md</code> K-SEAL-1</td></tr>
+<tr><td>Write-scope invariant</td><td>Every agent instruction file declares explicit write scope; agents must not write outside declared scope.</td><td><code>docs/CONTRACT.md</code> K-WRITE-1</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<ul>
+<li>- This deliverable is a test-suite work item for PKG-08 and must not expand runtime capability. Source: <code>_CONTEXT.md</code>; decomposition DEL-08-01 row.</li>
+<li>- The test suite must respect instruction-root / working-root separation. Ordinary project execution may write project truth only under the working root. Source: <code>docs/DIRECTIVE.md</code> section 2.7; <code>docs/CONTRACT.md</code> K-ROOT-3.</li>
+<li>- <code>docs/PRD.md</code> is locally accessible and REF-006 is MATCH under the D-APP-38 authority corpus. Treat PRD-derived items as current source-basis inputs, separate from implementation proof.</li>
+<li>- Declared upstream/downstream lists remain <code>TBD</code>; the current extracted register records PKG-08/SOW/OBJ anchors and upstream prerequisites for REF-001 through REF-007, DEC-004, and a <code>TBD current instruction-root source tree</code>, with no downstream handoff edges populated because the extraction ran with <code>CONSUMER_CONTEXT=NONE</code>. Source: <code>_DEPENDENCIES.md</code>.</li>
+<li>- ASSUMPTION: The validator target path, test framework, and exact fixture directory are implementation choices for a later coding task and are therefore <code>TBD</code> here.</li>
+</ul>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>Minimum expected construction package:</p>
+<table><tbody>
+<tr><td>Component</td><td>Required content</td><td>Evidence basis</td></tr>
+<tr><td>Agent conformance validator</td><td>Checks instruction files for naming, required header, agent type declaration/table fields, required markers, and declared write scope.</td><td><code>docs/SPEC.md</code> section 7; <code>docs/CONTRACT.md</code> K-WRITE-1</td></tr>
+<tr><td>Integrity fixtures</td><td>Positive and negative fixtures for complete and incomplete instruction-root asset sets.</td><td><code>docs/SPEC.md</code> section 1.1; <code>docs/PRD.md</code> FR-058 and KG-001 under D-APP-38</td></tr>
+<tr><td>Source-completeness checklist</td><td>Checklist for required root assets and source-completeness risks.</td><td><code>docs/SPEC.md</code> section 1.1; <code>docs/PRD.md</code> KG-001 under D-APP-38; decomposition SOW-073</td></tr>
+<tr><td>Governance fixture cases</td><td>Type 2 candidate, non-Type-2 candidate, missing metadata, missing markers, invalid write scope, and attempted instruction-root write.</td><td><code>docs/TYPES.md</code> Type 2 vocabulary; <code>docs/CONTRACT.md</code> K-WRITE/K-SEAL/K-GHOST/K-SUBAGENT</td></tr>
+</tbody></table>
+<p>Implementation location, command name, and CI wiring: TBD.</p>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/DIRECTIVE.md</code> sections 2.7, 5.</li>
+<li>- <code>docs/CONTRACT.md</code> sections 1.3 and 1.8.</li>
+<li>- <code>docs/SPEC.md</code> sections 1.1, 1.2, 7.1, 7.2, 7.3, 15.2.</li>
+<li>- <code>docs/TYPES.md</code> sections 1.5, 3.2, 4.4, Type 2 vocabulary.</li>
+<li>- <code>docs/PLAN.md</code> R3 subagent implementation targets and section 6.1.</li>
+<li>- <code>docs/PRD.md</code> sections 8.10 and 15, current under D-APP-38 authority corpus v2.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-08-01, OBJ-007, OBJ-008, SOW-030, SOW-031, SOW-073, and PKG-08 knowledge groups.</li>
+<li>- <code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code> header and agent type table as a local conformance example.</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-08-01-instruction-root-packaging-and-agent-conformance">CLM-007 — Specification: DEL-08-01 Instruction Root Packaging and Agent Conformance</h3>
+<h4 id="specification-del-08-01-instruction-root-packaging-and-agent-conformance">Specification: DEL-08-01 Instruction Root Packaging and Agent Conformance</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the test-suite expectations for verifying instruction-root packaging and agent instruction conformance in PKG-08.</p>
+<p>In scope:</p>
+<ul>
+<li>- Required instruction-root asset presence and packaging integrity checks.</li>
+<li>- Agent instruction filename, header, metadata, write-scope, and section-marker conformance.</li>
+<li>- Source-completeness checklist coverage for instruction-root assets.</li>
+<li>- Fixture coverage for valid and invalid instruction-root and agent-instruction cases.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- General SDK adapter mechanics. Source: <code>_CONTEXT.md</code>.</li>
+<li>- Runtime capability expansion. Source: decomposition DEL-08-01 row.</li>
+<li>- Implementation of the subagent governance bridge itself, which belongs to DEL-08-04. Source: decomposition DEL-08-04 row.</li>
+<li>- Parent-child subagent run records, which belong to DEL-08-05. Source: decomposition DEL-08-05 row.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL0801-REQ001</td><td>The test suite MUST verify that the instruction root is treated as release-managed and read-only during ordinary project execution.</td><td><code>docs/SPEC.md</code> section 1.1; <code>docs/CONTRACT.md</code> K-ROOT-2</td><td>Negative fixture or runtime-policy test denies instruction-root writes.</td></tr>
+<tr><td>DEL0801-REQ002</td><td>The test suite MUST verify that the working root is separate from the instruction root and is the ordinary project-truth write location.</td><td><code>docs/DIRECTIVE.md</code> section 2.7; <code>docs/CONTRACT.md</code> K-ROOT-1/K-ROOT-3</td><td>Path-policy fixture validates separate roots and rejects working-root-inside-instruction-root cases.</td></tr>
+<tr><td>DEL0801-REQ003</td><td>The test suite MUST check the required instruction-root entries listed by SPEC section 1.1.</td><td><code>docs/SPEC.md</code> section 1.1</td><td>Integrity fixture enumerates required entries and reports missing assets as blockers.</td></tr>
+<tr><td>DEL0801-REQ004</td><td>The test suite SHOULD include PRD FR-058 packaging acceptance entries under the current D-APP-38 authority corpus.</td><td><code>_REFERENCES.md</code>; <code>docs/PRD.md</code> FR-058; D-APP-38</td><td>Checklist output cites the current REF-006 MATCH source state.</td></tr>
+<tr><td>DEL0801-REQ005</td><td>The source-completeness checklist MUST surface SOW-073 / OI-004 required instruction-root asset incompleteness as a packaging-readiness issue.</td><td>Decomposition SOW-073 and OI-004; <code>docs/PRD.md</code> KG-001 under D-APP-38</td><td>Checklist contains SOW-073/OI-004 row and remediation status.</td></tr>
+<tr><td>DEL0801-REQ006</td><td>Agent instruction files MUST be named with the <code>AGENT_*.md</code> convention.</td><td><code>docs/SPEC.md</code> section 7</td><td>Validator rejects nonconforming agent instruction filenames when they are in the instruction agent set.</td></tr>
+<tr><td>DEL0801-REQ007</td><td>Agent instruction files MUST include the required instruction header and <code>AGENT_TYPE</code> declaration.</td><td><code>docs/SPEC.md</code> section 7.1</td><td>Validator positive/negative fixtures cover missing <code>[[DOC:AGENT_INSTRUCTIONS]]</code>, title, and <code>AGENT_TYPE</code>.</td></tr>
+<tr><td>DEL0801-REQ008</td><td>Agent instruction files MUST include an Agent Type table with <code>AGENT_TYPE</code>, <code>AGENT_CLASS</code>, <code>INTERACTION_SURFACE</code>, <code>WRITE_SCOPE</code>, <code>BLOCKING</code>, and <code>PRIMARY_OUTPUTS</code>.</td><td><code>docs/SPEC.md</code> section 7.2</td><td>Validator fixture rejects missing table or missing required rows.</td></tr>
+<tr><td>DEL0801-REQ009</td><td>Agent instruction conformance MUST validate required section markers for <code>PROTOCOL</code>, <code>SPEC</code>, <code>STRUCTURE</code>, and <code>RATIONALE</code> where the instruction contract requires those sections.</td><td><code>docs/SPEC.md</code> section 7.3</td><td>Validator fixture rejects missing begin/end marker pairs.</td></tr>
+<tr><td>DEL0801-REQ010</td><td>Agent conformance MUST verify explicit write-scope declaration and preserve the invariant that agents do not write outside declared scope.</td><td><code>docs/CONTRACT.md</code> K-WRITE-1; <code>docs/TYPES.md</code> AGENT classification properties</td><td>Validator checks <code>WRITE_SCOPE</code> value; downstream runtime tests cover enforcement.</td></tr>
+<tr><td>DEL0801-REQ011</td><td>Type 2 candidate checks MUST identify <code>AGENT_TYPE: 2</code> and prefer <code>AGENT_CLASS: TASK</code>.</td><td><code>docs/TYPES.md</code> Type 2 vocabulary</td><td>Fixture set includes valid Type 2 task, Type 2 non-task warning/TBD behavior, and non-Type-2 rejection.</td></tr>
+<tr><td>DEL0801-REQ012</td><td>Subagent-related conformance MUST fail closed when required governance metadata is absent and MUST NOT grant child agents expanded capabilities.</td><td><code>docs/CONTRACT.md</code> K-SEAL-1, K-GHOST-1, K-SUBAGENT-1, K-SUBAGENT-2; <code>docs/PRD.md</code> FR-060 under D-APP-38</td><td>Governance fixture asserts absent metadata is denied and child cwd/tools remain restricted.</td></tr>
+<tr><td>DEL0801-REQ013</td><td>The validator MUST treat registry surfaces as source registries rather than relying on mutable count prose.</td><td><code>docs/PRD.md</code> KG-013 under D-APP-38</td><td>Checklist records registry source paths and generated discovery output.</td></tr>
+<tr><td>DEL0801-REQ014</td><td>Unknown runtime metadata option keys MUST be ignored with warnings rather than silently mutating behavior.</td><td><code>docs/SPEC.md</code> section 7.4</td><td>Fixture includes unknown key and expects warning-only behavior.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / authority</td><td>Applicability</td><td>Location</td></tr>
+<tr><td>Chirality instruction root model</td><td>Defines required assets, read-only policy, and root separation.</td><td><code>docs/SPEC.md</code> section 1; <code>docs/DIRECTIVE.md</code> section 2.7</td></tr>
+<tr><td>Chirality agent instruction contract</td><td>Defines required filenames, headers, metadata table, and section markers.</td><td><code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>Chirality invariant contract</td><td>Defines K-ROOT, K-PACKAGE, K-WRITE, K-SEAL, K-GHOST, and K-SUBAGENT checks.</td><td><code>docs/CONTRACT.md</code> sections 1.3 and 1.8</td></tr>
+<tr><td>Chirality vocabulary</td><td>Defines Type 2 candidates, task agents, write-scope vocabulary, and pipeline/task scope terms.</td><td><code>docs/TYPES.md</code> sections 3.2, 4.4, Type 2 vocabulary</td></tr>
+<tr><td>PRD acceptance requirements</td><td>Provides FR-058 through FR-063 and known source-completeness gaps, current under D-APP-38 authority corpus v2.</td><td><code>docs/PRD.md</code> sections 8.10 and 15</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>Verification approach:</p>
+<ul>
+<li>- Static source-tree checks for required instruction-root entries.</li>
+<li>- Static agent-instruction parsing checks for filename, header, required metadata, and marker pairs.</li>
+<li>- Fixture-driven positive and negative cases for missing assets and malformed agent files.</li>
+<li>- Path-policy / hook-level tests for instruction-root write denial where runtime enforcement is available.</li>
+<li>- Checklist output that separates SPEC-backed requirements from PRD-backed source-corpus items.</li>
+</ul>
+<p>Minimum verification matrix:</p>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification artifact</td></tr>
+<tr><td>DEL0801-REQ001, DEL0801-REQ002</td><td>Root policy fixtures and hook/path-policy test</td></tr>
+<tr><td>DEL0801-REQ003, DEL0801-REQ004, DEL0801-REQ005</td><td>Instruction-root integrity fixture and source-completeness checklist</td></tr>
+<tr><td>DEL0801-REQ006 through DEL0801-REQ010, DEL0801-REQ014</td><td>Agent conformance validator fixture suite</td></tr>
+<tr><td>DEL0801-REQ011, DEL0801-REQ012</td><td>Type 2/subagent governance fixture suite</td></tr>
+<tr><td>DEL0801-REQ013</td><td>Registry discovery / source registry fixture</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required records:</p>
+<ul>
+<li>- Validator output showing checked files, failures, warnings, and skipped checks.</li>
+<li>- Integrity fixture inventory for required instruction-root assets.</li>
+<li>- Source-completeness checklist, including SOW-073/OI-004 status.</li>
+<li>- D-APP-38 source-corpus state in any checklist item that relies on <code>docs/PRD.md</code>.</li>
+<li>- Validator implementation path, fixture path, test framework, local command, CI location, and output artifact directory: TBD until the coding task opens and records the concrete test owner.</li>
+<li>- When the implementation owner selects those paths, this deliverable must record the command, fixture directory, pass/fail artifact directory, and whether CI runs the same command or a named wrapper.</li>
+<li>- Human ruling record if the authority-corpus basis changes.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The test suite verifies required instruction-root assets, agent instruction metadata, declared write scopes, naming, and required section markers using integrity and conformance fixtures, and produces a source-completeness checklist.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-08-01-instruction-root-packaging-and-agent-conformance">CLM-013 — Procedure: DEL-08-01 Instruction Root Packaging and Agent Conformance</h3>
+<h4 id="procedure-del-08-01-instruction-root-packaging-and-agent-conformance">Procedure: DEL-08-01 Instruction Root Packaging and Agent Conformance</h4>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational procedure to produce and verify the DEL-08-01 test-suite artifacts: agent conformance validator, integrity fixtures, and source-completeness checklist.</p>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Accepted deliverable context in <code>_CONTEXT.md</code>.</li>
+<li>- Accessible authoritative references from <code>_REFERENCES.md</code>.</li>
+<li>- Decomposition reference: <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code>.</li>
+<li>- Current instruction-root source tree containing the candidate root assets and <code>agents/AGENT_*.md</code> files.</li>
+<li>- Test framework, validator command, and fixture directory: TBD.</li>
+<li>- Declared upstream/downstream lists: TBD. The extracted dependency register currently records upstream source prerequisites and no populated downstream handoff edges; do not invent deliverable edges from boundary references alone. Source: <code>_DEPENDENCIES.md</code>.</li>
+</ul>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Establish the accepted source basis.</p>
+<ul>
+<li>- Read <code>_REFERENCES.md</code>.</li>
+<li>- Record matching sources and source warnings.</li>
+<li>- Record <code>docs/PRD.md</code> REF-006 as MATCH under the D-APP-38 authority corpus.</li>
+</ul>
+<p>2. Build the instruction-root asset manifest.</p>
+<ul>
+<li>- Start from <code>docs/SPEC.md</code> section 1.1 required entries.</li>
+<li>- Add PRD FR-058 and KG-001 entries under the current D-APP-38 source basis.</li>
+<li>- Record each asset as present, missing, not required by active policy, or TBD.</li>
+</ul>
+<p>3. Define agent-instruction conformance checks.</p>
+<ul>
+<li>- Check filename convention <code>AGENT_*.md</code>.</li>
+<li>- Check required header: <code>[[DOC:AGENT_INSTRUCTIONS]]</code>, title, and <code>AGENT_TYPE</code>.</li>
+<li>- Check Agent Type table rows: <code>AGENT_TYPE</code>, <code>AGENT_CLASS</code>, <code>INTERACTION_SURFACE</code>, <code>WRITE_SCOPE</code>, <code>BLOCKING</code>, and <code>PRIMARY_OUTPUTS</code>.</li>
+<li>- Check required section-marker pairs for <code>PROTOCOL</code>, <code>SPEC</code>, <code>STRUCTURE</code>, and <code>RATIONALE</code> when applicable.</li>
+<li>- Warn on unknown runtime metadata option keys rather than mutating behavior.</li>
+</ul>
+<p>4. Define Type 2 and subagent governance fixture checks.</p>
+<ul>
+<li>- Identify Type 2 candidates by <code>AGENT_TYPE: 2</code>.</li>
+<li>- Prefer <code>AGENT_CLASS: TASK</code> for Type 2 candidates.</li>
+<li>- Deny non-Type-2 or non-allowlisted delegation fixtures.</li>
+<li>- Deny subagent requests without sealed context, approved pipeline state, approval reference, and restricted child tool/cwd configuration.</li>
+</ul>
+<p>5. Implement or update validator and fixtures.</p>
+<ul>
+<li>- Validator path: TBD.</li>
+<li>- Fixture path: TBD.</li>
+<li>- Test framework: TBD.</li>
+<li>- CI or local command: TBD.</li>
+<li>- Pass/fail artifact directory: TBD.</li>
+<li>- Record the selected path, framework, command, fixture directory, and artifact directory before treating verification as executable.</li>
+<li>- Keep outputs under the working root; do not write to the instruction root during ordinary test execution.</li>
+</ul>
+<p>6. Run verification.</p>
+<ul>
+<li>- Execute the local validator/test command when available.</li>
+<li>- Confirm positive fixtures pass.</li>
+<li>- Confirm negative fixtures fail with actionable messages.</li>
+<li>- Confirm PRD-backed checks cite the D-APP-38 source basis and remain separate from implementation proof.</li>
+<li>- Capture pass/fail evidence with the command, working tree or commit identifier when available, fixture summary, warning/failure counts, and output artifact location.</li>
+</ul>
+<p>7. Record results.</p>
+<ul>
+<li>- Store validator output, source-completeness checklist, and fixture summary in the appropriate test artifact location: TBD.</li>
+<li>- Record unresolved source warnings and human-ruling needs, if any remain.</li>
+</ul>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>Completion checks:</p>
+<ul>
+<li>- Four governing categories are covered: root assets, agent metadata, write scopes, and section markers.</li>
+<li>- Required SPEC section 1.1 instruction-root assets are checked.</li>
+<li>- Agent instruction conformance covers SPEC sections 7.1, 7.2, and 7.3.</li>
+<li>- Type 2/subagent fixture expectations reflect TYPES and CONTRACT.</li>
+<li>- PRD-derived checks cite D-APP-38 / REF-006 MATCH source state.</li>
+<li>- No procedure step requires ordinary project execution to mutate the instruction root.</li>
+<li>- <code>TBD</code> remains on implementation path, fixture path, command, upstream dependencies, and other items not established by source evidence.</li>
+</ul>
+<h3 id="clm-018-records">CLM-018 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Required records after implementation:</p>
+<ul>
+<li>- Validator implementation decision record naming the framework, validator path, fixture path, local command, CI command or omission, and pass/fail artifact directory.</li>
+<li>- Agent conformance validator output.</li>
+<li>- Instruction-root integrity fixture summary.</li>
+<li>- Source-completeness checklist.</li>
+<li>- D-APP-38 source-state ruling and any future authority-corpus bump/apply evidence.</li>
+<li>- Local test command and result log.</li>
+<li>- Any human-approved changes to required asset policy.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Review the agent conformance validator output, integrity fixture results, conformance fixture results, and source-completeness checklist against the preserved legacy requirements.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-019-guidance-del-08-01-instruction-root-packaging-and-agent-conformance">CLM-019 — Guidance: DEL-08-01 Instruction Root Packaging and Agent Conformance</h3>
+<h4 id="guidance-del-08-01-instruction-root-packaging-and-agent-conformance">Guidance: DEL-08-01 Instruction Root Packaging and Agent Conformance</h4>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-08-01 exists to make instruction-root packaging and agent conformance explicit and repeatable. It supports OBJ-007 by maintaining agent-suite integrity and governed subagent delegation without expanding authority, and OBJ-008 by keeping validation and instruction-root checks repeatable. Source: decomposition DEL-08-01, OBJ-007, OBJ-008.</p>
+<h3 id="clm-021-principles">CLM-021 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the instruction root as release-managed. The working root is mutable project truth; the instruction root is not ordinary task output. Source: <code>docs/DIRECTIVE.md</code> section 2.7; <code>docs/SPEC.md</code> section 1.1.</li>
+<li>- Validate conformance from source files and registries, not from narrative counts. Source: <code>docs/PRD.md</code> KG-013 under D-APP-38.</li>
+<li>- Keep the validator conservative. Missing source evidence becomes <code>TBD</code>, warning, or failure depending on the governing source; it must not be silently accepted. Source: <code>docs/CONTRACT.md</code> K-INVENT-1 and K-CONFLICT-1.</li>
+<li>- Separate conformance validation from runtime capability implementation. DEL-08-01 verifies packaging and instruction conformance; DEL-08-04 and DEL-08-05 cover subagent bridge execution and child records. Source: decomposition PKG-08 rows.</li>
+<li>- Preserve source authority labels. SPEC-backed requirements remain governing structure; PRD-backed requirements are current under the D-APP-38 authority corpus and <code>_REFERENCES.md</code> REF-006 MATCH state.</li>
+</ul>
+<h3 id="clm-022-considerations">CLM-022 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Evidence</td></tr>
+<tr><td>Required assets</td><td>Use <code>docs/SPEC.md</code> section 1.1 as the primary required-entry list. Add PRD FR-058/KG-001 candidates under the current authority corpus.</td><td><code>docs/SPEC.md</code> section 1.1; <code>docs/PRD.md</code> FR-058/KG-001 under D-APP-38</td></tr>
+<tr><td>Agent metadata</td><td>Validate both the compact header and the Agent Type table; each required row has a separate failure mode.</td><td><code>docs/SPEC.md</code> sections 7.1 and 7.2</td></tr>
+<tr><td>Section markers</td><td>Marker checks should validate paired begin/end markers and section identity, not merely text presence.</td><td><code>docs/SPEC.md</code> section 7.3</td></tr>
+<tr><td>Type 2 candidates</td><td><code>AGENT_TYPE: 2</code> is required; <code>AGENT_CLASS: TASK</code> is preferred. Treat non-Type-2 delegation candidates as denial cases.</td><td><code>docs/TYPES.md</code> Type 2 vocabulary; <code>docs/CONTRACT.md</code> K-SUBAGENT-1</td></tr>
+<tr><td>Write scopes</td><td>Validate declared <code>WRITE_SCOPE</code> values against vocabulary and fixture expected behavior. Runtime enforcement remains a separate hook/path-policy concern.</td><td><code>docs/TYPES.md</code> section 3.2; <code>docs/CONTRACT.md</code> K-WRITE-1</td></tr>
+<tr><td>Unknown option keys</td><td>Warnings are preferable to behavior mutation.</td><td><code>docs/SPEC.md</code> section 7.4</td></tr>
+</tbody></table>
+<h3 id="clm-023-trade-offs">CLM-023 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred approach</td><td>Rationale</td></tr>
+<tr><td>Strict failure vs warning for PRD-only items</td><td>Treat current PRD-backed items as source-current but still separate source truth from implementation proof.</td><td>D-APP-38 resolves the former source warning without advancing lifecycle state.</td></tr>
+<tr><td>Parser complexity vs text checks</td><td>Use structured parsing where feasible; allow simple text fixtures only for early validator scaffolding.</td><td>Section-marker and metadata checks have stable schemas in SPEC.</td></tr>
+<tr><td>Broad packaging validation vs DEL-08-01 scope</td><td>Check instruction-root assets and conformance only; leave DMG packaging to DEL-09-04.</td><td>Decomposition separates DEL-08-01 from release packaging deliverables.</td></tr>
+<tr><td>Runtime subagent behavior vs conformance fixtures</td><td>Include fail-closed fixture expectations, but do not implement the runtime bridge here.</td><td>DEL-08-04 owns <code>evaluateSubagentGovernance</code> bridge implementation.</td></tr>
+</tbody></table>
+<h3 id="clm-024-human-ruling-path">CLM-024 — Human Ruling Path</h3>
+<h5 id="human-ruling-path">Human Ruling Path</h5>
+<p>PRD-backed checks are current under D-APP-38 and <code>_REFERENCES.md</code> REF-006 MATCH. This resolves the former source-state warning only; it does not convert source requirements into implementation proof or lifecycle transition evidence. SPEC, CONTRACT, and TYPES remain the governing authority for instruction-root packaging and agent conformance where they define the narrower runtime contract.</p>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Example positive agent-instruction expectations:</p>
+<ul>
+<li>- Filename matches <code>AGENT_*.md</code>.</li>
+<li>- Header includes <code>[[DOC:AGENT_INSTRUCTIONS]]</code>.</li>
+<li>- Header declares <code>AGENT_TYPE</code>.</li>
+<li>- Agent Type table includes all required rows from SPEC section 7.2.</li>
+<li>- Required marker pairs are present for <code>PROTOCOL</code>, <code>SPEC</code>, <code>STRUCTURE</code>, and <code>RATIONALE</code> when the contract requires those sections.</li>
+</ul>
+<p>Example negative fixture expectations:</p>
+<ul>
+<li>- Missing <code>AGENTS.md</code> in an instruction-root fixture is a packaging-readiness failure under SPEC section 1.1.</li>
+<li>- Missing <code>WRITE_SCOPE</code> in an agent instruction is a conformance failure under SPEC section 7.2 and CONTRACT K-WRITE-1.</li>
+<li>- A Type 2 subagent request without sealed context or approval metadata is denied under CONTRACT K-SEAL-1 and K-SUBAGENT-1.</li>
+<li>- A PRD KG-001-only asset such as <code>tools/REGISTRY.md</code> is surfaced as a source-completeness item under the current authority corpus; implementation evidence still determines whether the item is satisfied.</li>
+</ul>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CT-001</td><td>Former PRD source-state conflict resolved.</td><td><code>_REFERENCES.md</code> REF-006 MATCH</td><td>D-APP-38 authority corpus v2</td><td>Datasheet Attributes; Specification DEL0801-REQ004, DEL0801-REQ005, DEL0801-REQ012, DEL0801-REQ013; Guidance Considerations</td><td>Use PRD content under the current authority corpus; keep implementation proof separate from source-state proof.</td><td>D-APP-38 accepted current authority corpus</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 SOW-031 SOW-073 OBJ-007 OBJ-008</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

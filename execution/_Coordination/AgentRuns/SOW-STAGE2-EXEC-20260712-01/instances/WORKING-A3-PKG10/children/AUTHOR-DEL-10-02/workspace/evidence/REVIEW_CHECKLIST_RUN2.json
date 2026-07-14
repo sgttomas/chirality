@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 235,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "204721c5221d1311ff94c93fa60ff3292d715ad2ab146032c7d6ba71f85582bb"
+      },
+      "text": "The DEL-10-02 protected/proposal path policy, hook implications, and examples preserve the exact legacy source content and remain bounded to SOW-068 and OBJ-010.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-001",
+          "source_line": 348,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Verify DEL-10-02 source-marker coverage and byte parity against the exact legacy four-document source, and confirm SOW-068 and OBJ-010 traceability."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-02",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "204721c5221d1311ff94c93fa60ff3292d715ad2ab146032c7d6ba71f85582bb"
+  },
+  "tool_version": "1"
+}

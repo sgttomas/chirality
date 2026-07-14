@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="62ee5ae9590b51b8be3ae59e91f88a134b7c42d071ac6132f50461d29a78557d">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>62ee5ae9590b51b8be3ae59e91f88a134b7c42d071ac6132f50461d29a78557d</code>.</p>
+<h1 id="scope-of-work-del-09-05">Scope of Work — DEL-09-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-09-05</code> in service of project scope [SOW-035, SOW-036, SOW-072] and package objectives [OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A CI artifact and release verification workflow, local release-significant command sequence, stable validation artifact handling, manual macOS DMG verification checklist, and auditable requirement-to-evidence records for the current macOS 15+ Apple Silicon unsigned or unnotarized local-builder release target.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-05-ci-artifact-and-release-verification-workflow">CLM-001 — Datasheet: DEL-09-05 CI Artifact and Release Verification Workflow</h3>
+<h4 id="datasheet-del-09-05-ci-artifact-and-release-verification-workflow">Datasheet: DEL-09-05 CI Artifact and Release Verification Workflow</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-09-05</td></tr>
+<tr><td>DeliverableName</td><td>CI Artifact and Release Verification Workflow</td></tr>
+<tr><td>PackageID</td><td>PKG-09</td></tr>
+<tr><td>PackageName</td><td>Validation, Packaging, Security, and Release</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>CI_CD_CHANGE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>Current Scope</td><td>Maintain CI premerge workflow, stable artifact upload, local command sequence, and manual release verification checklist.</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Covered scope items</td><td>SOW-035 Required local checks; SOW-036 Section 8/9 validation; SOW-072 macOS arm64 unsigned DMG release target</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Section 8/9, <code>DEL-09-05</code> and scope ledger rows</td></tr>
+<tr><td>Supported objective</td><td>OBJ-008</td><td><code>_CONTEXT.md</code> Traceability; decomposition <code>DEL-09-05</code> row</td></tr>
+<tr><td>Anticipated artifacts</td><td>CI workflow; stable artifact upload; release verification runbook</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; decomposition <code>DEL-09-05</code> row</td></tr>
+<tr><td>Local check command sequence</td><td><code>npm run test</code>; <code>npm run typecheck</code>; <code>npm run harness:validate:premerge</code>; <code>npm run instruction-root:integrity</code>; <code>npm run desktop:dist</code></td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1; <code>docs/PLAN.md</code> Section 7</td></tr>
+<tr><td>Stable summary artifact</td><td><code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code></td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1; <code>docs/PLAN.md</code> Section 7</td></tr>
+<tr><td>Expected packaging outputs</td><td><code>frontend/dist/Chirality-0.1.0-arm64.dmg</code>; <code>frontend/dist/mac-arm64/Chirality.app</code>; instruction-root integrity summary JSON</td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1</td></tr>
+<tr><td>CI workflow baseline</td><td>Checkout repository; setup Node.js 20; run <code>npm ci</code>; verify instruction-root assets; preflight validation script presence; start Next server; poll readiness; run premerge validation; verify stable summary artifact; upload summary artifact</td><td><code>docs/PRD.md</code> Section 12.7</td></tr>
+<tr><td>Release target</td><td>macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended</td><td><code>docs/CONTRACT.md</code> K-RELEASE-1; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>Ownership disposition</td><td><code>ResponsibleParty</code> remains <code>TBD</code> until a human assigns ownership; CI/release execution must not be delegated on an inferred owner.</td><td><code>_CONTEXT.md</code> Identity and Source Authority; <code>Procedure.md</code> Prerequisites</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Source fidelity warning</td><td><code>docs/PRD.md</code> has expected SHA <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code> and observed SHA <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code>; per dispatch brief, this is a source status.</td><td><code>_REFERENCES.md</code>; dispatch brief</td></tr>
+<tr><td>CI provider implementation</td><td>ASSUMPTION: GitHub Actions is the intended CI surface because <code>docs/PRD.md</code> Section 12.7 names &quot;The GitHub workflow&quot;; exact workflow file path is TBD.</td><td><code>docs/PRD.md</code> Section 12.7</td></tr>
+<tr><td>Stable summary artifact path</td><td>The review target is <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>.</td><td><code>docs/PRD.md</code> Sections 12.2 and 12.7; <code>docs/SPEC.md</code> Section 19.1</td></tr>
+<tr><td>CI upload artifact identity</td><td>The CI workflow must upload the stable summary artifact, but the CI upload artifact name, retention period, and workflow file path are <code>TBD</code> until source-defined or human-approved.</td><td><code>docs/PRD.md</code> Section 12.7; <code>_SEMANTIC_LENSING.md</code> D-001</td></tr>
+<tr><td>Security posture during verification</td><td>API keys must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts; outbound network access remains loopback plus Anthropic API path unless amended.</td><td><code>docs/CONTRACT.md</code> K-NET-1 and K-KEY-1</td></tr>
+<tr><td>Dependency state</td><td>Declared upstream and downstream dependencies remain <code>TBD</code>; extracted <code>Dependencies.csv</code> v3.1 rows exist but readiness remains blocked until accepted dependency-edge or blocker disposition is recorded.</td><td><code>_DEPENDENCIES.md</code> Extracted Dependency Register; <code>_SEMANTIC_LENSING.md</code> X-002</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Required Content</td></tr>
+<tr><td>CI workflow</td><td>Implement or maintain a premerge workflow that executes the PRD Section 12.7 sequence and uploads the stable validation summary artifact.</td></tr>
+<tr><td>Local command sequence</td><td>Document a reproducible local sequence from <code>frontend/</code> that runs test, typecheck, premerge validation, instruction-root integrity, and desktop distribution checks.</td></tr>
+<tr><td>Stable artifact verification</td><td>Verify that <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code> exists after relevant checks and is uploaded by CI.</td></tr>
+<tr><td>Manual release checklist</td><td>Verify macOS DMG architecture, minimum system version, signing posture, instruction-root assets, working-root selector availability, current shipped Anthropic network guardrails, SDK-backed packaged turn startup after R1, SDK subprocess execution access, and SDK transcript storage/mirroring decision conformance.</td></tr>
+<tr><td>Evidence capture</td><td>Record command outcomes, artifact paths, and release-check findings in a release verification runbook or equivalent reviewable artifact.</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Used For</td><td>Status</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Governance and professional-boundary context</td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Release, validation, network, key, packaging invariants</td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Required checks, Section 8/9 validation, manual release verification</td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Vocabulary for artifacts, validation, <code>desktop:dist</code>, and lifecycle terms</td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Local check command sequence and expected package artifacts</td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>CI acceptance, validation plan, manual release verification</td><td>MATCH source status only — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context</td><td>MATCH</td></tr>
+</tbody></table>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-146/147 record repo-root <code>.github/workflows/harness-premerge.yml</code> as the executed workflow, indirect premerge via <code>validate:release-quality</code>, added typecheck/Vitest/instruction-root gates, and <code>harness-validation-summaries</code>; the project-local workflow is non-executing.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-09-05-ci-artifact-and-release-verification-workflow">CLM-008 — Specification: DEL-09-05 CI Artifact and Release Verification Workflow</h3>
+<h4 id="specification-del-09-05-ci-artifact-and-release-verification-workflow">Specification: DEL-09-05 CI Artifact and Release Verification Workflow</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the CI premerge workflow, stable artifact upload behavior, local command sequence, and manual release verification checklist for <code>DEL-09-05 CI Artifact and Release Verification Workflow</code>.</p>
+<p>In scope:</p>
+<ul>
+<li>- Required local validation checks for release-significant changes.</li>
+<li>- CI execution of the premerge validation workflow.</li>
+<li>- Stable validation summary artifact verification and upload, distinguishing runtime premerge summaries from packaging/instruction-root summaries.</li>
+<li>- Manual release verification checklist for the current macOS arm64 unsigned DMG release target.</li>
+<li>- Documentation of evidence paths and runbook records needed for release review.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Feature implementation except test fixtures and packaging glue, per PKG-09 exclusions.</li>
+<li>- Section 8/9 test implementation details owned by sibling validation deliverables.</li>
+<li>- Network, API key, attachment, and renderer security implementation details owned by <code>DEL-09-06</code>.</li>
+<li>- Direct creation of <code>Dependencies.csv</code> in this run.</li>
+<li>- Windows/Linux release packaging unless approved by governed amendment.</li>
+</ul>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-09-05-001</td><td>The local release-significant check sequence MUST include <code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, and <code>npm run instruction-root:integrity</code> from <code>frontend/</code>; current runtime-premerge evidence may be collected through <code>npm run validate:release-quality</code>, with explicit skip reasons for environment-dependent premerge.</td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1; <code>docs/PLAN.md</code> Section 7; ADQ-14 implementation evidence</td></tr>
+<tr><td>REQ-09-05-002</td><td>The packaging check MUST include <code>npm run desktop:dist</code>.</td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1; <code>docs/PLAN.md</code> Section 7</td></tr>
+<tr><td>REQ-09-05-003</td><td>The expected packaging outputs MUST include <code>frontend/dist/Chirality-0.1.0-arm64.dmg</code>, <code>frontend/dist/mac-arm64/Chirality.app</code>, and <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>.</td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1</td></tr>
+<tr><td>REQ-09-05-004</td><td>The CI workflow MUST checkout the repository, set up Node.js 20, install dependencies with <code>npm ci</code>, verify required instruction-root assets, check preflight validation script presence, start the Next server, poll readiness, run <code>npm run harness:validate:premerge</code>, verify the stable summary artifact, and upload the summary artifact.</td><td><code>docs/PRD.md</code> Section 12.7</td></tr>
+<tr><td>REQ-09-05-005</td><td>Runtime premerge validation MUST verify and upload the stable Section 8 summary at <code>frontend/artifacts/harness/section8/latest/summary.json</code>; packaging/instruction-root review separately uses <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>; the runtime-premerge wrapper writes <code>frontend/artifacts/harness/release-quality/latest/summary.json</code> as derivative evidence.</td><td><code>docs/PRD.md</code> FR-066 and Section 12.7; <code>docs/SPEC.md</code> Section 19.1; ADQ-14 implementation evidence</td></tr>
+<tr><td>REQ-09-05-006</td><td>Manual macOS DMG release verification MUST check arm64 binary posture, <code>LSMinimumSystemVersion</code> <code>15.0.0</code> or later, unsigned/adhoc signing posture, required instruction-root assets in app resources, working-root selector availability, current shipped Anthropic network guardrails, packaged SDK-backed turn startup after R1, SDK subprocess execution access outside trapped <code>app.asar</code> layout, and accepted SDK transcript storage/mirroring behavior.</td><td><code>docs/PRD.md</code> Section 12.8; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>REQ-09-05-007</td><td>Release validation MUST preserve current release target constraints: macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended.</td><td><code>docs/CONTRACT.md</code> K-RELEASE-1; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>REQ-09-05-008</td><td>Release-significant changes MUST pass required local checks before acceptance.</td><td><code>docs/CONTRACT.md</code> K-VALIDATE-1</td></tr>
+<tr><td>REQ-09-05-009</td><td>Verification records MUST avoid writing API keys or secrets to project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts.</td><td><code>docs/CONTRACT.md</code> K-KEY-1</td></tr>
+<tr><td>REQ-09-05-010</td><td>Verification MUST keep outbound network scope limited to explicit product scope: loopback plus Anthropic API path unless governed future scope expands it.</td><td><code>docs/CONTRACT.md</code> K-NET-1</td></tr>
+<tr><td>REQ-09-05-011</td><td>The release workflow MUST NOT represent Chirality as providing automated professional approval, code compliance, external validation, or solver ownership.</td><td><code>docs/PRD.md</code> Section 12.1; <code>docs/DIRECTIVE.md</code> professional-boundary sections</td></tr>
+<tr><td>REQ-09-05-012</td><td>ASSUMPTION: The CI implementation target is a GitHub Actions workflow because <code>docs/PRD.md</code> Section 12.7 specifies &quot;The GitHub workflow&quot;; the exact workflow file path is TBD.</td><td><code>docs/PRD.md</code> Section 12.7</td></tr>
+<tr><td>REQ-09-05-013</td><td>Release evidence MUST map each requirement in this specification to a concrete evidence artifact, checklist row, or <code>TBD</code> blocker before workflow readiness is claimed.</td><td><code>docs/CONTRACT.md</code> K-VALIDATE-1 and K-INVENT-1; <code>_SEMANTIC_LENSING.md</code> C-001</td></tr>
+<tr><td>REQ-09-05-014</td><td>CI review evidence MUST show whether each of the ten PRD Section 12.7 workflow steps is present, absent, or <code>TBD</code>.</td><td><code>docs/PRD.md</code> Section 12.7; <code>_SEMANTIC_LENSING.md</code> F-001</td></tr>
+<tr><td>REQ-09-05-015</td><td>Release evidence MUST include explicit secret-redaction and accepted-network-scope inspection results for CI logs, release records, and packaged-app verification artifacts.</td><td><code>docs/CONTRACT.md</code> K-KEY-1 and K-NET-1; <code>_SEMANTIC_LENSING.md</code> X-001</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Governing Source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-PACKAGE-1, K-RELEASE-1, K-VALIDATE-1, K-NET-1, K-KEY-1</td><td>Binding release, validation, packaging, network, and secret-handling invariants.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 19.1 through 19.4</td><td>Physical command sequence, validation surfaces, and manual release verification checklist.</td></tr>
+<tr><td><code>docs/PRD.md</code> Sections 12.2, 12.7, and 12.8</td><td>Product-level validation plan, CI acceptance, and release verification requirements.</td></tr>
+<tr><td><code>docs/PLAN.md</code> Section 7</td><td>Roadmap-level command and artifact expectations.</td></tr>
+<tr><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> <code>DEL-09-05</code> row and scope ledger</td><td>Deliverable scope, SOW mapping, and anticipated artifacts.</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification Approach</td></tr>
+<tr><td>REQ-09-05-001</td><td>Run or inspect documented local command sequence from <code>frontend/</code>; confirm all four commands are present in the runbook.</td></tr>
+<tr><td>REQ-09-05-002</td><td>Run or inspect <code>desktop:dist</code> packaging step in the local release sequence.</td></tr>
+<tr><td>REQ-09-05-003</td><td>Confirm expected paths exist after relevant command execution or are explicitly marked as failed with diagnostic notes.</td></tr>
+<tr><td>REQ-09-05-004</td><td>Review CI workflow definition for all ten PRD Section 12.7 steps.</td></tr>
+<tr><td>REQ-09-05-005</td><td>Confirm CI checks and upload the Section 8 premerge summary; confirm packaging/instruction-root evidence references the instruction-root summary; confirm the release-quality wrapper summary records both paths and any premerge skip.</td></tr>
+<tr><td>REQ-09-05-006</td><td>Execute manual release checklist against the built DMG and record pass/fail/TBD for each item.</td></tr>
+<tr><td>REQ-09-05-007</td><td>Confirm release checklist and packaging metadata do not introduce non-macOS or signed/notarized release claims without amendment.</td></tr>
+<tr><td>REQ-09-05-008</td><td>Confirm release-significant change gate requires passing local checks.</td></tr>
+<tr><td>REQ-09-05-009</td><td>Inspect logs/artifacts for secret redaction; do not store API keys in release evidence.</td></tr>
+<tr><td>REQ-09-05-010</td><td>Confirm packaged-app and CI verification do not broaden network access beyond accepted policy.</td></tr>
+<tr><td>REQ-09-05-011</td><td>Review runbook and CI/release notes for prohibited professional-approval or external-validation language.</td></tr>
+<tr><td>REQ-09-05-012</td><td>Human or implementation review confirms exact CI workflow path and artifact naming.</td></tr>
+<tr><td>REQ-09-05-013</td><td>Review the evidence matrix below and confirm every requirement has an artifact, checklist row, or unresolved blocker.</td></tr>
+<tr><td>REQ-09-05-014</td><td>Review CI workflow evidence against the ten PRD Section 12.7 steps one by one.</td></tr>
+<tr><td>REQ-09-05-015</td><td>Inspect release evidence for secret material and non-accepted network endpoints; record pass/fail/TBD for each inspection.</td></tr>
+</tbody></table>
+<h3 id="clm-013-evidence-matrix">CLM-013 — Evidence Matrix</h3>
+<h5 id="evidence-matrix">Evidence Matrix</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Required Evidence</td></tr>
+<tr><td>REQ-09-05-001</td><td>Local runbook row showing <code>npm run validate:release-quality</code> for runtime-premerge evidence and packaging/instruction-root rows for <code>npm run instruction-root:integrity</code>, or a <code>TBD</code> blocker.</td></tr>
+<tr><td>REQ-09-05-002</td><td>Local runbook row showing <code>npm run desktop:dist</code>, or a <code>TBD</code> blocker.</td></tr>
+<tr><td>REQ-09-05-003</td><td>Artifact-path evidence for the DMG, app bundle, and stable summary JSON, or failed/TBD path rows.</td></tr>
+<tr><td>REQ-09-05-004</td><td>CI workflow review table with all ten PRD Section 12.7 steps marked present, absent, or <code>TBD</code>.</td></tr>
+<tr><td>REQ-09-05-005</td><td>CI/runtime evidence referencing <code>frontend/artifacts/harness/section8/latest/summary.json</code> and <code>frontend/artifacts/harness/release-quality/latest/summary.json</code>; packaging evidence referencing <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>.</td></tr>
+<tr><td>REQ-09-05-006</td><td>Manual macOS DMG checklist with a pass/fail/TBD row for each source-defined check.</td></tr>
+<tr><td>REQ-09-05-007</td><td>Release-target row confirming macOS 15+ Apple Silicon unsigned/unnotarized local-builder scope, or governed amendment reference.</td></tr>
+<tr><td>REQ-09-05-008</td><td>Gate record showing required local checks passed before release-significant acceptance, or an unresolved blocker.</td></tr>
+<tr><td>REQ-09-05-009</td><td>Secret-redaction inspection row for logs, runtime records, SDK transcripts where applicable, and tool artifacts.</td></tr>
+<tr><td>REQ-09-05-010</td><td>Network-scope inspection row confirming loopback plus Anthropic API path only, or governed amendment reference.</td></tr>
+<tr><td>REQ-09-05-011</td><td>Boundary-language review row confirming no automated professional approval, code compliance, external validation, or solver-ownership claim.</td></tr>
+<tr><td>REQ-09-05-012</td><td>Human or implementation ruling for CI workflow path, upload artifact name, and retention period.</td></tr>
+<tr><td>REQ-09-05-013</td><td>Completed requirement-to-evidence matrix with unresolved entries carried as blockers.</td></tr>
+<tr><td>REQ-09-05-014</td><td>Ten-step CI acceptance checklist tied to workflow evidence.</td></tr>
+<tr><td>REQ-09-05-015</td><td>Secret and network inspection records tied to CI/release artifacts.</td></tr>
+</tbody></table>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required outputs for this deliverable:</p>
+<ul>
+<li>- CI workflow or workflow change implementing the premerge sequence.</li>
+<li>- Stable artifact upload behavior for the validation summary.</li>
+<li>- Local command sequence for release-significant validation.</li>
+<li>- Manual release verification checklist/runbook.</li>
+<li>- Reviewable evidence of command results, artifact paths, and unresolved <code>TBD</code> items.</li>
+<li>- ADQ-14 evidence: <code>execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/Evidence_ADQ-14_Release_Quality_Validation_Wrapper.md</code>.</li>
+</ul>
+<p>Documentation notes:</p>
+<ul>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- <code>ResponsibleParty</code> remains <code>TBD</code> until assigned by a human.</li>
+<li>- Any missing implementation-specific detail, including workflow path, artifact name, retention period, release evidence filename, and exact checker script path, remains <code>TBD</code>.</li>
+</ul>
+<h3 id="clm-015-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-015 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-146/147 record repo-root <code>.github/workflows/harness-premerge.yml</code> as the executed workflow, indirect premerge via <code>validate:release-quality</code>, added typecheck/Vitest/instruction-root gates, and <code>harness-validation-summaries</code>; the project-local workflow is non-executing.</p>
+<h3 id="clm-016-d-app-56-ci-ownership-amendment-2026-07-12">CLM-016 — D-APP-56 CI ownership amendment (2026-07-12)</h3>
+<h5 id="d-app-56-ci-ownership-amendment-2026-07-12">D-APP-56 CI ownership amendment (2026-07-12)</h5>
+<p>R4-P37 confirms DEL-09-05 as owner of <code>.github/workflows/harness-premerge.yml</code> and its <code>harness-validation-summaries</code> artifact. DEL-09-01 retains its Section 8 wrapper-preservation interest and verification contract but does not own the workflow.</p>
+<ul>
+<li>- <strong>AC-001</strong> — Every DEL-09-05 requirement maps to a concrete artifact, checklist row, or explicit TBD blocker; all ten PRD Section 12.7 CI steps and each manual release item have present, absent, pass, fail, or TBD status; required local and packaging commands and stable summary paths are distinguished; secret-redaction, accepted network scope, release-target constraints, and professional-boundary checks are recorded without unsupported readiness claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-09-05-ci-artifact-and-release-verification-workflow">CLM-017 — Procedure: DEL-09-05 CI Artifact and Release Verification Workflow</h3>
+<h4 id="procedure-del-09-05-ci-artifact-and-release-verification-workflow">Procedure: DEL-09-05 CI Artifact and Release Verification Workflow</h4>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational workflow to produce, verify, and use the CI artifact and release verification process for <code>DEL-09-05</code>.</p>
+<p>This procedure is grounded in <code>docs/PRD.md</code> Sections 12.2, 12.7, and 12.8; <code>docs/SPEC.md</code> Sections 19.1 through 19.4; <code>docs/PLAN.md</code> Section 7; and <code>docs/CONTRACT.md</code> release/security invariants.</p>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Deliverable context and references are present in the deliverable folder.</td><td>Present</td></tr>
+<tr><td><code>ResponsibleParty</code> is assigned.</td><td>TBD</td></tr>
+<tr><td>Declared upstream dependency edges are accepted.</td><td>TBD</td></tr>
+<tr><td>CI provider and workflow path are confirmed.</td><td>ASSUMPTION: GitHub Actions; path TBD</td></tr>
+<tr><td>CI upload artifact name and retention period are confirmed.</td><td>TBD</td></tr>
+<tr><td>Release verification runbook filename and evidence storage location are confirmed.</td><td>TBD</td></tr>
+<tr><td>Local development environment can run commands from <code>frontend/</code>.</td><td>TBD</td></tr>
+<tr><td>Required instruction-root assets are present.</td><td>To be verified by workflow</td></tr>
+<tr><td>API keys and secrets are excluded from project files, logs, runtime events, and artifacts.</td><td>Required by <code>docs/CONTRACT.md</code> K-KEY-1</td></tr>
+<tr><td>Network scope remains loopback plus Anthropic API path unless amended.</td><td>Required by <code>docs/CONTRACT.md</code> K-NET-1</td></tr>
+</tbody></table>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm source and scope.</p>
+<ul>
+<li>- Verify this work remains scoped to <code>DEL-09-05</code>.</li>
+<li>- Record the PRD hash mismatch as a source warning if still present.</li>
+<li>- Keep <code>ResponsibleParty</code> as <code>TBD</code> unless a human assignment exists.</li>
+</ul>
+<p>2. Define or review the local command sequence.</p>
+<ul>
+<li>- From <code>frontend/</code>, use the runtime-premerge wrapper for the non-packaging evidence family:</li>
+</ul>
+<p>```bash</p>
+<p>npm run validate:release-quality</p>
+<p>```</p>
+<ul>
+<li>- The wrapper expands to full test, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason.</li>
+<li>- For packaging/instruction-root evidence, include the source-defined packaging commands separately:</li>
+</ul>
+<p>```bash</p>
+<p>npm run instruction-root:integrity</p>
+<p>npm run desktop:dist</p>
+<p>```</p>
+<p>3. Define or review the CI workflow sequence.</p>
+<ul>
+<li>- Checkout repository.</li>
+<li>- Setup Node.js 20.</li>
+<li>- Install dependencies with <code>npm ci</code>.</li>
+<li>- Verify required instruction-root assets are present.</li>
+<li>- Verify preflight validation script presence.</li>
+<li>- Start the Next server.</li>
+<li>- Poll readiness.</li>
+<li>- Run <code>npm run harness:validate:premerge</code>.</li>
+<li>- Verify <code>frontend/artifacts/harness/section8/latest/summary.json</code>.</li>
+<li>- Upload the Section 8 premerge summary artifact.</li>
+<li>- Record the exact workflow file path, CI upload artifact name, and retention period; keep each value <code>TBD</code> until source-defined or human-approved.</li>
+</ul>
+<p>4. Verify stable artifact handling.</p>
+<ul>
+<li>- Confirm the workflow checks for the stable Section 8 premerge summary artifact path.</li>
+<li>- Confirm artifact upload uses a stable, reviewable name.</li>
+<li>- Mark artifact upload name and retention as <code>TBD</code> until source-defined or human-approved.</li>
+<li>- Distinguish runtime premerge, release-quality wrapper, and packaging/instruction-root summary paths from the CI-provider upload artifact name.</li>
+</ul>
+<p>5. Execute or document packaging verification.</p>
+<ul>
+<li>- Run or require <code>npm run desktop:dist</code> from <code>frontend/</code>.</li>
+<li>- Confirm expected outputs:</li>
+<li>- <code>frontend/dist/Chirality-0.1.0-arm64.dmg</code></li>
+<li>- <code>frontend/dist/mac-arm64/Chirality.app</code></li>
+<li>- <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code></li>
+</ul>
+<p>6. Execute manual macOS DMG release verification.</p>
+<ul>
+<li>- Confirm binary is arm64.</li>
+<li>- Confirm <code>LSMinimumSystemVersion</code> is <code>15.0.0</code> or later.</li>
+<li>- Confirm signing posture is unsigned/adhoc as scoped.</li>
+<li>- Confirm app resources contain required instruction-root assets.</li>
+<li>- Confirm app launches and working-root selector is available.</li>
+<li>- Confirm current shipped Anthropic network guardrails remain in force.</li>
+<li>- Confirm SDK-backed harness turn can start in packaged app after R1.</li>
+<li>- Confirm SDK subprocess or bundled binary is executable from package layout and not trapped inside <code>app.asar</code> without execution access.</li>
+<li>- Confirm SDK transcript storage/mirroring follows the accepted R1 storage decision.</li>
+<li>- Record pass/fail/TBD separately for each manual checklist item.</li>
+</ul>
+<p>7. Record release evidence.</p>
+<ul>
+<li>- Record command results and artifact paths.</li>
+<li>- Record the release verification runbook filename and evidence storage location; keep both <code>TBD</code> until human-approved.</li>
+<li>- Map each specification requirement to an evidence artifact, checklist row, or unresolved blocker.</li>
+<li>- Record all ten PRD Section 12.7 CI steps as present, absent, or <code>TBD</code>.</li>
+<li>- Record pass/fail/TBD for each manual release verification item.</li>
+<li>- Record secret-redaction and accepted-network-scope inspection outcomes for CI and release artifacts.</li>
+<li>- Record accepted dependency-edge or blocker state before declaring workflow readiness.</li>
+<li>- Record unresolved <code>TBD</code> items and conflicts.</li>
+<li>- Do not record API keys or secret material.</li>
+</ul>
+<p>8. Escalate human rulings.</p>
+<ul>
+<li>- Request human assignment for <code>ResponsibleParty</code>.</li>
+<li>- Request ruling for CI workflow path, artifact upload name/retention, and release evidence location.</li>
+<li>- Request PRD hash mismatch disposition outside this run if strict source closure is required.</li>
+</ul>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Condition</td></tr>
+<tr><td>Local command sequence</td><td>Procedure or runbook includes the runtime-premerge wrapper plus separate packaging/instruction-root commands.</td></tr>
+<tr><td>CI workflow</td><td>Workflow includes all ten PRD Section 12.7 steps.</td></tr>
+<tr><td>Stable artifact</td><td>Section 8 premerge summary is verified/uploaded for CI; instruction-root summary is verified for packaging evidence; release-quality wrapper summary records command outcomes and skips.</td></tr>
+<tr><td>Packaging outputs</td><td>DMG, app bundle, and instruction-root integrity summary paths are checked.</td></tr>
+<tr><td>Manual release checklist</td><td>Each macOS DMG item is recorded as pass/fail/TBD.</td></tr>
+<tr><td>Security</td><td>Release evidence contains no API keys or secret material and does not broaden network posture.</td></tr>
+<tr><td>Professional boundary</td><td>Evidence and checklist do not claim automated professional approval, code compliance, external validation, or solver ownership.</td></tr>
+</tbody></table>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Required records:</p>
+<ul>
+<li>- CI workflow or workflow change.</li>
+<li>- Stable artifact upload evidence.</li>
+<li>- Local command sequence/runbook.</li>
+<li>- Release-quality wrapper summary evidence.</li>
+<li>- Manual release verification checklist with pass/fail/TBD entries.</li>
+<li>- Release evidence summary with artifact paths and unresolved rulings.</li>
+<li>- Requirement-to-evidence matrix covering each <code>REQ-09-05-*</code> item.</li>
+<li>- CI ten-step review table covering PRD Section 12.7.</li>
+<li>- Secret-redaction and network-scope inspection records.</li>
+<li>- Dependency-edge or blocker disposition for release workflow readiness.</li>
+</ul>
+<p>Record constraints:</p>
+<ul>
+<li>- API keys and secret material must not be stored in project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts.</li>
+<li>- The PRD hash mismatch must remain visible as a source warning until separately resolved.</li>
+<li>- <code>Dependencies.csv</code> was produced by a prior dependency-recording run; P3 does not edit dependency files, and readiness still requires accepted dependency-edge or blocker disposition.</li>
+</ul>
+<h3 id="clm-023-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-023 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-146/147 record repo-root <code>.github/workflows/harness-premerge.yml</code> as the executed workflow, indirect premerge via <code>validate:release-quality</code>, added typecheck/Vitest/instruction-root gates, and <code>harness-validation-summaries</code>; the project-local workflow is non-executing.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Inspect the local command sequence, executed CI workflow and all ten required steps, stable Section 8, release-quality, and instruction-root summary handling, packaging outputs, manual macOS DMG checklist, requirement-to-evidence matrix, secret-redaction and network-scope inspections, release-target scope, professional-boundary language, and unresolved blockers.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-09-05-ci-artifact-and-release-verification-workflow">CLM-024 — Guidance: DEL-09-05 CI Artifact and Release Verification Workflow</h3>
+<h4 id="guidance-del-09-05-ci-artifact-and-release-verification-workflow">Guidance: DEL-09-05 CI Artifact and Release Verification Workflow</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable gives release operators and implementers a stable validation workflow for CI artifacts and manual release verification. It exists to connect required local checks, Section 8/9 validation surfaces, stable summary artifact handling, and macOS DMG release verification into one reviewable workflow for PKG-09.</p>
+<p>Source basis: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> <code>DEL-09-05</code>; <code>docs/PRD.md</code> Sections 12.2, 12.7, and 12.8; <code>docs/SPEC.md</code> Sections 19.1 through 19.4.</p>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the local command sequence as the release-significant baseline: <code>test</code>, <code>typecheck</code>, <code>harness:validate:premerge</code>, <code>instruction-root:integrity</code>, and <code>desktop:dist</code> are the named commands in the accepted source slices.</li>
+<li>- Keep CI evidence stable and reviewable. The stable summary artifact path is <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>.</li>
+<li>- Separate CI automation from human release judgment. CI can run checks and upload artifacts, but it does not issue, certify, or professionally approve the work; only humans can author binding approval records, and release evidence remains review support until accepted.</li>
+<li>- Preserve current release boundaries. The accepted target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended; expanding signing, notarization, or platform targets would alter governed release scope.</li>
+<li>- Keep security posture visible during release verification: network scope and key handling are release constraints, not optional implementation details.</li>
+<li>- Prefer <code>TBD</code> over invented implementation detail when workflow filename, artifact retention, or evidence format is not source-defined.</li>
+</ul>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>PRD source warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code>; dispatch brief — reconciled under D-APP-38</td></tr>
+<tr><td>CI workflow location</td><td>ASSUMPTION: Use GitHub Actions because the PRD names a GitHub workflow. Exact file path remains TBD.</td><td><code>docs/PRD.md</code> Section 12.7</td></tr>
+<tr><td>Stable artifact path</td><td>Use the source-defined path exactly when verifying or uploading the instruction-root integrity summary.</td><td><code>docs/PRD.md</code> Section 12.2; <code>docs/SPEC.md</code> Section 19.1</td></tr>
+<tr><td>Section 8/9 scope</td><td>This deliverable should wire or verify the workflow; sibling deliverables own detailed validation additions and tests.</td><td>Decomposition PKG-09 rows</td></tr>
+<tr><td>Manual verification</td><td>The runbook should record pass/fail/TBD per checklist item, not collapse all DMG checks into one overall statement.</td><td><code>docs/PRD.md</code> Section 12.8; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>Secret handling</td><td>Release logs and artifacts should be checked for accidental key material. API keys are non-project convenience state and must not enter project files or tool artifacts.</td><td><code>docs/CONTRACT.md</code> K-KEY-1</td></tr>
+<tr><td>Network posture</td><td>CI and packaged-app verification should not broaden network policy beyond loopback plus Anthropic API path without governed scope change.</td><td><code>docs/CONTRACT.md</code> K-NET-1</td></tr>
+<tr><td>Professional-boundary rationale</td><td>Treat CI pass results as technical evidence, not approval, because the directive and contract reserve reliance, issue, certification, and external validation decisions to accountable humans.</td><td><code>docs/DIRECTIVE.md</code> Sections 3.1 and 3.2; <code>docs/CONTRACT.md</code> K-AUTH-1 and K-PROF-1</td></tr>
+<tr><td>Release-target rationale</td><td>Keep the macOS 15+ Apple Silicon unsigned/unnotarized local-builder target unchanged until amendment because it is the current release invariant and manual release verification target.</td><td><code>docs/CONTRACT.md</code> K-RELEASE-1; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+</tbody></table>
+<h3 id="clm-028-term-normalization">CLM-028 — Term Normalization</h3>
+<h5 id="term-normalization">Term Normalization</h5>
+<table><tbody>
+<tr><td>Term</td><td>Meaning</td><td>Current Disposition</td></tr>
+<tr><td>Stable summary artifact</td><td>The source-defined validation summary at <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>.</td><td>Defined by <code>docs/PRD.md</code> Sections 12.2 and 12.7 and <code>docs/SPEC.md</code> Section 19.1.</td></tr>
+<tr><td>CI upload artifact</td><td>The CI-provider artifact that uploads the stable summary artifact.</td><td>Name and retention period are <code>TBD</code>.</td></tr>
+<tr><td>Release verification runbook</td><td>The reviewable record of local command results, CI workflow evidence, artifact paths, manual checklist rows, security checks, and unresolved rulings.</td><td>Filename is <code>TBD</code>.</td></tr>
+<tr><td>Release evidence location</td><td>The final storage location for runbook and supporting release evidence.</td><td>Location is <code>TBD</code>; immutable snapshot policy remains open.</td></tr>
+</tbody></table>
+<h3 id="clm-029-trade-offs">CLM-029 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision Area</td><td>Trade-off</td><td>Recommendation</td></tr>
+<tr><td>CI breadth vs runtime ownership</td><td>A broad CI job can catch release blockers, but Section 8/9 validation implementation belongs to sibling test deliverables.</td><td>Keep this deliverable focused on orchestration, artifact stability, and release checklist coverage.</td></tr>
+<tr><td>Artifact path stability vs historical retention</td><td><code>latest/summary.json</code> gives a stable pointer, but release evidence may need immutable history.</td><td>Use the stable path for CI acceptance; add immutable release evidence only if a governing source or human ruling specifies it.</td></tr>
+<tr><td>Manual checklist vs automated packaging probes</td><td>Manual checks preserve release judgment, while automated probes reduce missed packaging issues.</td><td>Automate source-defined checks where practical, but keep a manual release verification checklist as required.</td></tr>
+<tr><td>PRD mismatch handling</td><td>Blocking on the mismatch would preserve strict source fidelity, but the dispatch brief gives an explicit ruling for this run.</td><td>Proceed with a recorded source warning and avoid treating the mismatch as fixed.</td></tr>
+</tbody></table>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Example local verification command block:</p>
+<p>```bash</p>
+<p>cd frontend</p>
+<p>npm run test</p>
+<p>npm run typecheck</p>
+<p>npm run harness:validate:premerge</p>
+<p>npm run instruction-root:integrity</p>
+<p>npm run desktop:dist</p>
+<p>```</p>
+<p>Example CI acceptance checklist:</p>
+<table><tbody>
+<tr><td>Step</td><td>Expected Evidence</td></tr>
+<tr><td>Checkout and Node setup</td><td>CI log shows repository checkout and Node.js 20 setup.</td></tr>
+<tr><td>Dependency install</td><td>CI log shows <code>npm ci</code> completed.</td></tr>
+<tr><td>Instruction-root assets</td><td>CI log or validation output confirms required assets are present.</td></tr>
+<tr><td>Premerge validation</td><td>CI log shows <code>npm run harness:validate:premerge</code> completed.</td></tr>
+<tr><td>Stable summary artifact</td><td>CI verifies <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>.</td></tr>
+<tr><td>Artifact upload</td><td>CI uploads the summary artifact.</td></tr>
+</tbody></table>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CONFLICT-09-05-001</td><td>PRD hash status: MATCH exists, but dispatcher instructs this run to treat it as source status.</td><td><code>_REFERENCES.md</code> REF-006 hash status: MATCH</td><td>Dispatch brief PRD MATCH ruling</td><td>All PRD-grounded sections</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-032-open-items">CLM-032 — Open Items</h3>
+<h5 id="open-items">Open Items</h5>
+<ul>
+<li>- TBD: Exact CI workflow path.</li>
+<li>- TBD: Stable upload artifact name and retention period.</li>
+<li>- TBD: Release verification runbook filename and final evidence storage location.</li>
+<li>- TBD: Human assignment for <code>ResponsibleParty</code>.</li>
+<li>- TBD: Whether immutable release evidence snapshots are required in addition to the stable <code>latest/summary.json</code> pointer.</li>
+</ul>
+<h3 id="clm-033-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-033 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-146/147 record repo-root <code>.github/workflows/harness-premerge.yml</code> as the executed workflow, indirect premerge via <code>validate:release-quality</code>, added typecheck/Vitest/instruction-root gates, and <code>harness-validation-summaries</code>; the project-local workflow is non-executing.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-035 SOW-036 SOW-072 OBJ-008</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

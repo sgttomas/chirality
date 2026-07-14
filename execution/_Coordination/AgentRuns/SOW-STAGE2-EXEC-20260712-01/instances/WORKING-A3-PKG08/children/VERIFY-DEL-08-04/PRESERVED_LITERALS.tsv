@@ -1,0 +1,4 @@
+literal_class	literal	source_surfaces	derived_surfaces	disposition
+PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	workspace/Datasheet.md:63;workspace/_REFERENCES.md:13;workspace/_negative_partial/Datasheet.md:63;workspace/_negative_unauthorized_dual/Datasheet.md:63	workspace/ScopeOfWork.md:110;workspace/_negative_partial/ScopeOfWork.md:110;workspace/_negative_unauthorized_dual/ScopeOfWork.md:110;workspace/evidence/ScopeOfWork_RUN1.html:83;workspace/evidence/ScopeOfWork_RUN2.html:83	PRESERVED_BYTE_EXACT
+PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution	workspace/_DEPENDENCIES.md:41	none	INVENTORIED_SOURCE_CONTROL_LITERAL
+PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md	workspace/_DEPENDENCIES.md:41	none	INVENTORIED_SOURCE_CONTROL_LITERAL

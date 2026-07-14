@@ -1,0 +1,38 @@
+{
+  "schema": "chirality-sow-negative-fixtures/v1",
+  "cases": [
+    {
+      "id": "validate_unauthorized_dual",
+      "operation": "validate",
+      "exit_code": 1,
+      "result": "AMBIGUOUS",
+      "rejected_output_absent": null,
+      "verdict": "PASS"
+    },
+    {
+      "id": "checklist_unauthorized_dual",
+      "operation": "derive_review_checklist",
+      "exit_code": 1,
+      "result": "dual production formats require exact isolated migration authority",
+      "rejected_output_absent": true,
+      "verdict": "PASS"
+    },
+    {
+      "id": "checklist_invalid",
+      "operation": "derive_review_checklist",
+      "exit_code": 1,
+      "result": "INVALID; missing production contract",
+      "rejected_output_absent": true,
+      "verdict": "PASS"
+    },
+    {
+      "id": "render_unauthorized_dual",
+      "operation": "render",
+      "exit_code": 1,
+      "result": "dual production formats require exact isolated migration authority",
+      "rejected_output_absent": true,
+      "verdict": "PASS"
+    }
+  ],
+  "overall": "PASS"
+}

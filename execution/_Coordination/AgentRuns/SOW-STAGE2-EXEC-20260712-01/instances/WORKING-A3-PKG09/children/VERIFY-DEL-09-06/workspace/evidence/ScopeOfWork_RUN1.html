@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="940a5b70a194c390909739f2a85ecdbe7856ee27483cfc24738146a2eb555e48">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-06</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>940a5b70a194c390909739f2a85ecdbe7856ee27483cfc24738146a2eb555e48</code>.</p>
+<h1 id="scope-of-work-del-09-06">Scope of Work — DEL-09-06</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-09-06</code> in service of project scope [SOW-019, SOW-020, SOW-022, SOW-023] and package objectives [OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A security-control evidence set covering renderer network allowlisting, Anthropic provider endpoint policy, API key storage, resolution and redaction, attachment validation and budgets, partial and total attachment failure behavior, retry preservation, and repeatable security-significant validation.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-06-network-key-attachment-and-renderer-security-checks">CLM-001 — Datasheet: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h3>
+<h4 id="datasheet-del-09-06-network-key-attachment-and-renderer-security-checks">Datasheet: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-09-06</td></tr>
+<tr><td>DeliverableName</td><td>Network, Key, Attachment, and Renderer Security Checks</td></tr>
+<tr><td>PackageID</td><td>PKG-09</td></tr>
+<tr><td>PackageName</td><td>Validation, Packaging, Security, and Release</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary scope</td><td>Verify renderer allowlist, API key redaction/storage, provider endpoint policy, and attachment validation/retry behavior.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-09-06</td></tr>
+<tr><td>Covered SOW items</td><td>SOW-019, SOW-020, SOW-022, SOW-023</td><td><code>_CONTEXT.md</code> Traceability; decomposition DEL-09-06</td></tr>
+<tr><td>Supported objective</td><td>OBJ-008</td><td><code>_CONTEXT.md</code> Traceability; decomposition objective mapping</td></tr>
+<tr><td>Anticipated artifacts</td><td>Security tests; network guard tests; attachment resolver validation; key storage checks</td><td><code>_CONTEXT.md</code> Anticipated Artifacts</td></tr>
+<tr><td>API key resolution order</td><td>UI safeStorage key first, then <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</td><td><code>docs/PRD.md</code> Section 8.5, FR-030</td></tr>
+<tr><td>API key storage path</td><td><code>app.getPath(&#x27;userData&#x27;)/credentials/api-key.enc</code></td><td><code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>Allowed Anthropic base URL</td><td><code>https://api.anthropic.com</code> with no credentials and port empty or 443.</td><td><code>docs/PRD.md</code> Section 8.5, FR-032</td></tr>
+<tr><td>Renderer network allowlist</td><td>Loopback plus Anthropic API path.</td><td><code>docs/SPEC.md</code> Section 16.3; <code>docs/CONTRACT.md</code> K-NET-1</td></tr>
+<tr><td>Supported attachment extensions</td><td><code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, <code>.gif</code>, <code>.webp</code>, <code>.pdf</code>, <code>.txt</code>, <code>.md</code>, <code>.csv</code></td><td><code>docs/SPEC.md</code> Section 16.1</td></tr>
+<tr><td>Attachment size limits</td><td>10 MB per file; 18 MB total raw bytes per turn.</td><td><code>docs/SPEC.md</code> Section 16.1; <code>docs/PRD.md</code> Section 8.6, FR-038</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Source warning</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>Assignment instruction; <code>_REFERENCES.md</code> REF-006 — reconciled under D-APP-38</td></tr>
+<tr><td>Pass 3 source-state disposition</td><td>B-001 preserves REF-006 as warning-only source tension for all PRD-grounded security checks until a later human/source ruling records otherwise.</td><td><code>_REFERENCES.md</code> REF-006; <code>Guidance.md</code> Conflict Table</td></tr>
+<tr><td>Security posture</td><td>API keys are non-project convenience state and must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts.</td><td><code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/PRD.md</code> NFR-002</td></tr>
+<tr><td>Attachment trust boundary</td><td>Client attachment metadata is non-authoritative; server revalidates attachment properties.</td><td><code>docs/PRD.md</code> Section 8.6, FR-037; <code>docs/CONTRACT.md</code> K-ATTACH-1</td></tr>
+<tr><td>Failure handling</td><td>Partial attachment failure is non-fatal when executable content remains; all attachments failing with empty text returns <code>ATTACHMENT_FAILURE</code>.</td><td><code>docs/SPEC.md</code> Section 16.1; <code>docs/PRD.md</code> Section 8.6, FR-040</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected Check Coverage</td><td>Source</td></tr>
+<tr><td>Renderer network guard</td><td>Tests showing non-loopback/non-Anthropic renderer requests are cancelled and policy metadata excludes secrets.</td><td><code>docs/PRD.md</code> FR-033; <code>docs/PRD.md</code> NFR-003</td></tr>
+<tr><td>Provider endpoint policy</td><td>Tests showing accepted and rejected Anthropic base URL variants.</td><td><code>docs/PRD.md</code> FR-032</td></tr>
+<tr><td>API key storage and handoff</td><td>Tests showing safeStorage precedence, environment fallback, no project writes, and redacted logs/events.</td><td><code>docs/PRD.md</code> FR-030, FR-031; <code>docs/SPEC.md</code> Section 16.2</td></tr>
+<tr><td>Attachment resolver</td><td>Tests for path validation, regular-file check, symlink rejection, extension allowlist, readability, and byte budgets.</td><td><code>docs/SPEC.md</code> Section 16.1</td></tr>
+<tr><td>Retry behavior</td><td>Tests showing UI preserves draft/attachments after failed send where source scope requires retry preservation.</td><td><code>docs/PRD.md</code> FR-040</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Path</td><td>Status</td><td>Use</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>MATCH</td><td>Invariants K-NET-1, K-KEY-1, K-ATTACH-1, K-VALIDATE-1</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>MATCH</td><td>Section 16 attachment, API key, and network policy mechanics</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>MATCH</td><td>Implementation sequencing context for key handoff and validation</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>MATCH status</td><td>Product requirements FR-030 through FR-040 and NFR security/privacy requirements — reconciled under D-APP-38</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>accessible</td><td>DEL-09-06 scope and SOW/objective mapping</td></tr>
+</tbody></table>
+<h3 id="clm-007-pass-3-disposition-notes">CLM-007 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>B-001</td><td>Incorporated as an explicit warning-only source-state condition; no PRD-derived value was promoted beyond the existing REF-006 warning.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-09-06-network-key-attachment-and-renderer-security-checks">CLM-008 — Specification: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h3>
+<h4 id="specification-del-09-06-network-key-attachment-and-renderer-security-checks">Specification: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable defines validation checks for the security-sensitive surfaces named by DEL-09-06: renderer outbound network allowlisting, API key storage/redaction, Anthropic provider endpoint policy, and attachment validation/retry behavior.</p>
+<p>In scope:</p>
+<ul>
+<li>- Security tests and network guard tests for renderer and provider policy.</li>
+<li>- Attachment resolver validation for server-side file checks and failure behavior.</li>
+<li>- Key storage and redaction checks proving key material remains non-project convenience state.</li>
+<li>- Evidence sufficient to support PKG-09 security validation without a release-readiness claim.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Feature implementation except test fixtures and packaging glue, per PKG-09 package exclusions.</li>
+<li>- Broader network enablement, remote MCP, plugins, or non-Anthropic network tools without governed future scope.</li>
+<li>- Assignment of <code>ResponsibleParty</code>; it remains <code>TBD</code>.</li>
+</ul>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Verification</td></tr>
+<tr><td>DEL-09-06-REQ-001</td><td>API key resolution checks shall prove UI safeStorage precedence, then <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</td><td>Automated key storage/resolution tests.</td></tr>
+<tr><td>DEL-09-06-REQ-002</td><td>Key material shall not be written to working root, project docs, logs, runtime event payloads, git-tracked execution files, or tool artifacts.</td><td>Redaction/storage tests and fixture scan.</td></tr>
+<tr><td>DEL-09-06-REQ-003</td><td>Key material shall be stored with Electron <code>safeStorage</code> at <code>app.getPath(&#x27;userData&#x27;)/credentials/api-key.enc</code> when stored through UI.</td><td>Key storage tests or integration fixture.</td></tr>
+<tr><td>DEL-09-06-REQ-004</td><td>Anthropic base URL validation shall accept only <code>https://api.anthropic.com</code> with no credentials and port empty or 443.</td><td>Provider endpoint policy tests.</td></tr>
+<tr><td>DEL-09-06-REQ-005</td><td>Electron renderer outbound traffic shall be blocked except loopback and Anthropic API.</td><td>Renderer network guard tests using <code>webRequest.onBeforeRequest</code> behavior or equivalent test seam.</td></tr>
+<tr><td>DEL-09-06-REQ-006</td><td>Renderer network policy logs shall include policy metadata without secrets.</td><td>Network guard log redaction assertions.</td></tr>
+<tr><td>DEL-09-06-REQ-007</td><td>Node/SDK provider calls shall not silently broaden the product network policy.</td><td>Provider policy tests and SDK handoff assertions.</td></tr>
+<tr><td>DEL-09-06-REQ-008</td><td>Attachment validation shall treat client metadata as non-authoritative and revalidate path, extension, file type, readability, symlink status, regular-file status, and size.</td><td>Attachment resolver validation tests.</td></tr>
+<tr><td>DEL-09-06-REQ-009</td><td>Attachment resolver checks shall reject symlinks, directories, special files, unsupported extensions, unreadable files, files over 10 MB, and turns over 18 MB raw bytes.</td><td>Resolver negative-case fixtures.</td></tr>
+<tr><td>DEL-09-06-REQ-010</td><td>Supported attachment extensions shall include <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, <code>.gif</code>, <code>.webp</code>, <code>.pdf</code>, <code>.txt</code>, <code>.md</code>, and <code>.csv</code>.</td><td>Resolver allowlist tests.</td></tr>
+<tr><td>DEL-09-06-REQ-011</td><td>Partial attachment failure shall be non-fatal when executable content remains.</td><td>Route or resolver integration tests.</td></tr>
+<tr><td>DEL-09-06-REQ-012</td><td>Total attachment failure with empty text shall reject the turn with <code>ATTACHMENT_FAILURE</code>.</td><td>Route or resolver integration tests.</td></tr>
+<tr><td>DEL-09-06-REQ-013</td><td>UI-facing retry behavior shall preserve draft and attachments on failed send where attachment failure recovery is exercised.</td><td>UI or integration retry-preservation tests.</td></tr>
+<tr><td>DEL-09-06-REQ-014</td><td>Required local checks must remain explicit and repeatable before security-significant evidence acceptance.</td><td>CI/premerge validation evidence.</td></tr>
+<tr><td>DEL-09-06-REQ-015</td><td>Security-significant evidence shall include the source-named validation command family where applicable: <code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, <code>instruction-root:integrity</code>, and <code>desktop:dist</code>; exact package-script spelling and output artifact paths remain <code>TBD</code> until implementation locations are selected.</td><td>Command output or CI artifact references tied to the selected implementation targets.</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Source</td><td>Applicability</td><td>Location</td></tr>
+<tr><td>Product PRD security requirements</td><td>Governs FR-030 through FR-040 and NFR-002 through NFR-004.</td><td><code>docs/PRD.md</code> Sections 8.5, 8.6, 11.1; hash status: MATCH status applies — reconciled under D-APP-38</td></tr>
+<tr><td>Runtime/API specification</td><td>Governs attachment, key, and network mechanics.</td><td><code>docs/SPEC.md</code> Section 16</td></tr>
+<tr><td>Contract invariants</td><td>Governs security invariants for network, keys, attachments, and validation.</td><td><code>docs/CONTRACT.md</code> K-NET-1, K-KEY-1, K-ATTACH-1, K-VALIDATE-1</td></tr>
+<tr><td>SOFTWARE_DECOMP v3.2</td><td>Defines deliverable scope and SOW/objective mapping.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-09-06</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td><td>Evidence Artifact</td></tr>
+<tr><td>REQ-001, REQ-002, REQ-003</td><td>Unit/integration tests for key precedence, safeStorage use, environment fallback, and redaction.</td><td>Key storage checks; redaction fixtures</td></tr>
+<tr><td>REQ-004, REQ-007</td><td>Unit/integration tests for base URL allowlist and SDK/provider endpoint handoff.</td><td>Provider endpoint policy tests</td></tr>
+<tr><td>REQ-005, REQ-006</td><td>Electron network guard tests for allowed and denied URLs plus secret-free policy logs.</td><td>Network guard tests</td></tr>
+<tr><td>REQ-008, REQ-009, REQ-010</td><td>Attachment resolver tests covering positive and negative file cases.</td><td>Attachment resolver validation</td></tr>
+<tr><td>REQ-011, REQ-012, REQ-013</td><td>Route/UI integration tests for partial failure, total failure, and retry preservation.</td><td>Attachment retry/failure tests</td></tr>
+<tr><td>REQ-014, REQ-015</td><td>Security-validation command output, including the source-named command family where applicable.</td><td>Premerge validation evidence; exact test file paths, package-script aliases, and artifact paths <code>TBD</code></td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required output evidence for this deliverable:</p>
+<ul>
+<li>- Security tests.</li>
+<li>- Network guard tests.</li>
+<li>- Attachment resolver validation.</li>
+<li>- Key storage checks.</li>
+<li>- C-001: exact test file paths and command names for key, provider, renderer, attachment, and retry checks remain <code>TBD</code> until implementation locations are confirmed.</li>
+<li>- D-001: current-run security-validation output remains <code>TBD</code>; the source-named command family is <code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, <code>instruction-root:integrity</code>, and <code>desktop:dist</code> where applicable.</li>
+</ul>
+<h3 id="clm-014-pass-3-disposition-notes">CLM-014 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>C-001</td><td>Converted to explicit <code>TBD</code> slots for exact test file paths and command names rather than inventing implementation locations.</td></tr>
+<tr><td>D-001</td><td>Incorporated the source-named validation command family while retaining current-run output and exact artifact paths as <code>TBD</code>.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>AC-001</strong> — Evidence verifies UI safeStorage and environment key precedence without secret leakage, only the accepted Anthropic endpoint and product network scope, secret-free renderer policy logs, server-side attachment type, path, symlink, readability and byte-budget enforcement, partial-failure continuation, ATTACHMENT_FAILURE on total failure with empty text, retry-state preservation where applicable, and repeatable validation; unselected implementation paths and unavailable outputs remain explicit TBD blockers.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-09-06-network-key-attachment-and-renderer-security-checks">CLM-015 — Procedure: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h3>
+<h4 id="procedure-del-09-06-network-key-attachment-and-renderer-security-checks">Procedure: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h4>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Produce and verify the DEL-09-06 security-control evidence set for renderer network allowlisting, API key storage/redaction, provider endpoint policy, and attachment validation/retry behavior.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Source</td></tr>
+<tr><td>Accessible source corpus for DEL-09-06</td><td>Available via <code>_REFERENCES.md</code>; PRD hash mismatch treated as source status</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Declared upstream dependencies</td><td>TBD; <code>_DEPENDENCIES.md</code> has no accepted dependency edges yet</td></tr>
+<tr><td>Test framework and exact command names</td><td>TBD; source corpus requires repeatable local checks but this deliverable folder does not identify exact commands</td></tr>
+<tr><td>Implementation paths for renderer guard, provider policy, key storage, and attachment resolver</td><td>TBD</td></tr>
+<tr><td>Implementation target slots</td><td>F-001 keeps renderer network guard, provider base URL validation, API key storage/resolution, redaction helper/logger, attachment resolver, and route/UI failure handling paths as explicit <code>TBD</code> slots until selected by implementation work.</td></tr>
+<tr><td>Security-validation command evidence</td><td>D-001 requires current-run command output or CI artifact references for the selected validation command family; exact output paths remain <code>TBD</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm scope and source state.</p>
+<ul>
+<li>- Verify DEL-09-06 covers SOW-019, SOW-020, SOW-022, and SOW-023.</li>
+<li>- Record the PRD hash mismatch as a warning, not a blocker, for this run.</li>
+</ul>
+<p>2. Identify implementation targets.</p>
+<ul>
+<li>- Locate the renderer network guard, provider base URL validation, API key storage/resolution, redaction helper/logger, attachment resolver, and route/UI failure handling code.</li>
+<li>- If a target cannot be located, mark the related test path <code>TBD</code> rather than inventing a path.</li>
+<li>- Preserve the following implementation target path slots until confirmed: renderer network guard path <code>TBD</code>; provider base URL policy path <code>TBD</code>; API key storage/resolution path <code>TBD</code>; redaction helper/logger path <code>TBD</code>; attachment resolver path <code>TBD</code>; route/UI failure handling path <code>TBD</code>.</li>
+</ul>
+<p>3. Build API key security checks.</p>
+<ul>
+<li>- Test UI safeStorage precedence over environment fallback.</li>
+<li>- Test fallback to <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</li>
+<li>- Test no key material is written to working root, project docs, logs, runtime event payloads, git-tracked execution files, or tool artifacts.</li>
+<li>- Test key status reports only non-secret source values: <code>ui</code>, <code>env</code>, or <code>none</code>.</li>
+</ul>
+<p>4. Build provider endpoint checks.</p>
+<ul>
+<li>- Accept only <code>https://api.anthropic.com</code> with no credentials and port empty or 443.</li>
+<li>- Reject credentials, alternate hosts, alternate schemes, and non-empty non-443 ports.</li>
+<li>- Verify provider/SDK calls do not broaden network policy silently.</li>
+</ul>
+<p>5. Build renderer network guard checks.</p>
+<ul>
+<li>- Test loopback traffic is allowed where product policy permits it.</li>
+<li>- Test Anthropic API traffic is allowed where product policy permits it.</li>
+<li>- Test non-loopback/non-Anthropic renderer requests are cancelled.</li>
+<li>- Assert policy logs contain no key material or secrets.</li>
+</ul>
+<p>6. Build attachment resolver checks.</p>
+<ul>
+<li>- Test supported extensions: <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, <code>.gif</code>, <code>.webp</code>, <code>.pdf</code>, <code>.txt</code>, <code>.md</code>, and <code>.csv</code>.</li>
+<li>- Test path validation, regular-file status, symlink rejection, extension allowlist, file-type validation, readability, 10 MB per-file limit, and 18 MB total raw-byte limit.</li>
+<li>- Test directories, special files, unsupported extensions, unreadable files, symlinks, and over-budget files fail before provider execution.</li>
+</ul>
+<p>7. Build attachment failure/retry checks.</p>
+<ul>
+<li>- Test partial attachment failure is non-fatal when executable content remains.</li>
+<li>- Test all attachments failing with empty text returns <code>ATTACHMENT_FAILURE</code>.</li>
+<li>- Test failed send preserves draft and attachments for retry where the UI participates.</li>
+</ul>
+<p>8. Run repeatable validation.</p>
+<ul>
+<li>- Execute the relevant unit/API/integration tests.</li>
+<li>- Execute security-significant premerge checks where applicable, including <code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, <code>instruction-root:integrity</code>, and <code>desktop:dist</code> when those source-named checks apply to the selected implementation surface.</li>
+<li>- Record command output paths or summaries in the deliverable evidence location selected by the implementation task.</li>
+</ul>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Criteria</td><td>Source</td></tr>
+<tr><td>API key precedence</td><td>UI safeStorage, then <code>ANTHROPIC_API_KEY</code>, then <code>CHIRALITY_ANTHROPIC_API_KEY</code>.</td><td><code>docs/PRD.md</code> FR-030</td></tr>
+<tr><td>API key secrecy</td><td>Key material absent from project files, logs, runtime events, and tool artifacts.</td><td><code>docs/PRD.md</code> FR-031; <code>docs/CONTRACT.md</code> K-KEY-1</td></tr>
+<tr><td>Base URL allowlist</td><td>Only accepted Anthropic URL form passes.</td><td><code>docs/PRD.md</code> FR-032</td></tr>
+<tr><td>Renderer network allowlist</td><td>Non-loopback/non-Anthropic renderer requests are canceled.</td><td><code>docs/PRD.md</code> FR-033; <code>docs/SPEC.md</code> Section 16.3</td></tr>
+<tr><td>Attachment validation</td><td>Server revalidates client metadata and rejects unsupported or unsafe files.</td><td><code>docs/PRD.md</code> FR-037; <code>docs/SPEC.md</code> Section 16.1</td></tr>
+<tr><td>Attachment budgets</td><td>10 MB per file and 18 MB per turn raw-byte limits enforced.</td><td><code>docs/SPEC.md</code> Section 16.1</td></tr>
+<tr><td>Attachment failure handling</td><td>Partial failures can proceed; total failure with empty text returns <code>ATTACHMENT_FAILURE</code>; retry state is preserved where UI is involved.</td><td><code>docs/PRD.md</code> FR-040; <code>docs/SPEC.md</code> Section 16.1</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Security tests.</li>
+<li>- Network guard tests.</li>
+<li>- Attachment resolver validation.</li>
+<li>- Key storage checks.</li>
+<li>- Provider endpoint policy tests.</li>
+<li>- Redaction fixtures or scan output.</li>
+<li>- Validation command output or CI artifact reference.</li>
+<li>- X-001: exact artifact paths remain <code>TBD</code> for security tests, network guard tests, attachment resolver validation, key storage checks, provider policy tests, redaction fixtures, and validation command output until implementation locations and test commands are selected.</li>
+</ul>
+<h3 id="clm-021-pass-3-disposition-notes">CLM-021 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>F-001</td><td>Converted to explicit implementation target path slots, all retained as <code>TBD</code> pending implementation-owner selection.</td></tr>
+<tr><td>X-001</td><td>Converted to explicit evidence artifact path slots, all retained as <code>TBD</code> pending validation run and artifact-location selection.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Run or inspect key precedence and redaction tests, provider endpoint and renderer network-guard tests, attachment allowlist, unsafe-file and budget fixtures, partial and total failure and retry tests, secret scans, and the applicable source-named validation command evidence, retaining unconfirmed paths or artifacts as TBD.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-09-06-network-key-attachment-and-renderer-security-checks">CLM-022 — Guidance: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h3>
+<h4 id="guidance-del-09-06-network-key-attachment-and-renderer-security-checks">Guidance: DEL-09-06 Network, Key, Attachment, and Renderer Security Checks</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to keep validation, packaging, network, key, and instruction-root checks explicit and repeatable for PKG-09 security evidence. Its security checks should demonstrate that key material remains outside project truth, renderer/network access is bounded, provider endpoint selection is constrained, and attachment handling does not rely on client-supplied metadata.</p>
+<p>Sources: <code>_CONTEXT.md</code> Traceability; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> OBJ-008 and DEL-09-06.</p>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Runtime code is the security boundary. Prompts and documentation can reinforce policy, but tests should target runtime behavior such as path containment, permission policy, hooks, redaction, and network controls.</p>
+<p>Source: <code>docs/PRD.md</code> Section 4, principles 18-19.</p>
+<p>2. API keys are convenience state, not project truth. Treat any write of key material to working root, runtime events, logs, git-tracked execution files, SDK transcripts if avoidable, or tool artifacts as a security-evidence blocker.</p>
+<p>Source: <code>docs/CONTRACT.md</code> K-KEY-1; <code>docs/PRD.md</code> FR-031 and NFR-002.</p>
+<p>3. Renderer and provider network checks should be allowlist-oriented. The current shipped network posture is loopback plus Anthropic API path, with broader network access reserved for governed future scope.</p>
+<p>Source: <code>docs/CONTRACT.md</code> K-NET-1; <code>docs/SPEC.md</code> Section 16.3.</p>
+<p>4. Anthropic provider access and renderer outbound allowlisting are related but separately enforced surfaces. Provider execution needs the approved Anthropic endpoint, while renderer traffic still needs Electron-level cancellation of non-loopback and non-Anthropic requests; evidence should not treat one control as proof of the other.</p>
+<p>Source: <code>docs/PRD.md</code> FR-032 and FR-033; <code>docs/SPEC.md</code> Section 16.3; <code>docs/CONTRACT.md</code> K-NET-1.</p>
+<p>5. Attachment metadata from the browser is advisory only. Server-side validation must be the authority for path, type, symlink status, readability, regular-file status, and byte budgets.</p>
+<p>Source: <code>docs/PRD.md</code> FR-037; <code>docs/CONTRACT.md</code> K-ATTACH-1.</p>
+<p>6. Failure behavior is part of the security surface. Tests should verify that partial attachment failures do not discard executable content and that total attachment failure without text returns the expected typed failure while preserving retry state where the UI is involved.</p>
+<p>Source: <code>docs/PRD.md</code> FR-040; <code>docs/SPEC.md</code> Section 16.1.</p>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Keep endpoint tests strict about credentials and ports. <code>https://api.anthropic.com</code> with credentials or a non-empty non-443 port is not equivalent to the accepted base URL.</li>
+<li>- Prefer negative tests for sensitive paths: denied network URL, unsupported extension, symlink, directory, over-budget file, unreadable file, and redaction of realistic key-shaped strings.</li>
+<li>- Avoid treating <code>allowedTools</code> or SDK permissions alone as sufficient. Chirality-owned overlays remain required for professional safety.</li>
+<li>- Exact implementation file paths are <code>TBD</code> until implementation locations are confirmed by the relevant feature deliverables.</li>
+</ul>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Unit tests vs integration tests</td><td>Unit tests isolate policy logic; integration tests prove route/Electron behavior.</td><td>Use both where the surface crosses Electron, SDK provider, or route boundaries.</td></tr>
+<tr><td>Redaction assertions</td><td>Broad fixture scanning may produce false positives; narrow checks may miss variants.</td><td>Include representative key variants and verify both positive redaction and non-secret metadata retention.</td></tr>
+<tr><td>Attachment retries</td><td>UI retry behavior may sit outside the resolver.</td><td>Keep resolver validation separate from route/UI retry preservation so failures are easier to localize.</td></tr>
+<tr><td>Network policy</td><td>Provider execution requires Anthropic access, while renderer traffic must remain constrained.</td><td>Test renderer and Node/SDK provider policy as separate surfaces with a shared policy vocabulary.</td></tr>
+</tbody></table>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Example</td><td>Expected Result</td><td>Source</td></tr>
+<tr><td>Base URL <code>https://api.anthropic.com</code></td><td>Accepted when credentials are absent and port is empty or 443.</td><td><code>docs/PRD.md</code> FR-032</td></tr>
+<tr><td>Base URL with embedded credentials</td><td>Rejected.</td><td><code>docs/PRD.md</code> FR-032</td></tr>
+<tr><td>Renderer request to non-loopback, non-Anthropic URL</td><td>Cancelled and logged without secrets.</td><td><code>docs/PRD.md</code> FR-033</td></tr>
+<tr><td>Attachment path points to symlink</td><td>Rejected before provider execution.</td><td><code>docs/SPEC.md</code> Section 16.1; <code>docs/PRD.md</code> NFR-004</td></tr>
+<tr><td>One attachment fails, text or another valid attachment remains</td><td>Turn may proceed with warning.</td><td><code>docs/SPEC.md</code> Section 16.1</td></tr>
+<tr><td>All attachments fail and text is empty</td><td>Request fails with <code>ATTACHMENT_FAILURE</code>.</td><td><code>docs/SPEC.md</code> Section 16.1</td></tr>
+</tbody></table>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>TBD</td><td>No source-content conflict identified during P1/P2. PRD hash status: MATCH remains a source status.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Assignment instruction</td><td>All PRD-grounded sections</td><td>Treat PRD content as usable with warning for this run.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-029-pass-3-disposition-notes">CLM-029 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>E-001</td><td>Incorporated as a rationale principle distinguishing Anthropic provider endpoint access from renderer outbound allowlisting.</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-019 SOW-020 SOW-022 SOW-023 OBJ-008</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

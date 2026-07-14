@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 197,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6b79194c67b73bbf85435ad5ceae221a68304c41f3294002825d4ad8917993a5"
+      },
+      "text": "Each named behavior group has at least one implemented test or an explicit deferral or blocker, final test and fixture paths and validation command evidence are recorded or explicitly remain TBD with a blocker, and npm run test passes when dependencies and required instruction-root assets are present.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-03-VER-001",
+          "source_line": 337,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the test inventory and closure evidence against all eight named behavior groups, inspect recorded test paths, fixture paths, deferrals or blockers, and stable command evidence, and run npm run test when dependencies and required instruction-root assets are present."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "6b79194c67b73bbf85435ad5ceae221a68304c41f3294002825d4ad8917993a5"
+  },
+  "tool_version": "1"
+}

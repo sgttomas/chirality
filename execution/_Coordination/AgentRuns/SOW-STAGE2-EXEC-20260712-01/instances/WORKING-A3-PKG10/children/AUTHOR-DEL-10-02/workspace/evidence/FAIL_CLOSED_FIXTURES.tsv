@@ -1,0 +1,5 @@
+fixture	input_state	authority_argument	validation_rc	validation_state	checklist_rc	requested_checklist_created	verdict
+negative_missing	partial legacy kit plus ScopeOfWork.md	exact	1	INVALID	1	false	PASS_FAIL_CLOSED
+negative_unruled	complete dual format	absent	1	AMBIGUOUS	1	false	PASS_FAIL_CLOSED
+negative_padded_initial_malformed	complete dual format with one fixture source byte changed	exact_unpadded	0	MIGRATION_DUAL	0	true	MALFORMED_FIXTURE_NOT_A_NEGATIVE_PASS
+negative_padded_corrected	complete dual format	leading_space_padded	1	AMBIGUOUS	1	false	PASS_FAIL_CLOSED

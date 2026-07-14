@@ -1,0 +1,3 @@
+fixture	expected_format	observed_format	validate_exit	checklist_exit	render_exit	forbidden_output_created	verdict
+partial_legacy	INVALID	INVALID	1	1	1	false	PASS_FAIL_CLOSED
+unauthorized_dual	AMBIGUOUS	AMBIGUOUS	1	1	1	false	PASS_FAIL_CLOSED

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="13378ea31a55e2d425bd054391627c34094c2a0cab7556a801a683e400b70f3f">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-10-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>13378ea31a55e2d425bd054391627c34094c2a0cab7556a801a683e400b70f3f</code>.</p>
+<h1 id="scope-of-work-del-10-04">Scope of Work — DEL-10-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-10-04</code> in service of project scope [SOW-070] and package objectives [OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — The DEL-10-04 source-preserving production contract for the future OpenPipeStress fixture profile, validation tests, and adapter assumptions note, without hardcoding solver assumptions into Chirality core.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-10-04-domain-profile-validation-and-openpipestress-fixture">CLM-001 — Datasheet: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h3>
+<h4 id="datasheet-del-10-04-domain-profile-validation-and-openpipestress-fixture">Datasheet: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-10-04</td></tr>
+<tr><td>DeliverableName</td><td>Domain Profile Validation and OpenPipeStress Fixture</td></tr>
+<tr><td>PackageID</td><td>PKG-10</td></tr>
+<tr><td>PackageName</td><td>Domain Engine Future Boundary</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>TEST_SUITE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>ScopeItem</td><td>SOW-070</td></tr>
+<tr><td>Objective</td><td>OBJ-010</td></tr>
+<tr><td>Source posture</td><td>Future-boundary/gated scope; not current-release domain operation execution</td></tr>
+<tr><td>Validation evidence owner</td><td>TBD - no human owner is assigned for interpreting future fixture pass/fail evidence</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary subject</td><td>Validation of generic domain profiles and OpenPipeStress as a future fixture profile</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-10 table</td></tr>
+<tr><td>Domain profile contract fields</td><td><code>profileId</code>, <code>engineName</code>, optional <code>engineVersion</code>, <code>protectedPaths</code>, <code>proposalPaths</code>, <code>artifactTypes</code>, <code>operations</code>, <code>manifestRules</code>, <code>boundaryNotice</code></td><td><code>docs/TYPES.md</code> Section 11.1; <code>docs/PRD.md</code> Section 8.17 FR-108</td></tr>
+<tr><td>Operation proposal fields relevant to validation fixtures</td><td>Proposal identity, profile identity, operation name, inputs, intended changes, deterministic checks, expected outputs, risks, required human gate, status</td><td><code>docs/TYPES.md</code> Section 11.2; <code>docs/PRD.md</code> Section 8.17 FR-112</td></tr>
+<tr><td>OpenPipeStress role</td><td>Potential first domain profile fixture, not Chirality core runtime behavior</td><td><code>docs/TYPES.md</code> Section 11.3; <code>docs/PRD.md</code> Section 8.17 FR-114</td></tr>
+<tr><td>Validation requirement</td><td>Domain profile validation is deterministic; invalid or incomplete profiles fail before runtime exposure</td><td><code>docs/PRD.md</code> Section 8.17 FR-109</td></tr>
+<tr><td>Mutation boundary</td><td>Protected domain-engine paths are not directly agent-writable</td><td><code>docs/PRD.md</code> Section 8.17 FR-110; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-2</td></tr>
+<tr><td>Professional boundary</td><td>Domain-engine output is not professional approval, code compliance, external validation, or Chirality-owned solver truth</td><td><code>docs/PRD.md</code> Section 8.17 FR-115; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Runtime sequencing</td><td>Domain-engine profiles and operation proposals are future amendment work after core harness stability</td><td><code>docs/PLAN.md</code> R7; <code>docs/PRD.md</code> R7</td></tr>
+<tr><td>Staged/live boundary</td><td>Source types/guards, the closed registry, ruled read tools, and pec-scoped loopback propose/refresh/validate tools are live under D-APP-49 through D-APP-52; endpoints, apply, and protected-path hooks/writes remain future/gated</td><td><code>docs/SPEC.md</code> Section 18; D-APP-49 through D-APP-52</td></tr>
+<tr><td>Protected path enforcement</td><td>Prompt text is not a sufficient safety boundary for filesystem writes or domain operations</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-2</td></tr>
+<tr><td>Fixture specificity</td><td>OpenPipeStress-specific assumptions must live in profile and adapter layers, not in core harness runtime</td><td><code>docs/PRD.md</code> Section 8.17 FR-114</td></tr>
+<tr><td>Dependency state</td><td>Declared upstream and downstream dependencies are TBD until dependency extraction and project graph validation occur</td><td><code>_DEPENDENCIES.md</code> Declared Upstream/Downstream</td></tr>
+<tr><td>PRD source warning</td><td>expected and observed PRD hashes match under D-APP-38; dispatch treats this as a source status</td><td><code>_REFERENCES.md</code> REF-006; assignment override</td></tr>
+<tr><td>Future amendment gate</td><td>Accepted PKG-10 amendment or explicit human authorization is required before fixture implementation becomes active work</td><td><code>_DEPENDENCIES.md</code> Extracted Dependency Register; <code>docs/PLAN.md</code> R7</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Artifact</td><td>Expected Content</td><td>Status</td></tr>
+<tr><td>Future fixture profile</td><td>A future OpenPipeStress <code>DomainEngineProfile</code> example or fixture using the generic profile contract</td><td>TBD - no accepted fixture file exists in this deliverable yet</td></tr>
+<tr><td>Validation tests</td><td>Deterministic checks for required profile fields, path separation, manifest rules, operation descriptors, and boundary notices</td><td>TBD - test framework and target files are not assigned in this gated scope</td></tr>
+<tr><td>Adapter assumptions note</td><td>Notes separating OpenPipeStress profile/adapter assumptions from Chirality core runtime behavior</td><td>TBD - future amendment required before adapter assumptions become implementation truth</td></tr>
+<tr><td>Stable evidence records</td><td>Future pass/fail records for validation checks, expected failures, and professional-boundary wording coverage</td><td>TBD - no record format or artifact path has been assigned</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity and scope.</li>
+<li>- <code>_DEPENDENCIES.md</code> for declared dependency state.</li>
+<li>- <code>_REFERENCES.md</code> for source corpus and PRD hash warning.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Sections 2.2, 5, and PKG-10 entry.</li>
+<li>- <code>docs/PRD.md</code> Sections 8.17, 10.10, R7, and knowledge gaps KG-016 through KG-020.</li>
+<li>- <code>docs/CONTRACT.md</code> Sections 1.1, 1.6, and 1.10.</li>
+<li>- <code>docs/SPEC.md</code> Sections 14.3 and 18.</li>
+<li>- <code>docs/TYPES.md</code> Sections 11.1 through 11.3.</li>
+<li>- <code>docs/PLAN.md</code> R7 and risk table.</li>
+</ul>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt <code>domain-engine-profile-validation/v1</code>, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-10-04-domain-profile-validation-and-openpipestress-fixture">CLM-008 — Specification: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h3>
+<h4 id="specification-del-10-04-domain-profile-validation-and-openpipestress-fixture">Specification: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the expected future validation posture for generic <code>DomainEngineProfile</code> records and an OpenPipeStress fixture profile. It is limited to future-boundary test-suite definition and source-grounded fixture expectations for PKG-10.</p>
+<p>The deliverable excludes current-release activation of domain-engine endpoints, domain-operation application, protected-model writes, solver integration, and any claim that Chirality approves or owns domain-engine solver truth. This exclusion is required by <code>docs/SPEC.md</code> Section 18, <code>docs/PLAN.md</code> R7, and <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Section 2.2.</p>
+<p>ResponsibleParty remains TBD.</p>
+<p>Current fixture implementation authority remains TBD. Before this deliverable can become executable implementation work, a human-approved PKG-10 amendment or explicit authorization must identify the ResponsibleParty, concrete test path, adapter manifest location, evidence-record format, and expected-failure fixtures.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-10-04-REQ-001</td><td>The validation posture shall treat source types/guards, the closed registry, and loopback read/propose/validate tools as the D-APP-49 through D-APP-52 staged-live surface; endpoints, operation apply, protected-path hooks/writes, and general domain runtime remain gated and outside core runtime behavior.</td><td><code>docs/PRD.md</code> Section 8.17; <code>docs/SPEC.md</code> Section 18; <code>docs/PLAN.md</code> R7</td><td>Review fixture/test scope for the ruled staged partition and absence of endpoint/apply activation.</td></tr>
+<tr><td>DEL-10-04-REQ-002</td><td>A profile validation fixture shall cover the generic profile fields: <code>profileId</code>, <code>engineName</code>, optional <code>engineVersion</code>, <code>protectedPaths</code>, <code>proposalPaths</code>, <code>artifactTypes</code>, <code>operations</code>, <code>manifestRules</code>, and <code>boundaryNotice</code>.</td><td><code>docs/TYPES.md</code> Section 11.1; <code>docs/PRD.md</code> Section 8.17 FR-108</td><td>Validate required/optional field coverage in the future test suite.</td></tr>
+<tr><td>DEL-10-04-REQ-003</td><td>Validation shall be deterministic and shall fail invalid or incomplete profiles before runtime exposure.</td><td><code>docs/PRD.md</code> Section 8.17 FR-109</td><td>Future tests include deterministic negative cases for missing or invalid fields.</td></tr>
+<tr><td>DEL-10-04-REQ-004</td><td>The OpenPipeStress fixture shall be represented as a fixture profile only, with OpenPipeStress-specific assumptions held in profile and adapter layers rather than Chirality core runtime.</td><td><code>docs/PRD.md</code> Section 8.17 FR-114; <code>docs/TYPES.md</code> Section 11.3</td><td>Inspect future fixture/test names and assertions for core-runtime coupling.</td></tr>
+<tr><td>DEL-10-04-REQ-005</td><td>Profile validation shall preserve separation between protected paths and proposal paths.</td><td><code>docs/PRD.md</code> Section 8.17 FR-108 through FR-111; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-2</td><td>Negative tests reject direct agent-write treatment of protected paths.</td></tr>
+<tr><td>DEL-10-04-REQ-006</td><td>Any operation-related fixture data shall align with <code>OperationProposal</code> concepts before application: inputs, intended changes, deterministic checks, expected outputs, risks, and required human gate.</td><td><code>docs/PRD.md</code> Section 8.17 FR-112 and FR-113; <code>docs/TYPES.md</code> Section 11.2</td><td>Review future fixture operation descriptors against proposal fields.</td></tr>
+<tr><td>DEL-10-04-REQ-007</td><td>Boundary notices shall state that Chirality does not provide professional approval, code compliance, external validation, or Chirality-owned solver truth.</td><td><code>docs/PRD.md</code> Section 8.17 FR-115; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4; <code>docs/TYPES.md</code> Section 11.3</td><td>Tests or review checklist require boundary notice presence and wording coverage.</td></tr>
+<tr><td>DEL-10-04-REQ-008</td><td>The fixture/test suite shall not rely on prompt-only restrictions for protected paths or domain operations.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-2; <code>docs/SPEC.md</code> Section 14.3</td><td>Future implementation tests verify runtime or deterministic enforcement surfaces, not prompt text alone.</td></tr>
+<tr><td>DEL-10-04-REQ-009</td><td>The deliverable shall preserve the reconciled PRD reference state: REF-006 is <code>MATCH</code> under D-APP-38.</td><td><code>_REFERENCES.md</code> REF-006; D-APP-38</td><td>Run records preserve the earlier warning as dated history only.</td></tr>
+<tr><td>DEL-10-04-REQ-010</td><td>Future negative tests shall define deterministic expected failures, not only checklist labels.</td><td><code>docs/PRD.md</code> Section 8.17 FR-109; <code>docs/TYPES.md</code> Sections 11.1 and 11.2</td><td>Missing required fields, overlapping paths, incomplete operation proposals, absent boundary notices, and core-runtime-coupling cases each have expected failure evidence.</td></tr>
+<tr><td>DEL-10-04-REQ-011</td><td>Future operation-descriptor fixtures shall cover inputs, intended changes, deterministic checks, expected outputs, risks, required human gate, and status before any operation can be applied.</td><td><code>docs/PRD.md</code> Section 8.17 FR-112/FR-113; <code>docs/TYPES.md</code> Section 11.2</td><td>Fixture review confirms each <code>OperationProposal</code> field is represented or explicitly marked TBD.</td></tr>
+<tr><td>DEL-10-04-REQ-012</td><td>Future fixture validation shall produce stable evidence records for pass/fail determinations and boundary-notice wording coverage.</td><td><code>docs/PRD.md</code> Section 8.17 FR-115; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4; <code>_DEPENDENCIES.md</code> Extracted Dependency Register</td><td>Evidence record path and format remain TBD until future amendment assigns them.</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.17</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 11</td><td>Vocabulary and target shapes for <code>DomainEngineProfile</code>, <code>OperationProposal</code>, and domain terms.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Section 1.10</td><td>Binding invariants for domain truth ownership, protected paths, human acceptance, and professional boundaries.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 18</td><td>Specification boundary for future domain-engine endpoints/tools and non-implementation posture.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R7</td><td>Sequencing and acceptance criteria for future amendment work.</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>Future validation should include, at minimum:</p>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td><td>Source</td></tr>
+<tr><td>Required profile fields present</td><td>Missing required fields fail deterministically</td><td><code>docs/PRD.md</code> Section 8.17 FR-108/FR-109</td></tr>
+<tr><td>Protected/proposal path separation</td><td>Protected paths are not accepted as agent-writable proposal paths</td><td><code>docs/PRD.md</code> Section 8.17 FR-110/FR-111</td></tr>
+<tr><td>Operation descriptors</td><td>Operation fixture data is compatible with <code>OperationProposal</code> review and human gate concepts</td><td><code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Boundary notice</td><td>Fixture includes boundary notice text that prevents professional-approval or solver-truth overclaiming</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4</td></tr>
+<tr><td>Core-runtime separation</td><td>OpenPipeStress does not appear as core harness behavior</td><td><code>docs/PRD.md</code> Section 8.17 FR-114</td></tr>
+<tr><td>Future-scope gate</td><td>Tests do not activate domain-engine endpoints/tools as current-release implementation</td><td><code>docs/SPEC.md</code> Section 18</td></tr>
+<tr><td>Expected failure fixtures</td><td>Each negative case has deterministic expected output or failure evidence</td><td><code>docs/PRD.md</code> Section 8.17 FR-109</td></tr>
+<tr><td>Operation proposal fixture coverage</td><td>Inputs, intended changes, deterministic checks, expected outputs, risks, human gate, and status are present or explicitly TBD</td><td><code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Evidence records</td><td>Future test run output records pass/fail result, source-warning posture, boundary-notice wording coverage, and no-current-release-activation check</td><td><code>docs/PRD.md</code> Section 8.17 FR-115; <code>docs/SPEC.md</code> Section 18</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required or anticipated artifacts:</p>
+<ul>
+<li>- Future fixture profile.</li>
+<li>- Validation tests.</li>
+<li>- Adapter assumptions note.</li>
+<li>- ASSUMPTION: A future amendment will identify concrete file paths, test framework locations, and adapter manifest format before implementation.</li>
+<li>- TBD: Future evidence-record path and format for deterministic pass/fail decisions.</li>
+<li>- TBD: Human-approved boundary-notice wording fixture for professional-boundary coverage.</li>
+</ul>
+<h3 id="clm-014-source-warnings">CLM-014 — Source Warnings</h3>
+<h5 id="source-warnings">Source Warnings</h5>
+<table><tbody>
+<tr><td>Warning</td><td>Impact</td></tr>
+<tr><td>REF-006 <code>docs/PRD.md</code> has expected SHA256 <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code> and observed SHA256 <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code>.</td><td>Treated as source status per assignment override; requirements cite PRD sections conservatively, preserve the MATCH visibly, and require human acceptance or refreshed source metadata before closure reliance. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-015-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-015 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt <code>domain-engine-profile-validation/v1</code>, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.</p>
+<h3 id="clm-016-d-app-56-ownership-amendment-2026-07-12">CLM-016 — D-APP-56 ownership amendment (2026-07-12)</h3>
+<h5 id="d-app-56-ownership-amendment-2026-07-12">D-APP-56 ownership amendment (2026-07-12)</h5>
+<p>Under R4-P27, this deliverable owns the PEC fixture profile (<code>_DomainEngines/profiles/pec.yaml</code>), its v1 validation record (<code>_validation/pec.validation.json</code>), the PEC registry-entry content, and evidence from PEC-profile-scoped fixture interaction. The shared registry mechanism and gate remain DEL-10-01 scope; the generic proposal-tool surface remains DEL-10-03 scope. PEC engine status is not judged by this amendment.</p>
+<ul>
+<li>- <strong>AC-001</strong> — Every exact legacy source range is preserved, and the converted contract remains limited to SOW-070 and OBJ-010 future fixture-profile and validation expectations without activating endpoints, operation apply, protected-path writes, solver integration, professional approval, code compliance, external validation, or Chirality-owned solver truth.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-10-04-domain-profile-validation-and-openpipestress-fixture">CLM-017 — Procedure: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h3>
+<h4 id="procedure-del-10-04-domain-profile-validation-and-openpipestress-fixture">Procedure: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational procedure for producing and later verifying the DEL-10-04 future fixture profile, validation tests, and adapter assumptions note without activating domain-engine implementation.</p>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Accepted PKG-10 amendment or explicit human authorization for future domain-engine work. Current sources keep domain profiles and operation proposals in future scope.</li>
+<li>- Accessible source corpus for <code>docs/PRD.md</code>, <code>docs/TYPES.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, and <code>docs/PLAN.md</code>.</li>
+<li>- ResponsibleParty assignment: TBD.</li>
+<li>- Concrete future test path and adapter manifest location: TBD.</li>
+<li>- Dependency posture: <code>_DEPENDENCIES.md</code> now contains extracted ACTIVE rows, but all satisfaction remains <code>PENDING</code>; accepted declared upstream/downstream closure and project graph validation remain TBD.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm scope gate.</p>
+<ul>
+<li>- Verify PKG-10 remains future-boundary/gated scope unless a human-approved amendment says otherwise.</li>
+<li>- Do not create or activate domain-engine endpoints, protected-path write behavior, or operation-apply workflows during this deliverable-local drafting run.</li>
+</ul>
+<p>2. Define fixture validation target.</p>
+<ul>
+<li>- Use <code>docs/TYPES.md</code> Section 11.1 as the candidate <code>DomainEngineProfile</code> shape.</li>
+<li>- Mark any field semantics not defined by the accessible source corpus as TBD.</li>
+</ul>
+<p>3. Draft or review a future OpenPipeStress fixture profile.</p>
+<ul>
+<li>- Use OpenPipeStress only as fixture profile data.</li>
+<li>- Keep OpenPipeStress solver assumptions in the profile or adapter-assumptions layer.</li>
+<li>- Do not add OpenPipeStress assumptions to Chirality core runtime.</li>
+</ul>
+<p>4. Define deterministic validation checks.</p>
+<ul>
+<li>- Check required profile fields.</li>
+<li>- Check protected/proposal path separation.</li>
+<li>- Check operation descriptors against <code>OperationProposal</code> concepts where operation fixtures are present.</li>
+<li>- Check deterministic adapter manifest presence or mark manifest rules TBD.</li>
+<li>- Check boundary notice presence.</li>
+<li>- For each negative case, record the deterministic expected failure or mark the expected output TBD.</li>
+</ul>
+<p>5. Define negative validation cases.</p>
+<ul>
+<li>- Missing required field.</li>
+<li>- Overlapping protected and proposal paths.</li>
+<li>- Missing boundary notice.</li>
+<li>- Operation fixture without required human gate.</li>
+<li>- Fixture or documentation that implies professional approval, code compliance, external validation, or Chirality-owned solver truth.</li>
+</ul>
+<p>6. Produce adapter assumptions note.</p>
+<ul>
+<li>- Separate accepted source facts from ASSUMPTION and TBD items.</li>
+<li>- Identify which assumptions are profile-level, adapter-level, operation-proposal-level, or explicitly excluded from core runtime.</li>
+</ul>
+<p>7. Verify no implementation activation occurred.</p>
+<ul>
+<li>- Confirm no current-release endpoint/tool activation was introduced.</li>
+<li>- Confirm this P3 four-documents task did not create, edit, or promote <code>Dependencies.csv</code>.</li>
+<li>- Confirm ResponsibleParty remains TBD.</li>
+<li>- Confirm no future fixture output is treated as professional approval, code compliance, external validation, or Chirality-owned solver truth.</li>
+</ul>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Expected Evidence</td></tr>
+<tr><td>Four-document kit exists</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> are non-empty.</td></tr>
+<tr><td>Future-boundary posture preserved</td><td>Documents state that PKG-10 remains future-boundary/gated scope.</td></tr>
+<tr><td>Requirements source-grounded</td><td>Requirements cite accessible source sections or are labeled ASSUMPTION/TBD.</td></tr>
+<tr><td>OpenPipeStress not core</td><td>No instruction treats OpenPipeStress as Chirality core runtime behavior.</td></tr>
+<tr><td>Protected path policy preserved</td><td>Direct protected-domain writes are disallowed in requirements and guidance.</td></tr>
+<tr><td>Human gate preserved</td><td>Domain operations require explicit human acceptance before application.</td></tr>
+<tr><td>Professional boundary preserved</td><td>No language claims automated approval, code compliance, external validation, or solver truth ownership.</td></tr>
+<tr><td>Expected failures documented</td><td>Future negative tests include deterministic expected failure evidence or explicit TBDs.</td></tr>
+<tr><td>P3 scope preserved</td><td><code>_STATUS.md</code>, <code>_SEMANTIC_LENSING.md</code>, metadata files, and dependency registers are not modified by the P3 four-documents pass.</td></tr>
+</tbody></table>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Future fixture profile: TBD.</li>
+<li>- Validation tests: TBD.</li>
+<li>- Adapter assumptions note: TBD.</li>
+<li>- Stable validation evidence record format: TBD.</li>
+<li>- Human-approved boundary-notice wording fixture: TBD.</li>
+<li>- TASK run record under <code>_run_records/</code>.</li>
+<li>- <code>_STATUS.md</code> not changed during P3_ONLY because <code>_SEMANTIC_LENSING.md</code> declares <code>NO_STATUS_TOUCH</code>.</li>
+</ul>
+<h3 id="clm-023-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-023 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt <code>domain-engine-profile-validation/v1</code>, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Run the deterministic validator, claim mapper, parity reporter, checklist compiler, and renderer against the exact source/control kit; confirm source and status bytes are unchanged and negative format/checklist fixtures fail closed.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-10-04-domain-profile-validation-and-openpipestress-fixture">CLM-024 — Guidance: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h3>
+<h4 id="guidance-del-10-04-domain-profile-validation-and-openpipestress-fixture">Guidance: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-10-04 exists to keep future Domain Engine Profile validation and an OpenPipeStress fixture representable without turning Chirality into a domain-specific solver or moving domain operations into current-release scope. The accepted decomposition describes this as a TEST_SUITE deliverable for validating generic domain profiles and modeling OpenPipeStress as a future fixture without hardcoding solver assumptions into core.</p>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Treat PKG-10 as future-boundary work. <code>docs/PLAN.md</code> R7 and <code>docs/SPEC.md</code> Section 18 place domain profiles, operations, and endpoints in future amendment scope.</p>
+<p>2. Keep the profile generic before fixture-specific details. <code>docs/PRD.md</code> Section 8.17 FR-107 requires a generic <code>DomainEngineProfile</code> contract before engine-specific integration.</p>
+<p>3. Validate deterministically. <code>docs/PRD.md</code> Section 8.17 FR-109 requires invalid or incomplete profiles to fail before runtime exposure.</p>
+<p>4. Separate protected truth from proposals. <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-2 and <code>docs/PRD.md</code> Section 8.17 FR-110/FR-111 require agents to write proposals and summaries, not protected domain-engine model truth.</p>
+<p>5. Preserve human gates. <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3 and <code>docs/PRD.md</code> Section 8.17 FR-113 require explicit human acceptance before applying domain operations.</p>
+<p>6. Keep professional boundaries visible. <code>docs/CONTRACT.md</code> Section 1.1 K-AUTH-1 and Section 1.10 K-DOMAIN-4 prohibit representing agent, runtime, or domain adapter output as professional approval, code compliance, external validation, or Chirality-owned solver truth.</p>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The future fixture should test the generic shape first: identity, protected paths, proposal paths, artifact types, operations, manifest rules, and boundary notices.</li>
+<li>- OpenPipeStress can be a concrete profile fixture only after the generic profile boundary is accepted by amendment. Until then, OpenPipeStress-specific values, solver assumptions, file formats, and execution semantics remain TBD.</li>
+<li>- A useful future validation suite should include negative cases. Examples include missing boundary notice, protected path listed as proposal path, missing deterministic adapter manifest rule, incomplete operation descriptor, or fixture wording that implies Chirality owns solver truth.</li>
+<li>- ASSUMPTION: Future test locations will be selected by the package implementation plan after PKG-10 amendment; no current source assigns concrete test paths for DEL-10-04.</li>
+<li>- ASSUMPTION: The adapter assumptions note should distinguish profile-level assumptions, adapter-manifest assumptions, operation-proposal assumptions, and explicit non-assumptions about Chirality core runtime.</li>
+<li>- Future adapter assumptions should separate at least four classes: profile-level fixture facts, adapter-level manifest and execution assumptions, operation-proposal-level human-gated change assumptions, and explicit core-runtime non-assumptions. This preserves <code>docs/PRD.md</code> Section 8.17 FR-114 without making OpenPipeStress behavior part of the harness core.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Concrete OpenPipeStress examples vs. core neutrality</td><td>Use OpenPipeStress only as fixture data; do not put OpenPipeStress concepts in public core runtime contracts.</td><td><code>docs/PRD.md</code> Section 8.17 FR-114</td></tr>
+<tr><td>Agent convenience vs. protected domain truth</td><td>Prefer proposal paths and review aids; reject direct protected model writes.</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-2</td></tr>
+<tr><td>Prompt instruction vs. runtime enforcement</td><td>Do not rely on prompt-only controls for writes, tool exposure, or domain operations.</td><td><code>docs/CONTRACT.md</code> Section 1.6 K-PERM-2</td></tr>
+<tr><td>Early domain integration vs. runtime spine stability</td><td>Keep profile validation future-scoped until core harness stability.</td><td><code>docs/PLAN.md</code> R7; <code>docs/PRD.md</code> R7</td></tr>
+<tr><td>Early fixture detail vs. evidence quality</td><td>Prefer TBDs and deterministic expected-failure slots over unsupported OpenPipeStress values, solver assumptions, or file formats.</td><td><code>docs/PRD.md</code> Section 8.17 FR-109/FR-114</td></tr>
+</tbody></table>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<h3 id="clm-030-candidate-positive-fixture-shape">CLM-030 — Candidate Positive Fixture Shape</h3>
+<h6 id="candidate-positive-fixture-shape">Candidate Positive Fixture Shape</h6>
+<p>TBD - no accepted fixture file exists. A future positive fixture should be a generic <code>DomainEngineProfile</code> instance for <code>openpipestress</code> with required fields present, protected/proposal path separation, operation descriptors, manifest rules, and boundary notice.</p>
+<h3 id="clm-031-candidate-negative-cases">CLM-031 — Candidate Negative Cases</h3>
+<h6 id="candidate-negative-cases">Candidate Negative Cases</h6>
+<ul>
+<li>- Missing <code>boundaryNotice</code>.</li>
+<li>- <code>protectedPaths</code> and <code>proposalPaths</code> overlap.</li>
+<li>- Operation descriptor lacks deterministic checks.</li>
+<li>- Fixture text states or implies Chirality approves engineering work.</li>
+<li>- OpenPipeStress behavior is asserted as core harness runtime behavior.</li>
+</ul>
+<p>These are candidate examples only; they require future amendment and test-path assignment before implementation.</p>
+<h3 id="clm-032-future-evidence-checklist">CLM-032 — Future Evidence Checklist</h3>
+<h6 id="future-evidence-checklist">Future Evidence Checklist</h6>
+<p>TBD until amendment assigns files and owner:</p>
+<ul>
+<li>- Concrete positive fixture path.</li>
+<li>- Negative fixture paths and deterministic expected failures.</li>
+<li>- Adapter manifest location and rule semantics.</li>
+<li>- Operation proposal fixture records with required human gate.</li>
+<li>- Boundary notice wording fixture.</li>
+<li>- Stable validation result record format.</li>
+<li>- No-current-release-activation evidence.</li>
+</ul>
+<h3 id="clm-033-conflict-table-for-human-ruling">CLM-033 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CT-001</td><td>No source-content conflict identified during P1/P2. PRD hash status: MATCH is recorded as a source status per dispatch.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Assignment override</td><td>All documents citing PRD</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-034-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-034 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-153/154/155/156 align profile fields to the canonical snake_case view, adopt <code>domain-engine-profile-validation/v1</code>, record SATISFIED 4 / PENDING 4 with named residuals, and distinguish landed profiles/tests/reports from genuine adapter-manifest and wording-coverage TBDs. UPD-157 closes DEP-10-04-008 against D53A.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-070 OBJ-010</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

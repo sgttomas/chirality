@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "selection_authority": "HELP_HUMAN release under accepted W-A3 preflight",
+  "posture": "MIXED",
+  "package": "APP-PKG-10",
+  "members": ["DEL-10-01", "DEL-10-02", "DEL-10-03", "DEL-10-04", "DEL-10-05"],
+  "nodes": [
+    {"id":"AUTHOR-DEL-10-01","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":[],"writes":["candidates/W_A3/APP-PKG10/DEL-10-01/**","instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-01/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-10-01","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["AUTHOR-DEL-10-01_ACCEPTED"],"writes":["instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-01/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-10-02","role":"TASK","status":"PASS_ACCEPTED","depends_on":["VERIFY-DEL-10-01_ACCEPTED"],"writes":["candidates/W_A3/APP-PKG10/DEL-10-02/**","instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-02/**"],"returns":"candidate plus author evidence; malformed padded fixture preserved and corrected fixture-only rerun accepted"},
+    {"id":"VERIFY-DEL-10-02","role":"TASK","status":"PASS_ACCEPTED_MANAGER_MANIFEST_CLOSEOUT","depends_on":["AUTHOR-DEL-10-02_ACCEPTED"],"writes":["instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-02/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-10-03","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["VERIFY-DEL-10-02_ACCEPTED"],"writes":["candidates/W_A3/APP-PKG10/DEL-10-03/**","instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-03/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-10-03","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["AUTHOR-DEL-10-03_ACCEPTED"],"writes":["instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-03/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-10-04","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["VERIFY-DEL-10-03_ACCEPTED"],"writes":["candidates/W_A3/APP-PKG10/DEL-10-04/**","instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-04/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-10-04","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["AUTHOR-DEL-10-04_ACCEPTED"],"writes":["instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-04/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-10-05","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["VERIFY-DEL-10-04_ACCEPTED"],"writes":["candidates/W_A3/APP-PKG10/DEL-10-05/**","instances/WORKING-A3-PKG10/children/AUTHOR-DEL-10-05/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-10-05","role":"TASK","status":"PASS_ACCEPTED","depends_on":["AUTHOR-DEL-10-05_ACCEPTED"],"writes":["instances/WORKING-A3-PKG10/children/VERIFY-DEL-10-05/**"],"returns":"fresh verification evidence"},
+    {"id":"PACKAGE-FAN-IN","role":"WORKING_ITEMS","status":"PASS","depends_on":["all author/verifier pairs accepted"],"writes":["instances/WORKING-A3-PKG10/**"],"returns":"package terminal return and handoff"}
+  ],
+  "edges": [
+    ["AUTHOR-DEL-10-01","VERIFY-DEL-10-01"], ["VERIFY-DEL-10-01","AUTHOR-DEL-10-02"],
+    ["AUTHOR-DEL-10-02","VERIFY-DEL-10-02"], ["VERIFY-DEL-10-02","AUTHOR-DEL-10-03"],
+    ["AUTHOR-DEL-10-03","VERIFY-DEL-10-03"], ["VERIFY-DEL-10-03","AUTHOR-DEL-10-04"],
+    ["AUTHOR-DEL-10-04","VERIFY-DEL-10-04"], ["VERIFY-DEL-10-04","AUTHOR-DEL-10-05"],
+    ["AUTHOR-DEL-10-05","VERIFY-DEL-10-05"], ["VERIFY-DEL-10-05","PACKAGE-FAN-IN"]
+  ],
+  "concurrency": "eligible only for disjoint bounded file-tool nodes; Bash-bearing TASK children are serialized",
+  "fan_in_gates": ["5/5 terminal accepted author/verifier pairs","exact live/preflight bindings","schema/content-authority/preservation/substrate PASS","25-row exact replacement and inverse rollback","registered App checks PASS after preserving environmental substrate failure when applicable","portable reproducible evidence","zero project writes/blockers/waivers/reruns"],
+  "escalation": ["authority or lifecycle drift","semantic conflict","domain-engine boundary expansion","failed required check","scope overlap","nonterminal or invalid child","project write"]
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A3-PKG09",
+  "child_instance_id": "AUTHOR-DEL-09-01",
+  "role": "TASK",
+  "task_skill": "scope-of-work",
+  "status": "FAILED_INPUTS",
+  "terminal": true,
+  "verdict": "FAIL",
+  "deliverable_id": "DEL-09-01",
+  "package_id": "PKG-09",
+  "candidate_path": null,
+  "candidate_sha256": null,
+  "schema_verdict": "NOT_RUN",
+  "content_authority_verdict": "NOT_RUN",
+  "preservation_verdict": "NOT_RUN",
+  "execution_substrate_verdict": "FAIL",
+  "project_write": false,
+  "lifecycle_change": false,
+  "missing": [
+    "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-01/workspace"
+  ],
+  "blockers": [
+    "AGENT_TASK normalization rule 8 requires ScopePath to exist before execution."
+  ],
+  "rerun_requirements": [
+    "Parent must pre-create the exact sealed ScopePath directory, then launch a fresh AUTHOR-DEL-09-01 TASK instance from the unchanged accepted basis."
+  ],
+  "needs_human_ruling": [],
+  "completed_at": "2026-07-13T16:33:48-06:00"
+}

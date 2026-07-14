@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 257,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2f8abf603425a53161f41d0b67b9c590832af3daee97794de876430340c6b677"
+      },
+      "text": "The DEL-10-03 OperationProposal record and human-gate workflow preserves the exact legacy source content, proposal-only boundary, and human approval gate while remaining bounded to SOW-069 and OBJ-010.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-001",
+          "source_line": 385,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Verify DEL-10-03 source-marker coverage and byte parity against the exact legacy four-document source, and confirm SOW-069 and OBJ-010 traceability, proposal-only status, and the preserved human gate."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-03",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "2f8abf603425a53161f41d0b67b9c590832af3daee97794de876430340c6b677"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 215,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d94f72590fef8b5863b195bcf2e7cf4c04d126ad026eaaaf1655e2ece119977a"
+      },
+      "text": "The desktop distribution and app-directory packaging evidence identifies the expected DMG and app bundle, verifies arm64 architecture, minimum macOS 15.0.0, unsigned or adhoc posture, required instruction-root assets and passing integrity summary, an executable SDK subprocess in package layout, and preserved current shipped Anthropic network guardrails; missing assets, failed integrity, failed subprocess execution, or unresolved required evidence remain explicit blockers.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-04-VER-001",
+          "source_line": 326,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run or review the accepted pre-packaging checks, desktop:dist and desktop:pack evidence; inspect DMG and app-bundle identities, architecture, minimum OS, signing posture, packaged resources, integrity summary, SDK subprocess probe, network guardrails, and residual blocker records."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-04",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d94f72590fef8b5863b195bcf2e7cf4c04d126ad026eaaaf1655e2ece119977a"
+  },
+  "tool_version": "1"
+}

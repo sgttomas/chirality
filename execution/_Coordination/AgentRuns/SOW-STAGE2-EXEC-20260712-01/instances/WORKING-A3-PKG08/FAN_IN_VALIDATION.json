@@ -1,0 +1,26 @@
+{
+  "candidate_files": [
+    "DEL-08-01/ScopeOfWork.md",
+    "DEL-08-02/ScopeOfWork.md",
+    "DEL-08-03/ScopeOfWork.md",
+    "DEL-08-04/ScopeOfWork.md",
+    "DEL-08-05/ScopeOfWork.md"
+  ],
+  "child_manifest_rows": 441,
+  "child_runs": 10,
+  "errors": [],
+  "initial_check_status": "FAIL",
+  "initial_pass_count": 5,
+  "live_bindings": 45,
+  "live_bindings_expected": 45,
+  "mapping_rows": 155,
+  "members": 5,
+  "package": "APP-PKG-08",
+  "premerge_rerun_status": "PASS",
+  "project_dirty_paths": [],
+  "replacement_rows": 25,
+  "rollback_rows": 25,
+  "schema": "chirality-working-items-fanin/v1",
+  "source_lines": 1585,
+  "status": "PASS"
+}

@@ -1,0 +1,5 @@
+case	exit_code	expected	artifact_absent
+partial_validation	1	nonzero	n/a
+unauthorized_dual_validation	1	nonzero	n/a
+unauthorized_dual_checklist	1	nonzero	true
+unauthorized_dual_render	1	nonzero	true

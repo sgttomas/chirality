@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="8a1f1214aebf3d7c8b1a4dfb4fad71b0142e311e663573b6d60a21d0d8ca2167">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>8a1f1214aebf3d7c8b1a4dfb4fad71b0142e311e663573b6d60a21d0d8ca2167</code>.</p>
+<h1 id="scope-of-work-del-08-05">Scope of Work — DEL-08-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-08-05</code> in service of project scope [SOW-063] and package objectives [OBJ-003, OBJ-007].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — The DEL-08-05 parent-child runtime record and artifact-reference contract, including ChildRunRecord status and metadata, HarnessEvent lifecycle linkage, child output artifact paths, and replay fixtures, for SOW-063 and OBJ-003, OBJ-007.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-05-subagent-child-run-records-and-artifacts">CLM-001 — Datasheet: DEL-08-05 Subagent Child Run Records and Artifacts</h3>
+<h4 id="datasheet-del-08-05-subagent-child-run-records-and-artifacts">Datasheet: DEL-08-05 Subagent Child Run Records and Artifacts</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-08-05</td></tr>
+<tr><td>DeliverableName</td><td>Subagent Child Run Records and Artifacts</td></tr>
+<tr><td>PackageID</td><td>PKG-08</td></tr>
+<tr><td>PackageName</td><td>Agent Suite, Pipeline Dispatch, and Subagent Governance</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-063</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-003, OBJ-007</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Scope</td><td>Persist parent-child runtime records, status, timestamps, SDK agent metadata, and output artifact paths.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-08-05</td></tr>
+<tr><td>Primary record target</td><td><code>ChildRunRecord</code></td><td><code>docs/TYPES.md</code> Section 10; D-APP-40</td></tr>
+<tr><td>Parent audit event target</td><td><code>HarnessEvent</code></td><td><code>docs/TYPES.md</code> Section 7.3; <code>docs/SPEC.md</code> Section 9</td></tr>
+<tr><td>Canonical event store</td><td><code>.chirality/sessions/&lt;id&gt;/events.jsonl</code></td><td><code>docs/CONTRACT.md</code> K-EVENT-4; <code>docs/TYPES.md</code> Section 7.2</td></tr>
+<tr><td>Artifact folder</td><td><code>.chirality/sessions/&lt;sessionId&gt;/artifacts/</code></td><td><code>docs/TYPES.md</code> Section 7.2; <code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>Relevant event categories</td><td><code>subagent.started</code>, <code>subagent.completed</code></td><td><code>docs/PRD.md</code> Section 8.12; <code>docs/SPEC.md</code> Section 9.4</td></tr>
+<tr><td>Output artifact policy</td><td>Large payloads are stored as artifacts and referenced by metadata; child-run outputs use output artifact references.</td><td><code>docs/SPEC.md</code> Sections 9.2 and 10.5; <code>docs/PLAN.md</code> R5</td></tr>
+<tr><td>Execution gate relationship</td><td>Child records are created for governed subagent execution; governance admission itself belongs to DEL-08-04.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> FR-101 and FR-102</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Subagent delegation must fail closed unless governance conditions pass.</td><td>Required.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1</td></tr>
+<tr><td>SDK subagents may not expand parent capabilities.</td><td>Required.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-2</td></tr>
+<tr><td>Subagent runs must produce parent-child runtime records and output artifact references when execution is enabled.</td><td>Required.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-3</td></tr>
+<tr><td>Runtime events must redact secrets.</td><td>Required.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/PRD.md</code> FR-075</td></tr>
+<tr><td>JSONL replay must tolerate malformed trailing records.</td><td>Required for the event store.</td><td><code>docs/CONTRACT.md</code> K-EVENT-5; <code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td>SDK transcripts are secondary unless imported into <code>HarnessEvent</code> form.</td><td>Required.</td><td><code>docs/CONTRACT.md</code> K-SDK-3; <code>docs/SPEC.md</code> Section 8</td></tr>
+<tr><td>Unified pipeline run records remain retired scope.</td><td>Required boundary.</td><td><code>docs/PLAN.md</code> Section 9; <code>docs/PRD.md</code> KG-012</td></tr>
+<tr><td>PRD source status</td><td><code>docs/PRD.md</code> is reconciled under the current D-APP-38 authority corpus; PRD-derived subagent and artifact details are accepted for this tranche.</td><td><code>_REFERENCES.md</code>; D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<h3 id="clm-006-target-childrunrecord-fields">CLM-006 — Target <code>ChildRunRecord</code> Fields</h3>
+<h6 id="target-childrunrecord-fields">Target <code>ChildRunRecord</code> Fields</h6>
+<table><tbody>
+<tr><td>Field</td><td>Type / Allowed Value</td><td>Requirement Status</td><td>Source</td></tr>
+<tr><td><code>childRunId</code></td><td>string</td><td>Required by type target.</td><td><code>docs/TYPES.md</code> Section 10; D-APP-40</td></tr>
+<tr><td><code>parentSessionId</code></td><td>string</td><td>Required by type target.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td><code>parentTurnId</code></td><td>string</td><td>Optional by type target.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td><code>parentPersona</code></td><td>string</td><td>Required by type target.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td><code>agentName</code></td><td>string</td><td>Required by type target.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td><code>adapter.adapterAgentId</code></td><td>string</td><td>Optional adapter metadata when available.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/PRD.md</code> FR-101</td></tr>
+<tr><td><code>projectRoot</code></td><td>string</td><td>Required by type target.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td><code>status</code></td><td><code>queued</code>, <code>running</code>, <code>completed</code>, <code>failed</code>, <code>cancelled</code>, <code>denied</code></td><td>Required by type target.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td><code>completedAt</code></td><td>string</td><td>Optional by type target.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td><code>outputArtifactPath</code></td><td>string</td><td>Optional by type target; required when child output is stored externally.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/PRD.md</code> FR-101</td></tr>
+</tbody></table>
+<h3 id="clm-007-related-harnessevent-fields">CLM-007 — Related <code>HarnessEvent</code> Fields</h3>
+<h6 id="related-harnessevent-fields">Related <code>HarnessEvent</code> Fields</h6>
+<table><tbody>
+<tr><td>Field</td><td>Type / Allowed Value</td><td>Requirement Status</td><td>Source</td></tr>
+<tr><td><code>schemaVersion</code></td><td><code>1</code></td><td>Required by type target.</td><td><code>docs/TYPES.md</code> Section 7.3; <code>docs/SPEC.md</code> Section 9.1</td></tr>
+<tr><td><code>eventId</code></td><td>string</td><td>Required; unique per event.</td><td><code>docs/SPEC.md</code> Section 9.2</td></tr>
+<tr><td><code>sessionId</code></td><td>string</td><td>Required.</td><td><code>docs/SPEC.md</code> Section 9.1</td></tr>
+<tr><td><code>turnId</code></td><td>string</td><td>Optional.</td><td><code>docs/SPEC.md</code> Section 9.1</td></tr>
+<tr><td><code>parentEventId</code></td><td>string</td><td>Optional.</td><td><code>docs/SPEC.md</code> Section 9.1</td></tr>
+<tr><td><code>timestamp</code></td><td>string</td><td>Required.</td><td><code>docs/SPEC.md</code> Section 9.1</td></tr>
+<tr><td><code>type</code></td><td>string; includes later categories <code>subagent.started</code> and <code>subagent.completed</code></td><td>Required.</td><td><code>docs/SPEC.md</code> Sections 9.1 and 9.4</td></tr>
+<tr><td><code>data</code></td><td><code>Record&lt;string, unknown&gt;</code></td><td>Required; must avoid secrets.</td><td><code>docs/SPEC.md</code> Sections 9.1 and 9.2</td></tr>
+</tbody></table>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/DIRECTIVE.md</code> - runtime audit mirror and subagent governance direction.</li>
+<li>- <code>docs/CONTRACT.md</code> - event, hook, and subagent invariants.</li>
+<li>- <code>docs/SPEC.md</code> - event schema, artifact policy, and runtime engine contract.</li>
+<li>- <code>docs/TYPES.md</code> - <code>HarnessEvent</code>, session artifact, and <code>ChildRunRecord</code> type targets.</li>
+<li>- <code>docs/PLAN.md</code> - R5 governed subagent runtime sequencing and retired-scope boundary.</li>
+<li>- <code>docs/PRD.md</code> - runtime event, artifact, and subagent requirements. Current under the D-APP-38 authority corpus.</li>
+<li>- <code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code> - decomposition method reference.</li>
+</ul>
+<h3 id="clm-009-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-009 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-138 records the implemented ChildRunRecord fields: remove <code>completedAt</code>; include <code>mode</code>, <code>capabilityPolicy</code>, <code>governance</code>, and <code>contractVersion</code>; examples must not invent persona/sdkAgentId/model timestamps. UPD-139 marks only artifact-policy row DEP-08-05-006 satisfied.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-010-specification-del-08-05-subagent-child-run-records-and-artifacts">CLM-010 — Specification: DEL-08-05 Subagent Child Run Records and Artifacts</h3>
+<h4 id="specification-del-08-05-subagent-child-run-records-and-artifacts">Specification: DEL-08-05 Subagent Child Run Records and Artifacts</h4>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the data-record and artifact-reference behavior for governed Type 2 subagent child runs. It covers parent-child runtime records, child status, timestamps, SDK agent metadata when available, and output artifact paths.</p>
+<p>This deliverable excludes the admission decision and permission gate implementation for subagent execution. That bridge is assigned to DEL-08-04. It also excludes retired PKG-08 hardening scope such as unified pipeline run records, dependency graph generation, deliverable locks, and staleness propagation.</p>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-08-05-REQ-001</td><td>The implementation shall represent governed child execution with a <code>ChildRunRecord</code> containing <code>childRunId</code>, <code>parentSessionId</code>, <code>parentPersona</code>, <code>agentName</code>, <code>projectRoot</code>, <code>mode</code>, <code>status</code>, <code>capabilityPolicy</code>, and <code>governance</code>.</td><td><code>docs/TYPES.md</code> Section 10; D-APP-40</td></tr>
+<tr><td>DEL-08-05-REQ-002</td><td>The child run status shall use only <code>queued</code>, <code>running</code>, <code>completed</code>, <code>failed</code>, <code>cancelled</code>, or <code>denied</code>.</td><td><code>docs/TYPES.md</code> Section 10</td></tr>
+<tr><td>DEL-08-05-REQ-003</td><td>The child run record shall support optional <code>parentTurnId</code>, <code>outputArtifactPath</code>, and adapter metadata fields such as adapter session, agent, task, tool-use, or transcript identifiers.</td><td><code>docs/TYPES.md</code> Section 10; D-APP-40</td></tr>
+<tr><td>DEL-08-05-REQ-004</td><td>Parent session runtime events shall record subagent lifecycle using <code>subagent.started</code>, <code>subagent.progress</code>, <code>subagent.completed</code>, and <code>subagent.failed</code> event categories when subagent lifecycle support is active. Terminal child state is carried through <code>ChildRunRecord.status</code> and event data.</td><td><code>docs/PRD.md</code> Section 8.12; <code>docs/SPEC.md</code> Section 9.4; <code>docs/TYPES.md</code> Sections 7.3 and 10; D-APP-40</td></tr>
+<tr><td>DEL-08-05-REQ-005</td><td>Persisted runtime events shall conform to the <code>HarnessEvent</code> shape: <code>schemaVersion</code>, <code>eventId</code>, <code>sessionId</code>, optional <code>turnId</code>, optional <code>parentEventId</code>, <code>timestamp</code>, <code>type</code>, and <code>data</code>. For subagent lifecycle events, <code>data</code> shall preserve child-run linkage through <code>childRunId</code> and the current or terminal <code>status</code>; exact additional payload keys remain bounded by the <code>ChildRunRecord</code> contract unless a later governed source specifies them.</td><td><code>docs/SPEC.md</code> Section 9.1; <code>docs/TYPES.md</code> Sections 7.3 and 10; D-APP-40</td></tr>
+<tr><td>DEL-08-05-REQ-006</td><td>Runtime events shall append to newline-delimited JSONL in write sequence, with unique event IDs.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/PRD.md</code> FR-073</td></tr>
+<tr><td>DEL-08-05-REQ-007</td><td>Child output payloads that are too large for inline event storage shall be stored under session artifacts and referenced by metadata/path.</td><td><code>docs/SPEC.md</code> Sections 9.2 and 10.5; <code>docs/PRD.md</code> FR-096</td></tr>
+<tr><td>DEL-08-05-REQ-008</td><td>Artifact metadata shall include tool name, turn ID, byte count, truncation flag, and relative artifact path where the artifact policy applies.</td><td><code>docs/PRD.md</code> Section 10.5</td></tr>
+<tr><td>DEL-08-05-REQ-009</td><td>Event and artifact records shall avoid storing secrets and shall pass through redaction where policy requires.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/PRD.md</code> FR-075</td></tr>
+<tr><td>DEL-08-05-REQ-010</td><td>SDK transcript paths or SDK session identifiers shall remain secondary runtime metadata unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/CONTRACT.md</code> K-SDK-3; <code>docs/TYPES.md</code> Section 7.2</td></tr>
+<tr><td>DEL-08-05-REQ-011</td><td>The data model shall not reactivate retired unified pipeline run records or broader PKG-08 hardening scope.</td><td><code>docs/PLAN.md</code> Section 9; <code>docs/PRD.md</code> KG-012</td></tr>
+<tr><td>DEL-08-05-REQ-012</td><td>A denied subagent attempt shall produce a <code>ChildRunRecord</code> with <code>status: denied</code> only when the attempt reaches the child-run record layer. Denials before allocation may remain permission or hook evidence only.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/CONTRACT.md</code> K-SUBAGENT-1; D-APP-40</td></tr>
+</tbody></table>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td></tr>
+<tr><td><code>HarnessEvent</code> persisted event schema</td><td>Governs parent session event records and subagent lifecycle mirror events.</td></tr>
+<tr><td><code>ChildRunRecord</code> type target</td><td>Governs child run record fields and status vocabulary.</td></tr>
+<tr><td>Runtime Audit Mirror</td><td><code>.chirality/sessions/&lt;id&gt;/events.jsonl</code> remains the product-owned event store.</td></tr>
+<tr><td>Tool Result Artifact policy</td><td>Governs child output artifact storage and metadata.</td></tr>
+<tr><td>Subagent governance invariants</td><td>Child records must align with fail-closed governance, restricted capability inheritance, and output references.</td></tr>
+</tbody></table>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td></tr>
+<tr><td>DEL-08-05-REQ-001 through DEL-08-05-REQ-003</td><td>Type-level tests or schema tests validate required fields, optional fields, and status enum values.</td></tr>
+<tr><td>DEL-08-05-REQ-004 through DEL-08-05-REQ-006</td><td>Event writer/replay tests validate lifecycle event categories, <code>HarnessEvent</code> shape, append ordering, unique event IDs, child <code>childRunId</code> linkage, and status propagation through the child run record or lifecycle event data.</td></tr>
+<tr><td>DEL-08-05-REQ-007 through DEL-08-05-REQ-008</td><td>Artifact-store tests validate child output storage, relative path references, byte counts, and truncation metadata.</td></tr>
+<tr><td>DEL-08-05-REQ-009</td><td>Redaction tests validate that secrets do not enter event data or stored artifacts.</td></tr>
+<tr><td>DEL-08-05-REQ-010</td><td>Replay/session tests validate that SDK transcript metadata does not replace canonical Chirality events.</td></tr>
+<tr><td>DEL-08-05-REQ-011</td><td>Scope-boundary review verifies no retired unified pipeline run record behavior is introduced.</td></tr>
+<tr><td>DEL-08-05-REQ-012</td><td>D-APP-40 fixes the denied-allocation test boundary: keep denied-before-allocation and denied-after-allocation fixtures separate, and require <code>ChildRunRecord.status = denied</code> only after the child-run record layer is reached.</td></tr>
+</tbody></table>
+<h3 id="clm-015-pass-3-disposition-evidence">CLM-015 — Pass 3 Disposition Evidence</h3>
+<h5 id="pass-3-disposition-evidence">Pass 3 Disposition Evidence</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>C-001</td><td>Resolved by D-APP-38.</td><td>Conflict Table now treats PRD-derived requirements and guidance as current under the D-APP-38 authority corpus. Source reread: <code>_REFERENCES.md</code> REF-006 and current Conflict Table.</td></tr>
+<tr><td>F-001</td><td>Resolved by D-APP-40.</td><td>DENIED child-run allocation is required only after the runtime reaches the child-run record layer; earlier denials may remain permission or hook evidence. Source reread: D-APP-40, <code>docs/TYPES.md</code> Section 10, and <code>docs/CONTRACT.md</code> K-SUBAGENT-1.</td></tr>
+<tr><td>F-002</td><td>Resolved by D-APP-40.</td><td>Verification separates denied-before-allocation and denied-after-allocation fixtures according to the D-APP-40 allocation boundary. Source reread: DEL-08-05-REQ-012 and <code>docs/CONTRACT.md</code> K-SUBAGENT-1.</td></tr>
+<tr><td>X-001</td><td>Incorporated with bounded payload language.</td><td>DEL-08-05-REQ-005 now requires only sourced <code>HarnessEvent</code> envelope plus <code>childRunId</code> and <code>status</code> linkage; additional <code>data</code> keys remain bounded by the child-run contract. Source reread: <code>docs/SPEC.md</code> Section 9.1 and <code>docs/TYPES.md</code> Sections 7.3 and 10.</td></tr>
+<tr><td>E-001</td><td>Cross-disposed to Procedure verification.</td><td>Artifact metadata assertions are enumerated in <code>Procedure.md</code> Verification. Source reread: <code>docs/PRD.md</code> Section 10.5.</td></tr>
+<tr><td>E-002</td><td>Converted to explicit category boundary.</td><td>DEL-08-05-REQ-004 states that no sourced separate failed/cancelled/denied subagent event category names exist; terminal state is carried by status until governed source text changes. Source reread: <code>docs/PRD.md</code> Section 8.12, <code>docs/SPEC.md</code> Section 9.4, and <code>docs/TYPES.md</code> Sections 7.3 and 10.</td></tr>
+</tbody></table>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required or anticipated artifacts for this deliverable:</p>
+<ul>
+<li>- Parent-child event records.</li>
+<li>- Child output artifact paths.</li>
+<li>- Subagent replay fixtures.</li>
+<li>- Schema or type definitions for <code>ChildRunRecord</code> if not already present.</li>
+<li>- Tests or fixtures proving replay across <code>subagent.started</code> and <code>subagent.completed</code>.</li>
+</ul>
+<h3 id="clm-017-conflict-table-for-human-ruling">CLM-017 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>C-001</td><td>Former PRD source-state warning resolved by D-APP-38.</td><td><code>_REFERENCES.md</code> REF-006</td><td>D-APP-38 current authority corpus</td><td>All PRD-derived requirements</td><td>Use PRD content under the current authority corpus; keep implementation proof separate from source-state proof.</td><td>D-APP-38 accepted current authority corpus</td></tr>
+<tr><td>Denied allocation ruling</td><td>Resolved by D-APP-40.</td><td><code>docs/TYPES.md</code> Section 10 includes <code>denied</code> status</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1 describes fail-closed delegation gate</td><td>DEL-08-05-REQ-012; replay fixtures</td><td>Record permission denial always; create child-run <code>denied</code> record only after the runtime reaches the child-run record layer.</td><td>Ruled 2026-06-21</td></tr>
+</tbody></table>
+<h3 id="clm-018-d-app-56-child-output-amendment-2026-07-12">CLM-018 — D-APP-56 child-output amendment (2026-07-12)</h3>
+<h5 id="d-app-56-child-output-amendment-2026-07-12">D-APP-56 child-output amendment (2026-07-12)</h5>
+<p>R4-P32 assigns <code>artifacts/subagents/</code> child-output storage to DEL-08-05 and makes the live thresholds normative for its child-run records: inline output is limited to 16 KiB and artifact-backed output to 512 KiB. These are distinct from DEL-05-05 <code>descriptor.resultBudget</code>.</p>
+<ul>
+<li>- <strong>AC-001</strong> — DEL-08-05 is accepted when the complete preserved legacy source&#x27;s schema/type, lifecycle-event, append/replay, artifact-reference, redaction, SDK-metadata-boundary, denied-allocation, and retired-scope checks demonstrate auditable governed child-run records for SOW-063 and OBJ-003, OBJ-007.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-019-procedure-del-08-05-subagent-child-run-records-and-artifacts">CLM-019 — Procedure: DEL-08-05 Subagent Child Run Records and Artifacts</h3>
+<h4 id="procedure-del-08-05-subagent-child-run-records-and-artifacts">Procedure: DEL-08-05 Subagent Child Run Records and Artifacts</h4>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps for producing and validating the subagent child run record and artifact-reference slice for governed Type 2 subagent execution.</p>
+<h3 id="clm-021-prerequisites">CLM-021 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Note</td></tr>
+<tr><td>Accepted source corpus listed in <code>_REFERENCES.md</code></td><td>Available under the current D-APP-38 authority corpus.</td></tr>
+<tr><td>DEL-08-04 Type 2 Subagent Governance Bridge</td><td>Upstream relationship is implied by scope, but <code>_DEPENDENCIES.md</code> has no accepted dependency edge yet. Keep as ASSUMPTION until dependency extraction runs.</td></tr>
+<tr><td>Runtime event schema / <code>HarnessEvent</code></td><td>Required source target exists in <code>docs/SPEC.md</code> and <code>docs/TYPES.md</code>.</td></tr>
+<tr><td>Artifact storage policy</td><td>Required source target exists in <code>docs/SPEC.md</code> and <code>docs/PRD.md</code>.</td></tr>
+<tr><td>Human ruling for denied child-run allocation</td><td>D-APP-40 ruled: denied records are required only after the runtime reaches the child-run record layer.</td></tr>
+</tbody></table>
+<h3 id="clm-022-steps">CLM-022 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable remains scoped to child run records and artifact references, not the governance admission bridge.</p>
+<p>2. Define or update the <code>ChildRunRecord</code> data shape with the sourced fields from <code>docs/TYPES.md</code> Section 10.</p>
+<p>3. Ensure <code>status</code> accepts only <code>queued</code>, <code>running</code>, <code>completed</code>, <code>failed</code>, <code>cancelled</code>, and <code>denied</code>.</p>
+<p>4. Link each child run to its parent session using <code>parentSessionId</code>; include <code>parentTurnId</code> when the child run is associated with a turn.</p>
+<p>5. Capture runtime metadata that is available without invention: <code>persona</code>, <code>agentName</code>, optional <code>sdkAgentId</code>, optional <code>model</code>, and <code>projectRoot</code>.</p>
+<p>6. Capture lifecycle timestamps when known: <code>startedAt</code> and <code>completedAt</code>.</p>
+<p>7. Emit or map parent session events for subagent lifecycle using <code>subagent.started</code> and <code>subagent.completed</code> when lifecycle support is active; do not invent additional failed, cancelled, or denied event category names without governed source text.</p>
+<p>8. Store large child outputs under the session artifact folder instead of embedding bulky payloads in events or child records.</p>
+<p>9. Record <code>outputArtifactPath</code> when a child output artifact is created.</p>
+<p>10. Apply redaction policy before persisting event data, run logs, or artifacts.</p>
+<p>11. Keep SDK transcript identifiers and paths as secondary metadata; do not replace canonical Chirality events with SDK transcripts.</p>
+<p>12. Add replay fixtures for parent-child linkage and child output artifact paths.</p>
+<p>13. Add or update tests for completed, failed, cancelled, denied-before-allocation, and denied-after-allocation behavior. D-APP-40 requires <code>status: denied</code> only after the child-run record layer is reached; earlier denials may remain permission/hook evidence.</p>
+<p>14. Verify the implementation does not introduce retired unified pipeline run records, dependency graph generation, deliverable locks, or staleness propagation tooling.</p>
+<h3 id="clm-023-verification">CLM-023 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td><code>ChildRunRecord</code> required fields</td><td><code>childRunId</code>, <code>parentSessionId</code>, <code>parentPersona</code>, <code>agentName</code>, <code>projectRoot</code>, <code>mode</code>, <code>status</code>, <code>capabilityPolicy</code>, and <code>governance</code> are required.</td></tr>
+<tr><td>Status enum</td><td>Only <code>queued</code>, <code>running</code>, <code>completed</code>, <code>failed</code>, <code>cancelled</code>, and <code>denied</code> are accepted.</td></tr>
+<tr><td>Event envelope</td><td>Subagent lifecycle events use the <code>HarnessEvent</code> envelope with schema version, unique event ID, session ID, timestamp, type, and data payload.</td></tr>
+<tr><td>Append-only storage</td><td>Runtime events are appended as newline-delimited JSONL in write sequence.</td></tr>
+<tr><td>Artifact references</td><td>Child output artifacts are referenced by path and metadata rather than embedded when large.</td></tr>
+<tr><td>Artifact metadata fields</td><td>Where the artifact policy applies, fixture assertions cover tool name, turn ID, byte count, truncation flag, and relative artifact path.</td></tr>
+<tr><td>Redaction</td><td>Secrets are absent from event data and artifact metadata.</td></tr>
+<tr><td>Replay</td><td>Replay can reconstruct parent session, child lifecycle, terminal child status, and child output artifact path.</td></tr>
+<tr><td>Terminal subagent state</td><td>Failed, cancelled, and denied terminal states are asserted through <code>ChildRunRecord.status</code> and provider-neutral subagent lifecycle event data.</td></tr>
+<tr><td>Scope boundary</td><td>No retired PKG-08 pipeline run-record behavior is introduced.</td></tr>
+</tbody></table>
+<h3 id="clm-024-pass-3-disposition-evidence">CLM-024 — Pass 3 Disposition Evidence</h3>
+<h5 id="pass-3-disposition-evidence">Pass 3 Disposition Evidence</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Evidence</td></tr>
+<tr><td>F-001</td><td>Resolved by D-APP-40.</td><td>Prerequisites and Step 13 apply the denied child-run allocation boundary. Source reread: <code>docs/TYPES.md</code> Section 10 and <code>docs/CONTRACT.md</code> K-SUBAGENT-1.</td></tr>
+<tr><td>F-002</td><td>Resolved by D-APP-40.</td><td>Step 13 separates denied-before-allocation and denied-after-allocation behavior according to the ruled boundary. Source reread: Specification DEL-08-05-REQ-012.</td></tr>
+<tr><td>E-001</td><td>Incorporated.</td><td>Verification now enumerates tool name, turn ID, byte count, truncation flag, and relative artifact path for artifact metadata fixture assertions. Source reread: <code>docs/PRD.md</code> Section 10.5.</td></tr>
+<tr><td>E-002</td><td>Incorporated as a terminal-state category boundary.</td><td>Step 7 and Verification assert terminal state through <code>ChildRunRecord.status</code> and provider-neutral subagent lifecycle event data. Source reread: <code>docs/PRD.md</code> Section 8.12, <code>docs/SPEC.md</code> Section 9.4, and <code>docs/TYPES.md</code> Sections 7.3 and 10.</td></tr>
+</tbody></table>
+<h3 id="clm-025-records">CLM-025 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- <code>ChildRunRecord</code> schema/type and tests.</li>
+<li>- <code>HarnessEvent</code> subagent lifecycle event fixtures.</li>
+<li>- Child output artifact path fixtures.</li>
+<li>- Replay fixtures covering parent-child linkage.</li>
+<li>- D-APP-40 ruling record for denied child-run allocation semantics.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Review the complete preserved legacy source and execute its specified type/schema, status-enum, lifecycle-event, append-order, unique-event-ID, parent-child-linkage, artifact-metadata/path, redaction, replay, denied-allocation, and scope-boundary checks; record concrete evidence.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-026-guidance-del-08-05-subagent-child-run-records-and-artifacts">CLM-026 — Guidance: DEL-08-05 Subagent Child Run Records and Artifacts</h3>
+<h4 id="guidance-del-08-05-subagent-child-run-records-and-artifacts">Guidance: DEL-08-05 Subagent Child Run Records and Artifacts</h4>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable makes governed subagent execution replayable and auditable without expanding subagent authority. Its product value is the durable record of what child agent was requested, how it was linked to the parent session or turn, what status it reached, and where any child output artifact was stored.</p>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Keep Chirality events canonical.</td><td>Treat <code>.chirality/sessions/&lt;id&gt;/events.jsonl</code> and <code>HarnessEvent</code> replay as the product-owned audit mirror. SDK transcript paths may be linked but should not become canonical unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/CONTRACT.md</code> K-EVENT-4 and K-SDK-3</td></tr>
+<tr><td>Separate governance gate from child record persistence.</td><td>DEL-08-04 owns the subagent governance bridge. DEL-08-05 should persist the resulting child lifecycle and artifact references without weakening or duplicating admission rules.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> FR-101 and FR-102</td></tr>
+<tr><td>Fail closed is still visible.</td><td>Denied or failed subagent actions should leave reviewable runtime evidence. D-APP-40 fixes the boundary: create a denied <code>ChildRunRecord</code> only when the runtime reaches the child-run record layer; earlier denials may remain permission/hook evidence.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1; <code>docs/TYPES.md</code> Section 10; D-APP-40</td></tr>
+<tr><td>Store references, not bulky payloads.</td><td>Child outputs that exceed inline budgets should be represented by artifact metadata and relative paths.</td><td><code>docs/SPEC.md</code> Sections 9.2 and 10.5</td></tr>
+<tr><td>Do not reintroduce retired scope.</td><td>Runtime event logging and child-run records are not the retired unified pipeline run record system. Avoid names, APIs, or storage layouts that imply pipeline-wide run-record reactivation.</td><td><code>docs/PLAN.md</code> Section 9; <code>docs/PRD.md</code> KG-012</td></tr>
+<tr><td>Preserve professional and security boundaries.</td><td>Event data and artifacts should avoid secrets and should not represent child output as professional approval, certification, or external validation.</td><td><code>docs/CONTRACT.md</code> K-EVENT-6; <code>docs/PRD.md</code> FR-115</td></tr>
+</tbody></table>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- <code>ChildRunRecord</code> should be small and stable. Put bulky child output in artifacts, not in the record itself.</li>
+<li>- <code>childRunId</code> should be distinct from <code>eventId</code>; lifecycle events can reference the child run, while the child run remains the durable summary of the child execution.</li>
+<li>- <code>parentSessionId</code> is required and <code>parentTurnId</code> is optional. The implementation should handle session-level child delegation if a future flow lacks a turn ID.</li>
+<li>- <code>sdkAgentId</code>, <code>model</code>, and SDK transcript metadata may be unavailable for some runtime paths. These fields should remain optional rather than synthesized.</li>
+<li>- <code>status</code> should reflect the child run lifecycle, not the parent turn outcome. A parent turn can fail after a child completed, and a child can fail while the parent records that failure successfully.</li>
+<li>- Artifact paths should be relative to session-controlled storage when possible to support migration and replay.</li>
+<li>- Replay fixtures should cover at least completed, failed, cancelled, and denied status behavior. D-APP-40 fixes the denied-record expectation: require <code>ChildRunRecord.status = denied</code> only after the child-run record layer is reached.</li>
+</ul>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Option</td><td>Trade-off</td></tr>
+<tr><td>Denied attempts</td><td>Record only <code>tool.permission</code> / hook denial events</td><td>Avoids allocating child runs before execution but may make subagent-specific denial replay less direct.</td></tr>
+<tr><td>Denied attempts</td><td>Create <code>ChildRunRecord</code> with <code>status: denied</code> after the child-run record layer is reached</td><td>Makes subagent denial visible in one record family while preserving D-APP-40&#x27;s allocation boundary.</td></tr>
+<tr><td>SDK metadata</td><td>Store only stable Chirality fields</td><td>More portable and less coupled, but loses SDK-specific debugging detail.</td></tr>
+<tr><td>SDK metadata</td><td>Store optional SDK identifiers and transcript paths</td><td>Better debugging and resume correlation, but must remain secondary to Chirality events.</td></tr>
+<tr><td>Output storage</td><td>Inline small child summaries</td><td>Easier replay and inspection for small data.</td></tr>
+<tr><td>Output storage</td><td>Store child outputs as artifacts</td><td>Better for large data and context hygiene, but requires artifact lifecycle and path validation.</td></tr>
+</tbody></table>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<h3 id="clm-032-example-childrunrecord">CLM-032 — Example <code>ChildRunRecord</code></h3>
+<h6 id="example-childrunrecord">Example <code>ChildRunRecord</code></h6>
+<p>```json</p>
+<p>{</p>
+<p>&quot;childRunId&quot;: &quot;child_123&quot;,</p>
+<p>&quot;parentSessionId&quot;: &quot;session_abc&quot;,</p>
+<p>&quot;parentTurnId&quot;: &quot;turn_001&quot;,</p>
+<p>&quot;persona&quot;: &quot;TASK&quot;,</p>
+<p>&quot;agentName&quot;: &quot;TASK&quot;,</p>
+<p>&quot;sdkAgentId&quot;: &quot;sdk-agent-id-if-available&quot;,</p>
+<p>&quot;model&quot;: &quot;TBD&quot;,</p>
+<p>&quot;projectRoot&quot;: &quot;/absolute/project/root&quot;,</p>
+<p>&quot;status&quot;: &quot;completed&quot;,</p>
+<p>&quot;startedAt&quot;: &quot;2026-05-20T00:00:00.000Z&quot;,</p>
+<p>&quot;completedAt&quot;: &quot;2026-05-20T00:01:00.000Z&quot;,</p>
+<p>&quot;outputArtifactPath&quot;: &quot;.chirality/sessions/session_abc/artifacts/subrun_123/output.json&quot;</p>
+<p>}</p>
+<p>```</p>
+<p><code>model</code> is shown as <code>TBD</code> because the accessible sources identify the field as optional but do not require a specific model value.</p>
+<h3 id="clm-033-example-lifecycle-event-payload">CLM-033 — Example Lifecycle Event Payload</h3>
+<h6 id="example-lifecycle-event-payload">Example Lifecycle Event Payload</h6>
+<p>```json</p>
+<p>{</p>
+<p>&quot;schemaVersion&quot;: 1,</p>
+<p>&quot;eventId&quot;: &quot;event_456&quot;,</p>
+<p>&quot;sessionId&quot;: &quot;session_abc&quot;,</p>
+<p>&quot;turnId&quot;: &quot;turn_001&quot;,</p>
+<p>&quot;timestamp&quot;: &quot;2026-05-20T00:00:00.000Z&quot;,</p>
+<p>&quot;type&quot;: &quot;subagent.started&quot;,</p>
+<p>&quot;data&quot;: {</p>
+<p>&quot;childRunId&quot;: &quot;child_123&quot;,</p>
+<p>&quot;agentName&quot;: &quot;TASK&quot;,</p>
+<p>&quot;status&quot;: &quot;running&quot;</p>
+<p>}</p>
+<p>}</p>
+<p>```</p>
+<p>The exact event payload keys inside <code>data</code> are bounded by the sourced <code>HarnessEvent</code> envelope and the minimum child-run linkage needed for replay (<code>childRunId</code> plus current or terminal <code>status</code>).</p>
+<h3 id="clm-034-conflict-table-for-human-ruling">CLM-034 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>C-001</td><td>Former PRD source-state warning resolved by D-APP-38.</td><td><code>_REFERENCES.md</code> REF-006</td><td>D-APP-38 current authority corpus</td><td>PRD-derived guidance and requirements</td><td>Use PRD content under the current authority corpus; keep implementation proof separate from source-state proof.</td><td>D-APP-38 accepted current authority corpus</td></tr>
+<tr><td>Denied allocation ruling</td><td>D-APP-40 resolves denied allocation: denials before child-run allocation may remain permission/hook evidence; after the child-run record layer is reached, create a <code>ChildRunRecord</code> with <code>status: denied</code>.</td><td><code>docs/TYPES.md</code> Section 10 includes <code>denied</code> status</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1 describes fail-closed delegation gate</td><td>Denial replay, schema tests, procedure verification</td><td>Record permission denial always; create child-run <code>denied</code> record only after the child-run record layer is reached.</td><td>Ruled 2026-06-21</td></tr>
+</tbody></table>
+<h3 id="clm-035-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-035 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-138 records the implemented ChildRunRecord fields: remove <code>completedAt</code>; include <code>mode</code>, <code>capabilityPolicy</code>, <code>governance</code>, and <code>contractVersion</code>; examples must not invent persona/sdkAgentId/model timestamps. UPD-139 marks only artifact-policy row DEP-08-05-006 satisfied.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-063 OBJ-003 OBJ-007</td><td>CLM-010</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

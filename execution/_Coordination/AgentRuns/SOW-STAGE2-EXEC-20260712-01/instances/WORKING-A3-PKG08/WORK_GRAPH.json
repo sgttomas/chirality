@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "selection_authority": "HELP_HUMAN release under accepted W-A3 preflight",
+  "posture": "MIXED",
+  "package": "APP-PKG-08",
+  "members": ["DEL-08-01", "DEL-08-02", "DEL-08-03", "DEL-08-04", "DEL-08-05"],
+  "nodes": [
+    {"id":"AUTHOR-DEL-08-01","role":"TASK","status":"PASS_ACCEPTED","depends_on":[],"writes":["candidates/W_A3/APP-PKG08/DEL-08-01/**","instances/WORKING-A3-PKG08/children/AUTHOR-DEL-08-01/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-08-01","role":"TASK","status":"PASS_ACCEPTED","depends_on":["AUTHOR-DEL-08-01_ACCEPTED"],"writes":["instances/WORKING-A3-PKG08/children/VERIFY-DEL-08-01/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-08-02","role":"TASK","status":"PASS_ACCEPTED","depends_on":[],"writes":["candidates/W_A3/APP-PKG08/DEL-08-02/**","instances/WORKING-A3-PKG08/children/AUTHOR-DEL-08-02/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-08-02","role":"TASK","status":"PASS_ACCEPTED","depends_on":["AUTHOR-DEL-08-02_ACCEPTED"],"writes":["instances/WORKING-A3-PKG08/children/VERIFY-DEL-08-02/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-08-03","role":"TASK","status":"PASS_ACCEPTED","depends_on":[],"writes":["candidates/W_A3/APP-PKG08/DEL-08-03/**","instances/WORKING-A3-PKG08/children/AUTHOR-DEL-08-03/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-08-03","role":"TASK","status":"PASS_ACCEPTED","depends_on":["AUTHOR-DEL-08-03_ACCEPTED"],"writes":["instances/WORKING-A3-PKG08/children/VERIFY-DEL-08-03/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-08-04","role":"TASK","status":"PASS_ACCEPTED","depends_on":[],"writes":["candidates/W_A3/APP-PKG08/DEL-08-04/**","instances/WORKING-A3-PKG08/children/AUTHOR-DEL-08-04/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-08-04","role":"TASK","status":"PASS_ACCEPTED","depends_on":["AUTHOR-DEL-08-04_ACCEPTED"],"writes":["instances/WORKING-A3-PKG08/children/VERIFY-DEL-08-04/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-08-05","role":"TASK","status":"PASS_ACCEPTED_TERMINAL_METADATA_R1","depends_on":[],"writes":["candidates/W_A3/APP-PKG08/DEL-08-05/**","instances/WORKING-A3-PKG08/children/AUTHOR-DEL-08-05/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-08-05","role":"TASK","status":"PASS_ACCEPTED_MECHANICAL_CLOSEOUT_R1","depends_on":["AUTHOR-DEL-08-05_ACCEPTED"],"writes":["instances/WORKING-A3-PKG08/children/VERIFY-DEL-08-05/**"],"returns":"fresh verification evidence"},
+    {"id":"PACKAGE-FAN-IN","role":"WORKING_ITEMS","status":"PASS","depends_on":["all author/verifier pairs accepted"],"writes":["instances/WORKING-A3-PKG08/**"],"returns":"package terminal return and handoff"}
+  ],
+  "edges": [
+    ["AUTHOR-DEL-08-01","VERIFY-DEL-08-01"], ["AUTHOR-DEL-08-02","VERIFY-DEL-08-02"],
+    ["AUTHOR-DEL-08-03","VERIFY-DEL-08-03"], ["AUTHOR-DEL-08-04","VERIFY-DEL-08-04"],
+    ["AUTHOR-DEL-08-05","VERIFY-DEL-08-05"], ["VERIFY-DEL-08-01","PACKAGE-FAN-IN"],
+    ["VERIFY-DEL-08-02","PACKAGE-FAN-IN"], ["VERIFY-DEL-08-03","PACKAGE-FAN-IN"],
+    ["VERIFY-DEL-08-04","PACKAGE-FAN-IN"], ["VERIFY-DEL-08-05","PACKAGE-FAN-IN"]
+  ],
+  "fan_in_gates": ["5/5 terminal accepted author/verifier pairs","exact live/preflight bindings","schema/content-authority/preservation/substrate PASS","25-row exact replacement and inverse rollback","registered App checks PASS after preserving environmental substrate failure when applicable","portable reproducible evidence","zero project writes/blockers/waivers/reruns"],
+  "escalation": ["authority or lifecycle drift","semantic conflict","failed required check","scope overlap","nonterminal or invalid child","project write"]
+}

@@ -1,0 +1,3 @@
+surface	pattern_classes_scanned	accepted_machine_specific_literals	disposition
+legacy_four_doc_and_scope_of_work	macOS_user_home;linux_user_home;file_uri;windows_drive_path	none	No source or candidate bytes changed.
+render_run1_and_run2	macOS_user_home;linux_user_home;file_uri;windows_drive_path	none	Rendered bytes remain deterministic and unchanged.

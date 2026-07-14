@@ -1,0 +1,56 @@
+{
+  "schema": "chirality-sow-author-negative-results/v1",
+  "accepted_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "candidate_sha256": "4d5b3d296511edf1285bc953fe6777c439585e2a0be74121fe282e39a4626550",
+  "pass": true,
+  "cases": [
+    {
+      "id": "NEG-001",
+      "operation": "validate dual candidate without isolated migration authority",
+      "expected": "nonzero and AMBIGUOUS",
+      "exit_code": 1,
+      "result": "PASS",
+      "output_artifact": null
+    },
+    {
+      "id": "NEG-002",
+      "operation": "validate dual candidate with unruled D-GOV-16@0123456 authority",
+      "expected": "nonzero and AMBIGUOUS with exact-authority mismatch",
+      "exit_code": 1,
+      "result": "PASS",
+      "output_artifact": null
+    },
+    {
+      "id": "NEG-003",
+      "operation": "derive checklist without isolated migration authority",
+      "expected": "nonzero with no output artifact",
+      "exit_code": 1,
+      "result": "PASS",
+      "output_artifact": null
+    },
+    {
+      "id": "NEG-004",
+      "operation": "derive checklist with unruled D-GOV-16@0123456 authority",
+      "expected": "nonzero with no output artifact",
+      "exit_code": 1,
+      "result": "PASS",
+      "output_artifact": null
+    },
+    {
+      "id": "NEG-005",
+      "operation": "render dual candidate without isolated migration authority",
+      "expected": "nonzero with no output artifact",
+      "exit_code": 1,
+      "result": "PASS",
+      "output_artifact": null
+    },
+    {
+      "id": "NEG-006",
+      "operation": "parity check with unruled D-GOV-16@0123456 authority",
+      "expected": "nonzero with no JSON or Markdown output artifact",
+      "exit_code": 1,
+      "result": "PASS",
+      "output_artifact": null
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="d94f72590fef8b5863b195bcf2e7cf4c04d126ad026eaaaf1655e2ece119977a">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>d94f72590fef8b5863b195bcf2e7cf4c04d126ad026eaaaf1655e2ece119977a</code>.</p>
+<h1 id="scope-of-work-del-09-04">Scope of Work — DEL-09-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-09-04</code> in service of project scope [SOW-030, SOW-072, SOW-073] and package objectives [OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A macOS 15+ Apple Silicon arm64 unsigned or adhoc local-builder DMG and app-bundle packaging evidence bundle that identifies the required artifacts, proves instruction-root resource integrity and SDK subprocess package-layout executability, preserves current shipped Anthropic network guardrails, and records residual blockers.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">CLM-001 — Datasheet: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h3>
+<h4 id="datasheet-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">Datasheet: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-09-04</td></tr>
+<tr><td>DeliverableName</td><td>macOS DMG Packaging and Instruction Root Integrity</td></tr>
+<tr><td>PackageID</td><td>PKG-09</td></tr>
+<tr><td>PackageName</td><td>Validation, Packaging, Security, and Release</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>CI_CD_CHANGE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>L</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Release target</td><td>macOS 15+ Apple Silicon (<code>arm64</code>) unsigned/unnotarized local-builder DMG</td><td><code>docs/PRD.md</code> Section 6.2; <code>docs/CONTRACT.md</code> Section 1.9; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>Packaging command</td><td><code>npm run desktop:dist</code> from <code>frontend/</code></td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PLAN.md</code> release validation commands</td></tr>
+<tr><td>Required packaging outputs</td><td><code>frontend/dist/Chirality-0.1.0-arm64.dmg</code>; <code>frontend/dist/mac-arm64/Chirality.app</code>; <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code></td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> Section 12.2</td></tr>
+<tr><td>Instruction-root integrity command</td><td><code>npm run instruction-root:integrity</code></td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/TYPES.md</code> Section 12</td></tr>
+<tr><td>Instruction-root packaged resource requirement</td><td>Packaged builds must contain required instruction-root resources and verify integrity before distribution.</td><td><code>docs/CONTRACT.md</code> Section 1.3; <code>docs/SPEC.md</code> Section 1.1</td></tr>
+<tr><td>SDK subprocess packaging posture</td><td>Packaged Electron builds must verify that the SDK subprocess/binary can be found and executed from the app bundle.</td><td><code>docs/PRD.md</code> NFR-030 and Section 12.8; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>Source-completeness state</td><td>Required instruction-root assets may be incomplete in the current source or packaging state; this remains a P0 readiness gate.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> OI-004; <code>docs/PRD.md</code> Section 10.1</td></tr>
+<tr><td>PRD source status</td><td><code>MATCH</code> treated as source status for this run.</td><td><code>_REFERENCES.md</code> REF-006; assignment override — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Build platform prerequisites</td><td>Node.js <code>&gt;=20</code>; dependencies installed in <code>frontend/</code> with <code>npm ci</code> before validation/package sequence.</td><td><code>docs/PRD.md</code> Section 6.2 and CI sequence near Section 12.2</td></tr>
+<tr><td>Release scope exclusions</td><td>Windows/Linux packaging is out of current release scope unless amended.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW-078; <code>docs/PRD.md</code> KG-014</td></tr>
+<tr><td>Signing posture</td><td>Unsigned/adhoc as scoped; no notarization requirement in current target.</td><td><code>docs/PRD.md</code> Sections 6.2 and 7.12; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+<tr><td>Network/security posture during packaged validation</td><td>current shipped Anthropic network guardrails remain in force.</td><td><code>docs/PRD.md</code> Section 12.8; <code>docs/SPEC.md</code> Section 19.4</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>The deliverable consists of packaging changes and evidence artifacts sufficient to:</p>
+<ul>
+<li>- run the local validation sequence from <code>frontend/</code>;</li>
+<li>- build the macOS arm64 DMG with <code>desktop:dist</code>;</li>
+<li>- prove the app bundle includes required instruction-root assets;</li>
+<li>- preserve or emit the latest instruction-root integrity summary;</li>
+<li>- verify SDK subprocess/binary executability from the package layout; and</li>
+<li>- record any residual blockers, especially source-completeness or SDK packaging issues.</li>
+</ul>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/CONTRACT.md</code> Sections 1.3 and 1.9.</li>
+<li>- <code>docs/SPEC.md</code> Sections 1.1, 19.1, and 19.4.</li>
+<li>- <code>docs/TYPES.md</code> Section 12.</li>
+<li>- <code>docs/PLAN.md</code> release validation commands and risk table.</li>
+<li>- <code>docs/PRD.md</code> Sections 6.2, 7.12, 8.11, 10.1, 12.2, 12.8, NFR-030, KG-014, KG-025.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> entries for DEL-09-04, SOW-030, SOW-072, SOW-073, OI-003, OI-004.</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">CLM-007 — Specification: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h3>
+<h4 id="specification-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">Specification: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable covers the macOS arm64 unsigned DMG packaging path and the packaging evidence needed to prove instruction-root asset integrity and SDK subprocess package executability for Chirality App vNext.</p>
+<p>In scope:</p>
+<ul>
+<li>- <code>frontend/</code> local packaging command <code>npm run desktop:dist</code>.</li>
+<li>- <code>frontend/</code> app-directory packaging command <code>npm run desktop:pack</code>, which is</li>
+</ul>
+<p>the layout exercised by the packaged probes and D-APP-18 live proof.</p>
+<ul>
+<li>- DMG output verification for macOS 15+ Apple Silicon.</li>
+<li>- App bundle instruction-root asset inclusion and integrity verification.</li>
+<li>- SDK subprocess/binary package-layout probe.</li>
+<li>- Integrity summary evidence.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Windows/Linux packaging, unless a governed amendment reopens it.</li>
+<li>- Feature implementation unrelated to packaging glue, integrity checks, or package-layout probes.</li>
+<li>- Signing/notarization beyond the current unsigned/adhoc local-builder posture.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-09-04-REQ-001</td><td>The release target must remain macOS 15+ Apple Silicon (<code>arm64</code>) unsigned/unnotarized local-builder DMG unless amended.</td><td><code>docs/PRD.md</code> Section 6.2; <code>docs/CONTRACT.md</code> K-RELEASE-1; <code>docs/SPEC.md</code> Section 19.4</td><td>Inspect app bundle architecture, <code>LSMinimumSystemVersion</code>, and signing posture.</td></tr>
+<tr><td>DEL-09-04-REQ-002</td><td>The desktop distribution build must be produced through <code>npm run desktop:dist</code> from <code>frontend/</code>.</td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> FR-067</td><td>Run or review build evidence for <code>npm run desktop:dist</code>.</td></tr>
+<tr><td>DEL-09-04-REQ-003</td><td>The expected DMG output must include <code>frontend/dist/Chirality-0.1.0-arm64.dmg</code>.</td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> Section 7.12</td><td>Confirm file exists after packaging.</td></tr>
+<tr><td>DEL-09-04-REQ-004</td><td>The expected app bundle output must include <code>frontend/dist/mac-arm64/Chirality.app</code>.</td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> Section 12.2</td><td>Confirm app bundle exists after packaging.</td></tr>
+<tr><td>DEL-09-04-REQ-005</td><td>The build/integrity flow must produce or preserve <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>, and packaging evidence must state either a passing integrity verdict or enumerated blockers.</td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> Section 12.2</td><td>Confirm summary JSON exists and records a passing integrity result, or record blocker.</td></tr>
+<tr><td>DEL-09-04-REQ-006</td><td>Packaged builds must contain required instruction-root resources and verify integrity before distribution.</td><td><code>docs/CONTRACT.md</code> K-PACKAGE-1; <code>docs/SPEC.md</code> Section 1.1</td><td>Run/review <code>npm run instruction-root:integrity</code> and bundle resource inspection.</td></tr>
+<tr><td>DEL-09-04-REQ-007</td><td>Missing required instruction-root assets are a P0 packaging and runtime-readiness blocker.</td><td><code>docs/SPEC.md</code> Section 1.1; <code>docs/PRD.md</code> Section 10.1; decomposition OI-004</td><td>Fail packaging readiness if required assets are absent, or document accepted amendment.</td></tr>
+<tr><td>DEL-09-04-REQ-008</td><td>The package-layout evidence must verify that the SDK subprocess/binary can be found and executed from the app bundle/package layout without secret leakage or broader network policy.</td><td><code>docs/PRD.md</code> NFR-030; <code>docs/PRD.md</code> KG-025; <code>docs/SPEC.md</code> Section 19.4</td><td>Execute SDK subprocess packaging probe in packaged layout; record command, package path, expected result, observed result, and blocker state.</td></tr>
+<tr><td>DEL-09-04-REQ-009</td><td>The packaged validation must preserve current shipped Anthropic network guardrails.</td><td><code>docs/PRD.md</code> Section 12.8; <code>docs/SPEC.md</code> Section 19.4</td><td>Run/review network guardrail checks or document blocker.</td></tr>
+<tr><td>DEL-09-04-REQ-010</td><td>Windows/Linux packaging must not be introduced by this deliverable without explicit scope amendment.</td><td>Decomposition SOW-078; <code>docs/PRD.md</code> KG-014</td><td>Review package scripts/config changes for target creep.</td></tr>
+<tr><td>DEL-09-04-REQ-011</td><td>App-directory packaging used by packaged probes must be produced through <code>npm run desktop:pack</code> from <code>frontend/</code>.</td><td>D-APP-18; D-APP-56 R4-P03; <code>docs/BUILD_AND_RELEASE.md</code></td><td>Run or review the app-directory packaging proof.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<ul>
+<li>- <code>docs/CONTRACT.md</code> K-ROOT-1, K-ROOT-2, K-PACKAGE-1, K-RELEASE-1, K-VALIDATE-1.</li>
+<li>- <code>docs/SPEC.md</code> Section 1.1 instruction-root requirements and Sections 19.1/19.4 release validation requirements.</li>
+<li>- <code>docs/PRD.md</code> FR-067, NFR-030, KG-014, KG-025.</li>
+<li>- <code>docs/TYPES.md</code> release and validation vocabulary for <code>instruction-root:integrity</code> and <code>desktop:dist</code>.</li>
+</ul>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>The verification package should include:</p>
+<table><tbody>
+<tr><td>Verification Item</td><td>Expected Evidence</td><td>Requirement Coverage</td></tr>
+<tr><td>Local build command evidence</td><td>command transcript or CI/local run record for <code>npm run desktop:dist</code></td><td>DEL-09-04-REQ-002</td></tr>
+<tr><td>DMG artifact check</td><td>file listing or checksum for <code>frontend/dist/Chirality-0.1.0-arm64.dmg</code></td><td>DEL-09-04-REQ-001, DEL-09-04-REQ-003</td></tr>
+<tr><td>App bundle check</td><td>file listing for <code>frontend/dist/mac-arm64/Chirality.app</code></td><td>DEL-09-04-REQ-004</td></tr>
+<tr><td>Minimum macOS version check</td><td>inspected <code>LSMinimumSystemVersion</code> value <code>15.0.0</code> or later</td><td>DEL-09-04-REQ-001</td></tr>
+<tr><td>Architecture check</td><td>inspected arm64 binary architecture</td><td>DEL-09-04-REQ-001</td></tr>
+<tr><td>Signing posture check</td><td>evidence that signing is unsigned/adhoc as scoped</td><td>DEL-09-04-REQ-001</td></tr>
+<tr><td>Instruction-root integrity summary</td><td><code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code> with explicit pass verdict or enumerated blockers</td><td>DEL-09-04-REQ-005, DEL-09-04-REQ-006, DEL-09-04-REQ-007</td></tr>
+<tr><td>SDK subprocess packaging probe</td><td>package-layout probe command, package path, expected result, observed result, and failure/blocker recording rule for SDK subprocess/binary</td><td>DEL-09-04-REQ-008</td></tr>
+<tr><td>Network guardrail check</td><td>evidence current shipped Anthropic network policy remains active</td><td>DEL-09-04-REQ-009</td></tr>
+</tbody></table>
+<p>Packaging evidence is not acceptable when instruction-root assets are absent, the integrity summary reports failure, or the SDK subprocess package-layout probe fails. Those cases remain blockers unless a governed amendment accepts a different release target or integrity policy.</p>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required deliverable artifacts:</p>
+<ul>
+<li>- <code>desktop:dist</code> command transcript or equivalent run record.</li>
+<li>- DMG and app bundle artifact listing plus checksum or deterministic artifact identifier for the DMG.</li>
+<li>- Instruction-root integrity summary with pass/blocker verdict.</li>
+<li>- SDK subprocess packaging probe command and result.</li>
+<li>- Audit-ready evidence bundle pointers to command transcript, artifact listing/checksum, summary JSON, first-adapter probe output, network guardrail evidence, and residual blockers.</li>
+<li>- <code>TBD</code> residual-blocker list for incomplete instruction-root assets, SDK package-layout failures, or unresolved packaged-app runtime guardrail scope.</li>
+<li>- <code>ASSUMPTION</code> or <code>PROPOSAL</code> entries for any packaging config interpretation not directly supported by source evidence.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The desktop distribution and app-directory packaging evidence identifies the expected DMG and app bundle, verifies arm64 architecture, minimum macOS 15.0.0, unsigned or adhoc posture, required instruction-root assets and passing integrity summary, an executable SDK subprocess in package layout, and preserved current shipped Anthropic network guardrails; missing assets, failed integrity, failed subprocess execution, or unresolved required evidence remain explicit blockers.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">CLM-013 — Procedure: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h3>
+<h4 id="procedure-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">Procedure: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce the macOS arm64 unsigned DMG and assemble evidence that instruction-root resources and SDK subprocess packaging posture are valid for the packaged app.</p>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- ResponsibleParty: TBD.</li>
+<li>- Work from <code>frontend/</code> for local validation and packaging commands.</li>
+<li>- Node.js <code>&gt;=20</code> is available.</li>
+<li>- Dependencies have been installed with <code>npm ci</code>.</li>
+<li>- Required instruction-root assets are present or missing assets are tracked as blockers.</li>
+<li>- Dependency state: <code>Dependencies.csv</code> v3.1 currently contains 9 ACTIVE rows; six rows remain <code>SatisfactionStatus=TBD</code>, so dependency closure remains open until accepted evidence resolves them.</li>
+<li>- Evidence bundle custody: ResponsibleParty remains TBD; until assigned, route release evidence bundle ownership through the package owner or human-appointed release reviewer.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm release target remains macOS 15+ Apple Silicon (<code>arm64</code>) unsigned/unnotarized local-builder DMG.</p>
+<p>2. From <code>frontend/</code>, run required pre-packaging checks or confirm accepted evidence already exists. Non-run evidence is acceptable only when it identifies the command, source run or artifact, timestamp/version, pass verdict, and any blockers:</p>
+<ul>
+<li>- <code>npm run test</code></li>
+<li>- <code>npm run typecheck</code></li>
+<li>- <code>npm run harness:validate:premerge</code></li>
+<li>- <code>npm run instruction-root:integrity</code></li>
+</ul>
+<p>3. If <code>instruction-root:integrity</code> reports missing required assets, stop packaging-evidence acceptance and record the missing assets as P0 blockers.</p>
+<p>4. From <code>frontend/</code>, run <code>npm run desktop:dist</code>.</p>
+<p>5. Confirm expected packaging outputs:</p>
+<ul>
+<li>- <code>frontend/dist/Chirality-0.1.0-arm64.dmg</code></li>
+<li>- <code>frontend/dist/mac-arm64/Chirality.app</code></li>
+<li>- <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code></li>
+</ul>
+<p>6. Inspect the packaged app for macOS release posture:</p>
+<ul>
+<li>- binary is <code>arm64</code>;</li>
+<li>- <code>LSMinimumSystemVersion</code> is <code>15.0.0</code> or later;</li>
+<li>- signing posture is unsigned/adhoc as scoped.</li>
+</ul>
+<p>7. Inspect packaged resources for required instruction-root assets.</p>
+<p>8. Run or review the SDK subprocess packaging probe:</p>
+<ul>
+<li>- record the probe command, package path, expected result, observed result, and evidence path;</li>
+<li>- verify the SDK subprocess/bundled binary can be found from package layout;</li>
+<li>- verify it is not trapped inside <code>app.asar</code> without execution access;</li>
+<li>- verify execution does not require secret leakage or broader network policy.</li>
+</ul>
+<p>9. Confirm packaged app preserves packaging-relevant runtime guardrails:</p>
+<ul>
+<li>- working-root selector is available;</li>
+<li>- current shipped Anthropic network guardrails remain in force;</li>
+<li>- <code>TBD</code>: human/source ruling must decide whether SDK-backed turn start after R1 blocks DEL-09-04 closure or is deferred to a broader packaged-app validation workflow.</li>
+</ul>
+<p>10. Record all command outputs, artifact paths, summary JSON, probe output, checksums or deterministic artifact identifiers, and residual blockers in the integrity/package evidence bundle.</p>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Criteria</td><td>Requirement Link</td></tr>
+<tr><td>Local checks</td><td>Required commands exit zero or accepted evidence explains non-run state.</td><td>DEL-09-04-REQ-002, DEL-09-04-REQ-006</td></tr>
+<tr><td>DMG artifact</td><td><code>frontend/dist/Chirality-0.1.0-arm64.dmg</code> exists after <code>desktop:dist</code>.</td><td>DEL-09-04-REQ-003</td></tr>
+<tr><td>App bundle artifact</td><td><code>frontend/dist/mac-arm64/Chirality.app</code> exists after <code>desktop:dist</code>.</td><td>DEL-09-04-REQ-004</td></tr>
+<tr><td>Integrity summary</td><td><code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code> exists and states a pass verdict, or all failed/missing assets are enumerated as blockers.</td><td>DEL-09-04-REQ-005, DEL-09-04-REQ-007</td></tr>
+<tr><td>macOS target</td><td>Binary architecture is arm64 and minimum macOS target is <code>15.0.0</code> or later.</td><td>DEL-09-04-REQ-001</td></tr>
+<tr><td>Signing posture</td><td>Codesign evidence matches unsigned/adhoc local-builder scope.</td><td>DEL-09-04-REQ-001</td></tr>
+<tr><td>SDK subprocess</td><td>Packaged SDK subprocess/binary probe records command, package path, expected result, observed result, and shows the binary is locatable and executable from app bundle/package layout.</td><td>DEL-09-04-REQ-008</td></tr>
+<tr><td>Network guardrails</td><td>Packaged validation preserves current shipped Anthropic network policy.</td><td>DEL-09-04-REQ-009</td></tr>
+</tbody></table>
+<h3 id="clm-018-records">CLM-018 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Required records:</p>
+<table><tbody>
+<tr><td>Record</td><td>Required content</td></tr>
+<tr><td>Pre-packaging command transcript</td><td>Command, cwd, timestamp/version, exit status, and accepted non-run evidence basis if substituted.</td></tr>
+<tr><td><code>desktop:dist</code> evidence</td><td>Command transcript or build run record plus output paths.</td></tr>
+<tr><td>DMG artifact identity</td><td><code>frontend/dist/Chirality-0.1.0-arm64.dmg</code> listing plus checksum or deterministic artifact identifier.</td></tr>
+<tr><td>App bundle artifact identity</td><td><code>frontend/dist/mac-arm64/Chirality.app</code> listing and inspected release posture.</td></tr>
+<tr><td>Instruction-root integrity summary</td><td><code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code> with pass verdict or blocker list.</td></tr>
+<tr><td>SDK subprocess packaging probe</td><td>Probe command, package path, expected result, observed result, output path, and blocker state if failed.</td></tr>
+<tr><td>Manual package verification notes</td><td>Architecture, minimum OS, signing posture, resource inclusion, working-root selector, network policy, and SDK packaged execution scope.</td></tr>
+<tr><td>Evidence bundle custody</td><td>ResponsibleParty or routing placeholder; currently <code>TBD</code> until human assignment.</td></tr>
+<tr><td>Blocker list</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Run or review the accepted pre-packaging checks, desktop:dist and desktop:pack evidence; inspect DMG and app-bundle identities, architecture, minimum OS, signing posture, packaged resources, integrity summary, SDK subprocess probe, network guardrails, and residual blocker records.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-019-guidance-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">CLM-019 — Guidance: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h3>
+<h4 id="guidance-del-09-04-macos-dmg-packaging-and-instruction-root-integrity">Guidance: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable makes release packaging explicit and repeatable for the current macOS-only target. Its job is not just to produce a DMG, but to prove that packaged Chirality preserves the instruction-root resource boundary and can execute the SDK subprocess/binary from the packaged layout.</p>
+<h3 id="clm-021-principles">CLM-021 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat <code>desktop:dist</code> as release-significant. <code>docs/CONTRACT.md</code> K-VALIDATE-1 includes <code>desktop:dist</code> among checks required before release-significant changes are accepted.</li>
+<li>- Keep the release target narrow. <code>docs/PRD.md</code> KG-014 and decomposition SOW-078 make Windows/Linux packaging out of scope without amendment.</li>
+<li>- Treat instruction-root resources as package blockers. <code>docs/SPEC.md</code> Section 1.1 says missing required instruction-root assets are a P0 packaging and runtime-readiness blocker.</li>
+<li>- Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, current shipped Anthropic network guardrails, and SDK package execution.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-022-considerations">CLM-022 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The instruction-root required asset set includes <code>AGENTS.md</code>, <code>README.md</code>, <code>agents/</code>, <code>docs/</code>, core docs, and root-level assets where packaging/integrity policy requires them. If the code-level integrity manifest differs from this list, record the difference as a conflict or source-completeness blocker rather than silently passing packaging readiness.</li>
+<li>- SDK subprocess packaging is an empirical check. <code>docs/PRD.md</code> KG-025 flags potential needs such as <code>asarUnpack</code>, signing, environment, or path adjustments; the accepted result must come from a probe or build evidence, not from configuration review alone.</li>
+<li>- The integrity summary path is part of expected packaging evidence: <code>frontend/artifacts/harness/instruction-root-integrity/latest/summary.json</code>.</li>
+<li>- The unsigned/adhoc local-builder DMG posture is acceptable only because <code>docs/CONTRACT.md</code> K-RELEASE-1 and <code>docs/PRD.md</code> Section 6.2 define that as the current release target. A notarized distribution target would require scope amendment rather than silent tightening of this deliverable.</li>
+<li>- Release evidence should be reviewable without rerunning the build: command transcript, artifact listing or checksum, integrity summary, first-adapter probe output, and blocker list need stable paths or attachment identifiers.</li>
+<li>- <code>ASSUMPTION: PACKAGE_HEURISTIC</code> associates OBJ-008 because the decomposition maps this deliverable through PKG-09 and SOW-072/SOW-073, but no human has assigned a hard objective-specific owner.</li>
+</ul>
+<h3 id="clm-023-trade-offs">CLM-023 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Strict asset completeness vs. build progress</td><td>Prefer failing readiness with a documented blocker when required instruction-root assets are absent. Do not weaken integrity requirements without a governed amendment.</td></tr>
+<tr><td><code>app.asar</code> packing convenience vs. SDK executable access</td><td>Prefer package layout that allows the SDK subprocess/binary to be found and executed. If <code>asar</code> trapping prevents execution, record the packaging probe failure and adjust packaging under this deliverable.</td></tr>
+<tr><td>Local unsigned DMG vs. notarized distribution</td><td>Keep unsigned/adhoc posture for current scope. Notarization is outside this deliverable unless scope changes.</td></tr>
+<tr><td>General release checklist vs. DEL-09-04 scope</td><td>Keep CI artifact upload and broader release workflow details in DEL-09-05 unless directly needed to prove the DMG/instruction-root/SDK packaging result.</td></tr>
+</tbody></table>
+<h3 id="clm-024-examples">CLM-024 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>TBD: No source-backed example transcript or accepted packaging probe output is available in the local reference corpus for this deliverable.</p>
+<h3 id="clm-025-conflict-table-for-human-ruling">CLM-025 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>DEL-09-04-CONF-001</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Assignment override</td><td>All PRD-backed requirements</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td>TBD — reconciled under D-APP-38</td></tr>
+<tr><td>DEL-09-04-CONF-002</td><td>Required instruction-root assets may be incomplete in current source or package state.</td><td><code>docs/SPEC.md</code> Section 1.1; <code>docs/PRD.md</code> Section 10.1</td><td>Decomposition OI-004</td><td>Specification requirements, Procedure verification</td><td>Treat missing assets as P0 readiness blocker until completed or amended.</td><td>TBD</td></tr>
+<tr><td>DEL-09-04-CONF-003</td><td>The accepted authority for the required instruction-root packaged asset set must be explicit when code-level integrity manifests differ from policy-level required assets.</td><td><code>docs/SPEC.md</code> Section 1.1; <code>docs/PRD.md</code> FR-058</td><td>Code-level integrity manifest, location TBD</td><td>Specification requirements, Procedure verification</td><td>Treat policy-level required assets as readiness blockers unless a governed amendment narrows the manifest.</td><td>TBD</td></tr>
+<tr><td>DEL-09-04-CONF-004</td><td>Whether SDK-backed turn start after R1 is a DEL-09-04 closure blocker or deferred packaged-app validation needs human/source ruling.</td><td><code>docs/PRD.md</code> Section 12.8; <code>docs/SPEC.md</code> Section 19.4</td><td><code>_CONTEXT.md</code> deliverable scope</td><td>Procedure packaged runtime guardrail check</td><td>Keep SDK subprocess/package-layout proof in scope; mark full packaged SDK-backed turn start as <code>TBD</code> until owner ruling.</td><td>TBD</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 SOW-072 SOW-073 OBJ-008</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,5 @@
+literal_class	literal	source_surface	derived_surface	disposition
+PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	workspace/Datasheet.md:83	workspace/ScopeOfWork.md:140	PRESERVED_BYTE_EXACT
+PRESERVED_CONTROL_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	workspace/_REFERENCES.md:13	none	INVENTORIED_CONTROL_LITERAL
+PRESERVED_CONTROL_LITERAL	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md	workspace/_DEPENDENCIES.md:54	none	INVENTORIED_CONTROL_LITERAL
+PRESERVED_EXAMPLE_LITERAL	/absolute/project/root	workspace/Guidance.md:52	workspace/ScopeOfWork.md:468	PRESERVED_BYTE_EXACT

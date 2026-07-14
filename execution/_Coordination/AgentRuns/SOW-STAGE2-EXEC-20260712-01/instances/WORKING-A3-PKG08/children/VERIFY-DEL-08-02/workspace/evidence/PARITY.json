@@ -1,0 +1,249 @@
+{
+  "checks": [
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 2,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-001"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 17,
+      "line_start": 3,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-002"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 32,
+      "line_start": 18,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-003"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 42,
+      "line_start": 33,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-004"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 55,
+      "line_start": 43,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-005"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 67,
+      "line_start": 56,
+      "pass": true,
+      "source_file": "Datasheet.md",
+      "target_id": "CLM-006"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 2,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-007"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 22,
+      "line_start": 3,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-008"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 44,
+      "line_start": 23,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-009"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 54,
+      "line_start": 45,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-010"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 75,
+      "line_start": 55,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-011"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 86,
+      "line_start": 76,
+      "pass": true,
+      "source_file": "Specification.md",
+      "target_id": "CLM-012"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 2,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-013"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 6,
+      "line_start": 3,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-014"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 17,
+      "line_start": 7,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-015"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 37,
+      "line_start": 18,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-016"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 53,
+      "line_start": 38,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-017"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 73,
+      "line_start": 54,
+      "pass": true,
+      "source_file": "Procedure.md",
+      "target_id": "CLM-018"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 2,
+      "line_start": 1,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-019"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 6,
+      "line_start": 3,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-020"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 16,
+      "line_start": 7,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-021"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 44,
+      "line_start": 17,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-022"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 55,
+      "line_start": 45,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-023"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 68,
+      "line_start": 56,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-024"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 76,
+      "line_start": 69,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-025"
+    },
+    {
+      "disposition": "PRESERVED",
+      "issues": [],
+      "line_end": 83,
+      "line_start": 77,
+      "pass": true,
+      "source_file": "Guidance.md",
+      "target_id": "CLM-026"
+    }
+  ],
+  "issues": [],
+  "pass": true,
+  "schema": "chirality-sow-parity/v1",
+  "scope_of_work": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG08/children/VERIFY-DEL-08-02/workspace/isolation/DEL-08-02/ScopeOfWork.md",
+  "scope_of_work_sha256": "4d5b3d296511edf1285bc953fe6777c439585e2a0be74121fe282e39a4626550",
+  "source_files": {
+    "Datasheet.md": "d55d1b283d8a7c2e893f5229d64346ae4e2ed594ec57ad0deaa1a6f82c717d92",
+    "Guidance.md": "4db30440df5afcbcd6ff4349d25a7c7ec040b8470a1b5da23fc7c190cf772451",
+    "Procedure.md": "1cebf194a00f41c2c56d32b0c21bc0ef151170dc2c41c75f54997c03217dc589",
+    "Specification.md": "8fee9bbbdc69125db2d7adf085a23bb82e0d51f96298b655d49666e5df4f1a09"
+  }
+}

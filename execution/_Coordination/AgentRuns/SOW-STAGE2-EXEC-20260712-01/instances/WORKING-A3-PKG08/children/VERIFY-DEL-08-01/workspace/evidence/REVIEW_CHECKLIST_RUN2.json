@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 231,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3d61ba8d613f42d57f6c5af3601efd33de613260867c8c8701c1f5205f3eed6e"
+      },
+      "text": "The test suite verifies required instruction-root assets, agent instruction metadata, declared write scopes, naming, and required section markers using integrity and conformance fixtures, and produces a source-completeness checklist.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-001",
+          "source_line": 348,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the agent conformance validator output, integrity fixture results, conformance fixture results, and source-completeness checklist against the preserved legacy requirements."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "3d61ba8d613f42d57f6c5af3601efd33de613260867c8c8701c1f5205f3eed6e"
+  },
+  "tool_version": "1"
+}

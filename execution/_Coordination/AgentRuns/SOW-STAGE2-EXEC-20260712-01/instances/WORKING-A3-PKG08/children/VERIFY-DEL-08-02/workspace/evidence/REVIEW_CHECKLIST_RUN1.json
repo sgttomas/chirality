@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 235,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4d5b3d296511edf1285bc953fe6777c439585e2a0be74121fe282e39a4626550"
+      },
+      "text": "The DEL-08-02 contract is accepted when alias resolver tests, route fixtures, and matrix mapping tests demonstrate that UI aliases, canonical agent names, matrix routes, and persona resolution remain consistent with the complete preserved legacy source and scope items SOW-005, SOW-006, and SOW-017.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-02-VER-001",
+          "source_line": 342,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the preserved legacy source and execute its specified alias resolver, matrix mapping, route, loop-context, persona-resolution, fallback, unknown-key, unsupported-option, source-state, dependency-register, and evidence-capture checks; record concrete test or command-output evidence."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-02",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "4d5b3d296511edf1285bc953fe6777c439585e2a0be74121fe282e39a4626550"
+  },
+  "tool_version": "1"
+}
