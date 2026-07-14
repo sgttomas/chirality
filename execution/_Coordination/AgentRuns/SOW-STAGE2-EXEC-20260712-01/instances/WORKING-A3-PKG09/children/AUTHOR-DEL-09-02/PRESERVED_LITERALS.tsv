@@ -1,0 +1,7 @@
+path	line	classification	literal	basis
+workspace/_REFERENCES.md	13	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	byte-identical accepted control input
+workspace/Datasheet.md	59	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	byte-identical accepted legacy source
+workspace/ScopeOfWork.md	106	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	marker-bound preserved source byte
+workspace/evidence/ScopeOfWork_RUN1.html	78	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	marker-bound derivative render byte
+workspace/evidence/ScopeOfWork_RUN2.html	78	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	marker-bound derivative render byte
+../../../../candidates/W_A3/APP-PKG09/DEL-09-02/ScopeOfWork.md	106	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	marker-bound exact candidate byte

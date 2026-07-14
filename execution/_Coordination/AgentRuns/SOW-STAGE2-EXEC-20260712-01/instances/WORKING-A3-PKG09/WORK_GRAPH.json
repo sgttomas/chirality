@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "selection_authority": "HELP_HUMAN release under accepted W-A3 preflight",
+  "posture": "MIXED",
+  "package": "APP-PKG-09",
+  "members": ["DEL-09-01", "DEL-09-02", "DEL-09-03", "DEL-09-04", "DEL-09-05", "DEL-09-06"],
+  "nodes": [
+    {"id":"AUTHOR-DEL-09-01","role":"TASK","status":"FAILED_INPUTS_NO_EXECUTION","depends_on":[],"writes":["instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-01/**"],"returns":"fail-closed normalization record"},
+    {"id":"AUTHOR-DEL-09-01-R1","role":"TASK","status":"PASS_ACCEPTED_MANAGER_MANIFEST_CLOSEOUT","depends_on":["AUTHOR-DEL-09-01_FAILED_CLOSED"],"writes":["candidates/W_A3/APP-PKG09/DEL-09-01/**","instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-01-R1/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-09-01","role":"TASK","status":"STALLED_PARTIAL_PRESERVED","depends_on":["AUTHOR-DEL-09-01-R1_ACCEPTED"],"writes":["instances/WORKING-A3-PKG09/children/VERIFY-DEL-09-01/**"],"returns":"substantive partial evidence, no terminal root artifacts"},
+    {"id":"VERIFY-DEL-09-01-R1","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["VERIFY-DEL-09-01_PARTIAL_PRESERVED"],"writes":["instances/WORKING-A3-PKG09/children/VERIFY-DEL-09-01-R1/**"],"returns":"fresh terminal verification evidence"},
+    {"id":"AUTHOR-DEL-09-02","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":[],"writes":["candidates/W_A3/APP-PKG09/DEL-09-02/**","instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-02/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-09-02","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT","depends_on":["AUTHOR-DEL-09-02_ACCEPTED"],"writes":["instances/WORKING-A3-PKG09/children/VERIFY-DEL-09-02/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-09-03","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT_CARRIER_REUSE","depends_on":[],"writes":["candidates/W_A3/APP-PKG09/DEL-09-03/**","instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-03/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-09-03","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT_CARRIER_REUSE","depends_on":["AUTHOR-DEL-09-03_ACCEPTED"],"writes":["instances/WORKING-A3-PKG09/children/VERIFY-DEL-09-03/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-09-04","role":"TASK","status":"PASS_ACCEPTED_MANAGER_EVIDENCE_CLOSEOUT_CARRIER_REUSE","depends_on":[],"writes":["candidates/W_A3/APP-PKG09/DEL-09-04/**","instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-04/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-09-04","role":"TASK","status":"PASS_ACCEPTED_CARRIER_REUSE","depends_on":["AUTHOR-DEL-09-04_ACCEPTED"],"writes":["instances/WORKING-A3-PKG09/children/VERIFY-DEL-09-04/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-09-05","role":"TASK","status":"PASS_ACCEPTED_CARRIER_REUSE","depends_on":[],"writes":["candidates/W_A3/APP-PKG09/DEL-09-05/**","instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-05/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-09-05","role":"TASK","status":"PASS_ACCEPTED_CARRIER_REUSE","depends_on":["AUTHOR-DEL-09-05_ACCEPTED"],"writes":["instances/WORKING-A3-PKG09/children/VERIFY-DEL-09-05/**"],"returns":"fresh verification evidence"},
+    {"id":"AUTHOR-DEL-09-06","role":"TASK","status":"PASS_ACCEPTED_CARRIER_REUSE","depends_on":[],"writes":["candidates/W_A3/APP-PKG09/DEL-09-06/**","instances/WORKING-A3-PKG09/children/AUTHOR-DEL-09-06/**"],"returns":"candidate plus author evidence"},
+    {"id":"VERIFY-DEL-09-06","role":"TASK","status":"PASS_ACCEPTED_CARRIER_REUSE","depends_on":["AUTHOR-DEL-09-06_ACCEPTED"],"writes":["instances/WORKING-A3-PKG09/children/VERIFY-DEL-09-06/**"],"returns":"fresh verification evidence"},
+    {"id":"PACKAGE-FAN-IN","role":"WORKING_ITEMS","status":"PASS","depends_on":["all author/verifier pairs accepted"],"writes":["instances/WORKING-A3-PKG09/**"],"returns":"package terminal return and handoff"}
+  ],
+  "edges": [
+    ["AUTHOR-DEL-09-01","AUTHOR-DEL-09-01-R1"], ["AUTHOR-DEL-09-01-R1","VERIFY-DEL-09-01"], ["VERIFY-DEL-09-01","VERIFY-DEL-09-01-R1"], ["AUTHOR-DEL-09-02","VERIFY-DEL-09-02"],
+    ["AUTHOR-DEL-09-03","VERIFY-DEL-09-03"], ["AUTHOR-DEL-09-04","VERIFY-DEL-09-04"],
+    ["AUTHOR-DEL-09-05","VERIFY-DEL-09-05"], ["AUTHOR-DEL-09-06","VERIFY-DEL-09-06"],
+    ["VERIFY-DEL-09-01-R1","PACKAGE-FAN-IN"], ["VERIFY-DEL-09-02","PACKAGE-FAN-IN"],
+    ["VERIFY-DEL-09-03","PACKAGE-FAN-IN"], ["VERIFY-DEL-09-04","PACKAGE-FAN-IN"],
+    ["VERIFY-DEL-09-05","PACKAGE-FAN-IN"], ["VERIFY-DEL-09-06","PACKAGE-FAN-IN"]
+  ],
+  "concurrency": "eligible only for disjoint bounded file-tool nodes; Bash-bearing TASK children are serialized",
+  "fan_in_gates": ["6/6 terminal accepted author/verifier pairs","exact live/preflight bindings","schema/content-authority/preservation/substrate PASS","30-row exact replacement and inverse rollback","registered App checks PASS after preserving environmental substrate failure when applicable","portable reproducible evidence","zero project writes/blockers/waivers/reruns"],
+  "escalation": ["authority or lifecycle drift","semantic conflict","failed required check","scope overlap","nonterminal or invalid child","project write"]
+}

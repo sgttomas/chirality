@@ -1,0 +1,7 @@
+{
+  "schema":"chirality-sow-negative-verification/v1",
+  "missing":{"validation_exit":1,"checklist_exit":1,"format":"INVALID","checklist_artifact":false,"verdict":"PASS_FAIL_CLOSED"},
+  "unruled":{"validation_exit":1,"checklist_exit":1,"format":"AMBIGUOUS","checklist_artifact":false,"verdict":"PASS_FAIL_CLOSED"},
+  "padded_authority":{"validation_exit":1,"checklist_exit":1,"format":"AMBIGUOUS","checklist_artifact":false,"verdict":"PASS_FAIL_CLOSED"},
+  "all_pass":true
+}

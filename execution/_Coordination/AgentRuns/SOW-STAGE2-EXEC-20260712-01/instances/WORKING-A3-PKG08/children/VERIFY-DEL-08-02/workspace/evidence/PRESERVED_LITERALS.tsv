@@ -1,0 +1,3 @@
+source_path	line	classification	literal	verification
+isolation/DEL-08-02/_REFERENCES.md	13	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	PRESENT_BYTE_IDENTICAL_NOT_NORMALIZED
+isolation/DEL-08-02/_DEPENDENCIES.md	52	PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md	PRESENT_BYTE_IDENTICAL_NOT_NORMALIZED

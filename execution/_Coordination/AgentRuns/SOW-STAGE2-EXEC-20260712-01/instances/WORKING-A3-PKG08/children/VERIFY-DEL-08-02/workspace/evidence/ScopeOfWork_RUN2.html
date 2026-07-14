@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="4d5b3d296511edf1285bc953fe6777c439585e2a0be74121fe282e39a4626550">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>4d5b3d296511edf1285bc953fe6777c439585e2a0be74121fe282e39a4626550</code>.</p>
+<h1 id="scope-of-work-del-08-02">Scope of Work — DEL-08-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-08-02</code> in service of project scope [SOW-005, SOW-006, SOW-017] and package objectives [OBJ-001, OBJ-007].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Persona alias and agent matrix routing contract, with alias resolver tests, route fixtures, and matrix mapping tests, that keeps UI aliases, canonical agent names, matrix routes, and persona resolution consistent.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-02-persona-alias-and-agent-matrix-routing-contract">CLM-001 — Datasheet: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h3>
+<h4 id="datasheet-del-08-02-persona-alias-and-agent-matrix-routing-contract">Datasheet: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-08-02</td></tr>
+<tr><td>DeliverableName</td><td>Persona Alias and Agent Matrix Routing Contract</td></tr>
+<tr><td>PackageID</td><td>PKG-08</td></tr>
+<tr><td>PackageName</td><td>Agent Suite, Pipeline Dispatch, and Subagent Governance</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>ContextEnvelope</td><td>S</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Current Lifecycle State at Draft</td><td>INITIALIZED</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Scope summary</td><td>Keep UI aliases, canonical agent names, matrix routes, and persona resolution consistent.</td><td><code>_CONTEXT.md</code>; decomposition entry DEL-08-02</td></tr>
+<tr><td>Anticipated artifacts</td><td>Alias resolver tests; route fixtures; matrix mapping tests.</td><td><code>_CONTEXT.md</code>; decomposition entry DEL-08-02</td></tr>
+<tr><td>Covered scope items</td><td>SOW-005, SOW-006, SOW-017.</td><td><code>_CONTEXT.md</code>; decomposition scope table</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-001, OBJ-007.</td><td><code>_CONTEXT.md</code>; decomposition entry DEL-08-02</td></tr>
+<tr><td>UI alias map</td><td><code>HELP -&gt; HELP_HUMAN</code>; <code>ORCHESTRATE -&gt; ORCHESTRATOR</code>; <code>AGENTS -&gt; HELPS_HUMANS</code>; <code>DEPENDENCIES -&gt; EVALUATION</code>. <code>AGGREGATE</code> and <code>RECONCILING</code> are not compatibility aliases: their former cells were re-pointed to the canonical Type 1 <code>REVIEW</code> and <code>RESEARCH</code> personas so no alias is needed.</td><td><code>docs/TYPES.md</code> Section 3.4; <code>docs/PRD.md</code> FR-026; D-APP-28 loop-first routing</td></tr>
+<tr><td>Matrix rows</td><td><code>NORMATIVE</code>, <code>OPERATIVE</code>, <code>EVALUATIVE</code>.</td><td><code>docs/TYPES.md</code> Section 4.1; <code>docs/PRD.md</code> FR-007</td></tr>
+<tr><td>Matrix columns</td><td><code>GUIDING</code>, <code>APPLYING</code>, <code>JUDGING</code>, <code>REVIEWING</code>.</td><td><code>docs/TYPES.md</code> Section 4.2; <code>docs/PRD.md</code> FR-007</td></tr>
+<tr><td>Matrix routing destinations</td><td><code>NORMATIVE</code> and <code>EVALUATIVE</code> produce loop-persona intent; <code>OPERATIVE</code> routes to PIPELINE.</td><td><code>docs/TYPES.md</code> Section 4.1; <code>docs/PRD.md</code> Section 7.2 and FR-008; D-APP-28</td></tr>
+<tr><td>Persona filename target</td><td>Persona names resolve to <code>agents/AGENT_*.md</code>; missing personas return <code>PERSONA_NOT_FOUND</code>.</td><td><code>docs/PRD.md</code> FR-025</td></tr>
+<tr><td>Persona fallback</td><td>Empty or missing request/session persona falls back to the live hardcoded <code>WORKING_ITEMS</code> default; unknown non-empty labels pass through normalized for instruction-file resolution.</td><td><code>docs/SPEC.md</code> Section 13.1; <code>frontend/src/lib/shell/persona-resolution.ts</code></td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Source authority state</td><td>REF-006 <code>docs/PRD.md</code> is MATCH under the D-APP-38 authority corpus v2.</td><td><code>_REFERENCES.md</code>; D-APP-38</td></tr>
+<tr><td>Governance posture</td><td>Unknown values remain <code>TBD</code>, and source conflicts must be surfaced rather than silently resolved.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1 and K-CONFLICT-1</td></tr>
+<tr><td>Route shape constraint</td><td>Existing harness route shapes remain stable during SDK adoption and TurnEngine extraction.</td><td><code>docs/SPEC.md</code> Section 17.1</td></tr>
+<tr><td>Unsupported variants</td><td>Disabled or unsupported matrix/pipeline variants remain visible as coming soon rather than disappearing.</td><td><code>docs/PRD.md</code> Section 7.2 and FR-011</td></tr>
+<tr><td>Dependency register state</td><td><code>Dependencies.csv</code> exists in v3.1 format with 13 ACTIVE extracted rows; declared upstream/downstream human edges remain TBD.</td><td><code>_DEPENDENCIES.md</code> Compact Register; <code>Dependencies.csv</code></td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Required Datasheet Value</td></tr>
+<tr><td>Alias resolver</td><td>MUST encode only sourced UI alias mappings unless amended by governance.</td></tr>
+<tr><td>Canonical agent name target</td><td>MUST resolve aliases and personas to canonical instruction-root agent names, with <code>agents/AGENT_&lt;persona&gt;.md</code> as the file contract.</td></tr>
+<tr><td>Matrix mapping fixture</td><td>MUST cover the canonical 3x4 row/column vocabulary and row-to-surface routing.</td></tr>
+<tr><td>Loop route fixture</td><td>MUST preserve selected agent, row, and column context from route state or query parameters.</td></tr>
+<tr><td>Pipeline route fixture</td><td>MUST distinguish operative category routing from loop-persona routing.</td></tr>
+<tr><td>Unspecified UI details</td><td>TBD until implementation evidence or human ruling defines exact component names, route query keys, and fixture file paths.</td></tr>
+<tr><td>P3 implementation path slot</td><td>F-001 remains a TBD implementation slot: selected module paths and fixture/test file paths for alias resolver, matrix mapping, route fixtures, and persona resolver must be filled when implementation begins.</td></tr>
+<tr><td>P3 route key slot</td><td>D-001 remains a TBD implementation slot: selected agent, row, and column context keys must be replaced with actual query-param or route-state names once chosen by code.</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Product boundaries and matrix/persona scope.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Invariants for non-invention, routing governance, and agent boundaries.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Runtime option fallback, persona composition, and API route stability.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Authoritative alias and matrix vocabulary.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Implementation sequencing context.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Product requirements; MATCH under D-APP-38 authority corpus v2.</td></tr>
+<tr><td>REF-007</td><td><code>agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context.</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>DEL-08-02 scope, SOW links, objectives, artifacts.</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-08-02-persona-alias-and-agent-matrix-routing-contract">CLM-007 — Specification: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h3>
+<h4 id="specification-del-08-02-persona-alias-and-agent-matrix-routing-contract">Specification: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h4>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the routing and persona-resolution contract needed to keep UI aliases, canonical agent names, matrix routes, and persona resolution consistent for Chirality App vNext.</p>
+<p>In scope:</p>
+<ul>
+<li>- Alias resolution from UI labels to canonical agent names.</li>
+<li>- Canonical matrix row, column, and cell vocabulary.</li>
+<li>- Row-based routing from the agent matrix to loop-persona intent or PIPELINE.</li>
+<li>- Loop route-state preservation for selected agent, row, and column.</li>
+<li>- Persona resolution to instruction-root <code>agents/AGENT_*.md</code> files.</li>
+<li>- Tests and fixtures for alias resolution, matrix mapping, and route behavior.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- General SDK adapter mechanics.</li>
+<li>- Full prompt composition implementation owned by DEL-04-04, except for the persona-name contract shared with this deliverable.</li>
+<li>- Pipeline category and task-scope dispatch owned by DEL-08-03, except for row-level <code>OPERATIVE -&gt; PIPELINE</code> routing.</li>
+<li>- Dependency extraction authoring; the existing <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> are consumed as current dependency evidence for this deliverable.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-08-02-REQ-001</td><td>The UI alias resolver MUST map <code>HELP</code> to <code>HELP_HUMAN</code>.</td><td><code>docs/TYPES.md</code> Section 3.4; <code>docs/PRD.md</code> FR-026</td><td>Alias resolver unit test.</td></tr>
+<tr><td>DEL-08-02-REQ-002</td><td>The UI alias resolver MUST map <code>ORCHESTRATE</code> to <code>ORCHESTRATOR</code>.</td><td><code>docs/TYPES.md</code> Section 3.4; <code>docs/PRD.md</code> FR-026</td><td>Alias resolver unit test.</td></tr>
+<tr><td>DEL-08-02-REQ-003</td><td>The UI alias resolver MUST NOT map <code>AGGREGATE</code> to <code>AGGREGATION</code>; <code>AGGREGATION</code> is a Type 2 task agent and must not boot as a top-level loop persona.</td><td>D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; <code>docs/TYPES.md</code> Type 2 vocabulary</td><td>Negative alias resolver unit test and matrix guard test.</td></tr>
+<tr><td>DEL-08-02-REQ-004</td><td>The UI alias resolver MUST NOT map <code>RECONCILING</code> to <code>RECONCILIATION</code>; the EVALUATIVE/REVIEWING matrix cell uses the Type 1 <code>RESEARCH</code> persona under the loop-first guard.</td><td>D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; <code>docs/TYPES.md</code> matrix vocabulary</td><td>Negative alias resolver unit test and matrix guard test.</td></tr>
+<tr><td>DEL-08-02-REQ-005</td><td>The UI alias resolver MUST map <code>AGENTS</code> to <code>HELPS_HUMANS</code>.</td><td><code>docs/TYPES.md</code> Section 3.4; <code>docs/PRD.md</code> FR-026</td><td>Alias resolver unit test.</td></tr>
+<tr><td>DEL-08-02-REQ-006</td><td>PORTAL matrix fixtures MUST use rows <code>NORMATIVE</code>, <code>OPERATIVE</code>, and <code>EVALUATIVE</code>.</td><td><code>docs/TYPES.md</code> Section 4.1; <code>docs/PRD.md</code> FR-007</td><td>Matrix mapping test.</td></tr>
+<tr><td>DEL-08-02-REQ-007</td><td>PORTAL matrix fixtures MUST use columns <code>GUIDING</code>, <code>APPLYING</code>, <code>JUDGING</code>, and <code>REVIEWING</code>.</td><td><code>docs/TYPES.md</code> Section 4.2; <code>docs/PRD.md</code> FR-007</td><td>Matrix mapping test.</td></tr>
+<tr><td>DEL-08-02-REQ-008</td><td>NORMATIVE matrix cells MUST route to loop-persona intent for Type 0/1 personas in the mounted loop shell.</td><td><code>docs/TYPES.md</code> Section 4.1; D-APP-28 loop-first routing; <code>docs/PRD.md</code> Section 7.2 and FR-008</td><td>Route fixture test.</td></tr>
+<tr><td>DEL-08-02-REQ-009</td><td>EVALUATIVE matrix cells MUST route to loop-persona intent for Type 0/1 personas in the mounted loop shell.</td><td><code>docs/TYPES.md</code> Section 4.1; D-APP-28 loop-first routing; <code>docs/PRD.md</code> Section 7.2 and FR-008</td><td>Route fixture test.</td></tr>
+<tr><td>DEL-08-02-REQ-010</td><td>OPERATIVE matrix cells MUST route to PIPELINE.</td><td><code>docs/TYPES.md</code> Section 4.1; <code>docs/PRD.md</code> Section 7.2 and FR-008</td><td>Route fixture test.</td></tr>
+<tr><td>DEL-08-02-REQ-011</td><td>Loop-persona routing MUST preserve selected agent, row, and column context.</td><td><code>docs/PRD.md</code> Section 7.4 and FR-009; D-APP-28 loop-first routing</td><td>Route-state test.</td></tr>
+<tr><td>DEL-08-02-REQ-012</td><td>Persona names MUST resolve to instruction files matching <code>agents/AGENT_*.md</code>.</td><td><code>docs/PRD.md</code> FR-025; <code>docs/SPEC.md</code> Section 13.2</td><td>Persona resolver test with existing and missing personas.</td></tr>
+<tr><td>DEL-08-02-REQ-013</td><td>Missing personas MUST return <code>PERSONA_NOT_FOUND</code>.</td><td><code>docs/PRD.md</code> FR-025</td><td>Negative persona resolver test.</td></tr>
+<tr><td>DEL-08-02-REQ-014</td><td>Request/session persona fallback MUST be deterministic: empty or missing UI persona resolves to <code>WORKING_ITEMS</code>, while unknown non-empty persona labels pass through normalized and fail later at instruction-file resolution if no matching <code>AGENT_*.md</code> exists.</td><td><code>docs/SPEC.md</code> Section 13.1; <code>docs/PRD.md</code> FR-023; current loop-first shell contract</td><td>Runtime option fallback and negative persona resolver tests.</td></tr>
+<tr><td>DEL-08-02-REQ-015</td><td>Unknown runtime option keys MUST warn without silently mutating behavior.</td><td><code>docs/SPEC.md</code> Section 13.1; <code>docs/PRD.md</code> FR-024</td><td>Runtime option warning test.</td></tr>
+<tr><td>DEL-08-02-REQ-016</td><td>Unsupported or disabled matrix/pipeline variants MUST remain visible as coming soon rather than silently disappearing.</td><td><code>docs/PRD.md</code> Section 7.2; <code>docs/PRD.md</code> FR-011</td><td>UI fixture or interaction test.</td></tr>
+<tr><td>DEL-08-02-REQ-017</td><td>The implementation MUST NOT invent additional alias mappings, matrix rows, columns, or canonical persona names without a governed source update.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1; <code>docs/TYPES.md</code> Sections 3.4 and 4</td><td>Fixture completeness and snapshot tests.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Status</td></tr>
+<tr><td><code>docs/TYPES.md</code> Sections 3.4 and 4</td><td>Authoritative vocabulary for alias and matrix terms.</td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/PRD.md</code> Sections 7.2, 7.4, 8.2, and 8.4</td><td>Product requirements for matrix routing, workbench context, and persona resolution.</td><td>Current under the D-APP-38 authority corpus.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 13</td><td>Runtime option fallback and persona composer contract.</td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-INVENT-1 and K-CONFLICT-1</td><td>Governance constraints for unsupported facts and source conflicts.</td><td>Accessible; hash match.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code> Sections 2.8 and 4.1</td><td>Product-owned persona/system-prompt and matrix navigation scope.</td><td>Accessible; hash match.</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<p>Required verification artifacts:</p>
+<ul>
+<li>- Alias resolver tests covering the active sourced aliases, removed Type-2 alias negative cases, and unknown alias pass-through behavior.</li>
+<li>- Matrix mapping tests covering all canonical rows, columns, and row destinations.</li>
+<li>- Route fixtures proving NORMATIVE/EVALUATIVE cells produce loop-persona intent and OPERATIVE cells open PIPELINE.</li>
+<li>- Loop route-state tests proving selected agent, row, and column survive route-state or query-param handling.</li>
+<li>- Persona resolver tests proving canonical <code>AGENT_*.md</code> lookup and <code>PERSONA_NOT_FOUND</code> for missing personas.</li>
+<li>- Runtime fallback tests proving default persona behavior and warning behavior for unknown option keys where this deliverable touches shared runtime option handling.</li>
+</ul>
+<p>Pass 3 evidence slots:</p>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td><td>Required evidence</td></tr>
+<tr><td>B-001</td><td>Resolved by current implementation contract. Unknown UI alias labels pass through normalized and then fail at instruction-file resolution if no matching persona exists.</td><td><code>frontend/src/__tests__/lib/persona-resolution.test.ts</code>.</td></tr>
+<tr><td>F-002</td><td>Incorporated as audit evidence naming requirement. Verification records must identify concrete result files or command outputs for alias, matrix, route, workbench-context, persona, fallback, unknown-key, and unsupported-option checks.</td><td>Implementation-local test report paths or command output locations.</td></tr>
+<tr><td>D-001</td><td>Resolved by loop-first launch state. Matrix launches preserve selected agent, row, and column in the mounted shell route-state contract.</td><td><code>frontend/src/__tests__/lib/agent-matrix-launch.test.ts</code>.</td></tr>
+<tr><td>X-001</td><td>Incorporated from current dependency evidence. <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> now provide extracted rows; declared human upstream/downstream edges remain TBD.</td><td>Dependency register validation and any later human edge ruling.</td></tr>
+<tr><td>C-001</td><td>Resolved by D-APP-38. PRD-backed requirements are current under authority corpus v2 and remain separate from implementation proof.</td><td><code>_REFERENCES.md</code> REF-006 records MATCH.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>This deliverable should produce or update:</p>
+<ul>
+<li>- Alias resolver tests.</li>
+<li>- Route fixtures.</li>
+<li>- Matrix mapping tests.</li>
+<li>- Any implementation-local notes needed to explain route-state keys if they change from the current loop-first launch contract.</li>
+<li>- Concrete verification evidence paths or command outputs for the checks listed in the Pass 3 evidence slots.</li>
+</ul>
+<p>Exact implementation file paths are TBD until the owning implementation slice selects or confirms the frontend/runtime module locations.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-08-02 contract is accepted when alias resolver tests, route fixtures, and matrix mapping tests demonstrate that UI aliases, canonical agent names, matrix routes, and persona resolution remain consistent with the complete preserved legacy source and scope items SOW-005, SOW-006, and SOW-017.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-08-02-persona-alias-and-agent-matrix-routing-contract">CLM-013 — Procedure: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h3>
+<h4 id="procedure-del-08-02-persona-alias-and-agent-matrix-routing-contract">Procedure: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h4>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the bounded procedure for producing, checking, and using the persona alias and agent matrix routing contract for DEL-08-02.</p>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Deliverable context file <code>_CONTEXT.md</code> is available.</td><td>Satisfied.</td></tr>
+<tr><td>Reference record <code>_REFERENCES.md</code> is available.</td><td>Satisfied.</td></tr>
+<tr><td>Authoritative sources listed in <code>_REFERENCES.md</code> are locally accessible.</td><td>Satisfied; REF-006 is MATCH under the D-APP-38 authority corpus.</td></tr>
+<tr><td>Dependency register is available.</td><td>Satisfied for extracted rows: <code>Dependencies.csv</code> exists with 13 ACTIVE rows; declared human upstream/downstream edges remain TBD.</td></tr>
+<tr><td>ResponsibleParty assigned.</td><td>TBD.</td></tr>
+<tr><td>Exact implementation module paths for alias resolver, matrix fixture, and route tests are known.</td><td>TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Read <code>_CONTEXT.md</code> and confirm the deliverable identity is DEL-08-02 with ResponsibleParty left as TBD.</p>
+<p>2. Read <code>_REFERENCES.md</code> and record source status, including the D-APP-38 authority-corpus state for REF-006.</p>
+<p>3. Read the DEL-08-02 decomposition entry and confirm the deliverable scope, anticipated artifacts, SOW links, and objectives.</p>
+<p>4. Extract the canonical alias map from <code>docs/TYPES.md</code> Section 3.4 and cross-check against <code>docs/PRD.md</code> FR-026.</p>
+<p>5. Extract the canonical matrix row, column, and cell vocabulary from <code>docs/TYPES.md</code> Section 4.</p>
+<p>6. Extract matrix routing acceptance from <code>docs/PRD.md</code> Section 7.2 and FR-008.</p>
+<p>7. Extract loop-persona context behavior from <code>docs/PRD.md</code> Section 7.4 and FR-009 as interpreted by the D-APP-28 loop-first pivot.</p>
+<p>8. Extract persona resolution and fallback requirements from <code>docs/PRD.md</code> FR-023 through FR-026 and <code>docs/SPEC.md</code> Section 13.</p>
+<p>9. Build or update alias resolver tests for the active aliases and removed Type-2 alias negative cases.</p>
+<p>10. Build or update matrix mapping tests for the canonical 3x4 row/column vocabulary.</p>
+<p>11. Build or update route fixtures proving row-to-surface routing.</p>
+<p>12. Build or update persona resolver tests for <code>agents/AGENT_*.md</code> lookup and <code>PERSONA_NOT_FOUND</code>.</p>
+<p>13. Mark any unsupported behavior as TBD rather than inventing requirements.</p>
+<p>14. Read the current dependency register when closure or fixture coverage depends on dependency state; do not create or rewrite <code>Dependencies.csv</code> during this four-document procedure.</p>
+<p>15. Record selected module paths and fixture/test file paths for alias resolver, matrix mapping, route fixtures, and persona resolver.</p>
+<p>16. Record the active loop-first route-state behavior for selected agent, row, and column.</p>
+<p>17. Record unknown-alias behavior as normalized pass-through to instruction-file resolution and keep Type 2 alias removals covered by negative tests.</p>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Alias map completeness</td><td>Active aliases and removed Type-2 alias negative cases are covered by tests.</td></tr>
+<tr><td>Alias map conservatism</td><td>No unsourced aliases are asserted as requirements.</td></tr>
+<tr><td>Matrix vocabulary</td><td>Rows and columns match <code>docs/TYPES.md</code> and PRD FR-007.</td></tr>
+<tr><td>Route destination</td><td>NORMATIVE/EVALUATIVE produce loop-persona intent; OPERATIVE routes to PIPELINE.</td></tr>
+<tr><td>Loop context</td><td>Selected agent, row, and column are preserved from route state or query parameters.</td></tr>
+<tr><td>Persona lookup</td><td>Canonical persona names resolve to <code>agents/AGENT_*.md</code>; missing personas return <code>PERSONA_NOT_FOUND</code>.</td></tr>
+<tr><td>Unknown fields</td><td>Unknown runtime option keys warn rather than mutating behavior.</td></tr>
+<tr><td>Source state</td><td>REF-006 is current under D-APP-38; future authority-doc edits require corpus bump/apply.</td></tr>
+<tr><td>Dependency register</td><td>Existing <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> are consumed as evidence; this procedure does not create or rewrite them.</td></tr>
+<tr><td>P3 evidence capture</td><td>F-002 records concrete test result files or command output locations for alias, matrix, route, workbench-context, persona, fallback, unknown-key, and unsupported-option checks.</td></tr>
+<tr><td>Acceptance transition</td><td>Source-state E-001 is closed by D-APP-38; implementation proof remains independently required.</td></tr>
+</tbody></table>
+<h3 id="clm-018-records">CLM-018 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Required records for this document kit:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-05-20_1614.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-05-23_W37_four-documents-p3.md</code></li>
+</ul>
+<p>Future implementation records:</p>
+<ul>
+<li>- Alias resolver tests.</li>
+<li>- Route fixtures.</li>
+<li>- Matrix mapping tests.</li>
+<li>- D-APP-38 source-state ruling and any future authority-corpus bump/apply evidence.</li>
+<li>- F-001 path selections for implementation modules and fixture/test files.</li>
+<li>- F-002 evidence artifact names or command output locations.</li>
+<li>- X-001 follow-up accepted dependency edge ruling if human-declared upstream/downstream edges change.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Review the preserved legacy source and execute its specified alias resolver, matrix mapping, route, loop-context, persona-resolution, fallback, unknown-key, unsupported-option, source-state, dependency-register, and evidence-capture checks; record concrete test or command-output evidence.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-019-guidance-del-08-02-persona-alias-and-agent-matrix-routing-contract">CLM-019 — Guidance: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h3>
+<h4 id="guidance-del-08-02-persona-alias-and-agent-matrix-routing-contract">Guidance: DEL-08-02 Persona Alias and Agent Matrix Routing Contract</h4>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to keep Chirality&#x27;s visible agent matrix, UI aliases, canonical agent instruction names, and persona routing behavior aligned. It is a small UX/UI routing slice, but it protects a larger governance boundary: users select familiar UI labels and matrix cells, while the runtime must resolve those selections into canonical instruction-root agents and governed execution surfaces.</p>
+<h3 id="clm-021-principles">CLM-021 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Treat <code>docs/TYPES.md</code> as the vocabulary source for aliases, matrix rows, matrix columns, and cell labels.</p>
+<p>2. Treat <code>docs/PRD.md</code> as the product acceptance source for matrix routing, loop context, and persona resolution under the D-APP-38 authority corpus.</p>
+<p>3. Keep alias resolution deterministic and complete for the active sourced alias set.</p>
+<p>4. Do not create friendly aliases, hidden aliases, or fallback canonical names without a governed source update.</p>
+<p>5. Preserve the difference between loop-persona routing and PIPELINE operative category routing.</p>
+<p>6. Keep disabled or unsupported options visible when the product requirement says they should be visible as coming soon.</p>
+<p>7. Keep runtime behavior warning-based for unknown option keys rather than letting unknown keys silently change behavior.</p>
+<h3 id="clm-022-considerations">CLM-022 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<p>The active alias contract covers UI labels that resolve to Type 0/1 personas:</p>
+<table><tbody>
+<tr><td>UI Alias</td><td>Canonical Agent</td></tr>
+<tr><td><code>HELP</code></td><td><code>HELP_HUMAN</code></td></tr>
+<tr><td><code>ORCHESTRATE</code></td><td><code>ORCHESTRATOR</code></td></tr>
+<tr><td><code>AGENTS</code></td><td><code>HELPS_HUMANS</code></td></tr>
+<tr><td><code>DEPENDENCIES</code></td><td><code>EVALUATION</code></td></tr>
+</tbody></table>
+<p>Removed labels are deliberately not compatibility aliases:</p>
+<table><tbody>
+<tr><td>UI Label</td><td>Former target</td><td>Current treatment</td></tr>
+<tr><td><code>AGGREGATE</code></td><td><code>AGGREGATION</code></td><td>Not aliased; <code>AGGREGATION</code> is a Type 2 task agent. The NORMATIVE/REVIEWING cell uses <code>REVIEW</code>.</td></tr>
+<tr><td><code>RECONCILING</code></td><td><code>RECONCILIATION</code></td><td>Not aliased; the EVALUATIVE/REVIEWING cell uses <code>RESEARCH</code>.</td></tr>
+</tbody></table>
+<p>The matrix contract currently covers these row destinations:</p>
+<table><tbody>
+<tr><td>Row</td><td>Destination</td></tr>
+<tr><td><code>NORMATIVE</code></td><td>Loop-persona intent</td></tr>
+<tr><td><code>OPERATIVE</code></td><td>PIPELINE</td></tr>
+<tr><td><code>EVALUATIVE</code></td><td>Loop-persona intent</td></tr>
+</tbody></table>
+<p>The matrix cells from <code>docs/TYPES.md</code> use UI-facing labels and wildcard category labels. Loop-persona routing resolves persona-style cells only to Type 0/1 personas. PIPELINE routing preserves operative categories such as <code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code> as pipeline category intent rather than forcing them through persona resolution.</p>
+<h3 id="clm-023-trade-offs">CLM-023 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Preferred Direction</td><td>Rationale</td><td>Open Detail</td></tr>
+<tr><td>Alias strictness</td><td>Use only active Type 0/1 alias mappings.</td><td>Prevents hidden routing behavior and supports stable tests.</td><td>Unknown non-empty labels pass through normalized and then rely on instruction-file lookup.</td></tr>
+<tr><td>Matrix fixtures</td><td>Snapshot the canonical 3x4 vocabulary.</td><td>Protects UI navigation from drift across docs, fixtures, and implementation.</td><td>Exact fixture filenames are TBD.</td></tr>
+<tr><td>Loop context</td><td>Preserve agent, row, and column route context.</td><td>PRD requires active agent context and route state continuity.</td><td>Current route-state tests cover the mounted shell launch contract.</td></tr>
+<tr><td>Pipeline distinction</td><td>Keep operative cells as pipeline categories.</td><td>TYPES and PRD route OPERATIVE to PIPELINE rather than loop-persona routing.</td><td>Category enum spelling is covered by Pipeline tests.</td></tr>
+<tr><td>PRD source state</td><td>Use PRD content under D-APP-38.</td><td><code>_REFERENCES.md</code> REF-006 now records MATCH under authority corpus v2.</td><td>Future authority-doc edits require corpus bump/apply.</td></tr>
+<tr><td>Dependency picture</td><td>Treat current extracted dependency rows as available context, while preserving declared human upstream/downstream edges as TBD.</td><td><code>_DEPENDENCIES.md</code> records the dependency-extract run and 13 ACTIVE rows.</td><td>X-001 remains open only for later accepted human edge rulings, not because <code>Dependencies.csv</code> is absent.</td></tr>
+</tbody></table>
+<h3 id="clm-024-examples">CLM-024 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Sourced examples:</p>
+<ul>
+<li>- Selecting the <code>HELP</code> alias should resolve to canonical <code>HELP_HUMAN</code>.</li>
+<li>- Selecting a NORMATIVE matrix cell should focus the mounted loop with Type 0/1 agent context.</li>
+<li>- Selecting an OPERATIVE matrix cell should route to PIPELINE with category context.</li>
+<li>- A missing persona should surface <code>PERSONA_NOT_FOUND</code>.</li>
+</ul>
+<p>Unsupported examples remain TBD:</p>
+<ul>
+<li>- Whether future aliases should be added by a governed source update.</li>
+</ul>
+<h3 id="clm-025-pass-3-disposition-guidance">CLM-025 — Pass 3 Disposition Guidance</h3>
+<h5 id="pass-3-disposition-guidance">Pass 3 Disposition Guidance</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Guidance disposition</td></tr>
+<tr><td>B-001</td><td>Resolved by implementation: unknown non-empty labels pass through normalized, then <code>PERSONA_NOT_FOUND</code> is produced if no matching instruction file exists.</td></tr>
+<tr><td>C-001</td><td>Resolved by D-APP-38 authority corpus v2; REF-006 is MATCH in <code>_REFERENCES.md</code>.</td></tr>
+<tr><td>E-001</td><td>Resolved for source-state by D-APP-38; implementation proof remains separate from source proof.</td></tr>
+</tbody></table>
+<h3 id="clm-026-conflict-table">CLM-026 — Conflict Table</h3>
+<h5 id="conflict-table">Conflict Table</h5>
+<p>The former PRD hash mismatch is resolved for this tranche by D-APP-38 and the current <code>_REFERENCES.md</code> REF-006 MATCH state.</p>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>C-001</td><td>Former PRD source-state conflict resolved.</td><td><code>_REFERENCES.md</code> REF-006</td><td>D-APP-38 authority corpus v2</td><td>Specification requirements and standards; Guidance principles and trade-offs</td><td>Use PRD content under the current authority corpus; keep implementation proof separate.</td><td>D-APP-38 accepted current authority corpus</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-005 SOW-006 SOW-017 OBJ-001 OBJ-007</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

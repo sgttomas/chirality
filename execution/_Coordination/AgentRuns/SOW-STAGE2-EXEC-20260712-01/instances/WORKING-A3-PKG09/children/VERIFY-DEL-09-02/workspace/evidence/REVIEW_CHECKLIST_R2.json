@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 236,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c38c4fbe628b9f086cdc2be4e0cd9be6d86de0ee28b89c1b06a4d79cf49524c4"
+      },
+      "text": "Every Section 9 runtime validation ID enumerated by PRD Section 12.4 and SPEC Section 19.3 appears with explicit status and evidence, the Section 8 baseline remains visible, and no unlanded runtime phase is reported as passing.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-02-VER-001",
+          "source_line": 333,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the harness premerge validation and inspect its manifest and summary evidence for Section 8 preservation, complete Section 9 ID coverage, explicit per-ID status and evidence, and absence of false passing outcomes for unlanded phases."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-02",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "c38c4fbe628b9f086cdc2be4e0cd9be6d86de0ee28b89c1b06a4d79cf49524c4"
+  },
+  "tool_version": "1"
+}

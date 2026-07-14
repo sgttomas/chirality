@@ -1,0 +1,4 @@
+literal_class	literal	source_surfaces	derived_surfaces	disposition
+PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	Datasheet.md:69;_REFERENCES.md:13;Dependencies.csv:14	ScopeOfWork.md:116;ScopeOfWork_RUN1.html:88;ScopeOfWork_RUN2.html:88	PRESERVED_BYTE_EXACT
+PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution	_DEPENDENCIES.md:25	none	INVENTORIED_SOURCE_CONTROL_LITERAL
+PRESERVED_SOURCE_LITERAL	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md	_DEPENDENCIES.md:26	none	INVENTORIED_SOURCE_CONTROL_LITERAL

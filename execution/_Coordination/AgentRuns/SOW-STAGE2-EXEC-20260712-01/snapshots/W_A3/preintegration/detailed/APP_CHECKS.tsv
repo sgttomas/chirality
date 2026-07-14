@@ -1,0 +1,4 @@
+package	initial_status	base_pass	initial_premerge_exit	initial_premerge_tests	server_backed_status	section8_tests	section9_tests	section9_report_only	verdict
+APP-PKG-08	EXPECTED_SUBSTRATE_FAIL_ONLY	5	1	0	PASS	8	16	true	PASS
+APP-PKG-09	EXPECTED_SUBSTRATE_FAIL_ONLY	5	1	0	PASS	8	16	true	PASS
+APP-PKG-10	EXPECTED_SUBSTRATE_FAIL_ONLY	5	1	0	PASS	8	16	true	PASS

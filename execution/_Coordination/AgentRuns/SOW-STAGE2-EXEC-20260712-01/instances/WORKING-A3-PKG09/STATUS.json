@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-managed-package-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "WORKING-A3-PKG09",
+  "package_id": "APP-PKG-09",
+  "status": "PASS",
+  "terminal": true,
+  "members": 6,
+  "accepted_pairs": 6,
+  "candidates": 6,
+  "mapping_rows": 169,
+  "source_lines": 1781,
+  "replacement_rows": 30,
+  "rollback_rows": 30,
+  "child_manifest_rows": 490,
+  "package_manifest_rows": 82,
+  "project_writes": 0,
+  "blockers": [],
+  "waivers": [],
+  "rerun_requirements": [],
+  "needs_human_ruling": [],
+  "derivative_status": "DERIVATIVE_CANDIDATE_PACKAGE_AWAITING_RECONCILIATION_AND_CHANGE"
+}

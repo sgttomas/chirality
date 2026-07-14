@@ -1,0 +1,3 @@
+classification	artifact	line	literal	propagation	verification
+PRESERVED_SOURCE_LITERAL	_REFERENCES.md	13	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	accepted control input only	byte-identical seed; not normalized
+PRESERVED_SOURCE_LITERAL	_DEPENDENCIES.md	52	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md	accepted control input only	byte-identical seed; not normalized

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="8b77da5d79a8e3c165771c9bfb4971d5fd671c86ab664a4a9faa269142bb38c3">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>8b77da5d79a8e3c165771c9bfb4971d5fd671c86ab664a4a9faa269142bb38c3</code>.</p>
+<h1 id="scope-of-work-del-09-01">Scope of Work — DEL-09-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-09-01</code> in service of project scope [SOW-035, SOW-036] and package objectives [OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Preserved Section 8 harness validation behavior and stable premerge summary evidence for DEL-09-01.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-01-section-8-harness-validation-preservation">CLM-001 — Datasheet: DEL-09-01 Section 8 Harness Validation Preservation</h3>
+<h4 id="datasheet-del-09-01-section-8-harness-validation-preservation">Datasheet: DEL-09-01 Section 8 Harness Validation Preservation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-09-01</td></tr>
+<tr><td>DeliverableName</td><td>Section 8 Harness Validation Preservation</td></tr>
+<tr><td>PackageID</td><td>PKG-09</td></tr>
+<tr><td>PackageName</td><td>Validation, Packaging, Security, and Release</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>TEST_SUITE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-035, SOW-036</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-008</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary purpose</td><td>Preserve baseline harness validation, current local checks, and stable premerge summary behavior.</td><td><code>_CONTEXT.md</code> Deliverable Scope; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Section 8, DEL-09-01</td></tr>
+<tr><td>Required local checks in scope</td><td><code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, <code>npm run instruction-root:integrity</code>; packaging check <code>npm run desktop:dist</code> is release-scope context.</td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-VALIDATE-1</td></tr>
+<tr><td>Premerge command</td><td><code>npm run harness:validate:premerge</code> from <code>frontend/</code>.</td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> FR-066; <code>frontend/package.json</code> scripts</td></tr>
+<tr><td>Stable Section 8 summary artifact</td><td><code>frontend/artifacts/harness/section8/latest/summary.json</code>.</td><td><code>docs/PRD.md</code> FR-066; <code>frontend/scripts/validate-harness-premerge.mjs</code> stableArtifactPath; <code>.github/workflows/harness-premerge.yml</code> Verify stable summary artifact</td></tr>
+<tr><td>Current Section 8 required test IDs</td><td><code>setup.server_reachable</code>; <code>regression.session_crud</code>; <code>section8.boot_error_taxonomy</code>; <code>section8.smoke_stream</code>; <code>section8.session_persistence_resume</code>; <code>section8.permissions_dontask</code>; <code>section8.interrupt_sigint</code>; <code>section8.sdk_native_stream</code>.</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code> REQUIRED_TEST_IDS; <code>frontend/scripts/validate-harness-section8.mjs</code> REQUIRED_CHECK_ORDER</td></tr>
+<tr><td>Legacy removed test ID</td><td><code>regression.api_chat_reachability</code> must not appear in the premerge summary.</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code> LEGACY_REMOVED_TEST_ID</td></tr>
+<tr><td>CI workflow surface</td><td>Pull request and manual workflow run harness premerge validation, verify the stable summary JSON, and upload it as <code>harness-section8-summary</code>.</td><td><code>.github/workflows/harness-premerge.yml</code></td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<ul>
+<li>- The harness premerge wrapper depends on <code>frontend/scripts/validate-harness-section8.mjs</code> being readable; if absent, the wrapper reports <code>RUNTIME_SURFACE_MISSING</code> and fails. Source: <code>frontend/scripts/validate-harness-premerge.mjs</code>.</li>
+<li>- Section 8 validation defaults to <code>HARNESS_BASE_URL=http://127.0.0.1:3000</code> and uses <code>HARNESS_PROJECT_ROOT</code> when provided; otherwise it resolves to <code>../examples/example-project</code> from <code>frontend/</code>. Source: <code>frontend/scripts/validate-harness-section8.mjs</code>.</li>
+<li>- If the requested project root is inside the instruction root, the Section 8 script stages it under the temporary validation root before running tests. Source: <code>frontend/scripts/validate-harness-section8.mjs</code>.</li>
+<li>- The current provenance summary records a passing Section 8 run with <code>testCount: 8</code>. Source: <code>provenance/build-artifacts/frontend__artifacts__harness__section8__latest__summary.json</code>.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>This deliverable should be implemented as a preservation-oriented test suite and validation wrapper guard, not as new harness feature implementation. The relevant construction surfaces are:</p>
+<ul>
+<li>- <code>frontend/package.json</code> script entries for <code>harness:validate:section8</code> and <code>harness:validate:premerge</code>.</li>
+<li>- <code>frontend/scripts/validate-harness-section8.mjs</code> for Section 8 scenario execution and summary generation.</li>
+<li>- <code>frontend/scripts/validate-harness-premerge.mjs</code> for required test ID enforcement, legacy ID exclusion, and stable summary artifact copying.</li>
+<li>- <code>.github/workflows/harness-premerge.yml</code> for CI readiness polling, wrapper execution, artifact verification, and upload.</li>
+<li>- <code>frontend/artifacts/harness/section8/latest/summary.json</code> as the stable local artifact produced by the premerge wrapper.</li>
+</ul>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/SPEC.md</code> Sections 19.1 and 19.2.</li>
+<li>- <code>docs/PRD.md</code> Sections 12.2 and 12.3; FR-066 and FR-068.</li>
+<li>- <code>docs/CONTRACT.md</code> K-VALIDATE-1.</li>
+<li>- <code>docs/TYPES.md</code> Section 12.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> Sections 7, 8, 10A.</li>
+<li>- <code>frontend/package.json</code>.</li>
+<li>- <code>frontend/scripts/validate-harness-premerge.mjs</code>.</li>
+<li>- <code>frontend/scripts/validate-harness-section8.mjs</code>.</li>
+<li>- <code>.github/workflows/harness-premerge.yml</code>.</li>
+<li>- <code>provenance/build-artifacts/frontend__artifacts__harness__section8__latest__summary.json</code>.</li>
+</ul>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-09-01-section-8-harness-validation-preservation">CLM-007 — Specification: DEL-09-01 Section 8 Harness Validation Preservation</h3>
+<h4 id="specification-del-09-01-section-8-harness-validation-preservation">Specification: DEL-09-01 Section 8 Harness Validation Preservation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>DEL-09-01 covers preservation of the existing Section 8 harness validation surface, current local checks, and stable premerge summary behavior for PKG-09. It includes test runner preservation tests and premerge summary checks.</p>
+<p>Out of scope:</p>
+<ul>
+<li>- Feature implementation except test fixtures and packaging glue. Source: <code>_CONTEXT.md</code> Package Scope.</li>
+<li>- Section 9 runtime validation additions, except where Section 8 preservation must leave room for the Section 9 IDs listed by SPEC and PRD. Source: <code>docs/SPEC.md</code> Sections 19.2 and 19.3; <code>docs/PRD.md</code> Sections 12.3 and 12.4.</li>
+<li>- New professional approval, code compliance, external validation, or solver-truth claims. Source: <code>docs/CONTRACT.md</code> K-PROF-1 and K-DOMAIN-4.</li>
+</ul>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-09-01-REQ-001</td><td>The frontend package must expose <code>harness:validate:section8</code> and <code>harness:validate:premerge</code> scripts.</td><td><code>frontend/package.json</code> scripts</td><td>Inspect package scripts; execute wrapper in local/CI validation.</td></tr>
+<tr><td>DEL-09-01-REQ-002</td><td>Required local release-significant checks must include <code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, and <code>npm run instruction-root:integrity</code> from <code>frontend/</code>.</td><td><code>docs/SPEC.md</code> Section 19.1; <code>docs/PRD.md</code> Section 12.2; <code>docs/CONTRACT.md</code> K-VALIDATE-1</td><td>Release checklist and CI/premerge run records cite command outcomes.</td></tr>
+<tr><td>DEL-09-01-REQ-003</td><td>The premerge wrapper must fail if <code>frontend/scripts/validate-harness-section8.mjs</code> is missing or unreadable.</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code> ensureReadableFile/scriptPath branch</td><td>Unit or script-level test covers missing script behavior, or wrapper execution proves readable script.</td></tr>
+<tr><td>DEL-09-01-REQ-004</td><td>The premerge wrapper must require these Section 8 IDs: <code>setup.server_reachable</code>, <code>regression.session_crud</code>, <code>section8.boot_error_taxonomy</code>, <code>section8.smoke_stream</code>, <code>section8.session_persistence_resume</code>, <code>section8.permissions_dontask</code>, <code>section8.interrupt_sigint</code>, <code>section8.sdk_native_stream</code>.</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code> REQUIRED_TEST_IDS; <code>frontend/scripts/validate-harness-section8.mjs</code> REQUIRED_CHECK_ORDER</td><td>Wrapper parses summary results and fails on missing IDs.</td></tr>
+<tr><td>DEL-09-01-REQ-005</td><td>The premerge wrapper must reject the legacy removed ID <code>regression.api_chat_reachability</code> if it appears in the summary.</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code> LEGACY_REMOVED_TEST_ID</td><td>Deterministic wrapper fixture or script-level test verifies legacy-ID rejection without relying only on an end-to-end CI run.</td></tr>
+<tr><td>DEL-09-01-REQ-006</td><td><code>npm run harness:validate:premerge</code> must create or update <code>frontend/artifacts/harness/section8/latest/summary.json</code>.</td><td><code>docs/PRD.md</code> FR-066; <code>frontend/scripts/validate-harness-premerge.mjs</code> stableArtifactPath; <code>.github/workflows/harness-premerge.yml</code> Verify stable summary artifact</td><td>Local command and CI workflow verify artifact readability.</td></tr>
+<tr><td>DEL-09-01-REQ-007</td><td>CI premerge validation must run the wrapper after server readiness and upload the stable summary artifact.</td><td><code>.github/workflows/harness-premerge.yml</code></td><td>Pull request or workflow dispatch run verifies readiness poll, wrapper execution, artifact check, and upload step.</td></tr>
+<tr><td>DEL-09-01-REQ-008</td><td>Section 8 validation must cover server reachability, session CRUD, boot error taxonomy, smoke stream ordering, session persistence/resume continuity, permissions under current validation markers, interrupt behavior, and SDK-native stream handling with no legacy parser regressions.</td><td><code>docs/SPEC.md</code> Section 19.2; <code>docs/PRD.md</code> Section 12.3</td><td>Required test IDs and summary content map to the listed behavior.</td></tr>
+<tr><td>DEL-09-01-REQ-009</td><td>Unknown or unsupported factual details in validation preservation documents must remain <code>TBD</code>, <code>ASSUMPTION</code>, or conflict entries rather than invented requirements.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1; <code>skills/four-documents/SKILL.md</code> source-grounding rule</td><td>Document review checks for unsupported claims.</td></tr>
+<tr><td>DEL-09-01-REQ-010</td><td>The PRD hash status: MATCH observed for this run must be recorded as a source status and must not block P1/P2 authoring.</td><td>Invoker runtime instruction; <code>_REFERENCES.md</code> REF-006</td><td>Run record and documents record the warning without treating PRD as absent. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<ul>
+<li>- <code>docs/SPEC.md</code> is authoritative for validation checklist surfaces and Section 8/9 validation IDs.</li>
+<li>- <code>docs/PRD.md</code> is authoritative for product requirements and acceptance criteria, with the run-specific source warning that its observed SHA256 does not match <code>_REFERENCES.md</code>.</li>
+<li>- <code>docs/CONTRACT.md</code> is authoritative for invariant K-VALIDATE-1 and no-invention discipline.</li>
+<li>- <code>docs/TYPES.md</code> is authoritative for release and validation vocabulary.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> is authoritative for the DEL-09-01 package/deliverable assignment and SOW/objective mapping.</li>
+</ul>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-09-01-REQ-001 through DEL-09-01-REQ-006</td><td>Static review of <code>frontend/package.json</code> and validation scripts plus local execution of <code>npm run harness:validate:premerge</code> from <code>frontend/</code>; wrapper fixture tests should also cover missing required IDs and legacy-ID rejection deterministically.</td></tr>
+<tr><td>DEL-09-01-REQ-007</td><td>CI workflow run on pull request or manual dispatch.</td></tr>
+<tr><td>DEL-09-01-REQ-008</td><td>Compare required test IDs and Section 8 summary rows against SPEC/PRD behavior list.</td></tr>
+<tr><td>DEL-09-01-REQ-009</td><td>Human review of document kit and test changes for unsupported facts.</td></tr>
+<tr><td>DEL-09-01-REQ-010</td><td>Run record includes PRD hash warning and does not report PRD as inaccessible.</td></tr>
+</tbody></table>
+<p>Current acceptance evidence boundary: the provenance summary can show expected Section 8 summary shape and the eight-row ID set, but current acceptance requires fresh evidence from <code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, <code>npm run instruction-root:integrity</code>, and, for desktop release packaging context, <code>npm run desktop:dist</code>. This deliverable records those evidence expectations without asserting that the commands passed in the current working tree.</p>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Section 8 validation preservation tests.</li>
+<li>- Premerge summary checks.</li>
+<li>- Evidence of stable summary artifact generation at <code>frontend/artifacts/harness/section8/latest/summary.json</code>.</li>
+<li>- CI artifact upload evidence for the current <code>harness-validation-summaries</code> bundle.</li>
+<li>- Any residual <code>TBD</code>, <code>ASSUMPTION</code>, or source-warning notes carried forward into closure.</li>
+</ul>
+<h3 id="clm-013-d-app-56-ci-ownership-amendment-2026-07-12">CLM-013 — D-APP-56 CI ownership amendment (2026-07-12)</h3>
+<h5 id="d-app-56-ci-ownership-amendment-2026-07-12">D-APP-56 CI ownership amendment (2026-07-12)</h5>
+<p>R4-P37 assigns the repo-root CI workflow and uploaded validation-artifact ownership to DEL-09-05. DEL-09-01 retains a narrowed requirement that the CI validation chain preserve Section 8 through the release-quality wrapper: <code>.github/workflows/harness-premerge.yml</code> invokes <code>npm run validate:release-quality</code>, which invokes the premerge/Section 8 validation, and uploads <code>harness-validation-summaries</code>. DEL-09-01 does not own the workflow.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-09-01 preservation contract retains the required local-check surface and Section 8 validation behavior, including the accepted required IDs, retired legacy-ID exclusion, and stable summary artifact, with current evidence and without unsupported claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-09-01-section-8-harness-validation-preservation">CLM-014 — Procedure: DEL-09-01 Section 8 Harness Validation Preservation</h3>
+<h4 id="procedure-del-09-01-section-8-harness-validation-preservation">Procedure: DEL-09-01 Section 8 Harness Validation Preservation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operating procedure for preserving and verifying Section 8 harness validation behavior and stable premerge summary output for DEL-09-01.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Work from the repository root with frontend dependencies installed under <code>frontend/</code>.</li>
+<li>- The frontend server must be reachable at <code>HARNESS_BASE_URL</code>, defaulting to <code>http://127.0.0.1:3000</code>, before Section 8 validation runs.</li>
+<li>- <code>frontend/scripts/validate-harness-section8.mjs</code> must exist and be readable.</li>
+<li>- <code>frontend/package.json</code> must expose <code>harness:validate:section8</code> and <code>harness:validate:premerge</code>.</li>
+<li>- Current extracted dependency context records active upstream anchors for PKG-09, SOW-035, SOW-036, and OBJ-008, plus execution prerequisites for required local checks, <code>frontend/package.json</code>, <code>frontend/scripts/validate-harness-section8.mjs</code>, and <code>HARNESS_BASE_URL</code>. Closure remains <code>TBD</code> until dependency closure accepts the register. Source: <code>_DEPENDENCIES.md</code> Extracted Dependency Register and Lifecycle Summary.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the validation script surface.</p>
+<ul>
+<li>- Inspect <code>frontend/package.json</code> for <code>harness:validate:section8</code> and <code>harness:validate:premerge</code>.</li>
+<li>- Inspect <code>frontend/scripts/validate-harness-premerge.mjs</code> for <code>REQUIRED_TEST_IDS</code>, <code>LEGACY_REMOVED_TEST_ID</code>, and stable artifact path.</li>
+</ul>
+<p>2. Start or verify the harness server.</p>
+<ul>
+<li>- For local runs, start the Next.js server using the repository&#x27;s frontend workflow.</li>
+<li>- For CI, preserve the readiness poll against <code>/api/harness/session/list?projectRoot=/tmp</code> before running the wrapper.</li>
+</ul>
+<p>3. Run the premerge wrapper from <code>frontend/</code>.</p>
+<ul>
+<li>- Command: <code>npm run harness:validate:premerge</code>.</li>
+<li>- The wrapper should invoke <code>frontend/scripts/validate-harness-section8.mjs</code>.</li>
+</ul>
+<p>4. Verify the Section 8 summary contents.</p>
+<ul>
+<li>- Confirm status is <code>pass</code>.</li>
+<li>- Confirm all required IDs are present:</li>
+<li>- <code>setup.server_reachable</code></li>
+<li>- <code>regression.session_crud</code></li>
+<li>- <code>section8.boot_error_taxonomy</code></li>
+<li>- <code>section8.smoke_stream</code></li>
+<li>- <code>section8.session_persistence_resume</code></li>
+<li>- <code>section8.permissions_dontask</code></li>
+<li>- <code>section8.interrupt_sigint</code></li>
+<li>- <code>section8.sdk_native_stream</code></li>
+<li>- Confirm <code>regression.api_chat_reachability</code> is absent.</li>
+<li>- Where practical, preserve deterministic fixture coverage for a missing required ID and for the retired legacy ID so those failure paths do not depend solely on a live CI run.</li>
+</ul>
+<p>5. Verify stable artifact placement.</p>
+<ul>
+<li>- Confirm <code>frontend/artifacts/harness/section8/latest/summary.json</code> exists and is readable after the wrapper completes.</li>
+<li>- In CI, confirm the workflow uploads the same path as <code>harness-section8-summary</code>.</li>
+</ul>
+<p>6. Preserve required local checks for release-significant changes.</p>
+<ul>
+<li>- Run or require evidence for:</li>
+<li>- <code>npm run test</code></li>
+<li>- <code>npm run typecheck</code></li>
+<li>- <code>npm run harness:validate:premerge</code></li>
+<li>- <code>npm run instruction-root:integrity</code></li>
+<li>- Packaging release context additionally requires <code>npm run desktop:dist</code>.</li>
+</ul>
+<p>7. Record outcomes.</p>
+<ul>
+<li>- Capture command status, summary path, test count, any missing IDs, and the evidence location for each required local check.</li>
+<li>- Record <code>TBD</code>, <code>ASSUMPTION</code>, or source-warning items instead of filling unsupported facts.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td><td>Source</td></tr>
+<tr><td>Wrapper script exists</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code> readable</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code></td></tr>
+<tr><td>Section 8 script exists</td><td><code>frontend/scripts/validate-harness-section8.mjs</code> readable</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code></td></tr>
+<tr><td>Required IDs</td><td>All eight accepted Section 8 IDs present</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code>; <code>docs/SPEC.md</code> Section 19.2</td></tr>
+<tr><td>Legacy ID</td><td><code>regression.api_chat_reachability</code> absent</td><td><code>frontend/scripts/validate-harness-premerge.mjs</code></td></tr>
+<tr><td>Stable summary</td><td><code>frontend/artifacts/harness/section8/latest/summary.json</code> exists</td><td><code>docs/PRD.md</code> FR-066; <code>.github/workflows/harness-premerge.yml</code></td></tr>
+<tr><td>CI upload</td><td><code>harness-section8-summary</code> artifact uploaded from stable summary path</td><td><code>.github/workflows/harness-premerge.yml</code></td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Local command transcript or CI job log for <code>npm run harness:validate:premerge</code>.</li>
+<li>- Stable summary JSON at <code>frontend/artifacts/harness/section8/latest/summary.json</code>.</li>
+<li>- CI artifact named <code>harness-section8-summary</code>.</li>
+<li>- Any preservation test fixture outputs proving missing-ID rejection and legacy-ID rejection.</li>
+<li>- Current-run evidence for <code>npm run test</code>, <code>npm run typecheck</code>, <code>npm run harness:validate:premerge</code>, <code>npm run instruction-root:integrity</code>, and release-context <code>npm run desktop:dist</code> when desktop packaging acceptance is in scope.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Inspect the source-bound contract and current run evidence for the required local checks; confirm the accepted Section 8 IDs, absence of the retired legacy ID, and readable stable summary artifact.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-09-01-section-8-harness-validation-preservation">CLM-020 — Guidance: DEL-09-01 Section 8 Harness Validation Preservation</h3>
+<h4 id="guidance-del-09-01-section-8-harness-validation-preservation">Guidance: DEL-09-01 Section 8 Harness Validation Preservation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-09-01 exists to preserve the existing harness validation baseline while vNext runtime work proceeds. The deliverable should make it difficult for future changes to accidentally remove Section 8 coverage, rename the stable premerge artifact, reintroduce a retired legacy test ID, or let CI pass without the expected summary JSON.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat Section 8 as baseline preservation. New runtime behavior belongs in Section 9 validation unless the accepted sources explicitly amend Section 8.</li>
+<li>- Keep the premerge wrapper strict about summary shape and required IDs. This is the current enforcement point for <code>docs/PRD.md</code> FR-066 and <code>docs/CONTRACT.md</code> K-VALIDATE-1.</li>
+<li>- Preserve stable artifact location. CI and local workflows rely on <code>frontend/artifacts/harness/section8/latest/summary.json</code>.</li>
+<li>- Prefer deterministic validation scripts over manual inspection wherever possible. This follows <code>docs/DIRECTIVE.md</code> deterministic validation guidance and the existing frontend scripts.</li>
+<li>- Keep PRD hash status: MATCH visible but non-blocking for this run, per invoker instruction. (reconciled under D-APP-38).</li>
+<li>- Do not treat a passing historical provenance summary as proof that current code still passes. It is useful evidence of the expected summary shape and ID set, not a substitute for rerunning validation.</li>
+<li>- Keep DEL-09-01 limited to preserving Section 8 baseline behavior. Section 9 runtime validation IDs, broader runtime additions, and release workflow expansion belong to DEL-09-02 and related PKG-09 deliverables unless accepted sources move that scope here.</li>
+</ul>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The Section 8 script writes temporary run output under the platform temp directory and can stage the example project root when the requested project root is inside the instruction root. Preservation tests should account for that behavior rather than assuming a fixed absolute workroot.</li>
+<li>- The premerge wrapper uses machine-readable stdout from the Section 8 script. Changes to <code>HARNESS_VALIDATION_SUMMARY_PATH</code> or <code>HARNESS_VALIDATION_STATUS</code> output would affect premerge behavior.</li>
+<li>- The CI workflow starts the Next.js server, polls <code>/api/harness/session/list?projectRoot=/tmp</code>, runs the wrapper from <code>frontend/</code>, verifies the stable summary path, and uploads the artifact. A preservation change should cover this chain, not just the Node scripts.</li>
+<li>- The current stable summary records eight passing rows. If future accepted Section 8 scope changes the row set, update <code>REQUIRED_TEST_IDS</code>, <code>REQUIRED_CHECK_ORDER</code>, SPEC/PRD text, and CI expectations together.</li>
+<li>- ASSUMPTION: Unit tests or fixture tests for the wrapper may be preferable to relying solely on end-to-end CI runs, because they can exercise missing-ID and legacy-ID rejection deterministically. This is an implementation approach, not an accepted source requirement.</li>
+<li>- Current acceptance should cite fresh command outcomes. Historical provenance summaries are suitable shape references, while release-significant acceptance needs current evidence for the local checks named by <code>docs/SPEC.md</code> Section 19.1 and <code>docs/CONTRACT.md</code> K-VALIDATE-1.</li>
+</ul>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Option</td><td>Trade-off</td></tr>
+<tr><td>Required ID enforcement</td><td>Hard-code accepted Section 8 IDs in the wrapper</td><td>Strong regression protection, but source documents and script constants must be updated together if Section 8 scope changes.</td></tr>
+<tr><td>Stable artifact path</td><td>Preserve <code>frontend/artifacts/harness/section8/latest/summary.json</code></td><td>Supports CI upload and downstream tooling; requires care to avoid stale artifact confusion.</td></tr>
+<tr><td>Historical summary evidence</td><td>Use provenance summary as shape evidence only</td><td>Avoids overstating stale evidence; requires reruns for current acceptance.</td></tr>
+<tr><td>Section 9 additions</td><td>Keep out of DEL-09-01 except compatibility awareness</td><td>Keeps this deliverable focused; future runtime validation must be handled by DEL-09-02 and related packages.</td></tr>
+</tbody></table>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<ul>
+<li>- Supported preservation check: assert that <code>validate-harness-premerge.mjs</code> fails when a required Section 8 ID is absent from a summary fixture.</li>
+<li>- Supported preservation check: assert that <code>validate-harness-premerge.mjs</code> fails if <code>regression.api_chat_reachability</code> appears in the summary.</li>
+<li>- Supported preservation check: run <code>npm run harness:validate:premerge</code> and verify <code>frontend/artifacts/harness/section8/latest/summary.json</code> is readable.</li>
+<li>- Not supported without amendment: broadening this deliverable into new Section 9 validation implementation.</li>
+</ul>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006; invoker instruction</td><td>N/A</td><td>Datasheet Conditions; Specification Requirements; run record</td><td>Treat PRD as accessible with warning for this run.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-027-source-warnings">CLM-027 — Source Warnings</h3>
+<h5 id="source-warnings">Source Warnings</h5>
+<ul>
+<li>- <code>docs/PRD.md</code> expected SHA256 in <code>_REFERENCES.md</code> is <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code>; observed SHA256 is <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code>. The invoker instructed this run to treat the MATCH as a source status. (reconciled under D-APP-38).</li>
+</ul>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-035 SOW-036 OBJ-008</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-package-fan-in/v1",
+  "package": "APP-PKG-09",
+  "members": 6,
+  "accepted_pairs": 6,
+  "candidate_count": 6,
+  "mapping_rows": 169,
+  "source_lines": 1781,
+  "child_manifest_rows": 490,
+  "child_manifest_bad_bindings": 0,
+  "replacement_rows": 30,
+  "rollback_rows": 30,
+  "exact_inverse": true,
+  "project_checks_initial": "EXPECTED_SUBSTRATE_FAIL_ONLY",
+  "project_checks_stub_backed": "PASS",
+  "preserved_literal_occurrences": 40,
+  "unclassified_literal_occurrences": 0,
+  "project_writes": 0,
+  "blockers": [],
+  "waivers": [],
+  "rerun_requirements": [],
+  "verdict": "PASS"
+}

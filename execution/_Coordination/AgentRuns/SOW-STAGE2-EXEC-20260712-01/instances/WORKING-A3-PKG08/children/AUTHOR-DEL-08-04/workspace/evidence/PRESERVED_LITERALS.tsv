@@ -1,0 +1,5 @@
+classification	artifact	line	literal	propagation	verification
+PRESERVED_SOURCE_LITERAL	Datasheet.md	63	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	ScopeOfWork.md:110; ScopeOfWork_RUN1.html:83; ScopeOfWork_RUN2.html:83	byte-identical source preservation; not normalized
+PRESERVED_SOURCE_LITERAL	_REFERENCES.md	13	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	accepted control input only	byte-identical seed; not normalized
+PRESERVED_SOURCE_LITERAL	_DEPENDENCIES.md	41	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution	accepted control input only	byte-identical seed; not normalized
+PRESERVED_SOURCE_LITERAL	_DEPENDENCIES.md	41	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md	accepted control input only	byte-identical seed; not normalized

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="c38c4fbe628b9f086cdc2be4e0cd9be6d86de0ee28b89c1b06a4d79cf49524c4">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>c38c4fbe628b9f086cdc2be4e0cd9be6d86de0ee28b89c1b06a4d79cf49524c4</code>.</p>
+<h1 id="scope-of-work-del-09-02">Scope of Work — DEL-09-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-09-02</code> in service of project scope [SOW-036, SOW-037, SOW-039, SOW-045, SOW-054, SOW-057, SOW-063] and package objectives [OBJ-002, OBJ-003, OBJ-005, OBJ-007, OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Section 9 validation ID registry, harness runner updates, and summary schema for runtime validation additions covering provider-adapter conformance, first-adapter mapping, event logging and replay, settings isolation, permissions, MCP, hooks, tool-result budgets, compaction, and governed subagents.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-02-section-9-runtime-validation-additions">CLM-001 — Datasheet: DEL-09-02 Section 9 Runtime Validation Additions</h3>
+<h4 id="datasheet-del-09-02-section-9-runtime-validation-additions">Datasheet: DEL-09-02 Section 9 Runtime Validation Additions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>PackageID</td><td>PKG-09</td></tr>
+<tr><td>PackageName</td><td>Validation, Packaging, Security, and Release</td></tr>
+<tr><td>DeliverableID</td><td>DEL-09-02</td></tr>
+<tr><td>DeliverableName</td><td>Section 9 Runtime Validation Additions</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>TEST_SUITE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary scope</td><td>Add runtime validation IDs for provider-adapter conformance, first-adapter mapper, event log, settings isolation, permissions, MCP, hooks, compaction, and subagents.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-09-02</td></tr>
+<tr><td>Anticipated artifacts</td><td>Section 9 validation IDs; harness runner updates; summary schema.</td><td><code>_CONTEXT.md</code>; decomposition DEL-09-02</td></tr>
+<tr><td>Covered SOW items</td><td>SOW-036, SOW-037, SOW-039, SOW-045, SOW-054, SOW-057, SOW-063.</td><td><code>_CONTEXT.md</code>; decomposition DEL-09-02</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-002, OBJ-003, OBJ-005, OBJ-007, OBJ-008.</td><td><code>_CONTEXT.md</code>; decomposition DEL-09-02</td></tr>
+<tr><td>Baseline validation context</td><td>Section 8 validation already covers server reachability, session CRUD, boot error taxonomy, stream ordering, session persistence/resume, permission markers, interrupts, and SDK-native stream handling.</td><td><code>docs/PRD.md</code> Section 12.3; <code>docs/SPEC.md</code> Section 19.2</td></tr>
+<tr><td>Section 9 validation ID source list</td><td><code>section9.runtime_engine_contract</code>, <code>section9.sdk_turn_engine_event_log</code>, <code>section9.sdk_message_mapper</code>, <code>section9.session_event_replay</code>, <code>section9.reliance_boundary_register</code>, <code>section9.settingsources_isolation</code>, <code>section9.sdk_session_link_resume</code>, <code>section9.permission_overlay_hard_deny_precedence</code>, <code>section9.tool_runtime_read_file</code>, <code>section9.chirality_mcp_status_dependencies</code>, <code>section9.path_containment_hook</code>, <code>section9.instruction_root_protection_hook</code>, <code>section9.tool_result_budget</code>, <code>section9.context_compaction_boundary</code>, <code>section9.subagent_governance_hook</code>, <code>section9.domain_profile_validation</code>.</td><td><code>docs/PRD.md</code> Section 12.4; <code>docs/SPEC.md</code> Section 19.3</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>PRD source status</td><td>Source warning only: expected PRD hash <code>86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34</code>; observed <code>fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8</code>. Content is used with this warning recorded.</td><td>Assignment; <code>_REFERENCES.md</code> REF-006</td></tr>
+<tr><td>Source grounding</td><td>Requirements and validation IDs are limited to accessible local sources. Unsupported implementation details remain <code>TBD</code> or <code>ASSUMPTION</code>.</td><td><code>skills/four-documents/SKILL.md</code>; <code>_REFERENCES.md</code> Notes</td></tr>
+<tr><td>Dependency state</td><td>Declared upstream and downstream dependencies remain <code>TBD</code>; an extracted dependency register exists, but <code>_DEPENDENCIES.md</code> says not to compute blocked/available state until the project-level FULL_GRAPH register has been checked.</td><td><code>_DEPENDENCIES.md</code> Dependency Tracking; <code>_DEPENDENCIES.md</code> Extracted Dependency Register</td></tr>
+<tr><td>Domain-profile validation</td><td><code>section9.domain_profile_validation</code> appears in the Section 9 list, but PRD says it applies after a governed domain-profile amendment enters scope.</td><td><code>docs/PRD.md</code> Section 12.4</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Description</td><td>Source</td></tr>
+<tr><td>Validation ID registry entries</td><td>Section 9 runtime IDs listed in PRD/SPEC should be represented in the harness validation catalog or equivalent registry. Exact file path is TBD.</td><td><code>docs/PRD.md</code> Section 12.4; <code>docs/SPEC.md</code> Section 19.3</td></tr>
+<tr><td>Harness runner updates</td><td>Runner must execute or report Section 9 validation IDs as runtime phases land. Exact runner entrypoint is TBD.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Section 12.4</td></tr>
+<tr><td>Summary schema</td><td>Summary output should distinguish Section 9 IDs and preserve stable premerge reporting conventions. Exact schema path is TBD.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Objective 7 and Section 12.4</td></tr>
+<tr><td>Runtime evidence checks</td><td>Checks should cover product-owned engine contract, canonical event mirror, SDK mapper, settings isolation, permissions, MCP, hooks, result budgets, compaction, and subagent governance.</td><td><code>docs/SPEC.md</code> Sections 9, 10, 14, 15, 19.3; <code>docs/CONTRACT.md</code> Sections 1.4-1.6</td></tr>
+<tr><td>Registry and summary location slots</td><td>Exact validation registry/manifest path, summary schema or fixture path, runner entrypoint, validation command, and validation output artifact remain <code>TBD</code> until implementation files are accepted.</td><td><code>_SEMANTIC_LENSING.md</code> B-002/A-002/D-002 worklist; <code>Procedure.md</code> Steps and Records; <code>Specification.md</code> Documentation</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Notes</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Runtime events, reliance boundaries, SDK boundary posture, capability-forward policy with explicit hard-deny precedence and MCP constraints.</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Invariants for engine, events, permissions, MCP, hooks, paths, and subagents.</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Runtime event schema, engine contract, MCP names, hook rules, Section 9 IDs.</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>HarnessEvent target, MCP names, hook terms, Section 9 vocabulary.</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Roadmap sequencing and validation themes.</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Product requirements and Section 9 runtime validation additions; hash status: MATCH status applies. — reconciled under D-APP-38</td></tr>
+<tr><td>REF-007</td><td><code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>Decomposition method context; no deliverable-specific requirement extracted.</td></tr>
+</tbody></table>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-143 records the landed <code>harness-section9-manifest.json</code> and stable artifacts manifest. UPD-144 records the ruled domain-profile ID as registered and validated within the in-process read-evidence fence.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-09-02-section-9-runtime-validation-additions">CLM-008 — Specification: DEL-09-02 Section 9 Runtime Validation Additions</h3>
+<h4 id="specification-del-09-02-section-9-runtime-validation-additions">Specification: DEL-09-02 Section 9 Runtime Validation Additions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies runtime validation additions for Section 9 of the harness validation surface. It covers validation IDs, harness runner updates, and summary schema expectations for runtime boundaries related to the provider-adapter conformance, first-adapter mapper, event log, settings isolation, permissions, MCP tools, hooks, compaction, and subagents.</p>
+<p>Excluded from this deliverable:</p>
+<ul>
+<li>- Feature implementation outside test fixtures and packaging glue, per package exclusions in <code>_CONTEXT.md</code>.</li>
+<li>- Creation of dependency register entries or <code>Dependencies.csv</code>.</li>
+<li>- Domain-profile runtime validation before a governed domain-profile amendment enters scope; the ID may remain listed but should be gated or marked pending.</li>
+</ul>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-09-02-RQ-001</td><td>Section 9 validation additions MUST include the runtime validation IDs enumerated by PRD Section 12.4 and SPEC Section 19.3.</td><td><code>docs/PRD.md</code> Section 12.4; <code>docs/SPEC.md</code> Section 19.3</td></tr>
+<tr><td>DEL-09-02-RQ-002</td><td>Validation for <code>section9.runtime_engine_contract</code> MUST confirm Chirality owns an <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code> boundary separate from SDK APIs, including accepted turn input, UI events, canonical events, permission decisions, permitted tool exposure, session linkage, interrupt/cancel handling, and terminal outcomes.</td><td><code>docs/SPEC.md</code> Sections 10.1-10.4; <code>docs/CONTRACT.md</code> K-ENGINE-1, K-ENGINE-2, K-ENGINE-4</td></tr>
+<tr><td>DEL-09-02-RQ-003</td><td>Validation for SDK mapping and event-log IDs MUST preserve the distinction between browser <code>UIEvent</code>s and persisted <code>HarnessEvent</code>s; SDK messages and transcripts are adapter metadata or secondary state unless imported into <code>HarnessEvent</code> form.</td><td><code>docs/SPEC.md</code> Sections 9 and 10.3; <code>docs/CONTRACT.md</code> K-EVENT-1, K-SDK-3</td></tr>
+<tr><td>DEL-09-02-RQ-004</td><td>Validation for session replay MUST confirm newline-delimited append order, unique event IDs, no secret storage, artifact references for large payloads, and tolerance for malformed trailing lines.</td><td><code>docs/SPEC.md</code> Section 9.2; <code>docs/CONTRACT.md</code> K-EVENT-5, K-EVENT-6, K-EVENT-7</td></tr>
+<tr><td>DEL-09-02-RQ-005</td><td>Validation for <code>section9.settingsources_isolation</code> MUST confirm shipped runtime does not load ambient user/global Claude Code settings or local <code>.claude/settings.local.json</code>; default <code>settingSources: []</code> is required where applicable.</td><td><code>docs/CONTRACT.md</code> K-SDK-1; <code>docs/PRD.md</code> FR-117, NFR-028</td></tr>
+<tr><td>DEL-09-02-RQ-006</td><td>Validation for permission overlay MUST confirm explicit hard-deny precedence, that prompt text and <code>allowedTools</code> alone are not safety boundaries, and that <code>disallowedTools</code>, mode policy, hooks, <code>canUseTool</code>, and/or <code>dontAsk</code> enforce restrictions.</td><td><code>docs/CONTRACT.md</code> K-PERM-1 through K-PERM-4; <code>docs/SPEC.md</code> Sections 14.3 and 15.1</td></tr>
+<tr><td>DEL-09-02-RQ-007</td><td>Validation for Chirality MCP status/dependency tools MUST use <code>mcp__chirality__*</code> naming and confirm MCP tools pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.</td><td><code>docs/SPEC.md</code> Sections 14.1-14.3; <code>docs/TYPES.md</code> Section 8.4; <code>docs/CONTRACT.md</code> K-MCP-1</td></tr>
+<tr><td>DEL-09-02-RQ-008</td><td>Validation for path and instruction-root hooks MUST confirm active project-root containment, instruction-root write denial, initial symlink-write rejection, and fail-closed behavior for write, shell, domain, and subagent actions.</td><td><code>docs/SPEC.md</code> Section 15.2; <code>docs/CONTRACT.md</code> K-HOOK-1, K-PATH-2, K-PATH-3</td></tr>
+<tr><td>DEL-09-02-RQ-009</td><td>Validation for tool result budgets MUST confirm large or sensitive tool results are budgeted, previewed, stored as artifacts, or redacted according to policy.</td><td><code>docs/CONTRACT.md</code> K-EVENT-7; <code>docs/PRD.md</code> FR-096</td></tr>
+<tr><td>DEL-09-02-RQ-010</td><td>Validation for compaction MUST confirm compaction boundaries are persisted when available and replay implications are recorded.</td><td><code>docs/SPEC.md</code> Section 15.2; <code>docs/TYPES.md</code> Section 8.5; <code>docs/PRD.md</code> FR-098, FR-099</td></tr>
+<tr><td>DEL-09-02-RQ-011</td><td>Validation for subagent governance MUST confirm subagent delegation fails closed unless governance gates pass, child capabilities do not expand parent permissions, and child run records/artifact references are produced when execution is enabled.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1 through K-SUBAGENT-3; <code>docs/PRD.md</code> FR-101, FR-102</td></tr>
+<tr><td>DEL-09-02-RQ-012</td><td>Harness runner updates MUST preserve existing Section 8 validation coverage while adding Section 9 IDs as runtime phases land.</td><td><code>docs/PRD.md</code> Sections 12.3-12.4; <code>docs/SPEC.md</code> Sections 19.2-19.3</td></tr>
+<tr><td>DEL-09-02-RQ-013</td><td>The summary schema MUST identify Section 9 validation outcomes distinctly enough to support validation review. Current schema records <code>status</code>, <code>testCount</code>, and per-ID <code>results</code>; the release-quality wrapper validates consistency for that schema.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Section 12.4; ADQ-14 implementation evidence</td></tr>
+<tr><td>DEL-09-02-RQ-014</td><td>Section 9 remains report-only. Each landed ID MUST carry pass/fail status and evidence; no unlanded phase may be reported as passing. Pending/skipped/blocked/gated enum extension is deferred until a non-landed phase exists.</td><td><code>docs/PRD.md</code> Section 12.4; <code>docs/SPEC.md</code> Section 19.3; D-APP-56 R4-P23</td></tr>
+<tr><td>DEL-09-02-RQ-015</td><td>The registry or manifest evidence SHOULD include each Section 9 ID, source reference, status metadata, warning/blocker notes, and evidence artifact reference when available. Current registry path is <code>frontend/scripts/validate-harness-section9.mjs</code>; richer warning/blocker metadata remains a future enhancement.</td><td><code>docs/PRD.md</code> Section 12.4; <code>docs/SPEC.md</code> Section 19.3; <code>_CONTEXT.md</code> Anticipated Artifacts; ADQ-14 implementation evidence</td></tr>
+<tr><td>DEL-09-02-RQ-016</td><td>Section 9 fixture coverage SHOULD be grouped by runtime surface: engine boundary, SDK mapper/event log/replay, settings isolation, permission overlay, tool/MCP exposure, path/instruction-root hooks, tool-result budget, compaction boundary, and subagent governance. Current fixture paths are listed in <code>frontend/scripts/validate-harness-section9.mjs</code>.</td><td><code>docs/CONTRACT.md</code> Sections 1.4-1.6; <code>docs/SPEC.md</code> Sections 9, 10, 14, 15, 19.3; ADQ-14 implementation evidence</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-ENGINE, K-SDK, K-EVENT, K-PERM, K-TOOL, K-MCP, K-HOOK, K-PATH, K-SUBAGENT</td><td>Governs invariant-level validation targets.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 9, 10, 14, 15, 19.3</td><td>Governs event schema, runtime engine contract, MCP names, permissions/hooks, and Section 9 validation IDs.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Sections 7.3, 8.4, 8.5</td><td>Governs type targets and vocabulary for events, MCP names, and hook terms.</td></tr>
+<tr><td><code>docs/PRD.md</code> Sections 8.12-8.16 and 12.4</td><td>Governs product requirements for runtime boundaries and validation additions. PRD hash status: MATCH status applies. — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification Approach</td></tr>
+<tr><td>DEL-09-02-RQ-001</td><td>Static test or manifest assertion that every Section 9 ID from PRD/SPEC is present with status metadata.</td></tr>
+<tr><td>DEL-09-02-RQ-002</td><td>Engine conformance test against <code>AgentEnginePort</code> / <code>RuntimeEngineContract</code>, including terminal outcome and interrupt/cancel cases.</td></tr>
+<tr><td>DEL-09-02-RQ-003</td><td>Mapper tests that assert SDK message names do not leak into browser contract or canonical persisted event contract except as explicit adapter metadata.</td></tr>
+<tr><td>DEL-09-02-RQ-004</td><td>JSONL replay tests covering ordered events, malformed trailing line tolerance, redaction, and artifact references.</td></tr>
+<tr><td>DEL-09-02-RQ-005</td><td>SDK options builder test asserting shipped default settings-source posture.</td></tr>
+<tr><td>DEL-09-02-RQ-006</td><td>Permission tests for denied writes, shell, unknown tools, <code>allowedTools</code> misuse, and <code>dontAsk</code> denial behavior.</td></tr>
+<tr><td>DEL-09-02-RQ-007</td><td>MCP wrapper tests for status/dependency tool names, permission policy, hook invocation, and redaction/event logging.</td></tr>
+<tr><td>DEL-09-02-RQ-008</td><td>Hook tests for project-root containment, instruction-root protection, symlink writes, and fail-closed pre-tool failures.</td></tr>
+<tr><td>DEL-09-02-RQ-009</td><td>Tool-result tests for inline/preview/artifact/redaction behavior.</td></tr>
+<tr><td>DEL-09-02-RQ-010</td><td>Compaction callback or event-mapping test for <code>context.compacted</code> persistence.</td></tr>
+<tr><td>DEL-09-02-RQ-011</td><td>Subagent governance tests for fail-closed gating, restricted child tools/cwd, and child-run records.</td></tr>
+<tr><td>DEL-09-02-RQ-012</td><td>Harness premerge run proving Section 8 validations remain present while Section 9 IDs are added.</td></tr>
+<tr><td>DEL-09-02-RQ-013</td><td>Summary fixture/schema test; exact schema path and fields TBD.</td></tr>
+<tr><td>DEL-09-02-RQ-014</td><td>Manifest or summary assertion that no ID lacking an implemented runtime phase is marked pass; release-quality wrapper validates <code>pass</code>/<code>fail</code> summary rows and records the premerge report-only policy.</td></tr>
+<tr><td>DEL-09-02-RQ-015</td><td>Manifest/fixture review that every Section 9 ID has source reference, status metadata, and evidence/blocker reference; current file path is <code>frontend/scripts/validate-harness-section9.mjs</code>.</td></tr>
+<tr><td>DEL-09-02-RQ-016</td><td>Fixture-family or evidence-ID review for each runtime surface; exact fixture names and paths TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required deliverable artifacts:</p>
+<ul>
+<li>- Section 9 validation ID registry or equivalent manifest.</li>
+<li>- Harness runner changes that execute/report the Section 9 IDs.</li>
+<li>- Summary schema or fixture update showing Section 9 results.</li>
+<li>- ADQ-14 evidence: <code>execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/Evidence_ADQ-14_Release_Quality_Validation_Wrapper.md</code>.</li>
+<li>- Test fixtures for event log, permissions, MCP, hooks, compaction, and subagent governance where implementation exists.</li>
+<li>- Human-facing notes for any IDs marked pending because their runtime phase has not landed.</li>
+<li>- Section 8 preservation evidence or premerge summary reference alongside new Section 9 outcomes.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-014-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-014 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-143 records the landed <code>harness-section9-manifest.json</code> and stable artifacts manifest. UPD-144 records the ruled domain-profile ID as registered and validated within the in-process read-evidence fence.</p>
+<ul>
+<li>- <strong>AC-001</strong> — Every Section 9 runtime validation ID enumerated by PRD Section 12.4 and SPEC Section 19.3 appears with explicit status and evidence, the Section 8 baseline remains visible, and no unlanded runtime phase is reported as passing.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-09-02-section-9-runtime-validation-additions">CLM-015 — Procedure: DEL-09-02 Section 9 Runtime Validation Additions</h3>
+<h4 id="procedure-del-09-02-section-9-runtime-validation-additions">Procedure: DEL-09-02 Section 9 Runtime Validation Additions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce and verify the Section 9 runtime validation additions for DEL-09-02 while preserving source-grounding, existing Section 8 behavior, and deliverable-local boundaries.</p>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and <code>_STATUS.md</code> are available in the deliverable folder.</li>
+<li>- Authoritative source slices are available from <code>docs/PRD.md</code>, <code>docs/SPEC.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/TYPES.md</code>, <code>docs/DIRECTIVE.md</code>, and the v3.2 software decomposition.</li>
+<li>- Declared upstream and downstream dependencies remain <code>TBD</code>; an extracted dependency register exists, but do not compute blocked/available state until project-level FULL_GRAPH closure has been checked.</li>
+<li>- PRD hash status: MATCH is recorded as a source status for this run. (reconciled under D-APP-38).</li>
+<li>- Responsible party remains <code>TBD</code>.</li>
+</ul>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the Section 8 baseline remains visible in the validation suite: server reachable, session CRUD, boot error taxonomy, smoke stream ordering, session persistence/resume, permission markers, interrupt behavior, and SDK-native stream handling. Source: <code>docs/PRD.md</code> Section 12.3; <code>docs/SPEC.md</code> Section 19.2.</p>
+<p>2. Add or update the Section 9 validation registry with each source-defined ID from PRD Section 12.4 and SPEC Section 19.3.</p>
+<p>3. For each Section 9 ID, attach source references and a status. If the runtime phase is not implemented, use a pending, skipped, blocked, or gated status rather than inventing a passing test. Current summary status values are <code>pass</code> and <code>fail</code>; richer blocker/skipped metadata remains future work.</p>
+<p>4. Implement or wire runner checks for IDs whose runtime surfaces exist:</p>
+<ul>
+<li>- <code>section9.runtime_engine_contract</code>: engine conformance and product-owned boundary checks.</li>
+<li>- <code>section9.sdk_turn_engine_event_log</code>, <code>section9.sdk_message_mapper</code>, <code>section9.session_event_replay</code>: event schema, mapper, append/replay, and transcript non-authority checks.</li>
+<li>- <code>section9.settingsources_isolation</code>: shipped settings-source posture check.</li>
+<li>- <code>section9.permission_overlay_hard_deny_precedence</code>: capability-forward policy with explicit hard-deny precedence and <code>allowedTools</code> non-boundary checks.</li>
+<li>- <code>section9.tool_runtime_read_file</code> and <code>section9.chirality_mcp_status_dependencies</code>: tool exposure and MCP wrapper checks.</li>
+<li>- <code>section9.path_containment_hook</code> and <code>section9.instruction_root_protection_hook</code>: hook/path checks.</li>
+<li>- <code>section9.tool_result_budget</code>: inline/preview/artifact/redaction check.</li>
+<li>- <code>section9.context_compaction_boundary</code>: compaction mirror check.</li>
+<li>- <code>section9.subagent_governance_hook</code>: fail-closed subagent governance check.</li>
+</ul>
+<p>5. Gate <code>section9.domain_profile_validation</code> until a governed domain-profile amendment enters scope.</p>
+<p>6. Update the harness runner so Section 9 IDs are executed or reported consistently with the existing premerge validation flow. Current runner entrypoint is <code>frontend/scripts/validate-harness-section9.mjs</code>; current release-quality wrapper is <code>frontend/scripts/validate-release-quality-evidence.mjs</code>.</p>
+<p>7. Update the registry/manifest so every Section 9 ID has source reference, status metadata, and evidence or blocker reference. Current registry path is <code>frontend/scripts/validate-harness-section9.mjs</code>; richer warning/blocker fields remain future work.</p>
+<p>8. Update the summary schema or fixture so Section 9 results are distinguishable from Section 8 results and usable for validation review. Current stable path is <code>frontend/artifacts/harness/section9/latest/summary.json</code>; the release-quality wrapper checks <code>status</code>, <code>testCount</code>, and per-ID <code>results</code>.</p>
+<p>9. Run the relevant local validation command once implementation exists. Current command is TBD; do not claim execution before a command is identified and run.</p>
+<p>10. Record any unresolved source mismatch, pending ID, dependency-closure uncertainty, or missing implementation surface in the summary output and release notes/checklist.</p>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Evidence</td></tr>
+<tr><td>ID completeness</td><td>Every ID listed in PRD Section 12.4 / SPEC Section 19.3 appears in the Section 9 registry or summary.</td></tr>
+<tr><td>ID status honesty</td><td>Every Section 9 ID has explicit status metadata; unimplemented runtime phases are pending, skipped, blocked, or gated rather than pass.</td></tr>
+<tr><td>Section 8 preservation</td><td>Existing Section 8 checks remain present and runnable.</td></tr>
+<tr><td>Engine contract</td><td>Engine conformance test or manifest proves Chirality-owned runtime boundary remains separate from SDK APIs.</td></tr>
+<tr><td>Event schema and replay</td><td>JSONL event test proves append order, unique IDs, redaction, artifact references, malformed-tail tolerance, and terminal outcomes.</td></tr>
+<tr><td>Settings isolation</td><td>Test or runtime metadata proves shipped <code>settingSources</code> posture does not load ambient user/local settings.</td></tr>
+<tr><td>Permission overlay</td><td>Denial tests prove deny overrides allow and <code>allowedTools</code> alone is not treated as a boundary.</td></tr>
+<tr><td>MCP and hooks</td><td>MCP wrapper and hook tests prove policy, path, redaction, event logging, and fail-closed behavior.</td></tr>
+<tr><td>Compaction and subagents</td><td>Tests prove <code>context.compacted</code> and governed child-run lifecycle events are persisted when those SDK callbacks are available.</td></tr>
+<tr><td>Summary schema</td><td>Stable summary artifact includes Section 9 ID status and test-file evidence references; release-quality wrapper consistency check passes.</td></tr>
+<tr><td>Source warnings and dependency closure</td><td>PRD hash warning and dependency-closure uncertainty are visible until human ruling or project-level graph closure resolves them.</td></tr>
+</tbody></table>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Section 9 validation ID registry or manifest.</li>
+<li>- Harness runner update.</li>
+<li>- Summary schema/fixture update.</li>
+<li>- Validation output or premerge summary artifact.</li>
+<li>- Release-quality wrapper summary artifact.</li>
+<li>- Human-ruling log for PRD hash warning and domain-profile validation gating.</li>
+<li>- Accepted status enum/schema reference, runner entrypoint, validation command, registry path, and validation output artifact path, all <code>TBD</code> until implementation establishes them.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Run the harness premerge validation and inspect its manifest and summary evidence for Section 8 preservation, complete Section 9 ID coverage, explicit per-ID status and evidence, and absence of false passing outcomes for unlanded phases.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-09-02-section-9-runtime-validation-additions">CLM-021 — Guidance: DEL-09-02 Section 9 Runtime Validation Additions</h3>
+<h4 id="guidance-del-09-02-section-9-runtime-validation-additions">Guidance: DEL-09-02 Section 9 Runtime Validation Additions</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable turns the vNext runtime-governance requirements into Section 9 validation coverage. Its purpose is to make release readiness visible as SDK-backed runtime phases land, without treating SDK behavior as product truth unless Chirality contracts, event records, and tests verify the boundary.</p>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Validate product-owned contracts, not SDK implementation details. SDK names, sessions, transcripts, hooks, and messages may appear as adapter metadata, but Chirality <code>UIEvent</code>, <code>HarnessEvent</code>, permission, session, and governance contracts remain authoritative. Source: <code>docs/SPEC.md</code> Sections 9-10; <code>docs/CONTRACT.md</code> K-ENGINE-4.</li>
+<li>- Adapter metadata is acceptable only when it helps prove or diagnose Chirality-owned behavior. SDK transcripts, sessions, hooks, and message names remain secondary unless imported into <code>HarnessEvent</code> form or mapped through product-owned APIs, which preserves release evidence under Chirality contracts rather than SDK-shaped truth. Source: <code>docs/CONTRACT.md</code> K-ENGINE-4 and K-SDK-3; <code>docs/SPEC.md</code> Sections 9-10.</li>
+<li>- Keep Section 8 stable while Section 9 expands. Section 9 additions should not regress server reachability, session CRUD, boot taxonomy, stream ordering, persistence/resume, permissions markers, interrupts, or SDK-native stream handling. Source: <code>docs/PRD.md</code> Sections 12.3-12.4.</li>
+<li>- Prefer explicit pending states over false pass/fail results for runtime phases that have not landed. Source: PRD Section 12.4 states IDs are added &quot;as runtime phases land&quot;; domain-profile validation is conditional on governed amendment.</li>
+<li>- Treat PRD as source with a recorded hash warning. Do not erase the mismatch; use corroborating SPEC/CONTRACT/TYPES slices where possible.</li>
+<li>- Keep <code>ResponsibleParty</code> as <code>TBD</code> until a human assigns ownership. Source: <code>_CONTEXT.md</code> Source Authority.</li>
+</ul>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<p>Section 9 spans several packages and runtime concepts. The runner and summary schema should therefore make each validation ID independently reportable, with clear statuses such as pass, fail, pending, skipped, blocked, or gated. The exact status enum is TBD because no local source defines it. Until the enum is accepted, use these terms descriptively and avoid treating a pending, skipped, blocked, or gated item as a passing validation.</p>
+<p>The validation set should distinguish:</p>
+<ul>
+<li>- Contract presence checks: engine contract, mapper boundary, event schema, reliance register.</li>
+<li>- Runtime behavior checks: event append/replay, settings isolation, permission denial, MCP wrapper behavior, hooks, result budgets, compaction, subagent governance.</li>
+<li>- Conditional checks: <code>section9.domain_profile_validation</code>, which should remain pending or gated until a governed domain-profile amendment enters scope.</li>
+</ul>
+<p>Where implementation files are not yet known, avoid binding tests to guessed paths. Use Section 9 IDs and source-defined contract names as the stable interface until the owning implementation deliverables establish file locations.</p>
+<p>The summary schema should balance diagnostic evidence with release readability by carrying per-ID status, source reference, evidence artifact reference, and warning/blocker notes while keeping Section 8 and Section 9 outcomes distinguishable. Exact schema fields remain TBD; the guiding constraint is that release review can see readiness without reading raw fixture output, while auditors can still trace each result to evidence.</p>
+<h3 id="clm-025-trade-offs">CLM-025 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>ID completeness vs implementation readiness</td><td>Register all source-defined Section 9 IDs, but permit pending/gated status for IDs whose runtime phase is not implemented yet.</td></tr>
+<tr><td>SDK conformance vs product conformance</td><td>Product conformance wins. Tests should assert Chirality-owned contracts and use SDK details only as observed inputs or adapter metadata.</td></tr>
+<tr><td>Summary detail vs release readability</td><td>Store enough detail for diagnosis while preserving a stable summary artifact for premerge/release review. Exact schema remains TBD.</td></tr>
+<tr><td>Broad Section 9 scope vs local deliverable bounds</td><td>Keep this deliverable focused on validation additions; defer implementation of runtime features to their owning deliverables.</td></tr>
+<tr><td>Dependency extraction vs closure readiness</td><td>Treat extracted dependency rows as handoff context until accepted graph closure exists; do not block or pass this validation deliverable solely from dependency edges without project-level FULL_GRAPH review.</td></tr>
+</tbody></table>
+<h3 id="clm-026-examples">CLM-026 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Example validation record shape, ASSUMPTION based on anticipated &quot;summary schema&quot;:</p>
+<p>```json</p>
+<p>{</p>
+<p>&quot;id&quot;: &quot;section9.permission_overlay_hard_deny_precedence&quot;,</p>
+<p>&quot;status&quot;: &quot;TBD&quot;,</p>
+<p>&quot;evidence&quot;: [],</p>
+<p>&quot;source&quot;: &quot;docs/PRD.md Section 12.4; docs/CONTRACT.md K-PERM-1&quot;</p>
+<p>}</p>
+<p>```</p>
+<p>Example gating note for conditional domain validation:</p>
+<p>```json</p>
+<p>{</p>
+<p>&quot;id&quot;: &quot;section9.domain_profile_validation&quot;,</p>
+<p>&quot;status&quot;: &quot;pending_governed_amendment&quot;,</p>
+<p>&quot;reason&quot;: &quot;PRD Section 12.4 scopes this after a governed domain-profile amendment enters scope.&quot;</p>
+<p>}</p>
+<p>```</p>
+<h3 id="clm-027-conflict-table-for-human-ruling">CLM-027 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CONFLICT-001</td><td>PRD hash status: MATCH recorded in <code>_REFERENCES.md</code>, but assignment instructs treating it as source status.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Assignment runtime override</td><td>All PRD-cited sections</td><td>Proceed with PRD as accessible source while preserving the warning and corroborating with SPEC/CONTRACT/TYPES where possible.</td><td>TBD — reconciled under D-APP-38</td></tr>
+<tr><td>CONFLICT-002</td><td>Section 9 includes <code>section9.domain_profile_validation</code>, but source states it applies only after governed domain-profile amendment enters scope.</td><td><code>docs/SPEC.md</code> Section 19.3</td><td><code>docs/PRD.md</code> Section 12.4</td><td>Datasheet Attributes; Specification Requirements; Procedure Steps</td><td>Include the ID in the registry but mark it pending/gated until amendment is accepted.</td><td>TBD</td></tr>
+<tr><td>CONFLICT-003</td><td>Declared upstream/downstream dependencies remain <code>TBD</code>, while <code>_DEPENDENCIES.md</code> now includes an extracted dependency register and warns not to compute blocked/available state until project-level graph checks run.</td><td><code>_DEPENDENCIES.md</code> Declared Upstream/Downstream</td><td><code>_DEPENDENCIES.md</code> Extracted Dependency Register</td><td>Datasheet Conditions; Procedure Prerequisites; Guidance Trade-offs</td><td>Use extracted rows as handoff context only; require accepted FULL_GRAPH closure before dependency state becomes implementation closure authority.</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-028-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-028 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-143 records the landed <code>harness-section9-manifest.json</code> and stable artifacts manifest. UPD-144 records the ruled domain-profile ID as registered and validated within the in-process read-evidence fence.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-036 SOW-037 SOW-039 SOW-045 SOW-054 SOW-057 SOW-063 OBJ-002 OBJ-003 OBJ-005 OBJ-007 OBJ-008</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

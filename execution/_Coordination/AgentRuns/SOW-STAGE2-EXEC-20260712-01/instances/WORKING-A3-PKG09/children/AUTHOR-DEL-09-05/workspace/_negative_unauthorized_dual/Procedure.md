@@ -1,0 +1,135 @@
+# Procedure: DEL-09-05 CI Artifact and Release Verification Workflow
+
+## Purpose
+
+Define the operational workflow to produce, verify, and use the CI artifact and release verification process for `DEL-09-05`.
+
+This procedure is grounded in `docs/PRD.md` Sections 12.2, 12.7, and 12.8; `docs/SPEC.md` Sections 19.1 through 19.4; `docs/PLAN.md` Section 7; and `docs/CONTRACT.md` release/security invariants.
+
+## Prerequisites
+
+| Prerequisite | Status |
+|---|---|
+| Deliverable context and references are present in the deliverable folder. | Present |
+| `ResponsibleParty` is assigned. | TBD |
+| Declared upstream dependency edges are accepted. | TBD |
+| CI provider and workflow path are confirmed. | ASSUMPTION: GitHub Actions; path TBD |
+| CI upload artifact name and retention period are confirmed. | TBD |
+| Release verification runbook filename and evidence storage location are confirmed. | TBD |
+| Local development environment can run commands from `frontend/`. | TBD |
+| Required instruction-root assets are present. | To be verified by workflow |
+| API keys and secrets are excluded from project files, logs, runtime events, and artifacts. | Required by `docs/CONTRACT.md` K-KEY-1 |
+| Network scope remains loopback plus Anthropic API path unless amended. | Required by `docs/CONTRACT.md` K-NET-1 |
+
+## Steps
+
+1. Confirm source and scope.
+   - Verify this work remains scoped to `DEL-09-05`.
+   - Record the PRD hash mismatch as a source warning if still present.
+   - Keep `ResponsibleParty` as `TBD` unless a human assignment exists.
+
+2. Define or review the local command sequence.
+   - From `frontend/`, use the runtime-premerge wrapper for the non-packaging evidence family:
+
+```bash
+npm run validate:release-quality
+```
+
+   - The wrapper expands to full test, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason.
+   - For packaging/instruction-root evidence, include the source-defined packaging commands separately:
+
+```bash
+npm run instruction-root:integrity
+npm run desktop:dist
+```
+
+3. Define or review the CI workflow sequence.
+   - Checkout repository.
+   - Setup Node.js 20.
+   - Install dependencies with `npm ci`.
+   - Verify required instruction-root assets are present.
+   - Verify preflight validation script presence.
+   - Start the Next server.
+   - Poll readiness.
+   - Run `npm run harness:validate:premerge`.
+   - Verify `frontend/artifacts/harness/section8/latest/summary.json`.
+   - Upload the Section 8 premerge summary artifact.
+   - Record the exact workflow file path, CI upload artifact name, and retention period; keep each value `TBD` until source-defined or human-approved.
+
+4. Verify stable artifact handling.
+   - Confirm the workflow checks for the stable Section 8 premerge summary artifact path.
+   - Confirm artifact upload uses a stable, reviewable name.
+   - Mark artifact upload name and retention as `TBD` until source-defined or human-approved.
+   - Distinguish runtime premerge, release-quality wrapper, and packaging/instruction-root summary paths from the CI-provider upload artifact name.
+
+5. Execute or document packaging verification.
+   - Run or require `npm run desktop:dist` from `frontend/`.
+   - Confirm expected outputs:
+     - `frontend/dist/Chirality-0.1.0-arm64.dmg`
+     - `frontend/dist/mac-arm64/Chirality.app`
+     - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+
+6. Execute manual macOS DMG release verification.
+   - Confirm binary is arm64.
+   - Confirm `LSMinimumSystemVersion` is `15.0.0` or later.
+   - Confirm signing posture is unsigned/adhoc as scoped.
+   - Confirm app resources contain required instruction-root assets.
+   - Confirm app launches and working-root selector is available.
+   - Confirm current shipped Anthropic network guardrails remain in force.
+   - Confirm SDK-backed harness turn can start in packaged app after R1.
+   - Confirm SDK subprocess or bundled binary is executable from package layout and not trapped inside `app.asar` without execution access.
+   - Confirm SDK transcript storage/mirroring follows the accepted R1 storage decision.
+   - Record pass/fail/TBD separately for each manual checklist item.
+
+7. Record release evidence.
+   - Record command results and artifact paths.
+   - Record the release verification runbook filename and evidence storage location; keep both `TBD` until human-approved.
+   - Map each specification requirement to an evidence artifact, checklist row, or unresolved blocker.
+   - Record all ten PRD Section 12.7 CI steps as present, absent, or `TBD`.
+   - Record pass/fail/TBD for each manual release verification item.
+   - Record secret-redaction and accepted-network-scope inspection outcomes for CI and release artifacts.
+   - Record accepted dependency-edge or blocker state before declaring workflow readiness.
+   - Record unresolved `TBD` items and conflicts.
+   - Do not record API keys or secret material.
+
+8. Escalate human rulings.
+   - Request human assignment for `ResponsibleParty`.
+   - Request ruling for CI workflow path, artifact upload name/retention, and release evidence location.
+   - Request PRD hash mismatch disposition outside this run if strict source closure is required.
+
+## Verification
+
+| Check | Pass Condition |
+|---|---|
+| Local command sequence | Procedure or runbook includes the runtime-premerge wrapper plus separate packaging/instruction-root commands. |
+| CI workflow | Workflow includes all ten PRD Section 12.7 steps. |
+| Stable artifact | Section 8 premerge summary is verified/uploaded for CI; instruction-root summary is verified for packaging evidence; release-quality wrapper summary records command outcomes and skips. |
+| Packaging outputs | DMG, app bundle, and instruction-root integrity summary paths are checked. |
+| Manual release checklist | Each macOS DMG item is recorded as pass/fail/TBD. |
+| Security | Release evidence contains no API keys or secret material and does not broaden network posture. |
+| Professional boundary | Evidence and checklist do not claim automated professional approval, code compliance, external validation, or solver ownership. |
+
+## Records
+
+Required records:
+
+- CI workflow or workflow change.
+- Stable artifact upload evidence.
+- Local command sequence/runbook.
+- Release-quality wrapper summary evidence.
+- Manual release verification checklist with pass/fail/TBD entries.
+- Release evidence summary with artifact paths and unresolved rulings.
+- Requirement-to-evidence matrix covering each `REQ-09-05-*` item.
+- CI ten-step review table covering PRD Section 12.7.
+- Secret-redaction and network-scope inspection records.
+- Dependency-edge or blocker disposition for release workflow readiness.
+
+Record constraints:
+
+- API keys and secret material must not be stored in project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts.
+- The PRD hash mismatch must remain visible as a source warning until separately resolved.
+- `Dependencies.csv` was produced by a prior dependency-recording run; P3 does not edit dependency files, and readiness still requires accepted dependency-edge or blocker disposition.
+
+## D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
+
+UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.

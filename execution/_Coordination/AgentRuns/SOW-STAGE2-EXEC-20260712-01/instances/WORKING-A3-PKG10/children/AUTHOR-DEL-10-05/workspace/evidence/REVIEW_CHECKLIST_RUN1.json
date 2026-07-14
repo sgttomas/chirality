@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 206,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0761ab08daee0d87e69b6efad3216e5228e34be8207a1483e335bfbb237e2c9a"
+      },
+      "text": "PASS when the source-preserving contract contains the exact legacy boundary notices, review checklist, and UI/documentation examples; makes no claim that Chirality approves, validates, certifies, owns, or professionally relies on solver results; keeps proposals and review aids non-binding; authorizes no protected-path mutation or operation approval; and maps the output to SOW-071 and OBJ-009/OBJ-010 with every legacy source line dispositioned.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-05-VER-001",
+          "source_line": 348,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the SOW_V1 schema under exact MIGRATION_DUAL authority; map and report parity for every legacy source line; derive the exact AC checklist; render deterministically; and review the preserved notice copy for proposal-only language, solver-truth separation, and absence of added solver reliance or certification, protected-path mutation, operation approval, lifecycle meaning, or semantic obligation."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-05",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "0761ab08daee0d87e69b6efad3216e5228e34be8207a1483e335bfbb237e2c9a"
+  },
+  "tool_version": "1"
+}

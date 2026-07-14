@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-sow-author-negative-results/v1",
+  "migration_authority_marker": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "pass": true,
+  "tests": [
+    {
+      "artifact_absent": true,
+      "case": "missing_authority",
+      "exit_code": 1,
+      "resolved_format": "AMBIGUOUS"
+    },
+    {
+      "artifact_absent": true,
+      "case": "unruled_authority",
+      "exit_code": 1,
+      "resolved_format": "AMBIGUOUS",
+      "supplied_authority": "D-GOV-16@0123456"
+    },
+    {
+      "artifact_absent": true,
+      "case": "padded_authority",
+      "exit_code": 1,
+      "resolved_format": "AMBIGUOUS",
+      "supplied_authority": " D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    }
+  ]
+}

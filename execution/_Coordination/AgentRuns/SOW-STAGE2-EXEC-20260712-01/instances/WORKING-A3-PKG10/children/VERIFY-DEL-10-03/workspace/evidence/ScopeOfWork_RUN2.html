@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="2f8abf603425a53161f41d0b67b9c590832af3daee97794de876430340c6b677">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-10-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>2f8abf603425a53161f41d0b67b9c590832af3daee97794de876430340c6b677</code>.</p>
+<h1 id="scope-of-work-del-10-03">Scope of Work — DEL-10-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-10-03</code> in service of project scope [SOW-069] and package objectives [OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — OperationProposal record and human-gate workflow contract for DEL-10-03 under SOW-069 and OBJ-010, preserving proposal-only status and future-boundary scope.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-10-03-operationproposal-record-and-human-gate-workflow">CLM-001 — Datasheet: DEL-10-03 OperationProposal Record and Human Gate Workflow</h3>
+<h4 id="datasheet-del-10-03-operationproposal-record-and-human-gate-workflow">Datasheet: DEL-10-03 OperationProposal Record and Human Gate Workflow</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-10-03</td></tr>
+<tr><td>DeliverableName</td><td>OperationProposal Record and Human Gate Workflow</td></tr>
+<tr><td>PackageID</td><td>PKG-10</td></tr>
+<tr><td>PackageName</td><td>Domain Engine Future Boundary</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ScopeItem</td><td>SOW-069</td></tr>
+<tr><td>SupportedObjective</td><td>OBJ-010</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>Current posture</td><td>Future-boundary workflow contract, not current implementation</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Boundary posture</td><td>Future platform compatibility; not current-release domain operation execution.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Section 8.17</td></tr>
+<tr><td>Record type</td><td><code>OperationProposal</code> future domain operation proposal record.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Required identity/control fields</td><td><code>proposal_id</code>, <code>profile_id</code>, <code>base_state</code>, <code>operation_name</code>, <code>status</code>, <code>lifecycle</code>, <code>created_at</code>, <code>created_by</code>, <code>storage_path</code>.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Required review fields</td><td><code>input_refs</code>, <code>intended_changes</code>, <code>deterministic_checks</code>, <code>expected_output_refs</code>, <code>risks</code>, <code>assumptions</code>, <code>blockers</code>, <code>boundary_notice</code>, <code>required_human_gate</code>, <code>operation_risk_class</code>, <code>provenance_on_judgment_values</code>.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Proposal-only status</td><td><code>status</code> is <code>proposal_only</code>.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Lifecycle enum</td><td><code>draft</code>, <code>ready_for_review</code>, <code>accepted</code>, <code>rejected</code>, <code>applied</code>.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Gate requirement</td><td>Accepted/applied lifecycle states require explicit human approval bound to git SHA per K-AUTH-2.</td><td>REF-008; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3</td></tr>
+<tr><td>Apply requirement</td><td>Applied lifecycle state also requires domain-engine-controlled apply or external terminal acceptance record.</td><td>REF-008; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3</td></tr>
+<tr><td>Result schema hooks</td><td>Proposal checks route through profile-declared <code>validate_result_schema</code>, <code>apply_result_schema</code>, and deterministic-check result schema hooks.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.1</td></tr>
+<tr><td>Domain-truth ownership</td><td>Domain engines own authoritative domain truth; Chirality governs interaction, proposals, records, and human gates.</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-1</td></tr>
+<tr><td>Protected path relationship</td><td>Agents write proposals, summaries, and review aids, not protected domain-engine model truth.</td><td><code>docs/PRD.md</code> Section 8.17; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-2</td></tr>
+<tr><td>Professional boundary</td><td>Domain-engine output must not be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality.</td><td><code>docs/PRD.md</code> Section 8.17; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Activation condition</td><td>Future amendment required before domain-engine operation execution is active.</td><td><code>docs/PLAN.md</code> R7; <code>_CONTEXT.md</code> Package Scope</td></tr>
+<tr><td>Current implementation state</td><td>Domain-engine implementation is not activated by this deliverable.</td><td>D-APP-39 F3; <code>docs/SPEC.md</code> Section 18</td></tr>
+<tr><td>Upstream precedence</td><td>Framework-root <code>AGENT_DOMAIN_ENGINE.md</code> at <code>77a327727</code> is canonical; app-dev <code>docs/TYPES.md</code> Section 11 conforms to it.</td><td>D-T0-01; REF-008</td></tr>
+<tr><td>Resolved former blockers</td><td>Required-human-gate semantics and result-schema hooks are resolved by canon; concrete result-schema refs published 2026-07-02 (<code>projects/chirality-piping/schemas/operation_outcome.schema.json</code>, <code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code>); remaining evidence artifacts (operation store, records, review checklist) implementation <code>TBD</code>.</td><td>REF-008; D-T0-01; piping DEL-10-03</td></tr>
+<tr><td>Upstream dependencies</td><td>TBD - no accepted dependency edges have been extracted.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>Downstream dependencies</td><td>TBD - no accepted dependency edges have been extracted.</td><td><code>_DEPENDENCIES.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Description</td><td>Source</td></tr>
+<tr><td>Proposal record shape</td><td>Future <code>OperationProposal</code> table with canonical fields and proposal-only status.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Base state</td><td>Identifies the accepted state or artifact baseline against which a proposal is made.</td><td>REF-008</td></tr>
+<tr><td>Deterministic checks</td><td>Proposal field listing checks expected before review; the check result payload is published 2026-07-02 (<code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code>); the ADOPTED profile&#x27;s hook refs remain <code>TBD</code> pending an owner tier-0 CHANGE.</td><td>REF-008; <code>docs/PRD.md</code> Section 8.17; piping DEL-10-03</td></tr>
+<tr><td>Human gate workflow</td><td>Proposal cannot reach accepted/applied lifecycle states without K-AUTH-2-bound human approval.</td><td>REF-008; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3</td></tr>
+<tr><td>Review checklist</td><td>Must verify field completeness, base state, deterministic checks, outputs, risks, assumptions, blockers, required human gate, protected-path posture, and professional-boundary language.</td><td>REF-008; <code>docs/PRD.md</code> Section 8.17</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code></li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></li>
+<li>- <code>docs/CONTRACT.md</code> Section 1.10</li>
+<li>- <code>docs/DIRECTIVE.md</code> professional and domain-boundary principles</li>
+<li>- <code>docs/PLAN.md</code> future domain-engine items</li>
+<li>- <code>docs/PRD.md</code> Section 8.17</li>
+<li>- <code>docs/SPEC.md</code> domain endpoint list and future profile note</li>
+<li>- <code>docs/TYPES.md</code> Sections 11.1-11.3</li>
+</ul>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-10-03-operationproposal-record-and-human-gate-workflow">CLM-008 — Specification: DEL-10-03 OperationProposal Record and Human Gate Workflow</h3>
+<h4 id="specification-del-10-03-operationproposal-record-and-human-gate-workflow">Specification: DEL-10-03 OperationProposal Record and Human Gate Workflow</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable defines a future-boundary data model and review workflow for <code>OperationProposal</code> records. It covers the proposal record shape, proposal-only status, lifecycle, K-AUTH-2-bound human gate, deterministic result-schema hooks, and review checklist for future domain-engine operations.</p>
+<p>This deliverable excludes operation apply, <code>/api/domain/*</code> endpoints, direct protected-path writes/hooks, general domain-runtime activation, and any claim that Chirality owns solver truth. D-APP-49 through D-APP-52 separately authorize source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools; those staged surfaces remain outside this four-document contract except as governing context.</p>
+<p>Primary canon: <code>_REFERENCES.md</code> REF-008, <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code>. Under D-T0-01, the framework-root persona is canonical; app-dev <code>docs/TYPES.md</code> Section 11 conforms to it and must not weaken framework invariants.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>REQ-10-03-001</td><td>The future <code>OperationProposal</code> record MUST include the canonical fields: <code>proposal_id</code>, <code>profile_id</code>, <code>base_state</code>, <code>operation_name</code>, <code>status</code>, <code>lifecycle</code>, <code>created_at</code>, <code>created_by</code>, <code>input_refs</code>, <code>intended_changes</code>, <code>deterministic_checks</code>, <code>expected_output_refs</code>, <code>risks</code>, <code>assumptions</code>, <code>blockers</code>, <code>boundary_notice</code>, <code>required_human_gate</code>, <code>operation_risk_class</code>, <code>provenance_on_judgment_values</code>, and <code>storage_path</code>.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td><td>Compare proposed schema/checklist against the field table.</td></tr>
+<tr><td>REQ-10-03-002</td><td><code>status</code> MUST be <code>proposal_only</code>; lifecycle MUST use `draft</td><td>ready_for_review</td><td>accepted</td><td>rejected</td><td>applied`.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td><td>Confirm proposal records distinguish status from lifecycle.</td></tr>
+<tr><td>REQ-10-03-003</td><td>Domain operations MUST be represented as <code>OperationProposal</code> records before application.</td><td><code>docs/PRD.md</code> Section 8.17 FR-112; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3</td><td>Review workflow has a proposal-record step before any apply step.</td></tr>
+<tr><td>REQ-10-03-004</td><td>Accepted/applied lifecycle states MUST require explicit human approval bound to git SHA per K-AUTH-2.</td><td>REF-008; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3</td><td>Review checklist requires K-AUTH-2 evidence before accepted/applied states.</td></tr>
+<tr><td>REQ-10-03-005</td><td>Applied lifecycle state MUST also require domain-engine-controlled apply or an external terminal acceptance record.</td><td>REF-008; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3</td><td>Future apply workflow records an engine-controlled or external terminal result; absent implementation remains <code>TBD</code>.</td></tr>
+<tr><td>REQ-10-03-006</td><td>Proposal records MUST identify inputs, intended changes, deterministic checks, expected outputs, risks, assumptions, blockers, boundary notice, required gate, risk class, judgment-value provenance, and storage path.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td><td>Required fields are present and non-empty or explicitly <code>TBD</code> before review.</td></tr>
+<tr><td>REQ-10-03-007</td><td>Deterministic checks MUST resolve against profile-declared schema hooks: <code>validate_result_schema</code>, <code>apply_result_schema</code>, and <code>deterministic_check_result_schema</code>.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.1</td><td>Review checklist blocks implementation readiness when concrete schema refs are missing.</td></tr>
+<tr><td>REQ-10-03-008</td><td>Agents MUST write proposals, summaries, and review aids, not protected domain-engine model truth.</td><td><code>docs/PRD.md</code> Section 8.17 FR-111; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-2</td><td>Review checklist confirms proposed outputs target proposal/review paths, not protected paths.</td></tr>
+<tr><td>REQ-10-03-009</td><td>Domain-engine outputs MUST NOT be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality.</td><td><code>docs/PRD.md</code> Section 8.17 FR-115; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4</td><td>Review checklist includes professional-boundary copy check.</td></tr>
+<tr><td>REQ-10-03-010</td><td>Concrete evidence artifacts remain future implementation TBDs until accepted: profile instances, concrete schema refs, adapters, operation store, apply tooling, and review-checklist artifact path/schema.</td><td><code>docs/PLAN.md</code> R7; <code>docs/SPEC.md</code> Section 18; REF-008</td><td>Documentation preserves TBDs for concrete implementation artifacts without weakening canonical lifecycle semantics.</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Source</td><td>Applicability</td></tr>
+<tr><td><code>agents/AGENT_DOMAIN_ENGINE.md</code> at <code>77a327727</code></td><td>Canonical operation-proposal field table, lifecycle, human gate, result-schema hooks, and boundary posture.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 11.2</td><td>App-dev vocabulary target conforming to framework canon.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.17</td><td>Product requirements for future domain-engine compatibility.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> Section 1.10</td><td>Binding app-dev invariants specializing framework K-DOMAIN without weakening it.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Section 18</td><td>Future API surface context; endpoint behavior details remain gated.</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Method</td><td>Result Target</td></tr>
+<tr><td>Schema completeness</td><td>Verify every canonical <code>OperationProposal</code> field appears in the record shape or checklist.</td><td>PASS/TBD</td></tr>
+<tr><td>Status/lifecycle integrity</td><td>Verify <code>status = proposal_only</code> and lifecycle values match REF-008.</td><td>PASS/TBD</td></tr>
+<tr><td>Human gate</td><td>Verify accepted/applied states require K-AUTH-2-bound human approval.</td><td>PASS/TBD</td></tr>
+<tr><td>Apply result posture</td><td>Verify applied state also requires domain-engine-controlled apply or external terminal acceptance record, or remains blocked as implementation <code>TBD</code>.</td><td>PASS/TBD</td></tr>
+<tr><td>Result schema hooks</td><td>Verify future deterministic checks reference profile-level validation/apply/check result schema hooks.</td><td>PASS/TBD</td></tr>
+<tr><td>Protected path posture</td><td>Verify proposal outputs do not directly modify protected domain-engine paths.</td><td>PASS/TBD</td></tr>
+<tr><td>Boundary language</td><td>Verify no text claims Chirality approves, certifies, code-validates, externally validates, seals, authenticates, or owns solver truth.</td><td>PASS/TBD</td></tr>
+<tr><td>Future-boundary constraint</td><td>Verify implementation activation is excluded until governed amendment.</td><td>PASS/TBD</td></tr>
+<tr><td>Review sufficiency evidence</td><td>Verify a future review-checklist result artifact is identified as a true implementation <code>TBD</code>, not as an unresolved framework blocker.</td><td>PASS/TBD</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Proposal record shape.</li>
+<li>- Gate workflow notes.</li>
+<li>- Review checklist.</li>
+</ul>
+<p>Additional documentation needed before implementation:</p>
+<ul>
+<li>- TBD: exact proposal ID generation semantics.</li>
+<li>- TBD: concrete <code>DomainEngineProfile</code> instance for the target engine.</li>
+<li>- RESOLVED by cross-reference (2026-07-02, agent decision under</li>
+</ul>
+<p><code>TRB-chirality-app-dev-DEL-10-03-2026-07-02</code>): concrete refs for the tier-0 engine</p>
+<p>instance are published — <code>validate_result_schema</code> / <code>apply_result_schema</code> =</p>
+<p><code>projects/chirality-piping/schemas/operation_outcome.schema.json</code> (operation_applier</p>
+<p><code>OperationOutcome</code>; <code>mode</code> = <code>validate_only</code> / <code>apply</code>),</p>
+<p><code>deterministic_check_result_schema</code> =</p>
+<p><code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code></p>
+<p>(rule_check_runner <code>RuleCheckRunResult</code>); the Rust sources govern on disagreement.</p>
+<p>Residual <code>TBD</code>: the ADOPTED profile&#x27;s hook fields await an owner tier-0 CHANGE</p>
+<p>(<code>_DomainEngines/profiles/open_pipe_stress.yaml:81,88,101,115</code>); engines other than</p>
+<p>open_pipe_stress supply their own refs.</p>
+<ul>
+<li>- TBD: operation store and <code>storage_path</code> convention.</li>
+<li>- TBD: adapter validation/apply tooling and result-record location. (Narrowed</li>
+</ul>
+<p>2026-07-02: the validation/apply result envelope is published — see the resolved</p>
+<p>refs above; the tooling and the app-dev-side result-record location remain <code>TBD</code>.)</p>
+<ul>
+<li>- TBD: review checklist result artifact path/schema.</li>
+<li>- TBD: concrete proposal instances and profile-specific boundary notice copy.</li>
+</ul>
+<h3 id="clm-014-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-014 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.</p>
+<h3 id="clm-015-d-app-56-ownership-amendment-2026-07-12">CLM-015 — D-APP-56 ownership amendment (2026-07-12)</h3>
+<h5 id="d-app-56-ownership-amendment-2026-07-12">D-APP-56 ownership amendment (2026-07-12)</h5>
+<p>Under R4-P27, this deliverable owns the ruled proposal-tool surface in <code>domain-proposal-tools.ts</code> (<code>propose</code>, <code>refresh</code>, and <code>validate</code>), including registration, proposal envelopes, and gates. Only PEC-profile-scoped fixture interaction is evidence for DEL-10-04. This amendment does not unlock DEP-10-03-004 or any D-APP-53 Option-C-gated work.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-10-03 OperationProposal record and human-gate workflow preserves the exact legacy source content, proposal-only boundary, and human approval gate while remaining bounded to SOW-069 and OBJ-010.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-10-03-operationproposal-record-and-human-gate-workflow">CLM-016 — Procedure: DEL-10-03 OperationProposal Record and Human Gate Workflow</h3>
+<h4 id="procedure-del-10-03-operationproposal-record-and-human-gate-workflow">Procedure: DEL-10-03 OperationProposal Record and Human Gate Workflow</h4>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the future workflow for producing and reviewing <code>OperationProposal</code> records while preserving protected-path, human-gate, result-schema, and professional-boundary constraints. This procedure is a design procedure for the future workflow; it does not activate domain-engine operation execution.</p>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Framework canon source: <code>_REFERENCES.md</code> REF-008, <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code>.</li>
+<li>- Accepted future amendment authorizing domain-engine operation workflow implementation: TBD.</li>
+<li>- Accepted <code>DomainEngineProfile</code> for the target engine: TBD.</li>
+<li>- Protected path and proposal path policy: TBD, sibling deliverable DEL-10-02.</li>
+<li>- Deterministic adapter or validation tool for the operation: TBD.</li>
+<li>- Concrete <code>validate_result_schema</code>, <code>apply_result_schema</code>, and deterministic-check result schema refs: published 2026-07-02 — <code>projects/chirality-piping/schemas/operation_outcome.schema.json</code> (validate/apply envelope) and <code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code> (deterministic-check result); the ADOPTED profile&#x27;s hook fields remain <code>TBD</code> pending an owner tier-0 CHANGE.</li>
+<li>- Operation store and review-checklist result artifact path/schema: TBD.</li>
+<li>- Declared upstream dependencies: TBD, no accepted dependency edges extracted yet.</li>
+</ul>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm future-boundary authorization.</p>
+<ul>
+<li>- Verify that the work remains proposal/workflow design unless a governed amendment authorizes implementation.</li>
+<li>- Source: <code>_CONTEXT.md</code>; <code>docs/PLAN.md</code> R7; D-APP-39 F3.</li>
+</ul>
+<p>2. Create a draft <code>OperationProposal</code> record.</p>
+<ul>
+<li>- Populate each canonical field from REF-008 / <code>docs/TYPES.md</code> Section 11.2.</li>
+<li>- Set <code>status</code> to <code>proposal_only</code>.</li>
+<li>- Set <code>lifecycle</code> to <code>draft</code>.</li>
+<li>- Use <code>TBD</code> for unavailable implementation values.</li>
+<li>- Keep <code>ResponsibleParty</code> outside the proposal workflow as <code>TBD</code> until human assignment.</li>
+</ul>
+<p>3. Identify baseline, inputs, and intended changes.</p>
+<ul>
+<li>- Fill <code>base_state</code> with the accepted baseline or mark it <code>TBD</code>.</li>
+<li>- Fill <code>input_refs</code> with the future domain artifacts or proposal inputs to be reviewed.</li>
+<li>- Fill <code>intended_changes</code> with proposed changes.</li>
+<li>- Do not write directly to protected domain-engine model truth.</li>
+</ul>
+<p>4. Define deterministic checks.</p>
+<ul>
+<li>- Populate <code>deterministic_checks</code> with the checks expected before review.</li>
+<li>- Tie checks to profile-level <code>validate_result_schema</code>, <code>apply_result_schema</code>, and deterministic-check result schema hooks.</li>
+<li>- Mark exact payloads, pass/fail schema, adapter/profile reference, evidence path, and failure reason field as <code>TBD</code> until an adapter/profile contract is accepted. (Since 2026-07-02 the pass/fail result shapes are published — <code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code> carries per-check status, computed/limit values, findings, and diagnostic codes; adapter/profile reference and evidence path remain <code>TBD</code>.)</li>
+</ul>
+<p>5. Identify expected outputs, risks, assumptions, and blockers.</p>
+<ul>
+<li>- Populate <code>expected_output_refs</code> with proposal/review artifacts or approved future adapter outputs.</li>
+<li>- Populate <code>risks</code>, <code>assumptions</code>, and <code>blockers</code>; use <code>TBD</code> for items requiring domain expert review.</li>
+<li>- Record <code>operation_risk_class</code> and provenance for judgment values.</li>
+</ul>
+<p>6. Set the required human gate.</p>
+<ul>
+<li>- Populate <code>required_human_gate</code> with the required gate name or mark it <code>TBD</code>.</li>
+<li>- Do not move to <code>accepted</code> or <code>applied</code> without explicit human approval bound to git SHA per K-AUTH-2.</li>
+<li>- Do not move to <code>applied</code> without domain-engine-controlled apply or external terminal acceptance record.</li>
+</ul>
+<p>7. Review protected-path and professional-boundary posture.</p>
+<ul>
+<li>- Confirm agents write proposals, summaries, and review aids only.</li>
+<li>- Confirm proposal text does not claim professional approval, code compliance, certification, sealing, authentication, external validation, or Chirality-owned solver truth.</li>
+</ul>
+<p>8. Maintain lifecycle semantics.</p>
+<ul>
+<li>- <code>draft</code>: initial incomplete or working proposal.</li>
+<li>- <code>ready_for_review</code>: proposal has required fields populated or explicitly marked <code>TBD</code>, deterministic checks are identified, and unresolved blockers are visible in the review checklist.</li>
+<li>- <code>accepted</code>: explicit human approval has been recorded and bound to git SHA per K-AUTH-2.</li>
+<li>- <code>rejected</code>: human reviewer or policy rejects the proposal and records the rejection reason in the same evidence family as acceptance.</li>
+<li>- <code>applied</code>: accepted proposal is applied by domain-engine-controlled apply or external terminal acceptance record, with result evidence stored according to the accepted profile/workflow.</li>
+</ul>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Pass Condition</td></tr>
+<tr><td>Field completeness</td><td>Every canonical <code>OperationProposal</code> field is populated or marked <code>TBD</code>.</td></tr>
+<tr><td>Status/lifecycle</td><td><code>status</code> is <code>proposal_only</code>; lifecycle values match REF-008.</td></tr>
+<tr><td>Human gate</td><td>Accepted/applied states require K-AUTH-2-bound human approval.</td></tr>
+<tr><td>Deterministic checks</td><td>Checks are listed or marked <code>TBD</code>; no prompt-only safety claim is made.</td></tr>
+<tr><td>Result schema hooks</td><td>Validation/apply/check result schema hooks are present; concrete refs may remain <code>TBD</code>.</td></tr>
+<tr><td>Protected path safety</td><td>No step instructs agents to write protected domain-engine model truth.</td></tr>
+<tr><td>Boundary notice</td><td>No step or record represents Chirality as professional approver, code-compliance verifier, certifier, sealer, authenticator, external validator, or solver truth owner.</td></tr>
+<tr><td>Future-boundary posture</td><td>Procedure does not activate current-release domain operation execution.</td></tr>
+<tr><td>Review sufficiency evidence</td><td>Future review checklist result records field completeness, protected-path posture, boundary-language review, gate readiness, deterministic-check readiness, and unresolved implementation blockers or marks the result artifact as <code>TBD</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Draft <code>OperationProposal</code> record.</li>
+<li>- Deterministic check plan or <code>TBD</code> placeholder.</li>
+<li>- Deterministic check result record: the runner-side result shape is published (2026-07-02) as <code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code> (<code>CheckOutcome</code>: check id, status, computed/limit values, findings, diagnostic codes); the app-dev-side record wrapper (adapter/profile reference, evidence path) remains <code>TBD</code> future schema.</li>
+<li>- Human gate acceptance/rejection record: TBD future artifact carrying K-AUTH-2-bound approval/rejection evidence.</li>
+<li>- Review checklist result: TBD future artifact recording schema completeness, protected-path posture, boundary-language review, human-gate readiness, deterministic-check readiness, and unresolved implementation blockers.</li>
+<li>- Boundary notice review result.</li>
+<li>- Adapter validation/apply result: the result envelope is published (2026-07-02) as <code>projects/chirality-piping/schemas/operation_outcome.schema.json</code> (operation/change identifiers, validation states, diff preview, diagnostics, honest acceptance receipt); the app-dev-side implementation artifact (accepted proposal reference, output references, failure/rollback note, record location) remains <code>TBD</code>.</li>
+</ul>
+<h3 id="clm-022-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-022 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Verify DEL-10-03 source-marker coverage and byte parity against the exact legacy four-document source, and confirm SOW-069 and OBJ-010 traceability, proposal-only status, and the preserved human gate.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-10-03-operationproposal-record-and-human-gate-workflow">CLM-023 — Guidance: DEL-10-03 OperationProposal Record and Human Gate Workflow</h3>
+<h4 id="guidance-del-10-03-operationproposal-record-and-human-gate-workflow">Guidance: DEL-10-03 OperationProposal Record and Human Gate Workflow</h4>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable preserves future compatibility for domain-engine operation workflows without turning Chirality into a domain solver. It defines how future domain operations should be represented as proposed, reviewable, human-gated records before any protected domain state can be changed.</p>
+<p>Primary canon: <code>_REFERENCES.md</code> REF-008, <code>agents/AGENT_DOMAIN_ENGINE.md</code> pinned at <code>77a327727</code>.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat <code>OperationProposal</code> as a future proposal and audit record, not as permission to execute a domain operation by itself.</li>
+<li>- Keep authoritative domain truth in the domain engine. Chirality governs interaction, proposals, records, review aids, and human gates.</li>
+<li>- Keep protected domain paths separate from profile-approved agent-writable proposal paths.</li>
+<li>- Preserve <code>status = proposal_only</code>; use <code>lifecycle</code> for <code>draft</code>, <code>ready_for_review</code>, <code>accepted</code>, <code>rejected</code>, and <code>applied</code>.</li>
+<li>- Require deterministic checks and profile-declared result-schema hooks before a future operation can be considered implementation-ready.</li>
+<li>- Require explicit human approval bound to git SHA per K-AUTH-2 before accepted/applied lifecycle states.</li>
+<li>- Preserve professional-boundary language: Chirality must not claim professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth ownership.</li>
+</ul>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Future scope</td><td>Draft record/workflow surfaces only; do not activate domain-engine implementation in this package.</td><td><code>_CONTEXT.md</code>; <code>docs/PRD.md</code> Section 8.17; D-APP-39 F3</td></tr>
+<tr><td>Proposal fields</td><td>Use the REF-008 field table as the minimum record shape.</td><td>REF-008; <code>docs/TYPES.md</code> Section 11.2</td></tr>
+<tr><td>Base state</td><td>Include <code>base_state</code> so review can compare proposed changes against a named accepted state or artifact baseline.</td><td>REF-008</td></tr>
+<tr><td>Deterministic checks</td><td>Define check names and expected outcomes before review; concrete result payloads and schema refs remain true implementation TBDs.</td><td>REF-008; <code>docs/PRD.md</code> Section 8.17 FR-112</td></tr>
+<tr><td>Human gate</td><td>Accepted/applied states require explicit human approval bound to git SHA per K-AUTH-2.</td><td>REF-008; <code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-3</td></tr>
+<tr><td>Applied state</td><td>Applied state additionally requires domain-engine-controlled apply or external terminal acceptance record.</td><td>REF-008</td></tr>
+<tr><td>Protected paths</td><td>Proposal outputs should be written to proposal/review locations, not protected model truth.</td><td><code>docs/PRD.md</code> Section 8.17 FR-110/FR-111</td></tr>
+<tr><td>Professional boundary</td><td>Review copy and event records should avoid language that makes Chirality the approving professional, code-compliance verifier, external validator, certifier, sealer, authenticator, or solver owner.</td><td><code>docs/CONTRACT.md</code> Section 1.10 K-DOMAIN-4</td></tr>
+</tbody></table>
+<p>The former &quot;7 TBD blockers&quot; around required-human-gate semantics and result-schema hooks are resolved by framework canon. Do not re-derive them locally. Preserve only concrete implementation TBDs: profile instances, concrete schema refs, adapters, operation stores, apply tooling, review-checklist artifact path/schema, and concrete proposal records.</p>
+<h3 id="clm-027-terminology-map">CLM-027 — Terminology Map</h3>
+<h5 id="terminology-map">Terminology Map</h5>
+<table><tbody>
+<tr><td>Term</td><td>Meaning in this deliverable</td><td>Current disposition</td></tr>
+<tr><td><code>status</code></td><td>Canonical proposal-only posture.</td><td>Required value: <code>proposal_only</code>.</td></tr>
+<tr><td><code>lifecycle</code></td><td>Proposal progression: <code>draft</code>, <code>ready_for_review</code>, <code>accepted</code>, <code>rejected</code>, <code>applied</code>.</td><td>Canonical values; implementation artifacts remain future-gated.</td></tr>
+<tr><td>Human gate</td><td>The workflow point that prevents accepted/applied lifecycle states without accountable human action.</td><td>Required by REF-008 and K-DOMAIN-3.</td></tr>
+<tr><td>Explicit human approval</td><td>K-AUTH-2-bound human approval evidence for accepted/applied lifecycle states.</td><td>Canonical requirement; concrete evidence artifact remains implementation <code>TBD</code>.</td></tr>
+<tr><td><code>required_human_gate</code></td><td>The <code>OperationProposal</code> field naming the required gate.</td><td>Required field; concrete value vocabulary may be profile/workflow-specific.</td></tr>
+<tr><td>Deterministic result schema</td><td>Schema hooks used by validation/apply/check results.</td><td>Canonical hooks required; concrete refs published 2026-07-02: <code>projects/chirality-piping/schemas/operation_outcome.schema.json</code> (validate/apply), <code>projects/chirality-piping/schemas/rule_check_run_result.schema.json</code> (deterministic check); the ADOPTED profile&#x27;s hook fields await an owner tier-0 CHANGE.</td></tr>
+<tr><td>Review checklist result</td><td>Future artifact recording schema completeness, protected-path posture, boundary-language review, gate readiness, deterministic-check readiness, and unresolved implementation blockers.</td><td>Implementation <code>TBD</code> until artifact path/schema is accepted.</td></tr>
+</tbody></table>
+<h3 id="clm-028-example-minimal-proposal-shape">CLM-028 — Example Minimal Proposal Shape</h3>
+<h5 id="example-minimal-proposal-shape">Example Minimal Proposal Shape</h5>
+<p>```json</p>
+<p>{</p>
+<p>&quot;proposal_id&quot;: &quot;TBD&quot;,</p>
+<p>&quot;profile_id&quot;: &quot;TBD&quot;,</p>
+<p>&quot;base_state&quot;: &quot;TBD&quot;,</p>
+<p>&quot;operation_name&quot;: &quot;TBD&quot;,</p>
+<p>&quot;status&quot;: &quot;proposal_only&quot;,</p>
+<p>&quot;lifecycle&quot;: &quot;draft&quot;,</p>
+<p>&quot;created_at&quot;: &quot;TBD&quot;,</p>
+<p>&quot;created_by&quot;: &quot;TBD&quot;,</p>
+<p>&quot;input_refs&quot;: [],</p>
+<p>&quot;intended_changes&quot;: [],</p>
+<p>&quot;deterministic_checks&quot;: [],</p>
+<p>&quot;expected_output_refs&quot;: [],</p>
+<p>&quot;risks&quot;: [],</p>
+<p>&quot;assumptions&quot;: [],</p>
+<p>&quot;blockers&quot;: [],</p>
+<p>&quot;boundary_notice&quot;: &quot;TBD&quot;,</p>
+<p>&quot;required_human_gate&quot;: &quot;TBD&quot;,</p>
+<p>&quot;operation_risk_class&quot;: &quot;engine_checkable&quot;,</p>
+<p>&quot;provenance_on_judgment_values&quot;: &quot;TBD&quot;,</p>
+<p>&quot;storage_path&quot;: &quot;TBD&quot;</p>
+<p>}</p>
+<p>```</p>
+<p>Values are <code>TBD</code> because no accepted engine profile, adapter, operation store, or operation instance exists in this future-boundary deliverable.</p>
+<h3 id="clm-029-review-checklist">CLM-029 — Review Checklist</h3>
+<h5 id="review-checklist">Review Checklist</h5>
+<table><tbody>
+<tr><td>Check</td><td>Question</td></tr>
+<tr><td>Base state</td><td>Is <code>base_state</code> identified and reviewable?</td></tr>
+<tr><td>Inputs</td><td>Are all <code>input_refs</code> identified and reviewable?</td></tr>
+<tr><td>Intended changes</td><td>Are <code>intended_changes</code> specific enough for review?</td></tr>
+<tr><td>Deterministic checks</td><td>Are checks named, tied to profile schema hooks, and ready to produce deterministic evidence?</td></tr>
+<tr><td>Expected outputs</td><td>Are <code>expected_output_refs</code> proposal/review artifacts or approved adapter outputs, not direct protected-path writes by agents?</td></tr>
+<tr><td>Risks/assumptions/blockers</td><td>Are known risks, assumptions, and blockers explicit?</td></tr>
+<tr><td>Human gate</td><td>Is <code>required_human_gate</code> explicit, and is accepted/applied blocked until K-AUTH-2-bound approval exists?</td></tr>
+<tr><td>Lifecycle</td><td>Does <code>status</code> remain <code>proposal_only</code>, with lifecycle carrying progression?</td></tr>
+<tr><td>Review evidence</td><td>Does a future checklist result artifact record boundary-language, protected-path, human-gate, deterministic-check, and unresolved implementation-blocker findings or mark the artifact as <code>TBD</code>?</td></tr>
+<tr><td>Boundary notice</td><td>Does the proposal avoid claims of professional approval, code compliance, certification, sealing, authentication, external validation, or Chirality-owned solver truth?</td></tr>
+</tbody></table>
+<h3 id="clm-030-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-030 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-069 OBJ-010</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

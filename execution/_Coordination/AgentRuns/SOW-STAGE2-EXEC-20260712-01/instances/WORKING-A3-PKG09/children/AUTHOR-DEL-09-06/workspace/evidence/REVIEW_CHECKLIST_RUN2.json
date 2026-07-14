@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 238,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "940a5b70a194c390909739f2a85ecdbe7856ee27483cfc24738146a2eb555e48"
+      },
+      "text": "Evidence verifies UI safeStorage and environment key precedence without secret leakage, only the accepted Anthropic endpoint and product network scope, secret-free renderer policy logs, server-side attachment type, path, symlink, readability and byte-budget enforcement, partial-failure continuation, ATTACHMENT_FAILURE on total failure with empty text, retry-state preservation where applicable, and repeatable validation; unselected implementation paths and unavailable outputs remain explicit TBD blockers.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-06-VER-001",
+          "source_line": 367,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run or inspect key precedence and redaction tests, provider endpoint and renderer network-guard tests, attachment allowlist, unsafe-file and budget fixtures, partial and total failure and retry tests, secret scans, and the applicable source-named validation command evidence, retaining unconfirmed paths or artifacts as TBD."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-06",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "940a5b70a194c390909739f2a85ecdbe7856ee27483cfc24738146a2eb555e48"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,4 @@
+source_file	line	literal	classification	verdict
+Datasheet.md	88	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	IMMUTABLE_ACCEPTED_SOURCE_LITERAL	PRESERVED_BYTE_EXACT
+_REFERENCES.md	13	/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md	IMMUTABLE_ACCEPTED_CONTROL_LITERAL	PRESERVED_BYTE_EXACT
+_DEPENDENCIES.md	55	/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md	IMMUTABLE_ACCEPTED_CONTROL_LITERAL	PRESERVED_BYTE_EXACT

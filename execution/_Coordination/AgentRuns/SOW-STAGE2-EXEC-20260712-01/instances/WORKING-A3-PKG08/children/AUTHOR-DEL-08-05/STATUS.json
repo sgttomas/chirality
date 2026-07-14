@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "parent_instance_id": "WORKING-A3-PKG08",
+  "child_instance_id": "AUTHOR-DEL-08-05",
+  "deliverable_id": "DEL-08-05",
+  "status": "SUCCESS",
+  "terminal": true,
+  "completed_at": "2026-07-13T16:11:26-06:00",
+  "candidate": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_A3/APP-PKG08/DEL-08-05/ScopeOfWork.md",
+  "candidate_sha256": "8a1f1214aebf3d7c8b1a4dfb4fad71b0142e311e663573b6d60a21d0d8ca2167",
+  "author_evidence": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-A3-PKG08/children/AUTHOR-DEL-08-05",
+  "schema_verdict": "PASS",
+  "content_authority_verdict": "PASS",
+  "preservation_verdict": "PASS",
+  "execution_substrate_verdict": "PASS",
+  "blockers": [],
+  "rerun_requirements": []
+}

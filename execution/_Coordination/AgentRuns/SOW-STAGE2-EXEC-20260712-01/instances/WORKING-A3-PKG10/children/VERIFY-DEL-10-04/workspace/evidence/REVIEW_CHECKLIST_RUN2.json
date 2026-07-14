@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 253,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "13378ea31a55e2d425bd054391627c34094c2a0cab7556a801a683e400b70f3f"
+      },
+      "text": "Every exact legacy source range is preserved, and the converted contract remains limited to SOW-070 and OBJ-010 future fixture-profile and validation expectations without activating endpoints, operation apply, protected-path writes, solver integration, professional approval, code compliance, external validation, or Chirality-owned solver truth.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-04-VER-001",
+          "source_line": 376,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the deterministic validator, claim mapper, parity reporter, checklist compiler, and renderer against the exact source/control kit; confirm source and status bytes are unchanged and negative format/checklist fixtures fail closed."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-04",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "13378ea31a55e2d425bd054391627c34094c2a0cab7556a801a683e400b70f3f"
+  },
+  "tool_version": "1"
+}

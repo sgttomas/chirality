@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="0761ab08daee0d87e69b6efad3216e5228e34be8207a1483e335bfbb237e2c9a">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-10-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>0761ab08daee0d87e69b6efad3216e5228e34be8207a1483e335bfbb237e2c9a</code>.</p>
+<h1 id="scope-of-work-del-10-05">Scope of Work — DEL-10-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-10-05</code> in service of project scope [SOW-071] and package objectives [OBJ-009, OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Boundary notice copy, domain review checklist, and UI/documentation examples that preserve domain-engine ownership of domain truth, Chirality non-approval/non-validation/non-ownership boundaries, proposal-only semantics, and explicit human acceptance before reliance, as preserved from the exact legacy source.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-10-05-domain-boundary-notices-and-solver-truth-separation">CLM-001 — Datasheet: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h3>
+<h4 id="datasheet-del-10-05-domain-boundary-notices-and-solver-truth-separation">Datasheet: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-10-05</td></tr>
+<tr><td>DeliverableName</td><td>Domain Boundary Notices and Solver Truth Separation</td></tr>
+<tr><td>PackageID</td><td>PKG-10</td></tr>
+<tr><td>PackageName</td><td>Domain Engine Future Boundary</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>DOC_UPDATE</td></tr>
+<tr><td>ContextEnvelope</td><td>S</td></tr>
+<tr><td>Current Scope Posture</td><td>Future-boundary/gated scope; not current-release domain operation execution</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Covered scope item</td><td>SOW-071: domain outputs must not imply professional approval, code compliance, external validation, or solver truth</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> SOW table; <code>docs/PRD.md</code> Section 8.17</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-009 and OBJ-010</td><td><code>_CONTEXT.md</code>; decomposition objective table</td></tr>
+<tr><td>Primary artifact class</td><td>Boundary notice copy, domain review checklist, UI/doc examples</td><td><code>_CONTEXT.md</code>; decomposition DEL-10-05 row</td></tr>
+<tr><td>Domain truth ownership rule</td><td>Domain engines own authoritative domain truth when adopted by amendment; Chirality governs interaction, proposals, records, and human gates</td><td><code>docs/PRD.md</code> FR-106; <code>docs/CONTRACT.md</code> K-DOMAIN-1</td></tr>
+<tr><td>Solver-truth separation rule</td><td>Domain-engine output must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality</td><td><code>docs/PRD.md</code> FR-115; <code>docs/CONTRACT.md</code> K-DOMAIN-4</td></tr>
+<tr><td>Human authority rule</td><td>Professional approval, issue, reliance, standard selection, residual-risk acceptance, and conflict adjudication remain human-only</td><td><code>docs/DIRECTIVE.md</code> Sections 2.4 and 3.2; <code>docs/CONTRACT.md</code> K-AUTH-1 and K-GATE-1</td></tr>
+<tr><td>Protected-path implication</td><td>Agents may write proposals and summaries, not protected domain-engine model truth</td><td><code>docs/PRD.md</code> FR-110 and FR-111; <code>docs/CONTRACT.md</code> K-DOMAIN-2</td></tr>
+<tr><td>Operation acceptance implication</td><td>Domain operations require OperationProposal records and explicit human acceptance before application</td><td><code>docs/PRD.md</code> FR-112 and FR-113; <code>docs/CONTRACT.md</code> K-DOMAIN-3</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Current implementation partition</td><td>D-APP-49 through D-APP-52 rule source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools live; endpoints, apply, protected-path hooks/writes, and general runtime remain future/gated</td><td><code>docs/SPEC.md</code> Section 18; <code>docs/PRD.md</code> KG-016; D-APP-49 through D-APP-52</td></tr>
+<tr><td>Adoption gate</td><td>Future domain-engine work requires governed amendment and stable core harness/runtime boundaries</td><td>Decomposition OI-005 and DEC-006; <code>docs/PRD.md</code> Section 8.17</td></tr>
+<tr><td>Fixture posture</td><td>OpenPipeStress may be a first fixture profile if adopted, but it is not Chirality core behavior</td><td><code>docs/PRD.md</code> FR-114; <code>docs/TYPES.md</code> Section 11.3</td></tr>
+<tr><td>PRD reference integrity</td><td>WARNING: <code>_REFERENCES.md</code> records PRD ExpectedSHA256 <code>86cb6f...eb34</code> and ActualSHA256 <code>fb1c73...6fc8</code>; per dispatch, this is treated as a source status</td><td><code>_REFERENCES.md</code>; user dispatch</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<p>The deliverable is constructed as a copy and review package, not an implementation package. It should provide:</p>
+<ul>
+<li>- Boundary notice language for UI, documentation, event records, domain profile descriptions, and operation proposal surfaces.</li>
+<li>- A domain review checklist that catches claims of Chirality-owned solver truth, professional approval, code compliance, external validation, or direct protected-model mutation.</li>
+<li>- Examples that preserve the split between domain-engine truth, deterministic adapter outputs, Chirality records/proposals, and human acceptance.</li>
+<li>- Future amendment notes where current source material does not define accepted domain profile details.</li>
+</ul>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Human authority, professional boundaries, project truth hierarchy</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>K-AUTH, K-PROF, K-DOMAIN invariants</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Future domain endpoint and profile interface posture</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Domain terms: protected path, proposal path, deterministic adapter, boundary notice</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Future domain-engine direction and OpenPipeStress fixture posture</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Product requirements FR-106 through FR-115 and current-release non-goals</td></tr>
+<tr><td>REF-007</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>DEL-10-05 scope, SOW-071, OBJ-009, OBJ-010, OI-005, DEC-006</td></tr>
+</tbody></table>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-10-05-domain-boundary-notices-and-solver-truth-separation">CLM-007 — Specification: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h3>
+<h4 id="specification-del-10-05-domain-boundary-notices-and-solver-truth-separation">Specification: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies boundary-notice and review requirements for future domain-engine surfaces in Chirality. It covers documentation/UI/event-record copy and review checks that preserve the distinction between:</p>
+<ul>
+<li>- domain-engine authoritative truth,</li>
+<li>- deterministic adapter or domain-tool outputs,</li>
+<li>- Chirality proposals, summaries, manifests, and audit records,</li>
+<li>- explicit human acceptance and professional reliance decisions.</li>
+</ul>
+<p>This deliverable excludes <code>/api/domain/*</code> endpoints, operation apply, direct protected-path mutation/hooks, and general domain-runtime activation. D-APP-49 through D-APP-52 separately authorize the staged-live source-type/guard, closed-registry, read-tool, and pec-scoped loopback propose/refresh/validate surface; this copy/review deliverable does not own that implementation.</p>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>REQ-001</td><td>Boundary notices MUST state that Chirality does not approve, validate, certify, issue, sign, seal, or externally validate professional work.</td><td><code>docs/DIRECTIVE.md</code> Sections 2.4, 3.2; <code>docs/CONTRACT.md</code> K-AUTH-1</td><td>Copy review confirms no automated approval/validation claim.</td></tr>
+<tr><td>REQ-002</td><td>Boundary notices MUST state that Chirality does not own solver truth and does not become the domain solver.</td><td><code>docs/PRD.md</code> FR-106, FR-115; <code>docs/CONTRACT.md</code> K-DOMAIN-1, K-DOMAIN-4</td><td>Copy review confirms solver-truth ownership is assigned to the domain engine/domain tool, not Chirality.</td></tr>
+<tr><td>REQ-003</td><td>UI/documentation/event copy MUST NOT represent domain-engine output as professional approval, code compliance, external validation, or Chirality-owned solver truth.</td><td><code>docs/PRD.md</code> FR-115; decomposition SOW-071</td><td>Checklist review flags prohibited claims.</td></tr>
+<tr><td>REQ-004</td><td>Domain operation copy MUST require explicit human acceptance before any applied operation is treated as accepted domain state.</td><td><code>docs/PRD.md</code> FR-113; <code>docs/CONTRACT.md</code> K-DOMAIN-3 and K-GATE-1</td><td>Operation-related copy includes human-gate language.</td></tr>
+<tr><td>REQ-005</td><td>Protected domain artifact copy MUST distinguish protected paths from agent-writable proposal or summary paths.</td><td><code>docs/PRD.md</code> FR-110, FR-111; <code>docs/CONTRACT.md</code> K-DOMAIN-2; <code>docs/TYPES.md</code> Section 11.3</td><td>Review confirms no direct agent-write language for protected model truth.</td></tr>
+<tr><td>REQ-006</td><td>OpenPipeStress examples, if used, MUST describe it as a possible fixture profile and not as Chirality core behavior.</td><td><code>docs/PRD.md</code> FR-114; <code>docs/TYPES.md</code> Section 11.3</td><td>Example review confirms fixture-only language.</td></tr>
+<tr><td>REQ-007</td><td>Domain-surface wording MUST distinguish the D-APP-49 through D-APP-52 staged-live types/guards, registry, read tools, and pec-scoped propose/refresh/validate tools from still-gated endpoints, apply, protected-path hooks/writes, and general runtime.</td><td><code>docs/SPEC.md</code> Section 18; <code>docs/PRD.md</code> KG-016; D-APP-49 through D-APP-52</td><td>Scope review confirms the staged partition without implying broader activation.</td></tr>
+<tr><td>REQ-008</td><td>Unsupported domain-profile or solver-specific details MUST remain <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, or a human-ruling item.</td><td>Skill contract; <code>_REFERENCES.md</code> notes</td><td>Document review confirms no invented solver facts.</td></tr>
+</tbody></table>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<p>No external engineering code or domain-solver standard is selected by this deliverable. Governing project standards for this slice are the Chirality governance and product documents listed in <code>_REFERENCES.md</code>.</p>
+<table><tbody>
+<tr><td>Standard/Control</td><td>Status</td></tr>
+<tr><td>Chirality professional-boundary invariants</td><td>Applicable from <code>docs/DIRECTIVE.md</code> and <code>docs/CONTRACT.md</code></td></tr>
+<tr><td>Chirality domain-engine future requirements</td><td>Applicable from <code>docs/PRD.md</code> FR-106 through FR-115</td></tr>
+<tr><td>DomainEngineProfile accepted schema</td><td>TBD: no accepted generic profile specification exists yet per <code>docs/PRD.md</code> KG-017</td></tr>
+<tr><td>Engine-specific solver validation standards</td><td>TBD: out of scope until a future amendment and domain profile identify the engine and governing standards</td></tr>
+</tbody></table>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Criteria</td></tr>
+<tr><td>Prohibited claim scan</td><td>No copy says or implies Chirality approves, validates, certifies, issues, signs, seals, proves code compliance, externally validates, or owns solver truth.</td></tr>
+<tr><td>Ownership separation scan</td><td>Domain-engine/tool outputs, Chirality records, and human acceptance are separately named.</td></tr>
+<tr><td>Scope gate scan</td><td>Domain-engine operation execution remains future-boundary/gated scope.</td></tr>
+<tr><td>Protected/proposal path scan</td><td>Protected domain paths are not described as agent-writable; proposal/review aid paths are distinct.</td></tr>
+<tr><td>Fixture scan</td><td>OpenPipeStress is fixture/profile language only, not core runtime behavior.</td></tr>
+<tr><td>Unsupported fact scan</td><td>Missing solver/profile specifics are marked TBD, ASSUMPTION, PROPOSAL, or human-ruling items.</td></tr>
+<tr><td>Surface inventory scan</td><td>Each selected future surface category has either a required notice pattern or an explicit out-of-scope rationale. Selected surfaces are <code>TBD</code> until a future amendment identifies accepted UI, documentation, API, event-record, profile, or proposal-record locations.</td></tr>
+<tr><td>OperationProposal schema scan</td><td>Operation-proposal notice examples are not used as closure evidence unless an accepted upstream <code>OperationProposal</code> schema or record shape is cited; until then, operation-proposal examples remain <code>PROPOSAL</code> copy only.</td></tr>
+</tbody></table>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>This deliverable produces and maintains:</p>
+<ul>
+<li>- Boundary notice copy.</li>
+<li>- Domain review checklist.</li>
+<li>- UI/documentation examples.</li>
+<li>- Human-ruling list for unresolved future-amendment details.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Surface inventory or out-of-scope rationale for selected future surfaces.</li>
+<li>- OperationProposal schema citation status before operation-proposal examples are used for closure evidence.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — PASS when the source-preserving contract contains the exact legacy boundary notices, review checklist, and UI/documentation examples; makes no claim that Chirality approves, validates, certifies, owns, or professionally relies on solver results; keeps proposals and review aids non-binding; authorizes no protected-path mutation or operation approval; and maps the output to SOW-071 and OBJ-009/OBJ-010 with every legacy source line dispositioned.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-10-05-domain-boundary-notices-and-solver-truth-separation">CLM-013 — Procedure: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h3>
+<h4 id="procedure-del-10-05-domain-boundary-notices-and-solver-truth-separation">Procedure: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Use this procedure to produce or review boundary-notice copy for future domain-engine surfaces without activating domain-engine implementation or implying Chirality-owned solver truth.</p>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and the current four-document kit.</li>
+<li>- Confirm <code>ResponsibleParty</code> remains <code>TBD</code> unless a human assigns ownership.</li>
+<li>- Confirm PKG-10 remains future-boundary/gated scope unless a governed amendment says otherwise.</li>
+<li>- Confirm no accepted upstream dependency edges are available yet; <code>_DEPENDENCIES.md</code> records upstream/downstream as TBD.</li>
+<li>- Use <code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/PRD.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, and the v3.2 SOFTWARE_DECOMP as source authority.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+</ul>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Identify the domain-engine surface under review.</p>
+<ul>
+<li>- Examples: UI result panel, operation proposal record, domain profile documentation, event record summary, protected artifact warning, fixture-profile example.</li>
+</ul>
+<p>2. Classify the surface.</p>
+<ul>
+<li>- Mark it as one or more of: domain output, operation proposal, protected artifact, proposal/review aid, fixture profile, human acceptance gate, documentation example.</li>
+</ul>
+<p>3. Apply the required notice pattern.</p>
+<ul>
+<li>- Use the standard notice for documentation and durable records.</li>
+<li>- Use the compact UI notice where space is constrained.</li>
+<li>- Use operation proposal, protected artifact, or fixture notices where the surface matches those categories.</li>
+</ul>
+<p>4. Check for prohibited claims.</p>
+<ul>
+<li>- Reject or revise any wording that says or implies Chirality approves, validates, certifies, issues, signs, seals, externally validates, proves code compliance, decides professional adequacy, or owns solver truth.</li>
+</ul>
+<p>5. Check ownership separation.</p>
+<ul>
+<li>- Confirm domain-engine outputs, deterministic checks, Chirality records/proposals, protected artifacts, and human acceptance are not conflated.</li>
+</ul>
+<p>6. Check future-boundary posture.</p>
+<ul>
+<li>- If the copy references domain endpoints, adapters, OpenPipeStress, protected domain paths, operation application, or profile validation, ensure it is framed as future-boundary/gated scope unless an accepted amendment exists.</li>
+</ul>
+<p>7. Mark unsupported details.</p>
+<ul>
+<li>- Use <code>TBD</code> for missing accepted facts.</li>
+<li>- Use <code>ASSUMPTION:</code> for best-effort inference.</li>
+<li>- Use <code>PROPOSAL:</code> for proposed copy or workflow wording.</li>
+<li>- Add or update a conflict table when source materials disagree or require human judgment.</li>
+</ul>
+<p>8. Record review outcome.</p>
+<ul>
+<li>- Note pass/fail against the checklist in <code>Guidance.md</code>.</li>
+<li>- Record any human-ruling items.</li>
+<li>- Record the reviewed surface, reviewer, review date, source-warning status, closure verdict, unresolved human rulings, and carryforward items using the review output record fields below.</li>
+<li>- Do not create or update <code>Dependencies.csv</code> as part of this procedure.</li>
+</ul>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Method</td></tr>
+<tr><td>Notice present</td><td>Confirm every domain-engine surface has a boundary notice appropriate to its category.</td></tr>
+<tr><td>Prohibited claims absent</td><td>Search/review for approve, validate, certify, issue, sign, seal, code compliance, external validation, professional adequacy, and solver truth ownership claims.</td></tr>
+<tr><td>Human gate preserved</td><td>Confirm accepted domain state or reliance decisions require accountable human acceptance.</td></tr>
+<tr><td>Protected paths preserved</td><td>Confirm protected domain artifacts are not described as directly agent-writable.</td></tr>
+<tr><td>Future scope preserved</td><td>Confirm current-release implementation is not implied.</td></tr>
+<tr><td>Unsupported facts labeled</td><td>Confirm unknowns are <code>TBD</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, or conflict-table items.</td></tr>
+<tr><td>Closure evidence complete</td><td>Confirm the review output record includes reviewed surface, reviewer, date, checklist result, source-warning status, unresolved human rulings, and closure verdict.</td></tr>
+<tr><td>PRD warning maintained</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td></tr>
+</tbody></table>
+<h3 id="clm-018-review-output-record">CLM-018 — Review Output Record</h3>
+<h5 id="review-output-record">Review Output Record</h5>
+<p>Use this minimum record shape for each boundary-notice review until a future product-native record is accepted:</p>
+<table><tbody>
+<tr><td>Field</td><td>Required Content</td></tr>
+<tr><td>Reviewed surface</td><td>UI, documentation, event record, domain profile, operation proposal, protected artifact notice, fixture example, or other named surface.</td></tr>
+<tr><td>Reviewed source</td><td>File/path, screen, mockup, record, or proposed copy location reviewed.</td></tr>
+<tr><td>Reviewer</td><td>Accountable reviewer name or <code>TBD</code> if not yet assigned.</td></tr>
+<tr><td>Review date</td><td>Calendar date or <code>TBD</code>.</td></tr>
+<tr><td>Checklist result</td><td>Pass/fail for each <code>Guidance.md#Domain Review Checklist</code> row, or a reference to the completed checklist.</td></tr>
+<tr><td>Notice pattern used</td><td>Standard, compact UI, operation proposal, protected artifact, fixture, or <code>TBD</code>.</td></tr>
+<tr><td>Source-warning status</td><td>PRD hash warning open/closed/waived; closure evidence must cite the reconciliation or waiver record.</td></tr>
+<tr><td>Human-ruling carryforward</td><td>Unresolved wording, profile-location, engine-specific, source-warning, or acceptance-authority questions.</td></tr>
+<tr><td>Closure verdict</td><td><code>PROPOSAL</code>, <code>BLOCKED</code>, <code>READY_FOR_HUMAN_RULING</code>, or <code>ACCEPTED_BY_HUMAN</code> with evidence.</td></tr>
+</tbody></table>
+<h3 id="clm-019-closure-evidence">CLM-019 — Closure Evidence</h3>
+<h5 id="closure-evidence">Closure Evidence</h5>
+<p>A reviewed notice package is not complete merely because copy exists. Closure evidence must show:</p>
+<ul>
+<li>- Required notice pattern or out-of-scope rationale for each selected future surface category.</li>
+<li>- Completed checklist capture location, or <code>TBD</code> when no accepted storage location exists.</li>
+<li>- OperationProposal schema citation status before operation-proposal notice examples are used as closure evidence.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Unresolved human-ruling items carried forward explicitly.</li>
+</ul>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Reviewed boundary notice copy.</li>
+<li>- Completed domain review checklist from <code>Guidance.md</code>.</li>
+<li>- Human-ruling list for unresolved wording, profile, or engine-specific questions.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Review output record containing reviewed surface, reviewer, date, checklist result, source-warning status, closure verdict, and human-ruling carryforward.</li>
+<li>- This deliverable&#x27;s <code>_STATUS.md</code> lifecycle state.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the SOW_V1 schema under exact MIGRATION_DUAL authority; map and report parity for every legacy source line; derive the exact AC checklist; render deterministically; and review the preserved notice copy for proposal-only language, solver-truth separation, and absence of added solver reliance or certification, protected-path mutation, operation approval, lifecycle meaning, or semantic obligation.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-10-05-domain-boundary-notices-and-solver-truth-separation">CLM-021 — Guidance: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h3>
+<h4 id="guidance-del-10-05-domain-boundary-notices-and-solver-truth-separation">Guidance: DEL-10-05 Domain Boundary Notices and Solver Truth Separation</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Use this deliverable to keep future domain-engine language clear, conservative, and reviewable. Chirality may govern interaction, proposal records, audit records, adapter policy, protected/proposal path boundaries, and human gates. It must not present itself as the domain solver, the professional approver, the code-compliance authority, or the owner of solver truth.</p>
+<h3 id="clm-023-principles">CLM-023 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Keep ownership explicit: the domain engine or deterministic adapter owns its domain output; Chirality owns the governed interaction record; humans own acceptance and professional reliance decisions.</p>
+<p>2. Use boundary notices wherever domain outputs, proposed domain operations, protected artifacts, or fixture profiles are shown to users.</p>
+<p>3. Treat future domain-engine work as gated amendment scope until the accepted project state says otherwise.</p>
+<p>4. Separate proposal language from acceptance language. &quot;Proposed&quot;, &quot;review aid&quot;, &quot;summary&quot;, and &quot;candidate operation&quot; are non-binding; &quot;accepted&quot; requires explicit human evidence.</p>
+<p>5. Prefer concrete prohibitions over vague disclaimers. State what Chirality does not do: approve, validate, certify, issue, sign, seal, prove compliance, or own solver truth.</p>
+<h3 id="clm-024-considerations">CLM-024 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Domain-engine boundary language overlaps with general professional-boundary language in <code>docs/DIRECTIVE.md</code> and <code>docs/CONTRACT.md</code>; keep the wording mutually consistent.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- DomainEngineProfile details remain future work. Do not invent profile fields beyond the source-backed set: engine identity, optional version, protected paths, proposal paths, artifact types, operations, manifest rules, and boundary notices.</li>
+<li>- OpenPipeStress may be useful as a first fixture profile, but examples must not hardcode OpenPipeStress assumptions into Chirality core behavior.</li>
+<li>- Runtime events, adapter results, and deterministic checks can support review; they do not make a deliverable professionally reliable by themselves.</li>
+<li>- The notice wording below is proposal-quality copy until an accountable human accepts it for a specific future UI, documentation, event-record, profile, or operation-proposal surface.</li>
+</ul>
+<h3 id="clm-025-trade-offs">CLM-025 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Strong notice vs. concise UI</td><td>Keep UI notice short but unambiguous; put longer rationale in documentation and review checklists.</td></tr>
+<tr><td>Future compatibility vs. premature implementation</td><td>Preserve terms, examples, and requirements that keep a future path open; do not describe endpoints/tools as active current-release capabilities.</td></tr>
+<tr><td>Adapter validation vs. professional validation</td><td>Deterministic adapters can validate format, manifest, operation preconditions, or profile rules; they do not replace professional review or acceptance.</td></tr>
+<tr><td>Fixture examples vs. product identity</td><td>Fixture examples can make boundaries concrete, but must remain marked as profiles/adapters outside Chirality core.</td></tr>
+</tbody></table>
+<h3 id="clm-026-boundary-notice-copy">CLM-026 — Boundary Notice Copy</h3>
+<h5 id="boundary-notice-copy">Boundary Notice Copy</h5>
+<h3 id="clm-027-standard-notice">CLM-027 — Standard Notice</h3>
+<h6 id="standard-notice">Standard Notice</h6>
+<p>Chirality records and governs domain-engine interactions, proposals, and review evidence. It does not approve, certify, issue, sign, seal, prove code compliance, externally validate, or own solver truth. Domain results require review and explicit acceptance by an accountable human before reliance.</p>
+<h3 id="clm-028-compact-ui-notice">CLM-028 — Compact UI Notice</h3>
+<h6 id="compact-ui-notice">Compact UI Notice</h6>
+<p>Domain output is a review aid. Chirality does not approve, validate, or own solver truth. Human acceptance is required before reliance.</p>
+<h3 id="clm-029-operation-proposal-notice">CLM-029 — Operation Proposal Notice</h3>
+<h6 id="operation-proposal-notice">Operation Proposal Notice</h6>
+<p>This operation is a proposal. It identifies candidate inputs, checks, intended changes, risks, and outputs for human review. It does not apply accepted domain state until the required human gate is completed.</p>
+<h3 id="clm-030-protected-artifact-notice">CLM-030 — Protected Artifact Notice</h3>
+<h6 id="protected-artifact-notice">Protected Artifact Notice</h6>
+<p>Protected domain artifacts are not agent-writable Chirality files. Agents may write proposals, summaries, and review aids only; accepted domain-state changes require an approved adapter or operation workflow and explicit human acceptance.</p>
+<h3 id="clm-031-fixture-notice">CLM-031 — Fixture Notice</h3>
+<h6 id="fixture-notice">Fixture Notice</h6>
+<p>OpenPipeStress, if used, is a fixture profile or adapter example. Its assumptions belong in the profile/adapter layer and must not be treated as Chirality core runtime behavior.</p>
+<h3 id="clm-032-domain-review-checklist">CLM-032 — Domain Review Checklist</h3>
+<h5 id="domain-review-checklist">Domain Review Checklist</h5>
+<table><tbody>
+<tr><td>Check</td><td>Question</td><td>Expected Answer</td></tr>
+<tr><td>Professional authority</td><td>Does the copy avoid claims that Chirality approves, signs, seals, certifies, issues, transmits, or releases work for reliance?</td><td>Yes</td></tr>
+<tr><td>Code compliance</td><td>Does the copy avoid claims that Chirality proves code compliance or professional adequacy?</td><td>Yes</td></tr>
+<tr><td>Solver truth</td><td>Does the copy avoid claims that Chirality owns solver truth?</td><td>Yes</td></tr>
+<tr><td>Domain truth</td><td>Does the copy state or imply that authoritative domain truth belongs to the domain engine/domain workflow, not Chirality?</td><td>Yes</td></tr>
+<tr><td>Human gate</td><td>Does accepted domain state require explicit human acceptance?</td><td>Yes</td></tr>
+<tr><td>Protected paths</td><td>Are protected domain artifacts separated from proposal/review-aid paths?</td><td>Yes</td></tr>
+<tr><td>Current scope</td><td>Is domain operation execution marked future-boundary/gated where relevant?</td><td>Yes</td></tr>
+<tr><td>Fixture posture</td><td>Is OpenPipeStress treated as a fixture profile if mentioned?</td><td>Yes</td></tr>
+<tr><td>Unsupported facts</td><td>Are missing details marked TBD, ASSUMPTION, PROPOSAL, or human-ruling items?</td><td>Yes</td></tr>
+</tbody></table>
+<h3 id="clm-033-completed-checklist-capture">CLM-033 — Completed Checklist Capture</h3>
+<h5 id="completed-checklist-capture">Completed Checklist Capture</h5>
+<p>Completed checklist evidence should be captured as part of the review output record described in <code>Procedure.md#Review Output Record</code>. Until a future amendment defines a product-native storage location, the capture location is <code>TBD</code> and the completed checklist is closure support only, not a human approval record.</p>
+<h3 id="clm-034-examples">CLM-034 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Context</td><td>Acceptable Wording</td><td>Avoid</td></tr>
+<tr><td>Domain result panel</td><td>&quot;Result imported from the domain engine for review. Chirality records the interaction and does not own solver truth.&quot;</td><td>Any claim that Chirality has validated the domain result.</td></tr>
+<tr><td>Operation proposal</td><td>&quot;Proposed operation pending human acceptance.&quot;</td><td>Any claim that Chirality has approved the operation.</td></tr>
+<tr><td>Compliance note</td><td>&quot;Reviewer must determine whether the result supports project requirements and applicable standards.&quot;</td><td>Any claim that the output establishes code compliance.</td></tr>
+<tr><td>Protected artifact</td><td>&quot;Write a proposal or summary; do not directly modify protected model truth.&quot;</td><td>Any claim that an agent may update protected solver model files directly.</td></tr>
+<tr><td>Fixture mention</td><td>&quot;OpenPipeStress fixture profile, if adopted by amendment.&quot;</td><td>Any claim that OpenPipeStress is Chirality core behavior.</td></tr>
+</tbody></table>
+<h3 id="clm-035-conflict-table-for-human-ruling">CLM-035 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>CT-001</td><td>PRD source hash status: MATCH recorded in <code>_REFERENCES.md</code>; dispatch instructs treating MATCH as source status.</td><td><code>_REFERENCES.md</code> REF-006 expected/actual SHA values</td><td>User dispatch instruction</td><td>Datasheet Conditions; Specification Documentation; this Guidance section</td><td>Use current accessible <code>docs/PRD.md</code> for P1/P2 drafting while preserving the warning until reconciled.</td><td>TBD — reconciled under D-APP-38</td></tr>
+</tbody></table>
+<h3 id="clm-036-human-rulings-needed">CLM-036 — Human Rulings Needed</h3>
+<h5 id="human-rulings-needed">Human Rulings Needed</h5>
+<ul>
+<li>- Confirm whether the standard and compact boundary notices are accepted wording or remain proposal copy.</li>
+<li>- Confirm who may accept proposed boundary notice copy as sufficient for specific future surfaces.</li>
+<li>- Confirm future <code>DomainEngineProfile</code> copy locations once DEL-10-01 is accepted.</li>
+<li>- Confirm engine-specific wording if OpenPipeStress or another domain engine is adopted by amendment.</li>
+</ul>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-071 OBJ-009 OBJ-010</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

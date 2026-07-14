@@ -1,0 +1,4 @@
+id	candidate_text	grounding
+OUT-001	Pipeline selector tests; knowledge-type discovery; disabled option handling.	A3 row anticipated artifacts; Datasheet.md lines 26-28
+AC-001	Pipeline selector tests; knowledge-type discovery tests or fixtures; disabled option handling tests.	Procedure.md lines 79-89 records list; Specification.md lines 65-76 expected artifacts
+VER-001	Test inventory review with named category, TASK scope, discovery, disabled-option, and reset fixtures.	Specification.md lines 52-63 and Procedure.md lines 65-77 verification methods

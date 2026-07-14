@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="2ccc40e70253446c8148bab4de9bc08e8e72cf58d20ece005bac71e85ed31511">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>2ccc40e70253446c8148bab4de9bc08e8e72cf58d20ece005bac71e85ed31511</code>.</p>
+<h1 id="scope-of-work-del-08-04">Scope of Work — DEL-08-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-08-04</code> in service of project scope [SOW-063] and package objectives [OBJ-005, OBJ-007].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — The Type 2 subagent governance bridge for DEL-08-04, including evaluateSubagentGovernance bridge behavior, allowed Type 2 SDK agent definitions, Agent hook tests, restricted child tools/cwd, and the DEL-08-05 handoff interface.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-04-type-2-subagent-governance-bridge">CLM-001 — Datasheet: DEL-08-04 Type 2 Subagent Governance Bridge</h3>
+<h4 id="datasheet-del-08-04-type-2-subagent-governance-bridge">Datasheet: DEL-08-04 Type 2 Subagent Governance Bridge</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-08-04</td></tr>
+<tr><td>DeliverableName</td><td>Type 2 Subagent Governance Bridge</td></tr>
+<tr><td>PackageID</td><td>PKG-08</td></tr>
+<tr><td>PackageName</td><td>Agent Suite, Pipeline Dispatch, and Subagent Governance</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>CoversScopeItems</td><td>SOW-063</td></tr>
+<tr><td>SupportsObjectives</td><td>OBJ-005, OBJ-007</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary function</td><td>Bridge fail-closed subagent governance to SDK agents with allowlists, sealed context, approval refs, and restricted child tools/cwd.</td><td><code>_CONTEXT.md</code>; decomposition DEL-08-04</td></tr>
+<tr><td>Governance gate</td><td><code>evaluateSubagentGovernance</code> is the authoritative fail-closed gate for delegation.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/PLAN.md</code> R5</td></tr>
+<tr><td>SDK integration point</td><td>SDK <code>agents</code> definitions generated from allowed Type 2 task-agent instructions.</td><td><code>docs/PLAN.md</code> R5; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>Hook integration point</td><td><code>Agent</code> tool hook calls <code>evaluateSubagentGovernance</code> and fails closed.</td><td><code>docs/PLAN.md</code> R5; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>Child execution constraints</td><td>Child tool lists and working directory are restricted; child runs must not inherit or expand parent capabilities.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-2</td></tr>
+<tr><td>Required governance inputs</td><td>Environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 eligibility.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>Acceptance denials</td><td>Delegation without governance metadata is denied; delegation to a non-allowlisted or non-Type-2 candidate is denied.</td><td><code>docs/PLAN.md</code> R5; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>Related child-record behavior</td><td>Parent session records child lifecycle and output reference when execution support exists.</td><td><code>docs/PLAN.md</code> R5; decomposition DEL-08-05</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td></tr>
+<tr><td>PRD source status</td><td><code>docs/PRD.md</code> is current under the D-APP-38 authority corpus; PRD-derived subagent governance details are accepted for this tranche.</td></tr>
+<tr><td>Sequencing</td><td>PLAN R5 places governed subagent runtime after earlier runtime, permission, hook, and tool-governance work.</td></tr>
+<tr><td>Scope boundary</td><td>This deliverable covers the governance bridge, SDK agent definitions, and <code>Agent</code> hook tests. Persistent parent-child run records are primarily DEL-08-05.</td></tr>
+<tr><td>Authority boundary</td><td>SDK subagent mechanics are an implementation substrate; Chirality-owned governance, permission, audit, and runtime contracts control product semantics.</td></tr>
+<tr><td>Dependency boundary</td><td>Declared upstream/downstream dependency lists remain <code>TBD</code>; the current extracted register records ACTIVE execution prerequisites for the source corpus, <code>evaluateSubagentGovernance</code> contract, permission/hook infrastructure, DEL-04-01 SDK probe, and DEL-08-05 handoff. Source: <code>_DEPENDENCIES.md</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component</td><td>Expected artifact/status</td></tr>
+<tr><td>Governance bridge</td><td><code>evaluateSubagentGovernance</code> bridge that consumes explicit governance metadata and returns fail-closed allow/deny outcomes.</td></tr>
+<tr><td>SDK agent definitions</td><td>Definitions generated only for allowed Type 2 task-agent candidates, with deterministic restricted tool lists and cwd.</td></tr>
+<tr><td>Agent hook</td><td>PreToolUse or equivalent <code>Agent</code> hook that invokes the bridge before SDK subagent execution.</td></tr>
+<tr><td>Tests</td><td><code>Agent</code> hook tests for missing metadata, non-allowlisted candidates, non-Type-2 candidates, unsealed context, missing approval reference, and restricted child tools/cwd.</td></tr>
+<tr><td>Events/records handoff</td><td>Interface with DEL-08-05 for child lifecycle and artifact-path persistence.</td></tr>
+<tr><td>Implementation paths</td><td>TBD until the coding task identifies the bridge module, SDK agent-definition builder, <code>Agent</code> hook module, fixture files, and runnable test command.</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Source</td><td>Status</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>MATCH</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>MATCH</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>MATCH</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>MATCH</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>MATCH</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>MATCH under the current D-APP-38 authority corpus</td></tr>
+<tr><td>REF-007</td><td><code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>MATCH</td></tr>
+</tbody></table>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-135/136 record the landed <code>SubagentGovernanceDecision</code>, preflight <code>safeMetadata</code>, and <code>ChildRunRecord</code> shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-08-04-type-2-subagent-governance-bridge">CLM-008 — Specification: DEL-08-04 Type 2 Subagent Governance Bridge</h3>
+<h4 id="specification-del-08-04-type-2-subagent-governance-bridge">Specification: DEL-08-04 Type 2 Subagent Governance Bridge</h4>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies a backend feature slice that connects Chirality&#x27;s fail-closed Type 2 subagent governance to SDK-backed subagent execution. It covers:</p>
+<ul>
+<li>- generation or assembly of SDK <code>agents</code> definitions from allowed Type 2 task-agent instructions;</li>
+<li>- the <code>evaluateSubagentGovernance</code> bridge used as the authoritative delegation gate;</li>
+<li>- <code>Agent</code> tool hook behavior that fails closed before SDK subagent execution;</li>
+<li>- restrictions on child tool lists and child working directory;</li>
+<li>- tests proving denial and restriction behavior.</li>
+</ul>
+<p>This deliverable excludes:</p>
+<ul>
+<li>- general SDK adapter mechanics outside the subagent bridge;</li>
+<li>- persistence of full parent-child runtime records and output artifact paths, except for interface handoff points to DEL-08-05;</li>
+<li>- dependency extraction and <code>Dependencies.csv</code> creation.</li>
+</ul>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-08-04-R01</td><td>The bridge MUST call <code>evaluateSubagentGovernance</code> as the authoritative fail-closed gate before SDK <code>Agent</code> subagent execution.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/SPEC.md</code> Section 15.2; <code>docs/PLAN.md</code> R5</td></tr>
+<tr><td>DEL-08-04-R02</td><td>Delegation MUST be denied unless environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 eligibility all pass.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-1; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>DEL-08-04-R03</td><td>Delegation without governance metadata MUST be denied.</td><td><code>docs/PLAN.md</code> R5; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>DEL-08-04-R04</td><td>Delegation to a non-allowlisted candidate MUST be denied.</td><td><code>docs/PLAN.md</code> R5; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>DEL-08-04-R05</td><td>Delegation to a non-Type-2 candidate MUST be denied.</td><td><code>docs/PLAN.md</code> R5; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>DEL-08-04-R06</td><td>SDK <code>agents</code> definitions MUST be generated or selected only from allowed Type 2 task-agent instructions.</td><td><code>docs/PLAN.md</code> R5; <code>docs/PRD.md</code> Section 8.15</td></tr>
+<tr><td>DEL-08-04-R07</td><td>Child subagents MUST use restricted tool lists and restricted cwd; they MUST NOT inherit or expand capabilities beyond parent governance.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-2; <code>docs/PLAN.md</code> R5</td></tr>
+<tr><td>DEL-08-04-R08</td><td>Hook failures for subagent actions MUST fail closed.</td><td><code>docs/CONTRACT.md</code> K-HOOK-1; <code>docs/SPEC.md</code> Section 15.2</td></tr>
+<tr><td>DEL-08-04-R09</td><td>The bridge MUST preserve Chirality-owned runtime semantics rather than treating SDK defaults, SDK transcript shape, SDK tool names, or SDK permission modes as product authority.</td><td><code>docs/DIRECTIVE.md</code> Sections 7-8; <code>docs/PRD.md</code> Principles 9-10</td></tr>
+<tr><td>DEL-08-04-R10</td><td>Unknown values or unsupported facts in governance metadata MUST produce <code>TBD</code>, denial, or human-ruling-needed behavior rather than guessed allow decisions.</td><td><code>docs/CONTRACT.md</code> K-INVENT-1; <code>docs/CONTRACT.md</code> K-CONFLICT-1</td></tr>
+<tr><td>DEL-08-04-R11</td><td>The bridge SHOULD expose a clear interface for DEL-08-05 to persist parent-child lifecycle records and output artifact references when execution is enabled.</td><td><code>docs/CONTRACT.md</code> K-SUBAGENT-3; decomposition DEL-08-05</td></tr>
+</tbody></table>
+<h3 id="clm-011-governance-decision-contract">CLM-011 — Governance Decision Contract</h3>
+<h5 id="governance-decision-contract">Governance Decision Contract</h5>
+<p>The exact serialized decision-object type is <code>TBD</code> until implementation locates or defines the <code>evaluateSubagentGovernance</code> contract. The accepted contract must, at minimum, preserve these product-owned semantics without becoming SDK-shaped:</p>
+<table><tbody>
+<tr><td>Field family</td><td>Required content</td><td>Source</td></tr>
+<tr><td>Decision behavior</td><td><code>allow</code>, <code>deny</code>, or application-level <code>ask</code>/human-ruling-needed outcome; deny overrides allow.</td><td><code>docs/PRD.md</code> FR-087, FR-089; <code>docs/CONTRACT.md</code> K-PERM-1</td></tr>
+<tr><td>Denial reason</td><td>Audit-suitable reason code and summary that are stable enough for tests and do not leak sensitive prompt or environment data.</td><td><code>docs/PRD.md</code> FR-092; <code>Guidance.md</code> Considerations</td></tr>
+<tr><td>Decision source</td><td>Whether the outcome came from Chirality policy, hook, governance gate, SDK callback, or human gate.</td><td><code>docs/PRD.md</code> FR-087, FR-092; <code>docs/TYPES.md</code> Section 8.2</td></tr>
+<tr><td>Approval reference</td><td>Non-empty human/gate evidence string when delegation is allowed; missing or ambiguous approval references deny.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/CONTRACT.md</code> K-AUTH-1, K-AUTH-2</td></tr>
+<tr><td>Candidate and scope facts</td><td>Candidate agent identity, Type 2 eligibility result, allowlist result, context-sealed result, requested tools, restricted tools, requested cwd, and approved cwd.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/PLAN.md</code> R5</td></tr>
+<tr><td>DEL-08-05 handoff</td><td>Parent session/turn identifiers and child lifecycle/output-reference hooks sufficient for DEL-08-05 to persist child records without this deliverable owning persistence.</td><td><code>docs/TYPES.md</code> Section 10; <code>docs/PRD.md</code> FR-101</td></tr>
+</tbody></table>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or contract</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> K-SEAL-1, K-GHOST-1, K-SUBAGENT-1, K-SUBAGENT-2, K-SUBAGENT-3</td><td>Core subagent governance invariants.</td></tr>
+<tr><td><code>docs/SPEC.md</code> Sections 14-15</td><td>Tool surface, permission modes, and hook requirements.</td></tr>
+<tr><td><code>docs/TYPES.md</code> Section 10</td><td>Canonical subagent vocabulary and <code>evaluateSubagentGovernance</code> meaning.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R5</td><td>Implementation sequencing, targets, and acceptance criteria.</td></tr>
+<tr><td><code>docs/PRD.md</code> Section 8.15</td><td>User/runtime behavior for governed delegation.</td></tr>
+<tr><td><code>AGENT_SOFTWARE_DECOMP.md</code> deliverable sizing rules</td><td>Confirms Type 2 deliverables are bounded executable units; no sub-task level should be invented.</td></tr>
+</tbody></table>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-08-04-R01</td><td>Unit or integration test proves <code>Agent</code> hook invokes <code>evaluateSubagentGovernance</code> before execution and denies on gate failure.</td></tr>
+<tr><td>DEL-08-04-R02</td><td>Table-driven tests cover each missing governance condition: environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 eligibility.</td></tr>
+<tr><td>DEL-08-04-R03</td><td>Test missing/empty governance metadata produces denial and no child execution.</td></tr>
+<tr><td>DEL-08-04-R04</td><td>Test non-allowlisted candidate produces denial.</td></tr>
+<tr><td>DEL-08-04-R05</td><td>Test candidate without <code>AGENT_TYPE: 2</code> or acceptable Type 2 task metadata produces denial.</td></tr>
+<tr><td>DEL-08-04-R06</td><td>Fixture test proves SDK <code>agents</code> definitions are limited to allowed Type 2 task-agent instructions.</td></tr>
+<tr><td>DEL-08-04-R07</td><td>Fixture or integration test proves child tool list and cwd are restricted and cannot broaden parent governance.</td></tr>
+<tr><td>DEL-08-04-R08</td><td>Hook failure test proves fail-closed denial.</td></tr>
+<tr><td>DEL-08-04-R09</td><td>Contract test verifies bridge inputs/outputs use Chirality-owned types and do not expose SDK-specific state as product authority.</td></tr>
+<tr><td>DEL-08-04-R10</td><td>Negative tests prove missing or unknown governance values deny or require human ruling.</td></tr>
+<tr><td>DEL-08-04-R11</td><td>Interface test or type test verifies handoff fields needed by DEL-08-05 are available without this deliverable owning persistence.</td></tr>
+</tbody></table>
+<p>The concrete fixture paths, passing test names, and local/CI commands are <code>TBD</code> until the implementation task selects module paths. Before implementation closure, verification evidence must name fixtures for missing metadata, missing approval reference, unsealed context, non-allowlisted candidate, non-Type-2 candidate, hook error, broad child capability request, allowed restricted execution, audit-safe denial reasons, and DEL-08-05 handoff fields.</p>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- <code>evaluateSubagentGovernance</code> bridge;</li>
+<li>- SDK agent definitions or deterministic definition builder;</li>
+<li>- <code>Agent</code> hook tests;</li>
+<li>- denial/restriction fixtures;</li>
+<li>- handoff notes or typed interface for DEL-08-05 child-run persistence.</li>
+<li>- implementation path record naming the bridge module, SDK agent-definition builder, <code>Agent</code> hook module, fixture directory, runnable test command, and output evidence location, or an explicit blocking <code>TBD</code> if any path is not yet selected.</li>
+</ul>
+<h3 id="clm-015-conflict-table-for-human-ruling">CLM-015 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Source A</td><td>Source B</td><td>Issue</td><td>Proposed handling</td></tr>
+<tr><td>C-001</td><td><code>_REFERENCES.md</code> REF-006</td><td>D-APP-38 authority corpus</td><td>Former PRD source-state warning is resolved for this tranche.</td><td>Use PRD-derived subagent governance text under D-APP-38; keep implementation proof separate from source-state proof.</td></tr>
+</tbody></table>
+<h3 id="clm-016-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-016 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-135/136 record the landed <code>SubagentGovernanceDecision</code>, preflight <code>safeMetadata</code>, and <code>ChildRunRecord</code> shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-08-04 bridge is accepted when the complete preserved legacy source&#x27;s denial, restriction, allowed-path, audit-safety, and DEL-08-05 handoff checks demonstrate fail-closed Type 2 delegation for SOW-063 and OBJ-005, OBJ-007.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-08-04-type-2-subagent-governance-bridge">CLM-017 — Procedure: DEL-08-04 Type 2 Subagent Governance Bridge</h3>
+<h4 id="procedure-del-08-04-type-2-subagent-governance-bridge">Procedure: DEL-08-04 Type 2 Subagent Governance Bridge</h4>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define the operational steps to produce and verify the Type 2 subagent governance bridge for SDK-backed subagent execution.</p>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Accepted source corpus for DEL-08-04</td><td>Available under the current D-APP-38 authority corpus.</td></tr>
+<tr><td>Current deliverable status permits authoring</td><td>INITIALIZED; P3 enrichment is allowed by the four-documents skill, and <code>_STATUS.md</code> remains read-only under <code>NO_STATUS_TOUCH</code>.</td></tr>
+<tr><td>Existing <code>evaluateSubagentGovernance</code> behavior or target contract</td><td>TBD at implementation time; source docs identify it as authoritative but do not provide the code shape.</td></tr>
+<tr><td>Permission overlay and hook infrastructure</td><td>Required by source sequencing; implementation readiness TBD.</td></tr>
+<tr><td>SDK <code>agents</code> capability verified by R0/R1 probes</td><td>Required by PLAN/PRD sequencing; current accepted probe reference is TBD and blocks executable runtime-sufficiency claims.</td></tr>
+<tr><td>Declared upstream dependencies</td><td>TBD; no declared upstream edges have been accepted outside the extracted register. Current extracted ACTIVE prerequisites are source corpus, <code>evaluateSubagentGovernance</code> contract, permission/hook infrastructure, DEL-04-01 SDK probe, and DEL-08-05 handoff.</td></tr>
+</tbody></table>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Locate the existing <code>evaluateSubagentGovernance</code> implementation or define the narrow adapter contract that will call it.</p>
+<p>2. Define the governance input required by the bridge: parent session identity, requested candidate agent, requested task scope, context-sealed indicator, pipeline approval indicator, approval reference, persona allowlist result, environment enablement, and requested child tool/cwd constraints.</p>
+<p>3. Ensure every required input has a fail-closed default. Missing, malformed, or unknown values must deny or require human ruling.</p>
+<p>4. Record the selected implementation paths for the bridge module, SDK agent-definition builder, <code>Agent</code> hook module, fixture directory, runnable test command, and output evidence location; if any path is not selected, keep it as a blocking <code>TBD</code>.</p>
+<p>5. Build or configure SDK <code>agents</code> definitions only from allowed Type 2 task-agent instructions.</p>
+<p>6. Apply explicit child restrictions to each SDK agent definition, including restricted tools and working directory.</p>
+<p>7. Add the SDK <code>Agent</code> tool hook or equivalent pre-execution guard.</p>
+<p>8. In the hook, call the bridge before SDK subagent execution.</p>
+<p>9. Deny execution when the bridge returns denial, when hook execution fails, or when the candidate/tool/cwd configuration cannot be verified.</p>
+<p>10. Return structured denial reasons suitable for tests and audit records, with stable reason vocabulary and without sensitive prompt or environment leakage.</p>
+<p>11. Provide handoff fields or callback points for DEL-08-05 to persist parent-child lifecycle records and output artifact paths when execution is enabled.</p>
+<p>12. Add table-driven tests for all denial paths and for the allowed path with restricted child tools/cwd.</p>
+<p>13. Add regression tests proving SDK defaults, inherited permissions, and <code>allowedTools</code> alone cannot authorize delegation.</p>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Missing governance metadata</td><td>Denied; no SDK subagent execution.</td></tr>
+<tr><td>Missing approval reference</td><td>Denied; no SDK subagent execution.</td></tr>
+<tr><td>Unsealed context</td><td>Denied or human-ruling-needed; no ghost-input execution.</td></tr>
+<tr><td>Non-allowlisted candidate</td><td>Denied.</td></tr>
+<tr><td>Non-Type-2 candidate</td><td>Denied.</td></tr>
+<tr><td>Hook error</td><td>Denied fail-closed.</td></tr>
+<tr><td>Child requests broad tools/cwd</td><td>Denied or narrowed to explicit approved restrictions before execution.</td></tr>
+<tr><td>Allowed governed request</td><td>SDK <code>Agent</code> execution may proceed only with restricted child tools/cwd and handoff data for child record persistence.</td></tr>
+<tr><td>Denial reason audit safety</td><td>Denial reason uses stable reason vocabulary and safe metadata; it preserves enough detail for review without prompt or environment leakage.</td></tr>
+<tr><td>Event/persistence handoff</td><td>DEL-08-05 can consume bridge/hook result metadata without DEL-08-04 owning full persistence.</td></tr>
+</tbody></table>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<h5 id="records">Records</h5>
+<p>The implementation should produce or update these records/artifacts:</p>
+<ul>
+<li>- bridge module or adapter for <code>evaluateSubagentGovernance</code>;</li>
+<li>- SDK agent-definition builder or definitions;</li>
+<li>- <code>Agent</code> hook tests;</li>
+<li>- denial fixtures for missing metadata, non-allowlisted candidate, non-Type-2 candidate, unsealed context, missing approval reference, hook error, and broad child capability request;</li>
+<li>- allowed-path fixture showing restricted tools/cwd;</li>
+<li>- handoff/interface note for DEL-08-05 child run record persistence.</li>
+<li>- implementation path record naming the bridge module, SDK agent-definition builder, <code>Agent</code> hook module, fixture directory, runnable test command, and output evidence location, with any unresolved path retained as a blocking <code>TBD</code>.</li>
+<li>- SDK probe evidence reference for the accepted <code>agents</code> capability probe, or an explicit blocking <code>TBD</code>.</li>
+</ul>
+<p>Do not create or modify <code>Dependencies.csv</code> during this procedure. Use <code>_DEPENDENCIES.md</code> only as current dependency context until declared edges are accepted.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Review the complete preserved legacy source and execute its specified missing-metadata, approval-reference, unsealed-context, non-allowlisted, non-Type-2, hook-error, broad-capability, allowed-restricted-execution, audit-safety, and DEL-08-05 handoff checks; record concrete evidence.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-08-04-type-2-subagent-governance-bridge">CLM-023 — Guidance: DEL-08-04 Type 2 Subagent Governance Bridge</h3>
+<h4 id="guidance-del-08-04-type-2-subagent-governance-bridge">Guidance: DEL-08-04 Type 2 Subagent Governance Bridge</h4>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to let Chirality use SDK subagent mechanics while keeping Type 2 delegation under Chirality governance. The bridge should make delegation possible only when the product-owned gate says the request is allowed, the child context is sealed, the candidate is eligible, approvals are traceable, and child capabilities are narrower than or equal to the permitted boundary.</p>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Deny first</td><td>Treat any missing governance metadata, unknown candidate status, hook error, unsealed context, missing approval reference, or unsupported state as denial or human-ruling-needed. Do not infer permission from SDK defaults.</td></tr>
+<tr><td>Chirality owns semantics</td><td>SDK <code>agents</code>, <code>Agent</code> tool behavior, permission modes, and transcripts are implementation details. Public runtime contracts, audit events, and governance decisions remain Chirality-owned.</td></tr>
+<tr><td>No capability inheritance by accident</td><td>A child subagent should receive an explicit restricted tool list and cwd. It should not inherit parent capabilities implicitly, and it should not broaden parent authority.</td></tr>
+<tr><td>Sealed context only</td><td>Type 2 task-agent context is limited to folder contents and declared references. Avoid &quot;ghost inputs&quot; that are not in the sealed brief or declared sources.</td></tr>
+<tr><td>Approval is evidence, not vibes</td><td>The approval reference must be non-empty and traceable to human/gate evidence. Until the accepted format is selected, the bridge should treat absent, ambiguous, mutable, or SDK-only approval data as denial or human-ruling-needed.</td></tr>
+<tr><td>Separate gate from record persistence</td><td>This slice owns bridge and hook behavior. Full parent-child record persistence and output artifact-path storage should be handed to DEL-08-05 through a clear interface.</td></tr>
+</tbody></table>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The PLAN places governed subagent runtime after earlier engine, permission, tool, hook, and result-storage work. If those prerequisites are absent or unstable, the bridge should remain disabled or deny execution.</li>
+<li>- <code>allowedTools</code> alone is not a restriction boundary. Restrictions require disallowed tools, permission mode, hooks, and overlay policy.</li>
+<li>- Hook failures fail closed for subagent actions. This should include bridge exceptions, missing policy inputs, malformed approval references, and failed candidate resolution.</li>
+<li>- The candidate resolver should prefer explicit <code>AGENT_TYPE: 2</code> and task-agent metadata. If an instruction file is ambiguous, classify it as ineligible until a human or conformance validator resolves it.</li>
+<li>- Child cwd should be the approved bounded working root for the task, not the instruction root and not a broad ambient workspace.</li>
+<li>- The bridge should produce denial reasons suitable for audit and tests without leaking sensitive prompt or environment data.</li>
+<li>- REF-006 is current under the D-APP-38 authority corpus. PRD-derived delegation behavior remains traceable to PRD text, while implementation proof remains separate.</li>
+</ul>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred direction</td></tr>
+<tr><td>Convenience vs. safety</td><td>Prefer denial over opportunistic delegation when governance metadata is incomplete.</td></tr>
+<tr><td>SDK-native shape vs. product contract</td><td>Wrap SDK-native fields behind Chirality types so later SDK changes do not redefine product behavior.</td></tr>
+<tr><td>Broad child capability vs. bounded execution</td><td>Prefer narrow child tool/cwd definitions generated from the approved Type 2 task scope.</td></tr>
+<tr><td>Bridge-only scope vs. record persistence</td><td>Keep this deliverable focused on gate/hook/definition behavior and expose a minimal handoff to DEL-08-05 for lifecycle records.</td></tr>
+</tbody></table>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected outcome</td></tr>
+<tr><td>Delegation request lacks approval reference</td><td>Denied before SDK <code>Agent</code> execution.</td></tr>
+<tr><td>Delegation request includes only an SDK transcript path or mutable UI label as approval evidence</td><td>Denied or human-ruling-needed until the accepted approval-reference format is selected.</td></tr>
+<tr><td>Candidate agent is not on the persona allowlist</td><td>Denied before SDK <code>Agent</code> execution.</td></tr>
+<tr><td>Candidate instruction is Type 1 or lacks <code>AGENT_TYPE: 2</code></td><td>Denied as non-Type-2 candidate.</td></tr>
+<tr><td>Context is not sealed or includes undeclared references</td><td>Denied or human-ruling-needed; do not execute with ghost inputs.</td></tr>
+<tr><td>Child tool list requests write/bash beyond approved scope</td><td>Denied or reduced to explicit approved tools; do not inherit parent capability.</td></tr>
+<tr><td>Hook throws during governance evaluation</td><td>Denied with fail-closed hook outcome.</td></tr>
+</tbody></table>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Impact</td><td>Human ruling needed</td></tr>
+<tr><td>C-001</td><td>Former REF-006 PRD source-state warning resolved by D-APP-38.</td><td>PRD-derived delegation behavior is accepted for this tranche.</td><td>No additional ruling required for source-state status.</td></tr>
+</tbody></table>
+<h3 id="clm-030-open-items">CLM-030 — Open Items</h3>
+<h5 id="open-items">Open Items</h5>
+<table><tbody>
+<tr><td>Item</td><td>Status</td></tr>
+<tr><td>Exact TypeScript module/file names for the bridge and SDK agent-definition builder</td><td>TBD</td></tr>
+<tr><td>Exact serialized shape of the governance decision object</td><td>TBD; must include allow/deny or human-ruling-needed behavior, stable denial reason vocabulary, decision source, safe metadata, approval reference, candidate/scope facts, and DEL-08-05 handoff fields.</td></tr>
+<tr><td>Exact approval reference format</td><td>TBD; must be non-empty, traceable to human/gate evidence, and stable enough for audit and tests.</td></tr>
+<tr><td>SDK R0/R1 probe readiness evidence</td><td>TBD; treat missing accepted probe evidence as a blocking prerequisite, not as runtime sufficiency.</td></tr>
+<tr><td>Exact interface boundary with DEL-08-05</td><td>TBD; should carry child lifecycle metadata and output artifact-path hooks without duplicating persistence ownership.</td></tr>
+</tbody></table>
+<h3 id="clm-031-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-031 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-135/136 record the landed <code>SubagentGovernanceDecision</code>, preflight <code>safeMetadata</code>, and <code>ChildRunRecord</code> shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-063 OBJ-005 OBJ-007</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

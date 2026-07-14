@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="3c0f7e68aaebcb4a92c2a48e017c310277d353c7894db66fcd4faceb8d9305bd">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>3c0f7e68aaebcb4a92c2a48e017c310277d353c7894db66fcd4faceb8d9305bd</code>.</p>
+<h1 id="scope-of-work-del-08-03">Scope of Work — DEL-08-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-08-03</code> in service of project scope [SOW-007, SOW-026] and package objectives [OBJ-001, OBJ-007].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Pipeline selector tests; knowledge-type discovery; disabled option handling.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-03-pipeline-category-and-task-scope-dispatch">CLM-001 — Datasheet: DEL-08-03 Pipeline Category and Task Scope Dispatch</h3>
+<h4 id="datasheet-del-08-03-pipeline-category-and-task-scope-dispatch">Datasheet: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>DecompositionPath</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td></tr>
+<tr><td>PackageID</td><td>PKG-08</td></tr>
+<tr><td>PackageName</td><td>Agent Suite, Pipeline Dispatch, and Subagent Governance</td></tr>
+<tr><td>DeliverableID</td><td>DEL-08-03</td></tr>
+<tr><td>DeliverableName</td><td>Pipeline Category and Task Scope Dispatch</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Scope</td><td>Dispatch DECOMP/PREP/TASK/AUDIT lanes and dynamic task scope from deliverables and knowledge-type buckets.</td><td><code>_CONTEXT.md</code>; decomposition entry</td></tr>
+<tr><td>Package scope</td><td>Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records.</td><td><code>_CONTEXT.md</code>; decomposition PKG-08 row</td></tr>
+<tr><td>Inclusion criteria</td><td>Agent OS behavior and delegation.</td><td><code>_CONTEXT.md</code>; decomposition PKG-08 row</td></tr>
+<tr><td>Exclusions</td><td>General SDK adapter mechanics.</td><td><code>_CONTEXT.md</code>; decomposition PKG-08 row</td></tr>
+<tr><td>Covered scope items</td><td>SOW-007, SOW-026</td><td><code>_CONTEXT.md</code>; decomposition entry</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-001, OBJ-007</td><td><code>_CONTEXT.md</code>; decomposition entry</td></tr>
+<tr><td>Anticipated artifacts</td><td>Pipeline selector tests; knowledge-type discovery; disabled option handling</td><td><code>_CONTEXT.md</code>; decomposition entry</td></tr>
+<tr><td>Pipeline categories</td><td><code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, <code>AUDIT*</code></td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>TASK scope modes</td><td><code>DELIVERABLES</code>, <code>KNOWLEDGE_TYPES</code></td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Knowledge type options</td><td><code>Datasheet</code>, <code>Specification</code>, <code>Guidance</code>, <code>Procedure</code>, <code>Dependencies</code>, <code>References</code>, <code>Context</code>, <code>Status</code>, <code>Semantic</code>, <code>Memory</code></td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Disabled option meaning</td><td>Visible but non-selectable coming-soon or unsupported variant.</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>PIPELINE category controls</td><td>The PIPELINE surface exposes <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> category controls.</td><td><code>docs/PRD.md</code> FR-011</td></tr>
+<tr><td>Unsupported options</td><td>Unsupported options remain visible and disabled as coming soon.</td><td><code>docs/PRD.md</code> FR-011; success metric 7</td></tr>
+<tr><td>TASK selector split</td><td>PIPELINE <code>TASK</code> uses split selectors for task agent and scope.</td><td><code>docs/PRD.md</code> FR-012</td></tr>
+<tr><td>TASK scope requirement</td><td>Scope mode is <code>DELIVERABLES</code> or <code>KNOWLEDGE_TYPES</code>; target deliverable is required for knowledge-type mode.</td><td><code>docs/PRD.md</code> FR-012</td></tr>
+<tr><td>Dynamic reset</td><td>Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state.</td><td><code>docs/PRD.md</code> FR-013</td></tr>
+<tr><td>Knowledge bucket detection</td><td>Datasheet, Specification, Guidance, and Procedure are supported as first-class knowledge buckets.</td><td><code>docs/PRD.md</code> FR-049</td></tr>
+<tr><td>Working-root scope API</td><td><code>/api/project/deliverables</code> scans deliverables and knowledge types for the active root.</td><td><code>docs/SPEC.md</code> Section 17.2; D-APP-56 R4-P21</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Component / Surface</td><td>Expected Role</td><td>Status</td></tr>
+<tr><td>Pipeline category selector</td><td>Selects operative lane for <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, or <code>AUDIT</code>.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code></td></tr>
+<tr><td>Category option list</td><td>Shows documented options for selected lane; unsupported variants are disabled.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code>; <code>frontend/src/__tests__/components/pipeline-surface.test.ts</code></td></tr>
+<tr><td>TASK agent selector</td><td>Selects the bounded task agent or skill route.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code></td></tr>
+<tr><td>TASK scope mode selector</td><td>Switches between deliverable scope and knowledge-type scope.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code></td></tr>
+<tr><td>Dynamic deliverable scan</td><td>Provides valid deliverable targets from the active working root.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code>; <code>frontend/src/lib/workspace/filesystem.ts</code></td></tr>
+<tr><td>Knowledge-type discovery</td><td>Detects document-kit and metadata buckets from deliverable content.</td><td><code>frontend/src/lib/workspace/filesystem.ts</code>; <code>frontend/src/__tests__/api/project/deliverables-route.test.ts</code></td></tr>
+<tr><td>Invalid-selection reset</td><td>Clears stale or disabled selections after root or scope changes.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code>; <code>frontend/src/__tests__/components/pipeline-surface.test.ts</code>; <code>frontend/src/__tests__/lib/task-scope-selection.test.ts</code></td></tr>
+<tr><td>Tests</td><td>Cover pipeline selector behavior, knowledge-type discovery, and disabled option handling.</td><td><code>frontend/src/__tests__/components/pipeline-surface.test.ts</code>; <code>frontend/src/__tests__/lib/task-scope-selection.test.ts</code></td></tr>
+</tbody></table>
+<h3 id="clm-006-implementation-slots">CLM-006 — Implementation Slots</h3>
+<h5 id="implementation-slots">Implementation Slots</h5>
+<table><tbody>
+<tr><td>Slot</td><td>Required Record</td><td>Current Disposition</td></tr>
+<tr><td>Category selector component path</td><td>Confirmed frontend component or module path for PIPELINE <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> controls.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code></td></tr>
+<tr><td>Category option source</td><td>Confirmed data source or fixture for category-specific option lists.</td><td>Local option arrays in <code>pipeline-surface.tsx</code>, tested by <code>frontend/src/__tests__/components/pipeline-surface.test.ts</code>.</td></tr>
+<tr><td>TASK selector component path</td><td>Confirmed component or state module for task-agent selector and scope selector.</td><td><code>frontend/src/components/pipeline/pipeline-surface.tsx</code></td></tr>
+<tr><td>Scope scan integration path</td><td>Confirmed API client, hook, or mock boundary for <code>/api/project/deliverables</code>.</td><td><code>pipeline-surface.tsx</code> consumes scan data; API mapping is covered by <code>frontend/src/__tests__/api/project/deliverables-route.test.ts</code>.</td></tr>
+<tr><td>Knowledge discovery fixture path</td><td>Confirmed fixture or test-data path covering document-kit buckets and any exposed metadata buckets.</td><td><code>frontend/src/__tests__/api/project/deliverables-route.test.ts</code>; <code>frontend/src/__tests__/lib/task-scope-selection.test.ts</code>.</td></tr>
+<tr><td>Reset test fixture path</td><td>Confirmed fixture path for root-change, removed-deliverable, disabled-marker, and stale-target reset cases.</td><td><code>frontend/src/__tests__/components/pipeline-surface.test.ts</code>; <code>frontend/src/__tests__/lib/task-scope-selection.test.ts</code>.</td></tr>
+</tbody></table>
+<h3 id="clm-007-dependency-edge-snapshot">CLM-007 — Dependency Edge Snapshot</h3>
+<h5 id="dependency-edge-snapshot">Dependency Edge Snapshot</h5>
+<table><tbody>
+<tr><td>Edge Type</td><td>Current Evidence</td><td>Disposition</td></tr>
+<tr><td>Accepted upstream anchors</td><td><code>_DEPENDENCIES.md</code> lists active anchors for DEL-08-03, SOW-007, SOW-026, OBJ-001, and OBJ-007.</td><td>Use as context; satisfaction remains TBD until dependency closure accepts the register.</td></tr>
+<tr><td>Accepted upstream interfaces and constraints</td><td><code>_DEPENDENCIES.md</code> lists active execution rows for <code>docs/TYPES.md</code> Section 4.4, <code>docs/SPEC.md</code> Section 17.2, <code>docs/CONTRACT.md</code> Section 1.8, and <code>docs/PRD.md</code> Section 8.2.</td><td>Use as current extracted evidence under D-APP-38 and REF-006 <code>MATCH</code>.</td></tr>
+<tr><td>Downstream handoff</td><td><code>_DEPENDENCIES.md</code> lists a downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests, with consumer target unresolved.</td><td>Consumer deliverable remains TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<h5 id="references">References</h5>
+<table><tbody>
+<tr><td>RefID</td><td>Path</td><td>Use</td></tr>
+<tr><td>REF-001</td><td><code>docs/DIRECTIVE.md</code></td><td>Agent and working-root governance context</td></tr>
+<tr><td>REF-002</td><td><code>docs/CONTRACT.md</code></td><td>Agent/subagent governance invariants</td></tr>
+<tr><td>REF-003</td><td><code>docs/SPEC.md</code></td><td>Scope API and file contract surfaces</td></tr>
+<tr><td>REF-004</td><td><code>docs/TYPES.md</code></td><td>Pipeline category, task scope, knowledge-type, and disabled-option vocabulary</td></tr>
+<tr><td>REF-005</td><td><code>docs/PLAN.md</code></td><td>Runtime roadmap and retired-scope boundaries</td></tr>
+<tr><td>REF-006</td><td><code>docs/PRD.md</code></td><td>Product requirements for matrix, pipeline, scope, and knowledge buckets; current under D-APP-38 authority corpus</td></tr>
+<tr><td>REF-007</td><td><code>/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md</code></td><td>SOFTWARE_DECOMP method and deliverable sizing context</td></tr>
+<tr><td>DECOMP</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td><td>Accepted deliverable entry and objective/scope mapping</td></tr>
+</tbody></table>
+<h3 id="clm-009-pass-3-disposition-notes">CLM-009 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>B-001</td><td>Converted to explicit implementation slots for selector, option-list, scope-scan, knowledge-discovery, reset-fixture, and test-path records.</td></tr>
+<tr><td>B-002</td><td>Incorporated as a dependency edge snapshot that preserves accepted extracted rows as context while leaving closure status and downstream consumer target TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-010-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-010 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-134 supersedes run-scoped dependency deferral wording: the extracted derivative register exists and is live.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-011-specification-del-08-03-pipeline-category-and-task-scope-dispatch">CLM-011 — Specification: DEL-08-03 Pipeline Category and Task Scope Dispatch</h3>
+<h4 id="specification-del-08-03-pipeline-category-and-task-scope-dispatch">Specification: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4>
+<h3 id="clm-012-scope">CLM-012 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the PIPELINE category and TASK scope dispatch behavior for the Chirality App vNext operative surface.</p>
+<p>In scope:</p>
+<ul>
+<li>- PIPELINE category selection for <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code>.</li>
+<li>- Category-specific option presentation, including disabled unsupported options.</li>
+<li>- TASK split selectors for task agent and scope.</li>
+<li>- Dynamic TASK scope from deliverables and knowledge-type buckets.</li>
+<li>- Invalid-selection reset behavior when the active working root or scanned scope changes.</li>
+<li>- Tests for pipeline selector behavior, knowledge-type discovery, and disabled option handling.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- General SDK adapter mechanics.</li>
+<li>- Type 2 subagent runtime governance bridge implementation, except where selector behavior must not expand authority.</li>
+<li>- Dependency extraction for this deliverable run; <code>Dependencies.csv</code> remains deferred.</li>
+<li>- Retired unified pipeline run-record or broader PKG-08 hardening scope unless a governed amendment reactivates it.</li>
+</ul>
+<h3 id="clm-013-requirements">CLM-013 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Priority / Status</td><td>Source</td></tr>
+<tr><td>DEL-08-03-REQ-001</td><td>The PIPELINE UI shall expose operative category controls for <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code>.</td><td>P0</td><td><code>docs/PRD.md</code> FR-011</td></tr>
+<tr><td>DEL-08-03-REQ-002</td><td>Category controls shall present documented category-specific options for <code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code>; the implementation record shall name the option-list source or fixture used for each category.</td><td>P0</td><td><code>docs/PRD.md</code> FR-011; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>DEL-08-03-REQ-003</td><td>Unsupported PIPELINE variants shall remain visible, shall carry disabled or coming-soon semantics, and shall be unable to initiate execution.</td><td>P0</td><td><code>docs/PRD.md</code> FR-011; <code>docs/TYPES.md</code> Section 4.4; <code>docs/PRD.md</code> success metric 7</td></tr>
+<tr><td>DEL-08-03-REQ-004</td><td>PIPELINE <code>TASK</code> shall use split selectors for task agent and scope.</td><td>P0</td><td><code>docs/PRD.md</code> FR-012</td></tr>
+<tr><td>DEL-08-03-REQ-005</td><td>TASK scope mode shall support <code>DELIVERABLES</code> and <code>KNOWLEDGE_TYPES</code>.</td><td>P0</td><td><code>docs/PRD.md</code> FR-012; <code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>DEL-08-03-REQ-006</td><td>Knowledge-type mode shall require a target deliverable.</td><td>P0</td><td><code>docs/PRD.md</code> FR-012</td></tr>
+<tr><td>DEL-08-03-REQ-007</td><td>Dynamic scope scan shall reset invalid selection state when roots change, deliverables disappear, knowledge markers are disabled, or knowledge targets become stale.</td><td>P1</td><td><code>docs/PRD.md</code> FR-013</td></tr>
+<tr><td>DEL-08-03-REQ-008</td><td>Knowledge-type discovery shall support document-kit files as first-class knowledge buckets: Datasheet, Specification, Guidance, and Procedure.</td><td>P1</td><td><code>docs/PRD.md</code> FR-049</td></tr>
+<tr><td>DEL-08-03-REQ-009</td><td>Knowledge-type discovery shall align with the canonical <code>KnowledgeTypeOption</code> vocabulary when metadata buckets are exposed.</td><td>P1</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>DEL-08-03-REQ-010</td><td>Scope scanning shall use the active working-root scope surface rather than hard-coded project assumptions, with evidence showing a call, mock contract, or fixture for <code>/api/project/deliverables</code>.</td><td>P0</td><td><code>docs/SPEC.md</code> Section 17.2; <code>docs/PRD.md</code> FR-013; D-APP-56 R4-P21</td></tr>
+<tr><td>DEL-08-03-REQ-011</td><td>Dispatch behavior shall not expand agent authority or bypass Type 2 governance constraints; pass evidence shall show selector state cannot bypass write-scope, sealed-context, no-ghost-input, approval-reference, or fail-closed delegation gates.</td><td>P0</td><td><code>docs/CONTRACT.md</code> K-WRITE-1, K-SEAL-1, K-GHOST-1, K-SUBAGENT-1</td></tr>
+<tr><td>DEL-08-03-REQ-012</td><td>Selector tests shall cover pipeline selector behavior, knowledge-type discovery, disabled option handling, and invalid-selection reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target.</td><td>P1</td><td>Decomposition anticipated artifacts; <code>docs/PRD.md</code> FR-013</td></tr>
+</tbody></table>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Contract</td><td>Applicability</td><td>Evidence</td></tr>
+<tr><td>Chirality <code>PipelineCategory</code> vocabulary</td><td>Defines operative category terms for dispatch.</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Chirality <code>TaskScopeMode</code> vocabulary</td><td>Defines valid TASK scope modes.</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Chirality <code>KnowledgeTypeOption</code> vocabulary</td><td>Defines knowledge bucket labels available for discovery.</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Chirality disabled-option vocabulary</td><td>Defines visible but non-selectable options.</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>PRD Matrix, Workbench, and Pipeline requirements</td><td>Defines product behavior for PIPELINE and TASK selectors.</td><td><code>docs/PRD.md</code> Section 8.2</td></tr>
+<tr><td>SPEC workspace API contract</td><td>Defines scope scan endpoint purpose.</td><td><code>docs/SPEC.md</code> Section 17.2</td></tr>
+<tr><td>Agent/subagent governance invariants</td><td>Constrain dispatch behavior from expanding authority.</td><td><code>docs/CONTRACT.md</code> Section 1.8</td></tr>
+</tbody></table>
+<h3 id="clm-015-verification">CLM-015 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification Approach</td><td>Expected Evidence</td></tr>
+<tr><td>DEL-08-03-REQ-001, DEL-08-03-REQ-002</td><td>UI/unit tests for category selector rendering and option lists, with the option-list source or fixtures named for <code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code>.</td><td>Pipeline selector tests plus category option fixture record</td></tr>
+<tr><td>DEL-08-03-REQ-003</td><td>UI/unit tests verifying disabled unsupported variants remain visible, communicate disabled or coming-soon semantics, and cannot initiate execution.</td><td>Disabled option handling tests</td></tr>
+<tr><td>DEL-08-03-REQ-004, DEL-08-03-REQ-005, DEL-08-03-REQ-006</td><td>UI/state tests for split TASK selectors and required target deliverable behavior.</td><td>TASK selector state tests</td></tr>
+<tr><td>DEL-08-03-REQ-007</td><td>State transition tests using named fixtures for root change, removed deliverable, disabled marker, and stale knowledge target.</td><td>Stale selection reset tests plus fixture inventory</td></tr>
+<tr><td>DEL-08-03-REQ-008, DEL-08-03-REQ-009</td><td>Scope scan and UI tests for document-kit buckets (<code>Datasheet</code>, <code>Specification</code>, <code>Guidance</code>, <code>Procedure</code>) and any exposed metadata buckets using canonical <code>KnowledgeTypeOption</code> labels.</td><td>Knowledge-type discovery tests</td></tr>
+<tr><td>DEL-08-03-REQ-010</td><td>API integration or mocked API contract tests for <code>/api/project/deliverables</code>, including evidence that returned deliverables and knowledge buckets come from the active working root.</td><td>Scope scan integration tests</td></tr>
+<tr><td>DEL-08-03-REQ-011</td><td>Governance regression tests or review checks proving dispatch does not enable unauthorized Type 2 execution or bypass sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation.</td><td>Governance guard tests or review evidence</td></tr>
+<tr><td>DEL-08-03-REQ-012</td><td>Test inventory review with named category, TASK scope, discovery, disabled-option, and reset fixtures.</td><td>Named tests or fixtures covering anticipated artifacts</td></tr>
+</tbody></table>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required or expected artifacts:</p>
+<ul>
+<li>- Pipeline selector tests.</li>
+<li>- Knowledge-type discovery tests.</li>
+<li>- Disabled option handling tests.</li>
+<li>- TASK scope selector fixtures for <code>DELIVERABLES</code> and <code>KNOWLEDGE_TYPES</code>.</li>
+<li>- Category-specific option-list source or fixture record for <code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code>.</li>
+<li>- Evidence that invalid selections reset after root and scan changes, including root-change, removed-deliverable, disabled-marker, and stale-target fixtures.</li>
+<li>- Scope-scan evidence showing <code>/api/working-root/scope</code> integration or a mocked equivalent for active-root scanning.</li>
+<li>- Governance guard evidence showing selector state does not bypass Type 2 sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation.</li>
+<li>- ASSUMPTION: implementation notes may be needed once actual frontend component/module paths are selected.</li>
+</ul>
+<h3 id="clm-017-source-state">CLM-017 — Source State</h3>
+<h5 id="source-state">Source State</h5>
+<table><tbody>
+<tr><td>State ID</td><td>Statement</td><td>Impact</td></tr>
+<tr><td>STATE-001</td><td><code>docs/PRD.md</code> is current under the D-APP-38 authority corpus; <code>_REFERENCES.md</code> records REF-006 as <code>MATCH</code>.</td><td>Former PRD source-state warning is resolved for this tranche. Implementation proof remains separate from source-state proof.</td></tr>
+</tbody></table>
+<h3 id="clm-018-pass-3-disposition-notes">CLM-018 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>F-001</td><td>Incorporated by adding a minimum governance proof threshold to DEL-08-03-REQ-011 and its verification evidence.</td></tr>
+<tr><td>X-001</td><td>Incorporated by requiring named option-list sources or fixtures for <code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code>.</td></tr>
+<tr><td>X-002</td><td>Incorporated by naming required document-kit discovery evidence and canonical <code>KnowledgeTypeOption</code> treatment for any exposed metadata buckets.</td></tr>
+<tr><td>X-003</td><td>Incorporated by requiring visible, disabled or coming-soon semantics, and inability to initiate execution as one disabled-option evidence set.</td></tr>
+</tbody></table>
+<h3 id="clm-019-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-019 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-134 supersedes run-scoped dependency deferral wording: the extracted derivative register exists and is live.</p>
+<ul>
+<li>- <strong>AC-001</strong> — Pipeline selector tests; knowledge-type discovery tests or fixtures; disabled option handling tests.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-020-procedure-del-08-03-pipeline-category-and-task-scope-dispatch">CLM-020 — Procedure: DEL-08-03 Pipeline Category and Task Scope Dispatch</h3>
+<h4 id="procedure-del-08-03-pipeline-category-and-task-scope-dispatch">Procedure: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define an operational procedure for producing and verifying the DEL-08-03 implementation artifacts: pipeline selector tests, knowledge-type discovery behavior, and disabled option handling.</p>
+<h3 id="clm-022-prerequisites">CLM-022 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Source</td></tr>
+<tr><td>Accepted decomposition entry for DEL-08-03</td><td>Available in <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code></td></tr>
+<tr><td>Deliverable metadata files</td><td><code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>_SEMANTIC.md</code>, <code>_STATUS.md</code> present</td></tr>
+<tr><td>Authoritative vocabulary</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Product requirements</td><td><code>docs/PRD.md</code> Section 8.2; current under D-APP-38 with REF-006 <code>MATCH</code></td></tr>
+<tr><td>Workspace scope API contract</td><td><code>docs/SPEC.md</code> Section 17.2</td></tr>
+<tr><td>Declared upstream dependencies</td><td>Extracted active rows exist in <code>_DEPENDENCIES.md</code> for accepted anchors, vocabulary, scope API, governance invariants, and PRD requirements; satisfaction remains TBD pending dependency closure.</td></tr>
+<tr><td>Declared downstream dependencies</td><td><code>_DEPENDENCIES.md</code> records downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests; consumer target remains TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-023-steps">CLM-023 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the implementation location for the PIPELINE category and TASK scope selector UI.</p>
+<ul>
+<li>- If no existing location is confirmed, record the path as TBD rather than inventing it.</li>
+</ul>
+<p>2. Map canonical vocabulary into UI/state constants.</p>
+<ul>
+<li>- Use <code>PipelineCategory</code> values for <code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code> as the operative taxonomy.</li>
+<li>- Use <code>TaskScopeMode</code> values <code>DELIVERABLES</code> and <code>KNOWLEDGE_TYPES</code>.</li>
+<li>- Use <code>KnowledgeTypeOption</code> labels for supported bucket discovery where exposed.</li>
+<li>- Use the disabled-option concept for visible unsupported variants.</li>
+</ul>
+<p>3. Implement or verify PIPELINE category controls.</p>
+<ul>
+<li>- Confirm <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> are visible category controls.</li>
+<li>- Confirm each category has documented options and record the option-list source or fixture for <code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code>.</li>
+<li>- Confirm unsupported options are visible, carry disabled or coming-soon semantics, and cannot start execution.</li>
+</ul>
+<p>4. Implement or verify TASK split selector behavior.</p>
+<ul>
+<li>- Confirm task agent selection and scope selection are separate.</li>
+<li>- Confirm scope mode supports deliverables and knowledge types.</li>
+<li>- Confirm knowledge-type mode requires a selected target deliverable.</li>
+</ul>
+<p>5. Implement or verify dynamic scope discovery.</p>
+<ul>
+<li>- Use the working-root scope surface to scan deliverables and knowledge types.</li>
+<li>- Record whether evidence comes from live <code>/api/working-root/scope</code> integration or a mock contract fixture.</li>
+<li>- Confirm the evidence demonstrates active-root scanning rather than hard-coded project assumptions.</li>
+<li>- Detect document-kit buckets: <code>Datasheet</code>, <code>Specification</code>, <code>Guidance</code>, and <code>Procedure</code>.</li>
+<li>- If metadata buckets are exposed, align them with the <code>KnowledgeTypeOption</code> vocabulary.</li>
+</ul>
+<p>6. Implement or verify invalid-selection reset behavior.</p>
+<ul>
+<li>- Clear selected deliverable when the active root changes and the deliverable is absent.</li>
+<li>- Clear selected knowledge target when its deliverable is absent.</li>
+<li>- Clear selected knowledge target when the marker is disabled or stale.</li>
+<li>- Name fixtures or tests for root change, removed deliverable, disabled marker, and stale knowledge target.</li>
+</ul>
+<p>7. Verify governance boundary behavior.</p>
+<ul>
+<li>- Confirm selector state does not bypass Type 2 task-agent governance.</li>
+<li>- Confirm any actual Type 2 execution path still depends on the relevant sealed-context and approval checks.</li>
+<li>- Record evidence that write-scope limits, no-ghost-input limits, approval reference checks, and fail-closed delegation remain enforced outside the selector.</li>
+</ul>
+<p>8. Write or update tests.</p>
+<ul>
+<li>- Cover pipeline category rendering and category option lists.</li>
+<li>- Cover disabled option visibility and non-interactivity.</li>
+<li>- Cover TASK selector split and required target deliverable behavior.</li>
+<li>- Cover knowledge-type discovery for document-kit files.</li>
+<li>- Cover stale-selection reset cases.</li>
+</ul>
+<h3 id="clm-024-verification">CLM-024 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Category selector test</td><td><code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> are available as PIPELINE category controls.</td></tr>
+<tr><td>Category option-list test</td><td><code>DECOMP*</code>, <code>PREP*</code>, <code>TASK*</code>, and <code>AUDIT*</code> option lists have named source or fixture evidence.</td></tr>
+<tr><td>Disabled option test</td><td>Unsupported variants are visible, carry disabled or coming-soon semantics, and cannot be selected for execution.</td></tr>
+<tr><td>TASK scope selector test</td><td>Task agent and scope controls are independently represented.</td></tr>
+<tr><td>Knowledge-type target test</td><td>Knowledge-type mode requires a selected deliverable.</td></tr>
+<tr><td>Scope API evidence check</td><td><code>/api/working-root/scope</code> integration or mock evidence demonstrates active-root deliverable and knowledge-type scanning.</td></tr>
+<tr><td>Knowledge bucket discovery test</td><td>Document kit files are detected as first-class knowledge buckets; any metadata buckets use canonical <code>KnowledgeTypeOption</code> labels.</td></tr>
+<tr><td>Stale selection reset test</td><td>Root change, removed deliverable, disabled marker, and stale knowledge target fixtures clear invalid UI state.</td></tr>
+<tr><td>Governance boundary review</td><td>UI dispatch does not grant runtime authority beyond governed execution checks, including sealed context, approval metadata, no ghost inputs, explicit write scope, and fail-closed delegation.</td></tr>
+</tbody></table>
+<h3 id="clm-025-records">CLM-025 — Records</h3>
+<h5 id="records">Records</h5>
+<p>Maintain or produce these records during implementation:</p>
+<ul>
+<li>- Pipeline selector tests.</li>
+<li>- Category-specific option-list source or fixture inventory.</li>
+<li>- Knowledge-type discovery tests or fixtures.</li>
+<li>- Disabled option handling tests.</li>
+<li>- Scope API integration or mock-contract evidence for active-root scanning.</li>
+<li>- Reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target.</li>
+<li>- Governance boundary review evidence for selector-only intent versus runtime authority.</li>
+<li>- Any implementation note identifying confirmed UI component and test file paths.</li>
+<li>- Any implementation worker note naming the final component path and test file path owner; owner remains TBD until assigned.</li>
+<li>- Any future authority-corpus update if <code>docs/PRD.md</code> changes.</li>
+</ul>
+<h3 id="clm-026-pass-3-disposition-notes">CLM-026 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>F-002</td><td>Incorporated by requiring live or mocked <code>/api/working-root/scope</code> evidence that demonstrates active-root scanning.</td></tr>
+<tr><td>F-003</td><td>Incorporated by naming reset fixture cases for root change, removed deliverable, disabled marker, and stale knowledge target.</td></tr>
+<tr><td>D-002</td><td>Converted to an implementation-worker record slot for final UI component and test file paths, with owner still TBD.</td></tr>
+</tbody></table>
+<ul>
+<li>- <strong>VER-001</strong> — Test inventory review with named category, TASK scope, discovery, disabled-option, and reset fixtures.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-027-guidance-del-08-03-pipeline-category-and-task-scope-dispatch">CLM-027 — Guidance: DEL-08-03 Pipeline Category and Task Scope Dispatch</h3>
+<h4 id="guidance-del-08-03-pipeline-category-and-task-scope-dispatch">Guidance: DEL-08-03 Pipeline Category and Task Scope Dispatch</h4>
+<h3 id="clm-028-purpose">CLM-028 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This deliverable keeps the operative PIPELINE dispatch surface aligned with Chirality&#x27;s agent architecture. It connects the operator-facing category controls to the governed execution model without turning UI selection into runtime authority.</p>
+<p>The practical outcome is a user experience where operators can see the available operative lanes, choose a valid TASK scope, discover deliverable-local knowledge buckets, and understand unsupported variants because they remain visible but disabled.</p>
+<h3 id="clm-029-principles">CLM-029 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Use canonical vocabulary</td><td>Use the terms <code>PipelineCategory</code>, <code>TaskScopeMode</code>, <code>KnowledgeTypeOption</code>, and <code>DisabledOption</code> consistently in implementation-facing docs, tests, and state models where applicable.</td><td><code>docs/TYPES.md</code> Section 4.4</td></tr>
+<tr><td>Keep operative dispatch explicit</td><td>PIPELINE category controls should make <code>DECOMP</code>, <code>PREP</code>, <code>TASK</code>, and <code>AUDIT</code> visible as separate operative choices.</td><td><code>docs/PRD.md</code> FR-011</td></tr>
+<tr><td>Separate task selection from scope selection</td><td>TASK flow should not collapse task-agent choice and scope choice into one ambiguous selector.</td><td><code>docs/PRD.md</code> FR-012</td></tr>
+<tr><td>Treat knowledge-type mode as deliverable-bound</td><td>Knowledge-type targets depend on a selected deliverable and should clear when that deliverable is unavailable or stale.</td><td><code>docs/PRD.md</code> FR-012, FR-013</td></tr>
+<tr><td>Show unsupported variants without enabling them</td><td>Disabled options preserve roadmap awareness while preventing accidental execution.</td><td><code>docs/PRD.md</code> FR-011; success metric 7</td></tr>
+<tr><td>Do not expand authority</td><td>Selector state may request or describe a route, but Type 2 execution remains governed by agent instructions, sealed context, approval metadata, and fail-closed gates.</td><td><code>docs/CONTRACT.md</code> Section 1.8</td></tr>
+</tbody></table>
+<h3 id="clm-030-considerations">CLM-030 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Prefer source-derived option lists and vocabulary over ad hoc labels. If implementation code already has local naming, reconcile it with <code>docs/TYPES.md</code> rather than silently creating a parallel taxonomy.</li>
+<li>- Scope scan behavior should be resilient to working-root changes. A selected deliverable or knowledge bucket that is no longer present should be cleared instead of retained as stale UI state.</li>
+<li>- Knowledge-type discovery should account for the four-document kit first. Metadata buckets should be exposed only when the UI can use canonical <code>KnowledgeTypeOption</code> labels or an explicit mapping to them, because partial local labels would create a parallel taxonomy.</li>
+<li>- The deliverable&#x27;s anticipated artifacts are tests and discovery behavior, not new authority for runtime subagent execution.</li>
+<li>- REF-006 is current under D-APP-38 and <code>_REFERENCES.md</code> records <code>docs/PRD.md</code> as <code>MATCH</code>. Preserve implementation proof separately from source-state proof.</li>
+</ul>
+<h3 id="clm-031-boundary-rationale">CLM-031 — Boundary Rationale</h3>
+<h5 id="boundary-rationale">Boundary Rationale</h5>
+<p>PIPELINE dispatch expresses operator intent and selects a proposed route through the operative surface. It is not an authorization boundary. Runtime authority remains with TASK and Type 2 governance checks because <code>docs/CONTRACT.md</code> requires explicit write scope, sealed context and gate metadata, no ghost inputs, and fail-closed subagent delegation. Selector state can therefore prepare or display a route, but execution must still pass the governed runtime checks before any child agent or task path is enabled.</p>
+<h3 id="clm-032-human-ruling-path">CLM-032 — Human Ruling Path</h3>
+<h5 id="human-ruling-path">Human Ruling Path</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Required Ruling</td><td>Current Treatment</td></tr>
+<tr><td>REF-006 source state</td><td>Resolved by D-APP-38.</td><td>Use PRD-derived selector requirements under the current authority corpus; keep implementation proof separate.</td></tr>
+<tr><td>PRD-derived control wording</td><td>Resolved by D-APP-38 and ADQ-12 evidence update.</td><td>State that PRD content is current for source-state purposes while selector behavior remains proven by code/tests.</td></tr>
+</tbody></table>
+<h3 id="clm-033-trade-offs">CLM-033 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision Area</td><td>Preferred Direction</td><td>Trade-off</td></tr>
+<tr><td>Disabled options</td><td>Keep unsupported variants visible and disabled.</td><td>Operators see future or unavailable paths, but the UI must avoid implying they are executable.</td></tr>
+<tr><td>Dynamic scope reset</td><td>Clear invalid selections aggressively.</td><td>Users may need to reselect after root changes, but stale execution targets are avoided.</td></tr>
+<tr><td>Knowledge bucket coverage</td><td>Start from canonical document-kit and metadata bucket terms.</td><td>Implementation may need mapping if existing file names or UI labels differ.</td></tr>
+<tr><td>Governance boundary</td><td>Let UI dispatch describe intent only; execution approval remains separate.</td><td>More state checks may be needed before invoking TASK or subagent pathways.</td></tr>
+</tbody></table>
+<h3 id="clm-034-examples">CLM-034 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected Handling</td></tr>
+<tr><td>Operator selects PIPELINE <code>TASK</code>, then switches scope mode to <code>KNOWLEDGE_TYPES</code> without selecting a deliverable.</td><td>The UI should require a target deliverable before knowledge-type targets become executable.</td></tr>
+<tr><td>Active working root changes and the previously selected deliverable is no longer in the scope scan.</td><td>The selected deliverable and dependent knowledge target should reset.</td></tr>
+<tr><td>A future AUDIT variant is known but not implemented.</td><td>It may be visible as a disabled option with no runtime execution path.</td></tr>
+<tr><td>A deliverable folder has <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</td><td>These files should be discoverable as first-class knowledge buckets when knowledge-type scope is used.</td></tr>
+</tbody></table>
+<h3 id="clm-035-conflict-table-for-human-ruling">CLM-035 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CONFLICT-001</td><td>Former PRD source-state warning resolved by D-APP-38.</td><td><code>_REFERENCES.md</code> REF-006</td><td>D-APP-38 current authority corpus</td><td>All PRD-derived requirements</td><td>Use PRD content under the current authority corpus; keep implementation proof separate from source-state proof.</td><td>D-APP-38 accepted current authority corpus</td></tr>
+</tbody></table>
+<h3 id="clm-036-assumptions">CLM-036 — Assumptions</h3>
+<h5 id="assumptions">Assumptions</h5>
+<ul>
+<li>- ASSUMPTION: OBJ-001 and OBJ-007 are relevant because the decomposition explicitly lists them for DEL-08-03.</li>
+<li>- ASSUMPTION: The final implementation surface is frontend/UI state and tests, but specific component and test file paths are TBD until the implementation worker selects or confirms existing modules.</li>
+</ul>
+<h3 id="clm-037-pass-3-disposition-notes">CLM-037 — Pass 3 Disposition Notes</h3>
+<h5 id="pass-3-disposition-notes">Pass 3 Disposition Notes</h5>
+<table><tbody>
+<tr><td>ItemID</td><td>Disposition</td></tr>
+<tr><td>A-001</td><td>Resolved by D-APP-38; the former PRD source-state warning is retained as historical context only.</td></tr>
+<tr><td>C-001</td><td>Incorporated as rationale for exposing metadata buckets only with canonical <code>KnowledgeTypeOption</code> labels or explicit mapping.</td></tr>
+<tr><td>D-001</td><td>Resolved by D-APP-38; no further source-state ruling is required for this tranche.</td></tr>
+<tr><td>E-001</td><td>Incorporated as boundary rationale distinguishing UI intent from TASK and Type 2 runtime authority.</td></tr>
+<tr><td>E-002</td><td>Resolved by D-APP-38 and ADQ-12 wording updates; PRD-derived controls are current while implementation proof stays separate.</td></tr>
+</tbody></table>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-007 SOW-026 OBJ-001 OBJ-007</td><td>CLM-011</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

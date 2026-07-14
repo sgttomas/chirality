@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="204721c5221d1311ff94c93fa60ff3292d715ad2ab146032c7d6ba71f85582bb">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-10-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>204721c5221d1311ff94c93fa60ff3292d715ad2ab146032c7d6ba71f85582bb</code>.</p>
+<h1 id="scope-of-work-del-10-02">Scope of Work — DEL-10-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-10-02</code> in service of project scope [SOW-068] and package objectives [OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — Protected/proposal path policy, hook implications, and examples for DEL-10-02 under SOW-068 and OBJ-010.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-10-02-protected-path-and-proposal-path-policy">CLM-001 — Datasheet: DEL-10-02 Protected Path and Proposal Path Policy</h3>
+<h4 id="datasheet-del-10-02-protected-path-and-proposal-path-policy">Datasheet: DEL-10-02 Protected Path and Proposal Path Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>DeliverableID</td><td>DEL-10-02</td></tr>
+<tr><td>DeliverableName</td><td>Protected Path and Proposal Path Policy</td></tr>
+<tr><td>PackageID</td><td>PKG-10</td></tr>
+<tr><td>PackageName</td><td>Domain Engine Future Boundary</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>DecompositionVariant</td><td>SOFTWARE_DECOMP</td></tr>
+<tr><td>DecompositionRevision</td><td>v3.2</td></tr>
+<tr><td>ContextEnvelope</td><td>M</td></tr>
+<tr><td>Scope Item</td><td>SOW-068</td></tr>
+<tr><td>Objective</td><td>OBJ-010</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Policy posture</td><td>Future-boundary / gated scope, not current-release domain operation execution.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> §PKG-10; <code>docs/PRD.md</code> §8.17</td></tr>
+<tr><td>Protected path</td><td>Authoritative domain-engine artifact path not directly writable by agents.</td><td><code>docs/TYPES.md</code> §11.3</td></tr>
+<tr><td>Proposal path</td><td>Agent-writable folder for proposed changes, summaries, or review aids.</td><td><code>docs/TYPES.md</code> §11.3; <code>docs/PRD.md</code> §8.17 FR-111</td></tr>
+<tr><td>Domain truth owner</td><td>Domain engines own authoritative domain truth when adopted by amendment; Chirality governs interaction, proposals, records, and human gates.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-1; <code>docs/PRD.md</code> §8.17 FR-106</td></tr>
+<tr><td>Agent write rule</td><td>Agents may write proposals and summaries, not protected domain-engine model truth.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2; <code>docs/PLAN.md</code> R7</td></tr>
+<tr><td>Accepted mutation route</td><td>Any accepted mutation of domain state must flow through an approved adapter or operation workflow and an explicit human gate.</td><td><code>docs/PRD.md</code> §10.10; <code>docs/SPEC.md</code> §18</td></tr>
+<tr><td>Boundary notice requirement</td><td>Domain-engine outputs must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality.</td><td><code>docs/PRD.md</code> §8.17 FR-115; <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-4</td></tr>
+<tr><td>Current concrete path patterns</td><td>TBD - profile-specific protected/proposal path patterns are not defined in the accessible sources for DEL-10-02.</td><td><code>docs/PRD.md</code> §8.17 FR-108</td></tr>
+<tr><td>Profile-specific examples</td><td>TBD - example categories are source-supported, but concrete protected/proposal path patterns remain blocked until <code>DomainEngineProfile</code> path syntax is accepted. P3 disposition: X-002 incorporated as future slot.</td><td><code>docs/TYPES.md</code> §11.1; <code>docs/PRD.md</code> §8.17 FR-108</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Activation condition</td><td>Governed future amendment after core harness stability.</td><td><code>docs/PRD.md</code> §8.17; <code>docs/PLAN.md</code> R7</td></tr>
+<tr><td>Profile prerequisite</td><td>A generic <code>DomainEngineProfile</code> contract precedes engine-specific integration.</td><td><code>docs/PRD.md</code> §8.17 FR-107</td></tr>
+<tr><td>Enforcement prerequisite</td><td>Profile validation determines what the harness may read, propose, validate, or request without guessing from prompt text.</td><td><code>docs/PRD.md</code> §8.17 FR-108</td></tr>
+<tr><td>Direct protected writes</td><td>Prohibited for agents and ordinary Chirality tools.</td><td><code>docs/PRD.md</code> §8.17 FR-110; <code>docs/PRD.md</code> §10.10</td></tr>
+<tr><td>Human acceptance</td><td>Required before application of a domain operation.</td><td><code>docs/PRD.md</code> §8.17 FR-113; <code>docs/SPEC.md</code> §18</td></tr>
+<tr><td>PRD source status</td><td>Source warning: expected SHA256 <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code>; observed SHA256 <code>ac35fba40fabf3d5788b8dd285d376900dbfa4577a83bcf77798d06770c30bfd</code>. Treated as source status by dispatch instruction.</td><td><code>_REFERENCES.md</code> REF-006</td></tr>
+<tr><td>Responsible ownership</td><td>TBD - downstream TASK work must preserve <code>ResponsibleParty: TBD</code> until a human assigns ownership. P3 disposition: B-001 converted to closure-relevant TBD.</td><td><code>_CONTEXT.md</code> §Source Authority</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Element</td><td>Construction Rule</td><td>Source</td></tr>
+<tr><td>Policy record</td><td>Define the separation between protected paths and proposal paths, plus enforcement implications.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-10-02</td></tr>
+<tr><td>Hook implication</td><td>Protected path writes must be denied or routed away from direct agent mutation; hook implementation detail remains TBD until future amendment.</td><td><code>docs/PRD.md</code> §8.17 FR-110; <code>docs/SPEC.md</code> §18</td></tr>
+<tr><td>Proposal outputs</td><td>Agents may create proposals, summaries, and review aids under declared proposal paths.</td><td><code>docs/PRD.md</code> §8.17 FR-111; <code>docs/TYPES.md</code> §11.3</td></tr>
+<tr><td>Adapter route</td><td>Accepted protected-state changes require approved adapter or operation workflow plus explicit human gate.</td><td><code>docs/PRD.md</code> §10.10</td></tr>
+<tr><td>Examples</td><td>Only example category supported by accessible sources is OpenPipeStress as a possible fixture profile, not core runtime behavior. Concrete file examples are TBD.</td><td><code>docs/PRD.md</code> §8.17 FR-114; <code>docs/TYPES.md</code> §11.3</td></tr>
+</tbody></table>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/PRD.md</code> §8.17, §10.10, source warning per <code>_REFERENCES.md</code> REF-006.</li>
+<li>- <code>docs/CONTRACT.md</code> §1.10.</li>
+<li>- <code>docs/SPEC.md</code> §18.</li>
+<li>- <code>docs/TYPES.md</code> §11.</li>
+<li>- <code>docs/PLAN.md</code> R7.</li>
+<li>- <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-10 and SOW-068 rows.</li>
+</ul>
+<h3 id="clm-007-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-149 acknowledges concrete path blocks in ADOPTED profiles while retaining accepted-glob syntax and hook API as TBD/gated.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-10-02-protected-path-and-proposal-path-policy">CLM-008 — Specification: DEL-10-02 Protected Path and Proposal Path Policy</h3>
+<h4 id="specification-del-10-02-protected-path-and-proposal-path-policy">Specification: DEL-10-02 Protected Path and Proposal Path Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable specifies the future policy boundary separating domain-engine protected paths from agent-writable proposal paths for PKG-10. It covers SOW-068 and supports OBJ-010 by preserving future domain-engine compatibility without turning domain solvers into Chirality core.</p>
+<p>In scope:</p>
+<ul>
+<li>- Define protected path and proposal path semantics for future <code>DomainEngineProfile</code> integration.</li>
+<li>- State the write-quarantine rule for protected domain-engine model truth.</li>
+<li>- State that proposals, summaries, review aids, operation records, and human gates are separate from authoritative protected artifacts.</li>
+<li>- Capture hook and workflow implications at policy level.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Current-release domain operation execution.</li>
+<li>- Concrete OpenPipeStress implementation.</li>
+<li>- Concrete filesystem path patterns for any specific engine profile.</li>
+<li>- Direct implementation of <code>/api/domain/*</code> endpoints.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-10-02; <code>docs/PRD.md</code> §8.17; <code>docs/SPEC.md</code> §18.</p>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-10-02-REQ-001</td><td>The policy shall preserve PKG-10 as future-boundary scope and shall not activate current-release domain operation execution.</td><td><code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> PKG-10; <code>docs/PRD.md</code> §8.17</td></tr>
+<tr><td>DEL-10-02-REQ-002</td><td>The policy shall define protected paths as authoritative domain-engine artifact paths not directly writable by agents.</td><td><code>docs/TYPES.md</code> §11.3</td></tr>
+<tr><td>DEL-10-02-REQ-003</td><td>The policy shall define proposal paths as agent-writable folders for proposed changes, summaries, or review aids.</td><td><code>docs/TYPES.md</code> §11.3</td></tr>
+<tr><td>DEL-10-02-REQ-004</td><td>Protected domain paths shall be write-quarantined from direct agent and ordinary tool mutation.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2; <code>docs/PRD.md</code> §8.17 FR-110</td></tr>
+<tr><td>DEL-10-02-REQ-005</td><td>Agents shall write proposals, summaries, and review aids rather than protected domain-engine model truth.</td><td><code>docs/PRD.md</code> §8.17 FR-111; <code>docs/PLAN.md</code> R7</td></tr>
+<tr><td>DEL-10-02-REQ-006</td><td>Any accepted mutation of domain state shall flow through an approved adapter or operation workflow and explicit human gate.</td><td><code>docs/PRD.md</code> §10.10; <code>docs/SPEC.md</code> §18</td></tr>
+<tr><td>DEL-10-02-REQ-007</td><td>The policy shall preserve separation between authoritative domain truth owned by the domain engine and Chirality records/proposals/human gates.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-1; <code>docs/PRD.md</code> §8.17 FR-106</td></tr>
+<tr><td>DEL-10-02-REQ-008</td><td>The policy shall require boundary notices or equivalent copy so domain-engine outputs are not presented as professional approval, code compliance, external validation, or Chirality-owned solver truth.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-4; <code>docs/PRD.md</code> §8.17 FR-115</td></tr>
+<tr><td>DEL-10-02-REQ-009</td><td>ASSUMPTION: Path policy enforcement should be expressed through future profile policy, path hooks, and operation workflow checks because those enforcement surfaces are named by CONTRACT.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2</td></tr>
+<tr><td>DEL-10-02-REQ-010</td><td>Concrete path glob syntax, adapter manifest schema, and per-engine examples remain TBD until DEL-10-01 / future amendment defines the profile contract.</td><td><code>docs/PRD.md</code> §8.17 FR-108; <code>docs/TYPES.md</code> §11.1</td></tr>
+<tr><td>DEL-10-02-REQ-011</td><td>Future acceptance evidence shall include a proof slot showing that direct protected-path writes fail closed and cannot be performed by ordinary agent tools. P3 disposition: F-001 and X-001 incorporated as future evidence criteria.</td><td><code>docs/CONTRACT.md</code> §1.6 K-PERM-2, §1.10 K-DOMAIN-2; <code>docs/PRD.md</code> §8.17 FR-110</td></tr>
+<tr><td>DEL-10-02-REQ-012</td><td>Future acceptance evidence shall include proof slots for proposal-path write allowance and accepted mutation through an approved adapter or operation workflow plus explicit human gate. P3 disposition: F-002 and D-002 incorporated as future workflow evidence criteria.</td><td><code>docs/PRD.md</code> §8.17 FR-111, FR-113; <code>docs/SPEC.md</code> §18</td></tr>
+</tbody></table>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / Source</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> §1.10</td><td>Binding invariants K-DOMAIN-1 through K-DOMAIN-4.</td></tr>
+<tr><td><code>docs/PRD.md</code> §8.17</td><td>Future domain compatibility requirements FR-106 through FR-115; REF-006 has a hash status: MATCH status in <code>_REFERENCES.md</code>. — reconciled under D-APP-38</td></tr>
+<tr><td><code>docs/PRD.md</code> §10.10</td><td>Future domain artifact categories and protected mutation route.</td></tr>
+<tr><td><code>docs/SPEC.md</code> §18</td><td>Provisional endpoint boundary and future profile requirements.</td></tr>
+<tr><td><code>docs/TYPES.md</code> §11</td><td>Vocabulary for <code>DomainEngineProfile</code>, <code>OperationProposal</code>, protected path, proposal path, deterministic adapter, boundary notice, and OpenPipeStress fixture.</td></tr>
+<tr><td><code>docs/PLAN.md</code> R7</td><td>Roadmap placement and acceptance posture for future domain profiles and operation proposals.</td></tr>
+</tbody></table>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification Approach</td></tr>
+<tr><td>DEL-10-02-REQ-001</td><td>Review text for future-boundary language and absence of implementation activation.</td></tr>
+<tr><td>DEL-10-02-REQ-002, DEL-10-02-REQ-003</td><td>Confirm definitions match <code>docs/TYPES.md</code> §11.3.</td></tr>
+<tr><td>DEL-10-02-REQ-004, DEL-10-02-REQ-005</td><td>Confirm policy distinguishes protected model truth from proposal/summarization outputs.</td></tr>
+<tr><td>DEL-10-02-REQ-006</td><td>Confirm accepted mutation route includes approved adapter or operation workflow and explicit human gate.</td></tr>
+<tr><td>DEL-10-02-REQ-007, DEL-10-02-REQ-008</td><td>Confirm professional-boundary and solver-truth separation language is present.</td></tr>
+<tr><td>DEL-10-02-REQ-009</td><td>Human review required because hook implementation detail is not fully specified in accessible source slices.</td></tr>
+<tr><td>DEL-10-02-REQ-010</td><td>Human review required when profile contract or engine-specific path patterns are drafted.</td></tr>
+<tr><td>DEL-10-02-REQ-011</td><td>Future validation fixture or equivalent review evidence confirms direct protected writes are denied or routed away from mutation and fail closed.</td></tr>
+<tr><td>DEL-10-02-REQ-012</td><td>Future validation fixture or equivalent review evidence confirms proposal-path writes remain allowed as non-binding artifacts and accepted mutation requires the approved route plus human gate.</td></tr>
+</tbody></table>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>Required artifacts for this deliverable:</p>
+<ul>
+<li>- Protected/proposal path policy.</li>
+<li>- Hook implications.</li>
+<li>- Examples.</li>
+</ul>
+<p>Current documentation gaps:</p>
+<ul>
+<li>- Concrete protected/proposal path pattern examples are TBD.</li>
+<li>- Profile-specific adapter and manifest details are TBD.</li>
+<li>- ResponsibleParty remains TBD by dispatch instruction and <code>_CONTEXT.md</code>.</li>
+<li>- Future test fixture categories remain TBD until the governed <code>DomainEngineProfile</code> syntax and operation workflow are accepted: direct protected-write denial, proposal-path write allowance, and accepted mutation through human gate. P3 disposition: F-002 and X-002 incorporated as future slots.</li>
+</ul>
+<ul>
+<li>- <strong>AC-001</strong> — The DEL-10-02 protected/proposal path policy, hook implications, and examples preserve the exact legacy source content and remain bounded to SOW-068 and OBJ-010.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-10-02-protected-path-and-proposal-path-policy">CLM-014 — Procedure: DEL-10-02 Protected Path and Proposal Path Policy</h3>
+<h4 id="procedure-del-10-02-protected-path-and-proposal-path-policy">Procedure: DEL-10-02 Protected Path and Proposal Path Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define a repeatable procedure for producing and reviewing the protected path and proposal path policy without activating domain-engine implementation. The procedure preserves the future-boundary posture of PKG-10 and keeps protected domain-engine model truth separate from agent-writable proposal outputs.</p>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / Source</td></tr>
+<tr><td>Deliverable context for DEL-10-02</td><td>Available in <code>_CONTEXT.md</code>.</td></tr>
+<tr><td>Decomposition entry for DEL-10-02 and SOW-068</td><td>Available in <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code>.</td></tr>
+<tr><td>Domain invariants</td><td>Available in <code>docs/CONTRACT.md</code> §1.10.</td></tr>
+<tr><td>Future domain requirements</td><td>Available in <code>docs/PRD.md</code> §8.17 and §10.10, with REF-006 hash status: MATCH treated as source status. — reconciled under D-APP-38</td></tr>
+<tr><td>Future profile vocabulary</td><td>Available in <code>docs/TYPES.md</code> §11.</td></tr>
+<tr><td>Declared upstream dependencies</td><td>Extracted dependency register exists in <code>_DEPENDENCIES.md</code>; declared upstream/downstream sections remain TBD. P3 disposition: B-002 already covered as deferred closure input.</td></tr>
+<tr><td>ResponsibleParty</td><td>TBD.</td></tr>
+</tbody></table>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Confirm the work remains future-boundary scope.</p>
+<ul>
+<li>- Check that the policy does not implement current-release domain operation execution or activate <code>/api/domain/*</code> endpoints.</li>
+<li>- Source: <code>docs/PRD.md</code> §8.17; <code>docs/SPEC.md</code> §18.</li>
+</ul>
+<p>2. Define policy terms from authoritative vocabulary.</p>
+<ul>
+<li>- Use <code>Protected path</code> as an authoritative domain-engine artifact path not directly writable by agents.</li>
+<li>- Use <code>Proposal path</code> as an agent-writable folder for proposed changes, summaries, or review aids.</li>
+<li>- Source: <code>docs/TYPES.md</code> §11.3.</li>
+</ul>
+<p>3. State the protected write quarantine.</p>
+<ul>
+<li>- Require direct agent writes to protected domain paths to be denied or routed through the future approved adapter / operation workflow.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2; <code>docs/PRD.md</code> §8.17 FR-110.</li>
+</ul>
+<p>4. State the proposal write allowance.</p>
+<ul>
+<li>- Permit agents to write proposals, summaries, and review aids to declared proposal paths.</li>
+<li>- Do not treat those outputs as accepted protected state.</li>
+<li>- Source: <code>docs/PRD.md</code> §8.17 FR-111; <code>docs/TYPES.md</code> §11.3.</li>
+</ul>
+<p>5. State the accepted mutation path.</p>
+<ul>
+<li>- Require an approved adapter or operation workflow and explicit human gate before protected domain state changes.</li>
+<li>- Source: <code>docs/PRD.md</code> §10.10; <code>docs/SPEC.md</code> §18.</li>
+</ul>
+<p>6. Capture hook implications without over-specifying implementation.</p>
+<ul>
+<li>- Record that future enforcement must distinguish protected paths from proposal paths and fail closed for direct protected writes.</li>
+<li>- Mark exact hook API, path glob syntax, and adapter manifest behavior as TBD unless supplied by a future accepted profile contract.</li>
+<li>- Source: <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2; <code>docs/PRD.md</code> §8.17 FR-108.</li>
+</ul>
+<p>7. Add boundary-notice requirements.</p>
+<ul>
+<li>- Confirm the policy prevents domain-engine outputs from being represented as professional approval, code compliance, external validation, or solver truth owned by Chirality.</li>
+<li>- Source: <code>docs/PRD.md</code> §8.17 FR-115; <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-4.</li>
+</ul>
+<p>8. Review examples.</p>
+<ul>
+<li>- Include only category examples supported by sources unless profile-specific path patterns are later accepted.</li>
+<li>- Mark concrete OpenPipeStress or engine-specific paths as TBD.</li>
+<li>- Source: <code>docs/PRD.md</code> §8.17 FR-114; <code>docs/TYPES.md</code> §11.3.</li>
+</ul>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass Criteria</td></tr>
+<tr><td>Future-boundary check</td><td>No current-release domain engine execution is activated or implied.</td></tr>
+<tr><td>Terminology check</td><td>Protected/proposal path definitions match <code>docs/TYPES.md</code> §11.3.</td></tr>
+<tr><td>Write-quarantine check</td><td>Protected domain paths are not agent-writable in policy text.</td></tr>
+<tr><td>Proposal-path check</td><td>Agent-writable outputs are limited to proposals, summaries, and review aids.</td></tr>
+<tr><td>Human-gate check</td><td>Accepted protected-state mutation requires explicit human acceptance.</td></tr>
+<tr><td>Boundary-copy check</td><td>No text says Chirality approves, validates, certifies, or owns solver truth.</td></tr>
+<tr><td>TBD check</td><td>Concrete path patterns, hook implementation details, and engine-specific examples remain TBD where unsupported.</td></tr>
+<tr><td>Future fixture check</td><td>Future verification records include categories for direct protected-write denial, proposal-path write allowance, and accepted mutation through human gate once profile syntax and workflow are accepted. P3 disposition: F-002 incorporated.</td></tr>
+</tbody></table>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Protected/proposal path policy: <code>Specification.md</code>.</li>
+<li>- Hook implications and TBDs: <code>Specification.md</code>, <code>Guidance.md</code>.</li>
+<li>- Examples and conflicts: <code>Guidance.md</code>.</li>
+<li>- REF-006 is <code>MATCH</code> under D-APP-38; the earlier warning is dated history.</li>
+<li>- Dependency register: <code>_DEPENDENCIES.md</code> includes extracted active rows, while human-declared upstream/downstream sections remain TBD; closure must not treat those extracted rows as human-declared acceptance.</li>
+<li>- Future workflow owner: TBD - the owner who defines the approved adapter or operation workflow that can convert proposals into protected-state changes is not named in accessible sources. P3 disposition: D-002 converted to closure-relevant TBD.</li>
+</ul>
+<ul>
+<li>- <strong>VER-001</strong> — Verify DEL-10-02 source-marker coverage and byte parity against the exact legacy four-document source, and confirm SOW-068 and OBJ-010 traceability.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-10-02-protected-path-and-proposal-path-policy">CLM-020 — Guidance: DEL-10-02 Protected Path and Proposal Path Policy</h3>
+<h4 id="guidance-del-10-02-protected-path-and-proposal-path-policy">Guidance: DEL-10-02 Protected Path and Proposal Path Policy</h4>
+<p>&gt; <strong>D-APP-56 R5 P40 current-state note (2026-07-12):</strong> REF-006 <code>docs/PRD.md</code> is <code>MATCH</code> under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.</p>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>DEL-10-02 exists to define a future security boundary for domain-engine filesystem interaction: agents may write proposals, summaries, and review aids, but they must not write protected domain-engine model truth. This supports OBJ-010 while keeping PKG-10 in future-boundary scope. Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md</code> DEL-10-02; <code>docs/PRD.md</code> §8.17.</p>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. <strong>Future-boundary first.</strong> Treat this policy as compatibility design for a governed future amendment, not as permission to activate domain-engine execution now. Source: <code>docs/PRD.md</code> §8.17; <code>docs/SPEC.md</code> §18.</p>
+<p>2. <strong>Protected truth stays protected.</strong> Protected paths hold authoritative domain-engine artifacts and are not directly writable by agents. Source: <code>docs/TYPES.md</code> §11.3; <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2.</p>
+<p>3. <strong>Proposals are non-binding work products.</strong> Proposal paths may hold proposed changes, summaries, or review aids, but they do not become accepted protected domain state without the future workflow. Source: <code>docs/TYPES.md</code> §11.3; <code>docs/PRD.md</code> §8.17 FR-111.</p>
+<p>4. <strong>Accepted mutation needs a gate.</strong> Any accepted mutation of protected domain state must flow through an approved adapter or operation workflow and explicit human gate. Source: <code>docs/PRD.md</code> §10.10; <code>docs/SPEC.md</code> §18.</p>
+<p>5. <strong>Chirality does not become the solver.</strong> Domain engines own authoritative domain truth; Chirality governs interaction, proposals, records, and human gates. Source: <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-1; <code>docs/PRD.md</code> §8.17 FR-106.</p>
+<p>6. <strong>Boundary copy matters.</strong> Domain-engine outputs must not be presented as professional approval, code compliance, external validation, or solver truth owned by Chirality. Source: <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-4; <code>docs/PRD.md</code> §8.17 FR-115.</p>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Policy should be profile-driven once <code>DomainEngineProfile</code> exists; the accessible sources name <code>protectedPaths</code> and <code>proposalPaths</code> fields but do not define concrete path glob syntax. Source: <code>docs/TYPES.md</code> §11.1.</li>
+<li>- Hook implications are policy-level in the current source set. CONTRACT names path hooks and operation workflow as enforcement surfaces, but the exact hook API for domain paths is TBD. Source: <code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2.</li>
+<li>- OpenPipeStress is only a potential first fixture profile. Avoid hardcoding OpenPipeStress assumptions into Chirality core policy. Source: <code>docs/PRD.md</code> §8.17 FR-114; <code>docs/TYPES.md</code> §11.3.</li>
+<li>- REF-006 <code>docs/PRD.md</code> has a hash status: MATCH in <code>_REFERENCES.md</code>; dispatch instruction says to treat that MATCH as a source status. (reconciled under D-APP-38).</li>
+<li>- Concrete protected/proposal path examples stay category-level because <code>DomainEngineProfile</code> exposes <code>protectedPaths</code> and <code>proposalPaths</code> fields but the accessible sources do not define accepted glob syntax or per-engine path patterns. P3 disposition: C-001 already covered and made explicit; X-002 remains a future documentation slot.</li>
+<li>- Final publication wording should continue to say proposal artifacts are review aids only: they do not become accepted protected domain state without the future approved workflow and explicit human gate. P3 disposition: E-002 incorporated as closure wording guidance.</li>
+</ul>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Proposal usability vs protected-state safety</td><td>Permit agent-authored proposals and summaries, but deny direct protected model writes.</td><td><code>docs/PRD.md</code> §8.17 FR-110, FR-111</td></tr>
+<tr><td>Generic profile policy vs engine-specific convenience</td><td>Keep policy generic until profile contract and fixture adoption are accepted.</td><td><code>docs/PRD.md</code> §8.17 FR-107, FR-114</td></tr>
+<tr><td>Prompt guidance vs runtime enforcement</td><td>Do not rely on prompt text alone for protected path denies; future implementation needs profile/path/hook enforcement.</td><td><code>docs/CONTRACT.md</code> §1.10 K-DOMAIN-2; <code>docs/PRD.md</code> §8.17 FR-110</td></tr>
+<tr><td>Review velocity vs human authority</td><td>Require explicit human acceptance before applying domain operations.</td><td><code>docs/PRD.md</code> §8.17 FR-113; <code>docs/SPEC.md</code> §18</td></tr>
+</tbody></table>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<p>Supported example categories:</p>
+<ul>
+<li>- Agent writes a proposed domain change package, summary, or review aid to a proposal path. Source: <code>docs/TYPES.md</code> §11.3; <code>docs/PRD.md</code> §8.17 FR-111.</li>
+<li>- Agent direct write to a protected model path is denied or routed to a proposal workflow. Source: <code>docs/PRD.md</code> §8.17 FR-110; <code>docs/PRD.md</code> §10.10.</li>
+<li>- OpenPipeStress may be represented as a future fixture profile if adopted, but concrete OpenPipeStress path examples are TBD. Source: <code>docs/PRD.md</code> §8.17 FR-114.</li>
+</ul>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CT-001</td><td>PRD source hash status: MATCHes expected reference hash, but dispatch instruction says to treat it as source status.</td><td><code>_REFERENCES.md</code> REF-006</td><td>Dispatch brief</td><td>All PRD-grounded sections</td><td>Use local <code>docs/PRD.md</code> as accessible source with warning recorded.</td><td>TBD — reconciled under D-APP-38</td></tr>
+<tr><td>CT-002</td><td>Concrete protected/proposal path examples are requested as anticipated artifacts, but accessible sources define only categories and fields, not specific path patterns.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts</td><td><code>docs/TYPES.md</code> §11.1/§11.3; <code>docs/PRD.md</code> §8.17</td><td>Examples, requirements, procedure</td><td>Mark concrete patterns TBD until <code>DomainEngineProfile</code> contract/future amendment supplies them.</td><td>TBD</td></tr>
+<tr><td>CT-003</td><td>REF-006 is MATCH under D-APP-38; the earlier warning is dated history.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>docs/PRD.md</code> §8.17 and §10.10</td><td>PRD-grounded requirements, closure language</td><td>Keep A-001 and E-001 visible as a source-warning conflict until a human accepts or replaces the PRD snapshot.</td><td>TBD</td></tr>
+<tr><td>CT-004</td><td>No accountable owner is named for accepting or replacing the REF-006 PRD snapshot before final policy closure.</td><td><code>_REFERENCES.md</code> REF-006</td><td><code>_CONTEXT.md</code> Source Authority</td><td>Source warning closure</td><td>Treat D-001 as a human-ruling TBD; do not close the PRD source warning by agent judgment.</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-027-d-app-56-r5-p45-current-state-reconciliation-2026-07-12">CLM-027 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h3>
+<h5 id="d-app-56-r5-p45-current-state-reconciliation-2026-07-12">D-APP-56 R5 P45 current-state reconciliation (2026-07-12)</h5>
+<p>UPD-149 acknowledges concrete path blocks in ADOPTED profiles while retaining accepted-glob syntax and hook API as TBD/gated.</p>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-068 OBJ-010</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

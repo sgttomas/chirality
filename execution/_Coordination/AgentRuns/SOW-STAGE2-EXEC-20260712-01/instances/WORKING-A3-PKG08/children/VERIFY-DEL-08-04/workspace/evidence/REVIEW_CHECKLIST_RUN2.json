@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 265,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "2ccc40e70253446c8148bab4de9bc08e8e72cf58d20ece005bac71e85ed31511"
+      },
+      "text": "The DEL-08-04 bridge is accepted when the complete preserved legacy source's denial, restriction, allowed-path, audit-safety, and DEL-08-05 handoff checks demonstrate fail-closed Type 2 delegation for SOW-063 and OBJ-005, OBJ-007.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-001",
+          "source_line": 361,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the complete preserved legacy source and execute its specified missing-metadata, approval-reference, unsealed-context, non-allowlisted, non-Type-2, hook-error, broad-capability, allowed-restricted-execution, audit-safety, and DEL-08-05 handoff checks; record concrete evidence."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-04",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "2ccc40e70253446c8148bab4de9bc08e8e72cf58d20ece005bac71e85ed31511"
+  },
+  "tool_version": "1"
+}

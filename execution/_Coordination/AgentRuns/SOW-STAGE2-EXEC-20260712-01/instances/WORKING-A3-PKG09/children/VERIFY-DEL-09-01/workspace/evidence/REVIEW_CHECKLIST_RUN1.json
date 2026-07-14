@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 211,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "8b77da5d79a8e3c165771c9bfb4971d5fd671c86ab664a4a9faa269142bb38c3"
+      },
+      "text": "The DEL-09-01 preservation contract retains the required local-check surface and Section 8 validation behavior, including the accepted required IDs, retired legacy-ID exclusion, and stable summary artifact, with current evidence and without unsupported claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-01-VER-001",
+          "source_line": 325,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the source-bound contract and current run evidence for the required local checks; confirm the accepted Section 8 IDs, absence of the retired legacy ID, and readable stable summary artifact."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-01",
+    "document": "ScopeOfWork.md",
+    "format": "MIGRATION_DUAL",
+    "migration_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "8b77da5d79a8e3c165771c9bfb4971d5fd671c86ab664a4a9faa269142bb38c3"
+  },
+  "tool_version": "1"
+}
