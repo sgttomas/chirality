@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="623a32692a83cd0aa6187969aa9c2290c68a7aa3a0ccfbadb69de4cd011ed471">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-08</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>623a32692a83cd0aa6187969aa9c2290c68a7aa3a0ccfbadb69de4cd011ed471</code>.</p>
+<h1 id="scope-of-work-del-03-08">Scope of Work — DEL-03-08</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-08</code> in service of project scope [SOW-051, SOW-018] and package objectives [OBJ-004, OBJ-012].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A pipe section-property and mass-property calculator contract covering explicit dimensional and material inputs, units, provenance, section and mass outputs, diagnostics, protected-data boundaries, and solver handoff limits is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-08-pipe-section-property-and-mass-property-calculator">CLM-001 — Datasheet: DEL-03-08 Pipe section property and mass-property calculator</h3>
+<blockquote><h4 id="datasheet-del-03-08-pipe-section-property-and-mass-property-calculator">Datasheet: DEL-03-08 Pipe section property and mass-property calculator</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-08</td></tr>
+<tr><td>Package ID</td><td>PKG-03</td></tr>
+<tr><td>Package</td><td>Piping Components, Materials, and Library Data Model</td></tr>
+<tr><td>Deliverable type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Decomposition basis</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</td></tr>
+<tr><td>Scope items</td><td>SOW-051, SOW-018</td></tr>
+<tr><td>Objectives</td><td>OBJ-004, OBJ-012</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Lifecycle state</td><td><code>IN_PROGRESS</code>; implementation evidence exists, but this is not ISSUED, accepted, released, or approved for professional reliance</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td></tr>
+<tr><td>Calculator purpose</td><td>Calculate pipe section and mass-property outputs from user-entered dimensions and material data with unit checks.</td></tr>
+<tr><td>Permitted data source posture</td><td>User-entered or lawfully imported private/project data only.</td></tr>
+<tr><td>Public bundled data posture</td><td>No protected pipe dimensional tables, material allowables, contents defaults, insulation defaults, corrosion allowances, or proprietary component data.</td></tr>
+<tr><td>Unit posture</td><td>Inputs and outputs carry explicit unit and dimension metadata. Mixed units are rejected; approved conversion constants and public unit catalog remain <code>TBD</code>.</td></tr>
+<tr><td>Provenance posture</td><td>Calculator inputs require provenance metadata, and derived outputs state that they were calculated from user-entered dimensions. Exact private-library record linkage remains <code>TBD</code>.</td></tr>
+<tr><td>Solver boundary</td><td>This deliverable prepares section and mass properties; it does not implement the global solver, code compliance, or rule-pack evaluation.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<p>Implementation evidence exists in <code>core/section_properties/calculator.py</code> for user-entered pipe outside diameter, wall thickness, optional corrosion allowance, optional insulation thickness, and optional material, contents, and insulation density inputs. The calculator derives inside diameter, metal/cross-section area, second moment of area, section modulus, torsional constant, contents volume per length, and optional mass-per-length contributors when matching density inputs are supplied.</p>
+<p>The implementation rejects missing required dimensions, missing provenance, incompatible dimensions, mixed units, and non-physical geometry through blocking diagnostics. It does not provide pipe schedule tables, material defaults, unit conversion constants, protected dimensional tables, contents defaults, insulation defaults, corrosion defaults, SIF/flexibility values, code-specific values, or proprietary catalog values.</p>
+<p>Exact allowed public unit catalog, conversion constants, accepted schema field placement, dependency satisfaction, fixture-value policy, public source catalog, lifecycle disposition, and downstream solver/GUI/report integration remain <code>TBD</code>.</p>
+<p>Mass-property tests use invented synthetic values in <code>tests/test_section_properties.py</code>. No protected published pipe tables, material tables, or vendor proprietary data may be encoded as test data.</p></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construction item</td><td>Status</td></tr>
+<tr><td>Section property calculator artifact</td><td>Implemented at <code>core/section_properties/calculator.py</code>.</td></tr>
+<tr><td>Calculator README</td><td>Implemented at <code>core/section_properties/README.md</code>.</td></tr>
+<tr><td>Mass property tests</td><td>Implemented in <code>tests/test_section_properties.py</code> using invented synthetic values; formal fixture-value policy remains <code>TBD</code>.</td></tr>
+<tr><td>Schema-like input mapping</td><td>Implemented through <code>quantity_from_mapping</code>; accepted schema field placement and dependency satisfaction remain <code>TBD</code>.</td></tr>
+<tr><td>Diagnostic envelope fields</td><td>Implemented with code, diagnostic class, severity, field, source, affected object, message, remediation, and provenance; downstream result-envelope mapping remains <code>TBD</code>.</td></tr>
+<tr><td>Private library linkage</td><td>Provenance is required at the calculator boundary; exact private-library record linkage remains <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, objectives, artifact list, and architecture basis injection.</li>
+<li>- <code>_REFERENCES.md</code> for governing local references.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-03-08.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> rows SOW-051 and SOW-018.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-03-08.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants OPS-K-IP-1, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-SOLVER-1, and OPS-K-AGENT-1..4.</li>
+<li>- <code>core/section_properties/calculator.py</code> and <code>core/section_properties/README.md</code> for implemented calculator behavior.</li>
+<li>- <code>tests/test_section_properties.py</code> for current unit and negative-test evidence.</li>
+<li>- <code>fixtures/results/invented/tp_phys_015_section_property_stress_evidence_envelope.json</code> for invented downstream section-property evidence context.</li>
+<li>- <code>Review_Findings.csv</code> for human-gated technical finding status; statuses remain <code>TECHNICALLY_ADDRESSED_PENDING_HUMAN</code> with <code>HumanDisposition=TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-007-open-questions">CLM-007 — Open Questions</h3>
+<blockquote><h5 id="open-questions">Open Questions</h5>
+<p>Current implementation-form note: <code>PipeSectionInput</code> accepts an optional</p>
+<p>dimensional <code>mill_tolerance</code>, and the calculator uses `wall_thickness -</p>
+<p>corrosion_allowance - mill_tolerance` as effective wall. The input is</p>
+<p>provenance-stamped and validated like the other dimensional slots; a fractional</p>
+<p>or catalog-derived tolerance policy remains <code>TBD</code>.</p>
+<table><tbody>
+<tr><td>Question</td><td>Needed from</td></tr>
+<tr><td>Which approved unit catalog and conversion constants, if any, may this calculator call?</td><td>DEL-02-02 / human architecture ruling</td></tr>
+<tr><td>Which schema record owns calculator inputs, outputs, and library linkage?</td><td>DEL-03-02 / schema owner</td></tr>
+<tr><td>What downstream result-envelope mapping is required before solver, persistence, GUI, or report integration?</td><td>PKG-02 / PKG-08 / human architecture ruling</td></tr>
+<tr><td>What public source catalog and fixture-value policy is acceptable for section and mass-property tests?</td><td>Validation/QA owner</td></tr>
+<tr><td>When may the technically addressed review findings move beyond human-gated <code>TBD</code> disposition?</td><td>Human project authority</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-d-41-r5-t2b-pdu-047-evidence-state">CLM-008 — D-41 R5 T2B PDU-047 Evidence State</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-047-evidence-state">D-41 R5 T2B PDU-047 Evidence State</h5>
+<table><tbody>
+<tr><td>Path</td><td>Inputs</td><td>Bound outputs</td></tr>
+<tr><td>Production <code>calculate_pipe_section_properties</code> → TP-PHYS-015 formal oracle → governed result envelope</td><td>Invented OD 2.0 m; wall 0.25 m</td><td>Area <code>m^2</code>/<code>area</code>; section modulus <code>m^3</code>/<code>section_modulus</code>; torsional constant <code>m^4</code>/<code>second_moment_area</code>, checked with existing witness tolerances.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-03-08-pipe-section-property-and-mass-property-calculator">CLM-009 — Specification: DEL-03-08 Pipe section property and mass-property calculator</h3>
+<blockquote><h4 id="specification-del-03-08-pipe-section-property-and-mass-property-calculator">Specification: DEL-03-08 Pipe section property and mass-property calculator</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the bounded backend feature slice that calculates pipe section and mass properties from user-entered dimensions and material data with unit checks. It also records the private-library and provenance constraints that apply when those inputs are sourced from pipe section, component, or material libraries.</p>
+<p>Current implementation evidence is <code>core/section_properties/calculator.py</code>, <code>core/section_properties/README.md</code>, and <code>tests/test_section_properties.py</code>. This evidence reconciliation does not edit code, repo-level schemas, fixtures, tests, lifecycle records, dependency registers, review dispositions, or DAG/coordination files, and it does not introduce protected dimensional, material, contents, insulation, corrosion, code, or vendor data.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source basis</td><td>Verification hook</td></tr>
+<tr><td>DEL-03-08-RQ-001</td><td>The calculator shall accept only explicit user-entered or lawfully imported private/project input values for dimensions, material density, contents, insulation, corrosion basis, and dimensional mill tolerance.</td><td>SOW-051; OPS-K-DATA-1; OPS-K-IP-1</td><td><code>tests/test_section_properties.py</code> uses explicit invented inputs; public source catalog and fixture-value policy remain <code>TBD</code>.</td></tr>
+<tr><td>DEL-03-08-RQ-002</td><td>The calculator shall reject or flag missing solve-required values instead of applying silent defaults.</td><td>OPS-K-DATA-2; SOW-051</td><td><code>tests/test_section_properties.py</code> covers missing wall, missing provenance, mixed units, and invalid geometry. Optional mass-contributor requiredness policy remains <code>TBD</code>.</td></tr>
+<tr><td>DEL-03-08-RQ-003</td><td>All input quantities, intermediate calculations, and outputs shall be unit-aware and dimensionally checked.</td><td>SOW-051; OPS-K-UNIT-1; OBJ-012</td><td>Tests assert canonical output dimensions and rejection of mixed units. Approved unit conversion constants and dependency satisfaction remain <code>TBD</code>.</td></tr>
+<tr><td>DEL-03-08-RQ-004</td><td>Library-sourced inputs shall carry provenance and redistribution status through calculator schema hooks.</td><td>SOW-018; OPS-K-DATA-3</td><td><code>Quantity</code> and <code>quantity_from_mapping</code> require provenance. Accepted schema field placement and private-library record linkage remain <code>TBD</code>.</td></tr>
+<tr><td>DEL-03-08-RQ-005</td><td>Public repository fixtures shall not encode protected pipe dimensional tables, protected material data, proprietary commercial data, or paraphrased protected tables.</td><td>OPS-K-IP-1; OPS-K-IP-3</td><td>Protected-content review and fixture review.</td></tr>
+<tr><td>DEL-03-08-RQ-006</td><td>Calculator outputs intended for solver consumption shall remain code-neutral and shall not claim certification, code compliance, or professional approval.</td><td>OPS-K-AGENT-4; AB-00-06</td><td>Review of diagnostics/result envelopes and report-facing text.</td></tr>
+<tr><td>DEL-03-08-RQ-007</td><td>The calculator shall be isolated from global solver implementation and rule-pack compliance logic.</td><td>PKG-03 exclusion; OPS-K-SOLVER-1</td><td>Module boundary review confirms <code>core/section_properties</code> is outside global solver and rule-pack logic; downstream solver integration policy remains <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standard text or table is available in this deliverable-local context. Any standard, code, or vendor basis must be introduced only as a licensed/private input or as a non-protected pointer with provenance. Clause-level requirements are <code>TBD</code>.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification area</td><td>Current evidence and remaining gate</td></tr>
+<tr><td>Unit safety</td><td>Tests demonstrate canonical dimensions and mixed-unit rejection without hidden conversion. Approved conversion support remains <code>TBD</code>.</td></tr>
+<tr><td>Missing input behavior</td><td>Tests demonstrate explicit blocking findings for missing required wall thickness and missing provenance; optional contributor policy remains <code>TBD</code>.</td></tr>
+<tr><td>Provenance</td><td>Tests demonstrate provenance requirements at quantity construction/mapping boundaries and derived-output provenance. Library record linkage remains <code>TBD</code>.</td></tr>
+<tr><td>IP/data boundary</td><td>Tests use invented synthetic values; formal source catalog and fixture-value policy remain <code>TBD</code>.</td></tr>
+<tr><td>Solver boundary</td><td>Calculator outputs remain data/service outputs, not solver certification or code-compliance claims. Downstream integration remains <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Current implementation artifacts are:</p>
+<ul>
+<li>- <code>core/section_properties/calculator.py</code>;</li>
+<li>- <code>core/section_properties/README.md</code>;</li>
+<li>- <code>tests/test_section_properties.py</code>;</li>
+<li>- schema-like quantity mapping through <code>quantity_from_mapping</code>.</li>
+</ul>
+<p>The current input form includes optional dimensional <code>mill_tolerance</code>. When</p>
+<p>present, effective wall is `wall_thickness - corrosion_allowance -</p>
+<p>mill_tolerance`; absence means no reduction and is not a hidden zero default.</p>
+<p>Negative tolerance or a corrosion-plus-tolerance reduction that consumes the</p>
+<p>wall is blocking. Fractional/catalog conversion policy remains <code>TBD</code> and no</p>
+<p>catalog value or default is supplied.</p>
+<p>Accepted schema ownership, dependency satisfaction, downstream result-envelope mapping, lifecycle disposition, and human disposition for review findings remain <code>TBD</code>.</p></blockquote>
+<h3 id="clm-015-conflict-table-for-human-ruling">CLM-015 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Issue</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>PKG03-DEL-03-08-PKG02-001</td><td>Dimension vocabulary compatibility finding has technical evidence in calculator/tests but awaits human disposition.</td><td><code>Review_Findings.csv</code>; <code>tests/test_section_properties.py</code></td><td><code>TBD</code></td></tr>
+<tr><td>PKG03-DEL-03-08-PKG02-002</td><td>Input provenance finding has technical evidence in calculator/tests but awaits human disposition.</td><td><code>Review_Findings.csv</code>; <code>tests/test_section_properties.py</code></td><td><code>TBD</code></td></tr>
+<tr><td>PKG03-DEL-03-08-PKG02-003</td><td>Diagnostic envelope field finding has technical evidence in calculator/tests but awaits human disposition.</td><td><code>Review_Findings.csv</code>; <code>tests/test_section_properties.py</code></td><td><code>TBD</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-d-41-r5-t2b-pdu-047-evidence-binding-2026-07-12">CLM-016 — D-41 R5 T2B PDU-047 Evidence Binding (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-047-evidence-binding-2026-07-12">D-41 R5 T2B PDU-047 Evidence Binding (2026-07-12)</h5>
+<p><code>tests/test_calculation_witness.py</code> now executes <code>calculate_pipe_section_properties</code> with the existing rights-safe TP-PHYS-015 outside diameter and wall thickness, then compares the produced area, section modulus, and torsional constant to both the formal oracle and <code>tp_phys_015_section_property_stress_evidence_envelope.json</code> using the witness&#x27;s existing tolerances. It also asserts the emitted units and dimensions. This is bounded validation evidence, not an engineering-validation or lifecycle disposition.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted calculator requirements and boundaries, including user-entered or lawfully imported inputs, dimensional checks, no silent defaults, invented fixtures, unresolved conversion, schema, contributor, dependency, and human-review decisions, and no code-compliance or professional-approval claim.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-03-08-pipe-section-property-and-mass-property-calculator">CLM-017 — Procedure: DEL-03-08 Pipe section property and mass-property calculator</h3>
+<blockquote><h4 id="procedure-del-03-08-pipe-section-property-and-mass-property-calculator">Procedure: DEL-03-08 Pipe section property and mass-property calculator</h4></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the procedure for reconciling and maintaining implementation evidence for the pipe section property and mass-property calculator without introducing protected data or unapproved repo-level changes.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Sealed deliverable context for DEL-03-08</td><td>Available in <code>_CONTEXT.md</code>.</td></tr>
+<tr><td>Unit-system and dimensional-analysis contract</td><td>Calculator requires explicit unit/dimension metadata and rejects mixed units; approved conversion API/catalog remains <code>TBD</code>.</td></tr>
+<tr><td>Pipe section/component library schema contract</td><td>Schema-like mapping exists through <code>quantity_from_mapping</code>; accepted owner fields and dependency satisfaction remain <code>TBD</code>.</td></tr>
+<tr><td>Material library provenance model</td><td>Calculator quantities require provenance; private-library record linkage remains <code>TBD</code>.</td></tr>
+<tr><td>Diagnostic/result envelope contract</td><td>Calculator diagnostics carry class, source, affected object, and provenance; downstream result-envelope mapping remains <code>TBD</code>.</td></tr>
+<tr><td>Synthetic or cleared fixture policy</td><td>Current tests use invented synthetic values; formal source catalog and fixture-value policy remain <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the task is sealed to DEL-03-08 and that write scope is limited to the authorized deliverable folder or separately authorized implementation paths.</p>
+<p>2. Read current implementation evidence in <code>core/section_properties/calculator.py</code>, <code>core/section_properties/README.md</code>, and <code>tests/test_section_properties.py</code>.</p>
+<p>3. Confirm calculator inputs remain explicit user-entered or lawfully imported values. Do not introduce bundled public dimensional, material, contents, insulation, or corrosion defaults.</p>
+<p>4. Confirm validation behavior remains explicit for missing required values, missing provenance, incompatible dimensions, mixed units, non-positive required values, and non-physical geometry.</p>
+<p>5. Confirm output shape preserves magnitude, unit, dimension, and provenance for section properties and mass properties.</p>
+<p>6. Confirm tests use synthetic or cleared values only and do not encode protected/reference-table content.</p>
+<p>7. Run <code>python3 -m pytest tests/test_section_properties.py</code> when feasible.</p>
+<p>8. Run a stale-language search over <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>; reconcile implementation evidence while preserving unresolved <code>TBD</code> items.</p>
+<p>9. Record unresolved policy, source catalog, fixture-value, dependency satisfaction, human disposition, lifecycle, and downstream integration inputs as <code>TBD</code> and route them to the responsible schema/unit/diagnostic/human owner.</p></blockquote>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Protected data check</td><td>No protected pipe tables, material tables, code tables, copied formulas, or proprietary fixtures are introduced.</td></tr>
+<tr><td>Unit check</td><td>Inputs and outputs carry explicit units/dimensions; mixed units are rejected until conversion support is approved.</td></tr>
+<tr><td>Missing value check</td><td>Missing required values produce explicit blocking diagnostics, not defaults.</td></tr>
+<tr><td>Provenance check</td><td>Inputs require provenance and outputs preserve calculated provenance; exact library linkage remains <code>TBD</code>.</td></tr>
+<tr><td>Review-finding check</td><td>Technical evidence remains aligned with <code>TECHNICALLY_ADDRESSED_PENDING_HUMAN</code>; <code>HumanDisposition</code> remains <code>TBD</code> until human action.</td></tr>
+<tr><td>Boundary check</td><td>Calculator remains outside global solver and rule-pack compliance logic.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Updated four-document kit in this folder.</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> historical semantic artifacts.</li>
+<li>- <code>Dependencies.csv</code> v3.1 and <code>_DEPENDENCIES.md</code>.</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code> records for each TASK sequence step.</li>
+<li>- Current evidence reconciliation run record: <code>_run_records/TASK_RUN_2026-06-05_DEL-03-08_evidence-reconciliation.md</code>.</li>
+</ul></blockquote>
+<h3 id="clm-023-d-41-r5-t2b-pdu-047-check">CLM-023 — D-41 R5 T2B PDU-047 Check</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-047-check">D-41 R5 T2B PDU-047 Check</h5>
+<p>Run <code>pytest -p no:cacheprovider tests/test_section_properties.py tests/test_calculation_witness.py</code>. Acceptance of this bounded witness requires the production calculator values, units, and dimensions to agree with the existing formal oracle and governed result envelope within the already-recorded witness tolerances. Do not substitute a re-derived test-only formula or select a new tolerance.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, section and mass-property coverage, dimensional consistency, missing-input behavior, provenance, protected-content controls, calculator and solver separation, bounded witness evidence, and unresolved human-review items.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-03-08-pipe-section-property-and-mass-property-calculator">CLM-024 — Guidance: DEL-03-08 Pipe section property and mass-property calculator</h3>
+<blockquote><h4 id="guidance-del-03-08-pipe-section-property-and-mass-property-calculator">Guidance: DEL-03-08 Pipe section property and mass-property calculator</h4></blockquote>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable provides a bounded, unit-aware calculation surface for pipe section and mass properties while preserving OpenPipeStress data-boundary rules. The key distinction is that calculation from explicit user-entered values is allowed, but bundled protected pipe tables, material tables, proprietary data, hidden unit conversion, and silent defaults are not.</p></blockquote>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<p>Use user-entered dimensions and material data as the source of truth. If a required value is missing, incompatible, unprovenanced, or not licensed for redistribution, record a blocking diagnostic rather than substituting a default.</p>
+<p>Keep the calculator code-neutral. Section and mass properties can support solver and reporting workflows, but this deliverable does not determine code compliance, professional acceptance, or certification.</p>
+<p>Keep unit behavior explicit. The calculator currently requires matching units at the calculation boundary and rejects mixed units; approved unit conversion support remains a separate <code>TBD</code>.</p>
+<p>Keep provenance attached. Calculator inputs require provenance metadata, and calculated outputs identify that they were derived from user-entered dimensions. Exact private-library record linkage and downstream envelope mapping remain <code>TBD</code>.</p></blockquote>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The most important implementation risk is accidentally turning public fixtures or defaults into a protected data table. Synthetic examples may be used for tests, but they must not be copied from protected standards, commercial catalogs, or proprietary project records.</p>
+<p>The second major risk is ambiguity about optional contributors such as contents, insulation, and corrosion basis. Current code treats these contributors as optional explicit inputs; downstream policy still must define when each contributor is required, optional, explicitly not applicable, or pending user input.</p>
+<p>The third risk is unit drift between schema, UI, calculator, and solver-facing outputs. The calculator emits canonical dimension labels in current tests, but accepted schema ownership, dependency satisfaction, and downstream result-envelope integration remain <code>TBD</code>.</p></blockquote>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision area</td><td>Conservative posture</td></tr>
+<tr><td>Public default data</td><td>Do not ship defaults where provenance or redistribution rights are unclear.</td></tr>
+<tr><td>Test fixtures</td><td>Use synthetic values designed for dimensional behavior, not copied industry tables.</td></tr>
+<tr><td>Calculator scope</td><td>Calculate section/mass properties only; leave code checks and solver verification to their packages.</td></tr>
+<tr><td>Schema timing</td><td>Treat hook names and exact field placement as <code>TBD</code> until schema contracts are accepted.</td></tr>
+<tr><td>Review findings</td><td>Treat technical evidence as addressed pending human disposition; do not mark findings resolved without human action.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Current numerical examples live in <code>tests/test_section_properties.py</code> and use invented synthetic values to verify section properties, mass-per-length contributors, mixed-unit rejection, missing provenance, and invalid geometry. Additional examples must remain synthetic or clearly licensed/user-provided and must include units, provenance posture, and expected diagnostic behavior. Formal fixture-value policy remains <code>TBD</code>.</p></blockquote>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Current disposition</td><td>Human ruling</td></tr>
+<tr><td>PKG03-DEL-03-08-PKG02-001</td><td>Dimension-vocabulary compatibility has technical evidence but no human disposition.</td><td><code>TECHNICALLY_ADDRESSED_PENDING_HUMAN</code></td><td><code>TBD</code></td></tr>
+<tr><td>PKG03-DEL-03-08-PKG02-002</td><td>Input-provenance handling has technical evidence but no human disposition.</td><td><code>TECHNICALLY_ADDRESSED_PENDING_HUMAN</code></td><td><code>TBD</code></td></tr>
+<tr><td>PKG03-DEL-03-08-PKG02-003</td><td>Diagnostic-envelope fields have technical evidence but no human disposition.</td><td><code>TECHNICALLY_ADDRESSED_PENDING_HUMAN</code></td><td><code>TBD</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-p3-enrichment-notes">CLM-031 — P3 Enrichment Notes</h3>
+<blockquote><h5 id="p3-enrichment-notes">P3 Enrichment Notes</h5>
+<p>Semantic lensing identified that diagnostic taxonomy, schema hook names, and optional mass contributors needed explicit treatment. The calculator now emits blocking diagnostics with diagnostic class, source, affected object, and provenance, and tests cover optional mass contributors when explicit densities are supplied. Accepted schema hook names, optional contributor requiredness policy, source catalog, fixture-value policy, dependency satisfaction, lifecycle disposition, human disposition, and downstream integration remain <code>TBD</code>.</p></blockquote>
+<h3 id="clm-032-d-41-r5-t2b-pdu-047-boundary">CLM-032 — D-41 R5 T2B PDU-047 Boundary</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-047-boundary">D-41 R5 T2B PDU-047 Boundary</h5>
+<p>The TP-PHYS-015 binding is deliberately narrow: it demonstrates that selected existing rights-safe section-property oracle values traverse the actual Python calculator and an existing governed result envelope. It does not approve catalogs, conversions, thresholds, broader mechanics suitability, or professional reliance.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-051 SOW-018 OBJ-004 OBJ-012</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

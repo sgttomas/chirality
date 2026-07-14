@@ -1,0 +1,18 @@
+{
+  "content_authority": "PASS",
+  "execution_substrate": "PASS",
+  "mappings": 234,
+  "members": 8,
+  "negative_probes_pass": 16,
+  "preservation_containment": "PASS",
+  "project_checks": "PASS",
+  "project_containment": "PASS",
+  "replacement_rows": 40,
+  "rollback_rows": 40,
+  "schema": "PASS",
+  "simulations_pass": 8,
+  "source_lines": 1966,
+  "status": "PASS_PENDING_AGENT2_FANIN",
+  "terminal_children": 4,
+  "upstream_manifests": 5
+}

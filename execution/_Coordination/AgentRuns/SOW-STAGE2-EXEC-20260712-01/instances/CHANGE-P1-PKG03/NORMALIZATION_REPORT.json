@@ -1,0 +1,638 @@
+{
+  "accepted_manifest_sha256": "9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a",
+  "files": [
+    {
+      "after_bytes": 1998,
+      "after_sha256": "81d45824c2076c83fb31ce700b9fbb92ce9abbd4902f67d32563cd665ac7925b",
+      "before_bytes": 1999,
+      "before_sha256": "fbe7449eab97f8ed505315bbe592df6b869b735673c4833cf6103c54b07fcf61",
+      "current_rebound_bytes": 1998,
+      "current_rebound_sha256": "81d45824c2076c83fb31ce700b9fbb92ce9abbd4902f67d32563cd665ac7925b",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/MANAGER-CHILD-TOPOLOGY-CLARIFICATION-001.md"
+    },
+    {
+      "after_bytes": 886,
+      "after_sha256": "f27231f121d097350024336c0141e8981fffc6f78158f9c87971b396dd109d12",
+      "before_bytes": 887,
+      "before_sha256": "986af906bec237699cba809c1eb1ae3ed3fde09bb409505aaa8bde975e2e4b4e",
+      "current_rebound_bytes": 886,
+      "current_rebound_sha256": "f27231f121d097350024336c0141e8981fffc6f78158f9c87971b396dd109d12",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/RECON-PKG03-RUNTIME-RESUME-001.md"
+    },
+    {
+      "after_bytes": 2554,
+      "after_sha256": "e23c094321abbb08f52c5bb999db5120cc26fb3e3dea6f7396d968f0e2709ad0",
+      "before_bytes": 2555,
+      "before_sha256": "aa0a12bee7e853738a2c2a1becee205ee7a500d57a6fe7459902ffd73e0c5f87",
+      "current_rebound_bytes": 2554,
+      "current_rebound_sha256": "e23c094321abbb08f52c5bb999db5120cc26fb3e3dea6f7396d968f0e2709ad0",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/SESSION-CONTINUATION-PKG03-001.md"
+    },
+    {
+      "after_bytes": 4440,
+      "after_sha256": "7a9cf588e1ac434b98257e3f02c4b667184dd23e7f2a15250059d15b96a11de5",
+      "before_bytes": 4441,
+      "before_sha256": "bb1061b19ba2249260e022949280b0a77565fb672c7956010d90122cdf57cecb",
+      "current_rebound_bytes": 4440,
+      "current_rebound_sha256": "7a9cf588e1ac434b98257e3f02c4b667184dd23e7f2a15250059d15b96a11de5",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/CHANGE-P1-PKG03/LAUNCH_BRIEF.md"
+    },
+    {
+      "after_bytes": 3761,
+      "after_sha256": "77f3876bf3f51d759ffb90b3c60804997f0d39fc3a3f2b59be6be35300eec418",
+      "before_bytes": 3762,
+      "before_sha256": "b0f1ffd3257335d7ab5a35d29c65b686eef8a4487f81346cd8b64f68520d576d",
+      "current_rebound_bytes": 3761,
+      "current_rebound_sha256": "77f3876bf3f51d759ffb90b3c60804997f0d39fc3a3f2b59be6be35300eec418",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P1-PKG03/LAUNCH_BRIEF.md"
+    },
+    {
+      "after_bytes": 1024,
+      "after_sha256": "cfff2472184cc75be62027d8e81823ec9cf2b532cd777af4e4f677184e5059b7",
+      "before_bytes": 1025,
+      "before_sha256": "a3d4c008646ca209f7225679a0ee725d339848d6b6bac9e6b020437f2445713e",
+      "current_rebound_bytes": 1024,
+      "current_rebound_sha256": "cfff2472184cc75be62027d8e81823ec9cf2b532cd777af4e4f677184e5059b7",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P1-PKG03/build_manifests.py"
+    },
+    {
+      "after_bytes": 3861,
+      "after_sha256": "83931968d40513e9c7c415ec7c802766f44ed61131f4de4905d5e5f51796a912",
+      "before_bytes": 3862,
+      "before_sha256": "71608e216b47498cbb3bcae1ca9a2f297d2c9cb2348005f9967b9d191567c51f",
+      "current_rebound_bytes": 3861,
+      "current_rebound_sha256": "83931968d40513e9c7c415ec7c802766f44ed61131f4de4905d5e5f51796a912",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P1-PKG03/children/FULL-PACKAGE-VERIFY/LAUNCH_BRIEF.md"
+    },
+    {
+      "after_bytes": 14261,
+      "after_sha256": "787114fc44eecd3953d23cda8605963932657ca7e461c2e5e99c861191df5e05",
+      "before_bytes": 14262,
+      "before_sha256": "15ea432ad7a849736b07942cf169349e91bfa2411ed5ca8d47eac1f1196fc3cb",
+      "current_rebound_bytes": 14261,
+      "current_rebound_sha256": "787114fc44eecd3953d23cda8605963932657ca7e461c2e5e99c861191df5e05",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P1-PKG03/reconcile_full_package.py"
+    },
+    {
+      "after_bytes": 3252,
+      "after_sha256": "822ab4abb72a02b7f8cc92371e526470ead2685b039009d6947e8824d0529699",
+      "before_bytes": 3253,
+      "before_sha256": "45861d4493f19c874a37f2ee08e9304e540de964abf9c825c88c53e3d33a3c1c",
+      "current_rebound_bytes": 3252,
+      "current_rebound_sha256": "822ab4abb72a02b7f8cc92371e526470ead2685b039009d6947e8824d0529699",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/LAUNCH_BRIEF.md"
+    },
+    {
+      "after_bytes": 33364,
+      "after_sha256": "c0ce5a5d857aafe9feab5601d3623367287cb1519294bf659e31c31821213152",
+      "before_bytes": 33365,
+      "before_sha256": "498b59ea580e082f223a9010152cd8007be9a7a81b3dcf2bf1d1a43afe1a5efc",
+      "current_rebound_bytes": 33364,
+      "current_rebound_sha256": "c0ce5a5d857aafe9feab5601d3623367287cb1519294bf659e31c31821213152",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-a/_SEMANTIC.md"
+    },
+    {
+      "after_bytes": 21095,
+      "after_sha256": "eddcfda1d01fe33f4ccc061e0cc9bfcf0031d0626834fce7f22f257e485b1d59",
+      "before_bytes": 21096,
+      "before_sha256": "283046c7e8d8254c8434d69abd33a44489325157474af32df132599169931a69",
+      "current_rebound_bytes": 21095,
+      "current_rebound_sha256": "eddcfda1d01fe33f4ccc061e0cc9bfcf0031d0626834fce7f22f257e485b1d59",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-a/_SEMANTIC_LENSING.md"
+    },
+    {
+      "after_bytes": 1706,
+      "after_sha256": "93f37e9ecf5fc9fd6fe57ec3950ff81398182da86048b6828aae839519d5fdad",
+      "before_bytes": 1707,
+      "before_sha256": "f7aaab733aed8de772dbe1f9fe3ed60c2a47d9e8e0bf80479fdc58c38cb0f633",
+      "current_rebound_bytes": 1706,
+      "current_rebound_sha256": "93f37e9ecf5fc9fd6fe57ec3950ff81398182da86048b6828aae839519d5fdad",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-a/_run_records/TASK_RUN_2026-04-30_0955_four-documents-p1-p2.md"
+    },
+    {
+      "after_bytes": 1528,
+      "after_sha256": "815f2f2c84f3a0dad73d204583b468f87aec764df320f6a8c1fb79d820020223",
+      "before_bytes": 1529,
+      "before_sha256": "b02fd20395874401944a191fc8fb42b0133c3a6322ad477ff142c9009b8716a9",
+      "current_rebound_bytes": 1528,
+      "current_rebound_sha256": "815f2f2c84f3a0dad73d204583b468f87aec764df320f6a8c1fb79d820020223",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-a/_run_records/TASK_RUN_2026-04-30_0955_four-documents-p3.md"
+    },
+    {
+      "after_bytes": 1319,
+      "after_sha256": "7ada6d63955ca218f5e48a5c1baae6422c5d714382d7d782576788e5f9b9083e",
+      "before_bytes": 1320,
+      "before_sha256": "ae3eabe53ffdf906638f5d791048be87eff3886fd85216e5cd49f9775ce74fbf",
+      "current_rebound_bytes": 1319,
+      "current_rebound_sha256": "7ada6d63955ca218f5e48a5c1baae6422c5d714382d7d782576788e5f9b9083e",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-a/_run_records/TASK_RUN_2026-04-30_0955_lens-register.md"
+    },
+    {
+      "after_bytes": 1406,
+      "after_sha256": "4dbc0cddc9a1e65dfb0cf048eb9060e45a1078f5bfa729af4334f3743f8bf6da",
+      "before_bytes": 1407,
+      "before_sha256": "04f35aa43098127377e8c7e86bf901d88d076d20e6ceb927bc4b931187bc7583",
+      "current_rebound_bytes": 1406,
+      "current_rebound_sha256": "4dbc0cddc9a1e65dfb0cf048eb9060e45a1078f5bfa729af4334f3743f8bf6da",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-a/_run_records/TASK_RUN_2026-04-30_0955_semantic-matrix-build.md"
+    },
+    {
+      "after_bytes": 33364,
+      "after_sha256": "c0ce5a5d857aafe9feab5601d3623367287cb1519294bf659e31c31821213152",
+      "before_bytes": 33365,
+      "before_sha256": "498b59ea580e082f223a9010152cd8007be9a7a81b3dcf2bf1d1a43afe1a5efc",
+      "current_rebound_bytes": 33364,
+      "current_rebound_sha256": "c0ce5a5d857aafe9feab5601d3623367287cb1519294bf659e31c31821213152",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-b/_SEMANTIC.md"
+    },
+    {
+      "after_bytes": 21095,
+      "after_sha256": "eddcfda1d01fe33f4ccc061e0cc9bfcf0031d0626834fce7f22f257e485b1d59",
+      "before_bytes": 21096,
+      "before_sha256": "283046c7e8d8254c8434d69abd33a44489325157474af32df132599169931a69",
+      "current_rebound_bytes": 21095,
+      "current_rebound_sha256": "eddcfda1d01fe33f4ccc061e0cc9bfcf0031d0626834fce7f22f257e485b1d59",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-b/_SEMANTIC_LENSING.md"
+    },
+    {
+      "after_bytes": 1706,
+      "after_sha256": "93f37e9ecf5fc9fd6fe57ec3950ff81398182da86048b6828aae839519d5fdad",
+      "before_bytes": 1707,
+      "before_sha256": "f7aaab733aed8de772dbe1f9fe3ed60c2a47d9e8e0bf80479fdc58c38cb0f633",
+      "current_rebound_bytes": 1706,
+      "current_rebound_sha256": "93f37e9ecf5fc9fd6fe57ec3950ff81398182da86048b6828aae839519d5fdad",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-b/_run_records/TASK_RUN_2026-04-30_0955_four-documents-p1-p2.md"
+    },
+    {
+      "after_bytes": 1528,
+      "after_sha256": "815f2f2c84f3a0dad73d204583b468f87aec764df320f6a8c1fb79d820020223",
+      "before_bytes": 1529,
+      "before_sha256": "b02fd20395874401944a191fc8fb42b0133c3a6322ad477ff142c9009b8716a9",
+      "current_rebound_bytes": 1528,
+      "current_rebound_sha256": "815f2f2c84f3a0dad73d204583b468f87aec764df320f6a8c1fb79d820020223",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-b/_run_records/TASK_RUN_2026-04-30_0955_four-documents-p3.md"
+    },
+    {
+      "after_bytes": 1319,
+      "after_sha256": "7ada6d63955ca218f5e48a5c1baae6422c5d714382d7d782576788e5f9b9083e",
+      "before_bytes": 1320,
+      "before_sha256": "ae3eabe53ffdf906638f5d791048be87eff3886fd85216e5cd49f9775ce74fbf",
+      "current_rebound_bytes": 1319,
+      "current_rebound_sha256": "7ada6d63955ca218f5e48a5c1baae6422c5d714382d7d782576788e5f9b9083e",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-b/_run_records/TASK_RUN_2026-04-30_0955_lens-register.md"
+    },
+    {
+      "after_bytes": 1406,
+      "after_sha256": "4dbc0cddc9a1e65dfb0cf048eb9060e45a1078f5bfa729af4334f3743f8bf6da",
+      "before_bytes": 1407,
+      "before_sha256": "04f35aa43098127377e8c7e86bf901d88d076d20e6ceb927bc4b931187bc7583",
+      "current_rebound_bytes": 1406,
+      "current_rebound_sha256": "4dbc0cddc9a1e65dfb0cf048eb9060e45a1078f5bfa729af4334f3743f8bf6da",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-01/workspace-b/_run_records/TASK_RUN_2026-04-30_0955_semantic-matrix-build.md"
+    },
+    {
+      "after_bytes": 2262,
+      "after_sha256": "d3e4ae946196457c904ee8485b7cd50ef8c24bc7242d5a23546aa35659b5bdff",
+      "before_bytes": 2263,
+      "before_sha256": "d5db0f211732f61cfbb90130872c4cff56d1b59dd70ca0b4cadf9042721eae80",
+      "current_rebound_bytes": 2262,
+      "current_rebound_sha256": "d3e4ae946196457c904ee8485b7cd50ef8c24bc7242d5a23546aa35659b5bdff",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-a/_run_records/TASK_RUN_2026-04-30_0000_four-documents-p1-p2.md"
+    },
+    {
+      "after_bytes": 1345,
+      "after_sha256": "8a677f7cc2ce8629f03ec7c2e2d910241fc71f3f1321e9e88530b49ff945cb1c",
+      "before_bytes": 1346,
+      "before_sha256": "44ace8eb98d876b68ce91d870b314fc2636548fdc5f32d87b55d5ed47c8d2fa8",
+      "current_rebound_bytes": 1345,
+      "current_rebound_sha256": "8a677f7cc2ce8629f03ec7c2e2d910241fc71f3f1321e9e88530b49ff945cb1c",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-a/_run_records/TASK_RUN_2026-04-30_0001_semantic-matrix-build.md"
+    },
+    {
+      "after_bytes": 1276,
+      "after_sha256": "d1db780795cbb6c6c00e38aeff51aa89c87c7fb0ae43ca964934fa8933a2fad1",
+      "before_bytes": 1277,
+      "before_sha256": "a4396caa5c3bc2f068c5d17a9fcb775a3dd259b982140e10d941457de50f92e4",
+      "current_rebound_bytes": 1276,
+      "current_rebound_sha256": "d1db780795cbb6c6c00e38aeff51aa89c87c7fb0ae43ca964934fa8933a2fad1",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-a/_run_records/TASK_RUN_2026-04-30_0002_lens-register.md"
+    },
+    {
+      "after_bytes": 1704,
+      "after_sha256": "fcacfcc77f1811b3c10c20aa8a4a807171eaf380cd2cd5ca2cb0a3bf943a674b",
+      "before_bytes": 1705,
+      "before_sha256": "11073345ed621995eab71ebae8a2776d86638b55deea7519c47669e565dc9e58",
+      "current_rebound_bytes": 1704,
+      "current_rebound_sha256": "fcacfcc77f1811b3c10c20aa8a4a807171eaf380cd2cd5ca2cb0a3bf943a674b",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-a/_run_records/TASK_RUN_2026-04-30_0003_four-documents-p3.md"
+    },
+    {
+      "after_bytes": 2262,
+      "after_sha256": "d3e4ae946196457c904ee8485b7cd50ef8c24bc7242d5a23546aa35659b5bdff",
+      "before_bytes": 2263,
+      "before_sha256": "d5db0f211732f61cfbb90130872c4cff56d1b59dd70ca0b4cadf9042721eae80",
+      "current_rebound_bytes": 2262,
+      "current_rebound_sha256": "d3e4ae946196457c904ee8485b7cd50ef8c24bc7242d5a23546aa35659b5bdff",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-b/_run_records/TASK_RUN_2026-04-30_0000_four-documents-p1-p2.md"
+    },
+    {
+      "after_bytes": 1345,
+      "after_sha256": "8a677f7cc2ce8629f03ec7c2e2d910241fc71f3f1321e9e88530b49ff945cb1c",
+      "before_bytes": 1346,
+      "before_sha256": "44ace8eb98d876b68ce91d870b314fc2636548fdc5f32d87b55d5ed47c8d2fa8",
+      "current_rebound_bytes": 1345,
+      "current_rebound_sha256": "8a677f7cc2ce8629f03ec7c2e2d910241fc71f3f1321e9e88530b49ff945cb1c",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-b/_run_records/TASK_RUN_2026-04-30_0001_semantic-matrix-build.md"
+    },
+    {
+      "after_bytes": 1276,
+      "after_sha256": "d1db780795cbb6c6c00e38aeff51aa89c87c7fb0ae43ca964934fa8933a2fad1",
+      "before_bytes": 1277,
+      "before_sha256": "a4396caa5c3bc2f068c5d17a9fcb775a3dd259b982140e10d941457de50f92e4",
+      "current_rebound_bytes": 1276,
+      "current_rebound_sha256": "d1db780795cbb6c6c00e38aeff51aa89c87c7fb0ae43ca964934fa8933a2fad1",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-b/_run_records/TASK_RUN_2026-04-30_0002_lens-register.md"
+    },
+    {
+      "after_bytes": 1704,
+      "after_sha256": "fcacfcc77f1811b3c10c20aa8a4a807171eaf380cd2cd5ca2cb0a3bf943a674b",
+      "before_bytes": 1705,
+      "before_sha256": "11073345ed621995eab71ebae8a2776d86638b55deea7519c47669e565dc9e58",
+      "current_rebound_bytes": 1704,
+      "current_rebound_sha256": "fcacfcc77f1811b3c10c20aa8a4a807171eaf380cd2cd5ca2cb0a3bf943a674b",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/members/DEL-03-02/workspace-b/_run_records/TASK_RUN_2026-04-30_0003_four-documents-p3.md"
+    },
+    {
+      "after_bytes": 22301,
+      "after_sha256": "d49ba65e086c0b7bfb0444a4e262ada196c22d72d7de98303a35e82efbdb4225",
+      "before_bytes": 22302,
+      "before_sha256": "cf0e7d6b2d32d75c48919ce4bc216d8921656d288d2d2ff3e17ced906e70f837",
+      "current_rebound_bytes": 22301,
+      "current_rebound_sha256": "d49ba65e086c0b7bfb0444a4e262ada196c22d72d7de98303a35e82efbdb4225",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-VERIFY/members/DEL-03-01/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 31521,
+      "after_sha256": "11a125a780b54a3979f10789a13cfcfadfed946b2fb7d16ed0ca25a66355fdfd",
+      "before_bytes": 31522,
+      "before_sha256": "d145fcf38d948f7fd2af1ff3b7316806a1efeaddd2f5574b8c66593973011a12",
+      "current_rebound_bytes": 31521,
+      "current_rebound_sha256": "11a125a780b54a3979f10789a13cfcfadfed946b2fb7d16ed0ca25a66355fdfd",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-VERIFY/members/DEL-03-02/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 16204,
+      "after_sha256": "79ddb650b5616641fb9129cc98cec19f0fc70198cbf930bc989147b69c609f2a",
+      "before_bytes": 16205,
+      "before_sha256": "a9b35e3344542d0f5715a10e7d83c68ba515a5ca806a70fb1616dd71034fe895",
+      "current_rebound_bytes": 16204,
+      "current_rebound_sha256": "79ddb650b5616641fb9129cc98cec19f0fc70198cbf930bc989147b69c609f2a",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-VERIFY/members/DEL-03-03/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 23896,
+      "after_sha256": "420a2462880e6033a873475711c37a015e616d66876416a3e64128155de7bde7",
+      "before_bytes": 23897,
+      "before_sha256": "5e9d65444421b830aa6213cff2957af76410106d1ec6398447afc387cf6a97aa",
+      "current_rebound_bytes": 23896,
+      "current_rebound_sha256": "420a2462880e6033a873475711c37a015e616d66876416a3e64128155de7bde7",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-VERIFY/members/DEL-03-04/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 26786,
+      "after_sha256": "97493f89fb25c411c7eb611acbe41e51086631f149ad25e9c8db8a7fc4fc8653",
+      "before_bytes": 26787,
+      "before_sha256": "a3514364e179c25db8dcad82f1c65eec268a32401e22c95714d38d4d8e415b03",
+      "current_rebound_bytes": 26786,
+      "current_rebound_sha256": "97493f89fb25c411c7eb611acbe41e51086631f149ad25e9c8db8a7fc4fc8653",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-VERIFY/members/DEL-03-05/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 15083,
+      "after_sha256": "fe808cf043fc85ba1eb8b6732100ce399d6ab2ba966bcfb4bd4f17aba9865869",
+      "before_bytes": 15084,
+      "before_sha256": "b41493d929558b8c4b0ea3cd3e21787e9afd43c8418dda0b777ea61b8624dad6",
+      "current_rebound_bytes": 15083,
+      "current_rebound_sha256": "fe808cf043fc85ba1eb8b6732100ce399d6ab2ba966bcfb4bd4f17aba9865869",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-a/_SEMANTIC_LENSING.md"
+    },
+    {
+      "after_bytes": 1935,
+      "after_sha256": "675f52f74a4008c899b47454445b5f7668f460026e5db2cfc689f8c00ea12389",
+      "before_bytes": 1936,
+      "before_sha256": "55d58de44643aabf35e730b9fc50c3e8030f4a1d67666f9a0fdcfe9ca8837470",
+      "current_rebound_bytes": 1935,
+      "current_rebound_sha256": "675f52f74a4008c899b47454445b5f7668f460026e5db2cfc689f8c00ea12389",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-a/_run_records/TASK_RUN_2026-04-30_0951_dependency-extract.md"
+    },
+    {
+      "after_bytes": 1837,
+      "after_sha256": "ac83052b96b134078ca7a228ad54962ab5dd9cf3dd1a722396bf740f9e9cad5c",
+      "before_bytes": 1838,
+      "before_sha256": "29f3867c8523b13e7453cc6982a6958472ee08a048b58015734609400b3facb3",
+      "current_rebound_bytes": 1837,
+      "current_rebound_sha256": "ac83052b96b134078ca7a228ad54962ab5dd9cf3dd1a722396bf740f9e9cad5c",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-a/_run_records/TASK_RUN_2026-04-30_0951_four-documents-p1-p2.md"
+    },
+    {
+      "after_bytes": 1607,
+      "after_sha256": "36fedc097a26fafa447e67ef05be75e3d4f18931d48deb63a9dca1fad97499be",
+      "before_bytes": 1608,
+      "before_sha256": "d2a754866d2ee16b45bedeaf62024b8882b24db60aeb892786c725c7303ed8f7",
+      "current_rebound_bytes": 1607,
+      "current_rebound_sha256": "36fedc097a26fafa447e67ef05be75e3d4f18931d48deb63a9dca1fad97499be",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-a/_run_records/TASK_RUN_2026-04-30_0951_four-documents-p3.md"
+    },
+    {
+      "after_bytes": 1428,
+      "after_sha256": "4f843163f3bf6681b43d66e72e73e13125fa90b103f4580393f05bc5f1d8ee1f",
+      "before_bytes": 1429,
+      "before_sha256": "1e3b0effb8ad2300a9f7fae142db55c942c8669b3a7ee7ce4b90ef4cc441d2e8",
+      "current_rebound_bytes": 1428,
+      "current_rebound_sha256": "4f843163f3bf6681b43d66e72e73e13125fa90b103f4580393f05bc5f1d8ee1f",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-a/_run_records/TASK_RUN_2026-04-30_0951_lens-register.md"
+    },
+    {
+      "after_bytes": 1489,
+      "after_sha256": "6b952430f7a81fb723d97d53dab3929d2705e9775c8e8ae404f514db32435bf4",
+      "before_bytes": 1490,
+      "before_sha256": "63c705e7f60af032ec6d2e479bd0a2a70fe796f0fd8d869a49b8bc73a25a7852",
+      "current_rebound_bytes": 1489,
+      "current_rebound_sha256": "6b952430f7a81fb723d97d53dab3929d2705e9775c8e8ae404f514db32435bf4",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-a/_run_records/TASK_RUN_2026-04-30_0951_semantic-matrix-build.md"
+    },
+    {
+      "after_bytes": 15083,
+      "after_sha256": "fe808cf043fc85ba1eb8b6732100ce399d6ab2ba966bcfb4bd4f17aba9865869",
+      "before_bytes": 15084,
+      "before_sha256": "b41493d929558b8c4b0ea3cd3e21787e9afd43c8418dda0b777ea61b8624dad6",
+      "current_rebound_bytes": 15083,
+      "current_rebound_sha256": "fe808cf043fc85ba1eb8b6732100ce399d6ab2ba966bcfb4bd4f17aba9865869",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-b/_SEMANTIC_LENSING.md"
+    },
+    {
+      "after_bytes": 1935,
+      "after_sha256": "675f52f74a4008c899b47454445b5f7668f460026e5db2cfc689f8c00ea12389",
+      "before_bytes": 1936,
+      "before_sha256": "55d58de44643aabf35e730b9fc50c3e8030f4a1d67666f9a0fdcfe9ca8837470",
+      "current_rebound_bytes": 1935,
+      "current_rebound_sha256": "675f52f74a4008c899b47454445b5f7668f460026e5db2cfc689f8c00ea12389",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-b/_run_records/TASK_RUN_2026-04-30_0951_dependency-extract.md"
+    },
+    {
+      "after_bytes": 1837,
+      "after_sha256": "ac83052b96b134078ca7a228ad54962ab5dd9cf3dd1a722396bf740f9e9cad5c",
+      "before_bytes": 1838,
+      "before_sha256": "29f3867c8523b13e7453cc6982a6958472ee08a048b58015734609400b3facb3",
+      "current_rebound_bytes": 1837,
+      "current_rebound_sha256": "ac83052b96b134078ca7a228ad54962ab5dd9cf3dd1a722396bf740f9e9cad5c",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-b/_run_records/TASK_RUN_2026-04-30_0951_four-documents-p1-p2.md"
+    },
+    {
+      "after_bytes": 1607,
+      "after_sha256": "36fedc097a26fafa447e67ef05be75e3d4f18931d48deb63a9dca1fad97499be",
+      "before_bytes": 1608,
+      "before_sha256": "d2a754866d2ee16b45bedeaf62024b8882b24db60aeb892786c725c7303ed8f7",
+      "current_rebound_bytes": 1607,
+      "current_rebound_sha256": "36fedc097a26fafa447e67ef05be75e3d4f18931d48deb63a9dca1fad97499be",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-b/_run_records/TASK_RUN_2026-04-30_0951_four-documents-p3.md"
+    },
+    {
+      "after_bytes": 1428,
+      "after_sha256": "4f843163f3bf6681b43d66e72e73e13125fa90b103f4580393f05bc5f1d8ee1f",
+      "before_bytes": 1429,
+      "before_sha256": "1e3b0effb8ad2300a9f7fae142db55c942c8669b3a7ee7ce4b90ef4cc441d2e8",
+      "current_rebound_bytes": 1428,
+      "current_rebound_sha256": "4f843163f3bf6681b43d66e72e73e13125fa90b103f4580393f05bc5f1d8ee1f",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-b/_run_records/TASK_RUN_2026-04-30_0951_lens-register.md"
+    },
+    {
+      "after_bytes": 1489,
+      "after_sha256": "6b952430f7a81fb723d97d53dab3929d2705e9775c8e8ae404f514db32435bf4",
+      "before_bytes": 1490,
+      "before_sha256": "63c705e7f60af032ec6d2e479bd0a2a70fe796f0fd8d869a49b8bc73a25a7852",
+      "current_rebound_bytes": 1489,
+      "current_rebound_sha256": "6b952430f7a81fb723d97d53dab3929d2705e9775c8e8ae404f514db32435bf4",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/members/DEL-03-06/workspace-b/_run_records/TASK_RUN_2026-04-30_0951_semantic-matrix-build.md"
+    },
+    {
+      "after_bytes": 23222,
+      "after_sha256": "cf0a419fdc1bc08c0d1554efe4342f9b2f08509a14b84d44423207a812850100",
+      "before_bytes": 23223,
+      "before_sha256": "f7b4a474ec84ff3d166bdbb91c83d70c325ed2518f7df8ffe776968cd3c269e3",
+      "current_rebound_bytes": 23222,
+      "current_rebound_sha256": "cf0a419fdc1bc08c0d1554efe4342f9b2f08509a14b84d44423207a812850100",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/members/DEL-03-06/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 20465,
+      "after_sha256": "f87b738d359e60fb4c9e8108ba486ac137a01acc4f7d4a5e6515efd62cad13a9",
+      "before_bytes": 20466,
+      "before_sha256": "06d5a8d94f66da029ee4945a2165c8881aa28aca1def2524ac92aefbe742a7f9",
+      "current_rebound_bytes": 20465,
+      "current_rebound_sha256": "f87b738d359e60fb4c9e8108ba486ac137a01acc4f7d4a5e6515efd62cad13a9",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/members/DEL-03-07/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 25559,
+      "after_sha256": "623a32692a83cd0aa6187969aa9c2290c68a7aa3a0ccfbadb69de4cd011ed471",
+      "before_bytes": 25560,
+      "before_sha256": "c7afff51b36ed27688d508741d948d503ad4b4f635edc97df1921672e6aef6f3",
+      "current_rebound_bytes": 25559,
+      "current_rebound_sha256": "623a32692a83cd0aa6187969aa9c2290c68a7aa3a0ccfbadb69de4cd011ed471",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/members/DEL-03-08/negative_tests/mutated_clean.md"
+    },
+    {
+      "after_bytes": 1149,
+      "after_sha256": "4d4323ecc35f8e41f393b134450660105996fc6b8efe070efcee945a9e11a648",
+      "before_bytes": 1150,
+      "before_sha256": "84747699df09d3f0840b576de252273bc7eb47b4c2cf0b9aa59d8ecd0f607af5",
+      "current_rebound_bytes": 1411,
+      "current_rebound_sha256": "6e3b44c5a462ac658c3c183486e0f6aa470183556b7a15083de4bd9c8ea9a011",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration-accepted/HELP_HUMAN_ACCEPTANCE.md"
+    },
+    {
+      "after_bytes": 966,
+      "after_sha256": "e85f1b1b1883c280d7c27dce0905a2add6ddd4729a74031fe8974cf63a4249e6",
+      "before_bytes": 967,
+      "before_sha256": "8d662964ebd59c7b4f94ea3e07540c67d74ed52a37397c4c76ffada641a89f9a",
+      "current_rebound_bytes": 966,
+      "current_rebound_sha256": "e85f1b1b1883c280d7c27dce0905a2add6ddd4729a74031fe8974cf63a4249e6",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration/BASIS.md"
+    },
+    {
+      "after_bytes": 1784,
+      "after_sha256": "f52274a9f30f171843d2784fabf494ab37a78ddf15a67e63a9616681394da7fb",
+      "before_bytes": 1785,
+      "before_sha256": "7b878f3654c13e352d5828ba4d7db97ba61d266be6ff4bd5e27885cd0b1a7b25",
+      "current_rebound_bytes": 1784,
+      "current_rebound_sha256": "f52274a9f30f171843d2784fabf494ab37a78ddf15a67e63a9616681394da7fb",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration/CHECKS.md"
+    },
+    {
+      "after_bytes": 1721,
+      "after_sha256": "656b1c7b9b581c08e7082e65e86ad00281415d66381bab081ef380a140f328c3",
+      "before_bytes": 1722,
+      "before_sha256": "d9543fe1e08f4f52c4a00e3b0b979948a6a2556d059722fc291792fbef9f6e66",
+      "current_rebound_bytes": 1721,
+      "current_rebound_sha256": "656b1c7b9b581c08e7082e65e86ad00281415d66381bab081ef380a140f328c3",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration/EXCEPTION_DISPOSITIONS.md"
+    },
+    {
+      "after_bytes": 1128,
+      "after_sha256": "e9d1b7e95afba0fdf98e450d117dd1a4a1d69cbc78672a52be009b82014b8482",
+      "before_bytes": 1129,
+      "before_sha256": "7d4c7566078ef661c2eb12c67bdb0847fe3c07c761df647f2adfec7a6f65b0a3",
+      "current_rebound_bytes": 1128,
+      "current_rebound_sha256": "e9d1b7e95afba0fdf98e450d117dd1a4a1d69cbc78672a52be009b82014b8482",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-session-blocked/CONTINUATION_20260714_01.md"
+    },
+    {
+      "after_bytes": 1026,
+      "after_sha256": "616d37aca1a31b5032a5c7c2c77dc511ad92855dd30ebbb1b68533fc8db329e3",
+      "before_bytes": 1027,
+      "before_sha256": "2e21ce9f7b45466ff2ee8f1399e24390bb131f45ee5c0cf9e14bd03f32ada525",
+      "current_rebound_bytes": 1026,
+      "current_rebound_sha256": "616d37aca1a31b5032a5c7c2c77dc511ad92855dd30ebbb1b68533fc8db329e3",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-session-blocked/CONTINUATION_20260714_02.md"
+    },
+    {
+      "after_bytes": 3167,
+      "after_sha256": "d621ef2f1fd7c7d7aa4e7768f1feeb95b928ae15acd241632cdd41ff9d98e6ae",
+      "before_bytes": 3168,
+      "before_sha256": "7eef851bd3d7e621d74bd1b235052d526a0bd0eac055b6eebfee9543f7820ae6",
+      "current_rebound_bytes": 3167,
+      "current_rebound_sha256": "d621ef2f1fd7c7d7aa4e7768f1feeb95b928ae15acd241632cdd41ff9d98e6ae",
+      "exact_delta": "REMOVE_ONE_TERMINAL_LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-session-blocked/HANDOFF_STATE.md"
+    }
+  ],
+  "manifest_rebuilds": [
+    {
+      "after": "9f0bfa35d3e85f2d12c3ede6366e8acf8858d1c3b3e9796716a35652799a3b00",
+      "before": "9f0bfa35d3e85f2d12c3ede6366e8acf8858d1c3b3e9796716a35652799a3b00",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/MANIFEST.tsv",
+      "rows": 690
+    },
+    {
+      "after": "633d7439e5e01ec22eb8488963e1b3104ef12820e2ee52b44296149841f648c6",
+      "before": "633d7439e5e01ec22eb8488963e1b3104ef12820e2ee52b44296149841f648c6",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-VERIFY/MANIFEST.tsv",
+      "rows": 385
+    },
+    {
+      "after": "8b470c91c13e34beea1b4b9861dcb24ef3e732acc50a067b200497bc5de509b9",
+      "before": "8b470c91c13e34beea1b4b9861dcb24ef3e732acc50a067b200497bc5de509b9",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/MANIFEST.tsv",
+      "rows": 425
+    },
+    {
+      "after": "9ab04c9a379523514febb95197625ebb70813e95cd7cb984621c09b743f08e9d",
+      "before": "9ab04c9a379523514febb95197625ebb70813e95cd7cb984621c09b743f08e9d",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/MANIFEST.tsv",
+      "rows": 249
+    },
+    {
+      "after": "f1ae77e4f2517eaadcdf2b640577b1ff3e781b9a68f5f394f01d6e08a4cfbc0c",
+      "before": "f1ae77e4f2517eaadcdf2b640577b1ff3e781b9a68f5f394f01d6e08a4cfbc0c",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/MANIFEST.tsv",
+      "rows": 1861
+    },
+    {
+      "after": "4de90bb227f0db4cce3d99e03d269c0c20f6970c57ce6f506aa48a88fc7dda43",
+      "before": "4de90bb227f0db4cce3d99e03d269c0c20f6970c57ce6f506aa48a88fc7dda43",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration/MANIFEST.tsv",
+      "rows": 102
+    },
+    {
+      "after": "9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a",
+      "before": "9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration-accepted/MANIFEST.tsv",
+      "rows": 16
+    },
+    {
+      "after": "053e266f116cfe07580fb0645e41a3eb47d411f5a1725b98a2476a823f9b8ae2",
+      "before": "05d79e181e68fd4bb43c0497bc27c5f211e8003029f34de6c85e3f7c19b62716",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P1-PKG03/MANIFEST.tsv",
+      "rows": 6
+    },
+    {
+      "after": "f1ae77e4f2517eaadcdf2b640577b1ff3e781b9a68f5f394f01d6e08a4cfbc0c",
+      "before": "f1ae77e4f2517eaadcdf2b640577b1ff3e781b9a68f5f394f01d6e08a4cfbc0c",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/MANIFEST.tsv",
+      "rows": 1861
+    },
+    {
+      "after": "4de90bb227f0db4cce3d99e03d269c0c20f6970c57ce6f506aa48a88fc7dda43",
+      "before": "4de90bb227f0db4cce3d99e03d269c0c20f6970c57ce6f506aa48a88fc7dda43",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration/MANIFEST.tsv",
+      "rows": 102
+    },
+    {
+      "after": "9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a",
+      "before": "9d96e649cd45dc75bbb67abd390271875f3112c060afdc2fafa12efd90fc6f3a",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration-accepted/MANIFEST.tsv",
+      "rows": 16
+    }
+  ],
+  "normalized_files": 56,
+  "operation": "REMOVE_EXACTLY_ONE_TERMINAL_LF",
+  "preserved_head": "ce4ea40f2c290eb41b6f9cd29f49d0f54d74a5ca",
+  "schema": "chirality-deterministic-evidence-normalization/v1",
+  "semantic_project_candidate_change": false
+}

@@ -1,0 +1,11 @@
+kind	path	sha256	rows	verdict
+basis	git:main	5f124ad80fe84357f6dc33072dc4fbdbeb05d545		PASS
+preflight	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/preflight-r1/MANIFEST.tsv	3fad35f47088b1f1968bd2f8cef8b2fed3659891a4e96abffac88521fbb8ed77		PASS
+prior_recon	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P1/PKG03-preintegration/MANIFEST.tsv	4de90bb227f0db4cce3d99e03d269c0c20f6970c57ce6f506aa48a88fc7dda43	102	PASS
+manager	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/MANIFEST.tsv	f1ae77e4f2517eaadcdf2b640577b1ff3e781b9a68f5f394f01d6e08a4cfbc0c	1861	PASS
+child	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-AUTHOR/MANIFEST.tsv	9f0bfa35d3e85f2d12c3ede6366e8acf8858d1c3b3e9796716a35652799a3b00	690	PASS
+child	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-01-VERIFY/MANIFEST.tsv	633d7439e5e01ec22eb8488963e1b3104ef12820e2ee52b44296149841f648c6	385	PASS
+child	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-AUTHOR/MANIFEST.tsv	8b470c91c13e34beea1b4b9861dcb24ef3e732acc50a067b200497bc5de509b9	425	PASS
+child	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/MANIFEST.tsv	9ab04c9a379523514febb95197625ebb70813e95cd7cb984621c09b743f08e9d	249	PASS
+amendment	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/MANAGER-CHILD-TOPOLOGY-CLARIFICATION-001.md	81d45824c2076c83fb31ce700b9fbb92ce9abbd4902f67d32563cd665ac7925b		PASS
+historical_brief	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P1-PKG03/children/FULL-PACKAGE-VERIFY/LAUNCH_BRIEF.md	83931968d40513e9c7c415ec7c802766f44ed61131f4de4905d5e5f51796a912		HISTORICAL_ONLY

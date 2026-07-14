@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="11a125a780b54a3979f10789a13cfcfadfed946b2fb7d16ed0ca25a66355fdfd">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>11a125a780b54a3979f10789a13cfcfadfed946b2fb7d16ed0ca25a66355fdfd</code>.</p>
+<h1 id="scope-of-work-del-03-02">Scope of Work — DEL-03-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-02</code> in service of project scope [SOW-018] and package objectives [OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A pipe-section and component-library schema contract covering section geometry and properties, component identity, units, provenance, library governance, and explicit completeness diagnostics is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-source-preamble">CLM-001 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-03-02-DATASHEET</p>
+<p>doc_kind: deliverable.datasheet</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-03-02</p>
+<p>package_id: PKG-03</p>
+<p>---</p></blockquote>
+<h3 id="clm-002-datasheet-pipe-section-and-component-library-schema">CLM-002 — Datasheet: Pipe Section and Component Library Schema</h3>
+<blockquote><h4 id="datasheet-pipe-section-and-component-library-schema">Datasheet: Pipe Section and Component Library Schema</h4></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Evidence</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-02</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Context: DEL-03-02</td></tr>
+<tr><td>Name</td><td>Pipe section and component library schema</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Context: DEL-03-02</td></tr>
+<tr><td>Package</td><td>PKG-03 - Piping Components, Materials, and Library Data Model</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Package Reference</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Type</td></tr>
+<tr><td>Scope item</td><td>SOW-018</td><td>SourcePath: <code>docs/_Registers/ScopeLedger.csv</code>; SectionRef: row SOW-018</td></tr>
+<tr><td>Objective</td><td>OBJ-004</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: objective row OBJ-004</td></tr>
+<tr><td>Implemented schema artifacts</td><td><code>schemas/component.schema.yaml</code>; <code>schemas/section.schema.yaml</code></td><td>SourcePath: <code>schemas/component.schema.yaml</code>; SourcePath: <code>schemas/section.schema.yaml</code></td></tr>
+<tr><td>Decomposition basis</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Decomposition Reference</td></tr>
+<tr><td>Responsible party</td><td>TBD</td><td>Not assigned in accessible sources</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Evidence</td></tr>
+<tr><td>Primary subject</td><td>Private pipe section and component library records</td><td>SourcePath: <code>docs/_Registers/ScopeLedger.csv</code>; SectionRef: row SOW-018</td></tr>
+<tr><td>Required public boundary</td><td>No protected pipe dimensional tables, protected standards data, or proprietary catalog data are bundled as public defaults</td><td>SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-IP-1, OPS-K-DATA-1</td></tr>
+<tr><td>Section record intent</td><td>User-entered dimensions, weights/mass-property inputs, provenance, and redistribution status</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Description</td></tr>
+<tr><td>Component record intent</td><td>User-entered component dimensions, weights, centers of gravity, source/license metadata, and redistribution status</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Description</td></tr>
+<tr><td>Schema baseline</td><td>JSON Schema 2020-12 contracts</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Architecture Basis Injection</td></tr>
+<tr><td>Persistence baseline</td><td>Deterministic, versioned, unit-aware, provenance-preserving, schema-governed, migration-aware, and round-trip testable</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-04</td></tr>
+<tr><td>Diagnostics baseline</td><td>Diagnostics/result envelopes carry code, class, severity, source, affected object, message, remediation, and provenance</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-06</td></tr>
+<tr><td>Schema implementation evidence</td><td>Implemented with strict JSON Schema 2020-12 documents, split strict fixtures, combined legacy fixture pointers, and focused schema tests</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SourcePath: <code>fixtures/component/invented_section_library_valid.json</code>; SourcePath: <code>fixtures/component/invented_component_library_valid.json</code>; SourcePath: <code>fixtures/component/invented_section_component_library_valid.json</code>; SourcePath: <code>tests/test_component_section_schema.py</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Public repository artifacts must not contain protected standards text, tables, figures, examples, copied code formulas, material allowables, SIF/flexibility tables, protected dimensional tables, or proprietary commercial data. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-IP-1.</li>
+<li>- Public data contributions require source, provenance, license/redistribution status, contributor certification, and review disposition. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-IP-2.</li>
+<li>- Suspected protected content must be quarantined and escalated; agents must not paraphrase protected tables into public data. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-IP-3.</li>
+<li>- Code-specific and proprietary component/section values are user-supplied or lawfully imported private data, not bundled public defaults. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-DATA-1.</li>
+<li>- Missing solve-required or rule-check-required values are explicit findings, never silent defaults. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-DATA-2.</li>
+<li>- Component, section, SIF, flexibility, allowable, and rule-pack values carry provenance fields where applicable. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-DATA-3.</li>
+<li>- All dimensional, mass, weight, and property fields must be unit-aware and dimensionally checked. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-UNIT-1.</li>
+<li>- Private project, material, component, and rule-pack data must not be transmitted or committed publicly by default. SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-PRIV-1.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This deliverable now has repository-level schema implementation evidence. This reconciliation records the implemented artifacts without changing schemas, fixtures, tests, lifecycle files, dependency files, or review dispositions.</p>
+<table><tbody>
+<tr><td>Part</td><td>Status</td><td>Notes</td></tr>
+<tr><td><code>schemas/section.schema.yaml</code></td><td>Implemented evidence</td><td>Defines a strict pipe/section library schema with <code>schema_version</code>, <code>section_library</code>, <code>section_records</code>, <code>dimension_definitions</code>, <code>property_definitions</code>, <code>completeness_rules</code>, <code>diagnostics</code>, and <code>open_decisions</code>; it includes unit-bearing section dimension/property slots, provenance, redistribution status, review status, completeness findings, diagnostics, and open decisions.</td></tr>
+<tr><td><code>schemas/component.schema.yaml</code></td><td>Implemented evidence</td><td>Defines a strict component library schema with <code>schema_version</code>, <code>component_library</code>, <code>component_family_contracts</code>, <code>component_records</code>, <code>field_definitions</code>, <code>completeness_rules</code>, <code>diagnostics</code>, and <code>open_decisions</code>; it includes component-family contracts, user-entered field slots, protected-value policies, provenance, redistribution status, review status, completeness findings, diagnostics, and open decisions.</td></tr>
+<tr><td>Strict section fixture</td><td>Implemented evidence</td><td><code>fixtures/component/invented_section_library_valid.json</code> validates as schema-shape evidence and intentionally omits engineering values through <code>missing</code> value statuses, incomplete completeness findings, and diagnostics.</td></tr>
+<tr><td>Strict component fixture</td><td>Implemented evidence</td><td><code>fixtures/component/invented_component_library_valid.json</code> validates as schema-shape evidence for bend, branch, rigid, and expansion-joint component records while keeping engineering values absent or private/user-supplied only.</td></tr>
+<tr><td>Combined legacy fixture</td><td>Implemented pointer evidence</td><td><code>fixtures/component/invented_section_component_library_valid.json</code> carries section/component content plus references to the strict split fixtures; strict validation relies on the split fixtures.</td></tr>
+<tr><td>Test coverage</td><td>Implemented evidence</td><td><code>tests/test_component_section_schema.py</code> checks strict schema shape, provenance requirements, redistribution statuses, unit-dimension alignment with PKG-02, component enum equality with the canonical model enum, split fixture validation, and forbidden public-data text.</td></tr>
+<tr><td>Provenance metadata</td><td>Implemented schema mechanism; policy TBDs remain</td><td>Schemas require source/provenance, license, contributor certification, redistribution status, and review status. Accepted public source catalogs, source-license disposition, redistribution acceptance, and public contribution approval remain human/policy decisions.</td></tr>
+<tr><td>Unit-bearing value model</td><td>Implemented schema mechanism</td><td>Schemas define quantity-value slots with magnitude, unit, dimension, value status, and provenance; tests assert accepted dimension vocabulary alignment with <code>schemas/units.schema.yaml</code>.</td></tr>
+<tr><td>Protected-content gate hooks</td><td>Implemented schema/test guardrails; workflow policy TBDs remain</td><td>Schemas and fixtures represent protected-suspected/rejected states, protected-value policies, diagnostics, and no-public-value policies. Human review workflow and accepted source policy remain unresolved.</td></tr>
+<tr><td>Engineering values</td><td>Out of scope</td><td>No pipe dimensional table values, component catalog values, allowables, SIFs, flexibility factors, or code-derived values are introduced here.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code>, accepted basis for DEL-03-02.</li>
+<li>- <code>_REFERENCES.md</code>, local reference index for DEL-03-02.</li>
+<li>- <code>_DEPENDENCIES.md</code>, human-owned dependency declarations for DEL-03-02.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code>, row DEL-03-02.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code>, row SOW-018.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code>, row DEL-03-02.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, revision 0.7, especially PKG-03, DEL-03-02, OBJ-004, SOW-018, and AB-00-01/02/04/06/07/08.</li>
+<li>- <code>docs/CONTRACT.md</code>, invariant catalog.</li>
+<li>- <code>docs/TYPES.md</code>, epistemic labels and data provenance labels.</li>
+<li>- <code>docs/SPEC.md</code>, sections 1, 3, 10, and 11.</li>
+<li>- <code>docs/DIRECTIVE.md</code>, data-boundary and stop-rule basis.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-source-preamble">CLM-008 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-03-02-SPECIFICATION</p>
+<p>doc_kind: deliverable.specification</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-03-02</p>
+<p>package_id: PKG-03</p>
+<p>---</p></blockquote>
+<h3 id="clm-009-specification-pipe-section-and-component-library-schema">CLM-009 — Specification: Pipe Section and Component Library Schema</h3>
+<blockquote><h4 id="specification-pipe-section-and-component-library-schema">Specification: Pipe Section and Component Library Schema</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-03-02 defines the pipe section and component library schema artifacts listed in the decomposition: <code>schemas/section.schema.yaml</code> and <code>schemas/component.schema.yaml</code>. The schema subject is private library records for user-entered dimensions, weights, centers of gravity, stiffness/modifier slots, source/license metadata, provenance, redistribution status, review status, completeness findings, diagnostics, and open decisions.</p>
+<p>The repository-level schema files, strict split fixtures, legacy combined fixture pointer, and focused schema tests are implemented evidence for this deliverable. This reconciliation does not edit those repository-level artifacts, does not add public pipe dimensional tables, does not add component catalog values, and does not resolve human-owned policy decisions for public source catalogs, fixture values, redistribution acceptance, dependency satisfaction, lifecycle, or review disposition.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Evidence</td></tr>
+<tr><td>DEL-03-02-REQ-01</td><td>The section schema supports private pipe section library records with provenance and redistribution status.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: top-level <code>section_library</code>, <code>section_records</code>, <code>$defs.Provenance</code>, <code>$defs.RedistributionStatus</code></td></tr>
+<tr><td>DEL-03-02-REQ-02</td><td>The component schema supports private component library records with user-entered dimensions, weights, centers of gravity, stiffness/modifier slots, source/license metadata, provenance, and redistribution status.</td><td>SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: top-level <code>component_library</code>, <code>component_family_contracts</code>, <code>component_records</code>, <code>field_definitions</code>, <code>$defs.ComponentFieldKind</code>, <code>$defs.Provenance</code></td></tr>
+<tr><td>DEL-03-02-REQ-03</td><td>Public schema and fixture artifacts do not bundle protected dimensional tables, protected standards data, proprietary catalog data, material allowables, SIF/flexibility tables, or code-derived values.</td><td>SourcePath: <code>tests/test_component_section_schema.py</code>; SectionRef: <code>FORBIDDEN_PUBLIC_DATA_TEXT</code>; SourcePath: <code>fixtures/component/invented_section_library_valid.json</code>; SourcePath: <code>fixtures/component/invented_component_library_valid.json</code></td></tr>
+<tr><td>DEL-03-02-REQ-04</td><td>Schema and fixture evidence preserve missing required values as explicit value statuses, completeness findings, diagnostics, or validation failures rather than silent defaults.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: <code>$defs.CompletenessFinding</code>, <code>$defs.SectionDiagnostic</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: <code>$defs.CompletenessFinding</code>, <code>$defs.ComponentDiagnostic</code>; SourcePath: <code>tests/test_component_section_schema.py</code></td></tr>
+<tr><td>DEL-03-02-REQ-05</td><td>Library records carry provenance metadata for values that may affect engineering reliance, including source and redistribution/license status.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: <code>$defs.Provenance</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: <code>$defs.Provenance</code></td></tr>
+<tr><td>DEL-03-02-REQ-06</td><td>Unit-bearing dimensional, weight, mass-property, center-of-gravity, stiffness, and property fields are unit-aware and dimensionally checked against accepted unit dimensions.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: <code>$defs.QuantityValue</code>, <code>$defs.SectionDimension</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: <code>$defs.QuantityValue</code>, <code>$defs.ComponentQuantityDimension</code>; SourcePath: <code>tests/test_component_section_schema.py</code></td></tr>
+<tr><td>DEL-03-02-REQ-07</td><td>Suspected protected content is representable as protected-suspected/quarantined/rejected state or protected-content diagnostics, not accepted as public library content.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: <code>$defs.RedistributionStatus</code>, <code>$defs.ReviewStatus</code>, <code>$defs.SectionDiagnosticCode</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: <code>$defs.RedistributionStatus</code>, <code>$defs.ReviewStatus</code>, <code>$defs.ComponentDiagnosticCode</code></td></tr>
+<tr><td>DEL-03-02-REQ-08</td><td>The schema artifacts align with JSON Schema 2020-12 and remain schema-first; service-facing command/query/job result-envelope integration is governed by adjacent architecture deliverables.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: <code>$schema</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: <code>$schema</code>; SourcePath: <code>_CONTEXT.md</code>; SectionRef: Architecture Basis Injection</td></tr>
+<tr><td>DEL-03-02-REQ-09</td><td>Persistence-facing records are versioned, unit-aware, provenance-preserving, schema-governed, and testable as strict schema instances. Broader migration and round-trip persistence behavior remains governed outside this reconciliation scope.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SourcePath: <code>tests/test_component_section_schema.py</code>; SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-04</td></tr>
+<tr><td>DEL-03-02-REQ-10</td><td>Library import/export or adapter-facing use shall preserve internal/public API boundaries and shall not bypass validation, provenance, redistribution, diagnostics, or public/private data boundaries. Concrete import formats remain <code>TBD</code>.</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-07; SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: <code>$defs.OpenDecision</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: <code>$defs.OpenDecision</code></td></tr>
+<tr><td>DEL-03-02-REQ-11</td><td>Diagnostics for invalid, incomplete, private, unknown-source, or suspected protected library records include code, class, severity, source, affected object, message, remediation, and provenance where applicable.</td><td>SourcePath: <code>schemas/section.schema.yaml</code>; SectionRef: <code>$defs.SectionDiagnostic</code>; SourcePath: <code>schemas/component.schema.yaml</code>; SectionRef: <code>$defs.ComponentDiagnostic</code>; SourcePath: <code>fixtures/component/invented_section_library_valid.json</code>; SourcePath: <code>fixtures/component/invented_component_library_valid.json</code></td></tr>
+<tr><td>DEL-03-02-REQ-12</td><td>Current tests include schema validation, unit-dimension checks, provenance/redistribution gates, protected-content text checks, split fixture validation, and regression coverage for PKG-02 enum/dimension compatibility. Persistence round-trip coverage remains governed outside this reconciliation scope.</td><td>SourcePath: <code>tests/test_component_section_schema.py</code></td></tr>
+<tr><td>DEL-03-02-REQ-13</td><td>Exact schema filenames are <code>schemas/component.schema.yaml</code> and <code>schemas/section.schema.yaml</code>; this reconciliation run shall not edit repository-level schema artifacts.</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: artifact list; SourcePath: <code>schemas/component.schema.yaml</code>; SourcePath: <code>schemas/section.schema.yaml</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected external engineering standards, code clauses, tables, examples, or proprietary data are incorporated into this deliverable.</p>
+<p>Applicable internal standards and baselines:</p>
+<ul>
+<li>- <code>docs/CONTRACT.md</code>: OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-PRIV-1, OPS-K-GOV-4, OPS-K-AGENT-1 through OPS-K-AGENT-4.</li>
+<li>- <code>docs/TYPES.md</code>: epistemic labels and data provenance labels.</li>
+<li>- <code>docs/SPEC.md</code>: domain objects, schema-governed development workflow, and acceptance semantics.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7: SOW-018, OBJ-004, and architecture basis AB-00-01, AB-00-02, AB-00-04, AB-00-06, AB-00-07, AB-00-08.</li>
+<li>- JSON Schema 2020-12 is the accepted schema-contract basis; this document does not reproduce external specification text.</li>
+</ul></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>REQ-01, REQ-02, REQ-13</td><td>Review implemented schema files for section/component record coverage and traceability to DEL-03-02.</td></tr>
+<tr><td>REQ-03, REQ-07</td><td>Protected-content review confirms no protected tables, code-derived values, proprietary catalog defaults, or private data are present in public artifacts.</td></tr>
+<tr><td>REQ-04</td><td>Schema and validation tests confirm missing required values become validation findings, not defaults.</td></tr>
+<tr><td>REQ-05</td><td>Provenance/redistribution tests confirm required source and status fields exist and are not silently omitted.</td></tr>
+<tr><td>REQ-06</td><td>Unit-schema tests confirm dimensional and mass-property fields are unit-bearing and dimensionally checked.</td></tr>
+<tr><td>REQ-08, REQ-09, REQ-10</td><td>Architecture review confirms schema-first, deterministic, persistence-aware, and boundary-preserving behavior.</td></tr>
+<tr><td>REQ-11</td><td>Diagnostic tests confirm incomplete, unknown-source, private, and suspected-protected records produce governed diagnostics.</td></tr>
+<tr><td>REQ-12</td><td>Test review confirms schema, unit, provenance, protected-content, split-fixture, and compatibility regression gates are represented; persistence round-trip coverage remains outside this reconciliation scope.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Implemented artifacts and open items:</p>
+<ul>
+<li>- <code>schemas/section.schema.yaml</code> implements schema versioning, unit-bearing section dimension/property fields, provenance/redistribution metadata, review status, completeness status, diagnostics, and open decisions.</li>
+<li>- <code>schemas/component.schema.yaml</code> implements schema versioning, component-library record identity, component-family contracts, user-entered dimensions/weights/COG/stiffness/modifier slots, provenance/redistribution metadata, review status, completeness status, diagnostics, and open decisions.</li>
+<li>- <code>fixtures/component/invented_section_library_valid.json</code> and <code>fixtures/component/invented_component_library_valid.json</code> are strict invented/public-safe fixtures with engineering values intentionally omitted.</li>
+<li>- <code>fixtures/component/invented_section_component_library_valid.json</code> remains legacy combined evidence and points to the strict split fixtures.</li>
+<li>- <code>tests/test_component_section_schema.py</code> is the focused verification surface for schema/fixture compatibility.</li>
+<li>- Public source catalogs, public fixture value policy, source/license disposition, redistribution acceptance, dependency satisfaction, human review disposition, lifecycle state, and persistence round-trip notes remain <code>TBD</code> or governed outside this reconciliation scope.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted source requirements for unit-aware, provenance-bearing pipe and component records, rights-safe public fixtures, private data boundaries, explicit unknowns, and no silent engineering defaults.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-source-preamble">CLM-015 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-03-02-PROCEDURE</p>
+<p>doc_kind: deliverable.procedure</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-03-02</p>
+<p>package_id: PKG-03</p>
+<p>---</p></blockquote>
+<h3 id="clm-016-procedure-pipe-section-and-component-library-schema">CLM-016 — Procedure: Pipe Section and Component Library Schema</h3>
+<blockquote><h4 id="procedure-pipe-section-and-component-library-schema">Procedure: Pipe Section and Component Library Schema</h4></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to maintain and reconcile DEL-03-02 schema evidence without introducing protected tables, proprietary catalog data, invented engineering values, or unsupported compliance claims.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed DEL-03-02 context with write scope limited to the current authorized files.</li>
+<li>- Register rows for DEL-03-02, SOW-018, and ContextBudgetQA row DEL-03-02.</li>
+<li>- Applicable contract invariants from <code>docs/CONTRACT.md</code>, especially IP, provenance, unit safety, privacy, governance review, and agent epistemic constraints.</li>
+<li>- Architecture basis AB-00-01, AB-00-02, AB-00-04, AB-00-06, AB-00-07, and AB-00-08.</li>
+<li>- Implemented evidence in <code>schemas/section.schema.yaml</code>, <code>schemas/component.schema.yaml</code>, <code>fixtures/component/invented_section_library_valid.json</code>, <code>fixtures/component/invented_component_library_valid.json</code>, <code>fixtures/component/invented_section_component_library_valid.json</code>, and <code>tests/test_component_section_schema.py</code>.</li>
+<li>- Human-owned dependency declarations are not tracked in <code>_DEPENDENCIES.md</code>; no explicit upstream/downstream list is available.</li>
+</ul></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm identity and boundary.</p>
+<ul>
+<li>- Verify deliverable ID <code>DEL-03-02</code>, package <code>PKG-03</code>, type <code>DATA_MODEL_CHANGE</code>, scope item <code>SOW-018</code>, and objective <code>OBJ-004</code>.</li>
+<li>- Confirm whether the active brief allows repository-level schema edits. If not, reconcile documentation evidence only.</li>
+</ul>
+<p>2. Gather governing source slices.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, register rows, decomposition row DEL-03-02, SOW-018, OBJ-004, and applicable contract invariants when they are in scope.</li>
+<li>- Read the implemented evidence files named in the prerequisites.</li>
+<li>- Use only accessible local governance, decomposition, schema, fixture, and test sources for evidence.</li>
+</ul>
+<p>3. Reconcile schema intent against implemented evidence.</p>
+<ul>
+<li>- Identify implemented record classes: section library record and component library record.</li>
+<li>- Record implemented concepts: identity, schema version, user-entered dimensions/weights/COG/stiffness/modifier slots where applicable, unit-bearing values, provenance, redistribution status, review status, completeness status, diagnostics hooks, open decisions, and protected-value policies.</li>
+<li>- Preserve human-owned policy/source/catalog/fixture-value/dependency/lifecycle/review-disposition items as <code>TBD</code>.</li>
+</ul>
+<p>4. Apply data-boundary rules.</p>
+<ul>
+<li>- Reject protected standards text, protected dimensional tables, proprietary catalog data, code-derived values, copied formulas, and private project data as public defaults.</li>
+<li>- Mark suspected protected content for quarantine and human review.</li>
+</ul>
+<p>5. Map requirements to verification.</p>
+<ul>
+<li>- For each requirement, identify implemented schema validation, unit check, provenance gate, protected-content gate, split-fixture validation, compatibility regression, round-trip test, or architecture review evidence.</li>
+<li>- Use invented/public-safe fixtures only.</li>
+</ul>
+<p>6. Perform consistency review.</p>
+<ul>
+<li>- Confirm Datasheet, Specification, Guidance, and Procedure use consistent terms: section library record, component library record, provenance, redistribution status, unit-aware value, protected-content gate, and private/public data boundary.</li>
+<li>- Convert unsupported details to <code>TBD</code>, <code>ASSUMPTION</code>, or a Conflict Table entry.</li>
+</ul>
+<p>7. Stop and escalate when needed.</p>
+<ul>
+<li>- Stop if implementation would require protected tables, proprietary data, code-derived defaults, legal conclusions about redistribution rights, or professional/certification claims.</li>
+</ul></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- The four active documents exist and retain required sections.</li>
+<li>- No repo-level schema files are edited unless the active sealed brief authorizes them.</li>
+<li>- No protected dimensional tables, standards data, proprietary catalog values, or invented engineering values are introduced.</li>
+<li>- Unknown policy/source/catalog/fixture-value/dependency/lifecycle/review-disposition items remain <code>TBD</code>.</li>
+<li>- Requirements cite accessible sources or are labeled as assumptions.</li>
+<li>- Dependency extraction artifacts and lifecycle state remain unchanged unless explicitly in scope.</li>
+</ul></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> record active deliverable evidence.</li>
+<li>- <code>_SEMANTIC.md</code> records the semantic lens generated for this deliverable.</li>
+<li>- <code>_SEMANTIC_LENSING.md</code> records warranted enrichment items.</li>
+<li>- <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> record extracted dependency evidence.</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code> records the required sequence, QA checks, missing inputs, and human rulings needed.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, pipe-section and component record coverage, units and provenance, public/private data controls, missing-value diagnostics, deterministic persistence compatibility, and unresolved policy decisions.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-source-preamble">CLM-022 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-03-02-GUIDANCE</p>
+<p>doc_kind: deliverable.guidance</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-03-02</p>
+<p>package_id: PKG-03</p>
+<p>---</p></blockquote>
+<h3 id="clm-023-guidance-pipe-section-and-component-library-schema">CLM-023 — Guidance: Pipe Section and Component Library Schema</h3>
+<blockquote><h4 id="guidance-pipe-section-and-component-library-schema">Guidance: Pipe Section and Component Library Schema</h4></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This guidance explains how to use and extend the implemented DEL-03-02 schema evidence. The deliverable enables private pipe section and component libraries while preserving provenance, redistribution status, review status, unit safety, completeness findings, diagnostics, and the public/private data boundary.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the schema as a carrier for user/private or lawfully redistributable library records, not as a source of public engineering tables.</li>
+<li>- Keep protected dimensional tables, protected standards content, proprietary catalog values, allowables, SIFs, flexibility factors, and code-derived values out of public defaults.</li>
+<li>- Make missing values visible as validation findings, completeness flags, or diagnostics; do not fill them silently.</li>
+<li>- Require provenance and redistribution status wherever a value could affect engineering reliance or public contribution review.</li>
+<li>- Keep dimensional and mass-property values unit-aware.</li>
+<li>- Separate detailed component-family mechanics from the generic library schema unless a sealed adjacent DEL-03 deliverable authorizes specialization.</li>
+</ul></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- This reconciliation records implemented evidence in <code>schemas/component.schema.yaml</code>, <code>schemas/section.schema.yaml</code>, the strict split fixtures, the combined legacy fixture pointer, and <code>tests/test_component_section_schema.py</code>; it does not edit those repository-level artifacts.</li>
+<li>- SOW-018 is narrower than several adjacent PKG-03 deliverables. The component schema includes generic bend, branch, rigid, and expansion-joint family contracts and slots, but detailed mechanics, accepted values, and editor behavior remain outside this reconciliation scope.</li>
+<li>- Provenance and redistribution schema mechanisms distinguish private, public-permissive, unknown-source, protected-suspected, rejected, pending, accepted, and quarantined states. Accepted public source catalogs, source/license disposition, redistribution acceptance, and public fixture value policy remain <code>TBD</code>.</li>
+<li>- Public example data must be invented, original, public-domain, or otherwise supported by documented redistribution rights.</li>
+<li>- If any implementation needs a protected source table to define defaults, stop and route the value to user-supplied/private data handling instead.</li>
+</ul></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Conservative position</td></tr>
+<tr><td>Exact field names</td><td>Implemented schema field names are evidence; changes require a sealed schema review.</td></tr>
+<tr><td>Component-family depth</td><td>Keep generic family contracts and schema slots here; defer detailed mechanics and accepted engineering values to their owning DEL-03 deliverables.</td></tr>
+<tr><td>Default dimensional values</td><td>Do not provide. Public defaults risk protected-table or proprietary-data leakage.</td></tr>
+<tr><td>Provenance strictness</td><td>Prefer explicit <code>unknown</code>, <code>protected_suspected</code>, <code>quarantined</code>, or <code>TBD</code> over weak inferred source claims.</td></tr>
+<tr><td>Public contribution acceptance</td><td>Requires documented rights and review; schema can support the metadata but does not itself approve contribution.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<ul>
+<li>- Safe example approach: use invented pipe section/component records in tests with engineering values omitted or clearly non-engineering, plus explicit provenance/review status.</li>
+<li>- Unsafe example approach: copying nominal pipe dimensions, vendor catalog weights, protected code tables, or proprietary component geometry into public fixtures.</li>
+</ul></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-03-02-CF-001</td><td><code>_CONTEXT.md</code> identifies SOFTWARE_DECOMP revision 0.7, while <code>_REFERENCES.md</code> still describes the decomposition reference as accepted v0.2.</td><td><code>_CONTEXT.md#Decomposition Reference</code></td><td><code>_REFERENCES.md#Decomposition and Registers</code></td><td>Datasheet References; Procedure Records</td><td>Treat <code>_CONTEXT.md</code> and sealed brief revision 0.7 as current basis for this run; route <code>_REFERENCES.md</code> cleanup to a metadata owner because it is outside the four-doc write target.</td><td>RESOLVED_BY_HUMAN: current <code>_CONTEXT.md</code> and <code>_REFERENCES.md</code> both cite SOFTWARE_DECOMP revision 0.7; prior v0.2 reference is stale/superseded.</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-018 OBJ-004</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

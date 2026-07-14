@@ -1,0 +1,16 @@
+sequence	deliverable_id	stage	started_utc	finished_utc	result	retries	remediation	blocker	waiver	evidence	terminal
+1	DEL-03-06	precheck	2026-07-14T08:24:46Z	2026-07-14T08:24:46Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-03-06/FROZEN_ROW.tsv;members/DEL-03-06/SOURCE_HASHES.tsv
+1	DEL-03-06	conversion	2026-07-14T08:24:46Z	2026-07-14T08:24:46Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-06/DETERMINISM.tsv
+1	DEL-03-06	finalization	2026-07-14T08:24:46Z	2026-07-14T08:24:46Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-06/final-a/report.json;members/DEL-03-06/DETERMINISM.tsv
+1	DEL-03-06	validation_mapping_qa	2026-07-14T08:24:46Z	2026-07-14T08:24:47Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-06/validation-sow-v1.json;members/DEL-03-06/parity-a.json;members/DEL-03-06/checklist-a.json;members/DEL-03-06/negative-*.exit
+1	DEL-03-06	postcheck_terminal	2026-07-14T08:24:47Z	2026-07-14T08:24:47Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-03-06/SOURCE_HASHES.tsv
+2	DEL-03-07	precheck	2026-07-14T08:24:47Z	2026-07-14T08:24:47Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-03-07/FROZEN_ROW.tsv;members/DEL-03-07/SOURCE_HASHES.tsv
+2	DEL-03-07	conversion	2026-07-14T08:24:47Z	2026-07-14T08:24:47Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-07/DETERMINISM.tsv
+2	DEL-03-07	finalization	2026-07-14T08:24:47Z	2026-07-14T08:24:48Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-07/final-a/report.json;members/DEL-03-07/DETERMINISM.tsv
+2	DEL-03-07	validation_mapping_qa	2026-07-14T08:24:48Z	2026-07-14T08:24:49Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-07/validation-sow-v1.json;members/DEL-03-07/parity-a.json;members/DEL-03-07/checklist-a.json;members/DEL-03-07/negative-*.exit
+2	DEL-03-07	postcheck_terminal	2026-07-14T08:24:49Z	2026-07-14T08:24:49Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-03-07/SOURCE_HASHES.tsv
+3	DEL-03-08	precheck	2026-07-14T08:24:49Z	2026-07-14T08:24:49Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-03-08/FROZEN_ROW.tsv;members/DEL-03-08/SOURCE_HASHES.tsv
+3	DEL-03-08	conversion	2026-07-14T08:24:49Z	2026-07-14T08:24:49Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-08/DETERMINISM.tsv
+3	DEL-03-08	finalization	2026-07-14T08:24:49Z	2026-07-14T08:24:49Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-08/final-a/report.json;members/DEL-03-08/DETERMINISM.tsv
+3	DEL-03-08	validation_mapping_qa	2026-07-14T08:24:49Z	2026-07-14T08:24:50Z	PASS	0	PASS	NONE	NONE	NO	members/DEL-03-08/validation-sow-v1.json;members/DEL-03-08/parity-a.json;members/DEL-03-08/checklist-a.json;members/DEL-03-08/negative-*.exit
+3	DEL-03-08	postcheck_terminal	2026-07-14T08:24:50Z	2026-07-14T08:24:50Z	PASS	0	PASS	NONE	NONE	YES	members/DEL-03-08/SOURCE_HASHES.tsv

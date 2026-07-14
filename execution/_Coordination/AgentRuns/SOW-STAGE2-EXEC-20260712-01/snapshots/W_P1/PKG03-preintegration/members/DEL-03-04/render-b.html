@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="420a2462880e6033a873475711c37a015e616d66876416a3e64128155de7bde7">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>420a2462880e6033a873475711c37a015e616d66876416a3e64128155de7bde7</code>.</p>
+<h1 id="scope-of-work-del-03-04">Scope of Work — DEL-03-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-04</code> in service of project scope [SOW-008] and package objectives [OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A branch-connection component-model contract defining geometry, run and branch identities, section and stiffness inputs, units, provenance, completeness, and diagnostics is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-04-branch-connection-component-model-fields">CLM-001 — Datasheet: DEL-03-04 Branch connection component model fields</h3>
+<blockquote><h4 id="datasheet-del-03-04-branch-connection-component-model-fields">Datasheet: DEL-03-04 Branch connection component model fields</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-04</td></tr>
+<tr><td>Package ID</td><td>PKG-03</td></tr>
+<tr><td>Package name</td><td>Piping Components, Materials, and Library Data Model</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-008</td></tr>
+<tr><td>Objective</td><td>OBJ-004</td></tr>
+<tr><td>Anticipated artifacts</td><td>branch component model; validation tests</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<p>The branch connection component model is now evidenced by the strict component</p>
+<p>library schema, invented component fixture, and schema test coverage:</p>
+<ul>
+<li>- <code>schemas/component.schema.yaml</code> defines branch component field kinds for</li>
+</ul>
+<p>branch run size, branch header size, connection angle, connection type,</p>
+<p>reinforcement area, reinforcement reference, branch geometry source</p>
+<p>reference, user SIF value, and user flexibility-factor value.</p>
+<ul>
+<li>- <code>fixtures/component/invented_component_library_valid.json</code> carries a branch</li>
+</ul>
+<p>component-family contract with geometry field kinds, rule-modifier field</p>
+<p>kinds, source metadata field kinds, mechanics-interface metadata, and</p>
+<p><code>protected_value_policy: schema_slots_only</code>.</p>
+<ul>
+<li>- The same fixture carries an invented branch record whose public field slots</li>
+</ul>
+<p>are intentionally <code>missing</code> and provenance-bearing, with schema-shape-only or</p>
+<p>no-public-code-specific-value policies.</p>
+<ul>
+<li>- <code>tests/test_component_section_schema.py</code> asserts branch enum coverage,</li>
+</ul>
+<p>branch family-contract coverage, branch fixture field coverage, branch</p>
+<p>completeness diagnostics, component diagnostic <code>class</code>/<code>source</code> fields, and</p>
+<p>protected-content denylist coverage.</p>
+<p>No protected branch connection tables, SIF tables, flexibility tables, code</p>
+<p>formulas, dimensional tables, copied engineering examples, proprietary catalog</p>
+<p>values, or bundled public branch defaults are included. Remaining <code>TBD</code> items</p>
+<p>are policy/source decisions rather than absence of the implemented schema</p>
+<p>surface.</p></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Source</td><td>Status</td></tr>
+<tr><td>Component model shall support branch connections with user-entered reinforcement, SIF, flexibility, and local data fields.</td><td>docs/_Registers/ScopeLedger.csv row SOW-008; execution/_Decomposition/SOFTWARE_DECOMP.md rows SOW-008 and DEL-03-04</td><td>In scope</td></tr>
+<tr><td>Public repository must not contain protected standards text, protected tables, copied formulas, or protected branch/SIF/flexibility data.</td><td>docs/CONTRACT.md OPS-K-IP-1, OPS-K-IP-3</td><td>Constraint</td></tr>
+<tr><td>Code-specific values are user-supplied or lawfully imported private data, not bundled public defaults.</td><td>docs/CONTRACT.md OPS-K-DATA-1</td><td>Constraint</td></tr>
+<tr><td>Missing solve-required or rule-check-required values are findings, not silent defaults.</td><td>docs/CONTRACT.md OPS-K-DATA-2</td><td>Constraint</td></tr>
+<tr><td>Materials, components, SIFs, flexibility factors, allowables, and rule-pack values carry provenance fields.</td><td>docs/CONTRACT.md OPS-K-DATA-3</td><td>Constraint</td></tr>
+<tr><td>Calculations, formulas, imported values, and exports must be unit-aware and dimensionally checked.</td><td>docs/CONTRACT.md OPS-K-UNIT-1</td><td>Constraint</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The implemented evidence is schema-first and repository-level:</p>
+<ul>
+<li>- <code>schemas/component.schema.yaml</code> exposes a JSON Schema 2020-12 component</li>
+</ul>
+<p>library contract with <code>component_library</code>, <code>component_family_contracts</code>,</p>
+<p><code>component_records</code>, <code>field_definitions</code>, <code>completeness_rules</code>,</p>
+<p><code>diagnostics</code>, and <code>open_decisions</code>.</p>
+<ul>
+<li>- Branch dimensional fields use <code>ComponentQuantityDimension</code> values that remain</li>
+</ul>
+<p>constrained to the accepted unit dimension vocabulary exercised by the schema</p>
+<p>test.</p>
+<ul>
+<li>- Branch diagnostics include <code>BRANCH_GEOMETRY_INCOMPLETE</code>,</li>
+</ul>
+<p><code>BRANCH_REINFORCEMENT_DATA_MISSING</code>, and <code>BRANCH_RULE_INPUT_MISSING</code>; the</p>
+<p>component diagnostic shape requires <code>class</code>, <code>source</code>, affected reference,</p>
+<p>message, remediation, and provenance.</p>
+<ul>
+<li>- The invented branch fixture records missing branch run/header/angle,</li>
+</ul>
+<p>reinforcement reference, user SIF, and user flexibility-factor inputs as</p>
+<p>blocking completeness evidence instead of silent defaults.</p>
+<p>This reconciliation records that implementation evidence. It does not edit</p>
+<p>repo-level schema, fixture, test, code, DAG, dependency, review-disposition, or</p>
+<p>lifecycle files.</p></blockquote>
+<h3 id="clm-006-remaining-tbds">CLM-006 — Remaining TBDs</h3>
+<blockquote><h5 id="remaining-tbds">Remaining TBDs</h5>
+<ul>
+<li>- Accepted public branch component source catalogs remain <code>TBD</code>.</li>
+<li>- Public branch fixture-value policy remains <code>TBD</code>; current public fixture</li>
+</ul>
+<p>values are schema-shape-only or omitted.</p>
+<ul>
+<li>- Standard-specific branch interpretation, local-check methods, concrete import</li>
+</ul>
+<p>formats, and GUI behavior remain <code>TBD</code>.</p>
+<ul>
+<li>- Dependency satisfaction and lifecycle state remain governed by their existing</li>
+</ul>
+<p>local files and human/reconciliation process.</p>
+<ul>
+<li>- Review findings <code>PKG03-DEL-03-04-PKG02-001</code> and <code>-002</code> are</li>
+</ul>
+<p><code>ACCEPT_AS_IS</code> / <code>RESOLVED</code> in <code>Review_Findings.csv</code> under the recorded</p>
+<p>2026-06-05 Gate C disposition. This documentation refresh does not alter</p>
+<p>that formal review record.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, accepted decomposition revision, architecture basis injection.</li>
+<li>- <code>_REFERENCES.md</code> - local governing reference list.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-03-04.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row SOW-008.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-03-04.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, rows for PKG-03, DEL-03-04, SOW-008, OBJ-004, and AB-00-01/02/04/06/07/08.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants listed in this kit.</li>
+<li>- <code>schemas/component.schema.yaml</code> current component library schema evidence.</li>
+<li>- <code>fixtures/component/invented_component_library_valid.json</code> current invented</li>
+</ul>
+<p>component fixture evidence.</p>
+<ul>
+<li>- <code>tests/test_component_section_schema.py</code> current schema/fixture validation</li>
+</ul>
+<p>evidence.</p>
+<ul>
+<li>- <code>MEMORY.md</code>, <code>_REVIEW.md</code>, and <code>Review_Findings.csv</code> local reconciliation and</li>
+</ul>
+<p>review evidence.</p></blockquote>
+<h3 id="clm-008-d-41-r5-t3-pdu-019-evidence-state">CLM-008 — D-41 R5 T3 PDU-019 Evidence State</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-019-evidence-state">D-41 R5 T3 PDU-019 Evidence State</h5>
+<p>Technical no-bypass evidence: present. Formal owning REVIEW sufficiency/disposition: held.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-03-04-branch-connection-component-model-fields">CLM-009 — Specification: DEL-03-04 Branch connection component model fields</h3>
+<blockquote><h4 id="specification-del-03-04-branch-connection-component-model-fields">Specification: DEL-03-04 Branch connection component model fields</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the branch connection component model fields now</p>
+<p>evidenced by <code>schemas/component.schema.yaml</code>,</p>
+<p><code>fixtures/component/invented_component_library_valid.json</code>, and</p>
+<p><code>tests/test_component_section_schema.py</code>. The implemented schema surface covers</p>
+<p>branch connection geometry, reinforcement references/area slots, user</p>
+<p>SIF/flexibility slots, source metadata, provenance, unit dimensions,</p>
+<p>completeness rules, and diagnostics without bundling protected engineering</p>
+<p>values.</p>
+<p>This evidence-reconciliation pass excludes:</p>
+<ul>
+<li>- product implementation code;</li>
+<li>- repo-level schema edits;</li>
+<li>- fixture or test edits;</li>
+<li>- dependency, review-finding, DAG, coordination, lifecycle, or status edits;</li>
+<li>- protected standards text, formulas, tables, figures, copied examples, or proprietary data;</li>
+<li>- bundled branch, SIF, flexibility, dimensional, material, or allowable defaults;</li>
+<li>- certification, sealing, approval, authentication, or compliance claims.</li>
+</ul></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-03-04-RQ-001</td><td>The component schema shall support branch connection data fields for geometry, reinforcement, user SIF/flexibility, and local branch data fields.</td><td>SOW-008; DEL-03-04 row</td><td>Validation tests inspect the model/schema for supported field groups.</td></tr>
+<tr><td>DEL-03-04-RQ-002</td><td>Branch connection SIF, flexibility, reinforcement, and other code-specific values shall be user-supplied or lawfully imported private data, not bundled public defaults.</td><td>OPS-K-DATA-1; OPS-K-IP-1</td><td>Protected-content and fixture review confirms no bundled protected tables/defaults/examples.</td></tr>
+<tr><td>DEL-03-04-RQ-003</td><td>Missing solve-required or rule-check-required branch values shall be represented as explicit diagnostics/findings, not silent defaults.</td><td>OPS-K-DATA-2; AB-00-06</td><td>Validation tests cover missing required data and expected diagnostic classes.</td></tr>
+<tr><td>DEL-03-04-RQ-004</td><td>Branch component records shall carry provenance/source fields for component data, SIF values, flexibility factors, and imported values where applicable.</td><td>OPS-K-DATA-3; AB-00-04; AB-00-07</td><td>Schema/model tests confirm provenance metadata fields and import boundary diagnostics.</td></tr>
+<tr><td>DEL-03-04-RQ-005</td><td>Units associated with branch geometry, reinforcement, SIF/flexibility inputs, and exports shall be unit-aware and dimensionally checked where dimensions apply.</td><td>OPS-K-UNIT-1; AB-00-04</td><td>Unit validation tests cover accepted, rejected, and missing unit metadata.</td></tr>
+<tr><td>DEL-03-04-RQ-006</td><td>The implementation shall preserve public/private data boundaries and cannot bypass governance, validation, diagnostics, or provenance checks.</td><td>AB-00-02; AB-00-07; OPS-K-IP-3</td><td>Architecture and service-boundary tests verify validation paths are used.</td></tr>
+<tr><td>DEL-03-04-RQ-007</td><td>Validation tests shall be included for model completeness, provenance, unit handling, and protected-content boundary behavior.</td><td>AB-00-08; anticipated artifacts</td><td>Test inventory and CI-local validation confirm coverage.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-current-evidence">CLM-012 — Current Evidence</h3>
+<blockquote><h5 id="current-evidence">Current Evidence</h5>
+<ul>
+<li>- The component schema defines branch field kinds:</li>
+</ul>
+<p><code>branch_run_size</code>, <code>branch_header_size</code>, <code>branch_connection_angle</code>,</p>
+<p><code>branch_connection_type</code>, <code>branch_reinforcement_area</code>,</p>
+<p><code>branch_reinforcement_reference</code>, <code>branch_geometry_source_reference</code>,</p>
+<p><code>sif_user_value</code>, and <code>flexibility_factor_user_value</code>.</p>
+<ul>
+<li>- The branch component-family contract in the invented fixture lists branch</li>
+</ul>
+<p>geometry, reinforcement, SIF/flexibility, source metadata, and</p>
+<p>mechanics-interface slots with <code>protected_value_policy: schema_slots_only</code>.</p>
+<ul>
+<li>- The invented branch component record uses <code>public_schema_only</code>,</li>
+</ul>
+<p><code>redistribution_status: TBD</code>, missing value statuses, provenance, and a</p>
+<p><code>BRANCH_RULE_INPUT_MISSING</code> completeness finding.</p>
+<ul>
+<li>- Component diagnostics now require <code>class</code> and <code>source</code> fields in addition to</li>
+</ul>
+<p>the earlier code, severity, affected reference, message, remediation, and</p>
+<p>provenance fields.</p>
+<ul>
+<li>- The schema test asserts branch enum membership, branch fixture contract</li>
+</ul>
+<p>membership, branch fixture field slots, branch completeness diagnostics,</p>
+<p>diagnostic <code>class</code>/<code>source</code> requirements, fixture validation, and protected</p>
+<p>public-data denylist behavior.</p></blockquote>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected engineering standard text is locally available or reproduced here.</p>
+<p>Any standard-specific branch connection interpretation remains <code>TBD</code> and must</p>
+<p>be supplied through lawful private data, a licensed source, or a human-approved</p>
+<p>public abstraction that does not reproduce protected content.</p></blockquote>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Current verification evidence includes:</p>
+<ul>
+<li>- schema/model presence checks for each field group named in SOW-008;</li>
+<li>- unit-aware validation for dimensional fields;</li>
+<li>- provenance completeness checks for user/imported values;</li>
+<li>- missing-data diagnostics for required analysis or rule-check inputs;</li>
+<li>- protected-content scans confirming no bundled branch/SIF/flexibility tables, formulas, or examples;</li>
+<li>- schema and fixture validation through <code>tests/test_component_section_schema.py</code>.</li>
+</ul>
+<p>Remaining verification <code>TBD</code>s include dependency satisfaction disposition,</p>
+<p>public fixture-value policy, accepted branch source catalog, persistence or</p>
+<p>round-trip evidence beyond the current strict schema fixture, adapter/import</p>
+<p>formats, and lifecycle acceptance.</p></blockquote>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Current implementation evidence:</p>
+<ul>
+<li>- branch component schema surface: <code>schemas/component.schema.yaml</code>;</li>
+<li>- invented branch component fixture: <code>fixtures/component/invented_component_library_valid.json</code>;</li>
+<li>- schema/fixture validation: <code>tests/test_component_section_schema.py</code>.</li>
+</ul>
+<p>This deliverable-local kit records evidence reconciliation only. It is not a</p>
+<p>lifecycle promotion, release claim, professional/code-compliance claim, or human</p>
+<p>acceptance decision.</p></blockquote>
+<h3 id="clm-016-d-41-r5-t3-pdu-019-o7-e5-evidence-2026-07-12">CLM-016 — D-41 R5 T3 PDU-019 O7/E5 Evidence (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-019-o7-e5-evidence-2026-07-12">D-41 R5 T3 PDU-019 O7/E5 Evidence (2026-07-12)</h5>
+<p>Negative schema tests prove invalid privacy classes and unknown embedded payload fields are rejected. This bounded technical evidence does not determine formal REVIEW sufficiency or disposition.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted branch-connection requirements and limits, including explicit dimensional and provenance data, rights-safe fixtures, missing-value findings, and unresolved engineering choices without inferred values or compliance claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-03-04-branch-connection-component-model-fields">CLM-017 — Procedure: DEL-03-04 Branch connection component model fields</h3>
+<blockquote><h4 id="procedure-del-03-04-branch-connection-component-model-fields">Procedure: DEL-03-04 Branch connection component model fields</h4></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Describe the evidence-reconciliation procedure for maintaining DEL-03-04</p>
+<p>branch connection component model documentation against the implemented</p>
+<p>component schema, invented fixture, and schema test evidence without exceeding</p>
+<p>the authorized data boundary.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Use the sealed DEL-03-04 brief and deliverable-local context.</li>
+<li>- Apply SOW-008 and OBJ-004.</li>
+<li>- Apply architecture basis AB-00-01, AB-00-02, AB-00-04, AB-00-06, AB-00-07, and AB-00-08.</li>
+<li>- Apply CONTRACT invariants OPS-K-IP-1, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-RULE-1, OPS-K-MECH-1, and OPS-K-AGENT-1 through OPS-K-AGENT-4.</li>
+<li>- Read <code>schemas/component.schema.yaml</code>,</li>
+</ul>
+<p><code>fixtures/component/invented_component_library_valid.json</code>, and</p>
+<p><code>tests/test_component_section_schema.py</code> as current implementation evidence.</p>
+<ul>
+<li>- Treat absent engineering source data, policy decisions, dependency</li>
+</ul>
+<p>satisfaction, human dispositions, and lifecycle acceptance as <code>TBD</code>.</p></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the write scope is limited to authorized DEL-03-04 narrative files</p>
+<p>and the new reconciliation run record.</p>
+<p>2. Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, the relevant decomposition/register rows, and applicable CONTRACT invariants.</p>
+<p>3. Reconcile the four active docs and <code>MEMORY.md</code> against the implemented</p>
+<p>branch evidence in the component schema, invented component fixture, schema</p>
+<p>test, and local review findings.</p>
+<p>4. Record implemented branch component field names where the schema now defines</p>
+<p>them: <code>branch_run_size</code>, <code>branch_header_size</code>,</p>
+<p><code>branch_connection_angle</code>, <code>branch_connection_type</code>,</p>
+<p><code>branch_reinforcement_area</code>, <code>branch_reinforcement_reference</code>,</p>
+<p><code>branch_geometry_source_reference</code>, <code>sif_user_value</code>, and</p>
+<p><code>flexibility_factor_user_value</code>.</p>
+<p>5. Preserve unresolved <code>TBD</code>s for public branch source catalogs, fixture-value</p>
+<p>policy, standard-specific interpretation, concrete import formats,</p>
+<p>dependency satisfaction, human review dispositions, and lifecycle state.</p>
+<p>6. Preserve the formal Gate C record: <code>Review_Findings.csv</code> records</p>
+<p><code>PKG03-DEL-03-04-PKG02-001</code> and <code>-002</code> as <code>ACCEPT_AS_IS</code> / <code>RESOLVED</code>.</p>
+<p>Documentation maintenance must not rewrite that review disposition.</p>
+<p>7. Run relevant validation when feasible: `python3 -m pytest</p>
+<p>tests/test_component_section_schema.py` and a stale-language search scoped to</p>
+<p><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</p>
+<p>8. Do not introduce protected tables, formulas, examples, dimensional data,</p>
+<p>material allowables, or certification/compliance claims.</p></blockquote>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Four-document kit exists and preserves Datasheet, Specification, Guidance, and Procedure sections.</li>
+<li>- Requirements trace to local context, decomposition/register rows, CONTRACT invariants, schema evidence, fixture evidence, and test evidence.</li>
+<li>- Implemented branch schema slots are no longer described as absent or future-only.</li>
+<li>- Unknown policy/source/dependency/human/lifecycle gates are still <code>TBD</code>; assumptions are labeled.</li>
+<li>- No protected branch/SIF/flexibility tables, formulas, or examples are present.</li>
+<li>- <code>python3 -m pytest tests/test_component_section_schema.py</code> passes when the</li>
+</ul>
+<p>local test environment is available.</p>
+<ul>
+<li>- A stale-language search over the four active docs shows no remaining</li>
+</ul>
+<p>setup-only or future-only implementation language that contradicts the</p>
+<p>schema/fixture/test evidence.</p></blockquote>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/TASK_RUN_*.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-06-05_DEL-03-04_evidence-reconciliation.md</code></li>
+</ul></blockquote>
+<h3 id="clm-023-d-41-r5-t3-pdu-019-check">CLM-023 — D-41 R5 T3 PDU-019 Check</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-019-check">D-41 R5 T3 PDU-019 Check</h5>
+<p>Run strict ComponentRecord schema negatives for privacy classification and unknown payload keys. Route evidence to REVIEW without changing its outcome.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, branch geometry and identity coverage, dimensional consistency, provenance and protected-content controls, missing-input diagnostics, mechanics handoff limits, and unresolved decisions.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-03-04-branch-connection-component-model-fields">CLM-024 — Guidance: DEL-03-04 Branch connection component model fields</h3>
+<blockquote><h4 id="guidance-del-03-04-branch-connection-component-model-fields">Guidance: DEL-03-04 Branch connection component model fields</h4></blockquote>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to keep branch connection component data explicit,</p>
+<p>unit-aware, provenance-bearing, and separated from protected standards content.</p>
+<p>The current component schema and invented fixture provide branch schema slots</p>
+<p>and missing-data diagnostics so users or lawful private libraries can supply</p>
+<p>branch-specific data without the public project embedding protected branch</p>
+<p>connection, SIF, flexibility, or reinforcement tables.</p></blockquote>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat branch connection data as user/imported input unless a public, rights-cleared source is documented.</li>
+<li>- Preserve the difference between data capture, solver mechanics, rule-pack evaluation, and human professional judgment.</li>
+<li>- Prefer explicit <code>TBD</code> or diagnostics over inferred defaults.</li>
+<li>- Keep provenance and redistribution status close to the values they qualify.</li>
+<li>- Make dimensional fields unit-aware; do not accept unitless dimensional values unless a later schema deliberately defines a safe representation.</li>
+<li>- Use the implemented branch field names in <code>schemas/component.schema.yaml</code> when</li>
+</ul>
+<p>documenting current schema evidence; reserve <code>TBD</code> for unresolved policy,</p>
+<p>source, lifecycle, dependency, or human-disposition questions.</p></blockquote>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The branch connection model has more local field slots than simpler component</p>
+<p>families. Current evidence covers branch run/header size, connection angle/type,</p>
+<p>reinforcement area/reference, branch geometry source reference, user SIF, and</p>
+<p>user flexibility-factor field kinds. The decomposition still leaves specialized</p>
+<p>branch local-check methods, concrete import formats, and GUI behavior outside</p>
+<p>this reconciliation.</p>
+<p>Architecture basis implications:</p>
+<ul>
+<li>- AB-00-02 and AB-00-07 point toward domain contracts and validation boundaries rather than GUI or adapter shortcuts.</li>
+<li>- AB-00-04 points toward deterministic, provenance-preserving persistence when serialized.</li>
+<li>- AB-00-06 points toward structured diagnostics for blocking missing data and boundary warnings.</li>
+<li>- AB-00-08 points toward layered tests, including protected-content/provenance gates.</li>
+</ul></blockquote>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Field specificity vs protected content</td><td>Capture field categories and user-supplied values; do not encode protected lookup content.</td></tr>
+<tr><td>Completeness vs implementation timing</td><td>Treat current branch schema field names as implemented evidence; keep specialized local-check needs, source catalogs, import formats, and lifecycle acceptance as <code>TBD</code>.</td></tr>
+<tr><td>Public examples vs validation</td><td>Use the existing invented non-engineering fixture as schema/diagnostic evidence only; do not treat its missing branch values as engineering examples.</td></tr>
+<tr><td>User flexibility vs diagnostics</td><td>Permit user-supplied branch data, but report missing or unverifiable values explicitly.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The current public fixture is an invented schema fixture, not an engineering</p>
+<p>example. It intentionally omits branch geometry, reinforcement, SIF, and</p>
+<p>flexibility values and emits <code>BRANCH_RULE_INPUT_MISSING</code> rather than supplying</p>
+<p>public defaults. Future value-bearing examples, if any, must be invented</p>
+<p>non-code values with clear non-engineering notices or must come from reviewed</p>
+<p>public-permissive/private sources; they must not reproduce protected tables,</p>
+<p>formulas, or code examples.</p></blockquote>
+<h3 id="clm-030-review-posture">CLM-030 — Review Posture</h3>
+<blockquote><h5 id="review-posture">Review Posture</h5>
+<p>Local review findings for unit-dependency satisfaction and component diagnostic</p>
+<p>envelope compatibility are <code>ACCEPT_AS_IS</code> / <code>RESOLVED</code> in</p>
+<p><code>Review_Findings.csv</code> under the recorded 2026-06-05 Gate C disposition.</p>
+<p>Narrative evidence may cite the technical branch schema, fixture, and diagnostic</p>
+<p>updates, while dependency and lifecycle state remain governed separately.</p></blockquote>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None identified</td><td>No conflict was detected between the current branch schema/fixture/test evidence and the local review/memory evidence.</td><td><code>schemas/component.schema.yaml</code>; fixture; test</td><td><code>MEMORY.md</code>; <code>_REVIEW.md</code>; <code>Review_Findings.csv</code></td><td>N/A</td><td>Treat implementation evidence as current while preserving policy, dependency, human-disposition, and lifecycle gates.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-032-d-41-r5-t3-pdu-019-boundary">CLM-032 — D-41 R5 T3 PDU-019 Boundary</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-019-boundary">D-41 R5 T3 PDU-019 Boundary</h5>
+<p>Schema rejection evidence is not a formal review outcome and must not be represented as one.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-008 OBJ-004</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,7 @@
+gate	requirement	evidence	verdict
+R2.1	100% package/child manifest rehash and path audit	5 manifests; 3610/3610 portable contained existent unique self-excluding hash/byte bindings	PASS
+R2.2	complete aggregate population and exact contracts	8 members; 4 terminal returns; 234 mappings; 1966/1966 lines; 24 candidate/finalization bindings; exact 40 replacement and 40 inverse rollback rows	PASS
+R2.3	apply/target/control/rollback simulation for every member	8/8 complete simulations	PASS
+R2.4	full affected-package reproduction and exception preservation	8/8 schema/map/parity/checklist/render/finalization suites; 16/16 negative probes; retained Batch-02 and verifier-local histories	PASS
+R2.5	required Piping practitioner and containment checks	self-check exit 0; practitioner harness 264/264; project tree 191240 files and 974fe2fad26880ba85c0359ee18f9ee87a404fd097a83bb6248cc6348b391a92 unchanged	PASS
+R2.6	topology disposition	RECON manager is independent third layer; extra single child gate withdrawn by active human clarification	PASS

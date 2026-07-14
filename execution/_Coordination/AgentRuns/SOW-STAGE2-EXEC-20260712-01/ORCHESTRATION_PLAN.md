@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `ACTIVE — W-P1 REVISED PREFLIGHT ACCEPTED; PKG-01 READY`
+Status: `ACTIVE — PKG-03 PREINTEGRATION ACCEPTED; CHANGE RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v35`
+Graph version: `v41`
 
 ## Objective and accepted basis
 
@@ -43,9 +43,19 @@ immutable.
 `W-P1-B0-R1` is accepted at
 `snapshots/W_P1/preflight-r1/ACCEPTANCE.md`: 22/22 members, 198/198 live
 bindings, exact ISSUED exclusion, and the human's one-way PKG-00 dependency
-rule all pass without project-truth edits. `WORKING-P1-PKG01` is the next
-eligible manager but remains undispatched at the human-requested conversation
-boundary. PKG-02 through PKG-04 remain serially parked behind it.
+rule all pass without project-truth edits. The package-batch method is accepted
+through `amendments/PACKAGE-BATCH-ADOPTION-001.md`; PKG-01 and PKG-02 were
+integrated through PR #227 and bound on main at
+`5f124ad80fe84357f6dc33072dc4fbdbeb05d545`. The fresh-session basis and stale
+graph delta are recorded in `amendments/SESSION-CONTINUATION-PKG03-001.md`.
+`WORKING-P1-PKG03` returned manager-validated `PASS` in two consecutive
+batches: 8/8 members, 234 mappings, 1,966 source lines, exact 40-row
+replacement/inverse manifests, and 8/8 simulations. `RECON-P1-PKG03` completed
+a passing Agent-1 full-package reproduction. Human clarification
+`amendments/MANAGER-CHILD-TOPOLOGY-CLARIFICATION-001.md` confirms that RECON
+itself is the independent third layer and the orchestrator-added single-child
+fourth layer is not required. RECON manager closeout is released to mint a new
+immutable acceptance snapshot; CHANGE remains held until that fan-in passes.
 
 All later nodes remain parked behind the accepted graph edges. H1 and H2
 remain fresh human gates. CHANGE is the sole integration owner for every Git

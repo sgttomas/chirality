@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/map_scope_of_work_claims.py",
+    "--scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG03/DEL-03-08/evidence/ScopeOfWork.md",
+    "--production-scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG03/DEL-03-08/production/ScopeOfWork.md",
+    "--source-dir",
+    "{REPO_ROOT}/projects/chirality-piping/execution/PKG-03_Piping Components, Materials, and Library Data Model/1_Working/DEL-03-08_Pipe section property and mass-property calculator",
+    "--output-csv",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/members/DEL-03-08/claim_map_2.csv"
+  ],
+  "duration_seconds": 0.043058,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "map_2",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": "PASS rows=32 output=/Users/ryan/ai-env/projects/chirality/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/members/DEL-03-08/claim_map_2.csv\n"
+}

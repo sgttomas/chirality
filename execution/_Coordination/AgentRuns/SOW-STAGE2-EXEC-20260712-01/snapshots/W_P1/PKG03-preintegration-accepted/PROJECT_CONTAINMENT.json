@@ -1,0 +1,8 @@
+{
+  "ignored_state_included_in_digest": true,
+  "project_file_count": 191240,
+  "project_git_tracked_or_untracked_nonignored_changes": 0,
+  "project_tree_sha256": "974fe2fad26880ba85c0359ee18f9ee87a404fd097a83bb6248cc6348b391a92",
+  "verification_write_count": 0,
+  "verdict": "PASS"
+}
