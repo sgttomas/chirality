@@ -1,0 +1,12 @@
+{
+  "args": [
+    "python3",
+    "{REPO_ROOT}/tools/scope_of_work/derive_review_checklist.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-03/conversion-a",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-03/evidence-checklist.json"
+  ],
+  "exit_code": 1,
+  "stderr": "ERROR: format state is AMBIGUOUS; validated ScopeOfWork.md is required: dual production formats require an isolated conversion workspace and exact migration authority\n",
+  "stdout": ""
+}

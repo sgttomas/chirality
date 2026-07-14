@@ -1,0 +1,32 @@
+{
+  "args": [
+    "python3",
+    "{REPO_ROOT}/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+    "--deliverable-id",
+    "DEL-02-02",
+    "--package-id",
+    "PKG-02",
+    "--decomposition-basis",
+    "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@69ac259a7113d5a838fb22aa2e84df0e0f109713",
+    "--project-scope-ref",
+    "SOW-025",
+    "--package-objective-ref",
+    "OBJ-001",
+    "--package-objective-ref",
+    "OBJ-012",
+    "--output-description",
+    "A unit-system and dimensional-analysis core contract specifying dimensions, conversion rules, storage conventions, and unit-test obligations is produced for the declared scope and objectives.",
+    "--acceptance-criterion",
+    "The contract preserves the accepted source requirements for explicit dimensions, compatible conversion and storage behavior, deterministic checks, and fail-closed treatment of missing or incompatible units.",
+    "--verification-method",
+    "Validate the contract and review source parity, dimensional consistency, conversion and storage rules, deterministic unit checks, explicit findings, and professional-reliance boundaries.",
+    "--isolated-migration",
+    "--migration-authority",
+    "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "--deliverable",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-02/negative-partial"
+  ],
+  "exit_code": 1,
+  "stderr": "ERROR: conversion source must resolve as LEGACY_FOUR_DOC, found INVALID\n",
+  "stdout": ""
+}

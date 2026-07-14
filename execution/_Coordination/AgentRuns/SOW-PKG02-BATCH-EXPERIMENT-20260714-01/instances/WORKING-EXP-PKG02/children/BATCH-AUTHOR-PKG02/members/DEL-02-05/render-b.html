@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="aa49dc1617c489649e8b311043a3e7fae9d8a9a71d902709ba24d9db5edfe5b7">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-02-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>aa49dc1617c489649e8b311043a3e7fae9d8a9a71d902709ba24d9db5edfe5b7</code>.</p>
+<h1 id="scope-of-work-del-02-05">Scope of Work — DEL-02-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-02-05</code> in service of project scope [SOW-050, SOW-041] and package objectives [OBJ-001, OBJ-012].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A project-persistence and round-trip serialization contract covering create, open, save, versioned persistence, units, loads, rule-pack references, provenance, and reproducibility metadata is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-02-05-project-persistence-and-round-trip-serialization">CLM-001 — Datasheet - DEL-02-05 Project Persistence and Round-Trip Serialization</h3>
+<blockquote><h4 id="datasheet-del-02-05-project-persistence-and-round-trip-serialization">Datasheet - DEL-02-05 Project Persistence and Round-Trip Serialization</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-02-05-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-pdu-024-runtime-version-evidence">CLM-003 — PDU-024 Runtime Version Evidence</h3>
+<blockquote><h5 id="pdu-024-runtime-version-evidence">PDU-024 Runtime Version Evidence</h5>
+<ul>
+<li>- Current authored model-document schema: <code>0.2.0</code>.</li>
+<li>- Governed legacy path: <code>0.1.0 -&gt; 0.2.0</code>, reported as <code>stale</code> by version check and <code>migrated</code> by migration evidence.</li>
+<li>- Refusal/diagnostic states: <code>unsupported_schema</code>, <code>newer_than_supported</code>, and <code>failed</code>.</li>
+<li>- UI evidence consumers: Project Validation, Export Review, and Report persistence context; all use the shared browser-preview mirror of the DEC-019/DEC-033 evaluator.</li>
+</ul></blockquote>
+<h3 id="clm-004-identification">CLM-004 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-02-05</td></tr>
+<tr><td>Package ID</td><td>PKG-02</td></tr>
+<tr><td>Package</td><td>Domain Model, Units, and Core Schemas</td></tr>
+<tr><td>Deliverable name</td><td>Project persistence and round-trip serialization</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>Scope items</td><td>SOW-050, SOW-041</td></tr>
+<tr><td>Objectives</td><td>OBJ-001, OBJ-012</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Anticipated artifacts</td><td>project file schema; round-trip tests; persistence service contract</td></tr>
+<tr><td>Source basis</td><td><code>_CONTEXT.md</code> revision 0.7; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7; <code>docs/_Registers/*.csv</code>; <code>docs/CONTRACT.md</code>; SCA-001 basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, AB-00-08</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-attributes">CLM-005 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Required / current value</td><td>Source</td></tr>
+<tr><td>Persistence purpose</td><td>Create, open, save, and version project files.</td><td><code>docs/_Registers/Deliverables.csv</code> row DEL-02-05; <code>docs/PRD.md</code> section 10 FR-001</td></tr>
+<tr><td>Round-trip preservation target</td><td>Model, units, loads, rule-pack references, and provenance metadata must round-trip without loss.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-050; <code>docs/PRD.md</code> section 10 FR-001</td></tr>
+<tr><td>Schema baseline</td><td>JSON Schema 2020-12 is the public schema/interchange baseline.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-041 and section 8.2</td></tr>
+<tr><td>Persistence encoding baseline</td><td>Versioned, JSON-schema-governed canonical JSON for JSON payloads.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2</td></tr>
+<tr><td>Hash basis</td><td>JSON payload hashes use canonical JSON with JCS-compatible canonicalization.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04 and section 8.2</td></tr>
+<tr><td>Project package/container</td><td>TBD; SCA-001 leaves the physical project package/container unresolved.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04, section 8.2, OI-011</td></tr>
+<tr><td>Migration mechanism</td><td>Migration-aware persistence is required; migration framework/tooling is TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04, section 8.2, OI-011</td></tr>
+<tr><td>Core data objects affected</td><td>Project, Model, LoadCase, RulePack references, Report/audit metadata, and provenance-bearing domain records.</td><td><code>docs/SPEC.md</code> section 3</td></tr>
+<tr><td>Application boundary</td><td>Storage/persistence must preserve domain invariant enforcement; adapters cannot bypass unit, provenance, diagnostics, or public/private data-boundary checks.</td><td><code>docs/SPEC.md</code> section 1; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-02 and AB-00-07</td></tr>
+<tr><td>Diagnostic behavior</td><td>Persistence validation, migration, and round-trip failures should be returned through structured diagnostics/result envelopes.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-03 and AB-00-06; <code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>Test evidence</td><td>Round-trip, schema, unit/provenance, hash/canonicalization, migration-status, and protected-content/provenance gates are expected.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-08; <code>docs/VALIDATION_STRATEGY.md</code> sections 2 and 4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-conditions">CLM-006 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- The deliverable is bounded to the PKG-02 persistence and serialization surface. It must not implement numerical solving, GUI views, rule-pack evaluation logic, reporting, external API transport, or local/private storage policy beyond the persistence contract needed by this deliverable. Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-02 row.</li>
+<li>- The public schema and tests must not introduce protected standards text, protected tables, proprietary values, copied formulas, or commercial examples. Source: <code>docs/CONTRACT.md</code> OPS-K-IP-1 through OPS-K-IP-3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-5.</li>
+<li>- Project files may contain private project/rule data in user-controlled contexts, but public fixtures must use invented, original, or permissively licensed data with documented provenance. Source: <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2, 4, and 6; <code>docs/CONTRACT.md</code> OPS-K-PRIV-1.</li>
+<li>- All persisted numerical and engineering-relevant values must be unit-aware or carry enough unit metadata for downstream dimensional checks. Source: <code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/PRD.md</code> section 10 FR-002.</li>
+<li>- Software output and persistence metadata must not claim code compliance, certification, sealing, approval, or professional reliance. Source: <code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/TYPES.md</code> section 4.</li>
+</ul></blockquote>
+<h3 id="clm-007-construction">CLM-007 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The deliverable construction target is a three-artifact kit:</p>
+<table><tbody>
+<tr><td>Artifact</td><td>Minimum construction expectation</td><td>Source</td></tr>
+<tr><td>Project file schema</td><td>Define a versioned project document contract covering project identity, schema version, unit system, model payload, load payloads, rule-pack references, provenance metadata, and validation/migration status. Exact schema file layout is TBD.</td><td><code>docs/_Registers/Deliverables.csv</code> row DEL-02-05; <code>docs/SPEC.md</code> section 3; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04</td></tr>
+<tr><td>Round-trip tests</td><td>Verify parse -&gt; normalize/validate -&gt; serialize -&gt; parse cycles preserve required project content and produce deterministic canonical JSON/hash behavior for JSON payloads. Exact test harness details are TBD.</td><td><code>docs/PRD.md</code> section 10 FR-001; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04 and AB-00-08</td></tr>
+<tr><td>Persistence service contract</td><td>Define application-service operations for create/open/save/version validation, migration-status reporting, diagnostics/result envelopes, and data-boundary checks. Exact interface language/API shape is TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-02, AB-00-03, AB-00-06, AB-00-07</td></tr>
+</tbody></table>
+<p>ASSUMPTION: The persisted project document will be treated as durable project state, while session-only UI state and job-progress state remain outside this deliverable unless later injected by an applicable GUI-state brief.</p></blockquote>
+<h3 id="clm-008-persisted-project-envelope-inventory">CLM-008 — Persisted Project Envelope Inventory</h3>
+<blockquote><h6 id="persisted-project-envelope-inventory">Persisted Project Envelope Inventory</h6>
+<p>This inventory is a logical schema contract checklist, not the final schema file layout. Exact schema file layout, code-generation tooling, physical container, and migration implementation remain TBD under SCA-001.</p>
+<table><tbody>
+<tr><td>Logical slot</td><td>Minimum persisted meaning</td><td>Source</td><td>Open detail</td></tr>
+<tr><td>Document identity and schema metadata</td><td>Document kind, schema version, project identifier/name, and version-handling metadata.</td><td>SOW-050; <code>docs/PRD.md</code> section 10 FR-001; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04</td><td>Exact field names and schema file layout TBD.</td></tr>
+<tr><td>Project basis and storage policy</td><td>Project/design-basis metadata, storage/private-data policy flags, and report settings where present.</td><td><code>docs/SPEC.md</code> section 3 <code>Project</code>; <code>docs/PRD.md</code> Appendix A; <code>docs/CONTRACT.md</code> OPS-K-PRIV-1</td><td>Exact local-first enforcement fields TBD.</td></tr>
+<tr><td>Unit-system reference</td><td>Declared unit system or explicit unit metadata sufficient for downstream unit checks.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/PRD.md</code> section 10 FR-002; SOW-025</td><td>Missing or incompatible unit metadata must become diagnostics, not defaults.</td></tr>
+<tr><td>Model payload</td><td>Model objects such as nodes, elements, sections, materials, components, supports, and related references where present.</td><td><code>docs/SPEC.md</code> section 3; <code>docs/PRD.md</code> Appendix A</td><td>Field-level object schemas remain coordinated with DEL-02-01.</td></tr>
+<tr><td>Load payloads</td><td>Load cases and load records with units and source/provenance where engineering reliance is affected.</td><td>SOW-050; <code>docs/SPEC.md</code> section 3 <code>LoadCase</code>; <code>docs/DIRECTIVE.md</code> section 2.1</td><td>Exact load object schema remains coordinated with load deliverables.</td></tr>
+<tr><td>Rule-pack references</td><td>Rule-pack ID/name, version, checksum, source note, redistribution/private status, and required-input linkage where present.</td><td><code>docs/SPEC.md</code> section 6; <code>docs/CONTRACT.md</code> OPS-K-RULE-3; <code>docs/PRD.md</code> section 12.2</td><td>Public fixtures must not embed protected rule formulas or allowables.</td></tr>
+<tr><td>Provenance and redistribution metadata</td><td>Source/provenance, license or redistribution status, contributor/review fields where public data records are present.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4; <code>docs/CONTRACT.md</code> OPS-K-DATA-3</td><td>Private records may use private/source labels; public records need complete review metadata.</td></tr>
+<tr><td>Validation, diagnostics, and migration status</td><td>Validation findings, migration status, and structured diagnostics/result-envelope fields.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-03, AB-00-04, AB-00-06; <code>docs/SPEC.md</code> section 7</td><td>Status values beyond unsupported, stale, and failed migration are TBD.</td></tr>
+<tr><td>Reproducibility metadata</td><td>Model hash, input-manifest compatibility, rule-pack checksum references, and canonical JSON/JCS-compatible hash basis for JSON payloads.</td><td><code>docs/SPEC.md</code> section 8; <code>docs/PRD.md</code> section 15.3; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2</td><td>Exact payload/manifest partition remains TBD.</td></tr>
+<tr><td>Review records, if present</td><td>Human review labels and hashes tied to specific model/rule/report content without automatic compliance claims.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AUTH-2; <code>docs/TYPES.md</code> section 4</td><td>Review-record schema is optional and final authority labels remain TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-009-references">CLM-009 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> revision 0.7 for deliverable identity, SOW/objective mapping, accepted architecture basis IDs, and write context.</li>
+<li>- <code>_DEPENDENCIES.md</code> for declared dependency status; no human-owned upstream/downstream dependency list was provided.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-02-05.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> rows SOW-050 and SOW-041.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-02-05.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, especially SOW-041, SOW-050, PKG-02, DEL-02-05, section 8.1, section 8.2, and OI-011.</li>
+<li>- <code>docs/CONTRACT.md</code> invariant catalog.</li>
+<li>- <code>docs/TYPES.md</code> sections 3-8.</li>
+<li>- <code>docs/SPEC.md</code> sections 1, 3, 7, 8, 9, and 11.</li>
+<li>- <code>docs/DIRECTIVE.md</code> sections 2-5.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-7.</li>
+<li>- <code>docs/PRD.md</code> section 10 FR-001/FR-002, section 11.8, section 12.4, section 15.3, section 18, section 19, and section 22.1.</li>
+<li>- <code>docs/VALIDATION_STRATEGY.md</code> sections 2, 4, and 5.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-010-specification-del-02-05-project-persistence-and-round-trip-serialization">CLM-010 — Specification - DEL-02-05 Project Persistence and Round-Trip Serialization</h3>
+<blockquote><h4 id="specification-del-02-05-project-persistence-and-round-trip-serialization">Specification - DEL-02-05 Project Persistence and Round-Trip Serialization</h4></blockquote>
+<h3 id="clm-011-d-41-r5-t7-pdu-055-current-declaration">CLM-011 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-02-05-DECL-001</code>.</p></blockquote>
+<h3 id="clm-012-scope">CLM-012 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This specification defines the bounded requirements for DEL-02-05: create/open/save/versioned project persistence and deterministic round-trip serialization for project models, unit metadata, loads, rule-pack references, and provenance metadata.</p>
+<p>In scope:</p>
+<ul>
+<li>- project file schema contract;</li>
+<li>- round-trip serialization and deterministic canonicalization behavior for JSON payloads;</li>
+<li>- persistence service contract for create/open/save/version validation and migration-status reporting;</li>
+<li>- validation and test obligations for schema, round-trip, hash stability, provenance, unit metadata, and protected-content boundaries.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- numerical solving, stress recovery, GUI views, report rendering, and rule-pack expression evaluation;</li>
+<li>- physical project package/container selection, migration framework/tooling, binary asset packaging, exact dependency versions, public API transport, and exact schema file layout, all of which remain TBD under SCA-001;</li>
+<li>- any bundled protected standards content, code-specific formulas, tables, allowables, or proprietary project examples.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-02 and DEL-02-05 rows; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2.</p></blockquote>
+<h3 id="clm-013-pdu-024-version-contract-integration">CLM-013 — PDU-024 Version Contract Integration</h3>
+<blockquote><h5 id="pdu-024-version-contract-integration">PDU-024 Version Contract Integration</h5>
+<p>The accepted runtime authoring family is model-document schema <code>0.2.0</code>. UI version checks consume the established DEC-019/DEC-033 migration evaluator: <code>current</code> identifies <code>0.2.0</code>, <code>stale</code> identifies an older document with a governed migration path, and <code>unsupported_schema</code>, <code>newer_than_supported</code>, or <code>failed</code> remain explicit refusal/diagnostic states. Separate migration evidence continues to report <code>migrated</code> when the <code>0.1.0 -&gt; 0.2.0</code> in-memory path is applied. No new status names or migration framework is introduced.</p></blockquote>
+<h3 id="clm-014-requirements">CLM-014 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-02-05-001</td><td>The persistence surface shall support project create, open, save, and version handling.</td><td>SOW-050; <code>docs/PRD.md</code> section 10 FR-001</td></tr>
+<tr><td>REQ-02-05-002</td><td>A project file round trip shall preserve model content, unit metadata, loads, rule-pack references, and provenance metadata without loss.</td><td>SOW-050; <code>docs/PRD.md</code> section 10 FR-001</td></tr>
+<tr><td>REQ-02-05-003</td><td>The project file schema shall align with the machine-readable schema scope for project, model, material, component, load, result, and report schemas where this persistence deliverable references those objects.</td><td>SOW-041; <code>docs/SPEC.md</code> section 3</td></tr>
+<tr><td>REQ-02-05-004</td><td>Public schemas/interchange for this deliverable shall use JSON Schema 2020-12 as the baseline. Exact schema file layout and code-generation tooling are TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-041 and section 8.2</td></tr>
+<tr><td>REQ-02-05-005</td><td>JSON persistence payloads shall be deterministic and hash-ready using canonical JSON with JCS-compatible canonicalization. Exact canonicalization library/tooling is TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04 and section 8.2</td></tr>
+<tr><td>REQ-02-05-006</td><td>The schema shall include explicit schema/version metadata and migration status sufficient to detect unsupported, stale, or failed migrations. The current DEC-019/DEC-033 runtime contract implements this classification for the accepted <code>0.2.0</code> family; additional migration tooling remains TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04, section 8.2, OI-011</td></tr>
+<tr><td>REQ-02-05-007</td><td>Persisted numerical and engineering-relevant fields shall carry explicit units or references to a declared unit system sufficient for downstream unit checks. Silent unit defaults are not permitted.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/PRD.md</code> section 10 FR-002; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04</td></tr>
+<tr><td>REQ-02-05-008</td><td>Provenance metadata shall be preserved for materials, components, SIF/flexibility values, allowables, rule-pack values, and other engineering-reliance data when those records are present in a project. Missing provenance shall be representable as a warning/finding, not silently accepted as complete.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-3 and OPS-K-DATA-2; <code>docs/DIRECTIVE.md</code> section 3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4</td></tr>
+<tr><td>REQ-02-05-009</td><td>Rule-pack data shall be represented as user/private rule-pack references with version/checksum/source-note capability; the public project schema/tests shall not embed protected rule formulas, allowables, or code-specific values.</td><td><code>docs/SPEC.md</code> section 6; <code>docs/CONTRACT.md</code> OPS-K-RULE-3 and OPS-K-IP-1; <code>docs/PRD.md</code> section 12.4</td></tr>
+<tr><td>REQ-02-05-010</td><td>Persistence operations shall preserve application-service, domain-core, storage, schema, validation, and adapter boundaries; adapters/plugins shall not bypass unit, provenance, diagnostics, sandboxing, envelope, report, or public/private data-boundary checks.</td><td><code>docs/SPEC.md</code> section 1; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-02 and AB-00-07</td></tr>
+<tr><td>REQ-02-05-011</td><td>Open/save/validate/migrate failures shall be expressible through structured diagnostics/result envelopes carrying code, class, severity, source, affected object, message, remediation, and provenance where applicable.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-03 and AB-00-06; <code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>REQ-02-05-012</td><td>Persistence artifacts shall support reproducibility metadata needed by downstream reports and audit manifests, including model hash and input-manifest compatibility for JSON payloads.</td><td><code>docs/SPEC.md</code> section 8; <code>docs/PRD.md</code> section 15.3; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-039 and AB-00-04</td></tr>
+<tr><td>REQ-02-05-013</td><td>Private project, material, component, and rule-pack data shall remain local-first and shall not be transmitted or committed publicly by default.</td><td><code>docs/CONTRACT.md</code> OPS-K-PRIV-1; <code>docs/PRD.md</code> section 18</td></tr>
+<tr><td>REQ-02-05-014</td><td>Public fixtures and examples used by this deliverable shall be invented, original, public-domain, or permissively licensed and shall include provenance/redistribution status when data records are present.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-5; <code>docs/VALIDATION_STRATEGY.md</code> section 5</td></tr>
+<tr><td>REQ-02-05-015</td><td>The round-trip test suite shall include schema validation, deterministic reserialization, JSON canonicalization/hash stability, migration-status handling, unit/provenance preservation, private-data boundary checks, and protected-content/provenance gates where relevant.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-08; <code>docs/VALIDATION_STRATEGY.md</code> sections 2 and 4; <code>docs/PRD.md</code> section 22.1</td></tr>
+<tr><td>REQ-02-05-016</td><td>No persistence status, field, diagnostic, report hook, or example shall claim professional approval, certification, sealing, authentication, or automatic code compliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/TYPES.md</code> section 4; <code>docs/DIRECTIVE.md</code> section 3</td></tr>
+<tr><td>REQ-02-05-017</td><td>The project file schema shall enumerate logical envelope slots for document/schema metadata, project identity, unit-system reference, model payload, load payloads, rule-pack references, provenance/redistribution metadata, diagnostics or migration status, reproducibility metadata, and optional review records.</td><td>SOW-050; <code>docs/SPEC.md</code> section 3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04</td></tr>
+<tr><td>REQ-02-05-018</td><td>Round-trip acceptance criteria shall compare semantic equality for model content, unit metadata, loads, rule-pack references, provenance metadata, and reproducibility metadata after parse -&gt; validate/normalize -&gt; serialize -&gt; parse.</td><td>SOW-050; <code>docs/PRD.md</code> section 10 FR-001; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04</td></tr>
+<tr><td>REQ-02-05-019</td><td>Unit round-trip criteria shall distinguish explicit units, declared unit-system references, missing units, and incompatible unit metadata; missing or incompatible units shall produce findings instead of silent defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/PRD.md</code> section 10 FR-002; <code>docs/DIRECTIVE.md</code> sections 2.2 and 3</td></tr>
+<tr><td>REQ-02-05-020</td><td>Hash and reproducibility criteria shall identify the compared JSON payload, any input manifest, and any referenced non-JSON or binary manifest; exact payload partitioning remains TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2; <code>docs/SPEC.md</code> section 8; <code>docs/PRD.md</code> section 15.3</td></tr>
+<tr><td>REQ-02-05-021</td><td>Migration handling shall define status semantics and diagnostics for unsupported, stale, and failed migrations. The bounded runtime uses the established schema vocabulary and DEC-019/DEC-033 evaluator; additional migration tooling and the compatibility-window size remain TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04, section 8.2, OI-011</td></tr>
+<tr><td>REQ-02-05-022</td><td>The persistence service contract shall define create, open, save, validate, version-check, and migrate-operation behavior in schema-first command/query/result-envelope terms; exact language/API signatures remain TBD.</td><td>SOW-050; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-03 and section 8.2; <code>docs/SPEC.md</code> section 1</td></tr>
+<tr><td>REQ-02-05-023</td><td>Diagnostics emitted by persistence operations shall define deterministic class coverage for schema, migration, unit metadata, provenance, rule-pack reference, IP/data-boundary, private-data, and professional-boundary failures or warnings.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-06; <code>docs/SPEC.md</code> section 7; <code>docs/CONTRACT.md</code> invariant index</td></tr>
+<tr><td>REQ-02-05-024</td><td>Rule-pack references persisted in projects shall carry enough metadata to identify private/public status, version/checksum, source note, redistribution status, and missing/private-reference diagnostics without exposing protected rule content in public artifacts.</td><td><code>docs/SPEC.md</code> section 6; <code>docs/PRD.md</code> sections 12.2 and 12.4; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3, 6, and 7</td></tr>
+<tr><td>REQ-02-05-025</td><td>Create/open/save behavior shall preserve the local-first/private-data boundary by default; exact enforcement split between persistence operations, export/commit safeguards, and PKG-12 controls remains TBD.</td><td><code>docs/CONTRACT.md</code> OPS-K-PRIV-1; <code>docs/PRD.md</code> sections 18.1-18.3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 6</td></tr>
+<tr><td>REQ-02-05-026</td><td>Optional human-review records, if stored, shall bind to specific model/rule/report hashes and use authority labels that do not survive content changes and do not imply software certification or automatic code compliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AUTH-2; <code>docs/TYPES.md</code> section 4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-contract-detail-tables">CLM-015 — Contract Detail Tables</h3>
+<blockquote><h6 id="contract-detail-tables">Contract Detail Tables</h6></blockquote>
+<h3 id="clm-016-project-envelope-slots">CLM-016 — Project Envelope Slots</h3>
+<blockquote><h6 id="project-envelope-slots">Project Envelope Slots</h6>
+<table><tbody>
+<tr><td>Slot</td><td>Minimum contract content</td><td>Verification note</td></tr>
+<tr><td><code>document_metadata</code></td><td>Document kind, schema version, project/document identity, and version-handling metadata.</td><td>Fixture exposes version fields and migration status or diagnostic behavior.</td></tr>
+<tr><td><code>project</code></td><td>Project identity, design-basis metadata, storage policy/private-data indicators, and report settings where applicable.</td><td>Fields align to <code>Project</code> object scope in <code>docs/SPEC.md</code> section 3; exact field names TBD.</td></tr>
+<tr><td><code>units</code></td><td>Declared unit system and/or explicit unit metadata on numerical values.</td><td>Missing units and incompatible dimensions fail with deterministic findings.</td></tr>
+<tr><td><code>model</code></td><td>Nodes, elements, sections, materials, components, supports, and references used by the persisted model where present.</td><td>Round-trip comparison verifies stable identity and references, not text formatting.</td></tr>
+<tr><td><code>loads</code></td><td>Load cases and load records with units and source/provenance where needed.</td><td>Round-trip comparison verifies load IDs, types, magnitudes, units, and source fields where present.</td></tr>
+<tr><td><code>rule_pack_refs</code></td><td>Rule-pack ID/name, version, checksum, source note, redistribution/private status, and required-input linkages where present.</td><td>Public fixtures reference only invented or permissively licensed rule packs.</td></tr>
+<tr><td><code>provenance</code></td><td>Source/provenance and redistribution/review metadata for public data records; private/source labels where project records are private.</td><td>Public data records follow <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4 fields.</td></tr>
+<tr><td><code>diagnostics_and_migration</code></td><td>Validation findings, migration status, and structured result-envelope diagnostics.</td><td>Unsupported, stale, and failed migration cases have deterministic diagnostics.</td></tr>
+<tr><td><code>reproducibility</code></td><td>Model hash, input-manifest compatibility, solver/report linkage where applicable, and rule-pack checksum references.</td><td>Hash inputs are identified and stable for canonical JSON payloads.</td></tr>
+<tr><td><code>review_records</code></td><td>Optional human review labels and hashes for project-specific acceptance records.</td><td>Any review label remains human authority only and cannot be generated as code compliance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-round-trip-equality-criteria">CLM-017 — Round-Trip Equality Criteria</h3>
+<blockquote><h6 id="round-trip-equality-criteria">Round-Trip Equality Criteria</h6>
+<table><tbody>
+<tr><td>Category</td><td>Equal after round trip when</td><td>Failure examples</td></tr>
+<tr><td>Model content</td><td>Stable object IDs, object types, references, coordinates/geometry fields, component/material/section references, and support/load associations remain semantically equivalent.</td><td>Missing object, changed reference, changed engineering-relevant value, or unreported schema loss.</td></tr>
+<tr><td>Unit metadata</td><td>Explicit units or declared unit-system references remain present and dimensionally compatible.</td><td>Missing unit, incompatible unit dimension, or silent default insertion.</td></tr>
+<tr><td>Loads</td><td>Load-case IDs, load types, magnitudes, units, and source/provenance fields where present are preserved.</td><td>Changed magnitude, missing units, lost load case, or lost source note.</td></tr>
+<tr><td>Rule-pack references</td><td>ID/name, version, checksum, source note, private/public or redistribution status, and required-input linkages remain present.</td><td>Expanded protected rules in public artifacts, checksum loss, or private/public status loss.</td></tr>
+<tr><td>Provenance metadata</td><td>Provenance fields required for engineering-reliance data remain present or generate findings when missing.</td><td>Lost source, lost redistribution status, or missing provenance accepted as complete.</td></tr>
+<tr><td>Reproducibility metadata</td><td>Canonical JSON payload hash basis and input-manifest compatibility are reproducible for the selected payload/manifest partition.</td><td>Hash includes volatile/session fields without approved basis, or payload partition is undocumented.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-migration-status-semantics">CLM-018 — Migration Status Semantics</h3>
+<blockquote><h6 id="migration-status-semantics">Migration Status Semantics</h6>
+<table><tbody>
+<tr><td>Status / case</td><td>Required handling</td><td>Open detail</td></tr>
+<tr><td>Supported/current schema</td><td>Validate and round-trip without migration diagnostics.</td><td>Runtime version-check status <code>current</code>; accepted authoring family <code>0.2.0</code>.</td></tr>
+<tr><td>Unsupported schema</td><td>Return a structured diagnostic and avoid silent coercion.</td><td>Runtime status <code>unsupported_schema</code>.</td></tr>
+<tr><td>Stale schema</td><td>Report migration-needed status or diagnostic before accepting as current.</td><td>Version-check status <code>stale</code>; separate migration evidence reports <code>migrated</code> when the governed path succeeds.</td></tr>
+<tr><td>Failed migration</td><td>Return a structured failure diagnostic with affected object/source where available.</td><td>Runtime status <code>failed</code>; rollback/transaction details remain bounded by the existing persistence operation.</td></tr>
+<tr><td>Newer-than-supported schema</td><td>Refuse down-migration and emit a structured diagnostic.</td><td>Runtime status <code>newer_than_supported</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-persistence-service-operations">CLM-019 — Persistence Service Operations</h3>
+<blockquote><h6 id="persistence-service-operations">Persistence Service Operations</h6>
+<table><tbody>
+<tr><td>Operation</td><td>Minimum inputs</td><td>Minimum outputs / diagnostics</td><td>Notes</td></tr>
+<tr><td>Create project</td><td>Project identity, unit system, storage/private-data policy, optional template/reference selection.</td><td>Versioned project envelope or diagnostics/result envelope.</td><td>Exact constructor/API shape TBD.</td></tr>
+<tr><td>Open project</td><td>Project artifact reference and caller context.</td><td>Parsed project envelope, validation result, migration status, diagnostics.</td><td>Must not bypass schema, unit, provenance, or data-boundary checks.</td></tr>
+<tr><td>Save project</td><td>Validated project envelope, target artifact reference, canonicalization/hash options.</td><td>Saved artifact reference, version metadata, hash/manifest evidence, diagnostics.</td><td>Physical container remains TBD.</td></tr>
+<tr><td>Validate project</td><td>Project envelope or artifact reference.</td><td>Schema, unit, provenance, rule-pack-reference, private-data, and protected-content diagnostics.</td><td>Diagnostics use structured result-envelope fields.</td></tr>
+<tr><td>Version check</td><td>Project schema/version metadata.</td><td><code>current</code>, <code>stale</code>, <code>unsupported_schema</code>, <code>failed</code>, or <code>newer_than_supported</code> status and diagnostics.</td><td>Implemented for the bounded DEC-019/DEC-033 runtime; no additional names introduced.</td></tr>
+<tr><td>Migrate project</td><td>Source project, target schema version, migration policy.</td><td>Migrated project or failed migration diagnostics.</td><td>Migration framework/tooling TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-diagnostic-class-coverage">CLM-020 — Diagnostic Class Coverage</h3>
+<blockquote><h6 id="diagnostic-class-coverage">Diagnostic Class Coverage</h6>
+<table><tbody>
+<tr><td>Class / namespace</td><td>Applies when</td><td>Source basis</td></tr>
+<tr><td><code>SCHEMA_VALIDATION</code> (PROPOSAL)</td><td>Project envelope or object payload violates schema.</td><td>SOW-041; JSON Schema 2020-12 baseline.</td></tr>
+<tr><td><code>MIGRATION</code> (PROPOSAL)</td><td>Schema version is unsupported, stale, or migration fails.</td><td>AB-00-04; OI-011.</td></tr>
+<tr><td><code>UNIT_METADATA</code> (PROPOSAL)</td><td>Unit metadata is missing or incompatible.</td><td>OPS-K-UNIT-1; PRD FR-002.</td></tr>
+<tr><td><code>PROVENANCE_WARNING</code></td><td>Source/provenance is missing or weak.</td><td><code>docs/SPEC.md</code> section 7; OPS-K-DATA-2/3.</td></tr>
+<tr><td><code>RULE_CHECK_BLOCKING</code></td><td>Mechanics may exist, but required user/rule-pack data is missing.</td><td><code>docs/SPEC.md</code> section 7; PRD section 14.4.</td></tr>
+<tr><td><code>IP_BOUNDARY_WARNING</code></td><td>Public contribution, fixture, report hook, or export may expose protected/private content.</td><td><code>docs/SPEC.md</code> section 7; IP/data-boundary policy.</td></tr>
+<tr><td><code>PRIVATE_DATA</code> (PROPOSAL)</td><td>An operation would transmit, commit, export, or publish private project/rule/library data by default.</td><td>OPS-K-PRIV-1; PRD section 18.</td></tr>
+<tr><td><code>PROFESSIONAL_BOUNDARY</code> (PROPOSAL)</td><td>A status or artifact could imply certification, sealing, approval, authentication, or automatic code compliance.</td><td>OPS-K-AUTH-1; <code>docs/TYPES.md</code> section 4.</td></tr>
+</tbody></table>
+<p>PROPOSAL: Exact diagnostic code prefixes remain TBD; the table above records required deterministic coverage, not final code names.</p></blockquote>
+<h3 id="clm-021-standards">CLM-021 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / basis</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Public schema/interchange baseline for the project file schema.</td><td>Required by SCA-001; exact schema file layout TBD.</td></tr>
+<tr><td>Canonical JSON / JCS-compatible canonicalization</td><td>Hash basis for JSON payloads.</td><td>Required by SCA-001; exact library/tooling TBD.</td></tr>
+<tr><td>OpenPipeStress invariant catalog</td><td>Binding constraints for IP boundary, unit safety, provenance, professional boundary, private data, and agent outputs.</td><td>Required by <code>docs/CONTRACT.md</code>.</td></tr>
+<tr><td>OpenPipeStress data-boundary policy</td><td>Controls public/private data handling and provenance fields.</td><td>Required by <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+</tbody></table>
+<p>No piping design code or protected standards dataset is a governing input to this deliverable. The persistence schema may carry user-supplied rule-pack references and provenance, but it must not bundle protected code content.</p></blockquote>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>REQ-02-05-001, REQ-02-05-006, REQ-02-05-010, REQ-02-05-011, REQ-02-05-021, REQ-02-05-022, REQ-02-05-023</td><td>Persistence service contract review: create/open/save/validate/version-check/migrate operations have defined inputs, outputs, diagnostics/result envelopes, boundary checks, and migration-status behavior.</td></tr>
+<tr><td>REQ-02-05-002, REQ-02-05-005, REQ-02-05-018, REQ-02-05-020</td><td>Round-trip tests: parse a project fixture, validate/normalize, serialize canonically, reparse, and compare category-level semantic equality plus canonical JSON/hash behavior.</td></tr>
+<tr><td>REQ-02-05-003, REQ-02-05-004, REQ-02-05-017</td><td>Schema validation: fixtures validate against JSON Schema 2020-12 contracts; invalid fixtures fail with deterministic diagnostics; project-envelope slots are covered or marked TBD.</td></tr>
+<tr><td>REQ-02-05-007, REQ-02-05-008, REQ-02-05-019</td><td>Unit/provenance tests: explicit units and declared unit systems survive round trip; missing/incompatible units and missing/weak provenance produce findings rather than silent defaults.</td></tr>
+<tr><td>REQ-02-05-009, REQ-02-05-024</td><td>Rule-pack reference tests: ID/name, version, checksum, source note, and private/public or redistribution status survive round trip; public fixtures do not expand protected rule content.</td></tr>
+<tr><td>REQ-02-05-013, REQ-02-05-014, REQ-02-05-016, REQ-02-05-025, REQ-02-05-026</td><td>Protected-content/private-data/professional-boundary review: fixtures contain invented/permissive data only; private references are not publicly committed or transmitted by default; no compliance/certification status appears; optional review records bind to hashes if present.</td></tr>
+<tr><td>REQ-02-05-012, REQ-02-05-015, REQ-02-05-020</td><td>Reproducibility tests: model-hash/input-manifest compatibility is stable for deterministic JSON payloads; payload/manifest partition is documented; protected-content/provenance gates run where public examples/templates are present.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-documentation">CLM-023 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>The deliverable should leave or update these records:</p>
+<ul>
+<li>- project file schema documentation, including schema version, migration status semantics, canonicalization/hash basis, and unresolved implementation TBDs;</li>
+<li>- persistence service contract documentation for create/open/save/version validation and diagnostics/result envelopes;</li>
+<li>- round-trip test documentation naming fixtures, expected preserved fields, semantic equality checks, canonical hash expectations, and protected-content/provenance gates;</li>
+<li>- diagnostic taxonomy coverage and migration-status case matrix, with exact code names/status names marked TBD where not approved;</li>
+<li>- fixture/public-data review evidence covering provenance, redistribution status, protected-content screening, private-data handling, and professional-boundary language;</li>
+<li>- open decisions for physical project package/container, migration framework/tooling, binary asset packaging, exact schema file layout, dependency/tool selections, and hash payload partitioning;</li>
+<li>- no protected standards excerpts, proprietary data, or code-compliance/certification claims.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted source requirements for schema-governed local persistence, deterministic round trips, explicit units and provenance, validated service boundaries, and unresolved physical-container or migration decisions.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-024-procedure-del-02-05-project-persistence-and-round-trip-serialization">CLM-024 — Procedure - DEL-02-05 Project Persistence and Round-Trip Serialization</h3>
+<blockquote><h4 id="procedure-del-02-05-project-persistence-and-round-trip-serialization">Procedure - DEL-02-05 Project Persistence and Round-Trip Serialization</h4></blockquote>
+<h3 id="clm-025-d-41-r5-t7-pdu-055-current-declaration">CLM-025 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-02-05-DECL-004</code>.</p></blockquote>
+<h3 id="clm-026-pdu-024-version-contract-check">CLM-026 — PDU-024 Version Contract Check</h3>
+<blockquote><h5 id="pdu-024-version-contract-check">PDU-024 Version Contract Check</h5>
+<p>1. Evaluate the in-document semantic version through the established migration evaluator.</p>
+<p>2. Emit <code>current</code> only for the accepted <code>0.2.0</code> family; map a successful older-version migration path to <code>stale</code> at version-check grain and retain <code>migrated</code> in the migration record.</p>
+<p>3. Emit structured <code>unsupported_schema</code>, <code>newer_than_supported</code>, or <code>failed</code> diagnostics without coercion.</p>
+<p>4. Exercise current, stale, unsupported, newer, and failed classifications in focused contract tests and verify the Project Validation, Export Review, and Report consumers do not contain stale current-version comparisons.</p></blockquote>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and check the DEL-02-05 artifacts: project file schema, round-trip tests, and persistence service contract. It is operational guidance for implementation and review; it does not itself implement the schema or service.</p></blockquote>
+<h3 id="clm-028-prerequisites">CLM-028 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the active deliverable is DEL-02-05 under PKG-02 and that write scope is limited to the deliverable-local artifacts. Source: <code>_CONTEXT.md</code>; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> section 4.</li>
+<li>- Use <code>_CONTEXT.md</code> revision 0.7, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, and register rows for DEL-02-05, SOW-050, SOW-041, and ContextBudgetQA DEL-02-05.</li>
+<li>- Apply SCA-001 basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, and AB-00-08 only to the extent they constrain this persistence deliverable.</li>
+<li>- Treat <code>_DEPENDENCIES.md</code> as human-owned dependency context. Current state: no specific upstream/downstream dependency list was declared.</li>
+<li>- Keep protected standards/code data, proprietary values, and code-compliance/certification claims out of public artifacts. Source: <code>docs/CONTRACT.md</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</li>
+</ul></blockquote>
+<h3 id="clm-029-steps">CLM-029 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm scope and lifecycle state.</p>
+<ul>
+<li>- Verify the deliverable folder, status, allowed writes, and anticipated artifacts.</li>
+<li>- Stop or escalate if the task requires protected data or expands outside project persistence.</li>
+</ul>
+<p>2. Establish the source set.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>docs/_Registers/*.csv</code> rows for this deliverable, <code>docs/CONTRACT.md</code>, and the relevant SOFTWARE_DECOMP sections.</li>
+<li>- Record missing or inaccessible sources as warnings; do not invent requirements.</li>
+</ul>
+<p>3. Define the persistence boundary.</p>
+<ul>
+<li>- Include create/open/save/version behavior, project schema, round-trip serialization, and service diagnostics.</li>
+<li>- Exclude numerical solving, GUI views, rule-pack evaluator behavior, report rendering, external API transport, and physical package/container decisions unless a later brief authorizes them.</li>
+</ul>
+<p>4. Draft or update the project file schema contract.</p>
+<ul>
+<li>- Include schema/version metadata, migration status, project identity, unit-system references, model payload, load payloads, rule-pack references, and provenance metadata.</li>
+<li>- Enumerate the logical project-envelope slots before choosing exact files or generated types: document metadata, project identity/storage policy, unit system, model payload, load payloads, rule-pack references, provenance/redistribution metadata, diagnostics/migration status, reproducibility metadata, and optional review records.</li>
+<li>- For rule-pack references, capture ID/name, version, checksum, source note, redistribution/private status, and missing/private-reference diagnostics without embedding protected rule content in public artifacts.</li>
+<li>- For provenance-bearing public data records, include source, source location, license or redistribution basis, contributor certification, redistribution status, and review status when applicable.</li>
+<li>- Use JSON Schema 2020-12 as the public schema/interchange baseline.</li>
+<li>- Mark exact schema file layout, code-generation tooling, migration framework, and physical project container as TBD unless already resolved by an approved decision.</li>
+</ul>
+<p>5. Define the persistence service contract.</p>
+<ul>
+<li>- Specify create/open/save/validate/version-check/migrate entry points and expected result envelopes.</li>
+<li>- For each operation, document minimum inputs, outputs, diagnostics, and boundary checks:</li>
+<li>- create: project identity, declared unit system, storage/private-data policy, and optional template/reference selection;</li>
+<li>- open: project artifact reference, schema/version handling, validation, migration status, and diagnostics;</li>
+<li>- save: validated project envelope, target artifact reference, canonicalization/hash evidence, and diagnostics;</li>
+<li>- validate: schema, unit, provenance, rule-pack-reference, private-data, and protected-content diagnostics;</li>
+<li>- version-check/migrate: unsupported, stale, failed, and TBD newer/current status handling.</li>
+<li>- Require structured diagnostics for validation, migration, protected-content, private-data, unit, provenance, rule-pack-reference, and professional-boundary failures or warnings.</li>
+<li>- Preserve application-service/domain-core/storage boundaries; adapters and plugins cannot bypass validation or data-boundary checks.</li>
+</ul>
+<p>6. Define canonicalization and reproducibility handling.</p>
+<ul>
+<li>- Use canonical JSON with JCS-compatible canonicalization as the basis for JSON payload hashes.</li>
+<li>- Record whether each hash applies to a normalized JSON payload, input manifest, referenced private/rule/library artifact, or non-JSON/binary asset manifest. Exact split is TBD.</li>
+<li>- Document which fields are excluded from deterministic comparison because they are volatile, environment-specific, or session-only. If exclusion cannot be justified from source or approved decision, mark the partition TBD.</li>
+<li>- Avoid relying on non-deterministic field ordering, timestamps, machine-local paths, or session-only state for deterministic comparisons.</li>
+</ul>
+<p>7. Build the round-trip test plan.</p>
+<ul>
+<li>- Include a fixture inventory with valid invented fixtures and invalid fixtures.</li>
+<li>- Minimum fixture classes: valid minimal invented project; invalid schema shape; missing units; incompatible unit metadata; missing/weak provenance; private rule-pack reference; missing rule-pack reference; unsupported/stale/failed migration version cases; and synthetic protected-content/private-data boundary warnings that do not include actual protected data.</li>
+<li>- Test parse -&gt; validate/normalize -&gt; serialize -&gt; parse cycles for semantic equality.</li>
+<li>- Test semantic equality by category: model identity/references, unit metadata, loads, rule-pack references, provenance metadata, and reproducibility metadata.</li>
+<li>- Test canonical output/hash stability for JSON payloads and record expected canonical JSON/hash outputs for each fixture where the payload partition is known.</li>
+<li>- Test unit metadata preservation, missing provenance findings, migration status handling, rule-pack reference preservation, and private/protected data boundary checks.</li>
+</ul>
+<p>8. Review public-data safety.</p>
+<ul>
+<li>- Confirm public fixtures are invented, original, public-domain, or permissively licensed.</li>
+<li>- Confirm no protected standards text, protected tables, proprietary formulas, material allowables, copied SIF/flexibility data, or commercial examples are present.</li>
+<li>- Confirm no persisted status claims automatic code compliance or professional approval.</li>
+<li>- Produce or update a <code>public_fixture_data_boundary_review</code> record (PROPOSAL; final path TBD) with fixture name, source/provenance, redistribution status, contributor certification, protected-content review status, private-data review status, and professional-boundary review status.</li>
+</ul>
+<p>9. Record open items.</p>
+<ul>
+<li>- Keep physical project package/container, migration framework/tooling, binary asset packaging, exact schema file layout, public API transport, dependency versions, diagnostic code names, status labels, and hash payload partitioning as TBD unless resolved by human/architecture decision.</li>
+<li>- Record the open-decision artifact path as TBD until the repo-level ADR/open-decision convention is approved; AB-00-01 requires decision records, and OI-011 assigns physical container/migration details to PKG-02 / human architecture decision.</li>
+</ul></blockquote>
+<h3 id="clm-030-verification">CLM-030 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Scope check</td><td>Artifacts address DEL-02-05 only and do not implement solver, GUI, reporting, rule evaluator, or external transport behavior.</td></tr>
+<tr><td>Schema check</td><td>Project fixtures validate against JSON Schema 2020-12 contracts; invalid fixtures fail deterministically; each logical project-envelope slot is covered or explicitly marked TBD.</td></tr>
+<tr><td>Round-trip check</td><td>Required model, unit, load, rule-pack reference, provenance, and reproducibility metadata survives round trip without semantic loss.</td></tr>
+<tr><td>Equality check</td><td>The test plan states per-category equality criteria for model content, unit metadata, loads, rule-pack references, provenance metadata, and reproducibility metadata.</td></tr>
+<tr><td>Canonicalization check</td><td>JSON payloads produce stable canonical serialization and stable JCS-compatible hash inputs; the payload/manifest partition is documented or marked TBD.</td></tr>
+<tr><td>Migration check</td><td>Unsupported, stale, and failed migration cases produce explicit migration status or diagnostics; newer/current status labels remain TBD unless approved.</td></tr>
+<tr><td>Unit/provenance check</td><td>Missing/inconsistent unit metadata and missing/weak provenance are surfaced as findings.</td></tr>
+<tr><td>Rule-pack reference check</td><td>Rule-pack reference ID/name, version, checksum, source note, and private/public or redistribution status survive round trip without exposing protected rule content.</td></tr>
+<tr><td>Boundary check</td><td>Public fixtures contain no protected standards/code data, no proprietary values, no private rule-pack expansion, and no compliance/certification claims.</td></tr>
+<tr><td>Service-contract check</td><td>Create/open/save/validate/version-check/migrate failures return structured diagnostics/result envelopes with affected objects and remediation where applicable.</td></tr>
+<tr><td>Review-record check</td><td>Public fixture/data-boundary review evidence names provenance, redistribution status, protected-content review, private-data review, and professional-boundary review disposition.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-records">CLM-031 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Retain or produce:</p>
+<ul>
+<li>- project file schema and schema-version notes;</li>
+<li>- persistence service contract;</li>
+<li>- project-envelope field inventory and schema-version notes;</li>
+<li>- round-trip fixture inventory and expected canonical/hash outputs;</li>
+<li>- expected semantic equality criteria by fixture category;</li>
+<li>- validation diagnostics examples for invalid units, missing provenance, rule-pack reference failures, unsupported/stale/failed migration status, protected/private data warnings, and professional-boundary warnings;</li>
+<li>- open-decision log for physical container, migration tooling, schema layout, dependency versions, diagnostic code names, status labels, and hash payload partitioning, with artifact path TBD until approved;</li>
+<li>- <code>public_fixture_data_boundary_review</code> record (PROPOSAL; final path TBD) or equivalent review evidence showing that no protected standards/code data, proprietary values, private data leakage, or professional approval claims were introduced.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, round-trip semantic preservation, canonical serialization and hash behavior, version diagnostics, private-data and protected-content boundaries, and absence of professional-approval claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-032-guidance-del-02-05-project-persistence-and-round-trip-serialization">CLM-032 — Guidance - DEL-02-05 Project Persistence and Round-Trip Serialization</h3>
+<blockquote><h4 id="guidance-del-02-05-project-persistence-and-round-trip-serialization">Guidance - DEL-02-05 Project Persistence and Round-Trip Serialization</h4></blockquote>
+<h3 id="clm-033-d-41-r5-t7-pdu-055-current-declaration">CLM-033 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-02-05-DECL-003</code>.</p></blockquote>
+<h3 id="clm-034-pdu-024-version-handling-guidance">CLM-034 — PDU-024 Version Handling Guidance</h3>
+<blockquote><h5 id="pdu-024-version-handling-guidance">PDU-024 Version Handling Guidance</h5>
+<p>Do not compare UI model-document versions against duplicated literals. Use <code>evaluateModelDocumentLocal</code> and <code>modelDocumentVersionCheckStatus</code>, mirroring the backend DEC-019/DEC-033 evaluator. Treat <code>0.2.0</code> as current; treat a migratable <code>0.1.0</code> source as stale at version-check grain while retaining <code>migrated</code> in migration evidence. Unsupported, newer, and failed versions must remain explicit and must not be coerced.</p></blockquote>
+<h3 id="clm-035-purpose">CLM-035 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>DEL-02-05 exists to make project files auditable, deterministic, and reusable across the OpenPipeStress workflow. The persistence layer is the handoff surface between domain schemas, unit-aware modeling, rule-pack references, solver inputs, reports, automation, and future adapters. Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-050 and OBJ-012.</p></blockquote>
+<h3 id="clm-036-principles">CLM-036 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the project file as a versioned domain artifact, not as an implementation dump. Required persisted content must be described by schema and service contracts. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04.</li>
+<li>- Preserve semantics, not formatting accidents. Round-trip success means required project content is preserved and canonical JSON/hash behavior is deterministic. Source: <code>docs/PRD.md</code> section 10 FR-001; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04.</li>
+<li>- Keep units explicit. Every numerical value that can affect solving, rule checks, reports, or exports needs unit metadata or a traceable unit-system reference. Source: <code>docs/CONTRACT.md</code> OPS-K-UNIT-1.</li>
+<li>- Preserve provenance. Missing provenance is a finding or warning, not a reason to invent source information. Source: <code>docs/CONTRACT.md</code> OPS-K-DATA-2 and OPS-K-DATA-3; <code>docs/TYPES.md</code> section 5.</li>
+<li>- Store rule-pack references and checksums without bundling protected rule content into public project examples. Source: <code>docs/SPEC.md</code> section 6; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3, 6, and 7.</li>
+<li>- Route persistence through application/service/storage boundaries that keep validation and diagnostics enforceable. Source: <code>docs/SPEC.md</code> section 1; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-02, AB-00-03, AB-00-06, and AB-00-07.</li>
+<li>- Separate software-computed state from professional approval. Persistence may record user-rule check states or human review records only with appropriate authority labels and hashes; it must not turn software output into code compliance. Source: <code>docs/TYPES.md</code> section 4; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AUTH-2.</li>
+</ul></blockquote>
+<h3 id="clm-037-considerations">CLM-037 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Use a schema-versioned project envelope with explicit document kind, project identity, schema version, unit-system reference, migration status, and payload sections. ASSUMPTION: this envelope shape is a suitable implementation pattern; the exact schema file layout remains TBD under SCA-001.</li>
+<li>- Make canonicalization scope explicit before hashing. A hash over volatile, environment-specific, or session-only fields will undermine reproducibility. The exact hash payload subset is TBD; the binding basis is canonical JSON with JCS-compatible canonicalization for JSON payloads.</li>
+<li>- Preserve unknowns as <code>TBD</code>, <code>UNKNOWN_SOURCE</code>, warnings, or diagnostics rather than filling defaults. This applies especially to units, provenance, rule-pack references, and migration status.</li>
+<li>- Keep public fixtures small and invented. They can verify schema shape and round-trip behavior without exposing protected standards data, proprietary values, or commercial software examples.</li>
+<li>- Represent private data boundaries in the contract. Project files may reference private libraries and rule packs, but the public project must not assume those files are redistributable.</li>
+<li>- Design diagnostics for machine and user review. Open/save/migrate failures should identify affected objects, source, severity, remediation, and provenance rather than returning unstructured text only.</li>
+<li>- Avoid overclaiming SCA-001. The architecture basis resolves JSON Schema 2020-12, canonical JSON/JCS-compatible hash basis, schema-first envelopes, and test-gate classes; it does not resolve exact dependency versions, physical container, migration framework, or binary packaging.</li>
+<li>- Record unresolved persistence decisions in an ADR/open-decision mechanism before implementation depends on them. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-01, section 8.2, and OI-011.</li>
+<li>- Treat local-first behavior as a boundary condition for persistence, not only as a publication policy. Create/open/save must not imply cloud storage, public commit, telemetry, or redistribution of private project/rule/library data by default; the exact split between persistence checks and PKG-12 privacy controls remains TBD. Source: <code>docs/CONTRACT.md</code> OPS-K-PRIV-1; <code>docs/PRD.md</code> sections 18.1-18.3.</li>
+</ul></blockquote>
+<h3 id="clm-038-vocabulary-normalization">CLM-038 — Vocabulary Normalization</h3>
+<blockquote><h6 id="vocabulary-normalization">Vocabulary Normalization</h6>
+<p>Use these terms consistently until a human/architecture decision replaces them:</p>
+<table><tbody>
+<tr><td>Term</td><td>Use in DEL-02-05</td><td>Avoid using it to mean</td></tr>
+<tr><td>Project document</td><td>The logical persisted project content governed by schema and round-trip requirements.</td><td>A specific file extension or physical package format.</td></tr>
+<tr><td>Project envelope</td><td>The versioned top-level contract containing metadata, payload slots, diagnostics/migration status, and reproducibility metadata.</td><td>A final schema file path or code-generated type.</td></tr>
+<tr><td>Project file</td><td>A user-facing persistence artifact created/opened/saved by the product.</td><td>A commitment to a single JSON file.</td></tr>
+<tr><td>Project package/container</td><td>The physical storage choice, such as single file versus packaged container.</td><td>A settled decision; this remains TBD under SCA-001/OI-011.</td></tr>
+<tr><td>Input manifest</td><td>A reproducibility record that identifies hash inputs, referenced artifacts, and private/rule/library checksums where applicable.</td><td>A report approval or compliance claim.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-039-trade-offs">CLM-039 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision area</td><td>Conservative guidance</td><td>Why</td></tr>
+<tr><td>Single JSON file vs packaged project container</td><td>Keep the physical package/container TBD until a human/architecture decision resolves it.</td><td>SCA-001 explicitly leaves the container unresolved.</td></tr>
+<tr><td>Schema file layout and code generation</td><td>Record the exact schema layout/tooling decision in an ADR or open-decision log before implementation depends on it.</td><td>SCA-001 selects JSON Schema 2020-12 but leaves exact schema file layout and code-generation tooling TBD.</td></tr>
+<tr><td>Embedded rule-pack data vs references</td><td>Prefer references with version/checksum/source notes for persistence; avoid embedding protected or private rule content in public examples.</td><td>Maintains code-neutral and private-data boundaries.</td></tr>
+<tr><td>Human-readable JSON vs strict canonical form</td><td>Permit authoring/readability where useful, but tests should compare normalized semantic content and canonical JSON/hash output.</td><td>Determinism is required for reproducibility.</td></tr>
+<tr><td>Full-file hash vs payload/manifests</td><td>Use canonical JSON for JSON payload hashes and manifest hashes for non-JSON/binary assets; exact split is TBD.</td><td>Matches SCA-001 without deciding binary package structure prematurely.</td></tr>
+<tr><td>Migration now vs migration framework later</td><td>Require schema version and migration status now; leave migration framework/tooling TBD.</td><td>This records compatibility boundaries without inventing implementation details.</td></tr>
+<tr><td>Local project operations vs public sharing</td><td>Make create/open/save local-first by default; treat public export, bug-report attachment, telemetry, and repository commit as separately reviewed actions.</td><td>PRD section 18 and OPS-K-PRIV-1 prohibit default transmission or public commitment of private project data.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-040-examples">CLM-040 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>TBD. No deliverable-specific project file example was available in the accessible sources. Any future public fixture should use invented or permissively licensed data, include provenance/redistribution fields where data records exist, and avoid protected standards/code content.</p>
+<p>Future fixtures should also carry a durable review record with, at minimum, source name/location, license or redistribution basis, contributor certification, review status, and confirmation that the fixture does not include protected standards/code data, proprietary values, or professional approval claims. Source: <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-5; <code>docs/CONTRACT.md</code> OPS-K-IP-1 through OPS-K-IP-3 and OPS-K-AUTH-1.</p></blockquote>
+<h3 id="clm-041-conflict-table-for-human-ruling">CLM-041 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict affecting DEL-02-05 content was identified during Pass 1+2. Open items are tracked as TBD rather than conflicts.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-050 SOW-041 OBJ-001 OBJ-012</td><td>CLM-010</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

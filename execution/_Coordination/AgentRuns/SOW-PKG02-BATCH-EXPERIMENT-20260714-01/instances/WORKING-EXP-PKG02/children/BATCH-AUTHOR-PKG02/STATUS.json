@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-batch-author-status/v1",
+  "run_id": "SOW-PKG02-BATCH-EXPERIMENT-20260714-01",
+  "instance_id": "BATCH-AUTHOR-PKG02",
+  "package_id": "PKG-02",
+  "status": "PASS",
+  "finished_utc": "2026-07-14T06:42:22Z",
+  "members_expected": 5,
+  "members_complete": 5,
+  "mapping_rows": 186,
+  "source_lines_covered": 2053,
+  "source_lines_total": 2053,
+  "registered_tool_failures": 0,
+  "registered_tool_retries": 0,
+  "retained_execution_substrate_findings": [
+    "BSD_FIND_PRINTF_UNSUPPORTED",
+    "SHELL_QUOTE_MISMATCH_CAUGHT_BY_BASH_N"
+  ],
+  "retained_telemetry_integrity_findings": [
+    "INITIAL_UTC_TRANSCRIPTION_AND_NON_APPEND_REWRITE"
+  ],
+  "semantic_expansions": 0,
+  "cross_member_contamination": 0,
+  "project_writes": 0,
+  "blockers": [],
+  "conflicts_requiring_ruling": [],
+  "waivers": [],
+  "unknowns": [],
+  "reruns_required": [],
+  "native_context_occupancy": "UNAVAILABLE",
+  "derivative_status": "AUTHOR_EVIDENCE_ONLY_NOT_INTEGRATION_AUTHORITY"
+}

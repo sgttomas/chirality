@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/finalize_scope_of_work.py",
+    "--evidence-candidate",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/instances/WORKING-EXP-PKG02/children/BATCH-VERIFY-PKG02/members/DEL-02-02/workspaces/repro1/kit/ScopeOfWork.md",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/instances/WORKING-EXP-PKG02/children/BATCH-VERIFY-PKG02/members/DEL-02-02/finalizations/repro1/ScopeOfWork.md",
+    "--report",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/instances/WORKING-EXP-PKG02/children/BATCH-VERIFY-PKG02/members/DEL-02-02/finalizations/repro1/finalization.json"
+  ],
+  "duration_seconds": 0.040887,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "finalize_repro1",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": "PASS blocks=48 output=/Users/ryan/ai-env/projects/chirality/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/instances/WORKING-EXP-PKG02/children/BATCH-VERIFY-PKG02/members/DEL-02-02/finalizations/repro1/ScopeOfWork.md\n"
+}

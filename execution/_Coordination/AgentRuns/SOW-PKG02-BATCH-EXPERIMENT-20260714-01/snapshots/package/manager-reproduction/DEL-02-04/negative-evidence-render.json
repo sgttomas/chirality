@@ -1,0 +1,12 @@
+{
+  "args": [
+    "python3",
+    "{REPO_ROOT}/tools/scope_of_work/render_scope_of_work.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-04/conversion-a",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-04/evidence-render.html"
+  ],
+  "exit_code": 1,
+  "stderr": "ERROR: format state is INVALID: missing production contract\n",
+  "stdout": ""
+}

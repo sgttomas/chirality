@@ -1,0 +1,20 @@
+{
+  "blockers": [],
+  "candidate_repairs": 0,
+  "candidate_writes": 0,
+  "child_instance_id": "BATCH-VERIFY-PKG02",
+  "conflicts_requiring_ruling": [],
+  "deliverables_complete": 5,
+  "deliverables_expected": 5,
+  "failures": 3,
+  "native_context_occupancy": "unavailable",
+  "package_id": "PKG-02",
+  "project_writes": 0,
+  "retries": 3,
+  "run_id": "SOW-PKG02-BATCH-EXPERIMENT-20260714-01",
+  "schema": "chirality-agent-return-status/v1",
+  "status": "PASS_UNCHANGED",
+  "unknowns": [],
+  "verifier_session_count": 1,
+  "waivers": []
+}

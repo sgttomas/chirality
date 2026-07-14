@@ -1,0 +1,18 @@
+{
+  "batch_start_events": 4,
+  "candidate_repairs": 0,
+  "command_duration_seconds": 6.433637,
+  "command_events": 145,
+  "context_occupancy": "unavailable",
+  "context_occupancy_inferred": false,
+  "failures": 3,
+  "final_attempt_duration_seconds": 4.981815,
+  "first_to_terminal_wall_span_seconds": 171.115462,
+  "member_end_events": 5,
+  "member_start_events": 8,
+  "project_writes": 0,
+  "retries": 3,
+  "retained_attempts": 3,
+  "runtime_event_count": 163,
+  "schema": "chirality-batch-verifier-runtime-summary/v1"
+}

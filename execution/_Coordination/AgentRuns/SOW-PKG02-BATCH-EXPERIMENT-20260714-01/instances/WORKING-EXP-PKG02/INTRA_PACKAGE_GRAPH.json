@@ -1,0 +1,51 @@
+{
+  "run_id": "SOW-PKG02-BATCH-EXPERIMENT-20260714-01",
+  "instance_id": "WORKING-EXP-PKG02",
+  "version": 1,
+  "selection_authority": "HUMAN_DIRECTION.md",
+  "posture": "SEQUENTIAL_BATCH_WITH_INDEPENDENT_FAN_IN",
+  "nodes": [
+    {
+      "id": "BATCH-AUTHOR-PKG02",
+      "role": "EPHEMERAL_GENERALIST_AGENT_2",
+      "members": ["DEL-02-01", "DEL-02-02", "DEL-02-03", "DEL-02-04", "DEL-02-05"],
+      "order": "numeric-sequential",
+      "status": "ACCEPTED_WITH_RETAINED_PROCESS_FINDINGS",
+      "integration_owner": true,
+      "write_targets": ["candidates/PIP-PKG02/**", "instances/WORKING-EXP-PKG02/children/BATCH-AUTHOR-PKG02/**"],
+      "return_gate": "5/5 evidence-rich and clean candidates, exact finalization and complete per-member evidence; no drift, project write, waiver, blocker, or unknown"
+    },
+    {
+      "id": "BATCH-VERIFY-PKG02",
+      "role": "FRESH_EPHEMERAL_GENERALIST_AGENT_2",
+      "members": ["DEL-02-01", "DEL-02-02", "DEL-02-03", "DEL-02-04", "DEL-02-05"],
+      "order": "numeric-sequential",
+      "status": "ACCEPTED_PASS_UNCHANGED_WITH_RETAINED_PROCESS_FINDINGS",
+      "depends_on": ["BATCH-AUTHOR-PKG02_ACCEPTED"],
+      "write_targets": ["instances/WORKING-EXP-PKG02/children/BATCH-VERIFY-PKG02/**"],
+      "return_gate": "5/5 PASS_UNCHANGED with independent clean-production evidence; no repair or author contact"
+    },
+    {
+      "id": "MANAGER-FAN-IN",
+      "role": "WORKING_ITEMS",
+      "status": "PASS",
+      "depends_on": ["BATCH-VERIFY-PKG02_ACCEPTED"],
+      "write_targets": ["instances/WORKING-EXP-PKG02/**", "snapshots/package/**", "RUNTIME_EVENTS.jsonl", "RUNTIME_SUMMARY.json"],
+      "return_gate": "complete package reproduction, exact 25-row replacement/inverse simulation, context/drift comparison, terminal handoff"
+    }
+  ],
+  "edges": [
+    ["BATCH-AUTHOR-PKG02", "BATCH-VERIFY-PKG02"],
+    ["BATCH-VERIFY-PKG02", "MANAGER-FAN-IN"]
+  ],
+  "concurrency": "none",
+  "escalation_points": [
+    "frozen-input mismatch",
+    "candidate semantic expansion",
+    "finalization or clean-production binding defect",
+    "cross-member contamination",
+    "missing or abbreviated later-member evidence",
+    "write-scope violation",
+    "unknown or waiver"
+  ]
+}

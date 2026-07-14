@@ -1,0 +1,59 @@
+{
+  "schema": "chirality-root-work-graph/v1",
+  "run_id": "SOW-PKG02-BATCH-EXPERIMENT-20260714-01",
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL_BATCH_WITH_INDEPENDENT_FAN_IN",
+  "basis": "main@3efa950aa981f9d3491bab2ab3b3319a5a2c6d5c",
+  "nodes": [
+    {
+      "id": "E0",
+      "owner": "HELP_HUMAN",
+      "role": "AGENT_0",
+      "status": "PASS",
+      "authority": "HUMAN_DIRECTION.md",
+      "effect": "one-run PKG-02 experimental variance only"
+    },
+    {
+      "id": "E1",
+      "owner": "WORKING-EXP-PKG02",
+      "role": "WORKING_ITEMS",
+      "status": "PASS_WITH_RETAINED_PROCESS_FINDINGS",
+      "depends_on": ["E0_PASS"],
+      "members": ["DEL-02-01", "DEL-02-02", "DEL-02-03", "DEL-02-04", "DEL-02-05"],
+      "agent_2_sessions": 2,
+      "write_scope": ["candidates/PIP-PKG02/**", "instances/WORKING-EXP-PKG02/**", "snapshots/package/**", "RUNTIME_EVENTS.jsonl", "RUNTIME_SUMMARY.json"],
+      "fan_in": "E2"
+    },
+    {
+      "id": "E2",
+      "owner": "RECON-EXP-PKG02",
+      "role": "RECONCILIATION",
+      "status": "PASS_WITH_RETAINED_PROCESS_FINDINGS",
+      "depends_on": ["E1_PASS"],
+      "write_scope": ["instances/RECON-EXP-PKG02/**", "snapshots/reconciliation/**", "notices/**"],
+      "fan_in": "E3"
+    },
+    {
+      "id": "E3",
+      "owner": "HELP_HUMAN",
+      "role": "AGENT_0",
+      "status": "PASS_TERMINAL_HANDOFF",
+      "depends_on": ["E2_TERMINAL"],
+      "handoff": "HANDOFF_STATE.md",
+      "next_owner": "HUMAN"
+    },
+    {
+      "id": "E4",
+      "owner": "CHANGE-EXP-PKG02",
+      "role": "CHANGE",
+      "status": "READY",
+      "depends_on": ["E3_PASS"],
+      "write_scope": ["experiment run root only", "routine Git commit and push on main"]
+    }
+  ],
+  "human_gates": [
+    "No project writes or integration",
+    "No active-plan modification or W-P1 release",
+    "No lifecycle, H1/H2, release, or retirement act"
+  ]
+}

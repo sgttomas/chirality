@@ -1,0 +1,32 @@
+{
+  "args": [
+    "python3",
+    "{REPO_ROOT}/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+    "--deliverable-id",
+    "DEL-02-03",
+    "--package-id",
+    "PKG-02",
+    "--decomposition-basis",
+    "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@69ac259a7113d5a838fb22aa2e84df0e0f109713",
+    "--project-scope-ref",
+    "SOW-002",
+    "--package-objective-ref",
+    "OBJ-001",
+    "--package-objective-ref",
+    "OBJ-011",
+    "--output-description",
+    "A code-neutral analysis-boundary model defining states and interfaces that separate mechanics solving, user-rule checking, and human professional approval is produced for the declared scope and objectives.",
+    "--acceptance-criterion",
+    "The contract preserves the accepted source distinctions among software-computed mechanics, user-supplied rule evaluation, and authorized human approval without creating automatic compliance or professional-reliance meaning.",
+    "--verification-method",
+    "Validate the contract and review source parity, allowed state and interface distinctions, authority labels, diagnostics, and absence of automatic code-compliance or approval claims.",
+    "--isolated-migration",
+    "--migration-authority",
+    "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "--deliverable",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-03/negative-partial"
+  ],
+  "exit_code": 1,
+  "stderr": "ERROR: conversion source must resolve as LEGACY_FOUR_DOC, found INVALID\n",
+  "stdout": ""
+}
