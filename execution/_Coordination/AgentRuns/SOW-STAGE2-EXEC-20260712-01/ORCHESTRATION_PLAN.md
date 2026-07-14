@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `H1 BOUND — I1 EXACT INTEGRATION RELEASED`
+Status: `I1 INTEGRATED — CONVERSION CLOSURE RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v52`
+Graph version: `v53`
 
 ## Objective and accepted basis
 
@@ -106,6 +106,14 @@ contained zero project paths and passed all manifest, hash, validator, test,
 and diff-hygiene checks. I1 is now released to fresh CHANGE for only the exact
 five-row `DEL-01-01` representation replacement, required PR checks, merge,
 and postmerge verification. All non-H1 fences remain in force.
+
+`CHANGE-I1` integrated that exact replacement through ready PR #230 after the
+required governance harness passed on source head `41c65bd1f862701314b9c98df216cd8dbdcfe0a5`.
+The clean merge commit is `6d56a1b6f391d21618f3328179d5a48654aec422`.
+Fresh postmerge reproduction confirms the exact five paths, clean `SOW_V1`,
+byte-identical status, unchanged `ISSUED` lifecycle, inverse rollback, and all
+required checks. Cross-wave conversion/rollback closure is released. Legacy
+retirement remains prohibited pending the separate fresh H2 human ruling.
 
 `WORKING-I0-PKG01` returned PASS after a fresh author and fresh independent
 verifier. The exact ISSUED source/status/authority basis is preserved; the

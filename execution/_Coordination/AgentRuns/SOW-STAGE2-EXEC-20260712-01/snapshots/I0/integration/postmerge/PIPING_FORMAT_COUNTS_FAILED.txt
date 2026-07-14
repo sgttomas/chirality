@@ -1,0 +1,23 @@
+=== Deliverable File Inventory ===
+
+Total deliverable folders: 101
+
+_STATUS.md: 101 / 101
+_CONTEXT.md: 101 / 101
+_DEPENDENCIES.md: 101 / 101
+_REFERENCES.md: 101 / 101
+Datasheet.md: 74 / 101
+Specification.md: 74 / 101
+Guidance.md: 74 / 101
+Procedure.md: 74 / 101
+ScopeOfWork.md: 27 / 101
+Dependencies.csv: 93 / 101
+_MEMORY.md: 0 / 101
+_SEMANTIC.md: 101 / 101
+_SEMANTIC_LENSING.md: 101 / 101
+
+Production format SOW_V1: 0 / 101
+Production format LEGACY_FOUR_DOC: 0 / 101
+Production format MIGRATION_DUAL: 0 / 101
+Production format AMBIGUOUS: 0 / 101
+Production format INVALID: 101 / 101

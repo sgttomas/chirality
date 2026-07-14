@@ -1,13 +1,19 @@
 {
   "schema": "chirality-change-return/v1",
   "instance": "CHANGE-I1",
-  "status": "READY_FOR_PR",
+  "status": "PASS",
   "basis": "b776813d57124df94e9ba1b66a8a63e89487b388",
   "branch": "codex/sow-i1-del0101",
   "project_commit": "3c7f6abfbb7ba7926161369825742fcfd85cbd90",
+  "source_head": "41c65bd1f862701314b9c98df216cd8dbdcfe0a5",
+  "pull_request": 230,
+  "merge_commit": "6d56a1b6f391d21618f3328179d5a48654aec422",
   "project_paths": 5,
   "status_preserved": true,
   "lifecycle": "ISSUED",
   "rollback_executed": false,
-  "required_checks": "PENDING"
+  "required_checks": "PASS",
+  "postmerge_checks": "PASS",
+  "snapshot": "snapshots/I0/integration/postmerge",
+  "next": "CONVERSION_CLOSURE_RELEASED"
 }

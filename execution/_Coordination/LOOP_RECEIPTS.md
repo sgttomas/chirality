@@ -304,3 +304,20 @@
 - Fences: no candidate regeneration, semantic modification, reissue,
   reauthentication, lifecycle change, release, reliance, rollback, retirement,
   or H2 authorization is implied.
+
+### Receipt 20 — 2026-07-14 — DEL-01-01 integrated; closure released
+
+- Binding: ready PR #230 passed `governance-harness / harness` on exact source
+  head `41c65bd1f862701314b9c98df216cd8dbdcfe0a5` and merged cleanly as
+  `6d56a1b6f391d21618f3328179d5a48654aec422`.
+- Result: the H1-authorized project delta is exactly one clean
+  `ScopeOfWork.md` addition plus four legacy deletions; `_STATUS.md` remains
+  byte-identical and lifecycle remains `ISSUED`.
+- Evidence: exact five-row replacement/inverse, live clean-format validation,
+  rollback simulation without execution, 20 root tests, 264 practitioner
+  tests, root validators, and whole-diff hygiene pass. One terminal-LF evidence
+  defect was mechanically normalized before source freeze with exact hashes
+  retained.
+- Handoff: `snapshots/I0/integration/postmerge/`. Cross-wave 146-member
+  conversion/rollback closure is released. Legacy compatibility remains live;
+  retirement is prohibited until a separate fresh H2 human ruling.
