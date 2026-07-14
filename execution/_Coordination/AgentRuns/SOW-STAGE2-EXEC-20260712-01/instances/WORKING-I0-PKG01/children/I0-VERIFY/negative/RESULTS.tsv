@@ -1,0 +1,7 @@
+check	exit	expected
+partial	1	nonzero
+unauthorized_dual	1	nonzero
+wrong_authority	1	nonzero
+mutated_production	1	nonzero
+wrong_basis	1	nonzero
+drift	1	nonzero

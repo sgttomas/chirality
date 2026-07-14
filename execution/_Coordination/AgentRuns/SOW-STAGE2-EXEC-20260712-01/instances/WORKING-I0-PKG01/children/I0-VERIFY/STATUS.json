@@ -1,0 +1,22 @@
+{
+  "blockers": [],
+  "candidate_repair": false,
+  "conflicts": [],
+  "deliverable_id": "DEL-01-01",
+  "derivative": true,
+  "h1_approved": false,
+  "integration_permitted": false,
+  "package_id": "PKG-01",
+  "rerun_triggers": [
+    "accepted-main drift",
+    "source or status hash drift",
+    "lifecycle drift from ISSUED",
+    "accepted-basis or authority amendment",
+    "candidate hash drift",
+    "scope-of-work skill, standard, tool, or required-test drift"
+  ],
+  "schema": "chirality-agent-terminal-status/v1",
+  "status": "PASS_UNCHANGED",
+  "unknowns": [],
+  "waivers": []
+}

@@ -1,0 +1,3 @@
+child	role	depends_on	terminal_status	manifest_sha256	bindings	accepted
+I0-AUTHOR	author	preflight	PASS	201bfb0a2ca0d6c449b2fbf92e6cc17f193f1b1ef7f30d96a360471a8a071315	44	true
+I0-VERIFY	fresh_evidence_only_verifier	I0-AUTHOR accepted	PASS_UNCHANGED	e54c152dae22a9a8597dc6e13119254aa20709c25530e8a5335c2b4b8092b525	102	true

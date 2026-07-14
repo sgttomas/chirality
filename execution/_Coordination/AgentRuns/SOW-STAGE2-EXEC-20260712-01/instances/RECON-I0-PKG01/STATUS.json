@@ -1,0 +1,21 @@
+{
+  "basis": "main@c5abf91b717c0b3901d2a27c578e63976853f8de",
+  "blockers": [],
+  "conflicts": [],
+  "deliverable_id": "DEL-01-01",
+  "derivative": true,
+  "h1_approved": false,
+  "integration_permitted": false,
+  "lifecycle": "ISSUED",
+  "manager_reproduction": "PASS_FULL_PACKAGE_1_OF_1",
+  "next_owner": "HELP_HUMAN",
+  "package_id": "PKG-01",
+  "schema": "chirality-agent-terminal-status/v1",
+  "snapshot": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/I0/preintegration-r1",
+  "snapshot_manifest_rows": 29,
+  "snapshot_manifest_sha256": "802656d604adcaed53bdfd6789a79d852da77dc252382387954f369fe603bc74",
+  "status": "PASS",
+  "terminal": true,
+  "unknowns": [],
+  "waivers": []
+}

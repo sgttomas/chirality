@@ -1,0 +1,20 @@
+gate	expected	observed	verdict
+member_population	1	1	PASS
+terminal_children	2	2	PASS
+upstream_manifests	3/335 rows	3/335 rows	PASS
+source_bindings	5 exact	5 exact	PASS
+lifecycle	ISSUED preserved	ISSUED preserved	PASS
+candidate_hashes	3 exact	3 exact	PASS
+mappings	27	27	PASS
+physical_source_lines	272	272	PASS
+replacement_rows	5	5	PASS
+inverse_rollback_rows	5	5	PASS
+simulation	apply/target/status/rollback PASS	PASS	PASS
+negative_probes	6 fail closed	6 fail closed	PASS
+focused_tests	19 pass	19 pass	PASS
+root_tests	20 pass	20 pass	PASS
+practitioner_tests	264 pass	264 pass	PASS
+semantic_additions	0	0	PASS
+project_writes	0	0	PASS
+H1	unapproved	unapproved	PASS
+integration	prohibited	prohibited	PASS

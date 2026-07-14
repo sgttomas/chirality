@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `ACTIVE — PKG-04 INTEGRATED; P1 POSTMERGE HANDOFF READY`
+Status: `H1 EVIDENCE PREPARED — CHANGE BINDING RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v47`
+Graph version: `v50`
 
 ## Objective and accepted basis
 
@@ -74,6 +74,29 @@ harness on exact head `f2b1d22bd4c84298ba5b9eb4f133a82904086f79` and merged as
 `4c945be4c049b3ea04205f5de047d2c14d055754`. Postmerge project, format,
 hash, control, evidence-binding, practitioner, and root tests pass. PKG-04 is
 integrated and the P1 postmerge handoff is ready for HELP_HUMAN fan-in.
+
+HELP_HUMAN reproduced the 22-member ordinary P1 post-state and accepted the
+phase boundary at `snapshots/W_P1/ACCEPTANCE.md`: every ordinary member is
+single-format `SOW_V1`, status and `IN_PROGRESS` lifecycle are preserved,
+PKG-00 remains excluded upstream-only context, and `DEL-01-01` remains exact
+legacy-only `ISSUED`. I0 is released for isolated derivative preparation and
+independent verification only. H1 remains unapproved and integration remains
+prohibited.
+
+Direct `RECON-I0-PKG01` completed full 1-of-1 reproduction and HELP_HUMAN
+accepted the normalized, rebound 29-row snapshot at SHA-256
+`802656d604adcaed53bdfd6789a79d852da77dc252382387954f369fe603bc74`.
+The explicit H1 evidence acceptance, decision slate, and handoff are frozen at
+`snapshots/I0/H1_EVIDENCE/`. The inherent workplan goal is substantively
+complete; CHANGE is released only to bind this derivative evidence and receipt
+to synchronized main. H1 remains unapproved and I1 remains parked.
+
+`WORKING-I0-PKG01` returned PASS after a fresh author and fresh independent
+verifier. The exact ISSUED source/status/authority basis is preserved; the
+clean candidate binds 27 mappings and 272/272 physical source lines; exact
+replacement/inverse manifests, simulation, negative behavior, containment,
+and required tests pass. I0 RECONCILIATION is released for direct single-
+manager full reproduction. H1 remains unapproved and integration prohibited.
 
 All later nodes remain parked behind the accepted graph edges. H1 and H2
 remain fresh human gates. CHANGE is the sole integration owner for every Git

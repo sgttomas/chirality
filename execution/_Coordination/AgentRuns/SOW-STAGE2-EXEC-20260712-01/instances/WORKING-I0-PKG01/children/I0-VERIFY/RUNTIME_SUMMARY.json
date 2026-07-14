@@ -1,0 +1,42 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 1
+  },
+  "counts": {
+    "category": {
+      "execution": 3
+    },
+    "event_type": {
+      "FINISH": 1,
+      "REMEDIATION": 1,
+      "START": 1
+    },
+    "outcome": {
+      "PASS": 3
+    },
+    "reason_code": {
+      "MECHANICAL_PATH_REBIND": 2,
+      "NONE": 1
+    }
+  },
+  "events": 3,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 0.05,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "I0-VERIFY",
+      "package_id": "PKG-01",
+      "remediations": 1,
+      "retries": 0,
+      "role": "VERIFY",
+      "session_id": "I0-VERIFY"
+    }
+  ],
+  "sessions": 1,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

@@ -1,0 +1,6 @@
+{
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "target": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-I0-PKG01/children/I0-VERIFY/workspace/repro-a",
+  "valid": true
+}

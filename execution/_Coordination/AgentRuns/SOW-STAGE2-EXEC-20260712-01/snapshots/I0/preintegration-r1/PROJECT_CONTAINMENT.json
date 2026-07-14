@@ -1,0 +1,11 @@
+{
+  "h1_approved": false,
+  "integration_permitted": false,
+  "lifecycle": "ISSUED",
+  "live_format": "LEGACY_FOUR_DOC",
+  "project_file_count_after": 5601,
+  "project_file_count_before": 5601,
+  "project_tree_after_sha256": "23d0ed6e1ae6f4395b4841119243c5ba0e6f24126e476de6da3c1478c1f77ca5",
+  "project_tree_before_sha256": "23d0ed6e1ae6f4395b4841119243c5ba0e6f24126e476de6da3c1478c1f77ca5",
+  "zero_project_writes": true
+}

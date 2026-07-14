@@ -269,3 +269,23 @@
 - State: PKG-04 integration is closed and the P1 postmerge handoff is ready for
   HELP_HUMAN fan-in. `DEL-01-01`, H1, lifecycle, release, retirement, and H2
   remain parked.
+
+### Receipt 18 — 2026-07-14 — DEL-01-01 H1 evidence prepared
+
+- P1 acceptance: all 22 ordinary PKG-01–04 members are single-format
+  `SOW_V1`; status/lifecycle are preserved; excluded `DEL-01-01` remains exact
+  legacy-only `ISSUED`; PKG-00 remains upstream-only context.
+- I0 preparation: fresh author, fresh verifier, manager fan-in, and direct
+  RECONCILIATION all pass for the exact clean production candidate
+  `23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21`.
+- Evidence: 335/335 upstream bindings; 27/27 preserved mappings; 272/272
+  physical source lines; exact five-row replacement/inverse; apply/rollback;
+  six negative probes; fresh 19, 20, and 264-test suites; zero semantic
+  additions, project writes, blockers, conflicts, waivers, or unknowns.
+- Acceptance: normalized, rebound RECON snapshot manifest
+  `802656d604adcaed53bdfd6789a79d852da77dc252382387954f369fe603bc74`;
+  HELP_HUMAN evidence acceptance and decision slate are under
+  `snapshots/I0/H1_EVIDENCE/`.
+- State: `H1_EVIDENCE_PREPARED — AWAITING_ISSUED_ADMINISTRATIVE_APPROVAL`.
+  H1 is unapproved; integration, reissue, reauthentication, lifecycle action,
+  release, reliance, retirement, and H2 remain prohibited.

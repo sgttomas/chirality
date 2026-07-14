@@ -1,0 +1,9 @@
+{
+  "format": "INVALID",
+  "issues": [
+    "format state is INVALID",
+    "missing production contract"
+  ],
+  "target": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-I0-PKG01/children/I0-VERIFY/checks/production-a.md",
+  "valid": false
+}

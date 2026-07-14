@@ -1,0 +1,18 @@
+{
+  "candidate_identity": "PASS_UNCHANGED",
+  "checklist_items": 1,
+  "conflicts": 0,
+  "evidence_sha256": "e243b68db82a0fd26d27fdad37caf32d0e4edd7124975d6f5c27f7c997b366ed",
+  "finalization_sha256": "fb429964c4d30f08201c46b2a259a103eddc480bac8ea6c5b38df234c0cc5ffd",
+  "format_dual_authorized": "PASS",
+  "format_sow_v1": "PASS",
+  "lifecycle": "ISSUED",
+  "mapping_rows": 27,
+  "physical_lines": 272,
+  "production_sha256": "23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21",
+  "schema": "chirality-i0-verification/v1",
+  "semantic_additions": 0,
+  "status": "PASS_UNCHANGED",
+  "unknowns": 0,
+  "waivers": 0
+}

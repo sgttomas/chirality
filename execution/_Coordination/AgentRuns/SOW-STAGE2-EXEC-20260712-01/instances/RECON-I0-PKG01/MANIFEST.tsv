@@ -1,0 +1,12 @@
+sha256	bytes	path
+93adee4d7c77beef6033dbbeffc1a8ce4c8109581b39264a14ed304bc76dee3d	798	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/ATTEMPTS.md
+32950f4e0355f94db3262c22fa64efedb42e19f41ea19e6715916a1352da72b8	3919	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/LAUNCH_BRIEF.md
+66e3da9e8a046465564561c0921a9e05a5d2540bdf9e7f06761772d59f7ced5f	1290	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/RETURN.md
+ecdcc13981e781946544a07282f3e9e77e30c89f6f8f47dee97ceed9b74f1dfa	713	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/STATUS.json
+03603e35c99d1e05b1d7037e2e4b3ad1c365b4ebe23ab4f298a03e00da335732	818	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/attempts/RECON-ATTEMPT-001/SOURCE_BINDINGS.tsv
+b50b5275136cffe188d42af13bd0e6a58a524282addaba5d24d661067bebf718	594	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/attempts/RECON-ATTEMPT-001/UPSTREAM_MANIFEST_AUDIT.tsv
+e243b68db82a0fd26d27fdad37caf32d0e4edd7124975d6f5c27f7c997b366ed	28789	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/attempts/RECON-ATTEMPT-001/reproduction/reproduced-evidence.md
+fb429964c4d30f08201c46b2a259a103eddc480bac8ea6c5b38df234c0cc5ffd	10446	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/attempts/RECON-ATTEMPT-001/reproduction/reproduced-finalization.json
+23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21	21994	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/attempts/RECON-ATTEMPT-001/reproduction/reproduced-production.md
+dbedff86dd8a711c6a53d968b71e81a0b5f369f10bb970792b30ca5d7f4932ee	4191	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/finalize_reconciliation.py
+5d08b3a43ffc3c46fa1e600f94236f44389eec3eb0560d1f37baec4cee8eaf89	16737	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-I0-PKG01/reconcile_i0.py

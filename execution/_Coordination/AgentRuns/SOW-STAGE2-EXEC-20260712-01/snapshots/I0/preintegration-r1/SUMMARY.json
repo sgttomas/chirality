@@ -1,0 +1,23 @@
+{
+  "blockers": 0,
+  "conflicts": 0,
+  "content_authority": "PASS",
+  "execution_substrate": "PASS",
+  "h1_approved": false,
+  "integration_permitted": false,
+  "lifecycle": "ISSUED",
+  "mappings": 27,
+  "members": 1,
+  "negative_probes_pass": 6,
+  "preservation_containment": "PASS",
+  "replacement_rows": 5,
+  "rollback_rows": 5,
+  "schema": "PASS",
+  "semantic_additions": 0,
+  "simulations_pass": 1,
+  "source_lines": 272,
+  "status": "PASS",
+  "terminal_children": 2,
+  "upstream_manifest_rows": 335,
+  "upstream_manifests": 3
+}

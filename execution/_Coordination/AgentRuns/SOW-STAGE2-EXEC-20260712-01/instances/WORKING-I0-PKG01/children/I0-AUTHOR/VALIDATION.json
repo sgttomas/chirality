@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "production": {"format": "SOW_V1", "valid": true, "issues": []},
+  "isolated_evidence_workspace": {"format": "MIGRATION_DUAL", "valid": true, "issues": []},
+  "source_blocks": 27,
+  "mapping_rows": 27,
+  "physical_source_lines": {"expected": 272, "observed": 272},
+  "production_sha256": "23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21"
+}

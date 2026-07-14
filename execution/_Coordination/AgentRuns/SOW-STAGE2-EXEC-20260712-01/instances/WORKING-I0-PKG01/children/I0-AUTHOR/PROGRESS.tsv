@@ -1,0 +1,6 @@
+sequence	stage	result	reason_code	evidence
+1	normalization	PASS	NONE	TASK_RUN_2026-07-14_I0_AUTHOR.md
+2	binding-reproduction	PASS	NONE	SOURCE_BINDINGS.tsv
+3	conversion-and-finalization	PASS	NONE	DETERMINISM.tsv
+4	validation-and-negatives	PASS	NONE	VALIDATION.json;NEGATIVE_CHECKS.tsv
+5	telemetry-remediation	PASS	MECHANICAL_PATH_REBIND	ATTEMPTS.md;RUNTIME_EVENTS.jsonl;RUNTIME_SUMMARY.json

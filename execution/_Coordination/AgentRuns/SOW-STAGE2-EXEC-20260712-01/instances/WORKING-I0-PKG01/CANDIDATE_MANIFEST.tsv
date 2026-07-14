@@ -1,0 +1,4 @@
+path	sha256	bytes	role
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/I0/PIP-PKG01/DEL-01-01/evidence/ScopeOfWork.md	e243b68db82a0fd26d27fdad37caf32d0e4edd7124975d6f5c27f7c997b366ed	28789	evidence_rich_derivative
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/I0/PIP-PKG01/DEL-01-01/production/ScopeOfWork.md	23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21	21994	clean_production_candidate
+execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/I0/PIP-PKG01/DEL-01-01/finalization.json	fb429964c4d30f08201c46b2a259a103eddc480bac8ea6c5b38df234c0cc5ffd	10446	external_finalization_report

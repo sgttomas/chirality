@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 215,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21"
+      },
+      "text": "The contract preserves the exact issued governance baseline, including the selected PolyForm-Noncommercial-1.0.0 license, protected-content and professional-authority boundaries, human-gated agent output, contribution and release policy slots, and all unresolved maintainer, quorum, signing, release-authority, legal-review, and maturity-label values as TBD without adding legal, certification, compliance, release, or professional-reliance claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-001",
+          "source_line": 291,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and independently review exact source parity, governance identity and objective traceability, license and policy boundaries, contribution and release checklist coverage, protected-content and professional-authority controls, human-gated agent status, and every unresolved governed value."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21"
+  },
+  "tool_version": "1"
+}

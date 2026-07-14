@@ -1,0 +1,7 @@
+probe	exit	verdict
+unauthorized_dual	1	PASS
+partial	1	PASS
+wrong_authority	1	PASS
+wrong_basis	1	PASS
+source_drift	1	PASS
+mutated_production	1	PASS

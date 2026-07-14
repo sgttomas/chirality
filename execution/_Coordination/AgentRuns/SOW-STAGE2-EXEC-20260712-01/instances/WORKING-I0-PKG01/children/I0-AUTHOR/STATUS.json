@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "run_status": "SUCCESS",
+  "package_id": "PKG-01",
+  "deliverable_id": "DEL-01-01",
+  "source_commit": "c5abf91b717c0b3901d2a27c578e63976853f8de",
+  "lifecycle": "ISSUED",
+  "derivative": true,
+  "evidence_candidate_sha256": "e243b68db82a0fd26d27fdad37caf32d0e4edd7124975d6f5c27f7c997b366ed",
+  "production_scope_of_work_sha256": "23d92ddeb0cc4e3fe37694b1c8b79284017799cd08caaaad9767c8a4f0121f21",
+  "finalization_sha256": "fb429964c4d30f08201c46b2a259a103eddc480bac8ea6c5b38df234c0cc5ffd",
+  "mapping_rows": 27,
+  "physical_source_lines": 272,
+  "blockers": [],
+  "conflicts": [],
+  "waivers": [],
+  "unknowns": [],
+  "rerun_triggers": ["source commit/hash drift", "status/lifecycle drift", "accepted-basis or authority change", "candidate/tool/standard/test change", "failed independent verification"],
+  "h1_approved": false,
+  "integration_prohibited": true
+}

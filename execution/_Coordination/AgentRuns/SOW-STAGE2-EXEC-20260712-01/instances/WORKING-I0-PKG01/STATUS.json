@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-agent-terminal-status/v1",
+  "status": "PASS",
+  "package_id": "PKG-01",
+  "deliverable_id": "DEL-01-01",
+  "source_commit": "c5abf91b717c0b3901d2a27c578e63976853f8de",
+  "lifecycle": "ISSUED",
+  "mappings": 27,
+  "physical_source_lines": 272,
+  "author": "PASS",
+  "verifier": "PASS_UNCHANGED",
+  "blockers": [],
+  "conflicts": [],
+  "waivers": [],
+  "unknowns": [],
+  "derivative": true,
+  "h1_approved": false,
+  "integration_permitted": false
+}
