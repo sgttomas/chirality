@@ -1,0 +1,9 @@
+{
+  "additions": 1,
+  "changed_paths": 5,
+  "commit": "3c7f6abfbb7ba7926161369825742fcfd85cbd90",
+  "control_paths_changed": 0,
+  "deletions": 4,
+  "schema": "chirality-change-i1-commit-audit/v1",
+  "verdict": "PASS"
+}

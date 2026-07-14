@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `H1 APPROVED — RULING BINDING RELEASED`
+Status: `H1 BOUND — I1 EXACT INTEGRATION RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v51`
+Graph version: `v52`
 
 ## Objective and accepted basis
 
@@ -99,6 +99,13 @@ recorded at `amendments/H1-APPROVAL-001.md`. CHANGE is released first to bind
 that ruling on synchronized main; I1 remains parked until that binding passes.
 The ruling does not authorize reissue, reauthentication, lifecycle change,
 release, reliance, retirement, or H2.
+
+`CHANGE-H1-G` bound the exact human ruling on synchronized main at
+`b776813d57124df94e9ba1b66a8a63e89487b388`; the evidence-only publication
+contained zero project paths and passed all manifest, hash, validator, test,
+and diff-hygiene checks. I1 is now released to fresh CHANGE for only the exact
+five-row `DEL-01-01` representation replacement, required PR checks, merge,
+and postmerge verification. All non-H1 fences remain in force.
 
 `WORKING-I0-PKG01` returned PASS after a fresh author and fresh independent
 verifier. The exact ISSUED source/status/authority basis is preserved; the
