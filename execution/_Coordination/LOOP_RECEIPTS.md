@@ -161,3 +161,6 @@
 - Handoff: `WORKING-P1-PKG01` is next eligible but undispatched at the owner's
   requested conversation boundary. PKG-02–04 remain serially parked; H1/H2
   remain unapproved; no project, lifecycle, or dependency-truth edit occurred.
+- Git binding: the exact 58-path control-plane closeout was committed and
+  pushed on synchronized `main` at
+  `25bbb8b65f157ea522fe3e70bbca47cd0160cc33`.

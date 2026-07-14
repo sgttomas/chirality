@@ -1,6 +1,6 @@
 {
   "run_id": "SOW-STAGE2-EXEC-20260712-01",
-  "version": 34,
+  "version": 35,
   "selection_authority": "HUMAN",
   "posture": "MIXED",
   "accepted_plan": "execution/_Coordination/AgentRuns/SOW-STAGE2-PLAN-20260712/WORK_GRAPH.v1.md",
@@ -135,7 +135,7 @@
     {"id": "W-P1-PKG02", "owner": "WORKING-P1-PKG02", "role": "WORKING_ITEMS", "status": "PARKED", "depends_on": ["W-P1-PKG01_PASS"], "members": 5, "write_scope": ["candidates/W_P1/PIP-PKG02/**", "instances/WORKING-P1-PKG02/**"], "brief": "snapshots/W_P1/preflight-r1/PACKAGE_BRIEFS/WORKING-P1-PKG02.md"},
     {"id": "W-P1-PKG03", "owner": "WORKING-P1-PKG03", "role": "WORKING_ITEMS", "status": "PARKED", "depends_on": ["W-P1-PKG02_PASS"], "members": 8, "write_scope": ["candidates/W_P1/PIP-PKG03/**", "instances/WORKING-P1-PKG03/**"], "brief": "snapshots/W_P1/preflight-r1/PACKAGE_BRIEFS/WORKING-P1-PKG03.md"},
     {"id": "W-P1-PKG04", "owner": "WORKING-P1-PKG04", "role": "WORKING_ITEMS", "status": "PARKED", "depends_on": ["W-P1-PKG03_PASS"], "members": 6, "write_scope": ["candidates/W_P1/PIP-PKG04/**", "instances/WORKING-P1-PKG04/**"], "brief": "snapshots/W_P1/preflight-r1/PACKAGE_BRIEFS/WORKING-P1-PKG04.md"},
-    {"id": "G-PKG00-PLAN", "owner": "CHANGE-PKG00-PLAN-G", "role": "CHANGE", "status": "RELEASED", "depends_on": ["W-P1-B0-R1_ACCEPTED"], "write_scope": ["Stage-2 standing workplan and root receipt", "current run planning/amendment/P1 preflight evidence", "instances/CHANGE-PKG00-PLAN-G/**", "routine Git commit and push on main"], "fan_in_gate": "Exact scoped stage inventory; JSON/diff/hash/count checks PASS; unrelated dirty paths excluded; routine commit pushed; no project/lifecycle/dependency-truth write"},
+    {"id": "G-PKG00-PLAN", "owner": "CHANGE-PKG00-PLAN-G", "role": "CHANGE", "status": "PASS", "depends_on": ["W-P1-B0-R1_ACCEPTED"], "commit": "25bbb8b65f157ea522fe3e70bbca47cd0160cc33", "push_target": "origin/main", "paths": 58, "divergence": "0/0", "write_scope": ["Stage-2 standing workplan and root receipt", "current run planning/amendment/P1 preflight evidence", "instances/CHANGE-PKG00-PLAN-G/**", "routine Git commit and push on main"], "closure": "Exact scoped inventory, JSON, diff hygiene, snapshot hashes, and 22/198/17/0 counts PASS; unrelated dirty paths excluded; no project/lifecycle/dependency-truth write; PKG-01 remains undispatched"},
     {"id": "I0", "owner": "Piping PKG-01 WORKING_ITEMS", "status": "PARKED", "depends_on": ["W_P1_ACCEPTED"]},
     {"id": "I1", "owner": "CHANGE", "status": "PARKED_HUMAN_GATE", "depends_on": ["I0_PASS", "H1_APPROVED"]},
     {"id": "LEGACY_RETIREMENT", "status": "PARKED_HUMAN_GATE", "depends_on": ["CONVERSION_AND_ROLLBACK_CLOSED", "H2_APPROVED"]}

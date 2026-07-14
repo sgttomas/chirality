@@ -5,7 +5,7 @@ RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v34`
+Graph version: `v35`
 
 ## Objective and accepted basis
 

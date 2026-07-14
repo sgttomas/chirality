@@ -20,7 +20,10 @@
     "diff_hygiene": "PASS",
     "staged_scope": "exact authorized subset PASS"
   },
-  "commit": "SELF — containing commit; exact SHA returned after push",
+  "commit": "25bbb8b65f157ea522fe3e70bbca47cd0160cc33",
+  "push": "PASS",
+  "divergence": "0/0",
+  "committed_paths": 58,
   "push_target": "origin/main",
   "project_writes": 0,
   "lifecycle_writes": 0,
