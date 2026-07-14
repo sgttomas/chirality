@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 290,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4493b30fc0758de2f34654f5eb36316644caee1b66ca3c2c20026856f66b13bf"
+      },
+      "text": "The contract preserves the accepted source requirements and boundaries for the canonical model schema, including unit, provenance, diagnostic, professional-reliance, and protected-content constraints, with unresolved decisions retained as stated.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-01-VER-001",
+          "source_line": 457,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, object-family coverage, unit and provenance boundaries, deterministic persistence compatibility, and absence of protected content or compliance claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "4493b30fc0758de2f34654f5eb36316644caee1b66ca3c2c20026856f66b13bf"
+  },
+  "tool_version": "1"
+}

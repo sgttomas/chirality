@@ -91,6 +91,14 @@ to the human.
   complete semantic/deterministic suite. Fresh member reproduction is
   exception-driven plus the deterministic sample below. This optimization
   never removes the package verifier or weakens fail-closed escalation.
+- **Accepted batch-production prerequisite.** A representation-migration
+  package may arrive from one package-wide author plus one fresh package-wide
+  verifier when each deterministic numeric batch contains no more than five
+  members and 2,053 frozen legacy source lines. Larger packages are consecutive
+  numeric sub-batches under one WORKING_ITEMS manager. This changes production
+  session topology only: every member still requires complete author and
+  verifier evidence, and the verifier remains evidence-only with no repair
+  authority.
 - **Containment includes ignored state.** Check tracked changes, untracked
   non-ignored paths, and ignored-path allowlists. Keep frozen evidence trees
   unchanged; use copy-out or external cache/target roots when validation would
@@ -178,8 +186,10 @@ the narrowed third-layer fan-in is:
    package, selecting the numerically final clean member to retain sensitivity
    to late-batch context/task drift. Increase the sample when risk, package
    heterogeneity, or prior escape evidence warrants it.
-6. Escalate any sample or aggregate failure to full affected-package
-   reproduction. Preserve the initial finding and remediation chain.
+6. Treat every author/verifier disagreement as an exception requiring fresh
+   reproduction. Escalate any exception or aggregate/sample failure to full
+   affected-package reproduction, including all numeric sub-batches. Preserve
+   the initial finding and remediation chain.
 
 This profile narrows only redundant third-layer member reproduction. It keeps
 100% independent package verification, 100% aggregate/manifest/simulation

@@ -1,0 +1,19 @@
+{
+  "basis": "98af1a4bde875a0c2d5878d62fc84b3c1d7506c4",
+  "blockers": [],
+  "live_bindings": 72,
+  "mappings": 274,
+  "members": 8,
+  "pkg01_members": 3,
+  "pkg02_members": 5,
+  "project_writes": 0,
+  "replacement_rows": 40,
+  "reruns_required": [],
+  "rollback_rows": 40,
+  "schema": "chirality-sow-batch-adoption-package/v1",
+  "simulations": 8,
+  "source_lines": 2780,
+  "status": "PASS",
+  "unknowns": [],
+  "waivers": []
+}

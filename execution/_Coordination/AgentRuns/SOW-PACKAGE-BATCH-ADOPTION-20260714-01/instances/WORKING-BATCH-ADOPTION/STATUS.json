@@ -1,0 +1,17 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "status": "PASS",
+  "basis": "98af1a4bde875a0c2d5878d62fc84b3c1d7506c4",
+  "members": 8,
+  "mappings": 274,
+  "source_lines": 2780,
+  "live_bindings": 72,
+  "replacement_rows": 40,
+  "rollback_rows": 40,
+  "simulations_passed": 8,
+  "project_writes": 0,
+  "blockers": [],
+  "waivers": [],
+  "unknowns": [],
+  "reruns_required": []
+}

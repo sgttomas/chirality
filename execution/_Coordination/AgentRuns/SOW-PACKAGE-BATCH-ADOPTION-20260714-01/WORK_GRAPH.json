@@ -1,0 +1,84 @@
+{
+  "schema": "chirality-root-work-graph/v1",
+  "run_id": "SOW-PACKAGE-BATCH-ADOPTION-20260714-01",
+  "selection_authority": "HUMAN",
+  "basis": "codex/adopt-pkg-batch-workflow@98af1a4bde875a0c2d5878d62fc84b3c1d7506c4",
+  "nodes": [
+    {
+      "id": "A0",
+      "owner": "HELP_HUMAN",
+      "role": "AGENT_0",
+      "status": "PASS",
+      "authority": "HUMAN_DIRECTION.md"
+    },
+    {
+      "id": "A1",
+      "owner": "HELPS-BATCH-ADOPTION",
+      "role": "HELPS_HUMANS",
+      "status": "PASS",
+      "depends_on": ["A0_PASS"],
+      "write_scope": [
+        "agents/AGENT_WORKING_ITEMS.md",
+        "agents/AGENT_RECONCILIATION.md",
+        "projects/chirality-piping/AGENTS.md",
+        "execution/_Coordination/WORKPLAN_2026-07-12_scope_of_work_stage2.md",
+        "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/PACKAGE-BATCH-ADOPTION-001.md",
+        "execution/_Coordination/AgentRuns/SOW-PACKAGE-BATCH-ADOPTION-20260714-01/instances/HELPS-BATCH-ADOPTION/**"
+      ],
+      "fan_in": "A3"
+    },
+    {
+      "id": "A2",
+      "owner": "WORKING-BATCH-ADOPTION",
+      "role": "WORKING_ITEMS",
+      "status": "PASS",
+      "depends_on": ["A0_PASS"],
+      "write_scope": [
+        "execution/_Coordination/AgentRuns/SOW-PACKAGE-BATCH-ADOPTION-20260714-01/instances/WORKING-BATCH-ADOPTION/**",
+        "execution/_Coordination/AgentRuns/SOW-PACKAGE-BATCH-ADOPTION-20260714-01/candidates/**",
+        "execution/_Coordination/AgentRuns/SOW-PACKAGE-BATCH-ADOPTION-20260714-01/snapshots/package/**"
+      ],
+      "fan_in": "A3"
+    },
+    {
+      "id": "A3",
+      "owner": "RECON-BATCH-ADOPTION",
+      "role": "RECONCILIATION",
+      "status": "PASS",
+      "depends_on": ["A1_PASS", "A2_PASS"],
+      "write_scope": [
+        "execution/_Coordination/AgentRuns/SOW-PACKAGE-BATCH-ADOPTION-20260714-01/instances/RECON-BATCH-ADOPTION/**",
+        "execution/_Coordination/AgentRuns/SOW-PACKAGE-BATCH-ADOPTION-20260714-01/snapshots/reconciliation/**"
+      ],
+      "fan_in": "A4"
+    },
+    {
+      "id": "A4",
+      "owner": "CHANGE-BATCH-ADOPTION",
+      "role": "CHANGE",
+      "status": "PASS",
+      "depends_on": ["A3_PASS"],
+      "write_scope": [
+        "eight authorized Piping deliverable production kits",
+        "git index",
+        "codex/adopt-pkg-batch-workflow",
+        "PR"
+      ],
+      "fan_in": "A5"
+    },
+    {
+      "id": "A5",
+      "owner": "HELP_HUMAN",
+      "role": "AGENT_0",
+      "status": "READY_FOR_PR_SEQUENCE",
+      "depends_on": ["A4_MERGED"],
+      "handoff": "HANDOFF_STATE.md",
+      "next": "resume standing Stage-2 loop"
+    }
+  ],
+  "human_gates": [
+    "DEL-01-01 remains excluded pending H1",
+    "No lifecycle promotion or H2 retirement",
+    "No package outside dependency-valid Stage-2 sequence"
+  ]
+}

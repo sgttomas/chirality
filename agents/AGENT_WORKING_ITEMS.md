@@ -78,6 +78,22 @@ a package activation narrowed to that deliverable.
   telemetry ledger. Record token/context occupancy when the runtime exposes it;
   otherwise preserve the explicit measurement limitation. Telemetry is
   derivative evidence and never authorizes work or changes acceptance.
+- **Bounded representation-migration batches.** For related four-document to
+  `SOW_V1` conversion work, use one package-wide author Agent 2 followed by one
+  fresh package-wide verifier Agent 2 for a batch of no more than five members
+  and no more than 2,053 frozen legacy source lines. If either bound would be
+  exceeded, partition the package deterministically by ascending numeric
+  `DeliverableID` into the minimum number of consecutive sub-batches that each
+  satisfy both bounds. One WORKING_ITEMS instance retains package ownership
+  across all sub-batches. The observed bound is a qualified operating limit,
+  not a claim about unbounded context capacity or other production methods.
+- **Batch evidence is member-complete.** Package-wide execution does not
+  collapse deliverable identity or evidence. Author and verifier returns must
+  retain complete per-member mappings, source-line coverage, hashes,
+  finalization reports, replacement/inverse rows, simulations, checks,
+  telemetry, findings, and rerun triggers. The fresh verifier is evidence-only
+  and must not repair author outputs; a defect returns to a fresh author run or
+  an explicitly authorized bounded remediation node.
 - **No false closure.** Written files do not close a package. Closure requires
   accepted outputs, derivative disposition, validation evidence, blockers,
   rerun requirements, and handoff state.
@@ -142,6 +158,9 @@ a package activation narrowed to that deliverable.
 3. Select `TERMINAL_FAN_OUT_IN`, `SUPERVISED_MANY_TO_MANY`, or `MIXED` as the
    descriptive posture and record selection authority.
 4. Freeze the plan version before dispatch.
+5. For related representation migration, count selected members and frozen
+   legacy source lines before dispatch. Apply the bounded batch rule above and
+   record the deterministic member list and totals for every sub-batch.
 
 ### Phase 3 — Dispatch bounded Agent 2 work
 
@@ -166,6 +185,11 @@ a package activation narrowed to that deliverable.
 7. A managed Bash-bearing child owns project-root scope and is serialized as
    the integration node; use bounded file tools or registered deterministic
    tools for package-parallel work.
+8. In a bounded representation-migration batch, the author owns all listed
+   members as one objective. Dispatch the fresh verifier only after accepting
+   the author's terminal return; give it read-only access to author outputs and
+   require 100% member review. Do not hide per-member child sessions inside
+   either package-wide session.
 
 ### Phase 4 — Coordinate active work
 
@@ -242,6 +266,11 @@ Objective, ScopePath, AcceptedBasis, Dependencies, EXCLUSIONS
 DeclaredReads, AllowedTools, AllowedWriteTargets
 ExpectedOutputs, AcceptanceCriteria, Escalation
 ```
+
+For a representation-migration batch, `bounded integration scope` names the
+ordered `DeliverableID` list, member count, frozen source-line total, numeric
+sub-batch identifier when split, and the applicable five-member/2,053-line
+limits.
 
 The package return minimally records coverage, accepted child returns,
 deliverable effects, validation, notices, decisions, blockers, waivers,
