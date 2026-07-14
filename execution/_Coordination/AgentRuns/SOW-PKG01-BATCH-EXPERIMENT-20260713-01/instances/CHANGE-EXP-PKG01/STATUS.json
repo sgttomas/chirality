@@ -1,0 +1,75 @@
+{
+  "schema": "chirality-change-status/v1",
+  "run_id": "SOW-PKG01-BATCH-EXPERIMENT-20260713-01",
+  "instance_id": "CHANGE-EXP-PKG01",
+  "role": "CHANGE",
+  "status": "PASS",
+  "terminal": true,
+  "objective": "Validate and routinely close out the standalone PKG-01 batch experiment evidence",
+  "entry_branch": "main",
+  "entry_head": "ef461cfdb3a4b135dc670b04f646eca3eac47712",
+  "upstream": "origin/main",
+  "entry_ahead": 0,
+  "entry_behind": 0,
+  "staged_scope": "execution/_Coordination/AgentRuns/SOW-PKG01-BATCH-EXPERIMENT-20260713-01/**",
+  "manifest_validation": {
+    "package_snapshot": {
+      "sha256": "68ef7561011b2ba8a3abf69e3dc00ab0a4f4cf69b18beb982c1e1a1bd31bb72c",
+      "entries": 133,
+      "rehash_failures": 0
+    },
+    "manager": {
+      "sha256": "bbc5bddc118e2138a92fd0b465b19ad0803afea38339aefbbb9bcbfb9d56347a",
+      "entries": 29,
+      "rehash_failures": 0
+    },
+    "author": {
+      "sha256": "91a968202ec8cd1568458e8b9d729c70d3d3503cf3d65c1b0737b1a7e5b24a76",
+      "entries": 265,
+      "rehash_failures": 0
+    },
+    "verifier": {
+      "sha256": "1c37d8359fd39a2a517477fd1d461f17bb0a481bb2e9e65a2ef61c28cb25c3af",
+      "entries": 317,
+      "rehash_failures": 0
+    },
+    "reconciliation_snapshot": {
+      "sha256": "8d5e220b1620c5d3ef62856aefaf6dcd6be4059e276561d77848bd521730dc57",
+      "entries": 9,
+      "rehash_failures": 0
+    },
+    "reconciliation_instance": {
+      "sha256": "67d494e6a109ae35d66d583e06755af15c97a1aa227f9ab014c124d81b44dd13",
+      "entries": 4,
+      "rehash_failures": 0
+    }
+  },
+  "json_files_validated": 60,
+  "json_failures": 0,
+  "diff_hygiene": {
+    "verdict": "PASS_WITH_RETAINED_IMMUTABLE_EOF_WARNINGS",
+    "warnings": 18,
+    "classification": "new blank line at EOF in accepted hash-bound evidence",
+    "disposition": "preserved because rewriting would invalidate sealed expected manifest identities"
+  },
+  "experiment_counts": {
+    "members": 3,
+    "agent_2_sessions": 2,
+    "mappings": 88,
+    "source_lines": 727,
+    "replacement_rows": 15,
+    "rollback_rows": 15,
+    "simulations": 3,
+    "retained_efficiency_findings": 5
+  },
+  "quality_verdict": "PASS_EQUIVALENT_WITH_RECORDED_LIMITS",
+  "scope_verdict": "EXPERIMENT_RUN_ROOT_ONLY",
+  "project_writes": 0,
+  "plan_effect": "NONE",
+  "blockers": [],
+  "waivers": [],
+  "unknowns": [],
+  "closeout_action": "git add exact run root; git commit -m 'Record PKG-01 batch conversion experiment'; git push origin main",
+  "external_dirty_paths": "Excluded by sealed brief and left untouched; not re-inspected by CHANGE",
+  "next_owner": "HELP_HUMAN"
+}

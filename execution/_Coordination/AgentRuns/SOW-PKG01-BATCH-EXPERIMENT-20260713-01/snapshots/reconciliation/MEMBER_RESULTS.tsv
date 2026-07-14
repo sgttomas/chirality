@@ -1,0 +1,4 @@
+deliverable_id	candidate_sha256	mappings	source_lines	author_files	verifier_files	schema	content_authority	preservation	substrate
+DEL-01-02	44d3ec6f9d608eb0d92da54a07efa521c6dba1dd60ea622526ce6bdcec480330	26	204	88	103	PASS	PASS	PASS	PASS
+DEL-01-03	ff45f0783bdd90116b81d594e53667788f91748eaecc4759e7f65a6ff354d4b4	34	290	84	103	PASS	PASS	PASS	PASS
+DEL-01-04	2b304500ac7833adefe33e422a3f2e74df747adc824af35540c1bb221a3669cb	28	233	84	103	PASS	PASS	PASS	PASS

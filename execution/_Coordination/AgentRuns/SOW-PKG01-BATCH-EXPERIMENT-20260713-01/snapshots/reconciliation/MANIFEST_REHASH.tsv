@@ -1,0 +1,5 @@
+manifest	entries	bytes	verdict
+package_snapshot	133	930088	PASS
+manager	29	346322	PASS
+author	265	1989585	PASS
+verifier	317	951586	PASS

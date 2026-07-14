@@ -1,0 +1,9 @@
+{
+  "format": "INVALID",
+  "issues": [
+    "format state is INVALID",
+    "partial legacy production kit; missing: Guidance.md"
+  ],
+  "target": "execution/_Coordination/AgentRuns/SOW-PKG01-BATCH-EXPERIMENT-20260713-01/instances/WORKING-EXP-PKG01/children/BATCH-AUTHOR-PKG01/members/DEL-01-02/negative-partial",
+  "valid": false
+}

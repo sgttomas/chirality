@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="ff45f0783bdd90116b81d594e53667788f91748eaecc4759e7f65a6ff354d4b4">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-01-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>ff45f0783bdd90116b81d594e53667788f91748eaecc4759e7f65a6ff354d4b4</code>.</p>
+<h1 id="scope-of-work-del-01-03">Scope of Work — DEL-01-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This migration candidate defines <code>DEL-01-03</code> in service of project scope [SOW-028, SOW-048] and package objectives [OBJ-002].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A contributor certification workflow and template requirements for attestations, provenance fields, protected-content screening, review routing, quarantine or rejection, and disposition records.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-01-03-contributor-certification-workflow">CLM-001 — Datasheet: DEL-01-03 Contributor certification workflow</h3>
+<h4 id="datasheet-del-01-03-contributor-certification-workflow">Datasheet: DEL-01-03 Contributor certification workflow</h4>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-01-03</td></tr>
+<tr><td>Name</td><td>Contributor certification workflow</td></tr>
+<tr><td>Package ID</td><td>PKG-01</td></tr>
+<tr><td>Package Name</td><td>Governance, IP Boundary, and Professional Responsibility</td></tr>
+<tr><td>Type</td><td>DOC_UPDATE</td></tr>
+<tr><td>Objective</td><td>OBJ-002</td></tr>
+<tr><td>Scope Items</td><td>SOW-028, SOW-048</td></tr>
+<tr><td>Source basis</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; approved <code>DAG-006</code>; <code>docs/CONTRACT.md</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/DIRECTIVE.md</code>; <code>docs/SPEC.md</code>; register rows for DEL-01-03, SOW-028, SOW-048</td></tr>
+</tbody></table>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Workflow purpose</td><td>Define contributor attestations, provenance fields, review routing, and rejection rules for public data contributions.</td><td><code>_CONTEXT.md</code> Description</td></tr>
+<tr><td>Anticipated repo artifacts</td><td><code>CONTRIBUTING.md</code> and <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code> exist as draft repo-level governance artifacts.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>CONTRIBUTING.md</code>; <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code></td></tr>
+<tr><td>Local artifact boundary</td><td>This current-basis refresh updates the DEL-01-03 local kit only; repo-level artifacts are read as evidence and remain draft governance surfaces.</td><td>Approved tranche <code>TP-DEL-01-03-CURRENT-BASIS-REFRESH-001</code></td></tr>
+<tr><td>License decision</td><td>TBD. The project intends to be free/open-source, but exact license remains a human project authority decision.</td><td><code>docs/CONTRACT.md</code> OPS-K-GOV-1; <code>docs/DIRECTIVE.md</code> section 6</td></tr>
+<tr><td>Maintainer/release authority</td><td>TBD until recorded in public governance artifacts.</td><td><code>docs/CONTRACT.md</code> OPS-K-GOV-2</td></tr>
+<tr><td>Public contribution review gate</td><td>Source, provenance, redistribution rights, protected-content risk, private-data risk, and test evidence must be checked before merge.</td><td><code>docs/DIRECTIVE.md</code> section 6; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> section 5</td></tr>
+</tbody></table>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Required handling</td><td>Source</td></tr>
+<tr><td>Suspected protected standards or proprietary content</td><td>Stop ingestion, mark as suspected protected content, quarantine outside public examples, record the issue, and request human/legal review.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 5; <code>docs/CONTRACT.md</code> OPS-K-IP-3</td></tr>
+<tr><td>Missing source, license, or redistribution status</td><td>Treat as unresolved; do not accept as public data until reviewed.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4; <code>docs/CONTRACT.md</code> OPS-K-IP-2</td></tr>
+<tr><td>Legal or license conclusion needed</td><td>Record <code>TBD</code> and route to the human project authority/legal review.</td><td><code>docs/CONTRACT.md</code> OPS-K-GOV-1; SOFTWARE_DECOMP OI-001, OI-003</td></tr>
+<tr><td>Certification wording</td><td>Must not claim engineering certification, approval, sealing, legal clearance, or compliance for reliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1, OPS-K-AGENT-4</td></tr>
+</tbody></table>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<h5 id="construction">Construction</h5>
+<h3 id="clm-006-contributor-certification-template-fields">CLM-006 — Contributor Certification Template Fields</h3>
+<h6 id="contributor-certification-template-fields">Contributor Certification Template Fields</h6>
+<table><tbody>
+<tr><td>Field</td><td>Required value or status</td><td>Notes</td></tr>
+<tr><td>contributor_name</td><td>Required</td><td>Person or organization submitting the data.</td></tr>
+<tr><td>contribution_description</td><td>Required</td><td>Short description of submitted data or artifact.</td></tr>
+<tr><td>source_name</td><td>Required for public data records</td><td>Matches <code>docs/IP_AND_DATA_BOUNDARY.md</code> required provenance fields.</td></tr>
+<tr><td>source_location</td><td>Required or <code>TBD</code></td><td>URL, path, document identifier, or <code>TBD</code>.</td></tr>
+<tr><td>source_license</td><td>Required or <code>TBD</code></td><td>Redistribution basis or unresolved.</td></tr>
+<tr><td>redistribution_status</td><td>Required</td><td><code>public_permissive</code>, <code>private_only</code>, <code>unknown</code>, or <code>protected_suspected</code>.</td></tr>
+<tr><td>contributor_certification</td><td>Required</td><td>Statement that the contribution is original, permissively redistributable, or otherwise submitted with documented rights; no protected standards/proprietary content is copied unless rights are documented.</td></tr>
+<tr><td>protected_content_screen</td><td>Required</td><td>Records whether protected standards text/tables/figures/examples, copied formulas, protected dimensional tables, or proprietary catalog data appear suspected.</td></tr>
+<tr><td>private_data_screen</td><td>Required</td><td>Records whether user-private project, owner, rule-pack, material, or component data is present.</td></tr>
+<tr><td>review_status</td><td>Required</td><td><code>pending</code>, <code>accepted</code>, <code>rejected</code>, or <code>quarantined</code>.</td></tr>
+<tr><td>reviewer</td><td>Required at disposition</td><td>Maintainer/reviewer identity; final role assignment remains <code>TBD</code>.</td></tr>
+<tr><td>disposition_notes</td><td>Required at disposition</td><td>Short rationale and links to evidence, issue, or quarantine record.</td></tr>
+</tbody></table>
+<h3 id="clm-007-review-routing-states">CLM-007 — Review Routing States</h3>
+<h6 id="review-routing-states">Review Routing States</h6>
+<table><tbody>
+<tr><td>State</td><td>Meaning</td></tr>
+<tr><td>Intake pending</td><td>Contribution has not yet passed completeness/provenance screening.</td></tr>
+<tr><td>Provenance review</td><td>Source, license, redistribution status, and contributor attestation are being checked.</td></tr>
+<tr><td>Protected-content review</td><td>Contribution is blocked pending protected-content/private-data review.</td></tr>
+<tr><td>Quarantined</td><td>Suspected protected or private content has been isolated outside public examples.</td></tr>
+<tr><td>Accepted for public repo</td><td>Reviewer recorded public redistribution basis and no protected/private-data blocker.</td></tr>
+<tr><td>Rejected</td><td>Contribution cannot be accepted under current evidence.</td></tr>
+</tbody></table>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-5.</li>
+<li>- <code>docs/CONTRACT.md</code> invariant index.</li>
+<li>- <code>docs/DIRECTIVE.md</code> sections 5-6.</li>
+<li>- <code>docs/SPEC.md</code> sections 6, 8, 10-11.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 rows DEL-01-03, SOW-028, SOW-048, OBJ-002, AB-00-01, AB-00-02, AB-00-06, AB-00-08.</li>
+<li>- <code>execution/_DAG/DAG-006/</code> approved active graph authority.</li>
+<li>- <code>CONTRIBUTING.md</code> and <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code> draft repo-level contributor workflow artifacts.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code>, <code>ScopeLedger.csv</code>, <code>ContextBudgetQA.csv</code> rows named in <code>_CONTEXT.md</code>.</li>
+</ul>
+<h3 id="clm-009-d-41-r5-t7-pdu-054-current-declaration">CLM-009 — D-41 R5 T7 PDU-054 current declaration</h3>
+<h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. Contributor certification templates and issue-intake surfaces now exist under the repository&#x27;s PolyForm-Noncommercial-1.0.0 boundary. Current upstream authority is SOFTWARE_DECOMP revision 0.8 with DAG-007 coordination; contributor disposition remains subject to the recorded governance workflow.</p>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-010-specification-del-01-03-contributor-certification-workflow">CLM-010 — Specification: DEL-01-03 Contributor certification workflow</h3>
+<h4 id="specification-del-01-03-contributor-certification-workflow">Specification: DEL-01-03 Contributor certification workflow</h4>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<h5 id="scope">Scope</h5>
+<p>This deliverable defines the local requirements and evidence kit for a contributor certification workflow covering attestations, provenance fields, review routing, rejection rules, and quarantine handling for public data contributions.</p>
+<p><code>CONTRIBUTING.md</code>, <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code>, and <code>governance/CONTRIBUTION_REVIEW_CHECKLIST.md</code> exist as draft repo-level governance artifacts. The project license has been selected as <code>PolyForm-Noncommercial-1.0.0</code>. This current-basis refresh does not edit those repo-level artifacts, select the final contributor legal mechanism, assign final maintainer or reviewer authority, make legal conclusions, certify rights, or approve engineering reliance.</p>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-01-03-REQ-01</td><td>The workflow shall require contributor-provided source, location, license or <code>TBD</code>, contributor identity, certification statement, redistribution status, and review status for public data records.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4; OPS-K-IP-2</td></tr>
+<tr><td>DEL-01-03-REQ-02</td><td>The workflow shall reject or quarantine contributions with suspected protected standards text, tables, figures, examples, copied formulas, material allowables, SIF/flexibility tables, protected dimensional tables, proprietary vendor data without redistribution rights, or private user/project/rule-pack data.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3 and 5; OPS-K-IP-1, OPS-K-IP-3</td></tr>
+<tr><td>DEL-01-03-REQ-03</td><td>The workflow shall route suspected protected content to human/legal review and shall not paraphrase protected tables or values into public data.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 5; OPS-K-IP-3; sealed brief hard stops</td></tr>
+<tr><td>DEL-01-03-REQ-04</td><td>The workflow shall preserve <code>TBD</code> for unresolved contributor legal mechanism, maintainer authority, reviewer role, release authority, quorum, legal-review outcomes, and legal sufficiency of contribution instruments.</td><td><code>docs/CONTRACT.md</code> OPS-K-GOV-1 and OPS-K-GOV-2; <code>docs/DIRECTIVE.md</code> section 6; <code>governance/MAINTAINERS.md</code> section 6</td></tr>
+<tr><td>DEL-01-03-REQ-05</td><td>The workflow shall separate contribution governance from professional engineering approval and shall not claim certification, sealing, code compliance, legal clearance, or professional reliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1, OPS-K-AGENT-4; <code>docs/DIRECTIVE.md</code> section 6</td></tr>
+<tr><td>DEL-01-03-REQ-06</td><td>The workflow shall record reviewer disposition as a project governance review only, with status values that distinguish pending, accepted, rejected, and quarantined contributions.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> section 5</td></tr>
+<tr><td>DEL-01-03-REQ-07</td><td>The workflow shall keep public/private data boundaries visible for future adapters, imports, rule packs, reports, and release gates.</td><td>AB-00-02, AB-00-06, AB-00-08; <code>docs/SPEC.md</code> sections 1, 7, 8</td></tr>
+<tr><td>DEL-01-03-REQ-08</td><td>The workflow shall maintain draft repo-level contributor workflow artifacts while keeping final contributor legal mechanism, legal sufficiency, reviewer authority, and human acceptance as separate governance decisions.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>CONTRIBUTING.md</code>; <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code>; <code>governance/MAINTAINERS.md</code></td></tr>
+</tbody></table>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Applicability</td><td>Status</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariant catalog for IP, governance, authority, and agent behavior.</td><td>Accessible</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data boundary and provenance/quarantine rules.</td><td>Accessible</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Stop rules and governance baseline.</td><td>Accessible</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Architecture, provenance, diagnostics, reports, and acceptance semantics.</td><td>Accessible</td></tr>
+<tr><td>External legal standards or licenses</td><td>Legal sufficiency of certification language and any final contributor instrument.</td><td>TBD; human/legal review required</td></tr>
+</tbody></table>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-01-03-REQ-01</td><td>Inspect template fields for all provenance and review fields from <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4.</td></tr>
+<tr><td>DEL-01-03-REQ-02</td><td>Inspect rejection/quarantine rules for all public-repository exclusions from <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 3.</td></tr>
+<tr><td>DEL-01-03-REQ-03</td><td>Confirm suspected protected content routes to quarantine and human/legal review with no copied or paraphrased protected content.</td></tr>
+<tr><td>DEL-01-03-REQ-04</td><td>Confirm unresolved contributor-governance decisions remain <code>TBD</code> while the selected project license remains recorded as <code>PolyForm-Noncommercial-1.0.0</code>.</td></tr>
+<tr><td>DEL-01-03-REQ-05</td><td>Search the workflow for prohibited reliance claims such as certify, seal, approve, authenticate, legal clearance, or code compliant, except where listed as prohibited terms.</td></tr>
+<tr><td>DEL-01-03-REQ-06</td><td>Confirm disposition statuses are present and reviewer authority is framed as governance review only.</td></tr>
+<tr><td>DEL-01-03-REQ-07</td><td>Confirm protected-content/provenance warning paths are visible for downstream software gates.</td></tr>
+<tr><td>DEL-01-03-REQ-08</td><td>Confirm <code>CONTRIBUTING.md</code> and <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code> exist as draft repo-level artifacts and are not edited by this current-basis refresh.</td></tr>
+</tbody></table>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<h5 id="documentation">Documentation</h5>
+<p>The deliverable-local documentation set consists of:</p>
+<ul>
+<li>- <code>Datasheet.md</code> - structured fields and workflow states.</li>
+<li>- <code>Specification.md</code> - requirements, verification hooks, and exclusions.</li>
+<li>- <code>Guidance.md</code> - rationale, principles, trade-offs, assumptions, and human rulings needed.</li>
+<li>- <code>Procedure.md</code> - operational steps for intake, review, quarantine, disposition, and records.</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> - semantic lens artifacts used as enrichment aids only.</li>
+<li>- <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> - local dependency register and index.</li>
+<li>- <code>CONTRIBUTING.md</code>, <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code>, and <code>governance/CONTRIBUTION_REVIEW_CHECKLIST.md</code> - draft repo-level governance artifacts read as evidence by this deliverable.</li>
+</ul>
+<h3 id="clm-016-acceptance-criteria">CLM-016 — Acceptance Criteria</h3>
+<h5 id="acceptance-criteria">Acceptance Criteria</h5>
+<ul>
+<li>- The local kit contains the required four documents and generated semantic/dependency artifacts.</li>
+<li>- Repo-level contributor workflow artifacts exist as drafts, but this current-basis refresh does not modify them.</li>
+<li>- Final contributor legal mechanism, legal sufficiency, reviewer authority, and acceptance require recorded human project authority approval.</li>
+<li>- No protected standards/code data, copied tables, proprietary values, or legal conclusions are introduced.</li>
+<li>- Unknown contributor-governance/legal-review decisions remain <code>TBD</code>.</li>
+<li>- Human rulings needed are visible.</li>
+</ul>
+<h3 id="clm-017-d-41-r5-t7-pdu-054-current-declaration">CLM-017 — D-41 R5 T7 PDU-054 current declaration</h3>
+<h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. Contributor certification templates and issue-intake surfaces now exist under the repository&#x27;s PolyForm-Noncommercial-1.0.0 boundary. Current upstream authority is SOFTWARE_DECOMP revision 0.8 with DAG-007 coordination; contributor disposition remains subject to the recorded governance workflow.</p>
+<ul>
+<li>- <strong>AC-001</strong> — The workflow preserves the documented contributor fields, protected-content stop and quarantine rules, repository-governance-only disposition boundary, recorded human-gated decisions, and residual TBDs for SOW-028 and SOW-048 without adding legal or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-018-procedure-del-01-03-contributor-certification-workflow">CLM-018 — Procedure: DEL-01-03 Contributor certification workflow</h3>
+<h4 id="procedure-del-01-03-contributor-certification-workflow">Procedure: DEL-01-03 Contributor certification workflow</h4>
+<h3 id="clm-019-purpose">CLM-019 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>Define a repeatable local procedure for contributor certification intake, provenance review, protected-content screening, quarantine/rejection handling, and disposition records for public data contributions.</p>
+<h3 id="clm-020-prerequisites">CLM-020 — Prerequisites</h3>
+<h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Assigned deliverable context: DEL-01-03 under PKG-01.</li>
+<li>- Current governing references: <code>docs/CONTRACT.md</code>, <code>docs/IP_AND_DATA_BOUNDARY.md</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/SPEC.md</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, and approved <code>DAG-006</code>.</li>
+<li>- Draft repo-level workflow surfaces exist at <code>CONTRIBUTING.md</code>, <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code>, and <code>governance/CONTRIBUTION_REVIEW_CHECKLIST.md</code>.</li>
+<li>- Human-owned governance decisions for exact license, final contributor legal mechanism, maintainer authority, reviewer role, release authority, and legal-review thresholds are <code>TBD</code>.</li>
+<li>- No protected standards, proprietary vendor data, or private project/rule-pack content may be copied into the public workflow records.</li>
+</ul>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<h5 id="steps">Steps</h5>
+<p>1. Receive contribution package.</p>
+<ul>
+<li>- Record contributor identity and contribution description.</li>
+<li>- Assign an intake record ID using the future project convention, or <code>TBD</code> if no convention exists.</li>
+</ul>
+<p>2. Collect required provenance fields.</p>
+<ul>
+<li>- <code>source_name</code></li>
+<li>- <code>source_location</code></li>
+<li>- <code>source_license</code></li>
+<li>- <code>contributor</code></li>
+<li>- <code>contributor_certification</code></li>
+<li>- <code>redistribution_status</code></li>
+<li>- <code>review_status</code></li>
+</ul>
+<p>3. Check completeness.</p>
+<ul>
+<li>- If source, license, contributor certification, or redistribution status is missing, set review status to <code>pending</code> or <code>rejected</code> with a <code>TBD</code> note.</li>
+<li>- Do not infer redistribution rights from usefulness or public availability.</li>
+</ul>
+<p>4. Screen protected and private content.</p>
+<ul>
+<li>- Look for protected standards text, tables, figures, examples, copied formulas, material allowables, SIF/flexibility tables, protected dimensional tables, proprietary vendor catalog data, commercial software examples/templates, private project data, private rule packs, owner standards, or company design bases.</li>
+<li>- If suspected, stop intake and set <code>redistribution_status=protected_suspected</code> or equivalent note.</li>
+</ul>
+<p>5. Quarantine suspected protected/private submissions.</p>
+<ul>
+<li>- Do not reproduce the suspected content in public notes.</li>
+<li>- Move or reference the artifact only through <code>quarantine/protected-content/</code> or a maintainer-approved equivalent.</li>
+<li>- Treat quarantine access rule, escalation owner, and final legal disposition as <code>TBD</code> until human/legal authority records them.</li>
+<li>- Record issue metadata, not protected content.</li>
+<li>- Request human/legal review.</li>
+</ul>
+<p>6. Route review.</p>
+<ul>
+<li>- Provenance-complete and public-permissive contributions proceed to maintainer review.</li>
+<li>- Unknown, private-only, or protected-suspected contributions do not enter public examples or libraries.</li>
+<li>- Legal or license uncertainty remains <code>TBD</code> pending human/legal decision.</li>
+</ul>
+<p>7. Record disposition.</p>
+<ul>
+<li>- Use one of: <code>pending</code>, <code>accepted</code>, <code>rejected</code>, <code>quarantined</code>.</li>
+<li>- Include reviewer, date, evidence reviewed, rationale, and limitations.</li>
+<li>- State that disposition is repository governance review only and not engineering approval.</li>
+</ul>
+<p>8. Maintain repo-level workflow evidence.</p>
+<ul>
+<li>- Treat <code>CONTRIBUTING.md</code> and <code>governance/CONTRIBUTOR_CERTIFICATION_TEMPLATE.md</code> as draft governance surfaces until human acceptance.</li>
+<li>- Edit repo-level contributor artifacts only under an explicitly approved write scope.</li>
+<li>- Carry the selected project license as <code>PolyForm-Noncommercial-1.0.0</code>; keep exact contributor legal mechanism, legal sufficiency, and reviewer/release authority <code>TBD</code> until the human project authority records them.</li>
+</ul>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass condition</td></tr>
+<tr><td>Field completeness</td><td>All required provenance and certification fields are present or explicitly <code>TBD</code>.</td></tr>
+<tr><td>Protected-content stop rule</td><td>Suspected protected/private content is not reproduced and is routed to quarantine/human review.</td></tr>
+<tr><td>Authority boundary</td><td>Records do not claim certification, sealing, legal clearance, code compliance, or professional approval.</td></tr>
+<tr><td>Contributor-governance uncertainty</td><td>Contributor legal mechanism, legal sufficiency, and maintainer/release authority unresolved items remain <code>TBD</code>; selected project license remains recorded as <code>PolyForm-Noncommercial-1.0.0</code>.</td></tr>
+<tr><td>Local write scope</td><td>This current-basis refresh edits only DEL-01-03 local artifacts; repo-level artifacts are read as evidence unless separately approved for editing.</td></tr>
+</tbody></table>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<h5 id="records">Records</h5>
+<ul>
+<li>- Contributor certification intake record.</li>
+<li>- Provenance field checklist.</li>
+<li>- Protected/private content screen.</li>
+<li>- Quarantine issue record when applicable.</li>
+<li>- Reviewer disposition record.</li>
+<li>- Human/legal ruling reference when provided.</li>
+<li>- <code>CONTRIBUTING.md</code> and contributor certification template draft pointers.</li>
+</ul>
+<h3 id="clm-024-d-41-r5-t7-pdu-054-current-declaration">CLM-024 — D-41 R5 T7 PDU-054 current declaration</h3>
+<h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. Contributor certification templates and issue-intake surfaces now exist under the repository&#x27;s PolyForm-Noncommercial-1.0.0 boundary. Current upstream authority is SOFTWARE_DECOMP revision 0.8 with DAG-007 coordination; contributor disposition remains subject to the recorded governance workflow.</p>
+<ul>
+<li>- <strong>VER-001</strong> — Compare the converted contract source markers and parity report against all four legacy source documents, then inspect the matrix and derived checklist for complete contributor-workflow coverage and preserved authority boundaries.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-01-03-contributor-certification-workflow">CLM-025 — Guidance: DEL-01-03 Contributor certification workflow</h3>
+<h4 id="guidance-del-01-03-contributor-certification-workflow">Guidance: DEL-01-03 Contributor certification workflow</h4>
+<h3 id="clm-026-purpose">CLM-026 — Purpose</h3>
+<h5 id="purpose">Purpose</h5>
+<p>This workflow exists to make public contribution intake auditable before data enters the OpenPipeStress public repository. It supports OBJ-002 by separating open mechanics and permissibly redistributable public data from protected standards-body content, proprietary vendor data, private user/project data, and user-supplied code data.</p>
+<h3 id="clm-027-principles">CLM-027 — Principles</h3>
+<h5 id="principles">Principles</h5>
+<p>1. Evidence first: accept public data only when source, provenance, license or redistribution status, contributor certification, and review disposition are recorded.</p>
+<p>2. Stop on protected-content risk: suspected standards text, tables, figures, examples, code-derived formulas, protected dimensional tables, proprietary catalogs, or private project/rule-pack data are blockers, not cleanup tasks.</p>
+<p>3. Human authority remains external: maintainers can review repository governance acceptance, but this workflow does not create legal clearance or professional engineering approval.</p>
+<p>4. <code>TBD</code> is safer than invention: unresolved contributor legal mechanism, legal sufficiency, maintainer, release, or redistribution questions stay visible until decided by the appropriate human authority. The project license has already been selected as <code>PolyForm-Noncommercial-1.0.0</code>.</p>
+<p>5. Local evidence first: this current-basis refresh reads the existing draft <code>CONTRIBUTING.md</code> section and certification template as evidence without editing repo-level policy files.</p>
+<h3 id="clm-028-considerations">CLM-028 — Considerations</h3>
+<h5 id="considerations">Considerations</h5>
+<p>The workflow should be strict enough to prevent accidental public redistribution of protected or private data, but simple enough for contributors to complete before maintainer review. A missing source or license should not be converted into a reviewer guess. A permissive-looking public web page is not automatically a redistribution grant.</p>
+<p>Reviewer notes should distinguish factual evidence from assumptions and proposals. When the contribution includes engineering values, reviewer disposition should focus on public-repository acceptability and provenance, not engineering adequacy for project reliance.</p>
+<h3 id="clm-029-trade-offs">CLM-029 — Trade-offs</h3>
+<h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Trade-off</td><td>Preferred posture</td></tr>
+<tr><td>Contributor friction</td><td>More fields slow contribution intake.</td><td>Keep fields minimal but mandatory for public data records.</td></tr>
+<tr><td>Source-rights uncertainty</td><td>Fast acceptance may be tempting when data looks useful.</td><td>Preserve <code>TBD</code> or reject/quarantine until rights are documented.</td></tr>
+<tr><td>Protected-content detection</td><td>Automated checks may miss paraphrased or reformatted protected data.</td><td>Use automated gates as evidence aids plus human review.</td></tr>
+<tr><td>Maintainer authority</td><td>Maintainers need a clear merge gate.</td><td>Treat maintainer disposition as repository governance only.</td></tr>
+</tbody></table>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<h5 id="examples">Examples</h5>
+<h3 id="clm-031-certification-template-text-draft">CLM-031 — Certification template text, draft</h3>
+<h6 id="certification-template-text-draft">Certification template text, draft</h6>
+<p>```text</p>
+<p>I certify for repository-governance review that this contribution is my original work or is submitted with documented redistribution rights; that I have identified all sources, licenses, and provenance known to me; and that I have not copied protected standards text, tables, figures, examples, proprietary catalog data, private project data, or private rule-pack content into this public contribution except where explicit redistribution rights are documented for maintainer review.</p>
+<p>```</p>
+<p>This text is a draft workflow artifact, not legal advice and not a final contributor license agreement.</p>
+<h3 id="clm-032-review-disposition-note-draft">CLM-032 — Review disposition note, draft</h3>
+<h6 id="review-disposition-note-draft">Review disposition note, draft</h6>
+<p>```text</p>
+<p>Disposition: TBD / accepted / rejected / quarantined</p>
+<p>Basis: FACT / ASSUMPTION / PROPOSAL</p>
+<p>Evidence reviewed: source_name, source_location, source_license, redistribution_status, protected_content_screen</p>
+<p>Limits: Repository governance review only; no engineering approval or legal conclusion.</p>
+<p>```</p>
+<h3 id="clm-033-conflict-table-for-human-ruling">CLM-033 — Conflict Table (for human ruling)</h3>
+<h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>C-001</td><td>Project license is selected as <code>PolyForm-Noncommercial-1.0.0</code>, but final contributor legal mechanism and legal sufficiency are not selected.</td><td><code>docs/CONTRACT.md</code> OPS-K-GOV-1</td><td><code>docs/DIRECTIVE.md</code> section 6; <code>governance/MAINTAINERS.md</code> section 6</td><td>Specification Standards; Procedure Records</td><td>Carry selected project license as fact; defer contributor legal mechanism and legal sufficiency until human/legal review.</td><td>Human ruling 2026-06-04: defer until external contribution intake or public release readiness becomes relevant.</td></tr>
+<tr><td>C-002</td><td>Legal review threshold and reviewer role for accepting public component/material data remain unresolved.</td><td><code>governance/MAINTAINERS.md</code> section 6</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 4-5</td><td>Procedure protected-content review and disposition</td><td>Treat suspected or uncertain rights as quarantine/reject until human/legal review.</td><td>TBD</td></tr>
+</tbody></table>
+<h3 id="clm-034-human-rulings-needed">CLM-034 — Human Rulings Needed</h3>
+<h5 id="human-rulings-needed">Human Rulings Needed</h5>
+<ul>
+<li>- Whether a separate contributor license agreement, developer certificate of origin, or project-specific certification text will be used, and whether the final contributor instrument is legally sufficient.</li>
+<li>- Maintainer/reviewer authority model, quorum, and release-policy linkage.</li>
+<li>- Quarantine storage location and access rules for suspected protected/private submissions.</li>
+<li>- Whether automated protected-content/provenance lint gates are required before every contribution review or only before release.</li>
+</ul>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-028 SOW-048 OBJ-002</td><td>CLM-010</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

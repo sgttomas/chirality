@@ -1,0 +1,18 @@
+{
+  "run_id": "SOW-PKG01-BATCH-EXPERIMENT-20260713-01",
+  "version": 6,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL_BATCH_WITH_INDEPENDENT_FAN_IN",
+  "plan_effect": "NONE",
+  "human_gates": [
+    {"id": "H1", "state": "UNAPPROVED"},
+    {"id": "H2", "state": "UNAPPROVED"}
+  ],
+  "nodes": [
+    {"id": "E0", "owner": "HELP_HUMAN", "role": "AGENT_0", "status": "PASS", "authority": "HUMAN_DIRECTION.md", "effect": "one-run batch dispatch variance only"},
+    {"id": "E1", "owner": "WORKING-EXP-PKG01", "role": "WORKING_ITEMS", "status": "PASS_EVIDENCE_REPAIRED", "depends_on": ["E0_PASS"], "members": ["DEL-01-02", "DEL-01-03", "DEL-01-04"], "agent_2_sessions": 2, "mappings": 88, "source_lines": 727, "replacement_rows": 15, "rollback_rows": 15, "simulations": 3, "efficiency_findings": 5, "write_scope": ["candidates/PIP-PKG01/**", "instances/WORKING-EXP-PKG01/**", "snapshots/package/**"], "candidate_snapshot": "snapshots/package/MANIFEST.tsv", "snapshot_manifest_sha256": "68ef7561011b2ba8a3abf69e3dc00ab0a4f4cf69b18beb982c1e1a1bd31bb72c", "manager_manifest_sha256": "bbc5bddc118e2138a92fd0b465b19ad0803afea38339aefbbb9bcbfb9d56347a", "evidence_repair": "amendments/WORKING-EXP-PKG01-EVIDENCE-001.md", "closure": "RECON-001 evidence gap repaired with exact append-only assertion/correction history; candidates and substantive gates unchanged; both manifests fully rehashed"},
+    {"id": "E2", "owner": "RECON-EXP-PKG01", "role": "RECONCILIATION", "status": "PASS_WITH_LIMITS", "depends_on": ["E1_PASS_EVIDENCE_REPAIRED"], "members": 3, "agent_2_sessions": 2, "mappings": 88, "source_lines": 727, "replacement_rows": 15, "rollback_rows": 15, "simulations": 3, "quality_verdict": "PASS_EQUIVALENT", "context_task_verdict": "NO_OBSERVABLE_DRIFT_THREE_MEMBER_LIMIT", "efficiency_verdict": "TWO_SESSIONS_VIABLE_SAVINGS_NOT_MEASURED_HARNESS_IMMATURE", "retained_efficiency_findings": 5, "write_scope": ["instances/RECON-EXP-PKG01/**", "snapshots/reconciliation/**"], "accepted_snapshot": "snapshots/reconciliation/ACCEPTANCE.md", "snapshot_manifest_sha256": "8d5e220b1620c5d3ef62856aefaf6dcd6be4059e276561d77848bd521730dc57", "closure": "Independent equivalent-quality PASS; no observable drift at three members; no larger-batch or measured-savings claim; no plan/project effect"},
+    {"id": "E3", "owner": "HELP_HUMAN", "role": "AGENT_0", "status": "PASS_TERMINAL_HANDOFF", "depends_on": ["E2_PASS_WITH_LIMITS"], "handoff": "HANDOFF_STATE.md", "next_owner": "HUMAN", "effect": "experimental conclusion only; no plan modification or execution release"},
+    {"id": "E4", "owner": "CHANGE-EXP-PKG01", "role": "CHANGE", "status": "RELEASED", "depends_on": ["E3_PASS_TERMINAL_HANDOFF"], "write_scope": ["experiment run root only", "routine Git commit and push on main"], "fan_in_gate": "exact scoped stage; all manifests/JSON/diff/counts PASS; no plan/project/lifecycle write; commit pushed; external dirty paths untouched"}
+  ]
+}

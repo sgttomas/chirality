@@ -1,0 +1,34 @@
+sequence	deliverable_id	stage	started_utc	ended_utc	status	retries	brief_rereads	note
+02	DEL-01-02	preflight	2026-07-14T03:57:07Z	2026-07-14T03:57:07Z	PASS	0	1	fresh frozen row reread; checkout, nine source/control hashes, lifecycle, legacy format, candidate hash, and dependency rows checked
+02	DEL-01-02	context_review	2026-07-14T03:57:07Z	2026-07-14T03:57:07Z	PASS	0	1	independent source/candidate inspection complete; initial OUT/AC/VER and trace refs reviewed conservatively; tests did not define scope
+02	DEL-01-02	reproduction	2026-07-14T03:57:07Z	2026-07-14T03:57:07Z	PASS	0	1	two disjoint converter runs byte-identical to each other and accepted candidate
+02	DEL-01-02	validation	2026-07-14T03:57:07Z	2026-07-14T03:57:07Z	PASS	0	1	standalone SOW_V1 and both authorized MIGRATION_DUAL workspaces validated
+02	DEL-01-02	preservation	2026-07-14T03:57:07Z	2026-07-14T03:57:08Z	PASS	0	1	claim map/parity independently repeated; byte determinism and complete source disposition checked
+02	DEL-01-02	preflight	2026-07-14T03:57:25Z	2026-07-14T03:57:25Z	PASS	0	1	fresh frozen row reread; checkout, nine source/control hashes, lifecycle, legacy format, candidate hash, and dependency rows checked
+02	DEL-01-02	context_review	2026-07-14T03:57:25Z	2026-07-14T03:57:25Z	PASS	0	1	independent source/candidate inspection complete; initial OUT/AC/VER and trace refs reviewed conservatively; tests did not define scope
+02	DEL-01-02	reproduction	2026-07-14T03:57:25Z	2026-07-14T03:57:25Z	PASS	0	1	two disjoint converter runs byte-identical to each other and accepted candidate
+02	DEL-01-02	validation	2026-07-14T03:57:25Z	2026-07-14T03:57:26Z	PASS	0	1	standalone SOW_V1 and both authorized MIGRATION_DUAL workspaces validated
+02	DEL-01-02	preservation	2026-07-14T03:57:25Z	2026-07-14T03:57:26Z	PASS	0	1	claim map/parity independently repeated; byte determinism and complete source disposition checked
+02	DEL-01-02	derivatives	2026-07-14T03:57:25Z	2026-07-14T03:57:26Z	PASS	0	1	checklist and HTML each repeated byte-identically; candidate binding/matrix linkage and no-script/no-external-resource properties checked
+02	DEL-01-02	negative_tests	2026-07-14T03:57:25Z	2026-07-14T03:57:26Z	PASS	0	1	partial converter input, unauthorized dual validation/checklist, and legacy-only checklist all failed closed without output
+02	DEL-01-02	post_hashes	2026-07-14T03:57:25Z	2026-07-14T03:57:26Z	PASS	0	1	all nine live source/control hashes and read-only candidate hash unchanged after verification
+02	DEL-01-02	terminal	2026-07-14T03:57:25Z	2026-07-14T03:57:26Z	PASS_UNCHANGED	0	1	member fully closed before next member; no retries, repair, contamination, drift, or project/candidate writes
+02	DEL-01-02	evidence_correction_001	2026-07-14T03:57:07Z	2026-07-14T03:57:26Z	PASS_WITH_RECORDED_RESTART	1	1	versioned annotation: first five-row attempt stopped on verifier-local shell-quote parse error; second sequence rebuilt from fresh copies and completed; script/orchestration error contained; no task drift or evidence contamination
+03	DEL-01-03	preflight	2026-07-14T03:59:03Z	2026-07-14T03:59:03Z	PASS	0	1	fresh frozen row reread; checkout, nine source/control hashes, lifecycle, legacy format, candidate hash, and dependency rows checked
+03	DEL-01-03	context_review	2026-07-14T03:59:03Z	2026-07-14T03:59:03Z	PASS	0	1	independent source/candidate inspection complete; initial OUT/AC/VER and trace refs reviewed conservatively; tests did not define scope
+03	DEL-01-03	reproduction	2026-07-14T03:59:03Z	2026-07-14T03:59:03Z	PASS	0	1	two disjoint converter runs byte-identical to each other and accepted candidate
+03	DEL-01-03	validation	2026-07-14T03:59:03Z	2026-07-14T03:59:04Z	PASS	0	1	standalone SOW_V1 and both authorized MIGRATION_DUAL workspaces validated
+03	DEL-01-03	preservation	2026-07-14T03:59:03Z	2026-07-14T03:59:04Z	PASS	0	1	claim map/parity independently repeated; byte determinism and complete source disposition checked
+03	DEL-01-03	derivatives	2026-07-14T03:59:03Z	2026-07-14T03:59:04Z	PASS	0	1	checklist and HTML each repeated byte-identically; candidate binding/matrix linkage and no-script/no-external-resource properties checked
+03	DEL-01-03	negative_tests	2026-07-14T03:59:03Z	2026-07-14T03:59:04Z	PASS	0	1	partial converter input, unauthorized dual validation/checklist, and legacy-only checklist all failed closed without output
+03	DEL-01-03	post_hashes	2026-07-14T03:59:03Z	2026-07-14T03:59:04Z	PASS	0	1	all nine live source/control hashes and read-only candidate hash unchanged after verification
+03	DEL-01-03	terminal	2026-07-14T03:59:03Z	2026-07-14T03:59:04Z	PASS_UNCHANGED	0	1	member fully closed before next member; no retries, repair, contamination, drift, or project/candidate writes
+04	DEL-01-04	preflight	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	fresh frozen row reread; checkout, nine source/control hashes, lifecycle, legacy format, candidate hash, and dependency rows checked
+04	DEL-01-04	context_review	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	independent source/candidate inspection complete; initial OUT/AC/VER and trace refs reviewed conservatively; tests did not define scope
+04	DEL-01-04	reproduction	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	two disjoint converter runs byte-identical to each other and accepted candidate
+04	DEL-01-04	validation	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	standalone SOW_V1 and both authorized MIGRATION_DUAL workspaces validated
+04	DEL-01-04	preservation	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	claim map/parity independently repeated; byte determinism and complete source disposition checked
+04	DEL-01-04	derivatives	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	checklist and HTML each repeated byte-identically; candidate binding/matrix linkage and no-script/no-external-resource properties checked
+04	DEL-01-04	negative_tests	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	partial converter input, unauthorized dual validation/checklist, and legacy-only checklist all failed closed without output
+04	DEL-01-04	post_hashes	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS	0	1	all nine live source/control hashes and read-only candidate hash unchanged after verification
+04	DEL-01-04	terminal	2026-07-14T03:59:47Z	2026-07-14T03:59:48Z	PASS_UNCHANGED	0	1	member fully closed before next member; no retries, repair, contamination, drift, or project/candidate writes

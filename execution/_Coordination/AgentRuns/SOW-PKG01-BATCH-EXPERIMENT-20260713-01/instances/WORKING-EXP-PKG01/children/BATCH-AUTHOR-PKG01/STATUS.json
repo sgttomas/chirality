@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "SOW-PKG01-BATCH-EXPERIMENT-20260713-01",
+  "instance_id": "BATCH-AUTHOR-PKG01",
+  "parent_instance_id": "WORKING-EXP-PKG01",
+  "agent_type": "ephemeral-generalist-agent-2",
+  "status": "PASS",
+  "terminal": true,
+  "ordered_members": ["DEL-01-02", "DEL-01-03", "DEL-01-04"],
+  "member_results": {"DEL-01-02": "PASS_AFTER_AMENDMENT", "DEL-01-03": "PASS", "DEL-01-04": "PASS"},
+  "coverage": {"members": "3/3", "mappings": "88/88", "source_lines": "727/727"},
+  "candidate_sha256": {
+    "DEL-01-02": "44d3ec6f9d608eb0d92da54a07efa521c6dba1dd60ea622526ce6bdcec480330",
+    "DEL-01-03": "ff45f0783bdd90116b81d594e53667788f91748eaecc4759e7f65a6ff354d4b4",
+    "DEL-01-04": "2b304500ac7833adefe33e422a3f2e74df747adc824af35540c1bb221a3669cb"
+  },
+  "retries": 1,
+  "failed_before_output_attempts": 1,
+  "cross_member_contamination": 0,
+  "scope_drift": 0,
+  "semantic_expansion": 0,
+  "project_writes": 0,
+  "blockers": [],
+  "waivers": [],
+  "unknowns": [],
+  "native_token_counts": "UNAVAILABLE"
+}

@@ -1,0 +1,9 @@
+{
+  "format": "AMBIGUOUS",
+  "issues": [
+    "format state is AMBIGUOUS",
+    "dual production formats require an isolated conversion workspace and exact migration authority"
+  ],
+  "target": "execution/_Coordination/AgentRuns/SOW-PKG01-BATCH-EXPERIMENT-20260713-01/instances/WORKING-EXP-PKG01/children/BATCH-VERIFY-PKG01/members/DEL-01-03/workspace-a",
+  "valid": false
+}

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "basis": "main@ef461cfdb3a4b135dc670b04f646eca3eac47712",
+  "members": 3,
+  "mappings": 88,
+  "source_lines": 727,
+  "manifest_entries": {
+    "package_snapshot": 133,
+    "manager": 29,
+    "author": 265,
+    "verifier": 317
+  },
+  "candidate_hashes": {
+    "DEL-01-02": "44d3ec6f9d608eb0d92da54a07efa521c6dba1dd60ea622526ce6bdcec480330",
+    "DEL-01-03": "ff45f0783bdd90116b81d594e53667788f91748eaecc4759e7f65a6ff354d4b4",
+    "DEL-01-04": "2b304500ac7833adefe33e422a3f2e74df747adc824af35540c1bb221a3669cb"
+  },
+  "replacement_rows": 15,
+  "rollback_rows": 15,
+  "simulations": 3,
+  "author_common_evidence_files": 84,
+  "author_member1_retained_failure_files": 4,
+  "verifier_files_per_member": 103,
+  "author_progress_rows": 21,
+  "verifier_progress_rows": 33,
+  "agent_2_session_surfaces": [
+    "BATCH-AUTHOR-PKG01",
+    "BATCH-VERIFY-PKG01"
+  ],
+  "native_token_telemetry": "UNAVAILABLE"
+}

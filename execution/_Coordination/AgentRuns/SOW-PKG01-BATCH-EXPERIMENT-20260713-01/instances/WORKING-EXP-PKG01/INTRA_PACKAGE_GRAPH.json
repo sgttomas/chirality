@@ -1,0 +1,43 @@
+{
+  "run_id": "SOW-PKG01-BATCH-EXPERIMENT-20260713-01",
+  "instance_id": "WORKING-EXP-PKG01",
+  "version": 1,
+  "selection_authority": "HUMAN_DIRECTION.md",
+  "posture": "MIXED",
+  "nodes": [
+    {
+      "id": "BATCH-AUTHOR-PKG01",
+      "role": "EPHEMERAL_GENERALIST_AGENT_2",
+      "members": ["DEL-01-02", "DEL-01-03", "DEL-01-04"],
+      "order": "numeric-sequential",
+      "status": "ACCEPTED",
+      "integration_owner": true,
+      "write_targets": ["candidates/PIP-PKG01/**", "instances/WORKING-EXP-PKG01/children/BATCH-AUTHOR-PKG01/**"],
+      "return_gate": "3/3 complete candidates and per-member evidence; no drift, project writes, waiver, blocker, or unknown"
+    },
+    {
+      "id": "BATCH-VERIFY-PKG01",
+      "role": "FRESH_EPHEMERAL_GENERALIST_AGENT_2",
+      "members": ["DEL-01-02", "DEL-01-03", "DEL-01-04"],
+      "order": "numeric-sequential",
+      "status": "ACCEPTED",
+      "depends_on": ["BATCH-AUTHOR-PKG01_ACCEPTED"],
+      "write_targets": ["instances/WORKING-EXP-PKG01/children/BATCH-VERIFY-PKG01/**"],
+      "return_gate": "3/3 PASS_UNCHANGED with independent evidence; no repair or author contact"
+    },
+    {
+      "id": "MANAGER-FAN-IN",
+      "role": "WORKING_ITEMS",
+      "status": "PASS",
+      "depends_on": ["BATCH-VERIFY-PKG01_ACCEPTED"],
+      "write_targets": ["instances/WORKING-EXP-PKG01/**", "snapshots/package/**"],
+      "return_gate": "complete package reproduction, exact replacement/inverse simulation, context/drift comparison, terminal handoff"
+    }
+  ],
+  "edges": [
+    ["BATCH-AUTHOR-PKG01", "BATCH-VERIFY-PKG01"],
+    ["BATCH-VERIFY-PKG01", "MANAGER-FAN-IN"]
+  ],
+  "concurrency": "none",
+  "escalation_points": ["frozen-input mismatch", "candidate semantic expansion", "cross-member contamination", "missing or abbreviated member evidence", "write-scope violation", "unknown or waiver"]
+}

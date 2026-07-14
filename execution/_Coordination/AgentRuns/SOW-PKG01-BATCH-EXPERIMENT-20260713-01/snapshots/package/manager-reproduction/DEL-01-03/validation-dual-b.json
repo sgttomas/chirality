@@ -1,0 +1,6 @@
+{
+  "format": "MIGRATION_DUAL",
+  "issues": [],
+  "target": "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG01-BATCH-EXPERIMENT-20260713-01/snapshots/package/manager-reproduction/DEL-01-03/conversion-b",
+  "valid": true
+}

@@ -1,0 +1,9 @@
+{
+  "notice_id": "RECON-001",
+  "from": "RECON-EXP-PKG01",
+  "to": "HELP_HUMAN",
+  "status": "EVIDENCE_GAP",
+  "claim": "The sealed reconciliation brief names a final parent-manifest assertion correction that is not durably described in MANAGER_ATTEMPTS.md or package checks.",
+  "requested_action": "Route an evidence-only correction to WORKING-EXP-PKG01 or identify the retained artifact; do not infer classification.",
+  "effect": "Hold reconciliation fan-in; candidate and substantive quality evidence remain unchanged."
+}

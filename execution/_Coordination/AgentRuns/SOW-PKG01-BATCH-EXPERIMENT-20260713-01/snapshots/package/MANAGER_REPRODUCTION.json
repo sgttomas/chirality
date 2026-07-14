@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "verifier_manifest_entries": 317,
+  "verifier_evidence_files_per_member": {
+    "DEL-01-02": 103,
+    "DEL-01-03": 103,
+    "DEL-01-04": 103
+  },
+  "progress_rows": 33,
+  "author_retry": "one failed-before-output authority-token mismatch; versioned amendment; no weakened check",
+  "verifier_restart": "one contained local shell-quote harness restart; append-only evidence correction; fresh rerun",
+  "members": 3,
+  "mapping_rows": 88,
+  "source_lines": 727,
+  "replacement_rows": 15,
+  "rollback_rows": 15,
+  "apply_rollback_simulations": 3,
+  "negative_checks": {
+    "DEL-01-02": {
+      "partial_conversion": 1,
+      "unauthorized_dual_validation": 1,
+      "unauthorized_dual_checklist": 1,
+      "legacy_checklist": 1
+    },
+    "DEL-01-03": {
+      "partial_conversion": 1,
+      "unauthorized_dual_validation": 1,
+      "unauthorized_dual_checklist": 1,
+      "legacy_checklist": 1
+    },
+    "DEL-01-04": {
+      "partial_conversion": 1,
+      "unauthorized_dual_validation": 1,
+      "unauthorized_dual_checklist": 1,
+      "legacy_checklist": 1
+    }
+  },
+  "live_four_document_checks": "3/3 PASS",
+  "dependency_schema_checks": "3/3 PASS",
+  "generated_portability_files_normalized": 15,
+  "generated_portability_replacements": 15,
+  "dec_025": "NOT_APPLICABLE_NO_PROJECT_CODE_PATH_CHANGE"
+}

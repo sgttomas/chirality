@@ -1,0 +1,2 @@
+candidate	expected_sha256	actual_sha256	match
+{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG01-BATCH-EXPERIMENT-20260713-01/candidates/PIP-PKG01/DEL-01-03/ScopeOfWork.md	ff45f0783bdd90116b81d594e53667788f91748eaecc4759e7f65a6ff354d4b4	ff45f0783bdd90116b81d594e53667788f91748eaecc4759e7f65a6ff354d4b4	true
