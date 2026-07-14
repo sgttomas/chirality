@@ -39,11 +39,13 @@ four unrelated domain-audit paths and `.claude-worktrees/**` remain excluded
 and untouched; CHANGE did not inspect their contents or include them in any
 operation.
 
-Routine closeout action: stage exactly this experiment root, require staged
-containment plus review of `git diff --cached --check`, commit as
-`Record PKG-01 batch conversion experiment`, and push `main` to its existing
-upstream. Exact commit, push, and final divergence evidence is returned by
-CHANGE after the Git operation because a commit cannot self-record its own
-identity.
+Routine closeout completed. The exact experiment root was committed as
+`7776f7be41842beda491468973e3047aadfd2b59` with message
+`Record PKG-01 batch conversion experiment` and pushed from `main` to
+`origin/main`. The commit contains 755 experiment-root paths and final
+local/upstream divergence was `0/0`. The 18 classified immutable
+blank-line-at-EOF warnings were retained; no other diff-hygiene issue was
+present. `amendments/CHANGE-EXP-PKG01-BINDING-001.md` records this terminal
+evidence without changing any accepted experiment conclusion or manifest.
 
 Blockers / waivers / unknowns: none / none / none. Next owner: `HELP_HUMAN`.

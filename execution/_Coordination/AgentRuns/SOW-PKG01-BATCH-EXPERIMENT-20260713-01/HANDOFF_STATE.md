@@ -48,3 +48,11 @@ basis, standard/tool behavior, or experiment-authority change. Any application
 of method #2 to the accepted plan remains a separate human decision.
 
 Next owner: human.
+
+## Git evidence binding
+
+The complete experiment tranche was committed as
+`7776f7be41842beda491468973e3047aadfd2b59` (`Record PKG-01 batch conversion
+experiment`) and pushed from `main` to `origin/main`. The commit contains 755
+paths, all within this experiment run root; final divergence was `0/0`.
+`amendments/CHANGE-EXP-PKG01-BINDING-001.md` records the terminal binding.
