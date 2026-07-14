@@ -224,9 +224,12 @@ simultaneous file requirements.
 
 New PROJECT/SOFTWARE deliverables use `SOW_V1`. A successful legacy conversion
 is prepared and verified in isolation, then integrated as one atomic
-replacement that adds `ScopeOfWork.md` and removes all four legacy production
-files. Git history and the migration receipt preserve the source basis. No
-accepted commit contains two competing canonical formats.
+replacement that adds the clean finalized `ScopeOfWork.md` and removes all
+four legacy production files. The evidence-rich migration candidate is kept
+outside production; Git history and external migration/finalization receipts
+preserve its source basis and bind the final production hash. No accepted
+commit contains two competing canonical formats or migration-only metadata in
+the production contract.
 
 Format migration is lifecycle-neutral and leaves `_STATUS.md` byte-identical.
 An `ISSUED` deliverable additionally requires an explicit human-approved

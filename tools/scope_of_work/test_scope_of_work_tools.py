@@ -16,6 +16,7 @@ RENDER = HERE / "render_scope_of_work.py"
 MAP = HERE / "map_scope_of_work_claims.py"
 PARITY = HERE / "report_scope_of_work_parity.py"
 CHECKLIST = HERE / "derive_review_checklist.py"
+FINALIZE = HERE / "finalize_scope_of_work.py"
 
 
 def run(tool: Path, *args: object) -> subprocess.CompletedProcess[str]:
@@ -174,6 +175,21 @@ def test_converter_requires_and_embeds_all_issued_bindings(tmp_path: Path) -> No
     status_digest = hashlib.sha256(status_before).hexdigest()
     assert f"<!-- issued-preparation-status-sha256: {status_digest} -->" in output
 
+    clean = tmp_path / "issued-production" / "ScopeOfWork.md"
+    report_path = tmp_path / "issued-finalization.json"
+    finalized = run(
+        FINALIZE,
+        "--evidence-candidate", deliverable / "ScopeOfWork.md",
+        "--output", clean,
+        "--report", report_path,
+    )
+    assert finalized.returncode == 0, finalized.stderr
+    assert "issued-preparation-" not in clean.read_text(encoding="utf-8")
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    assert report["migration_control"]["issued-preparation-accepted-basis"] == ISSUED_ACCEPTED_BASIS
+    assert report["migration_control"]["issued-preparation-source-commit"] == "7654321"
+    assert len(report["migration_control"]["issued-preparation-source-sha256"]) == 4
+
 
 def test_converter_rejects_unsafe_issued_accepted_basis(tmp_path: Path) -> None:
     for index, accepted_basis in enumerate((" leading", "two\nlines", "x" * 513, "basis --> escape")):
@@ -296,6 +312,77 @@ def test_claim_map_and_parity_cover_every_source_line(tmp_path: Path) -> None:
     )
     assert parity_result.returncode == 0, parity_result.stderr
     assert json.loads(parity.read_text(encoding="utf-8"))["pass"] is True
+
+
+def test_finalization_externalizes_metadata_and_binds_all_production_checks(tmp_path: Path) -> None:
+    deliverable = fixture(tmp_path)
+    (deliverable / "Specification.md").write_text(
+        "# Specification\n\n## Requirements\n\nLegacy note AC-999 is quoted, not canonical.\n",
+        encoding="utf-8",
+    )
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
+    evidence = deliverable / "ScopeOfWork.md"
+    production_dir = tmp_path / "production"
+    production = production_dir / "ScopeOfWork.md"
+    finalization = tmp_path / "finalization.json"
+
+    result = run(
+        FINALIZE,
+        "--evidence-candidate", evidence,
+        "--output", production,
+        "--report", finalization,
+    )
+    assert result.returncode == 0, result.stderr
+    clean = production.read_text(encoding="utf-8")
+    assert "This Scope of Work defines" in clean
+    for token in ("migration candidate", "sow-source-", "migration-authority:", "issued-preparation-"):
+        assert token not in clean
+    assert "> Legacy note AC-999 is quoted, not canonical." in clean
+    report = json.loads(finalization.read_text(encoding="utf-8"))
+    production_sha = hashlib.sha256(production.read_bytes()).hexdigest()
+    assert report["production_scope_of_work_sha256"] == production_sha
+    assert report["migration_control"]["migration-authority"] == MIGRATION_AUTHORITY
+    assert report["source_block_count"] > 0
+    assert run(VALIDATE, production_dir).returncode == 0
+
+    mapping = tmp_path / "clean-map.csv"
+    mapped = run(
+        MAP,
+        "--scope-of-work", evidence,
+        "--production-scope-of-work", production,
+        "--source-dir", deliverable,
+        "--output-csv", mapping,
+    )
+    assert mapped.returncode == 0, mapped.stderr
+    assert {row["TargetSHA256"] for row in csv.DictReader(mapping.open(encoding="utf-8"))} == {production_sha}
+
+    parity = tmp_path / "clean-parity.json"
+    checked = run(
+        PARITY,
+        "--scope-of-work", evidence,
+        "--production-scope-of-work", production,
+        "--source-dir", deliverable,
+        "--output-json", parity,
+        "--isolated-migration",
+        "--migration-authority", MIGRATION_AUTHORITY,
+    )
+    assert checked.returncode == 0, checked.stderr
+    parity_report = json.loads(parity.read_text(encoding="utf-8"))
+    assert parity_report["schema"] == "chirality-sow-parity/v2"
+    assert parity_report["production_scope_of_work_sha256"] == production_sha
+    assert run(CHECKLIST, production_dir, "--output", tmp_path / "clean-checklist.json").returncode == 0
+    assert run(RENDER, production, "--output", tmp_path / "clean.html").returncode == 0
+
+    production.write_text(clean.replace("This Scope of Work defines", "This altered Scope of Work defines"), encoding="utf-8")
+    rejected = run(
+        MAP,
+        "--scope-of-work", evidence,
+        "--production-scope-of-work", production,
+        "--source-dir", deliverable,
+        "--output-csv", tmp_path / "rejected.csv",
+    )
+    assert rejected.returncode == 1
+    assert "deterministic finalization" in rejected.stderr
 
 
 def test_renderer_is_deterministic_source_bound_and_script_free(tmp_path: Path) -> None:

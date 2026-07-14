@@ -87,7 +87,10 @@ a package activation narrowed to that deliverable.
   they do not create scope or acceptance criteria.
 - **Single-file integration ownership.** Agent 2 children may prepare disjoint
   proposals and evidence concurrently, but only one declared integration owner
-  writes a conversion-candidate `ScopeOfWork.md` for a deliverable.
+  writes a conversion-candidate `ScopeOfWork.md` for a deliverable. That
+  evidence-rich candidate is not integration input: deterministic finalization
+  must produce a separate clean production contract, and all terminal checks
+  and integration manifests bind that final hash.
 
 ## Pattern-selection precedence
 

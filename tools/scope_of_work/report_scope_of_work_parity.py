@@ -19,13 +19,14 @@ from common import (
     sha256_file,
     validate_document,
 )
+from finalize_scope_of_work import finalize_candidate_text
 
 
 def normalized(text: str) -> str:
     return text.replace("\r\n", "\n").rstrip("\n")
 
 
-def build_report(sow: Path, source_dir: Path) -> dict[str, object]:
+def build_report(sow: Path, source_dir: Path, production_sow: Path | None = None) -> dict[str, object]:
     doc = parse_sow(sow)
     issues = validate_document(doc)
     checks: list[dict[str, object]] = []
@@ -77,10 +78,29 @@ def build_report(sow: Path, source_dir: Path) -> dict[str, object]:
         issues.append("no source mappings found")
     if any(not check["pass"] for check in checks):
         issues.append("one or more source mapping checks failed")
+    production_sha = doc.sha256
+    schema = "chirality-sow-parity/v1"
+    if production_sow is not None:
+        schema = "chirality-sow-parity/v2"
+        try:
+            expected, finalization = finalize_candidate_text(sow, doc.raw)
+            actual = production_sow.read_text(encoding="utf-8")
+            if actual != expected:
+                issues.append("production ScopeOfWork.md is not the deterministic finalization of the evidence candidate")
+            production_doc = parse_sow(production_sow)
+            production_issues = validate_document(production_doc)
+            issues.extend(f"production: {issue}" for issue in production_issues)
+            production_sha = production_doc.sha256
+            if production_sha != finalization["production_scope_of_work_sha256"]:
+                issues.append("production hash differs from finalization report basis")
+        except (OSError, UnicodeError, SowError, ValueError) as exc:
+            issues.append(f"production finalization check failed: {exc}")
     return {
-        "schema": "chirality-sow-parity/v1",
-        "scope_of_work": str(sow),
-        "scope_of_work_sha256": doc.sha256,
+        "schema": schema,
+        "evidence_candidate": sow.name,
+        "evidence_candidate_sha256": doc.sha256,
+        "production_scope_of_work": production_sow.name if production_sow else sow.name,
+        "production_scope_of_work_sha256": production_sha,
         "pass": not issues,
         "issues": issues,
         "checks": checks,
@@ -93,7 +113,8 @@ def markdown(report: dict[str, object]) -> str:
         "# Scope-of-Work Parity Report",
         "",
         f"- Verdict: **{'PASS' if report['pass'] else 'FAIL'}**",
-        f"- Scope-of-Work SHA-256: `{report.get('scope_of_work_sha256', 'unavailable')}`",
+        f"- Production Scope-of-Work SHA-256: `{report.get('production_scope_of_work_sha256', 'unavailable')}`",
+        f"- Evidence-candidate SHA-256: `{report.get('evidence_candidate_sha256', 'unavailable')}`",
         f"- Mapping checks: {len(report.get('checks', []))}",
         "",
         "## Issues",
@@ -108,6 +129,7 @@ def markdown(report: dict[str, object]) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scope-of-work", type=Path, required=True)
+    parser.add_argument("--production-scope-of-work", type=Path)
     parser.add_argument("--source-dir", type=Path, required=True)
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path)
@@ -122,7 +144,7 @@ def main() -> int:
         )
         if resolution.state not in {"SOW_V1", "MIGRATION_DUAL"} or not resolution.valid:
             raise SowError(f"format state is {resolution.state}: {'; '.join(resolution.issues)}")
-        report = build_report(args.scope_of_work, args.source_dir)
+        report = build_report(args.scope_of_work, args.source_dir, args.production_scope_of_work)
         args.output_json.parent.mkdir(parents=True, exist_ok=True)
         args.output_json.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         if args.output_md:

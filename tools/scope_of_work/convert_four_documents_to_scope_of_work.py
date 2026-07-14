@@ -16,7 +16,7 @@ from common import (
     SowError,
     demote_headings,
     load_catalog,
-    parse_sow,
+    parse_sow_text,
     read_lifecycle_state,
     resolve_production_format,
     sha256_file,
@@ -189,11 +189,7 @@ def convert(args: argparse.Namespace) -> str:
 
 def parse_sow_from_text(target: Path, text: str):
     """Validate generated text using the production parser without writing the target."""
-    import tempfile
-    with tempfile.TemporaryDirectory() as tmp:
-        path = Path(tmp) / target.name
-        path.write_text(text, encoding="utf-8", newline="\n")
-        return parse_sow(path)
+    return parse_sow_text(target, text)
 
 
 def main() -> int:

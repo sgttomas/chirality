@@ -41,6 +41,8 @@ def definition_records(doc: SowDocument, prefixes: tuple[str, ...], width: int) 
             continue
         if in_source_block:
             continue
+        if re.match(r"^ {0,3}>", line):
+            continue
         heading = re.match(r"^##\s+(.+?)\s*$", line)
         if heading:
             current_section = heading.group(1).strip()

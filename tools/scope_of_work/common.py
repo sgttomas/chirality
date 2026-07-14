@@ -171,9 +171,8 @@ def parse_frontmatter(text: str) -> tuple[dict[str, object], str]:
     return values, "".join(lines[end + 1 :])
 
 
-def parse_sow(path: Path, catalog: Catalog | None = None) -> SowDocument:
+def parse_sow_text(path: Path, raw: str, catalog: Catalog | None = None) -> SowDocument:
     catalog = catalog or load_catalog()
-    raw = path.read_text(encoding="utf-8")
     frontmatter, body = parse_frontmatter(raw)
     contract_body = re.sub(
         r"^<!-- sow-source-begin \{[^\n]*\} -->$.*?^<!-- sow-source-end -->$",
@@ -181,9 +180,18 @@ def parse_sow(path: Path, catalog: Catalog | None = None) -> SowDocument:
         body,
         flags=re.MULTILINE | re.DOTALL,
     )
+    # Blockquotes in a finalized converted contract preserve literal legacy
+    # source. They are readable contract context, not SOW_V1 local-ID syntax.
+    contract_body = "\n".join(
+        "" if re.match(r"^ {0,3}>", line) else line for line in contract_body.splitlines()
+    )
     definitions = tuple(match.group("id") for match in catalog.definition_re.finditer(contract_body))
     references = tuple(catalog.local_re.findall(contract_body))
     return SowDocument(path, raw, frontmatter, body, definitions, references)
+
+
+def parse_sow(path: Path, catalog: Catalog | None = None) -> SowDocument:
+    return parse_sow_text(path, path.read_text(encoding="utf-8"), catalog)
 
 
 def heading_positions(body: str) -> list[tuple[str, int]]:

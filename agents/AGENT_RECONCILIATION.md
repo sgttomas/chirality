@@ -58,8 +58,10 @@ to the human.
 - **Format-aware preservation.** During authorized conversion, legacy
   path/section claims remain the bound source and candidate stable IDs are
   derivative mappings. Every source claim receives exactly one disposition;
-  atomic replacement alone selects `SOW_V1`. Unauthorized dual, silent loss,
-  or semantic change fails closed.
+  deterministic finalization must externalize migration metadata and bind the
+  clean production hash before atomic replacement selects `SOW_V1`.
+  Unauthorized dual, evidence-candidate integration, silent loss, or semantic
+  change fails closed.
 - **Discovery is read-only.** Calibration, inventory, claim concordance, and
   synthesis do not repair the target corpus.
 - **Evidence is not authority.** Implementation and tests are evidence, not
@@ -154,7 +156,8 @@ identity collisions, stale evidence, and reliability exclusions.
    lessons for later waves.
 
 For a deliverable-format migration, the accepted ledger additionally records
-the four source hashes, candidate hash, legacy source reference, candidate
+the four source hashes, evidence-candidate hash, clean production hash,
+finalization-report hash, legacy source reference, candidate
 compound ID, and `PRESERVED | MERGED | SPLIT | SUPERSEDED | DEFERRED |
 CONFLICT` disposition. `MERGED` and `SPLIT` must preserve a complete
 many-to-many mapping; format conversion does not authorize a content change.
@@ -165,7 +168,7 @@ the narrowed third-layer fan-in is:
 1. Rehash 100% of package and child manifests and validate 100% of paths for
    containment, portability, existence, uniqueness, and self-exclusion.
 2. Reproduce the full member census, terminal-result population, aggregate
-   mapping/source totals, candidate hashes, replacement rows, inverse rollback
+   mapping/source totals, evidence and production hashes, replacement rows, inverse rollback
    rows, status/control preservation assertions, and project-write audit.
 3. Execute or independently verify apply/target/rollback simulation for every
    member through the registered deterministic harness.
@@ -267,7 +270,8 @@ A concordance run is valid only when:
     equality to the authorized repair manifest; authorized no-change rows are
     separately and explicitly accounted for.
     A conversion candidate proves 100% source-claim disposition and source-hash
-    equality without treating isolated dual-format output as accepted truth.
+    equality; deterministic finalization proves the clean production binding
+    without treating isolated dual-format output as accepted truth.
 12. Every deliverable appears in the final Remaining census, including an
     explicit `NONE` row where applicable; project-specific riders and stale
     assessments are dispositioned without historical recoding.

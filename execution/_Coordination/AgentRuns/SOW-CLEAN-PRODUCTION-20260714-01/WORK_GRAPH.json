@@ -1,0 +1,41 @@
+{
+  "schema": "chirality-root-work-graph/v1",
+  "run_id": "SOW-CLEAN-PRODUCTION-20260714-01",
+  "selection_authority": "HUMAN",
+  "posture": "SINGLE_MANAGER_SEQUENTIAL",
+  "basis": "main@7fea3356b465633dbf4b30cb61d547bfc978ccec",
+  "nodes": [
+    {
+      "id": "HELPS-CLEAN-SOW-PRODUCTION",
+      "owner": "HELPS_HUMANS",
+      "depends_on": [],
+      "writes": [
+        "tools/scope_of_work/**",
+        "tools/REGISTRY.md",
+        "skills/scope-of-work/**",
+        "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+        "docs/SPEC.md",
+        "docs/TYPES.md",
+        "agents/AGENT_WORKING_ITEMS.md",
+        "agents/AGENT_RECONCILIATION.md",
+        "execution/_Coordination/WORKPLAN_2026-07-12_scope_of_work_stage2.md",
+        "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/CLEAN-SOW-PRODUCTION-001.md",
+        "execution/_Coordination/AgentRuns/SOW-CLEAN-PRODUCTION-20260714-01/**"
+      ],
+      "fan_in": "CHANGE-CLOSE",
+      "status": "PASS"
+    },
+    {
+      "id": "CHANGE-CLOSE",
+      "owner": "CHANGE",
+      "depends_on": ["HELPS-CLEAN-SOW-PRODUCTION"],
+      "writes": ["git index", "main", "origin/main"],
+      "fan_in": "HUMAN-HOLD",
+      "status": "PENDING"
+    }
+  ],
+  "human_gates": [
+    "No Piping package execution resumes in this run",
+    "No H1/H2, lifecycle acceptance, integration, or source-document retirement"
+  ]
+}

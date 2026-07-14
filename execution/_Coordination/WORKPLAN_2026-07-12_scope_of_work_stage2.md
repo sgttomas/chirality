@@ -113,13 +113,17 @@ No conversion starts before this snapshot is accepted.
 ### 4. Ten verified pilot replacements
 
 Run disjoint App PKG-07 and Piping PKG-13 preparation lanes. Extract only the
-hash-bound `ScopeOfWork.md` candidates from Stage-1 evidence commits; never
-merge either dual-format pilot branch as-is.
+hash-bound evidence-rich `ScopeOfWork.md` candidates from Stage-1 evidence
+commits; never merge either dual-format pilot branch or an evidence-rich
+candidate as-is. Deterministically finalize each into a separate clean
+production `ScopeOfWork.md` and external finalization report.
 
-Fresh target-base checks, deterministic validation/map/parity/checklist,
-independent verification, project checks, and RECONCILIATION fan-in precede
-CHANGE. CHANGE integrates one atomic replacement commit per deliverable:
-add `ScopeOfWork.md` and remove all four legacy production files together.
+Fresh target-base checks, deterministic finalization/validation/map/parity/
+checklist, independent verification, project checks, and RECONCILIATION fan-in
+precede CHANGE. Maps, parity, checklists, and integration manifests bind the
+clean production hash. CHANGE integrates one atomic replacement commit per
+deliverable: add only the clean finalized `ScopeOfWork.md` and remove all four
+legacy production files together.
 
 ### 5. Seven ordinary waves — 135 members
 
@@ -187,8 +191,10 @@ proposal after closure, but implementation stops for separate H2 approval.
 ## Invariants and checks
 
 - Deterministic extraction/conversion, mapping, parity, checklist compilation,
-  and rendering own mechanical truth. Agents supervise bounded execution and
-  handle actual semantic exceptions; they do not perform duplicate extraction.
+  clean finalization, and rendering own mechanical truth. Migration-only
+  metadata remains in derivative evidence and never in the production
+  contract. Agents supervise bounded execution and handle actual semantic
+  exceptions; they do not perform duplicate extraction.
 - Format migration is lifecycle-neutral. `_STATUS.md` and control inputs remain
   byte-identical to each wave basis.
 - `MIGRATION_DUAL` exists only in an exact isolated workspace. Accepted commits
@@ -212,6 +218,8 @@ proposal after closure, but implementation stops for separate H2 approval.
 Do not:
 
 - integrate a dual-format accepted commit;
+- integrate an evidence-rich migration candidate or a production contract that
+  retains migration-only metadata;
 - merge either pilot branch as-is;
 - expand beyond the frozen two-project population;
 - convert DOMAIN/KTY, archives, templates, fixtures, packet/case schemas, or

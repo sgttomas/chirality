@@ -4,7 +4,7 @@ description: Initialize, convert, validate, and independently verify one objecti
 metadata:
   chirality-skill-version: "1"
   chirality-task-profile: NONE
-allowed-tools: python3 tools/scope_of_work/validate_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/render_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/convert_four_documents_to_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/map_scope_of_work_claims.py:{scope_path}/**, python3 tools/scope_of_work/report_scope_of_work_parity.py:{scope_path}/**, python3 tools/scope_of_work/derive_review_checklist.py:{scope_path}/**
+allowed-tools: python3 tools/scope_of_work/validate_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/render_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/convert_four_documents_to_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/finalize_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/map_scope_of_work_claims.py:{scope_path}/**, python3 tools/scope_of_work/report_scope_of_work_parity.py:{scope_path}/**, python3 tools/scope_of_work/derive_review_checklist.py:{scope_path}/**
 ---
 
 # SKILL — scope-of-work
@@ -38,14 +38,18 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
    evidence. For `CONVERT`, hash the four sources and `_STATUS.md`, then use
    the deterministic converter to create a lossless scaffold. Tests may
    implement verification but never create scope or acceptance criteria.
-4. Refine authorized output without dropping conversion source markers. Define stable IDs,
-   complete the output/evaluation matrix, preserve epistemic labels, and mark
-   substantive ambiguity `CONFLICT`.
-5. Run the validator, claim mapper, parity reporter, and deterministic REVIEW
-   checklist derivation. Render HTML only when the brief requests a derivative
-   view.
-6. Return the contract path, source/target hashes, claim map, parity report,
-   checklist, validation result, conflicts, and `_STATUS.md` before/after hash.
+4. Refine the evidence candidate without dropping conversion source markers.
+   Define stable IDs, complete the output/evaluation matrix, preserve epistemic
+   labels, and mark substantive ambiguity `CONFLICT`.
+5. Run source mapping and parity on the evidence candidate, then use the
+   deterministic finalizer to create a separate clean production contract and
+   external finalization report. Require the map and parity report to bind the
+   clean production hash.
+6. Validate, derive the REVIEW checklist, and optionally render HTML from the
+   clean production contract only.
+7. Return both candidate paths, source/evidence/production hashes, finalization
+   report, claim map, parity report, checklist, validation result, conflicts,
+   and `_STATUS.md` before/after hash.
 
 ## Non-negotiable constraints
 
@@ -58,6 +62,8 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
   authoritative deliverable truth.
 - Do not run `CONVERT` without exact path-scoped migration authority.
 - Do not treat `MIGRATION_DUAL` as an accepted deliverable baseline.
+- Never integrate the evidence-rich migration candidate. Production must be
+  the exact deterministic finalization and contain no migration-only metadata.
 - Refuse `ISSUED` preparation unless the brief binds the source commit, all
   four source hashes, `_STATUS.md` hash, and accepted basis. Preparation never
   authorizes integration or reissuance; H1 remains a later human gate.

@@ -26,9 +26,25 @@ def render_markdown(body: str) -> str:
     in_list = False
     in_table = False
     lines = body.splitlines()
-    for index, line in enumerate(lines):
+    index = 0
+    while index < len(lines):
+        line = lines[index]
         stripped = line.strip()
         if stripped.startswith("<!--"):
+            index += 1
+            continue
+        if re.match(r"^ {0,3}>", line):
+            if in_list:
+                out.append("</ul>")
+                in_list = False
+            if in_table:
+                out.append("</tbody></table>")
+                in_table = False
+            quoted: list[str] = []
+            while index < len(lines) and re.match(r"^ {0,3}>", lines[index]):
+                quoted.append(re.sub(r"^ {0,3}> ?", "", lines[index]))
+                index += 1
+            out.append("<blockquote>" + render_markdown("\n".join(quoted)) + "</blockquote>")
             continue
         if in_list and not re.match(r"^[-*]\s+", stripped):
             out.append("</ul>")
@@ -50,6 +66,7 @@ def render_markdown(body: str) -> str:
         elif stripped.startswith("|"):
             cells = [cell.strip() for cell in stripped.strip("|").split("|")]
             if all(re.fullmatch(r":?-+:?", cell) for cell in cells):
+                index += 1
                 continue
             if not in_table:
                 out.append("<table><tbody>")
@@ -57,6 +74,7 @@ def render_markdown(body: str) -> str:
             out.append("<tr>" + "".join(f"<td>{inline(cell)}</td>" for cell in cells) + "</tr>")
         elif stripped:
             out.append(f"<p>{inline(stripped)}</p>")
+        index += 1
     if in_list:
         out.append("</ul>")
     if in_table:
@@ -81,7 +99,7 @@ def render(source: Path) -> str:
 <meta name="chirality-canonical-sha256" content="{doc.sha256}">
 <meta name="chirality-renderer-version" content="{RENDERER_VERSION}">
 <title>{html.escape(title)}</title>
-<style>body{{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}}table{{border-collapse:collapse;width:100%}}td{{border:1px solid #bbb;padding:.4rem;vertical-align:top}}code{{background:#eee;padding:.1rem .2rem}}</style>
+<style>body{{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}}table{{border-collapse:collapse;width:100%}}td{{border:1px solid #bbb;padding:.4rem;vertical-align:top}}code{{background:#eee;padding:.1rem .2rem}}blockquote{{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}}</style>
 </head>
 <body>
 <p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>{doc.sha256}</code>.</p>

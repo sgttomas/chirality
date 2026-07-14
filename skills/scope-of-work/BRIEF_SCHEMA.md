@@ -15,7 +15,7 @@
 | `RuntimeOverrides.MODE` | `INIT`, `CONVERT`, or `VERIFY` |
 | `RuntimeOverrides.FORMAT_AUTHORITY_REF` | Required only for `CONVERT`/authorized `MIGRATION_DUAL`; exact path-scoped accepted authority |
 | `RuntimeOverrides.SOURCE_STATE` | Current lifecycle state; operation must be authorized for it |
-| `ExpectedOutputs` | Contract or verification result, applicable claim map/parity/checklist, receipt, and structured return |
+| `ExpectedOutputs` | Contract or verification result; for conversion, distinct evidence candidate, clean production contract, and finalization report; applicable claim map/parity/checklist, receipt, and structured return |
 
 The brief also supplies or authorizes grounded determination of the initial
 `OUT-*`, `AC-*`, and `VER-*` definitions. Tests may implement a verification
@@ -33,7 +33,8 @@ method but may not create scope or acceptance criteria.
 
 Permitted targets are limited to:
 
-- `ScopeOfWork.md` in the authorized initialization or isolated conversion workspace;
+- an evidence-candidate `ScopeOfWork.md` in the isolated conversion workspace;
+- a separate clean production-candidate `ScopeOfWork.md` and external finalization report;
 - a requested untracked/on-demand `ScopeOfWork.html`; and
 - run-local claim-map, parity, deterministic checklist, receipt, and return
   artifacts.

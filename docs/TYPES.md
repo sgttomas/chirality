@@ -307,6 +307,11 @@ records the warranted current delta against that target where the working root
 adopts the remaining-work surface. Format migration does not change lifecycle
 state, acceptance, or professional-reliance status.
 
+An evidence-rich conversion candidate is a derivative migration artifact, not
+an additional production-contract type. Deterministic finalization externalizes
+its source markers, authority, and preparation bindings into reports and
+produces the sole clean `SOW_V1` contract eligible for integration.
+
 ### 7.1 Scope-of-Work local identifier kinds
 
 Local identifiers use exactly three decimal digits and are unique within one
@@ -328,6 +333,9 @@ for example `DEL-07-03-AC-001`.
 Migration dispositions are `PRESERVED`, `MERGED`, `SPLIT`, `SUPERSEDED`,
 `DEFERRED`, and `CONFLICT`. They describe migration handling only and are not
 epistemic labels, lifecycle states, or human rulings.
+
+Blockquoted text in a finalized converted contract is preserved literal legacy
+content. ID-shaped strings inside it do not define or reference SOW local IDs.
 
 ---
 

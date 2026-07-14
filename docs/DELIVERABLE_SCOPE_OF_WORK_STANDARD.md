@@ -43,6 +43,9 @@ reauthenticates the deliverable.
 
 Historical evidence is not rewritten. Migration receipts provide forward
 traceability from source commit and source hashes to the replacement contract.
+Migration-only source markers, authority comments, preparation bindings, and
+candidate labels belong to the isolated evidence candidate and external
+reports. They must not remain in the final production `ScopeOfWork.md`.
 
 ## 3. Canonical form
 
@@ -91,6 +94,11 @@ External references qualify the local identifier with the deliverable ID:
 `DEL-03-02-REQ-017`. Local IDs use exactly three decimal digits and are unique
 within one Scope of Work.
 
+During deterministic finalization of a converted contract, preserved literal
+legacy text is rendered as Markdown blockquotes. ID-shaped text inside those
+quotations is source context, not a local definition or reference. Canonical
+SOW definitions and references remain outside quotations.
+
 | Prefix | Meaning | Primary section |
 |---|---|---|
 | `OUT` | Expected output | Ontology |
@@ -105,7 +113,7 @@ within one Scope of Work.
 
 The registered deterministic checklist tool consumes the validated
 deliverable `AC-*` definitions and emits them in source order with exact text,
-qualified identity, candidate hash and source location, and matrix-linked
+qualified identity, production-contract hash and source location, and matrix-linked
 `VER-*` records or explicit `HUMAN_REVIEW: <method>`. REVIEW consumes that
 artifact; it must not mint a second acceptance-criterion namespace,
 re-extract, paraphrase, reorder, renumber, or silently omit criteria. Agent or
@@ -139,15 +147,27 @@ Migration dispositions are `PRESERVED`, `MERGED`, `SPLIT`, `SUPERSEDED`,
 not epistemic labels, lifecycle states, or human rulings.
 
 Every converted source range maps to one or more target IDs and records the
-source file, source line range, source SHA-256, target document SHA-256, and
-disposition. `MERGED` and `SPLIT` preserve every contributing source
-reference. No omitted content is inferred to be unimportant.
+source file, source line range, source SHA-256, final production document
+SHA-256, and disposition. `MERGED` and `SPLIT` preserve every contributing
+source reference. No omitted content is inferred to be unimportant.
 
-Conversion occurs in an isolated branch or worktree. A verified replacement
-integration adds `ScopeOfWork.md` and removes the four legacy production files
-atomically, preserving source blobs in Git and binding the migration receipt.
-An as-is dual-format conversion branch is never merged into an accepted
-baseline.
+Conversion first produces an evidence-rich candidate whose embedded markers
+permit exact source-range parity. A registered deterministic finalizer then
+produces two distinct outputs: a clean production `ScopeOfWork.md` and an
+external `chirality-sow-finalization/v1` report. The report binds the evidence
+candidate hash, production hash, source-block metadata, migration authority,
+and any `ISSUED` preparation bindings. Claim maps and parity reports bind the
+final production hash and prove that the production document is the exact
+deterministic finalization of the evidence candidate. Checklist derivation and
+HTML rendering consume only the clean production document.
+
+Conversion occurs in an isolated branch or worktree. The evidence-rich
+candidate remains a derivative run artifact and is never integrated as the
+production contract. A verified replacement integration adds only the clean
+production `ScopeOfWork.md` and removes the four legacy production files
+atomically, preserving source blobs in Git and binding the migration and
+finalization receipts. An as-is dual-format conversion branch is never merged
+into an accepted baseline.
 
 ## 7. Format resolution and transition
 
@@ -194,10 +214,11 @@ authority claims.
 
 A conversion is not acceptable unless all source ranges are dispositioned,
 internal IDs and references resolve, objective mappings exist, the evaluation
-matrix closes, lifecycle bytes are unchanged, and independent parity,
-checklist, and applicable consumer checks pass. Silent claim loss, unresolved
-authority ambiguity, `_STATUS.md` mutation, lifecycle drift, or use outside
-the authorized migration scope fails closed.
+matrix closes, lifecycle bytes are unchanged, the production contract contains
+no migration-only metadata, and independent finalization, parity, checklist,
+and applicable consumer checks pass. Silent claim loss, unresolved authority
+ambiguity, `_STATUS.md` mutation, lifecycle drift, evidence-candidate
+integration, or use outside the authorized migration scope fails closed.
 
 Checklist compilation is read-only and idempotent. Identical validated source
 bytes and the same accepted format basis produce byte-identical

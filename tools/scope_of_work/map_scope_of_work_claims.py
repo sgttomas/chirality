@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from common import SowError, iter_source_blocks, load_catalog, parse_sow, sha256_file, validate_document
+from finalize_scope_of_work import finalize_candidate_text
 
 FIELDS = (
     "SourceFile",
@@ -24,6 +25,7 @@ FIELDS = (
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scope-of-work", type=Path, required=True)
+    parser.add_argument("--production-scope-of-work", type=Path)
     parser.add_argument("--source-dir", type=Path, required=True)
     parser.add_argument("--output-csv", type=Path, required=True)
     args = parser.parse_args()
@@ -33,6 +35,16 @@ def main() -> int:
         issues = validate_document(doc, catalog)
         if issues:
             raise SowError("candidate validation failed: " + "; ".join(issues))
+        target_doc = doc
+        if args.production_scope_of_work:
+            expected, _ = finalize_candidate_text(args.scope_of_work, doc.raw)
+            production_text = args.production_scope_of_work.read_text(encoding="utf-8")
+            if production_text != expected:
+                raise SowError("production ScopeOfWork.md is not the deterministic finalization of the evidence candidate")
+            target_doc = parse_sow(args.production_scope_of_work, catalog)
+            production_issues = validate_document(target_doc, catalog)
+            if production_issues:
+                raise SowError("production validation failed: " + "; ".join(production_issues))
         rows = []
         for metadata, _ in iter_source_blocks(doc.body):
             required = {"file", "line_start", "line_end", "source_sha256", "target_id", "disposition"}
@@ -47,7 +59,7 @@ def main() -> int:
                 raise SowError(f"source hash mismatch: {source}")
             if metadata["disposition"] not in catalog.dispositions:
                 raise SowError(f"unknown migration disposition: {metadata['disposition']}")
-            if metadata["target_id"] not in doc.definitions:
+            if metadata["target_id"] not in target_doc.definitions:
                 raise SowError(f"target ID is not defined: {metadata['target_id']}")
             rows.append(
                 {
@@ -56,7 +68,7 @@ def main() -> int:
                     "SourceLineEnd": metadata["line_end"],
                     "SourceSHA256": metadata["source_sha256"],
                     "TargetID": metadata["target_id"],
-                    "TargetSHA256": doc.sha256,
+                    "TargetSHA256": target_doc.sha256,
                     "Disposition": metadata["disposition"],
                 }
             )
