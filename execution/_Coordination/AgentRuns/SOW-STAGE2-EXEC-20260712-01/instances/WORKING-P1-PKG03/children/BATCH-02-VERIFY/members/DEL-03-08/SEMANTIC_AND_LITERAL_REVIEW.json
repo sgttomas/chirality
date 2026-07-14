@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 249
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves accepted calculator requirements and boundaries, including user-entered or lawfully imported inputs, dimensional checks, no silent defaults, invented fixtures, unresolved conversion, schema, contributor, dependency, and human-review decisions, and no code-compliance or professional-approval claim.",
+    "OUT-001": "A pipe section-property and mass-property calculator contract covering explicit dimensional and material inputs, units, provenance, section and mass outputs, diagnostics, protected-data boundaries, and solver handoff limits is produced for the declared scope and objectives.",
+    "VER-001": "Validate the contract and review source parity, section and mass-property coverage, dimensional consistency, missing-input behavior, provenance, protected-content controls, calculator and solver separation, bounded witness evidence, and unresolved human-review items."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

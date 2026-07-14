@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 213,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "11a125a780b54a3979f10789a13cfcfadfed946b2fb7d16ed0ca25a66355fdfd"
+      },
+      "text": "The contract preserves accepted source requirements for unit-aware, provenance-bearing pipe and component records, rights-safe public fixtures, private data boundaries, explicit unknowns, and no silent engineering defaults.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-001",
+          "source_line": 309,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, pipe-section and component record coverage, units and provenance, public/private data controls, missing-value diagnostics, deterministic persistence compatibility, and unresolved policy decisions."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "11a125a780b54a3979f10789a13cfcfadfed946b2fb7d16ed0ca25a66355fdfd"
+  },
+  "tool_version": "1"
+}

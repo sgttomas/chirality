@@ -1,0 +1,19 @@
+{
+  "child_instance_id": "BATCH-01-VERIFY",
+  "status": "COMPLETE",
+  "verdict": "PASS_UNCHANGED",
+  "members_complete": 5,
+  "members_expected": 5,
+  "mappings": 146,
+  "source_lines_covered": 1267,
+  "source_lines_expected": 1267,
+  "negative_probes_passed": 35,
+  "negative_probes_expected": 35,
+  "repairs": 0,
+  "failures": 0,
+  "retries": 0,
+  "blockers": [],
+  "waivers": [],
+  "unknowns": [],
+  "native_context_occupancy": "unavailable"
+}

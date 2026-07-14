@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 349
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves accepted branch-connection requirements and limits, including explicit dimensional and provenance data, rights-safe fixtures, missing-value findings, and unresolved engineering choices without inferred values or compliance claims.",
+    "OUT-001": "A branch-connection component-model contract defining geometry, run and branch identities, section and stiffness inputs, units, provenance, completeness, and diagnostics is produced for the declared scope and objective.",
+    "VER-001": "Validate the contract and review source parity, branch geometry and identity coverage, dimensional consistency, provenance and protected-content controls, missing-input diagnostics, mechanics handoff limits, and unresolved decisions."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="d49ba65e086c0b7bfb0444a4e262ada196c22d72d7de98303a35e82efbdb4225">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>d49ba65e086c0b7bfb0444a4e262ada196c22d72d7de98303a35e82efbdb4225</code>.</p>
+<h1 id="scope-of-work-del-03-01">Scope of Work — DEL-03-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-01</code> in service of project scope [SOW-017] and package objectives [OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A material-library schema contract covering temperature-dependent properties, allowable slots, provenance, redistribution status, privacy, completeness, and explicit diagnostics is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-01-material-library-schema-with-provenance">CLM-001 — Datasheet: DEL-03-01 Material library schema with provenance</h3>
+<blockquote><h4 id="datasheet-del-03-01-material-library-schema-with-provenance">Datasheet: DEL-03-01 Material library schema with provenance</h4></blockquote>
+<h3 id="clm-002-pdu-024-version-integration">CLM-002 — PDU-024 Version Integration</h3>
+<blockquote><h5 id="pdu-024-version-integration">PDU-024 Version Integration</h5>
+<ul>
+<li>- Owning material schema remains <code>schemas/material.schema.yaml</code>.</li>
+<li>- Project-carried material data consumes DEL-02-05 model-document version handling, whose accepted current family is <code>0.2.0</code>.</li>
+<li>- No material fixture migration, material serializer, or new migration status is added by this tranche.</li>
+</ul></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-01</td></tr>
+<tr><td>Package ID</td><td>PKG-03</td></tr>
+<tr><td>Package</td><td>Piping Components, Materials, and Library Data Model</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>Scope item</td><td>SOW-017</td></tr>
+<tr><td>Objective</td><td>OBJ-004</td></tr>
+<tr><td>Anticipated artifacts</td><td><code>schemas/material.schema.yaml</code>; material editor fixtures</td></tr>
+<tr><td>Current evidence status</td><td>Schema, fixture, and test implementation evidence present; deliverable remains <code>IN_PROGRESS</code> pending review and dependency disposition.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Required setup meaning</td><td>Source</td></tr>
+<tr><td>Material library scope</td><td>Private material libraries with temperature-dependent properties, allowables, and provenance fields.</td><td>ScopeLedger row SOW-017</td></tr>
+<tr><td>Data boundary</td><td>Public repository must not bundle protected standards tables, material allowables, copied examples, proprietary data, or paraphrased protected tables.</td><td>CONTRACT OPS-K-IP-1, OPS-K-IP-3; SOW-017 notes</td></tr>
+<tr><td>Provenance fields</td><td>Material, component, allowable, and rule-pack values carry provenance fields.</td><td>CONTRACT OPS-K-DATA-3</td></tr>
+<tr><td>Redistribution status</td><td>Public data contributions require source, provenance, license or redistribution status, contributor certification, and review disposition.</td><td>CONTRACT OPS-K-IP-2</td></tr>
+<tr><td>Unit handling</td><td>Imported values, exported values, and calculations using material values must be unit-aware and dimensionally checked.</td><td>CONTRACT OPS-K-UNIT-1</td></tr>
+<tr><td>Missing required values</td><td>Missing solve-required or rule-check-required material values must become explicit findings, not silent defaults.</td><td>CONTRACT OPS-K-DATA-2</td></tr>
+<tr><td>Private data handling</td><td>Private material data must not be transmitted or committed publicly by default.</td><td>CONTRACT OPS-K-PRIV-1</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- <code>schemas/material.schema.yaml</code> defines structure for temperature-dependent properties and allowables, but it does not provide actual engineering values.</li>
+<li>- <code>fixtures/material/invented_material_library_valid.json</code> is a public schema fixture with omitted engineering values, <code>TBD</code> source/license disposition, and explicit blocking diagnostics for missing solve-required data.</li>
+<li>- Code-specific values and allowables remain user-supplied or lawfully imported private data, not bundled public defaults.</li>
+<li>- Architecture basis requires JSON Schema 2020-12, deterministic/versioned/provenance-preserving persistence, unit awareness, diagnostics, adapter validation, and protected-content/provenance gates where relevant.</li>
+<li>- Public material source catalog, public fixture value policy, temperature interpolation policy, allowable storage policy, dependency satisfaction, and human review dispositions remain <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The implemented material schema and fixture evidence cover these record groups:</p>
+<table><tbody>
+<tr><td>Record group</td><td>Implemented evidence and remaining disposition</td></tr>
+<tr><td>Library identity</td><td><code>MaterialLibrary</code> requires <code>library_id</code>, <code>name</code>, <code>library_scope</code>, <code>privacy_class</code>, <code>provenance</code>, and <code>review_status</code>.</td></tr>
+<tr><td>Material identity</td><td><code>MaterialRecord</code> requires <code>material_id</code>, <code>name</code>, <code>material_family</code>, privacy/redistribution fields, properties, allowables, completeness, provenance, and review status.</td></tr>
+<tr><td>Property definitions</td><td><code>MaterialPropertyDefinition</code> declares property kind, dimension ID, quantity kind, unit requirement, required-for context, public fixture policy, and review status.</td></tr>
+<tr><td>Property values</td><td><code>MaterialPropertyValue</code> carries property kind, value status, required-for context, provenance, review status, and optional unit-bearing quantity value.</td></tr>
+<tr><td>Allowable slots</td><td><code>MaterialAllowableSlot</code> records slot metadata, value status, public repository value policy, required-for context, provenance, and review status without supplying protected/code-specific values.</td></tr>
+<tr><td>Provenance</td><td><code>Provenance</code> requires source name/location/license, contributor, contributor certification, redistribution status, and review status. Fixture source/license disposition remains <code>TBD</code>.</td></tr>
+<tr><td>Redistribution and privacy</td><td>Schema enums record public, private, unknown, rejected, suspected-protected, and <code>TBD</code> dispositions. Human acceptance of public material data remains separate.</td></tr>
+<tr><td>Completeness flags</td><td><code>CompletenessRule</code> and <code>MaterialCompletenessFinding</code> record required property kinds, missing behavior, status, and diagnostic code.</td></tr>
+<tr><td>Diagnostics</td><td><code>MaterialDiagnostic</code> records code, class, severity, source, affected reference, message, remediation, and provenance. The fixture emits <code>MATERIAL_PROPERTY_MISSING</code> as a blocking solve diagnostic.</td></tr>
+<tr><td>Open decisions</td><td><code>OpenDecision</code> preserves unresolved public fixture, source catalog, allowable storage, and interpolation policy topics.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- docs/_Registers/Deliverables.csv row DEL-03-01</li>
+<li>- docs/_Registers/ScopeLedger.csv row SOW-017</li>
+<li>- docs/_Registers/ContextBudgetQA.csv row DEL-03-01</li>
+<li>- execution/_Decomposition/SOFTWARE_DECOMP.md` revision 0.7</li>
+<li>- docs/CONTRACT.md invariants OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-PRIV-1, OPS-K-GOV-4, OPS-K-AGENT-1..4</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-03-01-material-library-schema-with-provenance">CLM-008 — Specification: DEL-03-01 Material library schema with provenance</h3>
+<blockquote><h4 id="specification-del-03-01-material-library-schema-with-provenance">Specification: DEL-03-01 Material library schema with provenance</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable records implementation evidence for a material-library schema covering private material records, temperature-dependent properties, allowable slots, provenance fields, redistribution status, and completeness flags.</p>
+<p>The implemented evidence includes <code>schemas/material.schema.yaml</code>, <code>fixtures/material/invented_material_library_valid.json</code>, and <code>tests/test_material_schema.py</code>. It does not define engineering allowable values, reproduce standards content, claim code compliance, certify engineering suitability, resolve human review dispositions, or close dependency satisfaction.</p></blockquote>
+<h3 id="clm-010-pdu-024-persistence-integration-boundary">CLM-010 — PDU-024 Persistence Integration Boundary</h3>
+<blockquote><h5 id="pdu-024-persistence-integration-boundary">PDU-024 Persistence Integration Boundary</h5>
+<p>When material data is carried in a project model, downstream DEL-02-05 persistence uses the accepted model-document <code>0.2.0</code> family and established current/stale/unsupported/newer/failed version checks. This integration evidence does not add a DEL-03-01-owned serializer, migrate the invented material fixture, or close the separately recorded material round-trip persistence deferral.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Evidence basis</td><td>Verification approach</td></tr>
+<tr><td>REQ-03-01-001</td><td>The schema supports material records with property slots, explicit dimensions, quantity kind, unit-required flags, and unit-bearing quantity values.</td><td>SOW-017; OPS-K-UNIT-1</td><td><code>tests/test_material_schema.py</code> validates schema and fixture structure.</td></tr>
+<tr><td>REQ-03-01-002</td><td>The schema supports allowable-value slots without bundling protected or code-specific allowable tables in public artifacts.</td><td>SOW-017 note; OPS-K-IP-1; OPS-K-DATA-1</td><td>Test coverage checks public repository value policy and forbidden public-data text.</td></tr>
+<tr><td>REQ-03-01-003</td><td>The schema requires provenance metadata for material libraries, material records, property values, allowable slots, and diagnostics.</td><td>OPS-K-DATA-3; OPS-K-IP-2</td><td>Test coverage asserts required provenance fields.</td></tr>
+<tr><td>REQ-03-01-004</td><td>The schema records public/private classification and redistribution status for material library data.</td><td>OPS-K-IP-2; OPS-K-PRIV-1; OPS-K-GOV-4</td><td>Schema enums and fixture validation cover privacy and redistribution dispositions.</td></tr>
+<tr><td>REQ-03-01-005</td><td>The schema expresses missing solve-required or rule-check-required material values as explicit diagnostics or completeness findings, not defaults.</td><td>OPS-K-DATA-2; AB-00-06</td><td>Fixture contains omitted values, incomplete status, and blocking <code>MATERIAL_PROPERTY_MISSING</code> diagnostics.</td></tr>
+<tr><td>REQ-03-01-006</td><td>The schema supports quarantine/escalation status for suspected protected material content.</td><td>OPS-K-IP-3</td><td>Schema includes <code>protected_suspected</code> redistribution/value states and protected-content diagnostic code.</td></tr>
+<tr><td>REQ-03-01-007</td><td>The schema preserves versioned, provenance-preserving, schema-governed serialization behavior where material data is serialized.</td><td>AB-00-04</td><td>Schema validation is present and project-carried material data consumes DEL-02-05&#x27;s accepted <code>0.2.0</code> version contract; a dedicated material serialization round-trip harness remains downstream <code>TBD</code>.</td></tr>
+<tr><td>REQ-03-01-008</td><td>The deliverable does not treat agent-generated setup text as engineering authority or source data.</td><td>OPS-K-AGENT-4</td><td>Fixture provenance labels invented/schema-slot evidence and omits engineering values.</td></tr>
+<tr><td>REQ-03-01-009</td><td>The material property dimension vocabulary stays aligned with accepted PKG-02 dimensions.</td><td>DEL-02-01; DEL-02-02; PKG-02 audit finding resolution</td><td><code>tests/test_material_schema.py</code> asserts material dimensions are a subset of canonical dimensions and exclude retired aliases.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or policy source</td><td>Use in this setup evidence</td></tr>
+<tr><td>OpenPipeStress CONTRACT</td><td>Governs protected-content, provenance, privacy, data, unit, governance, and agent-output constraints.</td></tr>
+<tr><td>SOFTWARE_DECOMP revision 0.7</td><td>Provides package/deliverable scope and architecture basis IDs.</td></tr>
+<tr><td>External engineering standards</td><td>Referenced only as possible source categories; exact text, tables, values, and clauses are not locally available and remain <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Current verification evidence includes:</p>
+<ul>
+<li>- <code>python3 tests/test_material_schema.py</code> validates required identity, unit, provenance, redistribution, privacy, completeness, diagnostic, open-decision, and fixture fields.</li>
+<li>- The test asserts no schema <code>default</code> keys are present, preserving no-silent-default behavior.</li>
+<li>- The invented fixture omits material engineering values and records an incomplete solve-required material record with blocking diagnostics.</li>
+<li>- The test checks that protected/code-compliance phrases and standards identifiers from the forbidden list are absent from schema and fixture text.</li>
+<li>- The test checks material dimensions against the accepted PKG-02 dimension vocabulary and retired aliases.</li>
+<li>- Round-trip persistence integration, public source catalog acceptance, fixture value policy, interpolation policy, allowable storage policy, dependency satisfaction, and human review dispositions remain <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Implemented product evidence:</p>
+<ul>
+<li>- <code>schemas/material.schema.yaml</code></li>
+<li>- <code>fixtures/material/invented_material_library_valid.json</code></li>
+<li>- <code>tests/test_material_schema.py</code></li>
+</ul>
+<p>Still-open review evidence:</p>
+<ul>
+<li>- protected-content and redistribution review disposition</li>
+<li>- human review of package audit findings</li>
+<li>- dependency satisfaction and downstream readiness disposition</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted material-data requirements and boundaries, including unit awareness, protected-content and redistribution controls, explicit missing-value findings, and unresolved policy decisions without supplying engineering values or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-03-01-material-library-schema-with-provenance">CLM-015 — Procedure: DEL-03-01 Material library schema with provenance</h3>
+<blockquote><h4 id="procedure-del-03-01-material-library-schema-with-provenance">Procedure: DEL-03-01 Material library schema with provenance</h4></blockquote>
+<h3 id="clm-016-pdu-024-integration-check">CLM-016 — PDU-024 Integration Check</h3>
+<blockquote><h5 id="pdu-024-integration-check">PDU-024 Integration Check</h5>
+<p>1. Validate material records against the DEL-03-01 schema and provenance rules.</p>
+<p>2. When material records are carried by a project model, consume DEL-02-05 version-check and migration evidence rather than a local version literal.</p>
+<p>3. Preserve explicit stale/unsupported/newer/failed project-version diagnostics and do not rewrite the material fixture as part of model-document compatibility handling.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Describe the maintenance and review procedure for the DEL-03-01 material-library schema, invented fixture, and validation evidence while preserving protected-content, provenance, unit, privacy, and agent-output boundaries.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed DEL-03-01 brief and write scope.</li>
+<li>- <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>docs/CONTRACT.md</code>, register rows, SOFTWARE_DECOMP revision 0.7, and approved DAG-006 context.</li>
+<li>- Current evidence files: <code>schemas/material.schema.yaml</code>, <code>fixtures/material/invented_material_library_valid.json</code>, and <code>tests/test_material_schema.py</code>.</li>
+<li>- Human-approved rules for any public fixture source, license, redistribution status, and review disposition.</li>
+<li>- No protected material tables or proprietary library data in the working folder.</li>
+</ul></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm <code>_STATUS.md</code> is not <code>ISSUED</code> and that the intended tranche is evidence reconciliation, not lifecycle promotion.</p>
+<p>2. Read the DEL-03-01 context, register rows, SOW-017, OBJ-004, and applicable CONTRACT invariants.</p>
+<p>3. Inspect <code>schemas/material.schema.yaml</code> for identity, property, allowable, provenance, redistribution, completeness, diagnostic, and open-decision coverage.</p>
+<p>4. Inspect <code>fixtures/material/invented_material_library_valid.json</code> to confirm it remains invented/schema-shape evidence with omitted engineering values and explicit diagnostics.</p>
+<p>5. Run <code>python3 tests/test_material_schema.py</code> and record the result in a deliverable-local run record.</p>
+<p>6. Run a stale-language check against the active four-document kit for phrases that incorrectly describe the implemented schema as only setup/future evidence.</p>
+<p>7. Preserve unresolved public source, fixture value, interpolation, allowable storage, dependency satisfaction, and human review disposition items as <code>TBD</code>.</p>
+<p>8. Route public data acceptance, quarantine disposition, package audit finding disposition, dependency satisfaction, and lifecycle transitions through separate human/reconciliation gates.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Material schema test</td><td><code>python3 tests/test_material_schema.py</code> passes.</td></tr>
+<tr><td>Stale active-doc language</td><td>Active four-document kit no longer says implementation evidence is only setup/future work.</td></tr>
+<tr><td>Protected-content scan</td><td>No protected standards text, material allowable tables, copied examples, or proprietary material data is introduced.</td></tr>
+<tr><td>Provenance validation</td><td>Every governed material value has source/provenance and rights status, or produces an explicit finding.</td></tr>
+<tr><td>Unit validation</td><td>Material property dimensions remain aligned with the accepted PKG-02 dimension vocabulary.</td></tr>
+<tr><td>Missing-value behavior</td><td>Missing solve-required or rule-check-required values produce explicit diagnostics.</td></tr>
+<tr><td>Privacy check</td><td>Private libraries are not transmitted or committed publicly by default.</td></tr>
+<tr><td>Review disposition check</td><td><code>Review_Findings.csv</code> remains pending human disposition unless a separate human gate authorizes edits.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Schema review notes: deliverable-local run records.</li>
+<li>- Fixture provenance review: <code>TBD</code> until human/source review accepts a public fixture policy.</li>
+<li>- Protected-content review disposition: <code>TBD</code>.</li>
+<li>- Human rulings on public fixture sources and package audit findings: <code>TBD</code>.</li>
+<li>- Dependency register and run records in this deliverable folder.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, schema and fixture coverage, unit and provenance boundaries, missing-value diagnostics, protected-content controls, deterministic persistence compatibility, and unresolved human-review items.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-03-01-material-library-schema-with-provenance">CLM-022 — Guidance: DEL-03-01 Material library schema with provenance</h3>
+<blockquote><h4 id="guidance-del-03-01-material-library-schema-with-provenance">Guidance: DEL-03-01 Material library schema with provenance</h4></blockquote>
+<h3 id="clm-023-pdu-024-guidance">CLM-023 — PDU-024 Guidance</h3>
+<blockquote><h5 id="pdu-024-guidance">PDU-024 Guidance</h5>
+<p>Treat model-document compatibility as downstream DEL-02-05 authority. Material consumers must not duplicate a current model-version literal or reinterpret migration statuses. Preserve the material schema/provenance contract and surface downstream stale, unsupported, newer, or failed project-version diagnostics without coercing material records.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists so OpenPipeStress can support piping-specific private material libraries without shipping protected material tables, proprietary commercial data, or unreviewed public data. The schema should make provenance, rights, units, and completeness visible enough for later validation, diagnostics, and review gates.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat material values and allowables as governed data, not as free public defaults.</li>
+<li>- Separate schema slots from data content: defining an <code>allowable</code> field is allowed; populating public tables of protected allowables is not.</li>
+<li>- Preserve source and rights metadata with every material value that could affect solving, rule checking, reporting, or downstream reliance.</li>
+<li>- Use <code>TBD</code> for unresolved public source catalogs, accepted fixture value policy, interpolation policy, allowable storage policy, dependency satisfaction, and human review dispositions.</li>
+<li>- Prefer explicit warnings and blocked states over silent fallbacks when required material data is absent or untrusted.</li>
+</ul></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The implemented schema already distinguishes private/user-supplied values, public-permissive reviewed values, invented non-engineering fixture evidence, suspected protected content, and unresolved <code>TBD</code> states. Private records may carry user-entered or lawfully imported values, while public repository fixtures still require documented redistribution rights and review disposition before any real values are accepted.</p>
+<p>The current invented fixture is schema-shape evidence. Its source/license and redistribution fields intentionally remain <code>TBD</code>, and that <code>TBD</code> status is not accepted public material data. The fixture omits engineering values and carries blocking diagnostics to demonstrate missing-data behavior.</p>
+<p>The schema is structured so importers and adapters have provenance, redistribution, unit, and diagnostic fields to preserve. Concrete import/export formats and adapter behavior remain downstream work.</p></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision area</td><td>Tension</td><td>Current position</td></tr>
+<tr><td>Public examples</td><td>Useful for tests and documentation, but risky if derived from protected standards or proprietary libraries.</td><td>The current fixture is invented/schema-shape evidence with omitted values. Real public material values require later source and redistribution review.</td></tr>
+<tr><td>Required field strictness</td><td>Strict requirements improve safety but may block partial private libraries.</td><td>Required-for-solving/checking values produce explicit completeness findings and diagnostics when absent. Additional policy strictness remains downstream.</td></tr>
+<tr><td>Source citations</td><td>Detailed source pointers improve traceability but can expose protected content if mishandled.</td><td>Store source/provenance pointers and rights status; do not reproduce protected text/tables.</td></tr>
+<tr><td>Allowable values</td><td>Needed for some checks, but code-specific tables are protected or user-governed.</td><td>Provide schema slots and diagnostics; do not bundle public allowable tables.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The current public fixture is <code>fixtures/material/invented_material_library_valid.json</code>. It is not accepted material data for engineering use: it is an invented schema fixture with omitted values, <code>TBD</code> source/license disposition, and explicit blocking diagnostics.</p>
+<p>Any later material editor fixture that supplies values must use invented non-engineering values or rights-cleared public-permissive data with documented review disposition. It must not include protected material allowable tables, copied standards examples, proprietary library data, or invented values presented as engineering data.</p></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict found in accessible setup sources.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-017 OBJ-004</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "basis": "5f124ad80fe84357f6dc33072dc4fbdbeb05d545",
+  "blockers": [
+    "Fresh human disposition required for 56 immutable manifest-bound blank-line-at-EOF findings before evidence commit/PR/merge"
+  ],
+  "branch": "codex/sow-p1-pkg03",
+  "instance_id": "CHANGE-P1-PKG03",
+  "members": 8,
+  "parent": "HELP_HUMAN",
+  "project_commits": [
+    "3707ca488af3601179318995fd39c9f5c7d3bdce",
+    "032e790db00c6d2ebfa3b7b388666fb505466f90",
+    "bd90ea581e5ad08d5406d6c20f3989044a2e3cde",
+    "8fafbbe3fc900a5bb8aa5d7fee61a8474d6755d0",
+    "ac38bd95ebc55ab0ff9350089ece6d6394e07f27",
+    "e6526f77396ee05f0e2747c98b07e6a736579a35",
+    "95dec4f5aaf11d24e5280ad4123b6c8a9125f7da",
+    "17461e2915710b9f146df6cb39df330fa3eb0d69"
+  ],
+  "replacement_rows": 40,
+  "role": "CHANGE",
+  "rollback_rows": 40,
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "snapshot_manifest_sha256": "39e29ecf82dffe8ecbeaaa1f944a7557c348e655eb6d4fef09943903a237195c",
+  "staged_evidence_paths_before_terminal_records": 1999,
+  "status": "BLOCKED_WITH_HANDOFF",
+  "terminal": true,
+  "unknowns": [],
+  "waivers": []
+}

@@ -208,3 +208,28 @@
 - Next: P1 PKG-03 is dependency-released as two consecutive batches,
   `DEL-03-01..05` (1,267 lines) and `DEL-03-06..08` (699 lines).
 - Gates: `DEL-01-01` H1, lifecycle, release, retirement, and H2 remain parked.
+
+### Receipt 13 — 2026-07-14 — PKG-03 prepared; RECON child gate blocked
+
+- Basis: synchronized `main@5f124ad80fe84357f6dc33072dc4fbdbeb05d545`; graph v38 and session handoff at `snapshots/W_P1/PKG03-session-blocked/HANDOFF_STATE.md`.
+- WORKING_ITEMS PASS: 8/8 members, 234 mappings, 1,966/1,966 lines, exact 40-row replacement/inverse manifests, 8/8 simulations, and 264/264 tests; no project write.
+- RECON Agent-1 full-package reproduction PASS: five manifests / 3,610 rows, all members, simulations, 16/16 negatives, checks, and before/after project-tree containment reproduced.
+- Gate: three mandatory evidence-only Agent-2 launches failed `agent thread limit reached`; the frozen brief is not treated as execution or acceptance.
+- State: `BLOCKED_WITH_HANDOFF`; PKG-03 integration and PKG-04 remain held. No commit, push, PR, merge, lifecycle, H1/H2, release, or retirement act occurred.
+- Rerun: free one governed child slot, execute the unchanged RECON verifier brief, validate fan-in, and mint a new immutable acceptance snapshot before CHANGE.
+
+### Receipt 14 — 2026-07-14 — PKG-03 RECON blocked continuation
+
+- Fresh drift audit on synchronized `main@5f124ad80fe84357f6dc33072dc4fbdbeb05d545` passed: snapshot 102/102, upstream manifests 3,610/3,610, all live and candidate bindings unchanged.
+- Evidence: `snapshots/W_P1/PKG03-session-blocked/CONTINUATION_20260714_01.md`; ten-file standard/tool digest `a13c842bef5a563a64a644e2046ece18d892fec1828e006f9c6e6c91488e20a2`.
+- Gate: the unchanged mandatory RECON Agent-2 launch was again rejected before execution with `agent thread limit reached`; completed upstream sessions remain counted.
+- State remains `BLOCKED_WITH_HANDOFF`; no acceptance snapshot, CHANGE action, project write, lifecycle act, commit, push, PR, merge, H1/H2, release, or retirement act occurred.
+- Rerun remains: one genuinely available governed child slot, actual verifier execution, validated fan-in, then a new immutable acceptance snapshot.
+
+### Receipt 15 — 2026-07-14 — PKG-03 runtime blocker formally terminal
+
+- Basis and unchanged RECON child brief reconfirmed at `main@5f124ad80fe84357f6dc33072dc4fbdbeb05d545` and SHA-256 `71608e216b47498cbb3bcae1ca9a2f297d2c9cb2348005f9967b9d191567c51f`.
+- Third consecutive goal-turn launch was rejected before execution: `collab spawn failed: agent thread limit reached`.
+- Evidence: `snapshots/W_P1/PKG03-session-blocked/CONTINUATION_20260714_02.md`; no prior evidence was rewritten and no substitute child execution was claimed.
+- State: formally `BLOCKED_WITH_HANDOFF`; PKG-03 acceptance/integration and all declared dependants remain held.
+- Resume condition: external runtime capacity change providing one genuine child slot, followed by unchanged verifier execution, validated fan-in, and a new immutable acceptance snapshot.

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="cf0a419fdc1bc08c0d1554efe4342f9b2f08509a14b84d44423207a812850100">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-06</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>cf0a419fdc1bc08c0d1554efe4342f9b2f08509a14b84d44423207a812850100</code>.</p>
+<h1 id="scope-of-work-del-03-06">Scope of Work — DEL-03-06</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-06</code> in service of project scope [SOW-010] and package objectives [OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — An expansion-joint component-model contract covering supplied stiffnesses, effective area, movement limits, hardware fields, units, provenance, completeness, and diagnostics is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-06-expansion-joint-component-model">CLM-001 — Datasheet: DEL-03-06 Expansion joint component model</h3>
+<blockquote><h4 id="datasheet-del-03-06-expansion-joint-component-model">Datasheet: DEL-03-06 Expansion joint component model</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-03-06-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-06</td></tr>
+<tr><td>Package ID</td><td>PKG-03</td></tr>
+<tr><td>Package</td><td>Piping Components, Materials, and Library Data Model</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope Item</td><td>SOW-010</td></tr>
+<tr><td>Objective</td><td>OBJ-004</td></tr>
+<tr><td>Evidence Status</td><td>Implemented schema, invented fixture, and test evidence for expansion-joint component slots; no public engineering values or lifecycle promotion</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<p>The implemented component-library evidence represents expansion joints as supplied-data component records. The current public repository evidence defines schema slots, an invented fixture record, completeness findings, and diagnostics; it does not supply engineering values.</p>
+<table><tbody>
+<tr><td>Attribute Category</td><td>Required Treatment</td><td>Source</td></tr>
+<tr><td>Stiffness values</td><td>Implemented as <code>linear_stiffness</code> and <code>rotational_stiffness</code> component field kinds and accepted quantity dimensions. Public fixture values remain missing and private/user/manufacturer supplied. Exact per-axis DOF/tensor mapping for downstream solver consumption remains <code>TBD</code>.</td><td><code>schemas/component.schema.yaml</code>; <code>fixtures/component/invented_component_library_valid.json</code>; <code>tests/test_component_section_schema.py</code>; execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-010; docs/CONTRACT.md#OPS-K-DATA-1</td></tr>
+<tr><td>Effective area</td><td>Implemented as an <code>effective_area</code> field kind with provenance and missing-value handling in the invented fixture. Pressure/thrust usage semantics remain downstream solver scope.</td><td><code>schemas/component.schema.yaml</code>; <code>fixtures/component/invented_component_library_valid.json</code>; <code>tests/test_component_section_schema.py</code>; execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-010</td></tr>
+<tr><td>Movement limits</td><td>Implemented as a <code>movement_limit</code> field kind with explicit missing-value diagnostics. Movement-limit class taxonomy and dimensional validation categories remain <code>TBD</code>.</td><td><code>schemas/component.schema.yaml</code>; <code>fixtures/component/invented_component_library_valid.json</code>; <code>tests/test_component_section_schema.py</code>; execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-010; docs/CONTRACT.md#OPS-K-DATA-2</td></tr>
+<tr><td>Hardware data</td><td>Implemented as <code>hardware_flag</code>/<code>hardware_reference</code> schema slots and fixture contract evidence, with <code>hardware_reference</code> present on the invented expansion-joint record. Hardware flag/enumeration taxonomy remains <code>TBD</code>.</td><td><code>schemas/component.schema.yaml</code>; <code>fixtures/component/invented_component_library_valid.json</code>; <code>tests/test_component_section_schema.py</code>; execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-010</td></tr>
+<tr><td>Provenance</td><td>Implemented through source, license/redistribution status, contributor certification, and review status fields on schema-slot fixture records. Public source-catalog policy, fixture-value policy, and human review disposition remain open.</td><td><code>schemas/component.schema.yaml</code>; <code>fixtures/component/invented_component_library_valid.json</code>; docs/CONTRACT.md#OPS-K-IP-2; docs/CONTRACT.md#OPS-K-DATA-3</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-preserved-tbds-and-gates">CLM-005 — Preserved TBDs and Gates</h3>
+<blockquote><h6 id="preserved-tbds-and-gates">Preserved TBDs and Gates</h6>
+<ul>
+<li>- <code>TBD</code>: exact per-axis stiffness field shape and solver degree-of-freedom mapping beyond the implemented <code>linear_stiffness</code> and <code>rotational_stiffness</code> dimensions.</li>
+<li>- <code>TBD</code>: release-level required vs optional classification beyond the current schema completeness rule.</li>
+<li>- <code>TBD</code>: movement-limit classes and dimensional validation categories.</li>
+<li>- <code>TBD</code>: hardware flag/enumeration taxonomy.</li>
+<li>- <code>TBD</code>: accepted public expansion-joint source catalog and public fixture-value policy.</li>
+<li>- <code>TBD</code>: dependency satisfaction, human disposition of review findings, and lifecycle closure.</li>
+</ul></blockquote>
+<h3 id="clm-006-conditions">CLM-006 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Public repository artifacts must not include manufacturer proprietary values, protected standards text, protected examples, or copied data tables.</li>
+<li>- Missing solve-required or rule-check-required expansion joint values must remain explicit findings, never silent defaults.</li>
+<li>- Current schema dimensions classify stiffness as <code>linear_stiffness</code> and <code>rotational_stiffness</code>; any supplied numeric quantity must remain unit-aware and dimensionally checked before mechanics or rule-check use.</li>
+<li>- Outputs may support review but must not claim certification, authentication, or code compliance.</li>
+</ul></blockquote>
+<h3 id="clm-007-construction">CLM-007 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>Current construction is bounded to the component-library schema, invented fixture, and schema validation tests. The implementation evidence includes <code>expansion_joint</code> as a component type, expansion-joint family contract fields, an invented expansion-joint record with missing supplied values, a blocking completeness finding, and expansion-joint diagnostic codes.</p>
+<p>Current model partitions:</p>
+<table><tbody>
+<tr><td>Partition</td><td>Content</td></tr>
+<tr><td>Identity</td><td>Component ID, component type, library/source reference, provenance metadata</td></tr>
+<tr><td>Mechanical inputs</td><td><code>linear_stiffness</code>, <code>rotational_stiffness</code>, <code>effective_area</code>, <code>movement_limit</code>, <code>hardware_flag</code>/<code>hardware_reference</code>, and <code>manufacturer_reference</code> slots</td></tr>
+<tr><td>Unit metadata</td><td>Component quantity dimensions for linear and rotational stiffness plus area-compatible supplied values</td></tr>
+<tr><td>Validation state</td><td>Missing data diagnostics, provenance warnings, assumption warnings</td></tr>
+<tr><td>Persistence hooks</td><td>Schema version, strict schema shape, fixture provenance, review status, redistribution status, and open decision records</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, architecture basis, and package scope.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 for SOW-010, OBJ-004, PKG-03, and AB-00-01/02/04/06/07/08.</li>
+<li>- <code>docs/CONTRACT.md</code> for OPS-K-IP-1..3, OPS-K-DATA-1..3, OPS-K-UNIT-1, OPS-K-MECH-1, OPS-K-AGENT-1..4.</li>
+<li>- <code>schemas/component.schema.yaml</code>, <code>fixtures/component/invented_component_library_valid.json</code>, and <code>tests/test_component_section_schema.py</code> for current implementation evidence.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-03-06-expansion-joint-component-model">CLM-009 — Specification: DEL-03-06 Expansion joint component model</h3>
+<blockquote><h4 id="specification-del-03-06-expansion-joint-component-model">Specification: DEL-03-06 Expansion joint component model</h4></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-03-06-DECL-001</code>.</p></blockquote>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable-local specification covers the implemented backend data-model slice for an expansion joint component model. Current evidence is limited to component-library schema slots, an invented public fixture record, completeness rules, diagnostics, and schema tests for manufacturer/user/private-library supplied stiffness, effective area, movement limits, and hardware data.</p>
+<p>Exclusions:</p>
+<ul>
+<li>- No public engineering value implementation.</li>
+<li>- No manufacturer proprietary values.</li>
+<li>- No invented expansion joint defaults.</li>
+<li>- No certification, authentication, or compliance claims.</li>
+<li>- No rule evaluator or global solver implementation; PKG-03 explicitly excludes those responsibilities.</li>
+</ul></blockquote>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Basis</td></tr>
+<tr><td>DEL-03-06-R-001</td><td>The component model shall represent expansion joint stiffness data as supplied by a user, manufacturer, or lawful private library; current evidence implements <code>linear_stiffness</code> and <code>rotational_stiffness</code> slots without public values.</td><td>SOW-010</td></tr>
+<tr><td>DEL-03-06-R-002</td><td>The component model shall represent effective area as supplied data with units and provenance; current evidence implements the <code>effective_area</code> slot without public values.</td><td>SOW-010; OPS-K-UNIT-1; OPS-K-DATA-3</td></tr>
+<tr><td>DEL-03-06-R-003</td><td>The component model shall represent movement limits as supplied data with explicit missing-value handling; current evidence implements the <code>movement_limit</code> slot and missing-data diagnostic path while taxonomy remains <code>TBD</code>.</td><td>SOW-010; OPS-K-DATA-2</td></tr>
+<tr><td>DEL-03-06-R-004</td><td>The component model shall represent hardware data without deriving defaults from protected or proprietary sources; current evidence implements <code>hardware_flag</code>/<code>hardware_reference</code> slots while hardware taxonomy remains <code>TBD</code>.</td><td>SOW-010; OPS-K-IP-1; OPS-K-IP-3</td></tr>
+<tr><td>DEL-03-06-R-005</td><td>All expansion joint numeric values shall be unit-aware and dimensionally checked when persisted, imported, or used by downstream services.</td><td>OPS-K-UNIT-1; AB-00-04</td></tr>
+<tr><td>DEL-03-06-R-006</td><td>Source, provenance, license/redistribution status, and review disposition shall be carried for component data where applicable.</td><td>OPS-K-IP-2; OPS-K-DATA-3</td></tr>
+<tr><td>DEL-03-06-R-007</td><td>Missing solve-required or rule-check-required values shall produce explicit diagnostics or findings rather than silent defaults.</td><td>OPS-K-DATA-2; AB-00-06</td></tr>
+<tr><td>DEL-03-06-R-008</td><td>The model shall preserve layer/API boundaries so adapters and plugins cannot bypass validation, provenance, units, diagnostics, or public/private data controls.</td><td>AB-00-02; AB-00-07</td></tr>
+<tr><td>DEL-03-06-R-009</td><td>Validation tests shall cover schema/field presence, unit handling, missing-data diagnostics, provenance behavior, and protected-content guardrails where relevant.</td><td>AB-00-08</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-residual-tbds-and-gates">CLM-013 — Residual TBDs and gates</h3>
+<blockquote><h6 id="residual-tbds-and-gates">Residual TBDs and gates</h6>
+<p>The implementation evidence technically addresses the stale generic-stiffness concern by using accepted <code>linear_stiffness</code> and <code>rotational_stiffness</code> dimensions. The following items remain unresolved and must not be treated as closed until human-approved or supported by later authoritative source material:</p>
+<ul>
+<li>- <code>TBD</code>: exact per-axis stiffness field shape and solver degree-of-freedom mapping beyond the implemented dimensions.</li>
+<li>- <code>TBD</code>: release-level required vs optional field classification beyond the current completeness rule.</li>
+<li>- <code>TBD</code>: movement-limit validation classes.</li>
+<li>- <code>TBD</code>: hardware flag/enumeration taxonomy.</li>
+<li>- <code>TBD</code>: public expansion-joint source catalog policy and public fixture-value policy.</li>
+<li>- <code>TBD</code>: dependency satisfaction, human disposition of <code>Review_Findings.csv</code>, and lifecycle closure.</li>
+</ul></blockquote>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No accessible expansion joint manufacturer standard, code clause, or proprietary product data is introduced by the current evidence. Applicable standards and exact clause references remain <code>TBD</code>. Any later standards-derived or manufacturer-derived value must be supplied by the user or lawfully imported private data and must not be bundled as a public default.</p></blockquote>
+<h3 id="clm-015-verification">CLM-015 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Current Verification Evidence</td></tr>
+<tr><td>DEL-03-06-R-001 through R-004</td><td><code>schemas/component.schema.yaml</code> and <code>fixtures/component/invented_component_library_valid.json</code> define expansion-joint component type, family contract fields, invented record fields, and protected-value policy; <code>tests/test_component_section_schema.py</code> asserts this coverage.</td></tr>
+<tr><td>DEL-03-06-R-005</td><td>Tests assert component quantity dimensions include accepted <code>linear_stiffness</code> and <code>rotational_stiffness</code>, remain within accepted PKG-02 dimensions, and do not use retired dimensions.</td></tr>
+<tr><td>DEL-03-06-R-006</td><td>The invented fixture carries source, license/redistribution, contributor certification, and review status on schema-slot records.</td></tr>
+<tr><td>DEL-03-06-R-007</td><td>The invented fixture records an incomplete expansion-joint completeness finding and <code>EXPANSION_JOINT_STIFFNESS_DATA_MISSING</code> diagnostic.</td></tr>
+<tr><td>DEL-03-06-R-008</td><td>Current evidence is schema/fixture/test only; solver, adapter, GUI, persistence-service, and report bypass checks remain downstream package scope or separate authorized scope.</td></tr>
+<tr><td>DEL-03-06-R-009</td><td><code>python3 -m pytest tests/test_component_section_schema.py</code> is the targeted validation for this reconciliation pass.</td></tr>
+<tr><td>Residual TBDs</td><td>Human ruling or later sealed work must define remaining taxonomy, source/value policy, dependency closure, lifecycle state, and review dispositions before completeness or release claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Current artifacts:</p>
+<ul>
+<li>- <code>schemas/component.schema.yaml</code></li>
+<li>- <code>fixtures/component/invented_component_library_valid.json</code></li>
+<li>- <code>tests/test_component_section_schema.py</code></li>
+<li>- This DEL-03-06 evidence kit and run records.</li>
+</ul>
+<p>Future authorized work may add schema/API notes if the model is exposed through persistence services, import/export, adapters, GUI services, or reports.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted expansion-joint requirements and boundaries, including supplied-data-only values, explicit units and provenance, protected-content controls, missing-value diagnostics, unresolved taxonomy and solver mappings, and no invented defaults or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-03-06-expansion-joint-component-model">CLM-017 — Procedure: DEL-03-06 Expansion joint component model</h3>
+<blockquote><h4 id="procedure-del-03-06-expansion-joint-component-model">Procedure: DEL-03-06 Expansion joint component model</h4></blockquote>
+<h3 id="clm-018-d-41-r5-t7-pdu-055-current-declaration">CLM-018 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-03-06-DECL-004</code>.</p></blockquote>
+<h3 id="clm-019-purpose">CLM-019 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the procedure for maintaining and extending the current expansion-joint data-model evidence without crossing protected-data, architecture, lifecycle, or package-boundary constraints.</p></blockquote>
+<h3 id="clm-020-prerequisites">CLM-020 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed brief for DEL-03-06 with explicit write scope.</li>
+<li>- Current <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>Datasheet.md</code>, <code>Specification.md</code>, and <code>Guidance.md</code>.</li>
+<li>- Current implementation evidence in <code>schemas/component.schema.yaml</code>, <code>fixtures/component/invented_component_library_valid.json</code>, and <code>tests/test_component_section_schema.py</code>.</li>
+<li>- Human-approved implementation scope before editing product files outside this deliverable folder.</li>
+<li>- Applicable architecture-basis constraints AB-00-01, AB-00-02, AB-00-04, AB-00-06, AB-00-07, and AB-00-08.</li>
+</ul></blockquote>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the requested work is still bounded to DEL-03-06 and SOW-010.</p>
+<p>2. Identify the exact file targets and tests authorized by the active brief.</p>
+<p>3. Reconcile documentation against current implementation evidence before adding new claims.</p>
+<p>4. Confirm expansion joint fields for <code>linear_stiffness</code>, <code>rotational_stiffness</code>, <code>effective_area</code>, <code>movement_limit</code>, <code>hardware_flag</code>/<code>hardware_reference</code>, and <code>manufacturer_reference</code> remain unit/provenance bounded.</p>
+<p>5. Leave all unsupported or source-dependent values as <code>TBD</code>; do not add defaults.</p>
+<p>6. Preserve validation paths for missing required values, invalid dimensions, unsupported provenance, and protected-content risk.</p>
+<p>7. Preserve architecture/API boundaries so adapters, plugins, persistence, GUI services, and reports consume validated envelopes rather than bypassing domain contracts.</p>
+<p>8. Run or update validation tests for schema/model behavior, unit handling, diagnostics, provenance, and guardrails when authorized.</p>
+<p>9. Record any unresolved field taxonomy, solver semantics, source/value policy, lifecycle, dependency-satisfaction, or standard/manufacturer interpretation question for human ruling.</p></blockquote>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Confirm no manufacturer proprietary values or protected standards content were introduced.</li>
+<li>- Confirm no certification/compliance claim was introduced.</li>
+<li>- Confirm missing values remain explicit diagnostics or <code>TBD</code>.</li>
+<li>- Confirm unit/provenance fields are represented in schema, fixture, and test evidence.</li>
+<li>- Confirm tests exercise missing-data and provenance guardrails.</li>
+</ul></blockquote>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Updated product implementation artifacts only under explicit authorized write scope.</li>
+<li>- Validation test results.</li>
+<li>- Human rulings for any field taxonomy, standards interpretation, or manufacturer-data handling decisions.</li>
+<li>- Dependency/register updates only when separately authorized and when implementation creates or consumes cross-deliverable interfaces.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, field and fixture coverage, dimensional and provenance boundaries, missing-data diagnostics, protected-content controls, downstream solver limits, and unresolved human-review items.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-03-06-expansion-joint-component-model">CLM-024 — Guidance: DEL-03-06 Expansion joint component model</h3>
+<blockquote><h4 id="guidance-del-03-06-expansion-joint-component-model">Guidance: DEL-03-06 Expansion joint component model</h4></blockquote>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The purpose of this deliverable is to document the implemented expansion-joint component data-model slice while preserving OpenPipeStress boundaries: open mechanics and public schemas are allowed, but protected standards content, vendor proprietary values, and invented defaults are not.</p></blockquote>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat stiffness, effective area, movement limits, and hardware data as supplied inputs, not built-in knowledge.</li>
+<li>- Make missing required values visible with diagnostics and <code>TBD</code> placeholders.</li>
+<li>- Preserve provenance on every material/component data path where values may affect analysis, rules, reports, or redistribution.</li>
+<li>- Keep the expansion joint model inside PKG-03&#x27;s data-model responsibility; solver interpretation and rule evaluation remain downstream package concerns.</li>
+<li>- Treat current schema, fixture, and test evidence as bounded data-model implementation evidence, not as a release, lifecycle, dependency-closure, or professional-reliance claim.</li>
+</ul></blockquote>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>Expansion joints can introduce nonlinear, directional, hardware-dependent, or manufacturer-specific behavior. Current evidence implements schema slots, fixture omissions, completeness findings, and diagnostics, but it does not include authoritative product data or design rules. Specific per-axis stiffness shape, movement-limit taxonomy, hardware enumerations, and downstream solver semantics remain <code>TBD</code>.</p>
+<p>The Pass 3 lensing register specifically keeps the hardware flag/enumeration taxonomy as <code>TBD</code>. Do not convert this into a fixed list without authoritative source material or human ruling.</p></blockquote>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Risk / Constraint</td></tr>
+<tr><td>Supplied-data-only fields</td><td>Protects IP boundary and avoids invented defaults.</td><td>Requires clear missing-data diagnostics and user/library workflows.</td></tr>
+<tr><td>Unit-aware field structure using accepted dimensions</td><td>Keeps persistence and adapters deterministic for the current schema evidence.</td><td>Exact per-axis solver mapping and movement/hardware taxonomy remain TBD.</td></tr>
+<tr><td>Provenance-first data model</td><td>Supports auditability and public/private library separation.</td><td>Requires validation and review fields even for simple examples.</td></tr>
+<tr><td>Data-model-only implementation scope</td><td>Respects PKG-03 boundaries.</td><td>Solver behavior and rule checks must be handled by downstream deliverables.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The current public fixture uses invented, non-engineering expansion-joint records with missing supplied values and blocking diagnostics. No manufacturer example values are provided or invented. Additional examples for documentation or tests must remain clearly non-commercial and must avoid protected standards or manufacturer data.</p></blockquote>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in accessible evidence sources.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-010 OBJ-004</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

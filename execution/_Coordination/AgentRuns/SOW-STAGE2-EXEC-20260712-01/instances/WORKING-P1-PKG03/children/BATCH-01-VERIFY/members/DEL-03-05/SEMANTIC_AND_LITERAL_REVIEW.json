@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 235
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves accepted rigid-component requirements, public/private and protected-data boundaries, explicit missing-value diagnostics, provenance and unit discipline, resolved historical findings, and unresolved coordinate and solver-treatment decisions without inventing component values.",
+    "OUT-001": "A rigid and semi-rigid component-model contract covering valves, flanges, reducers, rigid placeholders, and specialty items, including geometry, mass, center-of-gravity, stiffness, units, provenance, and completeness fields, is produced for the declared scope and objective.",
+    "VER-001": "Validate the contract and review source parity, component-family and field coverage, split stiffness dimensions, provenance and protected-content controls, explicit missing values, coordinate-convention gaps, mechanics handoff limits, and unresolved decisions."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

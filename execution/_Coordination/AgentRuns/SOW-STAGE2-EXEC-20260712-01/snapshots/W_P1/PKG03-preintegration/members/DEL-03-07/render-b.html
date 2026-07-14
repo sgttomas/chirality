@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="f87b738d359e60fb4c9e8108ba486ac137a01acc4f7d4a5e6515efd62cad13a9">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-07</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>f87b738d359e60fb4c9e8108ba486ac137a01acc4f7d4a5e6515efd62cad13a9</code>.</p>
+<h1 id="scope-of-work-del-03-07">Scope of Work — DEL-03-07</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-07</code> in service of project scope [SOW-019, SOW-044] and package objectives [OBJ-002, OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A public/private library import-provenance checker contract covering source, license, redistribution, contributor and review metadata, privacy posture, unit preservation, quarantine, and diagnostics is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-07-public-private-library-import-provenance-checker">CLM-001 — Datasheet: DEL-03-07 Public/private library import provenance checker</h3>
+<blockquote><h4 id="datasheet-del-03-07-public-private-library-import-provenance-checker">Datasheet: DEL-03-07 Public/private library import provenance checker</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-07</td></tr>
+<tr><td>Package ID</td><td>PKG-03</td></tr>
+<tr><td>Package Name</td><td>Piping Components, Materials, and Library Data Model</td></tr>
+<tr><td>Deliverable Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope Items</td><td>SOW-019; SOW-044</td></tr>
+<tr><td>Objectives</td><td>OBJ-002; OBJ-004</td></tr>
+<tr><td>Anticipated Artifacts</td><td>library import validator; provenance tests</td></tr>
+<tr><td>Decomposition Basis</td><td>execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7</td></tr>
+<tr><td>Status</td><td>Implementation evidence reconciled; lifecycle remains governed by <code>_STATUS.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Source-grounded value</td></tr>
+<tr><td>Primary function</td><td>Validate already-parsed material, section, and component library payloads so source, provenance, license, contributor/reviewer disposition, redistribution metadata, privacy posture, and unit metadata are checked before import acceptance.</td></tr>
+<tr><td>Data boundary</td><td>Public component data requires documented provenance and redistribution rights; private library data must not become a bundled public default.</td></tr>
+<tr><td>Input format list</td><td>TBD. The implemented checker validates already-parsed payloads and intentionally does not parse external import formats.</td></tr>
+<tr><td>Rights determination authority</td><td>TBD. The checker can record and flag metadata, but legal acceptance requires human/project review.</td></tr>
+<tr><td>Protected-content response</td><td>Suspected protected standards or vendor content is quarantined and escalated rather than transformed into public data.</td></tr>
+<tr><td>Unit handling</td><td>Imported component/material numeric values must retain unit and dimension metadata; no unit defaults are introduced by the checker.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Public data contributions are acceptable only when provenance and redistribution status are documented.</li>
+<li>- Import mechanisms must record source, provenance, and license metadata for component and material data.</li>
+<li>- Missing solve-required or rule-check-required values are findings, not silent defaults.</li>
+<li>- Public deliverable evidence must not include protected standards text, protected tables, vendor data, or real rights/provenance examples.</li>
+</ul></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>Reconciled implementation evidence contains:</p>
+<ul>
+<li>- <code>core/library_import/provenance_checker.py</code>, a stdlib-only validator for already-parsed material, section, and component library payloads;</li>
+<li>- <code>validate_library_import(...)</code>, returning <code>ACCEPTED_PUBLIC</code>, <code>PRIVATE_LOCAL_ONLY</code>, <code>REVIEW_REQUIRED</code>, <code>REJECTED</code>, or <code>QUARANTINE</code> outcomes;</li>
+<li>- metadata checks for library-level and record-level provenance fields: source name/location, source license, contributor, contributor certification, redistribution status, and review status;</li>
+<li>- public/private disposition checks that block private-only or unresolved-rights data from public acceptance while permitting eligible private imports to remain local/private;</li>
+<li>- protected-content quarantine signaling for suspected protected or rejected sources;</li>
+<li>- nested numeric value checks that require unit/dimension metadata and value-level provenance;</li>
+<li>- <code>ImportFinding.to_diagnostic()</code> and <code>ImportValidationResult.diagnostics</code>, which project findings into a PKG-02-style diagnostic envelope with code, severity, class, source, affected object, remediation, and provenance;</li>
+<li>- <code>core/library_import/README.md</code>, documenting the boundary that the checker does not parse external formats and does not make legal conclusions;</li>
+<li>- <code>tests/test_library_import_provenance.py</code>, covering accepted public imports, public rejection for unresolved rights, private-local handling, missing provenance, protected-content quarantine, unit metadata, and diagnostic-envelope mapping using invented fixtures.</li>
+</ul>
+<p>Remaining unresolved items are concrete external import formats and parser contracts, accepted source catalogs and legal/license policy, fixture-value authority for engineering reliance, dependency satisfaction outside this bounded evidence, human disposition of review findings, and lifecycle closure.</p></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope envelope, objectives, and architecture-basis injection.</li>
+<li>- <code>_REFERENCES.md</code> for governing source pointers.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-03-07.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> rows SOW-019 and SOW-044.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-03-07.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants OPS-K-IP-1..3, OPS-K-DATA-1..3, OPS-K-UNIT-1, OPS-K-PRIV-1, OPS-K-GOV-4, and OPS-K-AGENT-1..4.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-03-07-public-private-library-import-provenance-checker">CLM-007 — Specification: DEL-03-07 Public/private library import provenance checker</h3>
+<blockquote><h4 id="specification-del-03-07-public-private-library-import-provenance-checker">Specification: DEL-03-07 Public/private library import provenance checker</h4></blockquote>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies reconciled evidence for a backend feature slice that validates already-parsed public/private component, section, and material library payloads for provenance, license, redistribution status, privacy posture, unit metadata, and protected-content handling.</p>
+<p>It covers:</p>
+<ul>
+<li>- metadata presence checks for source, provenance, license, contributor/reviewer disposition, and redistribution status;</li>
+<li>- public/private data boundary checks for component, section, and material library imports;</li>
+<li>- diagnostics for missing provenance, unresolved redistribution metadata, protected-content suspicion, missing unit metadata, and review-required public imports;</li>
+<li>- PKG-02-style diagnostic-envelope projection for import findings;</li>
+<li>- provenance-focused tests using invented fixture payloads.</li>
+</ul>
+<p>It excludes:</p>
+<ul>
+<li>- concrete external import formats and parsers, which are TBD;</li>
+<li>- legal conclusions about whether a license grants redistribution rights;</li>
+<li>- protected standards text, copied tables, vendor data, or derived protected examples;</li>
+<li>- global solver, rule evaluator, or GUI implementation work.</li>
+</ul></blockquote>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Evidence basis</td><td>Verification</td></tr>
+<tr><td>DEL-03-07-R1</td><td>The checker shall require recorded source, provenance, license, contributor certification, review status, and redistribution-status metadata before a public component/material data import can be accepted.</td><td>SOW-019; SOW-044; OPS-K-IP-2; OPS-K-DATA-3</td><td><code>test_public_component_import_requires_accepted_public_provenance</code> and missing-provenance tests cover present/missing metadata fields.</td></tr>
+<tr><td>DEL-03-07-R2</td><td>The checker shall flag or reject imports with missing provenance or missing redistribution-status metadata without creating silent defaults.</td><td>SOW-044; OPS-K-DATA-2; OPS-K-AGENT-1</td><td>Negative tests assert diagnostic output, rejected outcome, and no accepted record.</td></tr>
+<tr><td>DEL-03-07-R3</td><td>The checker shall separate public and private library handling so private project, material, component, and rule-pack data is not transmitted or committed publicly by default.</td><td>OPS-K-PRIV-1; OPS-K-DATA-1</td><td>Tests distinguish public-import disposition from private-local records.</td></tr>
+<tr><td>DEL-03-07-R4</td><td>The checker shall quarantine or escalate suspected protected content rather than paraphrasing, transforming, or accepting it into public data.</td><td>OPS-K-IP-1; OPS-K-IP-3; OPS-K-GOV-4</td><td>Tests use invented markers only and assert quarantine outcome.</td></tr>
+<tr><td>DEL-03-07-R5</td><td>The checker shall preserve unit metadata for imported numeric component/material values where such values are present.</td><td>OPS-K-UNIT-1; AB-00-04; AB-00-07</td><td>Unit-aware fixture tests use invented values and verify missing unit metadata blocks public acceptance.</td></tr>
+<tr><td>DEL-03-07-R6</td><td>The checker shall produce diagnostics/result envelopes compatible with the schema-first command/query/job boundary.</td><td>AB-00-02; AB-00-06; AB-00-07</td><td><code>test_import_findings_map_to_pkg02_diagnostic_envelope</code> asserts stable diagnostic fields and no bypass around import validation.</td></tr>
+<tr><td>DEL-03-07-R7</td><td>The checker shall not make legal acceptance claims; unresolved license or rights questions shall remain review dispositions requiring human/project authority.</td><td>OPS-K-AGENT-1; OPS-K-GOV-4</td><td>Tests assert <code>TBD</code>/review-needed style statuses for unresolved rights metadata.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>docs/CONTRACT.md</td><td>Invariant source for IP, data, unit, privacy, governance, and agent behavior.</td><td>Locally accessible</td></tr>
+<tr><td>execution/_Decomposition/SOFTWARE_DECOMP.md revision 0.7</td><td>Scope and objective source for DEL-03-07.</td><td>Locally accessible</td></tr>
+<tr><td>External import format specifications</td><td>Potential parser/import constraints once selected.</td><td>TBD</td></tr>
+<tr><td>Legal license interpretation sources</td><td>May govern redistribution-right acceptance.</td><td>TBD; human/legal review required</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Run <code>python3 -m pytest tests/test_library_import_provenance.py</code> for accepted, private-local, rejected, quarantine, and diagnostic-envelope outcomes.</li>
+<li>- Use only invented, minimal fixtures for public tests.</li>
+<li>- Confirm accepted public imports contain source, provenance, license, redistribution status, contributor/review disposition, and unit metadata where applicable.</li>
+<li>- Confirm missing or uncertain rights/provenance fields yield explicit diagnostics rather than accepted defaults.</li>
+<li>- Confirm suspected protected content yields quarantine/escalation status and no public data output.</li>
+<li>- Confirm diagnostics do not include protected content excerpts.</li>
+</ul></blockquote>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Implemented and reconciled artifacts are:</p>
+<ul>
+<li>- <code>core/library_import/provenance_checker.py</code>;</li>
+<li>- <code>core/library_import/README.md</code>;</li>
+<li>- <code>tests/test_library_import_provenance.py</code>;</li>
+<li>- active deliverable docs recording implementation evidence and remaining TBDs.</li>
+</ul>
+<p>Remaining non-implementation decisions are external import formats, public-source/catalog policy, fixture-value authority for engineering reliance, dependency satisfaction outside this bounded evidence, human disposition of local review findings, and lifecycle closure.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted public/private data boundaries, conservative missing-provenance handling, protected-content quarantine, unit and diagnostic requirements, and unresolved rights, vocabulary, source-catalog, and legal-acceptance decisions without creating legal conclusions or public defaults.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-03-07-public-private-library-import-provenance-checker">CLM-013 — Procedure: DEL-03-07 Public/private library import provenance checker</h3>
+<blockquote><h4 id="procedure-del-03-07-public-private-library-import-provenance-checker">Procedure: DEL-03-07 Public/private library import provenance checker</h4></blockquote>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the procedure for checking and maintaining the implemented library import provenance checker while preserving unresolved policy, parser, review, and lifecycle boundaries.</p></blockquote>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed context for DEL-03-07.</li>
+<li>- <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7.</li>
+<li>- Applicable invariants from <code>docs/CONTRACT.md</code>.</li>
+<li>- Implementation evidence in <code>core/library_import/provenance_checker.py</code>, <code>core/library_import/README.md</code>, and <code>tests/test_library_import_provenance.py</code>.</li>
+<li>- Human-approved decisions for license/redistribution acceptance vocabulary, public source catalogs, and import parser contracts before those fields are treated as project policy.</li>
+</ul></blockquote>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the import record type being checked is within material, section, or component library scope.</p>
+<p>2. Confirm the record carries source, provenance, license, redistribution-status, contributor, and review-disposition metadata fields or emits an explicit missing-field diagnostic.</p>
+<p>3. Confirm public imports with missing provenance or missing redistribution status are blocked, rejected, or marked not publicly acceptable.</p>
+<p>4. Confirm private imports remain marked private/local and do not become public bundled data by default.</p>
+<p>5. Confirm suspected protected content produces a quarantine/escalation diagnostic without copying or paraphrasing protected content into public data.</p>
+<p>6. Confirm numeric imported values preserve unit metadata where numeric component/material values are present.</p>
+<p>7. Confirm result diagnostics fit the schema-first command/query/job result-envelope pattern and expose unresolved items as <code>TBD</code> or review-needed statuses.</p>
+<p>8. Confirm provenance tests use invented fixtures only and do not establish engineering reliance for fixture values.</p>
+<p>9. Confirm review findings remain technically addressed pending human disposition unless an authorized human review updates them.</p></blockquote>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected evidence</td></tr>
+<tr><td>Metadata completeness</td><td>Tests for accepted records and missing-field diagnostics.</td></tr>
+<tr><td>Public/private boundary</td><td>Tests that private records remain private and public records require provenance metadata.</td></tr>
+<tr><td>Protected-content response</td><td>Tests assert quarantine/escalation status using invented markers only.</td></tr>
+<tr><td>Unit handling</td><td>Tests assert unit fields are preserved for invented numeric values.</td></tr>
+<tr><td>No legal conclusions</td><td>Tests assert unresolved rights questions remain review-needed/TBD.</td></tr>
+<tr><td>No protected examples</td><td>Fixture review confirms no standards tables, vendor data, or real protected examples are included.</td></tr>
+<tr><td>Review disposition boundary</td><td>Local review findings remain pending human disposition; no CSV status promotion is made by this procedure.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-records">CLM-018 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</li>
+<li>- <code>core/library_import/provenance_checker.py</code>, <code>core/library_import/README.md</code>, and <code>tests/test_library_import_provenance.py</code> as implementation evidence.</li>
+<li>- <code>_SEMANTIC.md</code> semantic matrix lens.</li>
+<li>- <code>_SEMANTIC_LENSING.md</code> lensing register.</li>
+<li>- <code>Dependencies.csv</code> v3.1 and <code>_DEPENDENCIES.md</code>.</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code> records for the deliverable work sequence.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, metadata and diagnostic coverage, public/private separation, unit preservation, protected-content quarantine, invented-fixture boundaries, and unresolved human or legal review items.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-019-guidance-del-03-07-public-private-library-import-provenance-checker">CLM-019 — Guidance: DEL-03-07 Public/private library import provenance checker</h3>
+<blockquote><h4 id="guidance-del-03-07-public-private-library-import-provenance-checker">Guidance: DEL-03-07 Public/private library import provenance checker</h4></blockquote>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to connect PKG-03 library data models with the project governance boundary: component and material data may be imported, but public acceptance requires recorded provenance and redistribution status, and private data must remain private by default.</p></blockquote>
+<h3 id="clm-021-principles">CLM-021 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat provenance as required metadata, not optional commentary.</li>
+<li>- Treat redistribution status as a review field. The checker records and gates; it does not make legal conclusions.</li>
+<li>- Prefer explicit <code>TBD</code>, <code>REVIEW_NEEDED</code>, or equivalent unresolved states over guessed acceptance.</li>
+<li>- Keep public tests and fixtures invented. Do not use protected standards tables, vendor catalogs, or copied examples.</li>
+<li>- Preserve public/private separation at the import boundary and at any diagnostic/export boundary.</li>
+<li>- Maintain unit metadata for numeric engineering values; do not introduce unitless accepted records.</li>
+</ul></blockquote>
+<h3 id="clm-022-considerations">CLM-022 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- SOW-019 requires documented provenance and redistribution rights before public component data can be accepted.</li>
+<li>- SOW-044 requires import mechanisms to record source, provenance, and license metadata for component/material data.</li>
+<li>- OPS-K-IP-3 and OPS-K-GOV-4 make protected-content suspicion a stop-and-escalate condition, not a transformation task.</li>
+<li>- AB-00-07 indicates adapters must validate units, provenance, redistribution, diagnostics, and public/private boundaries.</li>
+<li>- Exact external import formats are still TBD, so this deliverable evidence describes already-parsed payload validation without committing to parser details.</li>
+</ul></blockquote>
+<h3 id="clm-023-current-evidence">CLM-023 — Current Evidence</h3>
+<blockquote><h5 id="current-evidence">Current Evidence</h5>
+<ul>
+<li>- <code>core/library_import/provenance_checker.py</code> provides <code>validate_library_import(...)</code> for already-parsed material, section, and component library payloads.</li>
+<li>- <code>ImportValidationResult</code> reports <code>ACCEPTED_PUBLIC</code>, <code>PRIVATE_LOCAL_ONLY</code>, <code>REVIEW_REQUIRED</code>, <code>REJECTED</code>, or <code>QUARANTINE</code>.</li>
+<li>- <code>ImportFinding.to_diagnostic()</code> projects findings to PKG-02-style diagnostic envelope fields for downstream compatibility evidence.</li>
+<li>- <code>tests/test_library_import_provenance.py</code> uses invented fixtures to cover public acceptance, unresolved-rights rejection, private-local handling, missing provenance, protected-content quarantine, unit metadata, and diagnostic-envelope mapping.</li>
+</ul></blockquote>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Preferred posture</td><td>Reason</td></tr>
+<tr><td>Missing provenance</td><td>Reject, block, or flag as not publicly acceptable.</td><td>Avoid silent acceptance of unsupported public data.</td></tr>
+<tr><td>Unclear license status</td><td>Mark review-needed/TBD.</td><td>The checker cannot make legal conclusions.</td></tr>
+<tr><td>Private imports</td><td>Permit local-private handling only when privacy markers and storage boundaries are respected.</td><td>Supports private libraries without bundling protected data.</td></tr>
+<tr><td>Public test data</td><td>Use invented fixtures.</td><td>Prevent protected data from entering the public repository.</td></tr>
+<tr><td>Strictness</td><td>Conservative by default.</td><td>Scope item notes emphasize contributor certification and missing-provenance flags.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-examples-and-fixtures">CLM-025 — Examples And Fixtures</h3>
+<blockquote><h5 id="examples-and-fixtures">Examples And Fixtures</h5>
+<p>Concrete external import examples are not provided because protected/vendor data examples are forbidden and external import formats are TBD. Current test payloads are invented fixtures only; fixture values are not engineering reference values and do not establish a real license, provenance trail, accepted source catalog, or redistribution policy.</p></blockquote>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Topic</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>DEL-03-07-C1</td><td>Exact license/redistribution disposition vocabulary</td><td>Source scope requires metadata and review, but no approved enum names are defined in this deliverable.</td><td>TBD</td></tr>
+<tr><td>DEL-03-07-C2</td><td>Public acceptance authority</td><td>Validator can flag missing/uncertain metadata; legal or maintainer acceptance authority is not defined locally.</td><td>TBD</td></tr>
+<tr><td>DEL-03-07-C3</td><td>Public source catalog and policy</td><td>The checker gates on metadata values, but no approved public source catalog or legal/license policy is defined locally.</td><td>TBD</td></tr>
+<tr><td>DEL-03-07-C4</td><td>Fixture-value authority</td><td>Tests use invented minimal values; no fixture value is approved for engineering reliance.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-019 SOW-044 OBJ-002 OBJ-004</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

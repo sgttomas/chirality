@@ -1,0 +1,34 @@
+{
+  "schema": "chirality-runtime-summary/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "WORKING-P1-PKG03",
+  "sessions": {
+    "authors": 2,
+    "verifiers": 2,
+    "manager": 1
+  },
+  "members": 8,
+  "checks": {
+    "mappings": 234,
+    "source_lines": 1966,
+    "negative_probes": 56,
+    "simulations": 8,
+    "practitioner_tests": 264
+  },
+  "retained_reason_codes": [
+    "HARNESS_FUNCTION_IMPORT_NOT_PERSISTED",
+    "ZSH_PATH_SPECIAL_PARAMETER_COLLISION",
+    "SUPPLEMENTAL_CHECK_SCHEMA_KEY_GUESS",
+    "MANIFEST_TERMINALIZATION_ORDER",
+    "MANIFEST_REGEN_PATH_SHADOW",
+    "MANIFEST_BLANK_BINDINGS",
+    "MANIFEST_REGEN_AWK_ESCAPE",
+    "REF_LIST_WHITESPACE_NOT_NORMALIZED",
+    "FINALIZATION_SCHEMA_KEY_GUESS"
+  ],
+  "candidate_affecting_failures": 0,
+  "project_writes": 0,
+  "unresolved_failures": 0,
+  "native_token_context_occupancy": "UNAVAILABLE_NOT_INFERRED",
+  "status": "PASS_WITH_RETAINED_PROCESS_FINDINGS"
+}

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="97493f89fb25c411c7eb611acbe41e51086631f149ad25e9c8db8a7fc4fc8653">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>97493f89fb25c411c7eb611acbe41e51086631f149ad25e9c8db8a7fc4fc8653</code>.</p>
+<h1 id="scope-of-work-del-03-05">Scope of Work — DEL-03-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-05</code> in service of project scope [SOW-009] and package objectives [OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A rigid and semi-rigid component-model contract covering valves, flanges, reducers, rigid placeholders, and specialty items, including geometry, mass, center-of-gravity, stiffness, units, provenance, and completeness fields, is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">CLM-001 — Datasheet: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h3>
+<blockquote><h4 id="datasheet-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">Datasheet: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-05</td></tr>
+<tr><td>Package ID</td><td>PKG-03</td></tr>
+<tr><td>Package</td><td>Piping Components, Materials, and Library Data Model</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-009</td></tr>
+<tr><td>Objective</td><td>OBJ-004</td></tr>
+<tr><td>Lifecycle state read for reconciliation</td><td>IN_PROGRESS (<code>_STATUS.md</code> read only; no lifecycle edit)</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<p>This deliverable describes implemented evidence for rigid and semi-rigid component library schema slots, fixture shape, and validation coverage for valves, flanges, reducers, rigid placeholders, and specialty items. The implementation evidence is <code>schemas/component.schema.yaml</code>, <code>fixtures/component/invented_component_library_valid.json</code>, <code>tests/test_component_section_schema.py</code>, and the deliverable-local memory/review records.</p>
+<p>Implemented descriptive slots and retained gaps are:</p>
+<table><tbody>
+<tr><td>Slot</td><td>Source / basis</td><td>Reconciled value</td></tr>
+<tr><td>Component families</td><td>SOW-009; <code>ComponentType</code>; fixture <code>contract.component.rigid-semirigid</code>; test enum checks</td><td><code>valve</code>, <code>flange</code>, <code>reducer</code>, <code>rigid</code>, and <code>specialty</code> are accepted component types and are covered by the rigid/semi-rigid family contract.</td></tr>
+<tr><td>Geometry slots</td><td><code>ComponentFieldKind</code>; fixture field definitions; strict fixture tests</td><td><code>rigid_body_length</code>, <code>end_a_size</code>, <code>end_b_size</code>, <code>connection_end_a_reference</code>, and <code>connection_end_b_reference</code> are schema/fixture-recognized slots. Public fixture values remain schema-shape-only.</td></tr>
+<tr><td>Weight input</td><td>SOW-009; fixture rigid record; protected-value policy</td><td><code>weight</code> is implemented as a required mechanics-solve field kind. Public catalog/vendor weights remain omitted; value policy remains private or public-permissive only after review.</td></tr>
+<tr><td>Center of gravity input</td><td>SOW-009; fixture rigid record; protected-value policy</td><td><code>center_of_gravity</code> is implemented as a required mechanics-solve field kind. Coordinate convention/reference-frame policy remains <code>TBD</code>.</td></tr>
+<tr><td>Semi-rigid behavior</td><td><code>ComponentQuantityDimension</code>; fixture field definitions; review finding resolution evidence</td><td>Stiffness is split into <code>linear_stiffness</code> and <code>rotational_stiffness</code>; generic <code>stiffness</code> is not used as a component quantity dimension. Exact solver treatment remains <code>TBD</code>.</td></tr>
+<tr><td>Provenance and review metadata</td><td>OPS-K-DATA-3; OPS-K-IP-2; schema required fields</td><td>Component library metadata, records, fields, diagnostics, and fixture slots carry provenance/review status requirements. The two local findings are <code>ACCEPT_AS_IS</code> / <code>RESOLVED</code> under the recorded 2026-06-05 Gate C disposition.</td></tr>
+<tr><td>Unit handling</td><td>OPS-K-UNIT-1; AB-00-04; schema/test evidence</td><td>Unit-bearing dimensions include length, force, linear stiffness, and rotational stiffness. Connection/reference slots keep <code>dimension_id: TBD</code> where no unit-bearing value is defined.</td></tr>
+<tr><td>Public-data boundary</td><td>OPS-K-IP-1..3; OPS-K-DATA-1; fixture policies</td><td>Public artifacts carry schema shape and invented diagnostics only. Protected tables, vendor data, catalog dimensions, actual weights, COGs, and stiffness values remain excluded.</td></tr>
+</tbody></table>
+<p>The base rigid/semi-rigid field taxonomy is implemented for schema validation and strict fixture coverage. Policy-level source catalogs, public fixture-value acceptance, concrete import formats, exact solver consumption, per-family engineering profiles, dependency satisfaction, human disposition, and lifecycle closure remain <code>TBD</code>.</p></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Public artifacts must not include proprietary component/vendor data, protected dimensional tables, copied standards content, or invented weights/COGs.</li>
+<li>- User-entered or lawfully imported private data must carry provenance and redistribution status where it can enter a library or reusable fixture.</li>
+<li>- Missing solve-required or model-required values must remain explicit findings or validation diagnostics, never silent defaults.</li>
+<li>- Outputs are documentation reconciliation evidence and do not claim certification, compliance, or fitness for professional reliance.</li>
+</ul></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>Repository-level implementation evidence already exists in the component schema, invented component fixture, and component schema tests. This reconciliation run does not edit those repository-level schema, fixture, source, test, DAG, dependency, status, review CSV, or coordination files.</p>
+<p>The implemented model evidence preserves the architecture basis stated in the sealed brief: inward dependency direction toward domain contracts, deterministic unit-aware persistence, schema-governed data, diagnostics/result envelopes where validation fails, internal/public API boundary preservation, and layered tests.</p></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, architecture-basis injection, and scope envelope.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 rows for PKG-03, DEL-03-05, SOW-009, OBJ-004, and AB-00-01/02/04/06/07/08.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-03-05.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row SOW-009.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-03-05.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants OPS-K-IP-1..3, OPS-K-DATA-1..3, OPS-K-UNIT-1, OPS-K-MECH-1, OPS-K-AGENT-1..4.</li>
+</ul></blockquote>
+<h3 id="clm-007-d-41-r5-t2b-pdu-013-evidence-state">CLM-007 — D-41 R5 T2B PDU-013 Evidence State</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-013-evidence-state">D-41 R5 T2B PDU-013 Evidence State</h5>
+<table><tbody>
+<tr><td>Surface</td><td>Current evidence</td><td>Disposition</td></tr>
+<tr><td>COG mechanics convention</td><td>Value slot exists; coordinate convention and reference frame are unset.</td><td>Held pending authorized selection; no mechanics value accepted.</td></tr>
+<tr><td>Component geometry scalar trace</td><td>Paired field paths on valid copied quantities.</td><td>Bounded transform evidence; runtime result-envelope continuation held.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">CLM-008 — Specification: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h3>
+<blockquote><h4 id="specification-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">Specification: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable covers the reconciled evidence specification for the implemented rigid and semi-rigid component schema contract for valves, flanges, reducers, rigid placeholders, and specialty items. It is limited to behavior grounded in the sealed brief, decomposition/register rows, contract invariants, <code>schemas/component.schema.yaml</code>, <code>fixtures/component/invented_component_library_valid.json</code>, <code>tests/test_component_section_schema.py</code>, and deliverable-local memory/review evidence.</p>
+<p>Out of scope for this reconciliation:</p>
+<ul>
+<li>- Editing repository-level schemas, code, fixtures, tests, package metadata, lifecycle/status files, dependency registers, review CSVs, DAG files, coordination files, or DEL-03-01.</li>
+<li>- Introducing protected dimensional tables, manufacturer data, catalog weights, COGs, stiffness values, or default component properties.</li>
+<li>- Claiming compliance, certification, or professional acceptance.</li>
+</ul></blockquote>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source / basis</td><td>Verification hook</td></tr>
+<tr><td>R01</td><td>Support rigid and semi-rigid component data structures for valves, flanges, reducers, rigid placeholders, and specialty items.</td><td>SOW-009; Deliverables.csv row DEL-03-05; <code>ComponentType</code>; fixture rigid/semi-rigid contract</td><td>Tests verify the component enum against the PKG-02 canonical model enum and verify fixture contract coverage for <code>valve</code>, <code>flange</code>, <code>reducer</code>, <code>rigid</code>, and <code>specialty</code>.</td></tr>
+<tr><td>R02</td><td>Treat dimensions, weights, and centers of gravity as user-supplied or lawfully imported private/library data.</td><td>SOW-009; OPS-K-DATA-1; fixture public-value policies</td><td>Strict fixture records omit actual public component values and mark required values as missing with schema-shape or private/public-permissive policy gates.</td></tr>
+<tr><td>R03</td><td>Preserve unit awareness and dimensional checking for dimensional, weight, COG, and split stiffness fields.</td><td>OPS-K-UNIT-1; AB-00-04; <code>ComponentQuantityDimension</code></td><td>Tests verify <code>linear_stiffness</code> and <code>rotational_stiffness</code> are accepted component dimensions and that retired/generic stiffness dimensions are not present.</td></tr>
+<tr><td>R04</td><td>Carry provenance fields for reusable component data, including source and redistribution status where public contribution or import is possible.</td><td>OPS-K-IP-2; OPS-K-DATA-3; AB-00-07; schema required fields</td><td>Schema validation requires provenance/review metadata on library, record, field, and diagnostic surfaces.</td></tr>
+<tr><td>R05</td><td>Represent unknown required values explicitly as <code>TBD</code>, validation findings, or diagnostics, not silent defaults.</td><td>OPS-K-DATA-2; OPS-K-AGENT-1; AB-00-06; fixture completeness rules</td><td>Strict fixture records carry missing value states, incomplete completeness findings, and blocking diagnostics such as <code>RIGID_COMPONENT_GEOMETRY_INCOMPLETE</code>.</td></tr>
+<tr><td>R06</td><td>Preserve the 3D centerline/frame model boundary; shell/solid FEA remains a local-analysis handoff path.</td><td>OPS-K-MECH-1</td><td>Model interfaces do not require shell/solid elements for global analysis.</td></tr>
+<tr><td>R07</td><td>Keep dependencies inward toward domain contracts and through validation/diagnostics boundaries.</td><td>AB-00-02; AB-00-07</td><td>Architecture review confirms adapters/plugins cannot bypass validation or public/private data boundaries.</td></tr>
+<tr><td>R08</td><td>Use deterministic, versioned, schema-governed persistence for component records.</td><td>AB-00-04</td><td>Round-trip and canonical JSON/hash checks where JSON payloads are hashed.</td></tr>
+<tr><td>R09</td><td>Include strict fixture evidence for the rigid/semi-rigid contract using synthetic schema-shape records only.</td><td>Deliverables.csv artifact expectation; OPS-K-IP-1; invented component fixture</td><td>Fixture tests confirm the family contract and rigid record slots without proprietary/vendor/protected values. Concrete public fixture values for reducer, flange, valve, and specialty items remain <code>TBD</code>.</td></tr>
+<tr><td>R10</td><td>Define COG coordinate convention and reference frame before project or library COG values are accepted for mechanics use.</td><td>SOW-009; OPS-K-UNIT-1</td><td>Human ruling remains <code>TBD</code>; implemented schema slots do not settle the convention.</td></tr>
+<tr><td>R11</td><td>Preserve minimum provenance fields for user-supplied and library-imported component data before reusable public fixtures are accepted.</td><td>OPS-K-IP-2; OPS-K-DATA-3; AB-00-07</td><td>Provenance validator checks source, rights/redistribution status where applicable, and review disposition. Source catalog and public fixture-value policy remain <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-review-finding-reconciliation">CLM-011 — Review Finding Reconciliation</h3>
+<blockquote><h5 id="review-finding-reconciliation">Review Finding Reconciliation</h5>
+<table><tbody>
+<tr><td>FindingID</td><td>Existing local CSV state</td><td>Reconciled technical evidence</td><td>Human disposition</td></tr>
+<tr><td>PKG03-DEL-03-05-PKG02-001</td><td><code>ACCEPT_AS_IS</code> / <code>RESOLVED</code></td><td><code>ComponentType</code> includes <code>specialty</code>, and <code>tests/test_component_section_schema.py</code> verifies the PKG-03 component enum equals the PKG-02 canonical model enum.</td><td>Recorded by Gate C on 2026-06-05; preserved here.</td></tr>
+<tr><td>PKG03-DEL-03-05-PKG02-002</td><td><code>ACCEPT_AS_IS</code> / <code>RESOLVED</code></td><td>Generic <code>stiffness</code> is absent from <code>ComponentQuantityDimension</code>; implemented stiffness slots use <code>linear_stiffness</code> and <code>rotational_stiffness</code> with schema and strict fixture coverage.</td><td>Recorded by Gate C on 2026-06-05; preserved here.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No standards text, protected tables, or code-specific component defaults are locally available or authorized for this reconciliation. References to PRD sections in the registers identify scope provenance only; they do not authorize copying standard, vendor, or catalog data.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Current verification signals:</p>
+<ul>
+<li>- Schema validation for required component-family tags, unit dimensions, provenance fields, and explicit missing-value states.</li>
+<li>- Protected-content review for fixtures and public examples.</li>
+<li>- Unit tests for field validation, component enum alignment, split stiffness dimensions, strict fixture shape, and protected-content guardrails.</li>
+<li>- Architecture tests or reviews for no-bypass validation, diagnostics, and public/private data boundaries.</li>
+<li>- Fixture tests for the rigid/semi-rigid family contract and a rigid schema-shape record with missing required values.</li>
+<li>- Protected-content fixture review for every public reducer, flange, valve, rigid, and specialty-item value example before any such value is accepted.</li>
+<li>- Acceptance checks that required dimensions, weights, COGs, split stiffness entries, units, provenance, and missing-value diagnostics cannot be bypassed by adapters or public APIs.</li>
+</ul></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Expected documentation artifacts retained for implementation handoff include:</p>
+<ul>
+<li>- Rigid/semi-rigid component model notes.</li>
+<li>- Reducer/flange/valve fixture provenance notes.</li>
+<li>- Explicit <code>TBD</code> list for coordinate conventions, exact stiffness solver treatment, fixture values, source catalogs, import formats, review disposition, dependency satisfaction, lifecycle closure, and reusable public-data acceptance criteria.</li>
+</ul></blockquote>
+<h3 id="clm-015-d-41-r5-t2b-pdu-013-evidence-disposition-2026-07-12">CLM-015 — D-41 R5 T2B PDU-013 Evidence Disposition (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-013-evidence-disposition-2026-07-12">D-41 R5 T2B PDU-013 Evidence Disposition (2026-07-12)</h5>
+<p>R10 remains held. Existing COG schema slots do not define an axis convention or reference frame and therefore are not mechanics-acceptance evidence. E2/E4/E8 are evidence requirements only; this tranche selected no convention and introduced no COG value or outcome.</p></blockquote>
+<h3 id="clm-016-d-41-r5-t2c-pdu-023-e6-evidence-2026-07-12">CLM-016 — D-41 R5 T2C PDU-023 E6 Evidence (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2c-pdu-023-e6-evidence-2026-07-12">D-41 R5 T2C PDU-023 E6 Evidence (2026-07-12)</h5>
+<p>REQ-008 has bounded schema/transform evidence for valid component geometry quantities: paired <code>source_field_path</code> and <code>target_field_path</code> values identify the copied scalar leaf, while incomplete unit/dimension/provenance metadata blocks scalar-link emission. This does not establish runtime result-envelope integration.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted rigid-component requirements, public/private and protected-data boundaries, explicit missing-value diagnostics, provenance and unit discipline, resolved historical findings, and unresolved coordinate and solver-treatment decisions without inventing component values.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">CLM-017 — Procedure: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h3>
+<blockquote><h4 id="procedure-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">Procedure: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h4></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the reconciliation procedure for keeping DEL-03-05 documentation aligned with implemented component schema evidence while preserving the data boundary, unit discipline, and architecture-basis constraints.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed brief for DEL-03-05 and write scope limited to this deliverable folder.</li>
+<li>- <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, and decomposition/register rows for DEL-03-05, SOW-009, OBJ-004.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants listed in the sealed brief.</li>
+<li>- No proprietary, protected, or vendor component data in the working inputs.</li>
+<li>- Read-only evidence: <code>schemas/component.schema.yaml</code>, <code>fixtures/component/invented_component_library_valid.json</code>, <code>tests/test_component_section_schema.py</code>, <code>MEMORY.md</code>, <code>_REVIEW.md</code>, and <code>Review_Findings.csv</code>.</li>
+</ul></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the component families in scope from implementation evidence: <code>valve</code>, <code>flange</code>, <code>reducer</code>, <code>rigid</code>, and <code>specialty</code>.</p>
+<p>2. Confirm implemented model slots from schema/fixture/test evidence: rigid body length, end-size/reference slots, weight, COG, <code>linear_stiffness</code>, <code>rotational_stiffness</code>, stiffness behavior reference, and source/manufacturer reference slots.</p>
+<p>3. Confirm strict fixture behavior: public component values remain omitted, missing values are explicit, provenance/review metadata is present, and blocking diagnostics represent incomplete mechanics inputs.</p>
+<p>4. Preserve unresolved choices as <code>TBD</code>: accepted source catalogs, public fixture-value policy, coordinate convention, exact stiffness solver treatment, concrete import formats, per-family engineering profiles, dependency satisfaction, human disposition, and lifecycle closure.</p>
+<p>5. Apply public/private data controls: every reusable component datum needs provenance, license/redistribution status where applicable, and contributor/review disposition before public acceptance.</p>
+<p>6. Preserve review finding semantics: <code>Review_Findings.csv</code> records PKG03-DEL-03-05-PKG02-001 and PKG03-DEL-03-05-PKG02-002 as <code>ACCEPT_AS_IS</code> / <code>RESOLVED</code> under Gate C on 2026-06-05; documentation maintenance must not rewrite that formal disposition.</p>
+<p>7. Preserve architecture constraints from AB-00-01, AB-00-02, AB-00-04, AB-00-06, AB-00-07, and AB-00-08 for any downstream implementation handoff.</p>
+<p>8. Surface gaps as diagnostics, <code>TBD</code> markers, or human-ruling items rather than resolving them silently.</p>
+<p>9. Run targeted validation when feasible: <code>python3 -m pytest tests/test_component_section_schema.py</code> and a stale-language <code>rg</code> scoped to <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</p></blockquote>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Four local reconciliation documents exist and retain the default sections.</li>
+<li>- No numeric component defaults, vendor data, protected tables, or standards text are introduced.</li>
+<li>- Implemented schema/fixture/test evidence is distinguished from unresolved policy, dependency, human-disposition, and lifecycle gaps.</li>
+<li>- All unknown implementation specifics are marked <code>TBD</code> or as assumptions/proposals.</li>
+<li>- Dependency register validates against v3.1 schema.</li>
+<li>- <code>_STATUS.md</code> is not set to <code>ISSUED</code>.</li>
+</ul></blockquote>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/TASK_RUN_*.md</code></li>
+</ul></blockquote>
+<h3 id="clm-023-d-41-r5-t2b-pdu-013-check">CLM-023 — D-41 R5 T2B PDU-013 Check</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-013-check">D-41 R5 T2B PDU-013 Check</h5>
+<p>Before any COG value is accepted for mechanics use, verify that an authorized record defines both its coordinate convention and reference frame. Until then, preserve the slot as non-operative metadata and record the gap; do not infer axes, origins, signs, or component-local/global transforms.</p>
+<p>For PDU-023, validate paired scalar paths on copied component geometry quantities and reject incomplete quantity metadata; do not infer a runtime envelope producer.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, component-family and field coverage, split stiffness dimensions, provenance and protected-content controls, explicit missing values, coordinate-convention gaps, mechanics handoff limits, and unresolved decisions.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">CLM-024 — Guidance: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h3>
+<blockquote><h4 id="guidance-del-03-05-rigid-component-models-for-valves-flanges-reducers-and-specialty-items">Guidance: DEL-03-05 Rigid component models for valves, flanges, reducers, and specialty items</h4></blockquote>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable reconciles the implemented rigid and semi-rigid component schema evidence without importing protected component data. Its value is to keep the implementation boundary explicit: the software may structure and validate user-supplied component information, but it must not ship hidden catalog knowledge as defaults.</p></blockquote>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Use schema and validation to separate implemented component shape from protected component data.</li>
+<li>- Treat dimensions, weights, COGs, and stiffness behavior as project/library inputs with provenance.</li>
+<li>- Prefer explicit <code>TBD</code> or diagnostics over plausible defaults.</li>
+<li>- Keep public examples synthetic, minimal, and labeled as examples rather than engineering recommendations.</li>
+<li>- Keep mechanics-facing data compatible with a 3D centerline/frame model while preserving local-analysis handoff options.</li>
+</ul></blockquote>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The current component schema and strict fixture implement a base rigid/semi-rigid family contract for <code>valve</code>, <code>flange</code>, <code>reducer</code>, <code>rigid</code>, and <code>specialty</code>. The implemented base contract includes rigid body length, end-size/reference slots, weight, center of gravity, <code>linear_stiffness</code>, <code>rotational_stiffness</code>, stiffness behavior reference, and source/manufacturer reference slots. Human/project authority must still decide coordinate conventions, exact solver treatment of stiffness inputs, accepted source catalogs, public fixture-value policy, import formats, review disposition, dependency satisfaction, lifecycle closure, and any stricter per-family profiles.</p>
+<p>Public fixture data is especially sensitive. Even common-looking valve, flange, reducer, rigid, or specialty dimensions, weights, COGs, and stiffness values may originate from protected standards, catalogs, or vendor sources. The current invented fixture keeps actual values missing and uses schema-shape-only/private-value policies; any public value example still needs accepted source and redistribution policy.</p>
+<p>Preferred vocabulary for downstream work:</p>
+<ul>
+<li>- <code>user-supplied data</code>: project data entered by a user or imported into a private project/library with provenance.</li>
+<li>- <code>rights-cleared library data</code>: reusable data with documented source, redistribution status, contributor certification, and review disposition.</li>
+<li>- <code>synthetic fixture</code>: public test/example data created only to exercise validation paths and labeled non-authoritative.</li>
+<li>- <code>rigid component</code>: a component represented for global analysis without flexible element behavior except explicitly modeled mass/geometry effects.</li>
+<li>- <code>semi-rigid component</code>: a component with user/manufacturer-supplied stiffness behavior; no default stiffness may be inferred.</li>
+</ul></blockquote>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Risk / mitigation</td></tr>
+<tr><td>Implemented shared rigid/semi-rigid family contract</td><td>Reduces duplication across valves, flanges, reducers, rigid placeholders, and specialty items</td><td>May hide family-specific validation; stricter per-family profiles remain <code>TBD</code></td></tr>
+<tr><td>Family-specific records</td><td>Clearer validation per family</td><td>More schema surface; keep common provenance/unit fields consistent</td></tr>
+<tr><td>Split stiffness into <code>linear_stiffness</code> and <code>rotational_stiffness</code></td><td>Aligns with accepted unit dimensions and addresses the generic-stiffness audit concern technically</td><td>Exact solver consumption remains <code>TBD</code>; require user/manufacturer provenance</td></tr>
+<tr><td>Schema-shape public fixtures</td><td>Enables tests without protected data</td><td>Must remain non-authoritative and blocked from mechanics use until reviewed values and source policy exist</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<ul>
+<li>- Current strict fixture example: <code>comp.invented.rigid.alpha</code> contains schema slots for rigid body length, connection reference, weight, COG, <code>linear_stiffness</code>, and <code>rotational_stiffness</code>, but each actual value remains missing.</li>
+<li>- <code>TBD</code>: Public fixture value examples must be synthetic or user-supplied with documented rights and accepted redistribution policy before they can be added.</li>
+<li>- Synthetic public fixtures are acceptable only as validation examples. They must be labeled non-authoritative and must not be used to imply engineering recommendations, code compliance, catalog equivalence, or vendor performance.</li>
+<li>- <code>ASSUMPTION</code>: The implemented common component identity/provenance envelope remains appropriate across component families because AB-00-04 and OPS-K-DATA-3 require deterministic, provenance-preserving records.</li>
+</ul></blockquote>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>PKG03-DEL-03-05-PKG02-001</td><td>Earlier audit found <code>specialty</code> in PKG-03 but not in the PKG-02 canonical component enum.</td><td><code>Review_Findings.csv</code> row PKG03-DEL-03-05-PKG02-001</td><td><code>tests/test_component_section_schema.py</code> verifies <code>ComponentType</code> equals the PKG-02 canonical enum.</td><td><code>Specification.md</code>; schema evidence interpretation</td><td>Preserve the recorded Gate C disposition.</td><td><code>ACCEPT_AS_IS</code> / <code>RESOLVED</code> (2026-06-05)</td></tr>
+<tr><td>PKG03-DEL-03-05-PKG02-002</td><td>Earlier audit found generic <code>stiffness</code> dimension ambiguous against PKG-02 units.</td><td><code>Review_Findings.csv</code> row PKG03-DEL-03-05-PKG02-002</td><td><code>ComponentQuantityDimension</code> uses <code>linear_stiffness</code> and <code>rotational_stiffness</code>; tests verify accepted dimensions and retired dimensions are absent.</td><td><code>Specification.md</code>; schema evidence interpretation</td><td>Preserve the recorded Gate C disposition.</td><td><code>ACCEPT_AS_IS</code> / <code>RESOLVED</code> (2026-06-05)</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-d-41-r5-t2b-pdu-013-boundary">CLM-031 — D-41 R5 T2B PDU-013 Boundary</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-013-boundary">D-41 R5 T2B PDU-013 Boundary</h5>
+<p>An invented or rights-safe COG magnitude would not close R10 by itself. Without an accepted coordinate convention and reference frame, such a value is ambiguous at the mechanics boundary. Preserve that ambiguity as a held residual rather than inventing a convention.</p>
+<p>PDU-023 scalar paths document identity-preserving copy-through only. They do not turn component metadata into a solver result or runtime envelope.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-009 OBJ-004</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

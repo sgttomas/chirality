@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="79ddb650b5616641fb9129cc98cec19f0fc70198cbf930bc989147b69c609f2a">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-03-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>79ddb650b5616641fb9129cc98cec19f0fc70198cbf930bc989147b69c609f2a</code>.</p>
+<h1 id="scope-of-work-del-03-03">Scope of Work — DEL-03-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-03-03</code> in service of project scope [SOW-007] and package objectives [OBJ-004].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A bend-and-elbow component-model contract defining geometry, section, flexibility, stiffness, mass, unit, provenance, and completeness fields is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-03-03-bend-and-elbow-component-model-fields">CLM-001 — Datasheet: DEL-03-03 Bend and elbow component model fields</h3>
+<blockquote><h4 id="datasheet-del-03-03-bend-and-elbow-component-model-fields">Datasheet: DEL-03-03 Bend and elbow component model fields</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-03-03</td></tr>
+<tr><td>Package ID</td><td>PKG-03</td></tr>
+<tr><td>Package</td><td>Piping Components, Materials, and Library Data Model</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope Item</td><td>SOW-007</td></tr>
+<tr><td>Objective</td><td>OBJ-004</td></tr>
+<tr><td>Decomposition Basis</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</td></tr>
+<tr><td>Evidence Artifacts</td><td><code>schemas/component.schema.yaml</code>; <code>fixtures/component/invented_component_library_valid.json</code>; <code>tests/test_component_section_schema.py</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<p>This deliverable concerns data-model fields for bends and elbows. The current repository evidence supports:</p>
+<table><tbody>
+<tr><td>Attribute Group</td><td>Field Intent</td><td>Source</td></tr>
+<tr><td>Component identity</td><td>Distinguish bend/elbow records from other component families.</td><td>DEL-03-03 context; SOW-007</td></tr>
+<tr><td>Bend geometry</td><td>Store user-entered centerline bend geometry through schema field kinds including <code>bend_centerline_radius</code>, <code>bend_included_angle</code>, and <code>bend_plane_orientation</code>.</td><td>SOW-007</td></tr>
+<tr><td>SIF inputs</td><td>Store user-entered stress intensification factors without bundled protected tables or formulas.</td><td>SOW-007; OPS-K-IP-1; OPS-K-DATA-1; OPS-K-DATA-3</td></tr>
+<tr><td>Flexibility inputs</td><td>Store user-entered flexibility factors without bundled protected tables or formulas.</td><td>SOW-007; OPS-K-IP-1; OPS-K-DATA-1; OPS-K-DATA-3</td></tr>
+<tr><td>Provenance/source metadata</td><td>Record source, provenance, redistribution status where applicable, and evidence references for user-supplied or imported data.</td><td>OPS-K-DATA-3; AB-00-04; AB-00-07</td></tr>
+<tr><td>Validation state</td><td>Represent missing or unresolved required inputs explicitly rather than silently defaulting values.</td><td>OPS-K-DATA-2; AB-00-06</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- The public repository must not contain protected SIF or flexibility tables, protected standards text, copied examples, or code-derived formulas.</li>
+<li>- Code-specific values for SIFs, flexibility factors, bend geometry, and related rule-pack inputs are user-supplied or lawfully imported private data.</li>
+<li>- Units must be explicit and dimensionally checked for geometry and any numeric factors that participate in calculation or export.</li>
+<li>- Diagnostics must identify missing solve-required or rule-check-required bend/elbow values as findings.</li>
+<li>- The active evidence is schema/fixture/test evidence only; it does not close dependency satisfaction or human review dispositions.</li>
+</ul></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>Current evidence categories:</p>
+<table><tbody>
+<tr><td>Category</td><td>Draft Field Concept</td><td>Status</td></tr>
+<tr><td>Identity</td><td><code>bend</code> and <code>elbow</code> are explicit <code>ComponentType</code> values, aligned with <code>schemas/model.schema.yaml</code>.</td><td>Implemented evidence</td></tr>
+<tr><td>Geometry</td><td>Bend geometry slots include centerline radius, included angle, tangent/orientation fields, and geometry source references.</td><td>Implemented evidence</td></tr>
+<tr><td>Factors</td><td>User SIF and flexibility factor slots are present as user/private inputs with no public code-specific values.</td><td>Implemented evidence</td></tr>
+<tr><td>Source metadata</td><td>Component fields require provenance, redistribution status, contributor certification, and review status.</td><td>Implemented evidence</td></tr>
+<tr><td>Validation</td><td>Missing bend geometry/rule inputs are represented through <code>BEND_GEOMETRY_INCOMPLETE</code> and <code>BEND_RULE_INPUT_MISSING</code>.</td><td>Implemented evidence</td></tr>
+<tr><td>Persistence</td><td>Strict component fixture validates as a standalone <code>component.schema.yaml</code> instance; combined fixture points to the strict component fixture.</td><td>Implemented evidence</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, objective, scope, and architecture-basis injection.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-03-03</code>.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row <code>SOW-007</code>.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 rows for <code>DEL-03-03</code>, <code>SOW-007</code>, <code>OBJ-004</code>, <code>PKG-03</code>, and applicable architecture basis IDs.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants OPS-K-IP-1, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-RULE-1, OPS-K-MECH-1, and OPS-K-AGENT-1..4.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-03-03-bend-and-elbow-component-model-fields">CLM-007 — Specification: DEL-03-03 Bend and elbow component model fields</h3>
+<blockquote><h4 id="specification-del-03-03-bend-and-elbow-component-model-fields">Specification: DEL-03-03 Bend and elbow component model fields</h4></blockquote>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the bend/elbow component model slice as currently evidenced by component schema fields, strict component fixture records, and validation tests. The implemented evidence is limited to bend/elbow geometry slots, user-entered SIF/flexibility slots, source metadata, completeness diagnostics, and model-enum compatibility.</p>
+<p>Out of scope:</p>
+<ul>
+<li>- Solver implementation.</li>
+<li>- Rule-pack evaluator implementation.</li>
+<li>- B31J or other protected SIF/flexibility tables, formulas, examples, or paraphrased derivations.</li>
+<li>- Public bundled engineering values or default code data.</li>
+<li>- Certification, approval, sealing, or compliance claims.</li>
+</ul></blockquote>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Basis</td><td>Verification Hook</td></tr>
+<tr><td>R01</td><td>The model must represent bend/elbow component identity separately from other component families.</td><td>DEL-03-03; PKG-03</td><td>Validation tests cover bend/elbow record identity.</td></tr>
+<tr><td>R02</td><td>The model must provide fields for user-entered bend geometry.</td><td>SOW-007</td><td>Schema/model tests confirm required geometry slots and unit metadata.</td></tr>
+<tr><td>R03</td><td>The model must provide fields for user-entered SIFs.</td><td>SOW-007</td><td>Tests confirm values are accepted only as user/import inputs with provenance.</td></tr>
+<tr><td>R04</td><td>The model must provide fields for user-entered flexibility factors.</td><td>SOW-007</td><td>Tests confirm values are accepted only as user/import inputs with provenance.</td></tr>
+<tr><td>R05</td><td>The model must carry source/provenance metadata for SIFs, flexibility factors, and imported or library-sourced bend data.</td><td>OPS-K-DATA-3; AB-00-04; AB-00-07</td><td>Schema tests require provenance/source fields on component records and field slots.</td></tr>
+<tr><td>R06</td><td>The implementation must not bundle or encode protected SIF/flexibility tables, copied formulas, or protected examples.</td><td>OPS-K-IP-1; OPS-K-IP-3; SOW-007 note</td><td>Protected-content gate and review checklist reject bundled protected content.</td></tr>
+<tr><td>R07</td><td>Missing solve-required or rule-check-required values must produce explicit diagnostics, not silent defaults.</td><td>OPS-K-DATA-2; AB-00-06</td><td>Validation tests assert missing values become findings.</td></tr>
+<tr><td>R08</td><td>Numeric geometry inputs must be unit-aware and dimensionally checked.</td><td>OPS-K-UNIT-1; AB-00-04</td><td>Unit tests cover dimension validation and serialization.</td></tr>
+<tr><td>R09</td><td>Public rule-pack or example data associated with this model must use invented non-code values and non-engineering notices.</td><td>OPS-K-RULE-1</td><td>Example/test fixture review confirms no code-derived values.</td></tr>
+<tr><td>R10</td><td>The model must remain compatible with the 3D centerline/frame analysis model, with local FEA handoff only as a downstream path.</td><td>OPS-K-MECH-1</td><td>Model documentation and tests avoid shell/solid assumptions in the core component record.</td></tr>
+<tr><td>R11</td><td>Adapters/plugins must not bypass unit, provenance, redistribution, validation, or diagnostic boundaries.</td><td>AB-00-02; AB-00-07</td><td>This deliverable records the constraint; adapter/API proof remains outside DEL-03-03 scope.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Status</td></tr>
+<tr><td>SOW-007</td><td>Available via decomposition/register text.</td></tr>
+<tr><td>B31J or other protected SIF/flexibility sources</td><td>Not bundled, not paraphrased, and not used as public source text in this deliverable.</td></tr>
+<tr><td>Project invariant catalog</td><td>Available in <code>docs/CONTRACT.md</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Confirm the four-document kit contains no protected standards text, SIF/flexibility tables, copied formulas, or invented engineering values.</li>
+<li>- Confirm <code>schemas/component.schema.yaml</code> and <code>schemas/model.schema.yaml</code> both include <code>bend</code> and <code>elbow</code> component types.</li>
+<li>- Confirm strict component fixture evidence includes the bend/elbow family contract, missing-value bend record, provenance, and diagnostics.</li>
+<li>- Confirm validation tests cover bend/elbow identity, field kinds, user/private value policy, missing-value diagnostics, and strict component fixture validation.</li>
+<li>- Confirm review findings remain pending until accepted by a human gate.</li>
+</ul></blockquote>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required local artifacts:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves accepted bend and elbow modeling requirements, explicit units and provenance, protected-data boundaries, diagnostic treatment of missing inputs, and unresolved engineering-policy choices without inventing defaults.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-03-03-bend-and-elbow-component-model-fields">CLM-013 — Procedure: DEL-03-03 Bend and elbow component model fields</h3>
+<blockquote><h4 id="procedure-del-03-03-bend-and-elbow-component-model-fields">Procedure: DEL-03-03 Bend and elbow component model fields</h4></blockquote>
+<h3 id="clm-014-purpose">CLM-014 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the evidence-reconciliation procedure for the bend/elbow component model deliverable without crossing the protected-data or professional-authority boundaries.</p></blockquote>
+<h3 id="clm-015-prerequisites">CLM-015 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Use the sealed context for <code>DEL-03-03</code>.</li>
+<li>- Apply <code>SOW-007</code>, <code>OBJ-004</code>, and applicable architecture basis IDs <code>AB-00-01</code>, <code>AB-00-02</code>, <code>AB-00-04</code>, <code>AB-00-06</code>, <code>AB-00-07</code>, and <code>AB-00-08</code>.</li>
+<li>- Apply contract invariants OPS-K-IP-1, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-UNIT-1, OPS-K-RULE-1, OPS-K-MECH-1, and OPS-K-AGENT-1..4.</li>
+<li>- Treat dependency satisfaction, lifecycle transitions, review dispositions, downstream solver behavior, and downstream adapter/GUI behavior as unresolved unless authorized by their owning workflow or a later human gate.</li>
+</ul></blockquote>
+<h3 id="clm-016-steps">CLM-016 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the assessment task is still scoped to <code>DEL-03-03</code> and the bend/elbow component family.</p>
+<p>2. Read the active component schema, model schema, strict component fixture, combined fixture pointer, tests, review findings, status, memory, and relevant run records.</p>
+<p>3. Reconcile current evidence against the three local review findings without editing <code>Review_Findings.csv</code>.</p>
+<p>4. Refresh only active DEL-03-03 documentation when stale setup/future language conflicts with implemented schema/fixture/test evidence.</p>
+<p>5. Run focused validation for the component/section schema contract.</p>
+<p>6. Record the readiness verdict in <code>MEMORY.md</code> and a local run record.</p>
+<p>7. Keep all protected standards content, tables, copied formulas, and non-public commercial data out of public artifacts.</p></blockquote>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Active documents distinguish implemented DEL-03-03 evidence from unresolved dependency, lifecycle, and downstream behavior.</li>
+<li>- No protected SIF/flexibility table, formula, standard text, or invented engineering value appears in the deliverable kit.</li>
+<li>- Focused validation confirms schema/fixture/test evidence for bend/elbow identity, field slots, provenance, and diagnostics.</li>
+<li>- <code>_STATUS.md</code> and <code>Review_Findings.csv</code> are not changed by this TASK.</li>
+</ul></blockquote>
+<h3 id="clm-018-records">CLM-018 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Active four-document kit.</li>
+<li>- Review findings and review notes.</li>
+<li>- Focused validation output.</li>
+<li>- Local run record for this evidence-reconciliation pass.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, bend and elbow field coverage, dimensional consistency, provenance and protected-content boundaries, missing-input diagnostics, mechanics handoff limits, and unresolved decisions.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-019-guidance-del-03-03-bend-and-elbow-component-model-fields">CLM-019 — Guidance: DEL-03-03 Bend and elbow component model fields</h3>
+<blockquote><h4 id="guidance-del-03-03-bend-and-elbow-component-model-fields">Guidance: DEL-03-03 Bend and elbow component model fields</h4></blockquote>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable records bounded schema/fixture/test evidence for a bend/elbow component model slice. The important boundary is that OpenPipeStress can store and validate user-entered or lawfully imported bend/elbow data, but must not publish protected SIF/flexibility tables, formulas, examples, or default code-derived values.</p></blockquote>
+<h3 id="clm-021-principles">CLM-021 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat bend/elbow SIFs and flexibility factors as user/private/library inputs with provenance, not public defaults.</li>
+<li>- Make absent required values visible through validation findings.</li>
+<li>- Keep unit metadata close to numeric geometry fields.</li>
+<li>- Keep source metadata close to any data that may have licensing, redistribution, or protected-content implications.</li>
+<li>- Preserve the distinction between model data, solver mechanics, rule-pack evaluation, and human engineering judgment.</li>
+</ul></blockquote>
+<h3 id="clm-022-considerations">CLM-022 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The current component schema and strict component fixture expose bend/elbow identity, centerline geometry field kinds, user SIF/flexibility slots, provenance, and missing-input diagnostics without crossing the protected-data boundary. Later solver, rule-pack, adapter, and GUI workflows must consume those fields without treating public schema slots as code-specific values.</p>
+<p>Diagnostics should be able to distinguish missing geometry from missing SIF/flexibility inputs and from missing provenance. This matters because the later response may be different: solve-blocking, rule-check-blocking, provenance warning, assumption warning, or IP-boundary warning.</p></blockquote>
+<h3 id="clm-023-trade-offs">CLM-023 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Convenience defaults vs protected-data safety</td><td>Prefer no default over any value that could imply bundled code data.</td></tr>
+<tr><td>Flexible generic component record vs bend-specific fields</td><td>Use bend-specific slots where validation, units, or provenance differ materially from generic components.</td></tr>
+<tr><td>Public examples vs realistic engineering examples</td><td>Use invented non-code values only, and label them as non-engineering examples.</td></tr>
+<tr><td>Schema evidence vs downstream behavior</td><td>Treat current schema/fixture/test evidence as DEL-03-03 evidence only; leave solver, rule-pack, adapter, and GUI behavior to their own deliverables.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-024-examples">CLM-024 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<ul>
+<li>- Acceptable statement: &quot;The model stores user-entered SIFs with provenance.&quot;</li>
+<li>- Not acceptable: a copied or paraphrased table of SIF/flexibility factors, code formulas, or standard examples.</li>
+<li>- Acceptable test fixture posture: missing/schema-shape values used only to test schema shape, provenance, and diagnostics.</li>
+</ul></blockquote>
+<h3 id="clm-025-conflict-table-for-human-ruling">CLM-025 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Description</td><td>Contenders</td><td>Human Ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in this evidence-reconciliation pass.</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-007 OBJ-004</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

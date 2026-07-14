@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/render_scope_of_work.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P1/PIP-PKG03/DEL-03-07/production/ScopeOfWork.md",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P1-PKG03/children/BATCH-02-VERIFY/members/DEL-03-07/render_1.html"
+  ],
+  "duration_seconds": 0.040119,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "render_1",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": ""
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-08-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 215,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "623a32692a83cd0aa6187969aa9c2290c68a7aa3a0ccfbadb69de4cd011ed471"
+      },
+      "text": "The contract preserves accepted calculator requirements and boundaries, including user-entered or lawfully imported inputs, dimensional checks, no silent defaults, invented fixtures, unresolved conversion, schema, contributor, dependency, and human-review decisions, and no code-compliance or professional-approval claim.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-08-VER-001",
+          "source_line": 291,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, section and mass-property coverage, dimensional consistency, missing-input behavior, provenance, protected-content controls, calculator and solver separation, bounded witness evidence, and unresolved human-review items."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-08",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "623a32692a83cd0aa6187969aa9c2290c68a7aa3a0ccfbadb69de4cd011ed471"
+  },
+  "tool_version": "1"
+}
