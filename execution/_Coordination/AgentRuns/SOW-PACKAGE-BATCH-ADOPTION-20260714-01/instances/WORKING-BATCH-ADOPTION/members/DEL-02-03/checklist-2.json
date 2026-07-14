@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 288,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d9b119d9bb5eb79a7e6f24eb9dfa51d9c4d545bee979d8dbdc4332a57847661e"
+      },
+      "text": "The contract preserves the accepted source distinctions among software-computed mechanics, user-supplied rule evaluation, and authorized human approval without creating automatic compliance or professional-reliance meaning.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-03-VER-001",
+          "source_line": 394,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, allowed state and interface distinctions, authority labels, diagnostics, and absence of automatic code-compliance or approval claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d9b119d9bb5eb79a7e6f24eb9dfa51d9c4d545bee979d8dbdc4332a57847661e"
+  },
+  "tool_version": "1"
+}

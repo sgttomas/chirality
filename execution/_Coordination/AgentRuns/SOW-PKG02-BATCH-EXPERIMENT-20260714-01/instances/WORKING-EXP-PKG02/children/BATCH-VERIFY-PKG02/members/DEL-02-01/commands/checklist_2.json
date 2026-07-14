@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/derive_review_checklist.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/candidates/PIP-PKG02/DEL-02-01/production/ScopeOfWork.md",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/instances/WORKING-EXP-PKG02/children/BATCH-VERIFY-PKG02/members/DEL-02-01/checklist_2.json"
+  ],
+  "duration_seconds": 0.037946,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "checklist_2",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": ""
+}

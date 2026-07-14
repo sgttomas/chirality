@@ -1,0 +1,11 @@
+{
+  "args": [
+    "python3",
+    "{REPO_ROOT}/tools/scope_of_work/validate_scope_of_work.py",
+    "--json",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-03/conversion-a"
+  ],
+  "exit_code": 1,
+  "stderr": "",
+  "stdout": "{\n  \"format\": \"AMBIGUOUS\",\n  \"issues\": [\n    \"format state is AMBIGUOUS\",\n    \"dual production formats require an isolated conversion workspace and exact migration authority\"\n  ],\n  \"target\": \"{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-PKG02-BATCH-EXPERIMENT-20260714-01/snapshots/package/manager-reproduction/DEL-02-03/conversion-a\",\n  \"valid\": false\n}\n"
+}

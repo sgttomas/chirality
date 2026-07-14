@@ -1,0 +1,10 @@
+{
+  "instance_id": "HELPS-BATCH-ADOPTION",
+  "node": "A1",
+  "role": "HELPS_HUMANS",
+  "status": "PASS",
+  "terminal": true,
+  "return": "RETURN.md",
+  "blockers": [],
+  "next_owner": "RECON-BATCH-ADOPTION"
+}

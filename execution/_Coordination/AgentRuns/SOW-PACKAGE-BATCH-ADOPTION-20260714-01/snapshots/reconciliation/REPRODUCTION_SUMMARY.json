@@ -1,0 +1,18 @@
+{
+  "basis": "98af1a4bde875a0c2d5878d62fc84b3c1d7506c4",
+  "exceptions": 0,
+  "fresh_reproductions": [
+    "DEL-01-04",
+    "DEL-02-05"
+  ],
+  "live_bindings": 72,
+  "manifest_entries_rehashed": 252,
+  "mappings": 274,
+  "members": 8,
+  "project_writes": 0,
+  "replacement_rows": 40,
+  "rollback_rows": 40,
+  "simulations": 8,
+  "source_lines": 2780,
+  "status": "PASS"
+}

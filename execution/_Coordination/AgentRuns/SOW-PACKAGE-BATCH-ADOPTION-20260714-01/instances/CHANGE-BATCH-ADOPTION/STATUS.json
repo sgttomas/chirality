@@ -1,0 +1,11 @@
+{
+  "instance_id": "CHANGE-BATCH-ADOPTION",
+  "node": "A4",
+  "role": "CHANGE",
+  "status": "PASS",
+  "terminal": true,
+  "return": "RETURN.md",
+  "checks": "CHECKS.md",
+  "blockers": [],
+  "next_owner": "HELP_HUMAN"
+}

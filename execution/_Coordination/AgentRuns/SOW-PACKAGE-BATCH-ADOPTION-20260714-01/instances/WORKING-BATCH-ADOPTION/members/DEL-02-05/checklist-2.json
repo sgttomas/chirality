@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 355,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "aa49dc1617c489649e8b311043a3e7fae9d8a9a71d902709ba24d9db5edfe5b7"
+      },
+      "text": "The contract preserves the accepted source requirements for schema-governed local persistence, deterministic round trips, explicit units and provenance, validated service boundaries, and unresolved physical-container or migration decisions.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-05-VER-001",
+          "source_line": 498,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, round-trip semantic preservation, canonical serialization and hash behavior, version diagnostics, private-data and protected-content boundaries, and absence of professional-approval claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "aa49dc1617c489649e8b311043a3e7fae9d8a9a71d902709ba24d9db5edfe5b7"
+  },
+  "tool_version": "1"
+}

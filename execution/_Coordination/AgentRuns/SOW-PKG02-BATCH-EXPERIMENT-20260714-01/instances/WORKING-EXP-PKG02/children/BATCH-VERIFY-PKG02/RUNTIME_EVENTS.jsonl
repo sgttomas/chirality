@@ -1,0 +1,163 @@
+{"kind": "batch_start", "member_count": 5, "native_context_occupancy": "unavailable", "time_utc": "2026-07-14T06:51:14.971086Z"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-01", "native_context_occupancy": "unavailable", "sequence": 1, "time_utc": "2026-07-14T06:51:14.971442Z"}
+{"duration_seconds": 0.050706, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.045711Z"}
+{"duration_seconds": 0.048157, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.094664Z"}
+{"duration_seconds": 0.043735, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.140369Z"}
+{"duration_seconds": 0.042685, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.183592Z"}
+{"duration_seconds": 0.037399, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.221827Z"}
+{"duration_seconds": 0.035645, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.257915Z"}
+{"duration_seconds": 0.04347, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.303084Z"}
+{"duration_seconds": 0.0458, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.349261Z"}
+{"duration_seconds": 0.044136, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.393857Z"}
+{"duration_seconds": 0.045534, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:51:15.439769Z"}
+{"kind": "batch_start", "member_count": 5, "native_context_occupancy": "unavailable", "time_utc": "2026-07-14T06:52:19.540694Z"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-01", "native_context_occupancy": "unavailable", "sequence": 1, "time_utc": "2026-07-14T06:52:19.540987Z"}
+{"duration_seconds": 0.039033, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.601019Z"}
+{"duration_seconds": 0.042637, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.644355Z"}
+{"duration_seconds": 0.044386, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.690693Z"}
+{"duration_seconds": 0.040868, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.732200Z"}
+{"duration_seconds": 0.03635, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.769311Z"}
+{"duration_seconds": 0.037049, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.806764Z"}
+{"duration_seconds": 0.042901, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.851087Z"}
+{"duration_seconds": 0.044989, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.896462Z"}
+{"duration_seconds": 0.041926, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.938785Z"}
+{"duration_seconds": 0.044246, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:19.983340Z"}
+{"duration_seconds": 0.038234, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:20.022309Z"}
+{"duration_seconds": 0.04134, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:20.063990Z"}
+{"duration_seconds": 0.03778, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:20.102108Z"}
+{"duration_seconds": 0.040294, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:52:20.142808Z"}
+{"kind": "batch_start", "member_count": 5, "native_context_occupancy": "unavailable", "time_utc": "2026-07-14T06:53:08.267944Z"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-01", "native_context_occupancy": "unavailable", "sequence": 1, "time_utc": "2026-07-14T06:53:08.268292Z"}
+{"duration_seconds": 0.039422, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.328411Z"}
+{"duration_seconds": 0.042924, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.372029Z"}
+{"duration_seconds": 0.041823, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.415795Z"}
+{"duration_seconds": 0.04135, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.457750Z"}
+{"duration_seconds": 0.036975, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.495540Z"}
+{"duration_seconds": 0.035534, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.531489Z"}
+{"duration_seconds": 0.043444, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.576388Z"}
+{"duration_seconds": 0.044278, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.621027Z"}
+{"duration_seconds": 0.043166, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.664570Z"}
+{"duration_seconds": 0.043698, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.708635Z"}
+{"duration_seconds": 0.038073, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.747499Z"}
+{"duration_seconds": 0.040682, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.788640Z"}
+{"duration_seconds": 0.03868, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.827764Z"}
+{"duration_seconds": 0.040358, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.868487Z"}
+{"duration_seconds": 0.039876, "exit_code": 1, "kind": "command", "label": "negative_1_map_mutated_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.909536Z"}
+{"duration_seconds": 0.049854, "exit_code": 1, "kind": "command", "label": "negative_2_parity_mutated_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:53:08.959874Z"}
+{"kind": "batch_start", "member_count": 5, "native_context_occupancy": "unavailable", "time_utc": "2026-07-14T06:54:01.122924Z"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-01", "native_context_occupancy": "unavailable", "sequence": 1, "time_utc": "2026-07-14T06:54:01.123231Z"}
+{"duration_seconds": 0.038504, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.182369Z"}
+{"duration_seconds": 0.043051, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.226089Z"}
+{"duration_seconds": 0.040854, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.268837Z"}
+{"duration_seconds": 0.042068, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.311509Z"}
+{"duration_seconds": 0.038094, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.350440Z"}
+{"duration_seconds": 0.036119, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.386935Z"}
+{"duration_seconds": 0.042972, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.431278Z"}
+{"duration_seconds": 0.045456, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.477131Z"}
+{"duration_seconds": 0.042682, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.520192Z"}
+{"duration_seconds": 0.045161, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.565717Z"}
+{"duration_seconds": 0.038043, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.604451Z"}
+{"duration_seconds": 0.041847, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.646693Z"}
+{"duration_seconds": 0.037946, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.684994Z"}
+{"duration_seconds": 0.039736, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.725062Z"}
+{"duration_seconds": 0.0389, "exit_code": 1, "kind": "command", "label": "negative_1_map_mutated_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.765346Z"}
+{"duration_seconds": 0.044743, "exit_code": 1, "kind": "command", "label": "negative_2_parity_mutated_clean", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.810554Z"}
+{"duration_seconds": 0.038813, "exit_code": 1, "kind": "command", "label": "negative_3_checklist_evidence", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.851327Z"}
+{"duration_seconds": 0.037321, "exit_code": 1, "kind": "command", "label": "negative_4_render_evidence", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.889096Z"}
+{"duration_seconds": 0.033707, "exit_code": 1, "kind": "command", "label": "negative_5_partial_input", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.923435Z"}
+{"duration_seconds": 0.035415, "exit_code": 1, "kind": "command", "label": "negative_6_unauthorized_dual", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.959272Z"}
+{"duration_seconds": 0.036356, "exit_code": 1, "kind": "command", "label": "negative_7_wrong_authority_checklist", "member": "DEL-02-01", "time_utc": "2026-07-14T06:54:01.996095Z"}
+{"contamination": false, "drift": false, "duration_seconds": 0.873656, "failures": 3, "kind": "member_end", "mappings": 35, "member": "DEL-02-01", "retries": 3, "sequence": 1, "source_lines": 427, "time_utc": "2026-07-14T06:54:01.997029Z", "verdict": "PASS_UNCHANGED"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-02", "native_context_occupancy": "unavailable", "sequence": 2, "time_utc": "2026-07-14T06:54:01.997079Z"}
+{"duration_seconds": 0.038041, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.055560Z"}
+{"duration_seconds": 0.040887, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.097045Z"}
+{"duration_seconds": 0.0457, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.144670Z"}
+{"duration_seconds": 0.039401, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.184548Z"}
+{"duration_seconds": 0.089324, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.274694Z"}
+{"duration_seconds": 0.044583, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.319738Z"}
+{"duration_seconds": 0.070458, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.391744Z"}
+{"duration_seconds": 0.049283, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.441457Z"}
+{"duration_seconds": 0.047416, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.489304Z"}
+{"duration_seconds": 0.048461, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.538150Z"}
+{"duration_seconds": 0.066182, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.605366Z"}
+{"duration_seconds": 0.041954, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.647695Z"}
+{"duration_seconds": 0.03985, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.687907Z"}
+{"duration_seconds": 0.042243, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.730573Z"}
+{"duration_seconds": 0.04083, "exit_code": 1, "kind": "command", "label": "negative_1_map_mutated_clean", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.772681Z"}
+{"duration_seconds": 0.047396, "exit_code": 1, "kind": "command", "label": "negative_2_parity_mutated_clean", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.820488Z"}
+{"duration_seconds": 0.039532, "exit_code": 1, "kind": "command", "label": "negative_3_checklist_evidence", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.862247Z"}
+{"duration_seconds": 0.038884, "exit_code": 1, "kind": "command", "label": "negative_4_render_evidence", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.901526Z"}
+{"duration_seconds": 0.037009, "exit_code": 1, "kind": "command", "label": "negative_5_partial_input", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.939226Z"}
+{"duration_seconds": 0.037843, "exit_code": 1, "kind": "command", "label": "negative_6_unauthorized_dual", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:02.977423Z"}
+{"duration_seconds": 0.039108, "exit_code": 1, "kind": "command", "label": "negative_7_wrong_authority_checklist", "member": "DEL-02-02", "time_utc": "2026-07-14T06:54:03.016900Z"}
+{"contamination": false, "drift": false, "duration_seconds": 1.020579, "failures": 0, "kind": "member_end", "mappings": 48, "member": "DEL-02-02", "retries": 0, "sequence": 2, "source_lines": 419, "time_utc": "2026-07-14T06:54:03.017771Z", "verdict": "PASS_UNCHANGED"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-03", "native_context_occupancy": "unavailable", "sequence": 3, "time_utc": "2026-07-14T06:54:03.017817Z"}
+{"duration_seconds": 0.040096, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.079816Z"}
+{"duration_seconds": 0.041698, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.122203Z"}
+{"duration_seconds": 0.045885, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.170019Z"}
+{"duration_seconds": 0.039837, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.210430Z"}
+{"duration_seconds": 0.058662, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.270202Z"}
+{"duration_seconds": 0.060604, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.343870Z"}
+{"duration_seconds": 0.069267, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.414577Z"}
+{"duration_seconds": 0.046692, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.461754Z"}
+{"duration_seconds": 0.045097, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.507293Z"}
+{"duration_seconds": 0.04601, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.553688Z"}
+{"duration_seconds": 0.067389, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.621871Z"}
+{"duration_seconds": 0.042285, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.664525Z"}
+{"duration_seconds": 0.038745, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.703628Z"}
+{"duration_seconds": 0.041718, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.745790Z"}
+{"duration_seconds": 0.040165, "exit_code": 1, "kind": "command", "label": "negative_1_map_mutated_clean", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.787150Z"}
+{"duration_seconds": 0.045693, "exit_code": 1, "kind": "command", "label": "negative_2_parity_mutated_clean", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.833222Z"}
+{"duration_seconds": 0.038993, "exit_code": 1, "kind": "command", "label": "negative_3_checklist_evidence", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.874138Z"}
+{"duration_seconds": 0.038308, "exit_code": 1, "kind": "command", "label": "negative_4_render_evidence", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.912811Z"}
+{"duration_seconds": 0.036186, "exit_code": 1, "kind": "command", "label": "negative_5_partial_input", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.949603Z"}
+{"duration_seconds": 0.037435, "exit_code": 1, "kind": "command", "label": "negative_6_unauthorized_dual", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:03.987370Z"}
+{"duration_seconds": 0.039981, "exit_code": 1, "kind": "command", "label": "negative_7_wrong_authority_checklist", "member": "DEL-02-03", "time_utc": "2026-07-14T06:54:04.027751Z"}
+{"contamination": false, "drift": false, "duration_seconds": 1.010715, "failures": 0, "kind": "member_end", "mappings": 29, "member": "DEL-02-03", "retries": 0, "sequence": 3, "source_lines": 383, "time_utc": "2026-07-14T06:54:04.028664Z", "verdict": "PASS_UNCHANGED"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-04", "native_context_occupancy": "unavailable", "sequence": 4, "time_utc": "2026-07-14T06:54:04.028704Z"}
+{"duration_seconds": 0.040537, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.091086Z"}
+{"duration_seconds": 0.042032, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.133635Z"}
+{"duration_seconds": 0.043827, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.179328Z"}
+{"duration_seconds": 0.04737, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.227252Z"}
+{"duration_seconds": 0.036155, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.264164Z"}
+{"duration_seconds": 0.067734, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.332366Z"}
+{"duration_seconds": 0.086633, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.420951Z"}
+{"duration_seconds": 0.047994, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.469394Z"}
+{"duration_seconds": 0.046823, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.516685Z"}
+{"duration_seconds": 0.0472, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.564288Z"}
+{"duration_seconds": 0.041151, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.606245Z"}
+{"duration_seconds": 0.086571, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.693526Z"}
+{"duration_seconds": 0.052599, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.746524Z"}
+{"duration_seconds": 0.041635, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.788544Z"}
+{"duration_seconds": 0.042085, "exit_code": 1, "kind": "command", "label": "negative_1_map_mutated_clean", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.831942Z"}
+{"duration_seconds": 0.046538, "exit_code": 1, "kind": "command", "label": "negative_2_parity_mutated_clean", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.878876Z"}
+{"duration_seconds": 0.03854, "exit_code": 1, "kind": "command", "label": "negative_3_checklist_evidence", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.919372Z"}
+{"duration_seconds": 0.038118, "exit_code": 1, "kind": "command", "label": "negative_4_render_evidence", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.957925Z"}
+{"duration_seconds": 0.035841, "exit_code": 1, "kind": "command", "label": "negative_5_partial_input", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:04.994478Z"}
+{"duration_seconds": 0.037, "exit_code": 1, "kind": "command", "label": "negative_6_unauthorized_dual", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:05.031823Z"}
+{"duration_seconds": 0.038857, "exit_code": 1, "kind": "command", "label": "negative_7_wrong_authority_checklist", "member": "DEL-02-04", "time_utc": "2026-07-14T06:54:05.071047Z"}
+{"contamination": false, "drift": false, "duration_seconds": 1.04307, "failures": 0, "kind": "member_end", "mappings": 33, "member": "DEL-02-04", "retries": 0, "sequence": 4, "source_lines": 369, "time_utc": "2026-07-14T06:54:05.071923Z", "verdict": "PASS_UNCHANGED"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-02-05", "native_context_occupancy": "unavailable", "sequence": 5, "time_utc": "2026-07-14T06:54:05.071969Z"}
+{"duration_seconds": 0.040763, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.134768Z"}
+{"duration_seconds": 0.04366, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.179006Z"}
+{"duration_seconds": 0.047073, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.228485Z"}
+{"duration_seconds": 0.041178, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.270187Z"}
+{"duration_seconds": 0.036621, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.307533Z"}
+{"duration_seconds": 0.074371, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.382349Z"}
+{"duration_seconds": 0.068262, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.452475Z"}
+{"duration_seconds": 0.050185, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.503118Z"}
+{"duration_seconds": 0.050539, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.554112Z"}
+{"duration_seconds": 0.050095, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.604606Z"}
+{"duration_seconds": 0.04215, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.647639Z"}
+{"duration_seconds": 0.066355, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.714430Z"}
+{"duration_seconds": 0.040726, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.755582Z"}
+{"duration_seconds": 0.042246, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.798210Z"}
+{"duration_seconds": 0.041386, "exit_code": 1, "kind": "command", "label": "negative_1_map_mutated_clean", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.840943Z"}
+{"duration_seconds": 0.048659, "exit_code": 1, "kind": "command", "label": "negative_2_parity_mutated_clean", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.890004Z"}
+{"duration_seconds": 0.038727, "exit_code": 1, "kind": "command", "label": "negative_3_checklist_evidence", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.930791Z"}
+{"duration_seconds": 0.038581, "exit_code": 1, "kind": "command", "label": "negative_4_render_evidence", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:05.969791Z"}
+{"duration_seconds": 0.03671, "exit_code": 1, "kind": "command", "label": "negative_5_partial_input", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:06.007117Z"}
+{"duration_seconds": 0.038217, "exit_code": 1, "kind": "command", "label": "negative_6_unauthorized_dual", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:06.045705Z"}
+{"duration_seconds": 0.039537, "exit_code": 1, "kind": "command", "label": "negative_7_wrong_authority_checklist", "member": "DEL-02-05", "time_utc": "2026-07-14T06:54:06.085615Z"}
+{"contamination": false, "drift": false, "duration_seconds": 1.014397, "failures": 0, "kind": "member_end", "mappings": 41, "member": "DEL-02-05", "retries": 0, "sequence": 5, "source_lines": 455, "time_utc": "2026-07-14T06:54:06.086500Z", "verdict": "PASS_UNCHANGED"}
+{"duration_seconds": 4.981815, "failures": 3, "kind": "batch_end", "members_complete": 5, "retries": 3, "time_utc": "2026-07-14T06:54:06.086548Z", "verdict": "PASS_UNCHANGED"}

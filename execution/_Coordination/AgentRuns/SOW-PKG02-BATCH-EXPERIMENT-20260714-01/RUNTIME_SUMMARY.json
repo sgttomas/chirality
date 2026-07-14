@@ -1,0 +1,76 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "EXECUTION_SUBSTRATE": 7,
+      "VALIDATION": 2
+    },
+    "event_type": {
+      "FINISH": 3,
+      "MILESTONE": 1,
+      "REMEDIATION": 1,
+      "RETRY": 1,
+      "START": 3
+    },
+    "outcome": {
+      "PASS": 5,
+      "RETRY": 1,
+      "STARTED": 3
+    },
+    "reason_code": {
+      "AUTHOR_FANIN_ACCEPTED": 1,
+      "COMPLETE_DUAL_FIXTURE_SELECTED": 1,
+      "E1_ACTIVATED": 1,
+      "E1_PASS_RELEASE_RECON_ONLY": 1,
+      "PACKAGE_CHECKS_PASS": 1,
+      "PASS_UNCHANGED_WITH_RETAINED_HARNESS_RETRIES": 1,
+      "PASS_WITH_RETAINED_PROCESS_FINDINGS": 1,
+      "SEALED_DISPATCH": 1,
+      "WRONG_CONSUMER_STATE_FIXTURE": 1
+    }
+  },
+  "events": 9,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 861.707,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "BATCH-AUTHOR-PKG02",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_GENERALIST_AGENT_2",
+      "session_id": "BATCH-AUTHOR-PKG02"
+    },
+    {
+      "duration_seconds": 660.693,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "BATCH-VERIFY-PKG02",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "FRESH_EPHEMERAL_GENERALIST_AGENT_2",
+      "session_id": "BATCH-VERIFY-PKG02"
+    },
+    {
+      "duration_seconds": 2219.067,
+      "events": 5,
+      "final_outcome": "PASS",
+      "instance_id": "WORKING-EXP-PKG02",
+      "package_id": "PKG-02",
+      "remediations": 1,
+      "retries": 1,
+      "role": "WORKING_ITEMS",
+      "session_id": "WORKING-EXP-PKG02"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

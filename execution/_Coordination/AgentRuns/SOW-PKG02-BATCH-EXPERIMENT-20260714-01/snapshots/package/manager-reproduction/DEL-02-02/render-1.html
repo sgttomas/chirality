@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="3fd8885d931066726f2d0b4e380510b48c91a7ea72c6c3060f1287612ae02afa">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-02-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>3fd8885d931066726f2d0b4e380510b48c91a7ea72c6c3060f1287612ae02afa</code>.</p>
+<h1 id="scope-of-work-del-02-02">Scope of Work — DEL-02-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-02-02</code> in service of project scope [SOW-025] and package objectives [OBJ-001, OBJ-012].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A unit-system and dimensional-analysis core contract specifying dimensions, conversion rules, storage conventions, and unit-test obligations is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-source-preamble">CLM-001 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-02-02-DATASHEET</p>
+<p>doc_kind: deliverable.datasheet</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>---</p></blockquote>
+<h3 id="clm-002-datasheet-unit-system-and-dimensional-analysis-core-contract">CLM-002 — Datasheet - Unit System and Dimensional-Analysis Core Contract</h3>
+<blockquote><h4 id="datasheet-unit-system-and-dimensional-analysis-core-contract">Datasheet - Unit System and Dimensional-Analysis Core Contract</h4></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-02-02</td></tr>
+<tr><td>Package ID</td><td>PKG-02</td></tr>
+<tr><td>Package</td><td>Domain Model, Units, and Core Schemas</td></tr>
+<tr><td>Deliverable name</td><td>Unit system and dimensional-analysis core contract</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-025</td></tr>
+<tr><td>Objectives</td><td>OBJ-001, OBJ-012</td></tr>
+<tr><td>Anticipated artifacts</td><td><code>core/units</code> module contract; unit tests; <code>docs/SPEC.md</code> section</td></tr>
+<tr><td>Sealed context basis</td><td><code>_CONTEXT.md</code> revision 0.7; <code>SOFTWARE_DECOMP.md</code> revision 0.7</td></tr>
+<tr><td>Draft status</td><td>Draft/proposal until accepted by a human review gate per <code>docs/CONTRACT.md</code> OPS-K-AGENT-4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Datasheet value</td><td>Source / status</td></tr>
+<tr><td>Core responsibility</td><td>Define the software contract for unit-aware calculations, schemas, imports, exports, and rule evaluations.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-025; <code>docs/CONTRACT.md</code> OPS-K-UNIT-1</td></tr>
+<tr><td>Architectural owner</td><td>Domain core owns unit invariant enforcement; adapters must not bypass unit, provenance, or data-boundary checks.</td><td><code>docs/SPEC.md</code> Sections 1, 2; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-02 and AB-00-07</td></tr>
+<tr><td>Public schema baseline</td><td>JSON Schema 2020-12 for public schemas/interchange.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>SOFTWARE_DECOMP.md</code> Section 8.2</td></tr>
+<tr><td>Persistence/hash baseline</td><td>Versioned, unit-aware, schema-governed JSON persistence. The current Python persistence boundary is sorted-key compact ASCII-escaped JSON labeled <code>SORTED_COMPACT_JSON</code>, explicitly not JCS; RFC 8785 requires a later governed implementation and proof.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-04 and Section 8.2; D-41 R5 T2A</td></tr>
+<tr><td>Runtime baseline</td><td>Rust core/application services. Exact dependency versions remain TBD.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>SOFTWARE_DECOMP.md</code> Section 8.2</td></tr>
+<tr><td>Result/diagnostic envelope link</td><td>Unit errors and warnings must fit the project diagnostic/result-envelope model where emitted.</td><td><code>_CONTEXT.md</code> applicable AB-00-06; <code>docs/SPEC.md</code> Section 7</td></tr>
+<tr><td>Unit catalog</td><td>TBD. No authoritative unit catalog, conversion table, or dimensional registry was supplied in the accessible references.</td><td><code>_REFERENCES.md</code> Package-Specific References; <code>docs/CONTRACT.md</code> OPS-K-AGENT-1</td></tr>
+<tr><td>Minimal test catalog</td><td>TBD. Early unit tests need a minimal source-backed or human-decision-backed unit catalog and conversion source set before executable conversion cases rely on it.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-025; <code>docs/VALIDATION_STRATEGY.md</code> Section 2; <code>docs/CONTRACT.md</code> OPS-K-AGENT-1</td></tr>
+<tr><td>Dimensional basis</td><td>ASSUMPTION: the first implementation will need base/derived dimensions covering geometry, force, moment, pressure/stress, density, temperature, angle/rotation, and time-related loads. Human review is required before treating this as normative.</td><td>Inferred from <code>docs/SPEC.md</code> Sections 3-5 and deliverable scope; not explicitly enumerated in sources</td></tr>
+<tr><td>Conversion factors</td><td>TBD. Conversion factors must be sourced from public/permissive references or well-documented implementation decisions before release use.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> Sections 2-4; <code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-IP-2, OPS-K-UNIT-1</td></tr>
+<tr><td>Test obligations</td><td>Automated tests for units, schemas, invalid unit rejection, deterministic conversions, rule-pack unit mismatch, and reproducibility hooks.</td><td><code>docs/SPEC.md</code> Section 9; <code>docs/VALIDATION_STRATEGY.md</code> Section 2; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-08</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Requirement / note</td><td>Source</td></tr>
+<tr><td>No silent defaults</td><td>Missing solve-required or rule-check-required values must surface as findings, not implicit defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/DIRECTIVE.md</code> Sections 2.2, 3</td></tr>
+<tr><td>No protected standards data</td><td>The unit contract must not embed protected standards text, tables, copyrighted examples, proprietary formulas, protected dimensional tables, or commercial data without documented rights.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> Section 3</td></tr>
+<tr><td>Professional boundary</td><td>Unit correctness supports analysis, but software outputs must not claim certification, approval, sealing, authentication, or code compliance for reliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/DIRECTIVE.md</code> Sections 3-4</td></tr>
+<tr><td>Adapter/plugin boundary</td><td>Import/export adapters and plugins must validate units and cannot bypass validation, diagnostics, provenance, sandboxing, or data-boundary controls.</td><td><code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-07; <code>docs/SPEC.md</code> Section 1</td></tr>
+<tr><td>Determinism</td><td>Unit conversion and dimensional checking must be deterministic and testable across calculations, schemas, imports, exports, and rule evaluations.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-025; <code>docs/SPEC.md</code> Section 4.5; <code>docs/VALIDATION_STRATEGY.md</code> Section 2</td></tr>
+<tr><td>Human review</td><td>This draft does not resolve exact unit list, conversion constants, numeric representation, or tolerances.</td><td><code>docs/CONTRACT.md</code> OPS-K-AGENT-1 and OPS-K-AGENT-4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The DEL-02-02 implementation surface should be constructed as a domain-core unit contract with at least these artifacts:</p>
+<table><tbody>
+<tr><td>Construct</td><td>Draft content</td></tr>
+<tr><td><code>core/units</code> module contract</td><td>Quantity model, unit registry, dimension-signature model, conversion API, dimensional algebra API, diagnostics, and schema serialization rules. Exact Rust module path is TBD unless established by later repository layout decisions.</td></tr>
+<tr><td>Schema hooks</td><td>JSON Schema 2020-12 definitions for quantities, unit references, dimension signatures, and unit-aware fields. Exact schema filenames and code-generation tooling are TBD.</td></tr>
+<tr><td>Storage convention</td><td>Persist unit-bearing values with explicit unit metadata and schema versioning. PROPOSAL: preserve the user-entered unit representation for audit/round-trip behavior and use a canonical calculation representation internally. Human ruling required.</td></tr>
+<tr><td>Conversion registry</td><td>Deterministic registry with explicit source/provenance metadata for each conversion family. Exact factor representation, allowed units, and precision/tolerance policy are TBD.</td></tr>
+<tr><td>Dimensionless classification</td><td>TBD. Explicit dimensionless fields, ratios, percentages, coefficients, and unitless-where-unit-required failures need a human-approved classification before schema/API freeze.</td></tr>
+<tr><td>Diagnostics</td><td>Unit mismatch, unknown unit, ambiguous offset/absolute quantity, missing unit, and unitless-where-unit-required cases should produce structured diagnostics. Exact diagnostic codes are TBD.</td></tr>
+<tr><td>Decision owner</td><td>TBD. Human review/decision ownership is required for open catalog, dimension-basis, storage, conversion, diagnostic-code, and special-quantity decisions before the contract is treated as issued.</td></tr>
+<tr><td>Tests</td><td>Cargo unit tests and schema validation tests covering valid conversions, invalid conversions, dimensional algebra, serialization round trips, imports/exports, rule evaluation, and reproducibility/hash behavior where JSON payloads are hashed.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> revision 0.7 for sealed deliverable identity, package exclusions, artifacts, and SCA-001 basis IDs.</li>
+<li>- <code>_REFERENCES.md</code> for accessible source set and note that no package-specific source material beyond governance/register content was introduced by PREPARATION.</li>
+<li>- <code>docs/CONTRACT.md</code> Section 1 for invariants OPS-K-IP-1 through OPS-K-IP-3, OPS-K-DATA-2, OPS-K-AUTH-1, OPS-K-UNIT-1, OPS-K-AGENT-1 through OPS-K-AGENT-4.</li>
+<li>- <code>docs/SPEC.md</code> Sections 1-3, 6-9, 11 for layer ownership, <code>core/units</code>, domain objects with units, rule evaluator constraints, diagnostics, reports, tests, and acceptance semantics.</li>
+<li>- <code>docs/DIRECTIVE.md</code> Sections 2-5 for unit safety, provenance, no silent defaults, professional boundary, and stop rules.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> Sections 2-7 for public/private data and provenance limits.</li>
+<li>- <code>docs/VALIDATION_STRATEGY.md</code> Sections 2-5 for unit/schema test and benchmark-source expectations.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 Sections 4-8 for SOW-025, OBJ-001, OBJ-012, PKG-02, DEL-02-02, and SCA-001 architecture basis.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code>, <code>ScopeLedger.csv</code>, and <code>ContextBudgetQA.csv</code> rows for DEL-02-02 and SOW-025.</li>
+</ul></blockquote>
+<h3 id="clm-008-d-41-r5-t2a-persistence-hash-evidence-2026-07-12">CLM-008 — D-41 R5 T2A persistence hash evidence (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-persistence-hash-evidence-2026-07-12">D-41 R5 T2A persistence hash evidence (2026-07-12)</h5>
+<p>Project persistence emits <code>SORTED_COMPACT_JSON</code> checksum metadata and <code>sorted_compact_json_payload</code> canonical-truth metadata for sorted-key compact ASCII-escaped Python JSON. These labels describe the implemented deterministic byte contract and do not claim RFC 8785/JCS.</p></blockquote>
+<h3 id="clm-009-d-41-r5-t2b-unit-authority-evidence-2026-07-12">CLM-009 — D-41 R5 T2B unit-authority evidence (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2b-unit-authority-evidence-2026-07-12">D-41 R5 T2B unit-authority evidence (2026-07-12)</h5>
+<p><code>core/units/schema_vocabulary.py</code> reads the accepted <code>DimensionId</code> enum from <code>schemas/units.schema.yaml</code>; DEL-16-02 validation-preview code now consumes that adapter instead of owning a parallel 30-ID set. Focused tests prove exact vocabulary identity and absence of the former literal mirror.</p></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-054-current-declaration">CLM-010 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. DEC-018 and the implemented core-units slice now provide the current dimensional basis. Alias/parser behavior, diagnostics, B2/B3 coverage, and validation matters survive only where explicitly recorded as residuals; this documentation refresh makes no lifecycle or validation ruling.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-011-source-preamble">CLM-011 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-02-02-SPECIFICATION</p>
+<p>doc_kind: deliverable.specification</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>---</p></blockquote>
+<h3 id="clm-012-specification-unit-system-and-dimensional-analysis-core-contract">CLM-012 — Specification - Unit System and Dimensional-Analysis Core Contract</h3>
+<blockquote><h4 id="specification-unit-system-and-dimensional-analysis-core-contract">Specification - Unit System and Dimensional-Analysis Core Contract</h4></blockquote>
+<h3 id="clm-013-scope">CLM-013 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This specification covers the DEL-02-02 backend feature slice: a draft contract for unit dimensions, conversion rules, storage conventions, and unit test obligations for OpenPipeStress unit-aware data flow.</p>
+<p>In scope:</p>
+<ul>
+<li>- Unit and dimension concepts needed by calculations, schemas, imports, exports, and rule evaluations.</li>
+<li>- Domain-core contract boundaries for <code>core/units</code>.</li>
+<li>- JSON Schema 2020-12 quantity/storage hooks.</li>
+<li>- Deterministic conversion and dimensional-checking requirements.</li>
+<li>- Unit-related diagnostics and test obligations.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Numerical solver implementation, GUI views, and full persistence implementation, per PKG-02 exclusions in <code>_CONTEXT.md</code>.</li>
+<li>- Protected standards/code data, proprietary unit tables, protected dimensional tables, vendor catalog data, or code-compliance logic.</li>
+<li>- Final selection of exact unit catalog, conversion constants, numeric representation, precision/tolerance policy, and schema filenames. These are <code>TBD</code> unless later accepted by human review.</li>
+</ul></blockquote>
+<h3 id="clm-014-requirements">CLM-014 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source / status</td></tr>
+<tr><td>U-001</td><td>The unit contract shall make all calculations, formulas, imported values, exports, schemas, and rule evaluations unit-aware and dimensionally checked.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-025</td></tr>
+<tr><td>U-002</td><td>The domain core shall own unit invariant enforcement. Adapters, plugins, and import/export paths shall validate units instead of bypassing the domain contract.</td><td><code>docs/SPEC.md</code> Section 1; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-02 and AB-00-07</td></tr>
+<tr><td>U-003</td><td>Unit-bearing numeric values crossing schema, service, import/export, persistence, solver, load, stress, report, or rule-pack boundaries shall carry explicit unit metadata unless explicitly typed as dimensionless.</td><td>Derived from <code>docs/CONTRACT.md</code> OPS-K-UNIT-1 and <code>docs/SPEC.md</code> Sections 3, 6, 8; ASSUMPTION for exact field shape</td></tr>
+<tr><td>U-004</td><td>The unit contract shall define a stable dimensional-signature representation for each supported unit. The exact base dimensions, derived dimensions, and dimension identifier vocabulary are TBD.</td><td>Deliverable description; <code>docs/CONTRACT.md</code> OPS-K-ID-1; <code>docs/CONTRACT.md</code> OPS-K-AGENT-1</td></tr>
+<tr><td>U-005</td><td>Addition, subtraction, comparison, conversion, and rule-pack checks shall reject incompatible dimensions. Multiplication/division and exponent operations shall produce explicit derived dimensions where supported.</td><td>Derived from dimensional-analysis purpose and OPS-K-UNIT-1; ASSUMPTION pending human approval of operation set</td></tr>
+<tr><td>U-006</td><td>Unit conversion shall be deterministic and testable. Unknown units, missing units, ambiguous conversions, or incompatible conversions shall produce explicit diagnostics rather than fallback defaults.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-025; <code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/DIRECTIVE.md</code> Section 3</td></tr>
+<tr><td>U-007</td><td>Conversion-factor records shall include source/provenance and redistribution status when stored as public data. Records suspected of protected or proprietary origin shall be quarantined and escalated.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> Sections 3-5; <code>docs/CONTRACT.md</code> OPS-K-IP-1 through OPS-K-IP-3</td></tr>
+<tr><td>U-008</td><td>Persisted project/schema payloads shall be versioned, unit-aware, schema-governed, provenance-preserving, migration-aware, and round-trip testable. The architecture objective is deterministic canonical JSON; the current Python persistence boundary uses the explicitly non-JCS <code>SORTED_COMPACT_JSON</code> byte contract unless a later governed RFC 8785 implementation is proven.</td><td><code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-04; <code>_CONTEXT.md</code> Architecture Basis Injection; D-41 R5 T2A</td></tr>
+<tr><td>U-009</td><td>Public schemas/interchange definitions for quantities, units, dimensions, and unit-bearing fields shall use the JSON Schema 2020-12 baseline. Exact schema location and code-generation tooling are TBD.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>SOFTWARE_DECOMP.md</code> Section 8.2; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-041 as related context</td></tr>
+<tr><td>U-010</td><td>Unit-related diagnostics and result-envelope fields, where emitted, shall include enough machine-readable context to identify code, class, severity, source, affected object, message, remediation, and provenance. Exact unit diagnostic code names are TBD.</td><td><code>_CONTEXT.md</code> applicable AB-00-06; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-06</td></tr>
+<tr><td>U-011</td><td>The unit contract shall preserve the boundary between mechanics solve, user-rule checks, and human approval. Unit checks must not be presented as code compliance, certification, approval, sealing, or authentication.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1, OPS-K-MECH-2; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-03</td></tr>
+<tr><td>U-012</td><td>The unit test set shall cover dimension compatibility, incompatible-unit rejection, deterministic conversion behavior, serialization round trips, schema validation, import/export paths, rule-pack unit mismatch, and hash/reproducibility behavior for JSON payloads where applicable.</td><td><code>docs/SPEC.md</code> Section 9; <code>docs/VALIDATION_STRATEGY.md</code> Section 2; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-08</td></tr>
+<tr><td>U-013</td><td>Missing values, unsupported unit dimensions, unresolved conversion constants, and unapproved assumptions shall remain visible as <code>TBD</code>, diagnostics, or open issues; the implementation shall not silently invent engineering values.</td><td><code>docs/CONTRACT.md</code> OPS-K-AGENT-1 and OPS-K-AGENT-2; <code>INIT.md</code> Agent rule</td></tr>
+<tr><td>U-014</td><td>Public examples and test fixtures for unit behavior shall use original, invented, public-domain, or permissively licensed data. Protected code examples and commercial software examples require documented permission before use.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> Sections 2-3; <code>docs/VALIDATION_STRATEGY.md</code> Section 5</td></tr>
+<tr><td>U-015</td><td>Fields represented as dimensionless, ratio, percentage, coefficient, or intentionally unitless shall be classified explicitly. A missing physical unit where a unit-bearing value is required shall be rejected or diagnosed rather than treated as dimensionless. Exact categories and schema fields are TBD.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1 and OPS-K-DATA-2; <code>docs/DIRECTIVE.md</code> Section 3; ASSUMPTION for exact classification vocabulary</td></tr>
+<tr><td>U-016</td><td>Unit identifiers and aliases shall be deterministic and shall reject ambiguous parsing. Exact namespace, alias policy, and parser behavior are TBD until accepted by human review.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-025; <code>docs/CONTRACT.md</code> OPS-K-UNIT-1 and OPS-K-AGENT-1</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-open-contract-decisions">CLM-015 — Open Contract Decisions</h3>
+<blockquote><h6 id="open-contract-decisions">Open Contract Decisions</h6>
+<table><tbody>
+<tr><td>Decision</td><td>Current status</td><td>Required disposition</td></tr>
+<tr><td>Base dimension vector</td><td>TBD</td><td>Human-approved design decision before schema/API freeze.</td></tr>
+<tr><td>Unit identifier namespace and aliases</td><td>TBD</td><td>Human-approved design decision; aliases must not create ambiguous parsing.</td></tr>
+<tr><td>Dimensionless classification</td><td>TBD</td><td>Human-approved design decision for dimensionless fields, ratios, percentages, coefficients, and unitless-where-unit-required diagnostics before schema/API freeze.</td></tr>
+<tr><td>Numeric representation for conversion factors and stored magnitudes</td><td>TBD</td><td>Human-approved design decision; must support deterministic testing.</td></tr>
+<tr><td>Offset quantities, especially temperature scale versus temperature interval</td><td>TBD</td><td>Human-approved design decision before accepting temperature conversions.</td></tr>
+<tr><td>Gauge versus absolute pressure semantics</td><td>TBD</td><td>Human-approved design decision before pressure-bearing schemas rely on it.</td></tr>
+<tr><td>Ratios, percentages, and unitless engineering coefficients</td><td>TBD</td><td>Human-approved design decision before related schemas or rule-pack variables rely on these as dimensionless.</td></tr>
+<tr><td>Angle and rotation dimensional treatment</td><td>ASSUMPTION: explicit semantics needed even if represented as dimensionless in some calculations.</td><td>Human ruling required.</td></tr>
+<tr><td>Canonical calculation unit basis</td><td>TBD</td><td>Human-approved design decision tied to solver and persistence behavior.</td></tr>
+<tr><td>Persisted quantity shape and hash canonicalization</td><td>Quantity-shape choice remains TBD; current persistence hash bytes are ruled evidence, not a quantity-shape ruling.</td><td>Decide whether persistent payloads store entered units, canonical calculation representation, or both. The current Python persistence hash boundary is sorted-compact and explicitly non-JCS; a later JCS change requires governed implementation and evidence.</td></tr>
+<tr><td>Schema file layout and tooling</td><td>TBD</td><td>Decide exact schema filenames, locations, and code-generation or validation tooling for JSON Schema 2020-12 quantity definitions.</td></tr>
+<tr><td>Unit diagnostic code namespace</td><td>TBD</td><td>Decide stable unit diagnostic code names and map them to result-envelope fields before downstream consumers depend on them.</td></tr>
+<tr><td>Conversion constants and tolerance policy</td><td>TBD</td><td>Executable deterministic conversion tests must wait for approved constants, representation, and tolerances; placeholders may be tracked before then.</td></tr>
+<tr><td>Public unit/conversion source set</td><td>TBD</td><td>Must satisfy provenance and redistribution requirements.</td></tr>
+<tr><td>Human decision owner / review gate</td><td>TBD</td><td>Identify the human owner or review gate for open contract decisions before treating the unit contract as issued.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-standards">CLM-016 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected engineering code or standards-body source text was available or used for this deliverable. The governing standards for this draft are project-local governance and architecture-basis sources:</p>
+<table><tbody>
+<tr><td>Source</td><td>Applicable content</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for unit safety, protected data, missing data, professional boundary, and agent discipline.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Technical architecture, <code>core/units</code> location, domain objects, rule evaluator constraints, diagnostics, reporting, and V&amp;V expectations.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Founding intent, unit-safety principle, no silent defaults, data boundary, and stop rules.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data and provenance rules for conversion/unit data and fixtures.</td></tr>
+<tr><td><code>docs/VALIDATION_STRATEGY.md</code></td><td>Unit/schema verification expectations and benchmark-source restrictions.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>Revision 0.7 scope, SOW-025, DEL-02-02, OBJ-001, OBJ-012, and SCA-001 architecture basis IDs.</td></tr>
+<tr><td><code>_CONTEXT.md</code></td><td>Sealed context, applicable architecture basis IDs, package exclusions, and anticipated artifacts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>U-001, U-003, U-004, U-005</td><td>Unit tests for dimension signatures, compatible operations, incompatible operation rejection, and dimensionless exceptions.</td></tr>
+<tr><td>U-003, U-015</td><td>Schema and unit tests proving explicit dimensionless classifications are accepted only where intended and unit-bearing fields reject missing or disguised units.</td></tr>
+<tr><td>U-002, U-006, U-010</td><td>Contract/API tests proving adapter-facing and service-facing calls cannot bypass unit validation and return structured diagnostics for unit failures.</td></tr>
+<tr><td>U-004, U-016</td><td>Parser/registry tests for unit identifiers and aliases, including ambiguous alias rejection once the namespace is approved.</td></tr>
+<tr><td>U-006, U-012</td><td>Deterministic conversion test matrix with identity, inverse, round-trip, and incompatible conversion cases. Exact constants and tolerances are TBD; executable expected values are gated on approved constants, representation, and tolerance policy.</td></tr>
+<tr><td>U-010</td><td>Diagnostic mapping tests proving unit error codes populate result-envelope fields consistently once the unit diagnostic namespace is approved.</td></tr>
+<tr><td>U-007, U-014</td><td>Protected-content/provenance review for unit/conversion data and test fixtures.</td></tr>
+<tr><td>U-008, U-009</td><td>JSON Schema validation and serialization round-trip tests for unit-bearing fields.</td></tr>
+<tr><td>U-008</td><td>Exact-byte, fixed-hash, ordering, mutation, and round-trip tests for the declared serialization label; do not claim JCS without RFC 8785 conformance evidence.</td></tr>
+<tr><td>U-011</td><td>Report/result-envelope review to confirm unit checks are not described as professional approval or code compliance.</td></tr>
+<tr><td>U-013</td><td>Review checklist confirming all unknowns are represented as <code>TBD</code>, explicit assumptions, diagnostics, or open decisions.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-documentation">CLM-018 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required deliverable documentation artifacts:</p>
+<ul>
+<li>- <code>core/units</code> module contract documenting quantity shape, dimension signature, conversion API, operation rules, diagnostics, and storage/serialization hooks.</li>
+<li>- Unit test inventory or test plan covering the verification matrix above.</li>
+<li>- <code>docs/SPEC.md</code> unit-system section or equivalent linked technical specification update.</li>
+<li>- ADR or decision record for any accepted unit registry, conversion-factor representation, numeric representation, canonical calculation basis, or offset/gauge semantics that affect public schemas or persistent files, per AB-00-01.</li>
+<li>- Schema location/tooling decision record for JSON Schema 2020-12 quantity definitions before downstream schema consumers implement against them.</li>
+<li>- Diagnostic-code decision record for stable unit error names and result-envelope mapping before downstream consumers implement against them.</li>
+<li>- Open-decision list for unresolved <code>TBD</code> items.</li>
+</ul></blockquote>
+<h3 id="clm-019-d-41-r5-t2a-persistence-hash-requirement-2026-07-12">CLM-019 — D-41 R5 T2A persistence hash requirement (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-persistence-hash-requirement-2026-07-12">D-41 R5 T2A persistence hash requirement (2026-07-12)</h5>
+<p>Project persistence SHALL label existing sorted-key compact ASCII-escaped Python JSON hashes <code>SORTED_COMPACT_JSON</code> and canonical payload truth <code>sorted_compact_json_payload</code>. Those labels SHALL NOT imply RFC 8785/JCS conformance.</p></blockquote>
+<h3 id="clm-020-d-41-r5-t2b-unit-authority-boundary-2026-07-12">CLM-020 — D-41 R5 T2B unit-authority boundary (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2b-unit-authority-boundary-2026-07-12">D-41 R5 T2B unit-authority boundary (2026-07-12)</h5>
+<p>Python adapter/application validation SHALL derive the canonical <code>DimensionId</code> vocabulary from <code>schemas/units.schema.yaml</code> through the PKG-02 schema-vocabulary adapter rather than maintaining a parallel literal set. This removes the identified DEL-16-02 mirror but does not assert system-wide B2/B3 completion or independent numeric validation.</p></blockquote>
+<h3 id="clm-021-d-41-r5-t7-pdu-054-current-declaration">CLM-021 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. DEC-018 and the implemented core-units slice now provide the current dimensional basis. Alias/parser behavior, diagnostics, B2/B3 coverage, and validation matters survive only where explicitly recorded as residuals; this documentation refresh makes no lifecycle or validation ruling.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted source requirements for explicit dimensions, compatible conversion and storage behavior, deterministic checks, and fail-closed treatment of missing or incompatible units.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-022-source-preamble">CLM-022 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-02-02-PROCEDURE</p>
+<p>doc_kind: deliverable.procedure</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>---</p></blockquote>
+<h3 id="clm-023-procedure-unit-system-and-dimensional-analysis-core-contract">CLM-023 — Procedure - Unit System and Dimensional-Analysis Core Contract</h3>
+<blockquote><h4 id="procedure-unit-system-and-dimensional-analysis-core-contract">Procedure - Unit System and Dimensional-Analysis Core Contract</h4></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and use the DEL-02-02 unit-system contract without exceeding PKG-02 scope. It is intended for later implementation work on the <code>core/units</code> module contract, unit tests, and the corresponding <code>docs/SPEC.md</code> section.</p></blockquote>
+<h3 id="clm-025-prerequisites">CLM-025 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status / source</td></tr>
+<tr><td>Sealed DEL-02-02 context</td><td>Present in <code>_CONTEXT.md</code> revision 0.7.</td></tr>
+<tr><td>Scope and objectives</td><td>DEL-02-02, PKG-02, SOW-025, OBJ-001, OBJ-012 from <code>_CONTEXT.md</code> and <code>docs/_Registers/Deliverables.csv</code>.</td></tr>
+<tr><td>Applicable invariants</td><td>OPS-K-UNIT-1, OPS-K-DATA-2, OPS-K-IP-1 through OPS-K-IP-3, OPS-K-AUTH-1, OPS-K-AGENT-1 through OPS-K-AGENT-4 from <code>docs/CONTRACT.md</code>.</td></tr>
+<tr><td>Architecture basis</td><td>AB-00-01, AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, AB-00-08 from <code>_CONTEXT.md</code>.</td></tr>
+<tr><td>Human dependency list</td><td>Not provided; <code>_DEPENDENCIES.md</code> says coordination is externally human-owned.</td></tr>
+<tr><td>Human decision owner / review gate</td><td>TBD; required before open unit catalog, dimension basis, conversion, storage, diagnostic-code, schema-location, and special-quantity decisions can be treated as accepted.</td></tr>
+<tr><td>Authoritative unit catalog</td><td>TBD; not supplied in accessible references.</td></tr>
+<tr><td>Public/protected data policy</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> available.</td></tr>
+<tr><td>Test and validation basis</td><td><code>docs/SPEC.md</code> Section 9 and <code>docs/VALIDATION_STRATEGY.md</code> available.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-steps">CLM-026 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm scope and boundaries.</p>
+<p>Verify the work is limited to DEL-02-02: unit dimensions, conversion rules, storage conventions, and unit test obligations. Do not implement solver behavior, GUI behavior, rule-pack content, protected standards content, or professional compliance claims.</p>
+<p>2. Inventory unit-bearing surfaces.</p>
+<p>Enumerate all domain surfaces that carry unit-bearing values: project units, coordinates, sections, materials, supports, loads, combinations, solver results, stress results, reports, imports, exports, and rule-pack variables. Mark any uncertain surface <code>TBD</code>.</p>
+<p>3. Define the quantity contract.</p>
+<p>Draft the domain type and schema concept for a quantity. At minimum, include a numeric magnitude and explicit unit reference unless the field is explicitly dimensionless. Classify dimensionless, ratio, percentage, coefficient, and intentionally unitless fields explicitly. Decide whether the persisted payload preserves entered unit representation, canonical calculation representation, or both. Current recommendation is a PROPOSAL, not final.</p>
+<p>4. Define the dimension-signature contract.</p>
+<p>Create a stable way to represent dimensional compatibility for units and derived quantities. Identify base dimensions, derived dimensions, exponent rules, and operation rules. Keep the dimension vocabulary <code>TBD</code> until human review accepts it.</p>
+<p>5. Define conversion behavior.</p>
+<p>Specify deterministic conversion registry behavior: accepted unit identifiers, alias rules, ambiguous-alias rejection, exact or toleranced factor representation, identity/inverse behavior, incompatible conversion rejection, unknown-unit handling, and source/provenance requirements. Do not add conversion constants from protected or undocumented sources.</p>
+<p>6. Define special quantity semantics.</p>
+<p>Record explicit decisions for offset temperature, temperature interval, gauge/absolute pressure, angle/rotation, ratios, percentages, and any unitless engineering coefficients. Leave unresolved cases <code>TBD</code> and make unsupported conversions fail visibly.</p>
+<p>7. Define schema and storage conventions.</p>
+<p>Bind unit-bearing fields to JSON Schema 2020-12 definitions. Require versioned, unit-aware, schema-governed, provenance-preserving, round-trip-testable storage. At the current Python persistence boundary, hash the declared sorted-key compact JSON bytes and label them <code>SORTED_COMPACT_JSON</code>; do not claim JCS without a governed RFC 8785 implementation and conformance evidence.</p>
+<p>8. Define diagnostics.</p>
+<p>Map unit failures to structured diagnostics/result envelopes where emitted. Include machine-readable code/class/severity/source/affected-object/message/remediation/provenance information. Proposed unit diagnostic codes remain TBD until the diagnostic contract is implemented.</p>
+<p>9. Define adapter and rule-evaluator obligations.</p>
+<p>Require imports, exports, plugins, and rule packs to use the domain unit contract. Adapters must reject or flag missing/ambiguous/incompatible units and cannot bypass validation, provenance, sandboxing, report controls, or public/private data boundaries.</p>
+<p>10. Define the test plan.</p>
+<p>Build tests for dimension signatures, compatible and incompatible operations, deterministic conversions, serialization round trips, JSON Schema validation, imports/exports, rule-pack unit mismatch, diagnostics, and JSON hash stability where applicable. Fixture data must be invented, original, public-domain, or permissively licensed.</p>
+<p>11. Record design decisions.</p>
+<p>Use an ADR or equivalent decision record for accepted decisions that affect public schemas, persistent files, or external contracts: decision owner/review gate, dimension basis, unit namespace, alias policy, numeric representation, canonical calculation basis, schema file layout/tooling, diagnostic-code namespace, and special quantity semantics.</p>
+<p>12. Update documentation.</p>
+<p>Update the <code>core/units</code> contract and <code>docs/SPEC.md</code> section with the accepted contract, remaining <code>TBD</code> items, verification obligations, and professional/IP boundary notes.</p></blockquote>
+<h3 id="clm-027-verification">CLM-027 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Evidence</td></tr>
+<tr><td>Scope remains DEL-02-02 only</td><td>No solver, GUI, rule-pack content, or persistence implementation is introduced by this procedure.</td></tr>
+<tr><td>Default unknown handling</td><td>All unsupported dimensions, conversion constants, and special semantics are <code>TBD</code>, explicit assumptions, open decisions, or diagnostics.</td></tr>
+<tr><td>Unit-aware surfaces</td><td>Inventory covers calculations, schemas, imports, exports, and rule evaluations from SOW-025.</td></tr>
+<tr><td>Schema baseline</td><td>Quantity and unit-bearing fields use JSON Schema 2020-12.</td></tr>
+<tr><td>Determinism</td><td>Conversion and round-trip tests define repeatable expected outcomes and tolerances once constants are approved.</td></tr>
+<tr><td>Alias ambiguity</td><td>Unit identifier parser/registry tests reject ambiguous aliases once the namespace is approved.</td></tr>
+<tr><td>Dimensionless classification</td><td>Schema and unit tests distinguish explicit dimensionless fields from missing units on unit-bearing fields.</td></tr>
+<tr><td>Decision ownership</td><td>Open contract decisions have a human owner or review gate before schemas/APIs are frozen.</td></tr>
+<tr><td>Data boundary</td><td>Unit/conversion data and fixtures include provenance/redistribution status and pass protected-content review.</td></tr>
+<tr><td>Professional boundary</td><td>Documentation avoids certification, approval, sealing, authentication, or code-compliance claims.</td></tr>
+<tr><td>Architecture basis</td><td>ADRs, schema-first envelopes, deterministic persistence/hash behavior, diagnostics, adapter validation, and layered tests are addressed where applicable.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-records">CLM-028 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Maintain these records when this procedure is executed by later implementation tasks:</p>
+<ul>
+<li>- Unit contract document or module-level design notes for <code>core/units</code>.</li>
+<li>- JSON Schema 2020-12 definitions for quantities, units, and dimensions.</li>
+<li>- ADRs or decision records for accepted unit/dimension/conversion/storage decisions.</li>
+<li>- Decision-owner or review-gate record for open contract decisions.</li>
+<li>- Unit conversion registry with source/provenance/redistribution fields.</li>
+<li>- Unit test plan and test results.</li>
+<li>- Schema validation and serialization round-trip results.</li>
+<li>- Protected-content/provenance review results for any public fixture or conversion data.</li>
+<li>- Open-decision register for unresolved <code>TBD</code> items.</li>
+<li>- Human review acceptance record before treating the contract as issued.</li>
+</ul></blockquote>
+<h3 id="clm-029-d-41-r5-t2a-persistence-hash-check-2026-07-12">CLM-029 — D-41 R5 T2A persistence hash check (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-persistence-hash-check-2026-07-12">D-41 R5 T2A persistence hash check (2026-07-12)</h5>
+<p>Run exact-byte and fixed-SHA vectors, equivalent-order stability, mutation sensitivity, schema/fixture validation, SQLite round-trip tests, and a no-JCS assertion for the project persistence byte contract.</p></blockquote>
+<h3 id="clm-030-d-41-r5-t2b-unit-authority-check-2026-07-12">CLM-030 — D-41 R5 T2B unit-authority check (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2b-unit-authority-check-2026-07-12">D-41 R5 T2B unit-authority check (2026-07-12)</h5>
+<p>Load <code>DimensionId</code> through the PKG-02 schema-vocabulary adapter, compare it to the schema enum, and scan the consuming Python engine for a reintroduced literal mirror. Continue to surface unbound system boundaries and unselected namespace/diagnostic policies as held residuals.</p></blockquote>
+<h3 id="clm-031-d-41-r5-t7-pdu-054-current-declaration">CLM-031 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. DEC-018 and the implemented core-units slice now provide the current dimensional basis. Alias/parser behavior, diagnostics, B2/B3 coverage, and validation matters survive only where explicitly recorded as residuals; this documentation refresh makes no lifecycle or validation ruling.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, dimensional consistency, conversion and storage rules, deterministic unit checks, explicit findings, and professional-reliance boundaries.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-032-source-preamble">CLM-032 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-02-02-GUIDANCE</p>
+<p>doc_kind: deliverable.guidance</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>---</p></blockquote>
+<h3 id="clm-033-guidance-unit-system-and-dimensional-analysis-core-contract">CLM-033 — Guidance - Unit System and Dimensional-Analysis Core Contract</h3>
+<blockquote><h4 id="guidance-unit-system-and-dimensional-analysis-core-contract">Guidance - Unit System and Dimensional-Analysis Core Contract</h4></blockquote>
+<h3 id="clm-034-purpose">CLM-034 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>DEL-02-02 exists to give the solver, schema layer, rule evaluator, adapters, persistence, and reporting surfaces one conservative unit contract. Its central job is to prevent untagged or dimensionally incompatible engineering values from moving through the system silently.</p>
+<p>This guidance is source-grounded in the sealed DEL-02-02 context, SOW-025, the project invariant catalog, the technical specification, the IP/data-boundary policy, validation strategy, and the SCA-001 architecture basis. It does not introduce protected code text, standards tables, commercial examples, or code-compliance claims.</p></blockquote>
+<h3 id="clm-035-principles">CLM-035 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Unit safety is mandatory</td><td>Treat unit metadata and dimensional compatibility as part of the domain model, not as UI decoration or optional import metadata.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/DIRECTIVE.md</code> Section 3</td></tr>
+<tr><td>Missing data is visible</td><td>Unknown units, missing units, unsupported conversion constants, or incomplete rule-check inputs should become diagnostics, <code>TBD</code>, or explicit open issues.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>INIT.md</code> Agent rule</td></tr>
+<tr><td>Preserve boundaries</td><td>Unit checks support mechanics and rule evaluation, but they do not establish professional code compliance or human approval.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-03</td></tr>
+<tr><td>Keep public data clean</td><td>Unit and conversion data introduced as public records need provenance and redistribution status; suspected protected content is stopped and escalated.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> Sections 3-5</td></tr>
+<tr><td>Determinism beats convenience</td><td>Prefer explicit registries, strict parsers, and repeatable conversion behavior over permissive parsing or hidden fallback conversion.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-025; <code>docs/VALIDATION_STRATEGY.md</code> Section 2</td></tr>
+<tr><td>Make adapters boring</td><td>Imports, exports, plugins, and adapters should pass through the same unit validation and diagnostics as internal services.</td><td><code>SOFTWARE_DECOMP.md</code> Section 8.1 AB-00-07; <code>docs/SPEC.md</code> Section 1</td></tr>
+<tr><td>Keep schema and runtime aligned</td><td>JSON Schema quantity definitions and Rust domain-core types should represent the same contract.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>docs/SPEC.md</code> Sections 1-2</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-036-considerations">CLM-036 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5></blockquote>
+<h3 id="clm-037-unit-catalog-and-conversion-sources">CLM-037 — Unit catalog and conversion sources</h3>
+<blockquote><h6 id="unit-catalog-and-conversion-sources">Unit catalog and conversion sources</h6>
+<p>The accessible sources do not provide an authoritative unit catalog or conversion-factor list. A future implementation should therefore avoid presenting any first-pass unit list as final. Each accepted unit family and conversion factor should be backed by a permissible source or explicit project decision record. Public fixtures should remain invented or permissively sourced.</p>
+<p>Before executable conversion tests or schema examples depend on a catalog, record the minimal early-test unit set and conversion source set as <code>TBD</code> or as a human-approved decision. The lensing worklist does not supply those units or factors.</p></blockquote>
+<h3 id="clm-038-dimensional-signatures">CLM-038 — Dimensional signatures</h3>
+<blockquote><h6 id="dimensional-signatures">Dimensional signatures</h6>
+<p>Dimensional signatures should be stable identifiers or vectors that support equality and compatibility checks across calculations, schemas, imports, exports, rule evaluation, and reports. The exact basis is TBD. ASSUMPTION: likely first-pass dimensions include length, force, mass, time, temperature, angle/rotation, pressure/stress, moment, density, and stiffness-related derived dimensions, because the domain objects and solver/load/stress surfaces in <code>docs/SPEC.md</code> require these concepts. This assumption requires human review.</p></blockquote>
+<h3 id="clm-039-offset-and-reference-quantities">CLM-039 — Offset and reference quantities</h3>
+<blockquote><h6 id="offset-and-reference-quantities">Offset and reference quantities</h6>
+<p>Some engineering quantities require more than multiplicative scaling. Temperature scales versus temperature intervals, gauge versus absolute pressure, rotations versus mathematical angles, and normalized ratios need explicit semantics. Until those semantics are accepted, related conversions should remain <code>TBD</code> or emit blocking diagnostics.</p></blockquote>
+<h3 id="clm-040-storage-and-reproducibility">CLM-040 — Storage and reproducibility</h3>
+<blockquote><h6 id="storage-and-reproducibility">Storage and reproducibility</h6>
+<p>The architecture basis requires unit-aware, schema-governed, deterministic round trips and an explicit JSON hash byte contract. The current Python persistence implementation is sorted-key compact ASCII-escaped JSON and is not JCS. Preserving the user-entered unit representation helps auditability and round-trip behavior, while a canonical calculation representation helps deterministic computation. The recommended draft direction is to preserve the entered unit plus use explicit rules for calculations and hashes, but the final quantity data shape remains a human design decision.</p></blockquote>
+<h3 id="clm-041-diagnostics">CLM-041 — Diagnostics</h3>
+<blockquote><h6 id="diagnostics">Diagnostics</h6>
+<p>Unit errors should be specific enough for a GUI, CLI, report, rule evaluator, or adapter to identify what failed and how to remediate it. Use project diagnostic classes where applicable. For example, missing physical units for a solve-required load may be solve-blocking; a rule-pack input with incompatible units may be rule-check-blocking. Exact diagnostic code names are TBD.</p></blockquote>
+<h3 id="clm-042-protected-content-boundary">CLM-042 — Protected-content boundary</h3>
+<blockquote><h6 id="protected-content-boundary">Protected-content boundary</h6>
+<p>Do not seed the unit system with copied standards tables, protected dimensional tables, code-derived formulas, commercial benchmark files, or proprietary vendor data. Unit mechanics and schemas may be public; protected or private engineering data belongs in user-controlled private paths unless redistribution rights are documented.</p></blockquote>
+<h3 id="clm-043-trade-offs">CLM-043 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative direction</td></tr>
+<tr><td>Broad unit catalog now vs. small verified catalog first</td><td>Start with the smallest source-backed or decision-backed catalog needed for tests and early solver work; expand through review.</td></tr>
+<tr><td>Preserve entered units vs. normalize everything</td><td>Preserve entered units for audit/round-trip behavior and define a separate canonical calculation/hash path if accepted.</td></tr>
+<tr><td>Floating point factors vs. exact/rational/decimal factors</td><td>TBD. Choose only after considering deterministic testing, Rust implementation cost, schema representation, and required tolerances.</td></tr>
+<tr><td>Permissive import parsing vs. strict imports</td><td>Prefer strict imports with explicit diagnostics; adapters should not guess units silently.</td></tr>
+<tr><td>Unit mismatch warning vs. hard error</td><td>Treat incompatible dimensions in calculations and schema validation as blocking. Use warnings only for provenance weakness or assumptions that do not invalidate the computation.</td></tr>
+<tr><td>Embed conversion examples vs. keep examples deferred</td><td>Keep numeric examples deferred until sources or invented examples are reviewed for provenance and protected-content safety.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-044-examples">CLM-044 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>TBD. The accessible sources do not provide source-backed numeric unit-conversion examples or an accepted quantity schema. Do not add numeric examples until the schema, unit catalog, conversion constants, and tolerance policy have accepted sources or human decisions. Future examples should be original/invented or public/permissive, and should include:</p>
+<ul>
+<li>- a valid same-dimension conversion case;</li>
+<li>- an invalid cross-dimension conversion case;</li>
+<li>- a unit-aware load or material-property schema fragment;</li>
+<li>- a rule-pack unit mismatch case;</li>
+<li>- a serialization round-trip case showing preserved unit metadata;</li>
+<li>- a JSON hash-stability case where unit-bearing JSON payloads are hashed.</li>
+</ul></blockquote>
+<h3 id="clm-045-conflict-table-for-human-ruling">CLM-045 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>C-DEL-02-02-001</td><td>Repository overview text still describes v0.3 as the current downstream decomposition basis, while the sealed deliverable context and decomposition for this run identify revision 0.7 with SCA-001 injection.</td><td><code>docs/README.md</code> governance map text</td><td><code>_CONTEXT.md</code> Decomposition Reference and Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision notes</td><td>References, run record, source basis</td><td>Use the sealed <code>_CONTEXT.md</code> revision 0.7 and <code>SOFTWARE_DECOMP.md</code> revision 0.7 for this deliverable.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-046-d-41-r5-t2a-persistence-hash-guidance-2026-07-12">CLM-046 — D-41 R5 T2A persistence hash guidance (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-persistence-hash-guidance-2026-07-12">D-41 R5 T2A persistence hash guidance (2026-07-12)</h5>
+<p>Keep project persistence, model-state consumers, headless-runner consumers, schemas, and fixtures aligned to the narrow sorted-compact labels. Do not call this serializer JCS without a governed RFC 8785 implementation and conformance suite.</p></blockquote>
+<h3 id="clm-047-d-41-r5-t2b-unit-authority-guidance-2026-07-12">CLM-047 — D-41 R5 T2B unit-authority guidance (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2b-unit-authority-guidance-2026-07-12">D-41 R5 T2B unit-authority guidance (2026-07-12)</h5>
+<p>Use the schema-vocabulary adapter for Python dimension membership checks. A matching copied set is not an authority binding. Rust mechanics, imports/exports, rule packs, reports, and remaining adapters still require their own accepted boundary wiring and evidence; do not infer system-wide closure from this one corrected consumer.</p></blockquote>
+<h3 id="clm-048-d-41-r5-t7-pdu-054-current-declaration">CLM-048 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. DEC-018 and the implemented core-units slice now provide the current dimensional basis. Alias/parser behavior, diagnostics, B2/B3 coverage, and validation matters survive only where explicitly recorded as residuals; this documentation refresh makes no lifecycle or validation ruling.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-025 OBJ-001 OBJ-012</td><td>CLM-011</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

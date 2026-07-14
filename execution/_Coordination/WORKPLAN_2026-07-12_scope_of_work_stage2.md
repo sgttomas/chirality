@@ -11,6 +11,10 @@ Amended: 2026-07-13 by the human PKG-00 ruling recorded at
 Amended: 2026-07-13 by the human runtime-efficiency direction recorded at
 `execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/RUNTIME-EFFICIENCY-001.md`.
 
+Amended: 2026-07-14 by the human acceptance of the PKG-01 and PKG-02 batch
+experiments recorded at
+`execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/PACKAGE-BATCH-ADOPTION-001.md`.
+
 ## Goal
 
 Execute the accepted D-GOV-16 Stage-2 plan through preparation and independent
@@ -148,8 +152,16 @@ Run the accepted bounded sequence:
 | P3 | Piping PKG-10–12 | 15 |
 | P4 | Piping PKG-14–17 | 22 |
 
-Each package has one WORKING_ITEMS manager. Each deliverable has a bounded
-deterministic author TASK and a separate verifier TASK. Each wave ends in
+Each package has one WORKING_ITEMS manager. Related representation migration
+uses one package-wide author Agent 2 followed by one fresh evidence-only
+package-wide verifier Agent 2 for up to five members and 2,053 frozen legacy
+source lines. A package exceeding either observed bound is partitioned by
+ascending numeric `DeliverableID` into the minimum number of consecutive
+sub-batches satisfying both limits; the same WORKING_ITEMS manager owns every
+sub-batch. Complete author and verifier evidence remains per member, including
+mappings, source-line coverage, hashes, clean finalization, replacement and
+inverse rows, simulations, checks, telemetry, findings, and rerun triggers.
+The verifier does not repair author output. Each wave ends in
 RECONCILIATION fan-in, an explicit single-format integration manifest,
 serialized CHANGE integration, post-integration checks, an immutable snapshot,
 and a handoff before the next release wave.

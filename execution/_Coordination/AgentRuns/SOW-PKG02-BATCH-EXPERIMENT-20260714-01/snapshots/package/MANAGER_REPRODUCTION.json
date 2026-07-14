@@ -1,0 +1,62 @@
+{
+  "apply_rollback_simulations": 5,
+  "dec_025": "NOT_APPLICABLE_NO_PROJECT_CODE_PATH_CHANGE",
+  "dependency_schema_checks": "5/5 PASS",
+  "generated_portability_files_normalized": 53,
+  "generated_portability_replacements": 153,
+  "live_four_document_checks": "5/5 PASS",
+  "mapping_rows": 186,
+  "members": 5,
+  "negative_check_count": 35,
+  "negative_checks": {
+    "DEL-02-01": {
+      "evidence_checklist": 1,
+      "evidence_render": 1,
+      "mutated_map": 1,
+      "mutated_parity": 1,
+      "partial_input": 1,
+      "unauthorized_dual": 1,
+      "wrong_authority_checklist": 1
+    },
+    "DEL-02-02": {
+      "evidence_checklist": 1,
+      "evidence_render": 1,
+      "mutated_map": 1,
+      "mutated_parity": 1,
+      "partial_input": 1,
+      "unauthorized_dual": 1,
+      "wrong_authority_checklist": 1
+    },
+    "DEL-02-03": {
+      "evidence_checklist": 1,
+      "evidence_render": 1,
+      "mutated_map": 1,
+      "mutated_parity": 1,
+      "partial_input": 1,
+      "unauthorized_dual": 1,
+      "wrong_authority_checklist": 1
+    },
+    "DEL-02-04": {
+      "evidence_checklist": 1,
+      "evidence_render": 1,
+      "mutated_map": 1,
+      "mutated_parity": 1,
+      "partial_input": 1,
+      "unauthorized_dual": 1,
+      "wrong_authority_checklist": 1
+    },
+    "DEL-02-05": {
+      "evidence_checklist": 1,
+      "evidence_render": 1,
+      "mutated_map": 1,
+      "mutated_parity": 1,
+      "partial_input": 1,
+      "unauthorized_dual": 1,
+      "wrong_authority_checklist": 1
+    }
+  },
+  "replacement_rows": 25,
+  "rollback_rows": 25,
+  "source_lines": 2053,
+  "status": "PASS"
+}

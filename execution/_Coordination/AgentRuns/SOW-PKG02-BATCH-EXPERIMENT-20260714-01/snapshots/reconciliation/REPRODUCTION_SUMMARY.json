@@ -1,0 +1,19 @@
+{
+  "candidate_repairs": 0,
+  "context_occupancy_samples": "0/3",
+  "fresh_simulations": 5,
+  "full_fresh_reproductions": [
+    "DEL-02-01",
+    "DEL-02-05"
+  ],
+  "manifest_entries_rehashed": 1811,
+  "mapping_rows": 186,
+  "members": 5,
+  "negative_classes_fresh": 14,
+  "project_writes": 0,
+  "quality": "PASS_EQUIVALENT",
+  "replacement_rows": 25,
+  "rollback_rows": 25,
+  "source_lines": 2053,
+  "status": "PASS_WITH_RETAINED_PROCESS_FINDINGS"
+}
