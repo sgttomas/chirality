@@ -1,0 +1,20 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "instance": "RECON-CLOSURE",
+  "role": "RECONCILIATION",
+  "status": "BLOCKED_WITH_HANDOFF",
+  "snapshot": "snapshots/CONVERSION_CLOSURE/reconciliation/PRE_REPAIR_20260715T043119Z",
+  "source_head": "715f618e93528d626a73d2134781e8c9c27f6c90",
+  "tracked_members": 154,
+  "conversion_members": 146,
+  "excluded_members": 8,
+  "manifest_paths": 730,
+  "rollback_simulations": 146,
+  "candidate_residue_members": 57,
+  "project_writes": 0,
+  "rollback_executed": false,
+  "h2_approved": false,
+  "retirement_implemented": false,
+  "next_owner": "WORKING-CLEAN-REPAIR",
+  "fresh_reconciliation_required": true
+}

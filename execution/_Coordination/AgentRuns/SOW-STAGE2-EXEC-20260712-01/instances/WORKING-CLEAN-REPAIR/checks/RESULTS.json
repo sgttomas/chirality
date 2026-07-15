@@ -1,0 +1,73 @@
+{
+  "schema": "chirality-sow-clean-repair-checks/v1",
+  "verdict": "PASS",
+  "results": [
+    {
+      "name": "scope_of_work_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/scope_of_work/test_scope_of_work_tools.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 3.508,
+      "output": "checks/scope_of_work_tests.txt"
+    },
+    {
+      "name": "practitioner_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 30.354,
+      "output": "checks/practitioner_tests.txt"
+    },
+    {
+      "name": "validate_agents",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_agent_instructions.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.06,
+      "output": "checks/validate_agents.txt"
+    },
+    {
+      "name": "validate_entrypoints",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_instruction_entrypoints.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.024,
+      "output": "checks/validate_entrypoints.txt"
+    },
+    {
+      "name": "validate_paths",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_path_anchors.py",
+        "."
+      ],
+      "exit_code": 0,
+      "duration_seconds": 2.161,
+      "output": "checks/validate_paths.txt"
+    },
+    {
+      "name": "validate_skills",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_skill_metadata.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.03,
+      "output": "checks/validate_skills.txt"
+    }
+  ]
+}

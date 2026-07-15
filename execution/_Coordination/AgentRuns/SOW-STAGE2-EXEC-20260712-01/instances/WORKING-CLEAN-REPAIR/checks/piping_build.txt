@@ -1,0 +1,30 @@
+
+> openpipestress-workspace@0.1.0 build:desktop
+> npm run build --workspace apps/desktop
+
+
+> @openpipestress/desktop@0.1.0 build
+> tsc -b && vite build
+
+vite v7.3.3 building client environment for production...
+✓ 0 modules transformed.
+✗ Build failed in 4ms
+error during build:
+[wasm-engine-dist-guard] WASM-ENGINE-ASSET-ABSENT: production dist output check failed: missing open_pipe_stress_operation_applier.js, open_pipe_stress_operation_applier_bg.wasm under /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop/dist/wasm-engine/ — the wasm operation engine is required in browser mode (DEC-020 / ADR-0001) and no fallback engine exists. Build it with `npm run build:wasm --workspace apps/desktop`, then rebuild.
+    at wasmEngineGuardError (file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/apps/desktop/node_modules/.vite-temp/vite.config.ts.timestamp-1784090050231-dec694c8107a9.mjs:17:10)
+    at Object.closeBundle (file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/apps/desktop/node_modules/.vite-temp/vite.config.ts.timestamp-1784090050231-dec694c8107a9.mjs:36:15)
+    at Object.handler (file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/node_modules/vite/dist/node/chunks/config.js:33763:13)
+    at file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/node_modules/rollup/dist/es/shared/node-entry.js:22987:40
+    at async Promise.all (index 0)
+    at async PluginDriver.hookParallel (file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/node_modules/rollup/dist/es/shared/node-entry.js:22897:9)
+    at async file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/node_modules/rollup/dist/es/shared/node-entry.js:23890:13
+    at async catchUnfinishedHookActions (file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/node_modules/rollup/dist/es/shared/node-entry.js:23341:16)
+    at async rollupInternal (file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/node_modules/rollup/dist/es/shared/node-entry.js:23866:5)
+    at async buildEnvironment (file:///Users/ryan/ai-env/projects/chirality/projects/chirality-piping/node_modules/vite/dist/node/chunks/config.js:33561:12)
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop
+npm error command failed
+npm error command sh -c tsc -b && vite build

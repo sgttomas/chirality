@@ -1,0 +1,291 @@
+{
+  "evidence_candidate_sha256": "3ae8810ad33dec6323804d5177344b0c5da05858ec776698b93a524ca0bf0f22",
+  "migration_control": {
+    "migration-authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+  },
+  "production_scope_of_work_sha256": "faa3759f607a601b72a31fd7c98c0bce6bdf9026867ac88cd6fc0231c8ce43b0",
+  "production_wording_update_count": 1,
+  "schema": "chirality-sow-finalization/v1",
+  "source_block_count": 31,
+  "source_blocks": [
+    {
+      "disposition": "PRESERVED",
+      "file": "Datasheet.md",
+      "line_end": 2,
+      "line_start": 1,
+      "preserved_text_sha256": "a0b44918f4025625378e1464e1728dbec8b679f9493e0e8a09ae0aba8ccf2ac6",
+      "source_sha256": "ebe381d7c4bfe65882393ba7d13806521e765b8408f77648c9cd3871e59163a8",
+      "target_id": "CLM-001"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Datasheet.md",
+      "line_end": 19,
+      "line_start": 3,
+      "preserved_text_sha256": "180c4887f933317c99061912f3d617c240dc0c69a942015d7b9c8168f701293c",
+      "source_sha256": "ebe381d7c4bfe65882393ba7d13806521e765b8408f77648c9cd3871e59163a8",
+      "target_id": "CLM-002"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Datasheet.md",
+      "line_end": 34,
+      "line_start": 20,
+      "preserved_text_sha256": "f02c59fbb0aee78ea64ebe5d065ce48c603783e9967e8c871bc05c3a3e0f3c14",
+      "source_sha256": "ebe381d7c4bfe65882393ba7d13806521e765b8408f77648c9cd3871e59163a8",
+      "target_id": "CLM-003"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Datasheet.md",
+      "line_end": 45,
+      "line_start": 35,
+      "preserved_text_sha256": "89e2f23e0d123997125c9e0f6697df8c4163671b92cb6c4251fd242c46653ac0",
+      "source_sha256": "ebe381d7c4bfe65882393ba7d13806521e765b8408f77648c9cd3871e59163a8",
+      "target_id": "CLM-004"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Datasheet.md",
+      "line_end": 55,
+      "line_start": 46,
+      "preserved_text_sha256": "66ddc53a9fb7fefab4fffbcfd60366aba36b2f96dbe4a1904f2600a08d18be9c",
+      "source_sha256": "ebe381d7c4bfe65882393ba7d13806521e765b8408f77648c9cd3871e59163a8",
+      "target_id": "CLM-005"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Datasheet.md",
+      "line_end": 62,
+      "line_start": 56,
+      "preserved_text_sha256": "eff49a0a714793003805ac6264d7c0ef7c7f7928db562053a3ab4aef68b5d355",
+      "source_sha256": "ebe381d7c4bfe65882393ba7d13806521e765b8408f77648c9cd3871e59163a8",
+      "target_id": "CLM-006"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Specification.md",
+      "line_end": 2,
+      "line_start": 1,
+      "preserved_text_sha256": "43698ae3ce3a7b050435a18f36905207a6465f098b8cc4bb53ff829d9f3db600",
+      "source_sha256": "e7b7f5930904c5e79fb35fb32c9ce551b22a4c0637d35789ee3928ecdc6a9834",
+      "target_id": "CLM-007"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Specification.md",
+      "line_end": 25,
+      "line_start": 3,
+      "preserved_text_sha256": "b0725694bbf31ac7769a19146e5c4bf877863529209c87886102e17fecb9ecf7",
+      "source_sha256": "e7b7f5930904c5e79fb35fb32c9ce551b22a4c0637d35789ee3928ecdc6a9834",
+      "target_id": "CLM-008"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Specification.md",
+      "line_end": 45,
+      "line_start": 26,
+      "preserved_text_sha256": "608116cddfc17de2f4daad59a5b344a8deee50231a2cae855e44ad8555300fb3",
+      "source_sha256": "e7b7f5930904c5e79fb35fb32c9ce551b22a4c0637d35789ee3928ecdc6a9834",
+      "target_id": "CLM-009"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Specification.md",
+      "line_end": 55,
+      "line_start": 46,
+      "preserved_text_sha256": "056fa8fb89b9f458741b31ff15451f56b8d95f6d9195045eb95af8d41bcdb051",
+      "source_sha256": "e7b7f5930904c5e79fb35fb32c9ce551b22a4c0637d35789ee3928ecdc6a9834",
+      "target_id": "CLM-010"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Specification.md",
+      "line_end": 67,
+      "line_start": 56,
+      "preserved_text_sha256": "1e29fefab63bb8689d1bf7bc3c708e1d5b2f97b08284f0d104472ad229ba49bd",
+      "source_sha256": "e7b7f5930904c5e79fb35fb32c9ce551b22a4c0637d35789ee3928ecdc6a9834",
+      "target_id": "CLM-011"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Specification.md",
+      "line_end": 82,
+      "line_start": 68,
+      "preserved_text_sha256": "211a941bb64d9348318e3c023c87642f871ef363ed86c5fabd40da58cc4adb5c",
+      "source_sha256": "e7b7f5930904c5e79fb35fb32c9ce551b22a4c0637d35789ee3928ecdc6a9834",
+      "target_id": "CLM-012"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Specification.md",
+      "line_end": 85,
+      "line_start": 83,
+      "preserved_text_sha256": "ad40a0eb6b8176eeaf258063b221a26c890ef38b2b9d026356606233ed2996b6",
+      "source_sha256": "e7b7f5930904c5e79fb35fb32c9ce551b22a4c0637d35789ee3928ecdc6a9834",
+      "target_id": "CLM-013"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Procedure.md",
+      "line_end": 2,
+      "line_start": 1,
+      "preserved_text_sha256": "5d0e519691acbabdbd156a721aeb1c8a5795bbef1f401884cb5217e83a843a8b",
+      "source_sha256": "668f1b19d4f2cc9e97fd93ce6807c1d215042bba1f6eabde2d072d6414faeda3",
+      "target_id": "CLM-014"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Procedure.md",
+      "line_end": 8,
+      "line_start": 3,
+      "preserved_text_sha256": "cce0d332da39bee9708d7ad5b0ca6b08bacb782887a766dc2db298716ad49f8b",
+      "source_sha256": "668f1b19d4f2cc9e97fd93ce6807c1d215042bba1f6eabde2d072d6414faeda3",
+      "target_id": "CLM-015"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Procedure.md",
+      "line_end": 31,
+      "line_start": 9,
+      "preserved_text_sha256": "b3a5a621b0da81bba6098e3ee6f56c94b7d1921cabe82c827bc3931aa1cff7f7",
+      "source_sha256": "668f1b19d4f2cc9e97fd93ce6807c1d215042bba1f6eabde2d072d6414faeda3",
+      "target_id": "CLM-016"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Procedure.md",
+      "line_end": 89,
+      "line_start": 32,
+      "preserved_text_sha256": "918ec0203416b45ff5d886e7758422d75b36966c62ae5f2b2bd96d53658a3ef1",
+      "source_sha256": "668f1b19d4f2cc9e97fd93ce6807c1d215042bba1f6eabde2d072d6414faeda3",
+      "target_id": "CLM-017"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Procedure.md",
+      "line_end": 104,
+      "line_start": 90,
+      "preserved_text_sha256": "63657980c44c9f4e78b17230b948326e46baa0e34d01893a03d651fef67b783a",
+      "source_sha256": "668f1b19d4f2cc9e97fd93ce6807c1d215042bba1f6eabde2d072d6414faeda3",
+      "target_id": "CLM-018"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Procedure.md",
+      "line_end": 115,
+      "line_start": 105,
+      "preserved_text_sha256": "ecb94a105f5a7b4d8d33a52aa7aec80385119cb67d429b173286c9d00c215b5b",
+      "source_sha256": "668f1b19d4f2cc9e97fd93ce6807c1d215042bba1f6eabde2d072d6414faeda3",
+      "target_id": "CLM-019"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 2,
+      "line_start": 1,
+      "preserved_text_sha256": "45baf6d0376a7d4a3fbfbdb3cd39a253a8aa1a61630717a201875572d402c589",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-020"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 10,
+      "line_start": 3,
+      "preserved_text_sha256": "c38c460eecc64c22daf897c913fc36014619cd4016eb2b5ce50fbdd1d8108b6a",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-021"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 30,
+      "line_start": 11,
+      "preserved_text_sha256": "ecbd86bc734f677b23d73a8e848cdc2f63c9cb99e036e8114c2e1073cc8459fc",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-022"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 40,
+      "line_start": 31,
+      "preserved_text_sha256": "7120aed0cb615ad12b9dc31562ba4dbb6c9f614589654bc74c4b59927c67e4e0",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-023"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 51,
+      "line_start": 41,
+      "preserved_text_sha256": "ce495322e4242c75e4d45b2d7fed7f0b0c6a1ed72d57407149cf3def0be241b9",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-024"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 53,
+      "line_start": 52,
+      "preserved_text_sha256": "434e7370a8ece2e02b1adaac96a14da7d2802c9975d3db5858a7f94519cb7d5c",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-025"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 64,
+      "line_start": 54,
+      "preserved_text_sha256": "192e118ff9dac94f1f5916a1f52e1b99966ba361f8302a2271364b1f970f8a8c",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-026"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 74,
+      "line_start": 65,
+      "preserved_text_sha256": "974b54f82b7b28af6f76f517c962279aba8ef68bd33449f8d5c476e4b471389e",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-027"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 84,
+      "line_start": 75,
+      "preserved_text_sha256": "8d68e8d7cc3560ec46c6d98ce4d5a9b46a132a9a2d0208e6d4f9d1aca6f74cba",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-028"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 90,
+      "line_start": 85,
+      "preserved_text_sha256": "9d9c19103c093941c3ea72927fbb21d837c3f0a39d6b9bbcf59939afa293c7be",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-029"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 95,
+      "line_start": 91,
+      "preserved_text_sha256": "47c7047814ae4484766e1fba63a8bdab2dedaaec652e0880b065d5d18072211c",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-030"
+    },
+    {
+      "disposition": "PRESERVED",
+      "file": "Guidance.md",
+      "line_end": 98,
+      "line_start": 96,
+      "preserved_text_sha256": "ad40a0eb6b8176eeaf258063b221a26c890ef38b2b9d026356606233ed2996b6",
+      "source_sha256": "5af43e9ade097532b111a027f616ccc870dfc1c9baff05e73792abfe53eada7b",
+      "target_id": "CLM-031"
+    }
+  ]
+}

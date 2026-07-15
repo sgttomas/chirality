@@ -1,0 +1,40 @@
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:260: trailing whitespace.
++>    Output: code pointers for route validation, active-turn guard, provider/engine invocation, SSE writing, and cleanup.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:261: trailing whitespace.
++>    Current code pointers: route validation/lock/SSE cleanup in `frontend/src/app/api/harness/turn/route.ts`; stub active-turn state in `frontend/src/lib/harness/agent-sdk-manager.ts`; Anthropic active-turn state and `AbortController` handling in `frontend/src/lib/harness/anthropic-agent-sdk-manager.ts`; route/interrupt tests in `frontend/src/__tests__/api/harness/routes.test.ts`.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:266: trailing whitespace.
++>    Include active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:267: trailing whitespace.
++>    Source: `docs/SPEC.md` Section 10.2.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:273: trailing whitespace.
++>    Source: `docs/PRD.md` FR-070; `docs/SPEC.md` Section 10.1.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:278: trailing whitespace.
++>    Keep route responsibilities limited to request validation, session lock acquisition, attachment option forwarding, SSE encoding, cancellation cleanup, and error response handling.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:279: trailing whitespace.
++>    Source: `docs/SPEC.md` Section 10.4; `docs/PRD.md` FR-071.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:284: trailing whitespace.
++>    A concurrent turn attempt for the same session must return `TURN_IN_PROGRESS`.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:285: trailing whitespace.
++>    Source: `docs/PRD.md` FR-018.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:290: trailing whitespace.
++>    Release the active-turn lock after normal completion, adapter failure, route abort, and cancellation cleanup.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:291: trailing whitespace.
++>    Source: `docs/SPEC.md` Section 10.4; `docs/CONTRACT.md` K-EVENT-3.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:296: trailing whitespace.
++>    Ensure `turn.accepted` is written before SDK/model/provider execution begins.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:297: trailing whitespace.
++>    Source: `docs/SPEC.md` Section 10.1; `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` FR-021.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:302: trailing whitespace.
++>    Persist durable terminal records for success, failure, and cancellation.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:303: trailing whitespace.
++>    Source: `docs/PRD.md` FR-022; `docs/CONTRACT.md` K-EVENT-3.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:309: trailing whitespace.
++>    Source: `docs/SPEC.md` Section 11.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:314: trailing whitespace.
++>    SDK-specific message names, session IDs, tool names, permission modes, transcript paths, and hook names must remain adapter metadata and not define public APIs, browser events, or canonical event schemas.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:315: trailing whitespace.
++>    Source: `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` K-CORE-1, K-ENGINE-4.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:320: trailing whitespace.
++>    Minimum checks: existing tests, Section 8 validation where available, route/SSE compatibility, `TurnEngine` unit tests, lock cleanup tests, session lifecycle tests, accepted-turn ordering, and terminal outcome tests.  
+projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md:321: trailing whitespace.
++>    Source: `docs/SPEC.md` Sections 19.2-19.3; `docs/PRD.md` Sections 12.5-12.6.  

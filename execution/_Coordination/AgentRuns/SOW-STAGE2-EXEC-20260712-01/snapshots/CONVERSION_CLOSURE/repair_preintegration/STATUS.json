@@ -1,0 +1,12 @@
+{
+  "agent": "RECONCILIATION",
+  "basis": "715f618e93528d626a73d2134781e8c9c27f6c90",
+  "change_manifest_sha256": "f3f17fec99fa54cad63fb6d05af0272c47d3b3f505ac6787dfa58661dae8e2b6",
+  "completed_at": "2026-07-15T04:44:24Z",
+  "instance": "RECON-CLEAN-REPAIR",
+  "project_paths": 57,
+  "reproduction_manifest_sha256": "d8976f60b5fd17cec0cc117c788669db758b81a0abb11a91b6cf57ff8f517d32",
+  "run": "SOW-STAGE2-EXEC-20260712-01",
+  "schema": "chirality-agent-return/v1",
+  "status": "PASS"
+}

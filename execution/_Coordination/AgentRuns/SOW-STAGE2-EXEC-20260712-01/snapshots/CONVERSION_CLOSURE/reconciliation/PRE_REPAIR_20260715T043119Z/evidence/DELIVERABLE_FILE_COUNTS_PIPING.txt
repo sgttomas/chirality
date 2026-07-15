@@ -1,0 +1,227 @@
+=== Deliverable File Inventory ===
+
+Total deliverable folders: 204
+
+_STATUS.md: 101 / 204
+_CONTEXT.md: 101 / 204
+_DEPENDENCIES.md: 101 / 204
+_REFERENCES.md: 101 / 204
+Datasheet.md: 8 / 204
+Specification.md: 8 / 204
+Guidance.md: 8 / 204
+Procedure.md: 8 / 204
+ScopeOfWork.md: 93 / 204
+Dependencies.csv: 93 / 204
+_MEMORY.md: 0 / 204
+_SEMANTIC.md: 101 / 204
+_SEMANTIC_LENSING.md: 101 / 204
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+tools/evaluation/count_deliverable_files.sh: line 53: print: command not found
+
+Production format SOW_V1: 0 / 204
+Production format LEGACY_FOUR_DOC: 0 / 204
+Production format MIGRATION_DUAL: 0 / 204
+Production format AMBIGUOUS: 0 / 204
+Production format INVALID: 204 / 204

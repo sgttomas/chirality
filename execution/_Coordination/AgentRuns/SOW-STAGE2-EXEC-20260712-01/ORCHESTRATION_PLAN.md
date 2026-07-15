@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `P4 PREINTEGRATION ACCEPTED — CHANGE RELEASED`
+Status: `P4 INTEGRATED — CORPUS CLOSURE FAN-IN RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v76`
+Graph version: `v77`
 
 ## Objective and accepted basis
 
@@ -181,6 +181,16 @@ W-P4 is released behind accepted W-P3. Corpus closure remains parked behind
 W-P4 and the already integrated H1 replacement; H2 remains a fresh human gate.
 CHANGE is the sole integration owner for every Git mutation. Root `execution/`
 remains control-plane-only and may not acquire `PKG-*` or `DEL-*` structure.
+
+Fresh conversion-closure fan-in found a bounded implementation defect in the
+already-authorized corpus: 57 live production contracts (all 53 App members
+and four Piping pilots) retain evidence-candidate metadata prohibited by
+`CLEAN-SOW-PRODUCTION-001`. This is not a scope or lifecycle change. Direct
+`WORKING-CLEAN-REPAIR` is released without a child to apply only the registered
+deterministic finalizer, preserve the externalized metadata in repair evidence,
+and return the exact project delta for independent RECONCILIATION and
+EVALUATION reruns. Integration remains reserved to a fresh CHANGE manager;
+H2 and legacy retirement remain parked.
 
 ## Coordination and fan-in
 
