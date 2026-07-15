@@ -216,3 +216,10 @@ Piping checks. Fresh direct EVALUATION independently passes the same material
 state and produces the exact H2 slate. HELP_HUMAN accepts the fan-in and
 releases `CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED`. H2 remains
 unapproved; compatibility and legacy retirement remain unchanged and parked.
+
+The human subsequently approved **H2-R — retain compatibility; no retirement**
+at exact closure commit
+`92725eace3ef50306bf0c09032bc59492e636c01`. This closes the Stage-2 loop by
+retaining the eight PKG-00 legacy contracts, compatibility skill, validator,
+format-aware callers, and accepted rollback support. No implementation,
+project, lifecycle, rollback, or retirement write is authorized or performed.
