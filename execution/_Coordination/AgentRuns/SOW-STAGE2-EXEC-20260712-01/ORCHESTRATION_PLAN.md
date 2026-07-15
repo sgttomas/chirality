@@ -1,6 +1,6 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `P3 PREINTEGRATION ACCEPTED — CHANGE RELEASED`
+Status: `P3 INTEGRATED — P4 RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
@@ -142,6 +142,34 @@ inverse rollback simulation, 264 practitioner tests, 20 root export/Scope-of-
 Work tests, dependency schemas, root validators, and whole-diff hygiene. W-P2
 integration is closed and P3 is dependency-released.
 
+All three W-P3 package managers returned PASS for the 15 PKG-10–12 members.
+PKG-11's two stale ignored-residue bindings were repaired and transitively
+rebound under its versioned brief; PKG-12's contaminated initial verifier
+remains terminal BLOCKED and excluded, while its single authorized fresh
+replacement passed with zero prohibited reads. Direct fresh `RECON-P3` then
+reproduced the complete wave: 493 mappings, 4,919 source lines, 45 candidates,
+exact 75-row replacement/inverse manifests, 15 simulations, 105 negatives,
+135 live bindings, 15 dependency schemas, focused and 264 practitioner tests,
+56 predecessors, and 88 valid PKG-00 upstream edges. HELP_HUMAN reproduced
+and accepted the immutable 154-row snapshot at SHA-256
+`9bd3fbc04be6ed07a5123cc26da0119dbb4a3c835b38b73a949c09bdf72963c7`.
+
+`CHANGE-P3` integrated the 15 ordered atomic five-path replacement commits
+through ready PR #233 after `governance-harness / harness` passed on exact
+source head `2628c4ec68d65c7fa422c202d12f95d11b9e456b`; the merge commit is
+`b999fbd24852aa6acee36a61c2f049c7a2e6fa36`. Fresh isolated postmerge
+reproduction passes the exact 75-row project delta, all target/control hashes
+and formats, inverse rollback simulation without execution, 264 practitioner
+tests, 20 root export/Scope-of-Work tests, dependency schemas, root validators,
+and project diff hygiene. The immutable postmerge manifest SHA-256 is
+`15affcebf7c766a27879e90f39891b0d9035268475a0ae35452f2a1d2ca5918f`.
+The fresh worktree also exposed three ignored compiled-residue rows in the
+current PKG-10 author and PKG-12 verifier manifests. CHANGE removed only those
+untracked residue bindings, transitively rebuilt the two package manifests,
+and revalidated all ten package/child manifests without changing candidates,
+project state, semantic evidence, or the immutable accepted snapshot. W-P3
+integration is closed and W-P4 is dependency-released.
+
 `WORKING-I0-PKG01` returned PASS after a fresh author and fresh independent
 verifier. The exact ISSUED source/status/authority basis is preserved; the
 clean candidate binds 27 mappings and 272/272 physical source lines; exact
@@ -149,10 +177,10 @@ replacement/inverse manifests, simulation, negative behavior, containment,
 and required tests pass. I0 RECONCILIATION is released for direct single-
 manager full reproduction. H1 remains unapproved and integration prohibited.
 
-All later nodes remain parked behind the accepted graph edges. H1 and H2
-remain fresh human gates. CHANGE is the sole integration owner for every Git
-mutation. Root `execution/` remains control-plane-only and may not acquire
-`PKG-*` or `DEL-*` structure.
+W-P4 is released behind accepted W-P3. Corpus closure remains parked behind
+W-P4 and the already integrated H1 replacement; H2 remains a fresh human gate.
+CHANGE is the sole integration owner for every Git mutation. Root `execution/`
+remains control-plane-only and may not acquire `PKG-*` or `DEL-*` structure.
 
 ## Coordination and fan-in
 

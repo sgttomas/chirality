@@ -15,8 +15,6 @@ ce378fedf8e911e6f6b8579f90c49c96a9c756147ad4884e26c886a2b553896a	1982	execution/
 7588b8888f0c6ba0fb6ebf6cfa4d8fe3c8b310c08d883a68b74c4754d6c99b37	375	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/VERDICTS.tsv
 eaf78e5a5275a18add380dd74c649ceedf3a58a209a5b4fcfdd7b986d335e7c4	151	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/WHOLE_DIFF_HYGIENE.txt
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/WHOLE_DIFF_HYGIENE.warnings
-72a4a96259068c363c6b339a4eb79ffac0f04123ba789a1056880381b6365208	7972	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/__pycache__/finalize_author_pkg10.cpython-313.pyc
-00dd956ea83538a566f877561b9dc30f21f23f3b038abc2f2f5f8defb4ede0b8	6552	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/__pycache__/run_author_pkg10.cpython-313.pyc
 7448eabcb901de98d1af77c700778ab0cff9e2cbe34b0d9a64746d171365893a	2568	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/_run_records/TASK_RUN_2026-07-14_AUTHOR-B1.md
 9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa	2	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/dependency-schema-1.exit
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	0	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/AUTHOR-B1/dependency-schema-1.stderr

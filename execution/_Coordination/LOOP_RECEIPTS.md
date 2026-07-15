@@ -336,3 +336,23 @@
 - Handoff: `snapshots/W_P2/integration/postmerge/`.
 - State: W-P2 integration is closed and W-P3 is released. W-P4, conversion
   closure, rollback execution, retirement, and H2 remain parked.
+
+### Receipt 22 — 2026-07-14 — W-P3 integrated; P4 released
+
+- Binding: ready PR #233 passed `governance-harness / harness` on source head
+  `2628c4ec68d65c7fa422c202d12f95d11b9e456b` and merged as
+  `b999fbd24852aa6acee36a61c2f049c7a2e6fa36`.
+- Result: 15 PKG-10–12 members are clean `SOW_V1`; the project delta is
+  exactly 15 additions plus 60 legacy deletions, with all status/control/
+  dependency/lifecycle bytes preserved.
+- Evidence: 493 mappings, 4,919/4,919 source lines, 15/15 simulations, exact
+  75-row replacement/inverse manifests, 264 practitioner tests, 20 export/
+  Scope-of-Work tests, root validators, and isolated postmerge checks pass.
+- Handoff: `snapshots/W_P3/integration/postmerge/`, manifest SHA-256
+  `15affcebf7c766a27879e90f39891b0d9035268475a0ae35452f2a1d2ca5918f`.
+- Portability closeout: three ignored compiled-residue rows were removed from
+  the current PKG-10 author and PKG-12 verifier manifests; both package
+  manifests were rebuilt and all ten current package/child manifests pass
+  8,796 existence/byte/hash bindings with zero candidate or project change.
+- State: W-P3 integration is closed and W-P4 is released. Conversion closure,
+  rollback execution, retirement, and H2 remain parked.

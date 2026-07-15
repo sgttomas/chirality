@@ -5,6 +5,12 @@
       "before_sha256": "23399f4add3904980d180b971098c2f5a0cf2f3d2d630ec4799aa52e653c39a1",
       "change": "append terminal LF",
       "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/CHANGE-P3/PRACTITIONER_HARNESS.junit.xml"
+    },
+    {
+      "after_sha256": "672ee2e84d0035d08eccde05309cb2aa2ee1a5a3615a8c194cec37c006788d39",
+      "before_sha256": "987063a6ae8c769d38c3c6bdaf9548ba6f5a966c2bd1bad8d18846c91dc58864",
+      "change": "append terminal LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P3/integration/postmerge/PRACTITIONER_HARNESS.junit.xml"
     }
   ],
   "verdict": "PASS"
