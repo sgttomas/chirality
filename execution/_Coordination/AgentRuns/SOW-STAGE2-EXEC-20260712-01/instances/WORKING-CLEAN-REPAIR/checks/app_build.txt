@@ -1,0 +1,55 @@
+
+> chirality-frontend@0.1.0 build
+> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/23) ...
+   Generating static pages (5/23) 
+   Generating static pages (11/23) 
+   Generating static pages (17/23) 
+ ✓ Generating static pages (23/23)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                          Size     First Load JS
+┌ ○ /                                                1.18 kB         172 kB
+├ ○ /_not-found                                      137 B          87.4 kB
+├ ƒ /api/harness/agents                              0 B                0 B
+├ ƒ /api/harness/interrupt                           0 B                0 B
+├ ƒ /api/harness/permission                          0 B                0 B
+├ ƒ /api/harness/scaffold                            0 B                0 B
+├ ƒ /api/harness/session/[id]                        0 B                0 B
+├ ƒ /api/harness/session/[id]/events                 0 B                0 B
+├ ƒ /api/harness/session/boot                        0 B                0 B
+├ ƒ /api/harness/session/create                      0 B                0 B
+├ ƒ /api/harness/session/list                        0 B                0 B
+├ ƒ /api/harness/turn                                0 B                0 B
+├ ƒ /api/project/deliverables                        0 B                0 B
+├ ƒ /api/working-root/deliverable/content            0 B                0 B
+├ ƒ /api/working-root/deliverable/dependencies       0 B                0 B
+├ ƒ /api/working-root/deliverable/status             0 B                0 B
+├ ƒ /api/working-root/deliverable/status/transition  0 B                0 B
+├ ƒ /api/working-root/scope                          0 B                0 B
+├ ƒ /api/working-root/tree                           0 B                0 B
+├ ƒ /api/working-root/validate                       0 B                0 B
+├ ○ /chat                                            1.09 kB         172 kB
+├ ○ /pipeline                                        633 B           171 kB
+└ ○ /workbench                                       625 B           171 kB
++ First Load JS shared by all                        87.3 kB
+  ├ chunks/422-a8243f8bec337f4e.js                   31.7 kB
+  ├ chunks/b3dc336a-735dfaf546cf13af.js              53.7 kB
+  └ other shared chunks (total)                      1.89 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> chirality-frontend@0.1.0 build:electron
+> tsc -p tsconfig.electron.json
+

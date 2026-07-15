@@ -1,0 +1,87 @@
+
+> openpipestress-workspace@0.1.0 test:desktop
+> npm test --workspace apps/desktop
+
+
+> @openpipestress/desktop@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.7 /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop
+
+ ❯ src/features/rule-packs/ExpressionComposer.test.tsx (0 test)
+ ❯ src/App.deadControls.test.tsx (0 test)
+ ❯ src/App.test.tsx (0 test)
+ ❯ src/features/rule-packs/DeclarationsEditor.test.tsx (0 test)
+ ❯ src/features/library/LibraryManagerPanel.test.tsx (0 test)
+ ❯ src/features/rule-packs/RulePackManagerPanel.test.tsx (0 test)
+ ❯ src/features/model-tree/schemaSlotEmission.test.tsx (0 test)
+ ❯ src/features/local-fea-handoff/LocalFeaHandoffPanel.test.tsx (0 test)
+ ❯ src/features/rule-packs/CheckDefinitionsEditor.test.tsx (0 test)
+ ❯ src/services/previewService.test.ts (0 test)
+ ❯ src/features/rule-check/RuleCheckRunPanel.test.tsx (0 test)
+ ❯ src/features/redaction-controls/redactionExportControls.test.ts (0 test)
+ ❯ src/services/operationContractCorpus.test.ts (0 test)
+ ❯ src/features/report/renderedReport.test.tsx (0 test)
+ ❯ src/services/libraryImportService.test.ts (0 test)
+ ❯ src/services/operationService.test.ts (0 test)
+ ❯ src/features/redaction-controls/RedactionExportControlsPanel.test.tsx (0 test)
+ ❯ src/services/projectService.test.ts (0 test)
+ ❯ src/services/ruleCheckService.test.ts (0 test)
+ ❯ src/services/hashService.test.ts (0 test)
+ ❯ src/services/unitCatalogService.test.ts (0 test)
+ ❯ src/services/unitConversion.test.ts (0 test)
+ ❯ src/services/telemetryPolicyService.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 23 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.deadControls.test.tsx [ src/App.deadControls.test.tsx ]
+ FAIL  src/App.test.tsx [ src/App.test.tsx ]
+ FAIL  src/services/hashService.test.ts [ src/services/hashService.test.ts ]
+ FAIL  src/services/libraryImportService.test.ts [ src/services/libraryImportService.test.ts ]
+ FAIL  src/services/operationContractCorpus.test.ts [ src/services/operationContractCorpus.test.ts ]
+ FAIL  src/services/operationService.test.ts [ src/services/operationService.test.ts ]
+ FAIL  src/services/previewService.test.ts [ src/services/previewService.test.ts ]
+ FAIL  src/services/projectService.test.ts [ src/services/projectService.test.ts ]
+ FAIL  src/services/ruleCheckService.test.ts [ src/services/ruleCheckService.test.ts ]
+ FAIL  src/services/telemetryPolicyService.test.ts [ src/services/telemetryPolicyService.test.ts ]
+ FAIL  src/services/unitCatalogService.test.ts [ src/services/unitCatalogService.test.ts ]
+ FAIL  src/services/unitConversion.test.ts [ src/services/unitConversion.test.ts ]
+ FAIL  src/features/library/LibraryManagerPanel.test.tsx [ src/features/library/LibraryManagerPanel.test.tsx ]
+ FAIL  src/features/local-fea-handoff/LocalFeaHandoffPanel.test.tsx [ src/features/local-fea-handoff/LocalFeaHandoffPanel.test.tsx ]
+ FAIL  src/features/model-tree/schemaSlotEmission.test.tsx [ src/features/model-tree/schemaSlotEmission.test.tsx ]
+ FAIL  src/features/redaction-controls/RedactionExportControlsPanel.test.tsx [ src/features/redaction-controls/RedactionExportControlsPanel.test.tsx ]
+ FAIL  src/features/redaction-controls/redactionExportControls.test.ts [ src/features/redaction-controls/redactionExportControls.test.ts ]
+ FAIL  src/features/report/renderedReport.test.tsx [ src/features/report/renderedReport.test.tsx ]
+ FAIL  src/features/rule-check/RuleCheckRunPanel.test.tsx [ src/features/rule-check/RuleCheckRunPanel.test.tsx ]
+ FAIL  src/features/rule-packs/CheckDefinitionsEditor.test.tsx [ src/features/rule-packs/CheckDefinitionsEditor.test.tsx ]
+ FAIL  src/features/rule-packs/DeclarationsEditor.test.tsx [ src/features/rule-packs/DeclarationsEditor.test.tsx ]
+ FAIL  src/features/rule-packs/ExpressionComposer.test.tsx [ src/features/rule-packs/ExpressionComposer.test.tsx ]
+ FAIL  src/features/rule-packs/RulePackManagerPanel.test.tsx [ src/features/rule-packs/RulePackManagerPanel.test.tsx ]
+Error: WASM-ENGINE-ASSET-ABSENT: wasm artifact not found on disk: probed: /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop/public/wasm-engine, /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop/public/wasm-engine, /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop/apps/desktop/public/wasm-engine — the wasm operation engine is required in browser mode (DEC-020 / ADR-0001) and no fallback engine exists. Build it with `npm run build:wasm --workspace apps/desktop`.
+ ❯ absenceError src/services/wasmEngine/loadWasmEngine.ts:56:10
+     54|
+     55| function absenceError(stage: string, detail: string): Error {
+     56|   return new Error(
+       |          ^
+     57|     `${WASM_ENGINE_ABSENT_DIAGNOSTIC}: ${stage}: ${detail} — the wasm …
+     58|       `browser mode (DEC-020 / ADR-0001) and no fallback engine exists…
+ ❯ locateAssetsUnderNode src/services/wasmEngine/loadWasmEngine.ts:99:9
+ ❯ instantiate src/services/wasmEngine/loadWasmEngine.ts:107:36
+ ❯ src/test/setup.ts:10:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/23]⎯
+
+
+ Test Files  23 failed (23)
+      Tests  no tests
+   Start at  22:34:05
+   Duration  1.90s (transform 135ms, setup 0ms, import 0ms, tests 0ms, environment 7.70s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop
+npm error workspace @openpipestress/desktop@0.1.0
+npm error location /private/tmp/chirality-clean-repair.VHFKUM/piping/apps/desktop
+npm error command failed
+npm error command sh -c vitest run

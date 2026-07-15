@@ -1,0 +1,19 @@
+{
+  "instance_id": "EVALUATION-CLOSURE",
+  "role": "EVALUATION",
+  "status": "BLOCKED_WITH_HANDOFF",
+  "terminal": true,
+  "brief_version": 1,
+  "basis": "715f618e93528d626a73d2134781e8c9c27f6c90",
+  "delegation": "none",
+  "conversion_population": 146,
+  "sow_v1": 146,
+  "pkg00_legacy_exemptions": 8,
+  "rollback_rows": 730,
+  "blockers": ["EVAL-CLOSE-001"],
+  "waivers": [],
+  "material_unknowns": [],
+  "h2_ready": false,
+  "recon_consumed": false,
+  "next_owner": "WORKING-CLEAN-REPAIR then verification/RECONCILIATION/CHANGE and fresh EVALUATION"
+}

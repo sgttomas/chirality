@@ -1,0 +1,28 @@
+{
+  "basis": "715f618e93528d626a73d2134781e8c9c27f6c90",
+  "converted_formats": {
+    "SOW_V1": 146
+  },
+  "errors": [],
+  "forbidden_residue_members": [],
+  "formats": {
+    "LEGACY_FOUR_DOC": 8,
+    "SOW_V1": 146
+  },
+  "lifecycle": {
+    "IN_PROGRESS": 153,
+    "ISSUED": 1
+  },
+  "pkg00_exemptions": 8,
+  "project_paths": 57,
+  "project_populations": {
+    "chirality-app-dev": 53,
+    "chirality-piping": 4
+  },
+  "reproduced_outputs": 57,
+  "reproduction_manifest_sha256": "d8976f60b5fd17cec0cc117c788669db758b81a0abb11a91b6cf57ff8f517d32",
+  "schema": "chirality-sow-clean-repair-reconciliation/v1",
+  "source_blocks": 1753,
+  "verdict": "PASS",
+  "wording_updates": 52
+}

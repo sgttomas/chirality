@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-managed-instance-status/v1",
+  "instance_id": "WORKING-CLEAN-REPAIR",
+  "role": "WORKING_ITEMS",
+  "status": "PASS",
+  "basis_commit": "715f618e93528d626a73d2134781e8c9c27f6c90",
+  "members": 57,
+  "projects": {
+    "chirality-app-dev": 53,
+    "chirality-piping": 4
+  },
+  "manifest_sha256": "21287ee0a3ef6fbcda6b0870fe7d81f82eb4b899d4cbed047a5772dce6d3e838",
+  "validation_sha256": "6e6839dd3eb0a2272e5a23476d474b51bde94e6f94668c8b3b4d3e2cf3c92b7b",
+  "blockers": [],
+  "rerun_requirements": []
+}

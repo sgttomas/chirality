@@ -1,0 +1,14 @@
+{
+  "basis": "715f618e93528d626a73d2134781e8c9c27f6c90",
+  "errors": [],
+  "members": 146,
+  "operations": {
+    "ADD": 496,
+    "DELETE": 146,
+    "RESTORE": 88
+  },
+  "rows": 730,
+  "schema": "chirality-sow-clean-repair-rollback-audit/v1",
+  "sources": 11,
+  "verdict": "PASS"
+}

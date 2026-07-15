@@ -1,0 +1,8 @@
+{
+  "schema": "chirality-sow-clean-repair-app-test-rerun/v1",
+  "reason": "attempt 1 disposable copy omitted repository-level test fixtures",
+  "exit_code": 0,
+  "duration_seconds": 4.591,
+  "output_sha256": "c9fe69d03d656a1cc27f37b16f703d4301a0a1a3604efee90fadb62440e1fa45",
+  "verdict": "PASS"
+}
