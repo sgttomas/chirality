@@ -1,99 +1,78 @@
-# Root Scope-of-Work Governance Handoff State
+# Root PKG-00 Post-Consolidation Handoff State
 
-Status: `STAGE2_CLOSED — H2-R COMPATIBILITY RETAINED`
+Status: `STAGE2_CLOSED — PKG-00 CONSOLIDATED; COMPATIBILITY MACHINERY RETAINED`
 
-## Accepted upstream basis
+## Accepted upstream state
 
-- Frozen root main: `2770fda4c63c98ee9f18cffbafd14c9aa59f497f`.
-- D-GOV-15 published ruling:
-  `58aa81d62f4a32e3c2d687e4356a1e4be8141674`, including its owner-authorized
-  deterministic-checklist addendum.
-- App pilot evidence branch/commit:
-  `codex/sow-app-pilot@fb83ffca8a7f674db13c6cda775ca7b7d7c8ef26`.
-- Piping pilot evidence branch/commit:
-  `codex/sow-piping-pilot@31c35ea9798c29cd0af16b7089186f3942dcfcb1`.
-- Stage-1 proposal/evidence snapshot:
-  `31e5efd985db4cc7b25543e11a65933979e07e4f` on
-  `codex/sow-stage1-execution`.
-- D-GOV-16 owner ruling, 2026-07-12: items 1–10 `APPROVED` exactly as
-  proposed; published ruling snapshot:
-  `7584718aa32b112e415331736d1a8e68c12ac176`.
-- Synchronized planning basis: `main@c9af689118e4e87f329e1ab4c6e71fea331b2674`.
-- Presented Stage-2 plan branch/snapshot:
-  `codex/sow-stage2-plan@27f03730c956447b9a9696422cc9c63b8f061939`;
-  package `execution/_Coordination/AgentRuns/SOW-STAGE2-PLAN-20260712/`.
-- Accepted Stage-2 root-loop activation snapshot:
-  `1eebc67ca0ce82bb2ae320fec49b1568fa037ba1`; deterministic pointer
-  `CURRENT_WORKPLAN.md` selects
-  `WORKPLAN_2026-07-12_scope_of_work_stage2.md`.
+- Scope-of-Work Stage-2 conversion and rollback closure remains accepted on
+  its frozen evidence: 146 clean `SOW_V1` production members, complete
+  rollback support, and no lifecycle mutation.
+- The owner approved H2-R at
+  `92725eace3ef50306bf0c09032bc59492e636c01`; Receipt 26 and its frozen
+  evidence accurately record that decision on its 2026-07-14 basis.
+- The owner later reversed the PKG-00 file-disposition portion of H2-R and
+  directed the eight Piping members to remain reference context in
+  consolidated form. Piping decision D-43 implemented that direction and PR
+  #242 merged it as `291301291bdaa8ec6b64dbbf3cff98ecfeadeca7`.
+- The current reading contract is bound by Piping D-43,
+  `ArchitectureBasis.md`, deliverable-local `_STATUS.md`, and
+  `SOFTWARE_DECOMP.md` revision 0.9.
 
-## Closure verdict
+## Current governed truth
 
-Stage 2 conversion and rollback closure is accepted on exact
-`origin/main@79de30d83b91a2ab468a3f17536a5233c2f85fe7`. The live tracked census is
-154: 146 valid clean single-format `SOW_V1` conversion members and eight exact
-Piping PKG-00 legacy governance-context exemptions. Lifecycle remains 153
-`IN_PROGRESS` plus sole issued Piping `DEL-01-01`; production migration residue
-is zero. All 730 inverse rows and 146 composed rollback round trips pass. Root,
-App, Piping, caller, compatibility, containment, and validator checks pass.
+- The eight Piping PKG-00 directories contain exactly one current
+  `ArchitectureBasis.md` each and no live `Datasheet.md`, `Specification.md`,
+  `Procedure.md`, `Guidance.md`, or `ScopeOfWork.md` production contract.
+- All eight deliverable lifecycle files remain `IN_PROGRESS`; consolidation
+  and alignment make no review, issuance, release, reliance, or professional
+  acceptance claim.
+- PKG-00 remains upstream-only architecture-basis context. Downstream packages
+  consume applicable AB-00-01..08 constraints; PKG-00 consumes no package
+  deliverable dependency.
+- Root compatibility-only authoring, validation, reading, and rollback
+  machinery remains retained. The owner did not authorize its retirement by
+  reversing the eight PKG-00 file dispositions.
 
-Final independent manifests:
+## Derivative and historical status
 
-- RECONCILIATION:
-  `7975141369025a50087c6f8d94b51d59740d0adabb49576518c9c4d7926add27`.
-- EVALUATION:
-  `3a17c5b5637216b74018206a931a4a01fb6c90769094ac77d4a3c57da47b133f`.
+- Receipt 26, the accepted Stage-2 workplan, H2-R snapshots, conversion
+  manifests, rollback evidence, and prior handoffs remain immutable historical
+  evidence. They are not rewritten to describe the later D-43 state.
+- Each deliverable `_CONTEXT.md` remains the revision-0.7 sealed setup context
+  and is explicitly marked superseded for current consumption.
+- `MEMORY.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`, and `_run_records/`
+  remain dated historical or derivative evidence. Their former-kit citations
+  resolve through the D-43 consolidation manifest and Git history.
+- DAG-007 remains an immutable accepted derivative and therefore retains its
+  pre-D-43 `HasFourDocumentKit=TRUE` attributes until the DAG-owning workflow
+  publishes a successor.
 
-The human approved H2-R at exact commit
-`92725eace3ef50306bf0c09032bc59492e636c01`: retain compatibility and perform
-no retirement. The eight PKG-00 contracts and accepted rollback path continue
-to be supported by the legacy skill, validator, readers, and callers. No
-project, skill, tool, caller, lifecycle, rollback, historical-evidence, or
-retirement implementation write is authorized.
+## Validation and closure verdict
 
-## Historical Stage-1 and plan closure
+The alignment contract requires:
 
-Stage 1 is `PASS`. All ten authorized candidates passed independent
-preservation audit: 325/325 claim mappings are `PRESERVED`, 3,466/3,466 source
-lines are covered, the 40 legacy sources and ten statuses are byte-identical
-to the frozen basis, all pilot lifecycle states remain `IN_PROGRESS`, and no
-fresh conversion or verifier rerun was required. Schema, project content, and
-preservation pass; authorized serialized conversion fallback is separately
-reported from native verifier PASS.
+- eight-member ArchitectureBasis census and manifest-hash validation;
+- current `_REFERENCES.md` and `_DEPENDENCIES.md` navigation;
+- preserved setup-context notices and unchanged lifecycle authority;
+- strict canonical DAG-007 validation;
+- project validator tests and root practitioner-harness checks.
 
-The owner-authorized governance correction replaced repeated agentic checklist
-extraction with a deterministic `AC-*` compiler and a REVIEW exact-consumer
-contract. Ten-pilot reproduction passes byte-for-byte. The full evidence is
-derivative and does not replace deliverable, decomposition, lifecycle, or
-human-decision truth.
+All required checks passed on the alignment branch: the eight-member validator,
+498 Piping tests, strict canonical DAG-007 audit, 264 practitioner-harness
+tests, and harness self-check. The closure verdict is
+`CLOSED_CURRENT_STATE_ALIGNED`. This is current-state alignment only; it does
+not reaccept lifecycle, issue the members, refresh DAG-007, or retire root
+compatibility machinery.
 
-The fresh D-GOV-16 Stage-2 orchestration plan is accepted for the next
-goal-oriented execution session and has been integrated into the deterministic
-root bootstrap chain. The plan and loop activation passed their sealed checks,
-but no Stage-2 node has been dispatched or implemented.
+## Parked lanes and rerun requirements
 
-## D-GOV-16 ruled package
-
-`docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md`
-is `RULED`, with items 1–10 approved exactly as proposed and bound to the
-proposal snapshot above. The exact successor-standard bytes are ratified. The
-exact approved TYPES/SPEC patches remain unapplied and queued for a later
-governed tranche. The evidence index and exact-byte artifacts remain under
-`docs/governance_harness/_PROPOSALS/D-GOV-16/`; the patches require
-`git apply --unidiff-zero --check` against the synchronized implementation
-basis.
-
-## Required stop and release condition
-
-Conversion and the Stage-2 decision loop are closed under H2-R. Compatibility
-remains supported and legacy retirement is not authorized. Any later proposal
-to retire authoring or compatibility must begin as a new governed objective
-with a fresh human ruling; this H2-R record cannot be reinterpreted as
-preparation or deletion authority.
-
-## Rerun requirements
-
-No rerun is required for H2-R because live behavior is unchanged. Any later
-retirement objective requires a fresh synchronized basis, census, changed/
-caller manifest, rollback analysis, root/App/Piping suites, independent
-EVALUATION and RECONCILIATION, human acceptance, and a separate CHANGE gate.
+- **Root compatibility retirement:** parked for a new explicit human ruling,
+  fresh synchronized caller census, rollback-impact analysis, independent
+  evaluation/reconciliation, and CHANGE closeout.
+- **DAG successor:** parked for the Piping DAG-owning workflow. It must consume
+  D-43 and the current eight-member reading contract rather than mutate
+  DAG-007.
+- **PDU-007 and TP-SEAM-WASM-001:** remain routed to REVIEW through their
+  recorded project gates.
+- Any future PKG-00 representation, lifecycle, authority, or dependency change
+  requires a fresh governed tranche and a new immutable handoff.
