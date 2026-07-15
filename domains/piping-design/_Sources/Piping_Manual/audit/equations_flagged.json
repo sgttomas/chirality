@@ -1,0 +1,23 @@
+{
+  "389:def2af1216af": {
+    "page": 389,
+    "hash": "def2af1216af",
+    "kind": "equations",
+    "description": "b = \\frac{4V}{\\pi D^2}",
+    "flagged_at": "2026-07-14"
+  },
+  "389:e15cd49ce8ac": {
+    "page": 389,
+    "hash": "e15cd49ce8ac",
+    "kind": "equations",
+    "description": "b = \\frac{4 \\times 842{,}245}{(3.1417)(150^2)}",
+    "flagged_at": "2026-07-14"
+  },
+  "390:2f6aac8016df": {
+    "page": 390,
+    "hash": "2f6aac8016df",
+    "kind": "equations",
+    "description": "V = \\frac{3.1417 \\times 1}{3} \\times (6{,}084 + 6{,}201 + 6{,}320)",
+    "flagged_at": "2026-07-14"
+  }
+}

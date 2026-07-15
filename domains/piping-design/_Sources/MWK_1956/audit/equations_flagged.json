@@ -704,7 +704,7 @@
     "hash": "6b471e78c2a6",
     "kind": "equations",
     "description": "k = 1.65\\h (3.5)",
-    "flagged_at": "2026-07-07"
+    "flagged_at": "2026-07-14"
   },
   "264:f6d1712c731f": {
     "page": 264,
@@ -1412,5 +1412,173 @@
     "kind": "equations",
     "description": "F = \\frac{\\pi E D t^3 \\Delta}{w^3 N_d} \\quad (7.11)",
     "flagged_at": "2026-07-08"
+  },
+  "346:d1715bb1da25": {
+    "page": 346,
+    "hash": "d1715bb1da25",
+    "kind": "equations",
+    "description": "F_{xA} = -F_{xC} = -10^{6} A_{1} I_{e} / L^{2}",
+    "flagged_at": "2026-07-14"
+  },
+  "346:6a30718ee28c": {
+    "page": 346,
+    "hash": "6a30718ee28c",
+    "kind": "equations",
+    "description": "F_{yA} = -F_{yC} = +10^6 A_2 I e / L^2",
+    "flagged_at": "2026-07-14"
+  },
+  "346:ce9ab97680f3": {
+    "page": 346,
+    "hash": "ce9ab97680f3",
+    "kind": "equations",
+    "description": "M_{zA} = +10^6 A_3 I e / L",
+    "flagged_at": "2026-07-14"
+  },
+  "346:ba8e24aed774": {
+    "page": 346,
+    "hash": "ba8e24aed774",
+    "kind": "equations",
+    "description": "M_{zC} = -10^6 A_4 I e / L",
+    "flagged_at": "2026-07-14"
+  },
+  "346:dc3e285221ff": {
+    "page": 346,
+    "hash": "dc3e285221ff",
+    "kind": "equations",
+    "description": "F_{xA} = -F_{xC} = -10^{6} A_{2} I_{e} / (K L)^{2}",
+    "flagged_at": "2026-07-14"
+  },
+  "346:ac9537afbb80": {
+    "page": 346,
+    "hash": "ac9537afbb80",
+    "kind": "equations",
+    "description": "F_{yA} = -F_{yC} = +10^6 A_1 I e / (KL)^2",
+    "flagged_at": "2026-07-14"
+  },
+  "346:3ee88a612507": {
+    "page": 346,
+    "hash": "3ee88a612507",
+    "kind": "equations",
+    "description": "M_{zA} = 10^6 A_4 I e / KL",
+    "flagged_at": "2026-07-14"
+  },
+  "346:239d967b9acc": {
+    "page": 346,
+    "hash": "239d967b9acc",
+    "kind": "equations",
+    "description": "M_{zC} = -10^6 A_3 I e / KL",
+    "flagged_at": "2026-07-14"
+  },
+  "350:40b42291f31c": {
+    "page": 350,
+    "hash": "40b42291f31c",
+    "kind": "equations",
+    "description": "F_{yA} = -F_{yC} = 10^3 \\frac{I \\Delta}{L^3} {A}_1",
+    "flagged_at": "2026-07-14"
+  },
+  "350:53cc368b022c": {
+    "page": 350,
+    "hash": "53cc368b022c",
+    "kind": "equations",
+    "description": "M_{xA} = -10^3 \\frac{I \\Delta}{L^2} {A}_2",
+    "flagged_at": "2026-07-14"
+  },
+  "350:bb32bbd2ea9b": {
+    "page": 350,
+    "hash": "bb32bbd2ea9b",
+    "kind": "equations",
+    "description": "M_{zA} = +10^3 \\frac{I \\Delta}{L^2} {A}_3",
+    "flagged_at": "2026-07-14"
+  },
+  "350:162feff73f51": {
+    "page": 350,
+    "hash": "162feff73f51",
+    "kind": "equations",
+    "description": "M_{xC} = -10^3 \\frac{I \\Delta}{L^2} {A}_4",
+    "flagged_at": "2026-07-14"
+  },
+  "350:c4aaa0a3ae2b": {
+    "page": 350,
+    "hash": "c4aaa0a3ae2b",
+    "kind": "equations",
+    "description": "M_{zC} = -10^3 \\frac{I \\Delta}{L^2} {A}_5",
+    "flagged_at": "2026-07-14"
+  },
+  "352:cd6d5c19966e": {
+    "page": 352,
+    "hash": "cd6d5c19966e",
+    "kind": "equations",
+    "description": "F_{xA'} = -F_{zB'} = -10^{6} A_{1} I \\Delta / L^{3}",
+    "flagged_at": "2026-07-14"
+  },
+  "352:f07e7b81b484": {
+    "page": 352,
+    "hash": "f07e7b81b484",
+    "kind": "equations",
+    "description": "M_{zA} = -M_{zB} = 10^{5} A_{2} I \\Delta / L^{2}",
+    "flagged_at": "2026-07-14"
+  },
+  "363:f577fc58e08c": {
+    "page": 363,
+    "hash": "f577fc58e08c",
+    "kind": "equations",
+    "description": "\\bar{p} = \\sum_{i} p_{i}\\,\\bar{x}_{i}.",
+    "flagged_at": "2026-07-14"
+  },
+  "363:d9a742a09f5e": {
+    "page": 363,
+    "hash": "d9a742a09f5e",
+    "kind": "equations",
+    "description": "\\bar{p} = \\sum_{i} p_{i}\\,\\bar{\\lambda}_{i}.",
+    "flagged_at": "2026-07-14"
+  },
+  "363:f5fb535195bc": {
+    "page": 363,
+    "hash": "f5fb535195bc",
+    "kind": "equations",
+    "description": "\\bar{p} = \\sum_{i} p_{i}\\,\\bar{x}_{i} = \\bar{q} + \\bar{\\rho} = \\bar{q} + \\sum_{i} \\rho_{i}\\,\\bar{\\lambda}_{i}.  \\quad (5A.1)",
+    "flagged_at": "2026-07-14"
+  },
+  "363:3673c5cc233a": {
+    "page": 363,
+    "hash": "3673c5cc233a",
+    "kind": "equations",
+    "description": "\\bar{\\xi}_{j} = \\sum_{i} \\xi_{ji}\\,\\bar{\\lambda}_{i}, \\qquad j = 1,2,3.\\quad (5A.2)",
+    "flagged_at": "2026-07-14"
+  },
+  "363:e69e26c9b939": {
+    "page": 363,
+    "hash": "e69e26c9b939",
+    "kind": "equations",
+    "description": "\\bar{\\lambda}_{j} = \\sum_{i} \\lambda_{ji}\\,\\bar{x}_{i}, \\qquad j = 1,2,3. \\quad (5A.3)",
+    "flagged_at": "2026-07-14"
+  },
+  "364:c73b58a087c4": {
+    "page": 364,
+    "hash": "c73b58a087c4",
+    "kind": "equations",
+    "description": "\\begin{cases}\n\\bar{f} = \\sum_{i} f_{i}\\,\\bar{\\xi}_{i} = \\bar{F}, \\\\[4pt]\n\\bar{m} = \\sum_{i} m_{i}\\,\\bar{\\xi}_{i} = \\bar{M} - \\bar{p} \\times {F}.\n\\end{cases}",
+    "flagged_at": "2026-07-14"
+  },
+  "364:af0ba25196fd": {
+    "page": 364,
+    "hash": "af0ba25196fd",
+    "kind": "equations",
+    "description": "U = \\frac{1}{2EI} \\int \\sum_{i} \\left( a_{i} f_{i}^{2} + b_{i} m_{i}^{2} \\right) ds,",
+    "flagged_at": "2026-07-14"
+  },
+  "177:0857a96d3b37": {
+    "page": 177,
+    "hash": "0857a96d3b37",
+    "kind": "equations",
+    "description": "w'_{ab} = +QkR^{4}\\left\\{\n\\frac{\\Phi}{2}\\left[1-\\frac{\\cos 2(\\alpha+\\Phi)}{2}\\right]\n+\\frac{3}{8}\\left[\\sin 2(\\alpha+\\Phi)-\\sin 2\\alpha\\right]\n-\\left[\\sin(\\alpha+\\Phi)-\\sin\\alpha\\right]\\cos\\alpha\n\\right\\}",
+    "flagged_at": "2026-07-14"
+  },
+  "177:87a57d41f221": {
+    "page": 177,
+    "hash": "87a57d41f221",
+    "kind": "equations",
+    "description": "w'_{aa} = +QkR^{4}\\left\\{\n\\frac{\\Phi}{4}\\left[\\Phi-\\sin 2(\\alpha+\\Phi)\\right]\n-\\frac{3}{8}\\left[\\cos 2(\\alpha+\\Phi)-\\cos 2\\alpha\\right]\n+\\left[\\cos(\\alpha+\\Phi)-\\cos\\alpha\\right]\\cos\\alpha\n\\right\\}",
+    "flagged_at": "2026-07-14"
   }
 }

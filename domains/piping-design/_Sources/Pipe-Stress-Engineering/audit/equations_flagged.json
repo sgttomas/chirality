@@ -1,0 +1,16 @@
+{
+  "38:6e61ef956e59": {
+    "page": 38,
+    "hash": "6e61ef956e59",
+    "kind": "equations",
+    "description": "P_{\\mathrm{allow}} = \\frac{2E}{3(1-\\nu^{2})}\\left({t/D}\\right)^{3}",
+    "flagged_at": "2026-07-14"
+  },
+  "77:3736ef751a9b": {
+    "page": 77,
+    "hash": "3736ef751a9b",
+    "kind": "equations",
+    "description": "\\{F'\\} = [K']\\{D'\\} \\tag{2.22}",
+    "flagged_at": "2026-07-14"
+  }
+}
