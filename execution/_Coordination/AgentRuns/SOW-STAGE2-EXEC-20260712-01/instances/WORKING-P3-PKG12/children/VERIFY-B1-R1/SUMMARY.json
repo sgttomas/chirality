@@ -1,0 +1,22 @@
+{
+  "blockers": [],
+  "candidate_unchanged": true,
+  "candidate_write_count": 0,
+  "inverse_rows": 25,
+  "mapping_rows": 171,
+  "members_passed": 5,
+  "native_context_limitation": "Process-level read auditing is unavailable; compliance is established from the exact command ledger and explicit path construction, with zero command targeting prohibited child trees.",
+  "negative_probes": 35,
+  "negative_probes_passed": 35,
+  "prohibited_read_count": 0,
+  "project_checks_passed": 7,
+  "project_checks_total": 7,
+  "project_write_count": 0,
+  "repairs": 0,
+  "replacement_rows": 25,
+  "simulations": 5,
+  "source_lines": 1737,
+  "unknowns": [],
+  "verdict": "PASS_UNCHANGED",
+  "waivers": []
+}

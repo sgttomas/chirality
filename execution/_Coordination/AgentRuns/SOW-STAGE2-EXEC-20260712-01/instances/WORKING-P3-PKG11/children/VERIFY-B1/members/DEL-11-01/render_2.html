@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="46cba20a315bffff070c2ece60c87ea36b6c8021afdbba6650f62c30a888b4ee">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-11-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>46cba20a315bffff070c2ece60c87ea36b6c8021afdbba6650f62c30a888b4ee</code>.</p>
+<h1 id="scope-of-work-del-11-01">Scope of Work — DEL-11-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-11-01</code> in service of project scope [SOW-033] and package objectives [OBJ-001, OBJ-011].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A user-guide skeleton contract for safe installation, model creation, solve, result review, troubleshooting, and professional-responsibility navigation is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-11-01-user-guide-skeleton">CLM-001 — Datasheet: DEL-11-01 User guide skeleton</h3>
+<blockquote><h4 id="datasheet-del-11-01-user-guide-skeleton">Datasheet: DEL-11-01 User guide skeleton</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-11-01</td></tr>
+<tr><td>Deliverable name</td><td>User guide skeleton</td></tr>
+<tr><td>Package ID</td><td>PKG-11</td></tr>
+<tr><td>Package name</td><td>Documentation, Examples, and Education</td></tr>
+<tr><td>Deliverable type</td><td>DOC_UPDATE</td></tr>
+<tr><td>Scope item</td><td>SOW-033</td></tr>
+<tr><td>Objectives</td><td>OBJ-001; OBJ-011</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Lifecycle artifact</td><td>Draft setup document, not the repository user guide</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td></tr>
+<tr><td>Primary purpose</td><td>Define a user guide structure for project setup, modeling, solving, rule checks, reports, and limitations.</td></tr>
+<tr><td>Target artifact</td><td><code>docs/user_guide/index.md</code> is the anticipated downstream artifact, but this setup run does not edit it.</td></tr>
+<tr><td>Guide posture</td><td>Help users understand an open, auditable piping stress workflow without hiding missing data, private-data requirements, or professional responsibility limits.</td></tr>
+<tr><td>Required sections</td><td>Product scope, setup, project creation, model building, solving, rule checks, results review, reports, limitations, troubleshooting, glossary.</td></tr>
+<tr><td>Data boundary</td><td>Public guide content must not include protected standards text, protected examples, proprietary tables, private rule packs, private libraries, or owner data.</td></tr>
+<tr><td>Rule-check boundary</td><td>User rule checks are computations using user-supplied or lawful private rule packs; they are not professional authentication.</td></tr>
+<tr><td>Professional boundary</td><td>The software assists analysis and reporting; competent human review remains required before project reliance.</td></tr>
+<tr><td>Implementation maturity</td><td>Exact packaging, public API transport, import/export formats, solver library, expression grammar, and physical project container remain <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Source basis</td><td>Effect on the guide skeleton</td></tr>
+<tr><td>User documentation is in scope for PKG-11.</td><td><code>docs/_Registers/Deliverables.csv</code> row DEL-11-01; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-033</td><td>The skeleton covers the user-facing workflow, not source code or examples.</td></tr>
+<tr><td>Open mechanics and protected standards data must remain separated.</td><td><code>INIT.md</code>; <code>docs/DIRECTIVE.md</code> sections 1-4; OPS-K-IP-1 through OPS-K-IP-3</td><td>Guide sections must describe user/private data requirements without copying or paraphrasing protected standards content.</td></tr>
+<tr><td>Mechanics solve, user rule check, and professional approval are separate states.</td><td><code>docs/TYPES.md</code> sections 4 and 6; OPS-K-AUTH-1</td><td>The guide outline must explain statuses and warnings without implying automatic code compliance.</td></tr>
+<tr><td>Primary global analysis is a 3D centerline/frame model.</td><td><code>docs/DIRECTIVE.md</code> section 3; <code>docs/SPEC.md</code> sections 1 and 4</td><td>Modeling sections emphasize centerline nodes, elements, components, supports, loads, and unit-aware fields.</td></tr>
+<tr><td>Reports must be auditable and boundary-aware.</td><td><code>docs/SPEC.md</code> section 8; OPS-K-REPORT-1 and OPS-K-AUTH-1</td><td>Reporting sections include provenance, warnings, hashes/checksums, limitations, and human review notice.</td></tr>
+<tr><td>Future implementation details are unresolved.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 11</td><td>Setup/install and advanced integration content uses <code>TBD</code> rather than inventing product behavior.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The user guide skeleton is organized as a documentation outline. Section content is intentionally skeletal until product features, UI behavior, reports, examples, packaging, and release gates mature.</p>
+<table><tbody>
+<tr><td>Guide section</td><td>Purpose</td><td>Initial state</td></tr>
+<tr><td>Scope and authority boundary</td><td>Explain OpenPipeStress as decision-support software with open mechanics and user-supplied design-basis data.</td><td>Skeleton required</td></tr>
+<tr><td>Installation and project setup</td><td>Reserve setup instructions for supported builds, local-first storage, project files, units, and privacy posture.</td><td><code>TBD</code> where packaging is unresolved</td></tr>
+<tr><td>Creating a project</td><td>Cover unit selection, project metadata, model identity, provenance expectations, and private rule-pack/library references.</td><td>Skeleton required</td></tr>
+<tr><td>Building the centerline model</td><td>Cover nodes, elements, pipe runs, components, supports/restraints, load cases, combinations, and missing-data warnings.</td><td>Skeleton required</td></tr>
+<tr><td>Solving mechanics</td><td>Explain mechanics-only solve status, solver diagnostics, singular/nonconverged states, and result envelopes.</td><td>Skeleton required</td></tr>
+<tr><td>Running user rule checks</td><td>Explain private rule packs, required inputs, unit checks, missing rule data, checksums, and rule-check statuses.</td><td>Skeleton required</td></tr>
+<tr><td>Reviewing results</td><td>Reserve structure for displacements, rotations, forces, moments, reactions, equipment loads, stresses, ratios, warnings, and assumptions.</td><td>Skeleton required</td></tr>
+<tr><td>Generating reports</td><td>Cover input manifest, model hash, solver version, rule-pack checksum, provenance, limitations, and public-template prohibitions.</td><td>Skeleton required</td></tr>
+<tr><td>Limitations and professional responsibility</td><td>State global centerline vs local FEA handoff limits, validation status, known risks, and human review requirements.</td><td>Skeleton required</td></tr>
+<tr><td>Troubleshooting and warnings</td><td>Organize solve blockers, rule-check blockers, provenance warnings, assumption warnings, nonlinear warnings, and IP-boundary warnings.</td><td>Skeleton required</td></tr>
+<tr><td>Glossary and status vocabulary</td><td>Define user-facing terms from <code>docs/TYPES.md</code> without creating new engineering authority.</td><td>Skeleton required</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>INIT.md</code></li>
+<li>- <code>AGENTS.md</code></li>
+<li>- <code>docs/README.md</code></li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code></li>
+<li>- <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code></li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></li>
+<li>- <code>docs/_Registers/Deliverables.csv</code></li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code></li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code></li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-11-01-user-guide-skeleton">CLM-008 — Specification: DEL-11-01 User guide skeleton</h3>
+<blockquote><h4 id="specification-del-11-01-user-guide-skeleton">Specification: DEL-11-01 User guide skeleton</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-01-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines the deliverable-local skeleton for the OpenPipeStress user guide. It covers the guide structure needed for project setup, centerline modeling, mechanics solving, user rule checks, result review, report generation, limitations, and professional responsibility notices.</p>
+<p>This deliverable does not edit <code>docs/user_guide/index.md</code>, does not create tutorials or example models, does not document protected standards content, and does not claim certification, endorsement, approval, sealing, authentication, or engineering code compliance.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source basis</td><td>Acceptance hook</td></tr>
+<tr><td>UG-REQ-001</td><td>The guide skeleton shall include sections for project setup, modeling, solving, rule checks, reports, and limitations.</td><td><code>_CONTEXT.md</code> Description; <code>docs/_Registers/Deliverables.csv</code> row DEL-11-01</td><td>Procedure verification confirms all required section slots exist.</td></tr>
+<tr><td>UG-REQ-002</td><td>Setup content shall preserve unresolved implementation details as <code>TBD</code> where packaging, dependency versions, public API transport, import/export formats, solver library, expression grammar, or project container are not yet decided.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> open issues</td><td>Review confirms no invented setup commands or product behavior are asserted.</td></tr>
+<tr><td>UG-REQ-003</td><td>Modeling content shall frame the global model as a unit-aware 3D centerline/frame model with explicit nodes, elements, components, supports, loads, and provenance-bearing fields.</td><td><code>docs/DIRECTIVE.md</code> sections 2-3; <code>docs/SPEC.md</code> sections 1, 3, 4, and 7</td><td>Datasheet Construction and Guidance Principles cover model-building categories.</td></tr>
+<tr><td>UG-REQ-004</td><td>Solving content shall distinguish mechanics solve status from rule-check status and human professional acceptance.</td><td><code>docs/TYPES.md</code> sections 4 and 6; OPS-K-MECH-2; OPS-K-AUTH-1</td><td>Search and review confirm no automatic <code>CODE_COMPLIANT</code> status or professional approval claim appears.</td></tr>
+<tr><td>UG-REQ-005</td><td>Rule-check content shall state that code-specific values, allowables, combinations, formulas, SIFs, flexibility factors, owner requirements, and proprietary data are supplied by users through lawful private data or rule packs.</td><td><code>INIT.md</code>; <code>docs/DIRECTIVE.md</code> sections 1 and 3; OPS-K-DATA-1; OPS-K-RULE-1 and OPS-K-RULE-3</td><td>Guidance examples exclude protected and proprietary source material.</td></tr>
+<tr><td>UG-REQ-006</td><td>Report content shall include auditable-report slots for software/solver version, model hash, input manifest, units, warnings, assumptions, source/provenance notes, rule-pack checksum, results, and limitations.</td><td><code>docs/SPEC.md</code> section 8; OPS-K-REPORT-1</td><td>Datasheet Construction includes a reporting section and Procedure checks the slots.</td></tr>
+<tr><td>UG-REQ-007</td><td>Limitation content shall cover professional responsibility, validation status, public/private data boundaries, local FEA handoff, missing data, and unresolved <code>TBD</code> items.</td><td><code>docs/DIRECTIVE.md</code> sections 3-6; <code>docs/VALIDATION_STRATEGY.md</code> section 1; OPS-K-AUTH-1</td><td>Guidance and Procedure include boundary checks.</td></tr>
+<tr><td>UG-REQ-008</td><td>Public guide content shall not reproduce protected standards text, tables, figures, examples, protected dimensional data, proprietary commercial data, or private user/project data.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-7; OPS-K-IP-1 through OPS-K-IP-3</td><td>Protected-content review finds no prohibited content.</td></tr>
+<tr><td>UG-REQ-009</td><td>The skeleton shall use canonical status and vocabulary terms where user-facing status semantics are referenced.</td><td><code>docs/TYPES.md</code> sections 4-7</td><td>Procedure verification checks canonical status terms.</td></tr>
+<tr><td>UG-REQ-010</td><td>The skeleton shall expose unknowns and assumptions rather than filling gaps with silent defaults.</td><td>OPS-K-AGENT-1; OPS-K-AGENT-2; OPS-K-DATA-2</td><td>Review confirms remaining unknowns are <code>TBD</code> or explicit limitations.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering code or standard is used as source authority for this user guide skeleton. The governing sources are the OpenPipeStress project documents and registers listed in <code>_REFERENCES.md</code>.</p>
+<p>Any future guide content that references an external code, standard, vendor catalog, owner requirement, commercial software example, or licensed data source is <code>TBD</code> until provenance, redistribution rights, and human/legal review are recorded.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Method</td><td>Expected result</td></tr>
+<tr><td>Four-document presence</td><td>Run <code>tools/validation/check_four_documents.sh</code> on the deliverable folder.</td><td>All four setup documents are present.</td></tr>
+<tr><td>Required guide slots</td><td>Compare Datasheet Construction against UG-REQ-001.</td><td>Required setup, modeling, solving, rule-check, report, and limitation sections are present.</td></tr>
+<tr><td>Protected-content boundary</td><td>Manual review against <code>docs/IP_AND_DATA_BOUNDARY.md</code> and OPS-K-IP invariants.</td><td>No protected standards data, proprietary examples, or private user data are introduced.</td></tr>
+<tr><td>Professional boundary</td><td>Search for certification, approval, sealing, authentication, endorsement, and compliance overclaims.</td><td>Any hits are prohibitions or boundary statements, not product claims.</td></tr>
+<tr><td>Dependency register schema</td><td>Run <code>python3 tools/validation/validate_dependencies_schema.py</code> on <code>Dependencies.csv</code>.</td><td>v3.1 schema is valid.</td></tr>
+<tr><td>Lensing coverage</td><td>Count matrix lens coverage rows in <code>_SEMANTIC_LENSING.md</code>.</td><td>96 rows for matrices A, B, C, F, D, X, and E.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>The setup artifact set for this deliverable consists of:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/*</code></li>
+</ul>
+<p>The repository-level <code>docs/user_guide/index.md</code> remains read-only for this deliverable.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the source-defined guide structure, current implementation declarations, unit and missing-data visibility, diagnostics and result interpretation boundaries, invented-example posture, protected/private-data controls, accessibility intent, visible unresolved documentation decisions, and the prohibition on treating software output as professional approval or code compliance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-11-01-user-guide-skeleton">CLM-015 — Procedure: DEL-11-01 User guide skeleton</h3>
+<blockquote><h4 id="procedure-del-11-01-user-guide-skeleton">Procedure: DEL-11-01 User guide skeleton</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-01-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this procedure to produce and check the deliverable-local user guide skeleton. The procedure is documentation-oriented and does not edit <code>docs/user_guide/index.md</code> or move any artifact to <code>ISSUED</code>.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Requirement</td></tr>
+<tr><td>Sealed context</td><td>Confirm <code>DEL-11-01</code>, <code>PKG-11</code>, SOW-033, OBJ-001, and OBJ-011 from <code>_CONTEXT.md</code> and the registers.</td></tr>
+<tr><td>Governing sources</td><td>Read the local references listed in <code>_REFERENCES.md</code>, especially <code>INIT.md</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/TYPES.md</code>, <code>docs/SPEC.md</code>, and <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+<tr><td>Data boundary</td><td>Do not introduce protected standards data, proprietary commercial data, or private user/project data into public setup artifacts.</td></tr>
+<tr><td>Professional boundary</td><td>Do not certify, endorse, approve, seal, authenticate, or declare engineering code compliance.</td></tr>
+<tr><td>Write scope</td><td>Write only inside this deliverable folder.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity and current lifecycle state in <code>_STATUS.md</code>.</p>
+<p>2. Draft the four-document kit:</p>
+<ul>
+<li>- <code>Datasheet.md</code> captures identity, source basis, boundaries, and the guide outline.</li>
+<li>- <code>Specification.md</code> captures guide skeleton requirements, exclusions, and acceptance checks.</li>
+<li>- <code>Guidance.md</code> captures interpretation principles, trade-offs, and prohibited overclaims.</li>
+<li>- <code>Procedure.md</code> captures production and verification steps.</li>
+</ul>
+<p>3. Check that the guide outline covers project setup, project creation, centerline modeling, mechanics solving, user rule checks, results review, reports, limitations, troubleshooting, and glossary/status vocabulary.</p>
+<p>4. Check that guide language preserves these separations:</p>
+<ul>
+<li>- mechanics solve vs user rule check;</li>
+<li>- user rule check vs human professional acceptance;</li>
+<li>- open mechanics vs protected standards data;</li>
+<li>- global centerline analysis vs local FEA handoff.</li>
+</ul>
+<p>5. Mark unresolved product behavior as <code>TBD</code>; do not invent installation commands, UI behavior, external formats, solver-library choices, rule expression grammar, or project container behavior.</p>
+<p>6. Generate semantic matrix and lensing artifacts as setup evidence.</p>
+<p>7. Refresh dependency artifacts with conservative, evidence-cited rows.</p>
+<p>8. Run local validation checks and record warnings in <code>_run_records</code>.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Command or review method</td><td>Pass condition</td></tr>
+<tr><td>Four-document kit</td><td><code>tools/validation/check_four_documents.sh &lt;deliverable-folder&gt;</code></td><td>All four documents are present.</td></tr>
+<tr><td>Required guide sections</td><td>Review <code>Datasheet.md</code> Construction and <code>Specification.md</code> UG-REQ-001.</td><td>Required user guide section slots are present.</td></tr>
+<tr><td>Dependency schema</td><td><code>python3 tools/validation/validate_dependencies_schema.py &lt;deliverable-folder&gt;/Dependencies.csv</code></td><td>Schema validator reports <code>VALID</code>.</td></tr>
+<tr><td>Enum checks</td><td><code>python3 tools/validation/validate_enum.py &lt;enum&gt; &lt;value&gt;</code> for emitted dependency enum values</td><td>Emitted values are accepted by the enum validator.</td></tr>
+<tr><td>Status check</td><td>Inspect <code>_STATUS.md</code>.</td><td>Current State is <code>SEMANTIC_READY</code> only after setup artifacts pass.</td></tr>
+<tr><td>Protected-content check</td><td>Manual review and targeted search for protected/compliance overclaims.</td><td>No protected data or software certification/compliance claims are present.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Required records for this setup run:</p>
+<ul>
+<li>- four-document kit;</li>
+<li>- <code>_SEMANTIC.md</code>;</li>
+<li>- <code>_SEMANTIC_LENSING.md</code>;</li>
+<li>- <code>Dependencies.csv</code>;</li>
+<li>- refreshed <code>_DEPENDENCIES.md</code>;</li>
+<li>- <code>_STATUS.md</code>;</li>
+<li>- <code>_run_records/*</code> entries for the setup sequence and validations.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, user-journey and guide-structure coverage, current-versus-planned declarations, units and diagnostics, protected/private-data and accessibility controls, retained conflicts and TBDs, and professional-responsibility limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-11-01-user-guide-skeleton">CLM-022 — Guidance: DEL-11-01 User guide skeleton</h3>
+<blockquote><h4 id="guidance-del-11-01-user-guide-skeleton">Guidance: DEL-11-01 User guide skeleton</h4></blockquote>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This guidance explains how to interpret the user guide skeleton without blurring the OpenPipeStress data, rule-check, and professional responsibility boundaries. The user guide should help a user move through setup, modeling, solving, rule checking, reports, and limitations while making missing data and human decision points visible.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Start with the authority boundary.</td><td>The guide should explain what OpenPipeStress computes and what remains user-supplied or human-reviewed before it teaches button-by-button workflows.</td></tr>
+<tr><td>Keep setup factual.</td><td>Packaging, install steps, storage containers, external transports, and dependency versions remain <code>TBD</code> until accepted elsewhere. Do not invent setup commands.</td></tr>
+<tr><td>Teach the centerline model.</td><td>Modeling guidance should orient users around projects, units, nodes, elements, components, supports, loads, combinations, and provenance.</td></tr>
+<tr><td>Keep mechanics and rule checks separate.</td><td>A mechanics solve produces displacements, forces, moments, reactions, stresses, and diagnostics. A user rule pack can evaluate those results only when required private/user data is present.</td></tr>
+<tr><td>Keep private data private.</td><td>Rule packs, owner requirements, licensed code values, vendor data, and private libraries belong in user-controlled/private paths unless redistribution rights are documented.</td></tr>
+<tr><td>Keep reports auditable.</td><td>Report guidance should emphasize manifests, model hashes, solver versions, warnings, assumptions, provenance, checksums, results, limitations, and human review notices.</td></tr>
+<tr><td>Keep limitations visible.</td><td>The guide should state when a result is incomplete, when local analysis may be needed, and when validation or professional review is outside software authority.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The user guide has to serve multiple audiences without making the product sound more mature or authoritative than the current evidence supports:</p>
+<ul>
+<li>- New users need a clear workflow from project creation through reports.</li>
+<li>- Experienced engineers need explicit status, warning, provenance, and limitation semantics.</li>
+<li>- Maintainers need a guide structure that can grow as implementation and validation evidence mature.</li>
+<li>- Educators need invented or public/permissive examples that do not rely on protected standards data.</li>
+</ul>
+<p>The guide should avoid presenting a future GUI, CLI, or report behavior as already implemented unless that behavior is supported by an accepted implementation deliverable. Where behavior is planned but unresolved, use <code>TBD</code> or &quot;future section&quot; language.</p></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred handling</td></tr>
+<tr><td>Helpfulness vs false precision</td><td>Provide a section slot and the governing boundary; leave exact commands or screenshots as <code>TBD</code> until implemented.</td></tr>
+<tr><td>Engineering clarity vs protected content risk</td><td>Explain open mechanics and data responsibilities without copying code text, protected examples, or proprietary tables.</td></tr>
+<tr><td>Workflow simplicity vs warning visibility</td><td>Do not hide missing data, provenance gaps, rule-check blockers, or nonlinear diagnostics to make the guide look simpler.</td></tr>
+<tr><td>Public examples vs realism</td><td>Use invented or permissively sourced examples and label them as educational, non-code examples.</td></tr>
+<tr><td>Report confidence vs professional reliance</td><td>Reports can support review; they do not replace competent human acceptance for project use.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Acceptable guide examples:</p>
+<ul>
+<li>- A mechanics-only walkthrough using invented material and section values, clearly marked as non-code educational data.</li>
+<li>- A rule-pack workflow that uses invented demonstration values and shows missing-input blockers.</li>
+<li>- A report review checklist that names provenance, warnings, hashes, checksums, and limitations without quoting protected source material.</li>
+<li>- A troubleshooting example that explains <code>RULE_CHECK_BLOCKING</code> or <code>PROVENANCE_WARNING</code> without supplying proprietary values.</li>
+</ul>
+<p>Excluded guide examples:</p>
+<ul>
+<li>- Copied protected standards tables, figures, examples, formulas, or commentary.</li>
+<li>- Commercial software examples, manuals, screenshots, or benchmark files without redistribution permission.</li>
+<li>- Vendor catalog or owner data without documented public redistribution rights.</li>
+<li>- Any wording that implies software certification, endorsement, engineering seal, official approval, or automatic code compliance.</li>
+</ul></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>No source conflict identified in setup pass.</td><td>Not applicable</td><td>Not applicable</td><td>Not applicable</td><td>Not applicable</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-033 OBJ-001 OBJ-011</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

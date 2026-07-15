@@ -1,0 +1,1935 @@
+[
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/conversion-1",
+      "--deliverable-id",
+      "DEL-12-01",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-029",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A local-first storage and symbolic private-data path contract for user-controlled project, rule-pack, library, report, and transient data is produced.",
+      "--acceptance-criterion",
+      "The contract preserves the source-defined public/private path classes, local SQLite-backed profile boundary, deterministic persistence and provenance constraints, metadata-only guard evidence, report/export and secret-owner handoffs, visible physical-root/container/runtime/cloud/encryption TBDs and conflict, and the prohibition on treating storage evidence as certification, approval, professional reliance, or code compliance.",
+      "--verification-method",
+      "Validate the contract and review source parity, symbolic-path and private-data-class coverage, local-first and deterministic-persistence boundaries, metadata-only guard limits, report/export and secret-owner interfaces, retained conflict and TBDs, and professional-authority limits.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.036519,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/conversion-1/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/conversion-2",
+      "--deliverable-id",
+      "DEL-12-01",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-029",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A local-first storage and symbolic private-data path contract for user-controlled project, rule-pack, library, report, and transient data is produced.",
+      "--acceptance-criterion",
+      "The contract preserves the source-defined public/private path classes, local SQLite-backed profile boundary, deterministic persistence and provenance constraints, metadata-only guard evidence, report/export and secret-owner handoffs, visible physical-root/container/runtime/cloud/encryption TBDs and conflict, and the prohibition on treating storage evidence as certification, approval, professional reliance, or code compliance.",
+      "--verification-method",
+      "Validate the contract and review source parity, symbolic-path and private-data-class coverage, local-first and deterministic-persistence boundaries, metadata-only guard limits, report/export and secret-owner interfaces, retained conflict and TBDs, and professional-authority limits.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.046826,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/conversion-2/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/final-1.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/final-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.037196,
+    "stderr": "",
+    "stdout": "PASS blocks=34 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/final-1.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/final-2.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/final-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.037047,
+    "stderr": "",
+    "stdout": "PASS blocks=34 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/final-2.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md"
+    ],
+    "returncode": 0,
+    "seconds": 0.052833,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/dual"
+    ],
+    "returncode": 0,
+    "seconds": 0.035267,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/dual\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/claim-map-1.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.043073,
+    "stderr": "",
+    "stdout": "PASS rows=34 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/claim-map-1.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/parity-1.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.042998,
+    "stderr": "",
+    "stdout": "PASS checks=34\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/checklist-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.037147,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/render-1.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.036382,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/claim-map-2.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.038093,
+    "stderr": "",
+    "stdout": "PASS rows=34 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/claim-map-2.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/parity-2.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.039471,
+    "stderr": "",
+    "stdout": "PASS checks=34\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/checklist-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.042119,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-01/render-2.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.036791,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/ScopeOfWork.md"
+    ],
+    "returncode": 1,
+    "seconds": 0.033721,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"INVALID\",\n  \"issues\": [\n    \"format state is INVALID\",\n    \"schema must equal chirality-deliverable-sow/v1\"\n  ],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/ScopeOfWork.md\",\n  \"valid\": false\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/bad-map.csv"
+    ],
+    "returncode": 1,
+    "seconds": 0.035599,
+    "stderr": "ERROR: production ScopeOfWork.md is not the deterministic finalization of the evidence candidate\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-01/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/bad-parity.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 1,
+    "seconds": 0.039954,
+    "stderr": "",
+    "stdout": "FAIL checks=34\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/bad-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033249,
+    "stderr": "ERROR: format state is INVALID; validated ScopeOfWork.md is required: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/dual-noauth",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/dual-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033292,
+    "stderr": "ERROR: format state is AMBIGUOUS; validated ScopeOfWork.md is required: dual production formats require an isolated conversion workspace and exact migration authority\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/bad-render.html"
+    ],
+    "returncode": 1,
+    "seconds": 0.033459,
+    "stderr": "ERROR: format state is INVALID: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-01/negative/legacy",
+      "--deliverable-id",
+      "DEL-12-01",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-029",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A local-first storage and symbolic private-data path contract for user-controlled project, rule-pack, library, report, and transient data is produced.",
+      "--acceptance-criterion",
+      "The contract preserves the source-defined public/private path classes, local SQLite-backed profile boundary, deterministic persistence and provenance constraints, metadata-only guard evidence, report/export and secret-owner handoffs, visible physical-root/container/runtime/cloud/encryption TBDs and conflict, and the prohibition on treating storage evidence as certification, approval, professional reliance, or code compliance.",
+      "--verification-method",
+      "Validate the contract and review source parity, symbolic-path and private-data-class coverage, local-first and deterministic-persistence boundaries, metadata-only guard limits, report/export and secret-owner interfaces, retained conflict and TBDs, and professional-authority limits.",
+      "--isolated-migration"
+    ],
+    "returncode": 1,
+    "seconds": 0.032043,
+    "stderr": "ERROR: dual-format conversion requires --isolated-migration and --migration-authority D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/conversion-1",
+      "--deliverable-id",
+      "DEL-12-02",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A private-data redaction and export-control contract for reports, shared models, downstream tools, public examples, and local-private outputs is produced.",
+      "--acceptance-criterion",
+      "The contract preserves export-context and redaction-action vocabularies, safe manifest evidence, explicit local-private intent, non-mutation, protected/private/provenance handling, metadata-only schema/helper/test evidence, no-bypass adapter boundaries, visible runtime integration and approval TBDs and conflicts, and the separation of export safeguards from legal, security, professional, or code-compliance approval.",
+      "--verification-method",
+      "Validate the contract and review source parity, export-context and redaction-policy coverage, private/protected/provenance handling, safe manifest preservation and source non-mutation, metadata-only evidence limits, no-bypass routes, retained conflicts and TBDs, and authority boundaries.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.036789,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/conversion-1/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/conversion-2",
+      "--deliverable-id",
+      "DEL-12-02",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A private-data redaction and export-control contract for reports, shared models, downstream tools, public examples, and local-private outputs is produced.",
+      "--acceptance-criterion",
+      "The contract preserves export-context and redaction-action vocabularies, safe manifest evidence, explicit local-private intent, non-mutation, protected/private/provenance handling, metadata-only schema/helper/test evidence, no-bypass adapter boundaries, visible runtime integration and approval TBDs and conflicts, and the separation of export safeguards from legal, security, professional, or code-compliance approval.",
+      "--verification-method",
+      "Validate the contract and review source parity, export-context and redaction-policy coverage, private/protected/provenance handling, safe manifest preservation and source non-mutation, metadata-only evidence limits, no-bypass routes, retained conflicts and TBDs, and authority boundaries.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.034914,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/conversion-2/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/final-1.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/final-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.036017,
+    "stderr": "",
+    "stdout": "PASS blocks=38 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/final-1.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/final-2.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/final-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.036048,
+    "stderr": "",
+    "stdout": "PASS blocks=38 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/final-2.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md"
+    ],
+    "returncode": 0,
+    "seconds": 0.032848,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/dual"
+    ],
+    "returncode": 0,
+    "seconds": 0.032909,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/dual\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/claim-map-1.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.039407,
+    "stderr": "",
+    "stdout": "PASS rows=38 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/claim-map-1.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/parity-1.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.040699,
+    "stderr": "",
+    "stdout": "PASS checks=38\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/checklist-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.042803,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/render-1.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.037215,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/claim-map-2.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.039489,
+    "stderr": "",
+    "stdout": "PASS rows=38 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/claim-map-2.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/parity-2.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.040974,
+    "stderr": "",
+    "stdout": "PASS checks=38\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/checklist-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.035383,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-02/render-2.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.037075,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/ScopeOfWork.md"
+    ],
+    "returncode": 1,
+    "seconds": 0.032981,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"INVALID\",\n  \"issues\": [\n    \"format state is INVALID\",\n    \"schema must equal chirality-deliverable-sow/v1\"\n  ],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/ScopeOfWork.md\",\n  \"valid\": false\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/bad-map.csv"
+    ],
+    "returncode": 1,
+    "seconds": 0.036241,
+    "stderr": "ERROR: production ScopeOfWork.md is not the deterministic finalization of the evidence candidate\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-02/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/bad-parity.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 1,
+    "seconds": 0.04073,
+    "stderr": "",
+    "stdout": "FAIL checks=38\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/bad-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033481,
+    "stderr": "ERROR: format state is INVALID; validated ScopeOfWork.md is required: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/dual-noauth",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/dual-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033182,
+    "stderr": "ERROR: format state is AMBIGUOUS; validated ScopeOfWork.md is required: dual production formats require an isolated conversion workspace and exact migration authority\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/bad-render.html"
+    ],
+    "returncode": 1,
+    "seconds": 0.033882,
+    "stderr": "ERROR: format state is INVALID: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-02/negative/legacy",
+      "--deliverable-id",
+      "DEL-12-02",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A private-data redaction and export-control contract for reports, shared models, downstream tools, public examples, and local-private outputs is produced.",
+      "--acceptance-criterion",
+      "The contract preserves export-context and redaction-action vocabularies, safe manifest evidence, explicit local-private intent, non-mutation, protected/private/provenance handling, metadata-only schema/helper/test evidence, no-bypass adapter boundaries, visible runtime integration and approval TBDs and conflicts, and the separation of export safeguards from legal, security, professional, or code-compliance approval.",
+      "--verification-method",
+      "Validate the contract and review source parity, export-context and redaction-policy coverage, private/protected/provenance handling, safe manifest preservation and source non-mutation, metadata-only evidence limits, no-bypass routes, retained conflicts and TBDs, and authority boundaries.",
+      "--isolated-migration"
+    ],
+    "returncode": 1,
+    "seconds": 0.03213,
+    "stderr": "ERROR: dual-format conversion requires --isolated-migration and --migration-authority D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/conversion-1",
+      "--deliverable-id",
+      "DEL-12-03",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-037",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A telemetry-off-by-default contract for fail-closed configuration, explicit affirmative request boundaries, approved allowlists, and pre-payload privacy enforcement is produced.",
+      "--acceptance-criterion",
+      "The contract preserves absent/malformed/default-disabled behavior, forbidden private/protected/secret/path/report fields, no implicit network/persistence/payload construction, the bounded desktop request and telemetry-panel guard seam, explicit absence of whole-runtime consumer interception, remaining consent/config/allowlist/transport TBDs, and the prohibition on professional, certification, approval, or code-compliance claims.",
+      "--verification-method",
+      "Validate the contract and review source parity, default-off and fail-closed cases, forbidden-field and no-network/no-payload boundaries, distinct affirmative-request behavior, bounded seam versus documented interception absences, retained TBDs, and professional-authority limits.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.03447,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/conversion-1/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/conversion-2",
+      "--deliverable-id",
+      "DEL-12-03",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-037",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A telemetry-off-by-default contract for fail-closed configuration, explicit affirmative request boundaries, approved allowlists, and pre-payload privacy enforcement is produced.",
+      "--acceptance-criterion",
+      "The contract preserves absent/malformed/default-disabled behavior, forbidden private/protected/secret/path/report fields, no implicit network/persistence/payload construction, the bounded desktop request and telemetry-panel guard seam, explicit absence of whole-runtime consumer interception, remaining consent/config/allowlist/transport TBDs, and the prohibition on professional, certification, approval, or code-compliance claims.",
+      "--verification-method",
+      "Validate the contract and review source parity, default-off and fail-closed cases, forbidden-field and no-network/no-payload boundaries, distinct affirmative-request behavior, bounded seam versus documented interception absences, retained TBDs, and professional-authority limits.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.034558,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/conversion-2/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/final-1.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/final-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.035206,
+    "stderr": "",
+    "stdout": "PASS blocks=29 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/final-1.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/final-2.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/final-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.035113,
+    "stderr": "",
+    "stdout": "PASS blocks=29 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/final-2.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md"
+    ],
+    "returncode": 0,
+    "seconds": 0.032793,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/dual"
+    ],
+    "returncode": 0,
+    "seconds": 0.032751,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/dual\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/claim-map-1.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.037635,
+    "stderr": "",
+    "stdout": "PASS rows=29 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/claim-map-1.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/parity-1.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.038844,
+    "stderr": "",
+    "stdout": "PASS checks=29\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/checklist-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.034642,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/render-1.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.035938,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/claim-map-2.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.037538,
+    "stderr": "",
+    "stdout": "PASS rows=29 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/claim-map-2.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/parity-2.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.039158,
+    "stderr": "",
+    "stdout": "PASS checks=29\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/checklist-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.034829,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-03/render-2.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.036203,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/ScopeOfWork.md"
+    ],
+    "returncode": 1,
+    "seconds": 0.032786,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"INVALID\",\n  \"issues\": [\n    \"format state is INVALID\",\n    \"schema must equal chirality-deliverable-sow/v1\"\n  ],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/ScopeOfWork.md\",\n  \"valid\": false\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/bad-map.csv"
+    ],
+    "returncode": 1,
+    "seconds": 0.035275,
+    "stderr": "ERROR: production ScopeOfWork.md is not the deterministic finalization of the evidence candidate\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-03/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/bad-parity.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 1,
+    "seconds": 0.039086,
+    "stderr": "",
+    "stdout": "FAIL checks=29\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/bad-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033219,
+    "stderr": "ERROR: format state is INVALID; validated ScopeOfWork.md is required: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/dual-noauth",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/dual-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033138,
+    "stderr": "ERROR: format state is AMBIGUOUS; validated ScopeOfWork.md is required: dual production formats require an isolated conversion workspace and exact migration authority\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/bad-render.html"
+    ],
+    "returncode": 1,
+    "seconds": 0.033496,
+    "stderr": "ERROR: format state is INVALID: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-03/negative/legacy",
+      "--deliverable-id",
+      "DEL-12-03",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-037",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A telemetry-off-by-default contract for fail-closed configuration, explicit affirmative request boundaries, approved allowlists, and pre-payload privacy enforcement is produced.",
+      "--acceptance-criterion",
+      "The contract preserves absent/malformed/default-disabled behavior, forbidden private/protected/secret/path/report fields, no implicit network/persistence/payload construction, the bounded desktop request and telemetry-panel guard seam, explicit absence of whole-runtime consumer interception, remaining consent/config/allowlist/transport TBDs, and the prohibition on professional, certification, approval, or code-compliance claims.",
+      "--verification-method",
+      "Validate the contract and review source parity, default-off and fail-closed cases, forbidden-field and no-network/no-payload boundaries, distinct affirmative-request behavior, bounded seam versus documented interception absences, retained TBDs, and professional-authority limits.",
+      "--isolated-migration"
+    ],
+    "returncode": 1,
+    "seconds": 0.032329,
+    "stderr": "ERROR: dual-format conversion requires --isolated-migration and --migration-authority D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/conversion-1",
+      "--deliverable-id",
+      "DEL-12-04",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--project-scope-ref",
+      "SOW-029",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A local-first secret-reference and private-library handling contract for registry metadata, denied-by-default access, release guards, and disclosure boundaries is produced.",
+      "--acceptance-criterion",
+      "The contract preserves opaque-reference-over-secret behavior, private-library metadata and provenance/checksum posture, redaction/quarantine/permission/no-bypass controls, metadata-only helper and invented-fixture evidence, source-labeled assumptions, visible provider/encryption/storage/grant/cloud/approval TBDs and conflicts, and the separation of guard evidence from legal, security, professional, or code-compliance approval.",
+      "--verification-method",
+      "Validate the contract and review source parity, registry and opaque-reference coverage, privacy/provenance/checksum and transmission defaults, redaction/quarantine/permission/no-bypass controls, metadata-only evidence limits, retained assumptions/conflicts/TBDs, and authority boundaries.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.034713,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/conversion-1/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/conversion-2",
+      "--deliverable-id",
+      "DEL-12-04",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--project-scope-ref",
+      "SOW-029",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A local-first secret-reference and private-library handling contract for registry metadata, denied-by-default access, release guards, and disclosure boundaries is produced.",
+      "--acceptance-criterion",
+      "The contract preserves opaque-reference-over-secret behavior, private-library metadata and provenance/checksum posture, redaction/quarantine/permission/no-bypass controls, metadata-only helper and invented-fixture evidence, source-labeled assumptions, visible provider/encryption/storage/grant/cloud/approval TBDs and conflicts, and the separation of guard evidence from legal, security, professional, or code-compliance approval.",
+      "--verification-method",
+      "Validate the contract and review source parity, registry and opaque-reference coverage, privacy/provenance/checksum and transmission defaults, redaction/quarantine/permission/no-bypass controls, metadata-only evidence limits, retained assumptions/conflicts/TBDs, and authority boundaries.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.035515,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/conversion-2/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/final-1.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/final-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.035441,
+    "stderr": "",
+    "stdout": "PASS blocks=28 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/final-1.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/final-2.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/final-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.03539,
+    "stderr": "",
+    "stdout": "PASS blocks=28 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/final-2.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md"
+    ],
+    "returncode": 0,
+    "seconds": 0.03286,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/dual"
+    ],
+    "returncode": 0,
+    "seconds": 0.032594,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/dual\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/claim-map-1.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.038029,
+    "stderr": "",
+    "stdout": "PASS rows=28 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/claim-map-1.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/parity-1.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.039182,
+    "stderr": "",
+    "stdout": "PASS checks=28\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/checklist-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.034827,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/render-1.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.03616,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/claim-map-2.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.037987,
+    "stderr": "",
+    "stdout": "PASS rows=28 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/claim-map-2.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/parity-2.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.039259,
+    "stderr": "",
+    "stdout": "PASS checks=28\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/checklist-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.035015,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-04/render-2.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.036256,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/ScopeOfWork.md"
+    ],
+    "returncode": 1,
+    "seconds": 0.033267,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"INVALID\",\n  \"issues\": [\n    \"format state is INVALID\",\n    \"schema must equal chirality-deliverable-sow/v1\"\n  ],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/ScopeOfWork.md\",\n  \"valid\": false\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/bad-map.csv"
+    ],
+    "returncode": 1,
+    "seconds": 0.036055,
+    "stderr": "ERROR: production ScopeOfWork.md is not the deterministic finalization of the evidence candidate\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-04/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/bad-parity.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 1,
+    "seconds": 0.039651,
+    "stderr": "",
+    "stdout": "FAIL checks=28\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/bad-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033357,
+    "stderr": "ERROR: format state is INVALID; validated ScopeOfWork.md is required: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/dual-noauth",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/dual-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.03344,
+    "stderr": "ERROR: format state is AMBIGUOUS; validated ScopeOfWork.md is required: dual production formats require an isolated conversion workspace and exact migration authority\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/bad-render.html"
+    ],
+    "returncode": 1,
+    "seconds": 0.033678,
+    "stderr": "ERROR: format state is INVALID: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-04/negative/legacy",
+      "--deliverable-id",
+      "DEL-12-04",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A local-first secret-reference and private-library handling contract for registry metadata, denied-by-default access, release guards, and disclosure boundaries is produced.",
+      "--acceptance-criterion",
+      "The contract preserves opaque-reference-over-secret behavior, private-library metadata and provenance/checksum posture, redaction/quarantine/permission/no-bypass controls, metadata-only helper and invented-fixture evidence, source-labeled assumptions, visible provider/encryption/storage/grant/cloud/approval TBDs and conflicts, and the separation of guard evidence from legal, security, professional, or code-compliance approval.",
+      "--verification-method",
+      "Validate the contract and review source parity, registry and opaque-reference coverage, privacy/provenance/checksum and transmission defaults, redaction/quarantine/permission/no-bypass controls, metadata-only evidence limits, retained assumptions/conflicts/TBDs, and authority boundaries.",
+      "--isolated-migration"
+    ],
+    "returncode": 1,
+    "seconds": 0.032315,
+    "stderr": "ERROR: dual-format conversion requires --isolated-migration and --migration-authority D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-1",
+      "--deliverable-id",
+      "DEL-12-05",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A security threat-model contract covering local storage, private data, reports and sharing, telemetry, plugins and imports, rule evaluation, secrets, hashes, and supply-chain exposure is produced.",
+      "--acceptance-criterion",
+      "The contract preserves the source-defined assets, threat inventory, trust boundaries, local-first and explicit-disclosure controls, provenance/quarantine/sandbox/no-bypass requirements, bounded telemetry-guard witness and explicit interception absences, open implementation questions, update triggers, and the distinction from penetration testing, legal sufficiency, security certification, professional approval, or code-compliance assurance.",
+      "--verification-method",
+      "Validate the contract and review source parity, asset/threat/trust-boundary coverage, local-first disclosure and report controls, plugin/import/rule/supply-chain/secret handling, bounded control evidence and explicit absences, retained TBDs and update triggers, and non-assurance limits.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.035011,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-1/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-2",
+      "--deliverable-id",
+      "DEL-12-05",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A security threat-model contract covering local storage, private data, reports and sharing, telemetry, plugins and imports, rule evaluation, secrets, hashes, and supply-chain exposure is produced.",
+      "--acceptance-criterion",
+      "The contract preserves the source-defined assets, threat inventory, trust boundaries, local-first and explicit-disclosure controls, provenance/quarantine/sandbox/no-bypass requirements, bounded telemetry-guard witness and explicit interception absences, open implementation questions, update triggers, and the distinction from penetration testing, legal sufficiency, security certification, professional approval, or code-compliance assurance.",
+      "--verification-method",
+      "Validate the contract and review source parity, asset/threat/trust-boundary coverage, local-first disclosure and report controls, plugin/import/rule/supply-chain/secret handling, bounded control evidence and explicit absences, retained TBDs and update triggers, and non-assurance limits.",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.03514,
+    "stderr": "",
+    "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-2/ScopeOfWork.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-1.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.036081,
+    "stderr": "",
+    "stdout": "PASS blocks=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-1.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+      "--evidence-candidate",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-2.md",
+      "--report",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.036412,
+    "stderr": "",
+    "stdout": "PASS blocks=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-2.md\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md"
+    ],
+    "returncode": 0,
+    "seconds": 0.033259,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/dual"
+    ],
+    "returncode": 0,
+    "seconds": 0.032898,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/dual\",\n  \"valid\": true\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-1.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.039439,
+    "stderr": "",
+    "stdout": "PASS rows=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-1.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/parity-1.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.041325,
+    "stderr": "",
+    "stdout": "PASS checks=42\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/checklist-1.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.035281,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/render-1.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.037147,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-2.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.039442,
+    "stderr": "",
+    "stdout": "PASS rows=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-2.csv\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/parity-2.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 0,
+    "seconds": 0.040923,
+    "stderr": "",
+    "stdout": "PASS checks=42\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/checklist-2.json"
+    ],
+    "returncode": 0,
+    "seconds": 0.035373,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/render-2.html"
+    ],
+    "returncode": 0,
+    "seconds": 0.037274,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+      "--json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/ScopeOfWork.md"
+    ],
+    "returncode": 1,
+    "seconds": 0.033352,
+    "stderr": "",
+    "stdout": "{\n  \"format\": \"INVALID\",\n  \"issues\": [\n    \"format state is INVALID\",\n    \"schema must equal chirality-deliverable-sow/v1\"\n  ],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/ScopeOfWork.md\",\n  \"valid\": false\n}\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+      "--output-csv",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/bad-map.csv"
+    ],
+    "returncode": 1,
+    "seconds": 0.036242,
+    "stderr": "ERROR: production ScopeOfWork.md is not the deterministic finalization of the evidence candidate\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+      "--scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+      "--production-scope-of-work",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/ScopeOfWork.md",
+      "--source-dir",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+      "--output-json",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/bad-parity.json",
+      "--isolated-migration",
+      "--migration-authority",
+      "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+    ],
+    "returncode": 1,
+    "seconds": 0.041614,
+    "stderr": "",
+    "stdout": "FAIL checks=42\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/bad-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033654,
+    "stderr": "ERROR: format state is INVALID; validated ScopeOfWork.md is required: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/dual-noauth",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/dual-checklist.json"
+    ],
+    "returncode": 1,
+    "seconds": 0.033603,
+    "stderr": "ERROR: format state is AMBIGUOUS; validated ScopeOfWork.md is required: dual production formats require an isolated conversion workspace and exact migration authority\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/ScopeOfWork.md",
+      "--output",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/bad-render.html"
+    ],
+    "returncode": 1,
+    "seconds": 0.033866,
+    "stderr": "ERROR: format state is INVALID: schema must equal chirality-deliverable-sow/v1\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+      "--deliverable",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/negative/legacy",
+      "--deliverable-id",
+      "DEL-12-05",
+      "--package-id",
+      "PKG-12",
+      "--decomposition-basis",
+      "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+      "--project-scope-ref",
+      "SOW-040",
+      "--package-objective-ref",
+      "OBJ-010",
+      "--output-description",
+      "A security threat-model contract covering local storage, private data, reports and sharing, telemetry, plugins and imports, rule evaluation, secrets, hashes, and supply-chain exposure is produced.",
+      "--acceptance-criterion",
+      "The contract preserves the source-defined assets, threat inventory, trust boundaries, local-first and explicit-disclosure controls, provenance/quarantine/sandbox/no-bypass requirements, bounded telemetry-guard witness and explicit interception absences, open implementation questions, update triggers, and the distinction from penetration testing, legal sufficiency, security certification, professional approval, or code-compliance assurance.",
+      "--verification-method",
+      "Validate the contract and review source parity, asset/threat/trust-boundary coverage, local-first disclosure and report controls, plugin/import/rule/supply-chain/secret handling, bounded control evidence and explicit absences, retained TBDs and update triggers, and non-assurance limits.",
+      "--isolated-migration"
+    ],
+    "returncode": 1,
+    "seconds": 0.032411,
+    "stderr": "ERROR: dual-format conversion requires --isolated-migration and --migration-authority D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176\n",
+    "stdout": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/Dependencies.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.020862,
+    "stderr": "",
+    "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 14\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/Dependencies.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.02073,
+    "stderr": "",
+    "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 18\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/Dependencies.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.020649,
+    "stderr": "",
+    "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 13\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling/Dependencies.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.020512,
+    "stderr": "",
+    "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 17\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/validation/validate_dependencies_schema.py",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model/Dependencies.csv"
+    ],
+    "returncode": 0,
+    "seconds": 0.020713,
+    "stderr": "",
+    "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 23\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "returncode": 0,
+    "seconds": 1.53108,
+    "stderr": "",
+    "stdout": "> **Generated view \u2014 not authority.** Produced by tools/practitioner_harness (command: self-check).\n> Sources cited per finding; on any disagreement the cited source files govern.\n> Regenerate from project files; safe to delete. Structural checks are not approval,\n> issue, authentication, or acceptance of residual risk (K-AUTH-1; D-GOV-01).\n\n# Self-check \u2014 consistency audit\n\nScope: `projects/chirality-app-dev`, `projects/chirality-piping`, `projects/pec`, `_DomainEngines`, `docs/governance_harness`\n\n## Root governance status (self-declared; INFO facts)\n\n- `docs/DIRECTIVE.md` (line 3): > **Status: RATIFIED \u2014 owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): \"You can now take all the `docs/` out of the DRAFT state, making them aut \u2026[truncated]\n- `docs/CONTRACT.md` (line 3): > **Status: RATIFIED \u2014 owner ratification 2026-07-11 (K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): \"You can now take all the `docs/` out of the DRAFT state, making them authoritative.\" Thi \u2026[truncated]\n- `docs/SPEC.md` (line 3): > **Status: RATIFIED \u2014 owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): \"You can now take all the `docs/` out of the DRAFT state, making them aut \u2026[truncated]\n- `docs/TYPES.md` (line 3): > **Status: RATIFIED \u2014 owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): \"You can now take all the `docs/` out of the DRAFT state, making them aut \u2026[truncated]\n\n## Findings\n\n| Severity | Code | Dimension | Source | Invariant (ratification) | Message |\n|---|---|---|---|---|---|\n| REVIEW | STALE_RULING_ANNOTATION | staleness | `_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md:1` | K-CONFLICT-1 (RATIFIED) | Line carries a '(PROPOSAL; HumanRuling = TBD)'-form annotation while the decision register title declares RULED; sources conflict \u2014 human review required. |\n| REVIEW | TITLE_CONTRADICTS_RULING | staleness | `_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md:1` | K-CONFLICT-1 (RATIFIED) | Title line carries a PROPOSAL/TBD tag while a body line records a ruling attributed to 'Ryan Tufts' (allowlisted); sources conflict \u2014 human review required. |\n| REVIEW | STALE_DRAFT_DIRECTIVE | staleness | `_DomainEngines/RULINGS_PUBLISHED.md:20` | K-CONFLICT-1 (RATIFIED) | Prose directs to 'Update the DRAFT profile' while the profile declares profile_status ADOPTED; sources conflict \u2014 human review required. |\n| INFO | ABS_PATH_IN_EVIDENCE | path-anchoring | `_DomainEngines/profiles/_validation/open_pipe_stress.validation.json:5` | SPEC-0.2.4 (N_A) | Machine-absolute path in a run-record/evidence artifact (permitted by SPEC \u00a70.2.4; noted for portability awareness). |\n| INFO | ABS_PATH_IN_EVIDENCE | path-anchoring | `_DomainEngines/profiles/_validation/pec.validation.json:5` | SPEC-0.2.4 (N_A) | Machine-absolute path in a run-record/evidence artifact (permitted by SPEC \u00a70.2.4; noted for portability awareness). |\n| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-06_profile_adoption_lifecycle.md:7` | K-PROV-1 (RATIFIED) | Reference `profiles/open_pipe_stress.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |\n| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-11_pec_registration_shape.md:29` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/profile/pec.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |\n| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-12_pec_profile_lifecycle.md:20` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/profile/pec.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |\n| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-12_pec_profile_lifecycle.md:20` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/profile/pec.DRAFT.yaml` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |\n| WARN | UNRESOLVED_SOURCE_REF | provenance | `_DomainEngines/_DECISIONS/D-T0-15_pec_loop_goal_fences.md:17` | K-PROV-1 (RATIFIED) | Reference `_DomainEngines/pec/WORKPLAN_2026-07-04_pec_loop.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |\n| WARN | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/_DECISIONS/D-GOV-07_domain_gate_sha_binding.md:26` | K-PROV-1 (RATIFIED) | Reference `gate_snapshots/_LATEST_GATE6.md` does not resolve to an existing repo path (checked repo-root-relative and file-relative). |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md:103` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md:104` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md:88` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md:89` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md:90` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md:91` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-02_verifier_severity_and_override.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-03_pilot_scope.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-04_human_actor_identity.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-06_domain_profile_current_truth.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-07_domain_gate_sha_binding.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| NOT_APPLICABLE | POINTER_CHECK_NOT_APPLICABLE | staleness | `projects/pec` | K-STALE-2 (RATIFIED) | No `_LATEST*` pointer files under this root; pointer-currency check skipped (preconditions absent). |\n| NOT_APPLICABLE | POINTER_CHECK_NOT_APPLICABLE | staleness | `docs/governance_harness` | K-STALE-2 (RATIFIED) | No `_LATEST*` pointer files under this root; pointer-currency check skipped (preconditions absent). |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md:20` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `docs/`) carries 1 machine-absolute-path hit line(s); first hit at line 20. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-08_RULING_2026-06-16.md:18` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `_Coordination/`) carries 1 machine-absolute-path hit line(s); first hit at line 18. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-16_RULING_2026-06-18.md:7` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `_Coordination/`) carries 1 machine-absolute-path hit line(s); first hit at line 7. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-17_RULING_2026-06-18.md:8` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `_Coordination/`) carries 1 machine-absolute-path hit line(s); first hit at line 8. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/ASSESSMENT_2026-06-18_pi_rust_sdk_correction_and_harness_posture.md:19` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 2 machine-absolute-path hit line(s); first hit at line 19. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/PLAN_2026-06-16_six_node_scc_resolution.md:24` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 1 machine-absolute-path hit line(s); first hit at line 24. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md:1443` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 18 machine-absolute-path hit line(s); first hit at line 1443. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/R5_EXECUTABLE_IMPLEMENTATION_DESIGN_PACKAGE_2026-06-16.md:29` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 1 machine-absolute-path hit line(s); first hit at line 29. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/agent-harness-patterns-from-claw-code-assessment.md:8` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 3 machine-absolute-path hit line(s); first hit at line 8. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/artifacts/bridge_appdev_contribution_for_tier0_2026-06-21.md:38` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 1 machine-absolute-path hit line(s); first hit at line 38. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md:44` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 3 machine-absolute-path hit line(s); first hit at line 44. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md:32` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 1 machine-absolute-path hit line(s); first hit at line 32. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/artifacts/insp03_assessment_index_2026-06-20.md:27` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 9 machine-absolute-path hit line(s); first hit at line 27. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md:64` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 3 machine-absolute-path hit line(s); first hit at line 64. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md:36` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 2 machine-absolute-path hit line(s); first hit at line 36. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/pi-agent-harness-assessment.md:11` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 21 machine-absolute-path hit line(s); first hit at line 11. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/pi-assessment/01_core_session_primitives.md:5` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 17 machine-absolute-path hit line(s); first hit at line 5. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/pi-assessment/02_backend_adapter_feasibility.md:5` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 14 machine-absolute-path hit line(s); first hit at line 5. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/pi-assessment/03_security_governance_fit.md:5` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 14 machine-absolute-path hit line(s); first hit at line 5. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/pi-assessment/04_domain_harness_fit.md:5` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 12 machine-absolute-path hit line(s); first hit at line 5. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-app-dev/plans/pi-assessment/05_license_maintenance.md:5` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 10 machine-absolute-path hit line(s); first hit at line 5. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-piping/execution/_Coordination/_DECISIONS/D-05_ci_provider_workflow.md:61` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `_Coordination/`) carries 1 machine-absolute-path hit line(s); first hit at line 61. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md:51` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `plans/`) carries 6 machine-absolute-path hit line(s); first hit at line 51. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n| REVIEW | ABS_PATH_IN_PROJECT_SURFACE | path-anchoring | `projects/pec/docs/PILOT.md:109` | SPEC-0.2.4 (N_A) | Instruction-class project surface (path segment `docs/`) carries 2 machine-absolute-path hit line(s); first hit at line 109. SPEC \u00a70.2.4 requires repo-relative anchoring on instruction/coordination/plan surfaces, while run records and evidence artifacts lawfully carry absolute paths. Detect, never rewrite: relativization when the file is next touched is a human/maintenance call \u2014 human review required. |\n\n## Summary\n\nFinding severities: INFO=15, NOT_APPLICABLE=2, REVIEW=27, WARN=6\n- scope: ['projects/chirality-app-dev', 'projects/chirality-piping', 'projects/pec', '_DomainEngines', 'docs/governance_harness']\n- pointer_files_scanned: 23\n- checks_run: DE-1..8 (domain-engine surfaces incl. stale open issues vs later rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), GEN-3 (generated labeling), GEN-4 (root governance status facts), GEN-5 (unresolved refs; control files only in v1), GEN-6 (draft-basis-used-as-binding; control files only in v1), GEN-7 (_LATEST pointer currency: target resolution outside .archive + newest-same-class-sibling by date-in-filename), GEN-8 (project-tree abs-path lint: per-file, three-way classification, detect-never-rewrite), GEN-9 (agent-registry currency: AGENTS.md file tokens vs live agents/ files, both directions), GEN-10 (bridge receipt labels + parked-lane carry-forward)\n"
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+      "-m",
+      "pytest",
+      "-q",
+      "tools/practitioner_harness"
+    ],
+    "returncode": 0,
+    "seconds": 29.29478,
+    "stderr": "",
+    "stdout": "........................................................................ [ 27%]\n........................................................................ [ 54%]\n........................................................................ [ 81%]\n................................................                         [100%]\n264 passed in 29.12s\n"
+  }
+]

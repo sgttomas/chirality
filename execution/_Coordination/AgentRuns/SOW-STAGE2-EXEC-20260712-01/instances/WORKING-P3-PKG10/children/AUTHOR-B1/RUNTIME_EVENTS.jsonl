@@ -1,0 +1,12 @@
+{"timestamp_utc":"2026-07-15T00:31:29Z","sequence":1,"deliverable_id":"DEL-10-01","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:29Z","sequence":1,"deliverable_id":"DEL-10-01","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:30Z","sequence":2,"deliverable_id":"DEL-10-02","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:30Z","sequence":2,"deliverable_id":"DEL-10-02","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:31Z","sequence":3,"deliverable_id":"DEL-10-03","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:31Z","sequence":3,"deliverable_id":"DEL-10-03","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:32Z","sequence":4,"deliverable_id":"DEL-10-04","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:32Z","sequence":4,"deliverable_id":"DEL-10-04","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:33Z","sequence":5,"deliverable_id":"DEL-10-05","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:31:33Z","sequence":5,"deliverable_id":"DEL-10-05","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:33:13Z","sequence":0,"deliverable_id":"BATCH","stage":"harness_preflight","event":"repair","attempt":1,"failure_category":"EXECUTION_SUBSTRATE","reason_code":"LOCAL_SEED_REGEX_REPAIRED_BEFORE_EXECUTION","remediation":"REGEX_NEWLINE_ASSUMPTION_FIX_FULL_RUN_FROM_START"}
+{"timestamp_utc":"2026-07-15T00:33:13Z","sequence":0,"deliverable_id":"BATCH","stage":"terminalization","event":"finish","attempt":1,"reason_code":"PASS_FINAL_BIND"}

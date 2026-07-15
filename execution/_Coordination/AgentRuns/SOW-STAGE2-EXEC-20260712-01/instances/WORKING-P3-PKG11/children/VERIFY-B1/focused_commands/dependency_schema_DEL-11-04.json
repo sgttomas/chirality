@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "python3",
+    "tools/validation/validate_dependencies_schema.py",
+    "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-04_Invented educational example models/Dependencies.csv"
+  ],
+  "duration_seconds": 0.024193,
+  "exit_code": 0,
+  "label": "dependency_schema_DEL-11-04",
+  "stderr": "",
+  "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-04_Invented educational example models/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 17\n"
+}

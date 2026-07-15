@@ -1,0 +1,17 @@
+{
+  "accepted_candidate_manifest_sha256": "404a7031a720d2d05a46d8ddd1fc518294422c4693c7446729eafb5470cbe976",
+  "candidate_file_count": 15,
+  "candidate_manifest_matches_acceptance": true,
+  "candidate_manifest_reproduction_sha256": "404a7031a720d2d05a46d8ddd1fc518294422c4693c7446729eafb5470cbe976",
+  "candidate_tree_aggregate_sha256": "6c441edb4bab077e5975dba8f3a61fa1d3dbe092715f7855b1a8ae2054e38009",
+  "candidate_writes": 0,
+  "live_binding_set_sha256": "78a2d3402ab04106523a90fe32cddbce4e3cc729159dc399e1425f5976caeb8a",
+  "live_expected_bindings": 45,
+  "live_matching_bindings": 45,
+  "live_mismatches": [],
+  "live_project_index_diff_exit": 0,
+  "live_project_worktree_diff_exit": 0,
+  "live_project_writes": 0,
+  "scope": "DEL-12-01..05",
+  "timestamp_utc": "2026-07-15T01:17:44Z"
+}

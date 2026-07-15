@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 214,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "f4610a3931b00d76000e6b80c4132a57756982744afbe116545abdd9226f6e54"
+      },
+      "text": "The contract preserves schema-first adapter interfaces, unit/dimensional/provenance and redistribution checks, public/private data separation, protected-content quarantine, diagnostics and loss reporting, deterministic round-trip behavior, format-specific extension boundaries, downstream FEA-handoff compatibility, and unresolved external-format decisions without inventing implementation authority.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-001",
+          "source_line": 295,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, adapter lifecycle and format-extension coverage, unit/provenance/private-data controls, loss and diagnostic visibility, round-trip and downstream-handoff evidence, retained format TBDs, and no-bypass or professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "f4610a3931b00d76000e6b80c4132a57756982744afbe116545abdd9226f6e54"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,45 @@
+DEL-10-01	0	VALID: projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-01_Public API and plugin boundary/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 14
+DEL-10-02	0	VALID: projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-02_Import-export adapter framework/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18
+DEL-10-03	0	VALID: projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-03_Local FEA handoff data contract/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 20
+DEL-10-04	0	VALID: projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-04_Build, packaging, and CI-CD pipeline/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 20
+DEL-10-05	0	VALID: projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 29
+DEL-11-01	0	VALID: projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-01_User guide skeleton/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 20
+DEL-11-02	0	VALID: projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 15
+DEL-11-03	0	VALID: projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-03_Theory notes- classical to modern centerline analysis/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 12
+DEL-11-04	0	VALID: projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-04_Invented educational example models/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 17
+DEL-11-05	0	VALID: projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-05_Contributor tutorial and onboarding/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 11
+DEL-12-01	0	VALID: projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 14
+DEL-12-02	0	VALID: projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18
+DEL-12-03	0	VALID: projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 13
+DEL-12-04	0	VALID: projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 17
+DEL-12-05	0	VALID: projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 23

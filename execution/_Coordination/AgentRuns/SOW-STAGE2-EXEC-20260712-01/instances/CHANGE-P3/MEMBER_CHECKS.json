@@ -1,0 +1,142 @@
+{
+  "members": 15,
+  "results": [
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-10-01",
+      "finalization": "PASS",
+      "live_sha256": "42e3069a9f8d0401126b8f62cc03bb5def8065ae1fa06f7c9bde95bf2dcac8ea",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-10-02",
+      "finalization": "PASS",
+      "live_sha256": "f4610a3931b00d76000e6b80c4132a57756982744afbe116545abdd9226f6e54",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-10-03",
+      "finalization": "PASS",
+      "live_sha256": "f46752c77887d13bad6d50b29b6bbd65bcb4c669ac474b44bc20203a23b0d5f3",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-10-04",
+      "finalization": "PASS",
+      "live_sha256": "1b7eb7b1a11810a6d88da3c1c105263bcf991cc19c47b0cb59ee21868292e474",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-10-05",
+      "finalization": "PASS",
+      "live_sha256": "f22605f1b2d67ea4f22624bd108b3fe701ce67f03516d17e8c92dc7e3ba183ea",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-11-01",
+      "finalization": "PASS",
+      "live_sha256": "46cba20a315bffff070c2ece60c87ea36b6c8021afdbba6650f62c30a888b4ee",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-11-02",
+      "finalization": "PASS",
+      "live_sha256": "c71fa0a2749ae82e13c350980b65af676efc0f208c1fd3939747d472d7255e91",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-11-03",
+      "finalization": "PASS",
+      "live_sha256": "b5e973588e062a9e85e4e7dc446fae66d654cfa9b778845cbef2b51bf2ea909d",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-11-04",
+      "finalization": "PASS",
+      "live_sha256": "9fdf56afa1e57bff58c4eb000d45880a8ee495e7ab6a33a6183e642c28f3158a",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-11-05",
+      "finalization": "PASS",
+      "live_sha256": "94153b259b6a942fa3492e0da9d614028fdcd8297b099c7c54eb9feb9c6e46e2",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-12-01",
+      "finalization": "PASS",
+      "live_sha256": "d2a49729412209263244295c347be09fb10c4e0a9171fad717735a895014a873",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-12-02",
+      "finalization": "PASS",
+      "live_sha256": "6dc748f30ea2ada9e9a8b8cab38f3e5c9abe9778c87ebd092acaf39a035dc1c3",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-12-03",
+      "finalization": "PASS",
+      "live_sha256": "a0864fe2d9185bcc09d87ec0b93f0e3925e68ec52836b7d0247e00114585e17b",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-12-04",
+      "finalization": "PASS",
+      "live_sha256": "a85b8115057211ecdc8ac74c005d79b0b6f0c9f2f944058441c46c211781858b",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-12-05",
+      "finalization": "PASS",
+      "live_sha256": "36b53f681a536eac315a2040cff220b65eb94c0eb06b138d18c360e707a6ce06",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    }
+  ],
+  "schema": "chirality-change-member-checks/v1",
+  "verdict": "PASS"
+}

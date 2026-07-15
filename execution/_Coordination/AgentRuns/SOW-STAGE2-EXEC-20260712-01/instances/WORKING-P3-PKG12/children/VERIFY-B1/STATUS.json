@@ -1,0 +1,13 @@
+{
+  "blocker": "Independence-scope contamination: author-owned CANDIDATE_MANIFEST.tsv was read beyond the permitted parent B1_AUTHOR_ACCEPTANCE.md.",
+  "candidate_writes": 0,
+  "completed_members": 0,
+  "instance_id": "VERIFY-B1",
+  "live_project_writes": 0,
+  "package_id": "PKG-12",
+  "requested_members": 5,
+  "rerun_required": true,
+  "result": "BLOCKED",
+  "semantic_verification_started": false,
+  "timestamp_utc": "2026-07-15T01:17:44Z"
+}

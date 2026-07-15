@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "python3",
+    "tools/validation/validate_dependencies_schema.py",
+    "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-03_Theory notes- classical to modern centerline analysis/Dependencies.csv"
+  ],
+  "duration_seconds": 0.023564,
+  "exit_code": 0,
+  "label": "dependency_schema_DEL-11-03",
+  "stderr": "",
+  "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-03_Theory notes- classical to modern centerline analysis/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 12\n"
+}

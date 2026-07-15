@@ -1,0 +1,10 @@
+{
+  "format": "AMBIGUOUS",
+  "issues": [
+    "format state is AMBIGUOUS",
+    "dual production formats require an isolated conversion workspace and exact migration authority",
+    "migration authority must equal D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+  ],
+  "target": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/AUTHOR-B1/members/DEL-12-03/workspace-a",
+  "valid": false
+}

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "pytest",
+    "-q",
+    "tools/scope_of_work/test_scope_of_work_tools.py"
+  ],
+  "duration_seconds": 3.517409,
+  "exit_code": 0,
+  "label": "scope_of_work_tests",
+  "stderr": "",
+  "stdout": "...................                                                      [100%]\n19 passed in 2.63s\n"
+}

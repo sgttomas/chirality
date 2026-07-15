@@ -1,0 +1,731 @@
+{
+  "candidate_hashes": {
+    "evidence": "b3e03161b0f2b13a6271614960556c30392bb14e6fce14c2b092c4f4575144b9",
+    "production": "36b53f681a536eac315a2040cff220b65eb94c0eb06b138d18c360e707a6ce06",
+    "report": "6245a274f32bc6cd6e0225de010974d26672a60f3eec1278d5de4c16cef53058"
+  },
+  "checklist_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/checklist-1.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.035281,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "99adbcbd6f4b4ae2b091348b2d9ee7ca280c5adc833b3ac538b970a7e05c4d69"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/derive_review_checklist.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/checklist-2.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.035373,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "99adbcbd6f4b4ae2b091348b2d9ee7ca280c5adc833b3ac538b970a7e05c4d69"
+    }
+  ],
+  "conversions": [
+    {
+      "matches_candidate": true,
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+          "--deliverable",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-1",
+          "--deliverable-id",
+          "DEL-12-05",
+          "--package-id",
+          "PKG-12",
+          "--decomposition-basis",
+          "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+          "--project-scope-ref",
+          "SOW-040",
+          "--package-objective-ref",
+          "OBJ-010",
+          "--output-description",
+          "A security threat-model contract covering local storage, private data, reports and sharing, telemetry, plugins and imports, rule evaluation, secrets, hashes, and supply-chain exposure is produced.",
+          "--acceptance-criterion",
+          "The contract preserves the source-defined assets, threat inventory, trust boundaries, local-first and explicit-disclosure controls, provenance/quarantine/sandbox/no-bypass requirements, bounded telemetry-guard witness and explicit interception absences, open implementation questions, update triggers, and the distinction from penetration testing, legal sufficiency, security certification, professional approval, or code-compliance assurance.",
+          "--verification-method",
+          "Validate the contract and review source parity, asset/threat/trust-boundary coverage, local-first disclosure and report controls, plugin/import/rule/supply-chain/secret handling, bounded control evidence and explicit absences, retained TBDs and update triggers, and non-assurance limits.",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.035011,
+        "stderr": "",
+        "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-1/ScopeOfWork.md\n"
+      },
+      "sha256": "b3e03161b0f2b13a6271614960556c30392bb14e6fce14c2b092c4f4575144b9"
+    },
+    {
+      "matches_candidate": true,
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+          "--deliverable",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-2",
+          "--deliverable-id",
+          "DEL-12-05",
+          "--package-id",
+          "PKG-12",
+          "--decomposition-basis",
+          "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@4d153302c3c4cd42578936db160c2bac1270225a",
+          "--project-scope-ref",
+          "SOW-040",
+          "--package-objective-ref",
+          "OBJ-010",
+          "--output-description",
+          "A security threat-model contract covering local storage, private data, reports and sharing, telemetry, plugins and imports, rule evaluation, secrets, hashes, and supply-chain exposure is produced.",
+          "--acceptance-criterion",
+          "The contract preserves the source-defined assets, threat inventory, trust boundaries, local-first and explicit-disclosure controls, provenance/quarantine/sandbox/no-bypass requirements, bounded telemetry-guard witness and explicit interception absences, open implementation questions, update triggers, and the distinction from penetration testing, legal sufficiency, security certification, professional approval, or code-compliance assurance.",
+          "--verification-method",
+          "Validate the contract and review source parity, asset/threat/trust-boundary coverage, local-first disclosure and report controls, plugin/import/rule/supply-chain/secret handling, bounded control evidence and explicit absences, retained TBDs and update triggers, and non-assurance limits.",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.03514,
+        "stderr": "",
+        "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/conversion-2/ScopeOfWork.md\n"
+      },
+      "sha256": "b3e03161b0f2b13a6271614960556c30392bb14e6fce14c2b092c4f4575144b9"
+    }
+  ],
+  "deliverable_id": "DEL-12-05",
+  "finalizations": [
+    {
+      "production_matches": true,
+      "production_sha256": "36b53f681a536eac315a2040cff220b65eb94c0eb06b138d18c360e707a6ce06",
+      "report_matches": true,
+      "report_sha256": "6245a274f32bc6cd6e0225de010974d26672a60f3eec1278d5de4c16cef53058",
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+          "--evidence-candidate",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-1.md",
+          "--report",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-1.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.036081,
+        "stderr": "",
+        "stdout": "PASS blocks=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-1.md\n"
+      }
+    },
+    {
+      "production_matches": true,
+      "production_sha256": "36b53f681a536eac315a2040cff220b65eb94c0eb06b138d18c360e707a6ce06",
+      "report_matches": true,
+      "report_sha256": "6245a274f32bc6cd6e0225de010974d26672a60f3eec1278d5de4c16cef53058",
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/finalize_scope_of_work.py",
+          "--evidence-candidate",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-2.md",
+          "--report",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-2.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.036412,
+        "stderr": "",
+        "stdout": "PASS blocks=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/final-2.md\n"
+      }
+    }
+  ],
+  "live_hashes_match": true,
+  "live_path": "projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+  "live_unchanged": true,
+  "map_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+          "--output-csv",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-1.csv"
+        ],
+        "returncode": 0,
+        "seconds": 0.039439,
+        "stderr": "",
+        "stdout": "PASS rows=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-1.csv\n"
+      },
+      "sha256": "2b11ad7ff7459ac1ae29cf68639f97a4cad6a3cceb8f03ee76b29a385064b8db"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/map_scope_of_work_claims.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+          "--output-csv",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-2.csv"
+        ],
+        "returncode": 0,
+        "seconds": 0.039442,
+        "stderr": "",
+        "stdout": "PASS rows=42 output=/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/claim-map-2.csv\n"
+      },
+      "sha256": "2b11ad7ff7459ac1ae29cf68639f97a4cad6a3cceb8f03ee76b29a385064b8db"
+    }
+  ],
+  "mapping_rows": 42,
+  "parity": {
+    "checks": [
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-001"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 8,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-002"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 26,
+        "line_start": 9,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-003"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 40,
+        "line_start": 27,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-004"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 42,
+        "line_start": 41,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-005"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 53,
+        "line_start": 43,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-006"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 64,
+        "line_start": 54,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-007"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 68,
+        "line_start": 65,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-008"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 79,
+        "line_start": 69,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-009"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 91,
+        "line_start": 80,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-010"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 103,
+        "line_start": 92,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-011"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 118,
+        "line_start": 104,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-012"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 121,
+        "line_start": 119,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-013"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-014"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 6,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-015"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 14,
+        "line_start": 7,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-016"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 31,
+        "line_start": 15,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-017"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 46,
+        "line_start": 32,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-018"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 59,
+        "line_start": 47,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-019"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 73,
+        "line_start": 60,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-020"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 85,
+        "line_start": 74,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-021"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 88,
+        "line_start": 86,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-022"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-023"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 8,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-024"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 12,
+        "line_start": 9,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-025"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 23,
+        "line_start": 13,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-026"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 71,
+        "line_start": 24,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-027"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 83,
+        "line_start": 72,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-028"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 98,
+        "line_start": 84,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-029"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-030"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 6,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-031"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 12,
+        "line_start": 7,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-032"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 26,
+        "line_start": 13,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-033"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 28,
+        "line_start": 27,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-034"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 40,
+        "line_start": 29,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-035"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 52,
+        "line_start": 41,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-036"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 62,
+        "line_start": 53,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-037"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 73,
+        "line_start": 63,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-038"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 85,
+        "line_start": 74,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-039"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 91,
+        "line_start": 86,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-040"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 95,
+        "line_start": 92,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-041"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 98,
+        "line_start": 96,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-042"
+      }
+    ],
+    "evidence_candidate": "ScopeOfWork.md",
+    "evidence_candidate_sha256": "b3e03161b0f2b13a6271614960556c30392bb14e6fce14c2b092c4f4575144b9",
+    "issues": [],
+    "pass": true,
+    "production_scope_of_work": "ScopeOfWork.md",
+    "production_scope_of_work_sha256": "36b53f681a536eac315a2040cff220b65eb94c0eb06b138d18c360e707a6ce06",
+    "schema": "chirality-sow-parity/v2",
+    "source_files": {
+      "Datasheet.md": "5baf1baee7ef804ab66f2796014f9a4b7ec6e99d23882b77538cf1031f3c40c4",
+      "Guidance.md": "dcfd8413bfff63d9c9185a8931020d7b1a38aaf5c9f956b830f5d148326295d1",
+      "Procedure.md": "a9325bc6e12ade9a2d5d13e07605eae82adc091b9fc7a25d78a37db1214690ce",
+      "Specification.md": "95d10c9d857a95fc417b00664df0f05add9d8a0cb3b1cf22097d874d49a54284"
+    }
+  },
+  "parity_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+          "--output-json",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/parity-1.json",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.041325,
+        "stderr": "",
+        "stdout": "PASS checks=42\n"
+      },
+      "sha256": "38ac157ea4807735e0237ac4f057e717424581d5cc64204254a7fdc7ce4aec42"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/report_scope_of_work_parity.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+          "--output-json",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/parity-2.json",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.040923,
+        "stderr": "",
+        "stdout": "PASS checks=42\n"
+      },
+      "sha256": "38ac157ea4807735e0237ac4f057e717424581d5cc64204254a7fdc7ce4aec42"
+    }
+  ],
+  "render_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/render-1.html"
+        ],
+        "returncode": 0,
+        "seconds": 0.037147,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "fcdc21a1895a773e7e6a468e41e8be9f421bc495055fb7a4482cf1fbc31f3e6b"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/render_scope_of_work.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/members/DEL-12-05/render-2.html"
+        ],
+        "returncode": 0,
+        "seconds": 0.037274,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "fcdc21a1895a773e7e6a468e41e8be9f421bc495055fb7a4482cf1fbc31f3e6b"
+    }
+  ],
+  "semantic_review": {
+    "ac": "The contract preserves the source-defined assets, threat inventory, trust boundaries, local-first and explicit-disclosure controls, provenance/quarantine/sandbox/no-bypass requirements, bounded telemetry-guard witness and explicit interception absences, open implementation questions, update triggers, and the distinction from penetration testing, legal sufficiency, security certification, professional approval, or code-compliance assurance.",
+    "no_conflict": true,
+    "no_migration_metadata_in_production": true,
+    "objective_refs": [
+      "OBJ-010"
+    ],
+    "out": "A security threat-model contract covering local storage, private data, reports and sharing, telemetry, plugins and imports, rule evaluation, secrets, hashes, and supply-chain exposure is produced.",
+    "scope_refs": [
+      "SOW-040"
+    ],
+    "ver": "Validate the contract and review source parity, asset/threat/trust-boundary coverage, local-first disclosure and report controls, plugin/import/rule/supply-chain/secret handling, bounded control evidence and explicit absences, retained TBDs and update triggers, and non-assurance limits."
+  },
+  "source_lines": 405,
+  "validations": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+        "--json",
+        "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md"
+      ],
+      "returncode": 0,
+      "seconds": 0.033259,
+      "stderr": "",
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG12/DEL-12-05/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "/Users/ryan/ai-env/projects/chirality-sow-p3/tools/scope_of_work/validate_scope_of_work.py",
+        "--isolated-migration",
+        "--migration-authority",
+        "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+        "--json",
+        "/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/dual"
+      ],
+      "returncode": 0,
+      "seconds": 0.032898,
+      "stderr": "",
+      "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p3/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG12/children/VERIFY-B1-R1/work/DEL-12-05/dual\",\n  \"valid\": true\n}\n"
+    }
+  ],
+  "verdict": "PASS_UNCHANGED"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-11-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 222,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "c71fa0a2749ae82e13c350980b65af676efc0f208c1fd3939747d472d7255e91"
+      },
+      "text": "The contract preserves architecture and extension-point descriptions, schema and unit invariants, deterministic test and benchmark expectations, rule-pack provenance and protected-content boundaries, diagnostics and failure behavior, current implementation evidence, visible unresolved interfaces, and the separation of software contribution evidence from engineering approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-11-02-VER-001",
+          "source_line": 346,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, solver and rule-pack extension coverage, architecture and schema boundaries, units/provenance/protected-content controls, deterministic tests and diagnostics, retained interface TBDs, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-11-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-11",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "c71fa0a2749ae82e13c350980b65af676efc0f208c1fd3939747d472d7255e91"
+  },
+  "tool_version": "1"
+}

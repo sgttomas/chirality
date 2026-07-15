@@ -1,0 +1,99 @@
+{
+  "project_paths": 75,
+  "replacement_rows": 75,
+  "rollback_rows": 75,
+  "schema": "chirality-change-replacement-simulation/v1",
+  "simulations": [
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-10-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-10-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-10-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-10-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-10-05",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-11-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-11-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-11-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-11-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-11-05",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-12-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-12-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-12-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-12-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-12-05",
+      "rollback": "PASS",
+      "target": "PASS"
+    }
+  ],
+  "verdict": "PASS"
+}

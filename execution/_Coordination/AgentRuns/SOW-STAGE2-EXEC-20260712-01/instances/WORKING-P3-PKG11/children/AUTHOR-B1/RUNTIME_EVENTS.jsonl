@@ -1,0 +1,14 @@
+{"timestamp_utc":"2026-07-15T00:49:13Z","sequence":1,"deliverable_id":"DEL-11-01","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:13Z","sequence":1,"deliverable_id":"DEL-11-01","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:14Z","sequence":2,"deliverable_id":"DEL-11-02","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:14Z","sequence":2,"deliverable_id":"DEL-11-02","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:14Z","sequence":3,"deliverable_id":"DEL-11-03","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:14Z","sequence":3,"deliverable_id":"DEL-11-03","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:15Z","sequence":4,"deliverable_id":"DEL-11-04","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:15Z","sequence":4,"deliverable_id":"DEL-11-04","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:16Z","sequence":5,"deliverable_id":"DEL-11-05","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:49:16Z","sequence":5,"deliverable_id":"DEL-11-05","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T00:50:44Z","sequence":0,"deliverable_id":"BATCH","stage":"harness_preflight","event":"pass","attempt":1,"failure_category":"NONE","reason_code":"HARNESS_SYNTAX_PASS","remediation":"NONE"}
+{"timestamp_utc":"2026-07-15T00:50:44Z","sequence":0,"deliverable_id":"BATCH","stage":"terminalization","event":"finish","attempt":1,"reason_code":"PASS_FINAL_BIND"}
+{"timestamp_utc":"2026-07-15T00:52:17Z","sequence":0,"deliverable_id":"BATCH","stage":"harness_preflight","event":"pass","attempt":1,"failure_category":"NONE","reason_code":"HARNESS_SYNTAX_PASS","remediation":"NONE"}
+{"timestamp_utc":"2026-07-15T00:52:17Z","sequence":0,"deliverable_id":"BATCH","stage":"terminalization","event":"finish","attempt":1,"reason_code":"PASS_FINAL_BIND"}
