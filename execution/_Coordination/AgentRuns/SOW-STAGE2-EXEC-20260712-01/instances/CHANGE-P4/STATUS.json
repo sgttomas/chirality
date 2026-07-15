@@ -7,6 +7,9 @@
   "project_paths": 110,
   "replacement_rows": 110,
   "rollback_rows": 110,
-  "state": "READY_FOR_EVIDENCE_COMMIT",
+  "merge_commit": "e87c2ef9453ba2deafb30fa996937bffd4466e23",
+  "ready_pr": 235,
+  "source_head": "0abe2c611e8a74f7cbacae1e7b7fe4381930413f",
+  "state": "POSTMERGE_PASS_READY_FOR_CLOSEOUT_PR",
   "verdict": "PASS"
 }

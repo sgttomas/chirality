@@ -18,3 +18,11 @@ or authority byte changed.
    freeze from SHA-256
    `3b1d87dc50f97601f9266278ee29ce95dfc6bba77c5b95a31d2e9473a39ce83f`
    to `7c119b4699b6ca64628f21673a33484dc151bfa99303b731de491da023872257`.
+5. After the exact-head check passed, a redundant `gh pr checks --required`
+   probe reported that no branch-rule-required checks were configured and
+   stopped before merge. The available harness check was separately confirmed
+   1/1 successful on the exact source head, then the approved merge ran.
+6. Fresh isolated-postmerge pytest JUnit output also lacked a terminal LF. It
+   was normalized before snapshot freeze from SHA-256
+   `ad090a2d285e335fd7c0f22bed75693ea1df562ea1fe2f0571c1b0ac5fa0e187`
+   to `e822db82b634079b825814f11f22770ce806f3f9fb8dfebd9d1f8a7f780ad895`.

@@ -356,3 +356,20 @@
   8,796 existence/byte/hash bindings with zero candidate or project change.
 - State: W-P3 integration is closed and W-P4 is released. Conversion closure,
   rollback execution, retirement, and H2 remain parked.
+
+### Receipt 23 — 2026-07-14 — W-P4 integrated; conversion closure released
+
+- Binding: ready PR #235 passed `governance-harness / harness` on source head
+  `0abe2c611e8a74f7cbacae1e7b7fe4381930413f` and merged as
+  `e87c2ef9453ba2deafb30fa996937bffd4466e23`.
+- Result: 22 PKG-14–17 members are clean `SOW_V1`; the project delta is
+  exactly 22 additions plus 88 legacy deletions, with all status/control/
+  dependency/lifecycle bytes preserved.
+- Evidence: 729 mappings, 6,759/6,759 source lines, 22/22 simulations, exact
+  110-row replacement/inverse manifests, 264 practitioner tests, 20 root
+  tests, four validators, and isolated postmerge checks pass.
+- Handoff: `snapshots/W_P4/integration/postmerge/`, manifest SHA-256
+  `157c0b673eb447506916c70eaf1aac37a05ab08618e9dcb6f0ed73c915304570`.
+- State: W-P4 integration is closed and conversion closure is released to
+  consume the accepted wave handoffs. Rollback execution, retirement, and H2
+  remain parked.

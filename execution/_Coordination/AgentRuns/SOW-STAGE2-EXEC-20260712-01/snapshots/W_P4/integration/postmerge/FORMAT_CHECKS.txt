@@ -1,0 +1,132 @@
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-02_Analysis run records/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-04_Analysis-run comparison engine/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-05_Comparison mapping, tolerance, and export contracts/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-01_Canonical handoff package schema and manifest/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-02_Target mapping and unsupported-behavior contract/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-03_Downstream modeling export workflow/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-04_External prover boundary metadata/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-01_Structured model operation schema/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-04_Agent rationale and professional-boundary controls/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-01_CAEPIPE and export-format source basis/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-05_CAEPIPE external run harness and CSV parser/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-07_Conservative PCF subset exporter/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/ScopeOfWork.md",
+  "valid": true
+}
+{
+  "format": "SOW_V1",
+  "issues": [],
+  "target": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-09_Export adapter SDK and additional targets/ScopeOfWork.md",
+  "valid": true
+}
