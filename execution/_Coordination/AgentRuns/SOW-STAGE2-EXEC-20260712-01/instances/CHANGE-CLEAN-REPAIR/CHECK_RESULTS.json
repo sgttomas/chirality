@@ -1,0 +1,154 @@
+{
+  "schema": "chirality-sow-clean-repair-reconciliation-checks/v1",
+  "verdict": "BLOCKED",
+  "results": [
+    {
+      "name": "scope_of_work_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/scope_of_work/test_scope_of_work_tools.py"
+      ],
+      "cwd": "/Users/ryan/ai-env/projects/chirality-sow-closure",
+      "exit_code": 0,
+      "duration_seconds": 4.21,
+      "output_sha256": "a9dc2576ead5054d749d397cd3b191a7dd0c779dca9a15d6c9fef50f0da708d7"
+    },
+    {
+      "name": "practitioner_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": "/Users/ryan/ai-env/projects/chirality-sow-closure",
+      "exit_code": 0,
+      "duration_seconds": 31.92,
+      "output_sha256": "e5dc36043993f588276a94a96c6877a55c14bcb225b28d915ccc30271ea11dc4"
+    },
+    {
+      "name": "validate_agents",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_agent_instructions.py"
+      ],
+      "cwd": "/Users/ryan/ai-env/projects/chirality-sow-closure",
+      "exit_code": 0,
+      "duration_seconds": 0.062,
+      "output_sha256": "38234fbb7f936481f5d1560afadc56ad3f86040f1ca6e18021f7510d7a85bc52"
+    },
+    {
+      "name": "validate_entrypoints",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_instruction_entrypoints.py"
+      ],
+      "cwd": "/Users/ryan/ai-env/projects/chirality-sow-closure",
+      "exit_code": 0,
+      "duration_seconds": 0.026,
+      "output_sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf"
+    },
+    {
+      "name": "validate_paths",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_path_anchors.py",
+        "."
+      ],
+      "cwd": "/Users/ryan/ai-env/projects/chirality-sow-closure",
+      "exit_code": 0,
+      "duration_seconds": 2.302,
+      "output_sha256": "c2a090af6c63571fc8f7f4dec42c220d7f5424ee257e05dc733114653e006787"
+    },
+    {
+      "name": "validate_skills",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_skill_metadata.py"
+      ],
+      "cwd": "/Users/ryan/ai-env/projects/chirality-sow-closure",
+      "exit_code": 0,
+      "duration_seconds": 0.031,
+      "output_sha256": "571f92fe0979fb5b710346e91d754b8520720ae47c2fb564ee0e63b122ed5e00"
+    },
+    {
+      "name": "app_typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/recon-clean-repair-checks-z9_scvle/app",
+      "exit_code": 0,
+      "duration_seconds": 2.749,
+      "output_sha256": "2bcf8e9aadbaab700665caaa6fa3f1a40cd36e9596d9215ccbea7d3f920b59af"
+    },
+    {
+      "name": "app_tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--run"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/recon-clean-repair-checks-z9_scvle/app",
+      "exit_code": 1,
+      "duration_seconds": 4.783,
+      "output_sha256": "e1bc232bcc16d7c85a0758e753cfeec0e081878a86884c3025756ec40baf3d84"
+    },
+    {
+      "name": "app_build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/recon-clean-repair-checks-z9_scvle/app",
+      "exit_code": 0,
+      "duration_seconds": 9.46,
+      "output_sha256": "f3bbafbe3e13d405ac7e7f8a87ead12c600a01bfa94dd8e622f8799f0f83830b"
+    },
+    {
+      "name": "piping_wasm",
+      "command": [
+        "npm",
+        "run",
+        "build:wasm",
+        "--workspace",
+        "apps/desktop"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/recon-clean-repair-checks-z9_scvle/piping",
+      "exit_code": 0,
+      "duration_seconds": 8.519,
+      "output_sha256": "ec1106dbd4064ad2cff73911a3442cb15f10e8c487256a706c0512c2e72fef93"
+    },
+    {
+      "name": "piping_tests",
+      "command": [
+        "npm",
+        "run",
+        "test:desktop"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/recon-clean-repair-checks-z9_scvle/piping",
+      "exit_code": 0,
+      "duration_seconds": 39.489,
+      "output_sha256": "974edb6b1ec84df63324f9cb30327dd5f06d275321b03cc3afe08675ac468f6b"
+    },
+    {
+      "name": "piping_build",
+      "command": [
+        "npm",
+        "run",
+        "build:desktop"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/recon-clean-repair-checks-z9_scvle/piping",
+      "exit_code": 0,
+      "duration_seconds": 4.245,
+      "output_sha256": "2fa57a4f4003fdd30c33c427126eda358d4caace9e4b401bc2f35a519990aebb"
+    }
+  ]
+}

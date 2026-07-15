@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "instance": "CHANGE-CLEAN-REPAIR",
+  "role": "CHANGE",
+  "status": "READY_FOR_REQUIRED_CHECK_PR",
+  "basis": "715f618e93528d626a73d2134781e8c9c27f6c90",
+  "accepted_manifest_sha256": "f3f17fec99fa54cad63fb6d05af0272c47d3b3f505ac6787dfa58661dae8e2b6",
+  "project_paths": 57,
+  "atomic_commits": 57,
+  "local_checks": "PASS",
+  "h2_approved": false,
+  "legacy_retirement_implemented": false
+}
