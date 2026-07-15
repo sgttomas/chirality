@@ -1,0 +1,13 @@
+{"timestamp_utc":"2026-07-15T02:25:48Z","sequence":1,"deliverable_id":"DEL-14-01","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:48Z","sequence":1,"deliverable_id":"DEL-14-01","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:49Z","sequence":2,"deliverable_id":"DEL-14-02","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:49Z","sequence":2,"deliverable_id":"DEL-14-02","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:50Z","sequence":3,"deliverable_id":"DEL-14-03","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:50Z","sequence":3,"deliverable_id":"DEL-14-03","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:51Z","sequence":4,"deliverable_id":"DEL-14-04","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:51Z","sequence":4,"deliverable_id":"DEL-14-04","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:52Z","sequence":5,"deliverable_id":"DEL-14-05","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:25:52Z","sequence":5,"deliverable_id":"DEL-14-05","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T02:26:51Z","sequence":0,"deliverable_id":"BATCH","stage":"harness_preflight","event":"pass","attempt":1,"failure_category":"NONE","reason_code":"HARNESS_SYNTAX_PASS","remediation":"NONE"}
+{"timestamp_utc":"2026-07-15T02:26:51Z","sequence":0,"deliverable_id":"BATCH","stage":"terminalization","event":"finish","attempt":1,"reason_code":"PASS_FINAL_BIND"}
+{"timestamp_utc":"2026-07-15T02:29:00Z","sequence":0,"deliverable_id":"BATCH","stage":"manifest_reproduction","event":"repair","attempt":2,"failure_category":"EXECUTION_SUBSTRATE","reason_code":"ZSH_SPECIAL_PATH_VARIABLE_IN_READ_ONLY_LOOP","remediation":"RENAME_LOOP_VARIABLE_FULL_REPRODUCTION_AND_REBIND"}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 353,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "f369ac416cedcfcdc7478671099c2c6f29d08cfd03722c2e0515e8bdbfdb18a4"
+      },
+      "text": "The contract preserves source-basis identifiers, JSON Schema 2020-12 and no-bypass boundaries, export identity and hash metadata, explicit profile/version and unit/coordinate semantics, stable canonical-ID carrier and sidecar modes, exported/omitted/approximated/delegated/unsupported/TBD loss categories, diagnostics and provenance, downstream target gates, protected/private-data controls, and all carried target-specific TBDs without implying equivalence or professional acceptance.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-02-VER-001",
+          "source_line": 478,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, every package/profile/ID-map/manifest/loss-report field, canonical hash and unit boundaries, source-ID carryforward, deterministic ordering and diagnostics, no-silent-loss behavior, downstream target gates, retained target/version/carrier/container TBDs, and prohibited compatibility, compliance, release, or professional-authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "f369ac416cedcfcdc7478671099c2c6f29d08cfd03722c2e0515e8bdbfdb18a4"
+  },
+  "tool_version": "1"
+}

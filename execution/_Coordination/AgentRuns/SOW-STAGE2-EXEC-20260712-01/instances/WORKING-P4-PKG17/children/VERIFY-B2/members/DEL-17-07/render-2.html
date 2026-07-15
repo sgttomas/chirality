@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="a61a52921546367d0b29b539b0cbfdcee1771f4ad4d6103876b25975030012d2">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-17-07</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>a61a52921546367d0b29b539b0cbfdcee1771f4ad4d6103876b25975030012d2</code>.</p>
+<h1 id="scope-of-work-del-17-07">Scope of Work — DEL-17-07</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-17-07</code> in service of project scope [SOW-030, SOW-074] and package objectives [OBJ-009, OBJ-017, OBJ-018].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A conservative PCF subset export-profile and deterministic writer contract with explicit mapping, loss, warning, and target-version boundaries is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-17-07-conservative-pcf-subset-exporter">CLM-001 — Datasheet: DEL-17-07 Conservative PCF subset exporter</h3>
+<blockquote><h4 id="datasheet-del-17-07-conservative-pcf-subset-exporter">Datasheet: DEL-17-07 Conservative PCF subset exporter</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-07-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-17-07</td></tr>
+<tr><td>Package ID</td><td>PKG-17</td></tr>
+<tr><td>Package</td><td>Export Format Interoperability</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Source context</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-17 table</td></tr>
+<tr><td>Scope items</td><td>SOW-030, SOW-074</td></tr>
+<tr><td>Objectives</td><td>OBJ-009, OBJ-017, OBJ-018</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<p>DEL-17-07 defines the first conservative PCF export slice for broader plant-design interoperability. It is not the first validation backbone, not a complete PCF implementation, not a CAEPIPE compatibility claim, and not professional validation evidence.</p>
+<table><tbody>
+<tr><td>Attribute</td><td>Source-grounded value</td></tr>
+<tr><td>Target family</td><td>PCF subset export, bounded by <code>PLAN-EXPORT-INTEROP</code> section <code>5. PCF</code> and CAEPIPE public PCF translator documentation.</td></tr>
+<tr><td>Primary output concept</td><td>PCF target file plus export package records required by DEL-17-02: manifest, stable ID map, diagnostics, and loss report.</td></tr>
+<tr><td>Initial subset candidates</td><td>Straight pipe, elbows/bends, tees, reducers, flanges, valves, end connections, line numbers, nominal size, OD/wall-thickness attributes where supported, basic spec/material labels, coordinates, component identifiers, and stable ID sidecar mapping. Source: <code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code> section <code>5. PCF</code>.</td></tr>
+<tr><td>Mandatory reporting</td><td>Unsupported, approximated, delegated, omitted, and <code>TBD</code> behavior shall be visible in the loss report. Source: DEL-17-02 <code>Specification.md</code> loss-report requirements.</td></tr>
+<tr><td>Translator-default posture</td><td>Hidden translator defaults shall not be silently relied on; they shall be rejected, warned, delegated, or recorded as <code>TBD</code>/loss-report entries. Source: <code>CAEPIPE-PCF</code> and DEL-17-01 source basis.</td></tr>
+<tr><td>Version/profile basis</td><td><code>TBD</code>; no first supported PCF target profile or CAEPIPE translator version is selected in this phase. Closure requires admitted public evidence or explicit human project authority. Sources: DEL-17-01 <code>Source_Basis_Register.md</code> TBD-17-01-005; <code>CAEPIPE_Question_Dossier.md</code> CQ-17-01-006; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-004/OI-015/OI-017.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-profile-classification-record-slot">CLM-005 — Profile Classification Record Slot</h3>
+<blockquote><h6 id="profile-classification-record-slot">Profile Classification Record Slot</h6>
+<p>The future PCF subset profile shall include a classification record before writer implementation. This slot defines the required record shape only; it does not finalize support status while the target version/profile basis remains <code>TBD</code>.</p>
+<table><tbody>
+<tr><td>Candidate family or attribute class</td><td>Classification</td><td>Evidence basis</td><td>Loss-report handling</td></tr>
+<tr><td>Straight pipe</td><td><code>TBD</code></td><td>PLAN-EXPORT-INTEROP section <code>5. PCF</code>; CAEPIPE-PCF component mapping table; DEL-17-01 TBD-17-01-005</td><td>Required before export acceptance</td></tr>
+<tr><td>Elbows and bends</td><td><code>TBD</code></td><td>PLAN-EXPORT-INTEROP section <code>5. PCF</code>; CAEPIPE-PCF component mapping table</td><td>Required before export acceptance</td></tr>
+<tr><td>Tees and branches</td><td><code>TBD</code></td><td>PLAN-EXPORT-INTEROP section <code>5. PCF</code>; CAEPIPE-PCF component mapping table; branch/SIF semantics remain bounded by project data-boundary controls</td><td>Required before export acceptance</td></tr>
+<tr><td>Reducers</td><td><code>TBD</code></td><td>PLAN-EXPORT-INTEROP section <code>5. PCF</code>; CAEPIPE-PCF component mapping table</td><td>Required before export acceptance</td></tr>
+<tr><td>Flanges</td><td><code>TBD</code></td><td>PLAN-EXPORT-INTEROP section <code>5. PCF</code>; CAEPIPE-PCF translator flange handling option</td><td>Required before export acceptance</td></tr>
+<tr><td>Valves</td><td><code>TBD</code></td><td>PLAN-EXPORT-INTEROP section <code>5. PCF</code>; CAEPIPE-PCF translator valve handling option and component mapping table</td><td>Required before export acceptance</td></tr>
+<tr><td>End connections, free ends, equipment nozzles, adjacent pipelines</td><td><code>TBD</code> / delegated / unsupported until profile decision</td><td>CAEPIPE-PCF <code>Boundary Conditions</code>; PLAN-EXPORT-INTEROP section <code>5. PCF</code></td><td>Solver-ready boundary semantics must be blocked or loss-reported when not preserved</td></tr>
+<tr><td>Line numbers, nominal size, coordinates, component identifiers</td><td><code>TBD</code></td><td>PLAN-EXPORT-INTEROP section <code>5. PCF</code>; DEL-17-02 profile and stable-ID requirements</td><td>Required for traceability when exported</td></tr>
+<tr><td>OD and wall thickness attributes</td><td><code>TBD</code> / delegated when external mapping is needed</td><td>CAEPIPE-PCF <code>Wall Thickness</code>, <code>OD and Nominal Size</code>, and <code>OD and Wall Thickness via config_pcf.ini</code></td><td>Missing or externally mapped values require diagnostics/loss entries</td></tr>
+<tr><td>Basic spec/material labels</td><td><code>TBD</code> / delegated for target property mapping</td><td>CAEPIPE-PCF <code>Material</code>; IP-DATA protected-content boundary</td><td>Material property mapping must not be silently inferred</td></tr>
+<tr><td>Supports and restraints</td><td><code>TBD</code> / delegated / unsupported unless profile proves preservation</td><td>CAEPIPE-PCF <code>Supports</code>; PLAN-EXPORT-INTEROP section <code>5. PCF</code></td><td>Listed separately in export report and loss report</td></tr>
+<tr><td>Stable ID sidecar mapping</td><td>Candidate exported sidecar</td><td>DEL-17-02 stable ID map requirements; PLAN-EXPORT-INTEROP stable identity rules</td><td>Required where direct PCF carriage is not source-confirmed</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-conditions">CLM-006 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<p>The CAEPIPE PCF translator source identifies behaviors that constrain this exporter:</p>
+<table><tbody>
+<tr><td>Condition</td><td>PCF exporter implication</td><td>Source</td></tr>
+<tr><td>PCF-to-CAEPIPE conversion can depend on translator dialog fields such as piping code, specific gravity, node numbering, size filtering, vertical axis, flange handling, and valve handling.</td><td>DEL-17-07 shall not encode those settings as hidden OpenPipeStress defaults. Any downstream CAEPIPE translation expectation remains <code>TBD</code> or delegated target-tool behavior.</td><td><code>CAEPIPE-PCF</code>, pages 1-2</td></tr>
+<tr><td>Unit interpretation depends on PCF <code>UNITS-BORE</code>.</td><td>The profile shall declare PCF unit policy and shall produce diagnostics when source units cannot be represented explicitly.</td><td><code>CAEPIPE-PCF</code>, Reference/Units</td></tr>
+<tr><td>Temperature, pressure, fluid density, weights, OD, wall thickness, support type, and material mapping have translator-specific fallback behavior.</td><td>Missing values and fallback sources shall be reported rather than silently supplied by the exporter.</td><td><code>CAEPIPE-PCF</code>, Reference sections</td></tr>
+<tr><td>Free ends may be anchored by CAEPIPE translator behavior because PCF lacks certain connection details.</td><td>End-connection and boundary-condition semantics shall be marked explicit, unsupported, delegated, or <code>TBD</code>; no solver-ready restraint claim is allowed from PCF alone.</td><td><code>CAEPIPE-PCF</code>, Boundary Conditions</td></tr>
+<tr><td>Some PCF component identifiers are simulated in CAEPIPE as rigid elements, equivalent pipes, concentrated masses, or other target-side approximations.</td><td>Component coverage shall distinguish direct export from downstream approximation and shall record affected canonical IDs.</td><td><code>CAEPIPE-PCF</code>, component mapping table</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-construction">CLM-007 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The deliverable artifacts are expected to include:</p>
+<table><tbody>
+<tr><td>Artifact</td><td>Construction rule</td></tr>
+<tr><td>PCF subset profile</td><td>Declare profile ID, target family, target version basis, units, coordinates, supported entity families, delegated behavior, unsupported behavior, and <code>TBD</code> behavior. The profile shall consume DEL-17-01 and DEL-17-02.</td></tr>
+<tr><td>PCF writer</td><td>Emit only the conservative subset selected by the profile. Unsupported or unresolved entities shall not be silently omitted.</td></tr>
+<tr><td>Unsupported behavior report</td><td>Include loss-report categories required by DEL-17-02, with affected canonical IDs, target artifact reference if any, reason, source-basis reference, and downstream implication.</td></tr>
+<tr><td>Invented fixtures</td><td>Use original/invented fixtures only. Fixtures shall not reproduce proprietary models, protected standards data, vendor examples, owner criteria, protected pipe tables, material allowables, SIF/flexibility tables, or commercial catalog values.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<p>The references below distinguish source authorities from declared upstream dependencies. DEL-17-01, DEL-17-02, the export plan, CAEPIPE-PCF, and governance documents are source authorities for this documentation pass. DEL-03-02, DEL-13-04, and DEL-15-02 are declared upstream dependencies to review before implementation; they are not additional PCF target-behavior authorities unless their own source-grounded contracts are consumed in a sealed implementation task.</p>
+<table><tbody>
+<tr><td>Source ID</td><td>Location</td><td>Use</td></tr>
+<tr><td>DEL-17-01</td><td><code>execution/.../DEL-17-01_CAEPIPE and export-format source basis/</code></td><td>Source authority, admitted source IDs, PCF caveats, and unresolved questions.</td></tr>
+<tr><td>DEL-17-02</td><td><code>execution/.../DEL-17-02_Export package, profile, and stable ID map contracts/</code></td><td>Common export package, profile, stable ID map, manifest, and loss-report contract.</td></tr>
+<tr><td>DEL-03-02</td><td><code>execution/.../DEL-03-02_Pipe section and component library schema/</code></td><td>Declared upstream dependency for component/section source data contracts; implementation use remains <code>TBD</code> until consumed.</td></tr>
+<tr><td>DEL-13-04</td><td><code>execution/.../DEL-13-04_Physical-to-analytical transformation contract/</code></td><td>Declared upstream dependency for transformation/loss semantics; implementation use remains <code>TBD</code> until consumed.</td></tr>
+<tr><td>DEL-15-02</td><td><code>execution/.../DEL-15-02_External-prover handoff package contract/</code></td><td>Declared upstream dependency for handoff-package alignment; implementation use remains <code>TBD</code> until consumed.</td></tr>
+<tr><td>PLAN-EXPORT-INTEROP</td><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code></td><td>PCF target priority, conservative subset candidates, and risk framing.</td></tr>
+<tr><td>CAEPIPE-PCF</td><td><code>https://www.sstusa.com/pdfs/PCF.pdf</code></td><td>Public evidence for PCF translator behavior, defaults, mappings, and caveats.</td></tr>
+<tr><td>CONTRACT / IP-DATA / SPEC / TYPES</td><td><code>docs/</code></td><td>Project invariants, protected-content boundary, unit/provenance/no-bypass constraints, and professional-boundary vocabulary.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-17-07-conservative-pcf-subset-exporter">CLM-009 — Specification: DEL-17-07 Conservative PCF subset exporter</h3>
+<blockquote><h4 id="specification-del-17-07-conservative-pcf-subset-exporter">Specification: DEL-17-07 Conservative PCF subset exporter</h4></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-07-DECL-001</code>.</p></blockquote>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-17-07 shall define and later implement a conservative PCF subset exporter for broader plant-design interoperability. The deliverable shall produce a PCF subset profile, PCF writer behavior, unsupported behavior report, and invented fixtures.</p>
+<p>This deliverable shall not claim PCF completeness, CAEPIPE compatibility, solver validation, release readiness, code compliance, professional acceptance, or formal external-tool approval. It shall not implement schema changes or code in this Phase A four-document pass.</p></blockquote>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5></blockquote>
+<h3 id="clm-013-source-authority-requirements">CLM-013 — Source Authority Requirements</h3>
+<blockquote><h6 id="source-authority-requirements">Source Authority Requirements</h6>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-07-REQ-001</td><td>The PCF subset profile shall consume DEL-17-01 as the source-basis authority for PCF target behavior claims.</td></tr>
+<tr><td>DEL-17-07-REQ-002</td><td>The PCF subset profile shall consume DEL-17-02 for export package, profile, stable ID map, manifest, and loss-report rules.</td></tr>
+<tr><td>DEL-17-07-REQ-003</td><td>Target behavior not supported by admitted public/project-owned evidence shall remain <code>TBD</code>, delegated, unsupported, or loss-reported.</td></tr>
+<tr><td>DEL-17-07-REQ-004</td><td>The exporter shall not rely on hidden translator defaults for stress-relevant or identity-relevant behavior.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-profile-requirements">CLM-014 — Profile Requirements</h3>
+<blockquote><h6 id="profile-requirements">Profile Requirements</h6>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-07-REQ-010</td><td>The PCF profile shall declare <code>target_family = PCF</code> and shall include profile ID, profile version, target version basis, source-basis IDs, and boundary notes.</td></tr>
+<tr><td>DEL-17-07-REQ-011</td><td>The PCF profile shall declare unit policy, coordinate policy, stable-ID policy, line/component identity policy, and loss-report policy.</td></tr>
+<tr><td>DEL-17-07-REQ-012</td><td>The target version basis shall remain <code>TBD</code> until public evidence or human project authority selects a first PCF target profile.</td></tr>
+<tr><td>DEL-17-07-REQ-013</td><td>The profile shall classify each candidate entity family as exported, omitted, approximated, delegated, unsupported, or <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-07-REQ-014</td><td>The initial candidate subset shall be limited to the plan-listed PCF entities and attributes unless later source review narrows or expands it.</td></tr>
+<tr><td>DEL-17-07-REQ-015</td><td>The PCF profile shall carry DEL-17-01, DEL-17-02, CAEPIPE-PCF, and PLAN-EXPORT-INTEROP source-basis references; missing references shall block package acceptance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-writer-requirements">CLM-015 — Writer Requirements</h3>
+<blockquote><h6 id="writer-requirements">Writer Requirements</h6>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-07-REQ-020</td><td>The PCF writer shall emit only profile-supported content from unit-aware, provenance-bearing OpenPipeStress model data.</td></tr>
+<tr><td>DEL-17-07-REQ-021</td><td>The writer shall produce diagnostics for missing or ambiguous units, coordinates, nominal size, OD, wall thickness, material/spec labels, component identity, end-connection data, and support/restraint semantics when those fields affect the selected profile.</td></tr>
+<tr><td>DEL-17-07-REQ-022</td><td>The writer shall not invent pressure, temperature, fluid density, component weight, OD, wall thickness, material properties, support type, equipment connection, or boundary-condition data.</td></tr>
+<tr><td>DEL-17-07-REQ-023</td><td>The writer shall preserve canonical OpenPipeStress identity through target metadata when explicitly supported or through a sidecar stable ID map when direct PCF carriage is not source-confirmed.</td></tr>
+<tr><td>DEL-17-07-REQ-024</td><td>The writer shall record target-generated identity separately from canonical OpenPipeStress identity.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-unsupported-and-loss-report-requirements">CLM-016 — Unsupported and Loss-Report Requirements</h3>
+<blockquote><h6 id="unsupported-and-loss-report-requirements">Unsupported and Loss-Report Requirements</h6>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-07-REQ-030</td><td>Every PCF export attempt shall produce or reference a loss report.</td></tr>
+<tr><td>DEL-17-07-REQ-031</td><td>Loss report entries shall include affected canonical IDs, category, severity, target artifact if any, reason, source-basis reference, and downstream implication, consistent with DEL-17-02.</td></tr>
+<tr><td>DEL-17-07-REQ-032</td><td>Support/restraint semantics shall be listed separately when the PCF target path cannot preserve them reliably.</td></tr>
+<tr><td>DEL-17-07-REQ-033</td><td>Free-end, equipment-nozzle, adjacent-pipeline, and boundary-condition semantics shall be blocked, <code>TBD</code>, delegated, or loss-reported when the target path would otherwise depend on translator anchoring or incomplete PCF connection data.</td></tr>
+<tr><td>DEL-17-07-REQ-034</td><td>Component mappings known to become target-side rigid elements, equivalent pipes, concentrated masses, or other approximations shall be recorded as approximated or delegated behavior rather than direct support.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-fixture-and-data-boundary-requirements">CLM-017 — Fixture and Data-Boundary Requirements</h3>
+<blockquote><h6 id="fixture-and-data-boundary-requirements">Fixture and Data-Boundary Requirements</h6>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-07-REQ-040</td><td>Fixtures shall be invented or otherwise redistribution-safe with documented provenance.</td></tr>
+<tr><td>DEL-17-07-REQ-041</td><td>Fixtures shall not copy proprietary plant models, vendor examples, protected standards text, protected tables, material allowables, SIF/flexibility values, owner criteria, or commercial catalog values.</td></tr>
+<tr><td>DEL-17-07-REQ-042</td><td>Public fixtures shall avoid code-specific compliance semantics and shall not imply professional acceptance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-standards">CLM-018 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Source</td><td>Status in this phase</td></tr>
+<tr><td>Public CAEPIPE PCF translator documentation (<code>CAEPIPE-PCF</code>)</td><td>Accessible source for translator behavior, defaults, and mappings; not authority for OpenPipeStress completeness or compatibility claims.</td></tr>
+<tr><td>DEL-17-01 source basis</td><td>Governing project source-basis authority for downstream PCF claims.</td></tr>
+<tr><td>DEL-17-02 export contract</td><td>Governing project contract for profile, manifest, ID map, and loss reporting.</td></tr>
+<tr><td>PCF format specification</td><td><code>TBD</code>; no redistributed proprietary specification text is admitted in this phase.</td></tr>
+<tr><td>Engineering design codes and standards</td><td>Out of scope for this exporter; no code-compliance or professional-approval claim is permitted.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement group</td><td>Verification approach</td></tr>
+<tr><td>Source authority</td><td>Review that each PCF behavior statement cites DEL-17-01, DEL-17-02, <code>PLAN-EXPORT-INTEROP</code>, <code>CAEPIPE-PCF</code>, or project governance sources.</td></tr>
+<tr><td>Conservative profile</td><td>Check that every selected entity family is classified and that unresolved behavior remains <code>TBD</code>.</td></tr>
+<tr><td>Writer behavior</td><td>Future implementation tests shall use invented fixtures and verify that supported records are emitted deterministically and unsupported content produces diagnostics/loss entries.</td></tr>
+<tr><td>Units and coordinates</td><td>Future tests shall include explicit unit-bearing source data and ambiguous/missing-unit negative cases. Acceptance criteria remain profile-bound: after the PCF profile is selected, tests shall verify declared PCF unit representation, coordinate policy, rejection or diagnostic behavior for missing/ambiguous unit metadata, and no dimensionless fallback for unit-bearing physical values. Sources: CAEPIPE-PCF <code>Reference / Units</code>; <code>docs/SPEC.md</code> section <code>3.1 Unit contract</code>; DEL-17-02 export profile requirements.</td></tr>
+<tr><td>Stable IDs</td><td>Future tests shall verify sidecar identity mapping when direct PCF identity carriage is not source-confirmed.</td></tr>
+<tr><td>Loss report</td><td>Future tests shall assert entries for omitted, approximated, delegated, unsupported, and <code>TBD</code> behavior.</td></tr>
+<tr><td>Boundary controls</td><td>Review for absence of proprietary examples, protected standards data, release claims, compatibility claims, code-compliance claims, and professional-acceptance claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-diagnostic-and-loss-report-acceptance-scaffold">CLM-020 — Diagnostic and Loss-Report Acceptance Scaffold</h3>
+<blockquote><h6 id="diagnostic-and-loss-report-acceptance-scaffold">Diagnostic and Loss-Report Acceptance Scaffold</h6>
+<p>The future implementation tranche shall convert the following scaffold into concrete tests only after the PCF profile is sealed. Until then, expected outcome values remain <code>TBD</code> rather than implied support claims.</p>
+<table><tbody>
+<tr><td>Coverage class</td><td>Minimum acceptance hook</td><td>Source basis</td></tr>
+<tr><td>Missing or ambiguous units</td><td>Diagnostic or blocking loss entry; no silent default for unit-bearing physical values</td><td>CAEPIPE-PCF <code>Reference / Units</code>; <code>docs/SPEC.md</code> section <code>3.1 Unit contract</code>; DEL-17-02-REQ-021/050/051/053</td></tr>
+<tr><td>Coordinates and vertical axis</td><td>Profile-declared coordinate/vertical-axis policy; diagnostic when source coordinate basis is absent or ambiguous</td><td>CAEPIPE-PCF translator dialog vertical-axis option; DEL-17-02-REQ-021</td></tr>
+<tr><td>Nominal size, OD, and wall thickness</td><td>Export only explicit/source-confirmed attributes where selected; external mapping-database behavior is delegated or loss-reported</td><td>CAEPIPE-PCF <code>Wall Thickness</code>, <code>OD and Nominal Size</code>, and <code>OD and Wall Thickness via config_pcf.ini</code></td></tr>
+<tr><td>Material/spec labels</td><td>Labels may be emitted only with source-owned provenance; target material-property mapping is delegated unless source-confirmed</td><td>CAEPIPE-PCF <code>Material</code>; IP-DATA protected-content boundary</td></tr>
+<tr><td>Canonical identity and target identity</td><td>Stable ID sidecar or target metadata links canonical IDs to emitted records, omissions, diagnostics, and loss rows; target-generated IDs remain separate</td><td>DEL-17-02 stable ID map requirements</td></tr>
+<tr><td>End connections and boundary conditions</td><td>Free ends, equipment nozzles, adjacent pipelines, and unresolved boundary semantics are blocked, delegated, <code>TBD</code>, unsupported, or loss-reported</td><td>CAEPIPE-PCF <code>Boundary Conditions</code>; PLAN-EXPORT-INTEROP section <code>5. PCF</code></td></tr>
+<tr><td>Supports and restraints</td><td>Support/restraint transfer is classified separately and loss-reported when not reliably preserved by the selected profile</td><td>CAEPIPE-PCF <code>Supports</code>; PLAN-EXPORT-INTEROP section <code>5. PCF</code></td></tr>
+<tr><td>Component approximations</td><td>Target-side rigid elements, equivalent pipes, concentrated masses, and other simulations are recorded as approximated or delegated behavior</td><td>CAEPIPE-PCF component mapping table; DEL-17-02 loss report requirements</td></tr>
+<tr><td><code>TBD</code> target behavior</td><td><code>TBD</code> remains visible in profile, diagnostics, manifest, or loss report and is blocking when solver-ready or compatibility-sensitive</td><td>DEL-17-01 TBD-17-01-005; DEL-17-02-REQ-023/053/092</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-documentation">CLM-021 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>The deliverable shall document:</p>
+<ul>
+<li>- PCF subset profile and unresolved target-version basis;</li>
+<li>- supported entity and attribute classes;</li>
+<li>- unsupported, approximated, delegated, omitted, and <code>TBD</code> behavior classes;</li>
+<li>- stable ID and sidecar mapping policy;</li>
+<li>- unit and coordinate assumptions;</li>
+<li>- invented fixture provenance;</li>
+<li>- loss-report examples using invented data only;</li>
+<li>- explicit limitation that PCF is conservative interoperability only.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves admitted PCF source authority, selected profile/version gates, canonical identity, units and coordinates, conservative component and attribute mapping, explicit exported/omitted/approximated/delegated/unsupported/TBD behavior, diagnostics, loss reporting, invented or rights-cleared fixtures, and professional non-authority without implying broad PCF compatibility.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-022-procedure-del-17-07-conservative-pcf-subset-exporter">CLM-022 — Procedure: DEL-17-07 Conservative PCF subset exporter</h3>
+<blockquote><h4 id="procedure-del-17-07-conservative-pcf-subset-exporter">Procedure: DEL-17-07 Conservative PCF subset exporter</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-07-DECL-004</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and use the conservative PCF subset exporter deliverable without relying on hidden translator defaults or making unsupported interoperability claims.</p></blockquote>
+<h3 id="clm-025-prerequisites">CLM-025 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- DEL-17-01 source basis has been consumed for PCF source evidence and unresolved questions.</li>
+<li>- DEL-17-02 export package/profile/stable-ID/loss-report contract has been consumed.</li>
+<li>- Declared upstream dependencies are reviewed: <code>DEL-17-02</code>, <code>DEL-03-02</code>, <code>DEL-13-04</code>, and <code>DEL-15-02</code>.</li>
+<li>- PCF source behavior is limited to accessible public/project-owned evidence.</li>
+<li>- Fixture data is invented or otherwise redistribution-safe.</li>
+<li>- No protected standards text, proprietary examples, private project data, commercial solver files, or license-bypass instructions are used.</li>
+</ul></blockquote>
+<h3 id="clm-026-steps">CLM-026 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5></blockquote>
+<h3 id="clm-027-1-establish-the-source-basis">CLM-027 — 1. Establish the source basis</h3>
+<blockquote><h6 id="1-establish-the-source-basis">1. Establish the source basis</h6>
+<p>1. Read DEL-17-01 <code>Source_Basis_Register.md</code> and <code>CAEPIPE_Question_Dossier.md</code>.</p>
+<p>2. Read DEL-17-02 <code>Specification.md</code> for profile, ID-map, manifest, and loss-report requirements.</p>
+<p>3. Read <code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code> section <code>5. PCF</code>.</p>
+<p>4. Read the admitted public PCF translator source slices before making any PCF behavior claim.</p>
+<p>5. Mark unsupported, source-absent, or version-sensitive behavior as <code>TBD</code>.</p></blockquote>
+<h3 id="clm-028-2-define-the-pcf-profile">CLM-028 — 2. Define the PCF profile</h3>
+<blockquote><h6 id="2-define-the-pcf-profile">2. Define the PCF profile</h6>
+<p>1. Create a profile record for the PCF target family.</p>
+<p>2. Declare profile ID, profile version, target version basis, source-basis IDs, and boundary notes.</p>
+<p>3. Declare unit policy, coordinate policy, identity policy, supported entity families, and loss-report policy.</p>
+<p>4. Classify each candidate entity family as exported, omitted, approximated, delegated, unsupported, or <code>TBD</code>.</p>
+<p>5. Keep target version/profile basis as <code>TBD</code> until public evidence or human project authority resolves it.</p></blockquote>
+<h3 id="clm-029-3-select-the-conservative-subset">CLM-029 — 3. Select the conservative subset</h3>
+<blockquote><h6 id="3-select-the-conservative-subset">3. Select the conservative subset</h6>
+<p>1. Start from the plan-listed subset only.</p>
+<p>2. Keep straight-pipe, bend, tee, reducer, flange, valve, end-connection, line/component identity, nominal-size, OD/wall-thickness, material/spec label, coordinate, and stable-ID behavior separate in the profile.</p>
+<p>3. Require explicit unit-bearing and provenance-bearing source data for exported physical values.</p>
+<p>4. Move support/restraint semantics to separate handling unless the selected profile proves reliable preservation.</p>
+<p>5. Do not add hidden defaults for missing pressure, temperature, fluid density, component weight, material properties, support type, or boundary conditions.</p></blockquote>
+<h3 id="clm-030-4-implement-writer-behavior-in-a-later-implementation-tranche">CLM-030 — 4. Implement writer behavior in a later implementation tranche</h3>
+<blockquote><h6 id="4-implement-writer-behavior-in-a-later-implementation-tranche">4. Implement writer behavior in a later implementation tranche</h6>
+<p>1. Emit only profile-supported PCF records.</p>
+<p>2. Emit deterministic ordering where the profile and package contract require it.</p>
+<p>3. Preserve canonical IDs directly only when source-confirmed; otherwise write a stable ID sidecar.</p>
+<p>4. Produce diagnostics when required source data is missing, ambiguous, unsupported, or delegated.</p>
+<p>5. Produce a loss report for every export attempt.</p>
+<p>6. Keep PCF writing inside the approved deliverable write scope for the implementation tranche.</p></blockquote>
+<h3 id="clm-031-5-build-invented-fixtures">CLM-031 — 5. Build invented fixtures</h3>
+<blockquote><h6 id="5-build-invented-fixtures">5. Build invented fixtures</h6>
+<p>1. Use invented model names, line IDs, component IDs, coordinates, and unit-bearing values.</p>
+<p>2. Record fixture provenance and redistribution status.</p>
+<p>3. Include positive cases for supported subset records.</p>
+<p>4. Include negative cases for unsupported supports/restraints, ambiguous units, missing OD/wall thickness, unsupported components, and unresolved boundary conditions.</p>
+<p>5. Do not use proprietary plant models, vendor examples, protected standards data, owner criteria, commercial catalog values, material allowables, or SIF/flexibility data.</p>
+<p>Fixture provenance records should use this minimum template before any fixture is admitted:</p>
+<table><tbody>
+<tr><td>Field</td><td>Required content</td></tr>
+<tr><td>Fixture ID</td><td>Stable invented fixture identifier</td></tr>
+<tr><td>Fixture purpose</td><td>Positive or negative case covered by the PCF profile</td></tr>
+<tr><td>Invented model name</td><td>Artificial name with no client/vendor/project source</td></tr>
+<tr><td>Invented line IDs and component IDs</td><td>Artificial IDs traceable to canonical OpenPipeStress IDs</td></tr>
+<tr><td>Coordinates and unit-bearing values</td><td>Explicit units, dimensions, and provenance note that values are invented</td></tr>
+<tr><td>Entity classes covered</td><td>Candidate PCF component/support/attribute classes exercised</td></tr>
+<tr><td>Redistribution status</td><td><code>public_permissive</code>, <code>private_only</code>, <code>unknown</code>, or <code>protected_suspected</code> as applicable</td></tr>
+<tr><td>Contributor certification</td><td>Statement that the fixture is not copied from protected standards, vendor examples, proprietary plant models, owner criteria, catalog values, material allowables, or SIF/flexibility data</td></tr>
+<tr><td>Review disposition</td><td>Accepted, rejected, quarantined, or human/legal review required</td></tr>
+</tbody></table>
+<p>Sources: <code>docs/IP_AND_DATA_BOUNDARY.md</code> public-data provenance and protected-content rules; DEL-17-02 fixture/data-boundary requirements; Guidance <code>Examples</code>.</p></blockquote>
+<h3 id="clm-032-6-verify-outputs">CLM-032 — 6. Verify outputs</h3>
+<blockquote><h6 id="6-verify-outputs">6. Verify outputs</h6>
+<p>1. Confirm the PCF target file is emitted only for supported profile content.</p>
+<p>2. Confirm the manifest references the profile, source basis, target file, stable ID sidecar, diagnostics, and loss report.</p>
+<p>3. Confirm the stable ID sidecar links canonical IDs to emitted target records or loss-report entries.</p>
+<p>4. Confirm every unsupported, approximated, delegated, omitted, or <code>TBD</code> behavior appears in the loss report.</p>
+<p>5. Confirm no release, compatibility, code-compliance, formal-validation, or professional-acceptance claim is present.</p>
+<p>6. Confirm generated PCF export evidence is not described as downstream import compatibility, solver validation, release readiness, code compliance, professional acceptance, or external-tool approval.</p></blockquote>
+<h3 id="clm-033-verification">CLM-033 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>For this Phase A documentation pass, verification consists of:</p>
+<ul>
+<li>- confirming the four-document kit exists;</li>
+<li>- checking the default section headings required by the four-documents skill;</li>
+<li>- checking that source-grounding gaps remain <code>TBD</code>, assumptions, or conflict-table entries;</li>
+<li>- checking that no implementation code, schema files, protected standards data, proprietary examples, or professional/release/compatibility claims were introduced.</li>
+</ul>
+<p>Future implementation verification remains <code>TBD</code> and should be defined only after the PCF profile and writer tranche are sealed.</p></blockquote>
+<h3 id="clm-034-records">CLM-034 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The deliverable should retain or produce:</p>
+<ul>
+<li>- PCF subset profile;</li>
+<li>- PCF target file;</li>
+<li>- export manifest;</li>
+<li>- stable ID sidecar map;</li>
+<li>- diagnostics;</li>
+<li>- loss report;</li>
+<li>- invented fixture provenance records;</li>
+<li>- run records for TASK execution and validation.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, PCF source/profile gates, deterministic output, identity and unit treatment, every mapping and loss class, warning policy, retained version and mapping TBDs, fixture provenance, protected-content exclusions, and absence of compatibility, release, compliance, or professional-acceptance claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-035-guidance-del-17-07-conservative-pcf-subset-exporter">CLM-035 — Guidance: DEL-17-07 Conservative PCF subset exporter</h3>
+<blockquote><h4 id="guidance-del-17-07-conservative-pcf-subset-exporter">Guidance: DEL-17-07 Conservative PCF subset exporter</h4></blockquote>
+<h3 id="clm-036-purpose">CLM-036 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this deliverable to make PCF useful without overstating it. The exporter should help users exchange plant-design geometry and component context, while making every unsupported, approximate, delegated, or unknown behavior visible.</p>
+<p>PCF is a secondary interoperability path in the PKG-17 strategy. The public CAEPIPE PCF translator documentation shows enough fallback and mapping behavior that this path should not be treated as the first deterministic solver-validation backbone.</p></blockquote>
+<h3 id="clm-037-principles">CLM-037 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5></blockquote>
+<h3 id="clm-038-keep-the-subset-narrow">CLM-038 — Keep the subset narrow</h3>
+<blockquote><h6 id="keep-the-subset-narrow">Keep the subset narrow</h6>
+<p>Start from the plan-listed conservative subset: straight pipe, elbows/bends, tees, reducers, flanges, valves, end connections, line numbers, nominal size, OD/wall-thickness attributes where supported, basic spec/material labels, coordinates, component identifiers, and stable ID sidecar mapping.</p>
+<p>Do not expand the subset because a downstream translator might infer something. If source evidence does not confirm the behavior, mark it <code>TBD</code>, unsupported, or delegated.</p></blockquote>
+<h3 id="clm-039-make-defaults-explicit">CLM-039 — Make defaults explicit</h3>
+<blockquote><h6 id="make-defaults-explicit">Make defaults explicit</h6>
+<p>The CAEPIPE PCF translator source documents default or external behaviors for areas such as units, load data, fluid specific gravity, weight, OD/wall thickness, support mapping, material mapping, boundary conditions, and component simulation. Those are target-path facts, not OpenPipeStress exporter defaults.</p>
+<p>For this deliverable, a hidden default is a reportable condition:</p>
+<ul>
+<li>- if OpenPipeStress has explicit source data and the PCF profile can carry it, export it;</li>
+<li>- if the target path may infer it from translator configuration, record delegated behavior;</li>
+<li>- if the behavior affects solver-ready interpretation and is not source-confirmed, block or mark <code>TBD</code>;</li>
+<li>- if a component is represented by a target-side approximation, record the approximation and affected canonical IDs.</li>
+</ul></blockquote>
+<h3 id="clm-040-preserve-identity-even-when-pcf-cannot">CLM-040 — Preserve identity even when PCF cannot</h3>
+<blockquote><h6 id="preserve-identity-even-when-pcf-cannot">Preserve identity even when PCF cannot</h6>
+<p>Stable ID sidecars are expected for this slice unless direct PCF identity carriage is later source-confirmed. The sidecar should connect canonical model IDs to target records, omitted entries, diagnostics, and loss-report rows.</p></blockquote>
+<h3 id="clm-041-treat-support-and-restraint-semantics-cautiously">CLM-041 — Treat support and restraint semantics cautiously</h3>
+<blockquote><h6 id="treat-support-and-restraint-semantics-cautiously">Treat support and restraint semantics cautiously</h6>
+<p>Support/restraint semantics should be reviewed separately from geometry/component export. Public PCF translator evidence indicates that support transfer can depend on PCF attributes, SKEY values, mapping databases, options, stiffness/gap/friction customization, or default hanger behavior. The first exporter should not imply reliable preservation of support behavior unless the profile explicitly proves it.</p>
+<p>Use the following criteria when classifying support/restraint outcomes in the future profile:</p>
+<table><tbody>
+<tr><td>Outcome</td><td>Use when</td></tr>
+<tr><td>Reliably preserved</td><td>The selected profile has source-confirmed PCF attributes, mapping rules, units, coordinates, support type, stiffness/gap/friction semantics where applicable, and stable ID traceability for the supported support/restraint class.</td></tr>
+<tr><td>Delegated</td><td>The downstream translator or user-owned mapping database may decide the final support type or properties, and OpenPipeStress can identify that delegation without treating it as local support preservation.</td></tr>
+<tr><td><code>TBD</code></td><td>Public/project-owned evidence does not yet resolve whether the selected profile can preserve the support/restraint class.</td></tr>
+<tr><td>Unsupported</td><td>The selected profile cannot carry the required semantics or the project intentionally excludes the class from the conservative subset.</td></tr>
+<tr><td>Blocked</td><td>Loss of support/restraint meaning would make the exported package misleading for solver-ready or compatibility-sensitive use.</td></tr>
+</tbody></table>
+<p>This classification belongs in the profile and loss report, not in hidden writer defaults. Sources: CAEPIPE-PCF <code>Supports</code>; PLAN-EXPORT-INTEROP section <code>5. PCF</code>; DEL-17-02 loss-report requirements.</p></blockquote>
+<h3 id="clm-042-avoid-professional-and-compatibility-overclaims">CLM-042 — Avoid professional and compatibility overclaims</h3>
+<blockquote><h6 id="avoid-professional-and-compatibility-overclaims">Avoid professional and compatibility overclaims</h6>
+<p>Successful PCF file creation is export evidence only. It is not proof that a downstream tool imported the model correctly, that stress-model semantics are complete, that a design complies with any code, or that a professional has accepted the work.</p></blockquote>
+<h3 id="clm-043-considerations">CLM-043 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Units</td><td>Require explicit unit policy. Do not use dimensionless or missing unit metadata as fallback.</td></tr>
+<tr><td>OD and wall thickness</td><td>Prefer explicit source attributes where supported by the selected PCF profile. External mapping database fallback is delegated target behavior, not local data.</td></tr>
+<tr><td>Pressure and temperature</td><td>Do not create load values from translator defaults. Missing values remain diagnostics, <code>TBD</code>, or loss-report entries.</td></tr>
+<tr><td>Material/spec labels</td><td>Labels may be exported if source-owned, but target material property mapping remains delegated unless source-confirmed.</td></tr>
+<tr><td>Component mappings</td><td>Direct component export and target-side simulation are different conditions. Record approximations.</td></tr>
+<tr><td>Free ends and equipment connections</td><td>Avoid implying boundary-condition preservation when PCF lacks connection detail.</td></tr>
+<tr><td>CAEPIPE notes</td><td>CAEPIPE-PCF behavior may be documented as a secondary route only. It must not become a compatibility claim.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-044-trade-offs">CLM-044 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Cost</td></tr>
+<tr><td>Narrow profile with strong diagnostics</td><td>Avoids hidden behavior and supports auditability.</td><td>Some models will export with many unsupported/TBD entries.</td></tr>
+<tr><td>Sidecar stable ID map</td><td>Preserves traceability even when PCF cannot carry canonical IDs directly.</td><td>Requires package consumers to keep target file and sidecar together.</td></tr>
+<tr><td>Blocking support/restraint ambiguity</td><td>Reduces risk of misleading stress-model handoff.</td><td>Limits usefulness for downstream tools that tolerate inferred support behavior.</td></tr>
+<tr><td>Invented-only fixtures</td><td>Preserves IP and standards boundaries.</td><td>Does not prove compatibility with real proprietary plant models.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-045-examples">CLM-045 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No proprietary, vendor, standards-derived, or client examples are admitted. Future examples for this deliverable should use small invented models with clearly artificial names, dimensions, units, and provenance. Example values shall not be copied from protected standards, catalogs, or owner design bases.</p></blockquote>
+<h3 id="clm-046-conflict-table-for-human-ruling">CLM-046 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>Keep the profile/version conflict open until an admitted public source or explicit human project authority selects the first supported PCF target profile. The plan-listed subset is candidate scope, not final support classification.</p>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-17-07-CF-001</td><td>The plan lists an initial conservative PCF subset, but exact PCF target-version/profile behavior is not selected.</td><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code> section <code>5. PCF</code></td><td>DEL-17-01 <code>Source_Basis_Register.md</code> TBD-17-01-005 and <code>CAEPIPE_Question_Dossier.md</code> CQ-17-01-006</td><td>Datasheet Attributes; Specification Profile Requirements; Procedure Step 3</td><td>Treat plan-listed subset as candidate scope only; keep profile version and final support classes <code>TBD</code> until downstream source/profile decision.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 SOW-074 OBJ-009 OBJ-017 OBJ-018</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 196,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "815f756f3579a1e75df5ef93d956a8890ab7dfa676dc887e11a59868efc9a66b"
+      },
+      "text": "The contract preserves official/public and project-owned source authority, best-effort locations, CAEPIPE MBF, external-run and CSV boundaries, conservative PCF and review-only GLB/glTF classifications, downstream gating, protected/proprietary-content exclusions, explicit target-behavior TBDs, and professional non-authority without implementing or claiming compatibility.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-01-VER-001",
+          "source_line": 309,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, admitted-source and finding registers, source-location discipline, downstream-consumer gates, all CAEPIPE/PCF/GLB boundaries, the complete unanswered-question register, protected-content exclusions, and absence of implementation, compatibility, release, code-compliance, or professional-acceptance claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "815f756f3579a1e75df5ef93d956a8890ab7dfa676dc887e11a59868efc9a66b"
+  },
+  "tool_version": "1"
+}

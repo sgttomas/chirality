@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-15-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 209,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "eb3df13ba3bbc57b070c1b579605dbb81abc04c90776a71c7aa331a71e668cd5"
+      },
+      "text": "The contract preserves all SOW-074 handoff contents, supplied checksum metadata without recomputation or relabeling, unit and provenance boundaries, diagnostics, warnings, assumptions, schema validation, public-safe invented fixtures, explicit unsupported behavior, upstream contract boundaries, target-specific parser and package-container gates, and professional non-authority without claiming JCS conformance, external validation, or approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-15-03-VER-001",
+          "source_line": 288,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, complete handoff content preservation, schema and unit checks, supplied-checksum byte-basis labels, diagnostic and unsupported-target behavior, invented-fixture and protected-content controls, retained target-specific and container TBDs, upstream contract boundaries, and prohibited professional-authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-15-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-15",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "eb3df13ba3bbc57b070c1b579605dbb81abc04c90776a71c7aa331a71e668cd5"
+  },
+  "tool_version": "1"
+}

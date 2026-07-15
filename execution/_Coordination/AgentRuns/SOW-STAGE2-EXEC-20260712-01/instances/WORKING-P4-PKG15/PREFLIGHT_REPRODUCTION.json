@@ -1,0 +1,389 @@
+{
+  "status": "PASS",
+  "package": "PKG-15",
+  "members": 4,
+  "source_lines": 1087,
+  "live_bindings": 36,
+  "checks": [
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "APPLICABLE_CHECKS.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "BASIS.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "BATCH_PLAN.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "CHECKS.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "CHECK_COMMAND_RESULTS.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "EXPECTED_LIVE_BINDINGS.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "HANDOFF_STATE.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "METHOD_BINDINGS.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "P4_MANIFEST.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PACKAGE_BRIEFS/WORKING-P4-PKG14.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PACKAGE_BRIEFS/WORKING-P4-PKG15.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PACKAGE_BRIEFS/WORKING-P4-PKG16.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PACKAGE_BRIEFS/WORKING-P4-PKG17.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PACKAGE_EXECUTION_CONTRACT.md"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PACKAGE_PLAN.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PKG00_DIRECTION_VALIDATION.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PKG00_OUTBOUND_CONTRADICTIONS.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "PREDECESSOR_RESULTS.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "REFS.tsv"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "SUMMARY.json"
+    },
+    {
+      "check": "snapshot_binding",
+      "pass": true,
+      "detail": "VALIDATOR_RESULTS.tsv"
+    },
+    {
+      "check": "snapshot_manifest_sha256",
+      "pass": true,
+      "detail": "e3c0ba738b4109fe8ab3eccaaab1e76e82e213b5e6b27f9dd6632c7716682faf"
+    },
+    {
+      "check": "package_population",
+      "pass": true,
+      "detail": [
+        "DEL-15-01",
+        "DEL-15-02",
+        "DEL-15-03",
+        "DEL-15-04"
+      ]
+    },
+    {
+      "check": "source_line_total",
+      "pass": true,
+      "detail": 1087
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:Datasheet.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:Specification.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:Guidance.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:Procedure.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:_STATUS.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:_CONTEXT.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:_REFERENCES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:_DEPENDENCIES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-01:Dependencies.csv"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:Datasheet.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:Specification.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:Guidance.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:Procedure.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:_STATUS.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:_CONTEXT.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:_REFERENCES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:_DEPENDENCIES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-02:Dependencies.csv"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:Datasheet.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:Specification.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:Guidance.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:Procedure.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:_STATUS.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:_CONTEXT.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:_REFERENCES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:_DEPENDENCIES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-03:Dependencies.csv"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:Datasheet.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:Specification.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:Guidance.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:Procedure.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:_STATUS.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:_CONTEXT.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:_REFERENCES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:_DEPENDENCIES.md"
+    },
+    {
+      "check": "live_binding",
+      "pass": true,
+      "detail": "DEL-15-04:Dependencies.csv"
+    },
+    {
+      "check": "legacy_four_doc",
+      "pass": true,
+      "detail": "DEL-15-01"
+    },
+    {
+      "check": "lifecycle",
+      "pass": true,
+      "detail": "DEL-15-01"
+    },
+    {
+      "check": "legacy_four_doc",
+      "pass": true,
+      "detail": "DEL-15-02"
+    },
+    {
+      "check": "lifecycle",
+      "pass": true,
+      "detail": "DEL-15-02"
+    },
+    {
+      "check": "legacy_four_doc",
+      "pass": true,
+      "detail": "DEL-15-03"
+    },
+    {
+      "check": "lifecycle",
+      "pass": true,
+      "detail": "DEL-15-03"
+    },
+    {
+      "check": "legacy_four_doc",
+      "pass": true,
+      "detail": "DEL-15-04"
+    },
+    {
+      "check": "lifecycle",
+      "pass": true,
+      "detail": "DEL-15-04"
+    },
+    {
+      "check": "predecessor_release",
+      "pass": true,
+      "detail": "instances/WORKING-P4-PKG14/RETURN.md"
+    },
+    {
+      "check": "manager_release",
+      "pass": true,
+      "detail": "instances/WORKING-P4-PKG15/LAUNCH_BRIEF.md"
+    },
+    {
+      "check": "frozen_surface",
+      "pass": true,
+      "detail": "PREDECESSOR_RESULTS.tsv"
+    },
+    {
+      "check": "frozen_surface",
+      "pass": true,
+      "detail": "PKG00_DIRECTION_VALIDATION.tsv"
+    },
+    {
+      "check": "frozen_surface",
+      "pass": true,
+      "detail": "METHOD_BINDINGS.tsv"
+    },
+    {
+      "check": "frozen_surface",
+      "pass": true,
+      "detail": "APPLICABLE_CHECKS.tsv"
+    },
+    {
+      "check": "frozen_surface",
+      "pass": true,
+      "detail": "REFS.tsv"
+    }
+  ]
+}

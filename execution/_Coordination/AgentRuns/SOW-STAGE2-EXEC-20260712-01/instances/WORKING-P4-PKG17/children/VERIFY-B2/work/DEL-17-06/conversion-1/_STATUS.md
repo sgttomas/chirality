@@ -1,0 +1,18 @@
+# Status: DEL-17-06
+
+**Current State:** IN_PROGRESS
+**Last Updated:** 2026-07-12
+
+## Remaining
+
+## History
+- 2026-07-12 - D-41 R5 T7 PDU-055 refreshed 4 cited declaration claims to current T1-T6 authority/evidence while preserving genuine residuals; cited-claim and Remaining backcheck closed the D-41 bootstrap.
+- 2026-07-12 - D-41 R5 T4 PDU-001/PDU-038 added conditional unresolved-assumption and reproducibility-reference passthrough with schema and preservation evidence; comparison tolerances remain outside this package.
+- 2026-07-12 - D-41 R5 T2A narrowed the emitted JSON checksum label to the implemented sorted-compact Python JSON byte contract and added executable evidence; no lifecycle transition or JCS claim.
+- 2026-05-18 - State set to OPEN (PREPARATION/SCA-004 ORCHESTRATOR workflow)
+- 2026-05-18 — State set to INITIALIZED (TASK+four-documents)
+- 2026-05-18 — State set/verified as SEMANTIC_READY (TASK+semantic-matrix-build)
+- 2026-06-03 - TP-PKG17-LIFECYCLE-DISPOSITION-001 set state to IN_PROGRESS by explicit human approval, matching committed DEV-001 evidence while preserving non-release, non-professional, non-compatibility, and non-code-compliance boundaries.
+- 2026-06-04 - TP-PKG17-CHECKING-TRANSITION-001 set state to CHECKING by explicit human approval after formal review fan-in found no blockers. This is a review lifecycle transition only; no release, compatibility, code-compliance, professional-acceptance, or external-validation claim was made.
+- 2026-07-02 - State set to IN_PROGRESS (affirmed; human K-CONFLICT-1 ruling, bridge Loop 2): records the 2026-06-16 header reversal from CHECKING that commit 28219696d left unlogged; ruling record at execution/_Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md.
+- 2026-07-11 - Remaining section added and seeded with the gated D-41 concordance bootstrap item at packet time per plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md §4 (D-41 AWAITING_RULING; item inert until the ruling flips the gate suffix and supplies the pinned SHA; no state change).

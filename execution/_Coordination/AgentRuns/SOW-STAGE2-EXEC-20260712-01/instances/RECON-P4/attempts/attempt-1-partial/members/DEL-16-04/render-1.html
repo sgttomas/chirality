@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="7873bfa600b2126a0b87e987d91b164ca7fe4553a7d8adce1e68558c32a05373">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-16-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>7873bfa600b2126a0b87e987d91b164ca7fe4553a7d8adce1e68558c32a05373</code>.</p>
+<h1 id="scope-of-work-del-16-04">Scope of Work — DEL-16-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-16-04</code> in service of project scope [SOW-070] and package objectives [OBJ-015, OBJ-018].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A deterministic agent-rationale and professional-boundary control contract that preserves review context while keeping agent output decision-support only is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-16-04-agent-rationale-and-professional-boundary-controls">CLM-001 — Datasheet: DEL-16-04 Agent rationale and professional-boundary controls</h3>
+<blockquote><h4 id="datasheet-del-16-04-agent-rationale-and-professional-boundary-controls">Datasheet: DEL-16-04 Agent rationale and professional-boundary controls</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-16-04</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Agent rationale and professional-boundary controls</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-16</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package Name</td><td>Model Operation and Agent Proposal Framework</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td><td><code>_CONTEXT.md</code>; <code>docs/TYPES.md</code> section 3</td></tr>
+<tr><td>Scope Coverage</td><td>SOW-070</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 4</td></tr>
+<tr><td>Objective Support</td><td>OBJ-015, OBJ-018</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 5</td></tr>
+<tr><td>Anticipated Artifacts</td><td>agent rationale record; professional-boundary guard tests</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Context Envelope</td><td>S</td><td><code>_CONTEXT.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable purpose</td><td>Capture agent rationale and unresolved assumptions while preventing certification, approval, or code-compliance claims.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 7, DEL-16-04</td></tr>
+<tr><td>Scope item requirement</td><td>Accepted model operations shall preserve operation history, rationale, assumptions, affected entities, and audit metadata needed for reproducible model-state review.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 4, SOW-070</td></tr>
+<tr><td>Professional boundary</td><td>Software and agents must not claim to certify, seal, approve, authenticate, or declare engineering code compliance for reliance.</td><td><code>docs/CONTRACT.md</code> section 1, OPS-K-AUTH-1</td></tr>
+<tr><td>Agent authority</td><td>Agent outputs are drafts or proposals until accepted by a human gate.</td><td><code>docs/CONTRACT.md</code> section 1, OPS-K-AGENT-4; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> section 1</td></tr>
+<tr><td>Status vocabulary boundary</td><td>Automatic software statuses are limited to software findings and must not include human approval, code-compliance, certification, sealing, or approval-equivalent language.</td><td><code>docs/TYPES.md</code> section 4; <code>docs/SPEC.md</code> section 4.3</td></tr>
+<tr><td>Missing information handling</td><td>Missing data and assumptions must be surfaced; unknown engineering values remain <code>TBD</code>.</td><td><code>INIT.md</code> root instructions; <code>docs/SPEC.md</code> section 12</td></tr>
+<tr><td>Protected content posture</td><td>Public artifacts must not contain protected standards content, proprietary commercial data, or private project/rule data.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-6</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>This deliverable does not authorize hidden model mutation or autonomous engineering acceptance.</td><td>FACT: PKG-16 package exclusion in <code>_CONTEXT.md</code> and <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 6.</td></tr>
+<tr><td>Agent output cannot become accepted engineering work by itself.</td><td>FACT: <code>_CONTEXT.md</code> Context Envelope Notes and Context Budget QA note.</td></tr>
+<tr><td>Human acceptance, if represented, is external, human-actor-owned, and bound to reviewed evidence hashes.</td><td>FACT: <code>docs/SPEC.md</code> sections 4.3 and 9.</td></tr>
+<tr><td>Current rationale implementation path is established for this slice.</td><td>FACT: <code>core/model_operations/agent_rationale/engine.py</code> provides <code>record_agent_rationale()</code> and <code>canonical_json()</code> for DEL-16-04 rationale records.</td></tr>
+<tr><td>Current focused guard-test path is established for this slice.</td><td>FACT: <code>tests/test_agent_rationale_boundary.py</code> covers deterministic rationale records, decision-support posture, no accepted-state mutation, visible TBD diagnostics, unresolved assumptions, prohibited-claim blocking, copied-context scanning, enum-style authority tokens, and lowercase approved coordination-context false-positive behavior.</td></tr>
+<tr><td>No project-specific engineering values, code clauses, code-compliance conclusions, or professional approval evidence are established by this implementation slice.</td><td>FACT: implementation and fixtures use invented/public metadata and professional-boundary flags; downstream human review dispositions remain external.</td></tr>
+<tr><td>Standalone rationale JSON Schema, final UI/agent workflow presentation, broader persistence/application-service behavior, and human review dispositions remain unresolved.</td><td>TBD for downstream Type 2 work or human ruling.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Conservative Definition</td></tr>
+<tr><td>Agent rationale record</td><td>Current Python implementation builds deterministic DEL-16-04 rationale records from DEL-16-01 operation envelopes plus optional audit trail, validation context, source, actor, rationale text, assumptions, affected references, audit references, timestamp, and accepted-state input. It records rationale as decision-support metadata only and computes stable rationale ID/hash values. Standalone rationale schema remains TBD.</td></tr>
+<tr><td>Professional-boundary controls</td><td>Current implementation sets explicit professional-boundary booleans, prevents rationale from creating accepted operation records, mutating accepted model state, or bypassing user acceptance, and emits blocking diagnostics for prohibited authority claims in rationale or copied operation/audit/validation context. Final UI/API/report presentation remains TBD.</td></tr>
+<tr><td>Guard tests</td><td>Current focused test harness is <code>tests/test_agent_rationale_boundary.py</code>; adjacent evidence includes <code>tests/test_operation_audit_trail.py</code>, <code>tests/test_operation_validation_preview.py</code>, and <code>tests/test_model_operation_schema.py</code>. Broader persistence/application behavior remains TBD.</td></tr>
+<tr><td>Dependency evidence surface</td><td><code>Dependencies.csv</code> is an approved DAG-006 mirror with ACTIVE upstream rows for architecture-basis deliverables, professional responsibility policy, user acceptance/audit trail, and security threat model. The mirror is not rewritten by this setup pass.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Used For</td></tr>
+<tr><td><code>_CONTEXT.md</code></td><td>Deliverable identity, scope, objectives, artifacts, package boundary, architecture basis injection.</td></tr>
+<tr><td><code>_REFERENCES.md</code></td><td>Reference inventory and source boundary for this setup pass.</td></tr>
+<tr><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code></td><td>Approved DAG-006 local mirror/evidence surface and upstream context; historical DAG-002 row IDs remain preserved evidence, not current graph authority.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>SOW-070, OBJ-015, OBJ-018, PKG-16, DEL-16-04 decomposition context.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for professional authority, agent authority, no invention, and conflict surfacing.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Founding professional-boundary principles and stop rules.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Deliverable type, status vocabulary, and epistemic labels.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Analysis-boundary, persistence, report-section, and acceptance semantics relevant to professional-boundary controls.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Protected-content, private-data, and contribution boundary.</td></tr>
+<tr><td><code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code></td><td>Type 2 draft/proposal authority and deliverable execution rules.</td></tr>
+<tr><td><code>core/model_operations/agent_rationale/engine.py</code></td><td>Current implementation evidence for deterministic rationale records and professional-boundary diagnostics.</td></tr>
+<tr><td><code>core/model_operations/audit_trail/engine.py</code>; <code>core/model_operations/validation_preview/engine.py</code>; <code>schemas/model_operation.schema.json</code></td><td>Read-only upstream/adjacent implementation evidence for audit-trail, validation-preview, and operation-schema boundaries consumed by the rationale tests.</td></tr>
+<tr><td><code>tests/test_agent_rationale_boundary.py</code>; <code>tests/test_operation_audit_trail.py</code>; <code>tests/test_operation_validation_preview.py</code>; <code>tests/test_model_operation_schema.py</code></td><td>Focused validation evidence for this slice and adjacent model-operation controls.</td></tr>
+<tr><td><code>fixtures/model_operations/invented_operation_set_valid.json</code>; <code>fixtures/model_operations/invented_accepted_model_state.json</code></td><td>Invented fixture evidence used by the focused tests; no protected project payload is introduced.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-16-04-agent-rationale-and-professional-boundary-controls">CLM-007 — Specification: DEL-16-04 Agent rationale and professional-boundary controls</h3>
+<blockquote><h4 id="specification-del-16-04-agent-rationale-and-professional-boundary-controls">Specification: DEL-16-04 Agent rationale and professional-boundary controls</h4></blockquote>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable covers the security-control specification surface for recording agent rationale and unresolved assumptions while preserving the professional boundary. It is scoped to DEL-16-04 in PKG-16 and SOW-070.</p>
+<p>Included:</p>
+<ul>
+<li>- rationale and assumption recording expectations for accepted model operations;</li>
+<li>- professional-boundary controls that prevent agent/software claims of certification, approval, authentication, sealing, professional reliance, or code compliance;</li>
+<li>- guard-test expectations for that boundary.</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>- implementation of model-operation schemas owned by DEL-16-01;</li>
+<li>- implementation of validation/diff preview owned by DEL-16-02;</li>
+<li>- implementation of user acceptance and operation audit trail owned by DEL-16-03;</li>
+<li>- professional responsibility/product-claims policy authorship owned by DEL-01-04;</li>
+<li>- standalone rationale JSON Schema, final UI/agent workflow presentation, broader persistence/application-service behavior outside this slice, dependency versions, and human review dispositions, which remain TBD unless assigned by later Type 2 work or human ruling.</li>
+</ul>
+<p>Current implementation evidence for this deliverable-local slice is <code>core/model_operations/agent_rationale/engine.py</code> with focused tests in <code>tests/test_agent_rationale_boundary.py</code>. That implementation consumes DEL-16-01 operation envelopes and optional DEL-16-03 audit / DEL-16-02 validation context as read-only rationale context; it does not implement those sibling deliverables.</p></blockquote>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>REQ-16-04-01</td><td>The deliverable shall remain bounded to DEL-16-04, PKG-16, SOW-070, OBJ-015, and OBJ-018.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> sections 4-7</td><td>Review document metadata and scope references.</td></tr>
+<tr><td>REQ-16-04-02</td><td>Accepted model operations shall preserve operation history, rationale, assumptions, affected entities, and audit metadata needed for reproducible model-state review.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 4, SOW-070</td><td>Current <code>record_agent_rationale()</code> output preserves rationale text/status, assumptions, validation context, affected entities, audit references, audit context, and operation context; standalone schema remains TBD.</td></tr>
+<tr><td>REQ-16-04-03</td><td>Agent outputs shall remain drafts or proposals until accepted by a human gate.</td><td><code>docs/CONTRACT.md</code> section 1, OPS-K-AGENT-4; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> section 1</td><td><code>tests/test_agent_rationale_boundary.py</code> confirms rationale records are decision-support only, create no accepted operation record, do not bypass user acceptance, and do not mutate accepted model state.</td></tr>
+<tr><td>REQ-16-04-04</td><td>Software and agents shall not claim to certify, seal, approve, authenticate, or declare engineering code compliance for reliance.</td><td><code>docs/CONTRACT.md</code> section 1, OPS-K-AUTH-1; <code>docs/DIRECTIVE.md</code> sections 3-5</td><td><code>tests/test_agent_rationale_boundary.py</code> confirms prohibited rationale language emits blocking professional-boundary diagnostics.</td></tr>
+<tr><td>REQ-16-04-05</td><td>Automatic status vocabulary shall not include <code>HUMAN_APPROVED_FOR_PROJECT</code>, <code>CODE_COMPLIANT</code>, <code>CERTIFIED</code>, <code>SEALED</code>, <code>APPROVED</code>, or equivalent professional/code-compliance language.</td><td><code>docs/TYPES.md</code> section 4; <code>docs/SPEC.md</code> section 4.3</td><td>Current tests confirm enum-style authority tokens in copied context are blocked and lowercase approved coordination context is not treated as professional approval. Adjacent schema tests confirm forbidden operation statuses remain excluded from <code>model_operation.schema.json</code>.</td></tr>
+<tr><td>REQ-16-04-06</td><td>Any human acceptance record represented by the product shall be external, human-actor-owned, and bound to reviewed payload hashes; it shall not be software-generated professional approval.</td><td><code>docs/SPEC.md</code> sections 4.3 and 9</td><td>Current rationale record stores audit context/references as context and sets <code>rationale_creates_audit_acceptance</code>/accepted-record creation flags false; final human-disposition workflow remains TBD.</td></tr>
+<tr><td>REQ-16-04-07</td><td>Missing data, unresolved assumptions, warnings, limitations, and <code>TBD</code> values shall remain explicit findings and shall not be converted into silent defaults.</td><td><code>docs/DIRECTIVE.md</code> section 2.4; <code>docs/SPEC.md</code> sections 4.3, 9, and 12</td><td>Current tests confirm missing audit, validation, source, actor, rationale text, and timestamp inputs emit visible <code>TBD_VISIBLE</code> diagnostics and unresolved assumptions remain counted/reportable.</td></tr>
+<tr><td>REQ-16-04-08</td><td>Public artifacts shall not introduce protected standards text, code-specific values, proprietary data, private project data, or private rule-pack payloads.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-6; <code>docs/CONTRACT.md</code> section 1, OPS-K-IP-1 through OPS-K-IP-3</td><td>Protected-content and data-boundary review; exact linter integration TBD.</td></tr>
+<tr><td>REQ-16-04-09</td><td>Plugin, adapter, persistence, report, and application-service paths that touch this control surface shall preserve schema validation, provenance, private-data, protected-content, diagnostics, hashes, and professional-boundary checks.</td><td><code>docs/SPEC.md</code> sections 4.4 and 4.5</td><td>Rationale implementation path is established for this slice; plugin, adapter, persistence, report, and broader application-service integration remain TBD until concrete paths are assigned.</td></tr>
+<tr><td>REQ-16-04-10</td><td>Guard tests shall cover both positive preservation of rationale/assumptions and negative blocking of professional/code-compliance claim language.</td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AGENT-4</td><td>Current focused guard tests exist in <code>tests/test_agent_rationale_boundary.py</code>; broader UI/API/report coverage remains TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering standard text is accessible or required for this setup pass. The governing standards for this deliverable-local draft are the project governance and technical sources listed in <code>_REFERENCES.md</code>.</p>
+<table><tbody>
+<tr><td>Standard or Authority</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for authority boundary, agent proposal status, no invention, and protected-content handling.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Project professional-responsibility principles and stop rules.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Status vocabulary and epistemic labels.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Analysis-boundary, report-section, persistence, plugin/adapter, and acceptance semantics.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data and protected-content boundary.</td></tr>
+<tr><td>External piping codes or standards</td><td>Location TBD; no code text, clause-level rule, acceptance value, or compliance claim is derived here.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Method</td><td>Acceptance Signal</td></tr>
+<tr><td>Scope conformance</td><td>Review against <code>_CONTEXT.md</code>, Deliverables register row, and decomposition DEL-16-04 row.</td><td>No scope expansion beyond agent rationale and professional-boundary controls.</td></tr>
+<tr><td>Rationale and assumption preservation</td><td>Focused test review of <code>tests/test_agent_rationale_boundary.py</code> and implementation review of <code>core/model_operations/agent_rationale/engine.py</code>.</td><td>Operation-related rationale, unresolved assumptions, affected entities, validation context, audit references, and audit metadata are retained or explicitly marked TBD.</td></tr>
+<tr><td>Prohibited claim prevention</td><td>Focused guard tests for rationale text and copied operation/audit/validation context; future UI/API/report guard coverage remains TBD.</td><td>Prohibited authority language yields blocking diagnostics and does not become a permitted rationale status.</td></tr>
+<tr><td>Human acceptance separation</td><td>Review current rationale flags and adjacent audit-trail tests.</td><td>Rationale output is decision-support only and does not create accepted operation records, bypass user acceptance, or mutate accepted model state; final human-disposition workflow remains TBD.</td></tr>
+<tr><td>Protected-content/data boundary</td><td>Protected-content and private-data checks.</td><td>No protected standards content or private project/rule data added to public artifacts.</td></tr>
+<tr><td>Dependency preservation</td><td>Check approved DAG-006 local mirror.</td><td>Existing approved rows remain ACTIVE unless later changed by RECONCILIATION plus CHANGE approval.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required deliverable artifacts:</p>
+<ul>
+<li>- <code>agent rationale record</code> - current implementation path is <code>core/model_operations/agent_rationale/engine.py</code>; standalone schema and final persistence path remain TBD.</li>
+<li>- <code>professional-boundary guard tests</code> - current focused test path is <code>tests/test_agent_rationale_boundary.py</code>; broader UI/API/report coverage remains TBD.</li>
+</ul>
+<p>Setup artifacts produced by this workflow:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+</ul>
+<p>These documents cite current implementation/test evidence for the bounded DEL-16-04 slice only. They do not claim lifecycle transition, engineering acceptance, professional approval, certification, sealing, authentication, or code compliance.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves operation context/history, rationale, unresolved assumptions, affected entities, audit and validation context/references, source/actor metadata, timestamps, diagnostics, provenance, stable rationale identity/hash, visible TBD findings, explicit human-review and external hash-bound human-authority boundaries, copied-context claim scanning, prohibited authority-language blocking, no accepted-record creation, no acceptance bypass, no accepted-state mutation, protected/private-data controls, and unresolved standalone schema, persistence, UI/API/report, broader application, dependency, and human-disposition matters.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-16-04-agent-rationale-and-professional-boundary-controls">CLM-013 — Procedure: DEL-16-04 Agent rationale and professional-boundary controls</h3>
+<blockquote><h4 id="procedure-del-16-04-agent-rationale-and-professional-boundary-controls">Procedure: DEL-16-04 Agent rationale and professional-boundary controls</h4></blockquote>
+<h3 id="clm-014-d-41-r5-t7-pdu-055-current-declaration">CLM-014 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-16-04-DECL-004</code>.</p></blockquote>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define a conservative procedure for reviewing the current bounded DEL-16-04 rationale implementation/test slice and for producing or reviewing later DEL-16-04 artifacts. This procedure is document-level guidance only; it does not implement product code or claim engineering acceptance.</p></blockquote>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source</td></tr>
+<tr><td>Confirm deliverable identity, package, scope, objectives, and artifact expectations from <code>_CONTEXT.md</code>.</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Use the accepted revision 0.7 decomposition for SOW-070, OBJ-015, OBJ-018, PKG-16, and DEL-16-04.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td></tr>
+<tr><td>Apply project authority invariants for professional boundary and agent proposal status.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AGENT-4</td></tr>
+<tr><td>Apply status vocabulary boundaries and epistemic labels.</td><td><code>docs/TYPES.md</code> sections 4 and 5</td></tr>
+<tr><td>Apply data-boundary and protected-content constraints.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+<tr><td>Preserve the approved DAG-006 local dependency mirror unless RECONCILIATION plus CHANGE approval supersedes it.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code></td></tr>
+<tr><td>Use the current rationale implementation and focused tests as bounded evidence for this slice.</td><td><code>core/model_operations/agent_rationale/engine.py</code>; <code>tests/test_agent_rationale_boundary.py</code></td></tr>
+<tr><td>Use adjacent PKG-16 schema/audit/preview implementation and tests as read-only context for boundaries consumed by rationale tests.</td><td><code>schemas/model_operation.schema.json</code>; <code>core/model_operations/audit_trail/engine.py</code>; <code>core/model_operations/validation_preview/engine.py</code>; adjacent focused tests</td></tr>
+<tr><td>Treat standalone rationale schema, final UI/agent workflow presentation, broader persistence/application behavior, dependency versions, and human review dispositions as TBD until later Type 2 work or human ruling resolves them.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>docs/SPEC.md</code> section 12</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the work is still bounded to DEL-16-04 and SOW-070.</p>
+<p>2. Review source authority in this order: <code>_REFERENCES.md</code> listed governing sources, <code>_CONTEXT.md</code>, approved local <code>Dependencies.csv</code>, and <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>.</p>
+<p>3. Identify the rationale-record categories supported by sources and implementation: operation history/context, rationale, assumptions, affected entities, audit metadata/references, validation context, source/actor metadata, diagnostics, provenance, and stable rationale ID/hash.</p>
+<p>4. Confirm the record posture remains decision-support only: no accepted operation record creation, no accepted-model-state mutation, no user-acceptance bypass, and explicit human-review requirement.</p>
+<p>5. Mark unsupported schema fields, standalone schema path, persistence path, UI/agent workflow presentation, broader application behavior, and human dispositions as <code>TBD</code> rather than inventing them.</p>
+<p>6. Identify prohibited professional-boundary outputs from <code>docs/CONTRACT.md</code>, <code>docs/TYPES.md</code>, <code>docs/SPEC.md</code>, and <code>PROHIBITED_CLAIM_PATTERNS</code> in <code>core/model_operations/agent_rationale/engine.py</code>.</p>
+<p>7. Check that rationale text and copied operation/audit/validation/source/actor/reference context produce blocking diagnostics for prohibited authority language.</p>
+<p>8. Check that lowercase coordination references such as approved DAG authority are not misclassified as professional approval unless they use blocked authority language.</p>
+<p>9. Check that assumptions, warnings, limitations, missing context, and <code>TBD</code> values remain explicit findings.</p>
+<p>10. Check that no protected standards text, code-specific values, private project data, or private rule-pack payloads are introduced.</p>
+<p>11. Check dependency handling against the local DAG-006 mirror; do not retire, delete, or reclassify approved ACTIVE rows during this setup pass.</p>
+<p>12. Record unresolved issues as <code>TBD</code>, <code>ASSUMPTION</code>, or <code>PROPOSAL</code> using <code>docs/TYPES.md</code> epistemic labels.</p></blockquote>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Scope check</td><td>Documents and rationale artifacts reference DEL-16-04, PKG-16, SOW-070, OBJ-015, and OBJ-018 without expanding into sibling deliverables.</td></tr>
+<tr><td>Rationale preservation check</td><td>Operation history, rationale, assumptions, affected entities, and audit metadata are present as required categories or explicitly marked TBD pending schema work.</td></tr>
+<tr><td>Non-acceptance check</td><td>Current rationale output is decision-support only and does not create accepted operation records, bypass user acceptance, or mutate accepted model state.</td></tr>
+<tr><td>Prohibited-claim check</td><td>Automatic output cannot state or imply certification, sealing, approval, authentication, professional reliance, external validation authority, autonomous engineering acceptance, or code compliance.</td></tr>
+<tr><td>Status-vocabulary check</td><td>Automatic statuses remain within the permitted vocabulary from <code>docs/TYPES.md</code> and <code>docs/SPEC.md</code>.</td></tr>
+<tr><td>Human-acceptance check</td><td>Any human acceptance reference is external, human-actor-owned, and hash-bound; it is not generated by software.</td></tr>
+<tr><td>Copied-context check</td><td>Prohibited authority language in copied operation, audit, or validation context is blocked before rationale is treated as captured for user review.</td></tr>
+<tr><td>Visible-TBD check</td><td>Missing audit context, validation context, source metadata, actor metadata, rationale text, and timestamp remain visible <code>TBD_VISIBLE</code> diagnostics.</td></tr>
+<tr><td>Data-boundary check</td><td>No protected standards text, proprietary data, private project data, or private rule-pack payload is introduced.</td></tr>
+<tr><td>Dependency preservation check</td><td><code>Dependencies.csv</code> approved DAG-006 rows remain ACTIVE and unchanged by this setup pass.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The expected records for this deliverable are:</p>
+<ul>
+<li>- agent rationale record: current implementation path <code>core/model_operations/agent_rationale/engine.py</code>; standalone schema and persistence path TBD;</li>
+<li>- professional-boundary guard tests: current focused path <code>tests/test_agent_rationale_boundary.py</code>; broader UI/API/report coverage TBD;</li>
+<li>- unresolved assumptions and <code>TBD</code> decisions surfaced in deliverable documents;</li>
+<li>- validation evidence from focused implementation tests;</li>
+<li>- this setup document kit and semantic/lensing metadata.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, rationale/audit/validation/source/actor context preservation, deterministic identity, visible TBD and unresolved-assumption behavior, all prohibited-claim and copied-context guards including false-positive boundaries, external human-owned acceptance separation, no application or state mutation, protected-data posture, retained downstream TBDs, and absence of autonomous acceptance or professional-authority claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-16-04-agent-rationale-and-professional-boundary-controls">CLM-020 — Guidance: DEL-16-04 Agent rationale and professional-boundary controls</h3>
+<blockquote><h4 id="guidance-del-16-04-agent-rationale-and-professional-boundary-controls">Guidance: DEL-16-04 Agent rationale and professional-boundary controls</h4></blockquote>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to keep agent-assisted model operation workflows auditable without allowing agent output to become accepted engineering work by itself. The source basis is DEL-16-04, SOW-070, OBJ-015, OBJ-018, and the project authority boundaries in <code>docs/CONTRACT.md</code>, <code>docs/TYPES.md</code>, and <code>docs/SPEC.md</code>.</p></blockquote>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Proposal is not acceptance</td><td>Treat agent rationale as proposal/supporting explanation until a human gate accepts the related work.</td><td><code>docs/CONTRACT.md</code> OPS-K-AGENT-4; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> section 1</td></tr>
+<tr><td>Preserve rationale and assumptions</td><td>Do not collapse rationale, unresolved assumptions, affected entities, and audit metadata into unstructured text that cannot support reproducible review.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-070</td></tr>
+<tr><td>Block professional claims</td><td>Controls should prevent certification, approval, sealing, authentication, professional reliance, and code-compliance claim language from being generated as software/agent authority.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/TYPES.md</code> section 4</td></tr>
+<tr><td>Surface unknowns</td><td>Missing or unsupported facts should remain <code>TBD</code> or explicit assumptions rather than silent defaults.</td><td><code>docs/DIRECTIVE.md</code> section 2.4; <code>docs/SPEC.md</code> section 12</td></tr>
+<tr><td>Keep protected data out</td><td>Rationale and tests must not quote or paraphrase protected standards content, proprietary data, private project data, or private rule-pack payloads into public artifacts.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-6</td></tr>
+<tr><td>Preserve hash-bound human authority</td><td>If human acceptance records are referenced, treat them as external, human-owned, and bound to reviewed payload hashes.</td><td><code>docs/SPEC.md</code> sections 4.3 and 9</td></tr>
+<tr><td>Keep rationale non-applying</td><td>Treat <code>record_agent_rationale()</code> output as deterministic decision-support metadata only; it must not create accepted operation records, mutate accepted model state, or bypass user acceptance.</td><td><code>core/model_operations/agent_rationale/engine.py</code>; <code>tests/test_agent_rationale_boundary.py</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Consideration</td></tr>
+<tr><td>Record shape</td><td>The current Python record shape is established in <code>core/model_operations/agent_rationale/engine.py</code> for this slice: deliverable/package/scope metadata, operation set ref, audit context, source, actor, timestamp, rationale posture, assumptions, validation context, affected entities, audit references, operation context, diagnostics, accepted-state unchanged flag, professional boundary, provenance, rationale ID, and rationale hash. Standalone JSON Schema and final persistence path remain TBD.</td></tr>
+<tr><td>Guard-test surface</td><td>Current focused guards are in <code>tests/test_agent_rationale_boundary.py</code>. They cover deterministic records, no accepted-state mutation, no accepted-operation creation, no user-acceptance bypass, missing-context/TBD visibility, unresolved assumptions, prohibited rationale claims, copied-context claims, enum-style authority tokens, and lowercase approved coordination-context false-positive behavior. Broader UI/API/report coverage remains TBD.</td></tr>
+<tr><td>Dependency context</td><td>The approved DAG-006 mirror identifies architecture-basis deliverables, professional responsibility policy, user acceptance/audit trail, and security threat model as upstream context. This setup pass preserves that mirror rather than reclassifying it.</td></tr>
+<tr><td>Rationale privacy</td><td>Rationale may mention project context or user inputs. Future implementation must respect private-data and protected-content controls before public export.</td></tr>
+<tr><td>Human review</td><td>Human review is a boundary, not a wording detail. A UI label or report phrase must not imply human acceptance unless backed by an external, human-owned, hash-bound record.</td></tr>
+<tr><td>Copied context</td><td>Rationale capture scans rationale text plus copied operation, audit, validation, source, actor, affected-reference, and audit-reference context for prohibited authority language. Blocking diagnostics should be treated as wording/authority blockers, not engineering findings.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative Direction</td></tr>
+<tr><td>Detailed rationale vs. private-data exposure</td><td>Preserve enough rationale for reproducible model-state review, but redact or keep private any protected, proprietary, or project-private content.</td></tr>
+<tr><td>Strict prohibited-claim filters vs. false positives</td><td>Prefer blocking or flagging ambiguous professional/code-compliance language until a human resolves the wording.</td></tr>
+<tr><td>Flexible notes vs. structured review</td><td>Allow notes only when structured fields preserve operation history, assumptions, affected entities, audit metadata, and review status.</td></tr>
+<tr><td>Human acceptance references vs. software statuses</td><td>Keep human acceptance external and hash-bound; do not convert it into an automatic software status.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Source-backed vocabulary examples:</p>
+<table><tbody>
+<tr><td>Category</td><td>Examples from Sources</td></tr>
+<tr><td>Permitted automatic software statuses</td><td><code>MODEL_INCOMPLETE</code>, <code>MECHANICS_SOLVED</code>, <code>RULE_INPUTS_INCOMPLETE</code>, <code>USER_RULE_CHECKED</code>, <code>USER_RULE_FAILED</code>, <code>HUMAN_REVIEW_REQUIRED</code> (<code>docs/TYPES.md</code> section 4).</td></tr>
+<tr><td>Prohibited automatic status or claim language</td><td><code>HUMAN_APPROVED_FOR_PROJECT</code>, <code>CODE_COMPLIANT</code>, <code>CERTIFIED</code>, <code>SEALED</code>, <code>APPROVED</code>, or equivalent professional/code-compliance language (<code>docs/TYPES.md</code> section 4).</td></tr>
+<tr><td>Required epistemic labels</td><td><code>FACT</code>, <code>ASSUMPTION</code>, <code>PROPOSAL</code>, <code>TBD</code> (<code>docs/TYPES.md</code> section 5).</td></tr>
+<tr><td>Current rationale blocking diagnostics</td><td><code>RATIONALE-AUTHORITY-COMPLIANCE-BLOCKED</code>, <code>RATIONALE-AUTHORITY-CERTIFICATION-BLOCKED</code>, <code>RATIONALE-AUTHORITY-SEALING-BLOCKED</code>, <code>RATIONALE-AUTHORITY-AUTHENTICATION-BLOCKED</code>, <code>RATIONALE-AUTHORITY-PROFESSIONAL-APPROVAL-BLOCKED</code>, <code>RATIONALE-AUTHORITY-EXTERNAL-VALIDATION-BLOCKED</code>, and <code>RATIONALE-AUTHORITY-AUTONOMOUS-ACCEPTANCE-BLOCKED</code> from <code>core/model_operations/agent_rationale/engine.py</code>.</td></tr>
+<tr><td>Current visible TBD diagnostics</td><td>Missing audit context, validation context, source metadata, actor metadata, rationale text, and timestamp are emitted as <code>TBD_VISIBLE</code> diagnostics in <code>record_agent_rationale()</code>.</td></tr>
+</tbody></table>
+<p>The authorized implementation/test evidence uses invented fixtures only. No project-specific engineering example, standards clause, acceptance value, or professional/code-compliance conclusion is established by this slice.</p></blockquote>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>No cross-source conflict identified in the slices used for this setup pass.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-070 OBJ-015 OBJ-018</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

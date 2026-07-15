@@ -1,0 +1,13 @@
+{
+  "status": "COMPLETE",
+  "author_sessions": 1,
+  "verifier_sessions": 1,
+  "author_terminal": "PASS",
+  "verifier_terminal": "PASS_UNCHANGED",
+  "retained_mechanical_attempts": [
+    "author pre-execution wrapper string-removal mismatch",
+    "author stale narrative count during terminal wrapper"
+  ],
+  "repairs": "owned evidence mechanics only; all bindings rebuilt and affected checks rerun",
+  "native_token_context_telemetry": "UNAVAILABLE_NOT_INFERRED"
+}

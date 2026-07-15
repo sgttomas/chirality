@@ -1,0 +1,42 @@
+[
+  {
+    "deliverable_id": "DEL-17-01",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-01_CAEPIPE and export-format source basis",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-17-02",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-17-03",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-17-04",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-17-05",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-05_CAEPIPE external run harness and CSV parser",
+    "verdict": "PASS"
+  }
+]

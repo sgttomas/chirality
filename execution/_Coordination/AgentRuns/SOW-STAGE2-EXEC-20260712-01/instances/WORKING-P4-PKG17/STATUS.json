@@ -1,0 +1,33 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "WORKING-P4-PKG17",
+  "role": "WORKING_ITEMS",
+  "package_id": "PKG-17",
+  "status": "PASS",
+  "terminal": true,
+  "batches_complete": 2,
+  "batches_expected": 2,
+  "members_complete": 9,
+  "members_expected": 9,
+  "source_lines_covered": 3121,
+  "source_lines_total": 3121,
+  "mappings_passed": 346,
+  "replacement_rows": 45,
+  "inverse_rows": 45,
+  "simulations": 9,
+  "authors": [
+    "PASS",
+    "PASS"
+  ],
+  "verifiers": [
+    "PASS_UNCHANGED",
+    "PASS_UNCHANGED"
+  ],
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "reruns": [],
+  "derivative_status": "COMPLETE_CURRENT",
+  "next_owner": "RECONCILIATION"
+}

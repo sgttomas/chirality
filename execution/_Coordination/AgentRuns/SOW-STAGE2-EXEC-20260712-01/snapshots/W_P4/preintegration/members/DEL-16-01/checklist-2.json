@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-16-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 211,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a9f76e5189357f42ba957a29b77c2f8292d4d4d30ca14132b6e0f94ae8b01a76"
+      },
+      "text": "The contract preserves the JSON Schema 2020-12 envelope, all declared operation and change categories, structured-only mutation route, target and precondition references, accepted-model-state hashes, unit and dimension requirements, diagnostics, diff-preview and downstream acceptance hooks, assumptions, provenance, invented-public fixture boundaries, professional non-authority, sibling ownership limits, and unresolved persistence, hash-partitioning, operation-granularity, autonomy, and human-disposition questions without creating direct mutation or acceptance.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-16-01-VER-001",
+          "source_line": 317,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, complete operation/change taxonomy and record fields, structured-only mutation route, model-basis/current-hash and unit boundaries, diagnostics/provenance and invented-fixture posture, sibling ownership separations, retained CT-001 through CT-003 and other TBDs, and absence of hidden mutation, protected content, or professional-authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-16-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-16",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "a9f76e5189357f42ba957a29b77c2f8292d4d4d30ca14132b6e0f94ae8b01a76"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-07-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 294,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a61a52921546367d0b29b539b0cbfdcee1771f4ad4d6103876b25975030012d2"
+      },
+      "text": "The contract preserves admitted PCF source authority, selected profile/version gates, canonical identity, units and coordinates, conservative component and attribute mapping, explicit exported/omitted/approximated/delegated/unsupported/TBD behavior, diagnostics, loss reporting, invented or rights-cleared fixtures, and professional non-authority without implying broad PCF compatibility.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-07-VER-001",
+          "source_line": 452,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, PCF source/profile gates, deterministic output, identity and unit treatment, every mapping and loss class, warning policy, retained version and mapping TBDs, fixture provenance, protected-content exclusions, and absence of compatibility, release, compliance, or professional-acceptance claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-07",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "a61a52921546367d0b29b539b0cbfdcee1771f4ad4d6103876b25975030012d2"
+  },
+  "tool_version": "1"
+}

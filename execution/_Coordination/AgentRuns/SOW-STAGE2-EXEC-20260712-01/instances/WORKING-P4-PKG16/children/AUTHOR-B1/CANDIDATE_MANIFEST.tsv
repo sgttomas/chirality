@@ -1,0 +1,13 @@
+sha256	bytes	path
+8f2bc20945ab82deadccc127b352c23936ab4081cea73161c1244ceb820a80b0	40821	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-01/evidence/ScopeOfWork.md
+683bcf078a9ff27ec241bba063c36d030aee117e9d30ba496d678eb0ce32dff1	9349	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-01/finalization.json
+a9f76e5189357f42ba957a29b77c2f8292d4d4d30ca14132b6e0f94ae8b01a76	35151	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-01/production/ScopeOfWork.md
+5f227cc55a885111f8988f2676e84278241281543f7841f0ec7a09c990ea0035	40341	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-02/evidence/ScopeOfWork.md
+1b57ddab8e678ef5ebe2cff558a8badb27d51ce4c6beb37e92ff5f407890f975	9345	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-02/finalization.json
+510c827eb0e08f18b280403f3734e0a2dd6bdfae48dbeb86c5b18ac4552dfb5e	34593	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-02/production/ScopeOfWork.md
+76375dcd6b03de265e7de73e5b56f92ec037b4c3671bc25dee1823b0b5944701	40979	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-03/evidence/ScopeOfWork.md
+68fe585ea078a155dc18410045f87bc54ff0539f9055a4711cb66107b15c6841	10034	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-03/finalization.json
+b3aac7b289db9d61ad85eb8df916c98fa822e21e032555524b94679a2c16ca9d	34798	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-03/production/ScopeOfWork.md
+5df6ec5dfd52d0eb02458c57dbd3a785d91b6efe56623303f0ac276d829cd3b2	40158	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-04/evidence/ScopeOfWork.md
+59cdbe9a08cdc63e7856ffb4af3abf91375ac96a945e2e236e38a839656cf761	9349	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-04/finalization.json
+7873bfa600b2126a0b87e987d91b164ca7fe4553a7d8adce1e68558c32a05373	34439	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG16/DEL-16-04/production/ScopeOfWork.md

@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="f369ac416cedcfcdc7478671099c2c6f29d08cfd03722c2e0515e8bdbfdb18a4">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-17-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>f369ac416cedcfcdc7478671099c2c6f29d08cfd03722c2e0515e8bdbfdb18a4</code>.</p>
+<h1 id="scope-of-work-del-17-02">Scope of Work — DEL-17-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-17-02</code> in service of project scope [SOW-030, SOW-074] and package objectives [OBJ-009, OBJ-017].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A schema-first common export-package, target-profile, stable-ID-map, manifest, and loss-report contract for deterministic interoperability is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-17-02-export-package-profile-and-stable-id-map-contracts">CLM-001 — Datasheet: DEL-17-02 Export package, profile, and stable ID map contracts</h3>
+<blockquote><h4 id="datasheet-del-17-02-export-package-profile-and-stable-id-map-contracts">Datasheet: DEL-17-02 Export package, profile, and stable ID map contracts</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identity">CLM-003 — Identity</h3>
+<blockquote><h5 id="identity">Identity</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-17-02</td></tr>
+<tr><td>Package</td><td>PKG-17 Export Format Interoperability</td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td></tr>
+<tr><td>Lifecycle state after this tranche</td><td>SEMANTIC_READY</td></tr>
+<tr><td>Source basis</td><td>DEL-17-01 source-basis dossier and admitted references</td></tr>
+<tr><td>Downstream consumers</td><td>DEL-17-03 through DEL-17-09</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-purpose">CLM-004 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>DEL-17-02 defines the common export contract that later PKG-17 target exporters shall consume before writing target-specific formats. It covers export package structure, export profile metadata, stable ID maps, export manifests, loss reports, and unsupported/approximated/delegated behavior records.</p>
+<p>This deliverable is a contract-level planning artifact. It does not implement JSON schemas, Rust modules, exporters, parsers, harnesses, GUI behavior, persistence runtime, public API endpoints, or target-specific file writers.</p></blockquote>
+<h3 id="clm-005-contract-objects">CLM-005 — Contract Objects</h3>
+<blockquote><h5 id="contract-objects">Contract Objects</h5>
+<table><tbody>
+<tr><td>Object</td><td>Role</td><td>Required downstream behavior</td></tr>
+<tr><td>Export package</td><td>Binds payloads, target files, manifests, ID maps, diagnostics, and loss reports into one reproducible package concept.</td><td>Every exporter shall identify which package members it emits and which are outside its tranche.</td></tr>
+<tr><td>Export profile</td><td>Declares target name, profile version, target version basis, unit policy, coordinate policy, entity coverage, and target-specific TBDs.</td><td>Target exporters shall consume a profile rather than encode hidden target assumptions.</td></tr>
+<tr><td>Stable ID map</td><td>Maps OpenPipeStress canonical IDs to target record IDs, file names, sidecars, metadata slots, or omitted-target entries.</td><td>Every target artifact shall preserve identity directly or through a sidecar map.</td></tr>
+<tr><td>Export manifest</td><td>Records source model identity, profile identity, package members, hashes where applicable, diagnostics, and boundary notes.</td><td>Export packages shall be auditable without relying on unstated runtime context.</td></tr>
+<tr><td>Loss report</td><td>Records exported, omitted, approximated, delegated, unsupported, and TBD behavior.</td><td>Exporters shall not silently approximate unsupported target concepts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-source-consumption">CLM-006 — Source Consumption</h3>
+<blockquote><h5 id="source-consumption">Source Consumption</h5>
+<table><tbody>
+<tr><td>Source</td><td>Consumption rule</td></tr>
+<tr><td>DEL-17-01 <code>Source_Basis_Register.md</code></td><td>Upstream source-basis authority for admitted public/project source IDs, findings, boundaries, and TBD register. SourceRef: <code>Source_Basis_Register.md#Public and Official Source Evidence</code>, <code>#Accepted Project References</code>, <code>#TBD Register</code>.</td></tr>
+<tr><td>DEL-17-01 <code>CAEPIPE_Question_Dossier.md</code></td><td>Upstream question register for unresolved CAEPIPE claims. SourceRef: <code>CAEPIPE_Question_Dossier.md#Question Register</code>, <code>#Question Boundary</code>, <code>#Closure Rule</code>.</td></tr>
+<tr><td>SCA-004 and DAG-005</td><td>Establish PKG-17 scope and sequencing authority.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code> and <code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Govern protected-content, professional-boundary, and no-bypass constraints.</td></tr>
+<tr><td><code>schemas/model.schema.yaml</code></td><td>Supplies canonical model identity vocabulary for mapping, without changing the schema in this tranche.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-del-17-01-source-ids-carried-forward">CLM-007 — DEL-17-01 Source IDs Carried Forward</h3>
+<blockquote><h5 id="del-17-01-source-ids-carried-forward">DEL-17-01 Source IDs Carried Forward</h5>
+<table><tbody>
+<tr><td>Source ID</td><td>DEL-17-02 use</td><td>Location basis</td></tr>
+<tr><td>CAEPIPE-IMPORT-MBF</td><td>MBF text model input and command-line planning evidence for later CAEPIPE profiles.</td><td><code>Source_Basis_Register.md#Public and Official Source Evidence</code>; CAEPIPE <code>IMPORT MBF</code>, <code>Command line operation</code>, <code>Format of .MBF</code>.</td></tr>
+<tr><td>CAEPIPE-EXPORT-DATA</td><td>CAEPIPE model/result export-surface evidence for later CSV/text parser scoping.</td><td><code>Source_Basis_Register.md#Public and Official Source Evidence</code>; CAEPIPE <code>Export data from CAEPIPE</code>.</td></tr>
+<tr><td>CAEPIPE-EXPORT-MBF</td><td>CAEPIPE MBF export evidence for later MBF profile/version discussion.</td><td><code>Source_Basis_Register.md#Public and Official Source Evidence</code>; CAEPIPE <code>EXPORT MBF</code>.</td></tr>
+<tr><td>CAEPIPE-BATCH</td><td>Optional external-run harness evidence, limited to user-owned licensed execution planning.</td><td><code>Source_Basis_Register.md#Public and Official Source Evidence</code>; CAEPIPE batch <code>RUNNING CAEPIPE/CAEPIPE 3D+ IN BATCH MODE</code>.</td></tr>
+<tr><td>CAEPIPE-PCF</td><td>PCF translator planning evidence with mapping/default caveats for conservative downstream subset work.</td><td><code>Source_Basis_Register.md#Public and Official Source Evidence</code>; PCF PDF <code>Reference</code>, <code>PCF to CAEPIPE component Mapping</code>.</td></tr>
+<tr><td>GLTF-2.0</td><td>Review-geometry package evidence for glTF/GLB asset, identity, coordinate, and container semantics.</td><td><code>Source_Basis_Register.md#Public and Official Source Evidence</code>; glTF <code>2.4</code>, <code>3.2</code>, <code>3.3</code>, <code>3.4</code>, <code>4</code>.</td></tr>
+<tr><td>PLAN-EXPORT-INTEROP</td><td>Strategy and priority basis only; section location remains <code>location TBD</code>.</td><td><code>Source_Basis_Register.md#Accepted Project References</code>; <code>location TBD within plan</code>.</td></tr>
+<tr><td>CONTRACT / IP-DATA / SPEC / TYPES / DAG-005</td><td>Governance, workflow, lifecycle, provenance, TBD, data-boundary, and active graph-coordination basis.</td><td><code>Source_Basis_Register.md#Accepted Project References</code>; local governance files and DAG-006 approval record locations cited there.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-local-contract-artifact-inventory">CLM-008 — Local Contract Artifact Inventory</h3>
+<blockquote><h5 id="local-contract-artifact-inventory">Local Contract Artifact Inventory</h5>
+<table><tbody>
+<tr><td>Artifact</td><td>Contract role</td></tr>
+<tr><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></td><td>Human-readable contract kit for the export package/profile/stable-ID/loss-report surface.</td></tr>
+<tr><td><code>_SEMANTIC.md</code></td><td>Semantic matrix lens for coverage review; not an engineering authority.</td></tr>
+<tr><td><code>_SEMANTIC_LENSING.md</code></td><td>Warranted enrichment register applied by Pass 3; not an authority source by itself.</td></tr>
+<tr><td><code>Dependencies.csv</code></td><td>v3.1 dependency register tying DEL-17-02 to upstream source-basis evidence and downstream PKG-17 consumers.</td></tr>
+<tr><td><code>_run_records/</code></td><td>Auditable TASK execution records for sealed population and validation passes.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-009-required-export-profile-fields">CLM-009 — Required Export-Profile Fields</h3>
+<blockquote><h5 id="required-export-profile-fields">Required Export-Profile Fields</h5>
+<table><tbody>
+<tr><td>Field</td><td>Meaning</td></tr>
+<tr><td><code>profile_id</code></td><td>Stable identifier for the export profile.</td></tr>
+<tr><td><code>profile_version</code></td><td>Version of the OpenPipeStress profile contract.</td></tr>
+<tr><td><code>target_family</code></td><td>Target family such as native JSON, CAEPIPE MBF, stress-neutral CSV/JSON, PCF, GLB/glTF, or adapter SDK target.</td></tr>
+<tr><td><code>target_version_basis</code></td><td>Cited target version or <code>TBD</code> when not yet source-confirmed.</td></tr>
+<tr><td><code>source_basis_ids</code></td><td>DEL-17-01 source IDs and project references used by the profile.</td></tr>
+<tr><td><code>unit_policy</code></td><td>Declared output units and conversion responsibility.</td></tr>
+<tr><td><code>coordinate_policy</code></td><td>Declared coordinate frame, axis convention, and origin policy.</td></tr>
+<tr><td><code>entity_coverage</code></td><td>Supported, omitted, approximated, delegated, unsupported, and TBD entity families.</td></tr>
+<tr><td><code>stable_id_policy</code></td><td>Direct ID, sidecar ID, metadata ID, or omitted ID behavior.</td></tr>
+<tr><td><code>loss_report_policy</code></td><td>Required loss-report categories and blocking diagnostics.</td></tr>
+<tr><td><code>external_execution_policy</code></td><td>Optional user-owned harness metadata only, when applicable.</td></tr>
+<tr><td><code>boundary_notes</code></td><td>IP, license, private-data, and professional-boundary constraints.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-010-stable-id-families">CLM-010 — Stable ID Families</h3>
+<blockquote><h5 id="stable-id-families">Stable ID Families</h5>
+<p>The common ID map shall account for at least:</p>
+<ul>
+<li>- project and model IDs;</li>
+<li>- line, node, element, component, support, material, section, load case, result case, analysis run, and export IDs;</li>
+<li>- target file IDs, target record IDs, target metadata keys, target sidecar IDs, and omitted-target placeholders.</li>
+</ul>
+<p>If a target cannot carry a canonical ID directly, the exporter shall record the mapping in a sidecar and reference that sidecar from the manifest.</p></blockquote>
+<h3 id="clm-011-stable-id-carrier-modes">CLM-011 — Stable ID Carrier Modes</h3>
+<blockquote><h5 id="stable-id-carrier-modes">Stable ID Carrier Modes</h5>
+<table><tbody>
+<tr><td>Mode</td><td>Required meaning</td><td>DEL-17-02 boundary</td></tr>
+<tr><td>Direct target-carried ID</td><td>The target artifact contains the canonical OpenPipeStress ID in a source-confirmed target field, metadata slot, name, or equivalent target-carried location.</td><td>Allowed only when the downstream target profile cites admitted evidence for the carrier.</td></tr>
+<tr><td>Metadata-carried ID</td><td>The target artifact carries canonical IDs through a documented metadata surface.</td><td>Allowed only when the target metadata behavior is source-confirmed and does not imply solver equivalence.</td></tr>
+<tr><td>Sidecar mapping</td><td>The target artifact does not carry the canonical ID directly; the export package includes a separate ID-map member referenced from the manifest.</td><td>Required fallback whenever direct or metadata carriage is unsupported, ambiguous, or <code>TBD</code>.</td></tr>
+<tr><td>Omitted-target entry</td><td>A canonical ID has no target artifact representation.</td><td>Must appear in the ID map and loss report with category, reason, and affected canonical IDs.</td></tr>
+</tbody></table>
+<p>For CAEPIPE MBF, direct target-carried stable ID claims remain blocked by <code>TBD-17-01-003</code>. DEL-17-02 permits sidecar-only MBF mapping as a conservative contract mode, but it does not decide the downstream MBF carrier policy.</p></blockquote>
+<h3 id="clm-012-loss-categories">CLM-012 — Loss Categories</h3>
+<blockquote><h5 id="loss-categories">Loss Categories</h5>
+<table><tbody>
+<tr><td>Category</td><td>Meaning</td></tr>
+<tr><td><code>exported</code></td><td>Represented directly in the target package.</td></tr>
+<tr><td><code>omitted</code></td><td>Not exported, with explicit reason and affected canonical IDs.</td></tr>
+<tr><td><code>approximated</code></td><td>Represented by a declared approximation with source and target IDs.</td></tr>
+<tr><td><code>delegated</code></td><td>Passed through to a target tool or external workflow without local interpretation.</td></tr>
+<tr><td><code>unsupported</code></td><td>Known unsupported behavior that blocks or limits target use.</td></tr>
+<tr><td><code>tbd</code></td><td>Behavior not source-confirmed; shall not be represented as supported.</td></tr>
+</tbody></table>
+<p>Each category shall be visible in the export manifest or loss report even when the export completes. <code>delegated</code> means passed through to target configuration or a user-owned external workflow without local interpretation; it does not admit local code-checking logic or bundled target execution.</p></blockquote>
+<h3 id="clm-013-del-17-01-tbd-carryforward">CLM-013 — DEL-17-01 TBD Carryforward</h3>
+<blockquote><h5 id="del-17-01-tbd-carryforward">DEL-17-01 TBD Carryforward</h5>
+<table><tbody>
+<tr><td>TBD ID</td><td>DEL-17-02 treatment</td><td>Downstream handoff</td></tr>
+<tr><td>TBD-17-01-001</td><td>Preserve target version/profile as <code>TBD</code> in export profiles until CAEPIPE version/profile authority is recorded.</td><td>DEL-17-04, DEL-17-05</td></tr>
+<tr><td>TBD-17-01-002</td><td>Preserve first MBF record subset as <code>TBD</code>; do not encode a first writer subset here.</td><td>DEL-17-04</td></tr>
+<tr><td>TBD-17-01-003</td><td>Preserve MBF direct carrier versus sidecar-only stable-ID policy as <code>TBD</code>.</td><td>DEL-17-02, DEL-17-04</td></tr>
+<tr><td>TBD-17-01-004</td><td>Preserve CSV result-section parser scope as <code>TBD</code>.</td><td>DEL-17-05, DEL-17-06</td></tr>
+<tr><td>TBD-17-01-005</td><td>Preserve conservative PCF subset and default-warning policy as <code>TBD</code>.</td><td>DEL-17-07</td></tr>
+<tr><td>TBD-17-01-006</td><td>Preserve glTF/GLB review-geometry identity metadata and sidecar policy as <code>TBD</code>.</td><td>DEL-17-08</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-boundary-summary">CLM-014 — Boundary Summary</h3>
+<blockquote><h5 id="boundary-summary">Boundary Summary</h5>
+<ul>
+<li>- No bundled commercial solver or target executable.</li>
+<li>- No proprietary examples, private target data, protected standards tables, material allowables, SIF/flexibility values, or owner criteria.</li>
+<li>- No reverse engineering, license bypass, compatibility overclaim, release claim, code-compliance claim, professional-acceptance claim, or validation claim.</li>
+<li>- No target-specific field semantics beyond DEL-17-01 evidence; unresolved behavior remains <code>TBD</code>.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-015-specification-del-17-02-export-package-profile-and-stable-id-map-contracts">CLM-015 — Specification: DEL-17-02 Export package, profile, and stable ID map contracts</h3>
+<blockquote><h4 id="specification-del-17-02-export-package-profile-and-stable-id-map-contracts">Specification: DEL-17-02 Export package, profile, and stable ID map contracts</h4></blockquote>
+<h3 id="clm-016-normative-scope">CLM-016 — Normative Scope</h3>
+<blockquote><h5 id="normative-scope">Normative Scope</h5>
+<p>DEL-17-02 shall define common contract requirements for PKG-17 export packages, profiles, stable ID maps, manifests, and loss reports.</p>
+<p>This deliverable shall not implement exporters, schemas, tests, parsers, executable harnesses, GUI features, persistence runtime, public API endpoints, target adapters, or target-file writers. Later deliverables shall implement concrete artifacts only after consuming this contract and their own approved source basis.</p></blockquote>
+<h3 id="clm-017-source-authority-requirements">CLM-017 — Source Authority Requirements</h3>
+<blockquote><h5 id="source-authority-requirements">Source Authority Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-001</td><td>The deliverable shall consume <code>DEL-17-01</code> as the source-basis authority for target-format claims.</td></tr>
+<tr><td>DEL-17-02-REQ-002</td><td>Target-specific behavior not resolved by <code>DEL-17-01 Source_Basis_Register.md#TBD Register</code> or <code>CAEPIPE_Question_Dossier.md#Question Register</code> shall remain <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-02-REQ-003</td><td>The common contract shall cite project-owned schema/governance sources for canonical identity, hashing, data-boundary, provenance, lifecycle, and professional-boundary requirements.</td></tr>
+<tr><td>DEL-17-02-REQ-004</td><td>Later <code>DEL-17-*</code> deliverables shall not invent target behavior that is absent from the admitted source basis.</td></tr>
+<tr><td>DEL-17-02-REQ-005</td><td>Profiles shall record the source IDs consumed from <code>DEL-17-01</code>, including <code>CAEPIPE-IMPORT-MBF</code>, <code>CAEPIPE-EXPORT-DATA</code>, <code>CAEPIPE-EXPORT-MBF</code>, <code>CAEPIPE-BATCH</code>, <code>CAEPIPE-PCF</code>, <code>GLTF-2.0</code>, and relevant project references, or explicitly mark the location/source as <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-architecture-basis-requirements">CLM-018 — Architecture-Basis Requirements</h3>
+<blockquote><h5 id="architecture-basis-requirements">Architecture-Basis Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-006</td><td>Future concrete export contract schemas derived from this deliverable shall use JSON Schema 2020-12 unless a later approved architecture-basis change supersedes it.</td></tr>
+<tr><td>DEL-17-02-REQ-007</td><td>Deterministic JSON payload hashing shall use the project canonical JSON/JCS-compatible hash basis where hashes are recorded for package members or manifests.</td></tr>
+<tr><td>DEL-17-02-REQ-008</td><td>Schema-first command, query, and job-result envelopes remain implementation-facing constraints for later API or adapter work; this deliverable records the contract boundary only.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-export-package-requirements">CLM-019 — Export Package Requirements</h3>
+<blockquote><h5 id="export-package-requirements">Export Package Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-010</td><td>An export package shall declare a package ID, source model identity, source model version or hash basis, export profile ID, and generation context.</td></tr>
+<tr><td>DEL-17-02-REQ-011</td><td>An export package shall list every emitted package member, including target files, JSON payloads, ID maps, manifests, loss reports, diagnostics, and sidecars.</td></tr>
+<tr><td>DEL-17-02-REQ-012</td><td>Package members shall have stable paths or declared path-generation rules.</td></tr>
+<tr><td>DEL-17-02-REQ-013</td><td>Hashes shall be recorded for deterministic text/JSON members where applicable; binary or target-owned outputs shall either record a hash or record why a hash is unavailable.</td></tr>
+<tr><td>DEL-17-02-REQ-014</td><td>Timestamp fields shall be explicitly declared as deterministic, normalized, omitted, or intentionally runtime-dependent.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-export-profile-requirements">CLM-020 — Export Profile Requirements</h3>
+<blockquote><h5 id="export-profile-requirements">Export Profile Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-020</td><td>An export profile shall declare target family, profile version, target version basis, source-basis IDs, and profile boundary notes.</td></tr>
+<tr><td>DEL-17-02-REQ-021</td><td>An export profile shall declare unit policy, coordinate policy, stable-ID policy, and loss-report policy.</td></tr>
+<tr><td>DEL-17-02-REQ-022</td><td>An export profile shall classify supported entity families as exported, omitted, approximated, delegated, unsupported, or <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-02-REQ-023</td><td>A target-specific profile shall not treat unresolved <code>DEL-17-01</code> questions as support claims.</td></tr>
+<tr><td>DEL-17-02-REQ-024</td><td>External execution, where relevant, shall be optional and user-owned; the profile may record harness metadata but shall not require bundled commercial executables.</td></tr>
+<tr><td>DEL-17-02-REQ-025</td><td>Target code/check options shall be recorded only as pass-through target configuration unless a separate public rule-pack design admits local logic.</td></tr>
+<tr><td>DEL-17-02-REQ-026</td><td><code>PLAN-EXPORT-INTEROP</code> may be cited for strategy and target ordering only while its precise section remains <code>location TBD</code>; it shall not substitute for target-format field evidence.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-stable-id-map-requirements">CLM-021 — Stable ID Map Requirements</h3>
+<blockquote><h5 id="stable-id-map-requirements">Stable ID Map Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-030</td><td>The ID map shall preserve links from canonical OpenPipeStress IDs to emitted target records, files, metadata fields, or sidecar rows.</td></tr>
+<tr><td>DEL-17-02-REQ-031</td><td>The ID map shall record unmapped canonical IDs with omission or unsupported reasons.</td></tr>
+<tr><td>DEL-17-02-REQ-032</td><td>The ID map shall be stable across deterministic re-export when the source model identity and profile are unchanged.</td></tr>
+<tr><td>DEL-17-02-REQ-033</td><td>A target file that cannot carry canonical IDs shall be paired with a sidecar mapping referenced by the manifest.</td></tr>
+<tr><td>DEL-17-02-REQ-034</td><td>ID-map entries shall distinguish source canonical identity from target-generated identity.</td></tr>
+<tr><td>DEL-17-02-REQ-035</td><td>ID-map entries shall classify the carrier as <code>direct_target_carried</code>, <code>metadata_carried</code>, <code>sidecar_mapping</code>, or <code>omitted_target_entry</code>.</td></tr>
+<tr><td>DEL-17-02-REQ-036</td><td>A downstream profile shall not claim a direct target-carried ID unless the target carrier is source-confirmed for that profile.</td></tr>
+<tr><td>DEL-17-02-REQ-037</td><td>CAEPIPE MBF direct ID carrying remains <code>TBD-17-01-003</code>; sidecar mapping is the conservative fallback until downstream evidence closes the carrier question.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-022-manifest-requirements">CLM-022 — Manifest Requirements</h3>
+<blockquote><h5 id="manifest-requirements">Manifest Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-040</td><td>The manifest shall record source model reference, export package ID, export profile ID, package member inventory, and source-basis references.</td></tr>
+<tr><td>DEL-17-02-REQ-041</td><td>The manifest shall include diagnostics and boundary notes sufficient to audit unsupported behavior without opening every package member.</td></tr>
+<tr><td>DEL-17-02-REQ-042</td><td>The manifest shall indicate whether target-specific fields are source-confirmed, delegated, unsupported, or <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-02-REQ-043</td><td>The manifest shall identify sidecar ID-map and loss-report members whenever a target artifact cannot carry canonical identity or loss categories directly.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-loss-report-requirements">CLM-023 — Loss Report Requirements</h3>
+<blockquote><h5 id="loss-report-requirements">Loss Report Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-050</td><td>The loss report shall be mandatory for every target exporter, including native project-owned exports.</td></tr>
+<tr><td>DEL-17-02-REQ-051</td><td>Loss report entries shall include affected canonical IDs, category, severity, target artifact if any, reason, source-basis reference, and downstream implication.</td></tr>
+<tr><td>DEL-17-02-REQ-052</td><td>Approximation entries shall describe the approximation at a contract level and shall not hide target limitations.</td></tr>
+<tr><td>DEL-17-02-REQ-053</td><td>Unsupported and <code>TBD</code> entries shall be blocking when they affect solver-ready or compatibility-sensitive output.</td></tr>
+<tr><td>DEL-17-02-REQ-054</td><td>Loss reports shall use the categories <code>exported</code>, <code>omitted</code>, <code>approximated</code>, <code>delegated</code>, <code>unsupported</code>, and <code>tbd</code>.</td></tr>
+<tr><td>DEL-17-02-REQ-055</td><td><code>Delegated</code> entries shall identify the target configuration or external workflow that receives the behavior without claiming local interpretation.</td></tr>
+<tr><td>DEL-17-02-REQ-056</td><td><code>TBD</code> entries shall name the governing TBD ID when the gap maps to <code>TBD-17-01-001</code> through <code>TBD-17-01-006</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-024-downstream-requirements">CLM-024 — Downstream Requirements</h3>
+<blockquote><h5 id="downstream-requirements">Downstream Requirements</h5>
+<table><tbody>
+<tr><td>Downstream deliverable</td><td>Required use of DEL-17-02</td></tr>
+<tr><td>DEL-17-03</td><td>Use the common package/profile/ID-map/loss-report contract for the native open JSON package.</td></tr>
+<tr><td>DEL-17-04</td><td>Use the contract to define deterministic CAEPIPE MBF writer behavior without hidden unsupported approximations.</td></tr>
+<tr><td>DEL-17-05</td><td>Use manifest and profile metadata for optional CAEPIPE external-run harness records and CSV parser boundaries.</td></tr>
+<tr><td>DEL-17-06</td><td>Use loss reports and stable IDs for stress-neutral CSV/JSON result packages.</td></tr>
+<tr><td>DEL-17-07</td><td>Use profile and loss-report rules for conservative PCF subset exports.</td></tr>
+<tr><td>DEL-17-08</td><td>Use stable IDs and metadata/sidecar policy for GLB/glTF review geometry.</td></tr>
+<tr><td>DEL-17-09</td><td>Use the common contract as the adapter SDK target contract.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-boundary-requirements">CLM-025 — Boundary Requirements</h3>
+<blockquote><h5 id="boundary-requirements">Boundary Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-02-REQ-090</td><td>The contract shall not include protected standards values, proprietary target examples, private client data, or reverse-engineered target behavior.</td></tr>
+<tr><td>DEL-17-02-REQ-091</td><td>The contract shall not claim CAEPIPE compatibility, PCF completeness, glTF solver validity, release readiness, code compliance, professional acceptance, or formal validation.</td></tr>
+<tr><td>DEL-17-02-REQ-092</td><td>All later target deliverables shall carry forward unresolved <code>DEL-17-01</code> TBDs until source evidence or human scope authority resolves them.</td></tr>
+<tr><td>DEL-17-02-REQ-093</td><td>External target execution shall remain optional, user-owned, environment-specific, and license-bound; this contract shall not require or bundle target executors.</td></tr>
+<tr><td>DEL-17-02-REQ-094</td><td>Public artifacts shall not include protected standards text, protected tables, commercial examples, proprietary model files, private owner criteria, or license-bypass guidance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-acceptance-requirements">CLM-026 — Acceptance Requirements</h3>
+<blockquote><h5 id="acceptance-requirements">Acceptance Requirements</h5>
+<p>DEL-17-02 is acceptable when:</p>
+<ul>
+<li>- the four-document kit exists;</li>
+<li>- semantic and dependency artifacts exist;</li>
+<li>- <code>Dependencies.csv</code> validates against the v3.1 dependency schema;</li>
+<li>- the DAG-005/root blocker queue uses the active evidence register and records <code>DEL-17-01</code> as committed;</li>
+<li>- <code>DEL-17-03</code> through <code>DEL-17-09</code> remain unpopulated beyond existing scaffolds in this tranche;</li>
+<li>- no unauthorized schema, code, lifecycle, release, compatibility, or professional claim is made.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves source-basis identifiers, JSON Schema 2020-12 and no-bypass boundaries, export identity and hash metadata, explicit profile/version and unit/coordinate semantics, stable canonical-ID carrier and sidecar modes, exported/omitted/approximated/delegated/unsupported/TBD loss categories, diagnostics and provenance, downstream target gates, protected/private-data controls, and all carried target-specific TBDs without implying equivalence or professional acceptance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-027-procedure-del-17-02-export-package-profile-and-stable-id-map-contracts">CLM-027 — Procedure: DEL-17-02 Export package, profile, and stable ID map contracts</h3>
+<blockquote><h4 id="procedure-del-17-02-export-package-profile-and-stable-id-map-contracts">Procedure: DEL-17-02 Export package, profile, and stable ID map contracts</h4></blockquote>
+<h3 id="clm-028-d-41-r5-t7-pdu-055-current-declaration">CLM-028 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-02-DECL-004</code>.</p></blockquote>
+<h3 id="clm-029-population-procedure">CLM-029 — Population Procedure</h3>
+<blockquote><h5 id="population-procedure">Population Procedure</h5>
+<p>1. Confirm DAG-006 is the approved active graph authority.</p>
+<p>2. Confirm <code>DEL-17-01</code> has committed implementation evidence before treating <code>DEL-17-02</code> as the next unblocked PKG-17 population target.</p>
+<p>3. Read the local <code>DEL-17-01</code> four-document kit, <code>Source_Basis_Register.md</code>, and <code>CAEPIPE_Question_Dossier.md</code>.</p>
+<p>4. Populate this four-document kit at contract level only.</p>
+<p>5. Build semantic artifacts that map source basis, requirements, downstream consumers, and boundary exclusions.</p>
+<p>6. Extract the local dependency register into <code>Dependencies.csv</code>.</p>
+<p>7. Refresh deliverable memory and create a run record.</p>
+<p>8. Validate the four-document kit, minimum fileset, dependency schema, coordination blocker queue, and diff hygiene.</p></blockquote>
+<h3 id="clm-030-downstream-consumption-procedure">CLM-030 — Downstream Consumption Procedure</h3>
+<blockquote><h5 id="downstream-consumption-procedure">Downstream Consumption Procedure</h5>
+<p>For each later PKG-17 target deliverable:</p>
+<p>1. Start from this contract and the <code>DEL-17-01</code> source-basis dossier.</p>
+<p>2. Declare the target profile and target version basis.</p>
+<p>3. Cite the consumed <code>DEL-17-01</code> source IDs or record <code>location TBD</code> for unresolved source locations.</p>
+<p>4. Declare exported, omitted, approximated, delegated, unsupported, and <code>TBD</code> behavior.</p>
+<p>5. Define stable ID behavior before target writing or parser work, distinguishing direct target-carried IDs from sidecar mappings.</p>
+<p>6. Require an export manifest and loss report.</p>
+<p>7. Keep target-specific implementation inside that deliverable&#x27;s approved write scope.</p>
+<p>8. Preserve project data-boundary and professional-boundary exclusions.</p></blockquote>
+<h3 id="clm-031-contract-population-checklist">CLM-031 — Contract Population Checklist</h3>
+<blockquote><h5 id="contract-population-checklist">Contract Population Checklist</h5>
+<p>When refining or consuming this contract:</p>
+<p>1. Confirm <code>Source_Basis_Register.md#Public and Official Source Evidence</code> is the source for target source IDs.</p>
+<p>2. Confirm <code>CAEPIPE_Question_Dossier.md#Question Register</code> is the source for CAEPIPE open questions.</p>
+<p>3. Carry forward <code>TBD-17-01-001</code> through <code>TBD-17-01-006</code> unless a later admissible source and human scope authority closes the item.</p>
+<p>4. Treat <code>TBD-17-01-003</code> as blocking direct MBF stable-ID carrier claims.</p>
+<p>5. Use sidecar mappings whenever direct or metadata carrier evidence is absent, ambiguous, or <code>TBD</code>.</p>
+<p>6. Record target executor use only as optional user-owned, license-bound harness metadata.</p>
+<p>7. Keep target code/check options as pass-through target configuration unless separately admitted by a public rule-pack design.</p></blockquote>
+<h3 id="clm-032-validation-commands">CLM-032 — Validation Commands</h3>
+<blockquote><h5 id="validation-commands">Validation Commands</h5>
+<p>Run from repository root:</p>
+<p>```bash</p>
+<p>tools/validation/check_four_documents.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;</p>
+<p>tools/validation/check_min_viable_fileset.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;</p>
+<p>python3 tools/validation/validate_dependencies_schema.py &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/Dependencies.csv&quot;</p>
+<p>python3 tools/validation/validate_semantic_matrix.py &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;</p>
+<p>python3 tools/validation/validate_lens_register.py &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;</p>
+<p>rg -n &quot;certify|certified|approve|approved|issue|issued|code compliance|code-compliant|ASME table|protected table|proprietary|validation|validated|formal acceptance|compatibility|CAEPIPE requirement|reverse engineer&quot; &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;</p>
+<p>rg -n &quot;TBD|tbd|location TBD&quot; &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;</p>
+<p>git diff --check -- &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts&quot;</p>
+<p>```</p></blockquote>
+<h3 id="clm-033-current-validator-path-evidence-d-41-r5-t7-pdu-059">CLM-033 — Current validator-path evidence (D-41 R5 T7 PDU-059)</h3>
+<blockquote><h6 id="current-validator-path-evidence-d-41-r5-t7-pdu-059">Current validator-path evidence (D-41 R5 T7 PDU-059)</h6>
+<p>On 2026-07-12 all five repository-local validator commands above were re-run</p>
+<p>from the repository root and passed: four-document, minimum-fileset,</p>
+<p>dependency-schema (22 rows), semantic-matrix, and lens-register validation.</p>
+<p><code>Review_Findings.csv</code> RF-001 is retained unchanged as a historical formal</p>
+<p>review record with <code>HumanDisposition=TBD</code>; this current evidence does not</p>
+<p>retroactively rewrite that review.</p>
+<p>If an unscoped worktree check reports findings outside this project&#x27;s write scope, record the finding as external-scope noise and do not treat it as a blocker for DEL-17-02 closeout. Scoped deliverable checks remain the controlling diff-hygiene evidence for this deliverable.</p></blockquote>
+<h3 id="clm-034-closeout-procedure">CLM-034 — Closeout Procedure</h3>
+<blockquote><h5 id="closeout-procedure">Closeout Procedure</h5>
+<p>Closeout requires:</p>
+<ul>
+<li>- four-document validation pass;</li>
+<li>- minimum viable fileset validation pass;</li>
+<li>- dependency schema validation pass;</li>
+<li>- semantic matrix validation pass;</li>
+<li>- lens-register validation pass;</li>
+<li>- overclaim/prohibited-term scan reviewed for negative guardrail language versus unsupported affirmative claims;</li>
+<li>- TBD scan reviewed and summarized in <code>MEMORY.md</code>;</li>
+<li>- scoped diff-hygiene validation pass, with any outside-project findings recorded as external-scope bypasses rather than blockers;</li>
+<li>- memory update with touched files, validation results, remaining TBDs, and boundary exclusions;</li>
+<li>- run record creation;</li>
+<li>- no edits to <code>DEL-17-03</code> through <code>DEL-17-09</code> production documents;</li>
+<li>- no lifecycle promotion;</li>
+<li>- no code, schema, release, compatibility, professional, or code-compliance claim.</li>
+</ul></blockquote>
+<h3 id="clm-035-semantic-enrichment-verification">CLM-035 — Semantic Enrichment Verification</h3>
+<blockquote><h5 id="semantic-enrichment-verification">Semantic Enrichment Verification</h5>
+<p>Pass 3 semantic-lensing enrichment checked <code>_SEMANTIC_LENSING.md</code> items <code>A-001</code>, <code>B-001</code>, <code>X-001</code>, and <code>E-001</code> against <code>Specification.md</code> architecture-basis requirements, <code>Datasheet.md</code> local artifact inventory, this procedure&#x27;s validation and closeout checks, and <code>Guidance.md</code> reviewer checklist. The resulting closeout checks require downstream target profiles to preserve the architecture basis, keep the local contract artifact set auditable, validate semantic/lens artifacts before consumption, and carry semantic readiness evidence into review.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, every package/profile/ID-map/manifest/loss-report field, canonical hash and unit boundaries, source-ID carryforward, deterministic ordering and diagnostics, no-silent-loss behavior, downstream target gates, retained target/version/carrier/container TBDs, and prohibited compatibility, compliance, release, or professional-authority claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-036-guidance-del-17-02-export-package-profile-and-stable-id-map-contracts">CLM-036 — Guidance: DEL-17-02 Export package, profile, and stable ID map contracts</h3>
+<blockquote><h4 id="guidance-del-17-02-export-package-profile-and-stable-id-map-contracts">Guidance: DEL-17-02 Export package, profile, and stable ID map contracts</h4></blockquote>
+<h3 id="clm-037-d-41-r5-t7-pdu-055-current-declaration">CLM-037 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-02-DECL-003</code>.</p></blockquote>
+<h3 id="clm-038-reader-orientation">CLM-038 — Reader Orientation</h3>
+<blockquote><h5 id="reader-orientation">Reader Orientation</h5>
+<p>Use this deliverable as the shared contract spine for PKG-17. It tells later exporters what they must disclose and preserve before they write native JSON, CAEPIPE MBF, CAEPIPE harness records, stress-neutral CSV/JSON, PCF, GLB/glTF, or adapter SDK targets.</p>
+<p>The important design rule is simple: an export may be partial, but it shall be explicit. Unsupported target behavior, omitted entities, approximations, delegated execution, and unanswered source questions must be visible in the package manifest, ID map, and loss report.</p></blockquote>
+<h3 id="clm-039-design-guidance">CLM-039 — Design Guidance</h3>
+<blockquote><h5 id="design-guidance">Design Guidance</h5></blockquote>
+<h3 id="clm-040-export-package">CLM-040 — Export package</h3>
+<blockquote><h6 id="export-package">Export package</h6>
+<p>An export package should be treated as an auditable bundle concept, not only as a target file. Even when the visible output is a single target file, the project still needs a manifest, stable-ID record, diagnostics, and loss report to explain what the output represents.</p></blockquote>
+<h3 id="clm-041-export-profile">CLM-041 — Export profile</h3>
+<blockquote><h6 id="export-profile">Export profile</h6>
+<p>An export profile should be the only place where target-specific export assumptions are declared. Later implementation work should consume the profile and fail or warn from its declared coverage. Hidden target defaults are a risk because they make later parser, comparison, and support workflows ambiguous.</p>
+<p>Profile authors should prefer narrow, source-confirmed profiles over broad profiles with unproven target behavior. If a target behavior is plausible but not yet sourced, mark it <code>TBD</code> and include the affected downstream deliverables.</p>
+<p>Use <code>DEL-17-01 Source_Basis_Register.md</code> as the upstream authority for admitted source IDs. For non-trivial target statements, cite one or more of <code>CAEPIPE-IMPORT-MBF</code>, <code>CAEPIPE-EXPORT-DATA</code>, <code>CAEPIPE-EXPORT-MBF</code>, <code>CAEPIPE-BATCH</code>, <code>CAEPIPE-PCF</code>, <code>GLTF-2.0</code>, or a project reference such as <code>CONTRACT</code>, <code>IP-DATA</code>, <code>SPEC</code>, <code>TYPES</code>, and <code>DAG-006</code>. If only <code>PLAN-EXPORT-INTEROP</code> supports the planning direction, preserve its plan-location <code>TBD</code> and do not convert strategy into target-field evidence.</p></blockquote>
+<h3 id="clm-042-stable-id-map">CLM-042 — Stable ID map</h3>
+<blockquote><h6 id="stable-id-map">Stable ID map</h6>
+<p>Stable IDs are the recovery path when a target format cannot preserve the OpenPipeStress model structure directly. The map should be useful for:</p>
+<ul>
+<li>- locating a target artifact from a canonical model entity;</li>
+<li>- tracing a target result row back to a model entity;</li>
+<li>- explaining omitted entities;</li>
+<li>- reconciling external run outputs with OpenPipeStress records;</li>
+<li>- diagnosing target-specific approximations.</li>
+</ul>
+<p>Do not use target-generated record order as the only identity mechanism unless the manifest also records why no stronger identity is available.</p>
+<p>Distinguish direct target-carried IDs from sidecar mappings. A direct target-carried ID requires a source-confirmed target field, metadata slot, name, or equivalent carrier. A sidecar mapping is the default when the carrier is absent, ambiguous, or still <code>TBD</code>. For CAEPIPE MBF, <code>TBD-17-01-003</code> remains open, so later MBF work should not claim direct in-file stable-ID carrying until that question is closed.</p></blockquote>
+<h3 id="clm-043-loss-report">CLM-043 — Loss report</h3>
+<blockquote><h6 id="loss-report">Loss report</h6>
+<p>A loss report should be written for normal exports, not only error cases. A successful target export can still have delegated, omitted, approximated, unsupported, or TBD behavior. This is especially important for CAEPIPE, PCF, and review-geometry targets where public source evidence does not authorize broad compatibility claims.</p>
+<p>Use the categories consistently:</p>
+<ul>
+<li>- <code>exported</code>: represented directly in the target artifact or package member;</li>
+<li>- <code>omitted</code>: intentionally not emitted, with affected canonical IDs;</li>
+<li>- <code>approximated</code>: emitted through a declared approximation;</li>
+<li>- <code>delegated</code>: passed through to target configuration or a user-owned workflow without local interpretation;</li>
+<li>- <code>unsupported</code>: known unsupported behavior or target limitation;</li>
+<li>- <code>tbd</code>: behavior not source-confirmed.</li>
+</ul>
+<p>Do not let <code>delegated</code> or <code>approximated</code> entries hide target limitations. If target code/check options appear, treat them as pass-through target configuration unless a separate public rule-pack design admits local logic.</p></blockquote>
+<h3 id="clm-044-target-specific-carryforward">CLM-044 — Target-Specific Carryforward</h3>
+<blockquote><h5 id="target-specific-carryforward">Target-Specific Carryforward</h5>
+<table><tbody>
+<tr><td>Target path</td><td>Carryforward from DEL-17-01</td></tr>
+<tr><td>CAEPIPE MBF</td><td>CAEPIPE version/profile, initial MBF record families, required fields, and stable ID carrying strategy remain <code>TBD</code> until downstream source review or developer-team clarification closes them.</td></tr>
+<tr><td>CAEPIPE external run/CSV</td><td>CSV section stability, parser coverage, and licensed executable availability remain <code>TBD</code>; harnesses are user-owned and optional.</td></tr>
+<tr><td>PCF</td><td>Conservative subset and translator-default warning rules remain <code>TBD</code>; PCF work shall be loss-report driven.</td></tr>
+<tr><td>GLB/glTF</td><td>Identity metadata and sidecar policy remain <code>TBD</code>; review geometry shall not be treated as solver validation.</td></tr>
+<tr><td>Adapter SDK</td><td>Additional targets shall inherit this contract and declare their own source basis before target-specific claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-045-external-execution-guidance">CLM-045 — External Execution Guidance</h3>
+<blockquote><h5 id="external-execution-guidance">External Execution Guidance</h5>
+<p>External target execution is optional and user-owned. A profile may record executable path fields, version fields, license/environment notes, invocation metadata, and output-member hashes where those are useful for a later harness. The contract shall not require bundled executables, copied target examples, license-independent operation, or local interpretation of target solver/code-check behavior.</p></blockquote>
+<h3 id="clm-046-boundary-guidance">CLM-046 — Boundary Guidance</h3>
+<blockquote><h5 id="boundary-guidance">Boundary Guidance</h5>
+<ul>
+<li>- Use public, official, project-owned, or rights-cleared sources only.</li>
+<li>- Do not copy protected standards tables, commercial examples, proprietary model files, or private target data.</li>
+<li>- Do not describe external tool execution as bundled, automatic, or license-independent.</li>
+<li>- Do not claim compatibility, code compliance, professional acceptance, formal validation, or release readiness from this contract.</li>
+<li>- Do not resolve <code>TBD</code> behavior by inference from target names or common industry practice.</li>
+</ul></blockquote>
+<h3 id="clm-047-reviewer-checklist">CLM-047 — Reviewer Checklist</h3>
+<blockquote><h5 id="reviewer-checklist">Reviewer Checklist</h5>
+<ul>
+<li>- Does every target-specific statement trace to <code>DEL-17-01</code> or a project governance source?</li>
+<li>- Are unresolved questions marked <code>TBD</code> instead of softened into support language?</li>
+<li>- Does the ID-map guidance preserve canonical identity even when the target format cannot?</li>
+<li>- Does the loss report include successful-export loss categories?</li>
+<li>- Are later deliverables identified as consumers without being populated in this tranche?</li>
+<li>- Did semantic matrix, lens-register, four-document, minimum-fileset, dependency-schema, and diff-hygiene validation pass before downstream consumption?</li>
+</ul></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 SOW-074 OBJ-009 OBJ-017</td><td>CLM-015</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

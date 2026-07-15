@@ -1,0 +1,12 @@
+{"timestamp_utc":"2026-07-15T03:06:01Z","sequence":1,"deliverable_id":"DEL-16-01","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:06:01Z","sequence":1,"deliverable_id":"DEL-16-01","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:06:02Z","sequence":2,"deliverable_id":"DEL-16-02","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:06:02Z","sequence":2,"deliverable_id":"DEL-16-02","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:06:03Z","sequence":3,"deliverable_id":"DEL-16-03","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:06:03Z","sequence":3,"deliverable_id":"DEL-16-03","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:06:04Z","sequence":4,"deliverable_id":"DEL-16-04","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:06:04Z","sequence":4,"deliverable_id":"DEL-16-04","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:07:25Z","sequence":0,"deliverable_id":"BATCH","stage":"harness_preflight","event":"repair","attempt":1,"failure_category":"EXECUTION_SUBSTRATE","reason_code":"LOCAL_RENDER_BRANCH_STRING_MATCH_REPAIRED_BEFORE_EXECUTION","remediation":"EXACT_STRING_MATCH_FIX_FULL_RUN_FROM_START"}
+{"timestamp_utc":"2026-07-15T03:07:25Z","sequence":0,"deliverable_id":"BATCH","stage":"terminalization","event":"finish","attempt":1,"reason_code":"PASS_FINAL_BIND"}
+{"timestamp_utc":"2026-07-15T03:07:25Z","sequence":0,"deliverable_id":"BATCH","stage":"terminal_wrapper","event":"repair","attempt":1,"failure_category":"EXECUTION_SUBSTRATE","reason_code":"LOCAL_EXEC_NAMESPACE_FILE_BINDING_REPAIRED_BEFORE_CHECKS","remediation":"SUPPLY_TEMPLATE_FILE_BINDING_AND_RUN_TERMINAL_CHECKS_FROM_START"}
+{"timestamp_utc":"2026-07-15T03:07:25Z","sequence":0,"deliverable_id":"BATCH","stage":"terminal_evidence_audit","event":"repair","attempt":1,"failure_category":"EXECUTION_SUBSTRATE","reason_code":"STALE_PRECEDENT_PHRASES_CORRECTED","remediation":"MECHANICAL_EVIDENCE_CORRECTION_AND_FULL_REBIND"}

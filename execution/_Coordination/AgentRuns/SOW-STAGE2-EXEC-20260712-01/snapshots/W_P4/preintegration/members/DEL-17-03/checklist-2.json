@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 163,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0e46eb6f89ee0f95683aadd54add3c6b3a84a9af5aacfda51f9871ddca2ace9a"
+      },
+      "text": "The contract preserves package, manifest, target-profile, stable-ID-map and loss-report members; canonical JSON/JCS-compatible hashing and deterministic ordering; model, unit, provenance and diagnostic metadata; complete explicit loss classification; schema validation; invented or rights-cleared fixtures; and downstream adapter boundaries without adding solver execution, target equivalence, lifecycle acceptance, or professional authority.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-03-VER-001",
+          "source_line": 217,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, all native package members and implementation artifacts, common-contract conformance, deterministic serialization and hash basis, stable-ID and loss-report closure, schema and fixture evidence, target-neutral boundaries, retained residual gates, and absence of proprietary content, hidden defaults, compatibility proof, or professional claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "0e46eb6f89ee0f95683aadd54add3c6b3a84a9af5aacfda51f9871ddca2ace9a"
+  },
+  "tool_version": "1"
+}

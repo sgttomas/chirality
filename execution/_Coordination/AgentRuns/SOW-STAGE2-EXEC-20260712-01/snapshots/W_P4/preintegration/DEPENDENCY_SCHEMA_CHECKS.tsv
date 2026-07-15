@@ -1,0 +1,67 @@
+deliverable_id	exit_code	output	verdict
+DEL-14-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 13"	PASS
+DEL-14-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-02_Analysis run records/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 14"	PASS
+DEL-14-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 15"	PASS
+DEL-14-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-04_Analysis-run comparison engine/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 17"	PASS
+DEL-14-05	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-05_Comparison mapping, tolerance, and export contracts/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 13"	PASS
+DEL-15-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-01_Canonical handoff package schema and manifest/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 15"	PASS
+DEL-15-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-02_Target mapping and unsupported-behavior contract/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18"	PASS
+DEL-15-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-03_Downstream modeling export workflow/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 16"	PASS
+DEL-15-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-15_Handoff and External Prover Workflow/1_Working/DEL-15-04_External prover boundary metadata/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 15"	PASS
+DEL-16-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-01_Structured model operation schema/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 16"	PASS
+DEL-16-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-02_Operation validation and diff preview/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 14"	PASS
+DEL-16-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-03_User acceptance and operation audit trail/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 16"	PASS
+DEL-16-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-16_Model Operation and Agent Proposal Framework/1_Working/DEL-16-04_Agent rationale and professional-boundary controls/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 13"	PASS
+DEL-17-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-01_CAEPIPE and export-format source basis/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 16"	PASS
+DEL-17-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-02_Export package, profile, and stable ID map contracts/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 22"	PASS
+DEL-17-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-03_Native open JSON export package/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 14"	PASS
+DEL-17-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 17"	PASS
+DEL-17-05	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-05_CAEPIPE external run harness and CSV parser/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 19"	PASS
+DEL-17-06	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 23"	PASS
+DEL-17-07	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-07_Conservative PCF subset exporter/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 21"	PASS
+DEL-17-08	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-08_GLB glTF review geometry export/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 19"	PASS
+DEL-17-09	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-09_Export adapter SDK and additional targets/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18"	PASS

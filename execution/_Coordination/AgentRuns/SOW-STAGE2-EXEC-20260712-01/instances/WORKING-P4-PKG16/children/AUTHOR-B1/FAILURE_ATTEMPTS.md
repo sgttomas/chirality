@@ -1,0 +1,8 @@
+# Retained attempts and safe mechanical repair
+
+- Pre-execution wrapper validation found one exact string-removal mismatch for the disabled positive-render branch. No registered tool, candidate, source, project, or generated evidence output had run or been written. The mechanical repair added the exact no-space tuple spelling; wrapper validation then passed and the complete author harness ran once from the beginning.
+- Terminal attempt 1 stopped before fresh project checks because the local adapter execution namespace omitted the wrapper template's `__file__` binding. No candidate, project, source, lifecycle, or semantic content changed. The exact template path was supplied as `__file__`; terminal checks then ran from the beginning.
+- Terminal self-audit found two stale precedent phrases in owned evidence after all checks passed: one said five clean candidates and one implied positive HTML rendering despite `RENDER_HTML=false`. Candidate, source, project, lifecycle, and semantic content were unchanged. Both phrases were mechanically corrected, this attempt history was updated, and every direct/transitive evidence binding was rebuilt.
+- No registered conversion, validation, finalization, mapping, parity, checklist, rendering, negative-probe, or simulation attempt failed or retried.
+- No candidate remediation, semantic repair, authority repair, or acceptance weakening was performed.
+- Terminalization rebuilt all direct and transitive bindings after the retained mechanical wrapper repair and reproduced 4/4 members, 106 mappings, 1,097/1,097 lines, 20 replacement rows, 20 inverse rows, and four simulations.

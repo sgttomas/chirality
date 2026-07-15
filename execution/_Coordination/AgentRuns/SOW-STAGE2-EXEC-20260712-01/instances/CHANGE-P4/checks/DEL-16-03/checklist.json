@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-16-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 216,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b3aac7b289db9d61ad85eb8df916c98fa822e21e032555524b94679a2c16ca9d"
+      },
+      "text": "The contract preserves explicit user acceptance, passed validation and generated hash-bound diff-preview gates, accepted-model-state hash/precondition evidence, operation history, rationale, assumptions, affected entities, actor/source metadata, timestamps, validation outcomes, audit metadata, deterministic record hashes, visible TBD diagnostics, rejected-record retention in the current payload, unchanged accepted state, invented-public data boundaries, professional non-authority, and unresolved durable persistence, retention, identity, timestamp, application, autonomy, and human-disposition matters.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-16-03-VER-001",
+          "source_line": 308,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, accepted/rejected/held disposition coverage, explicit user and validation/preview/hash gates, complete SOW-070 audit metadata, deterministic identity, visible missing-input diagnostics, rejected and accepted-state nonmutation behavior, protected-data and professional boundaries, and retention of every persistence, retention, actor, timestamp, application, and human-disposition TBD."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-16-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-16",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "b3aac7b289db9d61ad85eb8df916c98fa822e21e032555524b94679a2c16ca9d"
+  },
+  "tool_version": "1"
+}

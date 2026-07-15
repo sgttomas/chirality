@@ -1,0 +1,141 @@
+{
+  "project_paths": 110,
+  "replacement_rows": 110,
+  "rollback_rows": 110,
+  "schema": "chirality-change-replacement-simulation/v1",
+  "simulations": [
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-14-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-14-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-14-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-14-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-14-05",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-15-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-15-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-15-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-15-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-16-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-16-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-16-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-16-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-01",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-02",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-03",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-04",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-05",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-06",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-07",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-08",
+      "rollback": "PASS",
+      "target": "PASS"
+    },
+    {
+      "apply": "PASS",
+      "deliverable_id": "DEL-17-09",
+      "rollback": "PASS",
+      "target": "PASS"
+    }
+  ],
+  "verdict": "PASS"
+}

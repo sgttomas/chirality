@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="a4833049c3a7336a139182b01ac172a0e21de2e5c5d11943799eb3e3333ce5d5">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-17-06</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>a4833049c3a7336a139182b01ac172a0e21de2e5c5d11943799eb3e3333ce5d5</code>.</p>
+<h1 id="scope-of-work-del-17-06">Scope of Work — DEL-17-06</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-17-06</code> in service of project scope [SOW-046, SOW-074] and package objectives [OBJ-007, OBJ-017, OBJ-018].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A project-controlled stress-neutral CSV/JSON package contract for review, regression comparison, debugging, and governed downstream tooling is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-17-06-stress-neutral-csv-json-package">CLM-001 — Datasheet: DEL-17-06 Stress-neutral CSV/JSON package</h3>
+<blockquote><h4 id="datasheet-del-17-06-stress-neutral-csv-json-package">Datasheet: DEL-17-06 Stress-neutral CSV/JSON package</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-06-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-17-06</td></tr>
+<tr><td>Package</td><td>PKG-17 Export Format Interoperability</td></tr>
+<tr><td>Name</td><td>Stress-neutral CSV/JSON package</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope Items</td><td>SOW-046, SOW-074</td></tr>
+<tr><td>Objectives</td><td>OBJ-007, OBJ-017, OBJ-018</td></tr>
+<tr><td>Runtime pass</td><td>Phase A four-document P1/P2 only</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current value</td><td>Source</td></tr>
+<tr><td>Package purpose</td><td>Project-controlled stress-oriented neutral package for review, debugging, community adapter development, and comparison across target exporters. It is not a vendor format and not a replacement for a commercial solver input deck.</td><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code> section &quot;Stress Neutral CSV/JSON Package&quot;</td></tr>
+<tr><td>Formats</td><td>CSV for inspection/spreadsheet review and JSON for structured import/export.</td><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code> section &quot;Stress Neutral CSV/JSON Package&quot;</td></tr>
+<tr><td>Required relationship to result exports</td><td>Result exports are for review, regression comparison, report consumption, headless automation, and governed downstream tooling; they preserve units, diagnostics, provenance, hashes, and professional-boundary limits.</td><td><code>docs/SPEC.md</code> result export section; <code>docs/TYPES.md</code> <code>ResultExportEnvelope</code></td></tr>
+<tr><td>Required relationship to DEL-17-02</td><td>Use loss reports and stable IDs for stress-neutral CSV/JSON result packages.</td><td><code>DEL-17-02/Specification.md</code> &quot;Downstream Requirements&quot;</td></tr>
+<tr><td>Required relationship to DEL-17-01</td><td>Do not use CAEPIPE CSV/text behavior as professional acceptance; target-specific CSV coverage remains <code>TBD</code> unless source-confirmed.</td><td><code>DEL-17-01/Specification.md</code> boundary and downstream rules</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Source model reference</td><td>Required by result-export and handoff scope; exact source model identifier, version, and package reference path are <code>TBD</code>.</td></tr>
+<tr><td>Source model hash basis</td><td>Required where the package or manifest records deterministic source evidence; exact payload scope and hash field are <code>TBD</code>.</td></tr>
+<tr><td>Analysis-run reference</td><td>Required when exported values come from an analysis run; exact analysis-run identifier, solver version reference, load-case or combination basis, and package reference path are <code>TBD</code>.</td></tr>
+<tr><td>Package member path references</td><td>Required by the common export package contract; exact CSV, JSON, manifest, ID-map, loss-report, and validation-report paths are <code>TBD</code>.</td></tr>
+<tr><td>Unit and dimensional metadata</td><td>Required for exported result values; exact CSV column names and JSON property names are <code>TBD</code>.</td></tr>
+<tr><td>Stable ID preservation</td><td>Required through direct fields or sidecar mapping; exact stress-neutral ID-map layout is <code>TBD</code>.</td></tr>
+<tr><td>Diagnostics and boundary notes</td><td>Required so review consumers can see limitations, unresolved assumptions, warnings, and non-authoritative status.</td></tr>
+<tr><td>Protected/private content handling</td><td>Public fixtures and examples must not include protected standards data, proprietary examples, private project data, code allowables, SIF/flexibility tables, or owner criteria.</td></tr>
+<tr><td>Professional boundary</td><td>The package is evidence for review/regression/downstream tooling only; it must not declare code compliance, certification, sealing, professional approval, formal validation, or engineering acceptance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Candidate package member</td><td>Required role</td><td>Current detail level</td></tr>
+<tr><td>Node table</td><td>Reviewable node identity and coordinate/result-reference surface.</td><td>Table fields <code>TBD</code>.</td></tr>
+<tr><td>Element table</td><td>Reviewable element identity and connectivity/result-reference surface.</td><td>Table fields <code>TBD</code>.</td></tr>
+<tr><td>Component table</td><td>Reviewable component identity and relationship to elements/nodes.</td><td>Table fields <code>TBD</code>.</td></tr>
+<tr><td>Restraint/support table</td><td>Reviewable support/restraint identity and mapping to model/result records.</td><td>Table fields <code>TBD</code>; nonlinear/support-state behavior remains source-dependent.</td></tr>
+<tr><td>Equipment/nozzle table</td><td>Reviewable terminal/equipment interface identity and mapping surface.</td><td>Table fields <code>TBD</code>.</td></tr>
+<tr><td>Material table</td><td>Reference identity/provenance surface only; no bundled proprietary or protected values.</td><td>Table fields <code>TBD</code>.</td></tr>
+<tr><td>Section table</td><td>Reference identity/provenance surface only; no protected dimensional tables or catalog defaults.</td><td>Table fields <code>TBD</code>.</td></tr>
+<tr><td>Load/design case table</td><td>Reviewable load/design case identity and basis.</td><td>Table fields <code>TBD</code>.</td></tr>
+<tr><td>Units metadata</td><td>Declares unit system, dimensions, and conversion basis needed by CSV and JSON consumers.</td><td>Exact layout <code>TBD</code>.</td></tr>
+<tr><td>ID map</td><td>Maps canonical OpenPipeStress IDs to package rows, JSON objects, or sidecars.</td><td>Exact layout <code>TBD</code>; consume DEL-17-02 rules.</td></tr>
+<tr><td>Validation report</td><td>Records parse/shape checks, loss entries, warnings, and boundary notes.</td><td>Exact layout <code>TBD</code>; machine-readable and human-readable forms expected where applicable.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-future-detail-slots">CLM-007 — Future Detail Slots</h3>
+<blockquote><h5 id="future-detail-slots">Future Detail Slots</h5>
+<p>These slots are placeholders for later schema, writer, fixture, and validation work. They are not populated by this Phase A/Pass 3 task.</p>
+<table><tbody>
+<tr><td>Slot</td><td>Future content</td><td>Current disposition</td><td>Source basis</td></tr>
+<tr><td>CSV fields</td><td>Exact table names, column names, ordering, quoting/null rules, and per-table required/optional status.</td><td><code>TBD</code> until schema work begins.</td><td>Stress-neutral package contents from <code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code>; package-member inventory rules from <code>DEL-17-02/Specification.md</code>.</td></tr>
+<tr><td>JSON properties</td><td>Exact object layout, property names, required/optional status, schema identifier, and validation profile.</td><td><code>TBD</code> until JSON Schema 2020-12 contract work begins.</td><td>Architecture basis in <code>_CONTEXT.md</code>; <code>DEL-17-02/Specification.md</code> architecture-basis requirements.</td></tr>
+<tr><td>Manifest layout</td><td>Package ID, source model/run basis, profile ID, member inventory, hashes where applicable, diagnostics, and boundary notes.</td><td><code>TBD</code> layout; required concept retained.</td><td><code>DEL-17-02/Specification.md</code> manifest requirements; <code>docs/SPEC.md</code> result export and audit-manifest sections.</td></tr>
+<tr><td>ID-map layout</td><td>Canonical ID, package member path, row/object reference, target/generated identity where any exists, and omission/unsupported reason.</td><td><code>TBD</code> layout; stable-ID role retained.</td><td><code>DEL-17-02/Specification.md</code> stable ID map requirements; export plan stable identity rules.</td></tr>
+<tr><td>Loss-report layout</td><td>Exported, omitted, approximated, delegated, unsupported, and <code>TBD</code> behavior with affected IDs and downstream implication.</td><td><code>TBD</code> layout; loss report remains mandatory for native project-owned exports.</td><td><code>DEL-17-02/Specification.md</code> loss report requirements.</td></tr>
+<tr><td>Validation-report layout</td><td>Shape checks, synchronization checks, source-evidence checks, protected-content checks, diagnostics, and boundary findings.</td><td><code>TBD</code>; future implementation evidence only.</td><td><code>docs/SPEC.md</code> result export boundary; <code>docs/IP_AND_DATA_BOUNDARY.md</code> contribution and public-data policy.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Source</td><td>Use</td></tr>
+<tr><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code></td><td>Stress-neutral package purpose, recommended contents, CSV/JSON format split, export risk framing.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>DEL-17-06 scope, SOW-046/SOW-074 assignment, PKG-17 exclusions, architecture-basis context.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Result export envelope boundary, required result-export metadata, <code>TBD</code> status for additional formats.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Result/export, stable identity, data-boundary, no-bypass, and professional-boundary vocabulary.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>IP, data, unit, and professional-responsibility invariants.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private/protected data boundary and contribution constraints.</td></tr>
+<tr><td><code>DEL-17-01</code> four-document kit</td><td>Source-basis and target-claim boundaries for PKG-17.</td></tr>
+<tr><td><code>DEL-17-02</code> four-document kit</td><td>Common export package, profile, stable ID map, manifest, and loss-report contract consumed by DEL-17-06.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-009-d-41-r5-t2a-canonicalization-evidence-2026-07-12">CLM-009 — D-41 R5 T2A canonicalization evidence (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-evidence-2026-07-12">D-41 R5 T2A canonicalization evidence (2026-07-12)</h5>
+<p>JSON checksum records emitted by DEL-17-06 use <code>deterministic_sorted_compact_json_payload_hash</code>: UTF-8 Python JSON with lexicographically sorted keys, compact separators, and ASCII escaping. This is a deterministic local byte contract, not an RFC 8785/JCS claim. CSV members retain <code>normalized_ascii_lf_text</code>.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-010-specification-del-17-06-stress-neutral-csv-json-package">CLM-010 — Specification: DEL-17-06 Stress-neutral CSV/JSON package</h3>
+<blockquote><h4 id="specification-del-17-06-stress-neutral-csv-json-package">Specification: DEL-17-06 Stress-neutral CSV/JSON package</h4></blockquote>
+<h3 id="clm-011-d-41-r5-t7-pdu-055-current-declaration">CLM-011 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-06-DECL-001</code>.</p></blockquote>
+<h3 id="clm-012-scope">CLM-012 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-17-06 shall define the documentation-level requirements for a project-controlled stress-neutral CSV/JSON package used for review, regression comparison, and downstream tooling.</p>
+<p>This Phase A deliverable is a four-document kit only. It shall not implement code, create or edit JSON schemas, create CSV fixtures, write exporters, define release compatibility, or claim professional/code-compliance acceptance.</p>
+<p>The stress-neutral package shall remain result/package evidence. It is not a vendor solver format, not a commercial solver input deck, not a CAEPIPE compatibility claim, and not a substitute for human professional review.</p></blockquote>
+<h3 id="clm-013-requirements">CLM-013 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source basis</td></tr>
+<tr><td>DEL-17-06-REQ-001</td><td>The package shall support review, debugging, community adapter development, and comparison across target exporters without presenting itself as a vendor format.</td><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code> &quot;Stress Neutral CSV/JSON Package&quot;</td></tr>
+<tr><td>DEL-17-06-REQ-002</td><td>The package shall provide CSV output for inspection/spreadsheet review and JSON output for structured import/export.</td><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code> &quot;Stress Neutral CSV/JSON Package&quot;</td></tr>
+<tr><td>DEL-17-06-REQ-003</td><td>The package shall preserve canonical OpenPipeStress identity through direct row/object fields or sidecar ID-map records. Exact field names are <code>TBD</code>.</td><td><code>DEL-17-02/Specification.md</code> stable ID map requirements</td></tr>
+<tr><td>DEL-17-06-REQ-004</td><td>The package shall include or reference a manifest that records source model/run basis, package member inventory, hashes where applicable, diagnostics, and boundary notes. Exact manifest layout is <code>TBD</code>.</td><td><code>DEL-17-02/Specification.md</code> manifest requirements; <code>docs/SPEC.md</code> result export section</td></tr>
+<tr><td>DEL-17-06-REQ-005</td><td>The package shall include a loss report even when export succeeds, with exported, omitted, approximated, delegated, unsupported, and <code>TBD</code> behavior visible.</td><td><code>DEL-17-02/Specification.md</code> loss report requirements</td></tr>
+<tr><td>DEL-17-06-REQ-006</td><td>Result values shall carry explicit unit and dimensional metadata or produce blocking diagnostics. Exact CSV/JSON representation is <code>TBD</code>.</td><td><code>docs/SPEC.md</code> result export section; <code>docs/CONTRACT.md</code> OPS-K-UNIT-1</td></tr>
+<tr><td>DEL-17-06-REQ-007</td><td>The package shall carry diagnostics, warnings, unresolved assumptions, provenance, reproducibility references, and professional-boundary notices when those are present in the source result/export envelope.</td><td><code>docs/SPEC.md</code> result export section; <code>docs/TYPES.md</code> <code>ResultExportEnvelope</code></td></tr>
+<tr><td>DEL-17-06-REQ-008</td><td>The package shall not copy protected standards text, protected tables, proprietary formulas, code-specific allowables, SIF/flexibility values, private rule-pack payloads, private project data, or proprietary commercial examples into public artifacts.</td><td><code>docs/CONTRACT.md</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/TYPES.md</code></td></tr>
+<tr><td>DEL-17-06-REQ-009</td><td>The package shall not declare code compliance, certification, sealing, professional approval, formal validation, engineering acceptance, or release readiness.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>DEL-17-01/Specification.md</code>; <code>DEL-17-02/Specification.md</code></td></tr>
+<tr><td>DEL-17-06-REQ-010</td><td>Target-specific or version-sensitive behavior not resolved by source evidence shall remain <code>TBD</code> and shall not be represented as supported behavior.</td><td><code>DEL-17-01/Specification.md</code>; <code>DEL-17-02/Specification.md</code></td></tr>
+<tr><td>DEL-17-06-REQ-011</td><td>The stress-neutral profile shall carry source-basis references for DEL-08-04, DEL-14-02, DEL-14-05, and DEL-17-02; missing references shall block package acceptance.</td><td>DAG-006 DEL-17-06 dependency edges; DEL-17-02 export contract; DEL-08-04 result export format; DEL-14-02 analysis run records; DEL-14-05 comparison export contracts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or contract</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Baseline for future public JSON schemas/interchange contracts.</td><td>Applicable architecture basis; no schema file is created in this Phase A task.</td></tr>
+<tr><td>Declared deterministic JSON hash basis</td><td>JSON package members use sorted-key compact ASCII-escaped Python JSON labeled <code>deterministic_sorted_compact_json_payload_hash</code>; this is explicitly not JCS. CSV normalization is separately labeled.</td><td>D-41 R5 T2A; exact non-current payload partitioning remains <code>TBD</code>.</td></tr>
+<tr><td>OpenPipeStress result export envelope</td><td>Governs result identity, model/run references, unit-aware values, diagnostics, provenance, reproducibility refs, statuses, rule-pack refs, and downstream-use declarations.</td><td>Source-grounded contract basis; additional CSV/JSON package layout remains <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-02 common export contract</td><td>Governs export package, profile, stable ID map, manifest, and loss-report behavior.</td><td>Required upstream contract for DEL-17-06.</td></tr>
+<tr><td>IP and data-boundary policy</td><td>Governs public/private/protected data use and contribution review.</td><td>Required for fixtures, examples, reports, and exported artifacts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-verification">CLM-015 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Check</td><td>Acceptance evidence</td></tr>
+<tr><td>DEL-17-06-VER-001</td><td>Confirm all four documents exist and preserve required default sections.</td><td><code>tools/validation/check_four_documents.sh</code> result.</td></tr>
+<tr><td>DEL-17-06-VER-002</td><td>Confirm the deliverable-local minimum fileset remains present.</td><td><code>tools/validation/check_min_viable_fileset.sh</code> result.</td></tr>
+<tr><td>DEL-17-06-VER-003</td><td>Review the four documents for prohibited claims: code compliance, professional approval, formal validation, release compatibility, or engineering acceptance.</td><td>Manual text review or grep-based evidence in run record.</td></tr>
+<tr><td>DEL-17-06-VER-004</td><td>Review the four documents for protected/proprietary copied examples or protected standards data.</td><td>Manual text review or grep-based evidence in run record.</td></tr>
+<tr><td>DEL-17-06-VER-005</td><td>Confirm unresolved target behavior, exact table columns, JSON shape, manifest layout, tolerance thresholds, and comparison semantics remain <code>TBD</code>.</td><td>Four-document review.</td></tr>
+</tbody></table>
+<p>Future implementation verification, once schemas, writer outputs, fixtures, manifests, and comparison records exist:</p>
+<table><tbody>
+<tr><td>Verification ID</td><td>Check</td><td>Acceptance evidence</td></tr>
+<tr><td>DEL-17-06-VER-006</td><td>Map DEL-17-06-REQ-001 through DEL-17-06-REQ-010 to concrete schema, exporter, fixture, manifest, loss-report, and validation evidence.</td><td>Traceability table in a future implementation run record; unresolved entries remain <code>TBD</code> rather than accepted.</td></tr>
+<tr><td>DEL-17-06-VER-007</td><td>Confirm CSV and JSON representations are synchronized for canonical identity, units/dimensions, source model/run references, manifest basis, loss-report content, diagnostics, and boundary notices.</td><td>Future paired CSV/JSON fixture diff, manifest review, and validation-report result.</td></tr>
+<tr><td>DEL-17-06-VER-008</td><td>Confirm manifest or package-member hashes identify payload scope and use the declared sorted-compact JSON basis for JSON payloads; confirm the label makes no JCS claim and non-JSON partitioning remains explicit.</td><td>Exact-byte/fixed-hash, ordering, mutation, schema/fixture, and JSON/CSV label-split evidence.</td></tr>
+<tr><td>DEL-17-06-VER-009</td><td>Review generated schemas, CSV outputs, JSON outputs, manifests, loss reports, validation reports, and fixtures for prohibited claims and protected/private content.</td><td>Future protected-content and professional-boundary review evidence; suspected protected content quarantined per policy.</td></tr>
+<tr><td>DEL-17-06-VER-010</td><td>Confirm CSV/JSON examples or fixtures are invented or rights-cleared and demonstrate only shape, identity, units, diagnostics, loss reporting, and boundary notices.</td><td>Future contribution/provenance review evidence; examples without redistribution evidence remain absent or <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-06-VER-011</td><td>Confirm any target-specific or version-sensitive support flag is backed by cited source evidence, or is marked <code>TBD</code> and blocked from support claims.</td><td>Future source-evidence review against DEL-17-01/DEL-17-02 and the applicable source-basis register.</td></tr>
+<tr><td>DEL-17-06-VER-012</td><td>Confirm comparison tolerance profiles, pass/fail language, and export comparison semantics are consumed from DEL-14-02/DEL-14-05 before comparison claims are made.</td><td>Future upstream dependency review; comparison semantics remain diagnostic/audit-only until sourced.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required Phase A documentation artifacts:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_STATUS.md</code> safe update from <code>OPEN</code> to <code>INITIALIZED</code> if permitted by the four-documents skill</li>
+<li>- <code>_run_records/TASK_RUN_2026-05-18_1155.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-05-18_1218.md</code> for Pass 3 disposition evidence</li>
+</ul>
+<p>Future implementation artifacts listed in <code>_CONTEXT.md</code> remain not produced in this Phase A task:</p>
+<ul>
+<li>- stress-neutral CSV schema</li>
+<li>- stress-neutral JSON schema</li>
+<li>- export writer</li>
+<li>- comparison fixtures</li>
+</ul></blockquote>
+<h3 id="clm-017-conflict-table">CLM-017 — Conflict Table</h3>
+<blockquote><h5 id="conflict-table">Conflict Table</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>none</td><td>No source conflict identified in Phase A. Remaining details are unresolved <code>TBD</code> items, not source contradictions.</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-d-41-r5-t2a-canonicalization-requirement-2026-07-12">CLM-018 — D-41 R5 T2A canonicalization requirement (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-requirement-2026-07-12">D-41 R5 T2A canonicalization requirement (2026-07-12)</h5>
+<p>DEL-17-06 JSON hashes SHALL use <code>deterministic_sorted_compact_json_payload_hash</code> for the existing sorted-key compact ASCII-escaped Python JSON serializer. The label SHALL NOT be interpreted as RFC 8785/JCS conformance. Normalized CSV hashes SHALL remain separately labeled <code>normalized_ascii_lf_text</code>.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves synchronized CSV/JSON identity, units and dimensions, source model/run references, manifest, stable-ID map, loss report, diagnostics, provenance, declared sorted-compact JSON hashing, protected/private-data controls, explicit TBD behavior, and professional non-authority without claiming vendor compatibility or code compliance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-019-procedure-del-17-06-stress-neutral-csv-json-package">CLM-019 — Procedure: DEL-17-06 Stress-neutral CSV/JSON package</h3>
+<blockquote><h4 id="procedure-del-17-06-stress-neutral-csv-json-package">Procedure: DEL-17-06 Stress-neutral CSV/JSON package</h4></blockquote>
+<h3 id="clm-020-d-41-r5-t7-pdu-055-current-declaration">CLM-020 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-06-DECL-004</code>.</p></blockquote>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and review the Phase A four-document kit for the stress-neutral CSV/JSON package, and how later implementation work should consume it without crossing into code, schema, release, compatibility, or professional-approval claims.</p></blockquote>
+<h3 id="clm-022-prerequisites">CLM-022 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status in Phase A</td></tr>
+<tr><td>DEL-17-01 source-basis kit available</td><td>Read as upstream context.</td></tr>
+<tr><td>DEL-17-02 export package/profile/stable-ID/loss-report contract available</td><td>Read as upstream context.</td></tr>
+<tr><td>DEL-08-04 result export format</td><td>Declared upstream dependency; detailed result schema behavior remains <code>TBD</code> in this deliverable.</td></tr>
+<tr><td>DEL-14-02 and DEL-14-05 comparison/run contracts</td><td>Declared upstream dependencies; exact comparison export semantics remain <code>TBD</code> in this deliverable.</td></tr>
+<tr><td>Governing references in <code>_REFERENCES.md</code></td><td>Read as source basis.</td></tr>
+<tr><td>Protected/proprietary examples</td><td>Not admitted.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-steps">CLM-023 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity from <code>_CONTEXT.md</code>: DEL-17-06, PKG-17, <code>BACKEND_FEATURE_SLICE</code>, SOW-046 and SOW-074.</p>
+<p>2. Confirm <code>_STATUS.md</code> permits a P1/P2 four-documents write. If current state is outside the allowed overwrite states, stop without overwriting production documents.</p>
+<p>3. Read <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>MEMORY.md</code>, and the local <code>_SEMANTIC.md</code> placeholder.</p>
+<p>4. Read the relevant decomposition, export plan, governance, data-boundary, and result-export source slices.</p>
+<p>5. Read DEL-17-01 and DEL-17-02 four-document kits for source-basis, target-boundary, stable-ID, manifest, and loss-report carryforward.</p>
+<p>6. Populate <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> with source-grounded statements only.</p>
+<p>7. Preserve <code>TBD</code> for unresolved target behavior, including exact CSV table names, CSV columns, JSON schema/object layout, package-member paths, comparison tolerances, validation thresholds, and external-target mappings.</p>
+<p>8. Exclude proprietary examples, protected standards content, private project data, code-specific allowables, SIF/flexibility values, and professional/code-compliance claims.</p>
+<p>9. Run local validation checks allowed for this Phase A documentation task.</p>
+<p>10. If the starting lifecycle state is <code>OPEN</code>, update <code>_STATUS.md</code> to <code>INITIALIZED</code> using the four-documents safe-update rule.</p>
+<p>11. Update the run record with changed files, validation, missing inputs, and remaining human-ruling items.</p></blockquote>
+<h3 id="clm-024-later-implementation-consumption">CLM-024 — Later Implementation Consumption</h3>
+<blockquote><h5 id="later-implementation-consumption">Later Implementation Consumption</h5>
+<p>When a later sealed TASK is authorized to implement the stress-neutral package, use this document kit as an input and keep the implementation inside that later task&#x27;s approved write scope.</p>
+<p>1. Re-read DEL-17-01 and DEL-17-02 before defining support claims, package contracts, stable-ID behavior, manifest content, or loss-report behavior.</p>
+<p>2. Generate or update stress-neutral CSV and JSON schemas only in the later authorized schema/code scope; keep exact field names, package paths, and object layouts <code>TBD</code> until then.</p>
+<p>3. Implement writer behavior against the common package/profile/ID-map/manifest/loss-report contract and the result export envelope boundary.</p>
+<p>4. Create invented or rights-cleared fixtures only after recording provenance, redistribution status, and protected-content review evidence.</p>
+<p>5. Validate CSV and JSON outputs for shared identity, unit/dimensional metadata, source model/run references, manifest basis, loss-report content, diagnostics, and boundary notices.</p>
+<p>6. Preserve comparison tolerances, pass/fail wording, and export comparison semantics as <code>TBD</code> until DEL-14-02/DEL-14-05 provide the applicable upstream basis.</p>
+<p>7. Record generated schemas, CSV outputs, JSON outputs, manifests, loss reports, validation reports, and fixtures as future implementation evidence, not as code-compliance or professional-acceptance evidence.</p></blockquote>
+<h3 id="clm-025-verification">CLM-025 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Run from repository root:</p>
+<p>```bash</p>
+<p>tools/validation/check_four_documents.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package&quot;</p>
+<p>tools/validation/check_min_viable_fileset.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package&quot;</p>
+<p>rg -n &quot;certif|seal|code compliance|professional approval|engineering acceptance|formal validation|release readiness|proprietary example|protected standards&quot; &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package&quot;</p>
+<p>git diff --check -- &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-06_Stress-neutral CSV JSON package&quot;</p>
+<p>```</p>
+<p>Expected Phase A verification result:</p>
+<ul>
+<li>- four-document kit exists;</li>
+<li>- minimum viable fileset remains present;</li>
+<li>- professional-boundary terms appear only as prohibited-claim language;</li>
+<li>- no implementation code, schema files, fixtures, or dependency extraction artifacts are created;</li>
+<li>- <code>TBD</code> remains visible for unresolved implementation and target behavior.</li>
+</ul></blockquote>
+<h3 id="clm-026-records">CLM-026 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Phase A records:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-05-18_1155.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-05-18_1218.md</code></li>
+</ul>
+<p>Records intentionally not produced in this Phase A task:</p>
+<ul>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- stress-neutral CSV schema</li>
+<li>- stress-neutral JSON schema</li>
+<li>- export writer</li>
+<li>- comparison fixtures</li>
+<li>- implementation tests</li>
+</ul></blockquote>
+<h3 id="clm-027-closeout-checks">CLM-027 — Closeout Checks</h3>
+<blockquote><h5 id="closeout-checks">Closeout Checks</h5>
+<ul>
+<li>- Changed files remain inside the allowed DEL-17-06 write scope.</li>
+<li>- <code>MEMORY.md</code> remains unchanged as instructed.</li>
+<li>- No sibling DEL-17 folders are edited.</li>
+<li>- No later skills are run.</li>
+<li>- No schema, code, release, compatibility, code-compliance, professional-approval, formal-validation, or engineering-acceptance claim is made.</li>
+</ul>
+<p>Future implementation closeout checks, once implementation artifacts exist:</p>
+<ul>
+<li>- Generated stress-neutral CSV schemas, JSON schemas, CSV outputs, JSON outputs, manifests, loss reports, and fixtures are present only if authorized by that later task.</li>
+<li>- Package-member paths, source model references, analysis-run references, manifest references, ID-map references, and validation-report references are populated or explicitly left <code>TBD</code>.</li>
+<li>- CSV and JSON representations pass a synchronization check for identity, units, manifest basis, loss-report content, diagnostics, and boundary notices.</li>
+<li>- Hash records identify payload scope; JSON payload hashes use the declared sorted-compact Python JSON basis without a JCS claim, CSV hashes use normalized ASCII/LF text, and non-JSON partitioning remains explicit.</li>
+<li>- Fixture/example data has provenance and redistribution evidence, or remains absent/<code>TBD</code>.</li>
+<li>- Target-specific support flags cite source evidence or remain <code>TBD</code>.</li>
+<li>- Comparison semantics cite DEL-14-02/DEL-14-05 or remain diagnostic/audit-only and <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-028-d-41-r5-t2a-canonicalization-check-2026-07-12">CLM-028 — D-41 R5 T2A canonicalization check (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-check-2026-07-12">D-41 R5 T2A canonicalization check (2026-07-12)</h5>
+<p>Verify exact serialized bytes, a fixed SHA-256 vector, ordering stability, mutation sensitivity, the JSON/CSV label split, schema acceptance, and absence of a JCS claim before accepting checksum evidence.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, synchronized CSV/JSON package obligations, canonical identity, units and hash labels, source/run and manifest bindings, loss and diagnostic visibility, retained TBDs, protected-content exclusions, and absence of vendor, release, compliance, validation, or professional-acceptance claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-029-guidance-del-17-06-stress-neutral-csv-json-package">CLM-029 — Guidance: DEL-17-06 Stress-neutral CSV/JSON package</h3>
+<blockquote><h4 id="guidance-del-17-06-stress-neutral-csv-json-package">Guidance: DEL-17-06 Stress-neutral CSV/JSON package</h4></blockquote>
+<h3 id="clm-030-d-41-r5-t7-pdu-055-current-declaration">CLM-030 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-06-DECL-003</code>.</p></blockquote>
+<h3 id="clm-031-purpose">CLM-031 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this deliverable to keep the stress-neutral CSV/JSON package narrow and auditable. Its job is to expose result/package evidence in a project-controlled form that humans and downstream tools can inspect, compare, and adapt.</p>
+<p>The package must not be described as a solver certification, code-compliance result, professional approval state, formal validation record, or vendor compatibility guarantee.</p></blockquote>
+<h3 id="clm-032-principles">CLM-032 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5></blockquote>
+<h3 id="clm-033-keep-the-package-stress-neutral">CLM-033 — Keep the package stress-neutral</h3>
+<blockquote><h6 id="keep-the-package-stress-neutral">Keep the package stress-neutral</h6>
+<p>The package should describe stress-model and result concepts in OpenPipeStress terms, then preserve enough identity, units, diagnostics, provenance, and loss reporting for consumers to understand what was exported. It should not encode target-solver hidden defaults or code-specific acceptance criteria.</p></blockquote>
+<h3 id="clm-034-prefer-explicit-gaps-over-silent-meaning">CLM-034 — Prefer explicit gaps over silent meaning</h3>
+<blockquote><h6 id="prefer-explicit-gaps-over-silent-meaning">Prefer explicit gaps over silent meaning</h6>
+<p>A useful stress-neutral export can still be incomplete. Missing columns, omitted entity families, unsupported result classes, unresolved unit mappings, and unsupported comparison semantics should be represented as <code>TBD</code>, loss-report entries, diagnostics, or blocking findings rather than guessed defaults.</p></blockquote>
+<h3 id="clm-035-preserve-identity-before-convenience">CLM-035 — Preserve identity before convenience</h3>
+<blockquote><h6 id="preserve-identity-before-convenience">Preserve identity before convenience</h6>
+<p>CSV is useful for review, but row order is not identity. JSON is useful for structured interchange, but object nesting is not enough by itself. Both formats should preserve stable canonical IDs or reference an ID map so rows and objects can be reconciled with source model entities, analysis runs, and comparison records.</p></blockquote>
+<h3 id="clm-036-treat-results-as-evidence">CLM-036 — Treat results as evidence</h3>
+<blockquote><h6 id="treat-results-as-evidence">Treat results as evidence</h6>
+<p>The package may help review, regression comparison, downstream tooling, and adapter development. It does not authenticate an engineering design or establish professional reliance. Any human acceptance reference remains separate and hash-bound outside this package.</p>
+<p>If a future workflow needs to point at a human acceptance reference, this package should carry only a neutral external reference such as a model-state, report, analysis-run, or project-governance record identifier plus the reviewed hash basis. The reference target, reviewer authority, and acceptance meaning stay outside the stress-neutral CSV/JSON package, and the package must not convert that reference into a software-generated approval, certification, code-compliance, or professional-reliance status.</p></blockquote>
+<h3 id="clm-037-considerations">CLM-037 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>CSV tables</td><td>Use table-oriented outputs for inspection and spreadsheet workflows, but keep exact table names, columns, ordering, quoting rules, and null handling <code>TBD</code> until schema work begins.</td></tr>
+<tr><td>JSON package</td><td>Use JSON for structured import/export and future validation, but do not create a schema in this Phase A task. JSON Schema 2020-12 remains the expected future baseline.</td></tr>
+<tr><td>Units</td><td>Every result value needs explicit unit and dimensional context or a blocking diagnostic. Do not rely on spreadsheet headers alone for unit meaning.</td></tr>
+<tr><td>Result values</td><td>Displacements, rotations, forces, moments, reactions, stress, ratios, and rule-check values are governed by result-export boundaries. Which result families appear in the stress-neutral package is <code>TBD</code>.</td></tr>
+<tr><td>Materials and sections</td><td>Include identity/provenance surfaces only unless user-cleared data is present. Do not bundle protected tables, allowables, catalog defaults, SIF/flexibility values, or proprietary values.</td></tr>
+<tr><td>Load/design cases</td><td>Preserve source basis and identity. Do not imply code-specific load combinations unless user/private rule data supplies them with provenance.</td></tr>
+<tr><td>Comparisons</td><td>Use stable IDs and declared tolerance profiles when comparison semantics are later defined. Tolerances and pass/fail language are <code>TBD</code> in Phase A.</td></tr>
+<tr><td>External solver data</td><td>CAEPIPE CSV/text parsing can provide regression or handoff evidence under DEL-17-05, but it does not make this package professionally authoritative.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-038-trade-offs">CLM-038 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Risk</td><td>Phase A disposition</td></tr>
+<tr><td>CSV plus JSON</td><td>Serves both spreadsheet review and structured downstream tooling.</td><td>Two representations can drift.</td><td>Require shared identity, units, manifest, and validation basis; exact synchronization checks <code>TBD</code>.</td></tr>
+<tr><td>Broad table inventory</td><td>Makes the package useful across adapters.</td><td>Can imply support for semantics not yet implemented.</td><td>List candidate table families but keep field-level behavior <code>TBD</code>.</td></tr>
+<tr><td>Loss report on successful exports</td><td>Prevents silent omissions and approximations.</td><td>Adds package complexity.</td><td>Required by DEL-17-02 common contract.</td></tr>
+<tr><td>Stress-neutral vocabulary</td><td>Avoids vendor lock-in.</td><td>Consumers may need adapter-specific mapping.</td><td>Use profile/manifest/ID map/loss report to keep mappings explicit.</td></tr>
+<tr><td>Regression comparison support</td><td>Supports deterministic review over time.</td><td>Users may mistake comparison evidence for professional acceptance.</td><td>Comparison remains diagnostic/audit functionality only.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-039-examples">CLM-039 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No concrete CSV rows, JSON payloads, proprietary examples, solver outputs, protected standards data, or public engineering fixtures are included in Phase A.</p>
+<p>Acceptable future examples should be invented or otherwise rights-cleared and should demonstrate shape, identity, units, diagnostics, loss reporting, and boundary notices without embedding protected or private engineering values.</p></blockquote>
+<h3 id="clm-040-conflict-table-for-human-ruling">CLM-040 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>none</td><td>No source conflict identified in Phase A.</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-041-d-41-r5-t2a-canonicalization-guidance-2026-07-12">CLM-041 — D-41 R5 T2A canonicalization guidance (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-guidance-2026-07-12">D-41 R5 T2A canonicalization guidance (2026-07-12)</h5>
+<p>Do not describe <code>canonical_json</code> as JCS. Preserve exact sorted-key compact Python JSON bytes and the precise <code>deterministic_sorted_compact_json_payload_hash</code> label unless a later governed change introduces and proves an RFC 8785 implementation.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-046 SOW-074 OBJ-007 OBJ-017 OBJ-018</td><td>CLM-010</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

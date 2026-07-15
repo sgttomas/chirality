@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-14-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 206,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bee564cb426b331515d2750184bbfbbe17740ad39f09b9263cfdc14317c07a2d"
+      },
+      "text": "The contract preserves names, tags, notes, external references, unresolved assumptions, warnings, deterministic hash metadata, JSON Schema and canonical-JSON boundaries, no-silent-default behavior, public/private data controls, formal-prover-status exclusions, and visible schema, hash-partition, persistence, and runtime-screening TBDs without implying lifecycle closure, external validation, professional approval, or code compliance.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-14-01-VER-001",
+          "source_line": 292,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, immutable snapshot and metadata coverage, payload-scope and deterministic-hash boundaries, round-trip/no-silent-default intent, external-reference privacy screening residuals, public-fixture controls, retained TBDs, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-14-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-14",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "bee564cb426b331515d2750184bbfbbe17740ad39f09b9263cfdc14317c07a2d"
+  },
+  "tool_version": "1"
+}

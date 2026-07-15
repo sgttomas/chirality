@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-14-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 224,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5661376fd7a3691c8e8d6c8300f79cc0d819d03bad4cb5261222f42216ef60e2"
+      },
+      "text": "The contract preserves stable-ID and manual mapping evidence, explicit unmatched slots, unit-aware tolerance and export metadata, schema-first envelopes, diagnostics, provenance, hashes, statuses, limitations, no-silent-default behavior, exact mapping-enum, classification, tolerance, field, column, and layout TBDs, reporting-owner residuals, public/private data controls, and the separation from comparison-engine implementation, external validation, or professional approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-14-05-VER-001",
+          "source_line": 335,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, mapping and unmatched surfaces, tolerance and unit/dimension behavior, CSV/JSON/report-section export coverage, provenance/diagnostic/hash/status/limitation preservation, retained TBDs and reporting residuals, no-silent-default behavior, data boundaries, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-14-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-14",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "5661376fd7a3691c8e8d6c8300f79cc0d819d03bad4cb5261222f42216ef60e2"
+  },
+  "tool_version": "1"
+}

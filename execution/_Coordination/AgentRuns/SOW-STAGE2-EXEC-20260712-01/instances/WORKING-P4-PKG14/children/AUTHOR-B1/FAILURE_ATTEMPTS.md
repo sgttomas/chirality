@@ -1,0 +1,8 @@
+# Retained attempts and safe mechanical repair
+
+- Both local author harnesses passed syntax validation before registered-tool execution.
+- A post-terminal read-only manifest reproduction command failed mechanically because its shell loop assigned the TSV `path` column to zsh's special `path` array, which removed the command search path after the first row. It emitted false `command not found` / `BAD` diagnostics but wrote no file and did not execute a registered conversion tool. Exact immutable bindings before and after that failed read-only attempt were identical: `MANIFEST.tsv` SHA-256 `b0e750e707381f08deca0fc9abff061117672e83215f6acebc74f94ae88837f1`; `CANDIDATE_MANIFEST.tsv` SHA-256 `0b82abbe49cda48554fd82d615917d578d53d76d5b46f682e13e7db777c88894`.
+- The command was repaired non-semantically by renaming the loop variable to `relpath` and invoking native tools without mutating shell path state. The full manifest/candidate-manifest reproduction, exact replacement/inverse-row checks, clean-production marker check, and containment check were rerun. This evidence note and the terminal return were then amended, and the self-excluding manifest was rebuilt over all direct/transitive child bindings.
+- No registered conversion, validation, finalization, mapping, parity, checklist, rendering, negative-probe, or simulation attempt failed or retried.
+- No candidate remediation, semantic repair, authority repair, or acceptance weakening was performed.
+- Terminalization and the mechanical-repair backcheck built all direct and transitive bindings after the complete run and reproduced 5/5 members, 158 mappings, 1,454/1,454 lines, 25 replacement rows, 25 inverse rows, and five simulations.

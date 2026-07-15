@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 162,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032"
+      },
+      "text": "The contract preserves DEL-17-01 source authority and DEL-17-02 common package/profile/ID-map/loss contracts, a selected-profile gate, deterministic text generation, stable canonical-ID mapping, units and coordinates, pass-through target options without local code logic, invented/rights-cleared fixtures, diagnostics, loss reporting, and unresolved MBF record, field, version, line-ending, encoding, and external-validation questions without claiming broad compatibility or acceptance.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-04-VER-001",
+          "source_line": 240,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, source/profile gates, deterministic writer and byte-output requirements, complete behavior classification and loss reporting, stable-ID carrier/sidecar treatment, unit/coordinate and encoding boundaries, fixture provenance, every retained MBF TBD, and absence of bundled/proprietary material, local code-checking logic, compatibility overclaim, or professional authority."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032"
+  },
+  "tool_version": "1"
+}

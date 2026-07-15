@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-08-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 304,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "8482d069447d143dcc8c2a5c7943cf5938e5d0c86b184eef4a70e63eb686766c"
+      },
+      "text": "The contract preserves review-only geometry scope, canonical identity through metadata or sidecars, units and coordinate transforms, deterministic mesh/material/scene behavior, manifest and loss reporting, diagnostics, source/profile gates, invented or rights-cleared fixtures, and explicit TBDs without presenting geometry as an analysis model, fabrication model, or professional acceptance artifact.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-08-VER-001",
+          "source_line": 436,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, review-only geometry boundaries, identity and coordinate/unit handling, deterministic scene and mesh output, manifest/loss/diagnostic obligations, retained geometry and target-version TBDs, fixture provenance, and absence of solver-fidelity, fabrication, compatibility, release, compliance, or professional-authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-08",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "8482d069447d143dcc8c2a5c7943cf5938e5d0c86b184eef4a70e63eb686766c"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "COMPLETE",
+  "author_sessions": 1,
+  "verifier_sessions": 1,
+  "author_terminal": "PASS",
+  "verifier_terminal": "PASS_UNCHANGED",
+  "retained_mechanical_attempts": [
+    "manager PRE-1/PRE-2",
+    "author zsh-special-variable",
+    "verifier wrong-test-path"
+  ],
+  "repairs": "owned evidence only; all bindings rebuilt and affected checks rerun",
+  "native_token_context_telemetry": "UNAVAILABLE_NOT_INFERRED"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-15-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 204,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "9fc7f3bb72358b4c40be6dd2b820036e3bfc76518d733c38bd400113c7cf9f38"
+      },
+      "text": "The contract preserves mapping identity, source and target references, mapping and behavior statuses, unit and dimensional metadata, assumptions, warnings, diagnostics, provenance, privacy and redaction boundaries, explicit no-silent-default behavior, target-specific mapping and taxonomy gates, package-container TBDs, the retained dependency-enum conflict, and professional non-authority without implying target equivalence or validation.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-15-02-VER-001",
+          "source_line": 331,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, target-mapping and unsupported/approximate behavior coverage, unit/provenance and redaction controls, blocking privacy diagnostics, no-silent-default behavior, retained OI-015 and dependency conflict boundaries, upstream interface visibility, and prohibited approval, certification, compliance, or equivalence claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-15-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-15",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "9fc7f3bb72358b4c40be6dd2b820036e3bfc76518d733c38bd400113c7cf9f38"
+  },
+  "tool_version": "1"
+}

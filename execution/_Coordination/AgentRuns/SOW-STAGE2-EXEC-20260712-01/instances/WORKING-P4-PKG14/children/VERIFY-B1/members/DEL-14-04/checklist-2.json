@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-14-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 247,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "76937ef2f68eea7ace73dc15de15eb73428266748409b5fd07957cbf2ebd7266"
+      },
+      "text": "The contract preserves exact run/model-state basis, automatic mapping only for unique identical IDs with matching identity metadata, manual-only handling for different or ambiguous IDs, raw evidence before tolerance interpretation, explicit unit/dimension diagnostics, schema-first envelope intent, output-schema and engineering-validation holds, source-labeled assumptions, public-safe fixture boundaries, and no external-validation or professional-approval claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-14-04-VER-001",
+          "source_line": 373,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, exact-ID and manual mapping paths, all named comparison categories, deterministic ordering, raw-delta/tolerance separation, unit-normalization diagnostics, retained PDU-011/PDU-047 and OI-014 holds, schema and fixture boundaries, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-14-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-14",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "76937ef2f68eea7ace73dc15de15eb73428266748409b5fd07957cbf2ebd7266"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "deliverable_id": "DEL-14-01",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-01_Immutable model state records",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-14-02",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-02_Analysis run records",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-14-03",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-03_Model-state comparison engine",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-14-04",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-04_Analysis-run comparison engine",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-14-05",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-14_Model States, Analysis Runs, and Comparison/1_Working/DEL-14-05_Comparison mapping, tolerance, and export contracts",
+    "verdict": "PASS"
+  }
+]
