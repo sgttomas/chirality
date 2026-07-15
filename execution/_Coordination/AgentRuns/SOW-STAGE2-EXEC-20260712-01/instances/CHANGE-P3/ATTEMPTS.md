@@ -23,3 +23,10 @@ control, lifecycle, dependency, release, reliance, or authority byte changed.
    content lines as well as its location lines, causing the capture itself to
    reproduce trailing whitespace. The report was mechanically filtered to the
    250 exact diagnostic location lines and the evidence binding was rebuilt.
+7. The first isolated-postmerge binding failed because three ignored compiled
+   Python residues present in the source worktree had been referenced by the
+   PKG-10 author and PKG-12 replacement-verifier manifests but were never
+   tracked. The three stale rows were removed, both package manifests were
+   rebuilt, all ten package/child manifests revalidated, and the complete
+   CHANGE binding was rebuilt. No candidate, project, accepted snapshot, or
+   semantic evidence byte changed.

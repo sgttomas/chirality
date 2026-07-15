@@ -1,0 +1,22 @@
+{
+  "basis": "4d153302c3c4cd42578936db160c2bac1270225a",
+  "dependency_schemas": 15,
+  "formats": "15/15 SOW_V1",
+  "legacy_files_absent": 60,
+  "members": 15,
+  "merge_commit": "b999fbd24852aa6acee36a61c2f049c7a2e6fa36",
+  "practitioner_tests": 264,
+  "project_diff_hygiene": "PASS",
+  "project_paths": 75,
+  "replacement_rows": 75,
+  "rollback_executed": false,
+  "rollback_rows": 75,
+  "rollback_simulations": 15,
+  "root_export_sow_tests": 20,
+  "root_validators": 4,
+  "schema": "chirality-w-p3-postmerge/v1",
+  "source_control_bindings": 135,
+  "source_head": "2628c4ec68d65c7fa422c202d12f95d11b9e456b",
+  "target_hashes": 75,
+  "verdict": "PASS"
+}

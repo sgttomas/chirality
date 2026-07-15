@@ -56,6 +56,7 @@ def main() -> None:
         RUN / "snapshots/W_P3/integration/postmerge",
     ]
     files = [
+        ROOT / "execution/_Coordination/LOOP_RECEIPTS.md",
         RUN / "ORCHESTRATION_PLAN.md",
         RUN / "WORK_GRAPH.json",
         RUN / "amendments/WORKING-P3-PKG11/BRIEF_V2.md",
