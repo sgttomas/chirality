@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-change-w-p2-postmerge/v1",
+  "verdict": "PASS",
+  "pull_request": 231,
+  "basis": "eaad463c0d481f6f1654e6adb5ee718f566176e9",
+  "source_head": "3ea904a6e6228a93f8b0dd9c5ff84c235fa194b3",
+  "merge_commit": "7b5f27c17f425c1e1f8e47f4e81200b070227f69",
+  "required_check": "governance-harness / harness",
+  "required_check_result": "SUCCESS",
+  "members": 29,
+  "project_paths": 145,
+  "replacement_rows": 145,
+  "rollback_rows": 145,
+  "rollback_executed": false,
+  "root_tests": 20,
+  "practitioner_tests": 264,
+  "next": "W_P3_RELEASED",
+  "h2": "UNAPPROVED"
+}

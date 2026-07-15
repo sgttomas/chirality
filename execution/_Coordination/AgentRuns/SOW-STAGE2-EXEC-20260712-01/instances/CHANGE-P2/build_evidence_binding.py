@@ -55,6 +55,7 @@ def main() -> None:
         RUN / "snapshots/W_P2/preflight",
         RUN / "snapshots/W_P2/preintegration",
         RUN / "snapshots/W_P2/preintegration-acceptance",
+        RUN / "snapshots/W_P2/integration/postmerge",
     ]
     files = [
         RUN / "ORCHESTRATION_PLAN.md",

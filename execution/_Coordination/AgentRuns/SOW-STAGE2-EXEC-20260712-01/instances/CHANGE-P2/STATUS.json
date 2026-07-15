@@ -1,7 +1,7 @@
 {
   "agent": "CHANGE-P2",
   "role": "CHANGE",
-  "status": "PREMERGE_READY",
+  "status": "PASS",
   "basis": "eaad463c0d481f6f1654e6adb5ee718f566176e9",
   "branch": "codex/sow-p2",
   "members": 29,
@@ -9,8 +9,10 @@
   "replacement_rows": 145,
   "rollback_rows": 145,
   "local_checks": "PASS",
-  "required_remote_checks": "PENDING",
-  "merge": "PENDING",
-  "postmerge": "PENDING",
+  "source_head": "3ea904a6e6228a93f8b0dd9c5ff84c235fa194b3",
+  "pull_request": 231,
+  "required_remote_checks": "PASS",
+  "merge": "7b5f27c17f425c1e1f8e47f4e81200b070227f69",
+  "postmerge": "PASS",
   "blockers": []
 }
