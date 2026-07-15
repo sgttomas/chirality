@@ -1,6 +1,6 @@
 # Root Scope-of-Work Governance Handoff State
 
-Status: `STAGE2_LOOP_ACTIVE — READY_FOR_FRESH_EXECUTION_SESSION`
+Status: `CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED`
 
 ## Accepted upstream basis
 
@@ -28,6 +28,28 @@ Status: `STAGE2_LOOP_ACTIVE — READY_FOR_FRESH_EXECUTION_SESSION`
   `WORKPLAN_2026-07-12_scope_of_work_stage2.md`.
 
 ## Closure verdict
+
+Stage 2 conversion and rollback closure is accepted on exact
+`origin/main@79de30d83b91a2ab468a3f17536a5233c2f85fe7`. The live tracked census is
+154: 146 valid clean single-format `SOW_V1` conversion members and eight exact
+Piping PKG-00 legacy governance-context exemptions. Lifecycle remains 153
+`IN_PROGRESS` plus sole issued Piping `DEL-01-01`; production migration residue
+is zero. All 730 inverse rows and 146 composed rollback round trips pass. Root,
+App, Piping, caller, compatibility, containment, and validator checks pass.
+
+Final independent manifests:
+
+- RECONCILIATION:
+  `7975141369025a50087c6f8d94b51d59740d0adabb49576518c9c4d7926add27`.
+- EVALUATION:
+  `3a17c5b5637216b74018206a931a4a01fb6c90769094ac77d4a3c57da47b133f`.
+
+H2 remains unapproved. The recommended ruling is H2-R: retain compatibility
+and perform no retirement because the eight PKG-00 contracts and accepted
+rollback path still require the legacy skill, validator, readers, and callers.
+Silence performs no retirement.
+
+## Historical Stage-1 and plan closure
 
 Stage 1 is `PASS`. All ten authorized candidates passed independent
 preservation audit: 325/325 claim mappings are `PRESERVED`, 3,466/3,466 source
@@ -61,18 +83,17 @@ basis.
 
 ## Required stop and release condition
 
-The accepted plan is active only through a fresh execution session that begins
-with its Step 0 preflight. Until that run lawfully releases a node,
-`docs/TYPES.md` and `docs/SPEC.md` remain unchanged; no remaining-corpus
-conversion, consumer migration, candidate-pilot integration, ISSUED
-representation replacement, lifecycle act, or legacy retirement occurs. H1
-administrative approval for ISSUED `DEL-01-01` and H2 legacy-retirement
-approval remain unapproved human gates.
+Conversion is closed. Stop before any compatibility or legacy-retirement act
+until the human selects H2-R, H2-P, or H2-F against the exact accepted basis.
+H2-R records retention only. H2-P and H2-F authorize preparation lanes only
+and retain a second integration gate; neither permits immediate live deletion.
+No option changes lifecycle, executes rollback, or modifies historical
+evidence. Silence leaves every current compatibility surface supported.
 
 ## Rerun requirements
 
-Before any accepted execution run dispatches a child, rerun synchronized-main,
-census, lifecycle, companion, candidate/hash, patch-applicability, and active
-caller checks. A changed membership, lifecycle population, source/candidate
-hash, patch context, conflict, or unclassified active caller requires a
-scoped plan amendment or human decision; it is not silently absorbed.
+Before acting on H2, bind the selected ruling to exact main and both final
+manifests. H2-P/H2-F require a fresh governed run, changed/caller manifest,
+rollback analysis, root/App/Piping suites, independent EVALUATION and
+RECONCILIATION, and a separate CHANGE integration gate. Any census, lifecycle,
+caller, compatibility, rollback, or basis drift returns to the human.

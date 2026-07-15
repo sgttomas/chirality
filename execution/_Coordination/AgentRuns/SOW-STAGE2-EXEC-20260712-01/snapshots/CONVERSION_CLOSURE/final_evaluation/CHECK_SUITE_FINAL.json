@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-sow-final-closure-checks-final/v1",
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "verdict": "PASS",
+  "root": {
+    "scope_of_work_tests": "19 passed",
+    "practitioner_tests": "264 passed",
+    "validators": ["agent instructions PASS", "instruction entrypoints PASS", "path anchors PASS", "skill metadata PASS"]
+  },
+  "app": {
+    "typecheck": "PASS",
+    "tests": "713 passed, 4 skipped",
+    "build": "PASS",
+    "accepted_attempt": "R1 full-repository disposable substrate"
+  },
+  "piping": {
+    "wasm_build": "PASS",
+    "tests": "476 passed",
+    "desktop_build": "PASS"
+  },
+  "subject_git_status": "clean",
+  "compiled_project_residue": 0
+}

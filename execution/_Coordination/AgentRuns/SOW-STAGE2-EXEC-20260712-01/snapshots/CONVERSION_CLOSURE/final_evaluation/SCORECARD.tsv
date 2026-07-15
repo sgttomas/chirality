@@ -1,0 +1,9 @@
+dimension	score	basis
+closure	EXEMPLARY	154 exact census; 146/146 valid SOW_V1; eight exact exemptions; zero format defect
+preservation	EXEMPLARY	153 IN_PROGRESS plus sole DEL-01-01 ISSUED; zero of 154 status-hash mismatches
+reversibility	CONFORMANT	11 accepted sources; 146 exact five-path inverse sets; 730 unique rows; rollback remains human-gated
+caller_migration	CONFORMANT	all active compatibility surfaces inventoried and root/App/Piping behavior checks pass
+production_cleanliness	EXEMPLARY	zero forbidden metadata; all 57 registered finalizations byte-reproduce with bound reports
+governance_compliance	CONFORMANT	exact main basis; PKG-00 ruling and ISSUED fence preserved; H2 and retirement untouched
+residual_legacy_obligations	CONFORMANT	eight live PKG-00 contracts plus rollback obligations remain explicit and supported
+overall_weakest_link	CONFORMANT	all mandatory closure dimensions pass; retained compatibility is an explicit current obligation

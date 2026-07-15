@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-reconciliation-terminal/v1",
+  "run": "SOW-STAGE2-EXEC-20260712-01",
+  "instance": "RECON-CLOSURE-FINAL",
+  "role": "RECONCILIATION",
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "status": "PASS",
+  "closure": "CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED",
+  "members": 154,
+  "conversion_members": 146,
+  "pkg00_legacy_exemptions": 8,
+  "rollback_rows": 730,
+  "round_trip_simulations": 146,
+  "blockers": [],
+  "waivers": [],
+  "unknowns": [],
+  "h2": "UNAPPROVED",
+  "legacy_retirement": "PARKED_HUMAN_GATE",
+  "snapshot": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/CONVERSION_CLOSURE/final_reconciliation",
+  "snapshot_manifest_sha256": "7975141369025a50087c6f8d94b51d59740d0adabb49576518c9c4d7926add27"
+}

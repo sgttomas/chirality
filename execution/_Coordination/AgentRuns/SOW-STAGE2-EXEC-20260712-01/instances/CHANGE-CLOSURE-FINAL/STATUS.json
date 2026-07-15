@@ -1,0 +1,11 @@
+{
+  "agent": "CHANGE-CLOSURE-FINAL",
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "branch": "codex/sow-closure",
+  "closure": "CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED",
+  "h2": "UNAPPROVED",
+  "legacy_retirement": "PARKED_HUMAN_GATE",
+  "local_checks": "PENDING_EXACT_HEAD",
+  "state": "READY_TO_COMMIT_AND_VALIDATE",
+  "verdict": "PENDING"
+}

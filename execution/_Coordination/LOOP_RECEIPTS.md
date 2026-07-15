@@ -373,3 +373,36 @@
 - State: W-P4 integration is closed and conversion closure is released to
   consume the accepted wave handoffs. Rollback execution, retirement, and H2
   remain parked.
+
+### Receipt 24 — 2026-07-14 — Clean-production residue repaired
+
+- Finding: fresh pre-repair closure managers identified 57 live production
+  contracts retaining migration-only candidate metadata: all 53 App members
+  and four Piping PKG-13 pilots. All other closure gates passed.
+- Repair: direct WORKING_ITEMS applied only the registered deterministic
+  finalizer; fresh RECONCILIATION reproduced all 57 outputs and reports from
+  basis blobs, preserving 1,753 source blocks with zero semantic rewrite.
+- Integration: ready PR #237 passed both `governance-harness / harness` and
+  `Harness pre-merge`, then merged as
+  `74b9804cf62c014118ad222699a3591fdf5bda42`. Closeout PR #238 passed its
+  required harness and merged as
+  `79de30d83b91a2ab468a3f17536a5233c2f85fe7`.
+- Binding: immutable repair-integration manifest SHA-256
+  `6bca228f08e34094e538c81d905f3efe4b50de990ccca16f69daed8394cc9dd8`.
+  H2 and legacy retirement were untouched.
+
+### Receipt 25 — 2026-07-14 — Conversion and rollback closure accepted
+
+- Basis: exact
+  `origin/main@79de30d83b91a2ab468a3f17536a5233c2f85fe7`.
+- RECONCILIATION: fresh independent PASS; 154-member census, 146 clean
+  `SOW_V1`, eight exact PKG-00 exemptions, lifecycle 153 `IN_PROGRESS` plus
+  sole issued `DEL-01-01`, zero residue, 730 unique inverse rows, 146 rollback
+  round trips, callers, compatibility, and all root/App/Piping checks pass.
+  Snapshot manifest SHA-256
+  `7975141369025a50087c6f8d94b51d59740d0adabb49576518c9c4d7926add27`.
+- EVALUATION: fresh independent PASS with no blockers, waivers, or material
+  unknowns. Snapshot manifest SHA-256
+  `3a17c5b5637216b74018206a931a4a01fb6c90769094ac77d4a3c57da47b133f`.
+- State: `CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED`. H2 is a
+  fresh human decision; silence performs no retirement.

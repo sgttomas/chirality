@@ -1,0 +1,155 @@
+{
+  "schema": "chirality-sow-final-closure-checks/v1",
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "verdict": "BLOCKED",
+  "results": [
+    {
+      "name": "scope_of_work_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/scope_of_work/test_scope_of_work_tools.py"
+      ],
+      "cwd": "/private/tmp/chirality-evaluation-closure-final",
+      "exit_code": 0,
+      "duration_seconds": 4.064,
+      "output_sha256": "0cd2d44165b6b2d2d2b65f2fb8f2559b8115a7d649b7b404d935ab9e83d0c87b"
+    },
+    {
+      "name": "practitioner_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": "/private/tmp/chirality-evaluation-closure-final",
+      "exit_code": 0,
+      "duration_seconds": 37.762,
+      "output_sha256": "e72eebbaa0f56be5ff31ac4c790cc86602c403833e0b125b9af3f4e14b73e255"
+    },
+    {
+      "name": "validate_agents",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_agent_instructions.py"
+      ],
+      "cwd": "/private/tmp/chirality-evaluation-closure-final",
+      "exit_code": 0,
+      "duration_seconds": 0.075,
+      "output_sha256": "38234fbb7f936481f5d1560afadc56ad3f86040f1ca6e18021f7510d7a85bc52"
+    },
+    {
+      "name": "validate_entrypoints",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_instruction_entrypoints.py"
+      ],
+      "cwd": "/private/tmp/chirality-evaluation-closure-final",
+      "exit_code": 0,
+      "duration_seconds": 0.03,
+      "output_sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf"
+    },
+    {
+      "name": "validate_paths",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_path_anchors.py",
+        "."
+      ],
+      "cwd": "/private/tmp/chirality-evaluation-closure-final",
+      "exit_code": 0,
+      "duration_seconds": 2.401,
+      "output_sha256": "c2a090af6c63571fc8f7f4dec42c220d7f5424ee257e05dc733114653e006787"
+    },
+    {
+      "name": "validate_skills",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_skill_metadata.py"
+      ],
+      "cwd": "/private/tmp/chirality-evaluation-closure-final",
+      "exit_code": 0,
+      "duration_seconds": 0.044,
+      "output_sha256": "571f92fe0979fb5b710346e91d754b8520720ae47c2fb564ee0e63b122ed5e00"
+    },
+    {
+      "name": "app_typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/evaluation-closure-final-5kuqrlb0/app",
+      "exit_code": 0,
+      "duration_seconds": 3.502,
+      "output_sha256": "2bcf8e9aadbaab700665caaa6fa3f1a40cd36e9596d9215ccbea7d3f920b59af"
+    },
+    {
+      "name": "app_tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--run"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/evaluation-closure-final-5kuqrlb0/app",
+      "exit_code": 1,
+      "duration_seconds": 6.281,
+      "output_sha256": "541947ea30247e3e28d99be307b31a91f4c9642e9371de8433cd10c64e55310e"
+    },
+    {
+      "name": "app_build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/evaluation-closure-final-5kuqrlb0/app",
+      "exit_code": 0,
+      "duration_seconds": 15.336,
+      "output_sha256": "f3bbafbe3e13d405ac7e7f8a87ead12c600a01bfa94dd8e622f8799f0f83830b"
+    },
+    {
+      "name": "piping_wasm",
+      "command": [
+        "npm",
+        "run",
+        "build:wasm",
+        "--workspace",
+        "apps/desktop"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/evaluation-closure-final-5kuqrlb0/piping",
+      "exit_code": 0,
+      "duration_seconds": 9.775,
+      "output_sha256": "db56247c39a34bfc730e62430fd8a6ca5d59855eff0c372120b3d1caea5fde69"
+    },
+    {
+      "name": "piping_tests",
+      "command": [
+        "npm",
+        "run",
+        "test:desktop"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/evaluation-closure-final-5kuqrlb0/piping",
+      "exit_code": 0,
+      "duration_seconds": 46.714,
+      "output_sha256": "36f21c1b6146aa6850b9719fbf8b01e529c4c364f9aa57fb2d562cbdf0a88068"
+    },
+    {
+      "name": "piping_build",
+      "command": [
+        "npm",
+        "run",
+        "build:desktop"
+      ],
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/evaluation-closure-final-5kuqrlb0/piping",
+      "exit_code": 0,
+      "duration_seconds": 4.267,
+      "output_sha256": "41fa2cb06b42680f42ccd4fda337e111abaf7303bc56a8960dd49aeb424153b3"
+    }
+  ]
+}

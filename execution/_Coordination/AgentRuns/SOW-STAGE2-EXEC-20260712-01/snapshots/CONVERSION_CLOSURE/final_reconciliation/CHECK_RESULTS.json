@@ -1,0 +1,171 @@
+{
+  "schema": "chirality-conversion-closure-final-checks/v1",
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "verdict": "PASS",
+  "results": [
+    {
+      "name": "scope_of_work_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/scope_of_work/test_scope_of_work_tools.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 4.225,
+      "output_sha256": "b06f617b31491d3942471968221cbaec11021fa6279b28ab8d412371bff58216"
+    },
+    {
+      "name": "practitioner_tests",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 33.815,
+      "output_sha256": "13f2887fa99605b87577f879f08d772799d53e7a2afaa986c8158e11a0a817ab"
+    },
+    {
+      "name": "validate_agents",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_agent_instructions.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.079,
+      "output_sha256": "38234fbb7f936481f5d1560afadc56ad3f86040f1ca6e18021f7510d7a85bc52"
+    },
+    {
+      "name": "validate_entrypoints",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_instruction_entrypoints.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.027,
+      "output_sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf"
+    },
+    {
+      "name": "validate_paths",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_path_anchors.py",
+        "."
+      ],
+      "exit_code": 0,
+      "duration_seconds": 2.365,
+      "output_sha256": "c2a090af6c63571fc8f7f4dec42c220d7f5424ee257e05dc733114653e006787"
+    },
+    {
+      "name": "validate_skills",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "tools/validation/validate_skill_metadata.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.03,
+      "output_sha256": "571f92fe0979fb5b710346e91d754b8520720ae47c2fb564ee0e63b122ed5e00"
+    },
+    {
+      "name": "app_typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 3.154,
+      "output_sha256": "2bcf8e9aadbaab700665caaa6fa3f1a40cd36e9596d9215ccbea7d3f920b59af"
+    },
+    {
+      "name": "app_tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--run"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 5.586,
+      "output_sha256": "6845651fd1e3eca0a721a68678a2e1da4d05e0f4b9b74e6feaf5ee4d33970633",
+      "disposition": "RETAINED_FIXTURE_PATH_DEPTH_FAILURE_CLOSED_BY_APP_TESTS_R2"
+    },
+    {
+      "name": "app_build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 10.953,
+      "output_sha256": "f3bbafbe3e13d405ac7e7f8a87ead12c600a01bfa94dd8e622f8799f0f83830b"
+    },
+    {
+      "name": "piping_wasm",
+      "command": [
+        "npm",
+        "run",
+        "build:wasm",
+        "--workspace",
+        "apps/desktop"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 9.758,
+      "output_sha256": "1c98eb9a0f643b508f040410c6c6ec3154f7e62e49fb43f97f01a76e9413ce02"
+    },
+    {
+      "name": "piping_tests",
+      "command": [
+        "npm",
+        "run",
+        "test:desktop"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 55.317,
+      "output_sha256": "6363db1d6eba10df2bee3170dcac82b3ec1454aeb2305dc72a178e25dcff9f25"
+    },
+    {
+      "name": "piping_build",
+      "command": [
+        "npm",
+        "run",
+        "build:desktop"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 5.036,
+      "output_sha256": "454705b4c81bd4184f78b3f52c932ec02a7347da98a06b45b49cfd20123be4e5"
+    },
+    {
+      "name": "app_tests_r1",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--run"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 5.13,
+      "output_sha256": "383eab22797972ef98c3703e5e4e678aa961c642f3e8c3ac53ba741d759da9b4",
+      "closes": "app_tests frontend-only disposable fixture layout failure",
+      "disposition": "RETAINED_FIXTURE_PATH_DEPTH_FAILURE_CLOSED_BY_APP_TESTS_R2"
+    },
+    {
+      "name": "app_tests_r2",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--run"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 7.085,
+      "output_sha256": "f3f89588f5650514285361ee4688fdf586d2f54f71fae25fad3e4b3210d5c853",
+      "closes": "app_tests and app_tests_r1 disposable fixture path-depth failures"
+    }
+  ]
+}
