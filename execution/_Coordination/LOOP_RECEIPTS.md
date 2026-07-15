@@ -419,3 +419,27 @@
   historical-evidence, or retirement implementation write is authorized.
 - State: `STAGE2_CLOSED — H2-R COMPATIBILITY RETAINED`; legacy retirement is
   `RETAINED_NOT_AUTHORIZED`.
+
+### Receipt 27 — 2026-07-15 — PKG-00 reversal aligned
+
+- Owner direction: reverse the PKG-00 file-disposition portion of H2-R,
+  retain the D-43 consolidation merged as
+  `291301291bdaa8ec6b64dbbf3cff98ecfeadeca7`, assess the resulting state,
+  and proceed with the narrow current-reading alignment. No root compatibility
+  machinery retirement or lifecycle act was directed.
+- Result: all eight Piping PKG-00 members remain reference-only
+  `ArchitectureBasis.md` members; sealed revision-0.7 `_CONTEXT.md` surfaces
+  are marked superseded for current consumption, current dependency/reference
+  navigation is aligned to DAG-007 and decomposition revision 0.9, and a
+  separate fail-closed ArchitectureBasis validator is live.
+- Historical boundary: Receipt 26, the accepted Stage-2 workplan, frozen H2-R
+  evidence, `MEMORY.md`, semantic derivatives, run records, and immutable
+  DAG-007 were not rewritten. Root four-document compatibility and rollback
+  machinery remains retained pending a separate human ruling.
+- Checks: eight-member validator PASS; Piping 498/498 tests PASS; strict
+  canonical DAG-007 PASS (1,480 edges, 101 nodes, zero endpoint/canonical/SCC/
+  duplicate/bidirectional findings); practitioner harness 264/264 PASS;
+  self-check exit 0 with the pinned non-blocking baseline.
+- State: `CLOSED_CURRENT_STATE_ALIGNED`; future compatibility retirement, DAG
+  successor publication, PDU-007, and TP-SEAM-WASM-001 remain parked at their
+  named authority gates.
