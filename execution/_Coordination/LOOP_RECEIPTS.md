@@ -321,3 +321,18 @@
 - Handoff: `snapshots/I0/integration/postmerge/`. Cross-wave 146-member
   conversion/rollback closure is released. Legacy compatibility remains live;
   retirement is prohibited until a separate fresh H2 human ruling.
+
+### Receipt 21 — 2026-07-14 — W-P2 integrated; P3 released
+
+- Binding: ready PR #231 passed `governance-harness / harness` on source head
+  `3ea904a6e6228a93f8b0dd9c5ff84c235fa194b3` and merged as
+  `7b5f27c17f425c1e1f8e47f4e81200b070227f69`.
+- Result: 29 PKG-05–09 members are clean `SOW_V1`; the project delta is
+  exactly 29 additions plus 116 legacy deletions, with all status/control/
+  dependency/lifecycle bytes preserved.
+- Evidence: 919 mappings, 8,203/8,203 source lines, 29/29 simulations, exact
+  145-row replacement/inverse manifests, 264 practitioner tests, 20 export/
+  Scope-of-Work tests, root validators, and postmerge checks pass.
+- Handoff: `snapshots/W_P2/integration/postmerge/`.
+- State: W-P2 integration is closed and W-P3 is released. W-P4, conversion
+  closure, rollback execution, retirement, and H2 remain parked.

@@ -17,6 +17,14 @@
       "before_bytes": 1177,
       "after_sha256": "25f640fba46140e7b45196ffa90880329f78860b5cd60bf350c869e4fc45d148",
       "after_bytes": 1176
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/snapshots/W_P2/integration/postmerge/PR_STATE.json",
+      "reason": "remove one extra terminal blank line from new postmerge PR evidence before freeze",
+      "before_sha256": "045b9e015d17a3d0db6d85bbbe43014326104cc487abe8558b233e5418a6782c",
+      "before_bytes": 554,
+      "after_sha256": "b99a35537158d6976f41cc3f54d480f0d898e2b8aa678a37c64b898fbd468e8b",
+      "after_bytes": 553
     }
   ],
   "accepted_upstream_bytes_changed": false,

@@ -133,13 +133,14 @@ manifest rebound to
 Fresh `CHANGE-P2` is released for only the exact 29-member atomic integration,
 required checks, merge under active blanket approval, and postmerge handoff.
 
-`CHANGE-P2` has created the 29 ordered atomic five-path replacement commits on
-`codex/sow-p2`. The exact 145-row project delta, inverse rollback simulation,
-all 29 clean validations/maps/parity reports/checklists/finalizations, 264
-practitioner tests, 20 root export/Scope-of-Work tests, dependency schemas,
-root validators, preservation hashes, and whole-diff hygiene pass locally.
-The complete W-P2 evidence binding is ready for the separate binding commit;
-push, ready PR, required remote check, and merge remain pending.
+`CHANGE-P2` integrated the 29 ordered atomic five-path replacement commits
+through ready PR #231 after `governance-harness / harness` passed on exact
+source head `3ea904a6e6228a93f8b0dd9c5ff84c235fa194b3`; the merge commit is
+`7b5f27c17f425c1e1f8e47f4e81200b070227f69`. Fresh postmerge reproduction
+passes the exact 145-row project delta, all target/control hashes and formats,
+inverse rollback simulation, 264 practitioner tests, 20 root export/Scope-of-
+Work tests, dependency schemas, root validators, and whole-diff hygiene. W-P2
+integration is closed and P3 is dependency-released.
 
 `WORKING-I0-PKG01` returned PASS after a fresh author and fresh independent
 verifier. The exact ISSUED source/status/authority basis is preserved; the
