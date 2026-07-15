@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-05-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 233,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3b0003c3fc44f4334d64a766b2afc4f6baf3d594a6fde9196009ff843d4c0c65"
+      },
+      "text": "The contract preserves the accepted general mechanics-load boundary, explicit units and provenance, deterministic ordering and invalid-input findings, and unresolved result-envelope, persistence, tolerance, and release policies without inventing magnitudes, factors, code combinations, allowables, protected content, or professional claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-05-05-VER-001",
+          "source_line": 342,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, concentrated and distributed application, partial spans and orientation, equivalent nodal recovery, axial-effect bridge ownership, unit/provenance metadata, result hooks, deterministic tests, and surviving governed residuals."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-05-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-05",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "3b0003c3fc44f4334d64a766b2afc4f6baf3d594a6fde9196009ff843d4c0c65"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 253
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves public/original/permissive provenance, unit and sign conventions, diagnostics and governed result-envelope evidence, DEC-026's measured analytic relative seed, explicit unmeasured per-kind relative-plus-absolute TBDs, and separation from code compliance, fatigue acceptance, certification, or professional approval.",
+    "OUT-001": "A stress-recovery benchmark-suite contract covering axial, bending, torsion, pressure, and stress-range mechanics behavior with governed evidence boundaries is produced.",
+    "VER-001": "Validate the contract and review source parity, all five behavior slots, provenance and protected-content limits, units and dimensional checks, diagnostic/result-envelope preservation, DEC-026 tolerance limits without generalization, and professional-authority boundaries."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

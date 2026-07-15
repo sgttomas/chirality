@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="9404636c5eb9becf8fa2c5c3df12aa7d32e276783664b9dfa4970f3f5f651e1f">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>9404636c5eb9becf8fa2c5c3df12aa7d32e276783664b9dfa4970f3f5f651e1f</code>.</p>
+<h1 id="scope-of-work-del-06-03">Scope of Work — DEL-06-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-06-03</code> in service of project scope [SOW-004] and package objectives [OBJ-002, OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A required-input-completeness contract connecting declarative rule-pack requirements to project, model, and user-supplied data, with explicit missing, unit-incompatible, unprovenanced, and rule-check-blocking findings, is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-03-required-input-completeness-checker">CLM-001 — Datasheet: DEL-06-03 Required-input completeness checker</h3>
+<blockquote><h4 id="datasheet-del-06-03-required-input-completeness-checker">Datasheet: DEL-06-03 Required-input completeness checker</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-03-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-03</td></tr>
+<tr><td>Deliverable name</td><td>Required-input completeness checker</td></tr>
+<tr><td>Package ID</td><td>PKG-06</td></tr>
+<tr><td>Package name</td><td>Rule Packs and User-Supplied Code Check Engine</td></tr>
+<tr><td>Deliverable type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-004</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-002, OBJ-005</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Current production mode</td><td>Setup/document production only</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Source-grounded value</td></tr>
+<tr><td>Primary behavior</td><td>Identify missing rule-pack-required user inputs and prevent rule-check status from advancing when those inputs are absent.</td></tr>
+<tr><td>Protected-data boundary</td><td>The checker must not bundle protected standards text, code tables, allowables, SIF/flexibility factors, proprietary formulas, or code-specific defaults.</td></tr>
+<tr><td>User-data boundary</td><td>Code-specific and project-specific values remain user-supplied or privately imported data with provenance.</td></tr>
+<tr><td>Status vocabulary</td><td>The relevant analysis state is <code>RULE_INPUTS_INCOMPLETE</code>; software must not emit automatic <code>CODE_COMPLIANT</code> status.</td></tr>
+<tr><td>Warning class</td><td>Missing rule-pack input is a <code>RULE_CHECK_BLOCKING</code> condition, distinct from solve-blocking physical data.</td></tr>
+<tr><td>Professional boundary</td><td>Checker output is a software finding; professional acceptance remains outside solver/rule code.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Handling</td></tr>
+<tr><td>Required code/project input missing</td><td>Emit an explicit missing-input finding and block user-rule-check completion.</td></tr>
+<tr><td>Required physical input missing</td><td>Keep classified separately as solve-blocking, not rule-check-blocking.</td></tr>
+<tr><td>Input exists but provenance is absent or weak</td><td>Surface provenance warning; do not silently accept as reliable.</td></tr>
+<tr><td>Rule pack requests protected bundled data</td><td>Treat as data-boundary/IP issue and escalate rather than fill a default.</td></tr>
+<tr><td>Completeness cannot be determined</td><td>Mark as <code>TBD</code> or equivalent unresolved finding; do not infer engineering values.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The setup artifact defines the future feature boundary only. It does not create executable completeness rules, code formulas, material allowables, design-code tables, or checker implementation files.</p>
+<p>The future implementation is expected to consume a rule-pack schema contract from DEL-06-01, analysis-status semantics from DEL-05-04, and diagnostics/result-envelope constraints from the architecture basis. Those dependencies are recorded as information-flow dependencies, not as schedule decisions.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Source</td><td>Used for</td></tr>
+<tr><td><code>INIT.md</code></td><td>Bootstrap boundaries for open mechanics, user rule checks, and professional responsibility.</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>TASK dispatch boundary and sealed deliverable discipline.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Invariants OPS-K-DATA, OPS-K-RULE, OPS-K-IP, OPS-K-AGENT, and professional authority constraints.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>No silent defaults, private code data, and human authority principles.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Analysis statuses, epistemic labels, provenance labels, and rule-pack vocabulary.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Rule-pack object, required inputs, evaluator constraints, warning classes, report notices, and acceptance semantics.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data rules, quarantine expectations, and private rule-pack handling.</td></tr>
+<tr><td><code>docs/VALIDATION_STRATEGY.md</code></td><td>Rule-pack missing-input test expectation.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>PKG-06 and DEL-06-03 decomposition context.</td></tr>
+<tr><td><code>docs/_Registers/Deliverables.csv</code></td><td>Machine-readable deliverable row.</td></tr>
+<tr><td><code>docs/_Registers/ScopeLedger.csv</code></td><td>SOW-004 scope mapping.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-06-03-required-input-completeness-checker">CLM-008 — Specification: DEL-06-03 Required-input completeness checker</h3>
+<blockquote><h4 id="specification-del-06-03-required-input-completeness-checker">Specification: DEL-06-03 Required-input completeness checker</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-03-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the setup boundary for a required-input completeness checker for user-defined rule packs. The future checker must connect a rule pack&#x27;s declared required inputs to project/model/user-supplied data and prevent a user-rule-check status from being reported when required rule-check data is missing.</p>
+<p>This setup run does not implement code, schemas, executable completeness rules, code-specific formulas, allowables, or standards-derived defaults.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source basis</td><td>Verification approach</td></tr>
+<tr><td>R-DEL-06-03-001</td><td>Missing rule-check-required values must be explicit findings, never silent defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/DIRECTIVE.md</code> no silent engineering defaults</td><td>Future unit tests for missing required inputs and explicit findings.</td></tr>
+<tr><td>R-DEL-06-03-002</td><td>Code-specific and project-specific values must be user-supplied or privately imported, not bundled as public defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> private user data</td><td>Protected-content and default-data review of checker fixtures.</td></tr>
+<tr><td>R-DEL-06-03-003</td><td>Rule-pack values, materials, components, SIF/flexibility factors, allowables, and related inputs must carry provenance where relied upon.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-3; <code>docs/TYPES.md</code> provenance labels</td><td>Schema/provenance validation in future feature tests.</td></tr>
+<tr><td>R-DEL-06-03-004</td><td>Completeness must be machine-checkable from declarative rule-pack input declarations, not arbitrary executable code.</td><td>SOW-004; <code>docs/SPEC.md</code> rule-pack <code>required_inputs</code>; OPS-K-RULE-2</td><td>Future tests bind rule-pack required-input declarations to missing-input diagnostics without executing arbitrary code.</td></tr>
+<tr><td>R-DEL-06-03-005</td><td>Missing rule-pack input must map to a rule-check-blocking condition distinct from solve-blocking physical input.</td><td><code>docs/SPEC.md</code> warning classes; <code>docs/TYPES.md</code> <code>RULE_INPUTS_INCOMPLETE</code></td><td>Status/diagnostic tests verify <code>RULE_CHECK_BLOCKING</code> classification.</td></tr>
+<tr><td>R-DEL-06-03-006</td><td>The checker must not assert code compliance, certification, approval, sealing, or professional reliance.</td><td>OPS-K-AUTH-1; <code>docs/TYPES.md</code> analysis-status vocabulary</td><td>Report/API text review and future status tests exclude automatic <code>CODE_COMPLIANT</code>.</td></tr>
+<tr><td>R-DEL-06-03-007</td><td>Suspected protected or proprietary data requests must be surfaced and escalated, not translated into public data.</td><td>OPS-K-IP-1/2/3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> quarantine rule</td><td>Protected-content lint and quarantine-path tests in later implementation.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No standards-body formulas, allowables, tables, text, examples, or code-specific interpretations are included in this setup artifact. Any future private project use of licensed standards data must remain user-controlled and provenance-marked.</p></blockquote>
+<h3 id="clm-013-external-inputs">CLM-013 — External Inputs</h3>
+<blockquote><h5 id="external-inputs">External Inputs</h5>
+<table><tbody>
+<tr><td>Input</td><td>Required from</td><td>Notes</td></tr>
+<tr><td>Rule-pack schema required-input declarations</td><td>DEL-06-01 Rule-pack schema</td><td>Needed before executable completeness checking can be implemented.</td></tr>
+<tr><td>Analysis status semantics</td><td>DEL-05-04 Analysis status semantics</td><td>Needed to bind missing inputs to <code>RULE_INPUTS_INCOMPLETE</code> without compliance claims.</td></tr>
+<tr><td>Diagnostics/result envelope contract</td><td>Architecture basis AB-00-06</td><td>Needed for <code>RULE_CHECK_BLOCKING</code> findings and remediation text.</td></tr>
+<tr><td>User/project rule data</td><td>User-controlled private rule pack/project files</td><td>Must not be bundled into the public repository by this deliverable.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Future implementation verification must include:</p>
+<ul>
+<li>- rule-pack missing-input tests using invented/non-code data only;</li>
+<li>- unit-aware binding checks where the rule-pack schema declares dimensions or units;</li>
+<li>- tests that missing code/project inputs block rule-check status but do not block the mechanics solve status by default;</li>
+<li>- tests that no protected defaults, code-specific formulas, or material allowables are shipped;</li>
+<li>- tests that output messages preserve the professional responsibility boundary.</li>
+</ul></blockquote>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup artifacts for this deliverable are:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul>
+<p>Implementation artifacts listed in the register (<code>rule completeness checker</code>, <code>tests</code>) remain future work outside this setup session&#x27;s write scope.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted separation between solve-blocking physical inputs and rule-check-required data, explicit no-default behavior, private user-data and protected-content boundaries, and professional responsibility, while retaining the expression grammar/library decision as TBD and inventing no engineering values.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-06-03-required-input-completeness-checker">CLM-016 — Procedure: DEL-06-03 Required-input completeness checker</h3>
+<blockquote><h4 id="procedure-del-06-03-required-input-completeness-checker">Procedure: DEL-06-03 Required-input completeness checker</h4></blockquote>
+<h3 id="clm-017-d-41-r5-t7-pdu-055-current-declaration">CLM-017 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-03-DECL-004</code>.</p></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the setup-time procedure and future implementation checks for the required-input completeness checker without writing implementation files or executable rules in this session.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status for setup</td><td>Notes</td></tr>
+<tr><td>Sealed DEL-06-03 context</td><td>Available</td><td><code>_CONTEXT.md</code> identifies SOW-004, OBJ-002, and OBJ-005.</td></tr>
+<tr><td>Governing data/IP boundary</td><td>Available</td><td><code>docs/CONTRACT.md</code>, <code>docs/DIRECTIVE.md</code>, and <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+<tr><td>Rule-pack schema contract</td><td>Future dependency</td><td>DEL-06-01 must define required-input declarations before checker implementation.</td></tr>
+<tr><td>Analysis status semantics</td><td>Future dependency</td><td>DEL-05-04 supplies status vocabulary such as <code>RULE_INPUTS_INCOMPLETE</code>.</td></tr>
+<tr><td>Rule expression grammar/library</td><td>TBD</td><td>Open issue OI-006; not resolved here.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity and scope match <code>DEL-06-03</code>, <code>PKG-06</code>, and SOW-004.</p>
+<p>2. Preserve the protected-data boundary by excluding standards text, tables, code formulas, allowables, SIF/flexibility data, vendor proprietary data, and private rule-pack content.</p>
+<p>3. Define required checker behavior in terms of declarative required-input metadata, missing-input findings, provenance expectations, and status gating.</p>
+<p>4. Keep solve-required missing data separate from rule-check-required missing data.</p>
+<p>5. Require future tests to verify that missing rule-pack inputs produce <code>RULE_CHECK_BLOCKING</code> / <code>RULE_INPUTS_INCOMPLETE</code> behavior without asserting professional compliance.</p>
+<p>6. Record dependencies on schema/status/diagnostic contracts in <code>Dependencies.csv</code>.</p>
+<p>7. Leave implementation code, checker modules, schemas, and tests untouched for this setup-only run.</p></blockquote>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>For this setup run, verify:</p>
+<ul>
+<li>- the four-document kit exists;</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist and preserve lens-not-authority language;</li>
+<li>- <code>Dependencies.csv</code> validates against the v3.1 schema;</li>
+<li>- <code>_DEPENDENCIES.md</code> counts match the CSV;</li>
+<li>- <code>_STATUS.md</code> remains within the allowed setup lifecycle and reaches <code>SEMANTIC_READY</code> only after semantic and dependency artifacts exist;</li>
+<li>- no files outside the DEL-06-03 write scope were edited.</li>
+</ul></blockquote>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The setup records are the deliverable-local documents, dependency register, semantic artifacts, status history, and run records under <code>_run_records/</code>.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, declarative input binding, completeness and provenance classes, unit compatibility, RULE_INPUTS_INCOMPLETE and RULE_CHECK_BLOCKING behavior, schema/status dependencies, protected-content escalation, and surviving governed conflicts.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-06-03-required-input-completeness-checker">CLM-023 — Guidance: DEL-06-03 Required-input completeness checker</h3>
+<blockquote><h4 id="guidance-del-06-03-required-input-completeness-checker">Guidance: DEL-06-03 Required-input completeness checker</h4></blockquote>
+<h3 id="clm-024-d-41-r5-t7-pdu-055-current-declaration">CLM-024 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-03-DECL-003</code>.</p></blockquote>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The required-input completeness checker protects the boundary between an open mechanics solve and a user-defined rule-pack check. A mechanics result may exist while a rule-check result is blocked because the user has not supplied required code-specific or project-specific data.</p></blockquote>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<p>1. Missing rule-check data is a finding.</p>
+<p>2. Code-specific defaults are not invented by the public project.</p>
+<p>3. User rule packs are user-owned or private design-basis artifacts unless explicitly contributed with redistribution rights.</p>
+<p>4. The checker gates software status only; it does not certify code compliance or professional acceptability.</p>
+<p>5. Provenance is part of completeness whenever reliance on the supplied value may affect engineering judgment.</p></blockquote>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The checker should eventually be strict about required-input declarations while staying neutral about the content of private rule packs. It can say that a required value is absent, unit-incompatible, unprovenanced, or unresolved. It must not embed standards-body tables, quote protected clauses, derive protected formulas, or silently choose engineering values.</p>
+<p>Completeness should be machine-checkable from declarative metadata. If a future rule pack needs code-specific formulas or allowables, those belong in the user&#x27;s private rule pack or another lawfully redistributable source with provenance.</p></blockquote>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Strict blocking vs. user convenience</td><td>Prefer explicit blocking for missing declared required inputs. Convenience must not create hidden defaults.</td></tr>
+<tr><td>Provenance warning vs. missing input</td><td>Distinguish &quot;value absent&quot; from &quot;value present but source weak or unknown.&quot;</td></tr>
+<tr><td>Public examples vs. realistic code data</td><td>Use invented non-code examples in public artifacts. Do not approximate protected standards data.</td></tr>
+<tr><td>Software finding vs. professional judgment</td><td>Report a machine finding and keep professional acceptance outside the rule engine.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-examples">CLM-029 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>This setup artifact intentionally includes no engineering example values. Later public tests should use invented/non-code placeholder rule packs that demonstrate missing-input behavior without resembling protected standards content.</p></blockquote>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>CF-DEL-06-03-001</td><td>Exact future expression grammar/library for rule-pack declarations is not selected.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-006</td><td><code>docs/SPEC.md</code> rule-pack evaluator section</td><td>Specification External Inputs; Procedure Prerequisites</td><td>Treat grammar/library as <code>TBD</code> and do not encode executable rules in setup artifacts.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-004 OBJ-002 OBJ-005</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

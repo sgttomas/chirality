@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 253
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the explicit hash boundary and deterministic canonicalization basis, complete reproducibility metadata, missing-data findings, protected/private payload exclusion, and separation of computation identity from compliance or professional acceptance without selecting an unapproved library or container.",
+    "OUT-001": "An audit-manifest and model-identity contract covering canonical JSON model hashes, separate non-JSON asset hashes, solver and software versions, units, rule-pack checksums, provenance, warnings, and replay references is produced.",
+    "VER-001": "Validate the contract and review source parity, canonicalization and hash-boundary rules, deterministic-change behavior, asset-manifest handling, version/unit/provenance fields, protected/private data limits, professional-boundary language, and every retained TBD or governed residual."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

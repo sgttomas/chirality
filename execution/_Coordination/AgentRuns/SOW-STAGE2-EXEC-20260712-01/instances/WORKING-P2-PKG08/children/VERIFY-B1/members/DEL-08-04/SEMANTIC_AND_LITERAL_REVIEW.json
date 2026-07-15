@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 257
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves explicit units and dimensional metadata, structured diagnostics, provenance and reproducibility references, stable identifiers and ordering, mechanics/rule/human status distinctions, public/private content boundaries, and no-bypass or professional-authority constraints.",
+    "OUT-001": "A schema-first machine-readable JSON result-envelope contract for review, regression comparison, report generation, GUI consumption, automation, and governed downstream adapters is produced while additional concrete export formats remain TBD.",
+    "VER-001": "Validate the contract and review source parity, schema-first JSON baseline, retained TBD format choices, unit and diagnostic completeness, deterministic comparison identity, provenance and rule-pack references, adapter no-bypass behavior, protected-content limits, and every governed residual."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

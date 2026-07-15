@@ -1,0 +1,88 @@
+deliverable_id	exit_code	output	verdict
+DEL-05-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-01_Primitive load case engine/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 12"	PASS
+DEL-05-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-02_Load-case algebra engine/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 19"	PASS
+DEL-05-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-03_Fundamental stress recovery module/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 12"	PASS
+DEL-05-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-04_Analysis status semantics/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 10"	PASS
+DEL-05-05	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-05_Loads, Load Cases, and Stress Recovery/1_Working/DEL-05-05_Concentrated and distributed user load application/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 13"	PASS
+DEL-06-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-01_Rule-pack schema/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 25"	PASS
+DEL-06-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-02_Sandboxed unit-aware expression evaluator/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 22"	PASS
+DEL-06-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-03_Required-input completeness checker/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18"	PASS
+DEL-06-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-04_Private rule-pack lifecycle and checksum handling/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 22"	PASS
+DEL-06-05	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-05_Invented non-code example rule pack/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 20"	PASS
+DEL-07-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-01_3D viewport and centerline editor/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18"	PASS
+DEL-07-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-02_Model tree and property inspector/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 20"	PASS
+DEL-07-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-03_Material, component, and rule-pack editors/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 17"	PASS
+DEL-07-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-04_Missing-data warning and blocking UX/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 16"	PASS
+DEL-07-05	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-05_Results viewer/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 19"	PASS
+DEL-07-06	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-06_Accessibility and usability baseline/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 16"	PASS
+DEL-07-07	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-07_Solve execution UX- progress, cancellation, and diagnostics/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18"	PASS
+DEL-07-08	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-08_Design-authoring state and comparison workspace/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 29"	PASS
+DEL-08-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 18"	PASS
+DEL-08-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-02_Audit manifest and model hash/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 17"	PASS
+DEL-08-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-03_Warnings, assumptions, and provenance report section/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 15"	PASS
+DEL-08-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-04_Result export format/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 22"	PASS
+DEL-08-05	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-05_Report protected-content linter/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 13"	PASS
+DEL-08-06	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-06_State, comparison, and handoff report sections/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 29"	PASS
+DEL-09-01	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 14"	PASS
+DEL-09-02	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-02_Stress recovery benchmark suite/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 11"	PASS
+DEL-09-03	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-03_Nonlinear support regression suite/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 8"	PASS
+DEL-09-04	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-04_Validation manual skeleton/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 12"	PASS
+DEL-09-05	0	"VALID: /Users/ryan/ai-env/projects/chirality-sow-i1-closeout/projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-05_Release quality gate checklist/Dependencies.csv
+  Columns: 29 (29 required + 0 extension)
+  Data rows: 13"	PASS

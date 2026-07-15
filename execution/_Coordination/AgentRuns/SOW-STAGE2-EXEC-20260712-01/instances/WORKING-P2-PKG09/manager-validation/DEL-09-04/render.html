@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="f8d63d1c20c52a869c75bf0e139922dd1006eaeb70d43108758dcfbb3c9c5135">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>f8d63d1c20c52a869c75bf0e139922dd1006eaeb70d43108758dcfbb3c9c5135</code>.</p>
+<h1 id="scope-of-work-del-09-04">Scope of Work — DEL-09-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-09-04</code> in service of project scope [SOW-027] and package objectives [OBJ-008, OBJ-011].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A validation-manual skeleton contract separating mechanics verification, intended-use workflow validation, user rule checks, and professional reliance across the required manual outline is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-04-validation-manual-skeleton">CLM-001 — Datasheet: DEL-09-04 Validation manual skeleton</h3>
+<blockquote><h4 id="datasheet-del-09-04-validation-manual-skeleton">Datasheet: DEL-09-04 Validation manual skeleton</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-09-04-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-09-04</td></tr>
+<tr><td>Deliverable name</td><td>Validation manual skeleton</td></tr>
+<tr><td>Package ID</td><td>PKG-09</td></tr>
+<tr><td>Package name</td><td>Verification, Validation, and Quality Oracles</td></tr>
+<tr><td>Deliverable type</td><td>DOC_UPDATE</td></tr>
+<tr><td>Scope item</td><td>SOW-027</td></tr>
+<tr><td>Objectives</td><td>OBJ-008; OBJ-011</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Lifecycle artifact</td><td>Draft setup document, not an issued validation manual</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td></tr>
+<tr><td>Primary purpose</td><td>Define a validation manual structure that separates mechanics verification, workflow validation, user rule checks, and professional reliance.</td></tr>
+<tr><td>Required boundary</td><td>The manual must not certify, approve, seal, authenticate, or declare code compliance.</td></tr>
+<tr><td>Engineering authority</td><td>Human engineering judgment remains required for project-specific reliance.</td></tr>
+<tr><td>Code-specific data posture</td><td>User-supplied or private; not bundled into public validation examples.</td></tr>
+<tr><td>Benchmark source posture</td><td>Original, public-domain, or permissively licensed examples only.</td></tr>
+<tr><td>Protected-content posture</td><td>Protected standards text, tables, figures, examples, code formulas, material allowables, SIF/flexibility tables, and proprietary commercial data are excluded.</td></tr>
+<tr><td>Status vocabulary</td><td><code>MODEL_INCOMPLETE</code>, <code>MECHANICS_SOLVED</code>, <code>RULE_INPUTS_INCOMPLETE</code>, <code>USER_RULE_CHECKED</code>, <code>USER_RULE_FAILED</code>, <code>HUMAN_REVIEW_REQUIRED</code>, <code>HUMAN_APPROVED_FOR_PROJECT</code>; no automatic <code>CODE_COMPLIANT</code> status.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Source basis</td><td>Effect on the manual skeleton</td></tr>
+<tr><td>Verification vs validation distinction is mandatory.</td><td><code>docs/VALIDATION_STRATEGY.md</code> section 1; SOW-027</td><td>The outline separates mechanics benchmark evidence from intended-use workflow evidence.</td></tr>
+<tr><td>Rule checks are user-defined computations.</td><td><code>INIT.md</code>; <code>docs/TYPES.md</code>; <code>docs/SPEC.md</code> section 6</td><td>The outline treats rule-pack checks as private/user design-basis evaluation, not professional authentication.</td></tr>
+<tr><td>Professional reliance is outside software authority.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; OBJ-011</td><td>Every report-facing or validation-facing section must preserve the human review boundary.</td></tr>
+<tr><td>Public validation examples must avoid protected and proprietary sources.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/VALIDATION_STRATEGY.md</code> section 5</td><td>Source/provenance review is part of the validation manual records.</td></tr>
+<tr><td>Unit-aware and diagnostic result boundaries remain relevant.</td><td>OPS-K-UNIT-1; <code>docs/SPEC.md</code> sections 7-9</td><td>Manual sections include unit/schema verification and diagnostic/result-envelope checks where applicable.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The validation manual skeleton is organized as the following outline. Section content is intentionally skeletal until benchmark deliverables, GUI workflow evidence, report reproducibility evidence, and release gates mature.</p>
+<table><tbody>
+<tr><td>Manual section</td><td>Purpose</td><td>Initial state</td></tr>
+<tr><td>Product scope and limitations</td><td>Define what OpenPipeStress assists with and what remains outside software authority.</td><td>Skeleton required</td></tr>
+<tr><td>Solver theory summary</td><td>Summarize open mechanics at a non-protected, public level.</td><td>Skeleton required</td></tr>
+<tr><td>Unit and schema verification</td><td>Record dimensional, schema, and invalid-input checks.</td><td>Skeleton required</td></tr>
+<tr><td>Element verification</td><td>Record frame/pipe element benchmark families and evidence links.</td><td>Skeleton required</td></tr>
+<tr><td>Load and stress recovery verification</td><td>Record load application and open mechanics stress-recovery benchmark evidence.</td><td>Skeleton required</td></tr>
+<tr><td>Nonlinear support verification</td><td>Record convergence, active-state, and unresolved non-convergence evidence.</td><td>Skeleton required</td></tr>
+<tr><td>Rule-pack evaluator verification</td><td>Record invented-value evaluator tests, missing-input behavior, unit mismatch behavior, and sandbox behavior.</td><td>Skeleton required</td></tr>
+<tr><td>GUI workflow validation</td><td>Record intended-use workflow evidence and warning presentation checks.</td><td>Skeleton required</td></tr>
+<tr><td>Report reproducibility validation</td><td>Record model hash, manifest, warning inclusion, checksum stability, and protected-content lint evidence.</td><td>Skeleton required</td></tr>
+<tr><td>Known limitations and open issues</td><td>Preserve risks, TBDs, exclusions, and human acceptance requirements.</td><td>Skeleton required</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>INIT.md</code></li>
+<li>- <code>AGENTS.md</code></li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code></li>
+<li>- <code>docs/VALIDATION_STRATEGY.md</code></li>
+<li>- <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code></li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></li>
+<li>- <code>docs/_Registers/Deliverables.csv</code></li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code></li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code></li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-09-04-validation-manual-skeleton">CLM-008 — Specification: DEL-09-04 Validation manual skeleton</h3>
+<blockquote><h4 id="specification-del-09-04-validation-manual-skeleton">Specification: DEL-09-04 Validation manual skeleton</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-09-04-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines the local skeleton for a validation manual. It covers the manual structure, required boundaries, evidence categories, and acceptance checks needed to distinguish:</p>
+<ul>
+<li>- mechanics verification;</li>
+<li>- intended-use workflow validation;</li>
+<li>- user rule-pack checks;</li>
+<li>- professional reliance and human acceptance.</li>
+</ul>
+<p>This deliverable does not edit <code>docs/VALIDATION_STRATEGY.md</code>, does not create issued validation evidence, does not certify code compliance, and does not approve any piping calculation for reliance.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source basis</td><td>Acceptance hook</td></tr>
+<tr><td>VAL-REQ-001</td><td>The manual skeleton shall separate mechanics verification from workflow validation.</td><td><code>docs/VALIDATION_STRATEGY.md</code> section 1; SOW-027</td><td><code>Procedure.md</code> verification checks confirm separate sections and terminology.</td></tr>
+<tr><td>VAL-REQ-002</td><td>Mechanics verification sections shall describe software comparison against declared mechanics problems and tolerances, not code compliance.</td><td><code>docs/VALIDATION_STRATEGY.md</code> section 1; <code>docs/TYPES.md</code> section 6</td><td>Review confirms no automatic compliance wording appears.</td></tr>
+<tr><td>VAL-REQ-003</td><td>Validation sections shall evaluate intended-use workflow fitness while preserving project-specific professional judgment.</td><td><code>docs/VALIDATION_STRATEGY.md</code> section 1; OBJ-011</td><td>Review confirms professional reliance language remains human-bound.</td></tr>
+<tr><td>VAL-REQ-004</td><td>Rule-pack verification sections shall treat pass/fail results as user-supplied rule computations, not professional authentication.</td><td><code>docs/SPEC.md</code> section 6; <code>docs/TYPES.md</code> section 4</td><td>Review confirms statuses do not include automatic <code>CODE_COMPLIANT</code>.</td></tr>
+<tr><td>VAL-REQ-005</td><td>The skeleton shall include the ten manual sections listed by the validation strategy.</td><td><code>docs/VALIDATION_STRATEGY.md</code> section 3</td><td>Datasheet outline and Procedure records include all ten sections.</td></tr>
+<tr><td>VAL-REQ-006</td><td>Benchmark and validation examples referenced by the skeleton shall be original, public-domain, or permissively licensed, with protected and proprietary examples excluded.</td><td><code>docs/VALIDATION_STRATEGY.md</code> section 5; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-3</td><td>Review confirms no protected examples, code tables, or proprietary values are introduced.</td></tr>
+<tr><td>VAL-REQ-007</td><td>The skeleton shall expose missing evidence, open risks, limitations, and <code>TBD</code> entries rather than filling gaps silently.</td><td>OPS-K-AGENT-1; OPS-K-AGENT-2; <code>docs/VALIDATION_STRATEGY.md</code> section 4</td><td>Review confirms open items are visible in the manual outline.</td></tr>
+<tr><td>VAL-REQ-008</td><td>Release-gate language shall describe software maturity and validation evidence only, not engineering approval.</td><td><code>docs/VALIDATION_STRATEGY.md</code> section 4; OPS-K-AUTH-1</td><td>Review confirms no certification, sealing, approval, authentication, or code-compliance claims.</td></tr>
+<tr><td>VAL-REQ-009</td><td>Unit, schema, diagnostic, and result-envelope checks shall be represented where relevant to validation manual sections.</td><td>OPS-K-UNIT-1; <code>docs/SPEC.md</code> sections 7-9; AB-00-06</td><td>Review confirms those check families have section slots and do not overclaim.</td></tr>
+<tr><td>VAL-REQ-010</td><td>The skeleton shall preserve the public/private data boundary for rule packs, materials, component data, owner requirements, and project models.</td><td>OPS-K-IP-1 through OPS-K-IP-3; OPS-K-DATA-1 through OPS-K-DATA-3</td><td>Review confirms user/private data is described as supplied by users or lawful private sources.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering code or standard is used as source authority for this skeleton. The governing sources are the OpenPipeStress project documents and registers listed in <code>_REFERENCES.md</code>.</p>
+<p>Any future validation manual reference to an external standard, protected code, commercial benchmark, vendor data, or owner requirement is <code>TBD</code> until provenance, redistribution rights, and human/legal review are recorded.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Method</td><td>Expected result</td></tr>
+<tr><td>Four-document presence</td><td>Run <code>tools/validation/check_four_documents.sh</code> on the deliverable folder.</td><td>All four setup documents are present.</td></tr>
+<tr><td>Protected-content boundary</td><td>Manual review against <code>docs/IP_AND_DATA_BOUNDARY.md</code> and OPS-K-IP invariants.</td><td>No protected standards data, proprietary values, or commercial examples introduced.</td></tr>
+<tr><td>Professional boundary</td><td>Search for certification, approval, sealing, authentication, and compliance claims.</td><td>No software/agent claim exceeds decision-support authority.</td></tr>
+<tr><td>Manual outline coverage</td><td>Compare Datasheet Construction against <code>docs/VALIDATION_STRATEGY.md</code> section 3.</td><td>Ten manual sections are represented.</td></tr>
+<tr><td>Dependency register schema</td><td>Run <code>python3 tools/validation/validate_dependencies_schema.py</code> on <code>Dependencies.csv</code>.</td><td>v3.1 schema is valid.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>The setup artifact set for this deliverable consists of:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/*</code></li>
+</ul>
+<p>The repository-level <code>docs/VALIDATION_STRATEGY.md</code> remains read-only for this deliverable.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the ten manual sections, unit/schema/diagnostic/result-envelope evidence slots, public/private and protected-content boundaries, visible gaps and limitations, software-release versus project-reliance distinction, and human-owned professional judgment without certification or code-compliance claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-09-04-validation-manual-skeleton">CLM-015 — Procedure: DEL-09-04 Validation manual skeleton</h3>
+<blockquote><h4 id="procedure-del-09-04-validation-manual-skeleton">Procedure: DEL-09-04 Validation manual skeleton</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-09-04-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this procedure to produce and check the deliverable-local validation manual skeleton. The procedure is documentation-oriented and does not move any artifact to <code>ISSUED</code>.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Requirement</td></tr>
+<tr><td>Sealed context</td><td>Confirm <code>DEL-09-04</code>, <code>PKG-09</code>, SOW-027, OBJ-008, and OBJ-011 from <code>_CONTEXT.md</code> and the registers.</td></tr>
+<tr><td>Governing sources</td><td>Read the local references listed in <code>_REFERENCES.md</code>, especially <code>docs/VALIDATION_STRATEGY.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/TYPES.md</code>, <code>docs/SPEC.md</code>, and <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+<tr><td>Data boundary</td><td>Do not introduce protected standards data, proprietary commercial data, or private user data into public setup artifacts.</td></tr>
+<tr><td>Professional boundary</td><td>Do not certify, approve, seal, authenticate, or declare code compliance.</td></tr>
+<tr><td>Write scope</td><td>Write only inside this deliverable folder.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity and current lifecycle state in <code>_STATUS.md</code>.</p>
+<p>2. Draft the four-document kit:</p>
+<ul>
+<li>- <code>Datasheet.md</code> captures identity, source basis, boundaries, and the manual outline.</li>
+<li>- <code>Specification.md</code> captures requirements, exclusions, and acceptance checks.</li>
+<li>- <code>Guidance.md</code> captures interpretation principles, trade-offs, and prohibited overclaims.</li>
+<li>- <code>Procedure.md</code> captures production and verification steps.</li>
+</ul>
+<p>3. Check that the validation manual outline includes the ten sections listed in <code>docs/VALIDATION_STRATEGY.md</code> section 3.</p>
+<p>4. Check that mechanics verification, workflow validation, user rule checks, and professional reliance remain separate.</p>
+<p>5. Check that release-gate language describes software quality evidence only.</p>
+<p>6. Mark missing future evidence as <code>TBD</code> or as a visible open issue; do not invent benchmark results, source citations, or human rulings.</p>
+<p>7. Generate semantic matrix and lensing artifacts as setup evidence.</p>
+<p>8. Refresh dependency artifacts with conservative, evidence-cited rows.</p>
+<p>9. Run local validation checks and record warnings in <code>_run_records</code>.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Command or review method</td><td>Pass condition</td></tr>
+<tr><td>Four-document kit</td><td><code>tools/validation/check_four_documents.sh &lt;deliverable-folder&gt;</code></td><td>All four documents are present.</td></tr>
+<tr><td>Dependency schema</td><td><code>python3 tools/validation/validate_dependencies_schema.py &lt;deliverable-folder&gt;/Dependencies.csv</code></td><td>Schema validator reports <code>VALID</code>.</td></tr>
+<tr><td>Enum checks</td><td><code>python3 tools/validation/validate_enum.py &lt;enum&gt; &lt;value&gt;</code> for emitted dependency enum values</td><td>Emitted values are accepted by the enum validator.</td></tr>
+<tr><td>Status check</td><td>Inspect <code>_STATUS.md</code>.</td><td>Current State is <code>SEMANTIC_READY</code> only after setup artifacts pass.</td></tr>
+<tr><td>Protected-content check</td><td>Manual review and targeted search for protected/compliance overclaims.</td><td>No protected data or software certification/compliance claims are present.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Required records for this setup run:</p>
+<ul>
+<li>- four-document kit;</li>
+<li>- <code>_SEMANTIC.md</code>;</li>
+<li>- <code>_SEMANTIC_LENSING.md</code>;</li>
+<li>- <code>Dependencies.csv</code>;</li>
+<li>- refreshed <code>_DEPENDENCIES.md</code>;</li>
+<li>- <code>_STATUS.md</code>;</li>
+<li>- <code>_run_records/*</code> entries for the setup sequence and validations.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, ten-section outline coverage, separation of verification/validation/rule checks/professional reliance, data and provenance boundaries, unit and diagnostic evidence slots, visible TBDs, and release/professional-authority limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-09-04-validation-manual-skeleton">CLM-022 — Guidance: DEL-09-04 Validation manual skeleton</h3>
+<blockquote><h4 id="guidance-del-09-04-validation-manual-skeleton">Guidance: DEL-09-04 Validation manual skeleton</h4></blockquote>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This guidance explains how to interpret the validation manual skeleton without blurring the OpenPipeStress authority boundary. The manual is intended to organize verification and validation evidence for software quality. It is not an engineering seal, code-compliance ruling, or project-specific acceptance record.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Keep verification narrow.</td><td>Mechanics verification asks whether implemented mechanics match declared benchmark problems within declared tolerances. It does not decide whether a real project complies with a code.</td></tr>
+<tr><td>Keep validation contextual.</td><td>Validation asks whether the software workflow is fit for its intended support role, including warnings, reports, missing-data behavior, and reproducibility.</td></tr>
+<tr><td>Keep rule checks user-owned.</td><td>Rule packs use user-supplied or lawful private design-basis data. A software pass/fail result is a computation under that rule pack, not professional authentication.</td></tr>
+<tr><td>Keep professional reliance human-owned.</td><td>A competent human must accept the model, data, assumptions, rule basis, limitations, and report before project reliance.</td></tr>
+<tr><td>Keep public examples clean.</td><td>Public examples must be original, public-domain, or permissively licensed. Protected standards examples and commercial benchmark files are excluded unless rights are documented.</td></tr>
+<tr><td>Keep gaps visible.</td><td>Missing benchmark evidence, missing provenance, open risks, and unresolved source questions should remain explicit <code>TBD</code> or open issues.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The validation manual should be useful to maintainers, users, and reviewers, but each audience reads it with different authority:</p>
+<ul>
+<li>- Maintainers use it to decide whether software evidence is adequate for a release label.</li>
+<li>- Users use it to understand tested behavior, limitations, and evidence sources.</li>
+<li>- Reviewers use it to check traceability, reproducibility, and data-boundary conformance.</li>
+<li>- Professionals use it only as decision-support context, not as a substitute for judgment.</li>
+</ul>
+<p>The manual should avoid embedding protected standards text or code-derived examples. When a future benchmark needs a comparison basis, the source must be public, original, or permissively licensed. If a private licensed basis is used by a user, it belongs in private project records and should not be copied into public artifacts.</p></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred handling</td></tr>
+<tr><td>Specificity vs protected content risk</td><td>Prefer public mechanics statements and provenance over copying code language or examples.</td></tr>
+<tr><td>Automation vs human judgment</td><td>Automate repeatable checks, but keep professional acceptance as a human decision.</td></tr>
+<tr><td>Completeness vs false precision</td><td>Use <code>TBD</code> for unproduced evidence rather than implying benchmark coverage that does not exist yet.</td></tr>
+<tr><td>Release readiness vs project reliance</td><td>Release gates describe software quality only; project reliance requires separate professional review.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Acceptable example slots:</p>
+<ul>
+<li>- An original cantilever or frame mechanics benchmark with independent hand calculation notes.</li>
+<li>- An invented rule-pack test that demonstrates missing-input behavior without using protected code data.</li>
+<li>- A report reproducibility check that verifies hashes, warnings, assumptions, and rule-pack checksum fields.</li>
+</ul>
+<p>Excluded example slots:</p>
+<ul>
+<li>- Copied protected standards tables, figures, examples, equations, or commentary.</li>
+<li>- Commercial software benchmark files without documented redistribution rights.</li>
+<li>- Vendor or owner data without documented permission for public redistribution.</li>
+<li>- Any example implying software certification, engineering seal, official endorsement, or automatic code compliance.</li>
+</ul></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>No source conflict identified in setup pass.</td><td>Not applicable</td><td>Not applicable</td><td>Not applicable</td><td>Not applicable</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-027 OBJ-008 OBJ-011</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

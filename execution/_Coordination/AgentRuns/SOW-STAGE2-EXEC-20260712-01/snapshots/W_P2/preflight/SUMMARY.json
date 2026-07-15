@@ -1,0 +1,36 @@
+{
+  "accepted_piping_predecessors": 27,
+  "batch_counts": {
+    "PKG-05": 1,
+    "PKG-06": 1,
+    "PKG-07": 2,
+    "PKG-08": 2,
+    "PKG-09": 1
+  },
+  "dependency_registers": 29,
+  "dependency_rows": 498,
+  "dispatch_basis": "eaad463c0d481f6f1654e6adb5ee718f566176e9",
+  "expected_live_bindings": 261,
+  "final_verdict": "PASS",
+  "format_counts": {
+    "LEGACY_FOUR_DOC": 29
+  },
+  "lifecycle_counts": {
+    "IN_PROGRESS": 29
+  },
+  "live_sow": 0,
+  "p3_source_status_mismatches": [],
+  "package_batches": 7,
+  "package_counts": {
+    "PKG-05": 5,
+    "PKG-06": 5,
+    "PKG-07": 8,
+    "PKG-08": 6,
+    "PKG-09": 5
+  },
+  "preliminary_verdict": "PASS",
+  "present_live_bindings": 261,
+  "selected_members": 29,
+  "source_lines": 8203,
+  "wave": "P2"
+}

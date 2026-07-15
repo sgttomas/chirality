@@ -1,0 +1,29 @@
+{
+  "candidate_hashes": {
+    "clean": "d87b39a528422b33c469c14fab5861cc85fa77622ca684add6374bb0f0b78662",
+    "evidence": "321a9c47e59cd544ddb88842bec108ac418a0760023cb012dedfff3bc955d1f3",
+    "report": "fdebc50d333ef0884e35525c31a9220ae9868430af989c88d66427bec38d69fa"
+  },
+  "clean_finalization": "PASS",
+  "contamination": "NONE",
+  "deliverable_id": "DEL-07-06",
+  "drift": "NONE",
+  "duration_seconds": 0.770716,
+  "execution_substrate": "PASS",
+  "fail_closed_probes": 7,
+  "failures": 0,
+  "mappings": 35,
+  "omission": "NONE",
+  "preservation_containment": "PASS",
+  "project_content": "PASS",
+  "repairs": 0,
+  "retries": 0,
+  "schema": "PASS",
+  "sequence": 1,
+  "source_lines": 300,
+  "unknowns": [],
+  "unresolved": [],
+  "verdict": "PASS_UNCHANGED",
+  "waivers": [],
+  "wrong_ref_detection": "PASS"
+}

@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 285
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the accepted invented-only public posture, declarative non-executable boundary, no-silent-default behavior, protected-content exclusions, and professional non-reliance notice while retaining schema, grammar, evaluator, and checksum details as TBD until their owning deliverables resolve them.",
+    "OUT-001": "An invented non-code example-rule-pack contract covering demonstration-only schema shape, original artificial values, provenance and redistribution fields, required-input and check placeholders, explicit notices, and safe verification expectations is produced for the declared scope and objectives.",
+    "VER-001": "Validate the contract and review source parity, invented-value and notice requirements, provenance and redistribution fields, protected-content exclusions, professional boundaries, schema/evaluator ownership, example-path limits, and every surviving governed residual."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

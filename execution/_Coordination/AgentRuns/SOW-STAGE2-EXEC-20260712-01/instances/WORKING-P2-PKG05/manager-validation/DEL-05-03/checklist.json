@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-05-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 202,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "db8d281b46acbb8aa0c529bbf07965a54bcee424ae7c0ec217560eafddba8765"
+      },
+      "text": "The contract preserves the accepted code-neutral mechanics boundary, explicit property and unit provenance, sign and station handling, deterministic recovery evidence, and unresolved envelope, tolerance, labeling, and validation policies without creating code stress categories, allowables, compliance conclusions, or professional approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-05-03-VER-001",
+          "source_line": 269,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, resultant-to-component recovery, stations and sweeps, section/modulus interfaces, units and sign conventions, diagnostics, deterministic witnesses, protected-content boundaries, and surviving integration residuals."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-05-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-05",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "db8d281b46acbb8aa0c529bbf07965a54bcee424ae7c0ec217560eafddba8765"
+  },
+  "tool_version": "1"
+}

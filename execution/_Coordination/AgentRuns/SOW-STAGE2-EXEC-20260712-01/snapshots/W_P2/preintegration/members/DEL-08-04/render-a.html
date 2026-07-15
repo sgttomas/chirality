@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="32477279c39d33fee85454ee646f3d337b8e4ab6d0b74851a38c382f97e5a70f">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>32477279c39d33fee85454ee646f3d337b8e4ab6d0b74851a38c382f97e5a70f</code>.</p>
+<h1 id="scope-of-work-del-08-04">Scope of Work — DEL-08-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-08-04</code> in service of project scope [SOW-046] and package objectives [OBJ-007, OBJ-009].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A schema-first machine-readable JSON result-envelope contract for review, regression comparison, report generation, GUI consumption, automation, and governed downstream adapters is produced while additional concrete export formats remain TBD.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-04-result-export-format">CLM-001 — Datasheet: DEL-08-04 Result export format</h3>
+<blockquote><h4 id="datasheet-del-08-04-result-export-format">Datasheet: DEL-08-04 Result export format</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-04-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-08-04</td></tr>
+<tr><td>Deliverable name</td><td>Result export format</td></tr>
+<tr><td>Package ID</td><td>PKG-08</td></tr>
+<tr><td>Package name</td><td>Reporting, Audit, and Reproducibility</td></tr>
+<tr><td>Deliverable type</td><td>API_CONTRACT</td></tr>
+<tr><td>Scope item</td><td>SOW-046</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-007; OBJ-009</td></tr>
+<tr><td>Setup status</td><td>Draft setup artifact; not implementation</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Draft setup value</td></tr>
+<tr><td>Primary artifact family</td><td>Machine-readable result export contract for review, regression comparison, and downstream tooling.</td></tr>
+<tr><td>Baseline format</td><td>Schema-first JSON result envelopes. Source: <code>docs/_Registers/ScopeLedger.csv</code> row SOW-046; <code>_CONTEXT.md</code> Architecture Basis Injection.</td></tr>
+<tr><td>Additional export formats</td><td>TBD; this setup deliverable does not choose CSV, HDF5, neutral-file, spreadsheet, or external tool formats as final.</td></tr>
+<tr><td>Anticipated implementation artifacts</td><td><code>schemas/results.schema.yaml</code>, exporter source, and tests. Source: <code>_CONTEXT.md</code> Anticipated Artifacts; not created or edited in this setup session.</td></tr>
+<tr><td>Envelope content categories</td><td>Result identity, model/run references, unit-aware value arrays, diagnostics, provenance, analysis status, warnings, and reproducibility references. Source: <code>docs/SPEC.md</code> sections 4.5, 7, 8, and 9; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> architecture basis rows AB-00-03, AB-00-04, AB-00-06, and AB-00-07.</td></tr>
+<tr><td>Review boundary</td><td>Exports support review and comparison; they do not certify, seal, approve, authenticate, or declare code compliance. Source: <code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/TYPES.md</code> section 4.</td></tr>
+<tr><td>Unit boundary</td><td>Exported values must be unit-aware and dimensionally traceable; missing units are findings, not silent defaults. Source: <code>docs/CONTRACT.md</code> OPS-K-UNIT-1 and OPS-K-DATA-2.</td></tr>
+<tr><td>Protected-data boundary</td><td>Public export contracts must not embed protected standards text, copied standards tables, proprietary formulas, private rule-pack payloads, or private project data by default. Source: <code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-IP-3, OPS-K-PRIV-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3, 6, and 7.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- This session is setup/document production only; no schema file, exporter source, tests, docs outside this folder, or repository-level artifacts are modified.</li>
+<li>- The export baseline is a JSON result envelope contract. Any additional export format remains <code>TBD</code> until a later bounded decision or implementation brief.</li>
+<li>- Result exports must preserve the PKG-00 no-bypass baseline: adapters and downstream tools cannot bypass unit checks, diagnostics, provenance, public/private data boundaries, or professional-responsibility notices.</li>
+<li>- Mechanics results, user-rule-check results, and human review/approval states must remain distinguishable in exported data.</li>
+<li>- Exported diagnostics must carry enough structured information for review and regression triage without relying on prose-only warnings.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The future result export contract is expected to include these setup-level components:</p>
+<table><tbody>
+<tr><td>Component</td><td>Purpose</td><td>Boundary</td></tr>
+<tr><td>Result envelope header</td><td>Identifies export schema version, result set ID, model/run reference, solver version reference, and creation context.</td><td>Does not imply validation, certification, or professional acceptance.</td></tr>
+<tr><td>Unit-aware result payloads</td><td>Carries displacement, rotation, force, moment, reaction, stress, ratio, or rule-check result values with unit metadata and dimensional categories.</td><td>No hidden unit defaults; code-specific values remain user/rule-pack supplied.</td></tr>
+<tr><td>Diagnostics block</td><td>Carries structured diagnostics with code, class, severity, source, affected object, message, remediation, and provenance.</td><td>Diagnostics must not be dropped by exporters or adapters.</td></tr>
+<tr><td>Provenance and reproducibility references</td><td>Links to model hash, manifest, rule-pack checksum, source/provenance notes, and input/run identifiers where available.</td><td>References private data safely; does not copy protected or private payloads into public artifacts.</td></tr>
+<tr><td>Analysis status fields</td><td>Distinguishes <code>MECHANICS_SOLVED</code>, <code>RULE_INPUTS_INCOMPLETE</code>, <code>USER_RULE_CHECKED</code>, <code>HUMAN_REVIEW_REQUIRED</code>, and related statuses.</td><td>Must not emit automatic <code>CODE_COMPLIANT</code> or professional approval status.</td></tr>
+<tr><td>Regression comparison surface</td><td>Provides stable identifiers, deterministic ordering, and numeric/unit metadata suitable for comparison tests.</td><td>Exact comparison tolerances and tooling remain future validation work.</td></tr>
+<tr><td>Downstream tooling handoff</td><td>Provides a stable machine-readable contract for headless CLI, report generation, GUI results viewer, and adapters.</td><td>External transport and concrete non-JSON formats remain <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, architecture basis IDs, and write-scope constraints.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-08-04 for artifact and objective mapping.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row SOW-046 for export baseline acceptance notes.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> rows AB-00-03, AB-00-04, AB-00-06, AB-00-07, and OI-004 for envelope/API/no-bypass and format-TBD constraints.</li>
+<li>- <code>docs/SPEC.md</code> sections 4.5, 7, 8, 9, and 11 for deterministic results, diagnostics, reporting, validation, and acceptance semantics.</li>
+<li>- <code>docs/TYPES.md</code> sections 4 and 8 for analysis-status vocabulary and <code>Result</code> object boundary.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3, 6, and 7 for public/private data and report/export boundaries.</li>
+<li>- <code>docs/CONTRACT.md</code> for OPS-K-IP, OPS-K-DATA, OPS-K-UNIT, OPS-K-RULE, OPS-K-PRIV, OPS-K-AUTH, and OPS-K-AGENT invariants.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-08-04-result-export-format">CLM-008 — Specification: DEL-08-04 Result export format</h3>
+<blockquote><h4 id="specification-del-08-04-result-export-format">Specification: DEL-08-04 Result export format</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-04-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines the setup specification for a machine-readable result export contract. The baseline is a schema-first JSON result envelope suitable for review, regression comparison, and downstream tooling.</p>
+<p>This setup run does not implement exporter code, edit <code>schemas/results.schema.yaml</code>, create tests, choose additional export formats as final, or modify documentation outside this deliverable folder. Those remain future implementation work under bounded Type 2 briefs.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-08-04-R1</td><td>The result export baseline shall be a schema-first JSON result envelope.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-046; <code>_CONTEXT.md</code> Architecture Basis Injection</td></tr>
+<tr><td>DEL-08-04-R2</td><td>Additional concrete export formats shall remain <code>TBD</code> unless later approved and scoped; this deliverable shall not finalize CSV, spreadsheet, FEA, HDF5, or other external formats.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-004; sealed brief acceptance notes</td></tr>
+<tr><td>DEL-08-04-R3</td><td>Result envelopes shall preserve units and dimensional metadata for exported values and shall not rely on hidden unit defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/SPEC.md</code> section 8</td></tr>
+<tr><td>DEL-08-04-R4</td><td>Result envelopes shall carry or reference provenance and reproducibility metadata, including model/run identity, solver version basis, rule-pack checksum where applicable, warnings, assumptions, and source notes.</td><td><code>docs/SPEC.md</code> sections 4.5 and 8; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04</td></tr>
+<tr><td>DEL-08-04-R5</td><td>Result envelopes shall carry structured diagnostics using the PKG-00 baseline fields: code, class, severity, source, affected object, message, remediation, and provenance.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-06; <code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>DEL-08-04-R6</td><td>Exported statuses shall distinguish mechanics solved, user-rule checked, rule-input incomplete, human-review required, and human-approved record states where present.</td><td><code>docs/TYPES.md</code> sections 4 and 8; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1</td></tr>
+<tr><td>DEL-08-04-R7</td><td>Result exports shall not claim certification, sealing, professional approval, authentication, or automatic engineering code compliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/TYPES.md</code> section 4</td></tr>
+<tr><td>DEL-08-04-R8</td><td>Result exports and public examples shall not embed protected standards text, copied standards tables, proprietary formulas, private rule-pack payloads, or private project data by default.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-IP-3, OPS-K-PRIV-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3, 6, and 7</td></tr>
+<tr><td>DEL-08-04-R9</td><td>Exporters and adapters shall not bypass validation, unit checks, diagnostics, provenance handling, report controls, or public/private data-boundary checks.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-07; <code>docs/SPEC.md</code> section 1</td></tr>
+<tr><td>DEL-08-04-R10</td><td>Export ordering and identifiers should be deterministic enough for regression comparison of equivalent result sets.</td><td><code>docs/SPEC.md</code> sections 4.5 and 9; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-046</td></tr>
+<tr><td>DEL-08-04-R11</td><td>Missing solve-required, rule-check-required, provenance, or unit metadata shall be represented as diagnostics/findings, not silently filled with defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>DEL-08-04-R12</td><td>The contract shall support downstream consumption by report generation, GUI results review, headless automation, and import/export adapters without creating a bypass around governed result envelopes.</td><td><code>docs/_Registers/Deliverables.csv</code> rows DEL-07-05, DEL-08-01, DEL-10-02, DEL-10-05; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-03 and AB-00-07</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or basis</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Baseline schema technology for public result envelope contracts.</td><td>Architecture basis; schema file editing is outside this setup write scope.</td></tr>
+<tr><td>Schema-first command/query/job result envelope baseline</td><td>Result export/API boundary and no-bypass contract.</td><td>Required by PKG-00 architecture basis referenced in <code>_CONTEXT.md</code>.</td></tr>
+<tr><td>Canonical JSON / JCS-compatible canonicalization</td><td>Relevant when exported JSON payloads or manifests are hashed for reproducibility.</td><td>Hash implementation belongs primarily to DEL-08-02 / future implementation; this deliverable shall preserve compatible references.</td></tr>
+<tr><td>OpenPipeStress invariant catalog</td><td>IP, data, units, rule-pack, privacy, professional-responsibility, and agent-boundary constraints.</td><td>Binding project governance draft.</td></tr>
+</tbody></table>
+<p>No protected engineering code, standard clause text, standards table, commercial example, or proprietary rule content is used as an authority in this setup artifact.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Future implementation acceptance should include the following checks:</p>
+<table><tbody>
+<tr><td>Verification ID</td><td>Check</td><td>Expected result</td></tr>
+<tr><td>V-1</td><td>Validate a representative JSON result envelope against the result schema.</td><td>Schema validation passes and required envelope fields are present.</td></tr>
+<tr><td>V-2</td><td>Export a result set with unit-bearing displacements, rotations, forces, moments, reactions, stresses, and ratios.</td><td>Each value family carries explicit unit/dimensional metadata or a blocking diagnostic.</td></tr>
+<tr><td>V-3</td><td>Export a run with missing rule-pack input or missing provenance.</td><td>Export includes structured diagnostics/findings instead of silent defaults.</td></tr>
+<tr><td>V-4</td><td>Export a run with rule-pack references.</td><td>Envelope records rule-pack identity/version/checksum/source status without copying private formulas or protected values.</td></tr>
+<tr><td>V-5</td><td>Re-export an equivalent result set.</td><td>Stable identifiers and ordering allow deterministic regression comparison.</td></tr>
+<tr><td>V-6</td><td>Route the export through an adapter or downstream tool.</td><td>Unit, provenance, diagnostics, and professional-boundary fields are preserved.</td></tr>
+<tr><td>V-7</td><td>Scan public fixtures/templates for protected content and approval/compliance claims.</td><td>Protected/private data and certification/compliance claims are absent or blocked.</td></tr>
+<tr><td>V-8</td><td>Generate a report or GUI result view from the export.</td><td>Consumer can distinguish mechanics, user-rule, diagnostics, and human-review-required statuses.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>This setup deliverable produces:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul>
+<p>Future implementation artifacts anticipated by the register are <code>schemas/results.schema.yaml</code>, exporter source, and tests; they are not created or edited in this setup session.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves explicit units and dimensional metadata, structured diagnostics, provenance and reproducibility references, stable identifiers and ordering, mechanics/rule/human status distinctions, public/private content boundaries, and no-bypass or professional-authority constraints.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-08-04-result-export-format">CLM-015 — Procedure: DEL-08-04 Result export format</h3>
+<blockquote><h4 id="procedure-del-08-04-result-export-format">Procedure: DEL-08-04 Result export format</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-04-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to maintain the setup artifact for the result export format and how a later implementation brief should convert the setup specification into a governed result export contract.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Why it matters</td><td>Source</td></tr>
+<tr><td>Deliverable identity and scope for DEL-08-04</td><td>Keeps the work bounded to SOW-046, OBJ-007, and OBJ-009.</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>PKG-00 result-envelope/API no-bypass architecture basis</td><td>Establishes schema-first envelopes, diagnostics, unit/provenance boundaries, and adapter no-bypass constraints.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-03, AB-00-06, AB-00-07</td></tr>
+<tr><td>Unit system and dimensional-analysis core contract</td><td>Result exports need unit-aware values and dimensional checks.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; upstream DEL-02-02</td></tr>
+<tr><td>Canonical domain model and result object semantics</td><td>Result exports need stable model/result references and object vocabulary.</td><td><code>docs/TYPES.md</code> section 8; upstream DEL-02-01</td></tr>
+<tr><td>Audit manifest and model hash</td><td>Reproducible exports should carry or reference run/model manifest and hash metadata.</td><td>DEL-08-02; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-039</td></tr>
+<tr><td>Solver/load/stress result producers</td><td>Export format must consume mechanics outputs without redefining solver behavior.</td><td>PKG-04 and PKG-05 deliverables</td></tr>
+<tr><td>Rule-pack lifecycle and checksum handling</td><td>Rule-check exports need rule-pack identity/version/checksum without copying private/protected payloads.</td><td>DEL-06-04; <code>docs/SPEC.md</code> sections 6 and 8</td></tr>
+<tr><td>Headless runner and adapter surfaces</td><td>Downstream automation and adapter workflows need the governed envelope contract.</td><td>DEL-10-02 and DEL-10-05</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the current brief is limited to DEL-08-04 and does not authorize edits to <code>schemas/results.schema.yaml</code>, exporter source, tests, or documentation outside this deliverable folder.</p>
+<p>2. Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/IP_AND_DATA_BOUNDARY.md</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, and the register rows for DEL-08-04 and SOW-046.</p>
+<p>3. Treat the baseline export as a schema-first JSON result envelope. Record additional formats as <code>TBD</code> unless a later human-approved scope change chooses them.</p>
+<p>4. Define future envelope responsibilities at setup level: result identity, model/run references, unit-aware values, diagnostics, provenance, analysis status, warnings, and reproducibility references.</p>
+<p>5. Keep mechanics results, user-rule-check outcomes, missing-data findings, and human review/approval records separate in terminology and future fields.</p>
+<p>6. Confirm that no public artifact embeds protected standards text, standards tables, proprietary formulas, private rule-pack payloads, private project data, or automatic compliance/approval claims.</p>
+<p>7. Record dependency edges only when source documents state an explicit anchor, prerequisite, interface, or handoff. Do not add structural adjacency or coordination-only edges.</p>
+<p>8. For a later implementation brief, create or edit schemas/exporter/tests only inside that later brief&#x27;s write scope and run the applicable schema, unit, diagnostics, protected-content, and regression gates.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Four-document setup kit</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> exist with stable default sections.</td></tr>
+<tr><td>Scope boundary</td><td>No files outside <code>execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-04_Result export format/**</code> are edited.</td></tr>
+<tr><td>Format boundary</td><td>JSON result envelope baseline is stated; additional export formats remain <code>TBD</code>.</td></tr>
+<tr><td>Unit/provenance/diagnostic boundary</td><td>Unit-aware values, provenance, diagnostics, and no-bypass adapter constraints are visible in the specification.</td></tr>
+<tr><td>Protected/private boundary</td><td>No protected standards text, copied tables, proprietary formulas, private rule-pack payloads, private project data, or certification/compliance claims are introduced.</td></tr>
+<tr><td>Dependency register</td><td><code>Dependencies.csv</code> validates against v3.1 schema and <code>_DEPENDENCIES.md</code> counts match the CSV.</td></tr>
+<tr><td>Lifecycle state</td><td><code>_STATUS.md</code> is <code>SEMANTIC_READY</code> only after the four docs, semantic matrix, lensing register, and dependency extraction setup gates pass.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The setup run should leave these records in the deliverable folder:</p>
+<ul>
+<li>- Four production documents: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></li>
+<li>- Semantic artifacts: <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code></li>
+<li>- Dependency artifacts: <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code></li>
+<li>- Run records: <code>_run_records/TASK_RUN_2026-04-30_*.md</code></li>
+<li>- Lifecycle status: <code>_STATUS.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, schema-first JSON baseline, retained TBD format choices, unit and diagnostic completeness, deterministic comparison identity, provenance and rule-pack references, adapter no-bypass behavior, protected-content limits, and every governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-08-04-result-export-format">CLM-022 — Guidance: DEL-08-04 Result export format</h3>
+<blockquote><h4 id="guidance-del-08-04-result-export-format">Guidance: DEL-08-04 Result export format</h4></blockquote>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The result export format exists to make solver and rule-check outputs reviewable, reproducible, comparable, and consumable by downstream tools without losing the project boundaries that make OpenPipeStress code-neutral. The setup baseline is a schema-first JSON result envelope; other export formats remain <code>TBD</code>.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Preserve the result envelope as the governed contract. Downstream tools may consume exports, but they should not bypass unit checks, diagnostics, provenance, public/private data handling, or report controls.</li>
+<li>- Keep the export format review-oriented. A result export can support professional review, but the software must not claim certification, sealing, approval, authentication, or automatic code compliance.</li>
+<li>- Treat units as data, not context. Every exported numeric result needs explicit unit and dimensional meaning, or a diagnostic explaining why it is incomplete.</li>
+<li>- Keep diagnostics structured. Review and regression tools need stable diagnostic codes/classes/severities and affected-object references, not prose-only warnings.</li>
+<li>- Carry reproducibility references without copying private payloads. Model hashes, manifest IDs, solver versions, and rule-pack checksums are appropriate references; protected standards text, proprietary formulas, private rule-pack internals, and owner data are not public export payloads by default.</li>
+<li>- Prefer deterministic ordering and stable identifiers for regression comparison.</li>
+<li>- Use <code>TBD</code> for unresolved format decisions. Do not imply that a spreadsheet, CSV, FEA handoff, or other external export has been selected.</li>
+</ul></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Schema-first baseline</td><td>Start from JSON result envelopes because they align with the architecture basis and can be validated before exporter code exists.</td></tr>
+<tr><td>Results vs reports</td><td>Exports are machine-readable result contracts; reports are human-facing review artifacts. Reports may consume exports, but report wording and protected-content controls remain their own workflow.</td></tr>
+<tr><td>Mechanics vs rule checks</td><td>Mechanics result values and user-rule-check outcomes should remain separately identifiable. A user-rule check is not professional approval.</td></tr>
+<tr><td>Diagnostics</td><td>Export consumers should be able to filter by diagnostic class, severity, source, affected object, remediation, and provenance.</td></tr>
+<tr><td>Regression comparison</td><td>Stable object identifiers, result-station identifiers, load-case/combination references, deterministic ordering, and unit metadata are more important than display formatting.</td></tr>
+<tr><td>Interoperability</td><td>Downstream tools need a governed envelope first. Concrete external formats and transport protocols are later decisions.</td></tr>
+<tr><td>Privacy and protected data</td><td>Public fixtures should use invented or permissively licensed data only. User-private exports remain user controlled and should not become public defaults.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Setup position</td></tr>
+<tr><td>Single JSON envelope vs many early formats</td><td>Use the JSON envelope as the baseline. Additional formats remain <code>TBD</code> to avoid premature commitments and governance bypasses.</td></tr>
+<tr><td>Verbose metadata vs compact exports</td><td>Preserve units, diagnostics, provenance, and status semantics even when compactness is desirable. Reviewability takes precedence over minimal payload size.</td></tr>
+<tr><td>Human-readable labels vs stable machine keys</td><td>Include stable identifiers for comparison and downstream tooling. Human-readable labels may supplement them but should not be the only references.</td></tr>
+<tr><td>Private rule-pack detail vs reproducibility references</td><td>Export identifiers, versions, checksums, source notes, and redistribution status; do not copy private formulas or protected values into public artifacts.</td></tr>
+<tr><td>Report convenience vs professional boundary</td><td>Avoid report/export wording that could be read as approval or compliance. Human review remains external to the software result.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The following are setup-level examples of export concerns, not final schema definitions:</p>
+<table><tbody>
+<tr><td>Concern</td><td>Acceptable setup direction</td><td>Not acceptable in public baseline</td></tr>
+<tr><td>A displacement result</td><td>Unit-aware value with node/result reference, load-case or combination basis, and source run metadata.</td><td>Numeric value without unit metadata or affected-object reference.</td></tr>
+<tr><td>A rule-check outcome</td><td>User-rule-check result with rule-pack ID/version/checksum and status distinguishing incomplete inputs, checked, or failed.</td><td>Automatic <code>CODE_COMPLIANT</code> status or copied protected formula text.</td></tr>
+<tr><td>A warning</td><td>Structured diagnostic with class, severity, source, affected object, message, remediation, and provenance.</td><td>Prose-only warning that cannot be traced or compared.</td></tr>
+<tr><td>A downstream export</td><td>Adapter consumes governed JSON envelope and preserves units/provenance/diagnostics.</td><td>Adapter-specific shortcut that drops diagnostics or private-data handling.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No unresolved source conflicts were found during this setup run. Open format choices remain <code>TBD</code> by scope, not a source conflict.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-046 OBJ-007 OBJ-009</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

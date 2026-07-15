@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 212,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d28109b059328ce938bba9a286e6ffbe014b80dcad4a2949dafef313ea3c3c23"
+      },
+      "text": "The contract preserves public/original/permissive provenance, unit and sign conventions, diagnostics and governed result-envelope evidence, DEC-026's measured analytic relative seed, explicit unmeasured per-kind relative-plus-absolute TBDs, and separation from code compliance, fatigue acceptance, certification, or professional approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-02-VER-001",
+          "source_line": 292,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, all five behavior slots, provenance and protected-content limits, units and dimensional checks, diagnostic/result-envelope preservation, DEC-026 tolerance limits without generalization, and professional-authority boundaries."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d28109b059328ce938bba9a286e6ffbe014b80dcad4a2949dafef313ea3c3c23"
+  },
+  "tool_version": "1"
+}

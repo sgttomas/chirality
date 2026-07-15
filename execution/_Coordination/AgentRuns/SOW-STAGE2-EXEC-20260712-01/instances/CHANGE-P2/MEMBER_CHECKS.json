@@ -1,0 +1,268 @@
+{
+  "members": 29,
+  "results": [
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-05-01",
+      "finalization": "PASS",
+      "live_sha256": "248beedc9e4dfd0febbae4a8e03ac2507946ee480627251d0ab74a02f3280acf",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-05-02",
+      "finalization": "PASS",
+      "live_sha256": "ec94d8e446bf25760405893229bd91a773992c8ece3cb271d539292141fda783",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-05-03",
+      "finalization": "PASS",
+      "live_sha256": "db8d281b46acbb8aa0c529bbf07965a54bcee424ae7c0ec217560eafddba8765",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-05-04",
+      "finalization": "PASS",
+      "live_sha256": "d844393abd5bdd7b509f0839671339cbe89e600c75db91111567efa4eeb288b7",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-05-05",
+      "finalization": "PASS",
+      "live_sha256": "3b0003c3fc44f4334d64a766b2afc4f6baf3d594a6fde9196009ff843d4c0c65",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-06-01",
+      "finalization": "PASS",
+      "live_sha256": "2dabc6c8337678fd2cb829fa73e2b5550a692db0045de3d5779fae6208872bb3",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-06-02",
+      "finalization": "PASS",
+      "live_sha256": "b439df6dab8cadf7c3784589becb85bf75d32d26e3f7f71446b6cc7417d8adc9",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-06-03",
+      "finalization": "PASS",
+      "live_sha256": "9404636c5eb9becf8fa2c5c3df12aa7d32e276783664b9dfa4970f3f5f651e1f",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-06-04",
+      "finalization": "PASS",
+      "live_sha256": "58ab8ae2e0a65bfc816c9f3d5ba775381eac2ca86fa74635b0609cfbf2d865a5",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-06-05",
+      "finalization": "PASS",
+      "live_sha256": "3b05da1fc58d3bb2023ca707ff7325ca390f8c6106765bec8e22c9f17a14aad8",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-01",
+      "finalization": "PASS",
+      "live_sha256": "09a473cad3af6b06ae6e1ba1d5157d8ea8ccef82b3a9a301ac8adc2bc5557dd8",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-02",
+      "finalization": "PASS",
+      "live_sha256": "112fee6a944b72a6450994fbea3aa6b2561705cf2430303dd900d10238378c5d",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-03",
+      "finalization": "PASS",
+      "live_sha256": "3dff5e819cad1b64162ca50d2d676ade5812d50ded13043c5d1bb5b9d6879b7c",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-04",
+      "finalization": "PASS",
+      "live_sha256": "f9a693fad005c503c30cece6298353e7f273c0e39dd14677b589ca9424631f10",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-05",
+      "finalization": "PASS",
+      "live_sha256": "5144c44383fb01ae19ae0d9180d604ef171e8bb94b57bf53d37ef9fb9f7d5cdd",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-06",
+      "finalization": "PASS",
+      "live_sha256": "d87b39a528422b33c469c14fab5861cc85fa77622ca684add6374bb0f0b78662",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-07",
+      "finalization": "PASS",
+      "live_sha256": "614be909dd2ee17f5c2f2ba2c1a1608679bb17edaeaf767d1acd266061a16a3a",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-07-08",
+      "finalization": "PASS",
+      "live_sha256": "ef74178472dca39a81131f059aca5beaf700b9e1e23f7e8c89da12290aff81d7",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-08-01",
+      "finalization": "PASS",
+      "live_sha256": "ae40e3b7aa1b3f45c00be3a69abe6f75a16903e12cccf7890b9fd092eed57625",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-08-02",
+      "finalization": "PASS",
+      "live_sha256": "a9787c24286a41a34652e4be9a0a322ed4ee75006160ec0312de39a23b10348a",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-08-03",
+      "finalization": "PASS",
+      "live_sha256": "00ece42387a622e14b7435f1f2edb9126daef8c3edff4fdb919e9f54844d4d30",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-08-04",
+      "finalization": "PASS",
+      "live_sha256": "32477279c39d33fee85454ee646f3d337b8e4ab6d0b74851a38c382f97e5a70f",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-08-05",
+      "finalization": "PASS",
+      "live_sha256": "1461a2ad7e2ff15d0422d5a4a9c1c327b23cfe516aac06a15f8f3e261745a987",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-08-06",
+      "finalization": "PASS",
+      "live_sha256": "22f2934acd6c24463131f24b58eb6b91773b0b5deb9bf15f47d9d365c0e0e4a9",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-09-01",
+      "finalization": "PASS",
+      "live_sha256": "fe691b3f75fa90c28619ffb61f1d4bdabe15640c54ae355abf5f92327c836908",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-09-02",
+      "finalization": "PASS",
+      "live_sha256": "d28109b059328ce938bba9a286e6ffbe014b80dcad4a2949dafef313ea3c3c23",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-09-03",
+      "finalization": "PASS",
+      "live_sha256": "496fdb82e3c7b026d19c828dab0b864ff9bbfaee0953e205b06dd2fc80dcea40",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-09-04",
+      "finalization": "PASS",
+      "live_sha256": "f8d63d1c20c52a869c75bf0e139922dd1006eaeb70d43108758dcfbb3c9c5135",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    },
+    {
+      "checklist": "PASS",
+      "deliverable_id": "DEL-09-05",
+      "finalization": "PASS",
+      "live_sha256": "e398d741a5c51ff5ab52f525b235fb92c54a34ae0455fe59dbe787ba0a459f6b",
+      "mapping": "PASS",
+      "parity": "PASS",
+      "validation": "PASS"
+    }
+  ],
+  "schema": "chirality-change-member-checks/v1",
+  "verdict": "PASS"
+}

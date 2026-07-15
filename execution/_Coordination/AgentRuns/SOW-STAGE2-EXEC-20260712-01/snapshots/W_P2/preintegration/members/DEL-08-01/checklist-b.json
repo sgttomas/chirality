@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 210,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ae40e3b7aa1b3f45c00be3a69abe6f75a16903e12cccf7890b9fd092eed57625"
+      },
+      "text": "The contract preserves report content and status boundaries, explicit missing-data and diagnostic findings, units and provenance, safe rule-pack metadata, protected-content limits, reproducibility requirements, and competent-human-review notices without inventing unresolved renderer or schema choices.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-01-VER-001",
+          "source_line": 312,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, report-content completeness, mechanics and rule-check state separation, unit/provenance visibility, protected-content and professional-authority boundaries, deterministic-output requirements, and every retained TBD or governed residual."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "ae40e3b7aa1b3f45c00be3a69abe6f75a16903e12cccf7890b9fd092eed57625"
+  },
+  "tool_version": "1"
+}

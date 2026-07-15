@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 218,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "3b05da1fc58d3bb2023ca707ff7325ca390f8c6106765bec8e22c9f17a14aad8"
+      },
+      "text": "The contract preserves the accepted invented-only public posture, declarative non-executable boundary, no-silent-default behavior, protected-content exclusions, and professional non-reliance notice while retaining schema, grammar, evaluator, and checksum details as TBD until their owning deliverables resolve them.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-05-VER-001",
+          "source_line": 303,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, invented-value and notice requirements, provenance and redistribution fields, protected-content exclusions, professional boundaries, schema/evaluator ownership, example-path limits, and every surviving governed residual."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "3b05da1fc58d3bb2023ca707ff7325ca390f8c6106765bec8e22c9f17a14aad8"
+  },
+  "tool_version": "1"
+}

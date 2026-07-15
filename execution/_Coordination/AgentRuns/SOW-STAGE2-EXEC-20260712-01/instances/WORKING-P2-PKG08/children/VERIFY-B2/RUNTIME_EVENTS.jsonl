@@ -1,0 +1,25 @@
+{"kind": "batch_start", "member_count": 1, "native_context_occupancy": "unavailable", "time_utc": "2026-07-14T23:17:41.574693Z"}
+{"authority_reread": true, "frozen_row_reread": true, "kind": "member_start", "member": "DEL-08-06", "native_context_occupancy": "unavailable", "sequence": 1, "time_utc": "2026-07-14T23:17:41.575092Z"}
+{"duration_seconds": 0.095562, "exit_code": 0, "kind": "command", "label": "convert_repro1", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:41.721885Z"}
+{"duration_seconds": 0.039432, "exit_code": 0, "kind": "command", "label": "finalize_repro1", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:41.762888Z"}
+{"duration_seconds": 0.040111, "exit_code": 0, "kind": "command", "label": "convert_repro2", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:41.806706Z"}
+{"duration_seconds": 0.041307, "exit_code": 0, "kind": "command", "label": "finalize_repro2", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:41.848477Z"}
+{"duration_seconds": 0.034199, "exit_code": 0, "kind": "command", "label": "validate_evidence_authorized", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:41.883356Z"}
+{"duration_seconds": 0.036298, "exit_code": 0, "kind": "command", "label": "validate_clean", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:41.920046Z"}
+{"duration_seconds": 0.039539, "exit_code": 0, "kind": "command", "label": "map_1", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:41.960762Z"}
+{"duration_seconds": 0.039849, "exit_code": 0, "kind": "command", "label": "parity_1", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.000931Z"}
+{"duration_seconds": 0.04871, "exit_code": 0, "kind": "command", "label": "map_2", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.049994Z"}
+{"duration_seconds": 0.039711, "exit_code": 0, "kind": "command", "label": "parity_2", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.091056Z"}
+{"duration_seconds": 0.036415, "exit_code": 0, "kind": "command", "label": "checklist_1", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.128678Z"}
+{"duration_seconds": 0.038839, "exit_code": 0, "kind": "command", "label": "render_1", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.167832Z"}
+{"duration_seconds": 0.034534, "exit_code": 0, "kind": "command", "label": "checklist_2", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.202651Z"}
+{"duration_seconds": 0.037231, "exit_code": 0, "kind": "command", "label": "render_2", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.240173Z"}
+{"duration_seconds": 0.035364, "exit_code": 1, "kind": "command", "label": "negative_1_map_mutated_clean", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.276593Z"}
+{"duration_seconds": 0.04059, "exit_code": 1, "kind": "command", "label": "negative_2_parity_mutated_clean", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.317503Z"}
+{"duration_seconds": 0.035509, "exit_code": 1, "kind": "command", "label": "negative_3_checklist_evidence", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.354805Z"}
+{"duration_seconds": 0.033194, "exit_code": 1, "kind": "command", "label": "negative_4_render_evidence", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.388370Z"}
+{"duration_seconds": 0.03101, "exit_code": 1, "kind": "command", "label": "negative_5_partial_input", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.419952Z"}
+{"duration_seconds": 0.033057, "exit_code": 1, "kind": "command", "label": "negative_6_unauthorized_dual", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.453412Z"}
+{"duration_seconds": 0.033558, "exit_code": 1, "kind": "command", "label": "negative_7_wrong_authority_checklist", "member": "DEL-08-06", "time_utc": "2026-07-14T23:17:42.487389Z"}
+{"contamination": false, "drift": false, "duration_seconds": 0.912987, "failures": 0, "kind": "member_end", "mappings": 33, "member": "DEL-08-06", "retries": 0, "sequence": 1, "source_lines": 301, "time_utc": "2026-07-14T23:17:42.488181Z", "verdict": "PASS_UNCHANGED"}
+{"duration_seconds": 0.933987, "failures": 0, "kind": "batch_end", "members_complete": 1, "retries": 0, "time_utc": "2026-07-14T23:17:42.488220Z", "verdict": "PASS_UNCHANGED"}

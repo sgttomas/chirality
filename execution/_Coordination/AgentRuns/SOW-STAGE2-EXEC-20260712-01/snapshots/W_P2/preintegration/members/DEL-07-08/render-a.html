@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="ef74178472dca39a81131f059aca5beaf700b9e1e23f7e8c89da12290aff81d7">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-08</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>ef74178472dca39a81131f059aca5beaf700b9e1e23f7e8c89da12290aff81d7</code>.</p>
+<h1 id="scope-of-work-del-07-08">Scope of Work — DEL-07-08</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-07-08</code> in service of project scope [SOW-076] and package objectives [OBJ-015, OBJ-016].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A design-authoring and comparison workspace contract covering design knowledge and constraints, operation/diff review, state/run browsing, comparison tables and overlays, upstream-contract use, and application-service mutation boundaries is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-08-design-authoring-state-and-comparison-workspace">CLM-001 — Datasheet: DEL-07-08 Design-authoring state and comparison workspace</h3>
+<blockquote><h4 id="datasheet-del-07-08-design-authoring-state-and-comparison-workspace">Datasheet: DEL-07-08 Design-authoring state and comparison workspace</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-08-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-08</td><td><code>_CONTEXT.md</code> / Context header</td></tr>
+<tr><td>Name</td><td>Design-authoring state and comparison workspace</td><td><code>_CONTEXT.md</code> / Context header</td></tr>
+<tr><td>Package</td><td>PKG-07 Graphical User Interface and Engineering Workflow</td><td><code>_CONTEXT.md</code> / Package Reference</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td><td><code>_CONTEXT.md</code> / Type</td></tr>
+<tr><td>Scope item</td><td>SOW-076</td><td><code>_CONTEXT.md</code> / Scope Coverage</td></tr>
+<tr><td>Objectives</td><td>OBJ-015, OBJ-016</td><td><code>_CONTEXT.md</code> / Objective Support</td></tr>
+<tr><td>Context envelope</td><td>L</td><td><code>_CONTEXT.md</code> / Context Envelope</td></tr>
+<tr><td>Context risk</td><td>WATCH; confirm scope and split if it expands</td><td><code>_CONTEXT.md</code> / Context Budget QA</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current value</td></tr>
+<tr><td>Intended GUI surfaces</td><td>Design knowledge panel; operation diff review; state/run browser; comparison overlays. Source: <code>_CONTEXT.md</code> / Anticipated Artifacts.</td></tr>
+<tr><td>Scope statement</td><td>The GUI shall support design-authoring and comparison workflows, including design knowledge panels, constraint/warning panels, state/run browsers, comparison tables, and graphical comparison overlays. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / SOW-076.</td></tr>
+<tr><td>GUI-facing stack basis</td><td>Rust core/application services, Tauri 2 desktop shell where GUI-facing, TypeScript/React/Vite GUI where GUI-facing, and Three.js viewport where 3D viewport-facing. Source: <code>_CONTEXT.md</code> / Architecture Basis Injection.</td></tr>
+<tr><td>Exact dependency versions</td><td>TBD. Source: <code>_CONTEXT.md</code> / Architecture Basis Injection / Still TBD.</td></tr>
+<tr><td>Mutation boundary</td><td>GUI mutations route through application-service commands; durable project state remains separated from transient session, viewport, selection, and job-progress state. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-05.</td></tr>
+<tr><td>Diagnostic boundary</td><td>Diagnostics and result envelopes carry code, class, severity, source, affected object, message, remediation, and provenance; outputs must not claim certification or compliance. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-06.</td></tr>
+<tr><td>Data boundary</td><td>Missing solve-required or rule-check-required values are explicit findings and not silent defaults. Source: <code>docs/CONTRACT.md</code> / Invariant index.</td></tr>
+<tr><td>Professional boundary</td><td>Software and agents must not claim to certify, seal, approve, authenticate, or declare engineering code compliance for reliance. Source: <code>docs/CONTRACT.md</code> / Invariant index.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Upstream dependency mirror</td><td><code>Dependencies.csv</code> contains 21 rows; all are ACTIVE approved DAG-006 mirror rows. Source: <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> / Generated Dependency Register.</td></tr>
+<tr><td>Architecture basis dependencies</td><td>AB-00-01, AB-00-02, AB-00-03, AB-00-05, AB-00-06, AB-00-07, and AB-00-08 apply as dispatchable constraints. Source: <code>_CONTEXT.md</code> / Architecture Basis Injection.</td></tr>
+<tr><td>GUI predecessor dependencies</td><td>DEL-07-01, DEL-07-02, DEL-07-04, and DEL-07-05 are declared upstream GUI foundations. Source: <code>Dependencies.csv</code> rows DAG-002-E0840 through DAG-002-E0843.</td></tr>
+<tr><td>Design/constraint dependencies</td><td>DEL-13-01, DEL-13-03, and DEL-13-04 are declared upstream design-knowledge, constraint-validation, and transformation inputs. Source: <code>Dependencies.csv</code> rows DAG-002-E0844 through DAG-002-E0846.</td></tr>
+<tr><td>State/comparison dependencies</td><td>DEL-14-01, DEL-14-03, DEL-14-04, and DEL-14-05 are declared upstream state and comparison inputs. Source: <code>Dependencies.csv</code> rows DAG-002-E0847 through DAG-002-E0850.</td></tr>
+<tr><td>Operation workflow dependencies</td><td>DEL-16-01, DEL-16-02, and DEL-16-03 are declared upstream operation schema, diff preview, and audit inputs. Source: <code>Dependencies.csv</code> rows DAG-002-E0851 through DAG-002-E0853.</td></tr>
+<tr><td>Frontend implementation evidence</td><td>TBD; this folder contains setup documents only at this workflow stage. Source: local folder inspection.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This deliverable is a GUI workflow slice. The expected construction surface is a workspace that composes design knowledge, warnings, operation/diff review, state/run browsing, comparison tables, and graphical comparison overlays without owning the backend schemas or engines that produce those records.</p>
+<p>The workspace must consume upstream contracts rather than invent placeholder semantics. The approved DAG-006 edge review states that DEL-07-08 should consume existing GUI foundations plus initial design, transform, comparison, and operation contracts. Source: <code>execution/_DAG/DAG-006/DAG-002_EdgeDispositionReview.md</code> / DAG2-RD-015.</p>
+<p>Implementation details not supported by local evidence remain TBD, including concrete component hierarchy, state-management library, route names, data-fetching library, visual encoding rules, keyboard shortcuts, and Playwright coverage thresholds.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Use in this datasheet</td></tr>
+<tr><td><code>_CONTEXT.md</code></td><td>Deliverable identity, scope, objectives, package, architecture basis, context budget.</td></tr>
+<tr><td><code>_REFERENCES.md</code></td><td>Local reference index.</td></tr>
+<tr><td><code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code></td><td>Approved local DAG-002 mirror and dependency evidence surface.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>SOW-076, OBJ-015, OBJ-016, PKG-07 deliverable row, architecture-basis constraints.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Invariants for data boundary, no silent defaults, professional boundary, and agent drafting limits.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>GUI warning classes, application-service boundaries, persistence/hash boundaries, result/export/report boundary constraints.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>UX_UI_SLICE type and relevant vocabulary for viewport sessions, diagnostics, states, reports, and professional boundary.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data and protected-content boundary.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-07-08-design-authoring-state-and-comparison-workspace">CLM-008 — Specification: DEL-07-08 Design-authoring state and comparison workspace</h3>
+<blockquote><h4 id="specification-del-07-08-design-authoring-state-and-comparison-workspace">Specification: DEL-07-08 Design-authoring state and comparison workspace</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-08-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-07-08 covers the GUI workspace slice for design-authoring and comparison workflows. The scope includes design knowledge panels, constraint/warning panels, state/run browsers, comparison tables, operation/diff review, and graphical comparison overlays. Source: <code>_CONTEXT.md</code> / Description and Anticipated Artifacts; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / SOW-076.</p>
+<p>This deliverable does not own the backend contracts for design knowledge, constraint validation, physical-to-analytical transformation, immutable model states, analysis runs, comparison engines, structured model operations, operation validation, or operation audit trails. Those are declared upstream dependencies in <code>Dependencies.csv</code> and are consumed by this GUI workspace.</p>
+<p>This deliverable must not silently supply missing code data, protected engineering values, owner requirements, rule-pack values, or professional acceptance states. Source: <code>docs/CONTRACT.md</code> / OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-AUTH-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> / Public repository must not contain.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-07-08-001</td><td>The workspace shall support design-authoring and comparison workflows, including design knowledge panels, constraint/warning panels, state/run browsers, comparison tables, and graphical comparison overlays.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / SOW-076</td></tr>
+<tr><td>REQ-07-08-002</td><td>The workspace shall consume existing GUI, design, transform, comparison, and operation contracts rather than inventing placeholder semantics.</td><td><code>execution/_DAG/DAG-006/DAG-002_EdgeDispositionReview.md</code> / DAG2-RD-015</td></tr>
+<tr><td>REQ-07-08-003</td><td>GUI-originated mutations shall route through application-service command intents and shall not directly mutate persisted project payloads.</td><td><code>docs/SPEC.md</code> / GUI requirements; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-05</td></tr>
+<tr><td>REQ-07-08-004</td><td>The operation/diff review surface shall preserve the distinction between proposed, validated, accepted, and audited model operations; exact UI state labels are TBD pending upstream operation contracts.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / SOW-069, SOW-070; <code>Dependencies.csv</code> rows DAG-002-E0851 through DAG-002-E0853</td></tr>
+<tr><td>REQ-07-08-005</td><td>The state/run browser shall treat immutable model states, analysis runs, and deterministic comparisons as first-class review records; exact data contract shape is inherited from upstream PKG-14 deliverables.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / SOW-071 through SOW-073; <code>Dependencies.csv</code> rows DAG-002-E0847 through DAG-002-E0850</td></tr>
+<tr><td>REQ-07-08-006</td><td>Constraint and warning presentation shall preserve structured diagnostic fields and the project warning classes where available.</td><td><code>docs/SPEC.md</code> / GUI requirements; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-06</td></tr>
+<tr><td>REQ-07-08-007</td><td>Comparison views shall be diagnostic and review-oriented; they shall not present deterministic comparisons as automatic external validation, professional approval, or code compliance.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / SOW-073; <code>docs/CONTRACT.md</code> / OPS-K-AUTH-1</td></tr>
+<tr><td>REQ-07-08-008</td><td>Missing solve-required, rule-check-required, provenance, assumption, nonlinear, or IP-boundary information shall remain visible as findings or warnings and shall not be silently defaulted by the GUI.</td><td><code>docs/SPEC.md</code> / GUI requirements; <code>docs/CONTRACT.md</code> / OPS-K-DATA-2</td></tr>
+<tr><td>REQ-07-08-009</td><td>The GUI-facing implementation shall follow the accepted architecture basis: Tauri 2 where desktop-shell-facing, TypeScript/React/Vite where GUI-facing, and Three.js where 3D viewport-facing. Exact package versions remain TBD.</td><td><code>_CONTEXT.md</code> / Architecture Basis Injection</td></tr>
+<tr><td>REQ-07-08-010</td><td>Verification shall include GUI-appropriate automated checks where implementation exists, including layered GUI tests and rendering/interaction checks; exact test harness and acceptance thresholds are TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-08; <code>docs/SPEC.md</code> / GUI requirements</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing basis</td><td>Applicability</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding project invariants for data boundary, no silent defaults, professional boundary, agent limits, and review status.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Technical architecture and GUI diagnostic requirements.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Protected-content and private-data boundary for public artifacts.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</td><td>Accepted decomposition basis for SOW-076, OBJ-015, OBJ-016, PKG-07, and architecture-basis constraints.</td></tr>
+<tr><td>PRD v0.2 references</td><td>Mentioned by decomposition for SOW-076, SOW-069 through SOW-073, but the PRD source text was not locally read in this workflow. Clause-level requirements from PRD remain TBD unless source text is supplied.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>REQ-07-08-001</td><td>Review implemented workspace surfaces against SOW-076 surface list; automated GUI smoke tests are TBD until implementation exists.</td></tr>
+<tr><td>REQ-07-08-002</td><td>Inspect data adapters and UI fixtures for dependency-backed contract use; flag placeholder semantics as TBD or implementation blocker.</td></tr>
+<tr><td>REQ-07-08-003</td><td>Test that user edits produce application-service command intents rather than direct project payload mutation. Exact command API is TBD pending upstream contracts.</td></tr>
+<tr><td>REQ-07-08-004</td><td>Test operation review states against upstream operation validation and audit records once those contracts are available.</td></tr>
+<tr><td>REQ-07-08-005</td><td>Test state/run browser queries and comparison navigation against upstream PKG-14 records once those contracts are available.</td></tr>
+<tr><td>REQ-07-08-006</td><td>Verify warning class display for <code>SOLVE_BLOCKING</code>, <code>RULE_CHECK_BLOCKING</code>, <code>PROVENANCE_WARNING</code>, <code>ASSUMPTION_WARNING</code>, <code>NONLINEAR_WARNING</code>, and <code>IP_BOUNDARY_WARNING</code> where such diagnostics are supplied.</td></tr>
+<tr><td>REQ-07-08-007</td><td>Review UI copy, status labels, and exported comparison affordances for professional-boundary violations.</td></tr>
+<tr><td>REQ-07-08-008</td><td>Inject missing-data and provenance-warning fixtures; confirm the GUI surfaces findings without inventing values.</td></tr>
+<tr><td>REQ-07-08-009</td><td>Inspect package/runtime configuration once implementation files exist.</td></tr>
+<tr><td>REQ-07-08-010</td><td>Run GUI unit/component tests and Playwright/rendering checks once a frontend scaffold exists.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required deliverable-local setup artifacts:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> preserved as approved DAG-002 mirror/evidence artifacts</li>
+</ul>
+<p>Implementation-stage artifacts anticipated by <code>_CONTEXT.md</code>:</p>
+<ul>
+<li>- GUI design knowledge panel</li>
+<li>- operation diff review</li>
+<li>- state/run browser</li>
+<li>- comparison overlays</li>
+</ul>
+<p>Exact implementation file paths and product code artifacts are TBD because this workflow does not create product code.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the declared authoring and comparison surfaces, upstream ownership of backend schemas and engines, proposed/validated/accepted/audited state distinctions, diagnostic visibility, no silent defaults, and no external-validation or professional-approval claim.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-07-08-design-authoring-state-and-comparison-workspace">CLM-015 — Procedure: DEL-07-08 Design-authoring state and comparison workspace</h3>
+<blockquote><h4 id="procedure-del-07-08-design-authoring-state-and-comparison-workspace">Procedure: DEL-07-08 Design-authoring state and comparison workspace</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-08-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-07-08 GUI workspace deliverable in a later implementation pass. It is based on local decomposition, governing references, and the approved DAG-006 dependency mirror. It does not create product code.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Evidence</td></tr>
+<tr><td>Accepted deliverable scope and objectives</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / DEL-07-08 row, SOW-076, OBJ-015, OBJ-016</td></tr>
+<tr><td>Approved dependency basis</td><td><code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code>; <code>execution/_DAG/DAG-006/APPROVAL_RECORD.md</code> / Approval Conditions</td></tr>
+<tr><td>Architecture-basis constraints</td><td><code>_CONTEXT.md</code> / Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-01 through AB-00-08 as applicable</td></tr>
+<tr><td>GUI warning and diagnostic vocabulary</td><td><code>docs/SPEC.md</code> / GUI requirements; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-06</td></tr>
+<tr><td>Data and professional boundaries</td><td><code>docs/CONTRACT.md</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+<tr><td>Upstream contracts for implementation</td><td>DEL-07-01, DEL-07-02, DEL-07-04, DEL-07-05, DEL-13-01, DEL-13-03, DEL-13-04, DEL-14-01, DEL-14-03, DEL-14-04, DEL-14-05, DEL-16-01, DEL-16-02, and DEL-16-03 as listed in <code>Dependencies.csv</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the implementation brief is still bounded to SOW-076 and DEL-07-08. If the work expands beyond design knowledge panels, warnings, operation/diff review, state/run browsing, comparison tables, and graphical overlays, escalate for scope split before implementation.</p>
+<p>2. Inventory available upstream contracts from the active dependency set. Do not substitute invented schemas, fake operation states, or placeholder comparison semantics for missing upstream contracts; mark unsupported items as TBD.</p>
+<p>3. Define the workspace information architecture around the SOW-076 surfaces:</p>
+<ul>
+<li>- design knowledge panel;</li>
+<li>- constraint/warning panel;</li>
+<li>- operation/diff review;</li>
+<li>- state/run browser;</li>
+<li>- comparison table;</li>
+<li>- graphical comparison overlay.</li>
+</ul>
+<p>4. Route any GUI-originated model changes through application-service command intents or upstream structured model operation contracts. Do not directly mutate durable project payloads from the GUI layer.</p>
+<p>5. Preserve diagnostic structure in warning UI. Where diagnostics are supplied, keep code, class, severity, source, affected object, message, remediation, and provenance available to the user.</p>
+<p>6. Implement state/run browsing only against upstream model-state and analysis-run records. Exact query shape, routing, pagination, and storage access are TBD pending implementation context.</p>
+<p>7. Implement comparison tables and overlays only against upstream comparison records, mapping/tolerance contracts, or deterministic diff output. Exact visual encodings and tolerance display rules are TBD.</p>
+<p>8. Review all labels, empty states, and status text for professional-boundary risk. The GUI must not claim automatic certification, sealing, approval, authentication, or code compliance.</p>
+<p>9. Add tests appropriate to the implemented surface. Expected classes include component/unit tests, interaction tests, and Playwright/rendering checks where a frontend scaffold exists. Exact commands and thresholds are TBD.</p>
+<p>10. Record remaining TBDs, assumptions, missing upstream contracts, and warning/provenance limitations in the deliverable review notes for human evaluation.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Scope check</td><td>Implemented surfaces map to SOW-076 and do not absorb unrelated package work.</td></tr>
+<tr><td>Dependency check</td><td>GUI semantics are backed by approved upstream contracts or explicitly marked TBD.</td></tr>
+<tr><td>Mutation-boundary check</td><td>Durable project state changes pass through application-service commands or structured operation contracts.</td></tr>
+<tr><td>Warning check</td><td>Missing data, provenance, assumptions, nonlinear uncertainty, and IP-boundary states remain visible.</td></tr>
+<tr><td>Comparison-boundary check</td><td>Comparison output is review/audit support only and does not imply professional validation.</td></tr>
+<tr><td>Public/private data check</td><td>No protected standards text, owner standards, private rule-pack payloads, proprietary values, or real secrets are embedded in public artifacts.</td></tr>
+<tr><td>Test check</td><td>GUI tests run where implementation exists; missing harness details are recorded as TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Maintain or produce the following records as implementation evidence:</p>
+<ul>
+<li>- source-grounded requirements or acceptance notes for SOW-076;</li>
+<li>- UI test output, including interaction and rendering checks where applicable;</li>
+<li>- dependency notes showing which upstream contracts were consumed;</li>
+<li>- screenshots or visual review artifacts if created by the implementation brief;</li>
+<li>- unresolved TBD and ASSUMPTION list;</li>
+<li>- professional-boundary and protected-content review notes.</li>
+</ul>
+<p>No implementation records exist in this setup workflow.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, declared workspace surfaces, upstream dependency boundaries, command-intent mutation routing, operation and state distinctions, diagnostics and missing-data visibility, comparison reliance boundaries, and every retained TBD or governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-07-08-design-authoring-state-and-comparison-workspace">CLM-022 — Guidance: DEL-07-08 Design-authoring state and comparison workspace</h3>
+<blockquote><h4 id="guidance-del-07-08-design-authoring-state-and-comparison-workspace">Guidance: DEL-07-08 Design-authoring state and comparison workspace</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-08-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable adds a GUI workspace for design iteration and comparison review. It is the GUI-facing integration point for design knowledge, warnings, model operations, immutable states, analysis runs, and comparison records. Source: <code>_CONTEXT.md</code> / Description; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / DEL-07-08 row.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<p>1. Consume upstream contracts, do not invent them. DEL-07-08 depends on GUI foundations plus design, transform, state/comparison, and operation contracts. The workspace should represent those contracts faithfully and mark unsupported details as TBD. Source: <code>Dependencies.csv</code>; <code>execution/_DAG/DAG-006/DAG-002_EdgeDispositionReview.md</code> / DAG2-RD-015.</p>
+<p>2. Keep authoring controlled. GUI-originated edits should become application-service command intents and controlled operations, not direct writes to durable project state. Source: <code>docs/SPEC.md</code> / GUI requirements; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-05.</p>
+<p>3. Keep missing information visible. Missing solve-required data, rule-check data, provenance, assumptions, nonlinear uncertainty, and IP-boundary risks are findings or warnings, not values to hide or default. Source: <code>docs/SPEC.md</code> / GUI requirements; <code>docs/CONTRACT.md</code> / OPS-K-DATA-2.</p>
+<p>4. Keep comparisons non-authoritative. State/run comparisons support design review and audit; they are not automatic professional validation, external approval, or code-compliance findings. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / SOW-073; <code>docs/CONTRACT.md</code> / OPS-K-AUTH-1.</p>
+<p>5. Preserve public/private and protected-content boundaries. Design knowledge and project metadata may include user-owned or private information; public artifacts must not copy protected standards, owner requirements, private rule-pack payloads, or proprietary data. Source: <code>docs/IP_AND_DATA_BOUNDARY.md</code> / Public repository must not contain.</p></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The workspace is context-envelope L with WATCH risk. Its scope includes several surface families: design knowledge, warnings, operations, state/run browsing, tables, and graphical overlays. If implementation expands beyond one bounded GUI workflow, the decomposition guidance says to confirm scope and split if needed. Source: <code>_CONTEXT.md</code> / Context Budget QA.</p>
+<p>The GUI stack basis is established at an architectural level, but exact dependency versions, state library, package structure, transport API, and final app workflow behavior remain TBD. Source: <code>_CONTEXT.md</code> / Architecture Basis Injection; <code>docs/SPEC.md</code> / GUI requirements.</p>
+<p>The warning panel should avoid flattening diagnostic meaning into plain prose. The local sources identify warning classes and diagnostic fields; display choices should preserve code, class, severity, source, affected object, message, remediation, and provenance when supplied. Source: <code>docs/SPEC.md</code> / GUI requirements; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> / AB-00-06.</p>
+<p>The design knowledge panel should not bundle owner standards, protected code data, proprietary catalog values, or invented engineering defaults. When values are unavailable, the UI should preserve TBD, missing, or provenance-warning state. Source: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/CONTRACT.md</code> / OPS-K-DATA-1 and OPS-K-DATA-2.</p></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision pressure</td><td>Conservative guidance</td></tr>
+<tr><td>Rich workspace versus bounded scope</td><td>Build around the SOW-076 surfaces and upstream contracts first; defer unrelated editors or report rendering to their owning deliverables.</td></tr>
+<tr><td>Convenience editing versus auditability</td><td>Prefer structured operations and diff review over direct mutation because OBJ-015 requires controlled, reviewable, auditable model operations.</td></tr>
+<tr><td>Visual overlays versus traceability</td><td>Overlays should be backed by state/comparison/diagnostic records where available; unsupported visual semantics remain TBD.</td></tr>
+<tr><td>Smooth comparison UX versus professional boundary</td><td>Use neutral review wording. Do not label a comparison as approved, validated, certified, sealed, or code compliant unless a separate human-owned record is explicitly in scope.</td></tr>
+<tr><td>Public examples versus realistic data</td><td>Use invented or cleared data only. Real owner/project/code/vendor data belongs in private user-controlled paths unless contribution review clears it.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No product UI screenshots, component implementations, or locally accessible PRD examples were available in this workflow. Example layout, copy, fixtures, and visual encoding remain TBD until an implementation brief supplies or creates product evidence.</p></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None observed in production-document drafting</td><td>No cross-document content conflict was found during four-doc Pass 2.</td><td>TBD</td><td>TBD</td><td>TBD</td><td>N/A</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-076 OBJ-015 OBJ-016</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `I1 INTEGRATED — CONVERSION CLOSURE RELEASED`
+Status: `P2 PREINTEGRATION ACCEPTED — CHANGE RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v53`
+Graph version: `v61`
 
 ## Objective and accepted basis
 
@@ -112,8 +112,34 @@ required governance harness passed on source head `41c65bd1f862701314b9c98df216c
 The clean merge commit is `6d56a1b6f391d21618f3328179d5a48654aec422`.
 Fresh postmerge reproduction confirms the exact five paths, clean `SOW_V1`,
 byte-identical status, unchanged `ISSUED` lifecycle, inverse rollback, and all
-required checks. Cross-wave conversion/rollback closure is released. Legacy
-retirement remains prohibited pending the separate fresh H2 human ruling.
+required checks. Fresh live-census reproduction then corrected the derivative
+closure-release label: only 80/146 conversion members are `SOW_V1`; 66 exact
+ordinary Piping members remain legacy-only across accepted P2–P4, with zero
+dual/invalid. P2 preflight for PKG-05–09 is released. Conversion closure and
+legacy retirement remain parked.
+
+All five W-P2 package managers and their fresh author/verifier executions
+returned PASS for 29 members. Direct fresh `RECON-P2` then reproduced the
+entire wave because every package retained at least one closed mechanical
+exception: 919 mappings, 8,203 source lines, 87 candidates, exact 145-row
+replacement/inverse manifests, 29 simulations, 58 negatives, 261 live
+bindings, 29 dependency schemas, focused and 264 practitioner tests, and all
+27 accepted predecessors pass with zero project writes or unresolved finding.
+HELP_HUMAN reproduced and accepted the immutable 334-row snapshot at SHA-256
+`a42918b012864c245082837dc8abf5d0d403b3453edb56bd2484b9b139e5fe9b`.
+One parent-brief terminal-LF defect was normalized and its six-row instance
+manifest rebound to
+`1c9a9b2d3547ccc09403dd0d615af1d86f23c2af3a1c383cbca7b87f20cd9055`.
+Fresh `CHANGE-P2` is released for only the exact 29-member atomic integration,
+required checks, merge under active blanket approval, and postmerge handoff.
+
+`CHANGE-P2` has created the 29 ordered atomic five-path replacement commits on
+`codex/sow-p2`. The exact 145-row project delta, inverse rollback simulation,
+all 29 clean validations/maps/parity reports/checklists/finalizations, 264
+practitioner tests, 20 root export/Scope-of-Work tests, dependency schemas,
+root validators, preservation hashes, and whole-diff hygiene pass locally.
+The complete W-P2 evidence binding is ready for the separate binding commit;
+push, ready PR, required remote check, and merge remain pending.
 
 `WORKING-I0-PKG01` returned PASS after a fresh author and fresh independent
 verifier. The exact ISSUED source/status/authority basis is preserved; the

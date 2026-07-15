@@ -1,0 +1,16 @@
+{
+  "agent": "CHANGE-P2",
+  "role": "CHANGE",
+  "status": "PREMERGE_READY",
+  "basis": "eaad463c0d481f6f1654e6adb5ee718f566176e9",
+  "branch": "codex/sow-p2",
+  "members": 29,
+  "project_commits": 29,
+  "replacement_rows": 145,
+  "rollback_rows": 145,
+  "local_checks": "PASS",
+  "required_remote_checks": "PENDING",
+  "merge": "PENDING",
+  "postmerge": "PENDING",
+  "blockers": []
+}

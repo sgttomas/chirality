@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 235,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "22f2934acd6c24463131f24b58eb6b91773b0b5deb9bf15f47d9d365c0e0e4a9"
+      },
+      "text": "The contract preserves stable record identities, source-envelope diagnostics, deterministic comparison mappings and tolerance references when available, handoff traceability, missing-data visibility, protected/private-content boundaries, and professional-authority limits while retaining unresolved implementation, schema, layout, and external-payload decisions as source-grounded TBDs.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-06-VER-001",
+          "source_line": 337,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, state/run/comparison/handoff coverage, SOW-024 report content, stable identities and hashes, units and provenance, deterministic ordering, missing-data findings, unsupported-target disclosures, protected-content and professional-authority boundaries, and every retained TBD or governed residual."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-06",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "22f2934acd6c24463131f24b58eb6b91773b0b5deb9bf15f47d9d365c0e0e4a9"
+  },
+  "tool_version": "1"
+}

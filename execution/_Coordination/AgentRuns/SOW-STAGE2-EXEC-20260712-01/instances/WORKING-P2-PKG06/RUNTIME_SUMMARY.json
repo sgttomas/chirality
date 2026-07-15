@@ -1,0 +1,12 @@
+{
+  "attempts": 3,
+  "author_sessions": 1,
+  "author_status": "PASS",
+  "manager_attempts": 2,
+  "manager_final_status": "PASS",
+  "native_token_context_telemetry": "UNAVAILABLE_NOT_INFERRED",
+  "package_id": "PKG-06",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "verifier_sessions": 1,
+  "verifier_status": "PASS_UNCHANGED"
+}

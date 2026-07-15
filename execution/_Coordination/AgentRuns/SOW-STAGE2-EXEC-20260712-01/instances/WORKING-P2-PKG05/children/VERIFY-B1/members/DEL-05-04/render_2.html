@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="d844393abd5bdd7b509f0839671339cbe89e600c75db91111567efa4eeb288b7">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>d844393abd5bdd7b509f0839671339cbe89e600c75db91111567efa4eeb288b7</code>.</p>
+<h1 id="scope-of-work-del-05-04">Scope of Work — DEL-05-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-05-04</code> in service of project scope [SOW-047] and package objectives [OBJ-005, OBJ-011].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — An analysis-status-semantics contract defining explicit model-incomplete, mechanics-solved, rule-inputs-incomplete, user-rule checked or failed, human-review-required, and externally recorded human-approval states with schema-first result interfaces is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-04-analysis-status-semantics">CLM-001 — Datasheet: DEL-05-04 Analysis status semantics</h3>
+<blockquote><h4 id="datasheet-del-05-04-analysis-status-semantics">Datasheet: DEL-05-04 Analysis status semantics</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-05-04</td></tr>
+<tr><td>Name</td><td>Analysis status semantics</td></tr>
+<tr><td>Package</td><td>PKG-05 Loads, Load Cases, and Stress Recovery</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>Scope items</td><td>SOW-047</td></tr>
+<tr><td>Objectives</td><td>OBJ-005, OBJ-011</td></tr>
+<tr><td>Context envelope</td><td>S</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Evidence value</td><td>Source</td></tr>
+<tr><td>Primary subject</td><td>Explicit result/status semantics that separate mechanics solve state, user rule-pack check state, missing input state, and human acceptance state.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> row DEL-05-04</td></tr>
+<tr><td>Mechanics status</td><td><code>MECHANICS_SOLVED</code> describes completed numerical mechanics computation for a model snapshot; it is not a code-compliance statement.</td><td><code>docs/TYPES.md</code> section 4; <code>docs/architecture/analysis_status_semantics.md</code> Usage Rules</td></tr>
+<tr><td>Incomplete-data statuses</td><td><code>MODEL_INCOMPLETE</code> and <code>RULE_INPUTS_INCOMPLETE</code> distinguish solve-required physical data gaps from rule-pack-required user/code data gaps.</td><td><code>docs/TYPES.md</code> section 4; OPS-K-DATA-2</td></tr>
+<tr><td>Rule-pack statuses</td><td><code>USER_RULE_CHECKED</code> and <code>USER_RULE_FAILED</code> describe user-rule-pack evaluation outcomes using user data and rule definitions.</td><td><code>docs/TYPES.md</code> section 4; <code>docs/architecture/analysis_status_semantics.md</code> Authority Boundary</td></tr>
+<tr><td>Human review status</td><td><code>HUMAN_REVIEW_REQUIRED</code> is reportable for professional use; <code>HUMAN_APPROVED_FOR_PROJECT</code> is human-record-only and not emitted automatically by software.</td><td><code>docs/TYPES.md</code> section 4; OPS-K-AUTH-1; OPS-K-AUTH-2</td></tr>
+<tr><td>Result-envelope interface</td><td>Status fields belong with schema-first command/query/job result envelopes and diagnostics, preserving mechanics/rule/human distinctions. Implemented evidence exists in <code>schemas/analysis_status.schema.yaml</code>, <code>schemas/analysis_boundary.schema.yaml</code>, <code>schemas/results.schema.yaml</code>, <code>api/api_boundary_contract.yaml</code>, and downstream result/report/headless surfaces.</td><td>AB-00-03; AB-00-06; <code>tests/test_analysis_status_schema.py</code>; <code>tests/test_analysis_boundary_schema.py</code>; <code>tests/test_results_schema.py</code>; <code>tests/test_api_boundary_contract.py</code></td></tr>
+<tr><td>Human acceptance workflow</td><td>TBD. External human acceptance records and storage/presentation ownership remain outside this deliverable-local kit.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-007; <code>docs/architecture/analysis_status_semantics.md</code> Remaining TBDs</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Status records describe what software computed or found; they must not claim certification, sealing, approval, authentication, or professional code compliance. Source: OPS-K-AUTH-1 and OPS-K-MECH-2.</li>
+<li>- Missing solve-required or rule-check-required values must be explicit findings and never silent defaults. Source: OPS-K-DATA-2.</li>
+<li>- Human acceptance records, if used later, must bind to specific model, rule-pack, result, and report hashes and must not survive content changes without re-review. Source: OPS-K-AUTH-2.</li>
+<li>- Reports must disclose solver/version, rule-pack checksum, warnings, assumptions, limitations, source/provenance notes, and professional-boundary notices. Source: OPS-K-REPORT-1.</li>
+<li>- Setup artifacts are drafts/proposals until accepted by a human gate. Source: OPS-K-AGENT-4.</li>
+</ul></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Artifact</td><td>Description</td><td>Evidence status</td></tr>
+<tr><td>Analysis status enum</td><td>Enum vocabulary for model incomplete, mechanics solved, rule inputs incomplete, user rule checked/failed, human review required, and human-approved record references.</td><td>Implemented in <code>schemas/analysis_status.schema.yaml</code>; automatic status enum excludes <code>HUMAN_APPROVED_FOR_PROJECT</code>.</td></tr>
+<tr><td>API/result fields</td><td>Result-envelope fields that separate software status from external human acceptance record state.</td><td>Implemented evidence exists in <code>schemas/results.schema.yaml</code>, <code>api/api_boundary_contract.yaml</code>, <code>schemas/analysis_run.schema.json</code>, and <code>schemas/headless_runner.schema.yaml</code>; final integration ownership remains broader-deliverable scope.</td></tr>
+<tr><td>Diagnostics linkage</td><td>Diagnostic class/status wiring for solve blocking, rule-check blocking, provenance, assumptions, and reportable limitations.</td><td>Implemented evidence exists in <code>schemas/analysis_boundary.schema.yaml</code>, <code>core/solver/diagnostics/src/lib.rs</code>, <code>core/rules/completeness_checker/src/lib.rs</code>, and report/result export modules.</td></tr>
+<tr><td>Tests</td><td>Tests prove mechanics/rule/human statuses are distinct and no automatic compliance/approval status is emitted.</td><td>Evidence includes <code>tests/test_analysis_status_schema.py</code>, <code>tests/test_analysis_boundary_schema.py</code>, <code>tests/test_results_schema.py</code>, and <code>tests/test_api_boundary_contract.py</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-status-vocabulary-register">CLM-006 — Status Vocabulary Register</h3>
+<blockquote><h5 id="status-vocabulary-register">Status Vocabulary Register</h5>
+<table><tbody>
+<tr><td>Status</td><td>Status meaning</td><td>Authority level</td></tr>
+<tr><td><code>MODEL_INCOMPLETE</code></td><td>Solve-required physical inputs are missing.</td><td>Software finding</td></tr>
+<tr><td><code>MECHANICS_SOLVED</code></td><td>Numerical mechanics solve completed for a specific snapshot.</td><td>Solver result only</td></tr>
+<tr><td><code>RULE_INPUTS_INCOMPLETE</code></td><td>Mechanics may be solved, but rule-pack-required user/code values are missing.</td><td>Rule-pack finding</td></tr>
+<tr><td><code>USER_RULE_CHECKED</code></td><td>User-defined rule pack evaluated the result.</td><td>Software computation using user data</td></tr>
+<tr><td><code>USER_RULE_FAILED</code></td><td>User-defined rule pack produced a failing result.</td><td>Software computation using user data</td></tr>
+<tr><td><code>HUMAN_REVIEW_REQUIRED</code></td><td>Professional use requires competent human review.</td><td>Report/professional-boundary notice</td></tr>
+<tr><td><code>HUMAN_APPROVED_FOR_PROJECT</code></td><td>A human recorded project-specific acceptance outside solver authority.</td><td>Human record only; automatic software emission prohibited</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-05-04</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row SOW-047</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-05-04</li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/architecture/analysis_status_semantics.md</code></li>
+<li>- <code>schemas/analysis_status.schema.yaml</code></li>
+<li>- <code>schemas/analysis_boundary.schema.yaml</code></li>
+<li>- <code>schemas/results.schema.yaml</code></li>
+<li>- <code>api/api_boundary_contract.yaml</code></li>
+<li>- <code>tests/test_analysis_status_schema.py</code></li>
+<li>- <code>tests/test_analysis_boundary_schema.py</code></li>
+<li>- <code>tests/test_results_schema.py</code></li>
+<li>- <code>tests/test_api_boundary_contract.py</code></li>
+</ul></blockquote>
+<h3 id="clm-008-d-41-r5-t7-pdu-054-current-declaration">CLM-008 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. Analysis-status semantics are implemented as a code-neutral status vocabulary with current verification evidence. External acceptance remains human-owned, and stale-hash negative behavior remains held where explicitly recorded.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-05-04-analysis-status-semantics">CLM-009 — Specification: DEL-05-04 Analysis status semantics</h3>
+<blockquote><h4 id="specification-del-05-04-analysis-status-semantics">Specification: DEL-05-04 Analysis status semantics</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the analysis-status semantics used by result envelopes and related boundaries. It covers status distinctions among mechanics solved, rule-pack checked or blocked by incomplete rule inputs, incomplete solve data, and human-approved/not-human-approved records. Implemented evidence exists for the schema vocabulary, result/API fields, boundary tests, and downstream consumers. Lifecycle promotion, release readiness, GUI acceptance workflow ownership, report rendering acceptance, and professional approval remain outside this deliverable-local kit.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-05-04-001</td><td>Status semantics shall clearly distinguish mechanics-solved state, rule-pack evaluation state, incomplete-data findings, and human acceptance state.</td><td>SOW-047; AB-00-03</td></tr>
+<tr><td>REQ-05-04-002</td><td><code>MECHANICS_SOLVED</code> shall mean mechanics outputs were computed for a specific model snapshot and shall not imply rule-pack completeness or code compliance.</td><td><code>docs/TYPES.md</code> section 4; OPS-K-MECH-2</td></tr>
+<tr><td>REQ-05-04-003</td><td><code>MODEL_INCOMPLETE</code> shall represent missing solve-required physical inputs and shall block mechanics solving for the affected subject.</td><td><code>docs/architecture/analysis_status_semantics.md</code> Usage Rules; OPS-K-DATA-2</td></tr>
+<tr><td>REQ-05-04-004</td><td><code>RULE_INPUTS_INCOMPLETE</code> shall represent missing rule-pack-required user/code/project data and may coexist with <code>MECHANICS_SOLVED</code>.</td><td><code>docs/TYPES.md</code> section 4; <code>docs/architecture/analysis_status_semantics.md</code> Usage Rules</td></tr>
+<tr><td>REQ-05-04-005</td><td><code>USER_RULE_CHECKED</code> and <code>USER_RULE_FAILED</code> shall describe user-rule-pack computation outcomes without declaring professional code compliance.</td><td><code>docs/architecture/analysis_status_semantics.md</code> Authority Boundary; OPS-K-AUTH-1</td></tr>
+<tr><td>REQ-05-04-006</td><td><code>HUMAN_REVIEW_REQUIRED</code> shall be available for reportable result envelopes to preserve the professional-review boundary.</td><td><code>docs/architecture/analysis_status_semantics.md</code> Usage Rules; OPS-K-REPORT-1</td></tr>
+<tr><td>REQ-05-04-007</td><td>Software shall not automatically emit <code>HUMAN_APPROVED_FOR_PROJECT</code>; that value is reserved for a separate human acceptance record.</td><td><code>docs/architecture/analysis_status_semantics.md</code> Authority Boundary; OPS-K-AUTH-1</td></tr>
+<tr><td>REQ-05-04-008</td><td>Any future human acceptance record shall bind to specific reviewed model, result, rule-pack, report, and manifest hashes and shall not survive content changes.</td><td>OPS-K-AUTH-2; <code>docs/architecture/analysis_status_semantics.md</code> Human Acceptance Records</td></tr>
+<tr><td>REQ-05-04-009</td><td>Result/status envelopes shall preserve diagnostic provenance needed for rule-pack references, warnings, assumptions, limitations, and report audit.</td><td>AB-00-06; OPS-K-REPORT-1</td></tr>
+<tr><td>REQ-05-04-010</td><td>Tests and future release gates shall prove mechanics solved, rule checked, rule inputs incomplete, human review required, and human-approved record states cannot collapse into a single automatic compliance flag.</td><td>OPS-K-AUTH-1; OPS-K-MECH-2; AB-00-08</td></tr>
+<tr><td>REQ-05-04-011</td><td>Public examples and deliverable artifacts shall not embed protected standards text, protected tables, code formulas, proprietary values, private rule values, or professional approval claims.</td><td>OPS-K-IP-1; <code>docs/architecture/analysis_status_semantics.md</code> Protected Data Boundary</td></tr>
+<tr><td>REQ-05-04-012</td><td>Status semantics shall use <code>TBD</code> for unresolved human acceptance workflow ownership, storage location, UI presentation, and non-JSON hash edge cases.</td><td>OPS-K-AGENT-1; <code>docs/architecture/analysis_status_semantics.md</code> Remaining TBDs</td></tr>
+<tr><td>REQ-05-04-013</td><td>Result-envelope design shall identify at least the software status, diagnostic references, human-review notice, and optional external human acceptance record reference without implying approval.</td><td><code>_SEMANTIC_LENSING.md</code> F-002; AB-00-03; AB-00-06; <code>schemas/analysis_status.schema.yaml</code>; <code>schemas/results.schema.yaml</code></td></tr>
+<tr><td>REQ-05-04-014</td><td>Future release gates shall include tests and wording checks that prevent automatic approval, automatic code-compliance claims, and stale human-acceptance reuse after content changes.</td><td><code>_SEMANTIC_LENSING.md</code> A-001 and X-001; OPS-K-AUTH-1; OPS-K-AUTH-2</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external protected standard text is introduced by this deliverable-local kit. Governing local standards are the project invariant catalog, type vocabulary, technical specification, architecture basis rows AB-00-01, AB-00-02, AB-00-03, AB-00-06, AB-00-08, and the decomposition/register rows listed in <code>_CONTEXT.md</code>.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>REQ-05-04-001</td><td><code>tests/test_analysis_status_schema.py</code> and <code>tests/test_analysis_boundary_schema.py</code> confirm separate automatic software status, authority-model, and external human-record structures.</td></tr>
+<tr><td>REQ-05-04-002</td><td>Schema and downstream tests confirm <code>MECHANICS_SOLVED</code> is an automatic status and does not require rule-pack checked status.</td></tr>
+<tr><td>REQ-05-04-003</td><td>Boundary/result schemas and downstream UX tests preserve <code>MODEL_INCOMPLETE</code> as a missing-input status; product-specific emitting workflows remain separate deliverable scope.</td></tr>
+<tr><td>REQ-05-04-004</td><td><code>tests/test_analysis_boundary_schema.py</code>, <code>core/rules/completeness_checker/src/lib.rs</code>, and downstream result/run tests preserve <code>RULE_INPUTS_INCOMPLETE</code> alongside mechanics status.</td></tr>
+<tr><td>REQ-05-04-005</td><td>Rule-pack/evaluator and result/report tests preserve checked/failed user-rule outcomes without compliance claims.</td></tr>
+<tr><td>REQ-05-04-006</td><td><code>tests/test_results_schema.py</code>, <code>tests/test_report_generator_contract.py</code>, <code>tests/test_report_sections_contract.py</code>, and runner/report modules require or surface <code>HUMAN_REVIEW_REQUIRED</code>.</td></tr>
+<tr><td>REQ-05-04-007</td><td><code>tests/test_analysis_status_schema.py</code>, <code>tests/test_analysis_boundary_schema.py</code>, <code>tests/test_results_schema.py</code>, and <code>tests/test_api_boundary_contract.py</code> exclude <code>HUMAN_APPROVED_FOR_PROJECT</code> from automatic/API/result statuses.</td></tr>
+<tr><td>REQ-05-04-008</td><td><code>schemas/analysis_status.schema.yaml</code> defines hash-bound <code>HumanAcceptanceRecord</code>; workflow ownership, storage, and UI presentation remain TBD.</td></tr>
+<tr><td>REQ-05-04-009</td><td><code>schemas/analysis_boundary.schema.yaml</code>, <code>schemas/results.schema.yaml</code>, report/result export modules, and tests preserve diagnostics, provenance, and boundary notices.</td></tr>
+<tr><td>REQ-05-04-010</td><td>Focused schema/API tests prevent <code>CODE_COMPLIANT</code>, certification, sealing, approval, or equivalent automatic statuses.</td></tr>
+<tr><td>REQ-05-04-011</td><td>Protected-content and product-claims review of examples, docs, and report-facing wording.</td></tr>
+<tr><td>REQ-05-04-012</td><td>Open-item review requiring unresolved human workflow details to remain explicit <code>TBD</code>s.</td></tr>
+<tr><td>REQ-05-04-013</td><td>Schema/API review and tests confirm status-envelope fields remain distinct and do not imply approval.</td></tr>
+<tr><td>REQ-05-04-014</td><td>Negative tests for automatic approval/compliance plus stale-hash acceptance reuse.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required local artifacts are <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>, <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>, <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code>, <code>MEMORY.md</code>, <code>_REVIEW.md</code>, <code>Review_Findings.csv</code>, and <code>_run_records/</code>. These local artifacts summarize and cite implemented evidence; they are not lifecycle approval records.</p></blockquote>
+<h3 id="clm-015-conflict-table-for-human-ruling">CLM-015 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No conflict identified during current evidence alignment.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted separation of numerical computation, user-rule evaluation, missing data, professional review, and human-owned project acceptance, including hash-bound external acceptance residuals, without automatic certification, sealing, compliance, approval, or stale-record reuse.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-05-04-analysis-status-semantics">CLM-016 — Procedure: DEL-05-04 Analysis status semantics</h3>
+<blockquote><h4 id="procedure-del-05-04-analysis-status-semantics">Procedure: DEL-05-04 Analysis status semantics</h4></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the procedure for maintaining DEL-05-04 analysis status semantics evidence after bounded implementation. Product code remains outside this deliverable folder, but the local kit may cite implemented schemas, code, tests, and downstream consumers as evidence.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source</td></tr>
+<tr><td>Sealed DEL-05-04 context with write scope limited to this deliverable folder.</td><td><code>_CONTEXT.md</code>; OPS-K-AGENT-3</td></tr>
+<tr><td>Decomposition revision 0.7 and register rows for DEL-05-04, SOW-047, OBJ-005, and OBJ-011.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; registers</td></tr>
+<tr><td>Applicable architecture basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-06, and AB-00-08.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection</td></tr>
+<tr><td>Invariant catalog slices for authority, mechanics/rule separation, missing data, reports, and agent boundaries.</td><td><code>docs/CONTRACT.md</code></td></tr>
+<tr><td>Analysis status vocabulary, architecture note, schemas, and tests.</td><td><code>docs/TYPES.md</code>; <code>docs/architecture/analysis_status_semantics.md</code>; <code>schemas/analysis_status.schema.yaml</code>; <code>tests/test_analysis_status_schema.py</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<table><tbody>
+<tr><td>Step</td><td>Action</td><td>Evidence/record</td></tr>
+<tr><td>1</td><td>Read the sealed context and confirm the deliverable is DEL-05-04 / PKG-05 / SOW-047.</td><td><code>_CONTEXT.md</code>; run record</td></tr>
+<tr><td>2</td><td>Read governing vocabulary and invariants for analysis statuses, authority boundaries, missing data, report provenance, and human acceptance records.</td><td><code>docs/TYPES.md</code>; <code>docs/CONTRACT.md</code>; architecture note</td></tr>
+<tr><td>3</td><td>Maintain the four-document kit as deliverable-local evidence for the analysis-status state model.</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></td></tr>
+<tr><td>4</td><td>Build the semantic matrix lens as question-shaping evidence, not engineering authority.</td><td><code>_SEMANTIC.md</code></td></tr>
+<tr><td>5</td><td>Build the semantic lensing register and capture warranted gaps/questions with <code>HumanRuling=TBD</code>.</td><td><code>_SEMANTIC_LENSING.md</code></td></tr>
+<tr><td>6</td><td>Apply only source-supported Pass 3 refinements, preserving unresolved items as <code>TBD</code>.</td><td>Four documents and run record</td></tr>
+<tr><td>7</td><td>Extract dependency anchors and information-flow constraints conservatively.</td><td><code>Dependencies.csv</code>; <code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>8</td><td>Validate dependency/schema evidence as needed and keep <code>_STATUS.md</code> unchanged unless a human explicitly authorizes a lifecycle gate.</td><td>Validation output; <code>_STATUS.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-implementation-evidence-fixture-selection">CLM-020 — Implementation Evidence Fixture Selection</h3>
+<blockquote><h5 id="implementation-evidence-fixture-selection">Implementation Evidence Fixture Selection</h5>
+<p>When maintaining or extending implementation evidence, select tests that demonstrate:</p>
+<ul>
+<li>- <code>MECHANICS_SOLVED</code> can coexist with <code>RULE_INPUTS_INCOMPLETE</code>;</li>
+<li>- missing physical solve inputs emit <code>MODEL_INCOMPLETE</code>;</li>
+<li>- rule-pack evaluation can emit checked or failed outcomes without compliance claims;</li>
+<li>- <code>HUMAN_REVIEW_REQUIRED</code> appears for reportable results;</li>
+<li>- <code>HUMAN_APPROVED_FOR_PROJECT</code> cannot be emitted by ordinary software execution and cannot survive bound-content hash changes.</li>
+</ul></blockquote>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Four-document kit exists</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> are present.</td></tr>
+<tr><td>Local write boundary</td><td>No schema, API, Rust, TypeScript, GUI, or test implementation files are created or edited inside this deliverable-local maintenance tranche.</td></tr>
+<tr><td>Status distinction preserved</td><td>Mechanics, rule-pack, incomplete-data, and human-acceptance statuses remain distinct.</td></tr>
+<tr><td>Human approval boundary preserved</td><td>Automatic software approval/compliance claims are absent; human acceptance remains external and <code>TBD</code> where unresolved.</td></tr>
+<tr><td>Dependency register valid</td><td><code>Dependencies.csv</code> conforms to v3.1 required columns and <code>_DEPENDENCIES.md</code> counts match.</td></tr>
+<tr><td>Lifecycle safe</td><td><code>_STATUS.md</code> remains under human lifecycle authority and is not changed by evidence alignment.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1530_four-documents-p1-p2.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1530_semantic-matrix-build.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1530_lens-register.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1530_four-documents-p3.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1530_dependency-extract.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_REVIEW.md</code></li>
+<li>- <code>Review_Findings.csv</code></li>
+</ul></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-054-current-declaration">CLM-023 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. Analysis-status semantics are implemented as a code-neutral status vocabulary with current verification evidence. External acceptance remains human-owned, and stale-hash negative behavior remains held where explicitly recorded.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, status vocabulary and transitions, automatic-versus-human authority boundaries, result and diagnostic interfaces, missing-input behavior, stale-hash obligations, tests, and professional-reliance controls.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-05-04-analysis-status-semantics">CLM-024 — Guidance: DEL-05-04 Analysis status semantics</h3>
+<blockquote><h4 id="guidance-del-05-04-analysis-status-semantics">Guidance: DEL-05-04 Analysis status semantics</h4></blockquote>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to prevent users, reports, APIs, and future agents from treating a mechanics solve, a user-rule-pack check, and professional acceptance as the same thing. The local kit should make implemented status evidence legible while preserving the boundary that lifecycle promotion and human/project acceptance require separate authority.</p></blockquote>
+<h3 id="clm-026-principles">CLM-026 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Separate computation from judgment</td><td>Mechanics and rule-pack statuses describe computations and findings; professional compliance remains human judgment.</td><td>OPS-K-MECH-2; OPS-K-AUTH-1</td></tr>
+<tr><td>Missing data is a result, not a default</td><td>Missing solve-required and rule-check-required values must be reported explicitly. Do not invent values or silently bypass a check.</td><td>OPS-K-DATA-2</td></tr>
+<tr><td>Human acceptance is external</td><td>Human acceptance, if later supported, should be modeled as a separate hash-bound record rather than a solver-emitted status.</td><td>OPS-K-AUTH-2; <code>docs/architecture/analysis_status_semantics.md</code> Human Acceptance Records</td></tr>
+<tr><td>Rule checks use user data</td><td>User rule packs may evaluate results, but public software does not bundle protected standards formulas or private project values.</td><td><code>docs/SPEC.md</code> section 6; OPS-K-IP-1</td></tr>
+<tr><td>Reports preserve limitation context</td><td>Report-facing statuses should carry warnings, assumptions, rule-pack references, provenance, and limitations.</td><td>OPS-K-REPORT-1</td></tr>
+<tr><td>Local kit is not lifecycle approval</td><td>This folder records evidence, acceptance criteria, review history, and residual TBDs. It may cite implemented schema/code/test evidence, but it does not promote lifecycle state, release readiness, or professional acceptance.</td><td><code>_CONTEXT.md</code>; <code>_STATUS.md</code>; OPS-K-AGENT-4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-considerations">CLM-027 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- <code>MECHANICS_SOLVED</code> and <code>RULE_INPUTS_INCOMPLETE</code> can both be true for the same snapshot when mechanics outputs exist but user-rule-pack data is missing.</li>
+<li>- <code>USER_RULE_CHECKED</code> and <code>USER_RULE_FAILED</code> are user-rule computation outcomes. They should not be renamed or displayed as automatic code compliance.</li>
+<li>- <code>HUMAN_REVIEW_REQUIRED</code> is a software/report-facing boundary notice, not a failure.</li>
+<li>- <code>HUMAN_APPROVED_FOR_PROJECT</code> is reserved for external human acceptance records. Implemented and future ordinary solve, rule-check, import, and report-generation code paths should prevent this value from appearing as automatic software status.</li>
+<li>- <code>CODE_COMPLIANT</code> is not an allowed automatic status per <code>docs/TYPES.md</code>.</li>
+<li>- Implemented schema/API/result surfaces should continue to expose only automatic software statuses in ordinary software output; external human acceptance remains a hash-bound reference or record.</li>
+</ul></blockquote>
+<h3 id="clm-028-trade-offs">CLM-028 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Single enum vs status dimensions</td><td>A single enum is simple, but multiple statuses may truthfully coexist. Implemented and future surfaces should preserve coexistence where sources allow it.</td></tr>
+<tr><td>Human approval label vs separate record</td><td>A label is easy to display, but a separate record is needed to bind acceptance to reviewed content hashes and prevent stale reliance.</td></tr>
+<tr><td>Rule-pack checked vs rule-pack passed</td><td>The sources define checked and failed outcomes; pass semantics should be treated carefully and tied to user-defined rule outputs, not professional acceptance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-vocabulary-notes">CLM-029 — Vocabulary Notes</h3>
+<blockquote><h5 id="vocabulary-notes">Vocabulary Notes</h5>
+<ul>
+<li>- Use <code>mechanics solved</code> for open-mechanics computation completion only.</li>
+<li>- Use <code>rule inputs incomplete</code> when a rule pack cannot evaluate because user/code/project data is missing.</li>
+<li>- Use <code>user rule checked</code> or <code>user rule failed</code> for user-rule-pack computation outcomes.</li>
+<li>- Use <code>human review required</code> as a report/professional-boundary notice.</li>
+<li>- Use <code>human approved for project</code> only as an external human acceptance record reference, never as an automatically emitted software result.</li>
+<li>- Reports may reference rule-pack identity and checksums, but public artifacts must not reproduce protected formulas or private values.</li>
+</ul></blockquote>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Scenario</td><td>Appropriate status interpretation</td></tr>
+<tr><td>Missing pipe section dimensions prevent solving.</td><td><code>MODEL_INCOMPLETE</code>; do not invent defaults.</td></tr>
+<tr><td>Displacements/reactions/stresses are computed, but a rule pack needs a missing owner allowable.</td><td><code>MECHANICS_SOLVED</code> plus <code>RULE_INPUTS_INCOMPLETE</code>.</td></tr>
+<tr><td>A user rule pack runs and returns at least one failing check.</td><td><code>USER_RULE_FAILED</code> with rule-pack identity/version/checksum and diagnostics.</td></tr>
+<tr><td>A calculation report is exported for professional use.</td><td>Include <code>HUMAN_REVIEW_REQUIRED</code> and professional-boundary notice.</td></tr>
+<tr><td>A competent human later accepts a specific report package.</td><td>External hash-bound human acceptance record; not automatic software approval.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified during current evidence alignment.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-032-open-questions">CLM-032 — Open Questions</h3>
+<blockquote><h5 id="open-questions">Open Questions</h5>
+<table><tbody>
+<tr><td>Open item</td><td>Status</td></tr>
+<tr><td>Exact ownership of all schema/API/result integration points across downstream deliverables.</td><td>Partly implemented; integration ownership remains deliverable-specific</td></tr>
+<tr><td>Storage owner and UI presentation for external human acceptance records.</td><td>TBD</td></tr>
+<tr><td>Canonicalization edge cases for non-JSON payload hashes referenced by human records.</td><td>TBD</td></tr>
+<tr><td>Whether a positive user-rule outcome needs an explicit <code>USER_RULE_PASSED</code> value or remains represented by <code>USER_RULE_CHECKED</code> plus check details.</td><td>TBD</td></tr>
+<tr><td>Human acceptance workflow details remain TBD because automatic software authority is prohibited and any accepted record must bind to reviewed hashes.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-047 OBJ-005 OBJ-011</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

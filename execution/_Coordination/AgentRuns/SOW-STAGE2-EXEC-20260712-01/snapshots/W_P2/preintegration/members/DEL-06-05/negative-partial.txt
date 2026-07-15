@@ -1,0 +1,10 @@
+exit=1
+{
+  "format": "INVALID",
+  "issues": [
+    "format state is INVALID",
+    "partial legacy production kit; missing: Specification.md, Procedure.md, Guidance.md"
+  ],
+  "target": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/recon-p2-DEL-06-05-mcik_nm0/partial",
+  "valid": false
+}

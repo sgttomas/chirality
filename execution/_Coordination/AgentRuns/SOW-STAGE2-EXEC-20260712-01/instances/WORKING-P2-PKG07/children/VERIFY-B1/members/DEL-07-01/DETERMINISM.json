@@ -1,0 +1,9 @@
+{
+  "clean_sha256": "09a473cad3af6b06ae6e1ba1d5157d8ea8ccef82b3a9a301ac8adc2bc5557dd8",
+  "converter_reproductions_byte_identical": true,
+  "converter_reproductions_equal_accepted": true,
+  "evidence_sha256": "c796e8f88538fb579c7812a303fc2a2d1bc48a60dc041b31b097ef38f7d3f7f6",
+  "finalizations_and_reports_byte_identical": true,
+  "finalizations_equal_accepted": true,
+  "report_sha256": "316fb60d9d7bd5840e1167ac86d9d99dfcf11d92c96078f9a3d02193fe5d5f9b"
+}

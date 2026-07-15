@@ -1,0 +1,3 @@
+# VERIFY-B2 Attempts
+
+The terminal verifier invocation completed all three members with zero member failures, candidate repairs, or semantic repairs. Before terminal freeze, one complete provisional run exposed inherited aggregate constants, one restart stopped before member execution because disposable verifier directories remained, and one closure-finalizer attempt exposed an inherited aggregate assertion. Exact hashes and dispositions are retained in `PRE_FREEZE_REBINDING.md`. These were verifier-evidence and execution-substrate corrections only; all candidate and project bytes remained read-only and every checkpoint was rerun to terminal completion.

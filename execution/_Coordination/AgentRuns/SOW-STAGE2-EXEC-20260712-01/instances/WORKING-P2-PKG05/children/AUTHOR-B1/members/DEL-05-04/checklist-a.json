@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-05-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 203,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d844393abd5bdd7b509f0839671339cbe89e600c75db91111567efa4eeb288b7"
+      },
+      "text": "The contract preserves the accepted separation of numerical computation, user-rule evaluation, missing data, professional review, and human-owned project acceptance, including hash-bound external acceptance residuals, without automatic certification, sealing, compliance, approval, or stale-record reuse.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-05-04-VER-001",
+          "source_line": 296,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, status vocabulary and transitions, automatic-versus-human authority boundaries, result and diagnostic interfaces, missing-input behavior, stale-hash obligations, tests, and professional-reliance controls."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-05-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-05",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d844393abd5bdd7b509f0839671339cbe89e600c75db91111567efa4eeb288b7"
+  },
+  "tool_version": "1"
+}

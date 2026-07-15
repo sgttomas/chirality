@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/map_scope_of_work_claims.py",
+    "--scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P2/PIP-PKG06/DEL-06-05/evidence/ScopeOfWork.md",
+    "--production-scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P2/PIP-PKG06/DEL-06-05/production/ScopeOfWork.md",
+    "--source-dir",
+    "{REPO_ROOT}/projects/chirality-piping/execution/PKG-06_Rule Packs and User-Supplied Code Check Engine/1_Working/DEL-06-05_Invented non-code example rule pack",
+    "--output-csv",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG06/children/VERIFY-B1/members/DEL-06-05/claim_map_2.csv"
+  ],
+  "duration_seconds": 0.036282,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "map_2",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": "PASS rows=29 output=/Users/ryan/ai-env/projects/chirality-sow-i1-closeout/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG06/children/VERIFY-B1/members/DEL-06-05/claim_map_2.csv\n"
+}

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="248beedc9e4dfd0febbae4a8e03ac2507946ee480627251d0ab74a02f3280acf">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>248beedc9e4dfd0febbae4a8e03ac2507946ee480627251d0ab74a02f3280acf</code>.</p>
+<h1 id="scope-of-work-del-05-01">Scope of Work — DEL-05-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-05-01</code> in service of project scope [SOW-013] and package objectives [OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A primitive-load-case contract covering explicit weight, pressure, thermal, imposed-displacement, hydrotest, wind, seismic, and occasional mechanics categories, unit-aware preparation, load-case records, diagnostics, and deterministic solver-boundary contributions is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-01-primitive-load-case-engine">CLM-001 — Datasheet: DEL-05-01 Primitive load case engine</h3>
+<blockquote><h4 id="datasheet-del-05-01-primitive-load-case-engine">Datasheet: DEL-05-01 Primitive load case engine</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-05-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-05-01</td></tr>
+<tr><td>Name</td><td>Primitive load case engine</td></tr>
+<tr><td>Package</td><td>PKG-05 Loads, Load Cases, and Stress Recovery</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope items</td><td>SOW-013</td></tr>
+<tr><td>Objectives</td><td>OBJ-003</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-evidence-summary">CLM-004 — Evidence Summary</h3>
+<blockquote><h5 id="evidence-summary">Evidence Summary</h5>
+<table><tbody>
+<tr><td>Evidence surface</td><td>Current evidence</td></tr>
+<tr><td>Implementation crate</td><td><code>core/loads/primitive_loads</code></td></tr>
+<tr><td>Crate scope</td><td>Code-neutral primitive load records and deterministic mechanics-boundary preparation for weight, pressure, thermal, imposed displacement, hydrotest, wind, seismic, and occasional categories.</td></tr>
+<tr><td>Readme evidence</td><td><code>core/loads/primitive_loads/README.md</code> documents implemented categories, storage-neutral primitive load-case records, boundary quantity metadata, diagnostic bridge records, lumping, and exclusions.</td></tr>
+<tr><td>Rust API evidence</td><td><code>core/loads/primitive_loads/src/lib.rs</code> defines primitive category/type records, load quantities, target/direction records, boundary metadata, load-case records, diagnostic records, preparation helpers, lumping, axial-effect helpers, and solver-vector assembly helpers.</td></tr>
+<tr><td>Local memory evidence</td><td><code>MEMORY.md</code> records implementation, verification, and preserved boundaries from the original crate implementation through the 2026-06-05 foundational hardening tranche and parent fan-in.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-attributes">CLM-005 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current value</td><td>Source</td></tr>
+<tr><td>Primary subject</td><td>Primitive load definitions and mechanics-boundary preparation for weight, pressure, thermal expansion, imposed displacement, hydrotest, wind, seismic, and occasional categories.</td><td><code>_CONTEXT.md</code>; <code>core/loads/primitive_loads/README.md</code>; <code>src/lib.rs</code></td></tr>
+<tr><td>Analysis model boundary</td><td>Primitive loads are prepared for a 3D centerline/frame mechanics model through nodal, element-uniform, imposed-displacement, lumped-equivalent nodal, axial-effect, and solver-vector assembly surfaces.</td><td><code>docs/CONTRACT.md</code> OPS-K-MECH-1; <code>src/lib.rs</code></td></tr>
+<tr><td>Mechanics/rule boundary</td><td>The crate defines mechanics load categories and deterministic findings; it does not evaluate user-rule acceptability, code compliance, professional judgment, code combinations, or allowables.</td><td><code>docs/CONTRACT.md</code> OPS-K-MECH-2; <code>core/loads/primitive_loads/README.md</code></td></tr>
+<tr><td>Unit boundary</td><td>Load magnitudes carry explicit dimensions; boundary metadata maps accepted PKG-02 dimension vocabulary including <code>force_per_length</code> and rejects retired aliases. No conversion constants are supplied.</td><td>OPS-K-UNIT-1; <code>CanonicalDimension</code>; <code>QuantityUnitMetadata</code></td></tr>
+<tr><td>Boundary metadata</td><td><code>BoundaryRecordRef</code>, <code>BoundaryQuantityRecord</code>, and <code>PrimitiveLoadCaseRecord</code> carry schema binding, target/basis refs, JCS payload refs, payload-hash refs, unit metadata, provenance refs, and canonical round-trip key material.</td><td><code>src/lib.rs</code></td></tr>
+<tr><td>Load-case record boundary</td><td><code>PrimitiveLoadCaseRecord</code> binds one primitive category to canonical model <code>LoadCase</code> metadata, sorted load IDs, provenance, payload refs, and hash refs. Mixed-category algebra remains downstream DEL-05-02 scope.</td><td><code>PrimitiveLoadCaseRecord</code>; <code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>Diagnostic bridge</td><td><code>LoadDiagnosticRecord</code> maps primitive-load validation and load-case assembly findings to code, class, blocking severity, source, affected object, message, remediation, and provenance ref for later result-envelope transport.</td><td><code>LoadDiagnosticRecord</code>; <code>diagnostic_records_from_load_findings</code>; <code>diagnostic_records_from_load_case_assembly_findings</code></td></tr>
+<tr><td>Missing values</td><td>Missing solve-required load targets, magnitudes, spans, properties, or provenance become explicit findings/errors rather than silent defaults.</td><td>OPS-K-DATA-2; <code>FindingCode</code>; <code>BoundaryMetadataError</code></td></tr>
+<tr><td>Dynamic scope</td><td>Wind, seismic, and occasional loads are represented only as explicit equivalent mechanics loads; equivalent-static preparation requires caller-supplied basis/provenance refs. Dynamic procedure generation, response spectra, code coefficients, and environmental defaults remain <code>TBD</code> and out of this deliverable.</td><td><code>_CONTEXT.md</code>; <code>README.md</code>; tests in <code>src/lib.rs</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-primitive-load-category-register">CLM-006 — Primitive Load Category Register</h3>
+<blockquote><h5 id="primitive-load-category-register">Primitive Load Category Register</h5>
+<table><tbody>
+<tr><td>Category</td><td>Implemented mechanics evidence</td><td>Preserved boundary / open item</td></tr>
+<tr><td>Weight</td><td>Element uniform <code>ForcePerLength</code> loads; eligible for lumped equivalent nodal conversion when caller supplies span/connectivity.</td><td>Mass-source, gravity-vector, density provenance, and unit-conversion policy remain <code>TBD</code>.</td></tr>
+<tr><td>Pressure</td><td>Element pressure or equivalent line-load records; straight-pipe pressure thrust helper computes <code>p * internal_area</code> from caller-supplied properties.</td><td>Pressure stress formulas, code stress categories, pressure design rules, and property/default sourcing remain outside this deliverable.</td></tr>
+<tr><td>Thermal</td><td>Element temperature-change records; straight-pipe thermal axial helper computes <code>E * A * alpha * DeltaT</code> from caller-supplied properties.</td><td>Reference temperature, material property provenance, expansion policy, and broader thermal behavior remain bounded to future sealed scopes.</td></tr>
+<tr><td>Imposed displacement</td><td>Support-target imposed displacement records preserve translational displacement or rotational DOF boundary.</td><td>Support/restraint implementation and boundary-condition ownership remain interface-dependent.</td></tr>
+<tr><td>Hydrotest</td><td>Element pressure or equivalent line-load category is represented in primitive mechanics preparation.</td><td>Hydrotest procedure defaults, test-fluid assumptions, and code requirements are not invented.</td></tr>
+<tr><td>Wind</td><td>Explicit equivalent nodal force or element <code>ForcePerLength</code> mechanics loads are accepted.</td><td>Wind coefficients, profiles, exposure rules, and code factors are user/rule-supplied <code>TBD</code>.</td></tr>
+<tr><td>Seismic</td><td>Explicit equivalent nodal force or element <code>ForcePerLength</code> mechanics loads are accepted.</td><td>Dynamic treatment, response parameters, seismic code procedure generation, and acceleration-style placeholders remain out of scope.</td></tr>
+<tr><td>Occasional</td><td>Explicit equivalent nodal force/moment or element <code>ForcePerLength</code> mechanics loads are accepted.</td><td>Event definition and user/rule mapping remain downstream/user-governed.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-implemented-surfaces">CLM-007 — Implemented Surfaces</h3>
+<blockquote><h5 id="implemented-surfaces">Implemented Surfaces</h5>
+<table><tbody>
+<tr><td>Surface</td><td>Current status</td></tr>
+<tr><td>Primitive category model</td><td>Implemented by <code>PrimitiveLoadCategory</code> and <code>PrimitiveLoadCaseKind</code>.</td></tr>
+<tr><td>Primitive load records</td><td>Implemented by <code>PrimitiveLoad</code>, <code>LoadTarget</code>, <code>LoadDirection</code>, and <code>LoadQuantity</code>.</td></tr>
+<tr><td>Boundary quantity metadata</td><td>Implemented by <code>CanonicalDimension</code>, <code>QuantityUnitMetadata</code>, <code>BoundaryRecordRef</code>, and <code>BoundaryQuantityRecord</code>.</td></tr>
+<tr><td>Primitive load-case records</td><td>Implemented by <code>PrimitiveLoadCaseRecord</code>; validates model <code>LoadCase</code> schema binding, non-empty refs, non-empty unique load IDs, and single-category membership.</td></tr>
+<tr><td>Load preparation</td><td>Implemented by <code>prepare_loads</code> for nodal, element-uniform, and imposed-displacement contributions with deterministic sorting.</td></tr>
+<tr><td>Equivalent-static preparation</td><td>Implemented by <code>EquivalentStaticMechanicsBasis</code> and <code>prepare_equivalent_static_loads</code> for wind, seismic, and occasional explicit mechanics loads with caller-supplied basis/provenance refs.</td></tr>
+<tr><td>Lumped equivalent nodal conversion</td><td>Implemented by <code>prepare_lumped_nodal_loads</code> for explicit translational/global <code>ForcePerLength</code> element loads with caller-supplied spans/connectivity.</td></tr>
+<tr><td>Axial effects</td><td>Implemented by <code>prepare_straight_pipe_axial_effects</code> for thermal axial force and pressure thrust from caller-supplied properties.</td></tr>
+<tr><td>Solver load-vector assembly</td><td>Implemented by <code>assemble_solver_load_vector</code>; sorts/sums valid nodal contributions and returns findings instead of partial vectors when invalid data exists.</td></tr>
+<tr><td>Diagnostic bridge</td><td>Implemented by diagnostic conversion helpers for primitive-load and load-case assembly findings.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-verification-evidence">CLM-008 — Verification Evidence</h3>
+<blockquote><h5 id="verification-evidence">Verification Evidence</h5>
+<table><tbody>
+<tr><td>Evidence</td><td>Result</td></tr>
+<tr><td>Historical run records</td><td><code>MEMORY.md</code> records successful cargo formatting/testing tranches for primitive implementation, lumping, solver-vector assembly, axial effects, boundary dimension update, load-case records, and diagnostic bridge.</td></tr>
+<tr><td>Current crate tests</td><td><code>src/lib.rs</code> contains 40 tests for all primitive categories, boundary metadata, retired dimension aliases, equivalent-static handling, load-case records, deterministic sorting, lumping, axial effects, diagnostic records, missing/invalid inputs, and solver-vector assembly findings.</td></tr>
+<tr><td>Current validation evidence</td><td><code>cargo test --manifest-path core/loads/primitive_loads/Cargo.toml --locked</code> passed with 40 tests in the 2026-06-05 foundational hardening tranche; doc-alignment closeout should still run diff hygiene for touched files.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-009-conditions">CLM-009 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Primitive load categories remain separate from code-specific load combinations and allowables. Source: <code>_CONTEXT.md</code>; PKG-05 exclusions; SOW-014 note.</li>
+<li>- The downstream load-case algebra/user-combination interface remains DEL-05-02. Source: <code>Specification.md</code> REQ-05-01-007; <code>_DEPENDENCIES.md</code>.</li>
+<li>- The crate exposes storage-neutral boundary records and diagnostic records, not the final application-service result envelope/API.</li>
+<li>- Unknown coefficients, default magnitudes, conversion constants, jurisdictional values, and professional acceptance remain <code>TBD</code>. Source: OPS-K-AGENT-1; OPS-K-DATA-1; OPS-K-IP-1.</li>
+<li>- Agent-authored deliverable evidence remains draft/proposal material until accepted by the human workflow authority. Source: OPS-K-AGENT-4.</li>
+</ul></blockquote>
+<h3 id="clm-010-references">CLM-010 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>MEMORY.md</code></li>
+<li>- <code>core/loads/primitive_loads/README.md</code></li>
+<li>- <code>core/loads/primitive_loads/src/lib.rs</code></li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-05-01</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row SOW-013</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-05-01</li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-011-specification-del-05-01-primitive-load-case-engine">CLM-011 — Specification: DEL-05-01 Primitive load case engine</h3>
+<blockquote><h4 id="specification-del-05-01-primitive-load-case-engine">Specification: DEL-05-01 Primitive load case engine</h4></blockquote>
+<h3 id="clm-012-d-41-r5-t7-pdu-055-current-declaration">CLM-012 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-05-01-DECL-001</code>.</p></blockquote>
+<h3 id="clm-013-scope">CLM-013 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the implemented evidence boundary for the primitive load case engine under <code>core/loads/primitive_loads</code>. The slice defines code-neutral primitive load categories, storage-neutral primitive load-case records, boundary quantity metadata, deterministic mechanics preparation, equivalent-static mechanics handling, lumped equivalent nodal conversion, straight-pipe axial-effect helpers, solver load-vector assembly helpers, and diagnostic bridge records for later result-envelope transport.</p>
+<p>This deliverable does not define code-specific load combinations, bundle coefficients or default magnitudes, set jurisdictional factors, implement rule-pack evaluation, implement final result-envelope/API integration, or claim engineering compliance. Mixed-category load-case algebra and user-defined combinations remain downstream DEL-05-02 scope.</p></blockquote>
+<h3 id="clm-014-requirements">CLM-014 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-05-01-001</td><td>The deliverable shall preserve primitive load category identity for weight, pressure, thermal expansion, imposed displacement, hydrotest, wind, seismic, and occasional loads.</td><td>SOW-013; DEL-05-01; <code>PrimitiveLoadCategory</code></td></tr>
+<tr><td>REQ-05-01-002</td><td>Primitive load records shall remain compatible with the 3D centerline/frame mechanics analysis boundary through explicit node, element, and support targets.</td><td>OPS-K-MECH-1; <code>LoadTarget</code>; <code>LoadDirection</code></td></tr>
+<tr><td>REQ-05-01-003</td><td>The primitive load engine shall not encode code-specific load combinations, allowables, factors, coefficients, procedure generators, default environmental values, or certification claims.</td><td>PKG-05 exclusion; OPS-K-DATA-1; OPS-K-IP-1; OPS-K-MECH-2</td></tr>
+<tr><td>REQ-05-01-004</td><td>Unit-bearing load inputs shall preserve explicit dimension intent and reject invalid or retired boundary metadata where implemented.</td><td>OPS-K-UNIT-1; <code>LoadDimension</code>; <code>CanonicalDimension</code>; <code>BoundaryMetadataError</code></td></tr>
+<tr><td>REQ-05-01-005</td><td>Missing or invalid solve-required load data shall become explicit findings/errors rather than silent defaults.</td><td>OPS-K-DATA-2; <code>FindingCode</code>; <code>BoundaryMetadataError</code></td></tr>
+<tr><td>REQ-05-01-006</td><td>Load validation and load-case assembly findings shall be convertible to diagnostic records carrying code, class, blocking severity, source, affected object, message, remediation, and provenance reference.</td><td>AB-00-06; <code>LoadDiagnosticRecord</code></td></tr>
+<tr><td>REQ-05-01-007</td><td>Primitive load-case records shall bind one primitive category to canonical model <code>LoadCase</code> metadata, provenance, payload reference, payload-hash reference, and sorted load IDs; mixed-category algebra remains DEL-05-02 scope.</td><td>SOW-013; SOW-014; DEL-05-02; <code>PrimitiveLoadCaseRecord</code>; <code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>REQ-05-01-008</td><td>Wind, seismic, and occasional equivalent-static handling shall accept only explicit equivalent mechanics loads with caller-supplied basis/provenance refs unless a later sealed scope authorizes dynamic procedure generation.</td><td>SOW-013 note; <code>_CONTEXT.md</code>; <code>README.md</code>; <code>EquivalentStaticMechanicsBasis</code></td></tr>
+<tr><td>REQ-05-01-009</td><td>Deterministic primitive-load tests shall cover category representation, supported/unsupported target and dimension boundaries, boundary metadata, equivalent-static handling, load-case records, diagnostic bridge records, lumping, axial effects, and solver-vector assembly behavior before release use.</td><td>OPS-K-SOLVER-1; <code>src/lib.rs</code> tests</td></tr>
+<tr><td>REQ-05-01-010</td><td>Primitive load inputs, load-case records, boundary quantity records, and diagnostic records shall retain provenance references sufficient to distinguish explicit user/lawful source inputs from unresolved <code>TBD</code> state.</td><td>OPS-K-DATA-1; OPS-K-DATA-2; AB-00-06</td></tr>
+<tr><td>REQ-05-01-011</td><td>Lumped equivalent nodal conversion shall remain limited to explicit translational/global <code>ForcePerLength</code> element loads with caller-supplied element span and node connectivity.</td><td><code>prepare_lumped_nodal_loads</code>; <code>ElementLoadSpan</code></td></tr>
+<tr><td>REQ-05-01-012</td><td>Straight-pipe axial-effect helpers shall remain mechanics-only helpers for thermal axial force and pressure thrust from caller-supplied properties and shall not introduce pressure stress formulas or material/default catalogs.</td><td><code>prepare_straight_pipe_axial_effects</code>; PKG-05 exclusions</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-standards">CLM-015 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external protected standard text is introduced by this deliverable. Governing local standards are the project invariant catalog, architecture basis rows AB-00-01, AB-00-02, AB-00-03, AB-00-06, AB-00-08, and the decomposition/register rows listed in <code>_CONTEXT.md</code>.</p></blockquote>
+<h3 id="clm-016-verification">CLM-016 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification evidence / approach</td></tr>
+<tr><td>REQ-05-01-001</td><td>Unit tests and enum inspection confirm all eight primitive categories exist and map to primitive load-case kinds without invented coefficients.</td></tr>
+<tr><td>REQ-05-01-002</td><td>Unit tests cover node, element, and support target preparation for accepted mechanics boundaries.</td></tr>
+<tr><td>REQ-05-01-003</td><td>Documentation and crate boundary review confirm absence of code combinations, allowables, protected standard values, and professional/compliance claims.</td></tr>
+<tr><td>REQ-05-01-004</td><td>Unit tests cover canonical dimension parsing, <code>force_per_length</code>, dimension mismatch, and retired alias rejection.</td></tr>
+<tr><td>REQ-05-01-005</td><td>Unit tests cover missing targets, missing magnitudes, invalid targets, invalid dimensions, invalid directions, invalid spans/connectivity, invalid physical properties, non-finite inputs, and blocked outputs.</td></tr>
+<tr><td>REQ-05-01-006</td><td>Unit tests cover conversion from primitive-load findings and load-case assembly findings into diagnostic records with provenance.</td></tr>
+<tr><td>REQ-05-01-007</td><td>Unit tests cover load-case schema binding, schema load-type mapping, sorted load IDs, missing metadata, duplicate IDs, empty loads, and mixed-category rejection.</td></tr>
+<tr><td>REQ-05-01-008</td><td>Unit tests cover wind/seismic/occasional explicit equivalent mechanics loads, required equivalent-static basis/provenance refs, and rejection of acceleration/dynamic-placeholder dimensions.</td></tr>
+<tr><td>REQ-05-01-009</td><td>Current crate evidence is the focused 40-test primitive-load suite; broader release gates remain under project validation/review authority.</td></tr>
+<tr><td>REQ-05-01-010</td><td>Unit tests cover missing provenance rejection for boundary records and diagnostic records.</td></tr>
+<tr><td>REQ-05-01-011</td><td>Unit tests cover lumped nodal splitting, accepted translational directions, unsupported pressure/thermal/dynamic inputs, missing/invalid spans, invalid indices, and unchanged base <code>prepare_loads</code> behavior.</td></tr>
+<tr><td>REQ-05-01-012</td><td>Unit tests cover thermal and pressure axial force preparation, finding fan-in, missing/invalid properties, non-finite magnitude, and overflowing computed force rejection.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-remaining-tbds">CLM-017 — Remaining TBDs</h3>
+<blockquote><h5 id="remaining-tbds">Remaining TBDs</h5>
+<ul>
+<li>- Canonical unit conversion constants and production unit conversion policy.</li>
+<li>- Final result-envelope/API integration and application-service command/query surface.</li>
+<li>- Production tolerance policy and release thresholds.</li>
+<li>- Wind/seismic dynamic treatment, occasional-event mapping, and any future lawful procedure generators.</li>
+<li>- Broader material/property sourcing policy, default prohibition enforcement, and human acceptance gates.</li>
+<li>- Professional reliance and code-compliance acceptance remain human/project authority decisions, not crate behavior.</li>
+</ul></blockquote>
+<h3 id="clm-018-documentation">CLM-018 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required local deliverable artifacts are <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>, <code>MEMORY.md</code>, <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>, <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code>, and <code>_run_records/</code>. Implementation evidence is in <code>core/loads/primitive_loads/README.md</code> and <code>core/loads/primitive_loads/src/lib.rs</code>.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted primitive-load mechanics, unit, provenance, diagnostic, and rule-separation boundaries, including explicit missing-input findings, caller-supplied equivalent-static bases, and unresolved production policies without inventing code factors, combinations, allowables, defaults, or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-019-procedure-del-05-01-primitive-load-case-engine">CLM-019 — Procedure: DEL-05-01 Primitive load case engine</h3>
+<blockquote><h4 id="procedure-del-05-01-primitive-load-case-engine">Procedure: DEL-05-01 Primitive load case engine</h4></blockquote>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Describe bounded steps for maintaining and verifying the primitive load case engine evidence without introducing code-specific load combinations, protected standards data, final result-envelope/API behavior, or compliance claims.</p></blockquote>
+<h3 id="clm-021-prerequisites">CLM-021 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed deliverable scope for DEL-05-01 and SOW-013.</li>
+<li>- Applicable architecture basis IDs AB-00-01, AB-00-02, AB-00-03, AB-00-06, and AB-00-08.</li>
+<li>- Invariants OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-SOLVER-1, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-AGENT-1 through OPS-K-AGENT-4, and OPS-K-IP-1.</li>
+<li>- Current implementation evidence in <code>core/loads/primitive_loads/README.md</code> and <code>core/loads/primitive_loads/src/lib.rs</code>.</li>
+<li>- Explicit human approval before any future scope adds code-specific combinations, coefficients, allowables, default environmental factors, dynamic procedure generation, final compliance claims, or professional reliance claims.</li>
+</ul></blockquote>
+<h3 id="clm-022-steps">CLM-022 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity, package, scope item, objective, architecture basis, and current lifecycle state from <code>_CONTEXT.md</code> and <code>_STATUS.md</code>.</p>
+<p>2. Read the deliverable-local truth set before edits: <code>_CONTEXT.md</code>, <code>_STATUS.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>MEMORY.md</code>, <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</p>
+<p>3. Read the implementation evidence in <code>core/loads/primitive_loads/README.md</code> and <code>core/loads/primitive_loads/src/lib.rs</code>.</p>
+<p>4. Confirm all SOW-013 primitive categories remain represented: weight, pressure, thermal expansion, imposed displacement, hydrotest, wind, seismic, and occasional.</p>
+<p>5. Confirm primitive mechanics boundaries: nodal, element-uniform, imposed-displacement, equivalent-static preparation, lumped equivalent nodal conversion, straight-pipe axial effects, and solver load-vector assembly are documented only to the extent implemented.</p>
+<p>6. Preserve the boundary between primitive load definitions/load-case records in DEL-05-01 and mixed-category load-case algebra/user combinations in DEL-05-02.</p>
+<p>7. Preserve the boundary between mechanics solving, diagnostic record transport, rule/compliance evaluation, and human professional judgment.</p>
+<p>8. Keep unknown coefficients, default magnitudes, conversion constants, dynamic treatment, property/default sourcing, production tolerance policy, final API integration, release thresholds, and professional reliance as <code>TBD</code> unless supplied by lawful source material and sealed scope.</p>
+<p>9. Run focused validation after documentation or crate-affecting changes: <code>cargo test --manifest-path core/loads/primitive_loads/Cargo.toml</code> and <code>git diff --check</code> scoped to touched files where possible.</p>
+<p>10. Record durable closeout evidence in <code>MEMORY.md</code> and <code>_run_records/TASK_RUN_*.md</code> without editing <code>_STATUS.md</code>, dependency registers, DAG artifacts, schemas, repo-level governance, or core code unless explicitly authorized by a later brief.</p></blockquote>
+<h3 id="clm-023-verification">CLM-023 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected evidence</td></tr>
+<tr><td>Scope check</td><td>Documents reference DEL-05-01, PKG-05, SOW-013, OBJ-003, and the current architecture basis consistently.</td></tr>
+<tr><td>Category check</td><td>All eight primitive load categories appear in implementation-aligned evidence.</td></tr>
+<tr><td>Boundary check</td><td>No code-specific load combinations, allowables, factors, coefficients, default magnitudes, dynamic procedure generators, or certification claims are introduced.</td></tr>
+<tr><td>Unit/boundary metadata check</td><td>Documents preserve explicit unit/dimension/provenance/hash-ref boundaries and do not claim conversion constants.</td></tr>
+<tr><td>Load-case record check</td><td>Documents describe single-category primitive load-case records and keep mixed-category algebra in DEL-05-02.</td></tr>
+<tr><td>Diagnostic bridge check</td><td>Documents describe local diagnostic bridge records without claiming a shared enum or final result-envelope/API implementation.</td></tr>
+<tr><td>Equivalent-static check</td><td>Documents limit wind, seismic, and occasional equivalent-static handling to explicit mechanics loads with caller-supplied basis/provenance refs and no dynamic procedure generation.</td></tr>
+<tr><td>Lumping check</td><td>Documents limit lumping to explicit translational/global <code>ForcePerLength</code> element loads with caller-supplied spans/connectivity.</td></tr>
+<tr><td>Axial-effect check</td><td>Documents limit axial effects to thermal and pressure mechanics helpers from caller-supplied properties without code stress/compliance claims.</td></tr>
+<tr><td>Test check</td><td><code>cargo test --manifest-path core/loads/primitive_loads/Cargo.toml</code> passes or any failure is recorded with boundaries.</td></tr>
+<tr><td>Diff hygiene check</td><td><code>git diff --check</code> passes for touched files or any failure is recorded.</td></tr>
+<tr><td>Status check</td><td><code>_STATUS.md</code> remains unchanged unless a later brief explicitly authorizes a lifecycle update.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-024-records">CLM-024 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Four-document kit: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></li>
+<li>- Working memory: <code>MEMORY.md</code></li>
+<li>- Semantic evidence: <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code></li>
+<li>- Dependency evidence: <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code></li>
+<li>- Implementation evidence: <code>core/loads/primitive_loads/README.md</code>, <code>core/loads/primitive_loads/src/lib.rs</code></li>
+<li>- Run evidence: <code>_run_records/</code></li>
+<li>- Lifecycle evidence: <code>_STATUS.md</code></li>
+</ul></blockquote>
+<h3 id="clm-025-d-41-r5-t7-pdu-054-current-declaration">CLM-025 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The primitive-load slice now includes explicit loads and the DEC-068 equivalent-static wind, seismic, and occasional generators. Dynamic loading and code-prescribed generation are outside this bounded slice unless separately implemented and evidenced.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, category and record coverage, unit/provenance metadata, preparation and solver-vector interfaces, deterministic findings, protected-content and professional boundaries, and every surviving governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-026-guidance-del-05-01-primitive-load-case-engine">CLM-026 — Guidance: DEL-05-01 Primitive load case engine</h3>
+<blockquote><h4 id="guidance-del-05-01-primitive-load-case-engine">Guidance: DEL-05-01 Primitive load case engine</h4></blockquote>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable frames primitive load categories as explicit mechanics inputs for the OpenPipeStress solver boundary. The current implementation evidence is the bounded <code>core/loads/primitive_loads</code> crate, which preserves primitive category identity, deterministic findings, boundary metadata, load-case record shape, diagnostic bridge records, equivalent-static mechanics handling, lumped equivalent nodal conversion, and straight-pipe axial-effect helpers without adding code-specific combinations or compliance logic.</p></blockquote>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat primitive load categories as mechanics-boundary records and validation surfaces, not as a finished load-combination or rule-pack engine.</li>
+<li>- Keep primitive category, primitive load, primitive load case, load-case algebra, code combination, and rule-pack evaluation as separate concepts.</li>
+<li>- Preserve unit/dimension intent and provenance references for load quantities, boundary records, load-case records, and diagnostic records.</li>
+<li>- Use explicit findings/errors for missing targets, magnitudes, spans, properties, provenance, invalid dimensions, invalid directions, invalid topology, and non-finite values.</li>
+<li>- Keep wind, seismic, and occasional loads as explicit equivalent mechanics inputs with explicit basis/provenance refs unless a later sealed scope authorizes dynamic methods or lawful procedure generation.</li>
+<li>- Avoid copying or deriving protected standard content, tables, examples, coefficients, jurisdictional factors, or proprietary defaults.</li>
+</ul></blockquote>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Weight</td><td>Use explicit mechanics quantities such as element <code>ForcePerLength</code>; any mass-source, gravity-vector, density, and conversion policy must come from lawful upstream data or future sealed scope.</td></tr>
+<tr><td>Pressure</td><td>Pressure can be carried as an element primitive load and interpreted for straight-pipe pressure thrust only with caller-supplied properties; pressure stress formulas and code stress categories belong elsewhere.</td></tr>
+<tr><td>Thermal</td><td>Thermal can be carried as element temperature change and interpreted for straight-pipe axial force only with caller-supplied material/section properties; reference temperature and material provenance remain open policy.</td></tr>
+<tr><td>Displacement</td><td>Imposed displacement is a support-target mechanics input; support/restraint behavior remains an interface with the owning solver/support deliverables.</td></tr>
+<tr><td>Hydrotest</td><td>Hydrotest is represented as a primitive mechanics category; do not imply hydrotest procedure defaults, code requirements, or test-fluid assumptions without sourced input.</td></tr>
+<tr><td>Wind/seismic/occasional</td><td>Current implemented behavior is explicit equivalent nodal force/moment or element <code>ForcePerLength</code> where supported; <code>prepare_equivalent_static_loads</code> requires <code>EquivalentStaticMechanicsBasis</code>, and acceleration/dynamic placeholders are not treated as dynamic procedure support.</td></tr>
+<tr><td>Load-case records</td><td>Use <code>PrimitiveLoadCaseRecord</code> as a storage-neutral single-category boundary record. Mixed-category algebra and user-defined combinations remain DEL-05-02.</td></tr>
+<tr><td>Boundary metadata</td><td>Boundary records should carry schema binding, target/basis refs, JCS payload refs, payload-hash refs, unit metadata, and provenance refs; <code>TBD</code> is rejected where a concrete boundary ref is required.</td></tr>
+<tr><td>Diagnostics</td><td>Diagnostic bridge records preserve local finding codes and local classes for result-envelope handoff; they do not define a shared diagnostic enum or final application API.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Current position</td></tr>
+<tr><td>Category coverage vs. behavior breadth</td><td>Cover all SOW-013 primitive categories, but only implement bounded mechanics preparation and validation behavior evidenced in <code>core/loads/primitive_loads</code>.</td></tr>
+<tr><td>Public defaults vs. user-supplied data</td><td>Do not bundle protected, jurisdictional, or catalog values; require explicit lawful/user-supplied inputs and provenance references.</td></tr>
+<tr><td>Static equivalent inputs vs. dynamic methods</td><td>Wind, seismic, and occasional behavior remains equivalent mechanics input in this slice with caller-supplied basis/provenance refs; dynamic procedure generation remains <code>TBD</code>.</td></tr>
+<tr><td>Primitive load case vs. load algebra</td><td>The primitive record binds one category and sorted load IDs; mixed cases, load algebra, and combinations belong to DEL-05-02.</td></tr>
+<tr><td>Diagnostic bridge vs. final envelope</td><td>The crate can produce storage-neutral diagnostic records; final result-envelope/API integration remains downstream.</td></tr>
+<tr><td>Axial helper formulas vs. code stress evaluation</td><td>Thermal and pressure axial-effect helpers compute mechanics forces from explicit properties only; they are not pressure stress formulas, code checks, or allowables.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-evidence-use">CLM-031 — Evidence Use</h3>
+<blockquote><h5 id="evidence-use">Evidence Use</h5>
+<ul>
+<li>- Use <code>core/loads/primitive_loads/README.md</code> for the current crate boundary statement.</li>
+<li>- Use <code>core/loads/primitive_loads/src/lib.rs</code> for implemented API names and unit-test evidence.</li>
+<li>- Use <code>MEMORY.md</code> for historical tranche evidence, preserved boundaries, and remaining TBDs.</li>
+<li>- Use <code>_DEPENDENCIES.md</code> for the active downstream interface to DEL-05-02.</li>
+<li>- Do not promote lifecycle status or claim release/professional acceptance from these documents alone.</li>
+</ul></blockquote>
+<h3 id="clm-032-examples">CLM-032 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No normative numeric load examples, code-specific combinations, coefficient examples, or jurisdictional examples are introduced here. Test values in <code>src/lib.rs</code> are invented mechanics fixtures for unit-test coverage only and are not design defaults.</p></blockquote>
+<h3 id="clm-033-conflict-table-for-human-ruling">CLM-033 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict detected between the deliverable-local truth set and current primitive-load crate evidence.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-034-d-41-r5-t7-pdu-054-current-declaration">CLM-034 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The primitive-load slice now includes explicit loads and the DEC-068 equivalent-static wind, seismic, and occasional generators. Dynamic loading and code-prescribed generation are outside this bounded slice unless separately implemented and evidenced.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-013 OBJ-003</td><td>CLM-011</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

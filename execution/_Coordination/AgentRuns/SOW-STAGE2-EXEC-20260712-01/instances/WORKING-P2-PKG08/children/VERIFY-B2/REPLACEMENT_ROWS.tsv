@@ -1,0 +1,6 @@
+deliverable_id	operation	path	sha256
+DEL-08-06	ADD	projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-06_State, comparison, and handoff report sections/ScopeOfWork.md	22f2934acd6c24463131f24b58eb6b91773b0b5deb9bf15f47d9d365c0e0e4a9
+DEL-08-06	DELETE	projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-06_State, comparison, and handoff report sections/Datasheet.md	470de9bb157f679d9f329e1881141bb4c06c75f89d9bf2b58406ef60758907f6
+DEL-08-06	DELETE	projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-06_State, comparison, and handoff report sections/Specification.md	fe33bf21a4a575b0b862fa1cfdda4edee7b5e81d5824a153f8b0b7c5607f9dd5
+DEL-08-06	DELETE	projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-06_State, comparison, and handoff report sections/Guidance.md	8668e24dfa7498ec753e3d915d612103dd7da45aabcfcc0b854d7ae43355f28e
+DEL-08-06	DELETE	projects/chirality-piping/execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-06_State, comparison, and handoff report sections/Procedure.md	891acc2f1524ef5afcd43b7cf25cb0f5cd4bf3bedfffb565e5b78a40e7aead75

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="112fee6a944b72a6450994fbea3aa6b2561705cf2430303dd900d10238378c5d">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>112fee6a944b72a6450994fbea3aa6b2561705cf2430303dd900d10238378c5d</code>.</p>
+<h1 id="scope-of-work-del-07-02">Scope of Work — DEL-07-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-07-02</code> in service of project scope [SOW-020, SOW-021] and package objectives [OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A model-tree and property-inspector contract covering stable entity hierarchy and selection, unit-aware editable properties, provenance and validation feedback, command-routed mutations, and viewport coordination is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-02-model-tree-and-property-inspector">CLM-001 — Datasheet: DEL-07-02 Model tree and property inspector</h3>
+<blockquote><h4 id="datasheet-del-07-02-model-tree-and-property-inspector">Datasheet: DEL-07-02 Model tree and property inspector</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-02</td></tr>
+<tr><td>Package ID</td><td>PKG-07</td></tr>
+<tr><td>Package</td><td>Graphical User Interface and Engineering Workflow</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>Scope items</td><td>SOW-020, SOW-021</td></tr>
+<tr><td>Objective</td><td>OBJ-006</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Anticipated artifacts</td><td>model tree; property inspector; UI tests</td></tr>
+<tr><td>Accepted delegation</td><td><code>DEL-00-05</code> owns GUI state/interaction architecture; <code>DEL-07-02</code> owns model-tree/property-inspector behavior implementation within it (<code>DEC-074</code> O2).</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Setup value</td></tr>
+<tr><td>UI surface</td><td>Single GUI work surface for tree navigation and selected-entity property inspection.</td></tr>
+<tr><td>Primary entities</td><td>Project, Model, Node, Element, Component, Material, Section, Support, LoadCase, Combination, RulePackRef, Result, and diagnostics where applicable.</td></tr>
+<tr><td>GUI baseline</td><td>Tauri 2 desktop shell, TypeScript/React/Vite GUI, and Three.js viewport where viewport-facing. Exact component and state libraries are <code>TBD</code>.</td></tr>
+<tr><td>State boundary</td><td>Durable project/model state is separate from transient session, viewport, selection, and job-progress state. GUI mutations route through application-service commands.</td></tr>
+<tr><td>Missing-data posture</td><td>Missing solve-required and rule-check-required values are surfaced as explicit findings, not defaulted silently.</td></tr>
+<tr><td>Data boundary</td><td>Private project, material, component, and rule-pack data remain user-controlled and are not transmitted or committed publicly by default.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Tree hierarchy and grouping rules</td><td>Bounded implementation exists from accepted model identities; broader canvas gestures and full model-tree UX remain residual.</td></tr>
+<tr><td>Property editor field inventory</td><td>Bounded implementation preserves governed unit-bearing fields and metadata; model-level <code>modulus_basis_records</code> entry and broader editor coverage remain residual.</td></tr>
+<tr><td>Selection synchronization contract</td><td>Bounded tree/viewport/inspector selection is implemented within the <code>DEL-00-05</code> state/interaction architecture; transient state is not durable model truth.</td></tr>
+<tr><td>Command/query contract</td><td>Current structured mutations route through the application-service operation seam; broader contract coverage remains governed residual work.</td></tr>
+<tr><td>UI tests</td><td>Focused evidence covers bounded tree, selection, and inspector behavior; backfill and factoring for <code>PropertyInspector</code> and adjacent surfaces remain residual.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This kit records the bounded UI behavior already implemented and the remaining delivery boundary. <code>DEC-074</code> O2 assigns model-tree/property-inspector behavior implementation to <code>DEL-07-02</code> within the GUI state/interaction architecture owned by <code>DEL-00-05</code>; it does not transfer architecture authority, broaden functionality, choose unresolved UI libraries, introduce engineering default values, or move any artifact to <code>ISSUED</code>.</p>
+<p>The model tree and property inspector consume accepted schema/service contracts for object identity, unit-bearing fields, provenance, diagnostics, rule-pack/private-library status, and command/query/result-envelope behavior to the extent supported by current bounded evidence. Missing or unresolved engineering data remains visible as <code>TBD</code> or diagnostic state.</p></blockquote>
+<h3 id="clm-007-ownership-boundary">CLM-007 — Ownership Boundary</h3>
+<blockquote><h5 id="ownership-boundary">Ownership Boundary</h5>
+<ul>
+<li>- Architecture owner: <code>DEL-00-05</code> for GUI state/interaction architecture.</li>
+<li>- Behavior owner: <code>DEL-07-02</code> for bounded model-tree/property-inspector implementation within that architecture.</li>
+<li>- Adjacent scopes unchanged: <code>DEL-07-03</code> owns specialized material/component/rule-pack editors; <code>DEL-07-04</code> owns missing-data warning/blocking UX.</li>
+<li>- Ruling basis: <code>DEC-074</code> option O2, resolving <code>PDU-009</code> without scope expansion.</li>
+</ul></blockquote>
+<h3 id="clm-008-setup-slot-checklist">CLM-008 — Setup Slot Checklist</h3>
+<blockquote><h5 id="setup-slot-checklist">Setup Slot Checklist</h5>
+<table><tbody>
+<tr><td>Slot</td><td>Setup status</td><td>Owner/source status</td></tr>
+<tr><td>Tree grouping and hierarchy rules</td><td><code>TBD</code></td><td>Expected from accepted domain/schema and GUI state contracts.</td></tr>
+<tr><td>Inspector field inventory</td><td><code>TBD</code></td><td>Expected from accepted domain/schema contracts for model entities and library references.</td></tr>
+<tr><td>Unit display and edit hooks</td><td><code>TBD</code></td><td>Expected from accepted unit and command/query contracts.</td></tr>
+<tr><td>Provenance and redistribution/private-status display</td><td><code>TBD</code></td><td>Expected from material/component/rule-pack/library contracts.</td></tr>
+<tr><td>Diagnostic classes and affected-object display</td><td><code>TBD</code></td><td>Expected from diagnostics/result-envelope contract.</td></tr>
+<tr><td>Fixture, screenshot, and UI test data policy</td><td><code>TBD</code></td><td>Must remain synthetic, public-domain, or otherwise cleared.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-009-references">CLM-009 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, artifacts, and architecture-basis injection.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-07-02</code>.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> rows <code>SOW-020</code> and <code>SOW-021</code>.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, <code>PKG-07</code>, <code>OBJ-006</code>, and architecture basis IDs <code>AB-00-03</code>, <code>AB-00-05</code>, <code>AB-00-06</code>, <code>AB-00-07</code>, and <code>AB-00-08</code>.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants <code>OPS-K-DATA-1</code>, <code>OPS-K-DATA-2</code>, <code>OPS-K-DATA-3</code>, <code>OPS-K-UNIT-1</code>, <code>OPS-K-RULE-1</code>, <code>OPS-K-RULE-3</code>, <code>OPS-K-PRIV-1</code>, <code>OPS-K-PRIV-2</code>, <code>OPS-K-IP-1</code>, <code>OPS-K-IP-2</code>, <code>OPS-K-IP-3</code>, and <code>OPS-K-AGENT-1..4</code>.</li>
+<li>- <code>docs/SPEC.md</code> sections 1, 3, 6, 7, 10, and 11.</li>
+<li>- <code>docs/TYPES.md</code> sections 3, 4, 5, 6, 7, 8, and 9.</li>
+<li>- <code>execution/_Coordination/_DECISIONS/D-41_R4_RULING_2026-07-12.md</code>, <code>DEC-074</code> option O2.</li>
+</ul></blockquote>
+<h3 id="clm-010-open-setup-questions">CLM-010 — Open Setup Questions</h3>
+<blockquote><h5 id="open-setup-questions">Open Setup Questions</h5>
+<table><tbody>
+<tr><td>Question</td><td>Status</td></tr>
+<tr><td>Which accepted schema version supplies the property inspector field inventory?</td><td><code>TBD</code></td></tr>
+<tr><td>Which GUI state library, if any, is accepted for transient selection and inspector state?</td><td><code>TBD</code></td></tr>
+<tr><td>Which application-service commands and queries are accepted for model tree edits and property reads?</td><td><code>TBD</code></td></tr>
+<tr><td>Which diagnostics contract shape is accepted for inline missing-data and provenance warnings?</td><td><code>TBD</code></td></tr>
+<tr><td>Which UI test framework conventions apply to this slice beyond the architecture-basis Playwright/Vitest expectation?</td><td><code>TBD</code></td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-011-specification-del-07-02-model-tree-and-property-inspector">CLM-011 — Specification: DEL-07-02 Model tree and property inspector</h3>
+<blockquote><h4 id="specification-del-07-02-model-tree-and-property-inspector">Specification: DEL-07-02 Model tree and property inspector</h4></blockquote>
+<h3 id="clm-012-d-41-r5-t7-pdu-055-current-declaration">CLM-012 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-02-DECL-001</code>.</p></blockquote>
+<h3 id="clm-013-scope">CLM-013 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable owns the bounded model-tree and property-inspector behavior implementation within the GUI state/interaction architecture owned by <code>DEL-00-05</code>. It covers tree navigation, selected-entity property presentation/editing, selection synchronization with the 3D centerline workflow, missing-data visibility, provenance/private-data presentation, and UI test expectations.</p>
+<p>Current evidence includes bounded implementation and focused tests. Under <code>DEC-074</code> option O2, this ownership statement does not transfer GUI architecture authority from <code>DEL-00-05</code>, broaden functionality, select unresolved component/state libraries, introduce engineering defaults, embed protected standards content, or claim professional approval/code compliance. Broader model-level modulus entry, unit-entry coverage, test/factoring hardening, and full canvas/tree/editor UX remain residual work.</p></blockquote>
+<h3 id="clm-014-accepted-ownership-delegation">CLM-014 — Accepted Ownership Delegation</h3>
+<blockquote><h5 id="accepted-ownership-delegation">Accepted Ownership Delegation</h5>
+<ul>
+<li>- <code>DEL-00-05</code> owns GUI state/interaction architecture, including the architectural selection-model role.</li>
+<li>- <code>DEL-07-02</code> owns model-tree/property-inspector behavior implementation within that architecture.</li>
+<li>- <code>DEC-074</code> option O2 resolves <code>PDU-009</code> and the corresponding ownership clarification without transferring architecture or expanding functionality.</li>
+<li>- <code>DEL-07-03</code> retains specialized material/component/rule-pack editor scope, and <code>DEL-07-04</code> retains missing-data warning/blocking UX scope.</li>
+</ul></blockquote>
+<h3 id="clm-015-requirements">CLM-015 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source basis</td><td>Verification hook</td></tr>
+<tr><td>DEL-07-02-RQ-001</td><td>The model tree shall expose navigation for centerline model entities and piping component visualization without duplicating durable model truth in transient UI state.</td><td>SOW-020; AB-00-05; docs/SPEC.md section 7</td><td>Future UI tests for tree rendering, selection, and model identity consistency.</td></tr>
+<tr><td>DEL-07-02-RQ-002</td><td>The property inspector shall present selected-entity fields for materials, sections, components, load cases, supports, rule-pack references, and private-library references where this slice owns the inspector surface.</td><td>SOW-021; docs/SPEC.md sections 3 and 7; DEC-074 O2</td><td>Current implementation/run evidence and focused UI tests for entity-specific inspector panels and read-only/editable state.</td></tr>
+<tr><td>DEL-07-02-RQ-003</td><td>Unit-bearing values shown or edited through the inspector shall preserve unit awareness and dimensional validation hooks.</td><td>OPS-K-UNIT-1; docs/TYPES.md object registry</td><td>Unit/display/edit validation tests once schema and service contracts are accepted.</td></tr>
+<tr><td>DEL-07-02-RQ-004</td><td>Missing solve-required or rule-check-required values shall be visible as findings and shall not be silently supplied by the tree, inspector, or UI defaults.</td><td>OPS-K-DATA-2; OBJ-006; docs/SPEC.md section 7</td><td>Negative UI tests for missing physical inputs and missing rule-pack inputs.</td></tr>
+<tr><td>DEL-07-02-RQ-005</td><td>Provenance and redistribution/private status shall remain visible for materials, sections, components, and rule-pack references where inspector fields expose them.</td><td>OPS-K-DATA-3; OPS-K-RULE-3; OPS-K-PRIV-1; docs/TYPES.md sections 7 and 8</td><td>UI tests for provenance/status display and private/public boundary indicators.</td></tr>
+<tr><td>DEL-07-02-RQ-006</td><td>GUI mutations from the property inspector shall route through application-service commands; tree/inspector reads shall use governed query or result-envelope boundaries.</td><td>AB-00-03; AB-00-05</td><td>Service-boundary review and command/query interaction tests.</td></tr>
+<tr><td>DEL-07-02-RQ-007</td><td>Diagnostics shown in the inspector shall use governed diagnostic/result-envelope concepts and shall not claim certification, sealing, professional approval, or automatic code compliance.</td><td>AB-00-06; OPS-K-AGENT-4; docs/TYPES.md analysis statuses</td><td>Diagnostic presentation tests and protected/professional-claim review.</td></tr>
+<tr><td>DEL-07-02-RQ-008</td><td>Public examples, screenshots, fixtures, and test data for the UI slice shall not contain protected standards text, protected tables, proprietary commercial data, or private project data.</td><td>OPS-K-IP-1; OPS-K-IP-3; OPS-K-RULE-1; OPS-K-PRIV-1</td><td>Protected-content and fixture provenance review.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-standards">CLM-016 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standard text, protected tables, protected examples, material allowables, SIF/flexibility tables, proprietary component values, or proprietary project data are available in this deliverable-local setup context. Any future standards or owner-code basis must remain a private/user-supplied input or a non-protected pointer with provenance. Clause-level requirements are <code>TBD</code>.</p></blockquote>
+<h3 id="clm-017-verification">CLM-017 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification area</td><td>Minimum setup expectation</td></tr>
+<tr><td>Tree navigation</td><td>Tests should confirm tree nodes represent accepted model entities and preserve stable identity through selection.</td></tr>
+<tr><td>Property inspector</td><td>Tests should confirm selected entity type controls visible field groups and editability.</td></tr>
+<tr><td>Missing data</td><td>Tests should show missing solve-required and rule-check-required values remain visible and classified.</td></tr>
+<tr><td>Unit safety</td><td>Tests should cover unit-bearing value display/edit pathways and dimensional validation failures once contracts exist.</td></tr>
+<tr><td>Provenance/privacy</td><td>Tests should show provenance and private/public redistribution status are visible where relevant.</td></tr>
+<tr><td>Command/query boundary</td><td>Tests or review evidence should show inspector edits do not bypass application-service commands.</td></tr>
+<tr><td>Professional boundary</td><td>UI text, diagnostics, and fixtures must not claim code compliance, certification, approval, or sealing.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-verification-coverage-slots">CLM-018 — Verification Coverage Slots</h3>
+<blockquote><h5 id="verification-coverage-slots">Verification Coverage Slots</h5>
+<table><tbody>
+<tr><td>Coverage slot</td><td>Required future evidence</td></tr>
+<tr><td>Tree navigation and stable identity</td><td>UI test or review evidence that tree entries map to accepted model identities.</td></tr>
+<tr><td>Selection synchronization</td><td>UI test or review evidence that tree, viewport, and inspector selection remain aligned without durable-state drift.</td></tr>
+<tr><td>Inspector field groups</td><td>UI test or review evidence that selected entity type controls visible field groups and editability.</td></tr>
+<tr><td>Transient/durable state split</td><td>Review evidence that selection, expansion, filters, and panel focus remain transient unless a persistence contract authorizes otherwise.</td></tr>
+<tr><td>Command-backed edits</td><td>UI/service test or review evidence that inspector mutations route through application-service commands.</td></tr>
+<tr><td>Missing-data visibility</td><td>Negative UI tests for solve-required and rule-check-required gaps.</td></tr>
+<tr><td>Provenance/privacy visibility</td><td>UI tests or review evidence for provenance, checksum/source status, and private/public redistribution indicators.</td></tr>
+<tr><td>Protected/professional-boundary review</td><td>Evidence that fixtures and UI text avoid protected data and compliance/certification claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-documentation">CLM-019 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Current owned implementation artifacts include:</p>
+<ul>
+<li>- <code>apps/desktop/src/features/model-tree/ModelTree.tsx</code>;</li>
+<li>- <code>apps/desktop/src/features/model-tree/PropertyInspector.tsx</code>;</li>
+<li>- focused UI tests and deliverable-local run evidence for bounded tree, selection, and inspector behavior.</li>
+</ul>
+<p>GUI component/state-library architecture remains owned by <code>DEL-00-05</code>. Broader model-level modulus entry, unit-entry coverage, test/factoring hardening, and full canvas/tree/editor UX remain open; unresolved schema versions, command/query names, and screenshot fixture policy remain <code>TBD</code> where current accepted evidence does not settle them.</p></blockquote>
+<h3 id="clm-020-conflict-table-for-human-ruling">CLM-020 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Issue</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>D41-PDU-009</td><td>Whether GUI selection/inspector ownership remains wholly in <code>DEL-00-05</code> or behavior implementation belongs in <code>DEL-07-02</code>.</td><td><code>DEL-00-05</code>; <code>DEL-07-02</code></td><td>Resolved by <code>DEC-074</code> O2: <code>DEL-00-05</code> owns GUI state/interaction architecture; <code>DEL-07-02</code> owns model-tree/property-inspector behavior implementation within it.</td></tr>
+</tbody></table></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the current implemented inspection/editing boundary, explicit read-only and missing-data states, durable-versus-transient state separation, and protected/private data constraints without inventing engineering defaults, component data, authority, or hidden mutations.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-021-procedure-del-07-02-model-tree-and-property-inspector">CLM-021 — Procedure: DEL-07-02 Model tree and property inspector</h3>
+<blockquote><h4 id="procedure-del-07-02-model-tree-and-property-inspector">Procedure: DEL-07-02 Model tree and property inspector</h4></blockquote>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the bounded procedure for maintaining and extending model-tree/property-inspector behavior within the GUI state/interaction architecture owned by <code>DEL-00-05</code>, without transferring architecture authority or expanding functionality.</p></blockquote>
+<h3 id="clm-023-prerequisites">CLM-023 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the sealed brief names <code>DEL-07-02</code> and the approved implementation write scope before any GUI source or test file is edited.</li>
+<li>- Confirm the accepted <code>DEC-074</code> O2 delegation: <code>DEL-00-05</code> owns GUI state/interaction architecture and <code>DEL-07-02</code> owns model-tree/property-inspector behavior implementation within it.</li>
+<li>- Confirm upstream architecture basis constraints from <code>AB-00-03</code>, <code>AB-00-05</code>, <code>AB-00-06</code>, <code>AB-00-07</code>, and <code>AB-00-08</code>.</li>
+<li>- Confirm accepted domain/schema contracts for entity identity, unit-bearing values, provenance, diagnostics, rule-pack references, and private-library references.</li>
+<li>- Confirm accepted application-service command/query contracts for inspector edits and tree/selection reads.</li>
+<li>- Confirm all UI fixtures, screenshots, and examples are synthetic, public-domain, or otherwise cleared for repository use.</li>
+</ul></blockquote>
+<h3 id="clm-024-steps">CLM-024 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Re-read <code>_CONTEXT.md</code>, <code>Specification.md</code>, <code>_DEPENDENCIES.md</code>, and any accepted upstream schema/service contracts.</p>
+<p>2. Identify the entity types and field groups that <code>DEL-07-02</code> owns for tree navigation and selected-entity inspection without redefining <code>DEL-00-05</code> state/interaction architecture.</p>
+<p>3. Define tree-to-viewport-to-inspector selection behavior using transient GUI state and stable model identities.</p>
+<p>4. Define property inspector read-only/editable states and command-backed mutation paths.</p>
+<p>5. Preserve unit display/edit hooks, dimensional validation, provenance, private/public status, and rule-pack checksum/source status in the inspector where relevant.</p>
+<p>6. Add visible findings for missing solve-required inputs, missing rule-check inputs, provenance warnings, assumptions, and IP-boundary warnings without creating defaults.</p>
+<p>7. Require a bounded implementation brief for any new behavior. Preserve the open residuals for model-level <code>modulus_basis_records</code> entry, broader unit entry/pickers, test/factoring hardening, and broader canvas/tree/editor UX until separately executed.</p>
+<p>8. Maintain UI tests for tree navigation, selection synchronization, inspector field groups, missing-data visibility, provenance/private status, and command/query boundary behavior.</p></blockquote>
+<h3 id="clm-025-verification">CLM-025 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected evidence</td></tr>
+<tr><td>Scope boundary</td><td>Changes are limited to the approved implementation scope for DEL-07-02.</td></tr>
+<tr><td>Tree/selection behavior</td><td>UI tests confirm model tree selection updates the inspector and stays aligned with stable model identity.</td></tr>
+<tr><td>Inspector behavior</td><td>UI tests confirm selected entity type controls visible field groups and command-backed edit behavior.</td></tr>
+<tr><td>Missing-data behavior</td><td>UI tests confirm missing solve-required and rule-check-required values are explicit findings.</td></tr>
+<tr><td>Unit/provenance behavior</td><td>Tests or review evidence confirm unit, provenance, checksum, and private/public status are not dropped.</td></tr>
+<tr><td>IP/privacy boundary</td><td>Fixtures and UI text contain no protected standards content, proprietary values, private project data, or compliance claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-records">CLM-026 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Implementation notes or pull request summary when code work is authorized.</li>
+<li>- UI test results.</li>
+<li>- Command/query boundary review evidence.</li>
+<li>- Fixture and screenshot provenance notes.</li>
+<li>- Protected-content review evidence where applicable.</li>
+<li>- Missing-data, provenance, and private-status UI evidence.</li>
+<li>- Any human rulings for <code>TBD</code> items.</li>
+<li>- <code>DEC-074</code> O2 ownership-delegation evidence and the corresponding deliverable-local R5 run record.</li>
+</ul></blockquote>
+<h3 id="clm-027-d-41-r5-t7-pdu-054-current-declaration">CLM-027 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The model tree, property inspector, selection flow, and command-backed edits are implemented in the bounded GUI slice. Broader product integration and ownership gaps remain only where explicitly recorded; lifecycle remains <code>IN_PROGRESS</code>.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, tree/selection identity, property categories and edit routing, unit and provenance handling, viewport synchronization, diagnostics and blocked states, current residuals, and professional-boundary language.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-028-guidance-del-07-02-model-tree-and-property-inspector">CLM-028 — Guidance: DEL-07-02 Model tree and property inspector</h3>
+<blockquote><h4 id="guidance-del-07-02-model-tree-and-property-inspector">Guidance: DEL-07-02 Model tree and property inspector</h4></blockquote>
+<h3 id="clm-029-purpose">CLM-029 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable owns the bounded model-tree/property-inspector behavior implementation within the GUI state/interaction architecture owned by <code>DEL-00-05</code>. The implemented and residual work helps users see model structure, selected-entity data, missing inputs, assumptions, provenance, and private/rule-pack status early in the workflow.</p></blockquote>
+<h3 id="clm-030-accepted-ownership-boundary">CLM-030 — Accepted Ownership Boundary</h3>
+<blockquote><h5 id="accepted-ownership-boundary">Accepted Ownership Boundary</h5>
+<ul>
+<li>- <code>DEL-00-05</code> retains GUI state/interaction architecture ownership.</li>
+<li>- <code>DEL-07-02</code> owns model-tree/property-inspector behavior implementation within that architecture.</li>
+<li>- <code>DEC-074</code> option O2 resolves <code>PDU-009</code>; it does not transfer architecture or broaden functionality.</li>
+<li>- <code>DEL-07-03</code> and <code>DEL-07-04</code> retain their specialized-editor and missing-data warning/blocking scopes respectively.</li>
+</ul></blockquote>
+<h3 id="clm-031-principles">CLM-031 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the model tree as navigation and visibility, not a second durable model store.</li>
+<li>- Route edits through application-service commands and keep selection, expansion, filtering, and panel focus as transient GUI state.</li>
+<li>- Show missing solve-required and rule-check-required values as explicit findings instead of silently filling defaults.</li>
+<li>- Preserve unit and provenance context for editable engineering fields.</li>
+<li>- Keep rule-pack checks, private-library values, and professional acceptance distinct from the open mechanics model.</li>
+<li>- Keep implementation choices that remain unresolved, including component/state libraries and exact command/query names, as <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-032-considerations">CLM-032 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The bounded tree and inspector implementation consumes upstream domain schema, persistence, command/query/job envelope, diagnostics, rule-pack, material/component/library, unit, and GUI state contracts. Current evidence settles bounded behavior only; unresolved contracts and broader UX remain governed residuals rather than authority for this deliverable to redefine <code>DEL-00-05</code> architecture.</p>
+<p>The inspector should support workflows that make engineering gaps visible before solve execution or rule checking. It should not turn missing code-specific, material, component, SIF/flexibility, allowable, or rule-pack values into public defaults. Private project and library data should remain local/user-controlled unless a later export or contribution path is explicitly authorized with documented rights.</p></blockquote>
+<h3 id="clm-033-trade-offs">CLM-033 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Tree richness vs scope control</td><td>Include the navigation and inspection concepts needed by DEL-07-02, but leave specialized editors to DEL-07-03 and missing-data blocking UX to DEL-07-04 unless an accepted brief expands scope.</td></tr>
+<tr><td>Convenience vs data boundary</td><td>Do not prefill protected/code-specific values for convenience; use visible <code>TBD</code>, diagnostics, or incomplete-state UI.</td></tr>
+<tr><td>Selection state vs durable data</td><td>Keep current selection, tree expansion, filters, and panel focus out of durable project state unless a persistence contract later authorizes a view-state record.</td></tr>
+<tr><td>Editable inspector vs command boundary</td><td>Inspector edits should be command-backed and validation-aware; direct mutation of durable model objects from UI state should be avoided.</td></tr>
+<tr><td>Rule status vs professional judgment</td><td>Show user-rule/check readiness or diagnostics only as software findings; do not present them as professional code compliance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-034-boundary-rationale">CLM-034 — Boundary Rationale</h3>
+<blockquote><h5 id="boundary-rationale">Boundary Rationale</h5>
+<p>The inspector is a convenience surface over governed model and service contracts. Command-backed edits keep validation, unit checks, diagnostics, provenance handling, undo/redo scope, and result-envelope behavior in the application-service boundary instead of allowing UI state to become an alternate authority.</p>
+<p>The split with adjacent GUI deliverables remains explicit: DEL-07-02 owns navigation and selected-entity inspection setup, DEL-07-03 owns specialized material/component/rule-pack editor implementation, and DEL-07-04 owns missing-data warning and blocking UX unless a later sealed brief or human ruling changes that boundary.</p></blockquote>
+<h3 id="clm-035-examples">CLM-035 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Current focused tests and run evidence use governed fixtures for bounded behavior. Any future screenshots, examples, or additional fixtures must use synthetic, public-domain, or otherwise cleared model data and must not reproduce protected standards content, proprietary project data, or protected code examples.</p></blockquote>
+<h3 id="clm-036-conflict-table-for-human-ruling">CLM-036 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Issue</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>D41-PDU-009</td><td>Selection/inspector architecture versus behavior ownership.</td><td><code>DEL-00-05</code>; <code>DEL-07-02</code></td><td><code>DEC-074</code> O2: <code>DEL-00-05</code> owns GUI state/interaction architecture; <code>DEL-07-02</code> owns model-tree/property-inspector behavior implementation within it.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-037-d-41-r5-t7-pdu-054-current-declaration">CLM-037 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The model tree, property inspector, selection flow, and command-backed edits are implemented in the bounded GUI slice. Broader product integration and ownership gaps remain only where explicitly recorded; lifecycle remains <code>IN_PROGRESS</code>.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-020 SOW-021 OBJ-006</td><td>CLM-011</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

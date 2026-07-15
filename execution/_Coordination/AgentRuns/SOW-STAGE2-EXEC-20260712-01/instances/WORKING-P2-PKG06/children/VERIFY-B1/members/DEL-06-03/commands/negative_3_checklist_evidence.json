@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/derive_review_checklist.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG06/children/VERIFY-B1/members/DEL-06-03/negative_dual",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG06/children/VERIFY-B1/members/DEL-06-03/negative_tests/must_not_evidence_checklist.json"
+  ],
+  "duration_seconds": 0.033546,
+  "exit_code": 1,
+  "expected_exit": 1,
+  "label": "negative_3_checklist_evidence",
+  "required_output_absent": true,
+  "stderr": "ERROR: format state is AMBIGUOUS; validated ScopeOfWork.md is required: dual production formats require an isolated conversion workspace and exact migration authority\n",
+  "stdout": ""
+}

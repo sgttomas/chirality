@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="3b0003c3fc44f4334d64a766b2afc4f6baf3d594a6fde9196009ff843d4c0c65">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-05-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>3b0003c3fc44f4334d64a766b2afc4f6baf3d594a6fde9196009ff843d4c0c65</code>.</p>
+<h1 id="scope-of-work-del-05-05">Scope of Work — DEL-05-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-05-05</code> in service of project scope [SOW-052, SOW-013] and package objectives [OBJ-003, OBJ-012].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A user-load-application contract covering concentrated forces and moments, full and partial-span distributed loads, oriented straight-pipe equivalent nodal recovery, unit-aware boundary records, deterministic findings, axial-effect bridges, and downstream result hooks is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-05-05-concentrated-and-distributed-user-load-application">CLM-001 — Datasheet: DEL-05-05 Concentrated and distributed user load application</h3>
+<blockquote><h4 id="datasheet-del-05-05-concentrated-and-distributed-user-load-application">Datasheet: DEL-05-05 Concentrated and distributed user load application</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-05-05</td></tr>
+<tr><td>Package ID</td><td>PKG-05</td></tr>
+<tr><td>Package Name</td><td>Loads, Load Cases, and Stress Recovery</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope Items</td><td>SOW-052, SOW-013</td></tr>
+<tr><td>Objectives</td><td>OBJ-003, OBJ-012</td></tr>
+<tr><td>Context Envelope</td><td>M</td></tr>
+<tr><td>Anticipated Artifacts</td><td>load application module; load tests; result hooks</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Evidence-grounded value</td></tr>
+<tr><td>Primary subject</td><td>Implemented code-neutral user-load application for concentrated forces, concentrated moments, and uniform distributed user loads.</td></tr>
+<tr><td>Implementation surface</td><td><code>core/loads/user_loads</code> provides the bounded Rust crate for DEL-05-05.</td></tr>
+<tr><td>Load boundary</td><td>General user loads are explicit mechanics inputs in addition to primitive piping load categories; code-specific combinations remain outside this crate.</td></tr>
+<tr><td>Unit posture</td><td><code>UserLoadQuantity</code> carries a <code>LoadDimension</code>; boundary records require explicit unit metadata, provenance references, canonical schema binding, JCS payload references, and payload-hash references.</td></tr>
+<tr><td>Solver posture</td><td>Generic application emits nodal and element distributed contribution records; straight-pipe recovery emits equivalent global nodal loads for oriented straight-pipe elements.</td></tr>
+<tr><td>Result posture</td><td>Result recovery hooks are implemented for nodal force, nodal moment, element distributed load, and bridged element axial-effect records; final result-envelope integration remains TBD.</td></tr>
+<tr><td>Governance boundary</td><td>No design-code load combinations, public default factors, protected standards content, proprietary project data, rule-pack checks, or professional/code-compliance claims are introduced.</td></tr>
+<tr><td>Remaining TBDs</td><td>Final result-envelope/API/persistence/GUI/CLI/report integration, production tolerance policy, release thresholds, primitive axial-effect provenance beyond <code>load_id</code>, and professional reliance remain TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- Must preserve the mechanics/rule-pack separation in <code>OPS-K-MECH-2</code>.</li>
+<li>- Must treat code-specific values and combinations as user-supplied or rule-pack supplied under <code>OPS-K-DATA-1</code>.</li>
+<li>- Must surface missing solve-required or rule-check-required values explicitly under <code>OPS-K-DATA-2</code>.</li>
+<li>- Must remain unit-aware and dimensionally checked under <code>OPS-K-UNIT-1</code>.</li>
+<li>- Must not introduce invented load magnitudes, default factors, code allowables, or certification claims.</li>
+</ul></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>Implemented evidence from <code>core/loads/user_loads/README.md</code> and</p>
+<p><code>core/loads/user_loads/src/lib.rs</code> identifies these current artifact slots:</p>
+<ul>
+<li>- <code>load application module</code>: <code>apply_user_loads</code> prepares explicit nodal</li>
+</ul>
+<p>concentrated force/moment contributions and element uniform distributed-load</p>
+<p>contribution records for the frame-solver boundary.</p>
+<ul>
+<li>- <code>straight-pipe equivalent recovery</code>: <code>apply_straight_pipe_equivalent_user_loads</code></li>
+</ul>
+<p>recovers full-span and partial-span distributed loads plus element-station</p>
+<p>concentrated forces into equivalent global nodal loads for a supplied</p>
+<p><code>StraightPipeElement</code>.</p>
+<ul>
+<li>- <code>oriented straight-pipe handling</code>: global <code>X</code>, <code>Y</code>, and <code>Z</code> directions are</li>
+</ul>
+<p>converted to global load vectors and handled by the straight-pipe helper for</p>
+<p>pipes that are not aligned with global <code>X</code>.</p>
+<ul>
+<li>- <code>axial-effect bridge</code>: <code>apply_straight_pipe_equivalent_user_loads_with_axial_effects</code></li>
+</ul>
+<p>appends already-prepared primitive axial-effect contributions without</p>
+<p>duplicating axial-effect mechanics in <code>user_loads</code>.</p>
+<ul>
+<li>- <code>load tests</code>: Rust unit tests cover concentrated force, concentrated moment,</li>
+</ul>
+<p>distributed loads, partial-span recovery, oriented straight-pipe recovery,</p>
+<p>station point-force recovery, axial-effect bridge behavior, boundary metadata,</p>
+<p>deterministic ordering, and invalid/missing input findings.</p>
+<ul>
+<li>- <code>result hooks</code>: recovery hooks preserve load identity, hook kind, target</li>
+</ul>
+<p>reference, dimension, and provenance reference for downstream stress</p>
+<p>recovery, reporting, export, GUI, and headless execution work.</p>
+<p>Deterministic finding coverage includes missing targets or quantities,</p>
+<p>out-of-range node/element indices, invalid dimensions or directions,</p>
+<p>unsupported target/load-kind pairings, invalid distribution spans,</p>
+<p>non-positive element lengths, missing straight-pipe geometry, and nonfinite</p>
+<p>axial-effect inputs.</p></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for sealed deliverable identity, scope, artifacts, context budget, and architecture basis.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 rows for SOW-013, SOW-052, OBJ-003, OBJ-012, PKG-05, DEL-05-05, and AB-00-01/02/03/06/08.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-05-05.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> rows SOW-052 and SOW-013.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-05-05.</li>
+<li>- <code>docs/CONTRACT.md</code> rows OPS-K-MECH-1, OPS-K-MECH-2, OPS-K-UNIT-1, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-SOLVER-1, OPS-K-AGENT-1..4.</li>
+<li>- <code>core/loads/user_loads/README.md</code> for current implementation scope and</li>
+</ul>
+<p>boundary evidence.</p>
+<ul>
+<li>- <code>core/loads/user_loads/src/lib.rs</code> for implemented API, findings, recovery</li>
+</ul>
+<p>hooks, and unit tests.</p></blockquote>
+<h3 id="clm-007-d-41-r5-t7-pdu-054-current-declaration">CLM-007 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. User-load application now covers nodal and distributed inputs plus the straight-pipe equivalent-recovery, oriented, and axial bridge evidenced by current implementation and tests. Other geometry/load breadth remains residual where recorded.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-05-05-concentrated-and-distributed-user-load-application">CLM-008 — Specification: DEL-05-05 Concentrated and distributed user load application</h3>
+<blockquote><h4 id="specification-del-05-05-concentrated-and-distributed-user-load-application">Specification: DEL-05-05 Concentrated and distributed user load application</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable covers the implemented backend feature slice that applies</p>
+<p>explicit concentrated forces, concentrated moments, and uniform distributed user</p>
+<p>loads with unit-aware application records and result recovery hooks.</p>
+<p>Implemented evidence is the bounded Rust crate at <code>core/loads/user_loads</code>.</p>
+<p>The crate provides:</p>
+<ul>
+<li>- generic user-load preparation through <code>apply_user_loads</code>;</li>
+<li>- straight-pipe equivalent-load recovery through</li>
+</ul>
+<p><code>apply_straight_pipe_equivalent_user_loads</code>;</p>
+<ul>
+<li>- partial-span and oriented straight-pipe handling for translational</li>
+</ul>
+<p>distributed loads;</p>
+<ul>
+<li>- element-station concentrated force recovery for straight-pipe elements;</li>
+<li>- an axial-effect bridge through</li>
+</ul>
+<p><code>apply_straight_pipe_equivalent_user_loads_with_axial_effects</code>;</p>
+<ul>
+<li>- deterministic findings for missing, invalid, unsupported, or unresolved</li>
+</ul>
+<p>inputs.</p>
+<p>This deliverable excludes:</p>
+<ul>
+<li>- code-specific load combinations, factors, or default values;</li>
+<li>- protected standard content or proprietary allowables;</li>
+<li>- certification, compliance, or professional approval claims.</li>
+<li>- final result-envelope/API/persistence/GUI/CLI/report integration unless</li>
+</ul>
+<p>separately dispatched.</p></blockquote>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-05-05-R1</td><td>Support concentrated force, concentrated moment, and distributed user-load categories as explicit user load inputs.</td><td>ScopeLedger.csv row SOW-052; SOFTWARE_DECOMP.md row SOW-052</td></tr>
+<tr><td>DEL-05-05-R2</td><td>Keep user loads separate from code-specific combinations supplied by users or rule packs.</td><td>Deliverables.csv row DEL-05-05; ScopeLedger.csv row SOW-052</td></tr>
+<tr><td>DEL-05-05-R3</td><td>Keep load input, application records, and result handoff unit-aware and dimensionally checked.</td><td>CONTRACT.md OPS-K-UNIT-1; ScopeLedger.csv SOW-025 context via OBJ-012</td></tr>
+<tr><td>DEL-05-05-R4</td><td>Attach load application to the centerline/frame mechanics model and avoid implying shell/solid FEA is the primary global model.</td><td>CONTRACT.md OPS-K-MECH-1</td></tr>
+<tr><td>DEL-05-05-R5</td><td>Provide deterministic verification tests before release use.</td><td>CONTRACT.md OPS-K-SOLVER-1; architecture basis AB-00-08</td></tr>
+<tr><td>DEL-05-05-R6</td><td>Preserve status/provenance distinctions in diagnostics and result hooks without certification or compliance claims.</td><td>architecture basis AB-00-03 and AB-00-06; CONTRACT.md OPS-K-MECH-2</td></tr>
+<tr><td>DEL-05-05-R7</td><td>For straight-pipe elements, recover full-span and valid partial-span translational distributed loads into equivalent global nodal contributions.</td><td><code>core/loads/user_loads/src/lib.rs</code>; <code>core/loads/user_loads/README.md</code></td></tr>
+<tr><td>DEL-05-05-R8</td><td>For straight-pipe elements, recover element-station concentrated forces while rejecting station moments and invalid station fractions as findings.</td><td><code>core/loads/user_loads/src/lib.rs</code></td></tr>
+<tr><td>DEL-05-05-R9</td><td>Preserve oriented straight-pipe behavior by treating <code>GlobalX</code>, <code>GlobalY</code>, and <code>GlobalZ</code> user-load directions as global force vectors before straight-pipe projection.</td><td><code>core/loads/user_loads/src/lib.rs</code></td></tr>
+<tr><td>DEL-05-05-R10</td><td>Bridge already-prepared primitive axial-effect contributions into straight-pipe equivalent nodal loads without duplicating axial-effect mechanics in this crate.</td><td><code>core/loads/user_loads/src/lib.rs</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<ul>
+<li>- Governing invariant catalog: <code>docs/CONTRACT.md</code>, location rows listed in <code>_CONTEXT.md</code> and this document.</li>
+<li>- Decomposition basis: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7.</li>
+<li>- Public schema/interchange baseline: JSON Schema 2020-12 from architecture</li>
+</ul>
+<p>basis injection. Current implementation binds model-load records to</p>
+<p><code>schemas/model.schema.yaml#/$defs/LoadRecord</code> and recovery records to model</p>
+<p>result values or <code>schemas/results.schema.yaml#/$defs/QuantityResult</code>.</p>
+<ul>
+<li>- Code-specific rules, combinations, and allowables: excluded from bundled defaults; user/rule-pack supplied.</li>
+</ul></blockquote>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-05-05-R1</td><td>Existing Rust unit tests cover concentrated force, concentrated moment, and uniform distributed load input/application paths.</td></tr>
+<tr><td>DEL-05-05-R2</td><td>Existing boundary text and tests preserve the no-default/no-compliance boundary; attempts to embed code combinations remain outside this module.</td></tr>
+<tr><td>DEL-05-05-R3</td><td>Existing unit tests exercise <code>LoadDimension</code>, <code>ForcePerLength</code> metadata, explicit unit metadata, schema binding, payload references, and payload-hash references.</td></tr>
+<tr><td>DEL-05-05-R4</td><td>Existing generic contribution records use frame DOFs; straight-pipe recovery uses <code>StraightPipeElement</code> equivalent global nodal loads.</td></tr>
+<tr><td>DEL-05-05-R5</td><td>Existing deterministic test suite runs with <code>cargo test --manifest-path core/loads/user_loads/Cargo.toml</code>.</td></tr>
+<tr><td>DEL-05-05-R6</td><td>Existing result-hook tests verify schema-binding separation and provenance-preserving records without compliance claim language.</td></tr>
+<tr><td>DEL-05-05-R7</td><td>Existing tests verify full-span and partial-span straight-pipe distributed-load equivalent recovery.</td></tr>
+<tr><td>DEL-05-05-R8</td><td>Existing tests verify interior station point-force recovery and deterministic rejection of unsupported station moments or invalid station fractions.</td></tr>
+<tr><td>DEL-05-05-R9</td><td>Existing tests verify global-direction transformation for a straight pipe aligned with global <code>Y</code>.</td></tr>
+<tr><td>DEL-05-05-R10</td><td>Existing tests verify axial-effect contribution inclusion, wrong-element rejection, and nonfinite axial-effect rejection.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Current implementation records include:</p>
+<ul>
+<li>- <code>core/loads/user_loads/README.md</code> for crate scope, boundaries, and verification summary;</li>
+<li>- <code>core/loads/user_loads/src/lib.rs</code> for API, findings, contribution records, recovery hooks, and tests;</li>
+<li>- deliverable-local <code>MEMORY.md</code> for historical implementation slices, validation runs, and remaining TBDs.</li>
+</ul>
+<p>Remaining TBDs are final result-envelope/API/persistence/GUI/CLI/report</p>
+<p>integration, production tolerance policy, release thresholds, primitive</p>
+<p>axial-effect provenance beyond <code>load_id</code>, and professional reliance.</p></blockquote>
+<h3 id="clm-014-d-41-r5-t7-pdu-054-current-declaration">CLM-014 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. User-load application now covers nodal and distributed inputs plus the straight-pipe equivalent-recovery, oriented, and axial bridge evidenced by current implementation and tests. Other geometry/load breadth remains residual where recorded.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted general mechanics-load boundary, explicit units and provenance, deterministic ordering and invalid-input findings, and unresolved result-envelope, persistence, tolerance, and release policies without inventing magnitudes, factors, code combinations, allowables, protected content, or professional claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-05-05-concentrated-and-distributed-user-load-application">CLM-015 — Procedure: DEL-05-05 Concentrated and distributed user load application</h3>
+<blockquote><h4 id="procedure-del-05-05-concentrated-and-distributed-user-load-application">Procedure: DEL-05-05 Concentrated and distributed user load application</h4></blockquote>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the operational path for validating and extending the implemented</p>
+<p>DEL-05-05 user-load slice without crossing the deliverable boundary.</p></blockquote>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed task brief for DEL-05-05 with explicit write scope.</li>
+<li>- Access to <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, relevant register rows, and <code>docs/CONTRACT.md</code>.</li>
+<li>- Access to implementation evidence in <code>core/loads/user_loads/README.md</code> and</li>
+</ul>
+<p><code>core/loads/user_loads/src/lib.rs</code>.</p>
+<ul>
+<li>- Any extension task must resolve or explicitly inherit applicable unit,</li>
+</ul>
+<p>solver, schema, diagnostics, and result-envelope contracts.</p></blockquote>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the task is scoped to DEL-05-05 and does not request code-specific</p>
+<p>combinations, default factors, protected standards data, allowables,</p>
+<p>compliance conclusions, or professional approval.</p>
+<p>2. Identify whether the change concerns generic <code>apply_user_loads</code>,</p>
+<p>straight-pipe equivalent recovery, the axial-effect bridge, documentation,</p>
+<p>or downstream integration.</p>
+<p>3. Preserve SOW-052 support for concentrated force, concentrated moment, and</p>
+<p>distributed user-load inputs while treating SOW-013 only as primitive</p>
+<p>load-case context; do not reimplement DEL-05-01.</p>
+<p>4. Route numeric load values, dimensions, units, directions, target references,</p>
+<p>station fractions, spans, element lengths, provenance references, schema</p>
+<p>bindings, payload references, and payload-hash references through explicit</p>
+<p>validation or boundary records.</p>
+<p>5. For generic application, confirm nodal concentrated forces and moments emit</p>
+<p>nodal contributions and recovery hooks, element distributed loads emit</p>
+<p>distributed contribution records and hooks, and element-station loads remain</p>
+<p>blocked unless straight-pipe geometry is supplied.</p>
+<p>6. For straight-pipe equivalent recovery, confirm full-span and partial-span</p>
+<p>translational distributed loads, oriented global directions, and</p>
+<p>element-station concentrated forces route through <code>StraightPipeElement</code></p>
+<p>equivalent-load helpers.</p>
+<p>7. For axial-effect bridge behavior, accept only already-prepared</p>
+<p><code>PrimitiveAxialEffectContribution</code> records and preserve findings for wrong</p>
+<p>element indices, nonfinite axial effects, and missing straight-pipe</p>
+<p>geometry.</p>
+<p>8. Preserve architecture-basis constraints AB-00-01, AB-00-02, AB-00-03,</p>
+<p>AB-00-06, and AB-00-08 in design notes, diagnostics, and validation.</p>
+<p>9. Run deterministic validation before closeout, at minimum</p>
+<p><code>cargo test --manifest-path core/loads/user_loads/Cargo.toml</code> for changes</p>
+<p>that touch or document current implementation behavior.</p>
+<p>10. Expose result recovery hooks with provenance/status fields sufficient for</p>
+<p>downstream stress recovery, reporting, export, GUI, and headless execution</p>
+<p>work, without compliance claims.</p></blockquote>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Four deliverable documents exist and consistently reflect the implemented</li>
+</ul>
+<p>evidence while excluding code-specific default behavior.</p>
+<ul>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist as lens artifacts only.</li>
+<li>- <code>Dependencies.csv</code> validates against v3.1 schema.</li>
+<li>- <code>_STATUS.md</code> remains read-only unless an explicit authorized status-change</li>
+</ul>
+<p>task is dispatched.</p>
+<ul>
+<li>- <code>cargo test --manifest-path core/loads/user_loads/Cargo.toml</code> is the</li>
+</ul>
+<p>targeted validation gate for the documented implementation surface; any</p>
+<p>failure is a blocker for code-level acceptance unless separately waived by a</p>
+<p>human ruling.</p>
+<ul>
+<li>- <code>git diff --check</code> passes for touched deliverable-local files.</li>
+</ul></blockquote>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>MEMORY.md</code></li>
+<li>- <code>core/loads/user_loads/README.md</code></li>
+<li>- <code>core/loads/user_loads/src/lib.rs</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1023_*.md</code></li>
+</ul></blockquote>
+<h3 id="clm-021-d-41-r5-t7-pdu-054-current-declaration">CLM-021 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. User-load application now covers nodal and distributed inputs plus the straight-pipe equivalent-recovery, oriented, and axial bridge evidenced by current implementation and tests. Other geometry/load breadth remains residual where recorded.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, concentrated and distributed application, partial spans and orientation, equivalent nodal recovery, axial-effect bridge ownership, unit/provenance metadata, result hooks, deterministic tests, and surviving governed residuals.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-05-05-concentrated-and-distributed-user-load-application">CLM-022 — Guidance: DEL-05-05 Concentrated and distributed user load application</h3>
+<blockquote><h4 id="guidance-del-05-05-concentrated-and-distributed-user-load-application">Guidance: DEL-05-05 Concentrated and distributed user load application</h4></blockquote>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This guidance frames the implemented DEL-05-05 user-load slice so</p>
+<p>user-applied concentrated and distributed loads can be used and extended</p>
+<p>without crossing into code-specific load combination logic, invented</p>
+<p>engineering defaults, or professional approval claims.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat load magnitudes, locations, directions, distribution definitions, and coordinate references as user/model data unless a separate sealed source authorizes otherwise.</li>
+<li>- Preserve the solver/rule separation: mechanics may be solved, while acceptability and code compliance remain user/rule-pack and human-judgment concerns.</li>
+<li>- Keep dimensional analysis explicit. A load input that lacks a required unit,</li>
+</ul>
+<p>direction basis, location basis, distribution basis, target, quantity, or</p>
+<p>straight-pipe geometry should become a deterministic finding or preserved</p>
+<p>TBD rather than a silent default.</p>
+<ul>
+<li>- Keep result hooks narrow: they should expose mechanical force/moment/result</li>
+</ul>
+<p>data and provenance needed by stress recovery, reporting, export, GUI, and</p>
+<p>headless execution work, not code-specific conclusions.</p>
+<ul>
+<li>- Use <code>core/loads/user_loads</code> as the current implementation evidence for this</li>
+</ul>
+<p>deliverable; do not infer additional solver, schema, GUI, or report behavior</p>
+<p>beyond that crate without a sealed task.</p></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- SOW-052 is the direct scope item for concentrated forces, concentrated moments, and distributed user loads.</li>
+<li>- SOW-013 is relevant as the primitive load-case context, but this deliverable should not absorb the full primitive load-case engine.</li>
+<li>- AB-00-03 and AB-00-06 make status and result-envelope separation important for downstream GUI, CLI, reports, and rule-pack consumers.</li>
+<li>- AB-00-08 means the implemented module must keep deterministic tests as the</li>
+</ul>
+<p>evidence basis before release use.</p>
+<ul>
+<li>- Generic <code>apply_user_loads</code> handles nodal concentrated forces, nodal</li>
+</ul>
+<p>concentrated moments, and element uniform distributed-load records. It</p>
+<p>reports element-station loads as requiring straight-pipe equivalent recovery.</p>
+<ul>
+<li>- <code>apply_straight_pipe_equivalent_user_loads</code> handles oriented straight-pipe</li>
+</ul>
+<p>equivalent recovery for full-span and partial-span distributed loads and</p>
+<p>element-station concentrated forces.</p>
+<ul>
+<li>- <code>apply_straight_pipe_equivalent_user_loads_with_axial_effects</code> appends</li>
+</ul>
+<p>already-prepared primitive axial-effect contributions through</p>
+<p><code>StraightPipeElement</code> equivalent-load behavior; it does not introduce a new</p>
+<p>axial-effect mechanics model in this crate.</p></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<ul>
+<li>- A narrower user-load module reduces risk of accidentally encoding protected or jurisdiction-specific load combinations.</li>
+<li>- Keeping final result-envelope/API/persistence/GUI/CLI/report integration as</li>
+</ul>
+<p>TBD avoids overstating the implementation slice while preserving current</p>
+<p>recovery-hook evidence.</p>
+<ul>
+<li>- The straight-pipe equivalent APIs support the current oriented straight-pipe</li>
+</ul>
+<p>scope; other element families or higher-level model assembly should remain</p>
+<p>separately dispatched.</p>
+<ul>
+<li>- Distributed-load support is implemented for uniform translational loads over</li>
+</ul>
+<p>normalized spans, including valid partial spans. Other distribution shapes,</p>
+<p>magnitudes, factors, or defaults are not invented here.</p></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<ul>
+<li>- Existing Rust unit tests use artificial mechanics fixtures for concentrated</li>
+</ul>
+<p>forces, concentrated moments, uniform distributed loads, partial spans,</p>
+<p>oriented straight-pipe recovery, station point forces, and axial effects.</p>
+<ul>
+<li>- Public or product-facing examples remain TBD unless separately approved with</li>
+</ul>
+<p>non-protected fixture values, explicit unit provenance, and no compliance</p>
+<p>claims.</p></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict detected in current implementation evidence.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-052 SOW-013 OBJ-003 OBJ-012</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/report_scope_of_work_parity.py",
+    "--scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P2/PIP-PKG09/DEL-09-01/evidence/ScopeOfWork.md",
+    "--production-scope-of-work",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG09/children/VERIFY-B1/members/DEL-09-01/negative_tests/mutated_clean.md",
+    "--source-dir",
+    "{REPO_ROOT}/projects/chirality-piping/execution/PKG-09_Verification, Validation, and Quality Oracles/1_Working/DEL-09-01_Mechanics benchmark suite",
+    "--output-json",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG09/children/VERIFY-B1/members/DEL-09-01/negative_tests/rejected_parity_report.json",
+    "--isolated-migration",
+    "--migration-authority",
+    "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+  ],
+  "duration_seconds": 0.038215,
+  "exit_code": 1,
+  "expected_exit": 1,
+  "label": "negative_2_parity_mutated_clean",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": "FAIL checks=36\n"
+}

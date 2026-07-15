@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="5144c44383fb01ae19ae0d9180d604ef171e8bb94b57bf53d37ef9fb9f7d5cdd">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>5144c44383fb01ae19ae0d9180d604ef171e8bb94b57bf53d37ef9fb9f7d5cdd</code>.</p>
+<h1 id="scope-of-work-del-07-05">Scope of Work — DEL-07-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-07-05</code> in service of project scope [SOW-023] and package objectives [OBJ-006, OBJ-007].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A results-viewer contract covering unit-aware mechanics and user-rule result categories, tabular and graphical review, warnings and assumptions, result-envelope traceability, ratio availability, and report/export handoff signals is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-05-results-viewer">CLM-001 — Datasheet: DEL-07-05 Results viewer</h3>
+<blockquote><h4 id="datasheet-del-07-05-results-viewer">Datasheet: DEL-07-05 Results viewer</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-05-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-05</td></tr>
+<tr><td>Deliverable name</td><td>Results viewer</td></tr>
+<tr><td>Package ID</td><td>PKG-07</td></tr>
+<tr><td>Package name</td><td>Graphical User Interface and Engineering Workflow</td></tr>
+<tr><td>Deliverable type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-023</td></tr>
+<tr><td>Objectives</td><td>OBJ-006, OBJ-007</td></tr>
+<tr><td>Context envelope</td><td>L</td></tr>
+<tr><td>Current source basis</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7; <code>docs/_Registers/Deliverables.csv</code>; <code>docs/_Registers/ScopeLedger.csv</code>; <code>docs/CONTRACT.md</code>; <code>docs/SPEC.md</code>; <code>docs/TYPES.md</code>; <code>docs/DIRECTIVE.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Setup value</td><td>Source</td></tr>
+<tr><td>Intended GUI surface</td><td>Results viewer for tabular and graphical review</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>Result categories in scope</td><td>Displacements, rotations, forces, moments, restraint reactions, equipment loads, stresses, and ratios</td><td>SOW-023 in <code>docs/_Registers/ScopeLedger.csv</code>; <code>docs/SPEC.md</code> section 8</td></tr>
+<tr><td>Rotational-deformation current slice</td><td>Result envelopes emit <code>rx</code>/<code>ry</code>/<code>rz</code> rows and the viewer exposes result rows, while the graphical deformation overlay consumes translational <code>ux</code>/<code>uy</code>/<code>uz</code> only; rotational visualization remains explicit residual work</td><td>DEC-074 O1; PDU-061; <code>MEMORY.md</code> 2026-06-12; <code>_run_records/TASK_RUN_2026-06-12_1110.md</code></td></tr>
+<tr><td>Architectural route</td><td>GUI reads schema-first command/query/job result envelopes through application services</td><td><code>_CONTEXT.md</code> Architecture Basis Injection</td></tr>
+<tr><td>Unit behavior</td><td>Result values must remain unit-aware and dimensionally checked</td><td>OPS-K-UNIT-1 in <code>docs/CONTRACT.md</code>; <code>docs/DIRECTIVE.md</code> section 3</td></tr>
+<tr><td>Diagnostics behavior</td><td>Missing data, assumptions, provenance, nonlinear/convergence issues, and IP boundary warnings must remain visible</td><td><code>docs/SPEC.md</code> section 7; OPS-K-DATA-2 and OPS-K-AUTH-1 in <code>docs/CONTRACT.md</code></td></tr>
+<tr><td>Rule-pack ratio behavior</td><td>Ratios are displayed only when a user-supplied rule pack and required inputs support the check; incomplete rule input remains an explicit finding</td><td>SOW-023 note; OPS-K-DATA-1/2 and OPS-K-RULE-1/2/3 in <code>docs/CONTRACT.md</code></td></tr>
+<tr><td>Report/export relationship</td><td>Viewer content should remain reproducible and handoff-ready for reports and structured result exports</td><td>OBJ-007; SOW-046; <code>docs/SPEC.md</code> section 8</td></tr>
+<tr><td>Protected-data posture</td><td>No protected standards text, protected tables, copied formulas, proprietary thresholds, or certification claims are introduced</td><td>OPS-K-IP-1/2/3 and OPS-K-AUTH-1 in <code>docs/CONTRACT.md</code>; <code>docs/DIRECTIVE.md</code> sections 3-5</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Current evidence includes implemented GUI result review and a translational deformation overlay; this R5 repair changes documentation/status records only</td><td>FACT</td></tr>
+<tr><td>Exact UI component library, state library, and visual layout details</td><td>TBD</td></tr>
+<tr><td>Exact result-envelope schema fields for each displayed category</td><td>TBD, owned by schema/result-envelope implementation deliverables</td></tr>
+<tr><td>Exact stress-ratio formulas, thresholds, allowables, or code categories</td><td>Out of scope for public defaults; user/rule-pack supplied</td></tr>
+<tr><td>Professional acceptance or code compliance status</td><td>Out of software authority; human review remains required</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The results viewer is a review surface over already-produced mechanical, diagnostic, stress, reaction, equipment-load, and user-rule-check result envelopes. Its current graphical deformation overlay uses translational components only. Rotational components are emitted and reviewable as result rows but are not visualized as rotational deformation; that surviving work is owned here and recorded in <code>_STATUS.md</code>. The viewer does not compute solver mechanics, recover stresses, evaluate rule packs, define protected code criteria, or export final reports directly unless a later sealed implementation brief expands scope.</p>
+<p>The viewer setup must preserve these visible boundaries:</p>
+<ul>
+<li>- mechanics solved is distinct from rule-pack checked;</li>
+<li>- rule-pack pass/fail is distinct from professional approval;</li>
+<li>- missing solve-required or rule-check-required data is a displayed finding;</li>
+<li>- every numerical value remains unit-aware;</li>
+<li>- result displays carry warnings, assumptions, and provenance hooks;</li>
+<li>- public examples and templates use no protected standards data or proprietary engineering values.</li>
+</ul></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>INIT.md</code> - bootstrap boundaries and unknown-value rule.</li>
+<li>- <code>AGENTS.md</code> - Type 2 sealed dispatch rule.</li>
+<li>- <code>docs/CONTRACT.md</code> - invariants OPS-K-DATA-1/2/3, OPS-K-UNIT-1, OPS-K-RULE-1/2/3, OPS-K-AUTH-1, OPS-K-IP-1/2/3, OPS-K-PRIV-1/2, OPS-K-AGENT-1..4.</li>
+<li>- <code>docs/SPEC.md</code> - architecture, GUI, warnings, reporting, acceptance semantics.</li>
+<li>- <code>docs/TYPES.md</code> - analysis-status vocabulary and Result/Report object boundary.</li>
+<li>- <code>docs/DIRECTIVE.md</code> - product principles, stop rules, and professional boundary.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - package, objective, and architecture-basis context.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> - DEL-07-05 row.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> - SOW-023 row.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-07-05-results-viewer">CLM-008 — Specification: DEL-07-05 Results viewer</h3>
+<blockquote><h4 id="specification-del-07-05-results-viewer">Specification: DEL-07-05 Results viewer</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-05-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable owns the GUI results-viewer slice that presents reviewable analysis outputs for displacements, rotations, forces, moments, restraint reactions, equipment loads, stresses, and user-rule ratios. The current implemented slice includes tabular result review and a translational deformed-shape overlay. Emitted <code>rx</code>/<code>ry</code>/<code>rz</code> rows are available in the result surface, but rotational deformation is not graphically visualized and remains explicit DEL-07-05 residual work under DEC-074 O1 / PDU-061. It is a UX/UI slice under PKG-07 and supports OBJ-006 and OBJ-007.</p>
+<p>The results viewer does not run solver logic, recover stresses, evaluate rule packs, define protected engineering criteria, or grant professional approval. This R5 repair records the current slice and residual only; it does not implement rotational visualization or change GUI source, tests, schemas, or result data.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-07-05-001</td><td>The viewer shall present result categories listed in SOW-023 when those categories are present in validated result envelopes.</td><td>SOW-023; <code>docs/SPEC.md</code> sections 7-8</td></tr>
+<tr><td>REQ-07-05-002</td><td>The viewer shall preserve the architecture boundary: GUI-facing code consumes application-service result envelopes and shall not bypass domain-core unit checks, provenance checks, diagnostics, or public/private data boundaries.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>docs/SPEC.md</code> section 1</td></tr>
+<tr><td>REQ-07-05-003</td><td>Displayed numerical result values shall be unit-aware and dimensionally labeled; missing or incompatible units shall be shown as diagnostics rather than silently converted or defaulted.</td><td>OPS-K-UNIT-1 and OPS-K-DATA-2 in <code>docs/CONTRACT.md</code>; <code>docs/DIRECTIVE.md</code> section 3</td></tr>
+<tr><td>REQ-07-05-004</td><td>The viewer shall distinguish mechanics result status, rule-input incompleteness, user-rule-check status, failed user-rule status, and human-review-required status; it shall not expose automatic <code>CODE_COMPLIANT</code> status.</td><td><code>docs/TYPES.md</code> section 4; OPS-K-AUTH-1</td></tr>
+<tr><td>REQ-07-05-005</td><td>Rule-pack ratios shall be displayed only when the required user-supplied rule-pack inputs and checksum/provenance status support the calculation; otherwise the ratio surface shall show an unavailable or blocked state with a diagnostic.</td><td>SOW-023 note; OPS-K-DATA-1/2; OPS-K-RULE-1/2/3</td></tr>
+<tr><td>REQ-07-05-006</td><td>Result review shall keep warnings, assumptions, missing data, solver diagnostics, nonlinear/convergence state, provenance gaps, and IP-boundary warnings visible with the result context they qualify.</td><td><code>docs/SPEC.md</code> section 7; OPS-K-DATA-2; OPS-K-AUTH-1</td></tr>
+<tr><td>REQ-07-05-007</td><td>Result displays intended for reports or exports shall retain traceability to model version/hash, solver version, rule-pack name/version/checksum, units, warnings, assumptions, and limitations when those envelope fields exist.</td><td>OBJ-007; SOW-039; SOW-046; <code>docs/SPEC.md</code> section 8</td></tr>
+<tr><td>REQ-07-05-008</td><td>Public setup artifacts shall not introduce protected standards text, protected tables, proprietary formulas, code-specific allowables, stress limits, SIF/flexibility values, load-combination defaults, or certification language.</td><td>OPS-K-IP-1/2/3; OPS-K-AUTH-1; <code>docs/DIRECTIVE.md</code> sections 3-5</td></tr>
+<tr><td>REQ-07-05-009</td><td>The future implementation shall include UI tests or equivalent review evidence for category availability, unit labels, warning/blocked states, status separation, and report/export handoff signals.</td><td>DEL-07-05 anticipated artifacts; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> sections 4-5</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering code or standards text is introduced by this deliverable. The controlling references for this setup are the OpenPipeStress governance and technical documents listed in <code>_REFERENCES.md</code>.</p>
+<p>Any future rule-check wording, stress ratio threshold, allowable, code category, or formula must come from a user-supplied or lawfully imported private rule pack and must preserve provenance and redistribution status.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Method</td><td>Expected evidence</td></tr>
+<tr><td>VER-07-05-001</td><td>Document review</td><td>Four-document kit exists and matches DEL-07-05 scope.</td></tr>
+<tr><td>VER-07-05-002</td><td>Boundary review</td><td>No protected code data, proprietary thresholds, or certification claims appear in setup artifacts.</td></tr>
+<tr><td>VER-07-05-003</td><td>Dependency-register validation</td><td><code>Dependencies.csv</code> validates against v3.1 schema.</td></tr>
+<tr><td>VER-07-05-004</td><td>Semantic setup review</td><td><code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist with complete matrix/lens coverage.</td></tr>
+<tr><td>VER-07-05-005</td><td>Current implementation and residual review</td><td>Existing UI evidence covers result categories, units, diagnostics, status separation, and the translational overlay. Confirm that emitted <code>rx</code>/<code>ry</code>/<code>rz</code> rows remain unvisualized and that rotational deformation stays recorded in <code>_STATUS.md</code> until separately implemented and verified.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup records for this deliverable are:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul></blockquote>
+<h3 id="clm-015-acceptance-notes">CLM-015 — Acceptance Notes</h3>
+<blockquote><h5 id="acceptance-notes">Acceptance Notes</h5>
+<p>This setup can be marked <code>SEMANTIC_READY</code> only after the four-document pass, semantic matrix build, lens register, Pass 3 consistency sweep, dependency extraction, and local validation gates complete. <code>SEMANTIC_READY</code> is a development lifecycle state only; it is not product implementation, code compliance, professional approval, or an issued deliverable.</p></blockquote>
+<h3 id="clm-016-d-41-r5-t5-pdu-008-current-gui-boundary">CLM-016 — D-41 R5 T5 PDU-008 current GUI boundary</h3>
+<blockquote><h5 id="d-41-r5-t5-pdu-008-current-gui-boundary">D-41 R5 T5 PDU-008 current GUI boundary</h5>
+<p>The viewer presents an explicit governing-ratio state: supplied ratio rows are available and filterable; no ratio rows yields an unavailable state without inferred criteria. Rotational deformation visualization remains unimplemented.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the implemented result surface and translational overlay, retains rotational visualization as an explicit residual, separates mechanics, user-rule checks, and human review, and invents no thresholds, formulas, allowables, code categories, compliance status, or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-07-05-results-viewer">CLM-017 — Procedure: DEL-07-05 Results viewer</h3>
+<blockquote><h4 id="procedure-del-07-05-results-viewer">Procedure: DEL-07-05 Results viewer</h4></blockquote>
+<h3 id="clm-018-d-41-r5-t7-pdu-055-current-declaration">CLM-018 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-05-DECL-004</code>.</p></blockquote>
+<h3 id="clm-019-purpose">CLM-019 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure records how DEL-07-05 artifacts are maintained against the implemented results-viewer slice and what a future bounded implementation brief must verify before extending that slice.</p></blockquote>
+<h3 id="clm-020-prerequisites">CLM-020 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed deliverable context for DEL-07-05.</li>
+<li>- Write scope limited to this deliverable folder.</li>
+<li>- Governing references in <code>_REFERENCES.md</code> are available.</li>
+<li>- Applicable invariants from <code>docs/CONTRACT.md</code> are preserved.</li>
+<li>- Architecture-basis constraints in <code>_CONTEXT.md</code> are treated as dispatch constraints, not as issued implementation content.</li>
+</ul></blockquote>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity, package, scope item, objectives, context envelope, and architecture-basis IDs from <code>_CONTEXT.md</code>.</p>
+<p>2. Read the governing references named in <code>_REFERENCES.md</code>, especially <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/DIRECTIVE.md</code>, and the decomposition/register rows for DEL-07-05.</p>
+<p>3. Run <code>four-documents</code> with <code>RUN_PASSES=P1_P2</code> by drafting <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> from accessible sources.</p>
+<p>4. Run <code>semantic-matrix-build</code> by replacing <code>_SEMANTIC.md</code> with a deliverable-local semantic lens and marking semantic audit status.</p>
+<p>5. Run <code>lens-register</code> by producing <code>_SEMANTIC_LENSING.md</code> with complete matrix-cell coverage and any warranted enrichment items.</p>
+<p>6. Run <code>four-documents</code> with <code>RUN_PASSES=P3_ONLY</code> by checking the lensing register against the four-document kit and applying only warranted, source-supported enrichments.</p>
+<p>7. Run <code>dependency-extract</code> by producing <code>Dependencies.csv</code> v3.1 and refreshing <code>_DEPENDENCIES.md</code> with conservative anchor and execution edges.</p>
+<p>8. Run local validation gates for four-document presence, dependency schema, status enum, and protected-boundary spot checks.</p>
+<p>9. Set <code>_STATUS.md</code> Current State to <code>SEMANTIC_READY</code> only if all setup gates pass.</p></blockquote>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Command or method</td><td>Expected result</td></tr>
+<tr><td>Four documents exist</td><td><code>tools/validation/check_four_documents.sh &lt;deliverable path&gt;</code></td><td>PASS</td></tr>
+<tr><td>Dependency schema valid</td><td><code>python3 tools/validation/validate_dependencies_schema.py &lt;deliverable path&gt;/Dependencies.csv</code></td><td>VALID with 29 required columns</td></tr>
+<tr><td>Lifecycle enum valid</td><td><code>python3 tools/validation/validate_enum.py LIFECYCLE_STATE SEMANTIC_READY</code></td><td>VALID</td></tr>
+<tr><td>Protected-data boundary</td><td>Text scan for protected standards values, code thresholds, copied formulas, or certification claims</td><td>No prohibited content found</td></tr>
+<tr><td>Scope boundary</td><td><code>git status --short -- &lt;deliverable path&gt;</code></td><td>Only deliverable-local files changed</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The setup run must leave these records in the deliverable folder:</p>
+<ul>
+<li>- four-document kit;</li>
+<li>- semantic matrix and lensing artifacts;</li>
+<li>- dependency register and dependency summary;</li>
+<li>- run records for all five required setup steps;</li>
+<li>- status history showing <code>OPEN -&gt; INITIALIZED -&gt; SEMANTIC_READY</code>.</li>
+</ul></blockquote>
+<h3 id="clm-024-future-implementation-procedure-notes">CLM-024 — Future Implementation Procedure Notes</h3>
+<blockquote><h5 id="future-implementation-procedure-notes">Future Implementation Procedure Notes</h5>
+<p>A future implementation brief must not begin from these setup documents alone. It must receive source-code write scope, schema/result-envelope contracts, test requirements, and any human decisions needed for result category layout, unit handling, ratio terminology, equipment-load semantics, and report/export integration.</p>
+<p>For rotational deformation specifically, the brief must consume DEC-074 O1 / PDU-061 and the emitted <code>rx</code>/<code>ry</code>/<code>rz</code> evidence, preserve the current translational-overlay behavior unless deliberately changed, define the intended rotational visual semantics, and add focused UI/browser evidence. Until that work lands and is backchecked, <code>_STATUS.md</code> remains the sole work-discovery home for the residual; documenting the residual does not claim implementation.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, result categories and unit labels, diagnostics and provenance, status separation, ratio blocked/unavailable behavior, translational versus rotational visualization boundary, report/export traceability, and every retained governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-07-05-results-viewer">CLM-025 — Guidance: DEL-07-05 Results viewer</h3>
+<blockquote><h4 id="guidance-del-07-05-results-viewer">Guidance: DEL-07-05 Results viewer</h4></blockquote>
+<h3 id="clm-026-d-41-r5-t7-pdu-055-current-declaration">CLM-026 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-05-DECL-003</code>.</p></blockquote>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The results viewer should make analysis outputs reviewable without hiding the conditions that make those outputs trustworthy, incomplete, or unsuitable for professional reliance. Its job is to help users inspect mechanics results, user-rule-check outputs, warnings, assumptions, and report/export readiness; it is not a solver, code interpreter, or professional approval mechanism.</p></blockquote>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep result categories visible and separable: displacements, rotations, forces, moments, reactions, equipment loads, stresses, and ratios are related but not interchangeable.</li>
+<li>- Treat result envelopes and diagnostics as the boundary of authority for what the GUI may show.</li>
+<li>- Preserve unit and dimensional context at every numerical display.</li>
+<li>- Show missing solve-required data and rule-check-required data as findings, not as empty success states.</li>
+<li>- Treat stress ratios as user-rule-pack outputs. Do not invent thresholds, allowables, categories, or pass/fail meanings.</li>
+<li>- Preserve export/report traceability: visible result review should align with reproducibility metadata instead of becoming an isolated screen state.</li>
+<li>- Keep professional-boundary notices close enough to result status that software output is not mistaken for certification, sealing, approval, or code compliance.</li>
+</ul></blockquote>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The current result surface already provides bounded filtering, grouping, tabular review, and a translational deformation overlay. Surviving implementation work should extend that slice without changing the boundaries in this document, including decisions about:</p>
+<ul>
+<li>- result category navigation;</li>
+<li>- load case and combination selection;</li>
+<li>- envelope/range selection;</li>
+<li>- node, element, support, and equipment-load targeting;</li>
+<li>- tabular values versus graphical overlays;</li>
+<li>- rotational-deformation visualization for emitted <code>rx</code>/<code>ry</code>/<code>rz</code> rows, which is owned by DEL-07-05 but not implemented in the current overlay;</li>
+<li>- unit display and conversion controls;</li>
+<li>- diagnostic badges, warning panels, and blocked states;</li>
+<li>- report/export readiness indicators.</li>
+</ul></blockquote>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Dense tables vs. graphical overlays</td><td>Use each where it supports review. Tables support exact inspection; overlays support spatial pattern recognition. Both must remain unit-aware and diagnostics-qualified.</td></tr>
+<tr><td>Ratio display vs. code-compliance claims</td><td>Ratios may show user-rule-pack calculations when inputs are complete. The UI must not turn those ratios into automatic professional approval or public code compliance claims.</td></tr>
+<tr><td>Convenience filters vs. hidden warnings</td><td>Filters should not suppress blocking diagnostics or professional-boundary status without a deliberate, visible review state.</td></tr>
+<tr><td>Export readiness vs. report generation</td><td>The viewer may expose report/export readiness signals, but report generation and structured result exports remain PKG-08 surfaces unless a later sealed brief says otherwise.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The following are structural examples only and include no engineering values:</p>
+<ul>
+<li>- A load-combination selection reveals displacements and rotations at selected nodes, with unit labels and any solver diagnostics attached.</li>
+<li>- A support selection reveals restraint reactions and active-state warnings when nonlinear support state is uncertain.</li>
+<li>- A stress result view shows mechanical stress values when available and shows <code>RULE_INPUTS_INCOMPLETE</code> if a requested ratio depends on missing user rule-pack inputs.</li>
+<li>- A report/export readiness indicator shows whether result hashes, solver version, rule-pack checksum, warnings, and assumptions are available for downstream reporting.</li>
+</ul></blockquote>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified during setup.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-open-issues">CLM-033 — Open Issues</h3>
+<blockquote><h5 id="open-issues">Open Issues</h5>
+<table><tbody>
+<tr><td>Issue</td><td>Status</td></tr>
+<tr><td>Exact result-envelope schema fields consumed by the viewer</td><td>TBD</td></tr>
+<tr><td>Exact UI layout, component library, state library, and broader overlay behavior</td><td>TBD; rotational-deformation visualization is a named DEL-07-05 residual under DEC-074 O1 / PDU-061</td></tr>
+<tr><td>Exact rule-ratio terminology when private rule packs differ by user design basis</td><td>TBD</td></tr>
+<tr><td>Exact equipment-load aggregation/display semantics</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-023 OBJ-006 OBJ-007</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

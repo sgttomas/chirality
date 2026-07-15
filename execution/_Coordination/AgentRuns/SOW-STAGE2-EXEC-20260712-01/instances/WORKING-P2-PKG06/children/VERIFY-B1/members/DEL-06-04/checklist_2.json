@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-06-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 196,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "58ab8ae2e0a65bfc816c9f3d5ba775381eac2ca86fa74635b0609cfbf2d865a5"
+      },
+      "text": "The contract preserves the accepted local-first privacy, explicit payload-bound checksum, stale-hash, protected-content, unit, and professional-authority boundaries while deferring storage, encryption, access policy, permission persistence, and final redistribution enums to their governed owners.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-06-04-VER-001",
+          "source_line": 294,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, lifecycle metadata, checksum payload boundaries, private/public and quarantine handling, diagnostics, audit hooks, no-bypass constraints, deferred security ownership, and all surviving source conflicts."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-06-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-06",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "58ab8ae2e0a65bfc816c9f3d5ba775381eac2ca86fa74635b0609cfbf2d865a5"
+  },
+  "tool_version": "1"
+}
