@@ -1,6 +1,6 @@
 # Current Root Governance Workplan
 
-Status: `ACTIVE`
+Status: `CLOSED — H2-R COMPATIBILITY RETAINED`
 
 Target:
 `execution/_Coordination/WORKPLAN_2026-07-12_scope_of_work_stage2.md`

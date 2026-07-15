@@ -1,0 +1,10 @@
+{
+  "agent": "CHANGE-H2-R",
+  "basis": "92725eace3ef50306bf0c09032bc59492e636c01",
+  "branch": "codex/sow-closure",
+  "h2": "APPROVED_H2_R",
+  "legacy_retirement": "RETAINED_NOT_AUTHORIZED",
+  "local_checks": "PASS",
+  "state": "READY_FOR_REMOTE_CHECKS",
+  "verdict": "PASS_PREMERGE"
+}

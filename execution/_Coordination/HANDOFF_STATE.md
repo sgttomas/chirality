@@ -1,6 +1,6 @@
 # Root Scope-of-Work Governance Handoff State
 
-Status: `CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED`
+Status: `STAGE2_CLOSED — H2-R COMPATIBILITY RETAINED`
 
 ## Accepted upstream basis
 
@@ -44,10 +44,12 @@ Final independent manifests:
 - EVALUATION:
   `3a17c5b5637216b74018206a931a4a01fb6c90769094ac77d4a3c57da47b133f`.
 
-H2 remains unapproved. The recommended ruling is H2-R: retain compatibility
-and perform no retirement because the eight PKG-00 contracts and accepted
-rollback path still require the legacy skill, validator, readers, and callers.
-Silence performs no retirement.
+The human approved H2-R at exact commit
+`92725eace3ef50306bf0c09032bc59492e636c01`: retain compatibility and perform
+no retirement. The eight PKG-00 contracts and accepted rollback path continue
+to be supported by the legacy skill, validator, readers, and callers. No
+project, skill, tool, caller, lifecycle, rollback, historical-evidence, or
+retirement implementation write is authorized.
 
 ## Historical Stage-1 and plan closure
 
@@ -83,17 +85,15 @@ basis.
 
 ## Required stop and release condition
 
-Conversion is closed. Stop before any compatibility or legacy-retirement act
-until the human selects H2-R, H2-P, or H2-F against the exact accepted basis.
-H2-R records retention only. H2-P and H2-F authorize preparation lanes only
-and retain a second integration gate; neither permits immediate live deletion.
-No option changes lifecycle, executes rollback, or modifies historical
-evidence. Silence leaves every current compatibility surface supported.
+Conversion and the Stage-2 decision loop are closed under H2-R. Compatibility
+remains supported and legacy retirement is not authorized. Any later proposal
+to retire authoring or compatibility must begin as a new governed objective
+with a fresh human ruling; this H2-R record cannot be reinterpreted as
+preparation or deletion authority.
 
 ## Rerun requirements
 
-Before acting on H2, bind the selected ruling to exact main and both final
-manifests. H2-P/H2-F require a fresh governed run, changed/caller manifest,
-rollback analysis, root/App/Piping suites, independent EVALUATION and
-RECONCILIATION, and a separate CHANGE integration gate. Any census, lifecycle,
-caller, compatibility, rollback, or basis drift returns to the human.
+No rerun is required for H2-R because live behavior is unchanged. Any later
+retirement objective requires a fresh synchronized basis, census, changed/
+caller manifest, rollback analysis, root/App/Piping suites, independent
+EVALUATION and RECONCILIATION, human acceptance, and a separate CHANGE gate.

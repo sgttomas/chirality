@@ -406,3 +406,16 @@
   `3a17c5b5637216b74018206a931a4a01fb6c90769094ac77d4a3c57da47b133f`.
 - State: `CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED`. H2 is a
   fresh human decision; silence performs no retirement.
+
+### Receipt 26 — 2026-07-14 — H2-R approved; compatibility retained
+
+- Owner ruling: “I APPROVE H2-R at commit
+  `92725eace3ef50306bf0c09032bc59492e636c01`.”
+- Effect: retain the eight ruled Piping PKG-00 legacy contracts, the
+  compatibility-only `four-documents` skill, legacy validator, active
+  format-aware callers, and full 730-row human-gated rollback support.
+- Writes authorized: ruling record, closure pointer, work graph, receipt, and
+  handoff only. No project, skill, tool, caller, lifecycle, rollback,
+  historical-evidence, or retirement implementation write is authorized.
+- State: `STAGE2_CLOSED — H2-R COMPATIBILITY RETAINED`; legacy retirement is
+  `RETAINED_NOT_AUTHORIZED`.
