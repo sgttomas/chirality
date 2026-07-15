@@ -2,12 +2,17 @@
   "schema": "chirality-agent-return/v1",
   "instance": "CHANGE-CLEAN-REPAIR",
   "role": "CHANGE",
-  "status": "READY_FOR_REQUIRED_CHECK_PR",
+  "status": "POSTMERGE_PASS",
   "basis": "715f618e93528d626a73d2134781e8c9c27f6c90",
   "accepted_manifest_sha256": "f3f17fec99fa54cad63fb6d05af0272c47d3b3f505ac6787dfa58661dae8e2b6",
   "project_paths": 57,
   "atomic_commits": 57,
   "local_checks": "PASS",
+  "source_head": "bd9b163f8e967697d1abe15f572b9c3740dd5c49",
+  "pr": 237,
+  "required_checks": "PASS",
+  "merge_commit": "74b9804cf62c014118ad222699a3591fdf5bda42",
+  "postmerge_manifest_sha256": "6bca228f08e34094e538c81d905f3efe4b50de990ccca16f69daed8394cc9dd8",
   "h2_approved": false,
   "legacy_retirement_implemented": false
 }
