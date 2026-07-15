@@ -1,0 +1,9 @@
+{
+  "schema": "chirality-sow-final-closure-app-test-rerun/v1",
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "reason": "attempt 1 disposable frontend copy omitted repository-level fixtures",
+  "exit_code": 0,
+  "duration_seconds": 5.177,
+  "output_sha256": "4a036231ce20ca5c276fb441f5b3753d0d7363eca280bee16df474d0d941df62",
+  "verdict": "PASS"
+}

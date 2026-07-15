@@ -1,0 +1,32 @@
+
+> openpipestress-workspace@0.1.0 build:desktop
+> npm run build --workspace apps/desktop
+
+
+> @openpipestress/desktop@0.1.0 build
+> tsc -b && vite build
+
+vite v7.3.3 building client environment for production...
+transforming...
+✓ 1660 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                      1.16 kB │ gzip:   0.56 kB
+dist/assets/index-2SxukrJY.css                      44.62 kB │ gzip:   7.95 kB
+dist/assets/vendor-tauri-Dm_JkC_c.js                 1.32 kB │ gzip:   0.68 kB
+dist/assets/invented_design_knowledge-H12r-oKQ.js    1.66 kB │ gzip:   0.76 kB
+dist/assets/invented_agent_proposal-Bm57LVt-.js      1.82 kB │ gzip:   0.85 kB
+dist/assets/vendor-7OC5HNn7.js                       3.61 kB │ gzip:   1.58 kB
+dist/assets/invented_demo_rule_pack-dhX9tvT1.js     10.86 kB │ gzip:   2.60 kB
+dist/assets/invented_preview_model-pJA3_nB8.js      12.67 kB │ gzip:   3.06 kB
+dist/assets/vendor-icons-NIB71rxH.js                16.64 kB │ gzip:   5.53 kB
+dist/assets/vendor-react-BT_8sX57.js               188.74 kB │ gzip:  58.94 kB
+dist/assets/invented_mechanics_result-DftuaeNr.js  458.28 kB │ gzip:  21.63 kB
+dist/assets/vendor-three-C7YCSTwK.js               525.97 kB │ gzip: 134.13 kB
+dist/assets/index-7WrBcmHZ.js                      911.68 kB │ gzip: 214.69 kB
+✓ built in 1.51s
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

@@ -1,0 +1,57 @@
+{
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "callers": {
+    "dispositions": {
+      "ACTIVATE": 58,
+      "DERIVATIVE_REGENERATE": 1,
+      "HISTORICAL": 5,
+      "INDEPENDENT_SCHEMA": 3,
+      "RETAIN_LEGACY": 5
+    },
+    "exact_surfaces": 64,
+    "retained_legacy_surfaces": 5
+  },
+  "census": {
+    "control_drift": [],
+    "conversion_formats": {
+      "SOW_V1": 146
+    },
+    "formats": {
+      "LEGACY_FOUR_DOC": 8,
+      "SOW_V1": 146
+    },
+    "lifecycle": {
+      "IN_PROGRESS": 153,
+      "ISSUED": 1
+    },
+    "members": 154,
+    "path_digest": "b6eca2504a5d7551d96f7c0978ba6b4bc48b0e36c4d51792177fdd7a91e8df31",
+    "sole_issued": [
+      "projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline"
+    ],
+    "status_mismatches": []
+  },
+  "clean_production": {
+    "forbidden_residue_members": [],
+    "repair_manifest_sha256": "f3f17fec99fa54cad63fb6d05af0272c47d3b3f505ac6787dfa58661dae8e2b6",
+    "repair_members_reproduced": 57
+  },
+  "errors": [],
+  "fences": {
+    "h2": "UNAPPROVED",
+    "legacy_retirement": "PARKED_HUMAN_GATE"
+  },
+  "integration_evidence": {
+    "accepted_handoffs": 9,
+    "receipts_1_through_23_present": true
+  },
+  "rollback": {
+    "members": 146,
+    "round_trip_simulations_passed": 146,
+    "rows": 730,
+    "simulation_errors": [],
+    "sources": 11
+  },
+  "schema": "chirality-conversion-closure-final-reconciliation/v1",
+  "verdict": "PASS"
+}

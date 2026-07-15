@@ -1,0 +1,56 @@
+{
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "census": {
+    "app": 53,
+    "lifecycle": {
+      "IN_PROGRESS": 153,
+      "ISSUED": 1
+    },
+    "members": 154,
+    "path_digest": "b6eca2504a5d7551d96f7c0978ba6b4bc48b0e36c4d51792177fdd7a91e8df31",
+    "piping": 101,
+    "status_hash_mismatches": []
+  },
+  "conversion_population": {
+    "members": 146,
+    "valid_sow_v1": 146,
+    "validation_failures": []
+  },
+  "errors": [],
+  "formats": {
+    "LEGACY_FOUR_DOC": 8,
+    "SOW_V1": 146
+  },
+  "h2_approved": false,
+  "legacy_retirement_implemented": false,
+  "legacy_surfaces": {
+    "ACTIVE_COMPATIBILITY_CALLER": 51,
+    "LEGACY_CONTRACT": 8,
+    "LEGACY_SKILL": 4,
+    "LEGACY_VALIDATOR": 1
+  },
+  "pkg00_exemptions": {
+    "legacy_four_doc": 8,
+    "members": 8
+  },
+  "production_cleanliness": {
+    "residue_members": 0
+  },
+  "repair_reproduction": {
+    "errors": [],
+    "members": 57
+  },
+  "rollback": {
+    "errors": [],
+    "members": 146,
+    "operations": {
+      "ADD": 496,
+      "DELETE": 146,
+      "RESTORE": 88
+    },
+    "rows": 730,
+    "sources": 11
+  },
+  "schema": "chirality-sow-final-closure-evaluation/v1",
+  "verdict": "PASS"
+}

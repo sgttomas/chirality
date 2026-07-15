@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-agent-terminal-status/v1",
+  "instance": "EVALUATION-CLOSURE-FINAL",
+  "role": "EVALUATION",
+  "basis": "79de30d83b91a2ab468a3f17536a5233c2f85fe7",
+  "status": "PASS",
+  "blockers": [],
+  "waivers": [],
+  "material_unknowns": [],
+  "h2_approved": false,
+  "legacy_retirement_implemented": false,
+  "recommended_h2_option": "H2-R"
+}
