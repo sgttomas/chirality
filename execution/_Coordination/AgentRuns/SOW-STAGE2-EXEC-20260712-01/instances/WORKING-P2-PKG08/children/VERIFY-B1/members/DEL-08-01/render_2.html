@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="ae40e3b7aa1b3f45c00be3a69abe6f75a16903e12cccf7890b9fd092eed57625">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>ae40e3b7aa1b3f45c00be3a69abe6f75a16903e12cccf7890b9fd092eed57625</code>.</p>
+<h1 id="scope-of-work-del-08-01">Scope of Work — DEL-08-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-08-01</code> in service of project scope [SOW-024] and package objectives [OBJ-007].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A calculation-report generation contract covering auditable input, source, result, warning, assumption, limitation, unit, provenance, rule-pack, and reproducibility content is produced without claiming certification or professional approval.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-01-calculation-report-generator">CLM-001 — Datasheet: DEL-08-01 Calculation report generator</h3>
+<blockquote><h4 id="datasheet-del-08-01-calculation-report-generator">Datasheet: DEL-08-01 Calculation report generator</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-08-01</td></tr>
+<tr><td>Deliverable name</td><td>Calculation report generator</td></tr>
+<tr><td>Package ID</td><td>PKG-08</td></tr>
+<tr><td>Package name</td><td>Reporting, Audit, and Reproducibility</td></tr>
+<tr><td>Deliverable type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-024</td></tr>
+<tr><td>Objective</td><td>OBJ-007</td></tr>
+<tr><td>Context envelope</td><td>L</td></tr>
+<tr><td>Current setup status</td><td>SEMANTIC_READY setup artifacts prepared</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Source-grounded value</td></tr>
+<tr><td>Production family</td><td>Calculation reports for OpenPipeStress analysis outputs.</td></tr>
+<tr><td>Required report content</td><td>Inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations.</td></tr>
+<tr><td>Anticipated downstream artifacts</td><td>Report renderer, report template, tests.</td></tr>
+<tr><td>Setup-session implementation boundary</td><td>Renderer source, templates outside this deliverable, tests, schemas, and repo-level artifacts are out of write scope.</td></tr>
+<tr><td>Architecture baseline</td><td>Rust core/application services, schema-first command/query/job/result envelopes, JSON Schema 2020-12 contracts, canonical JSON/JCS-compatible hash basis where JSON payload hashes are used.</td></tr>
+<tr><td>Report authority boundary</td><td>Reports are decision-support artifacts and must not claim certification, sealing, approval, authentication, or automatic code compliance.</td></tr>
+<tr><td>Protected-content boundary</td><td>Public templates/examples must not reproduce protected standards text, protected standards tables, protected figures, proprietary formulas, or protected code-derived content.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Handling requirement</td></tr>
+<tr><td>Missing solve-required data</td><td>Preserve as explicit diagnostics or report findings; do not hide with silent defaults.</td></tr>
+<tr><td>Missing rule-check-required data</td><td>Preserve as explicit rule-check-blocking diagnostics or findings; do not imply a completed check.</td></tr>
+<tr><td>User-supplied code data</td><td>Record as user-supplied or private/provenance-tagged data; do not convert it into public defaults.</td></tr>
+<tr><td>Rule-pack references</td><td>Report only identity, version, checksum, source/provenance notices, redistribution status, and user-provided report notices; do not reproduce protected rule text.</td></tr>
+<tr><td>Professional reliance</td><td>Include a notice that competent human review is required before project reliance.</td></tr>
+<tr><td>Unit-bearing values</td><td>Preserve units and dimensional context in generated report sections.</td></tr>
+<tr><td>Private project data</td><td>Keep redaction/export handling visible as a requirement and defer detailed controls to PKG-12 where needed.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The calculation report generator deliverable is specified here as a bounded backend feature slice, not implemented in this setup session. Its future implementation should assemble report content from schema-first project/model/result envelopes, diagnostics, provenance metadata, and rule-pack references. The report generator must preserve the diagnostic/result-envelope boundary injected by AB-00-03 and AB-00-06: report content reflects mechanics outputs, user-rule-check outputs, warnings, assumptions, and limitations without promoting software output into professional approval.</p>
+<p>The setup artifact family prepared for this session is:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Source</td><td>SourceRef</td><td>Use</td></tr>
+<tr><td><code>_CONTEXT.md</code></td><td>Scope Coverage; Architecture Basis Injection</td><td>Deliverable identity, scope, objective, accepted architecture basis, and write boundary.</td></tr>
+<tr><td><code>docs/_Registers/Deliverables.csv</code></td><td>Row DEL-08-01</td><td>Registered description, anticipated artifacts, scope, objective, context envelope, and risk note.</td></tr>
+<tr><td><code>docs/_Registers/ScopeLedger.csv</code></td><td>Row SOW-024</td><td>Report content scope and protected-content warning.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>OPS-K-IP-1..3, OPS-K-DATA-1..3, OPS-K-RULE-1..3, OPS-K-AUTH-1, OPS-K-REPORT-1..2, OPS-K-PRIV-1..2, OPS-K-UNIT-1, OPS-K-AGENT-1..4</td><td>Invariant constraints for report generation.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Sections 1, 3, 6, 7, 8, 9, 11</td><td>Architecture, report domain object, rule-pack metadata, warning classes, reporting/audit content, report tests, and acceptance semantics.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Sections 4, 6, 8, 9</td><td>Analysis-status vocabulary, professional boundary terms, report settings/report object definitions, and lifecycle meaning.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Sections 2, 3, 4, 5, 6</td><td>Founding data/professional boundaries, stop rules, and auditability principles.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-08-01-calculation-report-generator">CLM-008 — Specification: DEL-08-01 Calculation report generator</h3>
+<blockquote><h4 id="specification-del-08-01-calculation-report-generator">Specification: DEL-08-01 Calculation report generator</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-01-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines the calculation report generator behavior for OpenPipeStress reporting. It covers report assembly requirements for model input summaries, load cases, results, warnings, assumptions, source/provenance notes, rule-pack references, checksums, and limitations.</p>
+<p>This setup session does not implement renderer source, report templates outside this deliverable, tests, schemas, or repo-level artifacts. Those remain future implementation work under sealed deliverable scope and review.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>SourceRef</td><td>Verification</td></tr>
+<tr><td>R-08-01-001</td><td>The report generator shall assemble auditable reports that include inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations.</td><td>ScopeLedger.csv row SOW-024; CONTRACT.md OPS-K-REPORT-1; SPEC.md section 8</td><td>Inspect generated report contract/template behavior in future implementation tests.</td></tr>
+<tr><td>R-08-01-002</td><td>Reports shall include software version, solver version, model hash, input manifest, unit system, provenance summary, load cases/combinations, mechanical results, warnings, assumptions, missing data, rule-pack name/version/checksum, user-supplied data notice, and professional-review notice where those inputs exist.</td><td>SPEC.md section 8</td><td>Report fixture/golden-output tests verify presence and omission rules.</td></tr>
+<tr><td>R-08-01-003</td><td>Public report templates and examples shall not reproduce protected code text, protected standards tables, protected figures, proprietary formulas, protected examples, protected dimensional tables, or proprietary commercial data.</td><td>CONTRACT.md OPS-K-IP-1, OPS-K-REPORT-2; SPEC.md section 8</td><td>Protected-content report gate and human review before public release.</td></tr>
+<tr><td>R-08-01-004</td><td>Reports shall not claim to certify, seal, approve, authenticate, or declare engineering code compliance for reliance.</td><td>CONTRACT.md OPS-K-AUTH-1; TYPES.md sections 4 and 8; DIRECTIVE.md sections 2 and 6</td><td>Text review/lint gate checks prohibited claim language.</td></tr>
+<tr><td>R-08-01-005</td><td>Reports shall distinguish mechanics solved, user-rule checked, rule inputs incomplete, and human review required states.</td><td>TYPES.md section 4; SOFTWARE_DECOMP.md AB-00-03 and AB-00-06</td><td>Status fields in report fixtures are checked against analysis-status vocabulary.</td></tr>
+<tr><td>R-08-01-006</td><td>Reports shall preserve unit context for unit-bearing inputs and results.</td><td>CONTRACT.md OPS-K-UNIT-1; SPEC.md sections 3 and 8</td><td>Unit-aware fixture tests verify displayed and structured units.</td></tr>
+<tr><td>R-08-01-007</td><td>Reports shall disclose diagnostics using result-envelope-compatible warning classes including solve-blocking, rule-check-blocking, provenance, assumption, nonlinear, and IP-boundary warnings when present.</td><td>SPEC.md section 7; SOFTWARE_DECOMP.md AB-00-06</td><td>Diagnostic fixture tests verify warning class pass-through and report rendering.</td></tr>
+<tr><td>R-08-01-008</td><td>Reports shall treat rule packs as user/private design-basis artifacts and expose only safe metadata such as identity, version, checksum, source notice, redistribution status, required-input status, and user-provided report notices.</td><td>SPEC.md section 6; CONTRACT.md OPS-K-DATA-1, OPS-K-RULE-3</td><td>Rule-pack report fixtures verify metadata display and protected-content exclusion.</td></tr>
+<tr><td>R-08-01-009</td><td>The report generator shall use schema-first command/query/job result envelopes and application-service boundaries; adapters/plugins must not bypass units, provenance, diagnostics, sandboxing, or report controls.</td><td>SOFTWARE_DECOMP.md AB-00-02, AB-00-03, AB-00-07</td><td>Architecture review verifies service boundary conformance before implementation acceptance.</td></tr>
+<tr><td>R-08-01-010</td><td>Report reproducibility tests shall verify deterministic output for the same model/result/rule-pack inputs, versions, and report settings, subject to explicitly documented volatile fields.</td><td>SPEC.md section 9; CONTRACT.md OPS-K-REPORT-1</td><td>Future tests compare normalized report outputs and audit manifests.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standards text, protected tables, protected formulas, or proprietary code examples are used as source content for this deliverable. Any future user-private report template or rule-pack notice remains user responsibility and must be handled outside public-template distribution unless redistribution rights are documented.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>The future implementation should be accepted only after these checks exist and pass:</p>
+<ul>
+<li>- Four-document setup artifacts exist for this deliverable.</li>
+<li>- <code>Dependencies.csv</code> is valid v3.1 and every ACTIVE row has evidence.</li>
+<li>- Report fixtures cover mechanics-only, rule-inputs-incomplete, user-rule-checked, warnings-present, and protected-content-risk cases.</li>
+<li>- Report reproducibility tests normalize volatile metadata and verify stable report payloads.</li>
+<li>- Protected-content and prohibited-claim gates scan public report templates/examples.</li>
+<li>- Human review confirms that the report generator does not assert compliance, certification, sealing, or project acceptance.</li>
+</ul></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup documentation for this deliverable:</p>
+<ul>
+<li>- <code>Datasheet.md</code> records identity, boundaries, conditions, and reference basis.</li>
+<li>- <code>Specification.md</code> records requirements and verification targets.</li>
+<li>- <code>Guidance.md</code> records rationale, principles, trade-offs, and open questions.</li>
+<li>- <code>Procedure.md</code> records execution and future implementation workflow.</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> record semantic setup evidence only.</li>
+<li>- <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> record information-flow dependencies.</li>
+<li>- <code>_run_records/*</code> record setup sequence evidence.</li>
+</ul></blockquote>
+<h3 id="clm-015-acceptance-criteria-for-this-setup-session">CLM-015 — Acceptance Criteria For This Setup Session</h3>
+<blockquote><h5 id="acceptance-criteria-for-this-setup-session">Acceptance Criteria For This Setup Session</h5>
+<ul>
+<li>- No file outside <code>execution/PKG-08_Reporting, Audit, and Reproducibility/1_Working/DEL-08-01_Calculation report generator/</code> is edited.</li>
+<li>- No renderer source, external report template, test, schema, or repo-level artifact is modified.</li>
+<li>- Setup artifacts are source-grounded to local governance, decomposition, register, and context files.</li>
+<li>- No protected standards content or certification/compliance claim is introduced.</li>
+<li>- <code>_STATUS.md</code> reports <code>SEMANTIC_READY</code> only after the four-document kit, semantic artifacts, dependency register, and validation checks are complete.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves report content and status boundaries, explicit missing-data and diagnostic findings, units and provenance, safe rule-pack metadata, protected-content limits, reproducibility requirements, and competent-human-review notices without inventing unresolved renderer or schema choices.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-08-01-calculation-report-generator">CLM-016 — Procedure: DEL-08-01 Calculation report generator</h3>
+<blockquote><h4 id="procedure-del-08-01-calculation-report-generator">Procedure: DEL-08-01 Calculation report generator</h4></blockquote>
+<h3 id="clm-017-d-41-r5-t7-pdu-055-current-declaration">CLM-017 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-01-DECL-004</code>.</p></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure records the setup and future implementation workflow for the calculation report generator deliverable. It does not implement renderer code.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Sealed deliverable scope for DEL-08-01</td><td>Present in <code>_CONTEXT.md</code> and user brief.</td></tr>
+<tr><td>Scope item and objective mapping</td><td>Present: SOW-024 and OBJ-007.</td></tr>
+<tr><td>Applicable invariants</td><td>Present in <code>docs/CONTRACT.md</code> and user brief.</td></tr>
+<tr><td>Architecture basis injection</td><td>Present in <code>_CONTEXT.md</code> with AB-00-01, AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, AB-00-08.</td></tr>
+<tr><td>Renderer/template/test/schema implementation authority</td><td>Not present in this setup session; future sealed brief required.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5></blockquote>
+<h3 id="clm-021-setup-sequence-completed-in-this-session">CLM-021 — Setup sequence completed in this session</h3>
+<blockquote><h6 id="setup-sequence-completed-in-this-session">Setup sequence completed in this session</h6>
+<p>1. Run <code>four-documents</code> with <code>RUN_PASSES=P1_P2</code>.</p>
+<p>2. Run <code>semantic-matrix-build</code>.</p>
+<p>3. Run <code>lens-register</code>.</p>
+<p>4. Run <code>four-documents</code> with <code>RUN_PASSES=P3_ONLY</code>.</p>
+<p>5. Run <code>dependency-extract</code>.</p>
+<p>6. Validate the resulting setup files and dependency schema.</p>
+<p>7. Set <code>_STATUS.md</code> to <code>SEMANTIC_READY</code> only after the setup gates pass.</p></blockquote>
+<h3 id="clm-022-future-implementation-sequence">CLM-022 — Future implementation sequence</h3>
+<blockquote><h6 id="future-implementation-sequence">Future implementation sequence</h6>
+<p>1. Confirm a sealed implementation brief for DEL-08-01 or a split deliverable if scope expands.</p>
+<p>2. Read the current report/result/rule-pack schemas and application-service result envelopes.</p>
+<p>3. Define report input contract without bypassing units, provenance, diagnostics, or private-data controls.</p>
+<p>4. Implement report assembly with safe placeholders and metadata-only rule-pack references.</p>
+<p>5. Add report fixtures for mechanics-only, user-rule-check, incomplete-rule-input, warning-heavy, and protected-content-risk cases.</p>
+<p>6. Add reproducibility tests for deterministic report output and manifest/hash binding.</p>
+<p>7. Add protected-content and prohibited-claim gates for public templates/examples.</p>
+<p>8. Route to REVIEW with explicit evidence: fixtures, tests, lint output, dependency register, and limitations.</p></blockquote>
+<h3 id="clm-023-verification">CLM-023 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Setup verification for this session:</p>
+<ul>
+<li>- <code>tools/validation/check_four_documents.sh &lt;deliverable&gt;</code> passes.</li>
+<li>- <code>tools/validation/check_min_viable_fileset.sh &lt;deliverable&gt;</code> passes.</li>
+<li>- <code>python3 tools/validation/validate_dependencies_schema.py &lt;deliverable&gt;/Dependencies.csv</code> passes.</li>
+<li>- Dependency enum validation passes for all enum fields in ACTIVE rows.</li>
+<li>- <code>_SEMANTIC.md</code> final result tables contain no algebra/operator leaks and no final cell over 80 characters.</li>
+<li>- <code>_SEMANTIC_LENSING.md</code> includes complete lens coverage for matrices A, B, C, F, D, X, and E.</li>
+<li>- <code>rg</code> checks do not identify prohibited certification or protected-standards claims in DEL-08-01 artifacts.</li>
+</ul></blockquote>
+<h3 id="clm-024-records">CLM-024 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Required records for this setup session:</p>
+<ul>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1200_four-documents-p1-p2.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1205_semantic-matrix-build.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1210_lens-register.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1215_four-documents-p3.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1220_dependency-extract.md</code></li>
+</ul>
+<p>Future implementation records should include source slices used, tests run, report fixture outputs, protected-content scans, reproducibility checks, and open issues.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, report-content completeness, mechanics and rule-check state separation, unit/provenance visibility, protected-content and professional-authority boundaries, deterministic-output requirements, and every retained TBD or governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-08-01-calculation-report-generator">CLM-025 — Guidance: DEL-08-01 Calculation report generator</h3>
+<blockquote><h4 id="guidance-del-08-01-calculation-report-generator">Guidance: DEL-08-01 Calculation report generator</h4></blockquote>
+<h3 id="clm-026-d-41-r5-t7-pdu-055-current-declaration">CLM-026 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-01-DECL-003</code>.</p></blockquote>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The calculation report generator exists to make analysis outputs reviewable and reproducible without converting software output into professional approval. It should help a competent reviewer see what was analyzed, what data was supplied, what assumptions or gaps remain, what warnings were raised, what rule-pack metadata was used, and what limitations apply.</p></blockquote>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Auditability first</td><td>Report content should be traceable to model inputs, result envelopes, diagnostics, provenance records, report settings, and rule-pack references.</td></tr>
+<tr><td>Boundary clarity</td><td>The report should separate mechanics solve output, user-rule-check output, incomplete inputs, and human review.</td></tr>
+<tr><td>No protected content</td><td>Public report templates and examples should contain placeholders, invented values, or safe metadata, not protected code text/tables/formulas.</td></tr>
+<tr><td>No professional overclaim</td><td>Report language should say what the software computed and what data was supplied, not that the work is certified, sealed, approved, or code-compliant for reliance.</td></tr>
+<tr><td>Unit visibility</td><td>Unit-bearing values should display units and keep dimensional context visible.</td></tr>
+<tr><td>Reproducibility</td><td>Reports should bind to versions, hashes, manifests, warnings, and rule-pack checksums so reviewers can reproduce or compare results.</td></tr>
+<tr><td>Local-first privacy</td><td>Private project/rule/material/component data should remain user-controlled unless intentionally exported with documented rights.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The report generator will depend on upstream model/result/rule-pack envelopes that are not implemented in this setup session. Where the current source set does not provide exact field names, template structure, renderer API, or output format, those details remain <code>TBD</code> for future sealed implementation briefs.</p>
+<p>The report generator should be conservative about rule-pack content. A report can identify a rule pack, version, checksum, required-input state, source notice, redistribution status, and user-provided notice. It should not copy protected rule text or proprietary formulas into public templates/examples.</p>
+<p>The report generator should expose warnings as findings, not as decoration. Missing solve-required values, rule-check-required values, weak provenance, assumptions, nonlinear uncertainty, and IP-boundary concerns should be report-visible when present in the input envelopes.</p></blockquote>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Conservative direction</td></tr>
+<tr><td>Human-readable PDF/HTML vs structured output</td><td>This deliverable can define report assembly behavior, but result export format is a separate DEL-08-04 concern. Avoid binding a public transport/output format here beyond setup requirements.</td></tr>
+<tr><td>Rich template language vs protected-content control</td><td>Prefer constrained placeholders and safe metadata over a template model that encourages copying protected code text into public examples.</td></tr>
+<tr><td>User-private templates vs public templates</td><td>User-private templates may contain user-owned content under user responsibility; public templates must stay protected-content-free.</td></tr>
+<tr><td>Completion language vs professional boundary</td><td>Use &quot;generated&quot;, &quot;computed&quot;, &quot;reported&quot;, &quot;checked by user rule pack&quot; and &quot;human review required&quot;; avoid compliance/certification language.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Safe report section labels may include:</p>
+<ul>
+<li>- Model input summary</li>
+<li>- Source and provenance summary</li>
+<li>- Load case and combination summary</li>
+<li>- Result summary</li>
+<li>- Warnings and missing data</li>
+<li>- Assumptions and limitations</li>
+<li>- Rule-pack references and checksums</li>
+<li>- Reproducibility manifest</li>
+<li>- Professional review notice</li>
+</ul>
+<p>These labels are illustrative only and do not define a renderer template in this setup session.</p></blockquote>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source conflicts were identified in the local reference set for this setup run.</p>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>None identified</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-open-questions">CLM-033 — Open Questions</h3>
+<blockquote><h5 id="open-questions">Open Questions</h5>
+<table><tbody>
+<tr><td>ID</td><td>Question</td><td>Current disposition</td></tr>
+<tr><td>OQ-08-01-001</td><td>Exact renderer library, file format, and report template language.</td><td>TBD; outside setup-session write scope.</td></tr>
+<tr><td>OQ-08-01-002</td><td>Exact report schema fields and result-envelope field names.</td><td>TBD; downstream schema/service deliverables must define before implementation.</td></tr>
+<tr><td>OQ-08-01-003</td><td>Redaction/export configuration for private project data in shared reports.</td><td>TBD; coordinate with PKG-12 in future sealed work.</td></tr>
+<tr><td>OQ-08-01-004</td><td>Human approval workflow and acceptance-record binding to report hashes.</td><td>TBD; outside software authority unless human governance defines a record process.</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-024 OBJ-007</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="b439df6dab8cadf7c3784589becb85bf75d32d26e3f7f71446b6cc7417d8adc9">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>b439df6dab8cadf7c3784589becb85bf75d32d26e3f7f71446b6cc7417d8adc9</code>.</p>
+<h1 id="scope-of-work-del-06-02">Scope of Work — DEL-06-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-06-02</code> in service of project scope [SOW-045] and package objectives [OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A sandboxed unit-aware expression-evaluator contract covering a declarative allowlisted grammar, typed variables and functions, dimensional checks, bounded evaluation, deterministic diagnostics, canonical rule-pack version binding, and schema-first result envelopes is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-02-sandboxed-unit-aware-expression-evaluator">CLM-001 — Datasheet: DEL-06-02 Sandboxed unit-aware expression evaluator</h3>
+<blockquote><h4 id="datasheet-del-06-02-sandboxed-unit-aware-expression-evaluator">Datasheet: DEL-06-02 Sandboxed unit-aware expression evaluator</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-pdu-024-version-integration">CLM-003 — PDU-024 Version Integration</h3>
+<blockquote><h5 id="pdu-024-version-integration">PDU-024 Version Integration</h5>
+<ul>
+<li>- Project-carried evaluator inputs consume DEL-02-05 model-document version handling; accepted current family is <code>0.2.0</code>.</li>
+<li>- Version-check diagnostics remain the established current/stale/unsupported/newer/failed vocabulary.</li>
+<li>- No expression grammar, binding namespace, evaluator library, rule-pack fixture, or migration tooling is added.</li>
+</ul></blockquote>
+<h3 id="clm-004-identification">CLM-004 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-02</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-06</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package</td><td>Rule Packs and User-Supplied Code Check Engine</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td><td><code>docs/_Registers/Deliverables.csv</code> row DEL-06-02</td></tr>
+<tr><td>Scope item</td><td>SOW-045</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-045</td></tr>
+<tr><td>Objective</td><td>OBJ-005</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> objective map</td></tr>
+<tr><td>Context envelope</td><td>L</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Setup status</td><td>Setup documents and semantic/dependency artifacts only</td><td>Human sealed brief</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-attributes">CLM-005 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary purpose</td><td>Bound a future evaluator that can evaluate user-defined rule-pack expressions against solver results and user-owned design bases.</td><td>SOW-045; OBJ-005</td></tr>
+<tr><td>Required posture</td><td>Sandboxed, unit-aware, deterministic, and declarative.</td><td><code>docs/SPEC.md</code> section 6; OPS-K-RULE-2; OPS-K-UNIT-1</td></tr>
+<tr><td>Arbitrary executable code</td><td>Not permitted.</td><td>OPS-K-RULE-2</td></tr>
+<tr><td>Unit and dimensional checks</td><td>Required for formulas, values, imports, exports, and evaluator results.</td><td>OPS-K-UNIT-1</td></tr>
+<tr><td>Missing required values</td><td>Explicit findings, never silent defaults.</td><td>OPS-K-DATA-2</td></tr>
+<tr><td>Expression grammar/library</td><td>TBD. No final grammar or library is selected by this setup run.</td><td>OI-006; sealed brief</td></tr>
+<tr><td>Protected formulas or code-derived values</td><td>Excluded from public setup artifacts.</td><td>OPS-K-IP-1; OPS-K-IP-3; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+<tr><td>Professional approval</td><td>Outside evaluator authority. User-rule checked status is not code compliance.</td><td>OPS-K-MECH-2; OPS-K-AUTH-1; <code>docs/TYPES.md</code> section 4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-conditions">CLM-006 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Handling</td></tr>
+<tr><td>Public repository boundary</td><td>Public artifacts may describe schemas, sandbox behavior, invented examples, and tests. They must not embed protected standards text, tables, proprietary formulas, material allowables, SIF/flexibility tables, or owner design-basis content.</td></tr>
+<tr><td>User-owned rule basis</td><td>User rule packs may contain private or licensed formulas and values in user-controlled paths. Public deliverables only define the safe evaluation boundary.</td></tr>
+<tr><td>Determinism</td><td>Future implementation must produce repeatable results and diagnostics for the same inputs, units, evaluator version, and rule-pack content. Exact numerical tolerances remain TBD.</td></tr>
+<tr><td>Diagnostics</td><td>Future outputs should use result-envelope diagnostics with code, class, severity, source, affected object, message, remediation, and provenance where applicable.</td></tr>
+<tr><td>Plugin and adapter boundary</td><td>Adapters and plugins must not bypass sandboxing, unit validation, provenance checks, diagnostics, or public/private data controls.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-construction">CLM-007 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This setup run produces deliverable-local planning and readiness artifacts only:</p>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> for semantic readiness.</li>
+<li>- <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> for dependency extraction.</li>
+<li>- <code>_run_records/</code> evidence for each required setup step.</li>
+</ul>
+<p>The anticipated implementation artifacts remain future work:</p>
+<ul>
+<li>- <code>rule evaluator module</code> - not produced in this setup run.</li>
+<li>- <code>evaluator tests</code> - not produced in this setup run.</li>
+</ul></blockquote>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Source</td><td>Use</td></tr>
+<tr><td><code>INIT.md</code></td><td>Bootstrap boundaries and stop rules.</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>TASK dispatch discipline and write-scope rule.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Invariants OPS-K-RULE-2, OPS-K-UNIT-1, OPS-K-DATA-2, OPS-K-PRIV, OPS-K-IP, OPS-K-AGENT-1..4.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Rule-pack evaluator section, diagnostic classes, reporting, and V&amp;V expectations.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Rule-pack check, user-rule checked status, human review boundary, and data provenance vocabulary.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private rule-pack and protected-data boundary.</td></tr>
+<tr><td><code>docs/VALIDATION_STRATEGY.md</code></td><td>Rule-pack evaluator verification families.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>PKG-06, DEL-06-02, AB-00 basis rows, OI-006.</td></tr>
+<tr><td><code>docs/_Registers/Deliverables.csv</code></td><td>Deliverable identity and risk note.</td></tr>
+<tr><td><code>docs/_Registers/ScopeLedger.csv</code></td><td>SOW-045 source row.</td></tr>
+<tr><td><code>docs/_Registers/ContextBudgetQA.csv</code></td><td>WATCH risk and split-if-expanded note.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-06-02-sandboxed-unit-aware-expression-evaluator">CLM-009 — Specification: DEL-06-02 Sandboxed unit-aware expression evaluator</h3>
+<blockquote><h4 id="specification-del-06-02-sandboxed-unit-aware-expression-evaluator">Specification: DEL-06-02 Sandboxed unit-aware expression evaluator</h4></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-02-DECL-001</code>.</p></blockquote>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This setup specification bounds the future backend evaluator for user-defined rule-pack expressions. It covers sandboxing, unit awareness, variable binding, deterministic diagnostics, and public/private data boundaries.</p>
+<p>It does not implement an evaluator module, create evaluator tests, choose an expression grammar or library as final, invent numerical tolerances, include protected formulas, ship code-specific rule content, or claim professional code compliance.</p></blockquote>
+<h3 id="clm-012-pdu-024-persistence-integration-boundary">CLM-012 — PDU-024 Persistence Integration Boundary</h3>
+<blockquote><h5 id="pdu-024-persistence-integration-boundary">PDU-024 Persistence Integration Boundary</h5>
+<p>When user-supplied design-basis inputs or rule-check references are carried in a project model, downstream DEL-02-05 persistence uses the accepted model-document <code>0.2.0</code> family and established current/stale/unsupported/newer/failed version checks. This does not change the evaluator&#x27;s binding contract, grammar, sandbox, or result-field scope.</p></blockquote>
+<h3 id="clm-013-requirements">CLM-013 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-06-02-001</td><td>The future evaluator shall be sandboxed and incapable of arbitrary code execution.</td><td>SOW-045; OPS-K-RULE-2</td></tr>
+<tr><td>REQ-06-02-002</td><td>The evaluator shall remain declarative: rule packs define expressions and checks, not executable programs.</td><td>SOW-045; OI-006</td></tr>
+<tr><td>REQ-06-02-003</td><td>All expression inputs, intermediate quantities where represented, comparisons, and outputs shall be unit-aware and dimensionally checked.</td><td>OPS-K-UNIT-1</td></tr>
+<tr><td>REQ-06-02-004</td><td>Missing variables, missing required rule-check values, unit mismatches, invalid references, and unsupported expression forms shall produce explicit findings rather than silent defaults.</td><td>OPS-K-DATA-2; <code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>REQ-06-02-005</td><td>Variable binding shall be limited to declared rule-pack variables, solver result fields, and user-supplied design-basis inputs allowed by the sealed schema/interface contract.</td><td><code>docs/SPEC.md</code> section 6; AB-00-02; AB-00-07</td></tr>
+<tr><td>REQ-06-02-006</td><td>The exact expression grammar, parser, and evaluator library remain TBD and require a future human architecture decision before implementation.</td><td>OI-006; sealed brief</td></tr>
+<tr><td>REQ-06-02-007</td><td>Public artifacts shall not include protected standards text, tables, code-derived formulas, material allowables, SIF/flexibility data, proprietary vendor data, owner standards, or private rule packs.</td><td>OPS-K-IP-1; OPS-K-IP-3; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+<tr><td>REQ-06-02-008</td><td>Rule-pack evaluation results shall not be represented as automatic code compliance, certification, sealing, approval, or professional reliance.</td><td>OPS-K-AUTH-1; OPS-K-MECH-2; <code>docs/TYPES.md</code> section 4</td></tr>
+<tr><td>REQ-06-02-009</td><td>Diagnostics and result envelopes shall preserve mechanics solved, user-rule checked, incomplete data, and human-approved state separation.</td><td>AB-00-03; AB-00-06</td></tr>
+<tr><td>REQ-06-02-010</td><td>Adapters and plugins shall not bypass sandboxing, unit checks, provenance checks, diagnostics, or public/private data boundaries.</td><td>AB-00-07</td></tr>
+<tr><td>REQ-06-02-011</td><td>Future tests shall cover unsafe expression rejection, dimension mismatch, missing binding, deterministic diagnostic emission, protected-content boundaries for public examples, and plugin/adapter bypass attempts.</td><td><code>docs/VALIDATION_STRATEGY.md</code>; AB-00-08</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external protected standard text is introduced by this setup. Governing local standards are the project bootstrap, invariant catalog, data-boundary policy, analysis-status vocabulary, sealed architecture-basis rows in <code>_CONTEXT.md</code>, and the decomposition/register rows for DEL-06-02 and SOW-045.</p></blockquote>
+<h3 id="clm-015-open-decisions">CLM-015 — Open Decisions</h3>
+<blockquote><h5 id="open-decisions">Open Decisions</h5>
+<table><tbody>
+<tr><td>Decision</td><td>Current status</td><td>Required handling</td></tr>
+<tr><td>Expression grammar and parser/evaluator library</td><td>TBD</td><td>Do not implement until a future sealed brief records the human architecture decision.</td></tr>
+<tr><td>Quantity representation and unit algebra integration point</td><td>TBD</td><td>Coordinate with the unit-system contract before implementation.</td></tr>
+<tr><td>Final diagnostic code taxonomy</td><td>TBD</td><td>Use explicit finding classes in setup; define final codes in implementation scope.</td></tr>
+<tr><td>Numerical tolerances for comparisons</td><td>TBD</td><td>Do not invent tolerances in setup artifacts.</td></tr>
+<tr><td>Variable namespace and result-field binding contract</td><td>TBD</td><td>Coordinate with rule-pack schema and result-envelope contracts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-verification">CLM-016 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>REQ-06-02-001</td><td>Security tests demonstrating that expressions cannot invoke filesystem, network, process, reflection, imports, or host-language execution paths.</td></tr>
+<tr><td>REQ-06-02-002</td><td>Schema/evaluator tests proving accepted rule definitions are declarative expressions and checks only.</td></tr>
+<tr><td>REQ-06-02-003</td><td>Unit tests for compatible dimensions, incompatible dimensions, comparison dimensions, and explicit unit metadata propagation.</td></tr>
+<tr><td>REQ-06-02-004</td><td>Negative tests for missing variables, invalid references, unsupported operators, and missing user rule inputs.</td></tr>
+<tr><td>REQ-06-02-005</td><td>Binding tests using only declared variables and result fields from the sealed interface.</td></tr>
+<tr><td>REQ-06-02-006</td><td>Review gate check confirming grammar/library selection is recorded before implementation.</td></tr>
+<tr><td>REQ-06-02-007</td><td>Protected-content and private-data review for public rule-pack examples and evaluator fixtures.</td></tr>
+<tr><td>REQ-06-02-008</td><td>Status/result tests confirming no automatic <code>CODE_COMPLIANT</code> or professional approval state is emitted.</td></tr>
+<tr><td>REQ-06-02-009</td><td>Result-envelope inspection for diagnostics, warnings, provenance, and state separation.</td></tr>
+<tr><td>REQ-06-02-010</td><td>Adapter/plugin boundary tests proving no bypass path reaches the evaluator without validation.</td></tr>
+<tr><td>REQ-06-02-011</td><td>CI or release-gate inclusion of deterministic evaluator verification.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-documentation">CLM-017 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup artifacts are <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>, <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>, <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code>, and <code>_run_records/</code>.</p>
+<p>Future implementation documentation should add the selected grammar/library decision record, evaluator threat model, unit-binding contract, diagnostic taxonomy, and test evidence. Those artifacts are outside this setup session.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted no-arbitrary-code, no-side-effect, unit/provenance, protected-content, private-data, and professional-authority boundaries together with retained grammar/library and integration TBDs, without embedding proprietary rules, formulas, allowables, silent conversions, or compliance meaning.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-018-procedure-del-06-02-sandboxed-unit-aware-expression-evaluator">CLM-018 — Procedure: DEL-06-02 Sandboxed unit-aware expression evaluator</h3>
+<blockquote><h4 id="procedure-del-06-02-sandboxed-unit-aware-expression-evaluator">Procedure: DEL-06-02 Sandboxed unit-aware expression evaluator</h4></blockquote>
+<h3 id="clm-019-d-41-r5-t7-pdu-055-current-declaration">CLM-019 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-02-DECL-004</code>.</p></blockquote>
+<h3 id="clm-020-pdu-024-integration-check">CLM-020 — PDU-024 Integration Check</h3>
+<blockquote><h5 id="pdu-024-integration-check">PDU-024 Integration Check</h5>
+<p>1. Validate evaluator inputs under the existing binding, unit, sandbox, and diagnostic contract.</p>
+<p>2. For inputs carried in a project model, consume DEL-02-05 version-check/migration evidence rather than a local current-version literal.</p>
+<p>3. Preserve stale/unsupported/newer/failed project-version diagnostics; do not alter evaluator grammar, binding namespaces, or fixtures in response to model-document version handling.</p></blockquote>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Describe the setup-to-implementation procedure for a future sandboxed, unit-aware, declarative rule-pack expression evaluator. This procedure is operational guidance only; it does not implement the evaluator in this setup run.</p></blockquote>
+<h3 id="clm-022-prerequisites">CLM-022 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Sealed deliverable context for DEL-06-02</td><td>Present in <code>_CONTEXT.md</code>.</td></tr>
+<tr><td>Governing invariants and data boundary read</td><td>Completed for this setup run.</td></tr>
+<tr><td>Four-document setup kit</td><td>Produced by TASK+four-documents.</td></tr>
+<tr><td>Semantic matrix and lensing artifacts</td><td>Produced by TASK+semantic-matrix-build and TASK+lens-register.</td></tr>
+<tr><td>Dependency register</td><td>Produced by TASK+dependency-extract.</td></tr>
+<tr><td>Expression grammar/library decision</td><td>TBD; required before implementation.</td></tr>
+<tr><td>Unit-system integration contract</td><td>Interface dependency on DEL-02-02 or equivalent sealed unit contract.</td></tr>
+<tr><td>Rule-pack schema interface</td><td>Interface dependency on DEL-06-01 or equivalent sealed schema contract.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-steps">CLM-023 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the active sealed brief names only DEL-06-02, PKG-06, SOW-045, OBJ-005, applicable invariants, and explicit write scope.</p>
+<p>2. Confirm no protected standards text, protected formulas, proprietary values, owner standards, private rule packs, or commercial examples are being introduced.</p>
+<p>3. Before implementation, obtain a human architecture decision for the expression grammar/library and record any security constraints or rejected options.</p>
+<p>4. Define the accepted declarative expression surface without host-language execution, imports, reflection, filesystem access, network access, process execution, or hidden side effects.</p>
+<p>5. Bind variables only from declared rule-pack variables, solver result fields, and user-supplied design-basis inputs allowed by the sealed schema/interface contract.</p>
+<p>6. Apply unit and dimensional checks to expression operands, comparisons, and outputs using the sealed unit-system contract.</p>
+<p>7. Emit deterministic diagnostics for invalid expressions, unsupported constructs, missing variables, missing rule-check inputs, unit mismatches, and boundary violations.</p>
+<p>8. Preserve state semantics: mechanics solved, rule inputs incomplete, user-rule checked, user-rule failed, and human review required are distinct outcomes.</p>
+<p>9. Add tests for unsafe expression rejection, unit mismatch, missing binding, deterministic diagnostics, public/private data boundaries, and adapter/plugin bypass prevention.</p>
+<p>10. Route implementation and test evidence to REVIEW before any lifecycle transition beyond development draft states.</p></blockquote>
+<h3 id="clm-024-verification">CLM-024 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Evidence</td></tr>
+<tr><td>Four-document kit exists</td><td><code>tools/validation/check_four_documents.sh &lt;deliverable path&gt;</code></td></tr>
+<tr><td>Semantic artifact exists and audit states PASS</td><td><code>_SEMANTIC.md#Audit-Result</code></td></tr>
+<tr><td>Lensing coverage exists for matrices A, B, C, F, D, X, and E</td><td><code>_SEMANTIC_LENSING.md</code></td></tr>
+<tr><td>Dependency register is schema-valid</td><td><code>python3 tools/validation/validate_dependencies_schema.py &lt;deliverable path&gt;/Dependencies.csv</code></td></tr>
+<tr><td>Status value is valid</td><td><code>python3 tools/validation/validate_enum.py LIFECYCLE_STATE SEMANTIC_READY</code></td></tr>
+<tr><td>No ISSUED transition occurred</td><td><code>_STATUS.md</code> current state remains <code>SEMANTIC_READY</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-records">CLM-025 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1032_four-documents-p1-p2.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1032_semantic-matrix-build.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1032_lens-register.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1032_four-documents-p3.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1032_dependency-extract.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, grammar and sandbox boundaries, dimensional compatibility, persistence/version binding, deterministic evaluation and diagnostics, resource constraints, protected-content controls, and every unresolved governed item.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-026-guidance-del-06-02-sandboxed-unit-aware-expression-evaluator">CLM-026 — Guidance: DEL-06-02 Sandboxed unit-aware expression evaluator</h3>
+<blockquote><h4 id="guidance-del-06-02-sandboxed-unit-aware-expression-evaluator">Guidance: DEL-06-02 Sandboxed unit-aware expression evaluator</h4></blockquote>
+<h3 id="clm-027-d-41-r5-t7-pdu-055-current-declaration">CLM-027 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-02-DECL-003</code>.</p></blockquote>
+<h3 id="clm-028-pdu-024-guidance">CLM-028 — PDU-024 Guidance</h3>
+<blockquote><h5 id="pdu-024-guidance">PDU-024 Guidance</h5>
+<p>Treat project model-document compatibility as downstream DEL-02-05 authority. Evaluator-facing UI evidence must not duplicate a current schema-version literal or normalize away stale, unsupported, newer, or failed project-version diagnostics. Keep binding, sandbox, unit, and missing-data behavior unchanged.</p></blockquote>
+<h3 id="clm-029-purpose">CLM-029 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to make user-defined rule-pack checks evaluable without turning rule packs into arbitrary executable code. The evaluator boundary should let users apply their own design bases to solver results while preserving unit safety, explicit missing-data findings, protected-data boundaries, and professional-responsibility limits.</p></blockquote>
+<h3 id="clm-030-principles">CLM-030 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Declarative before executable</td><td>Treat rule packs as data plus expressions. Do not permit host-language code, imports, reflection, filesystem access, network access, process execution, or hidden side effects.</td></tr>
+<tr><td>Unit safety is structural</td><td>Unit compatibility is not a UI nicety. It is part of evaluator correctness and should fail visibly when incompatible or missing.</td></tr>
+<tr><td>User-owned code data stays user-owned</td><td>Public setup and examples can define structure and invented checks only. Licensed formulas, protected interpretations, and owner design bases belong in private user rule packs.</td></tr>
+<tr><td>Findings over defaults</td><td>Missing variables, missing rule inputs, incompatible dimensions, and unsupported constructs should produce diagnostics. They should not be guessed or defaulted.</td></tr>
+<tr><td>Rule checked is not code compliant</td><td><code>USER_RULE_CHECKED</code> and <code>USER_RULE_FAILED</code> are software computations using user data. Professional reliance still requires competent human review.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-considerations">CLM-031 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The evaluator is security-sensitive and numerically important, so the large context envelope is justified, but expansion beyond sandboxing/unit-awareness should be split or escalated.</li>
+<li>- The exact expression grammar/library is deliberately unresolved. A future implementation brief should record the selected option, rejected options, threat model, and validation evidence.</li>
+<li>- Unit algebra should coordinate with the unit-system contract rather than duplicate a second unit model.</li>
+<li>- Rule-pack schema, required-input completeness, private lifecycle/checksum handling, and invented examples are sibling deliverables. This deliverable should not absorb those scopes.</li>
+<li>- Diagnostics should be deterministic and suitable for result envelopes, reports, and review without exposing protected formulas in public examples.</li>
+<li>- Public test fixtures should use invented or original examples only.</li>
+</ul></blockquote>
+<h3 id="clm-032-trade-offs">CLM-032 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Setup guidance</td></tr>
+<tr><td>Expressiveness vs sandbox strength</td><td>Prefer a small declarative surface that can be validated and audited. Do not trade sandbox guarantees for convenience.</td></tr>
+<tr><td>Unit richness vs implementation scope</td><td>Require dimensional checks, but leave final quantity representation and tolerance choices to the future sealed implementation brief.</td></tr>
+<tr><td>Detailed diagnostics vs protected-content leakage</td><td>Diagnostics should identify missing inputs and rule-check findings without reproducing licensed formulas or protected standards language in public artifacts.</td></tr>
+<tr><td>Plugin flexibility vs governance</td><td>Plugins and adapters may provide data, but they cannot bypass validation, sandboxing, provenance, diagnostics, or public/private boundaries.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-examples">CLM-033 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No protected formulas or code-derived examples are provided. Acceptable future public examples should use invented non-engineering values and clear notices. Conceptual examples for test planning include:</p>
+<ul>
+<li>- A malformed expression is rejected with a deterministic diagnostic.</li>
+<li>- A comparison between incompatible dimensions is rejected with a unit-mismatch finding.</li>
+<li>- A missing user-supplied variable produces a <code>RULE_CHECK_BLOCKING</code> style finding.</li>
+<li>- A successful invented check is reported as user-rule checked, not professionally approved.</li>
+</ul></blockquote>
+<h3 id="clm-034-semantic-enrichment-notes">CLM-034 — Semantic Enrichment Notes</h3>
+<blockquote><h5 id="semantic-enrichment-notes">Semantic Enrichment Notes</h5>
+<p>Pass 3 reviewed <code>_SEMANTIC_LENSING.md</code> and incorporated the warranted setup improvements as bounded notes:</p>
+<table><tbody>
+<tr><td>Lensing item</td><td>Disposition</td></tr>
+<tr><td>Unsafe expression and bypass test coverage</td><td>Added to <code>Specification.md</code> verification and <code>Procedure.md</code> checks.</td></tr>
+<tr><td>Diagnostic-code taxonomy</td><td>Retained as <code>TBD</code> in <code>Specification.md</code> open decisions.</td></tr>
+<tr><td>Grammar/library decision</td><td>Retained as <code>TBD</code> and future human architecture decision.</td></tr>
+<tr><td>Vocabulary normalization</td><td>Standardized on evaluator, expression, variable binding, rule-pack check, user-rule checked, and human review boundary.</td></tr>
+<tr><td>Future interface handoff</td><td>Recorded as an implementation-stage dependency/proposal rather than a setup implementation step.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-035-conflict-table-for-human-ruling">CLM-035 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>OI-006</td><td>Expression grammar/library is required before implementation but remains unresolved.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> open issue OI-006</td><td><code>docs/SPEC.md</code> section 6 requires sandboxed unit-aware evaluator</td><td><code>Specification.md#Open-Decisions</code>; <code>Procedure.md#Prerequisites</code></td><td>Future human architecture decision should seal grammar/library before implementation.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-045 OBJ-005</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

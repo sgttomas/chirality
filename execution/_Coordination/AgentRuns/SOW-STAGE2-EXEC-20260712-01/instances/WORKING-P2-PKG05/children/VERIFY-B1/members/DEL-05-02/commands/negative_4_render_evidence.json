@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/render_scope_of_work.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG05/children/VERIFY-B1/members/DEL-05-02/negative_dual/ScopeOfWork.md",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG05/children/VERIFY-B1/members/DEL-05-02/negative_tests/must_not_evidence_render.html"
+  ],
+  "duration_seconds": 0.033078,
+  "exit_code": 1,
+  "expected_exit": 1,
+  "label": "negative_4_render_evidence",
+  "required_output_absent": true,
+  "stderr": "ERROR: format state is AMBIGUOUS: dual production formats require an isolated conversion workspace and exact migration authority\n",
+  "stdout": ""
+}

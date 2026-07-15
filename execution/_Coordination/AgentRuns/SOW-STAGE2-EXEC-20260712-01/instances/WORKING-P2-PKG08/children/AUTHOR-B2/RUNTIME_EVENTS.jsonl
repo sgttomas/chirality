@@ -1,0 +1,5 @@
+{"timestamp_utc":"2026-07-14T23:12:50Z","sequence":1,"deliverable_id":"DEL-08-06","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-14T23:12:50Z","sequence":1,"deliverable_id":"DEL-08-06","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-14T23:12:50Z","sequence":1,"deliverable_id":"DEL-08-06","stage":"conversion","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-14T23:12:50Z","sequence":1,"deliverable_id":"DEL-08-06","stage":"conversion","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-14T23:12:55Z","sequence":0,"deliverable_id":"BATCH","stage":"terminalization","event":"finish","attempt":2,"reason_code":"PASS_FINAL_REBIND"}

@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="d28109b059328ce938bba9a286e6ffbe014b80dcad4a2949dafef313ea3c3c23">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-09-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>d28109b059328ce938bba9a286e6ffbe014b80dcad4a2949dafef313ea3c3c23</code>.</p>
+<h1 id="scope-of-work-del-09-02">Scope of Work — DEL-09-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-09-02</code> in service of project scope [SOW-026] and package objectives [OBJ-008].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A stress-recovery benchmark-suite contract covering axial, bending, torsion, pressure, and stress-range mechanics behavior with governed evidence boundaries is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-09-02-stress-recovery-benchmark-suite">CLM-001 — Datasheet: DEL-09-02 Stress recovery benchmark suite</h3>
+<blockquote><h4 id="datasheet-del-09-02-stress-recovery-benchmark-suite">Datasheet: DEL-09-02 Stress recovery benchmark suite</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-09-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-09-02</td></tr>
+<tr><td>Package ID</td><td>PKG-09</td></tr>
+<tr><td>Package</td><td>Verification, Validation, and Quality Oracles</td></tr>
+<tr><td>Type</td><td>TEST_SUITE</td></tr>
+<tr><td>Scope item</td><td>SOW-026</td></tr>
+<tr><td>Objective</td><td>OBJ-008</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Anticipated artifacts</td><td>validation/benchmarks/stress; hand-calc notes</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Setup value</td></tr>
+<tr><td>Suite purpose</td><td>Define setup evidence for future stress recovery benchmark cases covering fundamental mechanics behavior.</td></tr>
+<tr><td>Required behavior coverage</td><td>Axial, bending, torsion, pressure, and stress range behavior.</td></tr>
+<tr><td>Benchmark source policy</td><td>Future sources must be original, public-domain, or permissively licensed with provenance and redistribution review.</td></tr>
+<tr><td>Excluded content</td><td>Protected standards text, protected examples, copied code formulas, protected tables, material allowables, code stress equations, and certification claims.</td></tr>
+<tr><td>Numerical tolerance state</td><td>DEC-026 governs class-tiered relative+absolute pairs; the analytic class is seeded at <code>1e-9</code> relative where measured suites pass. Unmeasured per-kind pairs, including absolute near-zero floors, remain <code>TBD</code>; local overrides may only tighten.</td></tr>
+<tr><td>Mechanics boundary</td><td>Benchmarks verify mechanics stress recovery behavior only; user rule checks and professional acceptance remain outside this suite.</td></tr>
+<tr><td>Unit policy</td><td>Benchmark inputs, expected outputs, comparisons, and result envelopes must be unit-aware and dimensionally checked.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Axial behavior fixture slot</td><td>Required setup slot; source case, expected values, signs, and tolerances are <code>TBD</code>.</td></tr>
+<tr><td>Bending behavior fixture slot</td><td>Required setup slot; source case, expected values, moment orientation, and tolerances are <code>TBD</code>.</td></tr>
+<tr><td>Torsion behavior fixture slot</td><td>Required setup slot; source case, expected values, sign convention, and tolerances are <code>TBD</code>.</td></tr>
+<tr><td>Pressure behavior fixture slot</td><td>Required setup slot; source case, pressure convention, expected values, and tolerances are <code>TBD</code>.</td></tr>
+<tr><td>Stress range behavior fixture slot</td><td>Required setup slot; load-pair or result-comparison convention and tolerances are <code>TBD</code>; no code fatigue or code compliance rule is introduced.</td></tr>
+<tr><td>Provenance record</td><td>Required for each future benchmark case before public repository use.</td></tr>
+<tr><td>Protected-content review</td><td>Required before any fixture or hand-calc note is accepted.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This setup kit defines the future benchmark-suite boundary only. It does not create benchmark source files, implement tests, add hand-calculation formulas, choose final numerical tolerances, import external examples, or move anything to <code>ISSUED</code>.</p>
+<p>Future benchmark cases are expected to be small, deterministic, synthetic or cleared, unit-aware, and traceable to public/original/permissive source material. Missing source, unit, convention, or tolerance information must remain explicit <code>TBD</code> rather than becoming a silent default.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, artifacts, and architecture-basis injection.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-09-02</code>.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row <code>SOW-026</code>.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row <code>DEL-09-02</code>.</li>
+<li>- <code>docs/CONTRACT.md</code> invariants listed in the sealed brief.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 architecture basis IDs <code>AB-00-01</code>, <code>AB-00-02</code>, <code>AB-00-06</code>, and <code>AB-00-08</code>.</li>
+</ul></blockquote>
+<h3 id="clm-008-open-setup-questions">CLM-008 — Open Setup Questions</h3>
+<blockquote><h5 id="open-setup-questions">Open Setup Questions</h5>
+<table><tbody>
+<tr><td>Question</td><td>Status</td></tr>
+<tr><td>Which human or project authority accepts benchmark source eligibility and final tolerances?</td><td><code>TBD</code></td></tr>
+<tr><td>Which upstream interface defines the canonical recovered stress component names and signs?</td><td><code>TBD</code></td></tr>
+<tr><td>Which result-envelope fields must every benchmark assertion inspect?</td><td><code>TBD</code></td></tr>
+<tr><td>Which provenance checklist is mandatory before adding public benchmark source files?</td><td><code>TBD</code></td></tr>
+<tr><td>Which exact file layout under <code>validation/benchmarks/stress</code> is authorized for implementation?</td><td><code>TBD</code></td></tr>
+</tbody></table>
+<p>PDU-039 current evidence: one complete invented benchmark output is validated in-memory by <code>open_pipe_stress_result_export</code>; six stress values preserve diagnostics, trace, units, deterministic hashes, and human-review boundaries. DEC-026&#x27;s measured analytic relative seed is governed; unmeasured per-kind relative+absolute pairs and release/validation outcomes remain <code>TBD</code>.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-09-02-stress-recovery-benchmark-suite">CLM-009 — Specification: DEL-09-02 Stress recovery benchmark suite</h3>
+<blockquote><h4 id="specification-del-09-02-stress-recovery-benchmark-suite">Specification: DEL-09-02 Stress recovery benchmark suite</h4></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-09-02-DECL-001</code>.</p></blockquote>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies setup evidence for a future stress recovery benchmark suite. It covers benchmark planning for axial, bending, torsion, pressure, and stress range behavior under the public/open-mechanics verification boundary.</p>
+<p>This setup pass does not implement tests, create benchmark source files, edit repository-level validation folders, introduce protected standards content, copy code formulas, encode code stress equations, select final numerical tolerances, or claim engineering compliance.</p></blockquote>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source basis</td><td>Verification hook</td></tr>
+<tr><td>DEL-09-02-RQ-001</td><td>The benchmark suite shall include setup coverage slots for axial, bending, torsion, pressure, and stress range behavior.</td><td>DEL-09-02 context; SOW-026</td><td>Four-document review confirms all five behavior slots are present.</td></tr>
+<tr><td>DEL-09-02-RQ-002</td><td>Benchmark source material shall be original, public-domain, or permissively licensed, with provenance and redistribution review before public use.</td><td>SOW-026 note; OPS-K-IP-2</td><td>Provenance review checklist before future fixture acceptance.</td></tr>
+<tr><td>DEL-09-02-RQ-003</td><td>The suite shall exclude protected standards text, protected examples, copied code formulas, protected tables, proprietary data, material allowables, and code stress equations.</td><td>OPS-K-IP-1; OPS-K-IP-3; OPS-K-RULE-1</td><td>Protected-content review before future fixture acceptance.</td></tr>
+<tr><td>DEL-09-02-RQ-004</td><td>Benchmarks shall verify mechanics stress recovery behavior only and shall not decide code compliance, fatigue acceptability, certification, sealing, or professional approval.</td><td>OPS-K-AUTH-1; OPS-K-AGENT-4; package exclusion</td><td>Report/review wording check and result-envelope review.</td></tr>
+<tr><td>DEL-09-02-RQ-005</td><td>Benchmark inputs, expected outputs, comparisons, and diagnostics shall be unit-aware and dimensionally checked.</td><td>OPS-K-UNIT-1; AB-00-08</td><td>Unit mismatch and dimensional review tests when implementation is authorized.</td></tr>
+<tr><td>DEL-09-02-RQ-006</td><td>Missing source, unit, sign convention, load-pair convention, result-envelope, or tolerance information shall be explicit <code>TBD</code> or diagnostic evidence, never a silent default.</td><td>OPS-K-DATA-2; OPS-K-AGENT-1; AB-00-06</td><td>Negative checks for incomplete benchmark metadata.</td></tr>
+<tr><td>DEL-09-02-RQ-007</td><td>Numerical verification tolerances follow DEC-026 reference-result classes with governed relative+absolute per-quantity-kind pairs; the analytic class is seeded at <code>1e-9</code> relative where measured suites pass, while unmeasured per-kind values remain <code>TBD</code> and fixture-local overrides may only tighten.</td><td>DEC-026; OI-005</td><td>Review confirms the analytic seed is not generalized into unmeasured absolute floors or other class/kind values.</td></tr>
+<tr><td>DEL-09-02-RQ-008</td><td>Benchmark outputs shall preserve diagnostics/result-envelope boundaries where relevant and shall not bypass governed solver/stress recovery interfaces.</td><td>AB-00-02; AB-00-06; AB-00-08</td><td>Result-envelope conformance review after interface selection.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standard text, protected code formulas, protected examples, protected tables, material allowables, or proprietary commercial data are available in this deliverable-local setup context. Future benchmark sources must be cleared as public/original/permissive before use. Clause-level requirements and source-specific acceptance values are <code>TBD</code>.</p></blockquote>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification area</td><td>Minimum setup expectation</td></tr>
+<tr><td>Coverage completeness</td><td>Axial, bending, torsion, pressure, and stress range slots are explicitly represented.</td></tr>
+<tr><td>Source provenance</td><td>Each future benchmark case has source, license/redistribution status, contributor certification, and review disposition.</td></tr>
+<tr><td>Unit safety</td><td>Future fixtures include unit metadata and dimensional checking for inputs, expected outputs, and comparisons.</td></tr>
+<tr><td>Protected-content boundary</td><td>Future fixtures and notes are screened for protected standards content, code formulas, proprietary values, and protected examples.</td></tr>
+<tr><td>Tolerance authority</td><td>DEC-026 governs class-tiered relative+absolute pairs and the measured analytic <code>1e-9</code> relative seed; unmeasured per-kind pairs remain <code>TBD</code>.</td></tr>
+<tr><td>Result-envelope boundary</td><td>Future checks inspect mechanics results and diagnostics without making compliance or approval claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Expected future artifacts, when implementation is authorized, are:</p>
+<ul>
+<li>- stress benchmark source files under an approved <code>validation/benchmarks/stress</code> layout;</li>
+<li>- hand-calc notes or oracle notes using original/public/permissive material;</li>
+<li>- provenance and protected-content review records;</li>
+<li>- regression-test wiring through the approved validation gates.</li>
+</ul>
+<p>The exact benchmark file names, expected numeric values, sign conventions, stress component names, load-pair convention, assertion tolerances, and CI integration points are <code>TBD</code>.</p></blockquote>
+<h3 id="clm-016-conflict-table-for-human-ruling">CLM-016 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Issue</td><td>Contenders</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in setup evidence.</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-d-41-r5-t4-pdu-039-governed-envelope-evidence">CLM-017 — D-41 R5 T4 PDU-039 governed-envelope evidence</h3>
+<blockquote><h5 id="d-41-r5-t4-pdu-039-governed-envelope-evidence">D-41 R5 T4 PDU-039 governed-envelope evidence</h5>
+<p><code>governed_complete_stress_result_envelope()</code> routes the existing complete rights-safe stress-recovery output through the DEL-08-04 governed result-export types and validator. Six stress components carry explicit Pa/stress metadata, recovery-to-result trace links, deterministic fixture hashes, an evidence-only diagnostic, <code>MECHANICS_SOLVED</code>, <code>HUMAN_REVIEW_REQUIRED</code>, and the default no-authority professional boundary. Passing this conformance check is verification, not engineering validation or release readiness.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves public/original/permissive provenance, unit and sign conventions, diagnostics and governed result-envelope evidence, DEC-026&#x27;s measured analytic relative seed, explicit unmeasured per-kind relative-plus-absolute TBDs, and separation from code compliance, fatigue acceptance, certification, or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-018-procedure-del-09-02-stress-recovery-benchmark-suite">CLM-018 — Procedure: DEL-09-02 Stress recovery benchmark suite</h3>
+<blockquote><h4 id="procedure-del-09-02-stress-recovery-benchmark-suite">Procedure: DEL-09-02 Stress recovery benchmark suite</h4></blockquote>
+<h3 id="clm-019-d-41-r5-t7-pdu-055-current-declaration">CLM-019 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-09-02-DECL-004</code>.</p></blockquote>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the operating procedure for producing the future stress recovery benchmark suite after implementation work is authorized. This procedure is setup-level only and does not create benchmark files, implement tests, or set final numerical tolerances.</p></blockquote>
+<h3 id="clm-021-prerequisites">CLM-021 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Sealed implementation brief for <code>DEL-09-02</code> or a later authorized benchmark implementation task.</li>
+<li>- Accepted mechanics stress recovery interface from the relevant upstream stress recovery deliverable.</li>
+<li>- Approved unit, sign, pressure, and stress range conventions.</li>
+<li>- Approved source/provenance policy for benchmark fixtures.</li>
+<li>- Human or authorized verification-owner ruling for final numerical tolerances.</li>
+<li>- Protected-content review path for every future source, fixture, and hand-calc note.</li>
+</ul></blockquote>
+<h3 id="clm-022-steps">CLM-022 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the authorized write scope for benchmark source files before creating or editing any validation paths.</p>
+<p>2. Establish the benchmark case inventory with one or more slots for axial, bending, torsion, pressure, and stress range behavior.</p>
+<p>3. For each candidate case, record source, provenance, license/redistribution status, contributor certification, and review disposition.</p>
+<p>4. Reject or quarantine any candidate that contains suspected protected standards content, copied code formulas, protected examples, proprietary values, or unclear redistribution rights.</p>
+<p>5. Record unit metadata, sign convention, pressure convention, stress component naming, and result-envelope fields for each accepted candidate.</p>
+<p>6. Keep expected values and final tolerances as <code>TBD</code> until the responsible authority accepts them.</p>
+<p>7. Wire accepted cases into the approved regression harness only after source, unit, diagnostic, and tolerance gates are satisfied.</p>
+<p>8. Record benchmark outputs as mechanics verification evidence only; do not claim code compliance, certification, sealing, approval, or project-specific professional reliance.</p></blockquote>
+<h3 id="clm-023-verification">CLM-023 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected setup result</td></tr>
+<tr><td>Four-document kit</td><td>Datasheet, Specification, Guidance, and Procedure exist and remain consistent.</td></tr>
+<tr><td>Behavior coverage</td><td>Axial, bending, torsion, pressure, and stress range slots are visible.</td></tr>
+<tr><td>Boundary review</td><td>Protected-content, rule-pack, unit, diagnostics, and professional-boundary constraints are explicit.</td></tr>
+<tr><td>Tolerance control</td><td>Final numerical tolerances remain <code>TBD</code> pending authorized acceptance.</td></tr>
+<tr><td>Dependency register</td><td><code>Dependencies.csv</code> validates against v3.1 schema and uses canonical enums.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-024-records">CLM-024 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Four-document setup kit.</li>
+<li>- <code>_SEMANTIC.md</code> semantic lens with audit result.</li>
+<li>- <code>_SEMANTIC_LENSING.md</code> coverage and warranted enrichment register.</li>
+<li>- <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code>.</li>
+<li>- <code>_run_records/*</code> setup run records.</li>
+<li>- <code>_STATUS.md</code> showing <code>SEMANTIC_READY</code> only after setup gates pass.</li>
+</ul>
+<p>For PDU-039, execute the stress benchmark crate with an external <code>CARGO_TARGET_DIR</code>; require the governed-envelope test to preserve the six recovered values, trace links, evidence diagnostic, deterministic hashes, <code>HUMAN_REVIEW_REQUIRED</code>, and no approval claim. Record the run as verification only.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, all five behavior slots, provenance and protected-content limits, units and dimensional checks, diagnostic/result-envelope preservation, DEC-026 tolerance limits without generalization, and professional-authority boundaries.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-09-02-stress-recovery-benchmark-suite">CLM-025 — Guidance: DEL-09-02 Stress recovery benchmark suite</h3>
+<blockquote><h4 id="guidance-del-09-02-stress-recovery-benchmark-suite">Guidance: DEL-09-02 Stress recovery benchmark suite</h4></blockquote>
+<h3 id="clm-026-d-41-r5-t7-pdu-055-current-declaration">CLM-026 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-09-02-DECL-003</code>.</p></blockquote>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This setup deliverable prepares a verification surface for stress recovery behavior without creating benchmark source files or deciding engineering acceptance values. Its value is to make the required coverage, data boundary, unit boundary, and future evidence records explicit before implementation work begins.</p></blockquote>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep benchmark cases mechanics-only: axial, bending, torsion, pressure, and stress range behavior are verification targets, not code compliance categories.</li>
+<li>- Use only original, public-domain, or permissively licensed source material with reviewable provenance before any future public fixture is accepted.</li>
+<li>- Prefer explicit <code>TBD</code> for source, unit, sign, convention, result-envelope, or tolerance gaps.</li>
+<li>- Treat numerical tolerances as authority-controlled verification policy, not setup-session decisions.</li>
+<li>- Preserve the diagnostics/result-envelope boundary so failed or incomplete benchmark metadata is observable.</li>
+</ul></blockquote>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>Future benchmark definitions should separate three concerns:</p>
+<table><tbody>
+<tr><td>Concern</td><td>Guidance</td></tr>
+<tr><td>Mechanics behavior</td><td>Keep the behavior under test limited to fundamental stress recovery results.</td></tr>
+<tr><td>Fixture provenance</td><td>Record source, license/redistribution status, contributor certification, and review disposition before public use.</td></tr>
+<tr><td>Result comparison</td><td>Defer final numerical tolerances and exact oracle values until the responsible authority approves them.</td></tr>
+<tr><td>Rule-pack boundary</td><td>Do not convert stress range behavior into a code fatigue check or allowable comparison in this suite.</td></tr>
+<tr><td>Professional boundary</td><td>Do not state or imply that passing a benchmark certifies project-specific engineering work.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Setup posture</td></tr>
+<tr><td>Early coverage vs. source certainty</td><td>Coverage slots are recorded now; fixture sources and numeric values remain <code>TBD</code>.</td></tr>
+<tr><td>Simple deterministic cases vs. real-world richness</td><td>Start with small mechanics cases that are easy to audit; richer cases require explicit provenance review.</td></tr>
+<tr><td>Regression strictness vs. solver maturity</td><td>Record that tolerances are needed, but do not set final thresholds before solver and verification authority decisions.</td></tr>
+<tr><td>Benchmark usefulness vs. IP risk</td><td>Exclude any source that cannot be cleared as public/original/permissive.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Example source patterns for future work are <code>TBD</code>. This setup pass intentionally does not include hand-calculation formulas, protected examples, copied standard examples, final expected values, or public fixture files.</p></blockquote>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No conflict identified.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-pass-3-lensing-notes">CLM-033 — Pass 3 Lensing Notes</h3>
+<blockquote><h5 id="pass-3-lensing-notes">Pass 3 Lensing Notes</h5>
+<p>Semantic lensing items were applied as setup clarifications only. Additions were limited to explicit coverage slots, provenance fields, tolerance authority placeholders, result-envelope review language, and professional-boundary wording. Sources reread: <code>_CONTEXT.md</code>; <code>docs/CONTRACT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; <code>docs/_Registers/Deliverables.csv</code>; <code>docs/_Registers/ScopeLedger.csv</code>.</p>
+<p>PDU-039 guidance: use the governed envelope witness to prove interface and diagnostic preservation only. Do not interpret a clean envelope validator result as tolerance suitability, benchmark independence, validation success, or professional acceptance.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-026 OBJ-008</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

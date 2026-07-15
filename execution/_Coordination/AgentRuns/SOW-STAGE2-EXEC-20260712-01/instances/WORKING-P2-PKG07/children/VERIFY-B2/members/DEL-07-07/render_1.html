@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="614be909dd2ee17f5c2f2ba2c1a1608679bb17edaeaf767d1acd266061a16a3a">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-07</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>614be909dd2ee17f5c2f2ba2c1a1608679bb17edaeaf767d1acd266061a16a3a</code>.</p>
+<h1 id="scope-of-work-del-07-07">Scope of Work — DEL-07-07</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-07-07</code> in service of project scope [SOW-055] and package objectives [OBJ-006, OBJ-007].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A solve-execution UX contract covering background job launch, service-reported progress, cancellation requests and terminal states, diagnostics, blocked-state separation, reproducibility signals, and professional-review boundaries is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">CLM-001 — Datasheet: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h3>
+<blockquote><h4 id="datasheet-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">Datasheet: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-07-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-07</td></tr>
+<tr><td>Deliverable name</td><td>Solve execution UX: progress, cancellation, and diagnostics</td></tr>
+<tr><td>Package ID</td><td>PKG-07</td></tr>
+<tr><td>Package name</td><td>Graphical User Interface and Engineering Workflow</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-055</td></tr>
+<tr><td>Objectives</td><td>OBJ-006, OBJ-007</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Setup state</td><td>SEMANTIC_READY candidate after setup gates pass</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Setup value</td></tr>
+<tr><td>UX surface</td><td>Solve run panel, progress/cancel controls, diagnostic presentation</td></tr>
+<tr><td>Execution mode</td><td>Background solve execution through application-service command/job boundaries</td></tr>
+<tr><td>Progress basis</td><td>Report only progress states, phases, or measures supplied by the job contract; exact progress semantics remain TBD</td></tr>
+<tr><td>Cancellation basis</td><td>User cancellation is routed through the application-service job cancellation contract; direct GUI bypass of solver state is out of scope</td></tr>
+<tr><td>Diagnostics basis</td><td>Diagnostic/result-envelope contract from PKG-00, including code, class, severity, source, affected object, message, remediation, and provenance where available</td></tr>
+<tr><td>Result review basis</td><td>Mechanics solve status, missing data, assumptions, diagnostics, and reproducibility signals remain visible for professional review</td></tr>
+<tr><td>Implementation status</td><td>No GUI source code, tests, schemas, job code, or solver code is implemented by this setup run</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Treatment</td></tr>
+<tr><td>Missing solve-required inputs</td><td>Presented as <code>SOLVE_BLOCKING</code> diagnostics or equivalent envelope entries; never silently defaulted</td></tr>
+<tr><td>Missing rule-check inputs</td><td>Presented separately from solve readiness as <code>RULE_CHECK_BLOCKING</code> or equivalent diagnostics</td></tr>
+<tr><td>Nonlinear or numerical uncertainty</td><td>Presented as solver diagnostics and warning classes rather than hidden state</td></tr>
+<tr><td>Protected standards/code data</td><td>Not introduced; any code-specific or proprietary data remains user-supplied/private</td></tr>
+<tr><td>Professional reliance</td><td>Human review remains required; the GUI shall not claim certification, approval, sealing, or code compliance</td></tr>
+<tr><td>Reproducibility</td><td>Run records should preserve model/version/hash/checksum inputs when provided by upstream contracts; exact fields remain TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This setup constructs only deliverable-local planning artifacts:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul>
+<p>Future implementation work must remain bounded by the GUI/application-service seam defined by PKG-00. It should consume command/job/progress/cancellation and diagnostics/result-envelope contracts rather than inventing GUI-owned solver semantics.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Use</td></tr>
+<tr><td><code>INIT.md</code></td><td>Bootstrap boundaries: protected data, mechanics vs rule check, human authority</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>Type 2 sealed deliverable execution and write-scope discipline</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Invariants for data, units, IP, privacy, authority, and agents</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Product stop rules and no-silent-default principles</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>GUI warnings, result/report expectations, and layer boundaries</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Analysis-status and professional-boundary vocabulary</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>DEL-07-07 package, scope, objectives, and architecture-basis rows</td></tr>
+<tr><td><code>docs/_Registers/Deliverables.csv</code></td><td>Deliverable row for DEL-07-07</td></tr>
+<tr><td><code>docs/_Registers/ScopeLedger.csv</code></td><td>SOW-055 row</td></tr>
+<tr><td><code>execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-03_Application service command-query-job model/Specification.md</code></td><td>Command, job, cancellation, progress, and result-envelope boundary</td></tr>
+<tr><td><code>execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-05_GUI state and interaction architecture/Specification.md</code></td><td>Durable/transient GUI state and job-progress state separation</td></tr>
+<tr><td><code>execution/PKG-00_Software Architecture Runway/1_Working/DEL-00-06_Diagnostics, warning, and result-envelope contract/Specification.md</code></td><td>Diagnostics fields, warning classes, and no-compliance-claim boundary</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">CLM-008 — Specification: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h3>
+<blockquote><h4 id="specification-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">Specification: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-07-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the setup basis for a GUI solve-execution workflow that keeps background solve execution, progress display, cancellation, diagnostic logs, solver warnings, and result-envelope status reviewable.</p>
+<p>This setup does not implement GUI source code, UI tests, schemas, application-service code, background job code, solver code, report/export code, package manifests, or protected engineering data. Future implementation must consume the command/job/progress/cancellation and diagnostics/result-envelope contracts supplied by PKG-00 rather than inventing product semantics in the GUI slice.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-07-07-001</td><td>The solve UX shall initiate solve execution through an application-service command or job contract and shall not directly mutate domain-core or solver state from GUI components.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; DEL-00-03 REQ-03-01 and REQ-03-03</td></tr>
+<tr><td>REQ-07-07-002</td><td>The solve UX shall treat solve execution as a background job where cancellation, progress, and reproducibility metadata are provided by the service/job contract. Exact progress phases, percentages, and event names remain <code>TBD</code> until the job contract fixes them.</td><td>DEL-00-03 REQ-03-04; SOW-055</td></tr>
+<tr><td>REQ-07-07-003</td><td>Progress presentation shall display only service-reported states, phases, counts, or messages; it shall not synthesize misleading completion percentages when the job contract does not supply them.</td><td>OPS-K-AGENT-1/2; DEL-00-03 REQ-03-04</td></tr>
+<tr><td>REQ-07-07-004</td><td>Cancellation controls shall issue a cancellation request through the application-service boundary and shall preserve the final job/result-envelope state returned by that boundary. The GUI shall not bypass cancellation boundaries or claim successful cancellation without envelope evidence.</td><td>DEL-00-03 REQ-03-04; OPS-K-AGENT-1</td></tr>
+<tr><td>REQ-07-07-005</td><td>Diagnostic presentation shall preserve machine-readable diagnostic fields for code, class, severity, source, affected object, message, remediation, and provenance where supplied.</td><td>DEL-00-06 REQ-06-01</td></tr>
+<tr><td>REQ-07-07-006</td><td>The solve UX shall preserve warning classes for <code>SOLVE_BLOCKING</code>, <code>RULE_CHECK_BLOCKING</code>, <code>PROVENANCE_WARNING</code>, <code>ASSUMPTION_WARNING</code>, <code>NONLINEAR_WARNING</code>, and <code>IP_BOUNDARY_WARNING</code> when those classes are present in diagnostics/result envelopes.</td><td><code>docs/SPEC.md</code> section 7; DEL-00-06 REQ-06-02</td></tr>
+<tr><td>REQ-07-07-007</td><td>The solve UX shall distinguish invalid input, incomplete model, mechanics solved, rule-check result, and human-review-needed states; it shall not expose automatic code-compliance, certification, approval, sealing, or professional-authentication states.</td><td>DEL-00-06 REQ-06-04/05; <code>docs/TYPES.md</code> section 4; OPS-K-AUTH-1</td></tr>
+<tr><td>REQ-07-07-008</td><td>Solve-required missing data and rule-check-required missing data shall remain separate visible findings. Missing values shall not be supplied by the GUI as silent defaults.</td><td>OPS-K-DATA-1/2/3; <code>docs/DIRECTIVE.md</code> section 3</td></tr>
+<tr><td>REQ-07-07-009</td><td>Any solve-run review summary intended for reports or exports shall retain traceability to available reproducibility metadata such as model hash, input manifest, solver version, rule-pack version/checksum, warnings, assumptions, and limitations.</td><td>OBJ-007; <code>docs/SPEC.md</code> section 8; DEL-00-03 REQ-03-04</td></tr>
+<tr><td>REQ-07-07-010</td><td>Private project data, private rule-pack data, proprietary values, and protected standards/code content shall not be transmitted, displayed as public defaults, or copied into public setup artifacts.</td><td>OPS-K-IP-1/2/3; OPS-K-PRIV-1/2; OPS-K-DATA-1</td></tr>
+<tr><td>REQ-07-07-011</td><td>Future implementation evidence shall include UI tests or equivalent review evidence for background job state rendering, progress display, cancellation request/terminal-state handling, diagnostic filtering/detail review, and professional-boundary notices.</td><td>DEL-07-07 anticipated artifacts; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering code or protected standards text is introduced by this deliverable. The controlling references for this setup are the OpenPipeStress governance, decomposition, register, and PKG-00 architecture-basis artifacts listed in <code>_REFERENCES.md</code> and <code>Datasheet.md</code>.</p>
+<p>Any future code-specific acceptance criterion, stress limit, load-combination default, allowable, SIF/flexibility value, or proprietary component value must be supplied by a user-owned/private source with provenance and redistribution status. This GUI slice may display resulting diagnostics/statuses; it must not define or certify code compliance.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Method</td><td>Expected evidence</td></tr>
+<tr><td>VER-07-07-001</td><td>Document review</td><td>Four-document kit exists and matches DEL-07-07 scope.</td></tr>
+<tr><td>VER-07-07-002</td><td>Boundary review</td><td>No GUI source, tests, schemas, job/solver code, package manifests, repo-level docs, or <code>ISSUED</code> artifacts were edited.</td></tr>
+<tr><td>VER-07-07-003</td><td>Contract review</td><td>Requirements explicitly route progress, cancellation, diagnostics, and result status through PKG-00 command/job and result-envelope contracts.</td></tr>
+<tr><td>VER-07-07-004</td><td>Protected-content review</td><td>Setup artifacts contain no protected standards text, proprietary engineering values, certification claims, or automatic code-compliance claims.</td></tr>
+<tr><td>VER-07-07-005</td><td>Semantic setup review</td><td><code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist and provide complete lens coverage.</td></tr>
+<tr><td>VER-07-07-006</td><td>Dependency-register validation</td><td><code>Dependencies.csv</code> validates against the v3.1 schema and contains evidence-linked ACTIVE rows.</td></tr>
+<tr><td>VER-07-07-007</td><td>Future implementation test</td><td>UI test coverage for job launch state, progress, cancellation, diagnostics, blocked states, and report/export traceability remains <code>TBD</code> until implementation work is authorized.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup records for this deliverable are:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul></blockquote>
+<h3 id="clm-015-acceptance-notes">CLM-015 — Acceptance Notes</h3>
+<blockquote><h5 id="acceptance-notes">Acceptance Notes</h5>
+<p><code>SEMANTIC_READY</code> means the setup artifacts are prepared for review. It does not mean product implementation is complete, UI behavior is tested, solver behavior is verified, protected data is authorized, code compliance is established, or professional approval has occurred.</p></blockquote>
+<h3 id="clm-016-d-41-r5-t5-pdu-008-current-gui-boundary">CLM-016 — D-41 R5 T5 PDU-008 current GUI boundary</h3>
+<blockquote><h5 id="d-41-r5-t5-pdu-008-current-gui-boundary">D-41 R5 T5 PDU-008 current GUI boundary</h5>
+<p>The desktop diagnostic type/detail/filter path preserves class, remediation, and provenance when supplied and labels their absence as producer-unsupplied. Producer-side reduced shapes remain open; the GUI does not fabricate missing metadata.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves service-owned progress and cancellation semantics, complete diagnostic fields and warning classes, separate solve and rule-check readiness, reproducibility traceability, and no invented progress, silent defaults, compliance status, or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">CLM-017 — Procedure: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h3>
+<blockquote><h4 id="procedure-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">Procedure: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h4></blockquote>
+<h3 id="clm-018-d-41-r5-t7-pdu-055-current-declaration">CLM-018 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-07-DECL-004</code>.</p></blockquote>
+<h3 id="clm-019-purpose">CLM-019 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure records how to produce and later use the setup basis for the solve-execution UX deliverable. It is not a product implementation procedure.</p></blockquote>
+<h3 id="clm-020-prerequisites">CLM-020 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Sealed deliverable context for DEL-07-07</td><td>Present in <code>_CONTEXT.md</code></td></tr>
+<tr><td>Governing invariants and stop rules</td><td>Present in <code>docs/CONTRACT.md</code>, <code>docs/DIRECTIVE.md</code>, and <code>INIT.md</code></td></tr>
+<tr><td>Command/job/cancellation/progress architecture basis</td><td>Present in DEL-00-03 specification and architecture-basis injection</td></tr>
+<tr><td>GUI transient job-progress state basis</td><td>Present in DEL-00-05 specification and architecture-basis injection</td></tr>
+<tr><td>Diagnostics/result-envelope basis</td><td>Present in DEL-00-06 specification and architecture-basis injection</td></tr>
+<tr><td>Protected-data and professional-boundary constraints</td><td>Present in <code>docs/CONTRACT.md</code>, <code>docs/TYPES.md</code>, and <code>docs/SPEC.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable scope.</p>
+<ul>
+<li>- Verify <code>Deliverable ID = DEL-07-07</code>, <code>Package ID = PKG-07</code>, and <code>Scope Coverage = SOW-055</code> in <code>_CONTEXT.md</code>.</li>
+<li>- Verify objectives <code>OBJ-006</code> and <code>OBJ-007</code>.</li>
+</ul>
+<p>2. Draft the four-document setup kit.</p>
+<ul>
+<li>- Populate <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</li>
+<li>- Keep content at setup/specification level.</li>
+<li>- Do not create GUI source code, tests, schemas, job/solver implementation, manifests, repo-level docs, or issued artifacts.</li>
+</ul>
+<p>3. Apply architecture-basis constraints.</p>
+<ul>
+<li>- Route solve launch through command/job boundaries.</li>
+<li>- Treat progress and cancellation as job-contract behavior.</li>
+<li>- Preserve diagnostic/result-envelope fields and warning classes.</li>
+<li>- Separate mechanics solved, user-rule checked, and human-review-required states.</li>
+</ul>
+<p>4. Preserve data and authority boundaries.</p>
+<ul>
+<li>- Do not introduce protected standards text, code tables, proprietary values, or private project data.</li>
+<li>- Mark unknown implementation details as <code>TBD</code>.</li>
+<li>- Avoid certification, approval, sealing, or code-compliance claims.</li>
+</ul>
+<p>5. Build semantic setup artifacts.</p>
+<ul>
+<li>- Generate <code>_SEMANTIC.md</code> as a lens, not an authority.</li>
+<li>- Generate <code>_SEMANTIC_LENSING.md</code> with complete matrix coverage.</li>
+<li>- Use lensing output only as a candidate worklist for consistency review.</li>
+</ul>
+<p>6. Refresh dependency artifacts.</p>
+<ul>
+<li>- Create or update <code>Dependencies.csv</code> using v3.1 columns.</li>
+<li>- Keep anchors and execution/interface edges evidence-linked.</li>
+<li>- Update <code>_DEPENDENCIES.md</code> with counts, run notes, lifecycle summary, and handoff notes.</li>
+</ul>
+<p>7. Validate local setup gates.</p>
+<ul>
+<li>- Run dependency schema validation.</li>
+<li>- Confirm required setup files exist.</li>
+<li>- Confirm no writes occurred outside the deliverable folder.</li>
+<li>- Confirm <code>_STATUS.md</code> remains at <code>SEMANTIC_READY</code> only if all setup gates pass.</li>
+</ul></blockquote>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Four documents exist</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> exist</td></tr>
+<tr><td>Semantic artifacts exist</td><td><code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist</td></tr>
+<tr><td>Dependency artifacts exist</td><td><code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> exist</td></tr>
+<tr><td>Dependency schema validates</td><td><code>validate_dependencies_schema.py</code> reports valid v3.1 schema</td></tr>
+<tr><td>Protected data absent</td><td>No protected standards/code text, copied tables, proprietary values, or certification claims appear</td></tr>
+<tr><td>Scope respected</td><td>Only DEL-07-07 deliverable-local files are written</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The setup run records are stored in <code>_run_records/</code>:</p>
+<ul>
+<li>- <code>TASK_RUN_2026-04-30_1049_four-documents_P1_P2.md</code></li>
+<li>- <code>TASK_RUN_2026-04-30_1050_semantic-matrix-build.md</code></li>
+<li>- <code>TASK_RUN_2026-04-30_1051_lens-register.md</code></li>
+<li>- <code>TASK_RUN_2026-04-30_1052_four-documents_P3_ONLY.md</code></li>
+<li>- <code>TASK_RUN_2026-04-30_1053_dependency-extract.md</code></li>
+</ul></blockquote>
+<h3 id="clm-024-completion-criteria">CLM-024 — Completion Criteria</h3>
+<blockquote><h5 id="completion-criteria">Completion Criteria</h5>
+<p>The deliverable may be left at <code>SEMANTIC_READY</code> when:</p>
+<ul>
+<li>- all setup artifacts listed in <code>Specification.md</code> exist,</li>
+<li>- dependency validation passes,</li>
+<li>- semantic and lensing artifacts are present,</li>
+<li>- no protected-data or certification boundary issue is found,</li>
+<li>- no out-of-scope files were edited,</li>
+<li>- open implementation choices remain explicitly marked as <code>TBD</code> rather than silently chosen.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, job-boundary routing, progress and cancellation semantics, diagnostic fields and warning classes, missing-data separation, reproducibility metadata, protected-content limits, and every retained TBD or governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">CLM-025 — Guidance: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h3>
+<blockquote><h4 id="guidance-del-07-07-solve-execution-ux-progress-cancellation-and-diagnostics">Guidance: DEL-07-07 Solve execution UX: progress, cancellation, and diagnostics</h4></blockquote>
+<h3 id="clm-026-d-41-r5-t7-pdu-055-current-declaration">CLM-026 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-07-DECL-003</code>.</p></blockquote>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable keeps solve execution reviewable from the GUI without moving solver authority into the GUI. The user should be able to see that a solve is running, what the service reports about its progress, whether cancellation was requested or completed, and which diagnostics qualify the result.</p>
+<p>The setup is intentionally contract-facing. It prepares a future GUI slice to consume application-service jobs and diagnostics/result envelopes while preserving missing-data, provenance, unit, privacy, and professional-responsibility boundaries.</p></blockquote>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Service boundary first</td><td>GUI components initiate commands/jobs and observe job/envelope state. They do not own solver lifecycle semantics.</td></tr>
+<tr><td>Report what is supplied</td><td>Progress should reflect service-provided phases, counts, statuses, or messages. If only indeterminate progress is available, the UI should show indeterminate progress rather than fabricate precision.</td></tr>
+<tr><td>Cancellation is a request</td><td>Cancellation UX should distinguish requested, accepted, completed, failed, and not-supported states only when the service contract supplies those states. Exact enum names remain <code>TBD</code>.</td></tr>
+<tr><td>Diagnostics stay attached</td><td>Warnings and errors should remain linked to the run, affected object, source, severity, and remediation fields where available.</td></tr>
+<tr><td>Missing data is visible</td><td>Solve-blocking, rule-check-blocking, provenance, assumption, nonlinear, and IP-boundary warnings should remain visible instead of becoming generic failure messages.</td></tr>
+<tr><td>Professional boundary remains visible</td><td>A completed mechanics solve is not a code-compliance certificate. Human review remains required for professional reliance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>Background solves often have phases that are meaningful to users even when exact completion percentages are not reliable. A future UI can show service-reported states such as queued, validating, solving, recovering results, checking user rules, writing report/export artifacts, canceled, failed, or complete only if those states are supplied by the job contract. These labels are examples of UX categories, not fixed contract enums.</p>
+<p>Cancellation should preserve auditability. A canceled run may still produce diagnostics, partial records, or a terminal envelope explaining what was stopped and what was not computed. The GUI should present that terminal envelope rather than removing the run from view.</p>
+<p>Diagnostic presentation should support both quick triage and detailed review. A user needs to know which diagnostics block solving, which block only rule checks, which are provenance or assumption warnings, and which reflect nonlinear/numerical uncertainty. The future UI should keep diagnostic class and severity visible without converting warnings into professional judgments.</p>
+<p>Result/export readiness should be traceable. Where upstream contracts supply hashes, solver versions, model versions, rule-pack checksums, warning sets, and limitations, the solve UX should preserve those signals for reports and result exports. Where those fields are missing, the setup should mark them <code>TBD</code> rather than inventing them.</p></blockquote>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision area</td><td>Recommended posture</td><td>Risk if ignored</td></tr>
+<tr><td>Percent progress</td><td>Prefer contract-supplied percentages; otherwise use indeterminate or phase-based progress</td><td>False precision can mislead users and reviewers</td></tr>
+<tr><td>Cancellation feedback</td><td>Show request and final job state separately</td><td>Users may believe a solve stopped cleanly when the service did not confirm it</td></tr>
+<tr><td>Diagnostic density</td><td>Provide summary and detail surfaces</td><td>Hiding details weakens reviewability; flooding the main surface weakens usability</td></tr>
+<tr><td>Result status wording</td><td>Use mechanics/rule/human-review status vocabulary</td><td>Users may infer code compliance or professional approval from software output</td></tr>
+<tr><td>Error recovery</td><td>Preserve terminal envelopes and run records</td><td>Failed/canceled solves become unreviewable</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The following are non-normative UX examples only:</p>
+<ul>
+<li>- If the job contract supplies no percentage, show an indeterminate progress indicator plus the current service-reported phase.</li>
+<li>- If cancellation is requested, disable duplicate cancel requests while continuing to display diagnostics and the final terminal envelope when received.</li>
+<li>- If a solve completes but rule-pack inputs are missing, present the mechanics result separately from the rule-check-blocking diagnostics.</li>
+<li>- If a nonlinear warning is returned, keep it visible with the affected object and remediation text supplied by the diagnostic record.</li>
+</ul></blockquote>
+<h3 id="clm-032-open-issues">CLM-032 — Open Issues</h3>
+<blockquote><h5 id="open-issues">Open Issues</h5>
+<table><tbody>
+<tr><td>ID</td><td>Issue</td><td>Owner</td></tr>
+<tr><td>OI-07-07-001</td><td>Exact job state enum, progress payload, and cancellation terminal states remain implementation-level <code>TBD</code> until the application-service contract is materialized.</td><td>Future implementation TASK</td></tr>
+<tr><td>OI-07-07-002</td><td>Exact diagnostic filtering, grouping, and detail layout remain <code>TBD</code> until GUI design work is authorized.</td><td>Future GUI TASK</td></tr>
+<tr><td>OI-07-07-003</td><td>Exact report/export handoff fields remain <code>TBD</code> until result export and report artifacts are implemented.</td><td>PKG-08 / future interface TASK</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-conflict-table-for-human-ruling">CLM-033 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflicts were identified during setup.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-055 OBJ-006 OBJ-007</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

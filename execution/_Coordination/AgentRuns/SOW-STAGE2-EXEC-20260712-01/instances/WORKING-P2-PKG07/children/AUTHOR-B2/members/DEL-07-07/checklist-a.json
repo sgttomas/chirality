@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-07-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 223,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "614be909dd2ee17f5c2f2ba2c1a1608679bb17edaeaf767d1acd266061a16a3a"
+      },
+      "text": "The contract preserves service-owned progress and cancellation semantics, complete diagnostic fields and warning classes, separate solve and rule-check readiness, reproducibility traceability, and no invented progress, silent defaults, compliance status, or professional approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-07-VER-001",
+          "source_line": 346,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, job-boundary routing, progress and cancellation semantics, diagnostic fields and warning classes, missing-data separation, reproducibility metadata, protected-content limits, and every retained TBD or governed residual."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-07",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "614be909dd2ee17f5c2f2ba2c1a1608679bb17edaeaf767d1acd266061a16a3a"
+  },
+  "tool_version": "1"
+}

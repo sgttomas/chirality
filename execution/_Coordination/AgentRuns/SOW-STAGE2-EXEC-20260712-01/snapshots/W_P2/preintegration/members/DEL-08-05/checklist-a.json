@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 239,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "1461a2ad7e2ff15d0422d5a4a9c1c327b23cfe516aac06a15f8f3e261745a987"
+      },
+      "text": "The contract preserves the public/private and redistribution boundary, flags suspected protected or prohibited-authority content without asserting legal sufficiency, uses no protected fixtures, keeps severity and review ownership TBD where unresolved, and retains human/legal review as an independent control.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-05-VER-001",
+          "source_line": 363,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, authorized scan surfaces, synthetic fixture safety, stable finding traceability, private opt-in behavior, fail/warn/quarantine residuals, professional-claim detection, human/legal review boundaries, and every retained TBD or governed residual."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "1461a2ad7e2ff15d0422d5a4a9c1c327b23cfe516aac06a15f8f3e261745a987"
+  },
+  "tool_version": "1"
+}

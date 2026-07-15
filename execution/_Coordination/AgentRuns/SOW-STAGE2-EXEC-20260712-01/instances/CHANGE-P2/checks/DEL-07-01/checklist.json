@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 236,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "09a473cad3af6b06ae6e1ba1d5157d8ea8ccef82b3a9a301ac8adc2bc5557dd8"
+      },
+      "text": "The contract preserves the current implemented viewport slice and named residuals, separates durable model state from transient interaction state, keeps missing or protected engineering data explicit, and invents no component dimensions, code values, defaults, compliance status, or professional approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-01-VER-001",
+          "source_line": 348,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, centerline and symbol boundaries, command/service mutation routing, stable identity, units, diagnostics, current implementation declarations and residuals, protected-data controls, and every retained governed TBD."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "09a473cad3af6b06ae6e1ba1d5157d8ea8ccef82b3a9a301ac8adc2bc5557dd8"
+  },
+  "tool_version": "1"
+}

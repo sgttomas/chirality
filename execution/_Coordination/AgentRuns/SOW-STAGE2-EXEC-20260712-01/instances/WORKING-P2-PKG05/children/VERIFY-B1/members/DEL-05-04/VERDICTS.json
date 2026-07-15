@@ -1,0 +1,18 @@
+{
+  "clean_finalization": "PASS",
+  "contamination": "NONE",
+  "drift": "NONE",
+  "execution_substrate": "PASS",
+  "fail_closed_probes": 7,
+  "failures": 0,
+  "omission": "NONE",
+  "preservation_containment": "PASS",
+  "project_content": "PASS",
+  "repairs": 0,
+  "retries": 0,
+  "schema": "PASS",
+  "unknowns": [],
+  "unresolved": [],
+  "waivers": [],
+  "wrong_ref_detection": "PASS"
+}

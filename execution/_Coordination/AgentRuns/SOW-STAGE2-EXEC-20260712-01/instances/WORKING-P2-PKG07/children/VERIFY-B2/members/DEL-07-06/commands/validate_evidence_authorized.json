@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/validate_scope_of_work.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG07/children/VERIFY-B2/members/DEL-07-06/workspaces/repro1/kit",
+    "--isolated-migration",
+    "--migration-authority",
+    "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+    "--json"
+  ],
+  "duration_seconds": 0.032935,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "validate_evidence_authorized",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-i1-closeout/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG07/children/VERIFY-B2/members/DEL-07-06/workspaces/repro1/kit\",\n  \"valid\": true\n}\n"
+}

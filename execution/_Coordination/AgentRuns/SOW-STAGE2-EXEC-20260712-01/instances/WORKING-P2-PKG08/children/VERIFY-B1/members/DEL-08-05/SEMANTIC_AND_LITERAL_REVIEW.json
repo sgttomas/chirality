@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 347
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the public/private and redistribution boundary, flags suspected protected or prohibited-authority content without asserting legal sufficiency, uses no protected fixtures, keeps severity and review ownership TBD where unresolved, and retains human/legal review as an independent control.",
+    "OUT-001": "A protected-content report-linting contract covering configured public report surfaces, conservative heuristic findings, safe synthetic fixtures, deterministic diagnostics, quarantine and review routing, optional private scanning, and CI integration boundaries is produced.",
+    "VER-001": "Validate the contract and review source parity, authorized scan surfaces, synthetic fixture safety, stable finding traceability, private opt-in behavior, fail/warn/quarantine residuals, professional-claim detection, human/legal review boundaries, and every retained TBD or governed residual."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

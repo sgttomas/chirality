@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 341
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves upstream diagnostic class, severity, source, affected object, message, remediation and provenance when supplied; exposes missingness rather than defaulting it; protects private/protected content; and makes no certification, approval, sealing, authentication, or automatic-compliance claim.",
+    "OUT-001": "A report-section contract covering warnings, assumptions, missing solve and rule inputs, user-supplied values, provenance, units, reproducibility references, and professional-review notices is produced.",
+    "VER-001": "Validate the contract and review source parity, all warning and missing-data classes, trace-field preservation, unit and provenance visibility, manifest references, protected-content controls and fallback review, prohibited-claim language, and every retained TBD or governed residual."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

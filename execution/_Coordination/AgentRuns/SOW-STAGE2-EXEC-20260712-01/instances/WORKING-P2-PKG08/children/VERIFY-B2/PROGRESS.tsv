@@ -1,0 +1,2 @@
+sequence	deliverable_id	start_utc	end_utc	verdict	mappings	source_lines	failures	retries
+1	DEL-08-06	2026-07-14T23:17:41.575078Z	2026-07-14T23:17:42.488160Z	PASS_UNCHANGED	33	301	0	0

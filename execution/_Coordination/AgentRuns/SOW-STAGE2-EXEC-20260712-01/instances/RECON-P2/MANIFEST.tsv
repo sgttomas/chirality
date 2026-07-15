@@ -1,0 +1,7 @@
+sha256	bytes	path
+a8f934bedcf1c05985176d0d6c9b675693ef4b0e55ded52ec787024a30eaa491	853	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P2/ATTEMPTS.md
+88dd156437170fcffff31f042f90c27dee7f40f6801889ff1aced64f12e206f7	3435	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P2/LAUNCH_BRIEF.md
+6fd1aafd88753ee348e2e9936143cb77f373c7d7244598fa4dc8f298406a80f2	1285	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P2/RETURN.md
+7619493684db368289c2fc7f0e1bb35b288642c75ba73665e1aff326190c454c	479	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P2/STATUS.json
+cbaf4885a880203d0319ac0f033c42b07d2db3bedf59766d6027cacce24b2856	7827	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P2/finalize_reconciliation.py
+a5ec43e258a3418cf553df7790c941439bfff6af54adb4ba4564771c51e28915	17507	execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/RECON-P2/reconcile_wave.py

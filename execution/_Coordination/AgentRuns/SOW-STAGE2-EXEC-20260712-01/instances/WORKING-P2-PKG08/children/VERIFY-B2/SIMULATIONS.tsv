@@ -1,0 +1,2 @@
+deliverable_id	apply	target	rollback	control_bindings	mappings	source_lines
+DEL-08-06	PASS_SOW_V1	PASS_EXACT_FIVE_ROW_DELTA	PASS_EXACT_LEGACY_RESTORE	5	33	301

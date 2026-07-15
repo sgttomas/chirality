@@ -1,0 +1,18 @@
+{
+  "agent": "VERIFY-B2",
+  "candidate_repairs": 0,
+  "candidate_writes": 0,
+  "discrepancies": 0,
+  "fail_closed_probes": 7,
+  "inverse_rows": 5,
+  "mappings": 33,
+  "members_complete": 1,
+  "native_context_occupancy": "unavailable",
+  "project_writes": 0,
+  "replacement_rows": 5,
+  "semantic_expansions": 0,
+  "simulations": 1,
+  "source_lines": 301,
+  "status": "PASS_UNCHANGED",
+  "waivers": 0
+}

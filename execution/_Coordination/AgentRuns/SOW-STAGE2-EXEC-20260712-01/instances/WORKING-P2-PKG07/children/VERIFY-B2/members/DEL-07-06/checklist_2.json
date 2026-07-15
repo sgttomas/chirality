@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-07-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 239,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d87b39a528422b33c469c14fab5861cc85fa77622ca684add6374bb0f0b78662"
+      },
+      "text": "The contract preserves the accessibility and engineering-review baseline, keeps the measurable contrast/readability target explicitly human-owned and TBD, separates diagnostic classes, preserves units and provenance, and makes no certification, compliance, or professional-approval claim.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-07-06-VER-001",
+          "source_line": 341,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, keyboard and labeling expectations, diagnostic and warning separation, unit/provenance visibility, protected-content boundaries, professional-boundary language, and every retained TBD or governed residual."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-07-06",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-07",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d87b39a528422b33c469c14fab5861cc85fa77622ca684add6374bb0f0b78662"
+  },
+  "tool_version": "1"
+}

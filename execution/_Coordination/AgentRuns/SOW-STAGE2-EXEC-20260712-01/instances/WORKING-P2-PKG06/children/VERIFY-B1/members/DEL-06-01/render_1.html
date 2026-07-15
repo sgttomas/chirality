@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="2dabc6c8337678fd2cb829fa73e2b5550a692db0045de3d5779fae6208872bb3">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-06-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>2dabc6c8337678fd2cb829fa73e2b5550a692db0045de3d5779fae6208872bb3</code>.</p>
+<h1 id="scope-of-work-del-06-01">Scope of Work — DEL-06-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-06-01</code> in service of project scope [SOW-016, SOW-042] and package objectives [OBJ-005].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A rule-pack-schema contract covering identity and versioning, provenance and redistribution status, canonical payload checksums, required inputs, declarative formula and allowable slots, check criteria, diagnostics, units, and professional-boundary metadata is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-06-01-rule-pack-schema">CLM-001 — Datasheet: DEL-06-01 Rule-pack schema</h3>
+<blockquote><h4 id="datasheet-del-06-01-rule-pack-schema">Datasheet: DEL-06-01 Rule-pack schema</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-06-01</td></tr>
+<tr><td>Package ID</td><td>PKG-06</td></tr>
+<tr><td>Package</td><td>Rule Packs and User-Supplied Code Check Engine</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>Scope items</td><td>SOW-016; SOW-042</td></tr>
+<tr><td>Objective</td><td>OBJ-005</td></tr>
+<tr><td>Anticipated artifacts</td><td><code>schemas/rule_pack.schema.yaml</code>; <code>docs/SPEC.md</code> update</td></tr>
+<tr><td>Current evidence status</td><td>Setup evidence only; no product implementation</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Required setup meaning</td><td>Source</td></tr>
+<tr><td>Rule-pack artifact scope</td><td>Private user-defined stress checks, allowables, formulas, required inputs, and pass/fail criteria.</td><td>ScopeLedger rows SOW-016, SOW-042</td></tr>
+<tr><td>Schema baseline</td><td>Future public schema/interchange work must align with JSON Schema 2020-12.</td><td>ContextBudgetQA row DEL-06-01; AB-00-04</td></tr>
+<tr><td>Versioning</td><td>Rule packs must carry stable identity and version metadata.</td><td>SOW-042; OPS-K-RULE-3</td></tr>
+<tr><td>Checksum basis</td><td>JSON rule-pack payloads use canonical JSON with JCS-compatible hashing where checksums are computed.</td><td>AB-00-04; SOW-039</td></tr>
+<tr><td>Provenance and source notes</td><td>Rule-pack values, formulas, and source basis records must carry source/provenance metadata.</td><td>OPS-K-IP-2; OPS-K-DATA-3; OPS-K-RULE-3</td></tr>
+<tr><td>Redistribution status</td><td>Rule packs must be explicitly marked public/private and redistribution status must be recorded.</td><td>SOW-042; OPS-K-RULE-3</td></tr>
+<tr><td>Private-data boundary</td><td>Private rule packs are user-owned data and should not be committed or transmitted publicly by default.</td><td>OPS-K-PRIV-1; SOW-042 notes</td></tr>
+<tr><td>Protected-content boundary</td><td>Public artifacts must not reproduce protected standards text, tables, examples, copied formulas, or proprietary allowables.</td><td>OPS-K-IP-1; OPS-K-IP-3; OPS-K-RULE-1</td></tr>
+<tr><td>Unit handling</td><td>Rule-pack inputs, formulas, and allowables must be unit-aware and dimensionally checked by later implementation work.</td><td>OPS-K-UNIT-1</td></tr>
+<tr><td>Missing data behavior</td><td>Missing rule-check-required values become explicit findings, not silent defaults.</td><td>OPS-K-DATA-2</td></tr>
+<tr><td>Evaluator boundary</td><td>Formula representation must remain declarative and sandbox-compatible; exact expression grammar/library remains <code>TBD</code>.</td><td>SOW-045 note; OI-006</td></tr>
+<tr><td>Professional boundary</td><td>A rule-pack pass/fail result is not professional certification, sealing, or engineering approval.</td><td>OPS-K-AUTH-1; OPS-K-MECH-2</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- This setup pass does not create or edit <code>schemas/rule_pack.schema.yaml</code>, <code>docs/SPEC.md</code>, examples, evaluator code, registry code, or public/private storage controls.</li>
+<li>- No protected standards text, protected formulas, proprietary commercial rules, code tables, material allowables, SIF/flexibility tables, or project-specific engineering values are included.</li>
+<li>- Any future public example rule pack must use invented non-code values and carry an explicit non-engineering notice.</li>
+<li>- Private rule packs are user-supplied artifacts. Public repository content may define schema slots and validation behavior, but not the user&#x27;s protected design basis.</li>
+<li>- Exact expression grammar/library, public API transport, physical project package/container, private rule-pack encryption defaults, and detailed storage controls remain <code>TBD</code> unless later ruled by the human project authority.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The future rule-pack schema should be evaluated for these descriptive record groups:</p>
+<table><tbody>
+<tr><td>Record group</td><td>Fields or slots to resolve later</td></tr>
+<tr><td>Identity</td><td>Rule-pack ID, display name, namespace, schema version, rule-pack version, lifecycle status, author/contributor role, and generated/modified timestamps. Exact naming rules are <code>TBD</code>.</td></tr>
+<tr><td>Provenance</td><td>Source type, source note, citation pointer, contributor certification pointer, review disposition, import path, and source hash where available.</td></tr>
+<tr><td>Redistribution</td><td>Public/private marker, redistribution status, license/reference pointer, quarantine marker, and public-example safety marker.</td></tr>
+<tr><td>Checksum</td><td>Canonical payload hash algorithm, hash value, hash scope, manifest reference for non-JSON assets, and invalidation behavior on content change.</td></tr>
+<tr><td>Required inputs</td><td>Input IDs, dimensional categories, unit constraints, source requirements, missing-value behavior, and applicability conditions.</td></tr>
+<tr><td>Variables/results</td><td>Bindings to solver result fields, load-case or stress-result categories, units, and unavailable-result diagnostics.</td></tr>
+<tr><td>Formula declarations</td><td>Declarative expression slots, variable bindings, dimensional expectations, evaluation status, and sandbox compatibility flags. Actual protected formulas are excluded.</td></tr>
+<tr><td>Allowable slots</td><td>User-supplied allowable placeholders with units, provenance, source note, redistribution status, and completeness status. Actual allowable values are excluded from setup evidence.</td></tr>
+<tr><td>Checks and criteria</td><td>Check IDs, applicability conditions, formula references, limit references, comparison operator categories, pass/fail/incomplete statuses, and diagnostic outputs.</td></tr>
+<tr><td>Diagnostics</td><td>Structured findings compatible with AB-00-06 for missing inputs, unit mismatch, provenance warning, redistribution warning, protected-content warning, evaluator error, and rule-check blocking.</td></tr>
+<tr><td>Professional boundary</td><td>Reportable status wording that distinguishes mechanics solved, user-rule checked, and human professional approval.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-06-01</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> rows SOW-016 and SOW-042</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-06-01</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</li>
+<li>- <code>docs/CONTRACT.md</code> invariants OPS-K-IP-1, OPS-K-IP-2, OPS-K-IP-3, OPS-K-DATA-1, OPS-K-DATA-2, OPS-K-DATA-3, OPS-K-RULE-1, OPS-K-RULE-3, OPS-K-UNIT-1, OPS-K-AUTH-1, OPS-K-MECH-2, OPS-K-PRIV-1, OPS-K-AGENT-1..4</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-06-01-rule-pack-schema">CLM-008 — Specification: DEL-06-01 Rule-pack schema</h3>
+<blockquote><h4 id="specification-del-06-01-rule-pack-schema">Specification: DEL-06-01 Rule-pack schema</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-01-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines setup evidence for a future rule-pack schema covering metadata, required inputs, formula declarations, user-supplied allowables, pass/fail/incomplete criteria, checksum fields, provenance/source notes, redistribution status, and professional-boundary markings.</p>
+<p>This setup pass does not implement <code>schemas/rule_pack.schema.yaml</code>, update <code>docs/SPEC.md</code>, create public examples, define an expression grammar, implement a sandboxed evaluator, publish protected rule content, or claim engineering code compliance.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Evidence basis</td><td>Verification approach</td></tr>
+<tr><td>REQ-06-01-001</td><td>The future schema shall use JSON Schema 2020-12 conventions for public schema/interchange artifacts.</td><td>ContextBudgetQA row DEL-06-01; AB-00-04</td><td>Schema meta-validation in a later implementation pass.</td></tr>
+<tr><td>REQ-06-01-002</td><td>The future schema shall include rule-pack identity, schema version, rule-pack version, lifecycle/status, and source-note metadata.</td><td>SOW-042; OPS-K-RULE-3</td><td>Required-field schema validation.</td></tr>
+<tr><td>REQ-06-01-003</td><td>The future schema shall require provenance metadata for rule-pack values, allowable slots, formulas, and source bases.</td><td>OPS-K-IP-2; OPS-K-DATA-3; OPS-K-RULE-3</td><td>Positive and negative provenance fixtures.</td></tr>
+<tr><td>REQ-06-01-004</td><td>The future schema shall record public/private classification and redistribution status for each rule pack and public-example candidate.</td><td>SOW-042; OPS-K-RULE-3; OPS-K-PRIV-1</td><td>Redistribution-status fixture validation.</td></tr>
+<tr><td>REQ-06-01-005</td><td>The future schema shall include checksum metadata identifying algorithm, hash scope, hash value, and canonicalization basis for JSON payloads.</td><td>SOW-042; AB-00-04</td><td>Canonical JSON/JCS-compatible hash fixture validation.</td></tr>
+<tr><td>REQ-06-01-006</td><td>The future schema shall support required-input declarations with units, dimensional categories, source/provenance requirements, and missing-value findings.</td><td>SOW-016; OPS-K-DATA-2; OPS-K-UNIT-1</td><td>Missing-input and unit-mismatch fixtures.</td></tr>
+<tr><td>REQ-06-01-007</td><td>The future schema shall support formula declaration slots without embedding protected standards text, protected formulas, copied code equations, or arbitrary executable code.</td><td>SOW-016; OPS-K-IP-1; OPS-K-IP-3; OPS-K-RULE-2</td><td>Protected-content review and evaluator-boundary review.</td></tr>
+<tr><td>REQ-06-01-008</td><td>The future schema shall support user-supplied allowable slots with units, provenance, source notes, redistribution status, and completeness status.</td><td>SOW-016; OPS-K-DATA-1; OPS-K-DATA-3</td><td>Allowable-slot negative fixture validation.</td></tr>
+<tr><td>REQ-06-01-009</td><td>The future schema shall represent pass/fail/incomplete criteria for user-rule checks while preserving the distinction between user-rule checked and professionally approved.</td><td>OBJ-005; OPS-K-MECH-2; OPS-K-AUTH-1</td><td>Status-model and report-wording review.</td></tr>
+<tr><td>REQ-06-01-010</td><td>The future schema shall emit or support structured diagnostics for rule-check blocking, provenance warning, unit mismatch, protected-content warning, evaluator error, and redistribution warning conditions.</td><td>AB-00-06; OPS-K-DATA-2; OPS-K-IP-3</td><td>Diagnostic fixture validation.</td></tr>
+<tr><td>REQ-06-01-011</td><td>The future schema shall require public examples to use invented non-code values and explicit non-engineering notices.</td><td>OPS-K-RULE-1; SOW-016 note</td><td>Public-example protected-content gate.</td></tr>
+<tr><td>REQ-06-01-012</td><td>The future schema shall not treat agent-generated setup text as engineering authority, standards authority, legal conclusion, or professional approval.</td><td>OPS-K-AGENT-1; OPS-K-AGENT-4</td><td>Review checklist.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or policy source</td><td>Use in this setup evidence</td></tr>
+<tr><td>OpenPipeStress CONTRACT</td><td>Governs protected-content, provenance, privacy, unit, rule-pack, professional-boundary, and agent-output constraints.</td></tr>
+<tr><td>SOFTWARE_DECOMP revision 0.7</td><td>Provides package/deliverable scope, accepted architecture basis, open issues, and remaining <code>TBD</code> boundaries.</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Required baseline for future public schema/interchange artifacts. Exact file layout and code-generation tooling remain <code>TBD</code>.</td></tr>
+<tr><td>Canonical JSON / JCS-compatible hashing</td><td>Required checksum basis where JSON payloads are hashed. Exact implementation library remains <code>TBD</code>.</td></tr>
+<tr><td>External engineering standards</td><td>May be referenced by user-owned private rule packs, but their protected text, tables, examples, formulas, and values are not public project content.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Future implementation verification should include:</p>
+<ul>
+<li>- JSON Schema 2020-12 meta-validation for the rule-pack schema artifact.</li>
+<li>- Positive fixtures for identity/version metadata, checksum metadata, required input declarations, provenance/source notes, redistribution status, unit metadata, and rule-check criteria.</li>
+<li>- Negative fixtures for missing units, missing provenance, missing source notes, missing redistribution status, missing required inputs, checksum mismatch, and private/public classification gaps.</li>
+<li>- Protected-content review confirming public fixtures do not contain standards text, copied protected formulas, proprietary allowables, protected tables, or project-specific engineering values.</li>
+<li>- Canonical JSON/JCS-compatible hash verification for JSON rule-pack payloads and manifest hash behavior for any non-JSON assets.</li>
+<li>- Status wording review confirming no output claims certification, sealing, engineering approval, or code compliance for reliance.</li>
+</ul></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Expected future product artifacts remain:</p>
+<ul>
+<li>- <code>schemas/rule_pack.schema.yaml</code></li>
+<li>- <code>docs/SPEC.md</code> rule-pack schema section update</li>
+<li>- invented non-code fixture notes, if examples are later authorized</li>
+<li>- checksum/provenance validation notes</li>
+<li>- protected-content and redistribution review evidence</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the accepted public/private and protected-content boundaries, declarative sandbox-compatible posture, explicit missing-data behavior, canonical JSON/JCS-compatible hash basis, and retained grammar, storage, encryption, and packaging TBDs without inventing protected formulas, allowables, code content, defaults, or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-06-01-rule-pack-schema">CLM-015 — Procedure: DEL-06-01 Rule-pack schema</h3>
+<blockquote><h4 id="procedure-del-06-01-rule-pack-schema">Procedure: DEL-06-01 Rule-pack schema</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-01-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the future rule-pack schema artifact from the current setup evidence. It is operational guidance only; this setup run does not create product schema files or modify repo-level product documentation.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Read the sealed deliverable context in <code>_CONTEXT.md</code>.</li>
+<li>- Confirm scope coverage for SOW-016 and SOW-042 in <code>docs/_Registers/ScopeLedger.csv</code>.</li>
+<li>- Confirm the deliverable row and context note for DEL-06-01 in <code>docs/_Registers/Deliverables.csv</code> and <code>docs/_Registers/ContextBudgetQA.csv</code>.</li>
+<li>- Apply applicable invariants from <code>docs/CONTRACT.md</code>, especially protected-content, provenance, rule-pack, unit, privacy, and professional-boundary invariants.</li>
+<li>- Preserve the architecture basis for JSON Schema 2020-12, canonical JSON/JCS-compatible hashing, diagnostics, no-bypass validation, and layered validation gates.</li>
+<li>- Stop and escalate if future work requires protected standards text, protected formulas, proprietary allowables, or private rule-pack contents to be committed publicly.</li>
+</ul></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm that the work is limited to rule-pack schema structure and supporting documentation.</p>
+<p>2. Define the schema envelope for rule-pack identity, schema version, rule-pack version, lifecycle/status, source notes, and contributor/review metadata.</p>
+<p>3. Define provenance and redistribution record groups for every rule-pack value class, including formulas, allowable slots, required inputs, and public-example candidates.</p>
+<p>4. Define checksum metadata fields for algorithm, hash scope, canonicalization basis, hash value, and invalidation behavior.</p>
+<p>5. Define required-input declarations with dimensional category, allowed unit metadata, source/provenance requirement, missing-value behavior, and applicability conditions.</p>
+<p>6. Define declarative formula slots and variable bindings without specifying protected formulas or arbitrary executable code.</p>
+<p>7. Define user-supplied allowable slots with units, provenance, source notes, redistribution status, and completeness flags, without bundling actual protected values.</p>
+<p>8. Define check criteria fields for applicability, formula references, limit references, comparison category, pass/fail/incomplete outcome, and diagnostic emission.</p>
+<p>9. Define diagnostic categories for missing inputs, missing provenance, missing units, checksum mismatch, redistribution warning, protected-content warning, evaluator error, and rule-check blocking.</p>
+<p>10. Add explicit public/private and professional-boundary wording so user-rule checked status is not confused with human professional approval.</p>
+<p>11. Build invented non-code fixtures only if a later brief authorizes example work; otherwise keep fixture content <code>TBD</code>.</p>
+<p>12. Verify that no repo-level product artifacts outside the assigned deliverable folder are edited by setup/document production work.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Use these checks for a future implementation pass:</p>
+<ul>
+<li>- Schema artifact validates against JSON Schema 2020-12.</li>
+<li>- Required metadata, provenance, redistribution, checksum, units, input, formula, allowable, check, and diagnostic fields are present or conditionally required as specified.</li>
+<li>- Negative fixtures produce explicit findings for missing values, missing provenance, missing units, checksum mismatch, and redistribution gaps.</li>
+<li>- Protected-content review finds no standards text, copied protected formulas, protected tables, proprietary allowables, or real code-derived public examples.</li>
+<li>- Checksum fixtures demonstrate canonical JSON/JCS-compatible behavior for JSON rule-pack payloads.</li>
+<li>- Report/status wording preserves the mechanics-solved, user-rule-checked, and human-approved distinction.</li>
+</ul></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Retain these records within the deliverable or later implementation evidence:</p>
+<ul>
+<li>- Updated setup documents: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></li>
+<li>- Semantic evidence: <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code></li>
+<li>- Dependency evidence: <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code></li>
+<li>- Run records under <code>_run_records/</code></li>
+<li>- Future schema validation logs and protected-content/provenance review records when implementation begins</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, schema record groups, identity/version/checksum/provenance fields, required-input and unit handling, evaluator and redistribution boundaries, diagnostics, invented-example constraints, and every retained governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-06-01-rule-pack-schema">CLM-022 — Guidance: DEL-06-01 Rule-pack schema</h3>
+<blockquote><h4 id="guidance-del-06-01-rule-pack-schema">Guidance: DEL-06-01 Rule-pack schema</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-06-01-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The rule-pack schema exists to let users evaluate solver results against user-owned design bases without placing protected standards content or proprietary engineering values in the public project. The schema should describe the artifact envelope, metadata, provenance, units, required inputs, formula declarations, allowables, criteria, checksums, and statuses needed for later rule evaluation.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep public mechanics and public schema structure separate from private code-specific rule content.</li>
+<li>- Treat rule packs as user-supplied data artifacts. The public repository may define slots, validation behavior, and example-safe patterns, but not real protected rule content.</li>
+<li>- Require source notes, provenance, redistribution status, and checksum metadata before a rule pack can be treated as traceable.</li>
+<li>- Treat missing required inputs, missing allowables, missing units, missing provenance, and unresolved redistribution status as explicit findings.</li>
+<li>- Preserve unit awareness and dimensional checking through the schema shape even before the evaluator is implemented.</li>
+<li>- Preserve the professional boundary: a rule-pack result can support review, but it is not certification, sealing, or professional approval.</li>
+<li>- Mark exact expression grammar/library, private storage/encryption behavior, and physical project packaging as <code>TBD</code> unless a later human-approved brief resolves them.</li>
+</ul></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The schema will sit between solver/stress results and the later rule evaluator. It should therefore avoid coupling to a specific commercial code while still being structured enough for deterministic validation. The schema should identify variables, dimensional expectations, required inputs, allowable slots, and check criteria, but should not encode protected equations or source text.</p>
+<p>Checksum handling should bind to the content actually evaluated. For JSON payloads, the accepted architecture basis points to canonical JSON with JCS-compatible hashing. If future rule packs include non-JSON assets, those assets should be covered by manifest hashes rather than silently excluded.</p>
+<p>Provenance should be more than a free-text note where possible. Future schema work should distinguish source type, source pointer, contributor/reviewer role, review disposition, license or redistribution status, and quarantine status for suspected protected content.</p></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Schema flexibility vs. evaluator safety</td><td>Favor a declarative structure that can later be sandboxed and unit checked. Arbitrary executable code is outside the rule-pack boundary.</td></tr>
+<tr><td>Public examples vs. data-boundary risk</td><td>Public examples should use invented non-code values only. Real code-derived examples belong outside the public repository unless lawful redistribution is proven and accepted.</td></tr>
+<tr><td>Minimal metadata vs. auditability</td><td>Favor explicit metadata and checksum fields because reports and audit manifests depend on traceable rule-pack identity.</td></tr>
+<tr><td>Immediate completeness vs. unresolved architecture choices</td><td>Record unresolved grammar, storage, encryption, and packaging details as <code>TBD</code> rather than embedding premature choices.</td></tr>
+<tr><td>Pass/fail convenience vs. professional responsibility</td><td>Use pass/fail/incomplete as user-rule check statuses only. Do not imply code compliance or professional acceptance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Public example rule packs, when later authorized, should:</p>
+<ul>
+<li>- use invented rule names, invented source labels, and invented non-engineering values;</li>
+<li>- include a clear non-engineering notice;</li>
+<li>- avoid standards names, clause numbers, copied examples, copied equations, protected tables, and real material allowables;</li>
+<li>- demonstrate schema mechanics such as provenance, units, missing-input diagnostics, and checksum fields without suggesting technical adequacy for design use.</li>
+</ul>
+<p>Private user rule packs may contain user-owned or lawfully licensed design basis content, but those private artifacts are not public repository content and should be handled under the private-data controls owned by later PKG-12 work.</p></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source conflict was found during setup drafting. Open decisions remain <code>TBD</code> rather than conflicts:</p>
+<table><tbody>
+<tr><td>Item</td><td>Open decision</td><td>Current handling</td></tr>
+<tr><td>OI-006</td><td>Exact rule-pack expression grammar/library</td><td><code>TBD</code>; schema should remain declarative and sandbox-compatible.</td></tr>
+<tr><td>OI-010</td><td>Private rule-pack encryption default</td><td><code>TBD</code>; defer to security/privacy work and human ruling.</td></tr>
+<tr><td>OI-011</td><td>Physical project package/container</td><td><code>TBD</code>; checksum schema should not assume a container format.</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-016 SOW-042 OBJ-005</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

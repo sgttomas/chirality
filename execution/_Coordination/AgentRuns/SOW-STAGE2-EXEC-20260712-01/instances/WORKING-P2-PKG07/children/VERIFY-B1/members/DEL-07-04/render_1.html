@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="f9a693fad005c503c30cece6298353e7f273c0e39dd14677b589ca9424631f10">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>f9a693fad005c503c30cece6298353e7f273c0e39dd14677b589ca9424631f10</code>.</p>
+<h1 id="scope-of-work-del-07-04">Scope of Work — DEL-07-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-07-04</code> in service of project scope [SOW-022] and package objectives [OBJ-006, OBJ-011].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A missing-data warning and blocking-UX contract covering typed findings, solve-blocking and rule-check-blocking separation, affected-object navigation, provenance and unit diagnostics, remediation guidance, and visible professional-boundary status is produced for the declared scope and objectives.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-04-missing-data-warning-and-blocking-ux">CLM-001 — Datasheet: DEL-07-04 Missing-data warning and blocking UX</h3>
+<blockquote><h4 id="datasheet-del-07-04-missing-data-warning-and-blocking-ux">Datasheet: DEL-07-04 Missing-data warning and blocking UX</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-04</td></tr>
+<tr><td>Package</td><td>PKG-07 Graphical User Interface and Engineering Workflow</td></tr>
+<tr><td>Type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>Scope items</td><td>SOW-022</td></tr>
+<tr><td>Objectives</td><td>OBJ-006, OBJ-011</td></tr>
+<tr><td>Anticipated artifacts</td><td>warning system UI; UX tests</td></tr>
+<tr><td>Setup status</td><td>Setup/document-production only; no GUI source files, tests, schemas, package manifests, or repo-level docs are edited.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<p>This deliverable defines the setup boundary for a future GUI warning and blocking workflow. The future UX must distinguish data that blocks a mechanics solve from data that blocks or qualifies a user-rule check, while keeping provenance, assumptions, nonlinear uncertainty, IP/data-boundary risks, and professional review visible.</p>
+<table><tbody>
+<tr><td>Attribute</td><td>Required treatment</td><td>Source basis</td></tr>
+<tr><td>Solve-required missing data</td><td>Classify as <code>SOLVE_BLOCKING</code> and prevent or invalidate the affected mechanics solve rather than supplying defaults.</td><td><code>docs/SPEC.md</code> section 7; OPS-K-DATA-2</td></tr>
+<tr><td>Rule-check-required missing data</td><td>Classify as <code>RULE_CHECK_BLOCKING</code>; mechanics results may exist, but user-rule pass/fail or ratios remain unavailable or qualified.</td><td><code>docs/SPEC.md</code> section 7; <code>docs/TYPES.md</code> analysis-status vocabulary</td></tr>
+<tr><td>Provenance weakness</td><td>Classify as <code>PROVENANCE_WARNING</code> when a value exists but source/provenance is missing or weak.</td><td>OPS-K-DATA-3; AB-00-06</td></tr>
+<tr><td>User/model assumptions</td><td>Classify as <code>ASSUMPTION_WARNING</code> and keep the assumption visible through result review/report handoff.</td><td>SOW-022; OBJ-006</td></tr>
+<tr><td>Nonlinear uncertainty</td><td>Classify as <code>NONLINEAR_WARNING</code> when convergence or active-state uncertainty affects interpretation.</td><td>OPS-K-SOLVER-2; <code>docs/SPEC.md</code> section 4.4 and section 7</td></tr>
+<tr><td>IP or private-data risk</td><td>Classify as <code>IP_BOUNDARY_WARNING</code>; do not move protected/private data into public artifacts.</td><td>OPS-K-IP-1/2/3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> quarantine rule</td></tr>
+<tr><td>Professional boundary</td><td>Never present software output as certified, sealed, approved, authenticated, or professionally code-compliant.</td><td>OPS-K-AUTH-1; OBJ-011</td></tr>
+<tr><td>Warning display access</td><td>Warning class, severity, affected object, message, and remediation must be available through text/assistive paths and not color-only signaling.</td><td><code>_SEMANTIC_LENSING.md</code> C-001; <code>docs/SPEC.md</code> section 7</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Setup ruling</td></tr>
+<tr><td>Silent engineering defaults</td><td>Prohibited. Unknown engineering values remain <code>TBD</code> or become explicit diagnostics.</td></tr>
+<tr><td>Protected standards/code data</td><td>Not included. No code text, code tables, copied formulas, material allowables, SIF/flexibility tables, or proprietary values are introduced.</td></tr>
+<tr><td>Result-envelope fields</td><td>Future warnings must preserve at least code, class, severity, source, affected object, message, remediation, and provenance where applicable.</td></tr>
+<tr><td>Analysis state separation</td><td>Future UX must preserve <code>MODEL_INCOMPLETE</code>, <code>MECHANICS_SOLVED</code>, <code>RULE_INPUTS_INCOMPLETE</code>, <code>USER_RULE_CHECKED</code>, <code>USER_RULE_FAILED</code>, and <code>HUMAN_REVIEW_REQUIRED</code> distinctions; it must not auto-emit <code>CODE_COMPLIANT</code>.</td></tr>
+<tr><td>GUI architecture</td><td>Future GUI mutation and state changes route through application-service command/query/job result envelopes and preserve durable/transient state separation.</td></tr>
+<tr><td>Surface placement</td><td>Exact editor, solve-runner, results-view, report-preview, and export-control placement remains implementation-level <code>TBD</code>; this setup defines behavior and boundaries only.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The setup artifact is a document kit and local evidence bundle. It does not create visual components, application state, tests, schemas, or source-code contracts.</p>
+<p>Future implementation work is expected to consume:</p>
+<ul>
+<li>- architecture basis AB-00-03 for command/query/job result envelopes and status separation;</li>
+<li>- architecture basis AB-00-05 for GUI state, editing, and diagnostic preservation;</li>
+<li>- architecture basis AB-00-06 for diagnostics, warning classes, and result-envelope fields;</li>
+<li>- DEL-04-06 for solver diagnostic producers;</li>
+<li>- DEL-05-04 for analysis status semantics;</li>
+<li>- DEL-06-03 for rule-pack required-input completeness signals.</li>
+</ul></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, objectives, and architecture-basis injection.</li>
+<li>- <code>docs/CONTRACT.md</code> for invariants OPS-K-DATA-1/2/3, OPS-K-RULE-1/2/3, OPS-K-AUTH-1, OPS-K-IP-1/2/3, OPS-K-PRIV, and OPS-K-AGENT-1..4.</li>
+<li>- <code>docs/SPEC.md</code> section 7 for GUI warnings and warning classes.</li>
+<li>- <code>docs/TYPES.md</code> section 4 for analysis-status vocabulary.</li>
+<li>- <code>docs/DIRECTIVE.md</code> sections 2 and 5 for missing-data, professional-boundary, and stop-rule treatment.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> for provenance and quarantine rules.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> rows SOW-022, OBJ-006, OBJ-011, and AB-00-03/05/06.</li>
+</ul></blockquote>
+<h3 id="clm-007-d-41-r5-t7-pdu-054-current-declaration">CLM-007 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The missing-data warning/blocking panel is implemented, including current nonlinear-visibility behavior. It presents existing diagnostics and does not synthesize engineering inputs, resolve warnings, or confer professional approval.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-07-04-missing-data-warning-and-blocking-ux">CLM-008 — Specification: DEL-07-04 Missing-data warning and blocking UX</h3>
+<blockquote><h4 id="specification-del-07-04-missing-data-warning-and-blocking-ux">Specification: DEL-07-04 Missing-data warning and blocking UX</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies the setup boundary for a future GUI warning and blocking workflow. It covers warning classification, blocking and qualifying behavior, result-envelope visibility, and professional/IP boundary wording for missing or weak data. It does not implement GUI components, application state, schemas, tests, package manifests, or product source code.</p></blockquote>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source basis</td><td>Verification approach</td></tr>
+<tr><td>R-DEL-07-04-001</td><td>The future GUI shall preserve the warning classes <code>SOLVE_BLOCKING</code>, <code>RULE_CHECK_BLOCKING</code>, <code>PROVENANCE_WARNING</code>, <code>ASSUMPTION_WARNING</code>, <code>NONLINEAR_WARNING</code>, and <code>IP_BOUNDARY_WARNING</code>.</td><td><code>docs/SPEC.md</code> section 7; AB-00-06</td><td>UI/result-envelope tests inspect class values from representative diagnostics.</td></tr>
+<tr><td>R-DEL-07-04-002</td><td>Missing solve-required physical input shall block or invalidate the affected mechanics solve and shall not be replaced by silent defaults.</td><td>SOW-022; OPS-K-DATA-2; <code>docs/TYPES.md</code> <code>MODEL_INCOMPLETE</code></td><td>UX tests show solve action/result state is blocked or marked incomplete with remediation.</td></tr>
+<tr><td>R-DEL-07-04-003</td><td>Missing rule-check-required user/code/project data shall block or qualify rule-pack check results while preserving any valid mechanics-solve result.</td><td>SOW-022; <code>docs/TYPES.md</code> <code>RULE_INPUTS_INCOMPLETE</code>; DEL-06-03 setup evidence</td><td>UX tests show mechanics results can remain reviewable while rule-check ratios/pass-fail are unavailable or qualified.</td></tr>
+<tr><td>R-DEL-07-04-004</td><td>The GUI shall present diagnostics through result-envelope fields that include code, class, severity, source, affected object, message, remediation, and provenance where applicable.</td><td>AB-00-06; DEL-00-06 Specification REQ-06-01</td><td>Contract/UI tests verify required diagnostic fields are rendered or available to assistive tooling.</td></tr>
+<tr><td>R-DEL-07-04-005</td><td>The warning workflow shall preserve analysis-status distinctions among incomplete model, mechanics solved, rule inputs incomplete, user-rule checked/failed, human review required, and human acceptance records.</td><td>AB-00-03; DEL-05-04; <code>docs/TYPES.md</code> section 4</td><td>Status-mapping tests prevent collapse into a single automatic pass/compliance state.</td></tr>
+<tr><td>R-DEL-07-04-006</td><td>Provenance weakness shall remain visible as <code>PROVENANCE_WARNING</code>; value presence alone is insufficient to hide source/provenance risk.</td><td>OPS-K-DATA-3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4</td><td>UX tests show missing/weak provenance is visible for relevant materials, components, rule values, and report/export surfaces.</td></tr>
+<tr><td>R-DEL-07-04-007</td><td>Assumptions shall remain visible as <code>ASSUMPTION_WARNING</code> and shall not be treated as authenticated engineering approval.</td><td>OBJ-006; OPS-K-AUTH-1</td><td>Review workflow tests show assumption warnings survive result review and report handoff.</td></tr>
+<tr><td>R-DEL-07-04-008</td><td>Nonlinear convergence or active-state uncertainty shall remain visible as <code>NONLINEAR_WARNING</code> and shall not be hidden behind nominal result display.</td><td>OPS-K-SOLVER-2; <code>docs/SPEC.md</code> section 4.4</td><td>Solver-result UX tests expose convergence/active-state uncertainty when present.</td></tr>
+<tr><td>R-DEL-07-04-009</td><td>Suspected protected/private content in public contribution, export, or report flows shall produce <code>IP_BOUNDARY_WARNING</code> and route to quarantine or human review rather than public output.</td><td>OPS-K-IP-1/2/3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 5</td><td>Protected-content/export tests verify warning and block/quarantine behavior.</td></tr>
+<tr><td>R-DEL-07-04-010</td><td>GUI warning text shall not claim certification, sealing, approval, authentication, official endorsement, or professional code compliance.</td><td>OPS-K-AUTH-1; <code>docs/DIRECTIVE.md</code> sections 2 and 5</td><td>Product-claims wording review and negative tests exclude automatic <code>CODE_COMPLIANT</code> or equivalent claims.</td></tr>
+<tr><td>R-DEL-07-04-011</td><td>GUI state changes that affect solve or rule-check readiness shall route through application-service commands and preserve diagnostics across undo/redo where applicable.</td><td>AB-00-05; DEL-00-05 Specification REQ-05-03/05</td><td>Future interaction tests verify warning state updates after editable model changes.</td></tr>
+<tr><td>R-DEL-07-04-012</td><td>Setup artifacts and future public examples shall use invented/non-code data only and shall not embed protected standards text, copied formulas, protected tables, or proprietary values.</td><td>OPS-K-IP-1; OPS-K-RULE-1</td><td>Protected-content review confirms setup and future fixtures remain clean.</td></tr>
+<tr><td>R-DEL-07-04-013</td><td>Warning class, severity, affected object, message, and remediation shall be exposed through text/assistive paths and shall not rely on color-only signaling.</td><td><code>_SEMANTIC_LENSING.md</code> C-001; SOW-036 adjacency via DEL-07-06</td><td>Accessibility-oriented UX tests confirm non-color and assistive access to warning meaning.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No standards-body formulas, allowables, text, examples, or protected data are included. Code-specific values and rule-pack data remain user-supplied or privately imported with provenance. Any future private project use of licensed standards data remains the user&#x27;s responsibility and must not be committed as public project content.</p></blockquote>
+<h3 id="clm-012-external-inputs">CLM-012 — External Inputs</h3>
+<blockquote><h5 id="external-inputs">External Inputs</h5>
+<table><tbody>
+<tr><td>Input</td><td>Required from</td><td>Notes</td></tr>
+<tr><td>Application-service result envelopes and status separation</td><td>AB-00-03 / DEL-00-03</td><td>Needed before implementation can bind warnings to command/query/job results.</td></tr>
+<tr><td>GUI state and diagnostic preservation architecture</td><td>AB-00-05 / DEL-00-05</td><td>Needed for undo/redo, editing, and transient/durable state boundaries.</td></tr>
+<tr><td>Diagnostics and warning-class contract</td><td>AB-00-06 / DEL-00-06</td><td>Required source for warning classes and diagnostic field set.</td></tr>
+<tr><td>Solver diagnostics</td><td>DEL-04-06</td><td>Required for solve-blocking and nonlinear warning producers.</td></tr>
+<tr><td>Analysis status semantics</td><td>DEL-05-04</td><td>Required for status distinctions and no-compliance boundary.</td></tr>
+<tr><td>Rule-pack required-input completeness signals</td><td>DEL-06-03</td><td>Required for rule-check-blocking missing-data behavior.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Future implementation verification must include:</p>
+<ul>
+<li>- UI tests for each warning class listed in R-DEL-07-04-001;</li>
+<li>- per-class tests proving all six classes remain distinct rather than collapsing into generic alerts;</li>
+<li>- tests that <code>SOLVE_BLOCKING</code> prevents or invalidates the affected mechanics solve without inventing defaults;</li>
+<li>- tests that <code>RULE_CHECK_BLOCKING</code> blocks/qualifies rule-check results without erasing mechanics results;</li>
+<li>- tests that provenance, assumption, nonlinear, and IP-boundary warnings remain visible through result review and report/export handoff;</li>
+<li>- accessibility-oriented checks that warning severity, class, message, affected object, and remediation are available without color-only signaling;</li>
+<li>- wording checks that no warning, report preview, or status surface claims certification, approval, sealing, authentication, official endorsement, or professional code compliance;</li>
+<li>- protected-content checks for public examples, exported artifacts, and report templates touched by future implementation.</li>
+<li>- explicit <code>IP_BOUNDARY_WARNING</code> tests for public contribution, export, and report-preview paths using invented fixtures only.</li>
+</ul></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup artifacts for this deliverable are:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul>
+<p>Implementation artifacts listed in the register (<code>warning system UI</code>, <code>UX tests</code>) remain future work outside this setup session&#x27;s write scope.</p></blockquote>
+<h3 id="clm-015-conflict-table-for-human-ruling">CLM-015 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified during P1/P2 setup.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-d-41-r5-t5-pdu-008-current-gui-boundary">CLM-016 — D-41 R5 T5 PDU-008 current GUI boundary</h3>
+<blockquote><h5 id="d-41-r5-t5-pdu-008-current-gui-boundary">D-41 R5 T5 PDU-008 current GUI boundary</h5>
+<p>Supplied diagnostics whose codes begin <code>NONLINEAR_</code> are displayed as <code>NONLINEAR_WARNING</code> records with severity, message, source, affected refs, and any supplied class/remediation. The GUI does not create nonlinear outcomes or replace producer evidence.</p></blockquote>
+<h3 id="clm-017-d-41-r5-t7-pdu-054-current-declaration">CLM-017 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The missing-data warning/blocking panel is implemented, including current nonlinear-visibility behavior. It presents existing diagnostics and does not synthesize engineering inputs, resolve warnings, or confer professional approval.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves explicit fail-closed behavior, the distinction between mechanics input completeness and user-rule input completeness, and current warning UX evidence without inventing values, suppressing findings, treating absence as success, or implying code compliance or approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-018-procedure-del-07-04-missing-data-warning-and-blocking-ux">CLM-018 — Procedure: DEL-07-04 Missing-data warning and blocking UX</h3>
+<blockquote><h4 id="procedure-del-07-04-missing-data-warning-and-blocking-ux">Procedure: DEL-07-04 Missing-data warning and blocking UX</h4></blockquote>
+<h3 id="clm-019-purpose">CLM-019 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure defines how future implementation work should use the setup artifact for missing-data warning and blocking UX. It is an operational guide for the deliverable, not an implementation script.</p></blockquote>
+<h3 id="clm-020-prerequisites">CLM-020 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the active sealed scope is DEL-07-04 / PKG-07.</li>
+<li>- Read <code>_CONTEXT.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code> section 7, <code>docs/TYPES.md</code> section 4, and the applicable architecture basis rows AB-00-03, AB-00-05, and AB-00-06.</li>
+<li>- Confirm upstream setup evidence for DEL-04-06, DEL-05-04, and DEL-06-03 before writing implementation code.</li>
+<li>- Confirm no protected standards text, protected tables, copied formulas, proprietary values, private rule packs, or certification/compliance claims are introduced.</li>
+</ul></blockquote>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Classify missing or weak data by warning class: <code>SOLVE_BLOCKING</code>, <code>RULE_CHECK_BLOCKING</code>, <code>PROVENANCE_WARNING</code>, <code>ASSUMPTION_WARNING</code>, <code>NONLINEAR_WARNING</code>, or <code>IP_BOUNDARY_WARNING</code>.</p>
+<p>2. Map <code>SOLVE_BLOCKING</code> conditions to <code>MODEL_INCOMPLETE</code> or equivalent incomplete mechanics-solve status without inventing defaults.</p>
+<p>3. Map <code>RULE_CHECK_BLOCKING</code> conditions to <code>RULE_INPUTS_INCOMPLETE</code> or equivalent rule-check-blocked status while preserving valid mechanics results when available.</p>
+<p>4. Preserve diagnostic fields from result envelopes: code, class, severity, source, affected object, message, remediation, and provenance where applicable.</p>
+<p>5. Present warnings in the GUI where users edit data, run solves, review results, and prepare reports/exports.</p>
+<p>6. Keep warning state synchronized through application-service commands and job/result envelopes; do not mutate domain readiness directly from transient UI state.</p>
+<p>7. Check wording for professional-boundary compliance before any user-facing message is accepted.</p>
+<p>8. Check public examples, screenshots, exports, report previews, and fixtures for protected-content and private-data boundary risks.</p></blockquote>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Future verification should confirm:</p>
+<ul>
+<li>- each warning class can be rendered from a representative diagnostic envelope;</li>
+<li>- all six warning classes remain distinct in tests and are not collapsed into a generic alert state;</li>
+<li>- solve-blocking and rule-check-blocking behavior remain distinct;</li>
+<li>- missing values are surfaced as <code>TBD</code>, diagnostic findings, or blocked/qualified results rather than silent defaults;</li>
+<li>- provenance, assumption, nonlinear, and IP-boundary warnings survive result review and report/export handoff;</li>
+<li>- keyboard, non-color, and assistive-technology paths can identify warning class, severity, affected object, and remediation;</li>
+<li>- warning text does not claim certification, approval, sealing, authentication, official endorsement, or code compliance.</li>
+<li>- <code>IP_BOUNDARY_WARNING</code> blocks, qualifies, quarantines, or routes public contribution/report/export risk without exposing protected/private data.</li>
+</ul></blockquote>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Maintain these local setup records:</p>
+<ul>
+<li>- four-document kit: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>;</li>
+<li>- semantic artifacts: <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>;</li>
+<li>- dependency artifacts: <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code>;</li>
+<li>- run records under <code>_run_records/</code>;</li>
+<li>- lifecycle record in <code>_STATUS.md</code>.</li>
+</ul></blockquote>
+<h3 id="clm-024-d-41-r5-t7-pdu-054-current-declaration">CLM-024 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The missing-data warning/blocking panel is implemented, including current nonlinear-visibility behavior. It presents existing diagnostics and does not synthesize engineering inputs, resolve warnings, or confer professional approval.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, diagnostic classes and severity, blocking-state separation, navigation and remediation surfaces, missing/incompatible/unprovenanced data handling, current implementation declarations and residuals, and no-silent-default behavior.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-07-04-missing-data-warning-and-blocking-ux">CLM-025 — Guidance: DEL-07-04 Missing-data warning and blocking UX</h3>
+<blockquote><h4 id="guidance-del-07-04-missing-data-warning-and-blocking-ux">Guidance: DEL-07-04 Missing-data warning and blocking UX</h4></blockquote>
+<h3 id="clm-026-purpose">CLM-026 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable prepares the warning and blocking UX surface for future GUI implementation. The key distinction is that a mechanics solve, a user-rule check, and a professional acceptance decision are different states. The GUI must help users see missing data, assumptions, provenance weakness, nonlinear uncertainty, and IP/private-data risks without filling engineering gaps silently.</p></blockquote>
+<h3 id="clm-027-principles">CLM-027 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Missing solve-required or rule-check-required values are findings, not hidden defaults.</li>
+<li>- <code>SOLVE_BLOCKING</code> and <code>RULE_CHECK_BLOCKING</code> are not interchangeable: the former affects mechanics solve readiness; the latter affects rule-check readiness.</li>
+<li>- Result displays may show mechanics outputs only with the relevant diagnostics and limitations visible.</li>
+<li>- Warnings should carry actionable remediation, affected object identity, source/provenance where applicable, and severity.</li>
+<li>- Warning UX must preserve the professional responsibility boundary: software assists analysis but does not certify, approve, seal, authenticate, or declare code compliance for reliance.</li>
+<li>- Public-facing examples, report previews, and exports must preserve protected-data and privacy boundaries.</li>
+<li>- <code>HUMAN_REVIEW_REQUIRED</code> is the appropriate reminder for professional reliance; it is not a substitute for a human approval record and must not be presented as software approval.</li>
+</ul></blockquote>
+<h3 id="clm-028-considerations">CLM-028 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Warning class</td><td>UX implication</td><td>Boundary to preserve</td></tr>
+<tr><td><code>SOLVE_BLOCKING</code></td><td>Disable, block, or invalidate the affected solve path and point to the missing physical input.</td><td>Do not invent geometry, material, support, load, section, or component values.</td></tr>
+<tr><td><code>RULE_CHECK_BLOCKING</code></td><td>Keep mechanics results reviewable when valid, but block or qualify user-rule-check results and ratios.</td><td>Do not imply code pass/fail, compliance, or professional acceptance.</td></tr>
+<tr><td><code>PROVENANCE_WARNING</code></td><td>Show that the value exists but its source, license, or review status is missing, weak, or unresolved.</td><td>Do not treat a value as public or reliable simply because it is present.</td></tr>
+<tr><td><code>ASSUMPTION_WARNING</code></td><td>Keep user/model assumptions visible during editing, solving, result review, and reporting.</td><td>Do not upgrade assumptions into approved engineering facts.</td></tr>
+<tr><td><code>NONLINEAR_WARNING</code></td><td>Surface convergence, active-set, gap, lift-off, or friction-state uncertainty when present.</td><td>Do not hide uncertainty behind clean-looking result visuals.</td></tr>
+<tr><td><code>IP_BOUNDARY_WARNING</code></td><td>Warn, block, quarantine, or route to human review for public contribution/report/export risk.</td><td>Do not copy protected standards or private project data into public artifacts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-trade-offs">CLM-029 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<ul>
+<li>- Blocking too early can interrupt modeling, but blocking too late can make incomplete engineering states look valid. Prefer allowing model editing while clearly blocking solve or rule-check actions that lack required data.</li>
+<li>- A warning list alone is insufficient for engineering review. Future UX should also mark affected model objects/results so the user can locate the issue.</li>
+<li>- Severity and class should not rely on color alone; future accessibility work in DEL-07-06 should cover keyboard navigation, screen-reader labels, contrast, and review workflow usability.</li>
+<li>- Implementation should avoid duplicating warning logic in UI state. The GUI should consume application-service diagnostics/result envelopes and present them faithfully.</li>
+<li>- Exact placement and copy for editor panels, solve execution, result review, report preview, and export controls remain <code>TBD</code> for future GUI implementation. This setup fixes warning semantics, not component layout.</li>
+</ul></blockquote>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The following are invented behavioral examples, not standards-derived cases:</p>
+<ul>
+<li>- A component has enough user-entered geometry for mechanics but lacks a private rule-pack required allowable. The GUI may show mechanics results while marking the rule check as blocked with <code>RULE_CHECK_BLOCKING</code>.</li>
+<li>- A support definition is missing stiffness or restraint direction needed by the solver. The GUI blocks the affected solve path with <code>SOLVE_BLOCKING</code> and leaves the missing field visible.</li>
+<li>- A value is present but has <code>source_location = TBD</code> or unresolved redistribution status. The GUI shows <code>PROVENANCE_WARNING</code> or <code>IP_BOUNDARY_WARNING</code> depending on the affected workflow.</li>
+</ul></blockquote>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified during setup.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-032-d-41-r5-t7-pdu-054-current-declaration">CLM-032 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. The missing-data warning/blocking panel is implemented, including current nonlinear-visibility behavior. It presents existing diagnostics and does not synthesize engineering inputs, resolve warnings, or confer professional approval.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-022 OBJ-006 OBJ-011</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

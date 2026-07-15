@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 292
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves deterministic gate evidence, union routing, provenance, protected/private-data controls, missing-data findings, open risks and TBD thresholds, gate outcome vocabulary, human waiver/risk disposition, and the distinction between release governance and professional engineering approval.",
+    "OUT-001": "A release quality-gate checklist contract routing solver, rule-engine, GUI, report-template, and mixed changes to bounded software-quality evidence and human governance decisions is produced.",
+    "VER-001": "Validate the contract and review source parity, every gate family and mixed routing, required mechanics/rule/GUI/report evidence, provenance and protected-content checks, unresolved thresholds and authority decisions, outcome semantics, and prohibited compliance or professional-approval claims."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

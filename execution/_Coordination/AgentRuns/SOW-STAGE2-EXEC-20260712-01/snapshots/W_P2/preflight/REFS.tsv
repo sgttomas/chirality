@@ -1,0 +1,9 @@
+ref	sha	result
+HEAD	eaad463c0d481f6f1654e6adb5ee718f566176e9	PASS
+refs/remotes/origin/main	eaad463c0d481f6f1654e6adb5ee718f566176e9	PASS
+remote refs/heads/main	eaad463c0d481f6f1654e6adb5ee718f566176e9	PASS
+refs/heads/main (informational isolated-worktree ref)	2a5e3825d8d2fc4943742a53ccad3b89c4c81902	INFO
+ancestor D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176	eaad463c0d481f6f1654e6adb5ee718f566176e9	PASS
+ancestor W-P1 acceptance@c5abf91b717c0b3901d2a27c578e63976853f8de	eaad463c0d481f6f1654e6adb5ee718f566176e9	PASS
+ancestor H1 ruling binding@b776813d57124df94e9ba1b66a8a63e89487b388	eaad463c0d481f6f1654e6adb5ee718f566176e9	PASS
+ancestor I1 merge@6d56a1b6f391d21618f3328179d5a48654aec422	eaad463c0d481f6f1654e6adb5ee718f566176e9	PASS

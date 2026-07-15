@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="09a473cad3af6b06ae6e1ba1d5157d8ea8ccef82b3a9a301ac8adc2bc5557dd8">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-07-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>09a473cad3af6b06ae6e1ba1d5157d8ea8ccef82b3a9a301ac8adc2bc5557dd8</code>.</p>
+<h1 id="scope-of-work-del-07-01">Scope of Work — DEL-07-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-07-01</code> in service of project scope [SOW-020] and package objectives [OBJ-006].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A 3D viewport and centerline-editor contract covering unit-aware nodes, pipe runs, bends, simple component symbols, stable selection identity, command-routed edits, explicit diagnostics, and bounded interaction evidence is produced for the declared scope and objective.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-07-01-3d-viewport-and-centerline-editor">CLM-001 — Datasheet: DEL-07-01 3D viewport and centerline editor</h3>
+<blockquote><h4 id="datasheet-del-07-01-3d-viewport-and-centerline-editor">Datasheet: DEL-07-01 3D viewport and centerline editor</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-07-01</td></tr>
+<tr><td>Deliverable name</td><td>3D viewport and centerline editor</td></tr>
+<tr><td>Package ID</td><td>PKG-07</td></tr>
+<tr><td>Package name</td><td>Graphical User Interface and Engineering Workflow</td></tr>
+<tr><td>Deliverable type</td><td>UX_UI_SLICE</td></tr>
+<tr><td>Context envelope</td><td>L</td></tr>
+<tr><td>Current execution mode</td><td>Setup/document production only</td></tr>
+<tr><td>Write boundary</td><td>This deliverable folder only</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary scope item</td><td>SOW-020: GUI shall provide a 3D centerline modeler with model tree and piping component visualization</td><td><code>docs/_Registers/ScopeLedger.csv</code> row <code>SOW-020</code>; <code>_CONTEXT.md</code></td></tr>
+<tr><td>Supported objective</td><td>OBJ-006: GUI workflow makes model creation, missing data, results, and assumptions visible</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 5; <code>_CONTEXT.md</code></td></tr>
+<tr><td>Future artifact class</td><td>GUI viewport and interaction tests</td><td><code>docs/_Registers/Deliverables.csv</code> row <code>DEL-07-01</code>; <code>_CONTEXT.md</code></td></tr>
+<tr><td>Runtime/UI baseline</td><td>Tauri 2 desktop shell, TypeScript/React/Vite GUI, Three.js viewport</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>DEC-009</code></td></tr>
+<tr><td>Unresolved implementation choices</td><td>Exact dependency versions, component library, state-management library, and platform release matrix remain <code>TBD</code></td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>DEC-012</code></td></tr>
+<tr><td>State/editing basis</td><td>Durable project state is separate from transient viewport, selection, and session state; mutations route through application-service commands</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>AB-00-05</code></td></tr>
+<tr><td>Diagnostic basis</td><td>User-facing warnings and result-envelope diagnostics use explicit classes and do not claim code compliance</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>AB-00-06</code>; <code>docs/SPEC.md</code> section 7</td></tr>
+<tr><td>Data boundary posture</td><td>Code-specific values, protected standards data, manufacturer/private data, and professional approval remain user/private or human-owned</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-DATA-1</code>, <code>OPS-K-IP-1</code>, <code>OPS-K-AUTH-1</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Required handling</td></tr>
+<tr><td>A viewport interaction would require a physical property, component dimension, SIF, flexibility factor, allowable, or code-specific value</td><td>Request user-supplied/provenanced data or mark the value <code>TBD</code>; do not introduce public defaults</td></tr>
+<tr><td>A future component glyph needs protected dimensional tables or vendor catalog data</td><td>Stop and route through the protected-data/provenance review path</td></tr>
+<tr><td>The viewport can create geometry but required solve data is missing</td><td>Surface an explicit diagnostic or missing-data state; do not hide the gap</td></tr>
+<tr><td>A rule-pack or code-check status is implied by viewport color, label, or state</td><td>Preserve mechanics-solve, user-rule-check, and human-approval separation</td></tr>
+<tr><td>A future implementation needs to choose a component or state-management library</td><td>Record the decision through the architecture decision path; this setup deliverable does not finalize it</td></tr>
+<tr><td>A change would edit GUI source, package manifests, repo-level docs, or tests during this setup session</td><td>Stop; those paths are outside this sealed write scope</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This setup artifact frames a future GUI slice for a 3D centerline viewport and editor. A conforming future implementation should keep these surfaces distinct:</p>
+<table><tbody>
+<tr><td>Surface</td><td>Setup expectation</td></tr>
+<tr><td>Viewport rendering</td><td>Render pipe centerlines, bend arcs, branch symbols, and simple piping component symbols using the accepted Three.js viewport baseline</td></tr>
+<tr><td>Centerline editing</td><td>Support creation and editing of nodes and pipe runs through service-command mutations, not direct uncontrolled durable-state edits</td></tr>
+<tr><td>Selection and identity</td><td>Preserve stable model-entity identity for coordination with the model tree and property inspector</td></tr>
+<tr><td>Units and coordinates</td><td>Treat coordinates and editable quantities as unit-aware model data; reject incompatible units through domain/service validation</td></tr>
+<tr><td>Diagnostics</td><td>Carry missing-data, provenance, assumption, nonlinear, and IP-boundary warnings as explicit diagnostics</td></tr>
+<tr><td>Undo/redo</td><td>Scope undo/redo to reversible model edits and preserve diagnostics/result-envelope integrity</td></tr>
+<tr><td>Test evidence</td><td>Use GUI-layer tests appropriate to the accepted Vitest/Playwright baseline once implementation is authorized</td></tr>
+</tbody></table>
+<p>This deliverable does not implement product UI in this setup session. It also does not supply engineering component data, rule-pack values, or professional acceptance records.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Used for</td></tr>
+<tr><td><code>_CONTEXT.md</code></td><td>Deliverable identity, package, scope, objectives, accepted decomposition revision, and architecture basis injection</td></tr>
+<tr><td><code>_REFERENCES.md</code></td><td>Local source inventory</td></tr>
+<tr><td><code>INIT.md</code></td><td>Bootstrap boundaries for protected data, missing values, and professional reliance</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>Type 2 dispatch and write-scope rule</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Invariants for protected content, user-supplied code data, units, diagnostics, privacy, IP, and agent limits</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Founding intent, centerline-first model, no silent defaults, and stop rules</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>UX_UI_SLICE type, analysis-status vocabulary, centerline model, and domain object vocabulary</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>GUI requirements, warning classes, architecture layers, and acceptance semantics</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Functional requirements FR-003, FR-013, and GUI requirements section 14</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data, provenance, and protected-content policy</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>PKG-07 and DEL-07-01 decomposition context plus SCA-001 architecture basis</td></tr>
+<tr><td><code>docs/_Registers/Deliverables.csv</code></td><td>Deliverable register row</td></tr>
+<tr><td><code>docs/_Registers/ScopeLedger.csv</code></td><td>Scope mapping for SOW-020</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-07-01-3d-viewport-and-centerline-editor">CLM-008 — Specification: DEL-07-01 3D viewport and centerline editor</h3>
+<blockquote><h4 id="specification-del-07-01-3d-viewport-and-centerline-editor">Specification: DEL-07-01 3D viewport and centerline editor</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-01-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines setup documentation for the future 3D viewport and centerline editor slice. It is limited to the local <code>DEL-07-01</code> working folder and does not create or modify GUI source files, interaction tests, package manifests, dependency manifests, or repo-level documentation.</p>
+<p>The deliverable covers:</p>
+<ul>
+<li>- the future viewport/editor responsibilities for nodes, pipe runs, bends, and simple component symbols;</li>
+<li>- the accepted runtime/UI and architecture-basis constraints applicable to this GUI slice;</li>
+<li>- data-boundary, unit-safety, diagnostic, privacy, and professional-responsibility constraints;</li>
+<li>- setup evidence required before future implementation work begins.</li>
+</ul>
+<p>The deliverable excludes:</p>
+<ul>
+<li>- implementation of React, Tauri, Three.js, or state-management code;</li>
+<li>- final selection of unresolved component/state libraries or exact dependency versions;</li>
+<li>- model tree, property inspector, editor panels, solve execution UX, or results viewer behavior owned by adjacent PKG-07 deliverables;</li>
+<li>- any protected standards data, code-specific defaults, proprietary component dimensions, or professional approval workflow.</li>
+</ul></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Requirement ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-07-01-REQ-01</td><td>The future implementation shall provide a 3D centerline viewport/editor for creating and editing nodes, pipe runs, bends, and simple piping component symbols.</td><td><code>docs/_Registers/Deliverables.csv</code> row <code>DEL-07-01</code>; <code>docs/PRD.md</code> FR-003 and FR-013</td></tr>
+<tr><td>DEL-07-01-REQ-02</td><td>The viewport shall represent the visual categories listed for the 3D viewport where applicable to this slice: pipe centerlines, bend arcs, branch symbols, valves, flanges, reducers, expansion joints, supports, labels, load vectors, deformed shapes, reaction arrows, and stress-ratio color maps. Items beyond initial centerline editing may remain deferred to adjacent result/component slices.</td><td><code>docs/PRD.md</code> section 14.2; <code>_CONTEXT.md</code> description</td></tr>
+<tr><td>DEL-07-01-REQ-03</td><td>The setup deliverable shall preserve the accepted runtime baseline of Tauri 2, TypeScript/React/Vite, and Three.js while keeping exact dependency versions and component/state libraries <code>TBD</code>.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>DEC-009</code>, <code>DEC-012</code></td></tr>
+<tr><td>DEL-07-01-REQ-04</td><td>Viewport model mutations shall route through application-service commands and shall keep durable project state separate from transient viewport, selection, camera, and interaction state.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>AB-00-03</code>, <code>AB-00-05</code></td></tr>
+<tr><td>DEL-07-01-REQ-05</td><td>Coordinates, dimensions, component references, loads, and editable quantities exposed through the viewport shall be unit-aware and validated by domain/service contracts rather than silently coerced.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-UNIT-1</code>; <code>docs/SPEC.md</code> sections 1 and 3</td></tr>
+<tr><td>DEL-07-01-REQ-06</td><td>The viewport/editor shall not supply protected standards data, code-specific defaults, component dimensional tables, SIF/flexibility values, allowables, or proprietary manufacturer data. Missing values shall remain explicit findings or <code>TBD</code>.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-IP-1</code>, <code>OPS-K-DATA-1</code>, <code>OPS-K-DATA-2</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-6</td></tr>
+<tr><td>DEL-07-01-REQ-07</td><td>Viewport diagnostics shall preserve warning classes and result-envelope boundaries, including solve-blocking, rule-check-blocking, provenance, assumption, nonlinear, and IP-boundary warnings.</td><td><code>docs/SPEC.md</code> section 7; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>AB-00-06</code></td></tr>
+<tr><td>DEL-07-01-REQ-08</td><td>Visual status, labels, colors, and interaction states shall not claim certification, sealing, approval, authentication, or engineering code compliance for reliance.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-AUTH-1</code>; <code>docs/TYPES.md</code> sections 4 and 6</td></tr>
+<tr><td>DEL-07-01-REQ-09</td><td>Future tests for the implemented slice shall use the accepted GUI test baseline and verify viewport rendering, selection/editing commands, missing-data visibility, and no-protected-data defaults. Exact test harness details beyond the baseline remain <code>TBD</code>.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>AB-00-08</code>; <code>docs/PRD.md</code> section 21</td></tr>
+<tr><td>DEL-07-01-REQ-10</td><td>This setup run shall write only deliverable-local setup artifacts and shall not move any artifact to <code>ISSUED</code>.</td><td><code>AGENTS.md</code> dispatch rule; <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> section 4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering code, standards-body text, dimensional table, component catalog, allowable table, SIF/flexibility table, or proprietary commercial data is used as an authority for this setup deliverable.</p>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Status</td></tr>
+<tr><td>OpenPipeStress governance and invariant documents</td><td>Accessible local governing source</td></tr>
+<tr><td>PRD GUI requirements</td><td>Accessible local product source</td></tr>
+<tr><td>SCA-001 architecture basis</td><td>Accepted downstream dispatch basis, not <code>ISSUED</code> product implementation</td></tr>
+<tr><td>Exact GUI dependency versions</td><td><code>TBD</code>; future implementation decision</td></tr>
+<tr><td>Component and state-management libraries</td><td><code>TBD</code>; future implementation decision</td></tr>
+<tr><td>Engineering code values and component catalogs</td><td>User/private or legally imported only; not supplied by this deliverable</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Verifies</td><td>Method</td></tr>
+<tr><td>DEL-07-01-VER-01</td><td>Four-document kit exists locally</td><td>Run <code>tools/validation/check_four_documents.sh</code> on this deliverable folder</td></tr>
+<tr><td>DEL-07-01-VER-02</td><td>Semantic setup artifacts exist</td><td>Confirm <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>, and <code>_run_records/*</code> exist locally</td></tr>
+<tr><td>DEL-07-01-VER-03</td><td>Dependency register is schema-valid</td><td>Run <code>python3 tools/validation/validate_dependencies_schema.py</code> on local <code>Dependencies.csv</code></td></tr>
+<tr><td>DEL-07-01-VER-04</td><td>Dependency enums are canonical</td><td>Run <code>python3 tools/validation/validate_enum.py</code> for emitted enum values</td></tr>
+<tr><td>DEL-07-01-VER-05</td><td>Setup stayed inside the assigned write scope</td><td>Check git status and changed paths for this deliverable folder only</td></tr>
+<tr><td>DEL-07-01-VER-06</td><td>Protected-data and professional boundaries are visible</td><td>Review the setup documents for no-protected-content, no-silent-default, and no-certification language</td></tr>
+<tr><td>DEL-07-01-VER-07</td><td>Unresolved implementation choices remain unresolved</td><td>Confirm exact dependency versions and component/state libraries are marked <code>TBD</code> rather than finalized</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup artifacts for this deliverable are:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul>
+<p>Future implementation artifacts such as GUI source and interaction tests remain outside this session&#x27;s write scope.</p></blockquote>
+<h3 id="clm-015-d-41-r5-t5-pdu-008-current-gui-boundary">CLM-015 — D-41 R5 T5 PDU-008 current GUI boundary</h3>
+<blockquote><h5 id="d-41-r5-t5-pdu-008-current-gui-boundary">D-41 R5 T5 PDU-008 current GUI boundary</h5>
+<p>Current PDU-008 evidence covers structured node and straight-pipe authoring, support handoff, and reference-only component insertion. Dedicated bend authoring and full component-symbol geometry authoring remain absent; this is not full REQ-01 closure.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the current implemented viewport slice and named residuals, separates durable model state from transient interaction state, keeps missing or protected engineering data explicit, and invents no component dimensions, code values, defaults, compliance status, or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-07-01-3d-viewport-and-centerline-editor">CLM-016 — Procedure: DEL-07-01 3D viewport and centerline editor</h3>
+<blockquote><h4 id="procedure-del-07-01-3d-viewport-and-centerline-editor">Procedure: DEL-07-01 3D viewport and centerline editor</h4></blockquote>
+<h3 id="clm-017-d-41-r5-t7-pdu-055-current-declaration">CLM-017 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-01-DECL-004</code>.</p></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure records how to produce and verify the setup artifacts for <code>DEL-07-01</code>, and it gives future implementation work a bounded execution path for the 3D viewport and centerline editor.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td></tr>
+<tr><td>Sealed deliverable context for <code>DEL-07-01</code></td><td>Present in <code>_CONTEXT.md</code> and the user brief</td></tr>
+<tr><td>Write scope limited to this deliverable folder</td><td>Required for this setup session</td></tr>
+<tr><td>Governing references available locally</td><td>Present through <code>_REFERENCES.md</code> and repo docs</td></tr>
+<tr><td>SCA-001 architecture basis injected</td><td>Present in <code>_CONTEXT.md</code></td></tr>
+<tr><td>Protected standards or proprietary data needed</td><td>Not needed for setup; must be excluded</td></tr>
+<tr><td>GUI source/package/test write authorization</td><td>Not present in this setup session</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the active deliverable path is <code>execution/PKG-07_Graphical User Interface and Engineering Workflow/1_Working/DEL-07-01_3D viewport and centerline editor</code>.</p>
+<p>2. Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code>, governing docs, decomposition, registers, and the four requested skill files.</p>
+<p>3. Produce the four-document setup kit:</p>
+<ul>
+<li>- <code>Datasheet.md</code> for identity, attributes, conditions, construction, and references;</li>
+<li>- <code>Specification.md</code> for scope, requirements, standards, verification, and documentation;</li>
+<li>- <code>Guidance.md</code> for rationale, principles, considerations, trade-offs, and examples;</li>
+<li>- <code>Procedure.md</code> for prerequisites, steps, verification, and records.</li>
+</ul>
+<p>4. Mark unknown or unresolved implementation choices as <code>TBD</code>; do not finalize exact GUI dependency versions or component/state libraries.</p>
+<p>5. Run <code>semantic-matrix-build</code> for this deliverable and write <code>_SEMANTIC.md</code> with the semantic lens, audit result, and status update if the audit passes.</p>
+<p>6. Run <code>lens-register</code> for this deliverable and write <code>_SEMANTIC_LENSING.md</code> without modifying production documents.</p>
+<p>7. Run <code>four-documents</code> with <code>RUN_PASSES=P3_ONLY</code> by treating <code>_SEMANTIC_LENSING.md</code> as a candidate worklist only; incorporate only source-supported changes.</p>
+<p>8. Run <code>dependency-extract</code> for this deliverable and write <code>Dependencies.csv</code> plus <code>_DEPENDENCIES.md</code> with anchor and execution dependencies.</p>
+<p>9. Validate local artifacts:</p>
+<ul>
+<li>- four-document kit exists;</li>
+<li>- dependency schema is valid;</li>
+<li>- dependency enum values are canonical;</li>
+<li>- semantic artifacts and run records exist;</li>
+<li>- changed paths remain inside the assigned deliverable folder.</li>
+</ul>
+<p>10. Leave the deliverable at <code>SEMANTIC_READY</code> only if setup gates pass. Do not move anything to <code>ISSUED</code>.</p></blockquote>
+<h3 id="clm-021-future-implementation-procedure">CLM-021 — Future Implementation Procedure</h3>
+<blockquote><h5 id="future-implementation-procedure">Future Implementation Procedure</h5>
+<p>When a later implementation brief authorizes GUI source and tests, the future worker should:</p>
+<p>1. Re-read the sealed brief, SCA-001 architecture basis, and these setup artifacts.</p>
+<p>2. Keep implementation within the future authorized source/test paths, not this setup folder unless instructed.</p>
+<p>3. Define viewport responsibilities for rendering, camera behavior, selection, snapping/drag handles, entity creation, and command dispatch.</p>
+<p>4. Keep durable model edits behind application-service commands and validation envelopes.</p>
+<p>5. Keep transient viewport/session state separate from model persistence.</p>
+<p>6. Use unit-aware domain data for coordinates and editable quantities.</p>
+<p>7. Display missing-data and provenance diagnostics without supplying code-specific or proprietary defaults.</p>
+<p>8. Add GUI tests for rendering, selection, edit commands, undo/redo eligibility, and diagnostic visibility.</p>
+<p>9. Run the accepted GUI validation gates before review.</p></blockquote>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Command or method</td><td>Expected result</td></tr>
+<tr><td>Four-document kit</td><td><code>tools/validation/check_four_documents.sh &lt;DELIVERABLE_PATH&gt;</code></td><td>PASS</td></tr>
+<tr><td>Dependency schema</td><td><code>python3 tools/validation/validate_dependencies_schema.py &lt;DELIVERABLE_PATH&gt;/Dependencies.csv</code></td><td>VALID</td></tr>
+<tr><td>Enum values</td><td><code>python3 tools/validation/validate_enum.py &lt;ENUM_NAME&gt; &lt;value&gt;</code></td><td>VALID for emitted enum values</td></tr>
+<tr><td>Semantic/lensing artifacts</td><td>File existence check</td><td><code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> present</td></tr>
+<tr><td>Status</td><td>Review <code>_STATUS.md</code></td><td><code>Current State: SEMANTIC_READY</code> only after all setup gates pass</td></tr>
+<tr><td>Scope</td><td><code>git status --short -- &lt;DELIVERABLE_PATH&gt;</code></td><td>Changed paths are deliverable-local only</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The setup run should leave:</p>
+<ul>
+<li>- four production setup documents;</li>
+<li>- <code>_SEMANTIC.md</code>;</li>
+<li>- <code>_SEMANTIC_LENSING.md</code>;</li>
+<li>- <code>Dependencies.csv</code>;</li>
+<li>- refreshed <code>_DEPENDENCIES.md</code>;</li>
+<li>- <code>_run_records/*</code> entries for each setup step;</li>
+<li>- <code>_STATUS.md</code> history showing initialization and semantic readiness.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, centerline and symbol boundaries, command/service mutation routing, stable identity, units, diagnostics, current implementation declarations and residuals, protected-data controls, and every retained governed TBD.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-07-01-3d-viewport-and-centerline-editor">CLM-024 — Guidance: DEL-07-01 3D viewport and centerline editor</h3>
+<blockquote><h4 id="guidance-del-07-01-3d-viewport-and-centerline-editor">Guidance: DEL-07-01 3D viewport and centerline editor</h4></blockquote>
+<h3 id="clm-025-d-41-r5-t7-pdu-055-current-declaration">CLM-025 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-07-01-DECL-003</code>.</p></blockquote>
+<h3 id="clm-026-purpose">CLM-026 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This setup deliverable gives future GUI implementation work a bounded viewport/editor contract. The intent is to make centerline model creation visible and reviewable while preserving the project&#x27;s code-neutral, unit-aware, provenance-aware, and human-review boundaries.</p>
+<p>The viewport is a user-facing editor surface, not an authority for engineering values. It can show missing data, provenance gaps, assumptions, and diagnostics, but it must not hide those states or convert them into silent defaults.</p></blockquote>
+<h3 id="clm-027-principles">CLM-027 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Centerline first</td><td>Treat the default global model as a 3D line-element centerline representation. Local shell/solid FEA remains a specialized handoff path.</td></tr>
+<tr><td>Command-mediated edits</td><td>Future edit gestures should produce application-service commands so durable model state, undo/redo, diagnostics, and persistence remain coherent.</td></tr>
+<tr><td>Transient state separation</td><td>Camera, hover, selection, drag handles, snapping previews, and job progress are transient GUI state, not durable project data.</td></tr>
+<tr><td>Unit-safe editing</td><td>Coordinates and editable values need unit-bearing model contracts. Avoid viewport-only numeric assumptions.</td></tr>
+<tr><td>Visible uncertainty</td><td>Missing solve data, missing rule-check data, weak provenance, user assumptions, and nonlinear uncertainty should be visible diagnostics.</td></tr>
+<tr><td>No protected defaults</td><td>Component symbols and edit tools must not embed protected code tables, proprietary catalog values, or copied commercial examples.</td></tr>
+<tr><td>No professional claim</td><td>A rendered model, visual status, or rule-check color is decision support only until a competent human accepts it for project use.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-considerations">CLM-028 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Consideration</td></tr>
+<tr><td>Initial slice size</td><td><code>DEL-07-01</code> has an L context envelope. Keep the future implementation bounded to viewport/editor basics and split if it starts absorbing model tree, property inspector, results viewer, or solve-execution work.</td></tr>
+<tr><td>Component visualization</td><td>Simple glyphs can support recognition and selection. Detailed component properties, private library data, and editor behavior belong to PKG-03 and adjacent PKG-07 deliverables.</td></tr>
+<tr><td>State library choice</td><td>The exact state-management library remains <code>TBD</code>. Future work should preserve the durable/transient split regardless of library choice.</td></tr>
+<tr><td>Viewport library baseline</td><td>Three.js is the accepted viewport baseline. Exact versions and wrappers remain implementation-level decisions.</td></tr>
+<tr><td>Accessibility</td><td>The viewport should not be the only path to edit or inspect model data. Keyboard navigation, tooltips, high-contrast options, and structured panels are part of the wider GUI baseline.</td></tr>
+<tr><td>Diagnostics</td><td>Warnings should be attached to affected model objects where possible so users can navigate from the viewport to the underlying issue.</td></tr>
+<tr><td>Testing</td><td>Future tests should verify both visual presence and behavior: entity creation, selection, command dispatch, undo/redo eligibility, missing-data rendering, and no hidden defaults.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-trade-offs">CLM-029 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Setup position</td></tr>
+<tr><td>Rich interactive modeling vs. broad GUI scope</td><td>Favor a narrow, testable editor slice over absorbing tree, property, solve, or results workflows.</td></tr>
+<tr><td>Visual convenience vs. engineering warrant</td><td>Favor explicit <code>TBD</code> and diagnostics over convenience defaults for code-specific or proprietary data.</td></tr>
+<tr><td>Direct canvas mutation vs. service commands</td><td>Favor service-command mutation so validation, diagnostics, undo/redo, persistence, and audit records remain coherent.</td></tr>
+<tr><td>Detailed component graphics vs. protected data boundary</td><td>Favor simple symbolic visualization unless component geometry and metadata have lawful provenance.</td></tr>
+<tr><td>Visual status colors vs. compliance language</td><td>Favor statuses that distinguish model completeness, mechanics, rule checks, and human review without implying compliance or approval.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Acceptable future examples for this slice are limited to invented, non-code, non-proprietary interaction examples, such as:</p>
+<ul>
+<li>- creating a node with unit-aware coordinates supplied by the user;</li>
+<li>- connecting two nodes with a pipe-run element that references <code>TBD</code> section/material data until supplied;</li>
+<li>- rendering a bend arc as a symbolic component with user-supplied geometry placeholders;</li>
+<li>- surfacing a diagnostic that a component&#x27;s source/provenance is missing.</li>
+</ul>
+<p>Do not use copied standards examples, protected tables, commercial software benchmark models, proprietary component catalogs, code-specific allowables, or real project data in public setup or future test fixtures unless explicit redistribution rights and review disposition exist.</p></blockquote>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified during setup drafting.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-032-review-notes">CLM-032 — Review Notes</h3>
+<blockquote><h5 id="review-notes">Review Notes</h5>
+<ul>
+<li>- This setup document intentionally does not choose unresolved component/state libraries.</li>
+<li>- This setup document intentionally does not implement product UI.</li>
+<li>- Future work should escalate if the viewport/editor slice needs to exceed <code>DEL-07-01</code> scope or introduce protected/private data.</li>
+</ul></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-020 OBJ-006</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

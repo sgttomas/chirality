@@ -1,0 +1,3 @@
+child_id	role	status	members	mappings	source_lines	manifest_sha256
+AUTHOR-B1	author	PASS	5	151	1343	0597220fb4c086ba8643a699fbb6098ebfd7b61fa5f20ce99e98e1c869002284
+VERIFY-B1	verifier	PASS_UNCHANGED	5	151	1343	cb4386aa6bcb7d786b37b77b89aa114ae9865a140ccf9960382198702871d734

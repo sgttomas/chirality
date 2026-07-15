@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="22f2934acd6c24463131f24b58eb6b91773b0b5deb9bf15f47d9d365c0e0e4a9">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-06</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>22f2934acd6c24463131f24b58eb6b91773b0b5deb9bf15f47d9d365c0e0e4a9</code>.</p>
+<h1 id="scope-of-work-del-08-06">Scope of Work — DEL-08-06</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-08-06</code> in service of project scope [SOW-024] and package objectives [OBJ-007, OBJ-016, OBJ-017, OBJ-018].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A state, comparison, and handoff report-section contract covering immutable model-state and analysis-run records, deterministic comparisons, handoff manifests, warnings, assumptions, limitations, units, hashes, provenance, and unsupported-target disclosures is produced without implying professional validation or acceptance.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-06-state-comparison-and-handoff-report-sections">CLM-001 — Datasheet: DEL-08-06 State, comparison, and handoff report sections</h3>
+<blockquote><h4 id="datasheet-del-08-06-state-comparison-and-handoff-report-sections">Datasheet: DEL-08-06 State, comparison, and handoff report sections</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-06-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-08-06</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>State, comparison, and handoff report sections</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-08</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package name</td><td>Reporting, Audit, and Reproducibility</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-08</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row DEL-08-06</td></tr>
+<tr><td>Scope coverage</td><td>SOW-024</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-024</td></tr>
+<tr><td>Objective support</td><td>OBJ-007, OBJ-016, OBJ-017, OBJ-018</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> objective map</td></tr>
+<tr><td>Implementation evidence</td><td>TBD</td><td>No product code was inspected or created in this setup pass.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current source-grounded value</td><td>Source</td></tr>
+<tr><td>Deliverable purpose</td><td>Implement report sections generated from model states, analysis runs, comparisons, and handoff manifests without implying professional validation.</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row DEL-08-06</td></tr>
+<tr><td>Anticipated artifacts</td><td>State/run report sections; comparison report section; handoff manifest report section.</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row DEL-08-06</td></tr>
+<tr><td>Report content basis</td><td>Auditable calculation reports include inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations.</td><td>SOW-024 in <code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code>; <code>docs/SPEC.md</code> section 9</td></tr>
+<tr><td>State/run basis</td><td>Immutable model states, analysis runs, and deterministic comparisons are first-class product records for design iteration and review.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OBJ-016; rows DEL-14-01 through DEL-14-05</td></tr>
+<tr><td>Handoff basis</td><td>Handoff packages support downstream modeling and professional validation workflows without automatic professional approval states.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OBJ-017; rows DEL-15-01, DEL-15-03, DEL-15-04</td></tr>
+<tr><td>Professional boundary</td><td>Reports are decision support and must not declare code compliance, certification, sealing, approval, authentication, endorsement, or professional reliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/SPEC.md</code> section 9</td></tr>
+<tr><td>IP/data boundary</td><td>Public report artifacts must not copy protected standards text, protected tables, proprietary formulas, proprietary engineering values, private project data, private rule-pack payloads, private library content, or real secrets.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1 and OPS-K-REPORT-2; <code>docs/SPEC.md</code> section 9; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3 and 7</td></tr>
+<tr><td>Hash/provenance basis</td><td>JSON payload hashes use the accepted JCS-compatible canonical JSON basis where applicable; reports preserve stable references, checksums, source notes, privacy classification, review state, and provenance.</td><td><code>_CONTEXT.md</code> Architecture Basis; <code>docs/SPEC.md</code> sections 4.4 and 9</td></tr>
+<tr><td>Upstream dependency mirror</td><td>22 ACTIVE approved DAG-006 rows are present as local evidence.</td><td><code>Dependencies.csv</code>; <code>_DEPENDENCIES.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Lifecycle state at four-doc pass start</td><td>OPEN</td><td><code>_STATUS.md</code></td></tr>
+<tr><td>Context envelope</td><td>M</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ContextBudgetQA.csv</code> row DEL-08-06</td></tr>
+<tr><td>Package exclusion</td><td>PKG-08 does not authenticate or certify engineering work.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-08</td></tr>
+<tr><td>Public/private content posture</td><td>Private rule packs, material libraries, component libraries, owner requirements, project values, and private templates remain user-controlled unless intentionally exported or contributed with documented rights.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 6 and 7</td></tr>
+<tr><td>Missing engineering values</td><td>Missing solve-required or rule-check-required values remain explicit findings, not defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/SPEC.md</code> sections 4.3 and 9</td></tr>
+<tr><td>Runtime/code locations</td><td>TBD</td><td>No deliverable-specific implementation files are defined by the accessible sources.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Description</td><td>Source</td></tr>
+<tr><td>State/run report sections</td><td>Report-facing sections that reference immutable model states and analysis runs, including hashes, warnings, assumptions, diagnostics, source notes, and relevant result/report payload references.</td><td><code>_CONTEXT.md</code>; <code>docs/SPEC.md</code> section 9; <code>Dependencies.csv</code> rows DAG-002-E0861 and DAG-002-E0862</td></tr>
+<tr><td>Comparison report section</td><td>Report-facing section for deterministic model-state and/or analysis-run comparison records using stable IDs, mappings where required, units, diagnostics, and tolerance/profile references when available.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-073; <code>Dependencies.csv</code> rows DAG-002-E0863 through DAG-002-E0865</td></tr>
+<tr><td>Handoff manifest report section</td><td>Report-facing section that references handoff package manifest data, units, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags, and external-prover boundary metadata when available.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-074 and SOW-075; <code>Dependencies.csv</code> rows DAG-002-E0866 through DAG-002-E0868</td></tr>
+<tr><td>Integration surface</td><td>ASSUMPTION: this deliverable consumes report generator, audit manifest, report-section, result export, protected-content linter, redaction/export, state/run/comparison, and handoff records through schema-first service boundaries.</td><td><code>Dependencies.csv</code>; <code>_CONTEXT.md</code> Architecture Basis; exact API names are TBD.</td></tr>
+<tr><td>Test surface</td><td>TBD: expected tests should verify section assembly, boundary wording, protected-content avoidance, provenance/checksum preservation, unit metadata handling, and missing-data reporting.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-08; concrete test paths are TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, scope, objectives, architecture-basis injection, and package boundaries.</li>
+<li>- <code>_REFERENCES.md</code> - accessible governing reference list for this folder.</li>
+<li>- <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code> - approved DAG-006 local mirror and evidence surface.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - accepted revision 0.7 package, deliverable, objective, scope, and architecture-basis entries.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> - row DEL-08-06.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> - row SOW-024 and related source rows SOW-071 through SOW-075.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> - row DEL-08-06.</li>
+<li>- <code>docs/CONTRACT.md</code> - invariants for IP/data, professional authority, reports, units, rules, and agents.</li>
+<li>- <code>docs/SPEC.md</code> - section 4.3 analysis boundary, section 4.4 persistence/hash basis, and section 9 reporting and audit.</li>
+<li>- <code>docs/DIRECTIVE.md</code> - founding intent, non-negotiable product principles, scope, and stop rules.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> - public/private data and report boundary policy.</li>
+<li>- <code>docs/TYPES.md</code> - schema/object registry entries for report, report section, result export, audit manifest, checksum, states/runs, comparisons, and handoff-related references.</li>
+</ul></blockquote>
+<h3 id="clm-008-d-41-r5-t4-current-implementation">CLM-008 — D-41 R5 T4 current implementation</h3>
+<blockquote><h5 id="d-41-r5-t4-current-implementation">D-41 R5 T4 current implementation</h5>
+<table><tbody>
+<tr><td>Item</td><td>Current bounded state</td></tr>
+<tr><td>Application-service input</td><td>Canonical <code>project.run_history.model_state_records</code> and <code>analysis_run_records</code></td></tr>
+<tr><td>Preserved report context</td><td>Warnings, assumptions, limitations, solver context, hashes/references, analysis status, and provenance</td></tr>
+<tr><td>Mutations/execution</td><td>None; project mutation and solver execution are recorded false</td></tr>
+<tr><td>Authority boundary</td><td>No human approval, code-compliance, validation, release, or professional-reliance inference</td></tr>
+<tr><td>Held scope</td><td>External/non-JSON payload partitioning, rendered layout, concrete adapter/runtime hooks, and broader workflow integration</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-08-06-state-comparison-and-handoff-report-sections">CLM-009 — Specification: DEL-08-06 State, comparison, and handoff report sections</h3>
+<blockquote><h4 id="specification-del-08-06-state-comparison-and-handoff-report-sections">Specification: DEL-08-06 State, comparison, and handoff report sections</h4></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-06-DECL-001</code>.</p></blockquote>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable covers backend report sections for state/run records, deterministic comparison records, and handoff manifest records. The sections must support auditable calculation reports and preserve professional, IP, privacy, provenance, checksum, unit, and missing-data boundaries.</p>
+<p>This deliverable excludes final report styling/layout, GUI presentation, CLI runtime behavior, API transport, arbitrary project-file reading, solver-internal execution, protected-content linting implementation, private redaction/export control implementation, and any automatic professional approval or code-compliance status. These exclusions are source-grounded in <code>docs/SPEC.md</code> section 9 and the approved upstream dependency mirror.</p>
+<p>Implementation file paths, concrete API names, exact schema fragments, and dependency versions are TBD unless later resolved by human-approved implementation work.</p></blockquote>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-08-06-R1</td><td>The deliverable shall provide report-section behavior for model states, analysis runs, comparisons, and handoff manifests.</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row DEL-08-06</td><td>Tests or review evidence shall show all three anticipated artifact families are represented.</td></tr>
+<tr><td>DEL-08-06-R2</td><td>Report sections shall support SOW-024 content: inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations.</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-024; <code>docs/SPEC.md</code> section 9</td><td>Section fixtures or schema tests shall include fields or references for each SOW-024 content category, or explicit TBD diagnostics where unavailable.</td></tr>
+<tr><td>DEL-08-06-R3</td><td>Report sections shall preserve the professional boundary and shall not declare code compliance, certification, sealing, approval, authentication, endorsement, or professional reliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/SPEC.md</code> section 9; <code>docs/DIRECTIVE.md</code> sections 2.2 and 3</td><td>Boundary-wording tests or protected phrase checks shall reject automatic professional-approval claims.</td></tr>
+<tr><td>DEL-08-06-R4</td><td>Software-generated analysis statuses used by report sections shall not include <code>HUMAN_APPROVED_FOR_PROJECT</code> or equivalent automatic human approval/professional reliance labels.</td><td><code>docs/SPEC.md</code> sections 4.3 and 9; <code>docs/TYPES.md</code> companion schema notes</td><td>Status serialization tests shall verify only permitted software-generated status values are emitted.</td></tr>
+<tr><td>DEL-08-06-R5</td><td>Missing solve-required or rule-check-required values shall remain explicit findings with diagnostics and provenance, not hidden defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/SPEC.md</code> sections 4.3 and 9</td><td>Tests shall verify missing inputs produce explicit report-facing findings.</td></tr>
+<tr><td>DEL-08-06-R6</td><td>Numeric values included through result/report references shall carry unit and dimensional metadata or explicit diagnostics from source envelopes.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/SPEC.md</code> section 9</td><td>Unit/dimension validation tests shall reject unqualified numeric report values unless paired with diagnostics.</td></tr>
+<tr><td>DEL-08-06-R7</td><td>Report sections shall preserve stable references, checksums, source notes, privacy classification, review state, and provenance for input/report/result payloads where available.</td><td><code>docs/SPEC.md</code> sections 4.4 and 9; <code>_CONTEXT.md</code> Architecture Basis AB-00-04</td><td>Tests shall compare stable identifiers and checksum/provenance fields across source envelope and rendered section records.</td></tr>
+<tr><td>DEL-08-06-R8</td><td>Public report sections, templates, fixtures, and examples shall not copy protected standards text, protected tables, protected examples, proprietary formulas, proprietary engineering values, private project data, private rule-pack payloads, private library content, or real secrets.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1 and OPS-K-REPORT-2; <code>docs/SPEC.md</code> section 9; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3 and 7</td><td>Protected-content/provenance gates shall inspect configured public surfaces; human/legal review remains required when uncertain.</td></tr>
+<tr><td>DEL-08-06-R9</td><td>Report sections may reference private rule packs, libraries, owner requirements, and project values only by identifier, checksum, source note, privacy class, and review state when public/private boundaries require it.</td><td><code>docs/SPEC.md</code> section 9; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 6 and 7</td><td>Fixture review shall confirm private payload contents are not copied into public artifacts.</td></tr>
+<tr><td>DEL-08-06-R10</td><td>State/run report sections shall consume immutable model-state and analysis-run records through their stable record identities, hashes, warnings, assumptions, diagnostics, solver version, settings, units, load cases, results, rule/library refs, and result hashes where available.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-071 and SOW-072; <code>Dependencies.csv</code> rows DAG-002-E0861 and DAG-002-E0862</td><td>Integration tests shall use approved or invented fixtures with explicit references to state/run source records.</td></tr>
+<tr><td>DEL-08-06-R11</td><td>Comparison report sections shall preserve deterministic comparison semantics, including stable IDs, manual mappings where required, unit-normalized result deltas, tolerance/profile references, unmatched classifications, diagnostics, and settings where available.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-073 and rows DEL-14-03 through DEL-14-05; <code>Dependencies.csv</code> rows DAG-002-E0863 through DAG-002-E0865</td><td>Comparison fixture tests shall verify deterministic ordering and boundary wording; exact threshold policy is TBD.</td></tr>
+<tr><td>DEL-08-06-R12</td><td>Handoff manifest report sections shall preserve handoff package manifest data, model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags, and external-prover boundary metadata where available.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-074 and SOW-075; <code>Dependencies.csv</code> rows DAG-002-E0866 through DAG-002-E0868</td><td>Handoff fixture tests shall verify manifest references and unsupported-target/professional-boundary disclosures.</td></tr>
+<tr><td>DEL-08-06-R13</td><td>Report-section behavior shall remain behind schema-first service boundaries and shall not bypass governance, validation, diagnostics, privacy, protected-content, report, solver, rule, or human-acceptance boundaries.</td><td><code>_CONTEXT.md</code> Architecture Basis AB-00-02, AB-00-03, AB-00-06, AB-00-07; <code>docs/SPEC.md</code> sections 4.5 and 9</td><td>Architecture or module-boundary review shall verify the section builder depends on source envelopes/contracts, not on bypass paths.</td></tr>
+<tr><td>DEL-08-06-R14</td><td>Tests shall be layered and include report-relevant protected-content/provenance gates where applicable.</td><td><code>_CONTEXT.md</code> Architecture Basis AB-00-08; <code>docs/CONTRACT.md</code> enforcement map</td><td>Test-plan review shall identify Cargo/validation/protected-content gates or mark unavailable gates as TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-standards">CLM-013 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing basis</td><td>Status for this deliverable</td><td>Source</td></tr>
+<tr><td>JSON Schema 2020-12 contracts</td><td>Applicable as architecture basis; exact schema fragments for this deliverable are TBD.</td><td><code>_CONTEXT.md</code> Architecture Basis; <code>docs/TYPES.md</code> schema registry</td></tr>
+<tr><td>JCS-compatible canonical JSON hash basis</td><td>Applicable where JSON payloads are hashed; non-JSON/binary partitioning remains TBD.</td><td><code>_CONTEXT.md</code> Architecture Basis AB-00-04; <code>docs/SPEC.md</code> section 4.4</td></tr>
+<tr><td>Project invariant catalog</td><td>Applicable for IP/data, report, authority, unit, and agent constraints.</td><td><code>docs/CONTRACT.md</code></td></tr>
+<tr><td>Public/private report boundary policy</td><td>Applicable for public report sections and examples.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 7</td></tr>
+<tr><td>Protected standards or code-specific engineering standards text</td><td>Not accessible and not to be reproduced. Clause-level engineering requirements are TBD unless supplied through authorized user/private sources.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1; <code>docs/DIRECTIVE.md</code> section 4.2</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification topic</td><td>Minimum check</td><td>Evidence state</td></tr>
+<tr><td>Scope coverage</td><td>Confirm state/run, comparison, and handoff report-section artifacts exist or are explicitly represented in tests.</td><td>TBD</td></tr>
+<tr><td>SOW-024 content</td><td>Confirm inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations are represented.</td><td>TBD</td></tr>
+<tr><td>Professional boundary</td><td>Confirm generated wording cannot imply professional approval, certification, sealing, authentication, endorsement, code compliance, or reliance.</td><td>TBD</td></tr>
+<tr><td>IP/protected content</td><td>Confirm public sections/templates/fixtures are scanned or reviewed for protected/private content risk.</td><td>TBD</td></tr>
+<tr><td>Units and numeric values</td><td>Confirm numeric values carry unit/dimension metadata or diagnostics.</td><td>TBD</td></tr>
+<tr><td>Provenance/checksums</td><td>Confirm source notes, checksum refs, review state, privacy class, and stable refs survive assembly.</td><td>TBD</td></tr>
+<tr><td>Determinism</td><td>Confirm comparison and section ordering are deterministic for identical source envelopes.</td><td>TBD</td></tr>
+<tr><td>Missing data</td><td>Confirm missing source values become explicit findings, warnings, limitations, or unresolved TBDs.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Expected deliverable-local records and downstream artifacts:</p>
+<ul>
+<li>- State/run report sections.</li>
+<li>- Comparison report section.</li>
+<li>- Handoff manifest report section.</li>
+<li>- Tests or review notes proving boundary wording, SOW-024 coverage, deterministic assembly, provenance/checksum preservation, and protected-content avoidance.</li>
+<li>- Source notes that identify upstream record contracts consumed by the sections.</li>
+<li>- Any unresolved implementation/API/schema decisions recorded as TBD rather than inferred.</li>
+</ul></blockquote>
+<h3 id="clm-016-d-41-r5-t4-persisted-run-reporting-seam">CLM-016 — D-41 R5 T4 persisted-run reporting seam</h3>
+<blockquote><h5 id="d-41-r5-t4-persisted-run-reporting-seam">D-41 R5 T4 persisted-run reporting seam</h5>
+<p>The bounded <code>project.run_history</code> application-service handoff may assemble</p>
+<p>existing model-state and analysis-run records into backend report sections.</p>
+<p>It shall preserve warnings, unresolved assumptions, explicit limitations,</p>
+<p>solver context, provenance, and only the governed software analysis-status</p>
+<p>vocabulary. It shall not mutate the project, execute a solver, infer</p>
+<p><code>HUMAN_APPROVED_FOR_PROJECT</code> or <code>CODE_COMPLIANT</code>, redefine external/non-JSON</p>
+<p>payload partitioning, or imply rendered-report, runtime-adapter, or whole-</p>
+<p>workflow closure.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves stable record identities, source-envelope diagnostics, deterministic comparison mappings and tolerance references when available, handoff traceability, missing-data visibility, protected/private-content boundaries, and professional-authority limits while retaining unresolved implementation, schema, layout, and external-payload decisions as source-grounded TBDs.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-017-procedure-del-08-06-state-comparison-and-handoff-report-sections">CLM-017 — Procedure: DEL-08-06 State, comparison, and handoff report sections</h3>
+<blockquote><h4 id="procedure-del-08-06-state-comparison-and-handoff-report-sections">Procedure: DEL-08-06 State, comparison, and handoff report sections</h4></blockquote>
+<h3 id="clm-018-d-41-r5-t7-pdu-055-current-declaration">CLM-018 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-06-DECL-004</code>.</p></blockquote>
+<h3 id="clm-019-purpose">CLM-019 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define an operational procedure for producing and verifying the DEL-08-06 report-section artifacts without inventing implementation evidence, engineering values, standards text, or product code. This procedure is scoped to future execution of state/run, comparison, and handoff manifest report sections.</p></blockquote>
+<h3 id="clm-020-prerequisites">CLM-020 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Required state</td><td>Source</td></tr>
+<tr><td>Deliverable context</td><td><code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code>, and <code>Dependencies.csv</code> are available in the deliverable folder.</td><td>Local folder</td></tr>
+<tr><td>Report generator basis</td><td>Report sections integrate with report generator conventions.</td><td><code>Dependencies.csv</code> row DAG-002-E0855; <code>docs/SPEC.md</code> section 9</td></tr>
+<tr><td>Audit manifest/hash basis</td><td>Audit manifest and model-hash conventions are available.</td><td><code>Dependencies.csv</code> row DAG-002-E0856; <code>docs/SPEC.md</code> sections 4.4 and 9</td></tr>
+<tr><td>Warnings/provenance basis</td><td>Warnings, assumptions, provenance notes, limitations, unresolved TBDs, and human-review-needed findings are represented.</td><td><code>Dependencies.csv</code> row DAG-002-E0857; <code>docs/SPEC.md</code> section 9</td></tr>
+<tr><td>Result export basis</td><td>Result export envelopes are available for report consumption.</td><td><code>Dependencies.csv</code> row DAG-002-E0858; <code>docs/SPEC.md</code> section 9</td></tr>
+<tr><td>Protected-content controls</td><td>Protected-content linter controls and private redaction/export controls are available or explicitly marked TBD.</td><td><code>Dependencies.csv</code> rows DAG-002-E0859 and DAG-002-E0860</td></tr>
+<tr><td>State/run/comparison sources</td><td>Immutable model states, analysis runs, state comparisons, run comparisons, and comparison export contracts are available or explicitly marked TBD.</td><td><code>Dependencies.csv</code> rows DAG-002-E0861 through DAG-002-E0865</td></tr>
+<tr><td>Handoff sources</td><td>Handoff package manifests, export workflow records, and external-prover boundary metadata are available or explicitly marked TBD.</td><td><code>Dependencies.csv</code> rows DAG-002-E0866 through DAG-002-E0868</td></tr>
+<tr><td>Professional/IP boundary</td><td>Boundary wording and public/private content controls are applied.</td><td><code>docs/CONTRACT.md</code>; <code>docs/SPEC.md</code> section 9; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-steps">CLM-021 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity is DEL-08-06 and the package is PKG-08.</p>
+<p>2. Read the current source contracts for report generation, audit manifests, report sections, result exports, protected-content linting, state/run records, comparison records, handoff package manifests, export workflows, and external-prover metadata.</p>
+<p>3. Define the state/run report-section inputs as references to immutable model-state and analysis-run records. Include stable IDs, model/run basis, hashes, solver version stamps, settings, units, load cases, diagnostics, warnings, assumptions, rule/library references, result hashes, and source/provenance notes where available.</p>
+<p>4. Define the comparison report-section inputs as references to deterministic state/run comparison records. Include stable IDs, manual mappings where required, unmatched classifications, unit-normalized deltas, tolerance/profile references, diagnostics, settings, and source/provenance notes where available.</p>
+<p>5. Define the handoff manifest report-section inputs as references to handoff package records. Include model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags, export workflow records, and external-prover boundary metadata where available.</p>
+<p>6. For every field that carries an engineering value, confirm the value has unit/dimensional metadata, provenance, review state, privacy classification, and source envelope evidence where required. If evidence is absent, emit an explicit finding or TBD rather than a default.</p>
+<p>7. Apply professional-boundary wording. The generated sections may support human professional review but must not state or imply software-generated code compliance, approval, certification, sealing, authentication, endorsement, or professional reliance.</p>
+<p>8. Apply public/private and protected-content boundaries. Public sections, templates, examples, and fixtures must avoid protected standards text, protected tables, protected examples, proprietary formulas, proprietary engineering values, private project data, private rule-pack payloads, private library content, and real secrets.</p>
+<p>9. Preserve deterministic ordering and stable references so repeated generation from identical source envelopes produces repeatable output.</p>
+<p>10. Record unresolved implementation decisions as TBD. Current TBDs include concrete code paths, exact schema fragments, API names, report layout, final notice wording, release thresholds, and external transport/export details.</p></blockquote>
+<h3 id="clm-022-verification">CLM-022 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td><td>Evidence</td></tr>
+<tr><td>Scope completeness</td><td>State/run, comparison, and handoff report-section artifacts are represented.</td><td>Tests or review notes, TBD</td></tr>
+<tr><td>SOW-024 coverage</td><td>Inputs, sources, warnings, assumptions, results, rule-pack checksums, and limitations are present or explicitly marked TBD.</td><td>Tests or fixture review, TBD</td></tr>
+<tr><td>Boundary wording</td><td>No automatic professional approval, certification, sealing, authentication, endorsement, code-compliance, or reliance claim is emitted.</td><td>Boundary tests, TBD</td></tr>
+<tr><td>Missing-data behavior</td><td>Missing solve-required or rule-check-required values become explicit findings, warnings, limitations, unresolved TBDs, or human-review-needed findings.</td><td>Tests, TBD</td></tr>
+<tr><td>Unit/provenance behavior</td><td>Numeric values carry unit/dimensional metadata and provenance or explicit diagnostics.</td><td>Schema/unit tests, TBD</td></tr>
+<tr><td>Protected-content behavior</td><td>Public report surfaces avoid protected/private content and preserve only permitted references/checksums/source notes.</td><td>Protected-content/provenance gate, TBD</td></tr>
+<tr><td>Determinism</td><td>Repeated section generation from identical source envelopes is stable.</td><td>Snapshot or round-trip tests, TBD</td></tr>
+<tr><td>Dependency mirror</td><td>Approved DAG-002 rows in <code>Dependencies.csv</code> remain ACTIVE and unmodified unless a later human-approved reconciliation changes the mirror.</td><td>Local dependency validation and final report</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-records">CLM-023 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> for setup context.</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> for semantic lensing, not engineering authority.</li>
+<li>- <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code> as the approved DAG-006 local mirror/evidence surface.</li>
+<li>- Future implementation tests and review notes for section assembly, protected-content avoidance, professional-boundary wording, provenance/checksum preservation, deterministic output, and missing-data findings.</li>
+</ul></blockquote>
+<h3 id="clm-024-d-41-r5-t4-persisted-run-procedure">CLM-024 — D-41 R5 T4 persisted-run procedure</h3>
+<blockquote><h5 id="d-41-r5-t4-persisted-run-procedure">D-41 R5 T4 persisted-run procedure</h5>
+<p>1. Accept a canonical project persistence envelope.</p>
+<p>2. Read only embedded model-state and analysis-run records from</p>
+<p><code>project.run_history</code>.</p>
+<p>3. Assemble backend sections with the existing DEL-08-06 path.</p>
+<p>4. Verify warnings, assumptions, limitations, solver context, provenance, and</p>
+<p>permitted analysis statuses survive.</p>
+<p>5. Verify no project mutation, solver execution, human approval,</p>
+<p>code-compliance result, or external/non-JSON partition decision is emitted.</p>
+<p>6. Keep producer-side solver/rule/adapter bindings and rendered-report layout</p>
+<p>as explicit residuals.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, state/run/comparison/handoff coverage, SOW-024 report content, stable identities and hashes, units and provenance, deterministic ordering, missing-data findings, unsupported-target disclosures, protected-content and professional-authority boundaries, and every retained TBD or governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-025-guidance-del-08-06-state-comparison-and-handoff-report-sections">CLM-025 — Guidance: DEL-08-06 State, comparison, and handoff report sections</h3>
+<blockquote><h4 id="guidance-del-08-06-state-comparison-and-handoff-report-sections">Guidance: DEL-08-06 State, comparison, and handoff report sections</h4></blockquote>
+<h3 id="clm-026-d-41-r5-t7-pdu-055-current-declaration">CLM-026 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-06-DECL-003</code>.</p></blockquote>
+<h3 id="clm-027-purpose">CLM-027 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to make state/run records, deterministic comparisons, and handoff manifests visible in auditable calculation reports while preserving the project boundary that software output is decision support, not professional validation. The source basis is <code>_CONTEXT.md</code>, SOW-024, OBJ-007, OBJ-016, OBJ-017, OBJ-018, <code>docs/SPEC.md</code> section 9, and the local approved DAG-002 dependency mirror.</p></blockquote>
+<h3 id="clm-028-principles">CLM-028 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Report from records, not hidden state</td><td>Treat model states, analysis runs, comparisons, and handoff manifests as source records referenced by stable IDs, hashes, checksums, provenance, review state, and privacy classification where available.</td><td><code>docs/SPEC.md</code> section 9; <code>docs/TYPES.md</code>; <code>Dependencies.csv</code></td></tr>
+<tr><td>Keep missing data visible</td><td>Missing solve-required or rule-check-required values should become explicit findings, warnings, limitations, unresolved TBDs, or human-review-needed findings.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/SPEC.md</code> sections 4.3 and 9</td></tr>
+<tr><td>Do not turn reports into approval records</td><td>State/run, comparison, and handoff sections may support professional review workflows but must not claim certification, sealing, approval, authentication, endorsement, code compliance, or professional reliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/SPEC.md</code> sections 4.3 and 9</td></tr>
+<tr><td>Preserve source envelopes</td><td>Prefer references to source envelopes and manifests over copying private payloads or engineering values into public artifacts.</td><td><code>docs/SPEC.md</code> section 9; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 6 and 7</td></tr>
+<tr><td>Separate public examples from private data</td><td>Public fixtures should be original or invented. Private project values, private rule-pack payloads, private library content, protected standards text, and proprietary formulas should not be copied into public report artifacts.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2, 3, and 7; <code>docs/SPEC.md</code> section 9</td></tr>
+<tr><td>Treat handoff as traceability, not acceptance</td><td>Handoff manifests can support downstream modeling and professional validation workflows, but unsupported-target flags and external-prover metadata do not create automatic professional acceptance.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-074 and SOW-075; <code>Dependencies.csv</code> rows DAG-002-E0866 through DAG-002-E0868</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-considerations">CLM-029 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The report generator, audit manifest, warnings/provenance sections, result export, protected-content linter, private redaction/export controls, state/run records, comparison records, handoff package records, export workflow records, and external-prover metadata are all upstream evidence surfaces in <code>Dependencies.csv</code>. This setup pass preserves those edges as ACTIVE and does not reclassify them.</li>
+<li>- ASSUMPTION: the future implementation should assemble sections from schema-first records rather than from unstructured text scraping. This follows the architecture-basis injection and <code>docs/SPEC.md</code> section 9, but exact code interfaces are TBD.</li>
+<li>- Any comparison wording should remain diagnostic/audit-oriented. A deterministic comparison can show changes and deltas; it does not prove external validation or acceptance.</li>
+<li>- Any handoff wording should expose target mapping metadata and unsupported-target flags when available. It should not imply that a downstream external tool or human has approved the model.</li>
+<li>- Boundary notices should be stable enough for tests, but exact wording remains TBD until the professional-claims policy deliverable and report templates are accepted.</li>
+<li>- Protected-content linter output is review evidence only; a clean finding is not legal clearance or professional clearance.</li>
+</ul></blockquote>
+<h3 id="clm-030-trade-offs">CLM-030 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative direction</td></tr>
+<tr><td>Detail vs protected/private leakage</td><td>Prefer identifiers, checksums, source notes, review state, and privacy classification over copying formulas, tables, private values, or private payloads.</td></tr>
+<tr><td>Human readability vs machine traceability</td><td>Preserve stable structured fields first; rendered prose can summarize but should not drop provenance or warning semantics.</td></tr>
+<tr><td>Comparison completeness vs false authority</td><td>Present deterministic comparison findings and unresolved mappings without declaring acceptance, validation, or compliance.</td></tr>
+<tr><td>Handoff usefulness vs unsupported-target risk</td><td>Expose unsupported or approximate target behavior instead of hiding loss of fidelity.</td></tr>
+<tr><td>Early implementation speed vs report safety</td><td>Keep exact APIs and layout TBD until source contracts are available; do not infer product code from decomposition text alone.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-examples">CLM-031 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No authoritative examples are available in the accessible source set for this deliverable. Public examples or fixtures for later implementation should be invented or otherwise permitted, include provenance/review notes, and avoid protected standards text, protected tables, proprietary formulas, proprietary engineering values, private project data, private rule-pack payloads, private library content, and real secrets.</p></blockquote>
+<h3 id="clm-032-conflict-table-for-human-ruling">CLM-032 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>None</td><td>No source conflicts were identified during this P1/P2 setup pass.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-d-41-r5-t4-guidance">CLM-033 — D-41 R5 T4 guidance</h3>
+<blockquote><h5 id="d-41-r5-t4-guidance">D-41 R5 T4 guidance</h5>
+<p>Treat the persisted-run helper as a narrow read-side application-service</p>
+<p>binding. It proves that canonical records can reach backend report sections</p>
+<p>without dropping governed review context. It does not turn a stored record</p>
+<p>into an approval, select an external payload partition, render a report, or</p>
+<p>close solver/rule/adapter producer integrations.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-024 OBJ-007 OBJ-016 OBJ-017 OBJ-018</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

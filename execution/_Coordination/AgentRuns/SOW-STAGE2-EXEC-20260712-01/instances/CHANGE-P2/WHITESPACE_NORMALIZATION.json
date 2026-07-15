@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-change-whitespace-normalization/v1",
+  "verdict": "PASS",
+  "changes": [
+    {
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/CHANGE-P2/PRACTITIONER_HARNESS.junit.xml",
+      "reason": "append one terminal LF to new mutable CHANGE-owned JUnit evidence before freeze",
+      "before_sha256": "e4badf8b5a4b1e2b3c426accad5250780efc30c629e2e66c31fa9d390f17fea5",
+      "before_bytes": 37307,
+      "after_sha256": "6fa776ba6785a913b4c9bc7fddb781e94d13d0607a7f577e85f0c10c442bb19d",
+      "after_bytes": 37308
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/amendments/POST-I1-CLOSURE-RELEASE-CORRECTION-001.md",
+      "reason": "remove one extra terminal blank line from new mutable amendment before freeze",
+      "before_sha256": "b4d49d6990a14087d30bc1e1f7e3b071cb1dec45fc6ca1b1c25b8d5623afb947",
+      "before_bytes": 1177,
+      "after_sha256": "25f640fba46140e7b45196ffa90880329f78860b5cd60bf350c869e4fc45d148",
+      "after_bytes": 1176
+    }
+  ],
+  "accepted_upstream_bytes_changed": false,
+  "project_or_candidate_bytes_changed": false
+}

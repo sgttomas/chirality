@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 242,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "00ece42387a622e14b7435f1f2edb9126daef8c3edff4fdb919e9f54844d4d30"
+      },
+      "text": "The contract preserves upstream diagnostic class, severity, source, affected object, message, remediation and provenance when supplied; exposes missingness rather than defaulting it; protects private/protected content; and makes no certification, approval, sealing, authentication, or automatic-compliance claim.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-001",
+          "source_line": 363,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, all warning and missing-data classes, trace-field preservation, unit and provenance visibility, manifest references, protected-content controls and fallback review, prohibited-claim language, and every retained TBD or governed residual."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "00ece42387a622e14b7435f1f2edb9126daef8c3edff4fdb919e9f54844d4d30"
+  },
+  "tool_version": "1"
+}

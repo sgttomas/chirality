@@ -1,0 +1,14 @@
+{
+  "batches": 1,
+  "members_complete": 5,
+  "author_sessions": 1,
+  "verifier_sessions": 1,
+  "author_member_retries": 0,
+  "verifier_member_retries": 0,
+  "safe_mechanical_closeout_repairs": 3,
+  "semantic_repairs": 0,
+  "candidate_repairs": 0,
+  "project_repairs": 0,
+  "native_token_context_occupancy": "UNAVAILABLE_NOT_INFERRED",
+  "status": "COMPLETE"
+}

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="a9787c24286a41a34652e4be9a0a322ed4ee75006160ec0312de39a23b10348a">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-08-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>a9787c24286a41a34652e4be9a0a322ed4ee75006160ec0312de39a23b10348a</code>.</p>
+<h1 id="scope-of-work-del-08-02">Scope of Work — DEL-08-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-08-02</code> in service of project scope [SOW-039] and package objectives [OBJ-007, OBJ-012].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — An audit-manifest and model-identity contract covering canonical JSON model hashes, separate non-JSON asset hashes, solver and software versions, units, rule-pack checksums, provenance, warnings, and replay references is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-08-02-audit-manifest-and-model-hash">CLM-001 — Datasheet: DEL-08-02 Audit manifest and model hash</h3>
+<blockquote><h4 id="datasheet-del-08-02-audit-manifest-and-model-hash">Datasheet: DEL-08-02 Audit manifest and model hash</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-08-02</td></tr>
+<tr><td>Deliverable name</td><td>Audit manifest and model hash</td></tr>
+<tr><td>Package ID</td><td>PKG-08</td></tr>
+<tr><td>Package name</td><td>Reporting, Audit, and Reproducibility</td></tr>
+<tr><td>Deliverable type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope item</td><td>SOW-039</td></tr>
+<tr><td>Supported objectives</td><td>OBJ-007; OBJ-012</td></tr>
+<tr><td>Setup status</td><td>Draft setup artifact; not implementation</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Draft setup value</td></tr>
+<tr><td>Primary artifact family</td><td>Audit manifest and reproducibility metadata for OpenPipeStress runs.</td></tr>
+<tr><td>Hash basis for JSON payloads</td><td>Canonical JSON with JCS-compatible canonicalization. Source: <code>docs/_Registers/ScopeLedger.csv</code> row SOW-039; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2.</td></tr>
+<tr><td>Hash basis for non-JSON or binary assets</td><td>Manifest hashes recorded as separate asset entries. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2.</td></tr>
+<tr><td>Required reproducibility markers</td><td>Model hash, solver version, rule-pack checksum, and input manifest. Source: <code>docs/_Registers/Deliverables.csv</code> row DEL-08-02.</td></tr>
+<tr><td>Rule-pack boundary</td><td>Rule packs are user/private design-basis artifacts; public artifacts may reference ID, version, checksum, and source note without embedding protected formulas. Source: <code>docs/SPEC.md</code> sections 6 and 8; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 7.</td></tr>
+<tr><td>Professional boundary</td><td>The manifest supports review and reproducibility; it does not certify, seal, approve, or authenticate engineering work. Source: <code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/DIRECTIVE.md</code> section 3.</td></tr>
+<tr><td>Physical project container</td><td>TBD. The architecture basis says the physical package/container remains implementation-level TBD. Source: <code>_CONTEXT.md</code> Architecture Basis Injection.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- The setup artifact is constrained to document production only; no hashing code, schemas, or test files are implemented here.</li>
+<li>- The audit manifest must avoid private/protected payload inclusion by default. It may identify private assets by controlled references and checksums, but public templates must not embed protected standards text, proprietary formulas, private rule-pack payloads, or owner data.</li>
+<li>- Hashes must be deterministic for equivalent canonical input payloads. Solver version, rule-pack checksum, unit system, and manifest inputs are part of the reproducibility context.</li>
+<li>- Missing source, provenance, version, or rule-pack checksum information is a finding to expose, not a default to fill silently.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The future implementation surface is expected to include:</p>
+<table><tbody>
+<tr><td>Component</td><td>Purpose</td><td>Boundary</td></tr>
+<tr><td>Input manifest</td><td>Lists canonical model inputs, rule-pack references, unit basis, selected solver settings, and external asset references needed to reproduce a run.</td><td>Records references and provenance; does not copy protected/private payloads into public artifacts.</td></tr>
+<tr><td>Model hash</td><td>Stable digest over the canonical JSON representation of the model payload selected for hashing.</td><td>Uses JCS-compatible canonicalization; exact hashing API is implementation work, not this setup run.</td></tr>
+<tr><td>Solver version stamp</td><td>Captures solver/application version and deterministic settings relevant to replay.</td><td>Does not imply validation or professional approval.</td></tr>
+<tr><td>Rule-pack checksum capture</td><td>Records rule-pack identity, version, checksum, source notice, and redistribution status.</td><td>Rule-pack formulas and protected values remain user/private unless lawfully redistributable.</td></tr>
+<tr><td>Binary/non-JSON asset manifest</td><td>Records digest, media/type, source/provenance, and inclusion policy for assets not covered by canonical JSON hashing.</td><td>Physical project container remains TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, architecture basis IDs, and setup constraints.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> row DEL-08-02 for artifact and objective mapping.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> row SOW-039 for hash-basis acceptance notes.</li>
+<li>- <code>docs/SPEC.md</code> sections 6, 8, 9, and 11 for rule-pack, report, V&amp;V, and acceptance constraints.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 6 and 7 for private data and report-boundary rules.</li>
+<li>- <code>docs/CONTRACT.md</code> for OPS-K-IP, OPS-K-DATA, OPS-K-UNIT, OPS-K-RULE-3, OPS-K-PRIV, OPS-K-AUTH, and OPS-K-AGENT invariants.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-08-02-audit-manifest-and-model-hash">CLM-008 — Specification: DEL-08-02 Audit manifest and model hash</h3>
+<blockquote><h4 id="specification-del-08-02-audit-manifest-and-model-hash">Specification: DEL-08-02 Audit manifest and model hash</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-02-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines the setup specification for the audit manifest and model-hash feature slice. The future implementation shall capture reproducibility metadata needed to replay or professionally review an OpenPipeStress calculation package: model hash, input manifest, solver version stamp, rule-pack checksum, and referenced asset hashes.</p>
+<p>This setup run does not implement hashing code, tests, schemas, source files, or a physical project container. Those remain future implementation work under bounded Type 2 briefs.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-08-02-R1</td><td>The audit manifest shall identify the exact model input payload used for a solve/report run.</td><td><code>docs/_Registers/Deliverables.csv</code> row DEL-08-02; <code>docs/SPEC.md</code> section 8</td></tr>
+<tr><td>DEL-08-02-R2</td><td>JSON payload hashes shall be based on canonical JSON with JCS-compatible canonicalization.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-039; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2</td></tr>
+<tr><td>DEL-08-02-R3</td><td>Non-JSON and binary assets shall be represented through manifest asset hashes rather than folded into the JSON payload hash.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2</td></tr>
+<tr><td>DEL-08-02-R4</td><td>The manifest shall record software version and solver version sufficient to interpret deterministic result reproduction.</td><td><code>docs/SPEC.md</code> sections 4.5 and 8</td></tr>
+<tr><td>DEL-08-02-R5</td><td>The manifest shall record rule-pack name or ID, version, checksum, source notice, and redistribution status where a rule pack participates in a report/run.</td><td><code>docs/SPEC.md</code> sections 6 and 8; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 7</td></tr>
+<tr><td>DEL-08-02-R6</td><td>The manifest shall preserve unit-system and unit-aware model context so replay does not depend on hidden unit defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/SPEC.md</code> section 8</td></tr>
+<tr><td>DEL-08-02-R7</td><td>Missing provenance, version, checksum, or required manifest inputs shall be surfaced as warnings/findings, not silently defaulted.</td><td><code>docs/DIRECTIVE.md</code> sections 2.2 and 3; <code>docs/CONTRACT.md</code> OPS-K-DATA-2</td></tr>
+<tr><td>DEL-08-02-R8</td><td>Public manifest/report templates shall not embed protected standards text, protected tables, proprietary formulas, private rule-pack payloads, or private project data.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-IP-3, OPS-K-PRIV-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 3, 6, and 7</td></tr>
+<tr><td>DEL-08-02-R9</td><td>The manifest shall distinguish mechanics solved, user-rule checked, and human/professional acceptance states; it shall not claim code compliance or professional approval.</td><td><code>docs/TYPES.md</code> sections 4 and 8; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1</td></tr>
+<tr><td>DEL-08-02-R10</td><td>Hash and manifest tests shall verify deterministic stability, checksum changes on material input changes, binary asset manifest handling, and protected/private data exclusion behavior.</td><td><code>docs/VALIDATION_STRATEGY.md</code> sections 2 and 4; <code>docs/SPEC.md</code> section 9</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or basis</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>Canonical JSON / JCS-compatible canonicalization</td><td>JSON payload hash basis for model and manifest payloads.</td><td>Required by decomposition/register basis; exact library/API TBD.</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Public schema/interchange baseline for model/report-related contracts.</td><td>Architecture basis; schema files are outside this setup write scope.</td></tr>
+<tr><td>OpenPipeStress invariant catalog</td><td>Legal/data/professional boundary for public artifacts.</td><td>Binding project governance draft.</td></tr>
+</tbody></table>
+<p>No protected engineering code, standard clause text, commercial example, or proprietary rule content is used as an authority in this setup artifact.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Future implementation acceptance should include the following checks:</p>
+<table><tbody>
+<tr><td>Verification ID</td><td>Check</td><td>Expected result</td></tr>
+<tr><td>V-1</td><td>Hash the same canonical JSON model payload twice.</td><td>Identical digest and manifest metadata.</td></tr>
+<tr><td>V-2</td><td>Change a semantically relevant model input.</td><td>Model hash changes and the manifest identifies the changed payload basis.</td></tr>
+<tr><td>V-3</td><td>Reorder JSON object keys without changing data.</td><td>Model hash remains stable under canonicalization.</td></tr>
+<tr><td>V-4</td><td>Add or alter a binary/non-JSON asset entry.</td><td>Asset manifest digest changes without redefining the model JSON hash basis.</td></tr>
+<tr><td>V-5</td><td>Omit rule-pack checksum or source notice.</td><td>Manifest emits a missing-data/provenance finding.</td></tr>
+<tr><td>V-6</td><td>Include a private or protected payload candidate in a public template path.</td><td>Protected/private data guardrail blocks or flags the inclusion.</td></tr>
+<tr><td>V-7</td><td>Generate a report from a manifest-backed run.</td><td>Report includes version, manifest, hash/checksum, warnings, assumptions, and professional-boundary notice.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>This setup deliverable produces:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul>
+<p>Future implementation artifacts anticipated by the register are <code>audit manifest</code> and <code>hash tests</code>; they are not created in this setup session.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the explicit hash boundary and deterministic canonicalization basis, complete reproducibility metadata, missing-data findings, protected/private payload exclusion, and separation of computation identity from compliance or professional acceptance without selecting an unapproved library or container.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-08-02-audit-manifest-and-model-hash">CLM-015 — Procedure: DEL-08-02 Audit manifest and model hash</h3>
+<blockquote><h4 id="procedure-del-08-02-audit-manifest-and-model-hash">Procedure: DEL-08-02 Audit manifest and model hash</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-08-02-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure defines how the future audit-manifest feature should be produced and verified. In this setup session it is documentation only; no hashing code, schemas, source implementation, or tests are created.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<p>Before implementation work proceeds, the following inputs or upstream contracts should be available or explicitly marked <code>TBD</code>:</p>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Expected source</td><td>Reason</td></tr>
+<tr><td>Canonical model/persistence payload boundary</td><td>DEL-02-05 Project persistence and round-trip serialization</td><td>The model hash needs a defined canonical JSON payload boundary and migration/versioning posture.</td></tr>
+<tr><td>Unit-system and unit-bearing value conventions</td><td>DEL-02-02 Unit system and dimensional-analysis core contract</td><td>Reproducible model identity must not depend on implicit unit defaults.</td></tr>
+<tr><td>Rule-pack checksum and lifecycle fields</td><td>DEL-06-04 Private rule-pack lifecycle and checksum handling</td><td>The manifest records rule-pack identity/version/checksum/source status without copying private payloads.</td></tr>
+<tr><td>Solver/version and deterministic run metadata</td><td>DEL-10-05 Headless CLI and structured I/O analysis runner</td><td>Automated replay/report workflows need a consistent run envelope and version stamp.</td></tr>
+<tr><td>Report renderer integration point</td><td>DEL-08-01 Calculation report generator</td><td>Reports consume manifest fields for review and reproducibility.</td></tr>
+<tr><td>Result export contract</td><td>DEL-08-04 Result export format</td><td>Exported results should carry or reference manifest/hash metadata for regression and review.</td></tr>
+</tbody></table>
+<p>If any prerequisite is unavailable during future implementation, record the missing dependency as <code>TBD</code> or a warning rather than inventing a default.</p></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Define the manifest boundary for the run: model payload reference, unit system, solver/application version, rule-pack references, external asset references, warnings, assumptions, and professional-boundary notices.</p>
+<p>2. Canonicalize JSON payloads using the project-approved JCS-compatible basis before hashing.</p>
+<p>3. Record non-JSON and binary assets as manifest entries with digest, provenance, media/type, and inclusion policy.</p>
+<p>4. Capture rule-pack identity, version, checksum, source notice, and redistribution status without copying protected formulas or private values into public artifacts.</p>
+<p>5. Capture solver version and deterministic settings relevant to replay or regression comparison.</p>
+<p>6. Emit missing-input, missing-provenance, protected-content, or private-data warnings when manifest fields cannot be populated safely.</p>
+<p>7. Expose manifest and hash metadata to report generation and result export surfaces without claiming professional approval or code compliance.</p>
+<p>8. Verify deterministic behavior through hash/reproducibility tests in a later implementation brief.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>For this setup run, verification consists of:</p>
+<ul>
+<li>- the four production documents exist and preserve the default section roles;</li>
+<li>- <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist and remain lens artifacts, not engineering authorities;</li>
+<li>- <code>Dependencies.csv</code> validates against the v3.1 schema;</li>
+<li>- <code>_DEPENDENCIES.md</code> summarizes extracted dependency rows consistently;</li>
+<li>- <code>_STATUS.md</code> is <code>SEMANTIC_READY</code> only after the setup sequence succeeds;</li>
+<li>- no private/protected payloads or certification claims are introduced.</li>
+</ul>
+<p>For future implementation, run the hash determinism, manifest stability, protected-content, and report reproducibility tests described in <code>Specification.md</code>.</p></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>This setup sequence records:</p>
+<ul>
+<li>- document drafts in <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>;</li>
+<li>- semantic setup outputs in <code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code>;</li>
+<li>- dependency outputs in <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code>;</li>
+<li>- execution evidence in <code>_run_records/</code>;</li>
+<li>- lifecycle evidence in <code>_STATUS.md</code>.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, canonicalization and hash-boundary rules, deterministic-change behavior, asset-manifest handling, version/unit/provenance fields, protected/private data limits, professional-boundary language, and every retained TBD or governed residual.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-08-02-audit-manifest-and-model-hash">CLM-022 — Guidance: DEL-08-02 Audit manifest and model hash</h3>
+<blockquote><h4 id="guidance-del-08-02-audit-manifest-and-model-hash">Guidance: DEL-08-02 Audit manifest and model hash</h4></blockquote>
+<h3 id="clm-023-purpose">CLM-023 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The audit manifest is the bridge between a computed model run and a reviewable evidence package. It should let a reviewer determine which model payload, rule-pack reference, solver version, unit basis, warnings, and external assets were involved without treating the software output as professional approval.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Prefer deterministic identity over convenience. Equivalent JSON payloads should hash the same way after canonicalization; materially different inputs should produce different identifiers.</li>
+<li>- Keep the hash boundary explicit. JSON payloads use the canonical JSON/JCS-compatible basis; binary and other non-JSON assets use manifest entries with their own hashes.</li>
+<li>- Record references without leaking payloads. Rule-pack IDs, versions, checksums, source notices, and redistribution statuses are useful; protected formulas, private owner data, and copyrighted standard text do not belong in public artifacts.</li>
+<li>- Treat missing data as evidence. Missing provenance, checksum, solver version, or manifest inputs should be visible warnings/findings.</li>
+<li>- Preserve the professional boundary. A manifest can support replay and review; it cannot certify code compliance, seal a calculation, or replace competent engineering review.</li>
+</ul></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Canonicalization</td><td>The canonicalization basis is selected at the architecture/decomposition level. This deliverable should not choose a physical project container or hashing library without a later implementation brief or human decision.</td></tr>
+<tr><td>Units</td><td>The manifest should make the unit system and unit-bearing values reproducible enough that replay does not depend on implicit defaults.</td></tr>
+<tr><td>Rule packs</td><td>Rule-pack checksum capture should reference the user/private artifact without copying protected rule text or proprietary values into public outputs.</td></tr>
+<tr><td>Solver version</td><td>Version stamping should be granular enough to explain deterministic replay and regression comparison. Exact versioning format remains implementation work.</td></tr>
+<tr><td>Binary assets</td><td>Non-JSON assets should be individually addressed in the manifest with digest and provenance fields, because the physical project container is still TBD.</td></tr>
+<tr><td>Reports</td><td>Report generation should consume the manifest so report reproducibility and protected-content linting can be tested.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Choice</td><td>Benefit</td><td>Risk / open item</td></tr>
+<tr><td>Hash only canonical JSON payloads</td><td>Stable digest under key ordering and formatting changes.</td><td>Requires a strict canonicalization contract and tests.</td></tr>
+<tr><td>Include binary assets by manifest entry</td><td>Keeps non-JSON handling explicit and container-independent.</td><td>Requires clear asset inclusion/exclusion policy in future implementation.</td></tr>
+<tr><td>Record private rule-pack references instead of payloads</td><td>Protects user/proprietary content while preserving reproducibility metadata.</td><td>Replay may require private artifacts that cannot be shared publicly.</td></tr>
+<tr><td>Surface missing fields as warnings</td><td>Avoids silent defaults and supports professional review.</td><td>Review workflows must decide which missing fields are blockers.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No concrete engineering model, code-specific rule, material allowable, SIF/flexibility value, protected standard example, or private project payload is included in this setup artifact.</p>
+<p>Illustrative manifest slots, without values, are:</p>
+<ul>
+<li>- <code>model_hash</code></li>
+<li>- <code>canonicalization_basis</code></li>
+<li>- <code>solver_version</code></li>
+<li>- <code>unit_system</code></li>
+<li>- <code>rule_pack_refs[]</code></li>
+<li>- <code>input_payload_refs[]</code></li>
+<li>- <code>asset_manifest[]</code></li>
+<li>- <code>warnings[]</code></li>
+<li>- <code>professional_boundary_notice</code></li>
+</ul></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in setup pass.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-039 OBJ-007 OBJ-012</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

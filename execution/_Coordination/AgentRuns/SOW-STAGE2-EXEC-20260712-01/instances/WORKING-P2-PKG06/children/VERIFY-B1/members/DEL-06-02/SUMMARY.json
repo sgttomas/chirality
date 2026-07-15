@@ -1,0 +1,29 @@
+{
+  "candidate_hashes": {
+    "clean": "b439df6dab8cadf7c3784589becb85bf75d32d26e3f7f71446b6cc7417d8adc9",
+    "evidence": "70708249bd899bfdf38ab98a2e16713d4d3c3ec27c006aab96af4b2b46ab46fd",
+    "report": "54448721280354cfb79f91b0e355c1143c1a5381c597ef6a9e9af85eb91b6b4f"
+  },
+  "clean_finalization": "PASS",
+  "contamination": "NONE",
+  "deliverable_id": "DEL-06-02",
+  "drift": "NONE",
+  "duration_seconds": 0.780758,
+  "execution_substrate": "PASS",
+  "fail_closed_probes": 7,
+  "failures": 0,
+  "mappings": 35,
+  "omission": "NONE",
+  "preservation_containment": "PASS",
+  "project_content": "PASS",
+  "repairs": 0,
+  "retries": 0,
+  "schema": "PASS",
+  "sequence": 2,
+  "source_lines": 301,
+  "unknowns": [],
+  "unresolved": [],
+  "verdict": "PASS_UNCHANGED",
+  "waivers": [],
+  "wrong_ref_detection": "PASS"
+}

@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 291
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the accepted primitive-load mechanics, unit, provenance, diagnostic, and rule-separation boundaries, including explicit missing-input findings, caller-supplied equivalent-static bases, and unresolved production policies without inventing code factors, combinations, allowables, defaults, or professional approval.",
+    "OUT-001": "A primitive-load-case contract covering explicit weight, pressure, thermal, imposed-displacement, hydrotest, wind, seismic, and occasional mechanics categories, unit-aware preparation, load-case records, diagnostics, and deterministic solver-boundary contributions is produced for the declared scope and objective.",
+    "VER-001": "Validate the contract and review source parity, category and record coverage, unit/provenance metadata, preparation and solver-vector interfaces, deterministic findings, protected-content and professional boundaries, and every surviving governed residual."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

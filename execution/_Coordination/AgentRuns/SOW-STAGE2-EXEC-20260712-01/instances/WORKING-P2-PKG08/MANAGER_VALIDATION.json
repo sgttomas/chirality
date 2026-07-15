@@ -1,0 +1,15 @@
+{
+  "author_b1_manifest_sha256": "d75f2e5f5b76d57c75edd9f7ee675f72cc60d0825cc5d6384d2bfc787b725af1",
+  "author_b2_manifest_sha256": "4740a4fbc08b9f0d14c799a69b6d5f8f3e116412e620941dfa2e90f87ce69f5f",
+  "candidate_writes_by_verifiers": 0,
+  "mappings": 186,
+  "members": 6,
+  "project_writes": 0,
+  "replacement_rows": 30,
+  "rollback_rows": 30,
+  "simulations_pass": 6,
+  "source_lines": 1789,
+  "status": "PASS",
+  "verifier_b1_manifest_sha256": "0b5afd6cc2ae5635e82354731b68c16fc90ec093c84cf46a78909652eddc459d",
+  "verifier_b2_manifest_sha256": "51682f3593a3495cbc0065721aadc79321f813009aada8d62a0a0152e5da4442"
+}
