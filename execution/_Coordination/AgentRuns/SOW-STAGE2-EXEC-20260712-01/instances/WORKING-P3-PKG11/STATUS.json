@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "WORKING-P3-PKG11",
+  "package_id": "PKG-11",
+  "status": "PASS_REBOUND",
+  "members_complete": 5,
+  "mappings": 159,
+  "source_lines": 1588,
+  "author": "PASS",
+  "verifier": "PASS_UNCHANGED",
+  "project_writes": 0,
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "rebound": {
+    "amendment": "amendments/WORKING-P3-PKG11/BRIEF_V2.md",
+    "author_manifest_old": "75179ec225459e300095848e1cfd6b949589911fa8780ebf9b10c41c6108218d",
+    "author_manifest_new": "a943cc42d4e5090a10bc03e1a3b80f90f924d329442051f7f4f597499b3a673d",
+    "removed_stale_rows": 2
+  },
+  "next_owner": "RECONCILIATION"
+}

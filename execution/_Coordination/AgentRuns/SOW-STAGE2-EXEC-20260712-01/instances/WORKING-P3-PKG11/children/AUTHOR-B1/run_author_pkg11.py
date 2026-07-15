@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""Adapt the accepted PKG-10 batch-author harness to frozen PKG-11."""
+import re
+from pathlib import Path
+
+root = Path(__file__).resolve().parents[8]
+template = root / "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P2-PKG09/children/AUTHOR-B1/run_author.py"
+source = template.read_text(encoding="utf-8")
+source = source.replace("WORKING-P2-PKG09", "WORKING-P3-PKG11")
+source = source.replace("candidates/W_P2/PIP-PKG09", "candidates/W_P3/PIP-PKG11")
+source = source.replace("snapshots/W_P2/preflight/P2_MANIFEST.tsv", "snapshots/W_P3/preflight/P3_MANIFEST.tsv")
+source = source.replace("eaad463c0d481f6f1654e6adb5ee718f566176e9", "4d153302c3c4cd42578936db160c2bac1270225a")
+source = source.replace('DIDS=[f"DEL-09-{n:02d}" for n in range(1,6)]', 'DIDS=[f"DEL-11-{n:02d}" for n in range(1,6)]')
+source = source.replace('"--package-id","PKG-09"', '"--package-id","PKG-11"')
+source = source.replace("assert total_lines==total_covered==1357", "assert total_lines==total_covered==1588")
+seeds = '''SEEDS={
+"DEL-11-01":("A user-guide skeleton contract for safe installation, model creation, solve, result review, troubleshooting, and professional-responsibility navigation is produced.","The contract preserves the source-defined guide structure, current implementation declarations, unit and missing-data visibility, diagnostics and result interpretation boundaries, invented-example posture, protected/private-data controls, accessibility intent, visible unresolved documentation decisions, and the prohibition on treating software output as professional approval or code compliance.","Validate the contract and review source parity, user-journey and guide-structure coverage, current-versus-planned declarations, units and diagnostics, protected/private-data and accessibility controls, retained conflicts and TBDs, and professional-responsibility limits."),
+"DEL-11-02":("A developer-guide contract for governed solver and rule-pack extension, testing, diagnostics, provenance, and integration boundaries is produced.","The contract preserves architecture and extension-point descriptions, schema and unit invariants, deterministic test and benchmark expectations, rule-pack provenance and protected-content boundaries, diagnostics and failure behavior, current implementation evidence, visible unresolved interfaces, and the separation of software contribution evidence from engineering approval.","Validate the contract and review source parity, solver and rule-pack extension coverage, architecture and schema boundaries, units/provenance/protected-content controls, deterministic tests and diagnostics, retained interface TBDs, and professional-authority limits."),
+"DEL-11-03":("A theory-notes contract tracing classical through modern centerline-analysis concepts, assumptions, applicability, limitations, and evidence boundaries is produced.","The contract preserves the source-defined conceptual progression, coordinate and unit conventions, model assumptions and limitations, source-provenance controls, distinctions among explanation, implementation, verification, validation, and professional reliance, visible unresolved technical questions, and the ban on presenting unverified extracted equations or narrative as authoritative design basis.","Validate the contract and review source parity, classical-to-modern topic coverage, assumptions and limitations, coordinate/unit conventions, source provenance and equation reliability controls, verification-versus-validation boundaries, retained conflicts and TBDs, and non-reliance limits."),
+"DEL-11-04":("A contract for invented educational example models that demonstrate governed workflows without importing protected project truth or implying design validity is produced.","The contract preserves the source-defined example families, synthetic-data and provenance requirements, units and assumptions, expected diagnostics and learning outcomes, reproducibility and verification evidence, protected/private-data exclusions, non-reliance notice, visible conflicts and TBDs, and separation from benchmark, code-compliance, certification, or professional-approval claims.","Validate the contract and review source parity, example-family and learning-outcome coverage, invented-data provenance, unit/assumption/diagnostic visibility, reproducibility evidence, protected/private-data boundaries, retained conflicts and TBDs, and non-reliance limits."),
+"DEL-11-05":("A contributor tutorial and onboarding contract for safe repository setup, bounded changes, tests, evidence, review, and governance-aware contribution is produced.","The contract preserves the source-defined contributor path, architecture-basis handling, schema and unit invariants, deterministic checks, protected/private-data and licensing boundaries, documentation and review records, safe-versus-unsafe examples, visible unresolved onboarding decisions, and the distinction between contribution acceptance and professional engineering approval.","Validate the contract and review source parity, onboarding-step and contributor-path coverage, architecture and invariant handling, test/evidence/review expectations, protected/private-data and licensing controls, retained conflicts and TBDs, and professional-responsibility limits.")}
+'''
+source, count = re.subn(r"SEEDS=\{.*?\}\n\n(?=def sha)", seeds + "\n", source, flags=re.S)
+assert count == 1
+for forbidden in ("DEL-09-", "PKG-09", "W_P2/PIP-PKG09", "P2_MANIFEST.tsv", "WORKING-P2-PKG09"):
+    assert forbidden not in source, forbidden
+compile(source, str(template), "exec")
+exec(compile(source, str(template), "exec"), {"__name__": "__main__"})

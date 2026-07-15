@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="c71fa0a2749ae82e13c350980b65af676efc0f208c1fd3939747d472d7255e91">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-11-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>c71fa0a2749ae82e13c350980b65af676efc0f208c1fd3939747d472d7255e91</code>.</p>
+<h1 id="scope-of-work-del-11-02">Scope of Work — DEL-11-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-11-02</code> in service of project scope [SOW-033] and package objectives [OBJ-001, OBJ-002].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A developer-guide contract for governed solver and rule-pack extension, testing, diagnostics, provenance, and integration boundaries is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-11-02-developer-guide-for-solver-and-rule-packs">CLM-001 — Datasheet: DEL-11-02 Developer guide for solver and rule packs</h3>
+<blockquote><h4 id="datasheet-del-11-02-developer-guide-for-solver-and-rule-packs">Datasheet: DEL-11-02 Developer guide for solver and rule packs</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-11-02</td></tr>
+<tr><td>Package ID</td><td>PKG-11</td></tr>
+<tr><td>Package</td><td>Documentation, Examples, and Education</td></tr>
+<tr><td>Type</td><td>DOC_UPDATE</td></tr>
+<tr><td>Primary anticipated artifact</td><td><code>docs/developer_guide/index.md</code></td></tr>
+<tr><td>Setup artifact location</td><td><code>execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/</code></td></tr>
+<tr><td>Scope item</td><td>SOW-033</td></tr>
+<tr><td>Objectives</td><td>OBJ-001, OBJ-002</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Current setup status</td><td>Prepared for semantic setup and dependency extraction</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Setup value</td></tr>
+<tr><td>Documentation audience</td><td>Solver contributors, rule-pack contributors, reviewers, and maintainers.</td></tr>
+<tr><td>Guide subject</td><td>Developer-facing explanation of solver architecture, rule-pack schema expectations, test discipline, and contribution boundaries.</td></tr>
+<tr><td>Architecture basis</td><td>AB-00-01, AB-00-02, AB-00-06, AB-00-07, AB-00-08 from SOFTWARE_DECOMP revision 0.7.</td></tr>
+<tr><td>Runtime baseline referenced</td><td>Rust core/application services; schema-first command/query/job result envelopes; JSON Schema 2020-12; Cargo/Vitest/Playwright/validation/protected-content gates where applicable.</td></tr>
+<tr><td>Solver boundary</td><td>The guide must present the solver as open mechanics for a 3D centerline/frame model, not as a code-compliance authority.</td></tr>
+<tr><td>Rule-pack boundary</td><td>The guide must present rule packs as user-supplied/private design-basis artifacts with provenance, checksums, and redistribution status.</td></tr>
+<tr><td>Contribution boundary</td><td>Contributors may improve mechanics, schemas, tests, docs, and permissively sourced/invented examples; they must not add protected standards data, private project data, or misleading approval claims.</td></tr>
+<tr><td>Professional boundary</td><td>Software output and agent artifacts are drafts/decision support until accepted by human review; they do not certify, seal, approve, authenticate, or declare engineering compliance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Requirement for this deliverable</td></tr>
+<tr><td>Protected content</td><td>Do not copy standards-body text, tables, examples, protected formulas, protected dimensional tables, material allowables, SIF/flexibility tables, or proprietary commercial data.</td></tr>
+<tr><td>Examples</td><td>Any example shown in the future guide must be invented, non-code, and marked as educational only.</td></tr>
+<tr><td>Missing values</td><td>Unknown implementation details, engineering values, tolerances, expression grammar choices, numerical solver choices, and CI thresholds remain <code>TBD</code> unless a human-approved source resolves them.</td></tr>
+<tr><td>Unit handling</td><td>Guide requirements must reinforce unit-aware model data, rule expressions, imports, exports, diagnostics, and tests.</td></tr>
+<tr><td>Diagnostics</td><td>Guide requirements must use structured diagnostics and result-envelope language without implying compliance approval.</td></tr>
+<tr><td>No-bypass baseline</td><td>Plugins, adapters, rule-pack tooling, and public APIs cannot bypass units, provenance, diagnostics, sandboxing, report controls, or data-boundary checks.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The future developer guide should be organized around these content groups:</p>
+<table><tbody>
+<tr><td>Content group</td><td>Required coverage</td></tr>
+<tr><td>Architecture map</td><td>Layer responsibilities for GUI/application services/domain core/solver/rules/reports/adapters, with no-bypass constraints.</td></tr>
+<tr><td>Solver architecture</td><td>Centerline/frame model, six degree-of-freedom node model, straight elements, component interfaces, loads, stress recovery, nonlinear support status, deterministic diagnostics, and test obligations.</td></tr>
+<tr><td>Rule-pack architecture</td><td>Schema metadata, required inputs, user-supplied variables, checks, provenance, redistribution status, checksum handling, sandboxing, unit checks, and incomplete-input behavior.</td></tr>
+<tr><td>Test discipline</td><td>Unit tests, schema tests, solver benchmarks, stress recovery regression, nonlinear convergence traces, rule-pack evaluator tests, report reproducibility tests, protected-content/provenance gates, and review evidence.</td></tr>
+<tr><td>Contribution boundaries</td><td>What contributors may add, what must be quarantined, how to label assumptions/TBDs, and when to escalate to human/legal/professional review.</td></tr>
+<tr><td>Review and acceptance</td><td>How developer changes move from draft evidence through review without claiming engineering reliance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Source</td><td>Use</td></tr>
+<tr><td><code>INIT.md</code></td><td>Bootstrap boundaries: open mechanics, private standards data, rule checks vs professional approval, centerline analysis vs local FEA.</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>TASK dispatch boundaries and documentation package role.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Founding intent, stop rules, non-negotiable product principles.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Invariants for IP, data, rule packs, units, privacy, authority, and agent boundaries.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Canonical statuses, terms, provenance labels, and domain-object vocabulary.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Architecture, solver, rule-pack, report, and V&amp;V baseline for guide content.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data rules and quarantine behavior.</td></tr>
+<tr><td><code>docs/VALIDATION_STRATEGY.md</code></td><td>Verification and validation families and release gate expectations.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>Scope, objectives, package context, architecture basis, and open issues.</td></tr>
+<tr><td><code>docs/_Registers/Deliverables.csv</code></td><td>DEL-11-02 identity and anticipated artifact.</td></tr>
+<tr><td><code>docs/_Registers/ScopeLedger.csv</code></td><td>SOW-033 scope mapping and no-protected-examples note.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-11-02-developer-guide-for-solver-and-rule-packs">CLM-008 — Specification: DEL-11-02 Developer guide for solver and rule packs</h3>
+<blockquote><h4 id="specification-del-11-02-developer-guide-for-solver-and-rule-packs">Specification: DEL-11-02 Developer guide for solver and rule packs</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-02-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines setup evidence for a future developer guide covering solver architecture, rule-pack schema expectations, test discipline, and contribution boundaries for OpenPipeStress.</p>
+<p>This setup pass does not edit <code>docs/developer_guide/index.md</code>, create examples, implement source code, define protected code rules, select a solver numerical library, select a rule expression grammar, update repository-level documentation, or move artifacts to <code>ISSUED</code>.</p>
+<p>The guide is documentation for contributors. It must help developers inspect and extend the open mechanics and rule-pack infrastructure while preserving the boundary between public mechanics and user-supplied/protected code data.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Evidence basis</td><td>Verification approach</td></tr>
+<tr><td>REQ-11-02-001</td><td>The future developer guide shall explain the layered architecture: GUI/application services/domain core/solver/loads/stress/rules/reports/adapters, with layer responsibilities and no-bypass adapter constraints.</td><td>AB-00-02; AB-00-07; <code>docs/SPEC.md</code> section 1</td><td>Documentation review against architecture basis rows.</td></tr>
+<tr><td>REQ-11-02-002</td><td>The future guide shall describe the solver as a 3D centerline/frame mechanics engine with six degree-of-freedom nodes and deterministic result behavior.</td><td>SOW-005; <code>docs/SPEC.md</code> section 4; OPS-K-MECH-1</td><td>Review confirms wording does not imply solid-model default or code compliance.</td></tr>
+<tr><td>REQ-11-02-003</td><td>The future guide shall distinguish solver mechanics from user-rule checking and professional approval.</td><td>OPS-K-MECH-2; OPS-K-AUTH-1; <code>docs/TYPES.md</code> analysis statuses</td><td>Status wording review.</td></tr>
+<tr><td>REQ-11-02-004</td><td>The future guide shall document that code-specific load combinations, code formulas, allowables, SIF/flexibility factors, and protected dimensional values are user-supplied/private or lawfully imported, not public defaults.</td><td>OPS-K-IP-1; OPS-K-DATA-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Protected-content and data-boundary review.</td></tr>
+<tr><td>REQ-11-02-005</td><td>The future guide shall describe rule-pack schema expectations: identity, version, source notice, redistribution status, checksum, required inputs, variables, checks, and report notice.</td><td><code>docs/SPEC.md</code> section 6; OPS-K-RULE-3</td><td>Documentation review against rule-pack schema baseline.</td></tr>
+<tr><td>REQ-11-02-006</td><td>The future guide shall describe the evaluator boundary as sandboxed, unit-aware, deterministic, and incapable of arbitrary code execution.</td><td>OPS-K-RULE-2; OPS-K-UNIT-1; <code>docs/SPEC.md</code> section 6</td><td>Rule-engine architecture review.</td></tr>
+<tr><td>REQ-11-02-007</td><td>The future guide shall require unit-aware data flow across solver inputs, rule-pack variables, imports, exports, reports, and tests.</td><td>OPS-K-UNIT-1; SOW-025</td><td>Unit discipline checklist in guide review.</td></tr>
+<tr><td>REQ-11-02-008</td><td>The future guide shall explain structured diagnostics and result envelopes for solve-blocking, rule-check-blocking, provenance, assumptions, nonlinear behavior, and IP-boundary warnings.</td><td>AB-00-06; <code>docs/SPEC.md</code> section 7</td><td>Diagnostic terminology review.</td></tr>
+<tr><td>REQ-11-02-009</td><td>The future guide shall define test discipline for solver, load/stress, nonlinear supports, rule packs, reports, protected-content/provenance gates, and regression evidence.</td><td>AB-00-08; <code>docs/VALIDATION_STRATEGY.md</code>; OPS-K-SOLVER-1</td><td>Test-section review against validation strategy.</td></tr>
+<tr><td>REQ-11-02-010</td><td>The future guide shall explain contributor boundaries: no protected standards text/tables/figures/examples, no private project data, provenance required for public data, and quarantine/escalation for suspected protected content.</td><td>OPS-K-IP-1; OPS-K-IP-2; OPS-K-IP-3; OPS-K-PRIV-1</td><td>Contribution-boundary review.</td></tr>
+<tr><td>REQ-11-02-011</td><td>The future guide shall avoid protected code examples, protected formulas, proprietary commercial examples, or invented values that could be mistaken for design guidance.</td><td>SOW-033; OPS-K-RULE-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Protected-content lint plus human review.</td></tr>
+<tr><td>REQ-11-02-012</td><td>The future guide shall mark unresolved implementation details as <code>TBD</code> rather than choosing a dependency version, numerical library, expression grammar, CI threshold, or physical project package format without human approval.</td><td>SOFTWARE_DECOMP section 8.2; OPS-K-AGENT-1</td><td>TBD scan and human-ruling review.</td></tr>
+<tr><td>REQ-11-02-013</td><td>The future guide shall state that agent outputs, setup artifacts, generated examples, and software results remain drafts or decision support until accepted by appropriate human review.</td><td>OPS-K-AGENT-4; OPS-K-AUTH-1</td><td>Professional-boundary wording review.</td></tr>
+<tr><td>REQ-11-02-014</td><td>This setup deliverable shall keep all writes within the DEL-11-02 execution folder and shall not edit the final <code>docs/developer_guide/index.md</code> artifact.</td><td>Human brief write scope</td><td>Git path review.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or policy source</td><td>Use in this setup evidence</td></tr>
+<tr><td>OpenPipeStress CONTRACT</td><td>Governs IP, data, privacy, rule-pack, unit, professional-authority, and agent-output constraints.</td></tr>
+<tr><td>OpenPipeStress SPEC</td><td>Provides current architecture, solver, rule-pack, GUI-warning, report, and V&amp;V baseline for developer-guide requirements.</td></tr>
+<tr><td>SOFTWARE_DECOMP revision 0.7</td><td>Provides package/deliverable scope, architecture basis injection, objectives, and remaining <code>TBD</code> decisions.</td></tr>
+<tr><td>IP and Data Boundary Policy</td><td>Governs public/private content rules, provenance, and quarantine behavior.</td></tr>
+<tr><td>Validation Strategy</td><td>Governs test families and release-quality expectations to describe in the guide.</td></tr>
+<tr><td>External engineering standards</td><td>May be referenced as user-owned/private design bases; protected text, tables, examples, formulas, and values are not public guide content.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Future guide review should include:</p>
+<ul>
+<li>- Confirm the guide covers solver architecture, rule-pack schema, test discipline, and contribution boundaries.</li>
+<li>- Confirm the guide preserves the distinction among mechanics solved, user-rule checked, and human-approved states.</li>
+<li>- Confirm no public guide text contains protected standards text, protected examples, code-derived formulas, protected tables, proprietary vendor data, or private project data.</li>
+<li>- Confirm rule-pack examples, if later added, are invented and clearly non-code.</li>
+<li>- Confirm the guide explains unit-aware and provenance-aware contribution requirements.</li>
+<li>- Confirm test sections align with validation strategy families and AB-00-08.</li>
+<li>- Confirm no unresolved implementation detail is silently selected; unresolved items remain <code>TBD</code>.</li>
+<li>- Confirm the anticipated artifact path remains outside this setup write scope until a later authorized session edits it.</li>
+</ul></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Expected future product artifact:</p>
+<ul>
+<li>- <code>docs/developer_guide/index.md</code></li>
+</ul>
+<p>Required supporting evidence for this setup deliverable:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves architecture and extension-point descriptions, schema and unit invariants, deterministic test and benchmark expectations, rule-pack provenance and protected-content boundaries, diagnostics and failure behavior, current implementation evidence, visible unresolved interfaces, and the separation of software contribution evidence from engineering approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-11-02-developer-guide-for-solver-and-rule-packs">CLM-015 — Procedure: DEL-11-02 Developer guide for solver and rule packs</h3>
+<blockquote><h4 id="procedure-del-11-02-developer-guide-for-solver-and-rule-packs">Procedure: DEL-11-02 Developer guide for solver and rule packs</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-02-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure defines how a future authorized session should produce or refresh the developer guide artifact for solver and rule-pack contributors while preserving OpenPipeStress architecture, IP, data, unit, test, and professional-responsibility boundaries.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source or status</td></tr>
+<tr><td>Sealed DEL-11-02 brief and explicit write scope</td><td>Required before editing the final guide artifact.</td></tr>
+<tr><td>Current decomposition and registers</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, <code>docs/_Registers/Deliverables.csv</code>, <code>docs/_Registers/ScopeLedger.csv</code>.</td></tr>
+<tr><td>Governing invariants</td><td><code>docs/CONTRACT.md</code>, especially IP, data, unit, rule-pack, privacy, authority, and agent invariants.</td></tr>
+<tr><td>Architecture basis</td><td>AB-00-01, AB-00-02, AB-00-06, AB-00-07, AB-00-08.</td></tr>
+<tr><td>Source references</td><td><code>INIT.md</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/TYPES.md</code>, <code>docs/SPEC.md</code>, <code>docs/IP_AND_DATA_BOUNDARY.md</code>, <code>docs/VALIDATION_STRATEGY.md</code>, and workflow docs.</td></tr>
+<tr><td>Human authority for unresolved decisions</td><td>Required for license/contributor certification, solver numerical library, rule expression grammar, dependency versions, CI thresholds, and other <code>TBD</code> decisions.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the active write scope.</p>
+<ul>
+<li>- For this setup session, do not edit <code>docs/developer_guide/index.md</code>.</li>
+<li>- For a future guide-authoring session, verify the human explicitly authorizes that path.</li>
+</ul>
+<p>2. Build the guide outline from the required content groups.</p>
+<ul>
+<li>- Architecture map.</li>
+<li>- Solver architecture.</li>
+<li>- Rule-pack architecture.</li>
+<li>- Test discipline.</li>
+<li>- Contribution boundaries.</li>
+<li>- Review and acceptance.</li>
+</ul>
+<p>3. Source every non-trivial requirement from local governing material.</p>
+<ul>
+<li>- Prefer <code>docs/SPEC.md</code> for technical architecture and baseline mechanics.</li>
+<li>- Prefer <code>docs/CONTRACT.md</code> and <code>docs/IP_AND_DATA_BOUNDARY.md</code> for boundary constraints.</li>
+<li>- Prefer <code>docs/VALIDATION_STRATEGY.md</code> for test families and release gates.</li>
+<li>- Prefer SOFTWARE_DECOMP revision 0.7 for scope, objectives, and architecture basis.</li>
+</ul>
+<p>4. Draft solver sections conservatively.</p>
+<ul>
+<li>- Explain centerline/frame mechanics, six degree-of-freedom nodes, loads, stress recovery, diagnostics, and test hooks.</li>
+<li>- Do not copy protected standards formulas, protected examples, code tables, or proprietary commercial examples.</li>
+<li>- Keep exact tolerances, solver numerical library, and performance thresholds as <code>TBD</code> unless resolved by approved source.</li>
+</ul>
+<p>5. Draft rule-pack sections conservatively.</p>
+<ul>
+<li>- Explain schema shape, required inputs, variables, checks, provenance, redistribution status, checksums, report notices, and missing-input behavior.</li>
+<li>- Explain sandboxing and unit-aware deterministic evaluation.</li>
+<li>- Do not provide protected code equations, allowables, SIF/flexibility factors, protected tables, or private rule-pack content.</li>
+</ul>
+<p>6. Draft test-discipline sections.</p>
+<ul>
+<li>- Map solver and rule-pack changes to deterministic evidence families.</li>
+<li>- Include protected-content and provenance gates for public examples, fixtures, docs, reports, and templates.</li>
+<li>- Distinguish mechanics verification from validation and professional reliance.</li>
+</ul>
+<p>7. Draft contribution-boundary sections.</p>
+<ul>
+<li>- Define permitted public contributions and prohibited public content.</li>
+<li>- Include quarantine/escalation steps for suspected protected or private data.</li>
+<li>- Require <code>TBD</code>, <code>ASSUMPTION</code>, and <code>PROPOSAL</code> labels where warranted.</li>
+</ul>
+<p>8. Run local review checks before proposing the guide for review.</p>
+<ul>
+<li>- Check scope and anticipated artifact path.</li>
+<li>- Scan for protected-content risk and certification/compliance overclaims.</li>
+<li>- Confirm unit/provenance/test/professional boundaries are visible.</li>
+<li>- Confirm unresolved implementation choices remain <code>TBD</code>.</li>
+</ul>
+<p>9. Record evidence.</p>
+<ul>
+<li>- Keep setup and drafting evidence in the deliverable folder.</li>
+<li>- Record validation commands and results.</li>
+<li>- Do not move anything to <code>ISSUED</code> without human review.</li>
+</ul></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Four-document kit exists</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> are present.</td></tr>
+<tr><td>Scope check</td><td>Documentation-only setup; no source code, examples, repo-level docs, or final guide artifact edited in this session.</td></tr>
+<tr><td>Boundary check</td><td>No protected standards text/tables/examples/formulas/proprietary data; no professional approval claims.</td></tr>
+<tr><td>Coverage check</td><td>Solver architecture, rule-pack schema, test discipline, and contribution boundaries are all addressed.</td></tr>
+<tr><td>TBD check</td><td>Unresolved implementation choices are marked <code>TBD</code>.</td></tr>
+<tr><td>Dependency check</td><td><code>Dependencies.csv</code> is v3.1 schema-valid and <code>_DEPENDENCIES.md</code> counts match.</td></tr>
+<tr><td>Semantic setup</td><td><code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist and are lens-only evidence.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Maintain these records in this deliverable folder:</p>
+<ul>
+<li>- four-document setup kit;</li>
+<li>- semantic matrix file and lensing register;</li>
+<li>- dependency register and dependency index;</li>
+<li>- <code>_STATUS.md</code> lifecycle history;</li>
+<li>- <code>_run_records/*</code> for the five required setup invocations;</li>
+<li>- validation command results in the final TASK response.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, solver and rule-pack extension coverage, architecture and schema boundaries, units/provenance/protected-content controls, deterministic tests and diagnostics, retained interface TBDs, and professional-authority limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-11-02-developer-guide-for-solver-and-rule-packs">CLM-022 — Guidance: DEL-11-02 Developer guide for solver and rule packs</h3>
+<blockquote><h4 id="guidance-del-11-02-developer-guide-for-solver-and-rule-packs">Guidance: DEL-11-02 Developer guide for solver and rule packs</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-02-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>The developer guide should give contributors enough structure to extend OpenPipeStress without weakening its governing boundaries. It should explain how the open solver mechanics, user-supplied rule packs, tests, reports, and adapter boundaries fit together, while making clear that protected standards data and professional approval remain outside the public software authority.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Open mechanics first</td><td>Describe the solver as an auditable mechanics engine for global centerline/frame analysis. Avoid wording that makes the solver appear to implement a proprietary code.</td></tr>
+<tr><td>Code-neutral rule checks</td><td>Present rule packs as user-owned design-basis artifacts. Public content may define schemas and evaluator mechanics, not protected rule content.</td></tr>
+<tr><td>No silent defaults</td><td>Contributor-facing docs should remind implementers that missing solve-required or rule-check-required values become explicit diagnostics, not hidden assumptions.</td></tr>
+<tr><td>Unit discipline</td><td>Any developer path touching model data, rule variables, imports, exports, reports, or tests must preserve unit awareness and dimensional checks.</td></tr>
+<tr><td>Provenance discipline</td><td>Material, component, rule, allowable, SIF, flexibility, report, and public data values require source/provenance and redistribution status.</td></tr>
+<tr><td>Test before reliance</td><td>Solver and rule-engine changes need deterministic tests before release use; documentation should state the expected evidence families.</td></tr>
+<tr><td>Human authority</td><td>The guide must not suggest that software, maintainers, or agents certify, seal, approve, authenticate, or declare project-specific engineering compliance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5></blockquote>
+<h3 id="clm-027-solver-architecture">CLM-027 — Solver Architecture</h3>
+<blockquote><h6 id="solver-architecture">Solver Architecture</h6>
+<p>The guide should explain the solver at a level suitable for contributors:</p>
+<ul>
+<li>- domain objects and unit-aware model data;</li>
+<li>- six degree-of-freedom node semantics;</li>
+<li>- local/global element orientation concepts without protected formulas;</li>
+<li>- stiffness assembly and sparse solve boundary at a conceptual level;</li>
+<li>- loads, stress recovery, result envelopes, and diagnostics;</li>
+<li>- nonlinear support status reporting where applicable;</li>
+<li>- interaction with rule packs through mechanical outputs and required-input mappings.</li>
+</ul>
+<p>Solver documentation should not include protected code equations or code-specific acceptance categories unless those are supplied by the user in private rule packs.</p></blockquote>
+<h3 id="clm-028-rule-pack-architecture">CLM-028 — Rule-Pack Architecture</h3>
+<blockquote><h6 id="rule-pack-architecture">Rule-Pack Architecture</h6>
+<p>The guide should explain the rule-pack artifact as a data contract, not as bundled standards content. The safe baseline includes identity, version, source notice, redistribution status, checksum, required input declarations, variables, checks, unit metadata, and report notice fields.</p>
+<p>The guide should make the evaluator boundary explicit: rule expressions are declarative, sandboxed, unit-aware, deterministic, and unable to execute arbitrary code. Exact expression grammar and implementation library remain <code>TBD</code> until a sealed implementation deliverable and human approval resolve them.</p></blockquote>
+<h3 id="clm-029-test-discipline">CLM-029 — Test Discipline</h3>
+<blockquote><h6 id="test-discipline">Test Discipline</h6>
+<p>The guide should point contributors to evidence categories rather than rely on trust:</p>
+<ul>
+<li>- unit/schema tests for domain objects and units;</li>
+<li>- deterministic solver benchmarks for frame mechanics and transforms using rights-cleared fixtures;</li>
+<li>- stress recovery and load application regression tests;</li>
+<li>- nonlinear support convergence and active-state traces;</li>
+<li>- rule-pack required-input, unit-mismatch, unsafe-expression, and invented-example tests;</li>
+<li>- report reproducibility and checksum tests;</li>
+<li>- protected-content and provenance gates for public docs, examples, fixtures, and reports.</li>
+</ul></blockquote>
+<h3 id="clm-030-contribution-boundaries">CLM-030 — Contribution Boundaries</h3>
+<blockquote><h6 id="contribution-boundaries">Contribution Boundaries</h6>
+<p>Developer documentation should give contributors simple stop rules:</p>
+<ul>
+<li>- do not contribute protected standards text, tables, figures, examples, protected code-derived formulas, protected dimensional tables, or proprietary vendor data;</li>
+<li>- do not add private project data, owner standards, company rule packs, or private component/material libraries to public examples;</li>
+<li>- quarantine and escalate suspected protected content;</li>
+<li>- label unknowns as <code>TBD</code>;</li>
+<li>- label inferences as <code>ASSUMPTION</code> and proposals as <code>PROPOSAL</code>;</li>
+<li>- keep mechanics outputs, user-rule checks, and human professional acceptance separate.</li>
+</ul></blockquote>
+<h3 id="clm-031-trade-offs">CLM-031 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred direction</td></tr>
+<tr><td>Helpful examples vs protected-content risk</td><td>Use invented non-code examples or public/permissive mechanics examples only.</td></tr>
+<tr><td>Detailed formulas vs IP boundary</td><td>Explain architecture and verification expectations without copying protected standards formulas or tables.</td></tr>
+<tr><td>Fast contribution vs review discipline</td><td>Require provenance, test evidence, and protected-content review before accepting public data or rule-pack examples.</td></tr>
+<tr><td>Flexible plugins vs no-bypass governance</td><td>Allow extension points only when units, provenance, diagnostics, sandboxing, privacy, and report controls remain mandatory.</td></tr>
+<tr><td>Mechanics solve vs rule check</td><td>Let the solver compute open mechanics; keep acceptability logic in user/private rule packs.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-032-examples">CLM-032 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Safe example themes for the future guide:</p>
+<ul>
+<li>- a non-code invented rule-pack field map that uses placeholder names and no engineering values;</li>
+<li>- a mechanics-only test fixture described as an original/public-domain frame case, with expected values held in validation evidence rather than copied from standards;</li>
+<li>- a contributor checklist for adding a solver feature without changing rule-pack semantics;</li>
+<li>- a quarantine example that shows process fields and decisions without reproducing suspected protected content.</li>
+</ul>
+<p>Unsafe example themes:</p>
+<ul>
+<li>- copied standards text, tables, clause examples, or formulas;</li>
+<li>- material allowable tables or dimensional tables copied from standards;</li>
+<li>- private company rule packs, owner standards, project models, or commercial software benchmark files;</li>
+<li>- report snippets that imply official compliance, certification, approval, or professional sealing by the software.</li>
+</ul></blockquote>
+<h3 id="clm-033-open-decisions">CLM-033 — Open Decisions</h3>
+<blockquote><h5 id="open-decisions">Open Decisions</h5>
+<table><tbody>
+<tr><td>Decision</td><td>Status</td></tr>
+<tr><td>Exact solver numerical library</td><td><code>TBD</code></td></tr>
+<tr><td>Rule expression grammar/library</td><td><code>TBD</code></td></tr>
+<tr><td>Exact dependency versions</td><td><code>TBD</code></td></tr>
+<tr><td>CI provider, coverage thresholds, and performance thresholds</td><td><code>TBD</code></td></tr>
+<tr><td>Physical project package/container</td><td><code>TBD</code></td></tr>
+<tr><td>License and contributor certification mechanism</td><td><code>TBD</code> until human project authority records it</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-034-conflict-table-for-human-ruling">CLM-034 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source conflicts were identified during setup. If later guide drafting discovers conflict between architecture basis, implementation practice, legal/data-boundary policy, or validation requirements, record it here rather than silently resolving it.</p>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>TBD</td><td>None recorded.</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-033 OBJ-001 OBJ-002</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,2 @@
+timestamp_utc	member	stage	result	note
+2026-07-15T01:17:44Z	BATCH	INDEPENDENCE_GATE	BLOCKED	author-child CANDIDATE_MANIFEST.tsv was read during path discovery; semantic verification stopped

@@ -1,0 +1,17 @@
+{
+  "child_instance_id": "VERIFY-B1-R1",
+  "status": "PASS_UNCHANGED",
+  "members": 5,
+  "mappings": 171,
+  "physical_source_lines": 1737,
+  "replacement_rows": 25,
+  "inverse_rows": 25,
+  "simulations": 5,
+  "negative_probes": 35,
+  "blockers": 0,
+  "unknowns": 0,
+  "waivers": 0,
+  "candidate_writes": 0,
+  "project_writes": 0,
+  "prohibited_reads": 0
+}

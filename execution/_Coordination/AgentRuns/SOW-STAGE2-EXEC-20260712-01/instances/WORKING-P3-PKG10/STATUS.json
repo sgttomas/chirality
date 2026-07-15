@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "SOW-STAGE2-EXEC-20260712-01",
+  "instance_id": "WORKING-P3-PKG10",
+  "package_id": "PKG-10",
+  "status": "PASS",
+  "members_complete": 5,
+  "mappings": 163,
+  "source_lines": 1594,
+  "author": "PASS",
+  "verifier": "PASS_UNCHANGED",
+  "project_writes": 0,
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "next_owner": "RECONCILIATION"
+}
+

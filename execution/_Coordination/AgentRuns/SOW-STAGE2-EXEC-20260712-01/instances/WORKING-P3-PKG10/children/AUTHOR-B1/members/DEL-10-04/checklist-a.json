@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 247,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "1b7eb7b1a11810a6d88da3c1c105263bcf991cc19c47b0cb59ee21868292e474"
+      },
+      "text": "The contract preserves deterministic build and test gates, Rust and GUI/toolchain boundaries, artifact provenance and checksums, platform/package evidence, protected-content and private-data controls, failure diagnostics, current implementation evidence, and explicit unresolved CI-provider, signing, publication, coverage, and platform-matrix decisions without making release or security assurances.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-04-VER-001",
+          "source_line": 327,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, build/test/package stage coverage, reproducibility and provenance evidence, platform and toolchain boundaries, protected/private-data controls, retained provider/signing/publication/coverage TBDs, and separation of pipeline evidence from release acceptance."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "1b7eb7b1a11810a6d88da3c1c105263bcf991cc19c47b0cb59ee21868292e474"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 259,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "f46752c77887d13bad6d50b29b6bbd65bcb4c669ac474b44bc20203a23b0d5f3"
+      },
+      "text": "The contract preserves solver-neutral schema and manifest boundaries, stable identifiers, coordinate and unit conventions, provenance and protected/private-data controls, completeness and diagnostic checks, deterministic hashes, local-tool separation, declared omissions and unsupported features, and visible solver/export-format TBDs without claiming external-solver validation or professional approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-001",
+          "source_line": 393,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, geometry/property/load/constraint and mapping coverage, coordinate/unit/provenance requirements, manifest/hash and diagnostic evidence, local FEA boundary and re-association behavior, retained tool/format TBDs, and prohibited validation or approval claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "f46752c77887d13bad6d50b29b6bbd65bcb4c669ac474b44bc20203a23b0d5f3"
+  },
+  "tool_version": "1"
+}

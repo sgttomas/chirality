@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 256,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "42e3069a9f8d0401126b8f62cc03bb5def8065ae1fa06f7c9bde95bf2dcac8ea"
+      },
+      "text": "The contract preserves schema-first command/query/job/result envelopes, deny-bypass service boundaries, unit and provenance validation, protected/private-data controls, deterministic plugin declarations, current implemented-slice evidence, visible transport and permission-taxonomy TBDs, and the prohibition on compliance, certification, or professional-approval claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-001",
+          "source_line": 388,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, operation-family and plugin-boundary coverage, current-versus-historical declarations, units/provenance/privacy and deny-bypass controls, diagnostic/result-envelope requirements, retained transport and permission TBDs, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "42e3069a9f8d0401126b8f62cc03bb5def8065ae1fa06f7c9bde95bf2dcac8ea"
+  },
+  "tool_version": "1"
+}

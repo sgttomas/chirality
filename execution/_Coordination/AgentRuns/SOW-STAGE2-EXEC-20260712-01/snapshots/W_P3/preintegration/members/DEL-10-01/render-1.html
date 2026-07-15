@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="42e3069a9f8d0401126b8f62cc03bb5def8065ae1fa06f7c9bde95bf2dcac8ea">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-10-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>42e3069a9f8d0401126b8f62cc03bb5def8065ae1fa06f7c9bde95bf2dcac8ea</code>.</p>
+<h1 id="scope-of-work-del-10-01">Scope of Work — DEL-10-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-10-01</code> in service of project scope [SOW-030] and package objectives [OBJ-009].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A public API and plugin-boundary contract for governed model exchange, solver jobs, results, rule-pack hooks, diagnostics, provenance, units, privacy, and report controls is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-source-preamble">CLM-001 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-10-01-DATASHEET</p>
+<p>doc_kind: deliverable.datasheet</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-10-01</p>
+<p>package_id: PKG-10</p>
+<p>---</p></blockquote>
+<h3 id="clm-002-datasheet-public-api-and-plugin-boundary">CLM-002 — Datasheet: Public API and Plugin Boundary</h3>
+<blockquote><h4 id="datasheet-public-api-and-plugin-boundary">Datasheet: Public API and Plugin Boundary</h4></blockquote>
+<h3 id="clm-003-d-41-r5-t7-pdu-055-current-declaration">CLM-003 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-10-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-004-identification">CLM-004 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-10-01</td></tr>
+<tr><td>Package ID</td><td>PKG-10</td></tr>
+<tr><td>Package</td><td>Build, Packaging, API, and Interoperability</td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td></tr>
+<tr><td>Scope item</td><td>SOW-030</td></tr>
+<tr><td>Objective</td><td>OBJ-009</td></tr>
+<tr><td>Anticipated artifacts</td><td><code>api/openapi.yaml</code> or equivalent; plugin boundary doc</td></tr>
+<tr><td>Current artifact form</td><td>Deliverable-local contract kit; repository-level <code>api/openapi.yaml</code> is outside this write scope</td></tr>
+<tr><td>Lifecycle target for setup</td><td><code>SEMANTIC_READY</code> after the setup sequence passes</td></tr>
+<tr><td>Transport decision</td><td>TBD; no final external transport selected here</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-attributes">CLM-005 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Boundary purpose</td><td>Define public API/plugin boundaries for model import/export, solver invocation, results, and rule-pack hooks.</td><td><code>_CONTEXT.md</code> Description; <code>docs/_Registers/Deliverables.csv</code> row DEL-10-01</td></tr>
+<tr><td>Public API capability families</td><td>Model creation/import/export, load-case definition, solve execution, result extraction, rule-pack evaluation, report generation, and validation-test execution.</td><td><code>docs/PRD.md</code> section 19.3</td></tr>
+<tr><td>Contract baseline</td><td>Schema-first command/query/job/result envelopes; JSON Schema 2020-12 public schema/interchange basis.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2</td></tr>
+<tr><td>Adapter/plugin baseline</td><td>Deny-bypass boundary: adapters/plugins may translate or extend, but cannot bypass units, provenance, diagnostics, rule sandboxing, public/private data controls, or report controls.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-02, AB-00-07; <code>docs/SPEC.md</code> section 1</td></tr>
+<tr><td>Professional boundary</td><td>API results can expose mechanics status and user-rule-check status, but not software-declared code compliance or professional approval.</td><td><code>docs/TYPES.md</code> sections 4 and 6; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1</td></tr>
+<tr><td>Protected-data boundary</td><td>Public API/plugin contracts must not bundle protected standards text, tables, code-derived formulas, allowables, SIF/flexibility tables, proprietary catalogs, or private project/rule data.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2-3</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-conditions">CLM-006 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Required handling</td></tr>
+<tr><td>Missing units on dimensional data</td><td>Reject, block, or emit a diagnostic; do not silently default.</td></tr>
+<tr><td>Missing provenance or redistribution status</td><td>Emit provenance/data-boundary diagnostics and block public contribution paths when needed.</td></tr>
+<tr><td>Protected or proprietary data suspected</td><td>Stop ingestion, quarantine/escalate, and do not import into public artifacts.</td></tr>
+<tr><td>Rule-pack-facing hook</td><td>Preserve sandboxed, deterministic, unit-aware evaluation; do not expose arbitrary code execution.</td></tr>
+<tr><td>Result publication/export</td><td>Use result/diagnostic envelopes and preserve report controls and professional-responsibility notices.</td></tr>
+<tr><td>Private data exposure</td><td>Local-first by default; no telemetry or external transmission of private project/rule/component/material data by default.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-construction">CLM-007 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This deliverable records a contract boundary, not an implementation. The boundary is organized around these contract surfaces:</p>
+<table><tbody>
+<tr><td>Surface</td><td>Contract role</td><td>Setup status</td></tr>
+<tr><td>Public API envelope</td><td>Common schema-first wrapper for commands, queries, jobs, diagnostics, provenance, and result metadata.</td><td>Baseline defined; concrete schema file layout TBD.</td></tr>
+<tr><td>Model import/export boundary</td><td>Allows external data exchange only through schema, unit, provenance, redistribution, and private/public data checks.</td><td>Boundary defined; external formats TBD.</td></tr>
+<tr><td>Solver invocation boundary</td><td>Routes solve requests through application-service command/job semantics with diagnostics, progress/cancellation, and reproducibility metadata.</td><td>Boundary defined; concrete transport TBD.</td></tr>
+<tr><td>Results boundary</td><td>Exposes mechanical results, diagnostics, warnings, hashes, and rule-pack status without compliance or approval claims.</td><td>Boundary defined; result export details shared with DEL-08-04/DEL-10-05.</td></tr>
+<tr><td>Rule-pack hook boundary</td><td>Allows governed rule-pack evaluation hooks while preserving sandboxing, unit safety, checksums, source notes, and private/public markings.</td><td>Boundary defined; expression grammar/library TBD.</td></tr>
+<tr><td>Plugin manifest boundary</td><td>Candidate manifest concept slots include identity, version, declared extension point, schema/envelope compatibility, capability request, data-boundary declaration, diagnostics compatibility, and review status.</td><td>Concept inventory only; exact field names and permission taxonomy TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for sealed deliverable identity, scope, objective, write scope, and SCA-001 architecture-basis injection.</li>
+<li>- <code>docs/CONTRACT.md</code> for applicable invariants: OPS-K-IP-1/2/3, OPS-K-DATA-1/2/3, OPS-K-UNIT-1, OPS-K-RULE-1/2/3, OPS-K-PRIV-1/2, OPS-K-AUTH-1, and OPS-K-AGENT-1..4.</li>
+<li>- <code>docs/SPEC.md</code> sections 1, 6, 7, 8, 10, and 11 for layer responsibilities, adapter no-bypass language, rule-pack sandboxing, diagnostics/reporting, and deliverable acceptance semantics.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 for SOW-030, OBJ-009, AB-00-02/03/04/06/07/08, and OI-004.</li>
+<li>- <code>docs/PRD.md</code> sections 13.4, 13.5, 18.2, 18.3, and 19.3 for public/private data, import warnings, telemetry/private-data protection, and public API capability families.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-source-preamble">CLM-009 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-10-01-SPECIFICATION</p>
+<p>doc_kind: deliverable.specification</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-10-01</p>
+<p>package_id: PKG-10</p>
+<p>---</p></blockquote>
+<h3 id="clm-010-specification-public-api-and-plugin-boundary">CLM-010 — Specification: Public API and Plugin Boundary</h3>
+<blockquote><h4 id="specification-public-api-and-plugin-boundary">Specification: Public API and Plugin Boundary</h4></blockquote>
+<h3 id="clm-011-d-41-r5-t7-pdu-055-current-declaration">CLM-011 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-10-01-DECL-001</code>.</p></blockquote>
+<h3 id="clm-012-scope">CLM-012 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-10-01 defines the public API and plugin boundary for OpenPipeStress interoperability. It covers contract obligations for model import/export, solver invocation, result extraction, rule-pack hooks, plugin manifest concepts, diagnostics, provenance, units, privacy, and report controls. SourcePath: <code>_CONTEXT.md</code>; SectionRef: Description and Architecture Basis Injection.</p>
+<p>This deliverable does not choose a final external transport, implement plugin runtime behavior, edit repository-level API files, implement import/export adapters, select concrete external formats, implement a headless runner, or authorize bypass of the domain core, unit system, provenance checks, rule sandbox, diagnostics, report controls, or public/private data boundary. SourcePath: <code>_CONTEXT.md</code>; SectionRef: Acceptance/risk notes and write scope; SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-07 and OI-004.</p></blockquote>
+<h3 id="clm-013-requirements">CLM-013 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Evidence</td></tr>
+<tr><td>DEL-10-01-REQ-01</td><td>The public API boundary shall be schema-first and shall use command, query, job, diagnostics, and result-envelope concepts rather than raw success/failure responses for nontrivial operations.</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Resolved Baseline. SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-03 and 8.2.</td></tr>
+<tr><td>DEL-10-01-REQ-02</td><td>The contract shall classify exposed operation families for model creation/import/export, load-case definition, solve execution, result extraction, rule-pack evaluation, report generation, and validation-test execution.</td><td>SourcePath: <code>docs/PRD.md</code>; SectionRef: 19.3 Public API.</td></tr>
+<tr><td>DEL-10-01-REQ-03</td><td>Mutating API and plugin operations shall route through governed application-service commands or equivalent service boundaries that preserve schema validation, unit checks, provenance checks, diagnostics/result envelopes, report controls, and audit/reproducibility metadata.</td><td>SourcePath: <code>docs/SPEC.md</code>; SectionRef: 1. Architectural overview. SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-02, AB-00-03, AB-00-07.</td></tr>
+<tr><td>DEL-10-01-REQ-04</td><td>Long-running solve, report, export, and validation operations shall be represented as jobs with progress, cancellation, reproducibility metadata, and final result envelopes.</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-03. SourcePath: <code>docs/PRD.md</code>; SectionRef: 20 Performance Requirements.</td></tr>
+<tr><td>DEL-10-01-REQ-05</td><td>Model import/export boundaries shall validate units, dimensional consistency, source/provenance, redistribution/license status, public/private classification, diagnostics, and protected-content risk before data enters core workflows or public artifacts.</td><td>SourcePath: <code>docs/PRD.md</code>; SectionRef: 13.5 Data Import Warnings. SourcePath: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; SectionRef: 2-5.</td></tr>
+<tr><td>DEL-10-01-REQ-06</td><td>The API and plugin boundary shall prohibit public repository content that embeds protected standards text, protected tables, protected examples, copied code formulas, material allowables, SIF/flexibility tables, protected dimensional tables, proprietary vendor data without rights, or private project/rule data.</td><td>SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-IP-1, OPS-K-IP-3. SourcePath: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; SectionRef: 3.</td></tr>
+<tr><td>DEL-10-01-REQ-07</td><td>Public data contribution paths exposed through import/export or plugin APIs shall require source, source location, redistribution/license status, contributor certification, and review disposition; unknowns remain <code>TBD</code> or block public contribution.</td><td>SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-IP-2 and OPS-K-AGENT-1. SourcePath: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; SectionRef: 4.</td></tr>
+<tr><td>DEL-10-01-REQ-08</td><td>Rule-pack-facing API/plugin hooks shall preserve sandboxed, deterministic, unit-aware evaluation and shall not permit arbitrary code execution or bypass of required-input completeness checks.</td><td>SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-RULE-2. SourcePath: <code>docs/SPEC.md</code>; SectionRef: 6. Rule-pack evaluator.</td></tr>
+<tr><td>DEL-10-01-REQ-09</td><td>Rule-pack identities, versions, checksums, source notices, redistribution status, and private/public markings shall be carried through API envelopes where rule-pack data or results are referenced.</td><td>SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-RULE-3 and OPS-K-DATA-3. SourcePath: <code>docs/SPEC.md</code>; SectionRef: 6 and 8.</td></tr>
+<tr><td>DEL-10-01-REQ-10</td><td>Result envelopes shall distinguish invalid input, incomplete model, mechanics solved, rule-inputs incomplete, user-rule checked/failed, human-review-required, and human-approved-for-project states without introducing automatic <code>CODE_COMPLIANT</code> status.</td><td>SourcePath: <code>docs/TYPES.md</code>; SectionRef: 4. Analysis-status vocabulary.</td></tr>
+<tr><td>DEL-10-01-REQ-11</td><td>API, plugin, adapter, and report-facing outputs shall not claim to certify, seal, approve, authenticate, endorse, or declare engineering code compliance for professional reliance.</td><td>SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-AUTH-1. SourcePath: <code>docs/DIRECTIVE.md</code>; SectionRef: 4.2 Out of scope.</td></tr>
+<tr><td>DEL-10-01-REQ-12</td><td>The plugin boundary shall be deny-by-default: no plugin capability, private-data access, filesystem/network/process access, report/export control bypass, or rule-evaluator integration is granted unless a later approved permission/sandbox design authorizes it.</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-07 and OI-006. SourcePath: <code>docs/PRD.md</code>; SectionRef: 18.2 Telemetry and 18.3 Private Data Protection.</td></tr>
+<tr><td>DEL-10-01-REQ-13</td><td>Public API transport, concrete endpoint syntax, concrete plugin runtime, exact permission taxonomy, exact external import/export formats, exact code-generation tooling, and repository-level <code>api/openapi.yaml</code> placement remain TBD until human/architecture approval.</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Still TBD and write scope. SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: OI-004 and 8.2.</td></tr>
+<tr><td>DEL-10-01-REQ-14</td><td>JSON payloads that are hashed for API manifests, jobs, model snapshots, results, or reproducibility records shall use the accepted canonical JSON/JCS-compatible hash basis where applicable; non-JSON/binary assets require manifest hashes.</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-04 and 8.2.</td></tr>
+<tr><td>DEL-10-01-REQ-15</td><td>Verification for this boundary shall include documentation review plus later schema, unit, provenance, diagnostics, protected-content, privacy, rule-sandbox, report-boundary, and adapter/plugin regression gates when concrete implementation artifacts exist.</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-08. SourcePath: <code>docs/VALIDATION_STRATEGY.md</code>; SectionRef: 2 and 4.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected engineering code, standards clauses, tables, formulas, examples, material allowables, SIF/flexibility content, protected dimensional data, or proprietary vendor data are incorporated into this deliverable.</p>
+<p>Applicable internal baselines:</p>
+<ul>
+<li>- <code>docs/CONTRACT.md</code> invariant catalog, especially OPS-K-IP-*, OPS-K-DATA-*, OPS-K-UNIT-1, OPS-K-RULE-*, OPS-K-PRIV-*, OPS-K-AUTH-1, and OPS-K-AGENT-*.</li>
+<li>- <code>docs/TYPES.md</code> for API contract deliverable type, analysis-status vocabulary, epistemic labels, provenance labels, and canonical domain object registry.</li>
+<li>- <code>docs/SPEC.md</code> for layer responsibilities, adapter no-bypass rule, rule-pack evaluator constraints, diagnostics classes, reporting/audit content, and Type 2 acceptance semantics.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> for public/private data, provenance, quarantine, private user data, and report boundary policy.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 for SOW-030, OBJ-009, AB-00-02/03/04/06/07/08, and OI-004.</li>
+</ul>
+<p>External implementation standard baseline:</p>
+<ul>
+<li>- JSON Schema 2020-12 is the accepted public schema/interchange baseline by SCA-001. This deliverable does not reproduce the JSON Schema specification text and does not choose concrete schema file layout.</li>
+</ul></blockquote>
+<h3 id="clm-015-verification">CLM-015 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>REQ-01, REQ-03, REQ-04</td><td>Architecture/API review confirms commands, queries, jobs, progress/cancellation, diagnostics, result envelopes, and governed service boundaries are represented without selecting final transport.</td></tr>
+<tr><td>REQ-02</td><td>Public API capability-family review confirms the PRD section 19.3 families are represented and that non-DEL-10-01 implementation work remains deferred.</td></tr>
+<tr><td>REQ-05, REQ-06, REQ-07</td><td>Protected-content/provenance review confirms import/export and plugin contribution paths require units, source, redistribution status, private/public classification, and quarantine behavior.</td></tr>
+<tr><td>REQ-08, REQ-09, REQ-12</td><td>Rule-pack/security review confirms no hook bypasses sandboxing, unit awareness, checksum/version/source metadata, private markings, or required-input blocking.</td></tr>
+<tr><td>REQ-10, REQ-11</td><td>Status/professional-boundary review confirms no automatic code-compliance state or certification/approval claim appears in API, plugin, result, or report outputs.</td></tr>
+<tr><td>REQ-13</td><td>TBD review confirms transport, endpoint syntax, plugin runtime, permission taxonomy, format list, code generation, and repository-level API artifact placement are not silently resolved.</td></tr>
+<tr><td>REQ-14</td><td>Reproducibility review confirms canonical JSON/JCS-compatible hash basis is referenced where hashes are required and non-JSON assets remain manifest-hash governed.</td></tr>
+<tr><td>REQ-15</td><td>Layered gate review confirms later concrete implementation will need schema, unit, provenance, diagnostics, protected-content, privacy, sandbox, report, and regression evidence.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-interim-setup-acceptance-criteria">CLM-016 — Interim Setup Acceptance Criteria</h3>
+<blockquote><h6 id="interim-setup-acceptance-criteria">Interim Setup Acceptance Criteria</h6>
+<table><tbody>
+<tr><td>Gate</td><td>Pass condition</td></tr>
+<tr><td>Scope gate</td><td>Only DEL-10-01 deliverable-local files are edited.</td></tr>
+<tr><td>Document gate</td><td>Datasheet, Specification, Guidance, and Procedure exist and include default sections.</td></tr>
+<tr><td>Semantic gate</td><td><code>_SEMANTIC.md</code> exists, contains matrices A, B, C, F, D, K, G, X, T, E, and passes the local result-cell audit.</td></tr>
+<tr><td>Lensing gate</td><td><code>_SEMANTIC_LENSING.md</code> exists, covers every cell in matrices A, B, C, F, D, X, E, and records warranted items without resolving human decisions.</td></tr>
+<tr><td>Dependency gate</td><td><code>Dependencies.csv</code> exists, validates against v3.1 required columns, uses canonical write-form enums, and <code>_DEPENDENCIES.md</code> summarizes the active rows.</td></tr>
+<tr><td>Boundary gate</td><td>No transport, plugin runtime, repository-level <code>api/openapi.yaml</code>, source code, package manifests, protected data, private engineering data, or compliance/certification claims are introduced.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-documentation">CLM-017 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup artifacts for DEL-10-01:</p>
+<ul>
+<li>- Deliverable-local API/plugin boundary document kit: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>.</li>
+<li>- Semantic setup artifacts: <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>, and <code>_run_records/*</code>.</li>
+<li>- Dependency artifacts: <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code>.</li>
+</ul>
+<p>Plugin/public API manifest concept inventory for later schema work:</p>
+<table><tbody>
+<tr><td>Concept slot</td><td>Current status</td><td>Evidence</td></tr>
+<tr><td>API envelope version</td><td>Required concept; exact field name/layout TBD.</td><td><code>_CONTEXT.md</code> Resolved Baseline; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> 8.2.</td></tr>
+<tr><td>Operation family</td><td>Required concept; allowable families listed by contract, exact endpoint names TBD.</td><td><code>docs/PRD.md</code> 19.3.</td></tr>
+<tr><td>Command/query/job classification</td><td>Required concept; exact schema layout TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-03.</td></tr>
+<tr><td>Diagnostics envelope</td><td>Required concept; exact field layout TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-06.</td></tr>
+<tr><td>Unit/provenance/data-boundary declarations</td><td>Required concepts; exact fields TBD.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1, OPS-K-DATA-3, OPS-K-IP-2.</td></tr>
+<tr><td>Rule-pack reference/checksum/source notice</td><td>Required where rule-pack data or results are referenced; exact layout TBD.</td><td><code>docs/SPEC.md</code> section 6; <code>docs/CONTRACT.md</code> OPS-K-RULE-3.</td></tr>
+<tr><td>Plugin identity/version/capability request</td><td>Candidate concept; exact field names, permission taxonomy, and approval path TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-07 and OI-004.</td></tr>
+<tr><td>Privacy/telemetry posture</td><td>Required deny-by-default declaration for private data exposure; exact policy hook TBD.</td><td><code>docs/PRD.md</code> 18.2 and 18.3.</td></tr>
+</tbody></table></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves schema-first command/query/job/result envelopes, deny-bypass service boundaries, unit and provenance validation, protected/private-data controls, deterministic plugin declarations, current implemented-slice evidence, visible transport and permission-taxonomy TBDs, and the prohibition on compliance, certification, or professional-approval claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-018-source-preamble">CLM-018 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-10-01-PROCEDURE</p>
+<p>doc_kind: deliverable.procedure</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-10-01</p>
+<p>package_id: PKG-10</p>
+<p>---</p></blockquote>
+<h3 id="clm-019-procedure-public-api-and-plugin-boundary">CLM-019 — Procedure: Public API and Plugin Boundary</h3>
+<blockquote><h4 id="procedure-public-api-and-plugin-boundary">Procedure: Public API and Plugin Boundary</h4></blockquote>
+<h3 id="clm-020-purpose">CLM-020 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this procedure to produce, review, and later refine the DEL-10-01 public API/plugin boundary without crossing into product implementation, external transport selection, plugin runtime implementation, repository-level API files, source code, package manifests, or protected/private data.</p></blockquote>
+<h3 id="clm-021-prerequisites">CLM-021 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- The sealed DEL-10-01 context is available in <code>_CONTEXT.md</code>.</li>
+<li>- Governing documents and registers named in <code>_REFERENCES.md</code> have been read.</li>
+<li>- Applicable architecture basis IDs AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, and AB-00-08 are treated as dispatch constraints, not copied as full PKG-00 authority.</li>
+<li>- Current setup write scope is restricted to this deliverable folder.</li>
+<li>- Public transport, plugin runtime, external format list, rule expression grammar/library, code-generation tooling, and repository-level <code>api/openapi.yaml</code> placement remain TBD.</li>
+</ul></blockquote>
+<h3 id="clm-022-steps">CLM-022 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm identity and scope:</p>
+<ul>
+<li>- Verify the deliverable is <code>DEL-10-01</code> under <code>PKG-10</code>.</li>
+<li>- Confirm scope item SOW-030 and objective OBJ-009.</li>
+<li>- Confirm no edit target is outside this deliverable folder.</li>
+</ul>
+<p>2. Inventory public API operation families:</p>
+<ul>
+<li>- Model creation/import/export.</li>
+<li>- Load-case definition.</li>
+<li>- Solve execution.</li>
+<li>- Result extraction.</li>
+<li>- Rule-pack evaluation.</li>
+<li>- Report generation.</li>
+<li>- Validation-test execution.</li>
+</ul>
+<p>3. Classify operation semantics:</p>
+<ul>
+<li>- Mutating operations become commands.</li>
+<li>- Read-only operations become queries.</li>
+<li>- Long-running solve/report/export/validation operations become jobs with progress, cancellation, reproducibility metadata, and final result envelopes.</li>
+</ul>
+<p>4. Define mandatory envelope slots at concept level:</p>
+<ul>
+<li>- Schema/envelope version.</li>
+<li>- Operation family and command/query/job classification.</li>
+<li>- Units and dimensional metadata where applicable.</li>
+<li>- Provenance and redistribution/private-public metadata where applicable.</li>
+<li>- Diagnostics with code/class/severity/source/affected object/message/remediation/provenance where applicable.</li>
+<li>- Result status using project analysis-status vocabulary.</li>
+<li>- Reproducibility metadata such as payload hash, model hash, solver version, rule-pack checksum, and input manifest references where applicable.</li>
+</ul>
+<p>5. Define no-bypass rules:</p>
+<ul>
+<li>- Adapters/plugins cannot bypass schema validation, unit checks, provenance checks, public/private data controls, diagnostics, rule sandboxing, result envelopes, report controls, or protected-content gates.</li>
+<li>- Direct writes into domain core, solver state, storage internals, private libraries, or reports are not authorized by this boundary.</li>
+</ul>
+<p>6. Define plugin manifest concepts without approving concrete fields:</p>
+<ul>
+<li>- Plugin identity/version.</li>
+<li>- Declared extension point.</li>
+<li>- Compatible schema/envelope version.</li>
+<li>- Requested capabilities.</li>
+<li>- Private-data access posture.</li>
+<li>- Diagnostics compatibility.</li>
+<li>- Review/status metadata.</li>
+<li>- Rule-pack hook posture where applicable.</li>
+</ul>
+<p>7. Preserve unresolved decisions:</p>
+<ul>
+<li>- Mark public transport, endpoint syntax, plugin runtime, permission taxonomy, import/export formats, code generation, and repository-level API file layout as <code>TBD</code>.</li>
+<li>- Do not choose defaults without human/project authority evidence.</li>
+</ul>
+<p>8. Check protected-data and authority boundaries:</p>
+<ul>
+<li>- Confirm no protected standards text, tables, copied formulas, proprietary vendor data, private project data, or private rule-pack content is embedded.</li>
+<li>- Confirm no wording claims certification, sealing, approval, endorsement, or code compliance.</li>
+</ul>
+<p>9. Produce setup artifacts:</p>
+<ul>
+<li>- Four-document kit.</li>
+<li>- <code>_SEMANTIC.md</code>.</li>
+<li>- <code>_SEMANTIC_LENSING.md</code>.</li>
+<li>- <code>Dependencies.csv</code>.</li>
+<li>- <code>_DEPENDENCIES.md</code>.</li>
+<li>- <code>_run_records/*</code>.</li>
+<li>- <code>_STATUS.md</code> with <code>SEMANTIC_READY</code> only after setup gates pass.</li>
+</ul></blockquote>
+<h3 id="clm-023-verification">CLM-023 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Write-scope check</td><td>Only files in the DEL-10-01 folder changed.</td></tr>
+<tr><td>Four-document check</td><td>Datasheet, Specification, Guidance, and Procedure exist with default sections.</td></tr>
+<tr><td>Boundary check</td><td>No transport, plugin runtime, source code, package manifest, repository-level API file, or external format implementation is introduced.</td></tr>
+<tr><td>Protected-data check</td><td>No protected standards content, proprietary commercial data, or private project/rule/component/material data is introduced.</td></tr>
+<tr><td>Professional-boundary check</td><td>No certification, sealing, approval, endorsement, or code-compliance claim appears.</td></tr>
+<tr><td>Semantic check</td><td><code>_SEMANTIC.md</code> and <code>_SEMANTIC_LENSING.md</code> exist and preserve lens-not-authority separation.</td></tr>
+<tr><td>Dependency check</td><td><code>Dependencies.csv</code> validates against v3.1 schema and canonical enum values.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-024-records">CLM-024 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/TASK_RUN_*.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul></blockquote>
+<h3 id="clm-025-completion-condition">CLM-025 — Completion Condition</h3>
+<blockquote><h5 id="completion-condition">Completion Condition</h5>
+<p>The setup sequence is complete when the required setup artifacts exist, dependency validation passes, semantic/lensing artifacts are internally consistent, unresolved decisions remain visible as <code>TBD</code>, protected-data/professional-boundary checks are clean, and <code>_STATUS.md</code> records <code>SEMANTIC_READY</code> without any <code>ISSUED</code> transition.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, operation-family and plugin-boundary coverage, current-versus-historical declarations, units/provenance/privacy and deny-bypass controls, diagnostic/result-envelope requirements, retained transport and permission TBDs, and professional-authority limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-026-source-preamble">CLM-026 — Source preamble</h3>
+<blockquote><p>---</p>
+<p>doc_id: DEL-10-01-GUIDANCE</p>
+<p>doc_kind: deliverable.guidance</p>
+<p>status: draft</p>
+<p>created: 2026-04-30</p>
+<p>deliverable_id: DEL-10-01</p>
+<p>package_id: PKG-10</p>
+<p>---</p></blockquote>
+<h3 id="clm-027-guidance-public-api-and-plugin-boundary">CLM-027 — Guidance: Public API and Plugin Boundary</h3>
+<blockquote><h4 id="guidance-public-api-and-plugin-boundary">Guidance: Public API and Plugin Boundary</h4></blockquote>
+<h3 id="clm-028-d-41-r5-t7-pdu-055-current-declaration">CLM-028 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-10-01-DECL-003</code>.</p></blockquote>
+<h3 id="clm-029-purpose">CLM-029 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable gives later API, plugin, adapter, headless runner, result export, report, and security work a common boundary contract. It exists to keep interoperability extensible without creating a shortcut around units, provenance, diagnostics, public/private data controls, rule-pack sandboxing, report controls, or professional-responsibility limits.</p></blockquote>
+<h3 id="clm-030-principles">CLM-030 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Treat the public API as a governed service boundary, not a direct tunnel into solver internals, storage internals, private libraries, rule-pack evaluator internals, or report-generation controls.</li>
+<li>- Keep transport binding separate from envelope semantics. The envelope can be specified now; HTTP, IPC, CLI JSON, in-process library calls, or other transport choices remain TBD until approved.</li>
+<li>- Prefer schema-first contracts and explicit <code>TBD</code> placeholders over invented endpoint syntax or plugin manifest fields.</li>
+<li>- Let adapters translate external data, but require imported data to pass schema, unit, provenance, redistribution, diagnostics, and data-boundary checks before core use.</li>
+<li>- Treat rule-pack hooks as security-sensitive. The hook may expose governed evaluation capabilities later, but it must never authorize arbitrary code execution by implication.</li>
+<li>- Preserve the three-state authority boundary: mechanics solved, user-rule checked, and professional approval are distinct.</li>
+</ul></blockquote>
+<h3 id="clm-031-considerations">CLM-031 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The API/plugin boundary has two different audiences:</p>
+<table><tbody>
+<tr><td>Audience</td><td>What it needs</td><td>Boundary implication</td></tr>
+<tr><td>Application services and GUI/headless clients</td><td>Stable command/query/job/result envelopes</td><td>Do not expose direct mutable domain-core internals.</td></tr>
+<tr><td>Adapter and plugin authors</td><td>Extension points and failure modes</td><td>Deny by default; require manifest, capability, diagnostics, provenance, and review status concepts.</td></tr>
+<tr><td>Project reviewers</td><td>Evidence that extension cannot bypass governance</td><td>Trace every capability to unit, provenance, rule, privacy, report, and professional-boundary controls.</td></tr>
+<tr><td>Future implementers</td><td>Concrete enough contract to build against</td><td>Carry unresolved transport/runtime/schema-layout decisions as visible <code>TBD</code>, not hidden assumptions.</td></tr>
+</tbody></table>
+<p>Public API and plugin docs should avoid marketing language such as &quot;certified&quot;, &quot;approved&quot;, &quot;code compliant&quot;, or &quot;professionally accepted&quot;. They should describe computed states and human-review obligations using the project vocabulary in <code>docs/TYPES.md</code>.</p></blockquote>
+<h3 id="clm-032-trade-offs">CLM-032 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>More public surface vs. safer core boundary</td><td>Start with fewer governed operation families and expand only when validation and privacy controls are defined.</td></tr>
+<tr><td>Early OpenAPI file vs. schema-first envelope clarity</td><td>Because repository-level <code>api/openapi.yaml</code> is outside this write scope and public transport is TBD, keep the current artifact as an equivalent deliverable-local contract.</td></tr>
+<tr><td>Plugin flexibility vs. no-bypass controls</td><td>Flexibility is acceptable only after capability declarations, sandbox behavior, private-data restrictions, and diagnostics are explicit.</td></tr>
+<tr><td>External format support vs. protected data risk</td><td>External formats remain TBD until each adapter can enforce provenance, redistribution, protected-content, unit, and diagnostics gates.</td></tr>
+<tr><td>Rule-pack integration vs. arbitrary execution risk</td><td>Rule hooks should expose declarative, sandboxed, unit-aware evaluation semantics only; exact grammar/library remains TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-examples">CLM-033 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No engineering numeric example, protected standards example, proprietary vendor example, or copied commercial-software example is included here.</p>
+<p>Acceptable invented boundary examples for later work are conceptual only. They are not approved schema fields, endpoint definitions, transport bindings, or plugin permissions:</p>
+<ul>
+<li>- A model-import command envelope that contains schema version, unit system, provenance summary, private/public classification, payload hash, and diagnostic output slots.</li>
+<li>- A solve-job request envelope that records model hash, solver version request, cancellation token concept, progress diagnostic stream concept, and final mechanics-result envelope concept.</li>
+<li>- A rule-pack-evaluation hook that references rule-pack ID/version/checksum/source notice and returns user-rule status plus missing-input diagnostics without claiming compliance.</li>
+</ul></blockquote>
+<h3 id="clm-034-human-ruling-queue">CLM-034 — Human-Ruling Queue</h3>
+<blockquote><h5 id="human-ruling-queue">Human-Ruling Queue</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Current disposition</td></tr>
+<tr><td>Final public API transport</td><td>TBD</td></tr>
+<tr><td>Repository-level <code>api/openapi.yaml</code> or equivalent schema file layout</td><td>TBD; outside this setup write scope</td></tr>
+<tr><td>Concrete plugin runtime and loading mechanism</td><td>TBD</td></tr>
+<tr><td>Permission taxonomy and capability names</td><td>TBD</td></tr>
+<tr><td>Exact import/export format list and priorities</td><td>TBD</td></tr>
+<tr><td>Rule expression grammar/library</td><td>TBD; PKG-06/security decision path</td></tr>
+<tr><td>CI/provider thresholds for API/plugin validation gates</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-035-semantic-lensing-hold-points">CLM-035 — Semantic Lensing Hold Points</h3>
+<blockquote><h5 id="semantic-lensing-hold-points">Semantic Lensing Hold Points</h5>
+<p>The setup lensing pass identified these review hold-points for later work:</p>
+<ul>
+<li>- Future repository-level API artifacts need an approved path and schema/transport ruling before endpoint-level details are treated as implementable.</li>
+<li>- Plugin capability grants need an approval owner, permission taxonomy, and sandbox/privacy review before any non-default capability is available.</li>
+<li>- Conceptual examples remain examples only; exact fields, message shapes, and capability names stay TBD.</li>
+<li>- Any exception to private-data deny-by-default behavior requires PKG-12/security rationale and explicit human approval.</li>
+</ul></blockquote>
+<h3 id="clm-036-conflict-table-for-human-ruling">CLM-036 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict detected during setup. Remaining issues are explicit TBDs rather than contradictory sources.</td><td>NA</td><td>NA</td><td>NA</td><td>Keep TBDs visible until human/project authority records decisions.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 OBJ-009</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

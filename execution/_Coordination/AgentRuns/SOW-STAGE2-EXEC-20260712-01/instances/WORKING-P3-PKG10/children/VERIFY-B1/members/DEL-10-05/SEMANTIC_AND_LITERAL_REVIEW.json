@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 270
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the DEC-065 local command surface, schema-first application-service routing, unit-aware deterministic I/O, blocking diagnostics, result-envelope and reproducibility evidence, invented/permitted fixtures, local-first private-data behavior, current bounded implementation evidence, and deferred persisted-project, external-adapter, CI, public-transport, and release concerns without compliance claims.",
+    "OUT-001": "A headless CLI and structured-I/O analysis-runner contract for governed solve, input validation, result export, benchmark, and regression workflows is produced.",
+    "VER-001": "Validate the contract and review source parity, five stable verb families, service-boundary and unit-aware I/O behavior, blocking diagnostics and result envelopes, deterministic fixture evidence, retained downstream/deferred integrations, privacy/protected-content controls, and professional-authority limits."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

@@ -1,0 +1,27 @@
+{
+  "accepted_checkout": "4d153302c3c4cd42578936db160c2bac1270225a",
+  "apply_target_rollback_simulations": 5,
+  "candidate_bindings_unchanged": 15,
+  "candidate_repairs": 0,
+  "candidate_writes": 0,
+  "complete_members": [
+    "DEL-10-01",
+    "DEL-10-02",
+    "DEL-10-03",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "inverse_rows": 25,
+  "live_bindings_unchanged": 45,
+  "live_scope_of_work_paths_absent": 5,
+  "mapping_rows": 163,
+  "member_discrepancies": 0,
+  "member_repairs": 0,
+  "origin_main": "4d153302c3c4cd42578936db160c2bac1270225a",
+  "project_writes": 0,
+  "replacement_rows": 25,
+  "source_lines": 1594,
+  "tool_authority": "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+  "verdict": "PASS_UNCHANGED",
+  "write_prefix": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG10/children/VERIFY-B1/"
+}

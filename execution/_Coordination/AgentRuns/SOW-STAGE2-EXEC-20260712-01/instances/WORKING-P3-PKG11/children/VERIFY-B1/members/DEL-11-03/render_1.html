@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="b5e973588e062a9e85e4e7dc446fae66d654cfa9b778845cbef2b51bf2ea909d">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-11-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>b5e973588e062a9e85e4e7dc446fae66d654cfa9b778845cbef2b51bf2ea909d</code>.</p>
+<h1 id="scope-of-work-del-11-03">Scope of Work — DEL-11-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-11-03</code> in service of project scope [SOW-033] and package objectives [OBJ-001, OBJ-003].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A theory-notes contract tracing classical through modern centerline-analysis concepts, assumptions, applicability, limitations, and evidence boundaries is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-11-03-theory-notes-classical-to-modern-centerline-analysis">CLM-001 — Datasheet: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h3>
+<blockquote><h4 id="datasheet-del-11-03-theory-notes-classical-to-modern-centerline-analysis">Datasheet: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-03-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td><code>DEL-11-03</code></td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Theory notes: classical to modern centerline analysis</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-11-03</code></td></tr>
+<tr><td>Package</td><td><code>PKG-11</code> Documentation, Examples, and Education</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 7</td></tr>
+<tr><td>Deliverable type</td><td><code>DOC_UPDATE</code></td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-11-03</code></td></tr>
+<tr><td>Scope item</td><td><code>SOW-033</code></td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code> row <code>SOW-033</code></td></tr>
+<tr><td>Objectives</td><td><code>OBJ-001</code>, <code>OBJ-003</code></td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> rows <code>OBJ-001</code> and <code>OBJ-003</code></td></tr>
+<tr><td>Anticipated artifact</td><td><code>docs/theory/centerline_analysis.md</code></td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-11-03</code></td></tr>
+<tr><td>Context envelope</td><td><code>M</code>; risk <code>OK</code></td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ContextBudgetQA.csv</code> row <code>DEL-11-03</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Draft setup value</td><td>Source / notes</td></tr>
+<tr><td>Documentation purpose</td><td>Explain the lineage from classical piping flexibility analysis to modern global centerline/frame implementation.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> row <code>DEL-11-03</code></td></tr>
+<tr><td>Solver concept boundary</td><td>The project uses a global 3D centerline/frame model as the primary practical analysis model; local shell/solid FEA is a separate handoff path.</td><td><code>docs/CONTRACT.md</code> invariant <code>OPS-K-MECH-1</code>; <code>INIT.md</code> boundary 4</td></tr>
+<tr><td>Public-source constraint</td><td>Future theory text must use public/permissive sources only and must cite them explicitly.</td><td><code>_CONTEXT.md</code> Context Budget QA; <code>docs/CONTRACT.md</code> <code>OPS-K-IP-1</code> and <code>OPS-K-IP-2</code></td></tr>
+<tr><td>Protected-data exclusion</td><td>The note must not reproduce protected standards text, examples, figures, tables, code-specific formulas, SIF/flexibility tables, material allowables, or proprietary commercial data.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-IP-1</code>; <code>_CONTEXT.md</code></td></tr>
+<tr><td>Code-neutral framing</td><td>Mechanics explanation must stay separate from user rule checks and professional approval.</td><td><code>INIT.md</code> boundaries 2 and 3; <code>docs/CONTRACT.md</code> <code>OPS-K-AUTH-1</code>, <code>OPS-K-MECH-2</code></td></tr>
+<tr><td>Unit stance</td><td>Any later technical explanation that mentions quantities or dimensions must remain unit-aware and avoid silent defaults.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-UNIT-1</code>, <code>OPS-K-DATA-2</code></td></tr>
+<tr><td>Current source basis</td><td>Governance and decomposition sources only. Public mechanics references for production theory content are <code>TBD</code>.</td><td><code>_REFERENCES.md</code>; <code>_CONTEXT.md</code></td></tr>
+<tr><td>Source inventory status</td><td>Source selection remains governed; sources that are not public/permissive, reviewed, and claim-specific remain <code>TBD</code> or rejected for public theory-note use.</td><td><code>_SEMANTIC_LENSING.md</code> items <code>B-001</code>, <code>C-001</code>, <code>F-001</code>, and <code>E-001</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- This setup kit is deliverable-local. It does not create or modify <code>docs/theory/centerline_analysis.md</code>.</li>
+<li>- The final theory note must be educational and auditable, not a substitute for professional judgment, code compliance, or sealed engineering work.</li>
+<li>- Classical lineage may be described at a conceptual level until public/permissive mechanics sources are selected and cited.</li>
+<li>- Modern implementation may describe the project direction as a 3D line-element/frame model, but detailed code equations, protected formulas, code tables, and standard-derived examples remain out of scope.</li>
+<li>- Missing citation sources, exact source sections, and any historical claims not supported by accessible public sources remain <code>TBD</code>.</li>
+<li>- No source may be upgraded from <code>TBD</code> to accepted source support unless its provenance fields, public/permissive basis, protected-content review, and claim scope are recorded.</li>
+<li>- Unclear sources, protected standards, proprietary commercial examples, and unsupported historical claims must not be used as substitutes for public/permissive source evidence.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>Expected future content slots for the anticipated theory artifact:</p>
+<table><tbody>
+<tr><td>Slot</td><td>Purpose</td><td>Current setup disposition</td></tr>
+<tr><td>Scope and boundary</td><td>State educational purpose and non-certification boundary.</td><td>Required; grounded in <code>INIT.md</code> and <code>docs/CONTRACT.md</code>.</td></tr>
+<tr><td>Classical lineage overview</td><td>Explain the transition from flexibility concepts to computer-aided structural analysis.</td><td>Public/permissive citations <code>TBD</code>; no protected standards examples.</td></tr>
+<tr><td>Centerline/frame abstraction</td><td>Explain why a global pipe run can be represented as nodes, elements, frames, supports, and loads for routine flexibility analysis.</td><td>Concept allowed by <code>OPS-K-MECH-1</code>; equations and implementation details deferred.</td></tr>
+<tr><td>Loads and result interpretation</td><td>Discuss primitive load families and mechanical results at a conceptual level.</td><td>Must avoid code-specific load combinations and stress allowables.</td></tr>
+<tr><td>Rule-check boundary</td><td>Explain that rule packs evaluate user-defined acceptability after mechanics results.</td><td>Required by <code>OPS-K-MECH-2</code>, <code>OPS-K-DATA-1</code>, and <code>OPS-K-AUTH-1</code>.</td></tr>
+<tr><td>Limitations and FEA handoff</td><td>Distinguish global centerline analysis from local shell/solid FEA.</td><td>Required by <code>INIT.md</code> boundary 4 and <code>OPS-K-MECH-1</code>.</td></tr>
+<tr><td>References and provenance</td><td>List only public/permissive sources with license/redistribution status where applicable.</td><td><code>TBD</code> until public sources are selected.</td></tr>
+</tbody></table>
+<p>Source provenance minimum fields for future production:</p>
+<table><tbody>
+<tr><td>Field</td><td>Purpose</td><td>Current disposition</td></tr>
+<tr><td>Source title</td><td>Human-readable source name for final citation review.</td><td>TBD.</td></tr>
+<tr><td>Source location</td><td>URL, DOI, local path, or other durable locator.</td><td>TBD.</td></tr>
+<tr><td>Source section</td><td>Exact section, chapter, page, or heading used for a claim.</td><td>TBD.</td></tr>
+<tr><td>License / redistribution status</td><td>Evidence that source can be cited or used in the public repository.</td><td>TBD.</td></tr>
+<tr><td>Source type</td><td>Public-domain, permissive, project-authored, private-only, protected-suspected, or other reviewed category.</td><td>TBD.</td></tr>
+<tr><td>Claim scope</td><td>Which final-note section or claim the source supports.</td><td>TBD.</td></tr>
+<tr><td>Public/permissive disposition</td><td><code>ACCEPTED</code>, <code>REJECTED</code>, or <code>TBD</code> for public theory-note use.</td><td>TBD.</td></tr>
+<tr><td>Review disposition</td><td>Pending, accepted, rejected, quarantined, or deferred by human/project review.</td><td>TBD.</td></tr>
+<tr><td>Protected-content review notes</td><td>Any concern about standard-derived, proprietary, private, or restricted content.</td><td>TBD.</td></tr>
+</tbody></table>
+<p>Current source inventory/status expectations:</p>
+<table><tbody>
+<tr><td>Source class</td><td>Intended use</td><td>Current status</td><td>Required control before use</td></tr>
+<tr><td>Project governance and decomposition documents</td><td>Scope, boundary, vocabulary, professional-boundary, and source-control requirements.</td><td>Available for control-document support.</td><td>Cite exact local file and relevant invariant or section.</td></tr>
+<tr><td>Public history source for classical flexibility lineage</td><td>Historical or lineage statements.</td><td><code>TBD</code>.</td><td>Public/permissive provenance, claim scope, and protected-content review.</td></tr>
+<tr><td>Public mechanics/frame source</td><td>General structural-analysis or line-element concept support.</td><td><code>TBD</code>.</td><td>Public/permissive provenance, claim scope, and no protected formula/table dependency.</td></tr>
+<tr><td>Local FEA handoff source</td><td>Boundary between global centerline analysis and local shell/solid handoff.</td><td><code>TBD</code>.</td><td>Public/permissive provenance and boundary-only use.</td></tr>
+<tr><td>Protected standards or code-body material</td><td>Boundary reference only.</td><td>Not accepted as public source text.</td><td>Do not quote, paraphrase, table, formula-copy, or derive examples unless a future human-approved legal basis is recorded.</td></tr>
+<tr><td>Proprietary commercial examples, benchmark files, or vendor data</td><td>Not part of public theory-note support.</td><td>Rejected unless rights are documented.</td><td>Remain <code>TBD</code>, rejected, or quarantined until review records redistribution rights.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for sealed deliverable identity, write boundary, scope, objectives, and architecture-basis injection.</li>
+<li>- <code>_REFERENCES.md</code> for currently available governing references.</li>
+<li>- <code>INIT.md</code> for open mechanics, protected-data, rule-check, professional-responsibility, and centerline-vs-FEA boundaries.</li>
+<li>- <code>docs/CONTRACT.md</code> for invariants <code>OPS-K-IP-1</code>, <code>OPS-K-IP-2</code>, <code>OPS-K-IP-3</code>, <code>OPS-K-DATA-1</code>, <code>OPS-K-DATA-2</code>, <code>OPS-K-UNIT-1</code>, <code>OPS-K-AUTH-1</code>, <code>OPS-K-MECH-1</code>, <code>OPS-K-MECH-2</code>, and <code>OPS-K-AGENT-1..4</code>.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> for public/permissive source provenance fields, protected-content quarantine expectations, and contribution-review controls.</li>
+<li>- <code>docs/PROFESSIONAL_BOUNDARY.md</code> for product-claim and professional-reliance boundaries.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 rows for <code>PKG-11</code>, <code>DEL-11-03</code>, <code>OBJ-001</code>, <code>OBJ-003</code>, and <code>SOW-033</code>.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code>, <code>docs/_Registers/ScopeLedger.csv</code>, and <code>docs/_Registers/ContextBudgetQA.csv</code> rows for <code>DEL-11-03</code> and <code>SOW-033</code>.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-11-03-theory-notes-classical-to-modern-centerline-analysis">CLM-008 — Specification: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h3>
+<blockquote><h4 id="specification-del-11-03-theory-notes-classical-to-modern-centerline-analysis">Specification: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-03-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This specification governs only the deliverable-local setup for <code>DEL-11-03</code> and the future production contract for <code>docs/theory/centerline_analysis.md</code>. It does not authorize edits outside the deliverable folder in this setup run.</p>
+<p>The future theory note shall explain the classical flexibility lineage and modern 3D centerline/frame implementation approach for OpenPipeStress, while preserving protected-data, rule-check, professional-responsibility, and unit-awareness boundaries.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>REQ-11-03-01</td><td>The theory note shall explain centerline analysis as an educational mechanics concept and shall not assert code compliance, certification, sealing, approval, or professional reliance.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-AUTH-1</code>; <code>INIT.md</code></td></tr>
+<tr><td>REQ-11-03-02</td><td>The theory note shall distinguish mechanics solving from user-supplied rule checks and human professional acceptance.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-MECH-2</code>, <code>OPS-K-DATA-1</code>; <code>INIT.md</code></td></tr>
+<tr><td>REQ-11-03-03</td><td>The theory note shall frame routine global piping analysis as a 3D centerline/frame model and distinguish local shell/solid FEA as a handoff path.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-MECH-1</code>; <code>INIT.md</code></td></tr>
+<tr><td>REQ-11-03-04</td><td>The theory note shall use only public/permissive sources for historical and mechanics claims and shall cite source provenance.</td><td><code>_CONTEXT.md</code>; <code>docs/CONTRACT.md</code> <code>OPS-K-IP-2</code></td></tr>
+<tr><td>REQ-11-03-05</td><td>The theory note shall not copy or paraphrase protected standards text, examples, figures, tables, code-specific formulas, material allowables, SIF/flexibility tables, protected dimensional tables, or proprietary commercial data.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-IP-1</code>, <code>OPS-K-IP-3</code></td></tr>
+<tr><td>REQ-11-03-06</td><td>Any technical quantities, units, or dimensional reasoning introduced later shall be unit-aware and shall not rely on silent defaults.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-UNIT-1</code>, <code>OPS-K-DATA-2</code></td></tr>
+<tr><td>REQ-11-03-07</td><td>Missing source support, exact source sections, and unresolved historical claims shall be marked <code>TBD</code> rather than invented.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-AGENT-1</code>, <code>OPS-K-AGENT-2</code></td></tr>
+<tr><td>REQ-11-03-08</td><td>Public examples, if any are introduced in future work, shall use invented non-code values and clear educational disclaimers.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-RULE-1</code>; <code>SOW-033</code> notes</td></tr>
+<tr><td>REQ-11-03-09</td><td>The setup artifacts shall remain inside the assigned deliverable folder and shall not move content to <code>ISSUED</code>.</td><td>Human sealed brief; <code>AGENTS.md</code> dispatch rule</td></tr>
+<tr><td>REQ-11-03-10</td><td>Future citations shall carry at least source title, locator, source section, license or redistribution status, public/permissive disposition, and review notes.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-IP-2</code>; <code>_SEMANTIC_LENSING.md</code> items <code>C-001</code> and <code>F-001</code></td></tr>
+<tr><td>REQ-11-03-11</td><td>The source inventory shall classify each candidate source as accepted, rejected, quarantined, or <code>TBD</code>; unclear or unsupported sources shall not support final theory claims.</td><td><code>_SEMANTIC_LENSING.md</code> items <code>B-001</code>, <code>F-001</code>, and <code>E-001</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4</td></tr>
+<tr><td>REQ-11-03-12</td><td>Final review shall record both coverage review and protected-content/professional-boundary review before the theory note is treated as ready for later lifecycle review.</td><td><code>_SEMANTIC_LENSING.md</code> items <code>A-001</code>, <code>D-002</code>, and <code>X-001</code>; <code>docs/PROFESSIONAL_BOUNDARY.md</code> section 9</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No proprietary or protected standards text is incorporated by this setup run.</p>
+<p>Applicable governing constraints are repository governance invariants, not engineering code clauses:</p>
+<ul>
+<li>- <code>OPS-K-IP-1</code>, <code>OPS-K-IP-2</code>, <code>OPS-K-IP-3</code></li>
+<li>- <code>OPS-K-DATA-1</code>, <code>OPS-K-DATA-2</code>, <code>OPS-K-DATA-3</code></li>
+<li>- <code>OPS-K-UNIT-1</code></li>
+<li>- <code>OPS-K-AUTH-1</code></li>
+<li>- <code>OPS-K-MECH-1</code>, <code>OPS-K-MECH-2</code></li>
+<li>- <code>OPS-K-AGENT-1..4</code></li>
+</ul>
+<p>Public/permissive theory sources for final prose are <code>TBD</code>.</p></blockquote>
+<h3 id="clm-013-source-provenance-control">CLM-013 — Source Provenance Control</h3>
+<blockquote><h5 id="source-provenance-control">Source Provenance Control</h5>
+<p>Future production work shall maintain a source inventory before relying on any historical, mechanics, or implementation-support claim in the final theory note. The inventory is a control surface, not a substitute for human/legal/professional review.</p>
+<p>Minimum source fields:</p>
+<table><tbody>
+<tr><td>Field</td><td>Required use</td></tr>
+<tr><td>Source title</td><td>Human-readable source identity for review and citation.</td></tr>
+<tr><td>Locator</td><td>URL, DOI, local path, publication identifier, or <code>TBD</code>.</td></tr>
+<tr><td>Source section</td><td>Chapter, page, heading, section, or claim-specific location; <code>TBD</code> if not yet known.</td></tr>
+<tr><td>License or redistribution status</td><td>Public/permissive basis, project-authored basis, private-only, protected-suspected, unknown, or <code>TBD</code>.</td></tr>
+<tr><td>Source type</td><td>Project governance, public mechanics, public history, public software/numerics, private-only, protected-suspected, or other reviewed category.</td></tr>
+<tr><td>Claim scope</td><td>The final-note section, sentence class, or concept the source is allowed to support.</td></tr>
+<tr><td>Public/permissive disposition</td><td><code>ACCEPTED</code>, <code>REJECTED</code>, <code>QUARANTINED</code>, or <code>TBD</code> for public theory-note use.</td></tr>
+<tr><td>Review notes</td><td>Protected-content, private-data, provenance, and professional-boundary notes.</td></tr>
+</tbody></table>
+<p>Source inventory/status expectations:</p>
+<table><tbody>
+<tr><td>Status</td><td>Meaning for final theory-note use</td></tr>
+<tr><td><code>ACCEPTED</code></td><td>Source may support only the recorded claim scope after public/permissive and protected-content review.</td></tr>
+<tr><td><code>TBD</code></td><td>Source or claim support is unresolved and must not be used as final support.</td></tr>
+<tr><td><code>REJECTED</code></td><td>Source must not support public theory prose.</td></tr>
+<tr><td><code>QUARANTINED</code></td><td>Source appears protected, private, proprietary, or otherwise unsafe for public use pending human/legal review.</td></tr>
+</tbody></table>
+<p>Protected standards, proprietary commercial examples, unclear sources, and unsupported historical claims remain <code>TBD</code>, rejected, or quarantined. They must not be paraphrased into public prose, used as public examples, or treated as accepted source support.</p></blockquote>
+<h3 id="clm-014-verification">CLM-014 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Method</td><td>Expected evidence</td></tr>
+<tr><td>Four-document setup exists</td><td>File presence check</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> present in this folder</td></tr>
+<tr><td>Scope isolation</td><td>Path review</td><td>All created/modified setup artifacts remain under <code>DEL-11-03_Theory notes- classical to modern centerline analysis/</code></td></tr>
+<tr><td>Protected-data boundary</td><td>Content review</td><td>No copied standards formulas/examples/tables, material allowables, SIF/flexibility tables, or proprietary values</td></tr>
+<tr><td>Non-certification boundary</td><td>Content review</td><td>No statement that software output certifies, seals, approves, authenticates, or declares engineering code compliance</td></tr>
+<tr><td>Source gap handling</td><td>Content review</td><td>Unsupported public-source needs are marked <code>TBD</code></td></tr>
+<tr><td>Source inventory control</td><td>Content review</td><td>Candidate sources carry the minimum provenance fields and a status of <code>ACCEPTED</code>, <code>REJECTED</code>, <code>QUARANTINED</code>, or <code>TBD</code>; only accepted public/permissive sources support final claims</td></tr>
+<tr><td>Semantic setup</td><td>Artifact review</td><td><code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>, and P3 run record exist and preserve lens-not-authority language</td></tr>
+<tr><td>Dependency setup</td><td>Tool validation</td><td><code>Dependencies.csv</code> passes v3.1 schema validation and <code>_DEPENDENCIES.md</code> counts match</td></tr>
+<tr><td>Lifecycle gate</td><td><code>_STATUS.md</code> review</td><td><code>Current State</code> is <code>SEMANTIC_READY</code> only after setup artifacts and local validations pass</td></tr>
+</tbody></table>
+<p>Final theory-note coverage checklist for future production:</p>
+<table><tbody>
+<tr><td>Check</td><td>Required coverage</td><td>Required evidence</td></tr>
+<tr><td>Scope and boundary</td><td>Educational purpose, public-source basis, no protected-data reproduction, and no compliance/certification claim.</td><td>Explicit boundary section and source-control note.</td></tr>
+<tr><td>Classical lineage</td><td>Only source-supported historical or conceptual statements; unsupported details remain <code>TBD</code>.</td><td>Accepted public/permissive source inventory entries or <code>TBD</code> markers.</td></tr>
+<tr><td>Centerline/frame abstraction</td><td>Conceptual explanation of nodes, elements, local/global frames, supports, loads, and mechanical results without protected code formulas.</td><td>Project governance support plus accepted public mechanics source support if claims go beyond project boundary language.</td></tr>
+<tr><td>Loads and result interpretation</td><td>Conceptual discussion of primitive loads, displacements, forces, moments, reactions, and stresses.</td><td>No code-specific load combinations, allowables, or protected formulas.</td></tr>
+<tr><td>Rule-check boundary</td><td>Clear separation between mechanics results, user rule checks, and human professional acceptance.</td><td>Professional-boundary wording aligned with <code>OPS-K-MECH-2</code> and <code>OPS-K-AUTH-1</code>.</td></tr>
+<tr><td>Limitations and FEA handoff</td><td>Distinction between routine global line-element analysis and local shell/solid FEA handoff.</td><td>Boundary-only explanation unless accepted public/permissive handoff sources are recorded.</td></tr>
+<tr><td>References</td><td>Public/permissive sources with provenance and review disposition.</td><td>Source inventory entries include all minimum fields or remain <code>TBD</code>.</td></tr>
+</tbody></table>
+<p>Protected-content review checklist for future production:</p>
+<table><tbody>
+<tr><td>Content type</td><td>Required disposition</td></tr>
+<tr><td>Standards text, figures, examples, and tables</td><td>Must not be copied or paraphrased into public prose.</td></tr>
+<tr><td>Code-specific formulas, SIF/flexibility tables, and material allowables</td><td>Must not be included unless a future human-approved legal basis is recorded; current disposition is prohibited.</td></tr>
+<tr><td>Proprietary commercial examples or benchmark data</td><td>Must not be included.</td></tr>
+<tr><td>Invented examples</td><td>Permitted only when clearly non-code and non-engineering reliance.</td></tr>
+<tr><td>Compliance or certification language</td><td>Must be rejected unless phrased as a user/human responsibility boundary.</td></tr>
+<tr><td>Unclear source status</td><td>Must remain <code>TBD</code>; may not support final prose until reviewed.</td></tr>
+<tr><td>Professional/code-compliance implication</td><td>Must be removed or rewritten as a boundary statement requiring competent human review.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-documentation">CLM-015 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required setup outputs for this run:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/*</code></li>
+</ul>
+<p>Future production output remains:</p>
+<ul>
+<li>- <code>docs/theory/centerline_analysis.md</code> (not edited in this setup run)</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the source-defined conceptual progression, coordinate and unit conventions, model assumptions and limitations, source-provenance controls, distinctions among explanation, implementation, verification, validation, and professional reliance, visible unresolved technical questions, and the ban on presenting unverified extracted equations or narrative as authoritative design basis.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-11-03-theory-notes-classical-to-modern-centerline-analysis">CLM-016 — Procedure: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h3>
+<blockquote><h4 id="procedure-del-11-03-theory-notes-classical-to-modern-centerline-analysis">Procedure: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h4></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Execute and review the deliverable-local setup workflow for the theory notes without editing the final documentation target or introducing protected engineering content.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Confirm the working path is <code>execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-03_Theory notes- classical to modern centerline analysis/</code>.</li>
+<li>- Confirm the sealed write scope permits deliverable-local setup artifacts only.</li>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code>, <code>docs/CONTRACT.md</code>, the decomposition row for <code>DEL-11-03</code>, and the relevant register rows.</li>
+<li>- Treat public/permissive theory sources as <code>TBD</code> until they are deliberately selected and reviewed.</li>
+</ul></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Draft the four-document setup kit.</p>
+<ul>
+<li>- Populate identification, scope, requirements, guidance, and procedure content from the sealed context and governing documents.</li>
+<li>- Mark unavailable public-source details as <code>TBD</code>.</li>
+<li>- Do not edit <code>docs/theory/centerline_analysis.md</code>.</li>
+</ul>
+<p>2. Generate the semantic matrix lens.</p>
+<ul>
+<li>- Use <code>_CONTEXT.md</code> and the four setup documents as the deliverable perspective.</li>
+<li>- Preserve the lens-not-authority boundary.</li>
+<li>- Update <code>_STATUS.md</code> to <code>SEMANTIC_READY</code> only if the semantic matrix audit passes.</li>
+</ul>
+<p>3. Generate the semantic lensing register.</p>
+<ul>
+<li>- Read <code>_SEMANTIC.md</code> and the four setup documents.</li>
+<li>- Record warranted future enrichment items without changing production documents.</li>
+<li>- Keep human rulings as <code>TBD</code>.</li>
+</ul>
+<p>4. Run the P3-only four-document pass.</p>
+<ul>
+<li>- Treat <code>_SEMANTIC_LENSING.md</code> as a candidate worklist, not as authority.</li>
+<li>- Apply only warranted clarifications supported by the already-read governing sources.</li>
+<li>- Preserve protected-data and no-certification boundaries.</li>
+</ul>
+<p>5. Extract dependencies.</p>
+<ul>
+<li>- Create or refresh <code>Dependencies.csv</code> with v3.1 columns.</li>
+<li>- Refresh <code>_DEPENDENCIES.md</code> with extracted summary, run notes, history, lifecycle summary, and handoff notes.</li>
+<li>- Validate schema and enum values.</li>
+</ul>
+<p>6. Verify setup gates.</p>
+<ul>
+<li>- Confirm the four documents exist.</li>
+<li>- Confirm semantic and lensing artifacts exist and are internally structured.</li>
+<li>- Confirm dependency schema validation passes.</li>
+<li>- Confirm no file outside the deliverable folder was modified by this TASK run.</li>
+</ul></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<ul>
+<li>- Explicit four-document file-presence check passes using ordinary shell tests:</li>
+</ul>
+<p>```sh</p>
+<p>deliverable_folder=&quot;execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-03_Theory notes- classical to modern centerline analysis&quot;</p>
+<p>test -f &quot;$deliverable_folder/Datasheet.md&quot;</p>
+<p>test -f &quot;$deliverable_folder/Specification.md&quot;</p>
+<p>test -f &quot;$deliverable_folder/Guidance.md&quot;</p>
+<p>test -f &quot;$deliverable_folder/Procedure.md&quot;</p>
+<p>```</p>
+<ul>
+<li>- <code>python3 tools/validation/validate_dependencies_schema.py &lt;deliverable-folder&gt;/Dependencies.csv</code> passes.</li>
+<li>- Enum validation passes for dependency enum values used in <code>Dependencies.csv</code>.</li>
+<li>- Content review finds no protected standards text, examples, formulas, tables, proprietary values, or compliance/certification claims.</li>
+<li>- <code>_STATUS.md</code> history records setup progression without moving anything to <code>ISSUED</code>.</li>
+</ul></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Retain these deliverable-local records:</p>
+<ul>
+<li>- Four-document kit: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></li>
+<li>- Semantic artifacts: <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code></li>
+<li>- Dependency artifacts: <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code></li>
+<li>- Run records: <code>_run_records/TASK_RUN_*.md</code></li>
+<li>- Lifecycle file: <code>_STATUS.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, classical-to-modern topic coverage, assumptions and limitations, coordinate/unit conventions, source provenance and equation reliability controls, verification-versus-validation boundaries, retained conflicts and TBDs, and non-reliance limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-11-03-theory-notes-classical-to-modern-centerline-analysis">CLM-022 — Guidance: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h3>
+<blockquote><h4 id="guidance-del-11-03-theory-notes-classical-to-modern-centerline-analysis">Guidance: DEL-11-03 Theory Notes - Classical to Modern Centerline Analysis</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-11-03-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable prepares a bounded theory-note work surface for explaining classical-to-modern centerline analysis in OpenPipeStress. The useful center of the note is educational clarity: help users and developers understand why the project treats routine pipe stress as a global 3D centerline/frame problem while keeping code-specific checks and professional judgment outside solver authority.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Explain mechanics concepts in plain engineering language, but keep unsupported historical claims and source-specific details as <code>TBD</code>.</li>
+<li>- Prefer public/permissive mechanics and numerical-analysis sources for future citations.</li>
+<li>- Treat protected standards as boundaries, not source text for public reproduction.</li>
+<li>- Treat source selection as governed work: unclear sources stay <code>TBD</code>, and only accepted public/permissive sources may support final claims.</li>
+<li>- Use centerline/frame language consistently: nodes, line elements, local/global frames, supports, loads, displacements, element forces, and result interpretation.</li>
+<li>- Distinguish practical global flexibility analysis from local shell/solid FEA; neither mode substitutes for professional acceptance.</li>
+<li>- Keep formulas out of the setup draft unless later public/permissive sources and project-specific approval justify them.</li>
+</ul></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The final note should be readable by both users and contributors. Users need enough context to understand model assumptions, limits, and warnings. Developers need enough structure to see how theory maps to solver architecture without treating the documentation as a code specification.</p>
+<p>Protected-data risk is the dominant risk for this deliverable. Public prose may discuss open mechanics and general structural-analysis concepts, but it must not recreate code-body tables, code examples, code stress equations, SIF/flexibility tables, proprietary component data, or commercial-software benchmark examples.</p>
+<p>The phrase &quot;classical flexibility lineage&quot; should be handled conservatively. Until public/permissive historical sources are selected, the note can state the intended coverage but should not make detailed historical claims about named methods, committees, or code evolution.</p>
+<p>Source-selection questions for future production:</p>
+<table><tbody>
+<tr><td>Topic</td><td>Source need</td><td>Current disposition</td></tr>
+<tr><td>Classical flexibility lineage</td><td>Public/permissive historical or educational source for lineage statements.</td><td><code>TBD</code>; do not invent or overstate history.</td></tr>
+<tr><td>Centerline/frame explanation</td><td>Public/permissive mechanics or structural-analysis source if the final note goes beyond project boundary language.</td><td><code>TBD</code>; keep current prose conceptual.</td></tr>
+<tr><td>Local shell/solid FEA handoff</td><td>Public/permissive source if future prose expands from boundary statement to practice explanation.</td><td><code>TBD</code>; keep current use as a boundary concept.</td></tr>
+<tr><td>Examples</td><td>Invented educational examples only, unless public/permissive source and review support are recorded.</td><td><code>TBD</code>; no standards-derived or proprietary examples.</td></tr>
+</tbody></table>
+<p>Terminology mapping for future prose:</p>
+<table><tbody>
+<tr><td>Term</td><td>Use in final theory note</td><td>Mapping guidance</td><td>Boundary</td></tr>
+<tr><td>Classical flexibility analysis</td><td>Use for source-supported lineage and conceptual background.</td><td>Treat as the historical/conceptual family of global flexibility thinking, not as an unreviewed import of a protected method.</td><td>Do not imply adoption of any protected code method unless public evidence and review support it.</td></tr>
+<tr><td>Centerline model</td><td>Use for the geometry abstraction: a pipe run represented by a connected line with nodes, elements, supports, and loads.</td><td>Present as the model abstraction that connects piping geometry to mechanics inputs.</td><td>Do not treat this as a complete local stress/FEA model.</td></tr>
+<tr><td>3D frame model</td><td>Use for the modern computational implementation idea: line elements with translational and rotational degrees of freedom in global and local frames.</td><td>Present as the computational expression of the centerline model for global mechanics.</td><td>Do not introduce implementation equations or library choices in this documentation deliverable.</td></tr>
+<tr><td>Rule check</td><td>Use only for user-supplied acceptability evaluation after mechanics results.</td><td>Keep mechanics evidence, user rule evaluation, and professional acceptance as separate authority domains.</td><td>Do not present the theory note as a code-compliance guide.</td></tr>
+</tbody></table>
+<p>Use these terms as a continuity map: classical flexibility language, centerline model language, and 3D frame language describe related levels of abstraction. They are not competing authorities, and none of them authorizes copied standards content, code-specific examples, or professional/code-compliance claims.</p></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred setup stance</td></tr>
+<tr><td>Educational clarity vs. formula detail</td><td>Prefer conceptual explanation now; formula detail remains <code>TBD</code> pending public/permissive sources and protected-content review.</td></tr>
+<tr><td>Classical terminology vs. modern implementation terms</td><td>Use both, but normalize them so &quot;flexibility analysis&quot;, &quot;centerline model&quot;, and &quot;3D frame model&quot; are not treated as conflicting concepts.</td></tr>
+<tr><td>Solver explanation vs. implementation specification</td><td>Explain the model idea without prescribing code-level equations or numerical-library choices.</td></tr>
+<tr><td>Public examples vs. protected examples</td><td>Use invented, non-code examples only if future work needs examples.</td></tr>
+<tr><td>Mechanics output vs. compliance output</td><td>Mechanics output is solver evidence; acceptability and professional reliance remain user/human-governed.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>No numerical examples are introduced in this setup run.</p>
+<p>Future examples, if used, must be invented educational examples with non-code values, no protected standard tables, and no compliance claims.</p></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No current source conflict identified.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-033 OBJ-001 OBJ-003</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

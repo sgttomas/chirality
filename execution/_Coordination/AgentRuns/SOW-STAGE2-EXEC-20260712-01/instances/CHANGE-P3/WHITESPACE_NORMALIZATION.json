@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "after_sha256": "2f4d36badbf48371bf9282a2547886946c444a7b3f1de646d2e15b2a9a526fe4",
+      "before_sha256": "23399f4add3904980d180b971098c2f5a0cf2f3d2d630ec4799aa52e653c39a1",
+      "change": "append terminal LF",
+      "path": "execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/CHANGE-P3/PRACTITIONER_HARNESS.junit.xml"
+    }
+  ],
+  "verdict": "PASS"
+}

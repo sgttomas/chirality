@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "{REPO_ROOT}/tools/scope_of_work/derive_review_checklist.py",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P3/PIP-PKG11/DEL-11-01/production/ScopeOfWork.md",
+    "--output",
+    "{REPO_ROOT}/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P3-PKG11/children/VERIFY-B1/members/DEL-11-01/checklist_1.json"
+  ],
+  "duration_seconds": 0.038831,
+  "exit_code": 0,
+  "expected_exit": 0,
+  "label": "checklist_1",
+  "required_output_absent": null,
+  "stderr": "",
+  "stdout": ""
+}

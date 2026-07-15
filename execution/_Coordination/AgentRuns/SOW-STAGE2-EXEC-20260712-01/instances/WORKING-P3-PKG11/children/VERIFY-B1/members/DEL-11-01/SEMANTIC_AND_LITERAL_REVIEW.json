@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 273
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the source-defined guide structure, current implementation declarations, unit and missing-data visibility, diagnostics and result interpretation boundaries, invented-example posture, protected/private-data controls, accessibility intent, visible unresolved documentation decisions, and the prohibition on treating software output as professional approval or code compliance.",
+    "OUT-001": "A user-guide skeleton contract for safe installation, model creation, solve, result review, troubleshooting, and professional-responsibility navigation is produced.",
+    "VER-001": "Validate the contract and review source parity, user-journey and guide-structure coverage, current-versus-planned declarations, units and diagnostics, protected/private-data and accessibility controls, retained conflicts and TBDs, and professional-responsibility limits."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

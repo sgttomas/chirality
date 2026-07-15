@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-12-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 236,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a85b8115057211ecdc8ac74c005d79b0b6f0c9f2f944058441c46c211781858b"
+      },
+      "text": "The contract preserves opaque-reference-over-secret behavior, private-library metadata and provenance/checksum posture, redaction/quarantine/permission/no-bypass controls, metadata-only helper and invented-fixture evidence, source-labeled assumptions, visible provider/encryption/storage/grant/cloud/approval TBDs and conflicts, and the separation of guard evidence from legal, security, professional, or code-compliance approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-12-04-VER-001",
+          "source_line": 342,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, registry and opaque-reference coverage, privacy/provenance/checksum and transmission defaults, redaction/quarantine/permission/no-bypass controls, metadata-only evidence limits, retained assumptions/conflicts/TBDs, and authority boundaries."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-12-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-12",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "a85b8115057211ecdc8ac74c005d79b0b6f0c9f2f944058441c46c211781858b"
+  },
+  "tool_version": "1"
+}

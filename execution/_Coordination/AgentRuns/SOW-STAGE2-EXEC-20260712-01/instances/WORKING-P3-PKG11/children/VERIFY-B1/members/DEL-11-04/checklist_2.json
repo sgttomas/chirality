@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-11-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 223,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "9fdf56afa1e57bff58c4eb000d45880a8ee495e7ab6a33a6183e642c28f3158a"
+      },
+      "text": "The contract preserves the source-defined example families, synthetic-data and provenance requirements, units and assumptions, expected diagnostics and learning outcomes, reproducibility and verification evidence, protected/private-data exclusions, non-reliance notice, visible conflicts and TBDs, and separation from benchmark, code-compliance, certification, or professional-approval claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-11-04-VER-001",
+          "source_line": 299,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, example-family and learning-outcome coverage, invented-data provenance, unit/assumption/diagnostic visibility, reproducibility evidence, protected/private-data boundaries, retained conflicts and TBDs, and non-reliance limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-11-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-11",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "9fdf56afa1e57bff58c4eb000d45880a8ee495e7ab6a33a6183e642c28f3158a"
+  },
+  "tool_version": "1"
+}

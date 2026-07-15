@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-runtime-summary/v1",
+  "status": "COMPLETE",
+  "sessions": 3,
+  "sessions_complete": 3,
+  "accepted_sessions": 2,
+  "failed_sessions": 1,
+  "author_status": "PASS",
+  "initial_verifier_status": "BLOCKED_EXCLUDED",
+  "replacement_verifier_status": "PASS_UNCHANGED",
+  "members": 5,
+  "mappings": 171,
+  "source_lines": 1737,
+  "retained_execution_attempts": 1,
+  "native_token_context_telemetry": "UNAVAILABLE_NOT_INFERRED"
+}

@@ -1,0 +1,22 @@
+{
+  "immutable_literals": {
+    "all_preserved_as_blockquotes": true,
+    "source_files": [
+      "Datasheet.md",
+      "Specification.md",
+      "Guidance.md",
+      "Procedure.md"
+    ],
+    "source_lines": 300
+  },
+  "initial_definitions": {
+    "AC-001": "The contract preserves the source-defined contributor path, architecture-basis handling, schema and unit invariants, deterministic checks, protected/private-data and licensing boundaries, documentation and review records, safe-versus-unsafe examples, visible unresolved onboarding decisions, and the distinction between contribution acceptance and professional engineering approval.",
+    "OUT-001": "A contributor tutorial and onboarding contract for safe repository setup, bounded changes, tests, evidence, review, and governance-aware contribution is produced.",
+    "VER-001": "Validate the contract and review source parity, onboarding-step and contributor-path coverage, architecture and invariant handling, test/evidence/review expectations, protected/private-data and licensing controls, retained conflicts and TBDs, and professional-responsibility limits."
+  },
+  "professional_reliance": "PASS \u2014 existing professional-reliance, approval, compliance, protected-content, private-data, and authority limits remain literal and no new reliance claim is introduced.",
+  "semantic_additions": [],
+  "source_grounding": "PASS \u2014 definitions conservatively name the deliverable, preserved constraints, and verification of exact source parity; they do not add an engineering outcome.",
+  "tests_create_scope": false,
+  "unresolved_items_retained": true
+}

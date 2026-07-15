@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-12-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 226,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2a49729412209263244295c347be09fb10c4e0a9171fad717735a895014a873"
+      },
+      "text": "The contract preserves the source-defined public/private path classes, local SQLite-backed profile boundary, deterministic persistence and provenance constraints, metadata-only guard evidence, report/export and secret-owner handoffs, visible physical-root/container/runtime/cloud/encryption TBDs and conflict, and the prohibition on treating storage evidence as certification, approval, professional reliance, or code compliance.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-12-01-VER-001",
+          "source_line": 328,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, symbolic-path and private-data-class coverage, local-first and deterministic-persistence boundaries, metadata-only guard limits, report/export and secret-owner interfaces, retained conflict and TBDs, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-12-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-12",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d2a49729412209263244295c347be09fb10c4e0a9171fad717735a895014a873"
+  },
+  "tool_version": "1"
+}

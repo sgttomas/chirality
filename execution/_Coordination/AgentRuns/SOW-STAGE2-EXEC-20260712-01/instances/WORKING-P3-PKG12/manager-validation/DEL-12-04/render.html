@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="a85b8115057211ecdc8ac74c005d79b0b6f0c9f2f944058441c46c211781858b">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-12-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>a85b8115057211ecdc8ac74c005d79b0b6f0c9f2f944058441c46c211781858b</code>.</p>
+<h1 id="scope-of-work-del-12-04">Scope of Work — DEL-12-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-12-04</code> in service of project scope [SOW-040, SOW-029] and package objectives [OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A local-first secret-reference and private-library handling contract for registry metadata, denied-by-default access, release guards, and disclosure boundaries is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-12-04-secret-and-private-library-handling">CLM-001 — Datasheet: DEL-12-04 Secret and private-library handling</h3>
+<blockquote><h4 id="datasheet-del-12-04-secret-and-private-library-handling">Datasheet: DEL-12-04 Secret and private-library handling</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-12-04</td></tr>
+<tr><td>Deliverable name</td><td>Secret and private-library handling</td></tr>
+<tr><td>Package ID</td><td>PKG-12</td></tr>
+<tr><td>Package name</td><td>Security, Privacy, and Private Data Handling</td></tr>
+<tr><td>Type</td><td>SECURITY_CONTROL</td></tr>
+<tr><td>Scope items</td><td>SOW-040, SOW-029</td></tr>
+<tr><td>Objective</td><td>OBJ-010</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Lifecycle state</td><td>IN_PROGRESS per <code>_STATUS.md</code>; June 7 readiness evidence exists but this datasheet does not promote lifecycle state</td></tr>
+</tbody></table>
+<p>Source: <code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-12-04</code>; <code>docs/_Registers/ScopeLedger.csv</code> rows <code>SOW-040</code> and <code>SOW-029</code>.</p></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary product posture</td><td>Local-first; no cloud service required for modeling, solving, rule checking, or reporting</td><td><code>docs/PRD.md</code> section 18.1; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-029</td></tr>
+<tr><td>Private assets in scope</td><td>Private rule packs, private material data, private component data, private libraries, project models, paths, and credential references</td><td><code>docs/PRD.md</code> sections 17.3 and 18.3; <code>_CONTEXT.md</code> Description</td></tr>
+<tr><td>Public repository boundary</td><td>Public artifacts may define schemas, importers, mechanisms, and invented examples, but must not contain user private rule packs, owner standards, company design bases, protected tables, or proprietary source content</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2, 3, and 6</td></tr>
+<tr><td>Registry artifact</td><td>Private library registry</td><td><code>_CONTEXT.md</code> Anticipated Artifacts</td></tr>
+<tr><td>Test artifact</td><td>Secret handling tests now have focused invented-fixture coverage in <code>tests/security/test_secret_private_library_handling.py</code></td><td><code>_CONTEXT.md</code> Anticipated Artifacts; <code>_run_records/TASK_RUN_2026-06-07_0942_secret-private-library-alignment.md</code></td></tr>
+<tr><td>Current product evidence</td><td>Metadata-only helper in <code>core/security/secret_private_library/</code>, public-boundary documentation in <code>docs/security/secret_private_library_handling.md</code>, and focused tests for release guards</td><td><code>_run_records/TASK_RUN_2026-06-07_0942_secret-private-library-alignment.md</code>; <code>WORKING_ITEMS_RUN_2026-06-07_0957_TP-PKG12-REDACTION-SECRET-GUARD-CLOSEOUT.md</code></td></tr>
+<tr><td>Secret storage posture</td><td>Store references to secrets, not secret material, in project, registry, report, or test artifacts</td><td>ASSUMPTION from <code>docs/PRD.md</code> section 18.3 and <code>docs/architecture/plugin_boundary.md</code> Permission Model Skeleton</td></tr>
+<tr><td>Hash/checksum posture</td><td>Rule packs, libraries, exports, reports, and relevant JSON payloads should be checksum-addressable using the accepted canonical JSON/JCS-compatible basis where applicable</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-04; <code>docs/architecture/plugin_boundary.md</code> Checksums and Provenance</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Required handling</td></tr>
+<tr><td>A private library path is registered</td><td>The registry records an opaque path reference, privacy classification, provenance summary, redistribution status, checksum status, and default transmission prohibition. Exact path storage mechanics remain <code>TBD</code>.</td></tr>
+<tr><td>A credential is needed for import or private storage</td><td>The product records an opaque credential reference and required permission, not a credential value. The concrete local secret provider remains <code>TBD</code>.</td></tr>
+<tr><td>A private library is exported, attached to a bug report, or included in a shared model/report</td><td>The product warns, redacts or omits private values unless the user explicitly requests inclusion under their responsibility.</td></tr>
+<tr><td>Provenance or redistribution status is missing</td><td>The product emits a provenance/private-data diagnostic and does not silently treat the asset as public.</td></tr>
+<tr><td>Protected or proprietary content is suspected</td><td>Ingestion or publication is stopped, the artifact is quarantined outside public examples, and human/legal review is required.</td></tr>
+<tr><td>A plugin or adapter requests private-library access</td><td>Access is denied unless a permission grant exists; plugins and adapters cannot bypass schema, unit, provenance, privacy, protected-content, diagnostic, or report controls.</td></tr>
+<tr><td>Cloud transmission or telemetry is proposed</td><td>It is out of this deliverable unless separately approved; telemetry is off by default and must not include private engineering data.</td></tr>
+<tr><td>Runtime provider, storage, or approval mechanics are requested</td><td>Exact secret provider, encrypted-storage default, storage roots, permission grant persistence, physical project package/container, public API transport, cloud/network behavior, external secret manager behavior, and approval choices remain <code>TBD</code> or deferred to owning workflows.</td></tr>
+</tbody></table>
+<p>Sources: <code>docs/PRD.md</code> sections 17.3, 18.2, and 18.3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 5 and 6; <code>docs/architecture/plugin_boundary.md</code> Private Data Handling; <code>docs/architecture/extension_domain_contracts.md</code> Denied-By-Default Behavior.</p></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5></blockquote>
+<h3 id="clm-006-private-library-registry-record">CLM-006 — Private Library Registry Record</h3>
+<blockquote><h6 id="private-library-registry-record">Private Library Registry Record</h6>
+<p>Minimum registry fields for this deliverable are descriptive and implementation-facing, not final schema commitments:</p>
+<table><tbody>
+<tr><td>Field</td><td>Purpose</td><td>Status</td></tr>
+<tr><td><code>library_id</code></td><td>Stable local identifier for a private library record</td><td>PROPOSAL</td></tr>
+<tr><td><code>library_kind</code></td><td>Private rule pack, material library, component library, owner design basis, or project-local library category</td><td>PROPOSAL</td></tr>
+<tr><td><code>path_ref</code></td><td>Opaque local path or storage reference; does not expose secret material</td><td>PROPOSAL</td></tr>
+<tr><td><code>privacy_classification</code></td><td>Marks private/public/export posture</td><td>PROPOSAL</td></tr>
+<tr><td><code>redistribution_status</code></td><td>Records private-only, public-permissive, unknown, or protected-suspected posture using project vocabulary</td><td>PROPOSAL</td></tr>
+<tr><td><code>source_provenance</code></td><td>Source/provenance summary without protected tables or formulas</td><td>PROPOSAL</td></tr>
+<tr><td><code>checksum</code></td><td>Hash/checksum reference when available</td><td>PROPOSAL</td></tr>
+<tr><td><code>credential_ref</code></td><td>Optional opaque credential reference; never a credential value</td><td>PROPOSAL</td></tr>
+<tr><td><code>default_transmission_allowed</code></td><td>Defaults to false for private assets</td><td>PROPOSAL</td></tr>
+<tr><td><code>review_status</code></td><td>Pending, accepted, rejected, quarantined, or <code>TBD</code> review disposition</td><td>PROPOSAL</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-current-secret-handling-evidence">CLM-007 — Current Secret Handling Evidence</h3>
+<blockquote><h6 id="current-secret-handling-evidence">Current Secret Handling Evidence</h6>
+<p>June 7 evidence records focused invented-fixture tests for current metadata-only guard behavior. These tests do not create real secret storage, runtime private-library storage, cloud/network behavior, external secret-manager integration, legal clearance, security certification, professional approval, or code-compliance approval.</p>
+<table><tbody>
+<tr><td>Test area</td><td>Expected evidence</td></tr>
+<tr><td>Registry rejects secret values</td><td>Fixture contains only non-secret sentinel markers and opaque references.</td></tr>
+<tr><td>Export redaction</td><td>Private values are omitted or replaced by non-sensitive markers in report/share paths.</td></tr>
+<tr><td>Telemetry exclusion</td><td>Private-library and credential-reference fields are not included in telemetry payloads.</td></tr>
+<tr><td>Permission denial</td><td>Plugin/adapter access to private libraries and secret references fails closed without explicit grant.</td></tr>
+<tr><td>Quarantine routing</td><td>Suspected protected/private content entering a public contribution path emits a diagnostic and routes to review.</td></tr>
+<tr><td>June 7 marker hardening</td><td>Tests cover payload markers, cloud/network markers, external secret-manager markers, direct SQL/raw SQLite markers, storage-bypass markers, and concrete path reduction to safe metadata.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-references">CLM-008 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> for deliverable identity, scope, anticipated artifacts, and architecture basis injection.</li>
+<li>- <code>docs/CONTRACT.md</code> for OPS-K-IP, OPS-K-DATA, OPS-K-AUTH, OPS-K-PRIV, OPS-K-RULE, and OPS-K-AGENT invariants.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 for SOW-029, SOW-040, OBJ-010, PKG-12, and AB-00-01/02/03/04/06/07/08.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code>, <code>docs/_Registers/ScopeLedger.csv</code>, and <code>docs/_Registers/ContextBudgetQA.csv</code> for machine-readable scope.</li>
+<li>- <code>docs/PRD.md</code> sections 12, 13, 15, 17, and 18 for rule-pack, private-library, report, IP, local-first, telemetry, and private-data handling requirements.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 2 through 7 for public/private data boundary, provenance, quarantine, and report limits.</li>
+<li>- <code>docs/architecture/plugin_boundary.md</code>, <code>docs/architecture/extension_domain_contracts.md</code>, and <code>docs/architecture/persistence_contract.md</code> for architecture-basis constraints on permissions, private-data markers, checksums, and no-bypass behavior.</li>
+<li>- <code>_run_records/TASK_RUN_2026-06-07_0942_secret-private-library-alignment.md</code> and package fan-in <code>WORKING_ITEMS_RUN_2026-06-07_0957_TP-PKG12-REDACTION-SECRET-GUARD-CLOSEOUT.md</code> for current DEL-12-04 evidence.</li>
+<li>- <code>docs/security/secret_private_library_handling.md</code>, <code>core/security/secret_private_library/</code>, and <code>tests/security/test_secret_private_library_handling.py</code> for current metadata-only helper, documentation, and focused test evidence.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-12-04-secret-and-private-library-handling">CLM-009 — Specification: DEL-12-04 Secret and private-library handling</h3>
+<blockquote><h4 id="specification-del-12-04-secret-and-private-library-handling">Specification: DEL-12-04 Secret and private-library handling</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable specifies a local-first handling surface for private libraries, private paths, and credential references used by imports or private storage. It covers the private library registry concept and secret handling tests listed in <code>_CONTEXT.md</code>.</p>
+<p>In scope:</p>
+<ul>
+<li>- local-first handling for private rule packs, private material libraries, private component libraries, owner design-basis files, and project-local private library references;</li>
+<li>- registry metadata needed to mark privacy, provenance, redistribution status, checksum status, review status, and transmission posture;</li>
+<li>- secret-reference handling for imports or private storage without storing usable secret material in project artifacts, reports, fixtures, or public examples;</li>
+<li>- warning, redaction, quarantine, and deny-by-default behavior at export, report, plugin, adapter, telemetry, and public contribution boundaries.</li>
+<li>- current metadata-only release-guard evidence in <code>core/security/secret_private_library/</code>, <code>docs/security/secret_private_library_handling.md</code>, and <code>tests/security/test_secret_private_library_handling.py</code>.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- cloud secret management or cloud storage operations unless separately approved;</li>
+<li>- final operating-system credential-store integration details;</li>
+<li>- exact secret provider, encrypted-storage default, storage roots, permission grant persistence, physical project package/container, public API transport, cloud/network behavior, external secret manager behavior, and approval choices;</li>
+<li>- legal sufficiency, certification, approval, sealing, endorsement, or professional code-compliance claims;</li>
+<li>- real private libraries, real credentials, real private project data, protected standards text, protected tables, proprietary formulas, material allowables, SIF/flexibility tables, or protected dimensional data.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-12 and row <code>DEL-12-04</code>; <code>docs/PRD.md</code> sections 17.3, 18.1, and 18.3.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-12-04-R1</td><td>Private libraries and rule packs shall be stored outside public example directories by default and marked private in metadata.</td><td><code>docs/PRD.md</code> section 17.3; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 6</td><td>Registry tests inspect default classification and public-example exclusion behavior.</td></tr>
+<tr><td>DEL-12-04-R2</td><td>Private rule packs, component libraries, material data, project files, and calculation results shall not be transmitted by telemetry by default.</td><td><code>docs/PRD.md</code> section 18.2; <code>docs/architecture/plugin_boundary.md</code> Private Data Handling</td><td>Telemetry exclusion tests verify absent private fields.</td></tr>
+<tr><td>DEL-12-04-R3</td><td>Private library registry records shall include privacy classification, provenance/source summary, redistribution status, review status, and checksum status where available.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4; <code>docs/PRD.md</code> sections 13.4 and 18.3; <code>docs/architecture/plugin_boundary.md</code> Checksums and Provenance</td><td>Registry schema/fixture tests validate required metadata presence without protected content.</td></tr>
+<tr><td>DEL-12-04-R4</td><td>Project, registry, report, and test artifacts shall store opaque credential references only and shall not store usable credential values.</td><td>ASSUMPTION from <code>docs/PRD.md</code> section 18.3 and <code>docs/architecture/plugin_boundary.md</code> Permission Model Skeleton</td><td>Secret handling tests reject secret-like values and accept non-sensitive reference markers only.</td></tr>
+<tr><td>DEL-12-04-R5</td><td>Export, report, issue/bug-report, and shared-model paths shall warn before exposing private data and shall redact or omit protected/private values by default.</td><td><code>docs/PRD.md</code> sections 15.2, 17.3, and 18.3; SOW-040</td><td>Export/redaction tests verify default omission and warning diagnostics.</td></tr>
+<tr><td>DEL-12-04-R6</td><td>If protected standards data or proprietary source content is suspected in a private-library import or public contribution path, ingestion/publication shall stop and route to quarantine/human review.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 5; <code>docs/DIRECTIVE.md</code> section 5</td><td>Quarantine-routing tests verify diagnostic emission and no public artifact write.</td></tr>
+<tr><td>DEL-12-04-R7</td><td>Plugins and adapters shall be denied private-library, private-rule-pack, filesystem, and network access unless an explicit permission grant exists.</td><td><code>docs/architecture/plugin_boundary.md</code> Permission Model Skeleton; <code>docs/architecture/extension_domain_contracts.md</code> Denied-By-Default Behavior</td><td>Permission tests verify fail-closed access behavior.</td></tr>
+<tr><td>DEL-12-04-R8</td><td>Plugins, adapters, imports, exports, and private storage shall not bypass schema validation, unit checks, provenance checks, privacy controls, protected-content screening, diagnostics, checksums, or report controls.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> AB-00-02, AB-00-06, AB-00-07; <code>docs/architecture/extension_domain_contracts.md</code> No-Bypass Rules</td><td>Boundary tests verify routed control checks and diagnostics.</td></tr>
+<tr><td>DEL-12-04-R9</td><td>Reports and exported result payloads may identify private rule packs or libraries by name/version/checksum/source note without exposing protected formulas, private values, or proprietary source content in public templates.</td><td><code>docs/PRD.md</code> sections 15.2 and 17.3; <code>docs/architecture/plugin_boundary.md</code> Checksums and Provenance</td><td>Report/export tests inspect metadata-only references and protected-content omission.</td></tr>
+<tr><td>DEL-12-04-R10</td><td>Missing provenance, unknown redistribution status, or uncertain privacy classification shall be surfaced as explicit diagnostics or findings, not silent defaults.</td><td>OPS-K-DATA-2/3; <code>docs/PRD.md</code> section 13.5; <code>docs/SPEC.md</code> section 7</td><td>Validation tests verify <code>PROVENANCE_WARNING</code> or <code>IP_BOUNDARY_WARNING</code> class behavior.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected standards text, tables, figures, or proprietary values are needed to execute this deliverable. Governing project references are:</p>
+<ul>
+<li>- <code>docs/CONTRACT.md</code> invariants OPS-K-IP-1/2/3, OPS-K-DATA-1/2/3, OPS-K-AUTH-1/2, OPS-K-PRIV-1/2, OPS-K-RULE-3, and OPS-K-AGENT-1/2/3/4.</li>
+<li>- <code>docs/DIRECTIVE.md</code> non-negotiable product principles and stop rules.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> public/private data and quarantine policy.</li>
+<li>- <code>docs/PRD.md</code> sections 12, 13, 15, 17, and 18.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 architecture basis AB-00-01/02/03/04/06/07/08.</li>
+</ul></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Acceptance signal</td></tr>
+<tr><td>Four-document source boundary</td><td>No real credentials, private libraries, protected standards text, proprietary source content, or usable credential examples appear in deliverable artifacts.</td></tr>
+<tr><td>Registry metadata coverage</td><td>Current helper/test fixtures cover privacy classification, provenance, redistribution status, checksum status, credential-reference posture, transmission default, and review/quarantine status as metadata-only records; exact registry schema/storage placement remains <code>TBD</code>.</td></tr>
+<tr><td>Secret-reference safety</td><td>Current tests fail when a project or registry artifact contains secret material instead of an opaque reference or non-sensitive sentinel marker.</td></tr>
+<tr><td>Local-first default</td><td>Modeling, solving, rule checking, reporting, and private-library use require no cloud service by default.</td></tr>
+<tr><td>Redaction/export path</td><td>June 7 guard evidence aligns with DEL-12-02 redaction/export markers for metadata-only report/shared/downstream release contexts; runtime report/export route integration remains <code>TBD</code>.</td></tr>
+<tr><td>Permission path</td><td>Plugin/adapter access semantics are denied by default in the documented no-bypass control surface; exact permission grant persistence remains <code>TBD</code>.</td></tr>
+<tr><td>Diagnostic path</td><td>Missing provenance, unknown redistribution, suspected protected content, payload markers, cloud/network markers, external secret-manager markers, direct SQL/raw SQLite markers, storage-bypass markers, and concrete path indicators produce structured diagnostics or safe metadata reduction in current focused tests.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required deliverable-local artifacts:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_run_records/*</code> phase records</li>
+</ul>
+<p>Current implementation-facing evidence:</p>
+<ul>
+<li>- <code>core/security/secret_private_library/controls.py</code> and <code>__init__.py</code> provide metadata-only reference classification and release-guard helpers;</li>
+<li>- <code>docs/security/secret_private_library_handling.md</code> documents guard behavior and non-authority boundaries;</li>
+<li>- <code>tests/security/test_secret_private_library_handling.py</code> provides focused invented-fixture coverage;</li>
+<li>- <code>_run_records/TASK_RUN_2026-06-07_0942_secret-private-library-alignment.md</code> and package fan-in <code>WORKING_ITEMS_RUN_2026-06-07_0957_TP-PKG12-REDACTION-SECRET-GUARD-CLOSEOUT.md</code> record passing focused and paired PKG-12 validation.</li>
+</ul>
+<p>Remaining implementation details not resolved by this specification include exact secret provider, encrypted-storage default, storage roots, permission grant persistence, physical project package/container, public API transport, cloud/network behavior, external secret manager behavior, and approval choices.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves opaque-reference-over-secret behavior, private-library metadata and provenance/checksum posture, redaction/quarantine/permission/no-bypass controls, metadata-only helper and invented-fixture evidence, source-labeled assumptions, visible provider/encryption/storage/grant/cloud/approval TBDs and conflicts, and the separation of guard evidence from legal, security, professional, or code-compliance approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-12-04-secret-and-private-library-handling">CLM-015 — Procedure: DEL-12-04 Secret and private-library handling</h3>
+<blockquote><h4 id="procedure-del-12-04-secret-and-private-library-handling">Procedure: DEL-12-04 Secret and private-library handling</h4></blockquote>
+<h3 id="clm-016-purpose">CLM-016 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this procedure to produce, review, or align DEL-12-04 evidence for private library registry semantics and secret handling tests. The procedure is local-first, source-bound, and limited to the assigned deliverable. June 7 evidence shows metadata-only helper code, public-boundary documentation, and focused tests now exist; this procedure must not treat that evidence as runtime secret storage, cloud behavior, lifecycle acceptance, or approval authority.</p></blockquote>
+<h3 id="clm-017-prerequisites">CLM-017 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and <code>_STATUS.md</code>.</li>
+<li>- Read <code>INIT.md</code>, <code>AGENTS.md</code>, <code>docs/CONTRACT.md</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7, and the relevant register rows for <code>DEL-12-04</code>, <code>SOW-040</code>, <code>SOW-029</code>, and <code>OBJ-010</code>.</li>
+<li>- Confirm write scope is limited to this deliverable folder.</li>
+<li>- Confirm no real secrets, real private libraries, protected standards text, proprietary values, credential examples, or private project data are needed.</li>
+<li>- Treat exact secret provider, encrypted-storage default, storage roots, permission grant persistence, physical project package/container, public API transport, cloud/network behavior, external secret manager behavior, and approval choices as <code>TBD</code> unless a later human-approved brief resolves them.</li>
+<li>- For readiness-evidence alignment, read <code>_run_records/TASK_RUN_2026-06-07_0942_secret-private-library-alignment.md</code>, package fan-in <code>WORKING_ITEMS_RUN_2026-06-07_0957_TP-PKG12-REDACTION-SECRET-GUARD-CLOSEOUT.md</code>, <code>docs/security/secret_private_library_handling.md</code>, <code>core/security/secret_private_library/</code>, and <code>tests/security/test_secret_private_library_handling.py</code> as current evidence.</li>
+</ul>
+<p>Sources: TASK brief; <code>_CONTEXT.md</code>; <code>docs/DIRECTIVE.md</code> section 5; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.</p></blockquote>
+<h3 id="clm-018-steps">CLM-018 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Establish the private asset boundary.</p>
+<ul>
+<li>- Use SOW-029 and SOW-040 to identify protected assets: private rule packs, private material data, private component data, private library references, project models, private paths, and credential references.</li>
+<li>- Verify that no cloud assumption is introduced.</li>
+</ul>
+<p>2. Define or verify the registry metadata surface.</p>
+<ul>
+<li>- Record privacy classification, provenance/source summary, redistribution status, review status, checksum status, path reference, credential reference if needed, and default transmission posture.</li>
+<li>- Mark exact schema file placement and storage-provider mechanics as <code>TBD</code> unless separately approved.</li>
+</ul>
+<p>3. Define or verify secret-reference behavior.</p>
+<ul>
+<li>- Persist only opaque credential references or non-sensitive test markers.</li>
+<li>- Reject or flag artifacts that appear to contain usable credential material.</li>
+<li>- Do not include credential-like examples in docs, fixtures, reports, or run records.</li>
+</ul>
+<p>4. Define boundary controls.</p>
+<ul>
+<li>- For import, export, report, bug-report, telemetry, plugin, adapter, and public contribution paths, require explicit privacy/provenance checks.</li>
+<li>- Default to warning, redaction, omission, denied access, quarantine, or human review when classification is missing or suspicious.</li>
+</ul>
+<p>5. Define or verify tests.</p>
+<ul>
+<li>- Current focused tests cover metadata completeness, no-secret persistence, redaction/export behavior, telemetry exclusion markers, denied-by-default private/reference release contexts, payload marker blocking, cloud/network marker blocking, external secret-manager marker blocking, direct SQL/raw SQLite marker blocking, storage-bypass marker blocking, concrete path safe metadata reduction, and protected/private-content source boundaries.</li>
+<li>- Use non-sensitive sentinel markers only.</li>
+</ul>
+<p>6. Check no-bypass constraints.</p>
+<ul>
+<li>- Confirm adapters/plugins cannot skip schema validation, units, provenance, privacy, protected-content screening, diagnostics, checksums, rule sandboxing, or report controls.</li>
+</ul>
+<p>7. Record unresolved human rulings.</p>
+<ul>
+<li>- If provider selection, encryption default, permission grant persistence, or transport behavior is required, record it as <code>TBD</code> for a future human-approved implementation brief.</li>
+</ul>
+<p>8. Finalize deliverable-local evidence artifacts.</p>
+<ul>
+<li>- Ensure four documents exist and keep default sections.</li>
+<li>- Ensure <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>, <code>Dependencies.csv</code>, and <code>_DEPENDENCIES.md</code> are refreshed.</li>
+<li>- Treat <code>_STATUS.md</code> as read-only unless a human-gated lifecycle workflow explicitly authorizes status changes; current <code>_STATUS.md</code> records <code>IN_PROGRESS</code>.</li>
+<li>- Add phase run records under <code>_run_records</code>.</li>
+</ul></blockquote>
+<h3 id="clm-019-verification">CLM-019 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Pass condition</td></tr>
+<tr><td>Scope containment</td><td>All changed files are inside the DEL-12-04 folder.</td></tr>
+<tr><td>Four-document sections</td><td>Datasheet, Specification, Guidance, and Procedure preserve their default sections.</td></tr>
+<tr><td>Source boundary</td><td>No real secrets, real private libraries, private project data, protected standards content, or usable credential examples are present.</td></tr>
+<tr><td>Current helper/docs/tests evidence</td><td>June 7 run records cite <code>core/security/secret_private_library/</code>, <code>docs/security/secret_private_library_handling.md</code>, and <code>tests/security/test_secret_private_library_handling.py</code>; focused tests passed.</td></tr>
+<tr><td>Semantic setup evidence</td><td><code>_SEMANTIC.md</code> has complete final result tables without matrix errors or operator leakage in final cells.</td></tr>
+<tr><td>Lensing setup evidence</td><td><code>_SEMANTIC_LENSING.md</code> includes A/B/C/F/D/X/E coverage.</td></tr>
+<tr><td>Dependency schema</td><td><code>python3 tools/validation/validate_dependencies_schema.py &lt;ScopePath&gt;/Dependencies.csv</code> returns valid.</td></tr>
+<tr><td>Status boundary</td><td><code>_STATUS.md</code> is not edited by this procedure; current state is <code>IN_PROGRESS</code>, and any lifecycle transition remains human-gated.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-records">CLM-020 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1430_four-documents-P1_P2.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1431_semantic-matrix-build.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1432_lens-register.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1433_four-documents-P3_ONLY.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1434_dependency-extract.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-04-30_1435_validation.md</code></li>
+<li>- <code>_run_records/TASK_RUN_2026-06-07_0942_secret-private-library-alignment.md</code></li>
+<li>- package fan-in <code>../_run_records/WORKING_ITEMS_RUN_2026-06-07_0957_TP-PKG12-REDACTION-SECRET-GUARD-CLOSEOUT.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, registry and opaque-reference coverage, privacy/provenance/checksum and transmission defaults, redaction/quarantine/permission/no-bypass controls, metadata-only evidence limits, retained assumptions/conflicts/TBDs, and authority boundaries.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-021-guidance-del-12-04-secret-and-private-library-handling">CLM-021 — Guidance: DEL-12-04 Secret and private-library handling</h3>
+<blockquote><h4 id="guidance-del-12-04-secret-and-private-library-handling">Guidance: DEL-12-04 Secret and private-library handling</h4></blockquote>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable gives downstream implementation work a bounded, local-first privacy control surface for private libraries and credential references. It exists so OpenPipeStress can support user-owned rule packs, material libraries, component libraries, owner design bases, and project models without treating private or protected content as public repository data.</p>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-029, SOW-040, and OBJ-010; <code>docs/PRD.md</code> sections 17.3 and 18.3.</p></blockquote>
+<h3 id="clm-023-current-evidence-boundary">CLM-023 — Current Evidence Boundary</h3>
+<blockquote><h5 id="current-evidence-boundary">Current Evidence Boundary</h5>
+<p>June 7 evidence shows DEL-12-04 now has a metadata-only helper, public-boundary documentation, and focused invented-fixture tests:</p>
+<ul>
+<li>- <code>core/security/secret_private_library/</code> classifies private-library, private-path, and credential-reference metadata without reading referenced files or storing payloads.</li>
+<li>- <code>docs/security/secret_private_library_handling.md</code> records metadata-only guard behavior and non-authority boundaries.</li>
+<li>- <code>tests/security/test_secret_private_library_handling.py</code> covers private reference metadata, public fixture blocking, redaction/export release contexts, telemetry exclusion markers, concrete path reduction, cloud/network markers, external secret-manager markers, direct SQL/raw SQLite markers, and storage-bypass markers.</li>
+<li>- <code>_run_records/TASK_RUN_2026-06-07_0942_secret-private-library-alignment.md</code> and package fan-in <code>WORKING_ITEMS_RUN_2026-06-07_0957_TP-PKG12-REDACTION-SECRET-GUARD-CLOSEOUT.md</code> record passing focused and paired PKG-12 validation.</li>
+</ul>
+<p>This evidence does not finalize exact secret provider, encrypted-storage default, storage roots, permission grant persistence, physical project package/container, public API transport, cloud/network behavior, external secret manager behavior, approval choices, legal sufficiency, security certification, professional approval, or code-compliance status.</p></blockquote>
+<h3 id="clm-024-principles">CLM-024 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Local-first by default</td><td>Private-library handling should not require cloud operation, cloud storage, telemetry, or external network access.</td><td><code>docs/PRD.md</code> section 18.1</td></tr>
+<tr><td>References over secrets</td><td>Store opaque references to credentials and private library locations, not usable secret material.</td><td>ASSUMPTION from <code>docs/PRD.md</code> section 18.3 and plugin permission controls</td></tr>
+<tr><td>Private unless proven public</td><td>Unknown provenance or redistribution status should not be promoted to public-safe.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 4 and 6</td></tr>
+<tr><td>Fail closed at boundaries</td><td>Imports, exports, report generation, bug reports, telemetry, plugin access, and public contribution flows should block, redact, warn, or quarantine when privacy status is uncertain.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 5; <code>docs/architecture/plugin_boundary.md</code> Private Data Handling</td></tr>
+<tr><td>Metadata without disclosure</td><td>Reports and exported payloads may reference private rule packs or libraries by identity/version/checksum/source note without exposing protected formulas or private values.</td><td><code>docs/PRD.md</code> sections 15.2 and 17.3</td></tr>
+<tr><td>No-bypass architecture</td><td>Adapters and plugins are translators; they cannot bypass validation, provenance, privacy, diagnostics, checksums, rule sandboxing, or report controls.</td><td>AB-00-02, AB-00-06, AB-00-07; <code>docs/architecture/extension_domain_contracts.md</code> No-Bypass Rules</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-considerations">CLM-025 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- A private library registry should be treated as a control surface, not a data dump. It should carry enough metadata to validate, warn, hash, redact, and route assets without exposing private values.</li>
+<li>- The exact physical project package/container and local secret provider remain <code>TBD</code>; this deliverable should not lock the product to one platform mechanism without human approval.</li>
+<li>- Current and future secret handling tests should use non-sensitive sentinel markers and fixture-only paths, not realistic tokens, passwords, API keys, owner data, material tables, or private component values.</li>
+<li>- Optional encrypted storage for private libraries is called out by the PRD but not fully specified. Treat encryption defaults, key lifecycle, recovery, and platform storage as human/architecture decisions still requiring a later implementation brief.</li>
+<li>- A checksum identifies a referenced artifact or payload. It is not permission to expose the artifact and does not make protected/private content public.</li>
+<li>- Public examples may use invented data only. They should not be made more realistic by copying standards tables, proprietary formulas, commercial examples, or private owner data.</li>
+</ul></blockquote>
+<h3 id="clm-026-trade-offs">CLM-026 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Tension</td><td>Conservative posture</td></tr>
+<tr><td>Detailed registry fields vs. unresolved schema layout</td><td>Specify required metadata semantics now; leave exact schema file placement and code-generation details <code>TBD</code>.</td></tr>
+<tr><td>User convenience vs. accidental disclosure</td><td>Prefer explicit warning, redaction, quarantine, or permission grant over silent inclusion.</td></tr>
+<tr><td>Report reproducibility vs. private-content exposure</td><td>Include identity/version/checksum/source-note references; omit formulas, protected values, and private library contents by default.</td></tr>
+<tr><td>Plugin extensibility vs. privacy boundary</td><td>Use denied-by-default permissions and no-bypass rules.</td></tr>
+<tr><td>Local encryption expectations vs. platform variability</td><td>Record optional encrypted storage as required consideration, not as a completed design.</td></tr>
+<tr><td>Current metadata-only evidence vs. runtime storage authority</td><td>Treat the helper/tests as readiness evidence for guard semantics only; do not infer runtime storage roots, secret provider, permission grant persistence, cloud/network behavior, or approval authority.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-examples">CLM-027 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The following are non-sensitive behavior examples only. They intentionally avoid real credentials, real private paths, real project data, and protected standards content.</p>
+<table><tbody>
+<tr><td>Scenario</td><td>Expected behavior</td></tr>
+<tr><td>A user registers a private material library</td><td>The registry marks it private, records provenance and redistribution status, stores an opaque local reference, and prevents default telemetry/export inclusion.</td></tr>
+<tr><td>A private rule pack is referenced in a report</td><td>The report can show rule-pack identity, version, checksum, source note, warnings, and missing-input findings without embedding protected formulas or private values.</td></tr>
+<tr><td>A plugin requests private-library read access</td><td>The request is denied unless a grant exists; denial emits a diagnostic instead of bypassing the application service boundary.</td></tr>
+<tr><td>Imported data appears to be copied protected content</td><td>Import/publication stops, the record is marked suspected, and human review is required before public use.</td></tr>
+<tr><td>A test fixture needs credential behavior</td><td>The fixture uses a non-sensitive placeholder reference and asserts that no usable secret value is persisted or emitted.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-conflict-table-for-human-ruling">CLM-028 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-12-04-CF-001</td><td>Exact local secret provider and encrypted-storage default are not specified.</td><td><code>docs/PRD.md</code> section 18.3</td><td><code>docs/architecture/plugin_boundary.md</code> Remaining TBDs</td><td>Specification Requirements; Procedure Steps</td><td>Keep provider/encryption mechanics <code>TBD</code>; require opaque secret references and no real secrets in artifacts now.</td><td>TBD</td></tr>
+<tr><td>DEL-12-04-CF-002</td><td>Current metadata-only helper/tests exist, but runtime storage roots, permission grant persistence, physical project package/container, public API transport, cloud/network behavior, external secret manager behavior, and approval choices remain unresolved.</td><td>June 7 DEL-12-04 TASK run and package fan-in</td><td><code>_CONTEXT.md</code> architecture-basis <code>Still TBD</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code> private user data policy</td><td>Specification Verification; Procedure Verification; Dependencies</td><td>Treat current controls as readiness evidence only and carry unresolved mechanics as non-blocking deferrals for owning workflows.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-040 SOW-029 OBJ-010</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

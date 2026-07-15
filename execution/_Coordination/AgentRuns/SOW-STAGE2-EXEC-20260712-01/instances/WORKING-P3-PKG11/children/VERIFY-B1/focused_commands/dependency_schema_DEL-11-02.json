@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "python3",
+    "tools/validation/validate_dependencies_schema.py",
+    "/Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/Dependencies.csv"
+  ],
+  "duration_seconds": 0.024226,
+  "exit_code": 0,
+  "label": "dependency_schema_DEL-11-02",
+  "stderr": "",
+  "stdout": "VALID: /Users/ryan/ai-env/projects/chirality-sow-p3/projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/Dependencies.csv\n  Columns: 29 (29 required + 0 extension)\n  Data rows: 15\n"
+}

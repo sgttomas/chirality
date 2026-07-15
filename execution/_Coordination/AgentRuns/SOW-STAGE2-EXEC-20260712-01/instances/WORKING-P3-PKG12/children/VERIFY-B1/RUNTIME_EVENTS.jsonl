@@ -1,0 +1,4 @@
+{"event":"brief_loaded","native_context_limitation":"Runtime telemetry captures observable tool events and files, not hidden model internals or a complete native context transcript.","timestamp_utc":"2026-07-15T01:17:44Z"}
+{"affected_evidence":"instances/WORKING-P3-PKG12/children/AUTHOR-B1/CANDIDATE_MANIFEST.tsv","event":"independence_scope_contamination","result":"BLOCKED","timestamp_utc":"2026-07-15T01:17:44Z"}
+{"candidate_writes":0,"event":"containment_check","live_matching_bindings":45,"live_project_writes":0,"timestamp_utc":"2026-07-15T01:17:44Z"}
+{"event":"terminal_return","rerun_required":true,"result":"BLOCKED","timestamp_utc":"2026-07-15T01:17:44Z"}

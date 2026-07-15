@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-12-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 265,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6dc748f30ea2ada9e9a8b8cab38f3e5c9abe9778c87ebd092acaf39a035dc1c3"
+      },
+      "text": "The contract preserves export-context and redaction-action vocabularies, safe manifest evidence, explicit local-private intent, non-mutation, protected/private/provenance handling, metadata-only schema/helper/test evidence, no-bypass adapter boundaries, visible runtime integration and approval TBDs and conflicts, and the separation of export safeguards from legal, security, professional, or code-compliance approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-12-02-VER-001",
+          "source_line": 380,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, export-context and redaction-policy coverage, private/protected/provenance handling, safe manifest preservation and source non-mutation, metadata-only evidence limits, no-bypass routes, retained conflicts and TBDs, and authority boundaries."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-12-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-12",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "6dc748f30ea2ada9e9a8b8cab38f3e5c9abe9778c87ebd092acaf39a035dc1c3"
+  },
+  "tool_version": "1"
+}

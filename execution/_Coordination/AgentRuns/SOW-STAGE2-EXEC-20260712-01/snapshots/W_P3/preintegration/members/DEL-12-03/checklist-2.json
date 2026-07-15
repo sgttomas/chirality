@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-12-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 232,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a0864fe2d9185bcc09d87ec0b93f0e3925e68ec52836b7d0247e00114585e17b"
+      },
+      "text": "The contract preserves absent/malformed/default-disabled behavior, forbidden private/protected/secret/path/report fields, no implicit network/persistence/payload construction, the bounded desktop request and telemetry-panel guard seam, explicit absence of whole-runtime consumer interception, remaining consent/config/allowlist/transport TBDs, and the prohibition on professional, certification, approval, or code-compliance claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-12-03-VER-001",
+          "source_line": 319,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, default-off and fail-closed cases, forbidden-field and no-network/no-payload boundaries, distinct affirmative-request behavior, bounded seam versus documented interception absences, retained TBDs, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-12-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-12",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "a0864fe2d9185bcc09d87ec0b93f0e3925e68ec52836b7d0247e00114585e17b"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "deliverable_id": "DEL-12-01",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-01_Local-first storage and private data paths",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-12-02",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-12-03",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-03_Telemetry off-by-default design",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-12-04",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-04_Secret and private-library handling",
+    "verdict": "PASS"
+  },
+  {
+    "deliverable_id": "DEL-12-05",
+    "inverse_rows": 5,
+    "replacement_rows": 5,
+    "status_unchanged": true,
+    "target_scope": "projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-05_Security threat model",
+    "verdict": "PASS"
+  }
+]

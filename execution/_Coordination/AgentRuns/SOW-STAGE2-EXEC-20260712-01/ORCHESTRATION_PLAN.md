@@ -1,11 +1,11 @@
 # D-GOV-16 Stage-2 Execution Run — Orchestration Plan
 
-Status: `P2 PREINTEGRATION ACCEPTED — CHANGE RELEASED`
+Status: `P3 PREINTEGRATION ACCEPTED — CHANGE RELEASED`
 RunID: `SOW-STAGE2-EXEC-20260712-01`
 Parent: `HELP_HUMAN`
 Selection authority: `HUMAN`
 Posture: `MIXED`
-Graph version: `v61`
+Graph version: `v68`
 
 ## Objective and accepted basis
 

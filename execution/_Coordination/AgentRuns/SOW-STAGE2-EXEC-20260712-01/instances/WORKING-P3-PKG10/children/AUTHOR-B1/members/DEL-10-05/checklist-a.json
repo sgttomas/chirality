@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 216,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "f22605f1b2d67ea4f22624bd108b3fe701ce67f03516d17e8c92dc7e3ba183ea"
+      },
+      "text": "The contract preserves the DEC-065 local command surface, schema-first application-service routing, unit-aware deterministic I/O, blocking diagnostics, result-envelope and reproducibility evidence, invented/permitted fixtures, local-first private-data behavior, current bounded implementation evidence, and deferred persisted-project, external-adapter, CI, public-transport, and release concerns without compliance claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-05-VER-001",
+          "source_line": 303,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, five stable verb families, service-boundary and unit-aware I/O behavior, blocking diagnostics and result envelopes, deterministic fixture evidence, retained downstream/deferred integrations, privacy/protected-content controls, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "f22605f1b2d67ea4f22624bd108b3fe701ce67f03516d17e8c92dc7e3ba183ea"
+  },
+  "tool_version": "1"
+}

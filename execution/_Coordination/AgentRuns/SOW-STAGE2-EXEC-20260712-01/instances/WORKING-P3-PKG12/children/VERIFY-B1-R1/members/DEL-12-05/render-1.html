@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="36b53f681a536eac315a2040cff220b65eb94c0eb06b138d18c360e707a6ce06">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-12-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>36b53f681a536eac315a2040cff220b65eb94c0eb06b138d18c360e707a6ce06</code>.</p>
+<h1 id="scope-of-work-del-12-05">Scope of Work — DEL-12-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-12-05</code> in service of project scope [SOW-040] and package objectives [OBJ-010].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A security threat-model contract covering local storage, private data, reports and sharing, telemetry, plugins and imports, rule evaluation, secrets, hashes, and supply-chain exposure is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-12-05-security-threat-model">CLM-001 — Datasheet: DEL-12-05 Security threat model</h3>
+<blockquote><h4 id="datasheet-del-12-05-security-threat-model">Datasheet: DEL-12-05 Security threat model</h4></blockquote>
+<h3 id="clm-002-pdu-027-evidence-slice">CLM-002 — PDU-027 Evidence Slice</h3>
+<blockquote><h5 id="pdu-027-evidence-slice">PDU-027 Evidence Slice</h5>
+<ul>
+<li>- Selected control seam: <code>apps/desktop/src/services/telemetryPolicyService.ts</code> at telemetry-panel attempt grain.</li>
+<li>- Referenced warning classes: provenance, assumption, IP boundary, and privacy.</li>
+<li>- Explicit absence: no plugin/adapter/report/export interception and no runtime security result-envelope closure.</li>
+</ul></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-12-05</td></tr>
+<tr><td>Deliverable name</td><td>Security threat model</td></tr>
+<tr><td>Package ID</td><td>PKG-12</td></tr>
+<tr><td>Package name</td><td>Security, Privacy, and Private Data Handling</td></tr>
+<tr><td>Deliverable type</td><td>DOC_UPDATE</td></tr>
+<tr><td>Scope item</td><td>SOW-040</td></tr>
+<tr><td>Objective</td><td>OBJ-010</td></tr>
+<tr><td>Context envelope</td><td>M</td></tr>
+<tr><td>Anticipated product artifact</td><td>docs/security/threat_model.md</td></tr>
+<tr><td>Setup artifact location</td><td>This deliverable folder only</td></tr>
+<tr><td>Current setup state</td><td>SEMANTIC_READY</td></tr>
+</tbody></table>
+<p>Source basis: <code>_CONTEXT.md</code> sections &quot;Description&quot;, &quot;Anticipated Artifacts&quot;, &quot;Scope Coverage&quot;, &quot;Objective Support&quot;, and &quot;Architecture Basis Injection&quot;; <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-12-05</code>; <code>docs/_Registers/ScopeLedger.csv</code> row <code>SOW-040</code>; <code>docs/_Registers/ContextBudgetQA.csv</code> row <code>DEL-12-05</code>.</p></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Primary purpose</td><td>Draft and maintain a threat model for private data, report sharing, plugins, imports, and supply chain exposure.</td><td><code>_CONTEXT.md</code> Description; <code>docs/_Registers/Deliverables.csv</code> row <code>DEL-12-05</code></td></tr>
+<tr><td>Data protection objective</td><td>Protect private project, code, rule-pack, and component data in local-first workflows.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> objective <code>OBJ-010</code></td></tr>
+<tr><td>Governing scope</td><td>Private data handling controls, including redaction/export safeguards where reports or shared models may expose protected/private values.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> row <code>SOW-040</code></td></tr>
+<tr><td>Product posture</td><td>Local-first; no cloud service required for modeling, solving, rule checking, or reporting.</td><td><code>docs/PRD.md</code> section 18.1</td></tr>
+<tr><td>Telemetry posture</td><td>Disabled by default; opt-in only if added; must not transmit private engineering data without explicit user action.</td><td><code>docs/PRD.md</code> section 18.2; <code>docs/CONTRACT.md</code> <code>OPS-K-PRIV-2</code></td></tr>
+<tr><td>Rule-pack posture</td><td>Private or user-owned; versioned, checksummed, source-noted, and marked public/private.</td><td><code>docs/SPEC.md</code> section 6; <code>docs/CONTRACT.md</code> <code>OPS-K-RULE-3</code></td></tr>
+<tr><td>Plugin/import posture</td><td>Adapters and plugins cannot bypass validation, unit checks, provenance, diagnostics, sandboxing, or report controls.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection <code>AB-00-07</code>; <code>docs/SPEC.md</code> section 1</td></tr>
+<tr><td>Report posture</td><td>Reports disclose provenance, warnings, limitations, and rule-pack identifiers without public protected content.</td><td><code>docs/SPEC.md</code> section 8; <code>docs/IP_AND_DATA_BOUNDARY.md</code> section 7</td></tr>
+<tr><td>Professional boundary</td><td>Software and agents must not certify, seal, approve, authenticate, or declare code compliance for reliance.</td><td><code>docs/CONTRACT.md</code> <code>OPS-K-AUTH-1</code>; <code>docs/DIRECTIVE.md</code> section 3</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5></blockquote>
+<h3 id="clm-006-in-scope">CLM-006 — In Scope</h3>
+<blockquote><h6 id="in-scope">In Scope</h6>
+<table><tbody>
+<tr><td>Area</td><td>Threat-model coverage</td></tr>
+<tr><td>Private project data</td><td>Local project files, model contents, result envelopes, report manifests, hashes, and user settings that may identify project engineering work.</td></tr>
+<tr><td>Private code and rule-pack data</td><td>User-supplied rule packs, code-specific inputs, formulas, allowables, load combinations, rule-pack checksums, and source notices.</td></tr>
+<tr><td>Private library data</td><td>Material libraries, component libraries, manufacturer/vendor values, owner standards, and project templates kept in user-controlled private paths.</td></tr>
+<tr><td>Report sharing</td><td>Report export, report templates, bug reports, shared model packages, result tables, screenshots, and copy/export workflows that could disclose protected or private values.</td></tr>
+<tr><td>Plugins and adapters</td><td>Import/export plugins, scripting/plugin APIs, FEA handoff adapters, private-library importers, and external-tool interfaces.</td></tr>
+<tr><td>Supply chain</td><td>Application dependencies, plugins, adapter packages, build artifacts, packaging/signing choices, and provenance of imported data.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-out-of-scope">CLM-007 — Out of Scope</h3>
+<blockquote><h6 id="out-of-scope">Out of Scope</h6>
+<table><tbody>
+<tr><td>Area</td><td>Boundary</td></tr>
+<tr><td>Legal sufficiency</td><td>This deliverable is not a legal opinion and does not determine redistribution rights.</td></tr>
+<tr><td>Professional approval</td><td>This deliverable does not certify, approve, seal, or authenticate engineering work.</td></tr>
+<tr><td>Cloud service design</td><td>Cloud operation is excluded unless separately authorized by the human project authority.</td></tr>
+<tr><td>Detailed encryption implementation</td><td>Optional encrypted storage is noted as a product requirement; concrete key management remains <code>TBD</code>.</td></tr>
+<tr><td>Exact plugin permission model</td><td>Plugin permissions, transport protocol, and external format list remain implementation-level <code>TBD</code>.</td></tr>
+<tr><td>Protected standards content</td><td>No protected standards text, tables, figures, examples, formulas, allowables, or copied code data are included.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-construction">CLM-008 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This setup document represents the planned content for <code>docs/security/threat_model.md</code> without writing that repo-level product artifact. It is organized as a maintainable threat-model basis for later architecture and implementation work.</p></blockquote>
+<h3 id="clm-009-threat-surfaces">CLM-009 — Threat Surfaces</h3>
+<blockquote><h6 id="threat-surfaces">Threat Surfaces</h6>
+<table><tbody>
+<tr><td>Surface</td><td>Representative exposure</td><td>Required model treatment</td></tr>
+<tr><td>Local storage</td><td>Private project/rule/library files readable from user paths.</td><td>Record trust boundary, asset class, confidentiality risk, and storage-control questions.</td></tr>
+<tr><td>Export/report</td><td>Reports, shared models, bug reports, result exports, and screenshots may carry private or protected values.</td><td>Record redaction, disclosure warning, provenance, and protected-content lint controls.</td></tr>
+<tr><td>Telemetry</td><td>Diagnostic or usage collection could disclose private engineering data.</td><td>Record off-by-default posture and explicit opt-in/user-action requirements.</td></tr>
+<tr><td>Plugins/adapters</td><td>Plugin, import/export, scripting, and FEA handoff flows could bypass validation or exfiltrate data.</td><td>Record no-bypass boundary, sandbox/permission questions, validation gates, and diagnostics.</td></tr>
+<tr><td>Rule evaluator</td><td>Rule packs may contain private code data and expressions.</td><td>Record sandboxing, checksums, private/public metadata, and no arbitrary-code execution.</td></tr>
+<tr><td>Supply chain</td><td>Dependencies, plugin packages, build artifacts, and importer libraries could be compromised or unreviewed.</td><td>Record provenance, dependency review, build reproducibility, and release-gate questions.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-010-asset-classes">CLM-010 — Asset Classes</h3>
+<blockquote><h6 id="asset-classes">Asset Classes</h6>
+<table><tbody>
+<tr><td>Asset class</td><td>Public/private posture</td><td>Notes</td></tr>
+<tr><td>Public mechanics code</td><td>Public if original/permissive and protected-content clean.</td><td>Must not embed protected standards data.</td></tr>
+<tr><td>Project model data</td><td>Private by default.</td><td>May include owner/project information, geometry, loads, results, and assumptions.</td></tr>
+<tr><td>Rule packs</td><td>Private by default unless explicitly public/permissive.</td><td>Must carry source notice, redistribution status, version, and checksum.</td></tr>
+<tr><td>Material/component libraries</td><td>Private by default unless provenance and redistribution rights are documented.</td><td>Public contribution requires provenance and review.</td></tr>
+<tr><td>Reports and exports</td><td>Potentially private.</td><td>Must support warnings/redaction and avoid protected public templates.</td></tr>
+<tr><td>Diagnostics and telemetry</td><td>Private-sensitive.</td><td>Must avoid private engineering/code data by default.</td></tr>
+<tr><td>Secrets</td><td>Private.</td><td>Concrete storage and rotation controls remain <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-control-themes">CLM-011 — Control Themes</h3>
+<blockquote><h6 id="control-themes">Control Themes</h6>
+<table><tbody>
+<tr><td>Theme</td><td>Control intent</td><td>Source</td></tr>
+<tr><td>Local-first default</td><td>Prevent hidden network dependency or hidden cloud storage for ordinary workflows.</td><td><code>docs/PRD.md</code> 18.1; <code>docs/DIRECTIVE.md</code> section 4.2</td></tr>
+<tr><td>Explicit disclosure action</td><td>Require user intent before private data leaves local control.</td><td><code>docs/PRD.md</code> 18.2-18.3</td></tr>
+<tr><td>Redaction and warning</td><td>Warn before export and redact private data from bug reports.</td><td><code>docs/PRD.md</code> 18.3; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>SOW-040</code></td></tr>
+<tr><td>Provenance and redistribution</td><td>Record source, license/redistribution status, and review disposition.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> section 4; <code>docs/CONTRACT.md</code> <code>OPS-K-IP-2</code></td></tr>
+<tr><td>Sandboxed evaluation</td><td>Keep rule packs from executing arbitrary code.</td><td><code>docs/SPEC.md</code> section 6; <code>docs/CONTRACT.md</code> <code>OPS-K-RULE-2</code></td></tr>
+<tr><td>No-bypass adapters</td><td>Ensure plugins/adapters cannot skip validation, provenance, diagnostics, sandboxing, or report controls.</td><td><code>_CONTEXT.md</code> <code>AB-00-07</code>; <code>docs/SPEC.md</code> section 1</td></tr>
+<tr><td>Reproducible evidence</td><td>Bind hashes, checksums, versions, and warnings into reports and manifests.</td><td><code>_CONTEXT.md</code> <code>AB-00-04</code>; <code>docs/SPEC.md</code> section 8</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-references">CLM-012 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Use in this setup artifact</td></tr>
+<tr><td><code>INIT.md</code></td><td>Bootstrap boundaries for open mechanics, protected data, professional responsibility, and local-first agent work.</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>TASK dispatch scope and bounded execution rule.</td></tr>
+<tr><td><code>docs/DIRECTIVE.md</code></td><td>Product principles, stop rules, public/private data boundary, and professional-responsibility limits.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Invariants for IP, data, privacy, rule packs, reports, authority, and agents.</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Canonical terms for protected standards data, user-supplied code data, private rule packs, and analysis statuses.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Layer responsibilities, rule-pack evaluator requirements, diagnostics, reports, and acceptance semantics.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data policy, provenance fields, quarantine rule, and report boundary.</td></tr>
+<tr><td><code>docs/PRD.md</code></td><td>Security/privacy requirements, private-data handling, report prohibitions, and risk table.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>PKG-12, SOW-040, OBJ-010, and AB-00 architecture-basis constraints.</td></tr>
+<tr><td><code>docs/_Registers/*.csv</code></td><td>Machine-readable deliverable, scope, and context-budget rows.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-d-41-r5-t7-pdu-054-current-declaration">CLM-013 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. <code>docs/security/threat_model.md</code> now exists as the current project-owned threat-model surface. It records threats, boundaries, and residual mitigations; it is not a penetration-test result, security certification, or assurance ruling.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-014-specification-del-12-05-security-threat-model">CLM-014 — Specification: DEL-12-05 Security threat model</h3>
+<blockquote><h4 id="specification-del-12-05-security-threat-model">Specification: DEL-12-05 Security threat model</h4></blockquote>
+<h3 id="clm-015-d-41-r5-t3-pdu-027-runtime-control-evidence">CLM-015 — D-41 R5 T3 PDU-027 Runtime-Control Evidence</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-027-runtime-control-evidence">D-41 R5 T3 PDU-027 Runtime-Control Evidence</h5>
+<p>The desktop threat-model packet names the selected DEL-12-03 pre-payload telemetry guard seam and explicitly records that plugin/adapter/report/export interception is not implemented. It references the established <code>PROVENANCE_WARNING</code>, <code>ASSUMPTION_WARNING</code>, <code>IP_BOUNDARY_WARNING</code>, and <code>PRIVACY_WARNING</code> classes without claiming a product result-envelope producer or security-review closure. This is bounded threat-model evidence only.</p></blockquote>
+<h3 id="clm-016-scope">CLM-016 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This specification defines the deliverable-local setup content for the planned OpenPipeStress security threat model. It covers private data handling threats for local-first workflows, report sharing, shared model/export paths, plugins, imports, rule packs, private libraries, and supply chain exposure.</p>
+<p>This document is not the product artifact <code>docs/security/threat_model.md</code>; it is the setup-stage source content inside the sealed DEL-12-05 folder. It must not introduce protected standards content, real private project data, real secrets, legal sufficiency claims, certification claims, or professional approval claims.</p>
+<p>Source basis: <code>_CONTEXT.md</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> rows <code>PKG-12</code>, <code>SOW-040</code>, <code>OBJ-010</code>, architecture basis rows <code>AB-00-01/02/03/04/06/07/08</code>, <code>docs/CONTRACT.md</code>, <code>docs/PRD.md</code> section 18, and <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</p></blockquote>
+<h3 id="clm-017-requirements">CLM-017 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>STM-REQ-001</td><td>The threat model must identify private project, code, rule-pack, material, component, report, diagnostic, plugin/import, and supply-chain assets as protected or private-sensitive where applicable.</td><td><code>OBJ-010</code>; <code>docs/TYPES.md</code> sections 6-8; <code>docs/PRD.md</code> 17.3, 18.3</td><td>Asset table includes each asset family or marks omissions <code>TBD</code>.</td></tr>
+<tr><td>STM-REQ-002</td><td>The threat model must preserve the local-first default and must not assume cloud operation unless separately approved.</td><td><code>docs/PRD.md</code> 18.1; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> <code>PKG-12</code> exclusion</td><td>Trust-boundary table includes local/default and cloud-out-of-scope notes.</td></tr>
+<tr><td>STM-REQ-003</td><td>Telemetry threats must assume telemetry is disabled by default and opt-in if implemented, with no private engineering/code data transmitted without explicit user action.</td><td><code>docs/PRD.md</code> 18.2; <code>OPS-K-PRIV-2</code></td><td>Telemetry threat row and control notes are present.</td></tr>
+<tr><td>STM-REQ-004</td><td>Export, report, shared-model, and bug-report threats must include redaction and explicit warning controls for protected/private values.</td><td><code>SOW-040</code>; <code>docs/PRD.md</code> 18.3; <code>docs/PRD.md</code> 17.3</td><td>Report/export threat rows include redaction, warning, and protected-content lint controls.</td></tr>
+<tr><td>STM-REQ-005</td><td>Public report templates and examples must not reproduce protected standards content, proprietary formulas, protected tables, or private project data by default.</td><td><code>OPS-K-IP-1</code>; <code>OPS-K-REPORT-2</code>; <code>docs/SPEC.md</code> section 8</td><td>Public-template threat/control rows include protected-content review.</td></tr>
+<tr><td>STM-REQ-006</td><td>Rule-pack threats must include sandboxing, checksums, versioning, source notices, redistribution status, and private/public marking.</td><td><code>OPS-K-RULE-2</code>; <code>OPS-K-RULE-3</code>; <code>docs/SPEC.md</code> section 6</td><td>Rule-pack threat rows include sandbox and provenance controls.</td></tr>
+<tr><td>STM-REQ-007</td><td>Plugin, adapter, import/export, and FEA handoff threats must preserve the no-bypass boundary for unit checks, provenance, diagnostics, validation, sandboxing, and report controls.</td><td><code>AB-00-07</code>; <code>docs/SPEC.md</code> section 1; <code>SOW-038</code> context</td><td>Plugin/import threat rows include no-bypass controls and implementation <code>TBD</code> fields.</td></tr>
+<tr><td>STM-REQ-008</td><td>Import and public contribution threats must include provenance, redistribution status, protected-content suspicion, quarantine, and human/legal review paths.</td><td><code>OPS-K-IP-2</code>; <code>OPS-K-IP-3</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 4-5</td><td>Import/contribution threat rows include provenance and quarantine controls.</td></tr>
+<tr><td>STM-REQ-009</td><td>Diagnostics and result envelopes referenced by the threat model must use warning classes that include provenance, assumption, and IP-boundary signals where relevant.</td><td><code>AB-00-06</code>; <code>docs/SPEC.md</code> section 7</td><td>Control rows mention diagnostic classes and affected output paths.</td></tr>
+<tr><td>STM-REQ-010</td><td>The threat model must distinguish mechanics solved, user-rule checked, and human-approved states; it must not imply automatic code compliance or professional approval.</td><td><code>OPS-K-AUTH-1</code>; <code>OPS-K-MECH-2</code>; <code>docs/TYPES.md</code> section 4</td><td>Authority-boundary section is present and contains no certification/seal claims.</td></tr>
+<tr><td>STM-REQ-011</td><td>Supply-chain threats must include dependency/plugin package provenance, build/release artifact integrity, open-source license review, and protected-content review gates where applicable.</td><td><code>AB-00-08</code>; <code>docs/PRD.md</code> technology considerations and risk table</td><td>Supply-chain threat rows include provenance/review gates and <code>TBD</code> implementation details.</td></tr>
+<tr><td>STM-REQ-012</td><td>Unknown implementation choices must remain <code>TBD</code> rather than being invented.</td><td><code>OPS-K-AGENT-1</code>; <code>_CONTEXT.md</code> &quot;Still TBD&quot;</td><td>Open questions list marks exact permission, encryption, package, and transport decisions <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-threat-inventory">CLM-018 — Threat Inventory</h3>
+<blockquote><h6 id="threat-inventory">Threat Inventory</h6>
+<table><tbody>
+<tr><td>Threat ID</td><td>Surface</td><td>Threat</td><td>Initial risk posture</td><td>Required controls or open questions</td></tr>
+<tr><td>STM-T-001</td><td>Local storage</td><td>Private project, rule-pack, material, component, or owner data is stored in a public/example path or committed accidentally.</td><td>High</td><td>Default private paths, public/example exclusion, protected-content/provenance review, <code>IP_BOUNDARY_WARNING</code>, and contribution gates.</td></tr>
+<tr><td>STM-T-002</td><td>Report/export</td><td>Report, shared model, result export, screenshot, or copy operation discloses private values or protected code-derived content.</td><td>High</td><td>Redaction workflow, clear export warnings, public-template protected-content linter, provenance summary, and user explicit action.</td></tr>
+<tr><td>STM-T-003</td><td>Bug reports</td><td>Diagnostic package or bug report includes private project files, calculation results, paths, rule packs, or libraries.</td><td>High</td><td>Bug-report redaction, attachment review, telemetry exclusion, and explicit user attachment.</td></tr>
+<tr><td>STM-T-004</td><td>Telemetry</td><td>Optional telemetry transmits private project/code data or calculation results.</td><td>High</td><td>Disabled by default, opt-in, no private engineering/code data, explicit user action for any payload containing private data.</td></tr>
+<tr><td>STM-T-005</td><td>Plugin/adapter</td><td>Plugin, scripting API, import/export adapter, or FEA handoff bypasses validation, provenance, sandboxing, diagnostics, or report controls.</td><td>High</td><td>No-bypass architecture boundary, permission model <code>TBD</code>, schema validation, sandboxing, and diagnostics.</td></tr>
+<tr><td>STM-T-006</td><td>Import</td><td>Imported private/proprietary/component/material data lacks provenance or appears copied from protected standards.</td><td>High</td><td>Provenance fields, redistribution status, protected-suspected quarantine, rejection/escalation path, and human/legal review.</td></tr>
+<tr><td>STM-T-007</td><td>Rule evaluator</td><td>Rule pack expression executes arbitrary code or leaks private rule contents through diagnostics/reports.</td><td>High</td><td>Sandboxed evaluator, deterministic/unit-aware expression handling, private/public marking, checksum, and report redaction.</td></tr>
+<tr><td>STM-T-008</td><td>Supply chain</td><td>Dependency, plugin package, build artifact, or release package is compromised, unlicensed, or provenance-weak.</td><td>Medium/High</td><td>Dependency review, license review, reproducible build/release gates, package checksums/signing <code>TBD</code>, and protected-content gates.</td></tr>
+<tr><td>STM-T-009</td><td>Secrets</td><td>Tokens, license credentials, private-library passwords, or signing keys are stored in project files or reports.</td><td>High</td><td>Secret scanning <code>TBD</code>, local secret storage policy <code>TBD</code>, report/export exclusion, and no real secrets in examples/tests.</td></tr>
+<tr><td>STM-T-010</td><td>Hash/provenance spoofing</td><td>Hashes/checksums or source notices do not bind to the actual private rule/library/report content.</td><td>Medium/High</td><td>Canonical JSON/JCS-compatible hash basis for JSON payloads, manifest hashes for non-JSON assets, and re-review after changes.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-standards">CLM-019 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering code or protected standards text is incorporated by this setup deliverable.</p>
+<table><tbody>
+<tr><td>Standard or policy basis</td><td>Status in this deliverable</td></tr>
+<tr><td>OpenPipeStress <code>CONTRACT.md</code> invariants</td><td>Binding project constraints for this setup work.</td></tr>
+<tr><td>OpenPipeStress <code>DIRECTIVE.md</code> stop rules</td><td>Binding stop/escalation rules for protected data, missing values, and overclaims.</td></tr>
+<tr><td>OpenPipeStress <code>IP_AND_DATA_BOUNDARY.md</code></td><td>Governing policy for public/private data, provenance, and quarantine.</td></tr>
+<tr><td>OpenPipeStress <code>SPEC.md</code></td><td>Technical baseline for layers, rule-pack evaluator, diagnostics, reporting, and acceptance semantics.</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Architecture baseline for future schemas/interchange; no schema is authored here.</td></tr>
+<tr><td>External legal/compliance standards</td><td><code>TBD</code>; not interpreted here.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Acceptance signal</td></tr>
+<tr><td>Four-document setup kit</td><td><code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code> exist with default sections.</td></tr>
+<tr><td>Scope match</td><td>Documents reference <code>DEL-12-05</code>, <code>PKG-12</code>, <code>SOW-040</code>, and <code>OBJ-010</code> without expanding to unrelated deliverables.</td></tr>
+<tr><td>Boundary compliance</td><td>No protected standards text/tables/data, no real private project data, no real secrets, and no certification/approval/seal claims.</td></tr>
+<tr><td>Local-first posture</td><td>Cloud operation remains out of scope unless separately approved; telemetry is off by default.</td></tr>
+<tr><td>Threat coverage</td><td>Threat inventory covers reports/sharing, plugins/adapters, imports, rule packs, private libraries, telemetry, local storage, secrets, and supply chain.</td></tr>
+<tr><td>Open questions</td><td>Implementation-level unknowns are marked <code>TBD</code>.</td></tr>
+<tr><td>Semantic outputs</td><td><code>_SEMANTIC.md</code> has no matrix audit errors and final result tables do not contain algebra/operator leaks.</td></tr>
+<tr><td>Dependency register</td><td><code>Dependencies.csv</code> validates against <code>tools/validation/validate_dependencies_schema.py</code>.</td></tr>
+<tr><td>Lifecycle state</td><td><code>_STATUS.md</code> remains <code>SEMANTIC_READY</code>, not <code>ISSUED</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-documentation">CLM-021 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>The eventual product artifact should be <code>docs/security/threat_model.md</code>; this run intentionally writes only deliverable-local setup content. A later implementation or documentation task may promote accepted content into product documentation after human review.</p>
+<p>Required records for this setup run:</p>
+<ul>
+<li>- Four document kit: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code>.</li>
+<li>- Semantic artifacts: <code>_SEMANTIC.md</code>, <code>_SEMANTIC_LENSING.md</code>.</li>
+<li>- Dependency artifacts: <code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code>.</li>
+<li>- Status artifact: <code>_STATUS.md</code> with <code>SEMANTIC_READY</code>.</li>
+<li>- Run records under <code>_run_records/</code> for P1/P2, semantic matrix, lens register, P3, and dependency extraction.</li>
+</ul></blockquote>
+<h3 id="clm-022-d-41-r5-t7-pdu-054-current-declaration">CLM-022 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. <code>docs/security/threat_model.md</code> now exists as the current project-owned threat-model surface. It records threats, boundaries, and residual mitigations; it is not a penetration-test result, security certification, or assurance ruling.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the source-defined assets, threat inventory, trust boundaries, local-first and explicit-disclosure controls, provenance/quarantine/sandbox/no-bypass requirements, bounded telemetry-guard witness and explicit interception absences, open implementation questions, update triggers, and the distinction from penetration testing, legal sufficiency, security certification, professional approval, or code-compliance assurance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-023-procedure-del-12-05-security-threat-model">CLM-023 — Procedure: DEL-12-05 Security threat model</h3>
+<blockquote><h4 id="procedure-del-12-05-security-threat-model">Procedure: DEL-12-05 Security threat model</h4></blockquote>
+<h3 id="clm-024-pdu-027-check">CLM-024 — PDU-027 Check</h3>
+<blockquote><h5 id="pdu-027-check">PDU-027 Check</h5>
+<p>1. Verify the packet identifies the actual bounded telemetry guard seam.</p>
+<p>2. Verify provenance, assumption, IP-boundary, and privacy warning classes remain explicit.</p>
+<p>3. Verify plugin/adapter/report/export interception is false and no result-envelope or security-review closure is claimed.</p></blockquote>
+<h3 id="clm-025-purpose">CLM-025 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure defines how a bounded TASK worker drafts, refreshes, and checks the DEL-12-05 security threat model setup content. It is intended for deliverable-local setup work only and does not publish <code>docs/security/threat_model.md</code>.</p></blockquote>
+<h3 id="clm-026-prerequisites">CLM-026 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Required handling</td></tr>
+<tr><td>Sealed deliverable context</td><td>Confirm <code>DEL-12-05</code>, <code>PKG-12</code>, <code>SOW-040</code>, <code>OBJ-010</code>, and the allowed write scope before editing.</td></tr>
+<tr><td>Governance sources</td><td>Read <code>INIT.md</code>, <code>AGENTS.md</code>, <code>docs/CONTRACT.md</code>, relevant <code>SOFTWARE_DECOMP.md</code> revision 0.7 rows, register rows, and deliverable-local metadata.</td></tr>
+<tr><td>Source boundary</td><td>Use only accessible source material; mark missing implementation details <code>TBD</code>.</td></tr>
+<tr><td>Write boundary</td><td>Write only inside this deliverable folder. Do not create or edit repo-level <code>docs/security/threat_model.md</code>.</td></tr>
+<tr><td>Protected/private data boundary</td><td>Do not include protected standards text/tables/data, real private project data, real secrets, legal sufficiency claims, certification claims, or professional approval claims.</td></tr>
+<tr><td>Status boundary</td><td>Keep <code>_STATUS.md</code> at <code>SEMANTIC_READY</code> after a successful setup refresh; do not mark <code>ISSUED</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-027-steps">CLM-027 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity and scope.</p>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_STATUS.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, <code>docs/_Registers/Deliverables.csv</code>, <code>docs/_Registers/ScopeLedger.csv</code>, and <code>docs/_Registers/ContextBudgetQA.csv</code>.</li>
+<li>- Verify the scope is limited to DEL-12-05 setup content.</li>
+</ul>
+<p>2. Re-read governing sources.</p>
+<ul>
+<li>- Use <code>docs/CONTRACT.md</code> for invariant constraints.</li>
+<li>- Use <code>docs/PRD.md</code> sections 17-18 for private data, telemetry, report, and bug-report requirements.</li>
+<li>- Use <code>docs/SPEC.md</code> sections 1 and 6-8 for architecture, rule-pack, diagnostics, and reporting boundaries.</li>
+<li>- Use <code>docs/IP_AND_DATA_BOUNDARY.md</code> for provenance, quarantine, private data, and report boundaries.</li>
+<li>- Use <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7 for <code>PKG-12</code>, <code>SOW-040</code>, <code>OBJ-010</code>, and architecture basis rows <code>AB-00-01/02/03/04/06/07/08</code>.</li>
+</ul>
+<p>3. Draft or refresh the four documents.</p>
+<ul>
+<li>- Keep <code>Datasheet.md</code> sections <code>Identification</code>, <code>Attributes</code>, <code>Conditions</code>, <code>Construction</code>, and <code>References</code>.</li>
+<li>- Keep <code>Specification.md</code> sections <code>Scope</code>, <code>Requirements</code>, <code>Standards</code>, <code>Verification</code>, and <code>Documentation</code>.</li>
+<li>- Keep <code>Guidance.md</code> sections <code>Purpose</code>, <code>Principles</code>, <code>Considerations</code>, <code>Trade-offs</code>, and <code>Examples</code>.</li>
+<li>- Keep <code>Procedure.md</code> sections <code>Purpose</code>, <code>Prerequisites</code>, <code>Steps</code>, <code>Verification</code>, and <code>Records</code>.</li>
+<li>- Label unknown implementation details <code>TBD</code>; label inferences <code>ASSUMPTION</code> if used.</li>
+</ul>
+<p>4. Build the semantic matrix artifact.</p>
+<ul>
+<li>- Refresh <code>_SEMANTIC.md</code> using the deliverable perspective and the four documents.</li>
+<li>- Verify the final result tables for matrices <code>C</code>, <code>F</code>, <code>D</code>, <code>X</code>, and <code>E</code> have no algebra/operator leaks and no matrix errors.</li>
+<li>- Set or verify <code>_STATUS.md</code> as <code>SEMANTIC_READY</code> on pass.</li>
+</ul>
+<p>5. Build the semantic lensing register.</p>
+<ul>
+<li>- Refresh <code>_SEMANTIC_LENSING.md</code> with complete <code>A</code>, <code>B</code>, <code>C</code>, <code>F</code>, <code>D</code>, <code>X</code>, and <code>E</code> lens coverage.</li>
+<li>- Record only warranted gaps, conflicts, or questions; do not treat lens cells as authority.</li>
+</ul>
+<p>6. Apply warranted lensing items conservatively.</p>
+<ul>
+<li>- Re-read the target document section and relevant source slice before changing content.</li>
+<li>- Incorporate only supported items.</li>
+<li>- Convert unsupported items to <code>TBD</code> or add them to the conflict table.</li>
+</ul>
+<p>7. Refresh dependency extraction.</p>
+<ul>
+<li>- Refresh <code>Dependencies.csv</code> using v3.1 columns.</li>
+<li>- Preserve human-owned coordination notes in <code>_DEPENDENCIES.md</code>.</li>
+<li>- Capture anchor links to <code>SOW-040</code> and <code>OBJ-010</code>, plus execution dependencies on governing documents that directly constrain the threat model.</li>
+</ul>
+<p>8. Create run records.</p>
+<ul>
+<li>- Write one run record for each setup phase: four-documents P1/P2, semantic matrix, lens register, four-documents P3, and dependency extraction.</li>
+<li>- Each record must include <code>run-status: SUCCESS</code> or a concrete failure.</li>
+</ul>
+<p>9. Run validation.</p>
+<ul>
+<li>- Run <code>python3 tools/validation/validate_dependencies_schema.py &lt;ScopePath&gt;/Dependencies.csv</code>.</li>
+<li>- Check <code>_SEMANTIC.md</code> for <code>MatrixError</code>/<code>MATRIX_ERROR</code>.</li>
+<li>- Check final result table rows for leaked algebra/operator tokens.</li>
+</ul></blockquote>
+<h3 id="clm-028-verification">CLM-028 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Method</td></tr>
+<tr><td>Four documents exist</td><td>File presence check for <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</td></tr>
+<tr><td>Default sections preserved</td><td>Heading check for required sections in all four documents.</td></tr>
+<tr><td>Semantic audit clean</td><td>Search <code>_SEMANTIC.md</code> for matrix errors and inspect final result tables for algebra/operator leaks.</td></tr>
+<tr><td>Lensing coverage complete</td><td>Confirm <code>_SEMANTIC_LENSING.md</code> includes matrix sections for <code>A</code>, <code>B</code>, <code>C</code>, <code>F</code>, <code>D</code>, <code>X</code>, and <code>E</code>.</td></tr>
+<tr><td>Dependency schema valid</td><td>Run the v3.1 dependency schema validator.</td></tr>
+<tr><td>Status safe</td><td>Confirm <code>_STATUS.md</code> says <code>Current State: SEMANTIC_READY</code>, not <code>ISSUED</code>.</td></tr>
+<tr><td>Write scope respected</td><td>Review changed paths before final report; no writes outside this deliverable folder.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-029-records">CLM-029 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Required records for this run:</p>
+<ul>
+<li>- <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_run_records/PHASE_2_2_four_documents_P1_P2_2026-04-30.md</code></li>
+<li>- <code>_run_records/PHASE_2_3_semantic_matrix_2026-04-30.md</code></li>
+<li>- <code>_run_records/PHASE_2_4_lens_register_2026-04-30.md</code></li>
+<li>- <code>_run_records/PHASE_2_5_four_documents_P3_2026-04-30.md</code></li>
+<li>- <code>_run_records/PHASE_2_6_dependency_extract_2026-04-30.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, asset/threat/trust-boundary coverage, local-first disclosure and report controls, plugin/import/rule/supply-chain/secret handling, bounded control evidence and explicit absences, retained TBDs and update triggers, and non-assurance limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-030-guidance-del-12-05-security-threat-model">CLM-030 — Guidance: DEL-12-05 Security threat model</h3>
+<blockquote><h4 id="guidance-del-12-05-security-threat-model">Guidance: DEL-12-05 Security threat model</h4></blockquote>
+<h3 id="clm-031-pdu-027-guidance">CLM-031 — PDU-027 Guidance</h3>
+<blockquote><h5 id="pdu-027-guidance">PDU-027 Guidance</h5>
+<p>Treat the DEL-12-03 desktop guard as one bounded control witness, not proof that all named trust boundaries are intercepted. Keep warning-class references distinct from a runtime result envelope and retain the packet&#x27;s explicit false plugin/adapter/report/export-interception flag. Do not infer security validation or formal review closure.</p></blockquote>
+<h3 id="clm-032-purpose">CLM-032 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This guidance explains how to interpret and maintain the OpenPipeStress security threat model setup content for private data handling. The deliverable exists to make privacy, protected-content, report-sharing, plugin/import, and supply-chain risks visible before implementation details harden.</p>
+<p>The threat model is a development artifact. It supports architecture and review; it is not legal advice, professional engineering approval, certification, or a compliance attestation.</p></blockquote>
+<h3 id="clm-033-principles">CLM-033 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Local-first by default</td><td>Treat ordinary modeling, solving, rule checking, reporting, and private-library use as local workflows. Cloud operation requires separate approval.</td></tr>
+<tr><td>Explicit disclosure</td><td>Treat private data leaving local control as a user-intent event requiring warning, review, redaction, or explicit attachment/export action.</td></tr>
+<tr><td>Private by default</td><td>Treat project files, rule packs, private material/component libraries, owner standards, diagnostics, reports, and secrets as private unless the user intentionally contributes or exports them with documented rights.</td></tr>
+<tr><td>Provenance before reuse</td><td>Treat imported or contributed data without source/license/redistribution metadata as incomplete or suspect.</td></tr>
+<tr><td>Sandboxed extensibility</td><td>Treat plugins, adapters, importers, script APIs, and rule evaluators as untrusted boundaries until validation, sandboxing, permissions, diagnostics, and no-bypass controls are specified.</td></tr>
+<tr><td>Reports are decision support</td><td>Reports may disclose hashes, checksums, warnings, assumptions, and source notes, but public templates must not reproduce protected code text/tables or proprietary formulas.</td></tr>
+<tr><td>Human authority preserved</td><td>Software statuses and reports must not claim certification, seal, approval, authentication, or automatic code compliance.</td></tr>
+</tbody></table>
+<p>Source basis: <code>docs/DIRECTIVE.md</code> sections 3-6, <code>docs/CONTRACT.md</code> invariant index, <code>docs/IP_AND_DATA_BOUNDARY.md</code>, <code>docs/SPEC.md</code> sections 6-8, and <code>docs/PRD.md</code> sections 17-18.</p></blockquote>
+<h3 id="clm-034-considerations">CLM-034 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5></blockquote>
+<h3 id="clm-035-trust-boundaries">CLM-035 — Trust Boundaries</h3>
+<blockquote><h6 id="trust-boundaries">Trust Boundaries</h6>
+<table><tbody>
+<tr><td>Boundary</td><td>Why it matters</td><td>Conservative handling</td></tr>
+<tr><td>User-controlled local filesystem</td><td>Private rule packs, material/component libraries, reports, and project files may coexist near public examples or source checkouts.</td><td>Separate public examples from private paths; warn on public/export destinations; scan contribution paths where applicable.</td></tr>
+<tr><td>Report/export boundary</td><td>Reports, result exports, screenshots, and shared model packages may expose private project data or protected code-derived values.</td><td>Redaction, export warnings, protected-content checks, and explicit user action.</td></tr>
+<tr><td>Bug-report boundary</td><td>Logs and diagnostics can disclose paths, project names, result values, rule-pack metadata, or private attachments.</td><td>Redacted default package; explicit attachment review; telemetry exclusion.</td></tr>
+<tr><td>Telemetry boundary</td><td>Even coarse diagnostics can become sensitive if tied to private engineering work.</td><td>Off by default; opt-in only; no private engineering/code data unless user explicitly chooses a payload.</td></tr>
+<tr><td>Plugin/import boundary</td><td>External code or file formats may bypass domain validation or introduce protected/proprietary data.</td><td>Validate through domain contracts; require provenance; sandbox where execution exists; record diagnostics.</td></tr>
+<tr><td>Rule-evaluator boundary</td><td>Rule expressions may include private licensed/proprietary logic and must not execute arbitrary code.</td><td>Sandboxed, deterministic, unit-aware evaluator with private/public markings and checksums.</td></tr>
+<tr><td>Supply-chain boundary</td><td>Dependencies, plugins, adapters, packages, and build artifacts may introduce malicious code or licensing/provenance gaps.</td><td>Dependency/license review, reproducible build gates, artifact integrity checks, and package provenance <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-036-update-triggers">CLM-036 — Update Triggers</h3>
+<blockquote><h6 id="update-triggers">Update Triggers</h6>
+<p>Update this threat model when any of these change:</p>
+<ul>
+<li>- Public API transport, plugin permission model, or import/export format list is selected.</li>
+<li>- Physical project package/container, migration mechanism, or encryption/key-management choice is selected.</li>
+<li>- Rule expression grammar/library or sandbox approach is selected.</li>
+<li>- Telemetry is introduced, even as an opt-in feature.</li>
+<li>- Report/export behavior changes to include new fields, attachments, copy paths, or templates.</li>
+<li>- Build/package/release signing or dependency review policy changes.</li>
+<li>- A protected-content, private-data, or supply-chain issue is found in review.</li>
+</ul></blockquote>
+<h3 id="clm-037-open-questions">CLM-037 — Open Questions</h3>
+<blockquote><h6 id="open-questions">Open Questions</h6>
+<table><tbody>
+<tr><td>Question</td><td>Current disposition</td></tr>
+<tr><td>Should private rule packs or libraries be encrypted by default?</td><td><code>TBD</code>; PRD notes optional encrypted storage and asks this as an open question.</td></tr>
+<tr><td>What is the concrete plugin permission model?</td><td><code>TBD</code>; no-bypass architecture basis applies until resolved.</td></tr>
+<tr><td>What public API transport and import/export formats are supported?</td><td><code>TBD</code>; schema-first envelopes are the current architecture basis.</td></tr>
+<tr><td>What secret storage and signing-key process is used?</td><td><code>TBD</code>; no real secrets may appear in setup or public examples.</td></tr>
+<tr><td>What package/container format stores project data?</td><td><code>TBD</code>; canonical JSON/JCS-compatible hash basis applies for JSON payload hashes.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-038-trade-offs">CLM-038 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative position</td></tr>
+<tr><td>Usability vs redaction friction</td><td>Prefer visible warnings and explicit user action where private/protected disclosure is plausible.</td></tr>
+<tr><td>Extensibility vs no-bypass controls</td><td>Prefer slower plugin/API enablement over adapters that bypass domain validation, provenance, diagnostics, or report controls.</td></tr>
+<tr><td>Rich reports vs protected-content risk</td><td>Prefer identifiers, checksums, source notes, warnings, and user-private templates over public templates that embed protected text or formulas.</td></tr>
+<tr><td>Local convenience vs secret safety</td><td>Prefer <code>TBD</code> and explicit secret-handling design over ad hoc credentials in project files, examples, logs, or reports.</td></tr>
+<tr><td>Open examples vs realism</td><td>Prefer invented/public/permissive examples with provenance over realistic data copied from standards, vendors, or commercial tools.</td></tr>
+<tr><td>Supply-chain speed vs review evidence</td><td>Prefer dependency/license/provenance review and reproducible package evidence over unreviewed package additions.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-039-examples">CLM-039 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>These examples are invented setup scenarios and contain no real project data, real secrets, or protected standards content.</p>
+<table><tbody>
+<tr><td>Scenario</td><td>Threat-model interpretation</td></tr>
+<tr><td>A user exports a calculation report for outside review.</td><td>The report path crosses the disclosure boundary; warnings, redaction options, provenance summaries, and professional-boundary notices must be present.</td></tr>
+<tr><td>A user attaches a private project file to a bug report.</td><td>Default bug-report packaging should redact private data; explicit attachment should be treated as a user disclosure action.</td></tr>
+<tr><td>A plugin imports a component library from an external file.</td><td>The import must pass schema, unit, provenance, redistribution, and protected-content checks before data is treated as usable.</td></tr>
+<tr><td>A private rule pack is referenced in a report.</td><td>The report may identify name, version, checksum, and source note; it should not expose protected or proprietary rule content unless the user intentionally uses a private template.</td></tr>
+<tr><td>A public example is proposed using vendor catalog values.</td><td>Accept only if redistribution rights and provenance are documented; otherwise quarantine or reject.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-040-conflict-table-for-human-ruling">CLM-040 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No active source conflict was identified in this setup run.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-041-pass-3-semantic-lensing-notes">CLM-041 — Pass 3 Semantic-Lensing Notes</h3>
+<blockquote><h5 id="pass-3-semantic-lensing-notes">Pass 3 Semantic-Lensing Notes</h5>
+<p>The lensing pass emphasized three conservative enrichments that are now represented in the documents: update triggers, explicit supply-chain treatment, and explicit plugin/import no-bypass boundaries. Source rereads used <code>docs/PRD.md</code> sections 17-18, <code>docs/SPEC.md</code> sections 1 and 6-8, <code>docs/IP_AND_DATA_BOUNDARY.md</code> sections 4-7, and <code>_CONTEXT.md</code> Architecture Basis Injection.</p></blockquote>
+<h3 id="clm-042-d-41-r5-t7-pdu-054-current-declaration">CLM-042 — D-41 R5 T7 PDU-054 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-054-current-declaration">D-41 R5 T7 PDU-054 current declaration</h5>
+<p>Earlier setup-era statements on this surface are retained as historical setup context where applicable; this section is the active current-state declaration. <code>docs/security/threat_model.md</code> now exists as the current project-owned threat-model surface. It records threats, boundaries, and residual mitigations; it is not a penetration-test result, security certification, or assurance ruling.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-040 OBJ-010</td><td>CLM-014</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

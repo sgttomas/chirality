@@ -1,0 +1,13 @@
+{
+  "author_manifest_sha256": "a07f54b3630858a943bc977bb7fdb8238460bdf6a9af6e63bfd23af3d00797bb",
+  "mappings": 163,
+  "members": 5,
+  "project_writes": 0,
+  "replacement_rows": 25,
+  "rollback_rows": 25,
+  "simulations_pass": 5,
+  "source_lines": 1594,
+  "status": "PASS",
+  "verifier_candidate_writes": 0,
+  "verifier_manifest_sha256": "e1eadfa7ee3b21ed3667ba030773133aec04bf1e7eae7399a6cc06a493f12cfb"
+}
