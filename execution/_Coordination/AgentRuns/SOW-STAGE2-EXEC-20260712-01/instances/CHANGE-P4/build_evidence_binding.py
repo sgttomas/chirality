@@ -53,7 +53,11 @@ def main() -> None:
         RUN / "snapshots/W_P4/preintegration-acceptance",
         RUN / "snapshots/W_P4/integration",
     ]
-    files = [RUN / "ORCHESTRATION_PLAN.md", RUN / "WORK_GRAPH.json"]
+    files = [
+        ROOT / "execution/_Coordination/LOOP_RECEIPTS.md",
+        RUN / "ORCHESTRATION_PLAN.md",
+        RUN / "WORK_GRAPH.json",
+    ]
     for scope in scopes:
         if scope.exists():
             files.extend(path for path in scope.rglob("*") if path.is_file())

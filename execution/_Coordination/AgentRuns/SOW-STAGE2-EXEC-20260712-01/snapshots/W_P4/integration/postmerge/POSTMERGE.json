@@ -1,0 +1,23 @@
+{
+  "basis": "e8f59a63372f38d9e788ac39b39995558f5aba73",
+  "dependency_schemas": 22,
+  "formats": "22/22 SOW_V1",
+  "legacy_files_absent": 88,
+  "members": 22,
+  "merge_commit": "e87c2ef9453ba2deafb30fa996937bffd4466e23",
+  "practitioner_tests": 264,
+  "project_diff_hygiene": "PASS",
+  "project_paths": 110,
+  "replacement_rows": 110,
+  "retained_control_hashes": 110,
+  "rollback_executed": false,
+  "rollback_rows": 110,
+  "rollback_simulations": 22,
+  "root_export_sow_tests": 20,
+  "root_validators": 4,
+  "schema": "chirality-w-p4-postmerge/v1",
+  "source_control_bindings": 198,
+  "source_head": "0abe2c611e8a74f7cbacae1e7b7fe4381930413f",
+  "target_hashes": 110,
+  "verdict": "PASS"
+}
