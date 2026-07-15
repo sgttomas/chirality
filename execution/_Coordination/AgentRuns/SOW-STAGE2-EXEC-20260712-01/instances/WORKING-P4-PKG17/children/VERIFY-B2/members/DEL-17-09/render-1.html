@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="cdd81df63398e6701a65a29f9267dc96c03c046b55bd393539ca71c28255bd0b">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-17-09</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>cdd81df63398e6701a65a29f9267dc96c03c046b55bd393539ca71c28255bd0b</code>.</p>
+<h1 id="scope-of-work-del-17-09">Scope of Work — DEL-17-09</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-17-09</code> in service of project scope [SOW-030, SOW-074, SOW-075] and package objectives [OBJ-009, OBJ-017, OBJ-018].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A contract-level export adapter SDK and conservative target-admission model for future community and additional targets is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-17-09-export-adapter-sdk-and-additional-targets">CLM-001 — Datasheet: DEL-17-09 Export adapter SDK and additional targets</h3>
+<blockquote><h4 id="datasheet-del-17-09-export-adapter-sdk-and-additional-targets">Datasheet: DEL-17-09 Export adapter SDK and additional targets</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-09-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-17-09</td></tr>
+<tr><td>Package ID</td><td>PKG-17</td></tr>
+<tr><td>Package name</td><td>Export Format Interoperability</td></tr>
+<tr><td>Name</td><td>Export adapter SDK and additional targets</td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td></tr>
+<tr><td>Scope items</td><td>SOW-030, SOW-074, SOW-075</td></tr>
+<tr><td>Objectives</td><td>OBJ-009, OBJ-017, OBJ-018</td></tr>
+<tr><td>Lifecycle role</td><td>Contract-level adapter extensibility target sequenced after DEL-17-01 source basis and DEL-17-02 common export contracts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Contract surface</td><td>Adapter SDK contract, adapter template, target registry contract, and validation checklist at planning/contract level only.</td><td>SourcePath: <code>_CONTEXT.md</code>; SectionRef: Anticipated Artifacts.</td></tr>
+<tr><td>Primary upstream contract</td><td>DEL-17-02 export package, profile, stable ID map, manifest, and loss-report contract.</td><td>SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Downstream Requirements, DEL-17-09 row.</td></tr>
+<tr><td>Source-basis authority</td><td>DEL-17-01 admitted source basis and TBD register gate target-specific behavior.</td><td>SourcePath: <code>DEL-17-01/Specification.md</code>; SectionRef: Source Authority Requirements and Boundary Requirements.</td></tr>
+<tr><td>Adapter boundary</td><td>Adapters validate units, provenance, diagnostics, redistribution, and public/private data boundaries, and cannot bypass validation, sandboxing, envelopes, or report controls.</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: AB-00-07.</td></tr>
+<tr><td>No-bypass extension posture</td><td>Plugins and adapters are denied by default until a later approved permission/runtime design authorizes bounded capability.</td><td>SourcePath: <code>docs/SPEC.md</code>; SectionRef: 4.5 Plugin and extension domain contracts.</td></tr>
+<tr><td>Target-admission posture</td><td>Additional targets are candidate targets until they provide public, official, project-owned, or rights-cleared source basis and explicit loss/TBD records.</td><td>SourcePath: <code>DEL-17-02/Guidance.md</code>; SectionRef: Target-Specific Carryforward and Boundary Guidance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td><td>Notes</td></tr>
+<tr><td>Implementation code</td><td>OUT OF SCOPE</td><td>This Phase A deliverable does not create code, schemas, package manifests, sample adapters, public endpoints, runtime loaders, or compatibility artifacts. SourcePath: sealed task brief; SectionRef: Acceptance criteria.</td></tr>
+<tr><td>Public API promise</td><td>OUT OF SCOPE</td><td>Public API transport, endpoint syntax, plugin runtime, permission taxonomy, and exact code-generation tooling remain <code>TBD</code>. SourcePath: <code>DEL-10-01/Specification.md</code>; SectionRef: REQ-13.</td></tr>
+<tr><td>Concrete additional target support</td><td>TBD</td><td>Additional targets may be evaluated only after source basis, target version basis, rights posture, loss categories, and validation obligations are recorded. SourcePath: <code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code>; SectionRef: Suggested Repository Layout and Main Risks.</td></tr>
+<tr><td>External tool execution</td><td>Optional/user-owned when applicable</td><td>External execution metadata must not imply bundled executables, license independence, formal validation, or professional acceptance. SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Export Profile Requirements.</td></tr>
+<tr><td>Protected/private content</td><td>Prohibited for public artifacts</td><td>Public artifacts must not include protected standards text, proprietary examples, private project data, code-specific values, or target files without redistribution rights. SourcePath: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; SectionRef: Public repository must not contain.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>DEL-17-09 constructs a contract-level adapter SDK admission model, not an SDK implementation. The construction is composed of four planning objects:</p>
+<table><tbody>
+<tr><td>Object</td><td>Contract role</td><td>Current status</td></tr>
+<tr><td>Adapter SDK contract</td><td>Defines the obligations an export adapter must satisfy before it can participate in the PKG-17 export package/profile/manifest/loss-report workflow.</td><td>Drafted at document level; concrete runtime/API surface <code>TBD</code>.</td></tr>
+<tr><td>Adapter template</td><td>Describes the expected evidence and checklist sections for future target adapters without providing implementation code or examples from proprietary formats.</td><td>Drafted at document level; sample adapter implementation out of scope.</td></tr>
+<tr><td>Target registry contract</td><td>Defines target admission states, required source basis, boundary notes, target version basis, validation evidence, and unresolved-TBD tracking.</td><td>Drafted at document level; no target is admitted by this deliverable.</td></tr>
+<tr><td>Validation checklist</td><td>Lists checks for source basis, units, provenance, stable IDs, manifests, loss reports, diagnostics, privacy, protected-content screening, and professional-boundary wording.</td><td>Drafted at document level; test implementation out of scope.</td></tr>
+</tbody></table>
+<p>Expected descriptive fields for later registry, profile, and checklist records:</p>
+<table><tbody>
+<tr><td>Record object</td><td>Expected fields</td><td>Source</td></tr>
+<tr><td>Target registry/profile record</td><td><code>target_name</code>, admission state, target version basis or <code>TBD</code>, source-basis IDs or <code>TBD</code>, rights/redistribution posture, boundary notes, unresolved-TBD list, validation evidence reference, and no-support/no-claim statement. Exact schema field names remain <code>TBD</code>.</td><td>SourcePath: <code>DEL-17-02/Datasheet.md</code>; SectionRef: Required Export-Profile Fields. SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Export Profile Requirements.</td></tr>
+<tr><td>Source-basis record</td><td>Source location, license or redistribution basis, admitted use, boundary notes, affected target behavior, review disposition, and source-basis ID. Exact source-basis ID field name remains <code>TBD</code> until later schema work.</td><td>SourcePath: <code>DEL-17-01/Specification.md</code>; SectionRef: Source Authority Requirements and Documentation Requirements. SourcePath: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; SectionRef: 4. Contribution evidence fields.</td></tr>
+<tr><td>Validation checklist record</td><td>Checklist item, validation category, expected evidence artifact, result status (<code>pass</code>, <code>fail</code>, <code>TBD</code>, or <code>not applicable</code>), reviewer note, and source or run-record reference. Exact record format remains <code>TBD</code>.</td><td>SourcePath: <code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code>; SectionRef: Validation Strategy. SourcePath: <code>docs/SPEC.md</code>; SectionRef: 4.5 Plugin and extension domain contracts.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Source</td><td>Use</td></tr>
+<tr><td><code>AGENTS.md</code></td><td>Type 2 sealed-task dispatch boundary.</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Binding invariants for IP, authority, unit, data, privacy, report, governance, and agent boundaries.</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Plugin/adapter no-bypass contract and result export constraints.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data and protected-content policy.</td></tr>
+<tr><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code></td><td>Human-authored export strategy, adapter architecture, target validation, and risk basis.</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>PKG-17, DEL-17-09, SOW, objective, architecture-basis, and open-issue context.</td></tr>
+<tr><td><code>DEL-17-01</code> four-document kit plus <code>Source_Basis_Register.md</code> and <code>CAEPIPE_Question_Dossier.md</code></td><td>Source-admission and target-claim boundary.</td></tr>
+<tr><td><code>DEL-17-02</code> four-document kit</td><td>Common export package/profile/stable-ID/manifest/loss-report contract consumed by DEL-17-09.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-d-41-r5-t2a-canonicalization-evidence-2026-07-12">CLM-008 — D-41 R5 T2A canonicalization evidence (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-evidence-2026-07-12">D-41 R5 T2A canonicalization evidence (2026-07-12)</h5>
+<p>Adapter SDK package checksums use <code>deterministic_sorted_compact_json_payload_hash</code>: sorted-key compact ASCII-escaped Python JSON. The label records the implemented deterministic bytes and makes no RFC 8785/JCS claim.</p></blockquote>
+<h3 id="clm-009-d-41-r5-t4-pdu-004-evidence-state">CLM-009 — D-41 R5 T4 PDU-004 evidence state</h3>
+<blockquote><h5 id="d-41-r5-t4-pdu-004-evidence-state">D-41 R5 T4 PDU-004 evidence state</h5>
+<p>The implemented nine-category checklist is admission metadata only. Distinct mechanics-readiness and rule-check-readiness categories are absent, and reviewer role, signoff format, and approval artifact remain <code>TBD</code> pending owner selection. No current field supplies a validation or readiness outcome.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-010-specification-del-17-09-export-adapter-sdk-and-additional-targets">CLM-010 — Specification: DEL-17-09 Export adapter SDK and additional targets</h3>
+<blockquote><h4 id="specification-del-17-09-export-adapter-sdk-and-additional-targets">Specification: DEL-17-09 Export adapter SDK and additional targets</h4></blockquote>
+<h3 id="clm-011-d-41-r5-t7-pdu-055-current-declaration">CLM-011 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-09-DECL-001</code>.</p></blockquote>
+<h3 id="clm-012-scope">CLM-012 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-17-09 defines a contract-level export adapter SDK and target-admission model for future community or additional export targets. It covers adapter obligations, target registry admission states, source-basis requirements, boundary contracts, and validation checklist expectations.</p>
+<p>This deliverable shall not implement source code, schemas, runtime loaders, public endpoints, package manifests, sample adapters, tests, external parser behavior, executable harnesses, or target-specific writers. It shall not make compatibility, target support, release, formal validation, code-compliance, or professional-acceptance claims. SourcePath: <code>_CONTEXT.md</code>; SectionRef: Package Exclusions. SourcePath: sealed task brief; SectionRef: Deliverable-specific emphasis and acceptance criteria.</p></blockquote>
+<h3 id="clm-013-requirements">CLM-013 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-17-09-REQ-001</td><td>The adapter SDK contract shall consume DEL-17-02 as its common export package/profile/stable-ID/manifest/loss-report contract and shall not redefine those package objects in incompatible terms.</td><td>SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Downstream Requirements.</td></tr>
+<tr><td>DEL-17-09-REQ-002</td><td>Additional targets shall provide their own admitted source basis before any target-specific behavior is described as supported, compatible, validated, or ready for use.</td><td>SourcePath: <code>DEL-17-01/Specification.md</code>; SectionRef: Source Authority Requirements; SourcePath: <code>DEL-17-02/Guidance.md</code>; SectionRef: Target-Specific Carryforward.</td></tr>
+<tr><td>DEL-17-09-REQ-003</td><td>Unknown, unsupported, version-sensitive, or source-insufficient target behavior shall remain <code>TBD</code>, <code>unsupported</code>, <code>omitted</code>, <code>approximated</code>, or <code>delegated</code> rather than becoming a support claim.</td><td>SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Export Profile Requirements and Loss Report Requirements.</td></tr>
+<tr><td>DEL-17-09-REQ-004</td><td>Adapter participation shall require target version basis, unit policy, coordinate policy, stable-ID policy, source-basis IDs, loss-report policy, diagnostics policy, and boundary notes at the contract level. Exact field names/layout remain <code>TBD</code> until later schema work.</td><td>SourcePath: <code>DEL-17-02/Datasheet.md</code>; SectionRef: Required Export-Profile Fields; SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Export Profile Requirements; SourcePath: <code>docs/SPEC.md</code>; SectionRef: 4.5 Plugin and extension domain contracts.</td></tr>
+<tr><td>DEL-17-09-REQ-005</td><td>Adapter targets shall preserve canonical identity directly or through sidecar mapping when target artifacts cannot carry OpenPipeStress IDs.</td><td>SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Stable ID Map Requirements.</td></tr>
+<tr><td>DEL-17-09-REQ-006</td><td>Every target adapter shall require a loss report, including successful exports, so exported, omitted, approximated, delegated, unsupported, and <code>TBD</code> behavior remains visible.</td><td>SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Loss Report Requirements; SourcePath: <code>DEL-17-02/Guidance.md</code>; SectionRef: Loss report.</td></tr>
+<tr><td>DEL-17-09-REQ-007</td><td>Adapter validation shall distinguish syntactic readiness, schema validation, unit and dimensional validation, provenance completeness, redistribution review, privacy classification, protected-content screening, mechanics readiness, rule-check readiness, export review, and human review.</td><td>SourcePath: <code>docs/SPEC.md</code>; SectionRef: 4.5 Plugin and extension domain contracts.</td></tr>
+<tr><td>DEL-17-09-REQ-008</td><td>Adapter and target registry records shall not grant filesystem, network, process, private-data, report-control, solver, rule-pack, or storage access by default. Runtime grant mechanics remain <code>TBD</code>.</td><td>SourcePath: <code>DEL-10-01/Specification.md</code>; SectionRef: REQ-12 and REQ-13.</td></tr>
+<tr><td>DEL-17-09-REQ-009</td><td>Public adapter templates and target examples shall use invented or otherwise rights-cleared data only, and shall not include protected standards data, proprietary commercial examples, copied vendor files, or private project data.</td><td>SourcePath: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; SectionRef: Public repository may contain and Public repository must not contain.</td></tr>
+<tr><td>DEL-17-09-REQ-010</td><td>External execution, if a later target adapter needs it, shall be optional, user-owned, license-bound, and recorded as non-authoritative external-run evidence rather than professional acceptance.</td><td>SourcePath: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; SectionRef: SOW-075; SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Export Profile Requirements.</td></tr>
+<tr><td>DEL-17-09-REQ-011</td><td>Adapter outputs, manifests, diagnostics, documentation, and checklist language shall not claim certification, sealing, approval, authentication, endorsement, code compliance, professional acceptance, formal solver validation, release readiness, or vendor compatibility.</td><td>SourcePath: <code>docs/CONTRACT.md</code>; SectionRef: OPS-K-AUTH-1, OPS-K-GOV-3, OPS-K-AGENT-4; SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Boundary Requirements.</td></tr>
+<tr><td>DEL-17-09-REQ-012</td><td>Future implementation work shall be bounded to later sealed deliverables and shall not be implied by this Phase A contract kit.</td><td>SourcePath: <code>AGENTS.md</code>; SectionRef: Dispatch rule; SourcePath: <code>skills/four-documents/SKILL.md</code>; SectionRef: Non-goal and Non-negotiable constraints.</td></tr>
+<tr><td>DEL-17-09-REQ-013</td><td>Adapter contracts shall carry DEL-17-01 and DEL-17-02 source-basis refs, and any <code>source_basis_admitted</code> target shall carry target-specific source evidence beyond package-level contract refs.</td><td>SourcePath: <code>DEL-17-01/Specification.md</code>; SectionRef: Source Authority Requirements; SourcePath: <code>DEL-17-02/Specification.md</code>; SectionRef: Export Profile Requirements.</td></tr>
+</tbody></table>
+<p>Runtime permission taxonomy, sandbox capability approval, and grant-record ownership are not named by the available Phase A sources. They remain <code>TBD</code> and shall not be inferred from adapter manifest requests, target registry records, or candidate target names. SourcePath: <code>docs/SPEC.md</code>; SectionRef: 4.5 Plugin and extension domain contracts.</p></blockquote>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No protected engineering standard, vendor format standard, proprietary example, material allowable table, SIF/flexibility table, protected dimensional table, code-specific acceptance criterion, or private owner/project data is incorporated into this deliverable.</p>
+<p>Applicable internal standards and baselines:</p>
+<ul>
+<li>- <code>docs/CONTRACT.md</code>, especially OPS-K-IP-1 through OPS-K-IP-3, OPS-K-DATA-1 through OPS-K-DATA-3, OPS-K-AUTH-1, OPS-K-UNIT-1, OPS-K-REPORT-1 through OPS-K-REPORT-2, OPS-K-PRIV-1 through OPS-K-PRIV-2, and OPS-K-AGENT-1 through OPS-K-AGENT-4.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> for public/private data, provenance, quarantine, contribution review, and non-professional boundary policy.</li>
+<li>- <code>docs/SPEC.md</code> section 4.5 for plugin and adapter no-bypass controls.</li>
+<li>- <code>DEL-17-01</code> for admitted target source evidence and unresolved CAEPIPE/PCF/glTF target TBDs.</li>
+<li>- <code>DEL-17-02</code> for export package, export profile, stable ID map, manifest, and loss-report contract objects.</li>
+</ul>
+<p>External standards and target formats:</p>
+<ul>
+<li>- Concrete additional target standards, formats, vendor APIs, target versions, and source-citation requirements are <code>TBD</code> until a later source-basis intake admits them.</li>
+<li>- This deliverable makes no statement that any additional target is supported.</li>
+</ul></blockquote>
+<h3 id="clm-015-verification">CLM-015 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement IDs</td><td>Verification approach</td></tr>
+<tr><td>REQ-001, REQ-003, REQ-005, REQ-006</td><td>Contract review confirms alignment with DEL-17-02 package/profile/stable-ID/manifest/loss-report semantics.</td></tr>
+<tr><td>REQ-002, REQ-004, REQ-009</td><td>Source-basis review confirms target-specific statements are either source-grounded, explicitly <code>TBD</code>, or excluded.</td></tr>
+<tr><td>REQ-007, REQ-008</td><td>Architecture/security review confirms adapter admission does not grant runtime permissions, storage access, external execution, or bypass privileges.</td></tr>
+<tr><td>REQ-010, REQ-011</td><td>Professional/IP boundary review confirms no external-run, compatibility, validation, release, code-compliance, or professional-acceptance claim is present.</td></tr>
+<tr><td>REQ-012</td><td>Sealed-scope review confirms no implementation files, schemas, tests, package manifests, public API endpoints, or sibling deliverable files were modified.</td></tr>
+</tbody></table>
+<p>Category-level acceptance detail for REQ-007:</p>
+<table><tbody>
+<tr><td>Validation category</td><td>Acceptance record for this contract phase</td></tr>
+<tr><td>Syntactic readiness and schema validation</td><td>Record <code>TBD</code> until concrete schema layout exists; later records should cite schema validation evidence when available.</td></tr>
+<tr><td>Unit and dimensional validation</td><td>Record pass/fail/TBD against declared unit and coordinate policies; no silent unit default is acceptable.</td></tr>
+<tr><td>Provenance completeness</td><td>Record source-basis IDs, source location, license or redistribution posture, and review disposition, or mark the entry <code>TBD</code>/rejected.</td></tr>
+<tr><td>Redistribution review, privacy classification, and protected-content screening</td><td>Record public/private/protected-content disposition before public artifact use. Suspected protected content is rejected or quarantined, not normalized into an example.</td></tr>
+<tr><td>Mechanics readiness, rule-check readiness, and export review</td><td>Record only evidence-supported readiness; do not convert target parser success into code-compliance, professional-acceptance, or solver-validation claims.</td></tr>
+<tr><td>Human review</td><td>Record reviewer role and signoff format as <code>TBD</code> unless a later sealed workflow names them.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required documentation artifacts for this Phase A deliverable:</p>
+<ul>
+<li>- <code>Datasheet.md</code> identifying contract objects, source basis, conditions, and boundaries.</li>
+<li>- <code>Specification.md</code> defining target-admission and adapter-boundary requirements without implementation commitments.</li>
+<li>- <code>Guidance.md</code> explaining how to evaluate additional targets conservatively and preserve unresolved behavior as <code>TBD</code>.</li>
+<li>- <code>Procedure.md</code> defining future intake, admission, validation, and closeout steps at contract level.</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code> recording this sealed TASK execution.</li>
+</ul>
+<p>Required downstream artifacts remain future work and <code>TBD</code>:</p>
+<ul>
+<li>- concrete schema file layout;</li>
+<li>- concrete adapter runtime/API surface;</li>
+<li>- permission taxonomy and sandbox mechanism;</li>
+<li>- sample adapter implementation;</li>
+<li>- target-specific source-basis dossiers;</li>
+<li>- target-specific fixtures and validation tests.</li>
+</ul></blockquote>
+<h3 id="clm-017-conflict-table-for-human-ruling">CLM-017 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict detected in Phase A sources.</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-018-d-41-r5-t2a-canonicalization-requirement-2026-07-12">CLM-018 — D-41 R5 T2A canonicalization requirement (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-requirement-2026-07-12">D-41 R5 T2A canonicalization requirement (2026-07-12)</h5>
+<p>All DEL-17-09-produced JSON checksum records SHALL use <code>deterministic_sorted_compact_json_payload_hash</code> for the existing sorted-key compact ASCII-escaped Python JSON serializer and SHALL NOT claim RFC 8785/JCS conformance.</p></blockquote>
+<h3 id="clm-019-d-41-r5-t4-pdu-004-held-taxonomy">CLM-019 — D-41 R5 T4 PDU-004 held taxonomy</h3>
+<blockquote><h5 id="d-41-r5-t4-pdu-004-held-taxonomy">D-41 R5 T4 PDU-004 held taxonomy</h5>
+<p>The current admission record fields are <code>check_id</code>, <code>category</code>, <code>description</code>, <code>status</code>, <code>required_before_target_admission</code>, <code>evidence_refs</code>, <code>affected_refs</code>, <code>human_review_required</code>, and <code>provenance</code>. The exact additional category taxonomy and the reviewer-role, signoff-format, and approval-artifact fields remain owner-unselected. <code>human_review_required=true</code> is only a boundary flag; it is not reviewer identity, signoff, acceptance, or approval.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the common package/profile/stable-ID/manifest/loss contract, admitted target source basis, target registry states, no-bypass validation and permission boundaries, explicit behavior classifications, diagnostics, protected/private-data controls, optional user-owned external execution, and unresolved runtime, schema, target, reviewer, and approval details as TBD without implementing adapters or claiming support.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-020-procedure-del-17-09-export-adapter-sdk-and-additional-targets">CLM-020 — Procedure: DEL-17-09 Export adapter SDK and additional targets</h3>
+<blockquote><h4 id="procedure-del-17-09-export-adapter-sdk-and-additional-targets">Procedure: DEL-17-09 Export adapter SDK and additional targets</h4></blockquote>
+<h3 id="clm-021-d-41-r5-t7-pdu-055-current-declaration">CLM-021 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-09-DECL-004</code>.</p></blockquote>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure defines how future work should use the DEL-17-09 adapter SDK and target-admission contract. It is an operational contract for source intake, target admission, adapter review, validation planning, and closeout. It does not implement adapters, schemas, code, tests, public API endpoints, runtime loaders, or target-specific writers.</p></blockquote>
+<h3 id="clm-023-prerequisites">CLM-023 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<p>Before a future target adapter or additional target can move beyond candidate status:</p>
+<p>1. Read the DEL-17-01 four-document kit, <code>Source_Basis_Register.md</code>, and <code>CAEPIPE_Question_Dossier.md</code> when the target is affected by PKG-17 source-basis rules.</p>
+<p>2. Read the DEL-17-02 four-document kit and use its export package, profile, stable-ID, manifest, and loss-report contract objects.</p>
+<p>3. Confirm the target has public, official, project-owned, user-provided-with-rights, or otherwise rights-cleared source evidence.</p>
+<p>4. Confirm protected standards data, proprietary examples, private project data, copied vendor files, and license-bypass material are not being introduced.</p>
+<p>5. Confirm runtime permission, sandbox, public API transport, package layout, concrete schema layout, external execution, and target-specific validation remain <code>TBD</code> unless a later sealed brief authorizes them.</p></blockquote>
+<h3 id="clm-024-steps">CLM-024 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5></blockquote>
+<h3 id="clm-025-1-register-a-candidate-target">CLM-025 — 1. Register a candidate target</h3>
+<blockquote><h6 id="1-register-a-candidate-target">1. Register a candidate target</h6>
+<p>1. Record the target name only as a candidate.</p>
+<p>2. Record source-basis status as <code>TBD</code> until source evidence is admitted.</p>
+<p>3. Record that no support, compatibility, validation, release, code-compliance, or professional-acceptance claim is made.</p>
+<p>4. Record any known IP, license, privacy, or redistribution concern as a blocker or <code>TBD</code>.</p>
+<p>5. Record the target-admission decision artifact as <code>TBD</code> unless a later sealed brief names a registry file, run record, or decision log.</p></blockquote>
+<h3 id="clm-026-2-admit-source-basis">CLM-026 — 2. Admit source basis</h3>
+<blockquote><h6 id="2-admit-source-basis">2. Admit source basis</h6>
+<p>1. Classify each source as public official documentation, public specification, project-owned material, user-provided rights-cleared material, private-only material, or rejected/quarantined material.</p>
+<p>2. Reject or quarantine suspected protected standards content, proprietary examples, copied target files, private project data, or unclear-redistribution material.</p>
+<p>3. Record source location, license or redistribution basis, admitted use, boundary notes, and affected target behavior.</p>
+<p>4. Mark unresolved or version-sensitive target behavior as <code>TBD</code>.</p>
+<p>5. Record the source-basis admission owner and ruling record as <code>TBD</code> unless a later sealed brief assigns that responsibility.</p></blockquote>
+<h3 id="clm-027-3-draft-the-target-profile-contract">CLM-027 — 3. Draft the target profile contract</h3>
+<blockquote><h6 id="3-draft-the-target-profile-contract">3. Draft the target profile contract</h6>
+<p>1. Reference DEL-17-02 package/profile/stable-ID/manifest/loss-report concepts.</p>
+<p>2. Declare target version basis or <code>TBD</code>.</p>
+<p>3. Declare unit policy, coordinate policy, source-basis IDs, stable-ID behavior, loss-report policy, and external execution policy where applicable.</p>
+<p>4. Classify each entity or behavior family as exported, omitted, approximated, delegated, unsupported, or <code>TBD</code>.</p>
+<p>5. Preserve sidecar mapping requirements where target artifacts cannot carry canonical IDs.</p></blockquote>
+<h3 id="clm-028-4-review-adapter-boundary-obligations">CLM-028 — 4. Review adapter boundary obligations</h3>
+<blockquote><h6 id="4-review-adapter-boundary-obligations">4. Review adapter boundary obligations</h6>
+<p>1. Confirm adapter operations cannot bypass schema validation, unit checks, provenance checks, diagnostics/result envelopes, protected-content screening, private-data controls, report controls, solver boundaries, rule-pack sandboxing, or professional-boundary wording.</p>
+<p>2. Confirm any filesystem, network, process, storage, private-data, or rule-pack access remains denied unless a later approved runtime/sandbox design grants a bounded capability.</p>
+<p>3. Confirm target options are treated as pass-through configuration and not as OpenPipeStress code-checking logic.</p></blockquote>
+<h3 id="clm-029-5-prepare-validation-checklist">CLM-029 — 5. Prepare validation checklist</h3>
+<blockquote><h6 id="5-prepare-validation-checklist">5. Prepare validation checklist</h6>
+<p>The checklist for any later target implementation should cover:</p>
+<table><tbody>
+<tr><td>Checklist topic</td><td>Expected evidence artifact</td></tr>
+<tr><td>Source-basis completeness</td><td>Source-basis record or dossier entry with source location, source-basis ID, license/redistribution posture, admitted use, and review disposition.</td></tr>
+<tr><td>Target version basis</td><td>Target profile record naming the target version basis or marking it <code>TBD</code>.</td></tr>
+<tr><td>Units and coordinate conventions</td><td>Profile field, validation record, or review note confirming unit and coordinate policy; unresolved cases remain <code>TBD</code>.</td></tr>
+<tr><td>Stable ID mapping and sidecars</td><td>ID-map artifact, sidecar reference, or manifest entry; omitted mappings require reasons.</td></tr>
+<tr><td>Export package member inventory</td><td>Manifest or package-member list with emitted files, diagnostics, reports, hashes where applicable, and declared omissions.</td></tr>
+<tr><td>Manifest and hash policy</td><td>Manifest record identifying deterministic text/JSON hashes or explaining why a hash is unavailable.</td></tr>
+<tr><td>Loss-report categories</td><td>Loss report with affected canonical IDs, category, severity, target artifact if any, reason, source-basis reference, and downstream implication.</td></tr>
+<tr><td>Diagnostics and severity routing</td><td>Validation report or diagnostics envelope preserving warnings, blockers, and target limitations.</td></tr>
+<tr><td>Privacy and protected-content screening</td><td>Review note or contribution disposition showing public/private/protected-content status and quarantine/rejection when needed.</td></tr>
+<tr><td>External execution ownership when applicable</td><td>Run manifest or review note showing user-owned executable/service, target version/profile version, preserved run artifact, and non-authoritative status.</td></tr>
+<tr><td>No compatibility, code-compliance, release, formal-validation, or professional-acceptance wording</td><td>Boundary review note confirming prohibited claims were not introduced.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-030-6-dispatch-later-implementation-separately">CLM-030 — 6. Dispatch later implementation separately</h3>
+<blockquote><h6 id="6-dispatch-later-implementation-separately">6. Dispatch later implementation separately</h6>
+<p>1. Do not implement adapter code from this Phase A contract.</p>
+<p>2. Dispatch future implementation only under a sealed deliverable with explicit write scope.</p>
+<p>3. Keep each target-specific writer, parser, harness, fixture, or schema change inside its approved deliverable scope.</p>
+<p>4. Preserve all unresolved target behavior as <code>TBD</code> until the later deliverable has source and validation evidence.</p>
+<p>Candidate downstream dispatch notes, not dependency declarations:</p>
+<table><tbody>
+<tr><td>Future work item</td><td>Candidate owner surface from current sources</td><td>Gate before dispatch</td></tr>
+<tr><td>Concrete schema layout</td><td>DEL-17 target implementation deliverables or DEL-10 adapter framework work, as later scoped.</td><td>JSON Schema 2020-12 and package/profile contract alignment confirmed.</td></tr>
+<tr><td>Runtime/API surface and permission taxonomy</td><td>DEL-10-01 public API/plugin boundary and DEL-10-02 import/export adapter framework, as later scoped.</td><td>Runtime grants, sandbox capability approval, filesystem/network/process access, and package layout remain <code>TBD</code> until named by later authority.</td></tr>
+<tr><td>Sample adapter and adapter test harness</td><td>Later adapter SDK implementation tranche under PKG-17 or PKG-10.</td><td>Invented or rights-cleared fixtures only; no implementation from this Phase A contract.</td></tr>
+<tr><td>Target-specific source dossiers</td><td>DEL-17-01 source-basis workflow or a later target-specific source-intake deliverable.</td><td>Public, official, project-owned, user-provided-with-rights, or otherwise rights-cleared source basis admitted.</td></tr>
+<tr><td>Target-specific fixtures and validation tests</td><td>Later target implementation deliverables such as native JSON, CAEPIPE MBF, PCF, GLB/glTF, or additional adapters.</td><td>Fixture rights, target version basis, loss-report obligations, and validation evidence path recorded.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-verification">CLM-031 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>For this Phase A deliverable, verification consists of:</p>
+<ul>
+<li>- four-document structure check for <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>;</li>
+<li>- manual source-grounding review against local <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, DEL-17-01, DEL-17-02, project governance docs, and the export interoperability plan;</li>
+<li>- write-scope review confirming only authorized DEL-17-09 files were edited;</li>
+<li>- boundary review confirming no implementation code, schemas, public API promise, compatibility claim, target support claim, protected standards data, proprietary examples, release claim, code-compliance claim, formal-validation claim, or professional claim was introduced.</li>
+<li>- acceptance signoff record for these reviews remains <code>TBD</code>: reviewer role, signoff format, and required approval artifact are not named by the available sources.</li>
+</ul></blockquote>
+<h3 id="clm-032-records">CLM-032 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>This Phase A run should leave:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_STATUS.md</code> safe state update from <code>OPEN</code> to <code>INITIALIZED</code> when applicable</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code></li>
+</ul>
+<p>Future target-admission runs should add records only under their own sealed write scope. Expected decision artifacts remain <code>TBD</code> unless a later brief names them; candidates include a target registry record, source-basis admission record, validation checklist record, and run record. <code>MEMORY.md</code> is intentionally not updated in this phase.</p></blockquote>
+<h3 id="clm-033-d-41-r5-t2a-canonicalization-check-2026-07-12">CLM-033 — D-41 R5 T2A canonicalization check (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-check-2026-07-12">D-41 R5 T2A canonicalization check (2026-07-12)</h5>
+<p>Before accepting adapter package hashes, execute the exact-byte/fixed-hash vector, stable-order test, mutation test, schema/fixture validation, and explicit no-JCS assertion.</p></blockquote>
+<h3 id="clm-034-d-41-r5-t4-pdu-004-hold-check">CLM-034 — D-41 R5 T4 PDU-004 hold check</h3>
+<blockquote><h5 id="d-41-r5-t4-pdu-004-hold-check">D-41 R5 T4 PDU-004 hold check</h5>
+<p>Inventory only fields and categories emitted by the current builder. Record distinct mechanics/rule-check categories and reviewer/signoff/approval fields as absent and owner-unselected. Do not add placeholder schema fields or normalize existing evidence into a readiness or acceptance record.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, target-admission and source-basis gates, adapter obligations, stable identity and loss visibility, no-bypass and default-deny permission boundaries, optional external-run limits, retained runtime/schema/reviewer TBDs, protected-content exclusions, and absence of implementation, target support, compatibility, release, compliance, validation, or professional-acceptance claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-035-guidance-del-17-09-export-adapter-sdk-and-additional-targets">CLM-035 — Guidance: DEL-17-09 Export adapter SDK and additional targets</h3>
+<blockquote><h4 id="guidance-del-17-09-export-adapter-sdk-and-additional-targets">Guidance: DEL-17-09 Export adapter SDK and additional targets</h4></blockquote>
+<h3 id="clm-036-d-41-r5-t7-pdu-055-current-declaration">CLM-036 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-09-DECL-003</code>.</p></blockquote>
+<h3 id="clm-037-purpose">CLM-037 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use DEL-17-09 as the boundary guide for future export adapters and additional targets. Its job is to keep extension work possible without allowing adapter code, target names, or community contribution pressure to weaken the PKG-17 source-basis, stable-ID, loss-report, protected-content, privacy, diagnostics, or professional-boundary controls.</p>
+<p>This guidance is contract-level only. It is not an implementation guide, public API promise, compatibility statement, or target support announcement.</p></blockquote>
+<h3 id="clm-038-principles">CLM-038 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Start from DEL-17-02 package/profile/stable-ID/manifest/loss-report contracts before considering any adapter-specific behavior.</li>
+<li>- Admit target behavior only from public, official, project-owned, user-provided-with-rights, or otherwise rights-cleared sources.</li>
+<li>- Keep candidate targets in a non-support state until source basis, target version basis, redistribution posture, validation expectations, and unresolved TBDs are recorded.</li>
+<li>- Treat every export as potentially lossy; require manifest, ID-map, diagnostics, and loss-report evidence even when the target file is produced.</li>
+<li>- Keep adapter work behind the same no-bypass controls as first-party export code: schema validation, unit checks, provenance, diagnostics, private-data controls, protected-content screening, report boundaries, and professional-boundary wording. SourcePath: <code>docs/SPEC.md</code>; SectionRef: 4.5 Plugin and extension domain contracts.</li>
+<li>- Prefer explicit <code>TBD</code>, <code>unsupported</code>, <code>omitted</code>, <code>approximated</code>, or <code>delegated</code> classifications over broad compatibility or support language.</li>
+</ul></blockquote>
+<h3 id="clm-039-considerations">CLM-039 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5></blockquote>
+<h3 id="clm-040-target-admission">CLM-040 — Target admission</h3>
+<blockquote><h6 id="target-admission">Target admission</h6>
+<p>Additional targets should move through conservative admission states:</p>
+<table><tbody>
+<tr><td>State</td><td>Meaning</td></tr>
+<tr><td>Candidate</td><td>A target has been named for possible future review, but no support is claimed.</td></tr>
+<tr><td>Source-basis pending</td><td>Public or rights-cleared source evidence has not yet been admitted. Target behavior remains <code>TBD</code>.</td></tr>
+<tr><td>Source-basis admitted</td><td>Source evidence has been recorded with boundary notes, but support still depends on a later sealed implementation/validation deliverable.</td></tr>
+<tr><td>Contract-ready</td><td>The target profile can reference source-basis IDs, required fields, loss categories, stable-ID behavior, and validation obligations.</td></tr>
+<tr><td>Implementation-gated</td><td>Future code/test work may be dispatched under a separate sealed deliverable. DEL-17-09 does not perform that work.</td></tr>
+</tbody></table>
+<p>Do not use these states as release, compatibility, vendor-certification, or professional acceptance states.</p></blockquote>
+<h3 id="clm-041-adapter-sdk-surface">CLM-041 — Adapter SDK surface</h3>
+<blockquote><h6 id="adapter-sdk-surface">Adapter SDK surface</h6>
+<p>The SDK surface should be described as obligations and review checkpoints until a later implementation brief authorizes code. Useful obligations include source basis, profile metadata, stable identity, package member declaration, loss reporting, diagnostics, protected-content screening, privacy classification, and professional-boundary wording. Exact method names, schemas, endpoints, loader mechanisms, and package structure remain <code>TBD</code>.</p>
+<p>Vocabulary note:</p>
+<table><tbody>
+<tr><td>Term</td><td>Use in this deliverable</td></tr>
+<tr><td>Adapter SDK contract</td><td>The normative obligation set for future exporters: source basis, target profile intake, validation, stable identity, loss reporting, diagnostics, privacy, protected-content screening, and professional-boundary controls.</td></tr>
+<tr><td>SDK surface</td><td>The future runtime/API methods, schemas, loader mechanics, and package structure. This remains <code>TBD</code> until later sealed implementation work.</td></tr>
+<tr><td>Target profile contract</td><td>The per-target declaration of target family, target version basis, source-basis IDs, unit and coordinate policy, supported/unsupported behavior, loss policy, and validation policy.</td></tr>
+<tr><td>Target registry contract</td><td>The admission record for candidate/source-basis/contract-ready/implementation-gated target states. It is not a release, compatibility, or professional-acceptance registry.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-042-additional-targets">CLM-042 — Additional targets</h3>
+<blockquote><h6 id="additional-targets">Additional targets</h6>
+<p>Additional targets may include plant-design exchanges, solver-neutral packages, geometry exports, or user-owned APIs only when the target brings a source basis and rights posture. A target name alone is not evidence. Common industry practice is not enough to close target behavior gaps.</p></blockquote>
+<h3 id="clm-043-external-execution">CLM-043 — External execution</h3>
+<blockquote><h6 id="external-execution">External execution</h6>
+<p>If a future adapter involves a downstream executable or hosted service, that execution must remain optional and user-owned unless a later human authority explicitly approves a different boundary. A successful external run may be recorded as regression or handoff evidence; it must not be described as professional acceptance, formal validation, code compliance, or vendor certification.</p>
+<p>External-run evidence is admissible only as bounded technical evidence when the user controls the executable/service, has the legal right to run it, preserves run artifacts, and records the target version, profile version, manifest or run record, and limitations. Exclude or quarantine external-run evidence when licensing, redistribution, private-data, protected-content, provenance, or target-version basis is unclear. Treat external-run evidence as non-authoritative context when it supports regression or handoff review but does not close source-basis, code-compliance, professional-acceptance, or formal-validation questions. SourcePath: <code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code>; SectionRef: CAEPIPE Scripted Validation Harness and Validation Strategy. SourcePath: <code>docs/IP_AND_DATA_BOUNDARY.md</code>; SectionRef: 6. Private/user-supplied data boundary.</p></blockquote>
+<h3 id="clm-044-trade-offs">CLM-044 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Guidance</td></tr>
+<tr><td>Community extensibility vs. governance control</td><td>Favor a narrow admission contract with required evidence and loss reporting. A target can remain useful while still carrying explicit limitations.</td></tr>
+<tr><td>Broad target list vs. source quality</td><td>Keep unsupported targets as candidates. Admit fewer targets with stronger source basis instead of naming many targets as supported.</td></tr>
+<tr><td>Adapter convenience vs. stable identity</td><td>Require stable ID maps and sidecars where target artifacts cannot carry canonical IDs directly.</td></tr>
+<tr><td>Fast file writing vs. auditability</td><td>Validation, manifests, diagnostics, and loss reports are part of the export outcome, not optional extras.</td></tr>
+<tr><td>Target-specific options vs. local code-checking</td><td>Pass-through target options may be recorded as target configuration, but shall not become OpenPipeStress code-checking logic.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-045-examples">CLM-045 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Acceptable contract-level example:</p>
+<ul>
+<li>- A future target registry entry names a target as <code>Candidate</code>, records source-basis status as <code>TBD</code>, states that no support is claimed, and lists required evidence before implementation can be dispatched.</li>
+</ul>
+<p>Acceptable public template example:</p>
+<ul>
+<li>- An invented adapter checklist uses synthetic target names and invented model references to show where source basis, stable ID behavior, loss categories, and boundary notes would be recorded.</li>
+</ul>
+<p>Not acceptable:</p>
+<ul>
+<li>- A public fixture copied from a vendor sample, standards table, protected format manual, private project file, or licensed report without documented redistribution rights.</li>
+<li>- A statement that a named target is compatible, supported, validated, code-compliant, accepted for professional use, or release-ready before source basis and later sealed validation work exist.</li>
+</ul></blockquote>
+<h3 id="clm-046-conflict-table-for-human-ruling">CLM-046 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A</td><td>Source B</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No current conflict detected.</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-047-d-41-r5-t2a-canonicalization-guidance-2026-07-12">CLM-047 — D-41 R5 T2A canonicalization guidance (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-canonicalization-guidance-2026-07-12">D-41 R5 T2A canonicalization guidance (2026-07-12)</h5>
+<p>Keep the narrow sorted-compact JSON label coupled to exact-byte and mutation tests. Do not upgrade the label to JCS without a governed RFC 8785 implementation and conformance evidence.</p></blockquote>
+<h3 id="clm-048-d-41-r5-t4-pdu-004-guidance">CLM-048 — D-41 R5 T4 PDU-004 guidance</h3>
+<blockquote><h5 id="d-41-r5-t4-pdu-004-guidance">D-41 R5 T4 PDU-004 guidance</h5>
+<p>Do not infer missing categories from nearby evidence or convert the current <code>export_review</code>/<code>human_review</code> records into mechanics, rule-check, reviewer, signoff, or approval semantics. Preserve the exact missing taxonomy as an owner hold.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 SOW-074 SOW-075 OBJ-009 OBJ-017 OBJ-018</td><td>CLM-010</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

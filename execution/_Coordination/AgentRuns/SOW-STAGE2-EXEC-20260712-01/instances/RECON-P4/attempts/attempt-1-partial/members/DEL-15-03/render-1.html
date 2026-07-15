@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="eb3df13ba3bbc57b070c1b579605dbb81abc04c90776a71c7aa331a71e668cd5">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-15-03</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>eb3df13ba3bbc57b070c1b579605dbb81abc04c90776a71c7aa331a71e668cd5</code>.</p>
+<h1 id="scope-of-work-del-15-03">Scope of Work — DEL-15-03</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-15-03</code> in service of project scope [SOW-074] and package objectives [OBJ-017].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A generic schema-compliant downstream modeling export workflow contract using invented target evidence and explicit unsupported-target findings is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-15-03-downstream-modeling-export-workflow">CLM-001 — Datasheet: DEL-15-03 Downstream modeling export workflow</h3>
+<blockquote><h4 id="datasheet-del-15-03-downstream-modeling-export-workflow">Datasheet: DEL-15-03 Downstream modeling export workflow</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-03-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-15-03</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Downstream modeling export workflow</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-15</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package name</td><td>Handoff and External Prover Workflow</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Discipline</td><td>ASSUMPTION: software backend / interop handoff workflow</td><td><code>_CONTEXT.md</code>; <code>SOFTWARE_DECOMP.md#PKG-15</code></td></tr>
+<tr><td>Scope coverage</td><td>SOW-074</td><td><code>_CONTEXT.md</code>; <code>SOFTWARE_DECOMP.md#Structured Scope of Work</code></td></tr>
+<tr><td>Objective support</td><td>OBJ-017</td><td><code>_CONTEXT.md</code>; <code>SOFTWARE_DECOMP.md#Objectives</code></td></tr>
+<tr><td>Context envelope</td><td>L; WATCH</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ContextBudgetQA.csv</code></td></tr>
+<tr><td>Anticipated artifacts</td><td>handoff exporter; export validation tests; invented target fixture</td><td><code>_CONTEXT.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Workflow purpose</td><td>Implement the generic handoff export path before target-specific commercial-tool parsers are in scope.</td><td><code>_CONTEXT.md</code>; <code>SOFTWARE_DECOMP.md#PKG-15</code></td></tr>
+<tr><td>Required handoff package content</td><td>Model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, and unsupported-target flags.</td><td><code>_CONTEXT.md#Scope Detail</code>; <code>SOFTWARE_DECOMP.md#SOW-074</code></td></tr>
+<tr><td>Handoff object meaning</td><td>Schema-compliant export for downstream modeling and professional validation workflows.</td><td><code>SOFTWARE_DECOMP.md#Vocabulary and semantic commitments</code></td></tr>
+<tr><td>Architecture baseline</td><td>Rust core/application services; JSON Schema 2020-12 contracts; schema-first command/query/job result envelopes; producer-declared JSON hash byte-basis labels carried unchanged; Cargo/Vitest/Playwright/validation/protected-content test gates as applicable.</td><td><code>_CONTEXT.md#Architecture Basis Injection</code>; D-41 R5 T2A</td></tr>
+<tr><td>Backend artifact boundary</td><td>Generic export workflow only; target-specific commercial parser behavior remains deferred.</td><td><code>_CONTEXT.md#Context Envelope</code>; <code>SOFTWARE_DECOMP.md#Open issues</code></td></tr>
+<tr><td>Professional boundary</td><td>Handoff and external-prover metadata support must not create automatic professional approval states.</td><td><code>SOFTWARE_DECOMP.md#OBJ-017</code>; <code>docs/CONTRACT.md#Invariant catalog</code></td></tr>
+<tr><td>Data boundary</td><td>Public artifacts must not bundle protected standards text, protected tables, proprietary commercial data, private rule packs, owner standards, or code-specific acceptance criteria.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md#Public repository must not contain</code>; <code>docs/CONTRACT.md#Invariant catalog</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Target surfaces, canonical package container, and target-specific implementation</td><td>OI-015 names initial export and target surfaces; canonical package container, concrete mappings, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02.</td></tr>
+<tr><td>Exact dependency versions and package-specific implementation choices</td><td>TBD per <code>_CONTEXT.md#Architecture Basis Injection</code>.</td></tr>
+<tr><td>Target-specific commercial stress output parsers</td><td>Deferred per <code>_CONTEXT.md#Context Envelope</code> and <code>SOFTWARE_DECOMP.md#SOW-074</code>.</td></tr>
+<tr><td>Professional approval, certification, sealing, or code-compliance claims</td><td>Excluded by <code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AGENT-4.</td></tr>
+<tr><td>Unit handling</td><td>Exports must remain unit-aware and validate against <code>schemas/handoff_package.schema.json</code> and <code>schemas/target_mapping.schema.json</code>; target-specific unit export strategy remains TBD under OI-015.</td></tr>
+<tr><td>Private/protected data</td><td>Must be excluded unless intentionally supplied with documented rights through a governed path.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Datasheet value</td></tr>
+<tr><td>Primary input contracts</td><td>ACTIVE upstream rows in local <code>Dependencies.csv</code>, plus <code>schemas/handoff_package.schema.json</code> and <code>schemas/target_mapping.schema.json</code>.</td></tr>
+<tr><td>Primary output</td><td>Generic handoff exporter at <code>core/handoff/exporter/workflow.py</code> capable of producing a schema-compliant handoff package and provider-neutral target mapping record.</td></tr>
+<tr><td>Validation evidence</td><td><code>tests/test_handoff_export_workflow.py</code> validates exported handoff/mapping inputs against schema contracts and checks <code>fixtures/invented_target_fixture.json</code> provenance.</td></tr>
+<tr><td>Unsupported target behavior</td><td>Must surface unsupported-target flags and warnings; taxonomy and target mapping records are provided by upstream contract work.</td></tr>
+<tr><td>Hash handling</td><td>Package/model checksum/reference fields preserve the producer-declared byte-basis label. DEL-15-03 does not recompute, relabel, or assert JCS conformance; package container and target-specific hash packaging remain TBD.</td></tr>
+<tr><td>Fixture data</td><td>Invented target fixture only; no protected commercial-tool examples or proprietary data.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, scope, architecture-basis injection, and anticipated artifacts.</li>
+<li>- <code>_REFERENCES.md</code> - source list for this deliverable.</li>
+<li>- <code>_DEPENDENCIES.md</code> and <code>Dependencies.csv</code> - approved DAG-006 mirror/evidence surface for upstream workflow context.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - revision 0.7 package, scope, objective, decision, and open-issue context.</li>
+<li>- <code>docs/CONTRACT.md</code> - invariant catalog.</li>
+<li>- <code>docs/SPEC.md</code> - schema-first, unit-aware, provenance, diagnostics, and handoff-related architecture context.</li>
+<li>- <code>docs/TYPES.md</code> - canonical object and boundary vocabulary.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> - public/private and protected-content boundary.</li>
+<li>- <code>docs/AGENTIC_DEVELOPMENT_WORKFLOW.md</code> - deliverable execution and review rules.</li>
+</ul></blockquote>
+<h3 id="clm-008-d-41-r5-t2a-supplied-checksum-evidence-2026-07-12">CLM-008 — D-41 R5 T2A supplied-checksum evidence (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-supplied-checksum-evidence-2026-07-12">D-41 R5 T2A supplied-checksum evidence (2026-07-12)</h5>
+<p>The downstream workflow carries supplied checksum records without recomputing them. Its governed invented records now use <code>deterministic_sorted_compact_json_payload_hash</code>; this is a narrow byte-basis label, not a JCS assertion by DEL-15-03.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-15-03-downstream-modeling-export-workflow">CLM-009 — Specification: DEL-15-03 Downstream modeling export workflow</h3>
+<blockquote><h4 id="specification-del-15-03-downstream-modeling-export-workflow">Specification: DEL-15-03 Downstream modeling export workflow</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable covers a generic backend export workflow for downstream modeling handoff packages. It is scoped to SOW-074 and OBJ-017: producing traceable, schema-compliant handoff packages for downstream modeling and professional validation workflows without creating automatic professional approval states.</p>
+<p>Included artifacts are:</p>
+<ul>
+<li>- handoff exporter;</li>
+<li>- export validation tests;</li>
+<li>- invented target fixture.</li>
+</ul>
+<p>Excluded work:</p>
+<ul>
+<li>- target-specific commercial stress output parsers;</li>
+<li>- comprehensive commercial-tool result ingestion;</li>
+<li>- formal prover-status lifecycle, automatic professional acceptance record, certification, sealing, approval, authentication, or code-compliance status;</li>
+<li>- protected standards text, tables, examples, formulas, proprietary commercial data, private rule packs, owner standards, or code-specific acceptance criteria;</li>
+<li>- canonical package container, concrete mappings, target field coverage, target-specific implementation, dependency versions, and package-specific implementation choices until separately resolved.</li>
+</ul></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-15-03-REQ-001</td><td>The workflow shall generate schema-compliant handoff packages.</td><td>SOW-074 in <code>_CONTEXT.md</code> and <code>SOFTWARE_DECOMP.md</code></td><td><code>tests/test_handoff_export_workflow.py</code> validates exported handoff packages against <code>schemas/handoff_package.schema.json</code>.</td></tr>
+<tr><td>DEL-15-03-REQ-002</td><td>The package data surfaced by the workflow shall include or preserve model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, and unsupported-target flags.</td><td>SOW-074 in <code>_CONTEXT.md</code> and <code>SOFTWARE_DECOMP.md</code></td><td>Fixture-based validation that required fields are present or explicitly reported as TBD/unsupported according to upstream schema contracts.</td></tr>
+<tr><td>DEL-15-03-REQ-003</td><td>The workflow shall remain generic and shall not implement target-specific commercial-tool parsers in this deliverable.</td><td><code>_CONTEXT.md#Context Envelope</code>; <code>SOFTWARE_DECOMP.md#SOW-074</code>; OI-015</td><td>Tests or review evidence confirming invented target fixture use and no commercial parser fixture dependency.</td></tr>
+<tr><td>DEL-15-03-REQ-004</td><td>The workflow shall preserve unit metadata across the export boundary.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/SPEC.md#Unit system and dimensional analysis</code></td><td>Schema validation and unit-manifest checks.</td></tr>
+<tr><td>DEL-15-03-REQ-005</td><td>The workflow shall preserve diagnostics, warnings, unresolved assumptions, provenance, and hashes rather than hiding missing data or boundary risks.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2, OPS-K-REPORT-1; <code>docs/TYPES.md</code> Diagnostic, Assumption, Checksum, ResultExportEnvelope</td><td>Export validation tests and review of generated diagnostics/warnings.</td></tr>
+<tr><td>DEL-15-03-REQ-006</td><td>The workflow shall not claim certification, sealing, approval, authentication, professional acceptance, or engineering code compliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1, OPS-K-AGENT-4; <code>SOFTWARE_DECOMP.md</code> OBJ-017 and DEC-015</td><td>Protected/professional-boundary wording review and tests where applicable.</td></tr>
+<tr><td>DEL-15-03-REQ-007</td><td>Public fixtures and examples shall use invented or otherwise cleared data and shall not copy protected standards content, commercial software examples, or proprietary data.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/CONTRACT.md</code> OPS-K-IP-1 through OPS-K-IP-3</td><td>Protected-content review, fixture provenance review, and validation gate.</td></tr>
+<tr><td>DEL-15-03-REQ-008</td><td>The workflow shall respect schema-first contracts and JSON Schema 2020-12 and shall preserve the producer-declared checksum byte-basis label. DEL-15-03 carries supplied hashes without recomputing or relabeling them and therefore makes no independent JCS claim.</td><td><code>_CONTEXT.md#Architecture Basis Injection</code>; <code>SOFTWARE_DECOMP.md</code> DEC-009 through DEC-012; D-41 R5 T2A</td><td>Implementation review verifies checksum metadata is carried unchanged and no unproved JCS assertion is introduced.</td></tr>
+<tr><td>DEL-15-03-REQ-009</td><td>The workflow shall consume upstream handoff/mapping/security/model-transformation context only through explicit contracts or approved dependency evidence.</td><td>Local <code>Dependencies.csv</code>; <code>_DEPENDENCIES.md</code></td><td>Dependency review; no sibling deliverable source copying without an approved input contract.</td></tr>
+<tr><td>DEL-15-03-REQ-010</td><td>Missing target behavior, missing mapping support, or unsupported features shall be explicit findings or unsupported-target flags, not silent defaults.</td><td>SOW-074; <code>docs/CONTRACT.md</code> OPS-K-DATA-2; OI-015</td><td>Validation tests using the invented target fixture.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Contract basis for schema-backed handoff/package validation.</td><td>Applicable from <code>_CONTEXT.md#Architecture Basis Injection</code>; current upstream schemas are <code>schemas/handoff_package.schema.json</code> and <code>schemas/target_mapping.schema.json</code>.</td></tr>
+<tr><td>Producer-declared JSON hash basis</td><td>Carry supplied checksum algorithm, payload scope, digest, and canonicalization label unchanged; no recomputation or conformance ruling by this workflow.</td><td>Applicable from <code>_CONTEXT.md#Architecture Basis Injection</code>; exact producer payload boundaries remain external to DEL-15-03.</td></tr>
+<tr><td>OpenPipeStress invariant catalog</td><td>Governs data, unit, professional-boundary, IP, privacy, and agent-output constraints.</td><td>Applicable from <code>docs/CONTRACT.md</code>.</td></tr>
+<tr><td>IP and Data Boundary Policy</td><td>Governs protected-content, private-data, fixture, and provenance handling.</td><td>Applicable from <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+<tr><td>Commercial stress tool formats</td><td>Target-specific parsers and commercial examples are out of scope.</td><td>Deferred; concrete mappings, target field coverage, and target-specific implementation remain gated by OI-015, DEL-17-01, and DEL-17-02.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Evidence expected</td></tr>
+<tr><td>Schema compliance</td><td>Validation tests for handoff package output against <code>schemas/handoff_package.schema.json</code> and target mapping input against <code>schemas/target_mapping.schema.json</code>.</td></tr>
+<tr><td>Unit manifest preservation</td><td>Tests that exported values carry explicit unit metadata or are explicitly dimensionless/TBD according to schema rules.</td></tr>
+<tr><td>Hash/provenance preservation</td><td>Tests or review evidence for model/package hash fields, provenance fields, and unresolved assumptions.</td></tr>
+<tr><td>Unsupported-target behavior</td><td>Invented target fixture that exercises unsupported or approximate mapping behavior without using proprietary commercial examples.</td></tr>
+<tr><td>Boundary wording</td><td>Review confirming no generated metadata or report-adjacent output claims professional approval, certification, sealing, authentication, or code compliance.</td></tr>
+<tr><td>Protected-content screening</td><td>Protected-content/provenance gate for fixture and example data.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required records for this deliverable are:</p>
+<ul>
+<li>- implementation notes identifying <code>core/handoff/exporter/workflow.py</code> and the schema-backed output contract;</li>
+<li>- export validation test evidence;</li>
+<li>- invented target fixture provenance and protected-content review status;</li>
+<li>- any unresolved target mapping, package container, hash boundary, or dependency-version TBDs;</li>
+<li>- dependency closure evidence for required upstream contracts before this workflow is treated as implementation-ready.</li>
+</ul></blockquote>
+<h3 id="clm-015-d-41-r5-t2a-checksum-boundary-requirement-2026-07-12">CLM-015 — D-41 R5 T2A checksum-boundary requirement (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-checksum-boundary-requirement-2026-07-12">D-41 R5 T2A checksum-boundary requirement (2026-07-12)</h5>
+<p>DEL-15-03 SHALL preserve supplied checksum metadata without relabeling it as JCS and SHALL NOT imply that carrying a checksum constitutes recomputation, validation, or RFC 8785 conformance.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves all SOW-074 handoff contents, supplied checksum metadata without recomputation or relabeling, unit and provenance boundaries, diagnostics, warnings, assumptions, schema validation, public-safe invented fixtures, explicit unsupported behavior, upstream contract boundaries, target-specific parser and package-container gates, and professional non-authority without claiming JCS conformance, external validation, or approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-15-03-downstream-modeling-export-workflow">CLM-016 — Procedure: DEL-15-03 Downstream modeling export workflow</h3>
+<blockquote><h4 id="procedure-del-15-03-downstream-modeling-export-workflow">Procedure: DEL-15-03 Downstream modeling export workflow</h4></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the conservative procedure for producing and validating the generic downstream modeling export workflow for DEL-15-03.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source / status</td></tr>
+<tr><td>Deliverable scope, package, artifacts, and architecture basis reviewed.</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Invariants for data boundary, unit handling, professional boundary, and agent output reviewed.</td><td><code>docs/CONTRACT.md</code></td></tr>
+<tr><td>Protected-content and public/private data boundary reviewed.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+<tr><td>Approved DAG-002 mirror rows preserved as ACTIVE evidence.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code></td></tr>
+<tr><td>Upstream architecture-basis context available for DEL-00-01, DEL-00-02, DEL-00-03, DEL-00-04, DEL-00-06, DEL-00-07, and DEL-00-08.</td><td>Local <code>Dependencies.csv</code></td></tr>
+<tr><td>Upstream interop/handoff/security/model context identified for DEL-15-01, DEL-15-02, DEL-10-02, DEL-10-03, DEL-12-02, DEL-13-04, and DEL-14-05.</td><td>Local <code>Dependencies.csv</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the work remains inside DEL-15-03 and SOW-074. If implementation needs target-specific commercial parsers, commercial examples, professional approval states, or cross-package rewrites, stop and escalate.</p>
+<p>2. Identify the upstream handoff package schema and target-mapping contracts available to the implementation: <code>schemas/handoff_package.schema.json</code> and <code>schemas/target_mapping.schema.json</code>. If later target-specific inputs are not implementation-ready, record the missing inputs as TBD rather than inventing schema fields.</p>
+<p>3. Define the generic exporter boundary: input model/result context, output handoff package envelope, validation result, warnings, unresolved assumptions, target mapping metadata, unsupported-target flags, and hash/provenance handling.</p>
+<p>4. Implement or review the exporter using the accepted architecture basis applicable to this backend slice at <code>core/handoff/exporter/workflow.py</code>; package-specific dependency versions remain TBD unless resolved by accepted source material.</p>
+<p>5. Ensure exported payloads preserve unit metadata, entity IDs, references, diagnostics/warnings, assumptions, and hash metadata required by the upstream handoff package contract.</p>
+<p>6. Add unsupported-target handling that records explicit findings or flags when the target fixture lacks a supported mapping. Do not silently drop or coerce unsupported behavior.</p>
+<p>7. Create an invented target fixture. Record fixture provenance and protected-content review status; do not use commercial-tool examples or protected standards-derived examples.</p>
+<p>8. Add export validation tests for schema compliance, unit manifest presence, required identity/reference fields, warnings/assumptions, unsupported-target flags, and professional-boundary wording.</p>
+<p>9. Run applicable validation gates: <code>python3 tests/test_handoff_export_workflow.py</code>, schema validation for exported handoff and mapping inputs, dependency validation, and protected-content/provenance review.</p>
+<p>10. Record unresolved assumptions, upstream contract gaps, unsupported features, and any dependency conflicts in deliverable-local evidence.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Scope check</td><td>Work remains a generic handoff export workflow for DEL-15-03.</td></tr>
+<tr><td>Schema check</td><td>Output validates against <code>schemas/handoff_package.schema.json</code> and <code>schemas/target_mapping.schema.json</code>.</td></tr>
+<tr><td>Unit check</td><td>Unit-bearing exported values carry explicit unit metadata or a documented dimensionless/TBD classification.</td></tr>
+<tr><td>Warning/assumption check</td><td>Missing data and unsupported target behavior are explicit findings, not silent defaults.</td></tr>
+<tr><td>Boundary check</td><td>Output does not claim certification, sealing, approval, authentication, professional acceptance, or code compliance.</td></tr>
+<tr><td>Fixture check</td><td>Invented target fixture has provenance and does not use protected or commercial-tool example data.</td></tr>
+<tr><td>Dependency check</td><td>Approved DAG-002 mirror rows remain preserved; no dependency extraction refresh reclassifies them without human approval.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Exporter implementation path: <code>core/handoff/exporter/workflow.py</code>.</li>
+<li>- Export validation test path: <code>tests/test_handoff_export_workflow.py</code>.</li>
+<li>- Invented target fixture path and provenance: <code>fixtures/invented_target_fixture.json</code>, validated as invented public metadata.</li>
+<li>- Handoff schema version or source: <code>schemas/handoff_package.schema.json</code>.</li>
+<li>- Target mapping taxonomy/source: <code>schemas/target_mapping.schema.json</code>.</li>
+<li>- Dependency validation evidence: <code>Dependencies.csv</code> schema validation output.</li>
+<li>- Boundary review evidence: focused protected/private/prohibited-authority term scan and exporter tests.</li>
+</ul></blockquote>
+<h3 id="clm-022-d-41-r5-t2a-checksum-boundary-check-2026-07-12">CLM-022 — D-41 R5 T2A checksum-boundary check (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-checksum-boundary-check-2026-07-12">D-41 R5 T2A checksum-boundary check (2026-07-12)</h5>
+<p>Verify that model and manifest checksum labels are carried unchanged into export payload context and that DEL-15-03 makes no independent JCS claim or checksum-validity ruling.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, complete handoff content preservation, schema and unit checks, supplied-checksum byte-basis labels, diagnostic and unsupported-target behavior, invented-fixture and protected-content controls, retained target-specific and container TBDs, upstream contract boundaries, and prohibited professional-authority claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-023-guidance-del-15-03-downstream-modeling-export-workflow">CLM-023 — Guidance: DEL-15-03 Downstream modeling export workflow</h3>
+<blockquote><h4 id="guidance-del-15-03-downstream-modeling-export-workflow">Guidance: DEL-15-03 Downstream modeling export workflow</h4></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to provide the generic handoff export workflow that turns OpenPipeStress model and analysis context into schema-compliant downstream modeling handoff packages. Its purpose is traceable transfer, not external-tool validation or professional approval.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Generic before target-specific</td><td>Keep the workflow around <code>schemas/handoff_package.schema.json</code>, <code>schemas/target_mapping.schema.json</code>, and the generic exporter before adding target-specific parsers or profiles.</td><td><code>_CONTEXT.md#Context Envelope</code>; <code>SOFTWARE_DECOMP.md#SOW-074</code>; OI-015</td></tr>
+<tr><td>Explicit missingness</td><td>Missing mapping support, unresolved assumptions, warnings, and unsupported target behavior should be visible in the export output.</td><td>SOW-074; <code>docs/CONTRACT.md</code> OPS-K-DATA-2</td></tr>
+<tr><td>Unit-aware export</td><td>Unit metadata must cross the export boundary unless a field is explicitly dimensionless or otherwise classified.</td><td><code>docs/SPEC.md#Unit system and dimensional analysis</code>; OPS-K-UNIT-1</td></tr>
+<tr><td>Provenance and hash discipline</td><td>Exported packages should preserve references, provenance, rule/library refs, diagnostics, and hashes without treating them as professional acceptance.</td><td><code>docs/TYPES.md</code> Assumption, TraceabilityLink, Diagnostic, Checksum, ResultExportEnvelope</td></tr>
+<tr><td>Professional boundary</td><td>The workflow may support professional review; it must not claim approval, certification, sealing, authentication, or code compliance.</td><td>OBJ-017; DEC-015; OPS-K-AUTH-1</td></tr>
+<tr><td>Protected-content boundary</td><td>Fixtures must be invented or cleared; do not import protected standards examples or commercial tool files.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code>; OPS-K-IP-1 through OPS-K-IP-3</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The local <code>Dependencies.csv</code> records upstream architecture-basis and interop/security/model-contract inputs as ACTIVE DAG-002 mirror evidence. Treat those rows as coordination evidence, not as permission to copy sibling deliverable prose or implementation details into this folder.</li>
+<li>- Upstream contracts named by the mirror include the canonical handoff package schema, target mapping and unsupported-behavior contract, import/export adapter framework, local FEA handoff data contract, private-data redaction/export controls, physical-to-analytical transformation contract, and comparison export contracts.</li>
+<li>- The workflow should report unsupported-target behavior rather than silently approximating it. Provider-neutral unsupported behavior and target mapping records are now supplied by <code>schemas/target_mapping.schema.json</code>; target-specific extensions remain gated by DEL-17-01 and DEL-17-02.</li>
+<li>- The current fixture is <code>fixtures/invented_target_fixture.json</code>; it is invented public metadata used by <code>tests/test_handoff_export_workflow.py</code> to exercise schema shape, warnings, assumptions, provenance, and unsupported-target flags without resembling commercial-tool examples.</li>
+<li>- The generic exporter entry point is <code>core/handoff/exporter/workflow.py</code>. Package container structure, concrete mappings, target field coverage, and target-specific implementation remain gated.</li>
+</ul></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative direction</td></tr>
+<tr><td>Generic exporter vs. target-specific parser</td><td>Prefer a generic exporter with explicit unsupported-target flags; defer target-specific parsing behavior.</td></tr>
+<tr><td>Strict schema validation vs. permissive export</td><td>Prefer schema validation and explicit findings over silent coercion.</td></tr>
+<tr><td>Helpful external metadata vs. professional status</td><td>Preserve references, notes, hashes, and diagnostics, but avoid approval/certification/status claims.</td></tr>
+<tr><td>Realistic fixture vs. protected/commercial data risk</td><td>Prefer invented fixture data with clear provenance.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The current example fixture is <code>fixtures/invented_target_fixture.json</code>. It is invented public metadata only and is checked by <code>tests/test_handoff_export_workflow.py</code> alongside schema validation for <code>schemas/handoff_package.schema.json</code> and <code>schemas/target_mapping.schema.json</code>.</p>
+<p>Do not derive future example values from protected standards, commercial software files, proprietary catalogs, owner standards, or private project data.</p></blockquote>
+<h3 id="clm-029-open-questions-and-tbds">CLM-029 — Open Questions and TBDs</h3>
+<blockquote><h5 id="open-questions-and-tbds">Open Questions and TBDs</h5>
+<table><tbody>
+<tr><td>ID</td><td>Item</td><td>Source</td></tr>
+<tr><td>DEL-15-03-TBD-001</td><td>Canonical package container, concrete mappings, target field coverage, and target-specific implementation.</td><td><code>SOFTWARE_DECOMP.md</code> OI-015; DEL-17-01; DEL-17-02</td></tr>
+<tr><td>DEL-15-03-TBD-002</td><td>Target-specific parser/profile behavior and commercial-tool result ingestion remain out of this deliverable.</td><td><code>_CONTEXT.md#Context Envelope</code>; OI-015</td></tr>
+<tr><td>DEL-15-03-TBD-003</td><td>Package-specific dependency versions and broader architecture implementation choices remain governed by architecture-basis TBDs.</td><td><code>_CONTEXT.md#Architecture Basis Injection</code></td></tr>
+<tr><td>DEL-15-03-TBD-004</td><td>Future fixtures for target-specific profiles require protected-content and provenance review.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code>; DEL-17-01; DEL-17-02</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-030-conflict-table-for-human-ruling">CLM-030 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source conflicts were identified during the setup pass. TBDs above are missing-detail boundaries, not resolved conflicts.</p></blockquote>
+<h3 id="clm-031-d-41-r5-t2a-checksum-boundary-guidance-2026-07-12">CLM-031 — D-41 R5 T2A checksum-boundary guidance (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2a-checksum-boundary-guidance-2026-07-12">D-41 R5 T2A checksum-boundary guidance (2026-07-12)</h5>
+<p>Treat incoming checksum records as carried evidence. Do not describe them as JCS unless the owning producer supplies governed RFC 8785 conformance evidence; preserve the precise producer label and surface validation elsewhere.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-074 OBJ-017</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

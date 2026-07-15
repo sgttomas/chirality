@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="a9f76e5189357f42ba957a29b77c2f8292d4d4d30ca14132b6e0f94ae8b01a76">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-16-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>a9f76e5189357f42ba957a29b77c2f8292d4d4d30ca14132b6e0f94ae8b01a76</code>.</p>
+<h1 id="scope-of-work-del-16-01">Scope of Work — DEL-16-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-16-01</code> in service of project scope [SOW-069] and package objectives [OBJ-015].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A schema-first structured model-operation contract for GUI and agent proposals, with invented fixtures and explicit mutation, model-basis, unit, provenance, diagnostic, and professional-boundary controls, is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-16-01-structured-model-operation-schema">CLM-001 — Datasheet: DEL-16-01 Structured model operation schema</h3>
+<blockquote><h4 id="datasheet-del-16-01-structured-model-operation-schema">Datasheet: DEL-16-01 Structured model operation schema</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-16-01</td></tr>
+<tr><td>Name</td><td>Structured model operation schema</td></tr>
+<tr><td>Package ID</td><td>PKG-16</td></tr>
+<tr><td>Package Name</td><td>Model Operation and Agent Proposal Framework</td></tr>
+<tr><td>Type</td><td>DATA_MODEL_CHANGE</td></tr>
+<tr><td>Scope Coverage</td><td>SOW-069</td></tr>
+<tr><td>Objective Support</td><td>OBJ-015</td></tr>
+<tr><td>Implemented Schema Artifact</td><td><code>schemas/model_operation.schema.json</code></td></tr>
+<tr><td>Implemented Fixture Evidence</td><td><code>fixtures/model_operations/invented_operation_set_valid.json</code>; <code>fixtures/model_operations/invented_accepted_model_state.json</code></td></tr>
+<tr><td>Lifecycle note</td><td>Deliverable-local status remains governed by <code>_STATUS.md</code>; this datasheet records implementation evidence only.</td></tr>
+</tbody></table>
+<p>Sources: <code>_CONTEXT.md</code> sections &quot;Description&quot;, &quot;Anticipated Artifacts&quot;, &quot;Scope Coverage&quot;, &quot;Objective Support&quot;; <code>schemas/model_operation.schema.json</code>; <code>fixtures/model_operations/invented_operation_set_valid.json</code>; <code>fixtures/model_operations/invented_accepted_model_state.json</code>; <code>tests/test_model_operation_schema.py</code>.</p></blockquote>
+<h3 id="clm-003-attributes">CLM-003 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Operation route</td><td>GUI and agent edits are represented as structured model operations.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-069; <code>_CONTEXT.md</code> Context Envelope</td></tr>
+<tr><td>Mutation boundary</td><td>The schema contract status fixes <code>mutation_route = structured_operations_only</code> and <code>direct_model_mutation_allowed = false</code>.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationContractStatus</code>; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Operation categories in scope</td><td><code>add</code>, <code>move</code>, <code>modify</code>, <code>delete</code>, <code>reconnect</code>, <code>constraint</code>, <code>load</code>, <code>support</code>, and <code>design_knowledge</code>.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationKind</code>; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Change kinds represented</td><td><code>add_object</code>, <code>remove_object</code>, <code>set_field</code>, <code>move_geometry</code>, <code>reconnect</code>, <code>update_constraint</code>, <code>update_load</code>, <code>update_support</code>, and <code>attach_design_knowledge</code>.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationChange</code>; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Schema/interchange baseline</td><td>JSON Schema 2020-12.</td><td><code>schemas/model_operation.schema.json</code> <code>$schema</code>; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Root envelope fields</td><td><code>schema_version</code>, <code>deliverable_id</code>, <code>package_id</code>, <code>scope_item</code>, <code>objectives</code>, <code>operation_contract_status</code>, and <code>operation_set</code>.</td><td><code>schemas/model_operation.schema.json</code> root <code>required</code>; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Operation record fields</td><td><code>operation_id</code>, <code>operation_kind</code>, <code>operation_status</code>, <code>author_type</code>, <code>target_refs</code>, <code>preconditions</code>, <code>changes</code>, <code>validation</code>, <code>diagnostics</code>, <code>diff_preview_refs</code>, <code>assumptions</code>, <code>provenance</code>, and <code>professional_boundary</code>.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.ModelOperationRecord</code>; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Model-basis binding</td><td>Operation sets require <code>model_basis</code> with <code>model_ref</code>, <code>canonical_model_role = physical_source_of_truth</code>, <code>physical_source_of_truth_ref</code>, <code>accepted_model_state_ref</code>, and <code>accepted_model_state_hash</code>. Operation preconditions require current hashes including <code>payload_scope = model_state_record</code>.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationModelBasis</code> and <code>$defs.OperationPrecondition</code>; fixtures; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Unit boundary</td><td>Unit-bearing payloads require explicit unit metadata and dimension checks; missing-unit behavior is <code>emit_diagnostic</code>. Quantity dimensions use the canonical dimension enum currently encoded in the schema.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.UnitRequirements</code> and <code>$defs.Quantity</code>; <code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Downstream validation surfaces</td><td>Schema fields include validation state, diagnostics, diff-preview references, and application status, but validator/diff behavior is owned by DEL-16-02.</td><td><code>schemas/model_operation.schema.json</code>; <code>tests/test_operation_validation_preview.py</code>; <code>Dependencies.csv</code> downstream row <code>DEL-16-01-D001</code></td></tr>
+<tr><td>Professional boundary</td><td>Operation records and operation sets require <code>human_review_required = true</code> and negative software claims for compliance, certification, sealing, approval, and authentication.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.ProfessionalBoundary</code>; fixtures; <code>tests/test_model_operation_schema.py</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-conditions">CLM-004 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Exact schema file path</td><td>Established as <code>schemas/model_operation.schema.json</code>.</td></tr>
+<tr><td>Exact implemented root and operation field layout</td><td>Established by <code>schemas/model_operation.schema.json</code> and covered by <code>tests/test_model_operation_schema.py</code>.</td></tr>
+<tr><td>Operation fixture path</td><td>Established as <code>fixtures/model_operations/invented_operation_set_valid.json</code>.</td></tr>
+<tr><td>Accepted model-state fixture path</td><td>Established as <code>fixtures/model_operations/invented_accepted_model_state.json</code>.</td></tr>
+<tr><td>Exact operation granularity for all future physical model edits</td><td>Still TBD beyond the current operation/change enums and fixture coverage.</td></tr>
+<tr><td>Exact persistence granularity and broader hash partitioning</td><td>Still TBD beyond the implemented <code>accepted_model_state_hash</code> and per-operation <code>required_current_hashes</code> hooks.</td></tr>
+<tr><td>Validation/diff-preview behavior</td><td>Downstream DEL-16-02; current schema only provides fields and evidence hooks.</td></tr>
+<tr><td>User acceptance and audit trail behavior</td><td>Downstream DEL-16-03; current schema records boundary hooks only.</td></tr>
+<tr><td>Human review dispositions</td><td>Review finding dispositions remain governed by <code>Review_Findings.csv</code> and are not changed here.</td></tr>
+<tr><td>Protected standards or proprietary data</td><td>Public fixtures remain invented examples with provenance and privacy classifications; no protected standards content or private project data is asserted.</td></tr>
+</tbody></table>
+<p>Sources: <code>schemas/model_operation.schema.json</code>; fixtures under <code>fixtures/model_operations/</code>; <code>tests/test_model_operation_schema.py</code>; <code>tests/test_operation_validation_preview.py</code>; <code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-DATA-1, OPS-K-AGENT-1, OPS-K-AUTH-1, OPS-K-AGENT-4.</p></blockquote>
+<h3 id="clm-005-construction">CLM-005 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The deliverable is currently materialized as a schema-first data model plus invented fixtures:</p>
+<table><tbody>
+<tr><td>Artifact</td><td>Construction Status</td><td>Notes</td></tr>
+<tr><td><code>schemas/model_operation.schema.json</code></td><td>Implemented evidence present</td><td>Strict JSON Schema 2020-12 contract for proposed model operations. It uses <code>additionalProperties: false</code> at object definitions inspected and has no schema defaults in the focused test.</td></tr>
+<tr><td><code>fixtures/model_operations/invented_operation_set_valid.json</code></td><td>Implemented evidence present</td><td>Invented public example operation set covering required operation and change categories, with provenance, validation placeholders, diff-preview references where present, precondition hashes, and professional-boundary fields.</td></tr>
+<tr><td><code>fixtures/model_operations/invented_accepted_model_state.json</code></td><td>Implemented evidence present</td><td>Invented accepted physical model-state fixture with <code>state_hash = sha256:invented-state-001</code>, matching operation-set model-basis and required-current-hash evidence.</td></tr>
+<tr><td><code>tests/test_model_operation_schema.py</code></td><td>Implemented evidence present</td><td>Focused stdlib test for schema structure, operation/change enums, model-basis requirements, unit dimensions, professional-boundary negatives, and fixture validation.</td></tr>
+<tr><td><code>tests/test_operation_validation_preview.py</code></td><td>Read-only adjacent evidence</td><td>DEL-16-02 validation/diff-preview behavior test consumes the DEL-16-01 schema and fixtures; behavior ownership remains downstream.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-references">CLM-006 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, scope, objective, architecture-basis injection.</li>
+<li>- <code>_REFERENCES.md</code> - source list for this setup pass.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - accepted revision 0.7 current decomposition basis, SOW-069, OBJ-015, PKG-16, DEL-16-01, architecture basis.</li>
+<li>- <code>docs/CONTRACT.md</code> - project invariants, including data boundary, professional boundary, and agent non-invention constraints.</li>
+<li>- <code>docs/TYPES.md</code> - canonical object registry and schema boundary notes.</li>
+<li>- <code>docs/SPEC.md</code> - technical specification slices for domain objects, persistence, viewport command intents, and professional boundaries.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> - public/private/protected-content boundary.</li>
+<li>- <code>Dependencies.csv</code> - approved local dependency mirror/evidence surface, read only for this pass.</li>
+<li>- <code>schemas/model_operation.schema.json</code> - implemented schema evidence.</li>
+<li>- <code>fixtures/model_operations/invented_operation_set_valid.json</code> and <code>fixtures/model_operations/invented_accepted_model_state.json</code> - invented fixture evidence.</li>
+<li>- <code>tests/test_model_operation_schema.py</code> and <code>tests/test_operation_validation_preview.py</code> - focused validation evidence.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-16-01-structured-model-operation-schema">CLM-007 — Specification: DEL-16-01 Structured model operation schema</h3>
+<blockquote><h4 id="specification-del-16-01-structured-model-operation-schema">Specification: DEL-16-01 Structured model operation schema</h4></blockquote>
+<h3 id="clm-008-scope">CLM-008 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable covers the data-model contract for structured model operations used by GUI and agent proposal workflows. The current implementation evidence is <code>schemas/model_operation.schema.json</code> plus invented fixtures under <code>fixtures/model_operations/</code>.</p>
+<p>In scope:</p>
+<ul>
+<li>- A JSON Schema 2020-12 envelope for proposed model operation sets.</li>
+<li>- Structured operation records for add, move, modify, delete, reconnect, constraint, load, support, and design-knowledge edits.</li>
+<li>- Operation/change fields that preserve target references, preconditions, proposed changes, validation state placeholders, diagnostics, diff-preview references, assumptions, provenance, unit metadata, model-basis hashes, and professional-boundary flags.</li>
+<li>- Invented public fixture coverage for the operation kinds and change kinds established by the schema and focused tests.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- The operation validator, deterministic diff preview, and invalid-operation blocking behavior owned by DEL-16-02.</li>
+<li>- User acceptance and audit trail implementation owned by DEL-16-03.</li>
+<li>- Agent rationale and professional-boundary workflow controls owned by DEL-16-04, except for schema fields needed to preserve the boundary.</li>
+<li>- Exact persistence package/container granularity, broad hash partitioning beyond current schema hooks, GUI runtime behavior, lifecycle promotion, review-finding dispositions, and professional/code-compliance conclusions.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>schemas/model_operation.schema.json</code>; <code>fixtures/model_operations/invented_operation_set_valid.json</code>; <code>fixtures/model_operations/invented_accepted_model_state.json</code>; <code>tests/test_model_operation_schema.py</code>; <code>tests/test_operation_validation_preview.py</code>; <code>Dependencies.csv</code> downstream rows for DEL-16-02 and DEL-16-03.</p></blockquote>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-16-01-R001</td><td>The schema shall represent GUI and agent edits as structured model operations before they can alter accepted model state.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-069; <code>_CONTEXT.md</code>; <code>schemas/model_operation.schema.json</code> <code>$defs.OperationContractStatus</code></td><td><code>tests/test_model_operation_schema.py</code> checks <code>mutation_route = structured_operations_only</code> and <code>direct_model_mutation_allowed = false</code>; <code>tests/test_operation_validation_preview.py</code> checks preview generation without mutating accepted state.</td></tr>
+<tr><td>DEL-16-01-R002</td><td>The schema shall cover the operation kinds <code>add</code>, <code>move</code>, <code>modify</code>, <code>delete</code>, <code>reconnect</code>, <code>constraint</code>, <code>load</code>, <code>support</code>, and <code>design_knowledge</code>.</td><td><code>_CONTEXT.md</code> Description; <code>schemas/model_operation.schema.json</code> <code>$defs.OperationKind</code></td><td><code>tests/test_model_operation_schema.py</code> checks the enum and fixture coverage.</td></tr>
+<tr><td>DEL-16-01-R003</td><td>Operation records shall preserve enough structure to support schema validation, constraint validation, diff preview, and controlled application by downstream services.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-069; <code>schemas/model_operation.schema.json</code> <code>$defs.OperationValidation</code>, <code>$defs.Diagnostic</code>, <code>$defs.DiffPreviewRef</code></td><td>Schema review; <code>tests/test_operation_validation_preview.py</code> is adjacent DEL-16-02 behavior evidence, not DEL-16-01 ownership.</td></tr>
+<tr><td>DEL-16-01-R004</td><td>Operation records shall not encode autonomous engineering acceptance, certification, sealing, authentication, approval, or code-compliance claims.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AGENT-4; <code>schemas/model_operation.schema.json</code> <code>$defs.ProfessionalBoundary</code></td><td><code>tests/test_model_operation_schema.py</code> checks negative professional-boundary fields and forbidden status/text sets; <code>tests/test_operation_validation_preview.py</code> checks output boundary language.</td></tr>
+<tr><td>DEL-16-01-R005</td><td>The public schema and fixtures shall not include protected standards text, protected tables, proprietary catalog values, private project data, or engineering defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1, OPS-K-DATA-1, OPS-K-AGENT-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code>; fixture provenance fields</td><td>Fixture inspection; fixture provenance uses invented public example status. This is evidence only, not legal/professional approval.</td></tr>
+<tr><td>DEL-16-01-R006</td><td>The schema shall align with JSON Schema 2020-12 as the accepted public schema/interchange baseline.</td><td><code>schemas/model_operation.schema.json</code> root <code>$schema</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> section 8.2; <code>docs/TYPES.md</code> section 8</td><td><code>tests/test_model_operation_schema.py</code> validates the schema document and asserts the <code>$schema</code> URI.</td></tr>
+<tr><td>DEL-16-01-R007</td><td>Operation records shall reference canonical model/domain objects rather than redefine full physical model structure.</td><td><code>docs/SPEC.md</code> sections 1 and 3; <code>schemas/model_operation.schema.json</code> <code>$defs.Reference</code>, <code>$defs.OperationSet</code>, <code>$defs.OperationPrecondition</code></td><td>Schema review for reference fields; tests assert model-basis and target/precondition reference structure.</td></tr>
+<tr><td>DEL-16-01-R008</td><td>Operation records shall expose diagnostics/provenance boundary hooks without silently defaulting missing engineering inputs.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2, OPS-K-DATA-3; <code>schemas/model_operation.schema.json</code> <code>$defs.Diagnostic</code>, <code>$defs.Provenance</code>, <code>$defs.Quantity</code>, <code>$defs.UnitRequirements</code></td><td><code>tests/test_model_operation_schema.py</code> checks no <code>default</code> keys, provenance requirements, unit requirements, and canonical quantity dimensions.</td></tr>
+<tr><td>DEL-16-01-R009</td><td>Operation records shall preserve proposal status and downstream review/application boundaries.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationStatus</code>, <code>$defs.OperationValidation</code>, <code>$defs.OperationContractStatus</code></td><td>Tests verify allowed statuses include <code>proposed</code>, <code>schema_validated</code>, <code>blocked_by_diagnostics</code>, <code>ready_for_user_review</code>, and <code>rejected</code>, while forbidden authority statuses are absent. Exact human disposition workflow remains DEL-16-03/TBD.</td></tr>
+<tr><td>DEL-16-01-R010</td><td>Operation sets shall bind operations to a model basis with accepted model-state reference and accepted model-state hash.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationModelBasis</code>; <code>fixtures/model_operations/invented_accepted_model_state.json</code></td><td><code>tests/test_model_operation_schema.py</code> checks required model-basis fields and per-operation <code>required_current_hashes</code> containing <code>payload_scope = model_state_record</code>. Broader hash partitioning remains TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-010-standards">CLM-010 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or Control</td><td>Applicability</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Governing schema/interchange baseline for <code>schemas/model_operation.schema.json</code>.</td></tr>
+<tr><td>OPS contract invariants</td><td>Binding project controls for source fidelity, IP/data boundary, unit/provenance behavior, professional boundary, and agent non-invention.</td></tr>
+<tr><td>Protected-content and private-data policy</td><td>Applies to public fixtures and schema defaults; current fixtures are marked invented public examples.</td></tr>
+<tr><td>Engineering design codes</td><td>Not directly used by this deliverable; no code clause text, standards tables, or engineering compliance conclusions are asserted.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-verification">CLM-011 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Method</td><td>Current Evidence</td></tr>
+<tr><td>Schema parses and validates as JSON Schema 2020-12</td><td>Focused schema validation in test helper</td><td><code>python3 tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Operation categories represented</td><td>Schema enum and invented operation fixture coverage</td><td><code>tests/test_model_operation_schema.py</code> asserts required operation kinds are present in schema and fixture.</td></tr>
+<tr><td>Change categories represented</td><td>Schema enum and invented operation fixture coverage</td><td><code>tests/test_model_operation_schema.py</code> asserts required change kinds are present.</td></tr>
+<tr><td>No direct mutation route</td><td>Contract status and adjacent preview behavior</td><td><code>tests/test_model_operation_schema.py</code>; <code>tests/test_operation_validation_preview.py</code> checks preview without mutating accepted state and rejects direct mutation request.</td></tr>
+<tr><td>Unit metadata and dimensions</td><td>Schema unit requirements and quantity dimension enum</td><td><code>tests/test_model_operation_schema.py</code>; <code>tests/test_operation_validation_preview.py</code> checks missing unit metadata and unknown dimension block preview.</td></tr>
+<tr><td>Model-basis hash binding</td><td>Accepted state fixture and operation precondition hashes</td><td><code>fixtures/model_operations/invented_accepted_model_state.json</code>; <code>tests/test_model_operation_schema.py</code>; <code>tests/test_operation_validation_preview.py</code> checks hash mismatch blocks preview.</td></tr>
+<tr><td>Professional-boundary terms absent or constrained</td><td>Schema and fixture checks</td><td><code>tests/test_model_operation_schema.py</code>; <code>tests/test_operation_validation_preview.py</code>.</td></tr>
+<tr><td>Cross-deliverable validation handoff</td><td>Read-only adjacent DEL-16-02 test evidence</td><td><code>tests/test_operation_validation_preview.py</code>; behavior remains owned by DEL-16-02.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-documentation">CLM-012 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Current implementation/evidence records:</p>
+<ul>
+<li>- <code>schemas/model_operation.schema.json</code></li>
+<li>- <code>fixtures/model_operations/invented_operation_set_valid.json</code></li>
+<li>- <code>fixtures/model_operations/invented_accepted_model_state.json</code></li>
+<li>- <code>tests/test_model_operation_schema.py</code></li>
+<li>- <code>tests/test_operation_validation_preview.py</code> as adjacent downstream behavior evidence</li>
+</ul>
+<p>Residual TBDs:</p>
+<ul>
+<li>- exact persistence granularity and broader hash partitioning beyond implemented model-state hash hooks;</li>
+<li>- complete operation granularity for future physical model edit classes beyond current enum/fixture coverage;</li>
+<li>- validation/diff-preview behavior owned by DEL-16-02;</li>
+<li>- user acceptance, audit trail, and human review dispositions owned by DEL-16-03 and review governance;</li>
+<li>- agent rationale/professional-boundary workflow behavior owned by DEL-16-04.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves the JSON Schema 2020-12 envelope, all declared operation and change categories, structured-only mutation route, target and precondition references, accepted-model-state hashes, unit and dimension requirements, diagnostics, diff-preview and downstream acceptance hooks, assumptions, provenance, invented-public fixture boundaries, professional non-authority, sibling ownership limits, and unresolved persistence, hash-partitioning, operation-granularity, autonomy, and human-disposition questions without creating direct mutation or acceptance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-16-01-structured-model-operation-schema">CLM-013 — Procedure: DEL-16-01 Structured model operation schema</h3>
+<blockquote><h4 id="procedure-del-16-01-structured-model-operation-schema">Procedure: DEL-16-01 Structured model operation schema</h4></blockquote>
+<h3 id="clm-014-d-41-r5-t7-pdu-055-current-declaration">CLM-014 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-16-01-DECL-004</code>.</p></blockquote>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Provide the bounded procedure for maintaining and verifying the structured model operation schema. This procedure records current implementation evidence and preserves downstream ownership boundaries.</p></blockquote>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source / Status</td></tr>
+<tr><td>Deliverable context and decomposition basis</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</td></tr>
+<tr><td>Scope and objective mapping</td><td><code>_CONTEXT.md</code> rows <code>SOW-069</code> and <code>OBJ-015</code>; schema root constants</td></tr>
+<tr><td>Architecture basis constraints</td><td><code>_CONTEXT.md</code> &quot;Architecture Basis Injection&quot;; JSON Schema 2020-12 and canonical hash-basis notes</td></tr>
+<tr><td>Approved dependency mirror</td><td><code>Dependencies.csv</code>; preserve active rows unless a later approved workflow says otherwise</td></tr>
+<tr><td>Schema artifact</td><td>Implemented at <code>schemas/model_operation.schema.json</code></td></tr>
+<tr><td>Operation fixture</td><td>Implemented at <code>fixtures/model_operations/invented_operation_set_valid.json</code></td></tr>
+<tr><td>Accepted model-state fixture</td><td>Implemented at <code>fixtures/model_operations/invented_accepted_model_state.json</code></td></tr>
+<tr><td>Focused DEL-16-01 validation</td><td><code>tests/test_model_operation_schema.py</code></td></tr>
+<tr><td>Adjacent downstream validation evidence</td><td><code>tests/test_operation_validation_preview.py</code>; behavior owned by DEL-16-02</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the operation schema remains scoped to DEL-16-01 and SOW-069 by checking root constants for <code>deliverable_id</code>, <code>package_id</code>, <code>scope_item</code>, and <code>objectives</code>.</p>
+<p>2. Preserve JSON Schema 2020-12 as the public schema/interchange baseline.</p>
+<p>3. Preserve the schema-first operation envelope: <code>schema_version</code>, <code>deliverable_id</code>, <code>package_id</code>, <code>scope_item</code>, <code>objectives</code>, <code>operation_contract_status</code>, and <code>operation_set</code>.</p>
+<p>4. Preserve required operation-set structure: project reference, model reference, <code>model_basis</code>, operations, diagnostics, provenance, and professional boundary.</p>
+<p>5. Preserve model-basis hooks for physical source-of-truth model role, accepted model-state reference, and accepted model-state hash.</p>
+<p>6. Preserve operation record structure for operation identity/kind/status/author, target references, preconditions, changes, validation state, diagnostics, diff-preview refs, assumptions, provenance, and professional boundary.</p>
+<p>7. Preserve the declared operation kinds: <code>add</code>, <code>move</code>, <code>modify</code>, <code>delete</code>, <code>reconnect</code>, <code>constraint</code>, <code>load</code>, <code>support</code>, and <code>design_knowledge</code>.</p>
+<p>8. Preserve the declared change kinds: <code>add_object</code>, <code>remove_object</code>, <code>set_field</code>, <code>move_geometry</code>, <code>reconnect</code>, <code>update_constraint</code>, <code>update_load</code>, <code>update_support</code>, and <code>attach_design_knowledge</code>.</p>
+<p>9. Keep operation data separate from direct persisted mutation. The schema contract status must retain <code>structured_operations_only</code> and <code>direct_model_mutation_allowed = false</code>.</p>
+<p>10. Keep unit-bearing payload behavior explicit: unit metadata required, dimension check required, and missing unit behavior <code>emit_diagnostic</code>.</p>
+<p>11. Keep public fixtures invented and schema-focused. Do not embed protected standards text, protected numeric tables, proprietary catalog values, private project data, or engineering defaults.</p>
+<p>12. Keep downstream behavior boundaries explicit: validation/diff preview in DEL-16-02, acceptance/audit trail in DEL-16-03, and agent rationale/professional-boundary workflow in DEL-16-04.</p>
+<p>13. Record unresolved issues for exact persistence granularity, broader hash partitioning, future operation granularity, and human review dispositions.</p></blockquote>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected Result</td></tr>
+<tr><td>Schema validation check</td><td><code>python3 tests/test_model_operation_schema.py</code> exits 0.</td></tr>
+<tr><td>Adjacent validation-preview check</td><td><code>python3 tests/test_operation_validation_preview.py</code> exits 0; result is downstream behavior evidence only.</td></tr>
+<tr><td>Category fixture check</td><td>The invented operation fixture covers all declared operation kinds and change kinds.</td></tr>
+<tr><td>Boundary check</td><td>Operation records do not claim certification, sealing, approval, authentication, professional approval, engineering acceptance, or code compliance.</td></tr>
+<tr><td>Mutation-route check</td><td>Contract status disallows direct model mutation; adjacent preview behavior does not mutate accepted state.</td></tr>
+<tr><td>Source-fidelity check</td><td>Requirements trace to <code>_CONTEXT.md</code>, decomposition, governance docs, schema, fixtures, tests, or the approved local dependency mirror. Unsupported details remain TBD or ASSUMPTION.</td></tr>
+<tr><td>Dependency mirror check</td><td>Existing local dependency rows remain ACTIVE and are not reclassified by this procedure.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Current records for this deliverable/evidence slice:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>MEMORY.md</code></li>
+<li>- <code>schemas/model_operation.schema.json</code></li>
+<li>- <code>fixtures/model_operations/invented_operation_set_valid.json</code></li>
+<li>- <code>fixtures/model_operations/invented_accepted_model_state.json</code></li>
+<li>- <code>tests/test_model_operation_schema.py</code></li>
+<li>- <code>tests/test_operation_validation_preview.py</code></li>
+<li>- <code>_run_records/TASK_RUN_*.md</code></li>
+</ul>
+<p>Records not changed by this procedure:</p>
+<ul>
+<li>- <code>_STATUS.md</code></li>
+<li>- <code>_REVIEW.md</code></li>
+<li>- <code>Review_Findings.csv</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- schemas, fixtures, core code, and tests</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, complete operation/change taxonomy and record fields, structured-only mutation route, model-basis/current-hash and unit boundaries, diagnostics/provenance and invented-fixture posture, sibling ownership separations, retained CT-001 through CT-003 and other TBDs, and absence of hidden mutation, protected content, or professional-authority claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-16-01-structured-model-operation-schema">CLM-020 — Guidance: DEL-16-01 Structured model operation schema</h3>
+<blockquote><h4 id="guidance-del-16-01-structured-model-operation-schema">Guidance: DEL-16-01 Structured model operation schema</h4></blockquote>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable makes model edits explicit, reviewable, and controllable before they change accepted model state. The current schema evidence is <code>schemas/model_operation.schema.json</code>; current invented fixtures are under <code>fixtures/model_operations/</code>.</p>
+<p>Sources: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-069, OBJ-015, PKG-16; <code>_CONTEXT.md</code>; <code>schemas/model_operation.schema.json</code>; <code>tests/test_model_operation_schema.py</code>.</p></blockquote>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Operation records are proposals until downstream controls run</td><td>Treat GUI and agent edits as operation data, not as direct persisted-project mutation. The schema contract sets <code>direct_model_mutation_allowed = false</code>.</td></tr>
+<tr><td>Use the implemented envelope</td><td>Current operation documents use <code>schema_version</code>, <code>deliverable_id</code>, <code>package_id</code>, <code>scope_item</code>, <code>objectives</code>, <code>operation_contract_status</code>, and <code>operation_set</code> at the root.</td></tr>
+<tr><td>Use the implemented operation record structure</td><td>Current records include operation identity/kind/status/author, target references, preconditions, changes, validation, diagnostics, diff-preview refs, assumptions, provenance, and professional-boundary fields.</td></tr>
+<tr><td>Preserve source boundaries</td><td>Public fixtures and examples must remain invented or otherwise cleared, with provenance, redistribution, review, and privacy-classification fields.</td></tr>
+<tr><td>Prefer references over duplicate model structure</td><td>Use <code>Reference</code> objects and model-basis/precondition hashes rather than embedding the full canonical physical model in operation records.</td></tr>
+<tr><td>Expose missing inputs</td><td>Missing unit metadata or other solve/rule-required information should surface as diagnostics or blocked validation, never hidden defaults.</td></tr>
+<tr><td>Keep validation ownership separate</td><td>DEL-16-01 defines schema structure. DEL-16-02 owns validator and diff-preview behavior even when its tests consume DEL-16-01 fixtures.</td></tr>
+<tr><td>Keep audit and acceptance ownership separate</td><td>DEL-16-03 owns acceptance and operation audit trail behavior. DEL-16-01 records boundary hooks only.</td></tr>
+</tbody></table>
+<p>Sources: <code>docs/CONTRACT.md</code> OPS-K-DATA-2, OPS-K-AUTH-1, OPS-K-AGENT-1, OPS-K-AGENT-4; <code>schemas/model_operation.schema.json</code>; <code>tests/test_operation_validation_preview.py</code>.</p></blockquote>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The current schema establishes the concrete path <code>schemas/model_operation.schema.json</code>, root envelope fields, operation/change enums, reference/precondition/hash hooks, provenance requirements, validation placeholders, unit requirements, and professional-boundary flags.</li>
+<li>- The fixture <code>fixtures/model_operations/invented_operation_set_valid.json</code> covers the declared operation kinds and change kinds using invented public example data.</li>
+<li>- The fixture <code>fixtures/model_operations/invented_accepted_model_state.json</code> provides the invented physical source-of-truth model state and <code>sha256:invented-state-001</code> hash referenced by operation-set model basis and preconditions.</li>
+<li>- Exact persistence granularity, physical project package/container behavior, and broad hash partitioning remain TBD beyond the current model-state hash hooks.</li>
+<li>- Runtime validation, deterministic diff preview, blocking behavior, and controlled application remain DEL-16-02 behavior. <code>tests/test_operation_validation_preview.py</code> is useful adjacent evidence but does not transfer ownership to DEL-16-01.</li>
+<li>- User acceptance, audit trail records, and human review dispositions remain DEL-16-03/review-governance behavior. Existing <code>Review_Findings.csv</code> human dispositions are not changed by this evidence-alignment pass.</li>
+<li>- Agent operation autonomy remains bounded by proposal status, downstream user acceptance, and professional-boundary controls.</li>
+</ul></blockquote>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Current Position</td></tr>
+<tr><td>Broad operation enum vs specialized records</td><td>The implemented schema uses an <code>OperationKind</code> enum plus structured <code>OperationChange</code> records. More granular future edit classes remain TBD.</td></tr>
+<tr><td>Patch-like payload vs command-like payload</td><td>The implemented schema supports <code>value_kind</code> values including <code>structured_patch</code>, <code>quantity</code>, <code>reference_list</code>, and <code>text</code>; it does not settle a universal patch grammar.</td></tr>
+<tr><td>Embedding snapshots vs referencing targets</td><td>Current schema uses target references, model-basis references, accepted model-state hash, and required current hashes rather than embedding full model snapshots.</td></tr>
+<tr><td>Agent-authored operations</td><td>Agent authoring is represented by <code>author_type = agent</code>, but records remain proposals and carry required professional-boundary negatives.</td></tr>
+<tr><td>Fixtures</td><td>Current fixtures are invented public examples with provenance and privacy classification. They are schema evidence, not engineering defaults.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Current example evidence is the invented operation set at <code>fixtures/model_operations/invented_operation_set_valid.json</code>. It includes:</p>
+<ul>
+<li>- <code>op:add-node</code> using <code>operation_kind = add</code> and <code>change_kind = add_object</code>;</li>
+<li>- <code>op:resize</code> using <code>operation_kind = modify</code> and <code>change_kind = set_field</code>;</li>
+<li>- <code>op:move-node</code> using <code>operation_kind = move</code> and <code>change_kind = move_geometry</code>;</li>
+<li>- <code>op:delete-load</code> using <code>operation_kind = delete</code> and <code>change_kind = remove_object</code>;</li>
+<li>- <code>op:reconnect-component</code> using <code>operation_kind = reconnect</code> and <code>change_kind = reconnect</code>;</li>
+<li>- <code>op:update-constraint</code>, <code>op:update-load</code>, <code>op:update-support</code>, and <code>op:attach-design-knowledge</code> for the remaining declared categories.</li>
+</ul>
+<p>These examples remain invented fixture evidence only. They must not be treated as professional approval, code compliance, or reusable engineering defaults.</p></blockquote>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CT-001</td><td>Operation granularity is required by SOW-069, but exact future edit-class granularity is not fully settled beyond the current schema enums.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-069</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationKind</code> and <code>$defs.OperationChange</code></td><td>Specification Requirements; Procedure Steps</td><td>Treat current enums/fixtures as implemented DEL-16-01 evidence; keep broader operation granularity TBD.</td><td>TBD</td></tr>
+<tr><td>CT-002</td><td>Agent edits are in scope, but autonomy level is unresolved beyond proposal and human-review boundaries.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-069</td><td><code>schemas/model_operation.schema.json</code> <code>OperationAuthorType</code>, <code>OperationContractStatus</code>, and <code>ProfessionalBoundary</code></td><td>Specification Requirements; Procedure Verification</td><td>Allow <code>author_type = agent</code> operation proposals only; preserve downstream acceptance/audit and professional-boundary controls.</td><td>TBD</td></tr>
+<tr><td>CT-003</td><td>Hash binding is implemented for accepted model state, but broader persistence/hash partitioning remains unsettled.</td><td><code>schemas/model_operation.schema.json</code> <code>$defs.OperationModelBasis</code> and <code>$defs.OperationPrecondition</code></td><td><code>_CONTEXT.md</code> Architecture Basis Injection still lists physical project package/container as TBD</td><td>Datasheet Conditions; Specification R010; Procedure Verification</td><td>Record current model-state hash hooks as fact; keep exact persistence granularity and broader hash partitioning TBD.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-069 OBJ-015</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "status": "COMPLETE",
+  "author_sessions": 2,
+  "verifier_sessions": 2,
+  "terminals": [
+    "AUTHOR-B1:PASS",
+    "VERIFY-B1:PASS_UNCHANGED",
+    "AUTHOR-B2:PASS",
+    "VERIFY-B2:PASS_UNCHANGED"
+  ],
+  "failed_manager_dispatch_attempts": 2,
+  "retained_mechanical_attempts": [
+    "runtime completed-session capacity retention before AUTHOR-B1",
+    "AUTHOR-B1 stale PKG-16 PKG00 wrapper expectation",
+    "AUTHOR-B2 no-HTML tuple spelling"
+  ],
+  "repairs": "owned mechanical evidence/dispatch mechanics only; bindings rebuilt and affected checks rerun",
+  "verifier_repairs": 0,
+  "native_token_context_telemetry": "UNAVAILABLE_NOT_INFERRED"
+}

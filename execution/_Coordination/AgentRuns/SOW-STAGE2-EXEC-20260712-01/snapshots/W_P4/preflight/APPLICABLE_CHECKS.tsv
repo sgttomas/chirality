@@ -1,0 +1,5 @@
+check	command	result	evidence
+scope-format	validate_scope_of_work.py --json (22 members)	PASS	VALIDATOR_RESULTS.tsv
+dependency-schema	validate_dependencies_schema.py (22 registers)	PASS	CHECK_COMMAND_RESULTS.tsv
+harness-self-check	python3 tools/practitioner_harness/harness.py self-check	PASS_WITH_BASELINE_FINDINGS	CHECK_COMMAND_RESULTS.tsv
+harness-pytest	python3 -m pytest -q tools/practitioner_harness	PASS	CHECK_COMMAND_RESULTS.tsv

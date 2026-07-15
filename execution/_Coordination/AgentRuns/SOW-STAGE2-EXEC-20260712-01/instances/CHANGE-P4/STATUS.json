@@ -1,0 +1,12 @@
+{
+  "agent": "CHANGE-P4",
+  "basis": "e8f59a63372f38d9e788ac39b39995558f5aba73",
+  "branch": "codex/sow-p4",
+  "local_checks": "PASS",
+  "members": 22,
+  "project_paths": 110,
+  "replacement_rows": 110,
+  "rollback_rows": 110,
+  "state": "READY_FOR_EVIDENCE_COMMIT",
+  "verdict": "PASS"
+}

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-15-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 231,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "7b276a50a502e4954c62aa6a59af76f8d778ef07908f48190a7a61c62e150f77"
+      },
+      "text": "The contract preserves package identity, model checksum metadata with precise non-JCS canonicalization labels, unit manifests, stable entity IDs, library and rule references, assumptions, warnings, diagnostics, target-mapping and unsupported-target surfaces, provenance, privacy and protected-content boundaries, container and target-specific TBDs, and professional non-authority without lifecycle closure or approval claims.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-15-01-VER-001",
+          "source_line": 327,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, every SOW-074 content slot, JSON Schema 2020-12 and hash-label boundaries, unit and identity preservation, reference-only private/protected data posture, retained OI-015 and target-specific gates, diagnostics and assumptions, and prohibited professional-authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-15-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-15",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "7b276a50a502e4954c62aa6a59af76f8d778ef07908f48190a7a61c62e150f77"
+  },
+  "tool_version": "1"
+}

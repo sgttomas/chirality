@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="1c9bb2dc08f52a34396c7d14a89ad3e99b19f9dbaa5302f089f3a9085b2445cf">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-17-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>1c9bb2dc08f52a34396c7d14a89ad3e99b19f9dbaa5302f089f3a9085b2445cf</code>.</p>
+<h1 id="scope-of-work-del-17-05">Scope of Work — DEL-17-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-17-05</code> in service of project scope [SOW-030, SOW-046, SOW-075] and package objectives [OBJ-007, OBJ-009, OBJ-017, OBJ-018].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — An optional user-owned CAEPIPE external-run harness and bounded CSV-parser contract for regression and handoff evidence is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-17-05-caepipe-external-run-harness-and-csv-parser">CLM-001 — Datasheet: DEL-17-05 CAEPIPE external run harness and CSV parser</h3>
+<blockquote><h4 id="datasheet-del-17-05-caepipe-external-run-harness-and-csv-parser">Datasheet: DEL-17-05 CAEPIPE external run harness and CSV parser</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-05-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-17-05</td></tr>
+<tr><td>Package ID</td><td>PKG-17</td></tr>
+<tr><td>Package</td><td>Export Format Interoperability</td></tr>
+<tr><td>Name</td><td>CAEPIPE external run harness and CSV parser</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Scope Items</td><td>SOW-030, SOW-046, SOW-075</td></tr>
+<tr><td>Objectives</td><td>OBJ-007, OBJ-009, OBJ-017, OBJ-018</td></tr>
+<tr><td>Current phase</td><td>Phase A four-document contract only</td></tr>
+<tr><td>Upstream dependency</td><td>DEL-17-04 CAEPIPE MBF export profile and deterministic writer</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Required treatment</td></tr>
+<tr><td>Harness role</td><td>Optional external execution wrapper around a user-provided, licensed CAEPIPE executable.</td></tr>
+<tr><td>Execution ownership</td><td>User-owned executable path, license, operating system, working directory, permissions, and any compatibility/remote Windows environment.</td></tr>
+<tr><td>Bundled executable</td><td>Prohibited. No CAEPIPE binary, installer, commercial example, or license-bypass mechanism is part of this deliverable.</td></tr>
+<tr><td>Input target</td><td>CAEPIPE MBF emitted by DEL-17-04 or a later accepted implementation tranche; exact supported MBF profile remains <code>TBD</code>.</td></tr>
+<tr><td>Expected target output</td><td>CAEPIPE CSV result file when the user-owned external run produces one; output filename/location behavior is source-supported but invocation profile details remain <code>TBD</code>.</td></tr>
+<tr><td>CSV parser role</td><td>Regression and handoff evidence extraction only. Parsed CSV rows are not professional acceptance, code compliance, formal validation, or proof of CAEPIPE compatibility.</td></tr>
+<tr><td>Stable identity</td><td>Correlation to OpenPipeStress canonical IDs shall use DEL-17-02/DEL-17-04 manifest and sidecar ID-map evidence where possible; direct CSV identity coverage remains <code>TBD</code>.</td></tr>
+<tr><td>Test posture</td><td>Automated tests without a configured executable shall skip with an explicit reason; parser-only tests shall use invented or rights-cleared fixtures.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Source/evidence basis</td><td>Status</td></tr>
+<tr><td>CAEPIPE can read MBF text input and create a model file through import.</td><td><code>CAEPIPE-IMPORT-MBF</code>, official CAEPIPE import page, lines 0-23.</td><td>Source-supported.</td></tr>
+<tr><td>Command-line or batch execution can produce CSV output from an MBF input.</td><td><code>CAEPIPE-IMPORT-MBF</code>, lines 15-20; <code>CAEPIPE-BATCH</code>, lines 40-52.</td><td>Source-supported with invocation-profile <code>TBD</code>.</td></tr>
+<tr><td>CAEPIPE can output model and/or result data to CSV/text through print/export surfaces.</td><td><code>CAEPIPE-EXPORT-DATA</code>, lines 31-43.</td><td>Source-supported.</td></tr>
+<tr><td>CAEPIPE can export model data to MBF from the Layout window.</td><td><code>CAEPIPE-EXPORT-MBF</code>, lines 28-39.</td><td>Source-supported for source-basis context.</td></tr>
+<tr><td>First supported CAEPIPE version/profile.</td><td>DEL-17-01 <code>TBD-17-01-001</code>; DEL-17-04 <code>TBD-17-04-001</code>.</td><td><code>TBD</code>.</td></tr>
+<tr><td>Stable CSV sections suitable for automated parsing.</td><td>DEL-17-01 <code>TBD-17-01-004</code>; CQ-17-01-005.</td><td><code>TBD</code>.</td></tr>
+<tr><td>Recommended command-line invocation shape for the first harness profile.</td><td>CQ-17-01-004; public pages describe related but not fully reconciled invocation patterns.</td><td><code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Artifact</td><td>Construction rule</td></tr>
+<tr><td>External run harness</td><td>Future implementation shall be opt-in, disabled without user configuration, and bounded to a user-provided executable path. This Phase A document does not implement it.</td></tr>
+<tr><td>Run directory contract</td><td>Future implementation shall record an auditable run directory concept containing the MBF input, manifest/ID-map/loss-report evidence, target CSV output if produced, execution metadata, stdout/stderr where available, and parser diagnostics. Exact filenames remain implementation-level <code>TBD</code> unless already fixed by DEL-17-02/DEL-17-04.</td></tr>
+<tr><td>CSV parser</td><td>Future implementation shall parse only documented or fixture-confirmed CSV sections and shall report unrecognized, missing, or unstable sections instead of silently accepting them.</td></tr>
+<tr><td>Run metadata</td><td>Future implementation shall record executable path provenance without copying or redistributing the executable, target version/profile if discoverable, command shape used, timestamps or hashes according to the manifest policy, exit status, output discovery, parser status, and boundary notes.</td></tr>
+<tr><td>Evidence records</td><td>Future implementation shall classify evidence as regression/handoff evidence, not formal validation or professional approval.</td></tr>
+<tr><td>Fixtures</td><td>Public fixtures shall be invented or rights-cleared. User-provided CAEPIPE outputs may be used only under user-controlled/private handling unless redistribution rights are documented.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Source ID</td><td>Source</td><td>Use</td></tr>
+<tr><td>DEL-17-01</td><td><code>../DEL-17-01_CAEPIPE and export-format source basis/</code></td><td>Source authority, CAEPIPE questions, TBD register, and boundary facts.</td></tr>
+<tr><td>DEL-17-02</td><td><code>../DEL-17-02_Export package, profile, and stable ID map contracts/</code></td><td>Export manifest, stable-ID map, loss-report, profile, and external-execution policy.</td></tr>
+<tr><td>DEL-17-04</td><td><code>../DEL-17-04_CAEPIPE MBF export profile and deterministic writer/</code></td><td>Upstream CAEPIPE MBF profile/writer contract and unresolved target-profile gates.</td></tr>
+<tr><td>PLAN-EXPORT-INTEROP</td><td><code>plans/EXPORT_FORMAT_INTEROPERABILITY_PLAN.md</code></td><td>Strategic source for optional external harness, run directory concept, and boundary framing.</td></tr>
+<tr><td>CAEPIPE-IMPORT-MBF</td><td><code>https://www.sstusa.com/docs/users_manual/import_mbf_print.htm</code></td><td>Public evidence for MBF import and command-line CSV behavior.</td></tr>
+<tr><td>CAEPIPE-EXPORT-DATA</td><td><code>https://www.sstusa.com/docs/users_manual/export_data_from_caepipe.htm</code></td><td>Public evidence for CAEPIPE CSV/text result and model export surfaces.</td></tr>
+<tr><td>CAEPIPE-BATCH</td><td><code>https://www.sstusa.com/docs/users_manual/running_caepipe_caepipe_3d__in_batch_mode.htm</code></td><td>Public evidence for batch-mode CSV output behavior and path/invocation caveats.</td></tr>
+<tr><td>CAEPIPE-EXPORT-MBF</td><td><code>https://www.sstusa.com/docs/users_manual/export_mbf.htm</code></td><td>Public evidence inherited through DEL-17-01/DEL-17-04 source basis for CAEPIPE MBF export from model data; this source is not listed as a direct DEL-17-05 package reference in <code>_REFERENCES.md</code>.</td></tr>
+<tr><td>CONTRACT</td><td><code>docs/CONTRACT.md</code></td><td>Project invariants for IP, authority boundary, unit-aware exports, agent TBD handling, and professional claims.</td></tr>
+<tr><td>IP-DATA</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private data and protected-content boundaries.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-008-d-41-r5-t3-pdu-016-evidence-state">CLM-008 — D-41 R5 T3 PDU-016 Evidence State</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-016-evidence-state">D-41 R5 T3 PDU-016 Evidence State</h5>
+<p>Selected seam: CAEPIPE external-run/parser evidence. Default: private user-controlled, local-only, telemetry false. Scope excludes whole-product security assurance.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-17-05-caepipe-external-run-harness-and-csv-parser">CLM-009 — Specification: DEL-17-05 CAEPIPE external run harness and CSV parser</h3>
+<blockquote><h4 id="specification-del-17-05-caepipe-external-run-harness-and-csv-parser">Specification: DEL-17-05 CAEPIPE external run harness and CSV parser</h4></blockquote>
+<h3 id="clm-010-d-41-r5-t7-pdu-055-current-declaration">CLM-010 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-05-DECL-001</code>, <code>DEL-17-05-EXC-001</code>, <code>DEL-17-05-EXC-002</code>.</p></blockquote>
+<h3 id="clm-011-scope">CLM-011 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-17-05 shall define the Phase A contract for an optional CAEPIPE external run harness and CAEPIPE CSV parser used as regression and handoff evidence.</p>
+<p>This deliverable covers:</p>
+<ul>
+<li>- user-owned external executable boundary;</li>
+<li>- run directory and execution metadata requirements;</li>
+<li>- CSV parser coverage boundaries;</li>
+<li>- evidence classification for parsed CAEPIPE output;</li>
+<li>- skip behavior when no executable is configured;</li>
+<li>- carried <code>TBD</code> items for invocation profile, target version/profile, and stable CSV sections.</li>
+</ul>
+<p>This Phase A deliverable shall not implement code, schemas, parser logic, target fixtures, GUI workflow, public API endpoints, CAEPIPE executable discovery, CAEPIPE bundling, license validation bypasses, release behavior, compatibility claims, code-compliance claims, professional acceptance claims, or formal validation claims.</p></blockquote>
+<h3 id="clm-012-requirements">CLM-012 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-05-REQ-001</td><td>The harness shall be optional and disabled unless a user supplies a local executable path and accepts responsibility for license and execution environment.</td></tr>
+<tr><td>DEL-17-05-REQ-002</td><td>The project shall not bundle, download, install, redistribute, wrap for license bypass, or imply availability of CAEPIPE or CAEPIPE 3D+.</td></tr>
+<tr><td>DEL-17-05-REQ-003</td><td>The first executable invocation profile shall remain <code>TBD</code> until public documentation and/or CAEPIPE support clarification reconciles the command-line and batch-mode patterns.</td></tr>
+<tr><td>DEL-17-05-REQ-004</td><td>The harness shall record the command shape actually used, working directory, input MBF path, expected CSV path, observed CSV path, exit status if available, stdout/stderr capture if available, and diagnostics.</td></tr>
+<tr><td>DEL-17-05-REQ-005</td><td>The harness shall treat the MBF input as an output of the accepted DEL-17-04 profile/writer tranche; if the required MBF profile is unresolved, the run record shall carry that <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-05-REQ-006</td><td>The run directory contract shall include or reference the export manifest, ID map, loss report, MBF input, CSV output when produced, and CAEPIPE run metadata.</td></tr>
+<tr><td>DEL-17-05-REQ-007</td><td>The harness shall verify only operational evidence: input file presence, process invocation attempt, CSV discovery, parser execution, expected section/count checks when source-confirmed, and diagnostics.</td></tr>
+<tr><td>DEL-17-05-REQ-008</td><td>The harness shall not classify a successful CAEPIPE run or parsed CSV output as professional acceptance, code compliance, formal validation, or compatibility proof.</td></tr>
+<tr><td>DEL-17-05-REQ-009</td><td>The CSV parser shall parse only source-confirmed or fixture-confirmed sections and shall mark unsupported, unrecognized, unstable, missing, or unmapped sections as diagnostics or <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-05-REQ-010</td><td>Stable result correlation shall use canonical IDs through DEL-17-02/DEL-17-04 sidecars and manifests where possible; any correlation by target row order or names alone shall be marked weak or <code>TBD</code>.</td></tr>
+<tr><td>DEL-17-05-REQ-011</td><td>Parser results shall be bound to source model/export/run metadata before use as regression or handoff evidence.</td></tr>
+<tr><td>DEL-17-05-REQ-012</td><td>Tests that require the external executable shall skip when no executable path is configured and shall report the skip reason without failing normal public CI.</td></tr>
+<tr><td>DEL-17-05-REQ-013</td><td>Public parser fixtures shall be invented, project-owned, public/permissive, or rights-cleared; proprietary CAEPIPE examples, private user projects, and protected standards-derived data shall not be committed.</td></tr>
+<tr><td>DEL-17-05-REQ-014</td><td>User-provided CAEPIPE CSV outputs shall default to private/user-controlled handling unless provenance and redistribution rights are documented.</td></tr>
+<tr><td>DEL-17-05-REQ-015</td><td>Diagnostics shall preserve unit, coordinate, ID-map, loss-report, and parser-coverage uncertainty instead of silently normalizing or accepting target output.</td></tr>
+<tr><td>DEL-17-05-REQ-016</td><td>External-run evidence shall bind to a DEL-17-04 CAEPIPE MBF export package reference, and attempted external execution shall block unless both license responsibility and user-owned environment responsibility are acknowledged.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-required-placeholders-for-later-implementation">CLM-013 — Required Placeholders for Later Implementation</h3>
+<blockquote><h6 id="required-placeholders-for-later-implementation">Required Placeholders for Later Implementation</h6>
+<p>These fields do not close the carried CAEPIPE TBDs; they define the evidence shape a later implementation tranche must fill before claiming repeatable harness behavior.</p>
+<table><tbody>
+<tr><td>Placeholder ID</td><td>Required placeholder</td><td>Source basis</td></tr>
+<tr><td>DEL-17-05-PH-001</td><td>Configuration surface for the executable path: <code>TBD</code> until a later tranche selects the environment variable, config key, CLI option, GUI field, or equivalent user-owned input.</td><td>REQ-001; <code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>CAEPIPE-IMPORT-MBF</code> command-line operation, lines 15-20; <code>CAEPIPE-BATCH</code> batch-mode notes, lines 40-52.</td></tr>
+<tr><td>DEL-17-05-PH-002</td><td>Run-directory record shape: <code>TBD</code> filenames or manifest links for MBF input, export manifest, ID map, loss report, target CSV artifact, run metadata, and parser diagnostics.</td><td>REQ-004/006; DEL-17-02 export package contract; DEL-17-04 MBF profile contract.</td></tr>
+<tr><td>DEL-17-05-PH-003</td><td>Parser coverage register shape: section name, source-or-fixture basis, supported status, expected row/field handling where known, unmapped-row handling, diagnostic severity, and fixture provenance.</td><td>REQ-009/013/015; DEL-17-01 <code>TBD-17-01-004</code>; <code>CAEPIPE-EXPORT-DATA</code>, lines 31-43.</td></tr>
+<tr><td>DEL-17-05-PH-004</td><td>Skip-without-executable evidence fields: configuration key checked, configured-path absence or invalidity, skip reason, public-CI nonfailure classification, parser-only tests still executed, and boundary note.</td><td>REQ-001/012; package exclusion against bundled solvers or license bypass.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-tbd-closure-gates">CLM-014 — TBD Closure Gates</h3>
+<blockquote><h6 id="tbd-closure-gates">TBD Closure Gates</h6>
+<table><tbody>
+<tr><td>Gate</td><td>Closure condition</td></tr>
+<tr><td>Invocation profile</td><td>REQ-003 may move out of <code>TBD</code> only after support clarification, an explicitly selected public command/batch pattern, or a documented project-owned adapter decision reconciles the command-line and batch-mode source patterns.</td></tr>
+<tr><td>Parser section coverage</td><td>REQ-009 may move out of <code>TBD</code> for a CSV section only when the section is confirmed by public/official source text or by an invented/rights-cleared fixture with documented provenance and expected parser behavior.</td></tr>
+<tr><td>First live MBF profile</td><td>REQ-005 may move out of <code>TBD</code> only when DEL-17-04 identifies the accepted MBF profile/writer tranche that the harness is allowed to consume.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-015-standards">CLM-015 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Source</td><td>Requirement treatment</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>OPS-K-IP-1 through OPS-K-IP-3, OPS-K-DATA-2, OPS-K-AUTH-1, OPS-K-UNIT-1, OPS-K-REPORT-1/2, OPS-K-PRIV-1, OPS-K-AGENT-1 through OPS-K-AGENT-4 apply.</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public repository content must avoid protected standards text/tables, proprietary examples, private user data, and commercial software artifacts without redistribution rights.</td></tr>
+<tr><td>DEL-17-01 source basis</td><td>CAEPIPE-specific facts require official/public CAEPIPE evidence or explicit <code>TBD</code>; external runs and parsed CSVs remain non-authoritative regression/handoff evidence.</td></tr>
+<tr><td>DEL-17-02 export contract</td><td>Export packages require manifest, stable-ID map, loss report, boundary notes, and external execution as optional user-owned metadata.</td></tr>
+<tr><td>DEL-17-04 MBF profile</td><td>CAEPIPE version/profile, MBF record subset, stable-ID strategy, and unsupported-entity severity remain carried gates for the harness.</td></tr>
+<tr><td>Official CAEPIPE public documentation</td><td>Evidence supports MBF import/export, CSV output surfaces, and batch/command-line CSV production, but does not close parser-section coverage or OpenPipeStress compatibility.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-verification">CLM-016 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Verification approach</td></tr>
+<tr><td>VER-001</td><td>Four-document review confirms all default sections exist and all CAEPIPE-specific claims cite DEL-17-01 source IDs, DEL-17-02/DEL-17-04 contracts, or public CAEPIPE pages.</td></tr>
+<tr><td>VER-002</td><td>Boundary review confirms no bundled executable, proprietary example, protected standards data, license-bypass workflow, compatibility claim, release claim, code-compliance claim, professional claim, or formal validation claim.</td></tr>
+<tr><td>VER-003</td><td>TBD review confirms target version/profile, invocation profile, stable CSV sections, and stable ID correlation are not overstated.</td></tr>
+<tr><td>VER-004</td><td>Future implementation review shall confirm skip-without-executable behavior and no external executable requirement in public CI, including the configuration field checked, absence/invalidity evidence, skip reason, parser-only continuation, and public-CI nonfailure classification.</td></tr>
+<tr><td>VER-005</td><td>Future parser tests shall use invented or rights-cleared CSV fixtures and shall record parser coverage by section name, source-or-fixture basis, supported status, unmapped-row handling, diagnostic severity, and fixture provenance.</td></tr>
+<tr><td>VER-006</td><td>Future harness tests with a user-provided executable shall remain opt-in and record run metadata, output discovery, parser diagnostics, and evidence classification.</td></tr>
+<tr><td>VER-007</td><td>Future regression comparison shall bind parsed rows to canonical IDs or explicitly mark weak/unmapped evidence.</td></tr>
+<tr><td>VER-008</td><td>Future acceptance review shall confirm that the user-supplied executable path, license/environment responsibility, and selected configuration surface are recorded before any live external execution occurs.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-documentation">CLM-017 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required Phase A documentation artifacts are:</p>
+<ul>
+<li>- <code>Datasheet.md</code>;</li>
+<li>- <code>Specification.md</code>;</li>
+<li>- <code>Guidance.md</code>;</li>
+<li>- <code>Procedure.md</code>;</li>
+<li>- <code>_STATUS.md</code> safe update from <code>OPEN</code> to <code>INITIALIZED</code> if the P1/P2 run completes;</li>
+<li>- <code>_run_records/TASK_RUN_*.md</code>.</li>
+</ul>
+<p>Future implementation documentation shall include:</p>
+<ul>
+<li>- harness configuration guidance that states executable path, license, and execution environment are user-owned;</li>
+<li>- run directory contract;</li>
+<li>- CSV parser coverage register;</li>
+<li>- skip-without-executable test behavior;</li>
+<li>- fixture provenance notes;</li>
+<li>- evidence and limitation notes for reports or handoff records.</li>
+</ul></blockquote>
+<h3 id="clm-018-d-41-r5-t3-pdu-016-o7-e5-requirement-2026-07-12">CLM-018 — D-41 R5 T3 PDU-016 O7/E5 Requirement (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-016-o7-e5-requirement-2026-07-12">D-41 R5 T3 PDU-016 O7/E5 Requirement (2026-07-12)</h5>
+<p>User-provided CAEPIPE output evidence defaults to private/user-controlled, local-only, telemetry-disabled handling. Public classification requires an explicit later rights/provenance path; this seam does not assert global privacy sufficiency.</p></blockquote>
+<h3 id="clm-019-d-41-r5-t6-pdu-050-validation-hold">CLM-019 — D-41 R5 T6 PDU-050 validation hold</h3>
+<blockquote><h5 id="d-41-r5-t6-pdu-050-validation-hold">D-41 R5 T6 PDU-050 validation hold</h5>
+<p><code>DEL-17-05-ACC-006</code> remains <code>VERIFIED_NOT_VALIDATED</code>. Parser, skipped-run,</p>
+<p>metadata, boundary, and invented-fixture tests verify the bounded software</p>
+<p>contract only. Optional live execution remains an O10 user-owned path gated by</p>
+<p>an executable, acknowledged responsibilities, and a selected target/MBF/</p>
+<p>invocation profile; those inputs are unavailable and no live validation was</p>
+<p>performed.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves explicit user configuration, executable and license ownership, accepted MBF package/profile inputs, run-directory and environment metadata, documented invocation with unresolved profile gates, output discovery, bounded fixture-confirmed parser coverage, canonical-ID correlation, skip-without-executable public-CI behavior, diagnostics for unknown/unmapped sections, private-user-data handling, and regression-only evidence classification without bundling CAEPIPE or implying compatibility, code compliance, formal validation, or professional acceptance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-020-procedure-del-17-05-caepipe-external-run-harness-and-csv-parser">CLM-020 — Procedure: DEL-17-05 CAEPIPE external run harness and CSV parser</h3>
+<blockquote><h4 id="procedure-del-17-05-caepipe-external-run-harness-and-csv-parser">Procedure: DEL-17-05 CAEPIPE external run harness and CSV parser</h4></blockquote>
+<h3 id="clm-021-d-41-r5-t7-pdu-055-current-declaration">CLM-021 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-05-DECL-004</code>.</p></blockquote>
+<h3 id="clm-022-purpose">CLM-022 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure defines how to populate, review, and later implement the optional CAEPIPE external run harness and CSV parser without bundling commercial software, bypassing licenses, overclaiming compatibility, or converting regression evidence into professional acceptance.</p></blockquote>
+<h3 id="clm-023-prerequisites">CLM-023 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<p>For this Phase A documentation pass:</p>
+<p>1. Read AGENTS/TASK/ORCHESTRATOR instructions and the <code>four-documents</code> skill contract.</p>
+<p>2. Read DEL-17-05 local <code>_CONTEXT.md</code>, <code>_STATUS.md</code>, <code>_REFERENCES.md</code>, <code>_DEPENDENCIES.md</code>, and <code>MEMORY.md</code>.</p>
+<p>3. Read DEL-17-01, DEL-17-02, and DEL-17-04 four-document kits.</p>
+<p>4. Read DEL-17-01 <code>Source_Basis_Register.md</code> and <code>CAEPIPE_Question_Dossier.md</code>.</p>
+<p>5. Read the DEL-17-05 decomposition entry, scope items, objectives, project invariants, and data-boundary policy.</p>
+<p>6. Verify that DEL-17-04 is the declared upstream dependency and that unresolved DEL-17-04 target-profile gates are carried forward.</p>
+<p>For a later implementation tranche:</p>
+<p>1. Confirm the implementation tranche has explicit write scope for code, schemas, tests, or fixtures.</p>
+<p>2. Confirm the executable path is user-configured and not bundled.</p>
+<p>3. Confirm the user owns license and execution-environment responsibility.</p>
+<p>4. Confirm the explicit configuration surface for the executable path; until selected, carry <code>TBD</code> for the environment variable, config key, CLI option, GUI field, or equivalent.</p>
+<p>5. Confirm whether the first invocation profile has been resolved or remains an explicit <code>TBD</code>.</p>
+<p>6. Confirm the accepted DEL-17-04 MBF profile/writer tranche that may be used for live external-run tests; until accepted, carry the profile identifier as <code>TBD</code>.</p>
+<p>7. Confirm parser fixture provenance before adding public fixtures.</p>
+<p>8. Confirm no private user/project CAEPIPE output is committed without documented redistribution rights.</p></blockquote>
+<h3 id="clm-024-steps">CLM-024 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5></blockquote>
+<h3 id="clm-025-phase-a-document-population">CLM-025 — Phase A document population</h3>
+<blockquote><h6 id="phase-a-document-population">Phase A document population</h6>
+<p>1. Create the four-document kit: <code>Datasheet.md</code>, <code>Specification.md</code>, <code>Guidance.md</code>, and <code>Procedure.md</code>.</p>
+<p>2. Ground CAEPIPE-specific facts in DEL-17-01 source IDs and official/public CAEPIPE references.</p>
+<p>3. Carry forward unresolved target behavior as <code>TBD</code>, especially:</p>
+<ul>
+<li>- first CAEPIPE version/profile;</li>
+<li>- first MBF profile required by the harness;</li>
+<li>- exact invocation profile;</li>
+<li>- stable CSV sections for parser coverage;</li>
+<li>- stable canonical-ID correlation strategy for parsed rows.</li>
+</ul>
+<p>4. Add a conflict table when public references are insufficient to choose behavior.</p>
+<p>5. Avoid implementation details that would become code, schema, fixture, CLI, GUI, release, compatibility, code-compliance, or professional claims.</p>
+<p>6. Run four-document and minimum-fileset validation.</p>
+<p>7. Update <code>_STATUS.md</code> from <code>OPEN</code> to <code>INITIALIZED</code> only if the P1/P2 document pass completes successfully.</p>
+<p>8. Record run evidence in <code>_run_records/TASK_RUN_*.md</code>.</p></blockquote>
+<h3 id="clm-026-future-external-run-procedure">CLM-026 — Future external-run procedure</h3>
+<blockquote><h6 id="future-external-run-procedure">Future external-run procedure</h6>
+<p>This section is a contract for later implementation, not an implementation in this tranche.</p>
+<p>1. Load an export package produced under the accepted DEL-17-02/DEL-17-04 contract.</p>
+<p>2. Confirm the MBF input exists and has associated manifest, ID-map, and loss-report records.</p>
+<p>3. Resolve the user-configured CAEPIPE executable path without searching for or installing CAEPIPE; record the selected configuration surface or <code>TBD</code> if a later implementation brief has not selected one.</p>
+<p>4. Build a run directory under user/project control.</p>
+<p>5. Record execution-environment context: operating system, working directory, permissions relevant to invocation, shell or process-launch context, remote Windows or compatibility-layer notes if used, path quoting notes where applicable, and whether the host permits stdout/stderr capture.</p>
+<p>6. Record pre-run metadata: source model/export IDs, MBF path, accepted DEL-17-04 profile ID or <code>TBD</code>, command profile, executable path provenance, working directory, environment notes, and boundary notices.</p>
+<p>7. Invoke the external executable only when the user-owned configuration is present.</p>
+<p>8. Capture exit status and stdout/stderr where the host environment permits.</p>
+<p>9. Discover the target CSV artifact using the selected invocation profile and record missing-output diagnostics if it is absent.</p>
+<p>10. Run the CSV parser on the discovered output only within the declared parser coverage.</p>
+<p>11. Bind parsed evidence to canonical IDs through the manifest/ID map where possible.</p>
+<p>12. Mark unparsed sections, unknown sections, unmapped rows, unit/coordinate uncertainty, and unsupported target behavior as diagnostics or <code>TBD</code>.</p>
+<p>13. Write a run metadata record and parser diagnostics that classify the result as regression/handoff evidence only.</p></blockquote>
+<h3 id="clm-027-future-skip-without-executable-procedure">CLM-027 — Future skip-without-executable procedure</h3>
+<blockquote><h6 id="future-skip-without-executable-procedure">Future skip-without-executable procedure</h6>
+<p>1. Check whether an executable path has been explicitly configured.</p>
+<p>2. If absent, skip external execution tests and record the skip reason.</p>
+<p>3. Continue parser-only and contract validation tests that do not require CAEPIPE.</p>
+<p>4. Do not fail public CI solely because no CAEPIPE executable or license is present.</p></blockquote>
+<h3 id="clm-028-future-run-record-field-list">CLM-028 — Future run-record field list</h3>
+<blockquote><h6 id="future-run-record-field-list">Future run-record field list</h6>
+<p>The later implementation record shall be durable enough for review even when the external executable is absent or the CSV artifact is not produced. Minimum fields are:</p>
+<ul>
+<li>- configuration surface checked;</li>
+<li>- configured executable path state, recorded as present, absent, invalid, or private/redacted as appropriate;</li>
+<li>- license/environment responsibility acknowledgement state;</li>
+<li>- source model/export IDs;</li>
+<li>- accepted DEL-17-04 MBF profile ID or <code>TBD</code>;</li>
+<li>- MBF input path and manifest/ID-map/loss-report references;</li>
+<li>- command profile and command shape actually used, with sensitive paths redacted when needed;</li>
+<li>- operating system, working directory, permissions, shell/process-launch context, and compatibility or remote-Windows notes;</li>
+<li>- expected target CSV artifact path and observed target CSV artifact path;</li>
+<li>- exit status, stdout availability, stderr availability, and capture locations where allowed;</li>
+<li>- output discovery status;</li>
+<li>- parser coverage-register version or <code>TBD</code>;</li>
+<li>- parser status, unsupported sections, unmapped rows, missing sections, and diagnostic severity summary;</li>
+<li>- evidence classification stating regression/handoff evidence only;</li>
+<li>- boundary note confirming no bundled executable, license bypass, protected fixture, compatibility proof, code-compliance claim, formal-validation claim, or professional-acceptance claim.</li>
+</ul></blockquote>
+<h3 id="clm-029-verification">CLM-029 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<p>Phase A verification:</p>
+<p>```bash</p>
+<p>tools/validation/check_four_documents.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-05_CAEPIPE external run harness and CSV parser&quot;</p>
+<p>tools/validation/check_min_viable_fileset.sh &quot;execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-05_CAEPIPE external run harness and CSV parser&quot;</p>
+<p>git diff --check</p>
+<p>```</p>
+<p>Manual Phase A checks:</p>
+<ul>
+<li>- all four default document schemas are present;</li>
+<li>- all target-specific unresolved behavior is <code>TBD</code>;</li>
+<li>- no proprietary examples or protected standards data are introduced;</li>
+<li>- no implementation code, schema, fixture, release, compatibility, code-compliance, formal-validation, or professional claim is introduced;</li>
+<li>- <code>_STATUS.md</code> changes only through the safe <code>OPEN</code> to <code>INITIALIZED</code> transition;</li>
+<li>- <code>_run_records</code> captures sources, outputs, validation, and remaining gaps.</li>
+</ul>
+<p>Future implementation checks:</p>
+<ul>
+<li>- skip-without-executable tests pass in public CI;</li>
+<li>- opt-in executable tests require explicit user configuration;</li>
+<li>- parser coverage register matches invented or rights-cleared fixtures;</li>
+<li>- run metadata records manifest, ID-map, loss-report, command profile, output discovery, parser diagnostics, and evidence classification;</li>
+<li>- parsed evidence is tied to canonical IDs or explicitly marked weak/unmapped.</li>
+</ul></blockquote>
+<h3 id="clm-030-records">CLM-030 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Phase A records:</p>
+<ul>
+<li>- four-document kit;</li>
+<li>- updated <code>_STATUS.md</code>;</li>
+<li>- <code>_run_records/TASK_RUN_2026-05-18_1156.md</code>;</li>
+<li>- validation command output summarized in the run record.</li>
+</ul>
+<p>Future implementation records:</p>
+<ul>
+<li>- executable configuration provenance;</li>
+<li>- run directory metadata;</li>
+<li>- external-run record;</li>
+<li>- stdout/stderr capture where available;</li>
+<li>- CSV parser coverage record;</li>
+<li>- parser diagnostics;</li>
+<li>- manifest/ID-map/loss-report references;</li>
+<li>- fixture provenance review;</li>
+<li>- skipped-test evidence when the executable is absent.</li>
+</ul></blockquote>
+<h3 id="clm-031-d-41-r5-t3-pdu-016-check">CLM-031 — D-41 R5 T3 PDU-016 Check</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-016-check">D-41 R5 T3 PDU-016 Check</h5>
+<p>Verify default and partial-override packages remain <code>private_user_controlled</code>, local-only, and telemetry-disabled; embedded private/protected/commercial payload remains blocking.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, all run-record fields, explicit configuration and skip paths, invocation/profile and parser-section TBDs and conflicts, manifest/ID-map/loss bindings, output discovery and parser diagnostics, unit/coordinate and provenance boundaries, invented/private fixture handling, no license bypass, and all prohibited compatibility, validation, compliance, and professional-authority claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-032-guidance-del-17-05-caepipe-external-run-harness-and-csv-parser">CLM-032 — Guidance: DEL-17-05 CAEPIPE external run harness and CSV parser</h3>
+<blockquote><h4 id="guidance-del-17-05-caepipe-external-run-harness-and-csv-parser">Guidance: DEL-17-05 CAEPIPE external run harness and CSV parser</h4></blockquote>
+<h3 id="clm-033-d-41-r5-t7-pdu-055-current-declaration">CLM-033 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-17-05-DECL-003</code>.</p></blockquote>
+<h3 id="clm-034-purpose">CLM-034 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Use this deliverable to keep CAEPIPE external-run work useful without crossing the project boundary. The harness can help confirm that a user-owned CAEPIPE environment accepts a generated MBF and emits CSV output, and the parser can extract limited regression/handoff evidence from that CSV. Neither result is an engineering approval state.</p>
+<p>This Phase A kit is intentionally conservative. It records what later implementation must preserve, what remains unresolved, and what reviewers should reject.</p></blockquote>
+<h3 id="clm-035-principles">CLM-035 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- External execution is opt-in and user-owned.</li>
+<li>- A configured executable path is evidence of user configuration, not a bundled project dependency.</li>
+<li>- Public CI and public fixtures must not require CAEPIPE.</li>
+<li>- Parsed CSV data is regression/handoff evidence only.</li>
+<li>- Target behavior that is not source-confirmed remains <code>TBD</code>.</li>
+<li>- The harness shall preserve DEL-17-02 manifest, stable-ID, loss-report, and boundary vocabulary.</li>
+<li>- The parser shall prefer narrow, documented coverage over broad guesswork.</li>
+<li>- Unsupported, missing, unstable, or unmapped output shall become diagnostics, not silent success.</li>
+</ul></blockquote>
+<h3 id="clm-036-vocabulary">CLM-036 — Vocabulary</h3>
+<blockquote><h5 id="vocabulary">Vocabulary</h5>
+<p>Use <code>target CSV artifact</code> as the preferred term for the CAEPIPE CSV file produced or expected from a user-owned external run. <code>Expected CSV path</code>, <code>observed CSV path</code>, <code>CSV result file</code>, and <code>CSV output</code> are allowed aliases only when they describe a specific state of that same artifact. Do not split these aliases into separate concepts unless a later implementation schema deliberately does so.</p></blockquote>
+<h3 id="clm-037-considerations">CLM-037 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<p>The public CAEPIPE import documentation supports MBF as a text model input path and describes command-line CSV creation from an MBF input. The batch-mode documentation also describes CSV output from MBF input, but its command shape includes a batch-mode argument pattern. DEL-17-05 should therefore carry the exact first invocation profile as <code>TBD</code> until the project chooses a documented profile or receives support clarification.</p>
+<p>The export-data documentation supports CSV/text output surfaces for model and result data. It does not, by itself, define which CSV sections are stable enough for automated parser coverage in the first OpenPipeStress harness. Parser coverage should be explicit, small, and test-backed.</p>
+<p>The harness should not attempt to infer CAEPIPE solver validity. It can record operational facts such as input file written, executable invoked, CSV discovered, parser completed, counts matched where meaningful, and rows correlated to canonical IDs where possible.</p>
+<p>Invocation-profile and parser-section TBDs should move to implementation scope only when the project has enough evidence to avoid hidden target-behavior claims. The ruling path is: first use public/official CAEPIPE documentation where it is explicit; otherwise use CAEPIPE support clarification or a human project-authority decision recorded in the deliverable&#x27;s accepted implementation brief. Fixture-confirmed parser behavior may support parser coverage only when the fixture is invented, rights-cleared, or private/user-controlled with documented handling.</p></blockquote>
+<h3 id="clm-038-trade-offs">CLM-038 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Decision area</td><td>Conservative choice</td><td>Trade-off</td></tr>
+<tr><td>Executable discovery</td><td>Require explicit user configuration.</td><td>Less convenient, but avoids bundled dependency and license-bypass implications.</td></tr>
+<tr><td>Invocation profile</td><td>Keep exact command profile <code>TBD</code> until reconciled.</td><td>Slower implementation, but prevents a false support claim.</td></tr>
+<tr><td>Parser scope</td><td>Parse only known/fixture-confirmed sections.</td><td>Narrow evidence at first, but clearer diagnostics.</td></tr>
+<tr><td>CSV identity</td><td>Use manifest/ID-map correlation where possible.</td><td>Requires sidecars and run metadata, but avoids row-order assumptions.</td></tr>
+<tr><td>CI behavior</td><td>Skip external-run tests without configured executable.</td><td>Public CI will not exercise live CAEPIPE, but remains legal and reproducible.</td></tr>
+<tr><td>User CSV handling</td><td>Default to private unless redistribution rights are recorded.</td><td>Fewer shared fixtures, but preserves data/IP boundaries.</td></tr>
+<tr><td>TBD closure</td><td>Require explicit ruling evidence before implementing invocation or parser-section assumptions.</td><td>Slower closure, but keeps target behavior and authority boundaries reviewable.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-039-examples">CLM-039 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Acceptable Phase A examples:</p>
+<ul>
+<li>- A document-level run record listing the MBF input path, expected CSV path, parser status, and boundary note as fields to capture later.</li>
+<li>- An invented parser fixture that exercises CSV header handling without copying a vendor or client file.</li>
+<li>- A skipped external-run test record that states no user-owned executable path was configured.</li>
+</ul>
+<p>Not acceptable:</p>
+<ul>
+<li>- A committed CAEPIPE executable, installer, commercial example model, or copied vendor fixture.</li>
+<li>- A claim that OpenPipeStress is CAEPIPE-compatible because a CSV file was produced.</li>
+<li>- A claim that a successful CAEPIPE run proves code compliance, professional acceptance, or formal validation.</li>
+<li>- A parser that silently treats unknown sections or unmapped rows as supported.</li>
+</ul></blockquote>
+<h3 id="clm-040-conflict-table-for-human-ruling">CLM-040 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>DEL-17-05-CONF-001</td><td>Public CAEPIPE pages describe related MBF-to-CSV execution patterns, but the exact first OpenPipeStress invocation profile is not selected.</td><td><code>CAEPIPE-IMPORT-MBF</code>, command-line operation, lines 15-20.</td><td><code>CAEPIPE-BATCH</code>, batch-mode notes, lines 40-52.</td><td><code>Specification.md</code> REQ-003/004; <code>Procedure.md</code> run-profile steps.</td><td>Carry invocation profile as <code>TBD</code> until support clarification or human profile decision.</td><td>TBD</td></tr>
+<tr><td>DEL-17-05-CONF-002</td><td>CSV export surfaces are documented, but stable parser-section coverage for automated regression is not selected.</td><td><code>CAEPIPE-EXPORT-DATA</code>, export list, lines 31-43.</td><td>DEL-17-01 <code>TBD-17-01-004</code> and CQ-17-01-005.</td><td><code>Specification.md</code> REQ-009; parser coverage records.</td><td>Keep first parser coverage <code>TBD</code>; require fixture-confirmed parser coverage before implementation claims.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-041-review-guidance">CLM-041 — Review Guidance</h3>
+<blockquote><h5 id="review-guidance">Review Guidance</h5>
+<p>Reviewers should reject later DEL-17-05 work if it:</p>
+<ul>
+<li>- executes CAEPIPE without explicit user configuration;</li>
+<li>- introduces bundled binaries, installers, proprietary examples, or license-bypass behavior;</li>
+<li>- treats public documentation as permission to claim broad compatibility;</li>
+<li>- treats CSV parsing as professional acceptance or code compliance;</li>
+<li>- commits private/user CAEPIPE outputs without provenance and redistribution review;</li>
+<li>- hides target version, invocation, parser-section, unit, coordinate, or ID-map uncertainty;</li>
+<li>- expands into schema/code implementation outside an approved implementation tranche.</li>
+</ul></blockquote>
+<h3 id="clm-042-d-41-r5-t3-pdu-016-boundary">CLM-042 — D-41 R5 T3 PDU-016 Boundary</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-016-boundary">D-41 R5 T3 PDU-016 Boundary</h5>
+<p>Invented public fixtures remain rights-safe test inputs, but user-provided CSV/runtime evidence must not inherit their public classification by default.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 SOW-046 SOW-075 OBJ-007 OBJ-009 OBJ-017 OBJ-018</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

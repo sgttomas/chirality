@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 278,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "1c9bb2dc08f52a34396c7d14a89ad3e99b19f9dbaa5302f089f3a9085b2445cf"
+      },
+      "text": "The contract preserves explicit user configuration, executable and license ownership, accepted MBF package/profile inputs, run-directory and environment metadata, documented invocation with unresolved profile gates, output discovery, bounded fixture-confirmed parser coverage, canonical-ID correlation, skip-without-executable public-CI behavior, diagnostics for unknown/unmapped sections, private-user-data handling, and regression-only evidence classification without bundling CAEPIPE or implying compatibility, code compliance, formal validation, or professional acceptance.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-05-VER-001",
+          "source_line": 468,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, all run-record fields, explicit configuration and skip paths, invocation/profile and parser-section TBDs and conflicts, manifest/ID-map/loss bindings, output discovery and parser diagnostics, unit/coordinate and provenance boundaries, invented/private fixture handling, no license bypass, and all prohibited compatibility, validation, compliance, and professional-authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "1c9bb2dc08f52a34396c7d14a89ad3e99b19f9dbaa5302f089f3a9085b2445cf"
+  },
+  "tool_version": "1"
+}

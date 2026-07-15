@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-14-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 225,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "79efc63f3e76fdd63131ec725420bd17288a542945fcd723926f574cc9e9c4ce"
+      },
+      "text": "The contract preserves schema-first run-record categories, immutable run evidence, explicit unit and dimension diagnostics, precisely labeled SORTED_COMPACT_JSON serialization rather than an unsupported JCS claim, payload scope, rule-pack/library provenance boundaries, professional-status exclusions, and visible producer diagnostic, unit/dimension, schema-field, and implementation TBDs.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-14-02-VER-001",
+          "source_line": 312,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, every SOW-072 binding category, immutable run association, exact serialization-label and hash boundaries, unit/dimension and missing-data diagnostics, private/protected reference handling, retained residuals and TBDs, and professional-authority limits."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-14-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-14",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "79efc63f3e76fdd63131ec725420bd17288a542945fcd723926f574cc9e9c4ce"
+  },
+  "tool_version": "1"
+}

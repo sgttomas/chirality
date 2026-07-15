@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-16-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 203,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "7873bfa600b2126a0b87e987d91b164ca7fe4553a7d8adce1e68558c32a05373"
+      },
+      "text": "The contract preserves operation context/history, rationale, unresolved assumptions, affected entities, audit and validation context/references, source/actor metadata, timestamps, diagnostics, provenance, stable rationale identity/hash, visible TBD findings, explicit human-review and external hash-bound human-authority boundaries, copied-context claim scanning, prohibited authority-language blocking, no accepted-record creation, no acceptance bypass, no accepted-state mutation, protected/private-data controls, and unresolved standalone schema, persistence, UI/API/report, broader application, dependency, and human-disposition matters.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-16-04-VER-001",
+          "source_line": 296,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, rationale/audit/validation/source/actor context preservation, deterministic identity, visible TBD and unresolved-assumption behavior, all prohibited-claim and copied-context guards including false-positive boundaries, external human-owned acceptance separation, no application or state mutation, protected-data posture, retained downstream TBDs, and absence of autonomous acceptance or professional-authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-16-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-16",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "7873bfa600b2126a0b87e987d91b164ca7fe4553a7d8adce1e68558c32a05373"
+  },
+  "tool_version": "1"
+}

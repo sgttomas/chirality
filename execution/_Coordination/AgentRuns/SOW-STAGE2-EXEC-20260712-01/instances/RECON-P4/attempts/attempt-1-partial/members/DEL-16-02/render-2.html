@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="510c827eb0e08f18b280403f3734e0a2dd6bdfae48dbeb86c5b18ac4552dfb5e">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-16-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>510c827eb0e08f18b280403f3734e0a2dd6bdfae48dbeb86c5b18ac4552dfb5e</code>.</p>
+<h1 id="scope-of-work-del-16-02">Scope of Work — DEL-16-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-16-02</code> in service of project scope [SOW-069] and package objectives [OBJ-015].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A backend operation-validation and deterministic diff-preview contract that blocks invalid structured operations before application and preserves accepted model state is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-16-02-operation-validation-and-diff-preview">CLM-001 — Datasheet: DEL-16-02 Operation validation and diff preview</h3>
+<blockquote><h4 id="datasheet-del-16-02-operation-validation-and-diff-preview">Datasheet: DEL-16-02 Operation validation and diff preview</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-16-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-16-02</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Operation validation and diff preview</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package</td><td>PKG-16 Model Operation and Agent Proposal Framework</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-16</code></td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code></td></tr>
+<tr><td>Scope item</td><td>SOW-069</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code></td></tr>
+<tr><td>Objective support</td><td>OBJ-015</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#Objectives</code></td></tr>
+<tr><td>Context envelope</td><td>M</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ContextBudgetQA.csv</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current value</td></tr>
+<tr><td>Primary function</td><td>Run schema validation, constraint validation, and deterministic diff preview before model operations are applied. Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-16</code>.</td></tr>
+<tr><td>Anticipated artifacts</td><td>Operation validator; diff preview service; validation tests. Source: <code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code>.</td></tr>
+<tr><td>Operation input boundary</td><td>Structured model operation schema from DEL-16-01 is an approved upstream dependency. Source: <code>Dependencies.csv</code> rows <code>DAG-002-E0827</code>; <code>execution/_DAG/DAG-006/DAG-002_EdgeDispositionReview.md#DAG2-RD-012</code>.</td></tr>
+<tr><td>Constraint input boundary</td><td>Constraint validation engine DEL-13-03 is an approved upstream dependency. Source: <code>Dependencies.csv</code> row <code>DAG-002-E0828</code>.</td></tr>
+<tr><td>Diff input boundary</td><td>Model-state comparison engine DEL-14-03 and comparison mapping/tolerance/export contracts DEL-14-05 are approved upstream dependencies. Source: <code>Dependencies.csv</code> rows <code>DAG-002-E0829</code> and <code>DAG-002-E0830</code>.</td></tr>
+<tr><td>Diagnostics input boundary</td><td>Solver diagnostics and singularity detection DEL-04-06 is an approved upstream dependency. Source: <code>Dependencies.csv</code> row <code>DAG-002-E0831</code>.</td></tr>
+<tr><td>Architecture basis</td><td>Rust core/application services, schema-first envelopes, JSON Schema 2020-12, JCS-compatible hash basis where JSON payloads are hashed, and layered test gates are dispatchable context constraints. Source: <code>_CONTEXT.md#Architecture Basis Injection</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#8</code>.</td></tr>
+<tr><td>Implementation location</td><td><code>core/model_operations/validation_preview/engine.py</code> implements the current validation and deterministic preview slice; focused evidence is in <code>tests/test_operation_validation_preview.py</code>, <code>tests/test_model_operation_schema.py</code>, <code>schemas/model_operation.schema.json</code>, and <code>fixtures/model_operations/</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Data state</td></tr>
+<tr><td>Mutation boundary</td><td>GUI and agent edits are structured model operations and must not mutate accepted engineering state directly. Source: SOW-069 in <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#Scope Ledger</code>.</td></tr>
+<tr><td>Invalid operation behavior</td><td>Invalid operations are blocked before application. Source: <code>_CONTEXT.md#Context Envelope</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-16</code>.</td></tr>
+<tr><td>Professional boundary</td><td>The package excludes hidden model mutations and autonomous engineering acceptance. Source: <code>_CONTEXT.md#Package Reference</code>; <code>docs/CONTRACT.md#Invariant index</code>.</td></tr>
+<tr><td>Diagnostics and result envelopes</td><td>Diagnostics/result envelopes must preserve source, severity/class, affected object, message/remediation, provenance, and no certification/compliance claims where applicable. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md#8</code>; <code>docs/SPEC.md#4.3</code>.</td></tr>
+<tr><td>Current validation flow</td><td>The current engine validates required envelope fields, runs <code>Draft202012Validator</code> against <code>schemas/model_operation.schema.json</code>, checks accepted model-state basis/hash and operation current hashes, imports blocking constraint diagnostics, then emits either generated preview rows or blocked preview rows with <code>application_status: not_applied</code>.</td></tr>
+<tr><td>Current diff preview shape</td><td>The current deterministic fixture-backed preview rows include <code>operation_id</code>, <code>change_id</code>, <code>change_kind</code>, <code>target_ref</code>, <code>preview_status</code>, <code>before</code>, <code>after</code>, and <code>application_status</code>. Final diff payload contract beyond this slice remains TBD pending DEL-14-03/DEL-14-05 and later application contracts.</td></tr>
+<tr><td>Current operation schema boundary</td><td><code>schemas/model_operation.schema.json</code> is a JSON Schema 2020-12 contract for DEL-16-01 operation envelopes, with structured-operations-only mutation route, <code>direct_model_mutation_allowed: false</code>, downstream user-acceptance/audit bindings, operation/change taxonomies, required model basis/current hashes, unit requirements, diagnostics, provenance, and professional-boundary fields. Final upstream ownership remains DEL-16-01.</td></tr>
+<tr><td>Canonical dimension check</td><td>Current validation blocks quantity payload dimensions outside the accepted canonical dimension vocabulary exposed by the engine/tests and schema checks. Deeper target-field dimensional compatibility remains outside this slice.</td></tr>
+<tr><td>Direct mutation blocking</td><td>Current validation blocks direct accepted-model mutation signals such as applied operation validation status or forbidden auto-accepted operation statuses; output still reports <code>application_status: not_applied</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Expected role</td><td>Status</td></tr>
+<tr><td>Operation validator</td><td>Accepts or rejects proposed structured model operations using required envelope checks, JSON Schema 2020-12 validation, model-basis/current-hash checks, canonical dimension checks, target-reference checks, direct-mutation blocking, and injected blocking constraint diagnostics before any application.</td><td>Implemented in <code>core/model_operations/validation_preview/engine.py</code>; final constraint-engine API integration remains TBD.</td></tr>
+<tr><td>Diff preview service</td><td>Produces deterministic before/after preview rows for supported change kinds and blocked preview rows when operation-local validation blocks preview.</td><td>Implemented in current engine and fixture tests; final diff payload contract beyond current deterministic evidence remains TBD.</td></tr>
+<tr><td>Validation tests</td><td>Exercise stable preview/no mutation, missing unit metadata, unknown dimensions, unresolved targets, blocking constraint diagnostics, direct mutation rejection, JSON Schema failure, model-role/current-hash checks, and prohibited-claim boundary.</td><td>Focused tests exist in <code>tests/test_operation_validation_preview.py</code>; schema contract checks exist in <code>tests/test_model_operation_schema.py</code>.</td></tr>
+<tr><td>Result/diagnostic envelope integration</td><td>Reports validation statuses, sorted diagnostics, accepted model-state reference/hash, <code>accepted_model_state_unchanged</code>, <code>professional_boundary</code>, and provenance without approval or compliance claims.</td><td>Implemented for this slice; final cross-package diagnostic/result-envelope schema mapping remains TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, scope, objective, package reference, architecture-basis injection.</li>
+<li>- <code>_REFERENCES.md</code> - source inventory for this deliverable.</li>
+<li>- <code>Dependencies.csv</code> - approved DAG-006 local mirror/evidence surface for active upstream dependencies.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - accepted revision 0.7 scope, package, deliverable, objective, and architecture-basis context.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> - deliverable identity and anticipated artifacts.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> - SOW-069 wording and product-boundary notes.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> - context-envelope row.</li>
+<li>- <code>docs/CONTRACT.md</code> - invariants for data, authority, units, diagnostics, and agent behavior.</li>
+<li>- <code>docs/SPEC.md</code> - schema-first, persistence, diagnostics, result-envelope, and professional-boundary context.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-16-02-operation-validation-and-diff-preview">CLM-008 — Specification: DEL-16-02 Operation validation and diff preview</h3>
+<blockquote><h4 id="specification-del-16-02-operation-validation-and-diff-preview">Specification: DEL-16-02 Operation validation and diff preview</h4></blockquote>
+<h3 id="clm-009-scope">CLM-009 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable covers the backend feature slice that validates proposed structured model operations and creates deterministic diff previews before those operations are applied. It is grounded in SOW-069 and OBJ-015. Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-16</code>; <code>docs/_Registers/ScopeLedger.csv</code>.</p>
+<p>This deliverable excludes hidden model mutations, autonomous engineering acceptance, product claims of professional approval or code compliance, and ownership of the structured operation schema itself. The operation schema is upstream DEL-16-01. Source: <code>_CONTEXT.md#Package Reference</code>; <code>Dependencies.csv</code> row <code>DAG-002-E0827</code>; <code>docs/CONTRACT.md#Invariant index</code>.</p></blockquote>
+<h3 id="clm-010-requirements">CLM-010 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>REQ-16-02-001</td><td>Proposed GUI and agent edits must enter this slice as structured model operations, not as direct hidden mutations of accepted model state.</td><td>SOW-069 in <code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-16</code>; <code>schemas/model_operation.schema.json</code></td><td><code>tests/test_model_operation_schema.py</code> checks structured-operations-only and direct mutation forbidden schema constants; <code>tests/test_operation_validation_preview.py::test_direct_mutation_request_is_rejected</code> checks current engine blocking behavior.</td></tr>
+<tr><td>REQ-16-02-002</td><td>The slice must perform JSON Schema 2020-12 validation against the DEL-16-01 operation schema before treating an operation as schema-passed.</td><td>SOW-069; <code>_CONTEXT.md#Description</code>; <code>schemas/model_operation.schema.json</code>; <code>core/model_operations/validation_preview/engine.py</code></td><td>Current engine uses <code>Draft202012Validator</code> on <code>schemas/model_operation.schema.json</code>; focused tests include valid fixture validation and <code>test_schema_invalid_envelope_cannot_report_schema_passed</code>.</td></tr>
+<tr><td>REQ-16-02-003</td><td>The slice must preserve blocking constraint-validation findings before controlled application.</td><td>SOW-069; <code>Dependencies.csv</code> row <code>DAG-002-E0828</code>; <code>core/model_operations/validation_preview/engine.py</code></td><td>Current engine accepts injected <code>constraint_diagnostics</code> and maps blocking findings to <code>OP-CONSTRAINT-BLOCKING</code> with <code>constraint_validation: blocked</code>; final constraint-engine API remains TBD pending DEL-13-03.</td></tr>
+<tr><td>REQ-16-02-004</td><td>The slice must create deterministic diff previews before controlled application for supported operation/change inputs.</td><td>SOW-069; <code>_CONTEXT.md#Description</code>; <code>Dependencies.csv</code> rows <code>DAG-002-E0829</code>, <code>DAG-002-E0830</code>; <code>core/model_operations/validation_preview/engine.py</code></td><td><code>test_valid_operation_generates_stable_preview_without_mutating_state</code> compares canonical JSON for repeated preview output and checks before/after fixture values; final diff payload contract beyond current fixture-backed rows remains TBD.</td></tr>
+<tr><td>REQ-16-02-005</td><td>Invalid operations must be blocked before application and accepted model state must remain unchanged.</td><td><code>_CONTEXT.md#Context Envelope</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-16</code>; <code>core/model_operations/validation_preview/engine.py</code></td><td>Current output reports <code>application_status: not_applied</code>, <code>accepted_model_state_unchanged</code>, blocked preview status for validation failures, and no mutation of the accepted input state. Controlled persistence/application API remains outside this slice.</td></tr>
+<tr><td>REQ-16-02-006</td><td>Validation and preview outcomes must use structured diagnostics/result-envelope conventions and must not claim certification, sealing, approval, authentication, professional approval, or code compliance.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md#8</code>; <code>docs/SPEC.md#4.3</code>; <code>docs/CONTRACT.md#Invariant index</code>; <code>schemas/model_operation.schema.json</code></td><td>Current engine returns structured diagnostics, provenance, and professional-boundary booleans; <code>test_output_boundary_language_does_not_make_prohibited_claims</code> and schema tests check prohibited claim boundaries. Final cross-package diagnostic/result-envelope schema mapping remains TBD.</td></tr>
+<tr><td>REQ-16-02-007</td><td>The implementation must preserve layer/module boundaries: GUI, application services, domain core, schemas, validation, diagnostics, persistence, and tests must not be bypassed by adapters, plugins, or agents.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md#8</code>; <code>docs/SPEC.md#4.4</code>; <code>core/model_operations/validation_preview/engine.py</code></td><td>Current slice is a backend validation/preview module with read-only fixture tests and no GUI, persistence, approval, or application behavior; downstream application/user acceptance remains DEL-16-03.</td></tr>
+<tr><td>REQ-16-02-008</td><td>The slice must be covered by validation tests aligned with the approved layered testing baseline.</td><td><code>_CONTEXT.md#Anticipated Artifacts</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#8</code></td><td>Focused tests cover schema failure, constraint failure, canonical dimension blocking, preview determinism, model-basis/current-hash checks, no-apply/no-mutation behavior, and professional-boundary cases.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-standards">CLM-011 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing source</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Approved schema basis for public schemas/interchange.</td><td>Current schema file is <code>schemas/model_operation.schema.json</code>; current engine validates it with <code>Draft202012Validator</code>.</td></tr>
+<tr><td>JCS-compatible canonical JSON hashing</td><td>Applies where JSON payloads are hashed for reproducibility or acceptance binding.</td><td>Current schema/fixture use <code>accepted_model_state_hash</code> with <code>canonicalization: JCS</code>; current engine compares the operation model-basis hash and operation required current hashes against the accepted model-state hash. Final hash payload scope beyond current model-state basis checks remains TBD.</td></tr>
+<tr><td>CONTRACT invariants</td><td>Applies to no-invention, professional boundary, no hidden defaults, unit/schema checks, and agent output status.</td><td>Source-supported from <code>docs/CONTRACT.md#Invariant index</code>.</td></tr>
+<tr><td>DAG-002 active dependency mirror</td><td>Provides approved predecessor/evidence surface for this folder.</td><td>Source-supported from <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code>; enum normalization is not performed in this workflow by project instruction.</td></tr>
+<tr><td>External engineering standards</td><td>TBD. No accessible source text in this deliverable defines code clauses or engineering values for operation validation.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-verification">CLM-012 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification target</td><td>Required check</td></tr>
+<tr><td>Schema-validation path</td><td>Valid operation fixtures pass schema checks; malformed or schema-incomplete operations fail with structured diagnostics from <code>schemas/model_operation.schema.json</code>.</td></tr>
+<tr><td>Constraint-validation path</td><td>Injected blocking constraint findings are preserved as <code>OP-CONSTRAINT-BLOCKING</code> and <code>constraint_validation: blocked</code>. Exact DEL-13-03 API remains TBD.</td></tr>
+<tr><td>Diff preview determinism</td><td>Same operation and same model basis produce stable canonical JSON output; current rows expose <code>before</code>, <code>after</code>, <code>preview_status</code>, and <code>application_status: not_applied</code>. Final DEL-14 payload contract remains TBD.</td></tr>
+<tr><td>Model-basis/hash checks</td><td>Accepted state must expose <code>physical_source_of_truth</code> role and current state hash; operation model basis and per-operation required current hashes must match the accepted state hash.</td></tr>
+<tr><td>Canonical dimension checks</td><td>Quantity payloads require value, unit, and dimension metadata; dimensions outside the current canonical vocabulary block unit validation. Deeper target-field dimensional compatibility remains outside this slice.</td></tr>
+<tr><td>No hidden mutation</td><td>Failed validation and preview-only flows do not mutate accepted model state and do not apply operations. Persistence/application behavior outside this preview slice remains TBD.</td></tr>
+<tr><td>Professional boundary</td><td>Outputs are diagnostics, validation outcomes, and previews only; no automatic human approval or code-compliance status is emitted.</td></tr>
+<tr><td>Dependency fidelity</td><td>Approved DAG-002 mirror rows remain ACTIVE and are not retired, deleted, or reclassified by this setup workflow.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-documentation">CLM-013 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<ul>
+<li>- Operation validator design notes: current implementation is <code>core/model_operations/validation_preview/engine.py</code>.</li>
+<li>- Diff preview service contract: current deterministic row shape is implemented in <code>core/model_operations/validation_preview/engine.py</code>; final contract remains TBD pending DEL-14-03, DEL-14-05, and downstream application/user-acceptance interfaces.</li>
+<li>- Validation test plan and fixtures: current focused tests are <code>tests/test_operation_validation_preview.py</code> and <code>tests/test_model_operation_schema.py</code>; current fixtures are <code>fixtures/model_operations/invented_operation_set_valid.json</code> and <code>fixtures/model_operations/invented_accepted_model_state.json</code>.</li>
+<li>- Diagnostic/result-envelope mapping: current slice emits structured diagnostics/provenance/professional-boundary fields; final cross-package envelope mapping remains TBD.</li>
+<li>- Dependency preservation note: existing <code>Dependencies.csv</code> remains the approved local DAG-002 mirror/evidence surface.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves JSON Schema 2020-12 validation, model-basis and current-hash preconditions, canonical dimension and target-reference checks, injected blocking constraint diagnostics, direct-mutation rejection, deterministic before/after preview rows, not-applied and unchanged-state evidence, structured diagnostics/provenance, upstream and downstream ownership boundaries, invented fixture evidence, professional non-authority, and explicit TBDs for final constraint APIs, diff/tolerance payloads, persistence/application, and human dispositions.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-014-procedure-del-16-02-operation-validation-and-diff-preview">CLM-014 — Procedure: DEL-16-02 Operation validation and diff preview</h3>
+<blockquote><h4 id="procedure-del-16-02-operation-validation-and-diff-preview">Procedure: DEL-16-02 Operation validation and diff preview</h4></blockquote>
+<h3 id="clm-015-purpose">CLM-015 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes the current conservative workflow for using the DEL-16-02 validation-preview slice and retaining evidence. It is aligned with <code>core/model_operations/validation_preview/engine.py</code>, <code>schemas/model_operation.schema.json</code>, focused fixtures, and focused tests. It does not define downstream persistence, application, or human-acceptance behavior.</p></blockquote>
+<h3 id="clm-016-prerequisites">CLM-016 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source</td><td>Status</td></tr>
+<tr><td>DEL-16-01 Structured model operation schema</td><td><code>Dependencies.csv</code> row <code>DAG-002-E0827</code>; <code>schemas/model_operation.schema.json</code></td><td>Approved upstream dependency; current JSON Schema 2020-12 file and fixture evidence are available; final schema ownership remains upstream DEL-16-01.</td></tr>
+<tr><td>DEL-13-03 Constraint validation engine</td><td><code>Dependencies.csv</code> row <code>DAG-002-E0828</code></td><td>Approved upstream dependency; current slice consumes injected blocking constraint diagnostics; exact API remains TBD.</td></tr>
+<tr><td>DEL-14-03 Model-state comparison engine</td><td><code>Dependencies.csv</code> row <code>DAG-002-E0829</code></td><td>Approved upstream dependency; current engine produces deterministic before/after preview rows from accepted model-state fixture evidence; final integration remains TBD.</td></tr>
+<tr><td>DEL-14-05 Comparison mapping, tolerance, and export contracts</td><td><code>Dependencies.csv</code> row <code>DAG-002-E0830</code></td><td>Approved upstream dependency; default tolerances TBD.</td></tr>
+<tr><td>DEL-04-06 Solver diagnostics and singularity detection</td><td><code>Dependencies.csv</code> row <code>DAG-002-E0831</code></td><td>Approved upstream dependency; current slice emits structured diagnostics/provenance, while final cross-package diagnostic mapping remains TBD.</td></tr>
+<tr><td>Architecture basis AB-00-01, AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, AB-00-08</td><td><code>_CONTEXT.md#Architecture Basis Injection</code></td><td>Dispatchable context constraints; not implementation evidence.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-017-steps">CLM-017 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the proposed edit is represented as a structured model operation.</p>
+<ul>
+<li>- Use <code>schemas/model_operation.schema.json</code> for the current structured operation contract.</li>
+<li>- Preserve DEL-16-01 as the owner of final schema semantics.</li>
+<li>- Source: SOW-069; DEL-16-01 dependency; <code>tests/test_model_operation_schema.py</code>.</li>
+</ul>
+<p>2. Run schema validation against the approved operation schema.</p>
+<ul>
+<li>- The current engine uses <code>Draft202012Validator</code> against <code>schemas/model_operation.schema.json</code>.</li>
+<li>- Accept schema-conformant operation envelopes for later checks.</li>
+<li>- Return <code>OP-SCHEMA-VALIDATION-FAILED</code> diagnostics and <code>schema_validation: blocked</code> for schema failures.</li>
+</ul>
+<p>3. Check model-basis and operation-current-hash preconditions.</p>
+<ul>
+<li>- Require accepted model state to be bound to <code>physical_source_of_truth</code>.</li>
+<li>- Require accepted model state to expose a current hash.</li>
+<li>- Require operation model basis and operation <code>required_current_hashes</code> to match the accepted model-state hash.</li>
+<li>- Emit blocking precondition diagnostics for missing or stale basis/hash evidence.</li>
+</ul>
+<p>4. Check operation/change-level blockers.</p>
+<ul>
+<li>- Block unsupported operation or change taxonomies.</li>
+<li>- Block direct mutation requests.</li>
+<li>- Block missing quantity unit metadata and dimensions outside the current canonical vocabulary.</li>
+<li>- Block unresolved target references for change kinds that require existing accepted-state targets.</li>
+</ul>
+<p>5. Incorporate constraint validation results.</p>
+<ul>
+<li>- Pass current <code>constraint_diagnostics</code> into the validation-preview call when available.</li>
+<li>- Blocking constraint findings are preserved as <code>OP-CONSTRAINT-BLOCKING</code> and <code>constraint_validation: blocked</code>.</li>
+<li>- Exact constraint engine interface remains TBD.</li>
+</ul>
+<p>6. Generate deterministic diff preview output before application.</p>
+<ul>
+<li>- Use the current accepted model-state snapshot and operation envelope.</li>
+<li>- Current preview rows include <code>operation_id</code>, <code>change_id</code>, <code>change_kind</code>, <code>target_ref</code>, <code>preview_status</code>, <code>before</code>, <code>after</code>, and <code>application_status</code>.</li>
+<li>- Keep final preview payload fields and tolerance defaults TBD until upstream/downstream contracts define them.</li>
+</ul>
+<p>7. Block invalid operations before application.</p>
+<ul>
+<li>- If schema or constraint validation fails, do not hand the operation to the controlled application path.</li>
+<li>- Current output always preserves <code>application_status: not_applied</code> and reports whether accepted model state was unchanged.</li>
+<li>- Preserve diagnostics and preview status without professional approval or code-compliance claims.</li>
+</ul>
+<p>8. Hand valid, previewed operations to the later controlled application/user-acceptance workflow.</p>
+<ul>
+<li>- This deliverable does not implement hidden mutation or autonomous engineering acceptance.</li>
+<li>- User acceptance and operation audit trail are owned by DEL-16-03.</li>
+</ul></blockquote>
+<h3 id="clm-018-verification">CLM-018 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Evidence to retain</td></tr>
+<tr><td>Structured-operation input check</td><td><code>tests/test_model_operation_schema.py</code> schema constants and <code>tests/test_operation_validation_preview.py::test_direct_mutation_request_is_rejected</code>.</td></tr>
+<tr><td>Schema validation check</td><td><code>tests/test_model_operation_schema.py</code>; <code>tests/test_operation_validation_preview.py::test_schema_invalid_envelope_cannot_report_schema_passed</code>.</td></tr>
+<tr><td>Constraint validation check</td><td><code>tests/test_operation_validation_preview.py::test_unresolved_target_and_constraint_findings_are_blocking</code>.</td></tr>
+<tr><td>Diff determinism check</td><td><code>tests/test_operation_validation_preview.py::test_valid_operation_generates_stable_preview_without_mutating_state</code>.</td></tr>
+<tr><td>Model-basis/hash check</td><td><code>tests/test_operation_validation_preview.py::test_model_role_and_current_hash_are_required_before_preview</code>.</td></tr>
+<tr><td>Canonical dimension check</td><td><code>tests/test_operation_validation_preview.py::test_missing_unit_metadata_blocks_preview</code> and <code>tests/test_operation_validation_preview.py::test_unknown_dimension_blocks_unit_validation</code>; <code>tests/test_model_operation_schema.py</code> canonical dimension assertions.</td></tr>
+<tr><td>No-apply-on-invalid check</td><td>Current validation result keeps <code>application_status: not_applied</code>; focused tests check direct mutation blocking and accepted-state non-mutation.</td></tr>
+<tr><td>Professional-boundary check</td><td><code>tests/test_operation_validation_preview.py::test_output_boundary_language_does_not_make_prohibited_claims</code>; <code>tests/test_model_operation_schema.py</code> professional-boundary constants.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-records">CLM-019 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Operation validator implementation notes: <code>core/model_operations/validation_preview/engine.py</code>.</li>
+<li>- Diff preview service contract: current deterministic fixture-backed row shape is implemented in <code>core/model_operations/validation_preview/engine.py</code>; final contract remains TBD.</li>
+<li>- Validation test cases and fixture inventory: <code>tests/test_operation_validation_preview.py</code>, <code>tests/test_model_operation_schema.py</code>, <code>fixtures/model_operations/invented_operation_set_valid.json</code>, and <code>fixtures/model_operations/invented_accepted_model_state.json</code>.</li>
+<li>- Diagnostic/result-envelope mapping notes: current structured diagnostics/provenance/professional-boundary output exists; final cross-package mapping remains TBD.</li>
+<li>- Dependency preservation record: existing <code>Dependencies.csv</code> approved DAG-006 rows remain ACTIVE and unchanged by this setup workflow.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, schema/constraint/unit/hash/target/direct-mutation blocking paths, deterministic preview shape and no-application behavior, accepted-state nonmutation, dependency and layer boundaries, structured diagnostics/provenance, retained downstream API and tolerance TBDs, and absence of hidden mutation, protected defaults, or professional-authority claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-020-guidance-del-16-02-operation-validation-and-diff-preview">CLM-020 — Guidance: DEL-16-02 Operation validation and diff preview</h3>
+<blockquote><h4 id="guidance-del-16-02-operation-validation-and-diff-preview">Guidance: DEL-16-02 Operation validation and diff preview</h4></blockquote>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable exists to make proposed model edits reviewable and blockable before they become accepted model changes. It supports OBJ-015 by turning GUI and agent changes into validated, previewed, auditable model-operation flows. Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#Objectives</code>; <code>docs/_Registers/ScopeLedger.csv</code>.</p></blockquote>
+<h3 id="clm-022-principles">CLM-022 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Treat operations as the mutation boundary</td><td>All GUI and agent edits should be represented as structured operations before application. Do not design a bypass path for direct accepted-state mutation. Source: SOW-069; <code>_CONTEXT.md#Package Reference</code>.</td></tr>
+<tr><td>Validate before applying</td><td>The current engine performs required-envelope checks, JSON Schema 2020-12 validation against <code>schemas/model_operation.schema.json</code>, model-basis/current-hash checks, injected blocking constraint-diagnostic handling, operation/change checks, and preview status generation before any application status can leave <code>not_applied</code>. Source: SOW-069; <code>_CONTEXT.md#Description</code>; <code>core/model_operations/validation_preview/engine.py</code>.</td></tr>
+<tr><td>Preview deterministically</td><td>Current preview output is stable for the same operation and accepted model basis using canonical JSON comparison in focused tests. Preview rows include before/after state snippets and remain <code>application_status: not_applied</code>. Final comparison payload and tolerance contract beyond current fixture evidence remains TBD.</td></tr>
+<tr><td>Preserve diagnostics</td><td>Validation failures and warnings should remain structured and provenance-aware. Source: architecture basis AB-00-06 in <code>_CONTEXT.md</code>; <code>docs/SPEC.md#4.3</code>.</td></tr>
+<tr><td>Preserve professional boundaries</td><td>Validation and preview results are decision-support/control-surface outputs, not professional approval or code-compliance claims. Source: <code>docs/CONTRACT.md#Invariant index</code>; <code>docs/SPEC.md#4.3</code>.</td></tr>
+<tr><td>Prefer explicit TBDs</td><td>Current schema path, engine path, fixture inventory, and focused test behavior are established. Final constraint-engine API, final diff payload/tolerance contract, persistence/application behavior, and human review dispositions remain <code>TBD</code> rather than inferred. Source: <code>docs/CONTRACT.md#Invariant index</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-considerations">CLM-023 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- DEL-16-02 depends on DEL-16-01 for structured operation schema semantics. Current validation consumes <code>schemas/model_operation.schema.json</code> and <code>fixtures/model_operations/invented_operation_set_valid.json</code>; final ownership of operation schema semantics remains upstream DEL-16-01. Source: <code>Dependencies.csv</code> row <code>DAG-002-E0827</code>.</li>
+<li>- DEL-16-02 depends on DEL-13-03 for constraint validation. Current validation accepts injected blocking constraint diagnostics and maps them to structured blocking diagnostics; final constraint engine API remains TBD. Source: <code>Dependencies.csv</code> row <code>DAG-002-E0828</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#Scope Ledger</code>; <code>tests/test_operation_validation_preview.py</code>.</li>
+<li>- DEL-16-02 depends on DEL-14-03 and DEL-14-05 for state comparison and mapping/tolerance/export contract context. Preview behavior should remain deterministic and diagnostic, not automatic external validation. Source: <code>Dependencies.csv</code> rows <code>DAG-002-E0829</code> and <code>DAG-002-E0830</code>; SOW-073 notes in decomposition.</li>
+<li>- DEL-16-02 depends on DEL-04-06 for diagnostics/warning contract context. Validation and preview failures should preserve diagnostic classes and provenance where the relevant contract is available. Source: <code>Dependencies.csv</code> row <code>DAG-002-E0831</code>.</li>
+<li>- Approved architecture-basis rows from PKG-00 are dispatchable context evidence, not Type 2 implementation authority by themselves. Source: <code>_CONTEXT.md#Architecture Basis Injection</code>; <code>_DEPENDENCIES.md#Authority Boundary</code>.</li>
+</ul></blockquote>
+<h3 id="clm-024-trade-offs">CLM-024 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative handling</td></tr>
+<tr><td>Early blocking vs richer preview</td><td>Current engine returns blocked preview rows for operation-local blocking diagnostics and reports global <code>diff_preview_status: blocked_by_validation</code> when any blocking diagnostic exists. It does not apply operations. Final UX/application handling of partial previews remains downstream.</td></tr>
+<tr><td>Deterministic preview vs tolerance defaults</td><td>Current deterministic preview evidence compares canonical JSON for fixture output and does not define engineering comparison tolerances. Keep default tolerances TBD unless DEL-14-05 or a human product ruling defines them.</td></tr>
+<tr><td>Agent convenience vs accepted-state safety</td><td>Agents may propose operations but do not mutate accepted engineering state directly. Favor an explicit review/apply boundary over convenience shortcuts.</td></tr>
+<tr><td>Validation detail vs protected-data boundary</td><td>Do not encode protected standards text, proprietary values, or code-specific defaults in validation logic. Missing required values become explicit findings.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-examples">CLM-025 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Current invented-public examples and focused evidence are:</p>
+<ul>
+<li>- <code>schemas/model_operation.schema.json</code> - JSON Schema 2020-12 structured model operation contract.</li>
+<li>- <code>fixtures/model_operations/invented_operation_set_valid.json</code> - invented operation-set fixture covering operation/change taxonomy, required current hashes, professional boundary, and model basis.</li>
+<li>- <code>fixtures/model_operations/invented_accepted_model_state.json</code> - invented accepted model-state fixture with <code>physical_source_of_truth</code> role and current state hash.</li>
+<li>- <code>tests/test_operation_validation_preview.py</code> - focused validation/preview tests for determinism, schema blocking, units/dimensions, constraints, direct mutation, model role/current hash, no mutation, and prohibited-claim boundaries.</li>
+<li>- <code>tests/test_model_operation_schema.py</code> - schema contract checks for required fields, taxonomies, structured-only mutation route, current hashes, canonical dimensions, and professional-boundary constants.</li>
+</ul>
+<p>These examples are implementation evidence for this slice, not final project data or professional validation examples.</p></blockquote>
+<h3 id="clm-026-conflict-table-for-human-ruling">CLM-026 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None</td><td>No source conflict identified in the accessible slices. Current implementation evidence resolves earlier generic implementation-path/schema-path/test-fixture TBDs, while downstream APIs, final diff contract, persistence/application behavior, and human dispositions remain TBD.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-069 OBJ-015</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,4 @@
+check	scope	exit_code	result	detail
+dependency-schema	22 selected Dependencies.csv registers	0	PASS	22/22 valid canonical v3.1; 364 total data rows
+harness-self-check	repository registered always-check	0	PASS_WITH_BASELINE_FINDINGS	INFO=15; NOT_APPLICABLE=2; REVIEW=27; WARN=6; no P4-preflight-scope finding
+harness-pytest	tools/practitioner_harness	0	PASS	264/264 collected and executed; exit 0

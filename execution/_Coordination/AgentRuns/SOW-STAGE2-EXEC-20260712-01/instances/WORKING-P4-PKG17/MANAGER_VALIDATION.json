@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "package": "PKG-17",
+  "batches": 2,
+  "members": 9,
+  "mappings": 346,
+  "source_lines": 3121,
+  "replacement_rows": 45,
+  "inverse_rows": 45,
+  "simulations": 9,
+  "negative_probes": 63,
+  "author_manifest_bindings": [
+    991,
+    842
+  ],
+  "verifier_manifest_bindings": [
+    243,
+    199
+  ],
+  "candidate_bindings_unchanged": 27,
+  "live_bindings": 81,
+  "method_bindings_per_batch": 29,
+  "project_check_groups": [
+    8,
+    7
+  ],
+  "verifiers": [
+    "PASS_UNCHANGED",
+    "PASS_UNCHANGED"
+  ],
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "reruns": []
+}

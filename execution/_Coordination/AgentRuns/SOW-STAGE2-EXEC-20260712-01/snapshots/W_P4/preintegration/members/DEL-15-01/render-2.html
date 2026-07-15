@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="7b276a50a502e4954c62aa6a59af76f8d778ef07908f48190a7a61c62e150f77">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-15-01</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>7b276a50a502e4954c62aa6a59af76f8d778ef07908f48190a7a61c62e150f77</code>.</p>
+<h1 id="scope-of-work-del-15-01">Scope of Work — DEL-15-01</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-15-01</code> in service of project scope [SOW-074] and package objectives [OBJ-017].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A canonical schema-first handoff package and manifest contract for traceable downstream modeling and professional-validation workflows is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-15-01-canonical-handoff-package-schema-and-manifest">CLM-001 — Datasheet: DEL-15-01 Canonical handoff package schema and manifest</h3>
+<blockquote><h4 id="datasheet-del-15-01-canonical-handoff-package-schema-and-manifest">Datasheet: DEL-15-01 Canonical handoff package schema and manifest</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-01-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-15-01</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Canonical handoff package schema and manifest</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code></td></tr>
+<tr><td>Package</td><td>PKG-15 Handoff and External Prover Workflow</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td><td><code>_CONTEXT.md</code>; <code>docs/TYPES.md#3-software-deliverable-types</code></td></tr>
+<tr><td>Scope item</td><td>SOW-074</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code></td></tr>
+<tr><td>Objective</td><td>OBJ-017</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#5-objectives</code></td></tr>
+<tr><td>Anticipated artifacts</td><td><code>schemas/handoff_package.schema.json</code>; handoff manifest schema</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Lifecycle input state</td><td><code>IN_PROGRESS</code> at review-readiness intake</td><td><code>_STATUS.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source / status</td></tr>
+<tr><td>Contract surface</td><td>Schema-compliant handoff package plus manifest</td><td>SOW-074 in <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#4-structured-scope-of-work-ssow</code></td></tr>
+<tr><td>Schema baseline</td><td>JSON Schema 2020-12 contracts</td><td><code>_CONTEXT.md#Architecture Basis Injection</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#82-resolved-architecture-baseline</code></td></tr>
+<tr><td>Hash baseline</td><td><code>deterministic_sorted_compact_json_payload_hash</code> for the existing Python sorted-key compact-JSON hash basis (not RFC 8785 JCS); <code>JCS_compatible_json_payload_hash</code> retained for backward compatibility with unrepaired producers; manifest hashes for non-JSON/binary assets</td><td>D-41 <code>DEC-074</code> E1; PDU-002 prerequisite; <code>_CONTEXT.md#D-41 E1 canonicalization vocabulary boundary</code></td></tr>
+<tr><td>Required package contents named by scope</td><td>model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags</td><td>SOW-074 in <code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code></td></tr>
+<tr><td>Professional boundary</td><td>Handoff packages support downstream modeling and professional validation workflows without automatic professional approval states</td><td>OBJ-017 in <code>execution/_Decomposition/SOFTWARE_DECOMP.md#5-objectives</code>; <code>docs/CONTRACT.md#1-invariant-index</code></td></tr>
+<tr><td>Target-specific commercial parsers</td><td>Deferred / out of this deliverable</td><td>SOW-074 notes; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues</code></td></tr>
+<tr><td>Canonical package container</td><td>TBD</td><td>OI-015 in <code>execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues</code></td></tr>
+<tr><td>Handoff target surfaces</td><td>Initial export and target surfaces are named by OI-015; concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02</td><td>OI-015 in <code>execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues</code></td></tr>
+<tr><td>Schema property names and <code>$id</code> values</td><td><code>$id</code>: <code>https://openpipestress.org/schemas/handoff_package.schema.json</code>; root and nested properties are materialized in <code>schemas/handoff_package.schema.json</code></td><td>DEL-15-01 implementation evidence</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Record</td></tr>
+<tr><td>Data boundary</td><td>The public repository must not include protected standards text, protected tables, proprietary vendor data, private project data, or private rule-pack payloads. Source: <code>docs/IP_AND_DATA_BOUNDARY.md#3-public-repository-must-not-contain</code>.</td></tr>
+<tr><td>Unit boundary</td><td>Physical values crossing schema, import/export, report, or rule-evaluation boundaries must carry explicit unit metadata unless explicitly dimensionless. Source: <code>docs/SPEC.md#4-unit-system-and-dimensional-analysis</code>.</td></tr>
+<tr><td>Diagnostics boundary</td><td>Warnings and diagnostics must preserve structured source/provenance fields and must not become code-compliance or professional-approval claims. Source: <code>docs/CONTRACT.md#1-invariant-index</code>; AB-00-06 in decomposition.</td></tr>
+<tr><td>API/adapter boundary</td><td>Adapters and plugins cannot bypass validation, unit checks, provenance, diagnostics, privacy, protected-content, or professional-boundary controls. Source: AB-00-07 in <code>execution/_Decomposition/SOFTWARE_DECOMP.md#81-architecture-basis-register</code>.</td></tr>
+<tr><td>Dependency context</td><td>DAG-002 mirror lists upstream architecture-basis, result export, audit manifest/model hash, immutable model state, analysis run, local FEA handoff, and canonical domain model rows as ACTIVE evidence. Source: local <code>Dependencies.csv</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>The deliverable is a contract-definition unit with a materialized JSON Schema and invented validation fixture. Construction evidence currently supports the following schema/manifest slots:</p>
+<table><tbody>
+<tr><td>Slot</td><td>Required treatment</td><td>Source</td></tr>
+<tr><td>Package identity</td><td>Include stable package identity, schema version, deliverable/package/scope/objective identifiers, and review state fields.</td><td>SOW-074; <code>schemas/handoff_package.schema.json</code></td></tr>
+<tr><td>Model hash</td><td>Represent model basis through the required <code>model_hash</code> checksum object, including algorithm, value, canonicalization, and provenance.</td><td>SOW-074; AB-00-04 hash basis; <code>schemas/handoff_package.schema.json</code></td></tr>
+<tr><td>Canonicalization label</td><td>Use <code>deterministic_sorted_compact_json_payload_hash</code> only for the existing sorted-key compact-JSON byte basis; do not interpret it as RFC 8785. Legacy JCS-compatible labels remain accepted until their producers are separately repaired.</td><td><code>DEC-074</code> E1; <code>schemas/handoff_package.schema.json</code></td></tr>
+<tr><td>Units manifest</td><td>Represent explicit units through the required <code>units_manifest</code> object, including unit system, dimensional basis, entries, diagnostics, and provenance.</td><td>SOW-074; <code>docs/SPEC.md#4-unit-system-and-dimensional-analysis</code>; <code>schemas/handoff_package.schema.json</code></td></tr>
+<tr><td>Entity IDs</td><td>Preserve stable model/entity identifiers through required <code>entity_ids</code> records with <code>entity_id</code>, <code>entity_kind</code>, <code>source_ref</code>, and optional mapping keys.</td><td>SOW-074; <code>docs/TYPES.md#2-stable-identifiers</code>; <code>schemas/handoff_package.schema.json</code></td></tr>
+<tr><td>Library/rule references</td><td>Reference libraries and rule packs through <code>library_refs</code> and <code>rule_pack_refs</code> identity/checksum/provenance records without copying protected/private payloads.</td><td>SOW-074; <code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/SPEC.md#9-reporting-and-audit</code>; <code>schemas/handoff_package.schema.json</code></td></tr>
+<tr><td>Warnings and unresolved assumptions</td><td>Carry structured <code>warnings</code>, <code>unresolved_assumptions</code>, and <code>diagnostics</code> as review evidence with source/provenance fields.</td><td>SOW-074; <code>docs/SPEC.md#8-gui-requirements</code>; <code>docs/SPEC.md#9-reporting-and-audit</code>; <code>schemas/handoff_package.schema.json</code></td></tr>
+<tr><td>Target mapping metadata</td><td>Reserve a manifest surface for mapping to downstream target fields. Detailed target mapping contract is DEL-15-02.</td><td>SOW-074; DEL-15-02 row in decomposition</td></tr>
+<tr><td>Unsupported-target flags</td><td>Reserve explicit unsupported/approximate target behavior flags. Detailed target contract is DEL-15-02.</td><td>SOW-074; OI-015</td></tr>
+<tr><td>Provenance</td><td>Preserve source/provenance for reliance-affecting data through the schema&#x27;s required <code>provenance</code> object and nested reference provenance records.</td><td><code>docs/DIRECTIVE.md#22-epistemology--what-is-warranted</code>; <code>docs/CONTRACT.md#1-invariant-index</code>; <code>schemas/handoff_package.schema.json</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+<li>- local <code>Dependencies.csv</code></li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></li>
+<li>- <code>docs/_Registers/Deliverables.csv</code></li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code></li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code></li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-15-01-canonical-handoff-package-schema-and-manifest">CLM-008 — Specification: DEL-15-01 Canonical handoff package schema and manifest</h3>
+<blockquote><h4 id="specification-del-15-01-canonical-handoff-package-schema-and-manifest">Specification: DEL-15-01 Canonical handoff package schema and manifest</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-01-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines the contract surface for a canonical handoff package schema and handoff manifest for downstream modeling and professional validation workflows. The scope is bounded to DEL-15-01, PKG-15, SOW-074, and OBJ-017.</p>
+<p>Included:</p>
+<ul>
+<li>- schema/manifest requirements for model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags, and provenance;</li>
+<li>- JSON Schema 2020-12 alignment for the anticipated <code>schemas/handoff_package.schema.json</code> artifact;</li>
+<li>- professional-boundary, unit, provenance, diagnostics, and data-boundary constraints that affect handoff package shape.</li>
+</ul>
+<p>Excluded:</p>
+<ul>
+<li>- implementation of the downstream export workflow, which belongs to DEL-15-03;</li>
+<li>- detailed target mapping semantics and unsupported-behavior taxonomy beyond reserving the required surface, which belongs to DEL-15-02;</li>
+<li>- external-prover lifecycle or approval metadata, which belongs to DEL-15-04;</li>
+<li>- target-specific commercial parser implementation, commercial output ingestion, or automatic professional approval records.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#7-deliverables</code>; SOW-074; OBJ-017; OI-015.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-15-01-R01</td><td>The handoff package contract shall be represented as a schema-first API/data contract.</td><td><code>_CONTEXT.md</code> Type <code>API_CONTRACT</code>; <code>docs/TYPES.md#3-software-deliverable-types</code></td><td>Confirm artifact naming and schema document role in this deliverable.</td></tr>
+<tr><td>DEL-15-01-R02</td><td>The schema baseline shall use JSON Schema 2020-12 unless a later approved architecture change supersedes it.</td><td><code>_CONTEXT.md#Architecture Basis Injection</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#82-resolved-architecture-baseline</code></td><td>Validate <code>schemas/handoff_package.schema.json</code> with Draft 2020-12 tooling.</td></tr>
+<tr><td>DEL-15-01-R03</td><td>The package shall include or reference a model hash through the required <code>model_hash</code> checksum object, including algorithm, value, canonicalization, and provenance.</td><td>SOW-074; AB-00-04</td><td>Review schema properties and fixture validation for model-hash presence.</td></tr>
+<tr><td>DEL-15-01-R04</td><td>The package shall include a <code>units_manifest</code> with unit system, dimensional basis, entries, diagnostics, and provenance sufficient to avoid silent missing-unit behavior.</td><td>SOW-074; <code>docs/SPEC.md#4-unit-system-and-dimensional-analysis</code>; OPS-K-UNIT-1</td><td>Schema review plus fixture validation for unit-related fields.</td></tr>
+<tr><td>DEL-15-01-R05</td><td>The package shall preserve stable entity IDs used by downstream mapping and review through <code>entity_ids</code> records.</td><td>SOW-074; <code>docs/TYPES.md#2-stable-identifiers</code>; <code>docs/TYPES.md#8-canonical-domain-object-registry</code></td><td>Schema review for required ID/reference fields and no positional-only coupling.</td></tr>
+<tr><td>DEL-15-01-R06</td><td>The package shall carry library and rule-pack references by identity, version/checksum/source note, or equivalent reference metadata without copying protected/private payloads through <code>library_refs</code> and <code>rule_pack_refs</code>.</td><td>SOW-074; <code>docs/IP_AND_DATA_BOUNDARY.md#6-private-user-data</code>; <code>docs/SPEC.md#9-reporting-and-audit</code></td><td>Protected-content/privacy review and schema review for reference-only design.</td></tr>
+<tr><td>DEL-15-01-R07</td><td>The package shall carry unresolved assumptions, warnings, and diagnostics as explicit review evidence, not silent defaults.</td><td>SOW-074; OPS-K-DATA-2; AB-00-06; <code>docs/SPEC.md#8-gui-requirements</code></td><td>Schema review for <code>unresolved_assumptions</code>, <code>warnings</code>, <code>diagnostics</code>, and provenance fields.</td></tr>
+<tr><td>DEL-15-01-R08</td><td>The package shall reserve target mapping metadata required by SOW-074 while leaving detailed target mapping rules to DEL-15-02.</td><td>SOW-074; DEL-15-02 row in decomposition</td><td>Cross-deliverable interface review against <code>schemas/target_mapping.schema.json</code>.</td></tr>
+<tr><td>DEL-15-01-R09</td><td>The package shall reserve unsupported-target flags required by SOW-074 while leaving detailed unsupported behavior semantics to DEL-15-02.</td><td>SOW-074; OI-015</td><td>Cross-deliverable interface review against <code>schemas/target_mapping.schema.json</code>.</td></tr>
+<tr><td>DEL-15-01-R10</td><td>The package and manifest shall preserve provenance for reliance-affecting data and references.</td><td>OPS-K-DATA-3; <code>docs/DIRECTIVE.md#25-axiology--what-values-govern</code>; <code>docs/IP_AND_DATA_BOUNDARY.md#4-required-provenance-fields</code></td><td>Schema review for provenance-bearing records and protected-content gate.</td></tr>
+<tr><td>DEL-15-01-R11</td><td>The contract shall not declare certification, sealing, approval, authentication, code compliance, or professional acceptance as automatic software output.</td><td>OPS-K-AUTH-1; OBJ-017; <code>docs/TYPES.md#4-analysis-status-vocabulary</code></td><td>Text/schema enum review for prohibited automatic statuses.</td></tr>
+<tr><td>DEL-15-01-R12</td><td>The package container remains TBD. OI-015 names initial export and target surfaces, while concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02.</td><td>OI-015; <code>_CONTEXT.md#Architecture Basis Injection</code></td><td>Confirm the handoff schema remains target-neutral and does not claim target-specific mapping maturity.</td></tr>
+<tr><td>DEL-15-01-R13</td><td>Checksum canonicalization metadata shall distinguish the existing Python sorted-key compact-JSON payload-hash basis as <code>deterministic_sorted_compact_json_payload_hash</code>; this value is not an RFC 8785/JCS claim. The existing <code>JCS_compatible_json_payload_hash</code> value remains accepted for backward compatibility until separately authorized producer repairs land.</td><td>D-41 <code>DEC-074</code> E1; PDU-002 prerequisite</td><td>Focused schema tests accept both values, assert the non-JCS boundary, and do not change producer or fixture output.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard / governing source</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Public schema/interchange baseline for the handoff schema.</td><td>Applicable by architecture basis; <code>$id</code> is <code>https://openpipestress.org/schemas/handoff_package.schema.json</code>.</td></tr>
+<tr><td>Project invariant catalog (<code>docs/CONTRACT.md</code>)</td><td>Governs IP, units, data, professional-boundary, report, governance, and agent behavior.</td><td>Applicable.</td></tr>
+<tr><td>Project type vocabulary (<code>docs/TYPES.md</code>)</td><td>Governs deliverable/API contract meaning, stable identifiers, status vocabulary, and epistemic labels.</td><td>Applicable.</td></tr>
+<tr><td>IP and Data Boundary Policy (<code>docs/IP_AND_DATA_BOUNDARY.md</code>)</td><td>Governs protected/private data exclusion and provenance fields.</td><td>Applicable.</td></tr>
+<tr><td>Product/decomposition basis (<code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>)</td><td>Governs DEL-15-01 scope, SOW-074, OBJ-017, PKG-15 exclusions, architecture basis, and OI-015 TBDs.</td><td>Applicable.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check ID</td><td>Check</td><td>Expected result</td></tr>
+<tr><td>V-01</td><td>Confirm required four documents exist and keep the default schema sections.</td><td>PASS for this setup output.</td></tr>
+<tr><td>V-02</td><td>Confirm all non-trivial schema requirements trace to <code>_CONTEXT.md</code>, decomposition, registers, or governing references.</td><td>PASS if every requirement has a source.</td></tr>
+<tr><td>V-03</td><td>Confirm unsupported specifics are marked <code>TBD</code> or <code>ASSUMPTION</code>.</td><td>PASS if package container, concrete mappings, target field coverage, and target-specific implementation are not invented.</td></tr>
+<tr><td>V-04</td><td>Confirm professional-boundary prohibited terms are not used as automatic software statuses.</td><td>PASS if no schema requirement creates automatic approval/compliance/certification states.</td></tr>
+<tr><td>V-05</td><td>Confirm local <code>Dependencies.csv</code> remains a DAG-002 mirror with approved rows preserved as ACTIVE.</td><td>PASS if dependency mirror is not retired/reclassified by setup.</td></tr>
+<tr><td>V-06</td><td>Run <code>python3 tests/test_handoff_package_schema.py</code> and <code>python3 tools/validation/validate_dependencies_schema.py &lt;DEL folder&gt;/Dependencies.csv</code> when <code>Dependencies.csv</code> exists.</td><td>PASS/FAIL recorded in final run report.</td></tr>
+<tr><td>V-07</td><td>Run focused pytest coverage for both canonicalization labels.</td><td>PASS if the new deterministic sorted/compact label validates, the legacy JCS-compatible label remains valid, and schema text explicitly denies RFC 8785 conformance for the new label.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required deliverable records:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- local dependency validation result in the final run report</li>
+</ul>
+<p>Implemented evidence artifacts from <code>_CONTEXT.md</code>:</p>
+<ul>
+<li>- <code>schemas/handoff_package.schema.json</code></li>
+<li>- <code>tests/test_handoff_package_schema.py</code></li>
+<li>- <code>fixtures/invented_handoff_package.json</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves package identity, model checksum metadata with precise non-JCS canonicalization labels, unit manifests, stable entity IDs, library and rule references, assumptions, warnings, diagnostics, target-mapping and unsupported-target surfaces, provenance, privacy and protected-content boundaries, container and target-specific TBDs, and professional non-authority without lifecycle closure or approval claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-15-01-canonical-handoff-package-schema-and-manifest">CLM-015 — Procedure: DEL-15-01 Canonical handoff package schema and manifest</h3>
+<blockquote><h4 id="procedure-del-15-01-canonical-handoff-package-schema-and-manifest">Procedure: DEL-15-01 Canonical handoff package schema and manifest</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-01-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define the bounded procedure for producing and reviewing the canonical handoff package schema and manifest contract for DEL-15-01. This procedure is operational guidance for the deliverable artifact; it does not implement runtime export behavior.</p>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; <code>docs/CONTRACT.md</code>; <code>docs/SPEC.md</code>.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Evidence / status</td></tr>
+<tr><td>DEL-15-01 context and references are available.</td><td><code>_CONTEXT.md</code>; <code>_REFERENCES.md</code></td></tr>
+<tr><td>SOW-074 and OBJ-017 are the active scope/objective basis.</td><td><code>_CONTEXT.md</code>; decomposition; registers</td></tr>
+<tr><td>JSON Schema 2020-12 is the schema baseline.</td><td><code>_CONTEXT.md#Architecture Basis Injection</code>; AB-00-04/AB-00-07</td></tr>
+<tr><td>Unit, provenance, diagnostics, privacy, protected-content, and professional-boundary invariants are available.</td><td><code>docs/CONTRACT.md</code>; <code>docs/SPEC.md</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+<tr><td>Existing DAG-002 mirror rows remain ACTIVE evidence and are not reclassified by this setup run.</td><td>local <code>Dependencies.csv</code>; <code>_DEPENDENCIES.md</code></td></tr>
+<tr><td>Package container, concrete mappings, target field coverage, and target-specific implementation remain unresolved.</td><td>OI-015; DEL-17-01; DEL-17-02</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm deliverable identity from <code>_CONTEXT.md</code>, including DEL-15-01, PKG-15, type <code>API_CONTRACT</code>, SOW-074, OBJ-017, and anticipated artifacts.</p>
+<p>2. Read the DEL-15-01 decomposition entry and associated SOW-074 / OBJ-017 rows. Record scope as schema/manifest contract work, not runtime export implementation.</p>
+<p>3. List required handoff-package slots from SOW-074: model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, unsupported-target flags, and provenance.</p>
+<p>4. Apply architecture-basis constraints that are explicitly injected into <code>_CONTEXT.md</code>: JSON Schema 2020-12 contracts, precise canonicalization metadata, schema-first envelopes, and no-bypass adapter controls. For the existing Python sorted-key compact-JSON basis, use <code>deterministic_sorted_compact_json_payload_hash</code> and do not claim RFC 8785 JCS.</p>
+<p>5. Treat <code>schemas/handoff_package.schema.json</code>, its <code>$id</code>, and <code>fixtures/invented_handoff_package.json</code> as materialized contract evidence; keep package container, concrete mappings, target field coverage, and target-specific implementation gated under OI-015 / DEL-17-01 / DEL-17-02.</p>
+<p>6. Draft or review schema artifacts and fixtures so they preserve references and metadata without copying protected standards text, private project data, private rule-pack payloads, proprietary commercial data, or real secrets.</p>
+<p>7. Ensure the manifest design includes structured warnings, assumptions, provenance, unit metadata, hashes, and professional-boundary posture.</p>
+<p>8. Verify that target mapping metadata and unsupported-target flags are present as contract surfaces while detailed semantics remain delegated to DEL-15-02.</p>
+<p>9. Check that no field, enum, status, or explanatory text creates automatic professional approval, certification, sealing, authentication, endorsement, or code-compliance claims.</p>
+<p>10. Validate dependency artifacts locally if <code>Dependencies.csv</code> exists using <code>python3 tools/validation/validate_dependencies_schema.py</code>.</p>
+<p>11. Confirm <code>JCS_compatible_json_payload_hash</code> remains accepted for backward compatibility, while producer outputs and fixtures remain unchanged until separately authorized repair tasks.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification item</td><td>Method</td></tr>
+<tr><td>Source grounding</td><td>Check each non-trivial requirement against <code>_CONTEXT.md</code>, decomposition, registers, local DAG-002 mirror, or governing references.</td></tr>
+<tr><td>Schema baseline</td><td>Validate <code>schemas/handoff_package.schema.json</code> with <code>jsonschema.Draft202012Validator.check_schema</code> and validate the invented fixture with <code>python3 tests/test_handoff_package_schema.py</code>.</td></tr>
+<tr><td>Canonicalization vocabulary</td><td>Run focused pytest cases proving the new non-JCS label validates, the legacy JCS-compatible label still validates, and the schema explicitly denies RFC 8785 conformance for the new label.</td></tr>
+<tr><td>Required slots</td><td>Confirm the SOW-074 slots are present as requirements or explicit TBD surfaces.</td></tr>
+<tr><td>TBD discipline</td><td>Confirm package container, concrete mappings, target field coverage, and target-specific implementation are not invented. Schema property names and validation fixture are now materialized evidence.</td></tr>
+<tr><td>Data boundary</td><td>Check that schema guidance does not embed protected/private/proprietary payloads or examples.</td></tr>
+<tr><td>Professional boundary</td><td>Check that the contract does not emit automatic approval/compliance/certification statuses.</td></tr>
+<tr><td>Dependency mirror preservation</td><td>Confirm approved DAG-006 rows remain ACTIVE and are not retired, deleted, or reclassified.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>Maintain these records in the DEL-15-01 folder for setup:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- existing <code>_DEPENDENCIES.md</code></li>
+<li>- existing <code>Dependencies.csv</code></li>
+<li>- <code>schemas/handoff_package.schema.json</code></li>
+<li>- <code>tests/test_handoff_package_schema.py</code></li>
+<li>- <code>fixtures/invented_handoff_package.json</code></li>
+<li>- final run report with dependency-schema validation result and any dependency-extract conflicts</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, every SOW-074 content slot, JSON Schema 2020-12 and hash-label boundaries, unit and identity preservation, reference-only private/protected data posture, retained OI-015 and target-specific gates, diagnostics and assumptions, and prohibited professional-authority claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-15-01-canonical-handoff-package-schema-and-manifest">CLM-022 — Guidance: DEL-15-01 Canonical handoff package schema and manifest</h3>
+<blockquote><h4 id="guidance-del-15-01-canonical-handoff-package-schema-and-manifest">Guidance: DEL-15-01 Canonical handoff package schema and manifest</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-01-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>DEL-15-01 exists to define a canonical handoff package schema and manifest for downstream modeling and professional validation workflows. The package is evidence-transfer infrastructure: it should make model basis, units, identifiers, warnings, assumptions, provenance, and mapping limitations visible without claiming that software output is professional approval.</p>
+<p>Sources: <code>_CONTEXT.md</code>; SOW-074; OBJ-017; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#7-deliverables</code>.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Schema-first contract</td><td>Treat <code>schemas/handoff_package.schema.json</code> as the stable JSON Schema 2020-12 API/data contract for this deliverable.</td><td>Deliverable type <code>API_CONTRACT</code>; JSON Schema 2020-12 architecture basis; June 7 remediation evidence</td></tr>
+<tr><td>Evidence preservation</td><td>Prefer references, hashes, manifests, and provenance over copied private/protected payloads.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code>; OPS-K-IP-1 through OPS-K-DATA-3</td></tr>
+<tr><td>Unit explicitness</td><td>Do not allow missing or ambiguous units to become downstream assumptions.</td><td><code>docs/SPEC.md#4-unit-system-and-dimensional-analysis</code>; OPS-K-UNIT-1</td></tr>
+<tr><td>Stable identity</td><td>Preserve stable object/entity identity so downstream mapping can be reviewed and reconciled.</td><td>SOW-074; <code>docs/TYPES.md#2-stable-identifiers</code></td></tr>
+<tr><td>Canonicalization truth</td><td>Label the existing Python sorted-key compact-JSON payload hash as <code>deterministic_sorted_compact_json_payload_hash</code>. This deterministic basis is not RFC 8785 JCS. Retain <code>JCS_compatible_json_payload_hash</code> only for backward compatibility with producers not yet repaired.</td><td>D-41 <code>DEC-074</code> E1; PDU-002 prerequisite</td></tr>
+<tr><td>Boundary clarity</td><td>Keep target mapping and unsupported behavior explicit. OI-015 now names initial export and target surfaces, while concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02.</td><td>SOW-074; DEL-15-02 row; OI-015</td></tr>
+<tr><td>Professional non-authority</td><td>The handoff package may support professional validation workflows, but it must not create automatic approval, certification, sealing, endorsement, or code-compliance states.</td><td>OBJ-017; OPS-K-AUTH-1; <code>docs/TYPES.md#4-analysis-status-vocabulary</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The physical package/container remains unresolved for this deliverable. OI-015 names initial export and target surfaces, but concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02.</li>
+<li>- DAG-002 rows identify important upstream context, including architecture basis, local FEA handoff contract, result export format, audit manifest/model hash, immutable model states, analysis run records, and canonical domain model schema. These rows are dependency evidence, not authority to inspect or modify sibling deliverable folders during this task.</li>
+<li>- Target mapping metadata and unsupported-target flags are required by SOW-074, but detailed semantics belong to DEL-15-02. DEL-15-01 should reserve clear schema surfaces for those records.</li>
+<li>- The deliverable now has an invented, non-engineering fixture at <code>fixtures/invented_handoff_package.json</code>. Public examples or fixtures for this contract must remain invented or otherwise reviewed and must not include protected standards text, private rule-pack payloads, proprietary commercial files, or real project data.</li>
+<li>- Handoff package validation is covered by <code>tests/test_handoff_package_schema.py</code>, including Draft 2020-12 schema validation and fixture validation. It should not attempt to prove external solver correctness or code compliance.</li>
+<li>- This prerequisite changes vocabulary only. Do not rewrite producer output,</li>
+</ul>
+<p>fixtures, or downstream schemas here, and do not infer RFC 8785 conformance</p>
+<p>from stable sorted-key compact serialization.</p></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Preferred direction</td><td>Reason</td></tr>
+<tr><td>Rich payload vs reference-heavy manifest</td><td>Prefer reference-heavy records for private/protected or large payloads.</td><td>Preserves data boundary and avoids copying private/protected values.</td></tr>
+<tr><td>Target-neutral vs target-specific fields</td><td>Keep DEL-15-01 target-neutral and reserve extension/mapping surfaces.</td><td>Detailed target mapping belongs to DEL-15-02 and target-specific implementation remains gated by DEL-17-01 and DEL-17-02.</td></tr>
+<tr><td>Strict required fields vs unresolved project reality</td><td>Require the slots named by SOW-074 using the materialized schema property map.</td><td>Avoids hidden defaults while preserving target-specific and container deferrals.</td></tr>
+<tr><td>Software status vs professional status</td><td>Emit diagnostics/findings and human-review-needed notices, not approval/compliance states.</td><td>Maintains OPS-K-AUTH-1 and OBJ-017.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>The current invented example payload is <code>fixtures/invented_handoff_package.json</code>. It is provenance-labeled, non-engineering fixture data used to validate <code>schemas/handoff_package.schema.json</code> with <code>jsonschema.Draft202012Validator</code> through <code>tests/test_handoff_package_schema.py</code>.</p>
+<p>Any future example must avoid protected standards content, private project data, private rule-pack content, proprietary values, real secrets, and automatic professional-approval claims.</p></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No direct source conflicts were identified in this setup pass. The following open items are unresolved rather than conflicting:</p>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>OI-015-OPEN</td><td>Current decomposition names initial export and target surfaces, but concrete mappings, unsupported-behavior taxonomy extensions, target field coverage, target-specific implementation, and this deliverable&#x27;s physical package/container remain gated.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md#11-open-issues</code></td><td><code>_CONTEXT.md#Scope Detail</code></td><td>Datasheet Attributes; Specification Requirements; Procedure Steps</td><td>Keep DEL-15-01 target-neutral; do not claim target-specific mapping maturity before DEL-17-01 and DEL-17-02 evidence.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-074 OBJ-017</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

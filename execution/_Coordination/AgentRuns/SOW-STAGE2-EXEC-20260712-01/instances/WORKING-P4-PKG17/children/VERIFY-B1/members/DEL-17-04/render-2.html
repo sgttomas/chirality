@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-17-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032</code>.</p>
+<h1 id="scope-of-work-del-17-04">Scope of Work — DEL-17-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-17-04</code> in service of project scope [SOW-030, SOW-074, SOW-075] and package objectives [OBJ-009, OBJ-017, OBJ-018].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A versioned CAEPIPE MBF export-profile and deterministic writer contract with explicit supported, omitted, approximated, delegated, sidecar-mapped, unsupported, and TBD behavior is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">CLM-001 — Datasheet: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h3>
+<blockquote><h4 id="datasheet-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">Datasheet: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4></blockquote>
+<h3 id="clm-002-identification">CLM-002 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-17-04</td></tr>
+<tr><td>Package</td><td>PKG-17 Export Format Interoperability</td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td></tr>
+<tr><td>Source foundation</td><td>DEL-17-01 and DEL-17-02</td></tr>
+<tr><td>Lifecycle role</td><td>First CAEPIPE-specific export profile/writer foundation deliverable</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-003-purpose">CLM-003 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>DEL-17-04 defines the document-level contract/design and first bounded implementation foundation for a CAEPIPE MBF export profile and deterministic writer. It is grounded in admitted public/official CAEPIPE MBF references, the DEL-17-01 source basis, and the DEL-17-02 export package/profile/loss-report contract.</p>
+<p>The implementation foundation emits a deliberately narrow invented smoke subset, a JSON package contract, a deterministic MBF text member, sidecar stable-ID mapping, diagnostics, and loss reports. It does not implement a parser, external execution harness, public API, GUI action, release claim, CAEPIPE compatibility claim, code-compliance claim, or professional-acceptance claim.</p></blockquote>
+<h3 id="clm-004-source-and-evidence-slots">CLM-004 — Source and Evidence Slots</h3>
+<blockquote><h5 id="source-and-evidence-slots">Source and Evidence Slots</h5>
+<table><tbody>
+<tr><td>Source slot</td><td>Required treatment</td></tr>
+<tr><td>DEL-17-01 source basis</td><td>Carry CAEPIPE source findings, TBD register entries, and question-dossier gates into the target profile.</td></tr>
+<tr><td>DEL-17-02 export contract</td><td>Carry export profile, stable-ID map, manifest, and loss-report vocabulary into the writer contract.</td></tr>
+<tr><td>CAEPIPE public MBF import reference</td><td>Treat as evidence for MBF text input, keyword-ordered sections, and command-line behavior only; profile coverage remains source-gated.</td></tr>
+<tr><td>CAEPIPE public MBF export reference</td><td>Treat as evidence that CAEPIPE exports MBF model data and version-flavoured MBF output; OpenPipeStress support claims remain <code>TBD</code>.</td></tr>
+<tr><td>Implementation evidence</td><td><code>core/handoff/caepipe_mbf/</code>, <code>schemas/caepipe_mbf_export.schema.json</code>, <code>fixtures/caepipe_mbf/invented/</code>, and <code>tests/test_caepipe_mbf_export_package.py</code> provide bounded foundation evidence.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-profile-concepts">CLM-005 — Profile Concepts</h3>
+<blockquote><h5 id="profile-concepts">Profile Concepts</h5>
+<table><tbody>
+<tr><td>Concept</td><td>Required treatment</td></tr>
+<tr><td>Target family</td><td>CAEPIPE MBF profile.</td></tr>
+<tr><td>Target version basis</td><td><code>TBD</code> until source-confirmed.</td></tr>
+<tr><td>Record-family subset</td><td><code>TBD</code> until downstream source review and/or vendor clarification closes it.</td></tr>
+<tr><td>Profile-basis guardrail</td><td>The implementation foundation blocks blank or unsupported target-version and record-subset basis values; until source-confirmed closure exists, the profile must carry <code>TBD-17-01-001</code>, <code>TBD-17-01-002</code>, and <code>TBD-17-01-003</code>.</td></tr>
+<tr><td>Stable ID strategy</td><td>Direct MBF carrying remains <code>TBD</code>; the implementation foundation uses manifest-referenced sidecar mapping as the conservative default.</td></tr>
+<tr><td>Source basis trace</td><td>Each CAEPIPE-specific requirement must map to DEL-17-01, DEL-17-02, a public MBF source, or an explicit <code>TBD</code>.</td></tr>
+<tr><td>Source basis guardrail</td><td>The implementation foundation blocks caller-supplied profile source-basis refs that omit DEL-17-01, DEL-17-02, <code>CAEPIPE-IMPORT-MBF</code>, or <code>CAEPIPE-EXPORT-MBF</code>, and blocks <code>DEL-17-03</code> as CAEPIPE target/source authority.</td></tr>
+<tr><td>Loss reporting</td><td>Required for exported, omitted, approximated, delegated, unsupported, and TBD behavior.</td></tr>
+<tr><td>Unsupported-entity severity</td><td>Missing or malformed unsupported-entity evidence blocks the package; explicit unsupported behavior is warning-level by default unless separately marked blocking; <code>info</code> severity is not accepted for unsupported behavior.</td></tr>
+<tr><td>Pass-through options</td><td>May be target configuration only; not local code-checking logic.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-boundary-summary">CLM-006 — Boundary Summary</h3>
+<blockquote><h5 id="boundary-summary">Boundary Summary</h5>
+<ul>
+<li>- No CAEPIPE executable, commercial example, proprietary model, or copied vendor fixture is added.</li>
+<li>- No reverse-engineered behavior or license-bypass workflow is introduced.</li>
+<li>- No protected standards values, material allowables, SIF/flexibility values, or owner criteria are introduced.</li>
+<li>- MBF export work remains a source-bounded foundation until a later tranche closes target version/profile and record-family coverage.</li>
+<li>- Guardrail diagnostics preserve source uncertainty; they do not close CAEPIPE version/profile, record-family coverage, direct stable-ID carrying, compatibility, or professional reliance.</li>
+<li>- DEL-17-03 may remain historical implementation-pattern evidence, but it is not CAEPIPE MBF source-basis authority.</li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-007-specification-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">CLM-007 — Specification: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h3>
+<blockquote><h4 id="specification-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">Specification: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4></blockquote>
+<h3 id="clm-008-normative-scope">CLM-008 — Normative Scope</h3>
+<blockquote><h5 id="normative-scope">Normative Scope</h5>
+<p>DEL-17-04 shall define a source-bounded CAEPIPE MBF export profile and deterministic writer contract/design, and may include a first bounded implementation foundation. It shall consume DEL-17-01 source authority and DEL-17-02 package/profile/stable-ID/loss-report requirements.</p>
+<p>This deliverable&#x27;s implementation foundation shall remain limited to deterministic project-owned package building, invented fixtures, schema validation, sidecar stable-ID mapping, diagnostics, and loss reports. It shall not implement a CAEPIPE parser, external run harness, public API, GUI behavior, release claims, CAEPIPE compatibility claims, code-compliance claims, professional-acceptance claims, or full MBF coverage claims.</p></blockquote>
+<h3 id="clm-009-requirements">CLM-009 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td></tr>
+<tr><td>DEL-17-04-REQ-001</td><td>The CAEPIPE MBF profile shall declare target version basis as <code>TBD</code> until source-confirmed.</td></tr>
+<tr><td>DEL-17-04-REQ-002</td><td>The first MBF record-family subset shall remain <code>TBD</code> until source evidence or human-approved clarification closes it.</td></tr>
+<tr><td>DEL-17-04-REQ-003</td><td>The writer contract shall not silently approximate unsupported physical or analytical model entities.</td></tr>
+<tr><td>DEL-17-04-REQ-004</td><td>The writer contract shall require a loss report for omitted, approximated, delegated, unsupported, and TBD behavior.</td></tr>
+<tr><td>DEL-17-04-REQ-005</td><td>Stable canonical ID carrying inside MBF shall remain <code>TBD</code>; sidecar mapping shall be required when direct carrying is not source-confirmed.</td></tr>
+<tr><td>DEL-17-04-REQ-006</td><td>Pass-through target options shall remain target configuration metadata and shall not become OpenPipeStress local code-checking logic.</td></tr>
+<tr><td>DEL-17-04-REQ-007</td><td>Later implementation shall use invented fixtures only.</td></tr>
+<tr><td>DEL-17-04-REQ-008</td><td>The first implementation foundation shall use sidecar stable-ID mapping while <code>TBD-17-01-003</code> remains open.</td></tr>
+<tr><td>DEL-17-04-REQ-009</td><td>The first implementation foundation shall expose blocking diagnostics when the invented smoke subset, sidecar stable-ID map, or loss report is missing.</td></tr>
+<tr><td>DEL-17-04-REQ-010</td><td>The first implementation foundation shall expose blocking diagnostics when target-version basis, record-subset basis, or carried profile TBD references are missing, blank, or weakened without admitted source-confirmed closure.</td></tr>
+<tr><td>DEL-17-04-REQ-011</td><td>The first implementation foundation shall expose blocking diagnostics when profile source-basis refs omit DEL-17-01, DEL-17-02, <code>CAEPIPE-IMPORT-MBF</code>, or <code>CAEPIPE-EXPORT-MBF</code>, or when they include DEL-17-03 as CAEPIPE target/source authority.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-010-verification-requirements">CLM-010 — Verification Requirements</h3>
+<blockquote><h5 id="verification-requirements">Verification Requirements</h5>
+<table><tbody>
+<tr><td>Check</td><td>Requirement</td></tr>
+<tr><td>Source trace</td><td>CAEPIPE-specific statements cite DEL-17-01 source IDs or remain <code>TBD</code>.</td></tr>
+<tr><td>Boundary trace</td><td>No proprietary examples or protected data are introduced.</td></tr>
+<tr><td>Loss trace</td><td>Unsupported and TBD behavior is visible in the loss-report contract.</td></tr>
+<tr><td>Profile-basis trace</td><td>Target-version, record-subset, and direct stable-ID uncertainty remain visible through carried TBD refs until source-confirmed closure exists.</td></tr>
+<tr><td>Source-basis guardrail trace</td><td>Profile and manifest source-basis refs carry the required authority set and do not promote implementation-pattern evidence to CAEPIPE source authority.</td></tr>
+<tr><td>Dependency trace</td><td><code>Dependencies.csv</code> validates as v3.1.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-011-acceptance-criteria">CLM-011 — Acceptance Criteria</h3>
+<blockquote><h5 id="acceptance-criteria">Acceptance Criteria</h5>
+<table><tbody>
+<tr><td>Criterion</td><td>Acceptance treatment</td></tr>
+<tr><td>Source basis mapping</td><td>Each CAEPIPE-specific requirement is traced to DEL-17-01, DEL-17-02, an admitted public MBF reference, or an explicit <code>TBD</code> closure path.</td></tr>
+<tr><td>Target version closure</td><td>REQ-001 remains unresolved until the first CAEPIPE version/profile is source-confirmed or human-approved as a bounded profile decision.</td></tr>
+<tr><td>Record subset closure</td><td>REQ-002 remains unresolved until MBF record families and required fields are enumerated from admitted evidence.</td></tr>
+<tr><td>Stable ID preservation</td><td>REQ-005 is accepted only when direct MBF carrying is source-confirmed or the writer uses manifest-referenced sidecar mapping.</td></tr>
+<tr><td>Loss category coverage</td><td>REQ-004 is accepted only when exported, omitted, approximated, delegated, unsupported, and <code>TBD</code> behavior are all visible in the loss report.</td></tr>
+<tr><td>Diagnostic classification</td><td><code>TBD-17-04-004</code> is addressed for this foundation: malformed unsupported refs, missing unsupported loss coverage, and <code>info</code>-severity unsupported losses block; explicit <code>warning</code> or <code>blocking</code> unsupported losses are accepted as classification evidence.</td></tr>
+<tr><td>Profile-basis guardrail</td><td>REQ-010 is accepted when diagnostics block blank or unsupported <code>target_version_basis</code>, <code>record_subset_basis</code>, or carried-TBD evidence while the foundation remains source-bounded.</td></tr>
+<tr><td>Source-basis guardrail</td><td>REQ-011 is accepted when diagnostics and schema validation block weakened CAEPIPE source-basis refs while preserving DEL-17-03 only as historical implementation-pattern evidence.</td></tr>
+<tr><td>Fixture provenance</td><td>REQ-007 is accepted only with invented fixtures and no vendor, proprietary, protected, or owner/project examples.</td></tr>
+<tr><td>Foundation implementation</td><td>REQ-008 and REQ-009 are accepted when schema, builder, fixture, and tests demonstrate sidecar-first IDs, deterministic MBF text, and blocking diagnostics for incomplete packages.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-downstream-use">CLM-012 — Downstream Use</h3>
+<blockquote><h5 id="downstream-use">Downstream Use</h5>
+<p>DEL-17-05 may consume this deliverable later for CAEPIPE external run harness and CSV parser work. DEL-17-05 remains blocked until DEL-17-04 has committed evidence.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves DEL-17-01 source authority and DEL-17-02 common package/profile/ID-map/loss contracts, a selected-profile gate, deterministic text generation, stable canonical-ID mapping, units and coordinates, pass-through target options without local code logic, invented/rights-cleared fixtures, diagnostics, loss reporting, and unresolved MBF record, field, version, line-ending, encoding, and external-validation questions without claiming broad compatibility or acceptance.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-013-procedure-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">CLM-013 — Procedure: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h3>
+<blockquote><h4 id="procedure-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">Procedure: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4></blockquote>
+<h3 id="clm-014-population-procedure">CLM-014 — Population Procedure</h3>
+<blockquote><h5 id="population-procedure">Population Procedure</h5>
+<p>1. Read DEL-17-01 source-basis dossier and CAEPIPE question dossier.</p>
+<p>2. Read DEL-17-02 export package/profile/stable-ID/loss-report contract.</p>
+<p>3. Draft the CAEPIPE MBF profile/writer four-document kit at contract/design level only.</p>
+<p>4. Generate <code>_SEMANTIC.md</code> with <code>semantic-matrix-build</code>.</p>
+<p>5. Generate <code>_SEMANTIC_LENSING.md</code> with <code>lens-register</code>.</p>
+<p>6. Apply warranted P3 enrichment through <code>four-documents P3_ONLY</code>.</p>
+<p>7. Extract dependencies into <code>Dependencies.csv</code>.</p>
+<p>8. Record memory and run evidence.</p></blockquote>
+<h3 id="clm-015-foundation-implementation-procedure">CLM-015 — Foundation Implementation Procedure</h3>
+<blockquote><h5 id="foundation-implementation-procedure">Foundation Implementation Procedure</h5>
+<p>Bounded foundation implementation work must:</p>
+<p>1. Close or explicitly carry target version and MBF record-family TBDs.</p>
+<p>2. Define the deterministic writer subset from admitted evidence.</p>
+<p>3. Emit a loss report for exported, unsupported, omitted, approximated, delegated, and TBD behavior.</p>
+<p>4. Preserve stable IDs through manifest-referenced sidecars unless direct MBF carrying is source-confirmed.</p>
+<p>5. Block blank or unsupported profile-basis values until target version, record subset, and direct stable-ID carrying are closed by admitted source evidence.</p>
+<p>6. Block missing or unsafe profile source-basis refs so DEL-17-01, DEL-17-02, <code>CAEPIPE-IMPORT-MBF</code>, and <code>CAEPIPE-EXPORT-MBF</code> remain visible, and DEL-17-03 is not treated as CAEPIPE target/source authority.</p>
+<p>7. Use invented fixtures only.</p>
+<p>8. Avoid CAEPIPE compatibility, release, code-compliance, and professional-acceptance claims.</p>
+<p>9. Keep external execution, CSV parsing, target result interpretation, public API, and GUI integration out of scope unless separately authorized.</p></blockquote>
+<h3 id="clm-016-implementation-readiness-checks">CLM-016 — Implementation Readiness Checks</h3>
+<blockquote><h5 id="implementation-readiness-checks">Implementation Readiness Checks</h5>
+<p>Before a later writer tranche begins, re-read DEL-17-01, DEL-17-02, the admitted public MBF references, and this four-document kit. The tranche must record:</p>
+<p>1. Target version/profile closure or explicit carried <code>TBD</code>.</p>
+<p>2. MBF record-family and required-field subset closure or explicit carried <code>TBD</code>.</p>
+<p>3. Stable-ID direct-carry evidence or manifest-referenced sidecar policy.</p>
+<p>4. Loss-report coverage for exported, omitted, approximated, delegated, unsupported, and <code>TBD</code> behavior.</p>
+<p>5. Blocking versus non-blocking diagnostic classification: unsupported behavior defaults to warning-level evidence unless explicitly blocking, while missing coverage, malformed refs, or <code>info</code> severity block.</p>
+<p>6. Profile-basis diagnostics proving target-version, record-subset, and carried-TBD evidence cannot be silently omitted or weakened.</p>
+<p>7. Source-basis diagnostics proving required CAEPIPE source authority cannot be silently omitted or replaced by implementation-pattern evidence.</p>
+<p>8. Invented-fixture provenance.</p>
+<p>9. Validation results for the deliverable-local document kit, semantic artifacts, dependency schema, and diff hygiene.</p></blockquote>
+<h3 id="clm-017-semantic-enrichment-verification">CLM-017 — Semantic Enrichment Verification</h3>
+<blockquote><h5 id="semantic-enrichment-verification">Semantic Enrichment Verification</h5>
+<p>Pass 3 checked <code>_SEMANTIC_LENSING.md</code> against DEL-17-01 CAEPIPE TBDs, DEL-17-02 loss-report/stable-ID requirements, and the public MBF source boundary. Applied TP-EXPORT-004R items added source-basis slots, acceptance criteria, classification guidance, pass-through-option rationale, and implementation readiness checks. No P3 item authorized implementation in this tranche.</p>
+<table><tbody>
+<tr><td>Register Item</td><td>Disposition</td></tr>
+<tr><td>A-001</td><td>Incorporated through implementation readiness checks for source-confirmed MBF target basis before writer enablement.</td></tr>
+<tr><td>A-002</td><td>Incorporated through the future implementation validation checklist for writer determinism, loss reports, and boundary claims.</td></tr>
+<tr><td>B-001</td><td>Incorporated as a carried <code>TBD</code> for first CAEPIPE target version/profile and public citation target.</td></tr>
+<tr><td>B-002</td><td>Incorporated through source and evidence slots for DEL-17-01, DEL-17-02, and public MBF references.</td></tr>
+<tr><td>C-001</td><td>Incorporated through acceptance criteria requiring CAEPIPE-specific requirements to map to admitted evidence or explicit <code>TBD</code> closure.</td></tr>
+<tr><td>C-002</td><td>Incorporated as diagnostic classification guidance and an open question for unsupported-entity severity.</td></tr>
+<tr><td>F-001</td><td>Incorporated through profile acceptance criteria for target version, record subset, stable-ID policy, loss categories, and invented fixtures.</td></tr>
+<tr><td>F-002</td><td>Incorporated through future implementation loss-report coverage checks.</td></tr>
+<tr><td>D-001</td><td>Incorporated through fixture provenance acceptance criteria.</td></tr>
+<tr><td>D-002</td><td>Incorporated as an open diagnostic policy question for blocker versus warning behavior.</td></tr>
+<tr><td>X-001</td><td>Incorporated through implementation readiness checks with required rereads and validation evidence.</td></tr>
+<tr><td>E-001</td><td>Incorporated through pass-through-option rationale in guidance.</td></tr>
+</tbody></table></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, source/profile gates, deterministic writer and byte-output requirements, complete behavior classification and loss reporting, stable-ID carrier/sidecar treatment, unit/coordinate and encoding boundaries, fixture provenance, every retained MBF TBD, and absence of bundled/proprietary material, local code-checking logic, compatibility overclaim, or professional authority.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-018-guidance-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">CLM-018 — Guidance: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h3>
+<blockquote><h4 id="guidance-del-17-04-caepipe-mbf-export-profile-and-deterministic-writer">Guidance: DEL-17-04 CAEPIPE MBF export profile and deterministic writer</h4></blockquote>
+<h3 id="clm-019-design-guidance">CLM-019 — Design Guidance</h3>
+<blockquote><h5 id="design-guidance">Design Guidance</h5>
+<p>Treat CAEPIPE MBF as a narrow, source-confirmed target profile. The purpose is not to claim compatibility; it is to define and test what a bounded deterministic writer foundation may safely emit, what it must omit, and what it must report.</p>
+<p>The safe posture is conservative: if a record family, required field, stable ID carrier, option, or target behavior is not confirmed by admitted source evidence, mark it <code>TBD</code> and require a loss-report or profile diagnostic. The first implementation foundation therefore uses sidecar stable-ID mapping and carries direct MBF ID carrying as <code>TBD-17-01-003</code>.</p>
+<p>Profile-basis fields are guardrails, not target-support claims. Until later source-confirmed closure exists, blank values or informal target-version/record-subset labels should block the package because they would make unresolved CAEPIPE scope look settled.</p>
+<p>Source-basis refs are also guardrails. A caller-provided CAEPIPE MBF profile should not be able to omit DEL-17-01, DEL-17-02, <code>CAEPIPE-IMPORT-MBF</code>, or <code>CAEPIPE-EXPORT-MBF</code>, and should not promote DEL-17-03 implementation-pattern evidence into CAEPIPE target/source authority.</p></blockquote>
+<h3 id="clm-020-interpretation-guidance">CLM-020 — Interpretation Guidance</h3>
+<blockquote><h5 id="interpretation-guidance">Interpretation Guidance</h5>
+<ul>
+<li>- Use DEL-17-01 for CAEPIPE source facts and unanswered questions.</li>
+<li>- Use DEL-17-02 for manifest, profile, ID-map, and loss-report structure.</li>
+<li>- Do not treat MBF text output as equivalent to professional acceptance.</li>
+<li>- Do not turn pass-through target options into local code-checking logic.</li>
+<li>- Do not infer undocumented MBF behavior from the target name or common practice.</li>
+<li>- Treat generated MBF text as a deterministic invented smoke artifact, not as target acceptance evidence.</li>
+</ul></blockquote>
+<h3 id="clm-021-classification-guidance">CLM-021 — Classification Guidance</h3>
+<blockquote><h5 id="classification-guidance">Classification Guidance</h5>
+<p>Unsupported target behavior must be classified before implementation as blocking, diagnostic-only, delegated, omitted, approximated, or <code>TBD</code>. Until that classification exists, the writer contract should preserve the uncertainty rather than enabling a broad MBF support claim.</p>
+<p>For this foundation, explicit unsupported behavior defaults to warning-level loss-report evidence unless the loss entry marks it blocking. Missing unsupported loss coverage, malformed unsupported references, or <code>info</code> severity for unsupported behavior are blocking because they would hide material target-scope limits.</p>
+<p>Pass-through CAEPIPE options are metadata for the target profile because they may name target-side analysis settings. They must not become OpenPipeStress local code-checking logic, local professional acceptance logic, or a substitute for user-supplied rule packs and human review.</p></blockquote>
+<h3 id="clm-022-open-questions">CLM-022 — Open Questions</h3>
+<blockquote><h5 id="open-questions">Open Questions</h5>
+<table><tbody>
+<tr><td>TBD</td><td>Question</td><td>Later closure path</td></tr>
+<tr><td>TBD-17-04-001</td><td>Which CAEPIPE version/profile is the first target?</td><td>Public documentation review or CAEPIPE developer/support clarification.</td></tr>
+<tr><td>TBD-17-04-002</td><td>Which MBF record families and required fields are in the first subset?</td><td>Source review and bounded implementation design.</td></tr>
+<tr><td>TBD-17-04-003</td><td>Can MBF carry stable canonical IDs directly?</td><td>Source review; otherwise sidecar-only mapping.</td></tr>
+<tr><td>TBD-17-04-004</td><td>Which unsupported entities block export versus produce non-blocking diagnostics?</td><td>This foundation uses warning by default with explicit blocking allowed; later source-confirmed profiles may specialize entity-specific severity.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-023-foundation-guidance">CLM-023 — Foundation Guidance</h3>
+<blockquote><h5 id="foundation-guidance">Foundation Guidance</h5>
+<p>The first implementation foundation should remain sidecar-first and loss-report-first:</p>
+<ul>
+<li>- deterministic text output is acceptable only for the invented smoke subset;</li>
+<li>- every canonical identity must appear in a sidecar mapping or an explicit loss entry;</li>
+<li>- every unsupported entity must be a stable reference and must have an explicit unsupported loss entry;</li>
+<li>- target-version, record-subset, and direct stable-ID uncertainty must remain carried as <code>TBD-17-01-001</code>, <code>TBD-17-01-002</code>, and <code>TBD-17-01-003</code>;</li>
+<li>- missing smoke-subset inputs, sidecar IDs, or loss reports should block the package;</li>
+<li>- missing, blank, or weakened profile-basis evidence should block the package;</li>
+<li>- missing or unsafe CAEPIPE source-basis refs should block the package;</li>
+<li>- external execution, CSV parsing, target result interpretation, and target code/check logic remain out of scope.</li>
+</ul></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-030 SOW-074 SOW-075 OBJ-009 OBJ-017 OBJ-018</td><td>CLM-007</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

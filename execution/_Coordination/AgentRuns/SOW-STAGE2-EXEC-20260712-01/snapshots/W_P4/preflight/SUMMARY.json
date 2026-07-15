@@ -1,0 +1,42 @@
+{
+  "accepted_piping_predecessors": 71,
+  "batch_counts": {
+    "PKG-14": 1,
+    "PKG-15": 1,
+    "PKG-16": 1,
+    "PKG-17": 2
+  },
+  "blockers": [],
+  "command_checks": {
+    "dependency_schema": "22/22 PASS",
+    "harness_pytest": "264/264 PASS",
+    "harness_self_check": "EXIT_0_WITH_BASELINE_FINDINGS"
+  },
+  "dependency_registers": 22,
+  "dependency_rows": 364,
+  "dispatch_basis": "e8f59a63372f38d9e788ac39b39995558f5aba73",
+  "expected_live_bindings": 198,
+  "final_verdict": "PASS",
+  "format_counts": {
+    "LEGACY_FOUR_DOC": 22
+  },
+  "lifecycle_counts": {
+    "IN_PROGRESS": 22
+  },
+  "live_sow": 0,
+  "p3_source_status_mismatches": [],
+  "package_batches": 5,
+  "package_counts": {
+    "PKG-14": 5,
+    "PKG-15": 4,
+    "PKG-16": 4,
+    "PKG-17": 9
+  },
+  "preliminary_verdict": "PASS",
+  "present_live_bindings": 198,
+  "selected_members": 22,
+  "source_lines": 6759,
+  "unknowns": [],
+  "waivers": [],
+  "wave": "P4"
+}

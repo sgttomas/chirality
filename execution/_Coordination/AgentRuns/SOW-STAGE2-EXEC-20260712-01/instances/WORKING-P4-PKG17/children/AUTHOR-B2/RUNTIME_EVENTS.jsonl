@@ -1,0 +1,8 @@
+{"timestamp_utc":"2026-07-15T03:43:15Z","sequence":1,"deliverable_id":"DEL-17-06","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:43:15Z","sequence":1,"deliverable_id":"DEL-17-06","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:43:16Z","sequence":2,"deliverable_id":"DEL-17-07","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:43:16Z","sequence":2,"deliverable_id":"DEL-17-07","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:43:16Z","sequence":3,"deliverable_id":"DEL-17-08","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:43:16Z","sequence":3,"deliverable_id":"DEL-17-08","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:43:17Z","sequence":4,"deliverable_id":"DEL-17-09","stage":"precheck","event":"start","attempt":1,"reason_code":"NONE"}
+{"timestamp_utc":"2026-07-15T03:43:17Z","sequence":4,"deliverable_id":"DEL-17-09","stage":"precheck","event":"finish","attempt":1,"reason_code":"NONE"}

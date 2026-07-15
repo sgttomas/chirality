@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "package": "PKG-14",
+  "members": 5,
+  "mappings": 158,
+  "source_lines": 1454,
+  "replacement_rows": 25,
+  "inverse_rows": 25,
+  "simulations": 5,
+  "negative_probes": 35,
+  "author_manifest_bindings": 923,
+  "verifier_manifest_bindings": 242,
+  "candidate_bindings_unchanged": 15,
+  "live_bindings": 45,
+  "method_bindings": 29,
+  "verifier": "PASS_UNCHANGED",
+  "blockers": [],
+  "unknowns": [],
+  "waivers": [],
+  "reruns": []
+}

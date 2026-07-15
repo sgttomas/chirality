@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-17-09-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 268,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cdd81df63398e6701a65a29f9267dc96c03c046b55bd393539ca71c28255bd0b"
+      },
+      "text": "The contract preserves the common package/profile/stable-ID/manifest/loss contract, admitted target source basis, target registry states, no-bypass validation and permission boundaries, explicit behavior classifications, diagnostics, protected/private-data controls, optional user-owned external execution, and unresolved runtime, schema, target, reviewer, and approval details as TBD without implementing adapters or claiming support.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-17-09-VER-001",
+          "source_line": 438,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, target-admission and source-basis gates, adapter obligations, stable identity and loss visibility, no-bypass and default-deny permission boundaries, optional external-run limits, retained runtime/schema/reviewer TBDs, protected-content exclusions, and absence of implementation, target support, compatibility, release, compliance, validation, or professional-acceptance claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-17-09",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-17",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "cdd81df63398e6701a65a29f9267dc96c03c046b55bd393539ca71c28255bd0b"
+  },
+  "tool_version": "1"
+}

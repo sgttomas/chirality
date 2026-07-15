@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="5661376fd7a3691c8e8d6c8300f79cc0d819d03bad4cb5261222f42216ef60e2">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-14-05</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>5661376fd7a3691c8e8d6c8300f79cc0d819d03bad4cb5261222f42216ef60e2</code>.</p>
+<h1 id="scope-of-work-del-14-05">Scope of Work — DEL-14-05</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-14-05</code> in service of project scope [SOW-073] and package objectives [OBJ-016].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A comparison mapping, unmatched-classification, tolerance-profile, and CSV, JSON, and report-section export contract is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-14-05-comparison-mapping-tolerance-and-export-contracts">CLM-001 — Datasheet: DEL-14-05 Comparison mapping, tolerance, and export contracts</h3>
+<blockquote><h4 id="datasheet-del-14-05-comparison-mapping-tolerance-and-export-contracts">Datasheet: DEL-14-05 Comparison mapping, tolerance, and export contracts</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-05-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-14-05</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Comparison mapping, tolerance, and export contracts</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-14</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package</td><td>Model States, Analysis Runs, and Comparison</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-14</code></td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Scope item</td><td>SOW-073</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code></td></tr>
+<tr><td>Primary objective</td><td>OBJ-016</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#OBJ-016</code></td></tr>
+<tr><td>Context envelope</td><td>M</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Anticipated artifacts</td><td>comparison mapping schema; tolerance profile schema; comparison exporters</td><td><code>_CONTEXT.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Current value</td></tr>
+<tr><td>Contract subject</td><td>Manual comparison mappings, unmatched classifications, tolerance profiles, and CSV/JSON/report-section export semantics. Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#DEL-14-05</code>.</td></tr>
+<tr><td>Comparison basis</td><td>Two model states and/or two analysis runs are compared deterministically using stable IDs, manual mappings where required, unit-normalized result deltas, and tolerance profiles. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code>.</td></tr>
+<tr><td>State/run context</td><td>Model states and analysis runs are first-class product records for design iteration and review. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md#OBJ-016</code>.</td></tr>
+<tr><td>Export boundary</td><td>Result export envelopes identify result set, model/run basis, solver version, unit-system reference, diagnostics, provenance, hashes or audit manifest reference, analysis statuses, and professional-boundary notice. Source: <code>docs/SPEC.md#result-export-format</code>.</td></tr>
+<tr><td>Unit boundary</td><td>Calculations, formulas, imported values, and exports must be unit-aware and dimensionally checked. Source: <code>docs/CONTRACT.md#OPS-K-UNIT-1</code>.</td></tr>
+<tr><td>Professional boundary</td><td>Comparison output is diagnostic/audit functionality, not automatic external validation or acceptance. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code>; <code>docs/TYPES.md#TraceabilityLink</code>.</td></tr>
+<tr><td>Public data boundary</td><td>Public artifacts must not copy private formulas, protected standards text, protected tables, proprietary values, or private rule-pack payloads. Source: <code>docs/SPEC.md#result-export-format</code>; <code>docs/IP_AND_DATA_BOUNDARY.md#public-repository-must-not-contain</code>.</td></tr>
+<tr><td>Architecture basis</td><td>JSON Schema 2020-12 contracts, schema-first envelopes, and canonical JSON/JCS-compatible hash basis apply where payloads are hashed. Source: <code>_CONTEXT.md#Architecture-Basis-Injection</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td></tr>
+<tr><td>Tolerance defaults</td><td>TBD. <code>execution/_Decomposition/SOFTWARE_DECOMP.md#OI-014</code> states comparison tolerance defaults and mapping workflows are pending solver/result schema prototypes.</td></tr>
+<tr><td>Exact CSV fields</td><td>TBD. DEL-14-05 is assigned CSV export semantics, but the accessible sources do not define field names or column order.</td></tr>
+<tr><td>Exact JSON schema</td><td>TBD. The baseline is schema-first JSON, but the accessible sources do not include a deliverable-specific schema body.</td></tr>
+<tr><td>Report-section layout</td><td>TBD. Report sections must preserve privacy, provenance, units, diagnostics, limitations, and professional-boundary notices; final rendering and layout remain outside the accessible source slice.</td></tr>
+<tr><td>External validation</td><td>Excluded. PKG-14 does not ingest commercial prover outputs comprehensively or determine external validation. Source: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-14</code>.</td></tr>
+<tr><td>Protected standards data</td><td>Excluded from public artifacts unless separately authorized by provenance and review. Source: <code>docs/CONTRACT.md#OPS-K-IP-1</code>; <code>docs/IP_AND_DATA_BOUNDARY.md#public-repository-must-not-contain</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Description</td></tr>
+<tr><td>Comparison mapping schema</td><td>Defines stable-ID mapping records and manual mapping evidence needed when state/run entities do not align automatically. Details remain TBD pending DEL-14-03/DEL-14-04 interfaces.</td></tr>
+<tr><td>Unmatched classification schema</td><td>Defines explicit classifications for compared entities or results that have no accepted counterpart. Specific enum values are TBD unless later source material supplies them.</td></tr>
+<tr><td>Tolerance profile schema</td><td>Defines unit-aware tolerance profile records for comparison deltas. Default numeric values are TBD and must not be silently supplied.</td></tr>
+<tr><td>JSON export contract</td><td>Schema-first result/comparison envelope compatible with governed downstream tooling and report consumption. Exact schema fields are TBD.</td></tr>
+<tr><td>CSV export contract</td><td>Tabular export semantics for comparison review. Exact columns, ordering, and serialization rules are TBD.</td></tr>
+<tr><td>Report-section contract</td><td>Report-facing comparison section references that preserve units, diagnostics, provenance, hashes, assumptions, limitations, and professional-boundary notice. Exact layout is TBD.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code></li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>execution/_DAG/DAG-006/APPROVAL_RECORD.md</code></li>
+</ul></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-14-05-comparison-mapping-tolerance-and-export-contracts">CLM-008 — Specification: DEL-14-05 Comparison mapping, tolerance, and export contracts</h3>
+<blockquote><h4 id="specification-del-14-05-comparison-mapping-tolerance-and-export-contracts">Specification: DEL-14-05 Comparison mapping, tolerance, and export contracts</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-05-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines API/data contracts for comparison mappings, unmatched classifications, tolerance profiles, and comparison exports for model-state and analysis-run comparisons.</p>
+<p>In scope:</p>
+<ul>
+<li>- comparison mapping schema;</li>
+<li>- tolerance profile schema;</li>
+<li>- comparison exporters for CSV, JSON, and report-section use;</li>
+<li>- explicit <code>TBD</code> handling for unresolved tolerance defaults, mapping workflows, exact field names, and export layout.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- implementation of the model-state comparison engine owned by DEL-14-03;</li>
+<li>- implementation of the analysis-run comparison engine owned by DEL-14-04;</li>
+<li>- comprehensive commercial prover result ingestion;</li>
+<li>- external validation or professional approval;</li>
+<li>- protected standards text, protected tables, proprietary values, private rule-pack payloads, or code-specific tolerance defaults.</li>
+</ul>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#DEL-14-05</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#PKG-14</code>; <code>docs/IP_AND_DATA_BOUNDARY.md#public-repository-must-not-contain</code>.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source</td></tr>
+<tr><td>DEL-14-05-R001</td><td>The contract shall support deterministic comparison of two model states and/or two analysis runs using stable IDs.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code></td></tr>
+<tr><td>DEL-14-05-R002</td><td>The mapping schema shall represent manual mappings where automatic stable-ID alignment is insufficient.</td><td><code>_CONTEXT.md#Description</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code></td></tr>
+<tr><td>DEL-14-05-R003</td><td>The contract shall represent unmatched classifications for compared entities or results that lack an accepted counterpart. Specific classification values are TBD.</td><td><code>_CONTEXT.md#Description</code>; <code>_CONTEXT.md#Anticipated-Artifacts</code></td></tr>
+<tr><td>DEL-14-05-R004</td><td>The tolerance profile schema shall support unit-normalized result deltas and tolerance profiles without silently supplying default engineering values. Numeric defaults are TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#OI-014</code>; <code>docs/CONTRACT.md#OPS-K-DATA-2</code></td></tr>
+<tr><td>DEL-14-05-R005</td><td>Export contracts shall preserve explicit unit and dimensional metadata for unit-bearing values or produce blocking diagnostics when required unit metadata is missing.</td><td><code>docs/CONTRACT.md#OPS-K-UNIT-1</code>; <code>docs/SPEC.md#result-export-format</code></td></tr>
+<tr><td>DEL-14-05-R006</td><td>JSON export semantics shall align with the schema-first result-envelope baseline. Exact deliverable-specific JSON fields are TBD.</td><td><code>_CONTEXT.md#Architecture-Basis-Injection</code>; <code>docs/SPEC.md#result-export-format</code></td></tr>
+<tr><td>DEL-14-05-R007</td><td>CSV export semantics shall be specified without embedding protected standards data, proprietary engineering values, private project data, or private rule-pack payloads. Exact columns are TBD.</td><td><code>_CONTEXT.md#Description</code>; <code>docs/IP_AND_DATA_BOUNDARY.md#public-repository-must-not-contain</code>; <code>docs/SPEC.md#result-export-format</code></td></tr>
+<tr><td>DEL-14-05-R008</td><td>Report-section export semantics shall preserve diagnostics, provenance, hashes or audit-manifest references, analysis statuses, limitations, and professional-boundary notices. Layout is TBD.</td><td><code>docs/SPEC.md#result-export-format</code>; <code>docs/SPEC.md#report-boundary</code>; <code>docs/CONTRACT.md#OPS-K-REPORT-1</code></td></tr>
+<tr><td>DEL-14-05-R009</td><td>The contracts shall not claim certification, sealing, approval, authentication, external validation, or code compliance.</td><td><code>docs/CONTRACT.md#OPS-K-AUTH-1</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code></td></tr>
+<tr><td>DEL-14-05-R010</td><td>Public artifacts shall not bundle protected standards text, protected tables, code-specific acceptance criteria, proprietary values, or private user data.</td><td><code>docs/CONTRACT.md#OPS-K-IP-1</code>; <code>docs/IP_AND_DATA_BOUNDARY.md#public-repository-must-not-contain</code></td></tr>
+<tr><td>DEL-14-05-R011</td><td>The contract shall remain compatible with model-state records, analysis-run records, result export envelopes, and unit-system contracts identified as upstream dependency evidence.</td><td><code>Dependencies.csv</code>; <code>_DEPENDENCIES.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governance source</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>Schema-first contract basis where JSON contracts are materialized.</td><td>Source: <code>_CONTEXT.md#Architecture-Basis-Injection</code>.</td></tr>
+<tr><td>Chirality/OpenPipeStress lifecycle vocabulary</td><td>Deliverable state and draft/proposal status.</td><td>Source: <code>docs/TYPES.md#Lifecycle-states</code>; <code>docs/CONTRACT.md#OPS-K-AGENT-4</code>.</td></tr>
+<tr><td>OpenPipeStress unit boundary</td><td>Unit-aware, dimensionally checked values and exports.</td><td>Source: <code>docs/CONTRACT.md#OPS-K-UNIT-1</code>; <code>docs/SPEC.md#unit-system-and-dimensional-analysis</code>.</td></tr>
+<tr><td>OpenPipeStress IP/data boundary</td><td>Protected/private data exclusion for public artifacts.</td><td>Source: <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+<tr><td>Professional responsibility boundary</td><td>Software output is decision support and not professional approval.</td><td>Source: <code>docs/CONTRACT.md#OPS-K-AUTH-1</code>; <code>docs/DIRECTIVE.md#Human-authority</code>.</td></tr>
+</tbody></table>
+<p>No external engineering standard text is locally provided as an authoritative source for this deliverable. Any code- or owner-standard-derived tolerance or acceptance rule is <code>TBD</code> unless later supplied through a governed private/user data path.</p></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Requirement</td><td>Verification approach</td></tr>
+<tr><td>DEL-14-05-R001</td><td>Determinism tests comparing equivalent input states/runs once DEL-14-03 and DEL-14-04 interfaces exist. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R002</td><td>Schema validation for manual mapping records, including stable source/target references and evidence/provenance fields. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R003</td><td>Schema validation for unmatched classifications once enum values are human-approved or source-defined. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R004</td><td>Unit-aware tolerance-profile validation with missing default values treated as explicit findings. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R005</td><td>Unit/dimension validation for exported comparison values. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R006</td><td>JSON Schema validation against the deliverable schema after the schema body is created. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R007</td><td>CSV parse/round-trip checks after column set and ordering are defined. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R008</td><td>Report-section fixture checks for provenance, diagnostics, hashes, limitations, and professional-boundary notices. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R009</td><td>Protected wording/professional-claim review checking for prohibited approval/compliance language. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R010</td><td>Protected-content/private-data lint or review gate. Current status: TBD.</td></tr>
+<tr><td>DEL-14-05-R011</td><td>Dependency closure review against the approved local DAG-002 mirror. Current status: mirror present; closure not independently reclassified by this deliverable.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required records for later implementation work:</p>
+<ul>
+<li>- comparison mapping schema documentation;</li>
+<li>- tolerance profile schema documentation;</li>
+<li>- JSON export contract documentation;</li>
+<li>- CSV export contract documentation;</li>
+<li>- report-section export contract documentation;</li>
+<li>- unresolved <code>TBD</code> register for tolerance defaults, mapping workflows, exact fields, and export layout;</li>
+<li>- dependency evidence record preserving the approved DAG-006 mirror rows.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves stable-ID and manual mapping evidence, explicit unmatched slots, unit-aware tolerance and export metadata, schema-first envelopes, diagnostics, provenance, hashes, statuses, limitations, no-silent-default behavior, exact mapping-enum, classification, tolerance, field, column, and layout TBDs, reporting-owner residuals, public/private data controls, and the separation from comparison-engine implementation, external validation, or professional approval.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-14-05-comparison-mapping-tolerance-and-export-contracts">CLM-015 — Procedure: DEL-14-05 Comparison mapping, tolerance, and export contracts</h3>
+<blockquote><h4 id="procedure-del-14-05-comparison-mapping-tolerance-and-export-contracts">Procedure: DEL-14-05 Comparison mapping, tolerance, and export contracts</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-05-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how to produce and verify the DEL-14-05 contract artifacts using only the current governed source basis. It is a setup-stage production procedure, not an implementation procedure for runtime comparison code.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source</td></tr>
+<tr><td>Deliverable context for DEL-14-05 is present and readable.</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Accepted SOFTWARE_DECOMP revision 0.7 is available.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td></tr>
+<tr><td>Governing project invariants are available.</td><td><code>_REFERENCES.md</code>; <code>docs/CONTRACT.md</code>; <code>docs/TYPES.md</code>; <code>docs/SPEC.md</code>; <code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/DIRECTIVE.md</code></td></tr>
+<tr><td>Approved DAG-002 local mirror is present and preserved.</td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code>; <code>execution/_DAG/DAG-006/APPROVAL_RECORD.md</code></td></tr>
+<tr><td>Upstream architecture basis rows remain context evidence only.</td><td><code>_CONTEXT.md#Architecture-Basis-Injection</code>; <code>_DEPENDENCIES.md#Authority-Boundary</code></td></tr>
+</tbody></table>
+<p>Approved local dependency mirror, summarized:</p>
+<ul>
+<li>- architecture basis: DEL-00-01, DEL-00-02, DEL-00-03, DEL-00-04, DEL-00-06, DEL-00-07, DEL-00-08;</li>
+<li>- state/run prerequisites: DEL-14-01 and DEL-14-02;</li>
+<li>- result export prerequisite: DEL-08-04;</li>
+<li>- unit contract prerequisite: DEL-02-02.</li>
+</ul></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm scope identity from <code>_CONTEXT.md</code>: DEL-14-05, PKG-14, API_CONTRACT, SOW-073, OBJ-016.</p>
+<p>2. Confirm decomposition scope from <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>: DEL-14-05 defines manual mappings, unmatched classifications, tolerance profiles, and CSV/JSON/report-section export semantics.</p>
+<p>3. Record exclusions before defining contract details: no comprehensive commercial prover result ingestion, no external validation decision, no professional approval state, and no protected/private data in public artifacts.</p>
+<p>4. Define the comparison mapping schema surface at a contract level:</p>
+<ul>
+<li>- stable source and target references;</li>
+<li>- manual mapping evidence/provenance;</li>
+<li>- relation to model-state and analysis-run comparison outputs;</li>
+<li>- unresolved fields marked <code>TBD</code>.</li>
+</ul>
+<p>5. Define the unmatched classification surface:</p>
+<ul>
+<li>- explicit classification slot for entities/results without an accepted counterpart;</li>
+<li>- specific enum values marked <code>TBD</code> unless later source material supplies them.</li>
+</ul>
+<p>6. Define the tolerance profile surface:</p>
+<ul>
+<li>- unit-aware comparison quantities and delta interpretation;</li>
+<li>- required unit/dimensional metadata;</li>
+<li>- tolerance default values marked <code>TBD</code>.</li>
+</ul>
+<p>7. Define JSON export semantics:</p>
+<ul>
+<li>- schema-first envelope basis;</li>
+<li>- result set, model/run basis, solver version, unit-system reference, diagnostics, provenance, hashes or audit-manifest reference, analysis statuses, and professional-boundary notice;</li>
+<li>- exact fields marked <code>TBD</code>.</li>
+</ul>
+<p>8. Define CSV export semantics:</p>
+<ul>
+<li>- parseable tabular representation for comparison review;</li>
+<li>- no protected standards text, proprietary values, private project data, or private rule-pack payloads;</li>
+<li>- columns and ordering marked <code>TBD</code>.</li>
+</ul>
+<p>9. Define report-section export semantics:</p>
+<ul>
+<li>- report-facing comparison evidence, limitations, diagnostics, assumptions, and professional-boundary notice;</li>
+<li>- final layout marked <code>TBD</code>.</li>
+</ul>
+<p>10. Verify the resulting contract draft against unit safety, data-boundary, professional-boundary, and no-silent-defaults invariants.</p>
+<p>11. Preserve approved DAG-006 mirror rows as ACTIVE. Do not delete, retire, or reclassify them during setup handling.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Scope check</td><td>Contract content is limited to DEL-14-05 and does not implement DEL-14-03 or DEL-14-04 engines.</td></tr>
+<tr><td>Source-grounding check</td><td>Non-trivial requirements cite <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, decomposition, local dependency mirror, or referenced governance docs.</td></tr>
+<tr><td>TBD check</td><td>Unsupported details are marked <code>TBD</code> or <code>ASSUMPTION</code>; no engineering values are invented.</td></tr>
+<tr><td>Unit check</td><td>Unit-bearing comparison/export values are specified as unit-aware or diagnostic-producing.</td></tr>
+<tr><td>Boundary check</td><td>No professional approval, certification, code-compliance, or external-validation claim is introduced.</td></tr>
+<tr><td>IP/privacy check</td><td>No protected standards content, proprietary data, private project data, or private rule-pack payload is embedded.</td></tr>
+<tr><td>Dependency mirror check</td><td>Existing approved DAG-006 rows remain present and ACTIVE.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>_STATUS.md</code></li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, mapping and unmatched surfaces, tolerance and unit/dimension behavior, CSV/JSON/report-section export coverage, provenance/diagnostic/hash/status/limitation preservation, retained TBDs and reporting residuals, no-silent-default behavior, data boundaries, and professional-authority limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-14-05-comparison-mapping-tolerance-and-export-contracts">CLM-022 — Guidance: DEL-14-05 Comparison mapping, tolerance, and export contracts</h3>
+<blockquote><h4 id="guidance-del-14-05-comparison-mapping-tolerance-and-export-contracts">Guidance: DEL-14-05 Comparison mapping, tolerance, and export contracts</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-05-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>DEL-14-05 exists to define the comparison-facing contracts that let model-state and analysis-run comparison results be mapped, interpreted with tolerances, and exported for review without turning diagnostic comparison output into professional approval or external validation.</p>
+<p>Sources: <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#DEL-14-05</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code>.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td></tr>
+<tr><td>Deterministic identity first</td><td>Stable IDs are the baseline for comparison. Manual mapping should be explicit evidence where stable-ID alignment is insufficient. Source: <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code>.</td></tr>
+<tr><td>Missing values stay visible</td><td>Tolerance defaults, mapping workflow details, and exact export field sets remain <code>TBD</code> where sources do not define them. Do not substitute engineering defaults. Source: <code>docs/CONTRACT.md#OPS-K-DATA-2</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#OI-014</code>.</td></tr>
+<tr><td>Units are contract data</td><td>Unit-normalized deltas still need explicit unit/dimensional metadata or diagnostics. Source: <code>docs/CONTRACT.md#OPS-K-UNIT-1</code>; <code>docs/SPEC.md#result-export-format</code>.</td></tr>
+<tr><td>Export is review evidence</td><td>Exports should carry enough context for review, regression comparison, report consumption, and downstream tooling without claiming external validation. Source: <code>docs/SPEC.md#result-export-format</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md#SOW-073</code>.</td></tr>
+<tr><td>Professional authority remains human</td><td>Avoid terms or statuses that imply software certification, sealing, professional approval, authentication, or code compliance. Source: <code>docs/CONTRACT.md#OPS-K-AUTH-1</code>; <code>docs/TYPES.md#Analysis-status-vocabulary</code>.</td></tr>
+<tr><td>Public artifacts stay clean</td><td>Public examples and contract documentation must not embed protected standards text, protected tables, code-specific values, proprietary data, or private rule-pack payloads. Source: <code>docs/IP_AND_DATA_BOUNDARY.md#public-repository-must-not-contain</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The comparison mapping contract depends on upstream model-state and analysis-run identity surfaces. The local approved DAG-006 mirror records upstream dependencies on DEL-14-01 and DEL-14-02.</li>
+<li>- Unit-aware tolerance behavior depends on the unit-system contract. The local approved DAG-006 mirror records an upstream dependency on DEL-02-02.</li>
+<li>- Export semantics should remain compatible with result export envelopes. The local approved DAG-006 mirror records an upstream dependency on DEL-08-04.</li>
+<li>- Architecture basis rows in the local mirror are context evidence, not independent Type 2 dispatch authority.</li>
+<li>- The accessible sources do not define exact mapping enums, unmatched classification values, tolerance formulas, tolerance default values, CSV columns, JSON property names, or report-section layout. These remain <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Direction</td></tr>
+<tr><td>Strict schema versus future external result states</td><td>Prefer schema-first contracts with explicit extension/TBD slots because <code>_CONTEXT.md</code> notes that future external result states may be represented without changing core compare logic.</td></tr>
+<tr><td>Human readability versus machine validation</td><td>Preserve both reviewable export forms and schema validation hooks; exact CSV/report fields remain TBD until contract details are sourced.</td></tr>
+<tr><td>Default tolerances versus no silent defaults</td><td>Keep defaults TBD unless a future governed source supplies them. Silent tolerances would conflict with the no-silent-defaults principle.</td></tr>
+<tr><td>Broad external comparison support versus bounded MVP</td><td>Stay within deterministic state/run comparison and comparison export semantics; comprehensive commercial prover ingestion is excluded by PKG-14.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>TBD. No locally accessible source provides approved example mappings, tolerance profiles, CSV rows, JSON payloads, or report-section examples for DEL-14-05.</p></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source conflict requiring human ruling was identified during the P1/P2 setup pass. The main unresolved items are source gaps, recorded as <code>TBD</code>: tolerance defaults, mapping workflow details, exact export fields, and report-section layout.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-073 OBJ-016</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

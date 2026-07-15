@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="9fc7f3bb72358b4c40be6dd2b820036e3bfc76518d733c38bd400113c7cf9f38">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-15-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>9fc7f3bb72358b4c40be6dd2b820036e3bfc76518d733c38bd400113c7cf9f38</code>.</p>
+<h1 id="scope-of-work-del-15-02">Scope of Work — DEL-15-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-15-02</code> in service of project scope [SOW-074] and package objectives [OBJ-017].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A provider-neutral target-mapping and unsupported or approximate behavior contract for handoff exports is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-15-02-target-mapping-and-unsupported-behavior-contract">CLM-001 — Datasheet: DEL-15-02 Target mapping and unsupported-behavior contract</h3>
+<blockquote><h4 id="datasheet-del-15-02-target-mapping-and-unsupported-behavior-contract">Datasheet: DEL-15-02 Target mapping and unsupported-behavior contract</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-15-02</td></tr>
+<tr><td>Name</td><td>Target mapping and unsupported-behavior contract</td></tr>
+<tr><td>Package ID</td><td>PKG-15</td></tr>
+<tr><td>Package name</td><td>Handoff and External Prover Workflow</td></tr>
+<tr><td>Type</td><td>API_CONTRACT</td></tr>
+<tr><td>Scope coverage</td><td>SOW-074</td></tr>
+<tr><td>Objective support</td><td>OBJ-017</td></tr>
+<tr><td>Anticipated artifacts</td><td><code>schemas/target_mapping.schema.json</code>; provider-neutral unsupported behavior taxonomy</td></tr>
+<tr><td>Source basis</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; <code>docs/_Registers/Deliverables.csv</code>; <code>docs/_Registers/ScopeLedger.csv</code>; <code>Dependencies.csv</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable purpose</td><td>Defines metadata for how internal entities map to target fields and how unsupported or approximate target behavior is flagged.</td><td><code>_CONTEXT.md</code> Description; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> DEL-15-02 row</td></tr>
+<tr><td>Package purpose</td><td>Implements handoff package structure, manifests, target mapping metadata, unsupported-target flags, and non-authoritative external-prover metadata boundaries.</td><td><code>_CONTEXT.md</code> Package Reference; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-15 row</td></tr>
+<tr><td>Required handoff contents in scope</td><td>Schema-compliant handoff packages include model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, warnings, target mapping metadata, and unsupported-target flags.</td><td><code>_CONTEXT.md</code> Scope Detail; <code>docs/_Registers/ScopeLedger.csv</code> SOW-074</td></tr>
+<tr><td>Target-specific commercial parsers</td><td>Deferred.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-074 note; <code>docs/_Registers/ScopeLedger.csv</code> SOW-074 note</td></tr>
+<tr><td>External professional approval state</td><td>Excluded from this package.</td><td><code>_CONTEXT.md</code> Package Exclusions; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-15 exclusions</td></tr>
+<tr><td>Target surfaces</td><td>OI-015 names initial export and target surfaces; concrete mappings, target field coverage, target-specific taxonomy extensions, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-015</td></tr>
+<tr><td>Canonical package container</td><td>TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-015</td></tr>
+<tr><td>Target-specific mapping strategy</td><td>TBD.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-015</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Value</td><td>Source</td></tr>
+<tr><td>Units</td><td>Exports must remain unit-aware and dimensionally checked.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/DIRECTIVE.md</code> Principles</td></tr>
+<tr><td>Missing values</td><td>Missing solve-required or rule-check-required values are explicit findings, not silent defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/DIRECTIVE.md</code> Principles</td></tr>
+<tr><td>Provenance</td><td>Reliance-affecting data carries source/provenance fields and review status.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-2; <code>docs/CONTRACT.md</code> OPS-K-DATA-3; <code>docs/TYPES.md</code> Provenance</td></tr>
+<tr><td>Private data boundary</td><td>Private project, material, component, rule-pack, owner-standard, and company design-basis data are user-controlled and excluded from public surfaces by default.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> Private user data; <code>docs/CONTRACT.md</code> OPS-K-PRIV-1</td></tr>
+<tr><td>Professional boundary</td><td>Software and agents must not certify, seal, approve, authenticate, or declare engineering code compliance.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/DIRECTIVE.md</code> Principles</td></tr>
+<tr><td>Handoff role</td><td>Shell/solid FEA remains a specialized local-analysis handoff path, not the primary global analysis model.</td><td><code>docs/CONTRACT.md</code> OPS-K-MECH-1; <code>docs/DIRECTIVE.md</code> Principles</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Artifact</td><td>Status</td><td>Construction notes</td></tr>
+<tr><td>Target mapping schema</td><td>MATERIALIZED</td><td><code>schemas/target_mapping.schema.json</code> is the JSON Schema 2020-12 provider-neutral contract matching <code>core/handoff/target_mapping/contract.py</code>; exact commercial target enumeration remains TBD.</td></tr>
+<tr><td>Unsupported behavior taxonomy</td><td>MATERIALIZED PROVIDER-NEUTRAL</td><td><code>unsupported_behavior_flags</code>, <code>approximate_behavior_flags</code>, <code>SUPPORTED_BEHAVIOR_STATUSES</code>, and diagnostics expose unsupported and approximate behavior without silent loss of assumptions; target-specific taxonomy extensions remain TBD.</td></tr>
+<tr><td>Mapping record identity</td><td>MATERIALIZED</td><td>Mapping records are traceable through <code>source_entity_ref</code>, <code>target_field_ref</code>, <code>mapping_status</code>, optional unit metadata, and provenance fields.</td></tr>
+<tr><td>Unsupported/approximate behavior record</td><td>MATERIALIZED</td><td>Behavior flags carry <code>behavior_kind</code>, <code>behavior_status</code>, severity, description, source/target references, diagnostics, and provenance.</td></tr>
+<tr><td>Hash and manifest binding</td><td>MATERIALIZED</td><td><code>source_context</code> binds mapping metadata to package/model/unit/entity/library/rule references while preserving target/container TBDs.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, scope, package envelope, architecture-basis injection.</li>
+<li>- <code>_REFERENCES.md</code> - local reference index.</li>
+<li>- <code>Dependencies.csv</code> - approved DAG-006 mirror/evidence surface for predecessor context.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - accepted revision 0.7 current decomposition basis, PKG-15 and DEL-15-02 rows.</li>
+<li>- <code>docs/_Registers/Deliverables.csv</code> - DEL-15-02 row.</li>
+<li>- <code>docs/_Registers/ScopeLedger.csv</code> - SOW-074 row.</li>
+<li>- <code>docs/_Registers/ContextBudgetQA.csv</code> - DEL-15-02 row.</li>
+<li>- <code>docs/CONTRACT.md</code> - invariant catalog.</li>
+<li>- <code>docs/DIRECTIVE.md</code> - product principles.</li>
+<li>- <code>docs/SPEC.md</code> - adapter/export and boundary specification slices.</li>
+<li>- <code>docs/TYPES.md</code> - canonical object and boundary vocabulary.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> - private-data and public-surface boundary policy.</li>
+</ul></blockquote>
+<h3 id="clm-008-d-41-r5-t3-pdu-017-evidence-state">CLM-008 — D-41 R5 T3 PDU-017 Evidence State</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-017-evidence-state">D-41 R5 T3 PDU-017 Evidence State</h5>
+<p>Selected seam: target-mapping builder. Unsafe privacy context produces blocking diagnostics; broader runtime redaction reach remains separately owned.</p></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-009-specification-del-15-02-target-mapping-and-unsupported-behavior-contract">CLM-009 — Specification: DEL-15-02 Target mapping and unsupported-behavior contract</h3>
+<blockquote><h4 id="specification-del-15-02-target-mapping-and-unsupported-behavior-contract">Specification: DEL-15-02 Target mapping and unsupported-behavior contract</h4></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>This deliverable defines an API contract for target mapping metadata and unsupported or approximate behavior flags used by handoff exports. It covers the target mapping schema and unsupported behavior taxonomy identified in <code>_CONTEXT.md</code>.</p>
+<p>This deliverable excludes target-specific commercial parser implementation, automatic external-prover approval states, professional acceptance records, comprehensive commercial-tool result ingestion, and any claim that a downstream target has validated, certified, sealed, or approved the engineering work. These exclusions are grounded in the PKG-15 package exclusion and the professional-boundary constraints in <code>docs/CONTRACT.md</code>.</p></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>Req ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-15-02-R001</td><td>The contract shall support target mapping metadata for handoff exports.</td><td><code>_CONTEXT.md</code> Description; <code>docs/_Registers/Deliverables.csv</code> DEL-15-02</td><td>Schema review confirms a target mapping metadata surface exists.</td></tr>
+<tr><td>DEL-15-02-R002</td><td>The contract shall support unsupported-target flags.</td><td><code>_CONTEXT.md</code> Scope Detail; <code>docs/_Registers/ScopeLedger.csv</code> SOW-074</td><td>Schema review confirms unsupported-target flags are representable.</td></tr>
+<tr><td>DEL-15-02-R003</td><td>The contract shall support approximate behavior disclosure when target behavior cannot be represented exactly.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> DEL-15-02 row</td><td><code>schemas/target_mapping.schema.json</code> and <code>SUPPORTED_BEHAVIOR_STATUSES</code> cover provider-neutral explicit statuses; target-specific taxonomy values remain TBD.</td></tr>
+<tr><td>DEL-15-02-R004</td><td>The contract shall preserve unresolved assumptions and warnings in the handoff context.</td><td><code>_CONTEXT.md</code> Scope Detail; <code>docs/_Registers/ScopeLedger.csv</code> SOW-074</td><td>Contract review traces mapping or unsupported records to warnings and unresolved assumptions where applicable.</td></tr>
+<tr><td>DEL-15-02-R005</td><td>The contract shall preserve unit awareness and dimensional-check boundaries for exported values.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/DIRECTIVE.md</code> Principles</td><td>Schema or validation plan includes unit/dimension metadata or diagnostics for unit-bearing mapped values.</td></tr>
+<tr><td>DEL-15-02-R006</td><td>The contract shall preserve source, provenance, redistribution/private-public status, and review status for reliance-affecting references where present.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-2; <code>docs/CONTRACT.md</code> OPS-K-DATA-3; <code>docs/TYPES.md</code> Provenance</td><td>Contract review confirms provenance fields or references are available; private payload copying remains prohibited.</td></tr>
+<tr><td>DEL-15-02-R007</td><td>The contract shall not silently replace missing or unsupported values with defaults.</td><td><code>docs/CONTRACT.md</code> OPS-K-DATA-2; <code>docs/DIRECTIVE.md</code> Principles</td><td>Validation plan includes blocking diagnostics or explicit TBD/unsupported findings for missing required data.</td></tr>
+<tr><td>DEL-15-02-R008</td><td>The contract shall not embed protected standards text, protected tables, proprietary values, private formulas, or private rule-pack payloads into public artifacts.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> Private user data; <code>docs/SPEC.md</code> result export boundary</td><td>Protected-content review confirms only references, checksums, source notes, and allowed metadata are exposed.</td></tr>
+<tr><td>DEL-15-02-R009</td><td>The contract shall not create software-generated professional approval, certification, sealing, authentication, or code-compliance statuses.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>docs/SPEC.md</code> adapter framework boundary</td><td>Vocabulary review confirms status fields are diagnostic/handoff support only and do not imply professional reliance approval.</td></tr>
+<tr><td>DEL-15-02-R010</td><td>The contract shall remain compatible with the canonical handoff package schema and manifest predecessor.</td><td><code>Dependencies.csv</code> DAG-002-E0805; <code>_DEPENDENCIES.md</code> authority boundary</td><td>Dependency trace confirms DEL-15-01 predecessor relationship remains visible and ACTIVE in the approved mirror.</td></tr>
+<tr><td>DEL-15-02-R011</td><td>The contract shall preserve redaction/export-control boundaries.</td><td><code>Dependencies.csv</code> DAG-002-E0808; <code>docs/IP_AND_DATA_BOUNDARY.md</code> Private user data</td><td>Schema review confirms private data can be excluded or referenced without public disclosure; exact redaction workflow is TBD.</td></tr>
+<tr><td>DEL-15-02-R012</td><td>The contract shall keep concrete mappings, target field coverage, target-specific taxonomy extensions, canonical package container, and target-specific implementation gated until accepted by the governing workflow.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-015; DEL-17-01; DEL-17-02</td><td>Review confirms no unapproved target-specific mapping maturity, package container, or implementation strategy has been asserted.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing basis</td><td>Applicability</td><td>Status</td></tr>
+<tr><td>JSON Schema 2020-12</td><td>The architecture basis identifies JSON Schema 2020-12 contracts for schema-first boundaries.</td><td>Applicable; schema file path is <code>schemas/target_mapping.schema.json</code>.</td></tr>
+<tr><td>Canonical JSON / JCS-compatible hash basis</td><td>The architecture basis identifies canonical JSON/JCS-compatible hashing where JSON payloads are hashed.</td><td>Applicable to hashed JSON payloads; provider-neutral binding fields are in <code>source_context</code>, while package container remains TBD.</td></tr>
+<tr><td>OpenPipeStress invariant catalog</td><td>Governs unit, provenance, data, professional-boundary, report, and privacy constraints.</td><td>Applicable via <code>docs/CONTRACT.md</code>.</td></tr>
+<tr><td>Protected data boundary policy</td><td>Governs public/private data handling, protected content, and public export defaults.</td><td>Applicable via <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</td></tr>
+<tr><td>External commercial tool standards</td><td>Not established in accessible source material.</td><td>TBD; do not infer target-specific clauses or behavior.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification ID</td><td>Approach</td><td>Covers</td></tr>
+<tr><td>V-001</td><td>Schema inspection plus <code>python3 tests/test_target_mapping_contract.py</code> against <code>DEL-15-02-R001</code> through <code>DEL-15-02-R004</code>.</td><td>Target mapping metadata, unsupported-target flags, approximate behavior, warnings, assumptions.</td></tr>
+<tr><td>V-002</td><td>Boundary vocabulary review.</td><td>No professional approval/status overclaim; no code-compliance claim.</td></tr>
+<tr><td>V-003</td><td>Protected-content and privacy review.</td><td>No private or protected data copied into public artifacts.</td></tr>
+<tr><td>V-004</td><td>Unit/provenance validation plan review.</td><td>Unit awareness, dimensional metadata, source/provenance.</td></tr>
+<tr><td>V-005</td><td>Dependency mirror check.</td><td>Approved DAG-002 predecessor evidence remains ACTIVE and unmodified.</td></tr>
+<tr><td>V-006</td><td>TBD review gate.</td><td>Concrete mappings, target field coverage, target-specific taxonomy extensions, canonical package container, and target-specific implementation remain gated unless supported by accepted source material.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required deliverable documentation artifacts:</p>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>schemas/target_mapping.schema.json</code></li>
+<li>- <code>core/handoff/target_mapping/contract.py</code></li>
+<li>- <code>tests/test_target_mapping_contract.py</code></li>
+<li>- validation evidence for schema, protected-content boundary, and professional-boundary wording</li>
+</ul></blockquote>
+<h3 id="clm-015-d-41-r5-t3-pdu-017-o7-e5-requirement-2026-07-12">CLM-015 — D-41 R5 T3 PDU-017 O7/E5 Requirement (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-017-o7-e5-requirement-2026-07-12">D-41 R5 T3 PDU-017 O7/E5 Requirement (2026-07-12)</h5>
+<p>The builder SHALL emit blocking privacy diagnostics when redaction is not affirmed or embedded private/protected/commercial payload is reported. Metadata shape alone is not enforcement.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves mapping identity, source and target references, mapping and behavior statuses, unit and dimensional metadata, assumptions, warnings, diagnostics, provenance, privacy and redaction boundaries, explicit no-silent-default behavior, target-specific mapping and taxonomy gates, package-container TBDs, the retained dependency-enum conflict, and professional non-authority without implying target equivalence or validation.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-016-procedure-del-15-02-target-mapping-and-unsupported-behavior-contract">CLM-016 — Procedure: DEL-15-02 Target mapping and unsupported-behavior contract</h3>
+<blockquote><h4 id="procedure-del-15-02-target-mapping-and-unsupported-behavior-contract">Procedure: DEL-15-02 Target mapping and unsupported-behavior contract</h4></blockquote>
+<h3 id="clm-017-d-41-r5-t7-pdu-055-current-declaration">CLM-017 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-02-DECL-004</code>.</p></blockquote>
+<h3 id="clm-018-purpose">CLM-018 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Define and check the target mapping and unsupported-behavior contract for handoff exports without inventing target-specific behavior, copying private/protected data, or implying professional approval.</p></blockquote>
+<h3 id="clm-019-prerequisites">CLM-019 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Source</td><td>Status</td></tr>
+<tr><td>Current deliverable context and accepted decomposition basis.</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>Available</td></tr>
+<tr><td>Approved DAG-002 mirror/evidence surface.</td><td><code>Dependencies.csv</code>; <code>_DEPENDENCIES.md</code></td><td>Available; preserve rows unchanged in this run.</td></tr>
+<tr><td>Canonical handoff package schema and manifest predecessor.</td><td><code>Dependencies.csv</code> DAG-002-E0805</td><td>ACTIVE mirror row</td></tr>
+<tr><td>Adapter framework predecessor.</td><td><code>Dependencies.csv</code> DAG-002-E0806</td><td>ACTIVE mirror row</td></tr>
+<tr><td>Local FEA handoff data contract predecessor.</td><td><code>Dependencies.csv</code> DAG-002-E0807</td><td>ACTIVE mirror row</td></tr>
+<tr><td>Private data redaction and export controls predecessor.</td><td><code>Dependencies.csv</code> DAG-002-E0808</td><td>ACTIVE mirror row</td></tr>
+<tr><td>Physical-to-analytical transformation predecessor.</td><td><code>Dependencies.csv</code> DAG-002-E0809</td><td>ACTIVE mirror row</td></tr>
+<tr><td>Comparison mapping, tolerance, and export contracts predecessor.</td><td><code>Dependencies.csv</code> DAG-002-E0810</td><td>ACTIVE mirror row</td></tr>
+<tr><td>Concrete mappings, target field coverage, target-specific taxonomy extensions, canonical package container, and target-specific implementation.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-015; DEL-17-01; DEL-17-02</td><td>Gated</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-020-steps">CLM-020 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Confirm the deliverable identity:</p>
+<ul>
+<li>- Use DEL-15-02, PKG-15, API_CONTRACT, SOW-074, and OBJ-017 from <code>_CONTEXT.md</code>.</li>
+</ul>
+<p>2. Confirm governing boundaries:</p>
+<ul>
+<li>- Apply unit awareness, provenance, no silent defaults, professional-boundary, protected-content, and private-data constraints from <code>docs/CONTRACT.md</code>, <code>docs/DIRECTIVE.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, and <code>docs/IP_AND_DATA_BOUNDARY.md</code>.</li>
+</ul>
+<p>3. Define the contract scope:</p>
+<ul>
+<li>- Include target mapping metadata.</li>
+<li>- Include unsupported-target flags.</li>
+<li>- Include approximate behavior disclosure as an explicit ASSUMPTION from the decomposition wording.</li>
+<li>- Use <code>schemas/target_mapping.schema.json</code> and <code>core/handoff/target_mapping/contract.py</code> for provider-neutral schema path, property names, and taxonomy values.</li>
+<li>- Keep exact commercial target names and target-specific taxonomy/strategy values as TBD unless accepted source material resolves them.</li>
+</ul>
+<p>4. Map upstream handoff context:</p>
+<ul>
+<li>- Treat the canonical handoff package schema and manifest as a required predecessor.</li>
+<li>- Preserve model hash, units manifest, entity IDs, library/rule references, unresolved assumptions, and warnings as handoff context where the final contract supports them.</li>
+</ul>
+<p>5. Define unsupported behavior handling:</p>
+<ul>
+<li>- Record unsupported or approximate behavior as explicit flags, findings, diagnostics, or TBD slots.</li>
+<li>- Do not coerce unsupported behavior into defaults.</li>
+<li>- Do not claim target-tool equivalence, validation, certification, approval, or code compliance.</li>
+</ul>
+<p>6. Define privacy and protected-content handling:</p>
+<ul>
+<li>- Prefer stable references, checksums, source notes, review state, and redaction status.</li>
+<li>- Exclude private project data, protected standards text, proprietary formulas, proprietary values, and private rule-pack payloads from public artifacts by default.</li>
+</ul>
+<p>7. Check dependencies:</p>
+<ul>
+<li>- Read the deliverable-local <code>Dependencies.csv</code> as an approved DAG-006 mirror/evidence surface.</li>
+<li>- Preserve all approved DAG-006 rows as ACTIVE for this workflow.</li>
+<li>- Record any conflict with dependency-extract normalization rules rather than rewriting the mirror.</li>
+</ul>
+<p>8. Record unresolved decisions:</p>
+<ul>
+<li>- Initial export and target surfaces: named by OI-015.</li>
+<li>- Canonical package container: TBD.</li>
+<li>- Concrete mappings and target field coverage: gated by DEL-17-01 and DEL-17-02.</li>
+<li>- Target-specific implementation strategy: gated by DEL-17-01 and DEL-17-02.</li>
+<li>- Target-specific unsupported behavior taxonomy extensions: gated by DEL-17-01 and DEL-17-02.</li>
+<li>- Provider-neutral schema path and property names: materialized in <code>schemas/target_mapping.schema.json</code>.</li>
+</ul></blockquote>
+<h3 id="clm-021-verification">CLM-021 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Four-document consistency</td><td>Datasheet, Specification, Guidance, and Procedure use the same deliverable ID, package ID, scope item, objective, and TBD boundaries.</td></tr>
+<tr><td>Source grounding</td><td>Non-trivial claims cite <code>_CONTEXT.md</code>, decomposition/registers, approved dependency mirror, or listed governing docs.</td></tr>
+<tr><td>Unsupported behavior</td><td>Unsupported and approximate behavior are explicit; no silent defaults are introduced.</td></tr>
+<tr><td>Privacy/IP boundary</td><td>Public artifacts do not copy private/protected payloads.</td></tr>
+<tr><td>Professional boundary</td><td>No field or procedure creates software-generated approval, certification, sealing, authentication, or code-compliance status.</td></tr>
+<tr><td>Dependency mirror preservation</td><td>All existing approved DAG-006 rows in <code>Dependencies.csv</code> remain ACTIVE and unmodified.</td></tr>
+<tr><td>Schema validation</td><td><code>python3 tests/test_target_mapping_contract.py</code> validates generated normal and negative contracts against <code>schemas/target_mapping.schema.json</code>; <code>python3 tools/validation/validate_dependencies_schema.py &lt;deliverable&gt;/Dependencies.csv</code> passes if <code>Dependencies.csv</code> exists.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-022-records">CLM-022 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- <code>Datasheet.md</code></li>
+<li>- <code>Specification.md</code></li>
+<li>- <code>Guidance.md</code></li>
+<li>- <code>Procedure.md</code></li>
+<li>- <code>_SEMANTIC.md</code></li>
+<li>- <code>_SEMANTIC_LENSING.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>_DEPENDENCIES.md</code></li>
+<li>- <code>schemas/target_mapping.schema.json</code></li>
+<li>- <code>core/handoff/target_mapping/contract.py</code></li>
+<li>- <code>tests/test_target_mapping_contract.py</code></li>
+<li>- final workflow report from this setup run</li>
+</ul></blockquote>
+<h3 id="clm-023-d-41-r5-t3-pdu-017-check">CLM-023 — D-41 R5 T3 PDU-017 Check</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-017-check">D-41 R5 T3 PDU-017 Check</h5>
+<p>Exercise the builder with unsafe privacy flags and require blocking <code>PRIVACY_WARNING</code> diagnostics; never silently normalize unsafe input into a safe claim.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, target-mapping and unsupported/approximate behavior coverage, unit/provenance and redaction controls, blocking privacy diagnostics, no-silent-default behavior, retained OI-015 and dependency conflict boundaries, upstream interface visibility, and prohibited approval, certification, compliance, or equivalence claims.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-024-guidance-del-15-02-target-mapping-and-unsupported-behavior-contract">CLM-024 — Guidance: DEL-15-02 Target mapping and unsupported-behavior contract</h3>
+<blockquote><h4 id="guidance-del-15-02-target-mapping-and-unsupported-behavior-contract">Guidance: DEL-15-02 Target mapping and unsupported-behavior contract</h4></blockquote>
+<h3 id="clm-025-d-41-r5-t7-pdu-055-current-declaration">CLM-025 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-15-02-DECL-003</code>.</p></blockquote>
+<h3 id="clm-026-purpose">CLM-026 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This deliverable prevents silent loss of critical handoff assumptions or unsupported target behavior. It supplies the contract surface for explaining how internal OpenPipeStress entities map into a handoff target and where a target cannot carry the source semantics exactly.</p></blockquote>
+<h3 id="clm-027-principles">CLM-027 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Explicit non-support</td><td>Unsupported target behavior must be visible as a finding or flag, not hidden by defaults.</td><td><code>_CONTEXT.md</code> Context Envelope; <code>docs/CONTRACT.md</code> OPS-K-DATA-2</td></tr>
+<tr><td>Unit safety</td><td>Unit-bearing values and exports must preserve unit and dimensional metadata or diagnostics.</td><td><code>docs/CONTRACT.md</code> OPS-K-UNIT-1; <code>docs/DIRECTIVE.md</code> Principles</td></tr>
+<tr><td>Provenance preservation</td><td>Mapped entities, rule/library references, and reliance-affecting metadata should carry source/provenance references where supported by upstream contracts.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-2; <code>docs/TYPES.md</code> Provenance</td></tr>
+<tr><td>Private-data restraint</td><td>Public handoff artifacts should expose references, checksums, review status, and allowed metadata without copying private or protected payloads.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code> Private user data; <code>docs/SPEC.md</code> result export boundary</td></tr>
+<tr><td>Professional-boundary restraint</td><td>Handoff support is not software certification, sealing, approval, authentication, or code-compliance determination.</td><td><code>docs/CONTRACT.md</code> OPS-K-AUTH-1; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> DEC-015</td></tr>
+<tr><td>Deferred target specificity</td><td>OI-015 names initial export and target surfaces. Concrete mappings, target field coverage, target-specific taxonomy extensions, and target-specific implementation remain gated by DEL-17-01 and DEL-17-02.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-015</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-considerations">CLM-028 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- Treat target mapping as traceability and disclosure metadata. It does not prove that the target tool reproduced the source model correctly.</li>
+<li>- Treat unsupported and approximate behavior flags as review evidence. They should help a human identify gaps, not resolve those gaps automatically.</li>
+<li>- Favor references to rule packs, libraries, manifests, diagnostics, and hashes over copying private formulas, protected standards text, proprietary values, or private rule-pack payloads.</li>
+<li>- Use <code>schemas/target_mapping.schema.json</code> as the provider-neutral schema contract and <code>core/handoff/target_mapping/contract.py</code> as the current generated-output implementation surface.</li>
+<li>- Use the materialized provider-neutral behavior fields and statuses for current handoff review. Target-specific mappings, taxonomy extensions, and field coverage remain gated by DEL-17-01 and DEL-17-02.</li>
+</ul></blockquote>
+<h3 id="clm-029-trade-offs">CLM-029 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Conservative position</td></tr>
+<tr><td>Generic target contract vs target-specific convenience</td><td>Prefer the current provider-neutral schema-first metadata until accepted target-specific export/profile work is in scope.</td></tr>
+<tr><td>Rich mapping details vs private-data exposure</td><td>Preserve traceability and review evidence while excluding private/protected payloads by default.</td></tr>
+<tr><td>Approximation support vs false confidence</td><td>Allow approximate behavior disclosure, but do not let it imply equivalence, validation, approval, or compliance.</td></tr>
+<tr><td>Automated workflow vs human authority</td><td>The software may package and disclose handoff evidence; professional reliance remains external and human-owned.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-030-examples">CLM-030 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<table><tbody>
+<tr><td>Example topic</td><td>Status</td></tr>
+<tr><td>Provider-neutral target mapping record</td><td>Materialized in <code>schemas/target_mapping.schema.json</code> and validated by <code>tests/test_target_mapping_contract.py</code>.</td></tr>
+<tr><td>Unsupported behavior taxonomy values</td><td>Provider-neutral behavior statuses and flag records are materialized; target-specific taxonomy extensions remain gated by DEL-17-01 and DEL-17-02.</td></tr>
+<tr><td>Approximate behavior flag semantics</td><td>Materialized as explicit provider-neutral approximate behavior disclosure; target-specific interpretation remains gated.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-031-conflict-table-for-human-ruling">CLM-031 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict (short statement)</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling (TBD)</td></tr>
+<tr><td>CT-001</td><td>Dependency-extract v3.1 enum guidance would normalize dependency rows, but the project task rule requires preserving approved DAG-006 mirror rows as ACTIVE without reclassification.</td><td><code>skills/dependency-extract/SKILL.md</code> Function 3 and canonical enums</td><td>User task instruction; <code>_DEPENDENCIES.md</code> Authority Boundary; <code>Dependencies.csv</code> approved DAG-006 rows</td><td><code>Dependencies.csv</code>; <code>_DEPENDENCIES.md</code>; final workflow report</td><td>Preserve the approved mirror unchanged for this run.</td><td>TBD</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-032-references">CLM-032 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code></li>
+<li>- <code>_REFERENCES.md</code></li>
+<li>- <code>Dependencies.csv</code></li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></li>
+<li>- <code>docs/CONTRACT.md</code></li>
+<li>- <code>docs/DIRECTIVE.md</code></li>
+<li>- <code>docs/SPEC.md</code></li>
+<li>- <code>docs/TYPES.md</code></li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code></li>
+</ul></blockquote>
+<h3 id="clm-033-d-41-r5-t3-pdu-017-boundary">CLM-033 — D-41 R5 T3 PDU-017 Boundary</h3>
+<blockquote><h5 id="d-41-r5-t3-pdu-017-boundary">D-41 R5 T3 PDU-017 Boundary</h5>
+<p>Preserving privacy metadata is insufficient when it says unsafe payload is embedded. The selected builder seam blocks that state without claiming downstream security sufficiency.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-074 OBJ-017</td><td>CLM-009</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-14-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 216,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "fc9c249c841914c8c8bca7358ec8d90ad69d50877db5f989d3c79bb40d3805fa"
+      },
+      "text": "The contract preserves immutable-state context, stable-ID-first matching, explicit rather than heuristic mappings, deterministic output, metadata and diagnostic preservation, structured unit/dimension blocking behavior without bare numeric deltas, invented/public-safe fixtures, the retained dependency-enum conflict and review residuals, and the separation from run comparison, export policy, external validation, or professional approval.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-14-03-VER-001",
+          "source_line": 313,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the contract and review source parity, stable-ID and mapping behavior, all four classifications, deterministic repeatability, state metadata preservation, missing/incompatible/unnormalized unit diagnostics, retained conflict and TBDs, fixture governance, deliverable boundaries, and prohibited authority claims."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-14-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-14",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "fc9c249c841914c8c8bca7358ec8d90ad69d50877db5f989d3c79bb40d3805fa"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,580 @@
+{
+  "candidate_hashes": {
+    "evidence": "3008b54ea3c4fd94ae09f07c2a437fe361dbd39a488fd08dc3bb4a758bf607fe",
+    "production": "0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032",
+    "report": "c113dfca8feeb4e71e43e3dd10f87dccfa48bb3832ff2a4e0c77ad50d8555115"
+  },
+  "checklist_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/derive_review_checklist.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/checklist-1.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.035621,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "4b25a7a2460839ff2aea0055d02c86518092ebd7d114c327f2f69e3711449efd"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/derive_review_checklist.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/checklist-2.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.035934,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "4b25a7a2460839ff2aea0055d02c86518092ebd7d114c327f2f69e3711449efd"
+    }
+  ],
+  "conversions": [
+    {
+      "matches_candidate": true,
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+          "--deliverable",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/conversion-1",
+          "--deliverable-id",
+          "DEL-17-04",
+          "--package-id",
+          "PKG-17",
+          "--decomposition-basis",
+          "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@e8f59a63372f38d9e788ac39b39995558f5aba73",
+          "--project-scope-ref",
+          "SOW-030",
+          "--project-scope-ref",
+          "SOW-074",
+          "--project-scope-ref",
+          "SOW-075",
+          "--package-objective-ref",
+          "OBJ-009",
+          "--package-objective-ref",
+          "OBJ-017",
+          "--package-objective-ref",
+          "OBJ-018",
+          "--output-description",
+          "A versioned CAEPIPE MBF export-profile and deterministic writer contract with explicit supported, omitted, approximated, delegated, sidecar-mapped, unsupported, and TBD behavior is produced.",
+          "--acceptance-criterion",
+          "The contract preserves DEL-17-01 source authority and DEL-17-02 common package/profile/ID-map/loss contracts, a selected-profile gate, deterministic text generation, stable canonical-ID mapping, units and coordinates, pass-through target options without local code logic, invented/rights-cleared fixtures, diagnostics, loss reporting, and unresolved MBF record, field, version, line-ending, encoding, and external-validation questions without claiming broad compatibility or acceptance.",
+          "--verification-method",
+          "Validate the contract and review source parity, source/profile gates, deterministic writer and byte-output requirements, complete behavior classification and loss reporting, stable-ID carrier/sidecar treatment, unit/coordinate and encoding boundaries, fixture provenance, every retained MBF TBD, and absence of bundled/proprietary material, local code-checking logic, compatibility overclaim, or professional authority.",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.035792,
+        "stderr": "",
+        "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/conversion-1/ScopeOfWork.md\n"
+      },
+      "sha256": "3008b54ea3c4fd94ae09f07c2a437fe361dbd39a488fd08dc3bb4a758bf607fe"
+    },
+    {
+      "matches_candidate": true,
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/convert_four_documents_to_scope_of_work.py",
+          "--deliverable",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/conversion-2",
+          "--deliverable-id",
+          "DEL-17-04",
+          "--package-id",
+          "PKG-17",
+          "--decomposition-basis",
+          "projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md@e8f59a63372f38d9e788ac39b39995558f5aba73",
+          "--project-scope-ref",
+          "SOW-030",
+          "--project-scope-ref",
+          "SOW-074",
+          "--project-scope-ref",
+          "SOW-075",
+          "--package-objective-ref",
+          "OBJ-009",
+          "--package-objective-ref",
+          "OBJ-017",
+          "--package-objective-ref",
+          "OBJ-018",
+          "--output-description",
+          "A versioned CAEPIPE MBF export-profile and deterministic writer contract with explicit supported, omitted, approximated, delegated, sidecar-mapped, unsupported, and TBD behavior is produced.",
+          "--acceptance-criterion",
+          "The contract preserves DEL-17-01 source authority and DEL-17-02 common package/profile/ID-map/loss contracts, a selected-profile gate, deterministic text generation, stable canonical-ID mapping, units and coordinates, pass-through target options without local code logic, invented/rights-cleared fixtures, diagnostics, loss reporting, and unresolved MBF record, field, version, line-ending, encoding, and external-validation questions without claiming broad compatibility or acceptance.",
+          "--verification-method",
+          "Validate the contract and review source parity, source/profile gates, deterministic writer and byte-output requirements, complete behavior classification and loss reporting, stable-ID carrier/sidecar treatment, unit/coordinate and encoding boundaries, fixture provenance, every retained MBF TBD, and absence of bundled/proprietary material, local code-checking logic, compatibility overclaim, or professional authority.",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.03585,
+        "stderr": "",
+        "stdout": "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/conversion-2/ScopeOfWork.md\n"
+      },
+      "sha256": "3008b54ea3c4fd94ae09f07c2a437fe361dbd39a488fd08dc3bb4a758bf607fe"
+    }
+  ],
+  "deliverable_id": "DEL-17-04",
+  "finalizations": [
+    {
+      "production_matches": true,
+      "production_sha256": "0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032",
+      "report_matches": true,
+      "report_sha256": "c113dfca8feeb4e71e43e3dd10f87dccfa48bb3832ff2a4e0c77ad50d8555115",
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/finalize_scope_of_work.py",
+          "--evidence-candidate",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/evidence/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/final-1.md",
+          "--report",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/final-1.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.036639,
+        "stderr": "",
+        "stdout": "PASS blocks=23 output=/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/final-1.md\n"
+      }
+    },
+    {
+      "production_matches": true,
+      "production_sha256": "0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032",
+      "report_matches": true,
+      "report_sha256": "c113dfca8feeb4e71e43e3dd10f87dccfa48bb3832ff2a4e0c77ad50d8555115",
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/finalize_scope_of_work.py",
+          "--evidence-candidate",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/evidence/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/final-2.md",
+          "--report",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/final-2.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.036316,
+        "stderr": "",
+        "stdout": "PASS blocks=23 output=/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/final-2.md\n"
+      }
+    }
+  ],
+  "live_hashes_match": true,
+  "live_path": "projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer",
+  "live_unchanged": true,
+  "map_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/map_scope_of_work_claims.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer",
+          "--output-csv",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/claim-map-1.csv"
+        ],
+        "returncode": 0,
+        "seconds": 0.037632,
+        "stderr": "",
+        "stdout": "PASS rows=23 output=/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/claim-map-1.csv\n"
+      },
+      "sha256": "5f3d9255dad7b130fb853bc508856b89be88b0999b6cef5ef85f6e3d02de3e98"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/map_scope_of_work_claims.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer",
+          "--output-csv",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/claim-map-2.csv"
+        ],
+        "returncode": 0,
+        "seconds": 0.03732,
+        "stderr": "",
+        "stdout": "PASS rows=23 output=/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/claim-map-2.csv\n"
+      },
+      "sha256": "5f3d9255dad7b130fb853bc508856b89be88b0999b6cef5ef85f6e3d02de3e98"
+    }
+  ],
+  "mapping_rows": 23,
+  "parity": {
+    "checks": [
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-001"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 12,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-002"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 18,
+        "line_start": 13,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-003"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 28,
+        "line_start": 19,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-004"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 43,
+        "line_start": 29,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-005"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 51,
+        "line_start": 44,
+        "pass": true,
+        "source_file": "Datasheet.md",
+        "target_id": "CLM-006"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-007"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 8,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-008"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 24,
+        "line_start": 9,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-009"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 35,
+        "line_start": 25,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-010"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 50,
+        "line_start": 36,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-011"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 53,
+        "line_start": 51,
+        "pass": true,
+        "source_file": "Specification.md",
+        "target_id": "CLM-012"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-013"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 13,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-014"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 27,
+        "line_start": 14,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-015"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 41,
+        "line_start": 28,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-016"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 59,
+        "line_start": 42,
+        "pass": true,
+        "source_file": "Procedure.md",
+        "target_id": "CLM-017"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 2,
+        "line_start": 1,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-018"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 12,
+        "line_start": 3,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-019"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 21,
+        "line_start": 13,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-020"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 29,
+        "line_start": 22,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-021"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 38,
+        "line_start": 30,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-022"
+      },
+      {
+        "disposition": "PRESERVED",
+        "issues": [],
+        "line_end": 50,
+        "line_start": 39,
+        "pass": true,
+        "source_file": "Guidance.md",
+        "target_id": "CLM-023"
+      }
+    ],
+    "evidence_candidate": "ScopeOfWork.md",
+    "evidence_candidate_sha256": "3008b54ea3c4fd94ae09f07c2a437fe361dbd39a488fd08dc3bb4a758bf607fe",
+    "issues": [],
+    "pass": true,
+    "production_scope_of_work": "ScopeOfWork.md",
+    "production_scope_of_work_sha256": "0cdfe6e4016675842fff79c63720d3a5fab83bf1157f2b27b62607ae0d14f032",
+    "schema": "chirality-sow-parity/v2",
+    "source_files": {
+      "Datasheet.md": "62ca5a1b91d89d379c9ce79f75f40d7622cfb3b5708c9247315781f51a439f0d",
+      "Guidance.md": "e4284fcebf682befd5b02bff7b21a77940b6bbe9373ff778ee16e58eae1090db",
+      "Procedure.md": "95a28c611da5c39a813b39cb7d7406a2fa52c29e87aeb6d6b941100de674f1f9",
+      "Specification.md": "71247b6205b3a4532a89f2ea39c2f1258031ff63225efe8966b34d1f0d71e2b7"
+    }
+  },
+  "parity_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/report_scope_of_work_parity.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer",
+          "--output-json",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/parity-1.json",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.039065,
+        "stderr": "",
+        "stdout": "PASS checks=23\n"
+      },
+      "sha256": "f231e439a84f528851fe5d4988c44ef3203b6d2065a6de3c7c4785c0c1cd95cc"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/report_scope_of_work_parity.py",
+          "--scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/evidence/ScopeOfWork.md",
+          "--production-scope-of-work",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--source-dir",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/projects/chirality-piping/execution/PKG-17_Export Format Interoperability/1_Working/DEL-17-04_CAEPIPE MBF export profile and deterministic writer",
+          "--output-json",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/parity-2.json",
+          "--isolated-migration",
+          "--migration-authority",
+          "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176"
+        ],
+        "returncode": 0,
+        "seconds": 0.039304,
+        "stderr": "",
+        "stdout": "PASS checks=23\n"
+      },
+      "sha256": "f231e439a84f528851fe5d4988c44ef3203b6d2065a6de3c7c4785c0c1cd95cc"
+    }
+  ],
+  "render_runs": [
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/render_scope_of_work.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/render-1.html"
+        ],
+        "returncode": 0,
+        "seconds": 0.036856,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "df209f4fa0066b51ae9b90039329d3235ac21449809a6783a8f3dafb32913fa7"
+    },
+    {
+      "run": {
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/render_scope_of_work.py",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md",
+          "--output",
+          "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/members/DEL-17-04/render-2.html"
+        ],
+        "returncode": 0,
+        "seconds": 0.037424,
+        "stderr": "",
+        "stdout": ""
+      },
+      "sha256": "df209f4fa0066b51ae9b90039329d3235ac21449809a6783a8f3dafb32913fa7"
+    }
+  ],
+  "semantic_review": {
+    "ac": "The contract preserves DEL-17-01 source authority and DEL-17-02 common package/profile/ID-map/loss contracts, a selected-profile gate, deterministic text generation, stable canonical-ID mapping, units and coordinates, pass-through target options without local code logic, invented/rights-cleared fixtures, diagnostics, loss reporting, and unresolved MBF record, field, version, line-ending, encoding, and external-validation questions without claiming broad compatibility or acceptance.",
+    "no_conflict": true,
+    "no_migration_metadata_in_production": true,
+    "objective_refs": [
+      "OBJ-009",
+      "OBJ-017",
+      "OBJ-018"
+    ],
+    "out": "A versioned CAEPIPE MBF export-profile and deterministic writer contract with explicit supported, omitted, approximated, delegated, sidecar-mapped, unsupported, and TBD behavior is produced.",
+    "scope_refs": [
+      "SOW-030",
+      "SOW-074",
+      "SOW-075"
+    ],
+    "ver": "Validate the contract and review source parity, source/profile gates, deterministic writer and byte-output requirements, complete behavior classification and loss reporting, stable-ID carrier/sidecar treatment, unit/coordinate and encoding boundaries, fixture provenance, every retained MBF TBD, and absence of bundled/proprietary material, local code-checking logic, compatibility overclaim, or professional authority."
+  },
+  "source_lines": 213,
+  "validations": [
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/validate_scope_of_work.py",
+        "--json",
+        "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md"
+      ],
+      "returncode": 0,
+      "seconds": 0.033555,
+      "stderr": "",
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/candidates/W_P4/PIP-PKG17/DEL-17-04/production/ScopeOfWork.md\",\n  \"valid\": true\n}\n"
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "/Users/ryan/ai-env/projects/chirality-sow-p4/tools/scope_of_work/validate_scope_of_work.py",
+        "--isolated-migration",
+        "--migration-authority",
+        "D-GOV-16@7584718aa32b112e415331736d1a8e68c12ac176",
+        "--json",
+        "/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/dual"
+      ],
+      "returncode": 0,
+      "seconds": 0.033985,
+      "stderr": "",
+      "stdout": "{\n  \"format\": \"MIGRATION_DUAL\",\n  \"issues\": [],\n  \"target\": \"/Users/ryan/ai-env/projects/chirality-sow-p4/execution/_Coordination/AgentRuns/SOW-STAGE2-EXEC-20260712-01/instances/WORKING-P4-PKG17/children/VERIFY-B1/work/DEL-17-04/dual\",\n  \"valid\": true\n}\n"
+    }
+  ],
+  "verdict": "PASS_UNCHANGED"
+}

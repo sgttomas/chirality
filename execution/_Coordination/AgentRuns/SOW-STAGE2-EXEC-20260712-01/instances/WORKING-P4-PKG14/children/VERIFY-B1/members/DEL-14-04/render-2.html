@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="76937ef2f68eea7ace73dc15de15eb73428266748409b5fd07957cbf2ebd7266">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-14-04</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>76937ef2f68eea7ace73dc15de15eb73428266748409b5fd07957cbf2ebd7266</code>.</p>
+<h1 id="scope-of-work-del-14-04">Scope of Work — DEL-14-04</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-14-04</code> in service of project scope [SOW-073, SOW-072] and package objectives [OBJ-016].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — A deterministic analysis-run comparison contract for exact and manual mappings, unit-aware result deltas, diagnostics, settings, and tolerance-driven classification is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-14-04-analysis-run-comparison-engine">CLM-001 — Datasheet: DEL-14-04 Analysis-run comparison engine</h3>
+<blockquote><h4 id="datasheet-del-14-04-analysis-run-comparison-engine">Datasheet: DEL-14-04 Analysis-run comparison engine</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-04-DECL-002</code>.</p>
+<p><strong>Generated:</strong> 2026-05-03</p>
+<p><strong>Document Role:</strong> Descriptive</p>
+<p><strong>Source Basis:</strong> <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>Dependencies.csv</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/IP_AND_DATA_BOUNDARY.md</code></p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-14-04</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Analysis-run comparison engine</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-14</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package name</td><td>Model States, Analysis Runs, and Comparison</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Type</td><td>BACKEND_FEATURE_SLICE</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code></td></tr>
+<tr><td>Scope items</td><td>SOW-073, SOW-072</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td></tr>
+<tr><td>Objective support</td><td>OBJ-016</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td></tr>
+<tr><td>Anticipated artifacts</td><td>run comparison engine; result delta tests</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Recorded Value</td></tr>
+<tr><td>Primary function</td><td>Implement unit-normalized result deltas for mapped entities, diagnostics, and settings.</td></tr>
+<tr><td>Comparison subject</td><td>Analysis runs and/or model states, as bounded by SOW-073; this deliverable focuses on analysis-run comparison.</td></tr>
+<tr><td>Required comparison basis</td><td>Stable IDs, manual mappings where required, unit-normalized result deltas, and tolerance profiles.</td></tr>
+<tr><td>Analysis-run basis</td><td>Exact model states, solver versions, settings, units, load cases, diagnostics, results, rule-pack references, library references, and result hashes.</td></tr>
+<tr><td>Entity/result coverage</td><td>Mapped nodes, elements, supports, terminals, stress/result locations, diagnostics, and settings.</td></tr>
+<tr><td>Role boundary</td><td>Diagnostic/audit functionality only; not automatic external validation, professional approval, certification, sealing, authentication, or code-compliance determination.</td></tr>
+<tr><td>Architecture basis</td><td>Rust core/application services; schema-first command/query/job result envelopes; JSON Schema 2020-12; JCS-compatible hash basis for JSON payloads when hashed; Cargo/Vitest/Playwright/validation/protected-content gates as applicable.</td></tr>
+<tr><td>Open implementation decisions</td><td>Exact dependency versions, solver numerical library, public API transport, import/export format list, CI provider/coverage thresholds, physical project package/container, comparison tolerance defaults, and mapping workflows remain <code>TBD</code> unless separately approved.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<ul>
+<li>- The comparison engine must remain source-grounded in PKG-14 scope: immutable model states, analysis-run records, deterministic state/run comparison, mappings, tolerances, and comparison exports.</li>
+<li>- <code>ASSUMPTION</code>: This deliverable consumes analysis-run records, mapping/tolerance contracts, result-export envelopes, and unit-system contracts as upstream evidence surfaces because <code>Dependencies.csv</code> lists those rows as ACTIVE DAG-002 mirror entries.</li>
+<li>- The local dependency mirror records eleven ACTIVE rows and identifies the source of truth as approved DAG-006 coordination. These rows are evidence surface only and are not reclassified by this datasheet.</li>
+<li>- Missing or ambiguous units on unit-bearing physical values are diagnostics, not silent defaults, per <code>docs/SPEC.md</code> unit-contract text.</li>
+<li>- Result export envelopes must preserve units, diagnostics, provenance, hashes/status boundaries, and professional-boundary notices per <code>docs/SPEC.md</code> and <code>docs/TYPES.md</code>.</li>
+<li>- Comparison tolerance defaults and mapping workflows are explicitly <code>TBD</code> in <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> open issue OI-014.</li>
+</ul></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<table><tbody>
+<tr><td>Construct</td><td>Description</td><td>Status</td></tr>
+<tr><td>Input run references</td><td>References to two analysis runs and their exact model-state/run basis.</td><td>Required by SOW-072/SOW-073; concrete schema field names <code>TBD</code>.</td></tr>
+<tr><td>Mapping source</td><td>Automatic mappings for unique identical result IDs with matching family/object/basis/dimension; explicit caller-supplied manual mappings for all other comparable relationships.</td><td>Implemented as a bounded DEL-14-05 <code>MappingRecord</code> consumer/producer projection; no heuristic workflow selected.</td></tr>
+<tr><td>Unit normalization</td><td>Same-dimension comparison of result values using accepted unit metadata and conversion contracts.</td><td>Required by SOW-073 and unit contract; accepted unit catalog/tolerance details <code>TBD</code>.</td></tr>
+<tr><td>Delta categories</td><td>Result, diagnostic, and settings deltas for mapped entities/locations.</td><td>Required by DEL-14-04 description; exact enum/API shape <code>TBD</code>.</td></tr>
+<tr><td>Tolerance profiles</td><td>Profile-driven thresholding for comparison outcomes.</td><td>Required by SOW-073; defaults/workflows <code>TBD</code> under OI-014.</td></tr>
+<tr><td>Deterministic output</td><td>Stable ordering and reproducible results for the same inputs.</td><td>Required by deterministic comparison scope; concrete hash/output fixture basis <code>TBD</code>.</td></tr>
+<tr><td>Tests</td><td>Result delta tests.</td><td>Anticipated artifact; acceptance fixture set <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<ul>
+<li>- <code>_CONTEXT.md</code> - deliverable identity, scope, architecture-basis injection, and context budget.</li>
+<li>- <code>_REFERENCES.md</code> - governing reference list and accessible public context.</li>
+<li>- <code>Dependencies.csv</code> - approved DAG-006 mirror/evidence surface for upstream dependency rows.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> - revision 0.7 package, deliverable, scope, objective, and open-issue basis.</li>
+<li>- <code>docs/CONTRACT.md</code> - invariant catalog, including no invention, unit-awareness, professional boundary, IP/privacy, and agent constraints.</li>
+<li>- <code>docs/SPEC.md</code> - unit contract, analysis boundary, persistence/hash, result export, runner output, and validation mechanics.</li>
+<li>- <code>docs/TYPES.md</code> - stable reference, diagnostic, checksum, result, result-export, and analysis-boundary vocabulary.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> - protected-content and private-data boundary.</li>
+</ul></blockquote>
+<h3 id="clm-008-d-41-r5-t2b-pdu-011-pdu-047-evidence-state">CLM-008 — D-41 R5 T2B PDU-011/PDU-047 Evidence State</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-011-pdu-047-evidence-state">D-41 R5 T2B PDU-011/PDU-047 Evidence State</h5>
+<table><tbody>
+<tr><td>Gap</td><td>Current boundary</td><td>Disposition</td></tr>
+<tr><td>Comparison output schema</td><td>No accepted schema for <code>AnalysisRunComparison.to_dict()</code>; mapping/tolerance schemas are input contracts.</td><td>Held; no schema or conformance test invented.</td></tr>
+<tr><td>Comparison mechanics validation</td><td>Explicit caller-supplied conversions and tolerance rules are verified for supported result families.</td><td>Independent engineering-validation/suitability basis remains held.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-009-d-41-r5-t2c-pdu-030-evidence-state">CLM-009 — D-41 R5 T2C PDU-030 Evidence State</h3>
+<blockquote><h5 id="d-41-r5-t2c-pdu-030-evidence-state">D-41 R5 T2C PDU-030 Evidence State</h5>
+<table><tbody>
+<tr><td>Mapping path</td><td>Current boundary</td><td>Evidence</td></tr>
+<tr><td>Automatic stable ID</td><td>Unique identical <code>result_id</code> plus matching family, object ref, basis ref, and dimension only.</td><td>Produced mapping validates against the DEL-14-05 <code>MappingRecord</code> definition and round trips into a delta with preserved mapping/left/right IDs.</td></tr>
+<tr><td>Manual</td><td>Required for different, duplicate, ambiguous, or semantically inconsistent IDs.</td><td>Caller-supplied manual mapping round trips into a delta with both result IDs preserved.</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-010-specification-del-14-04-analysis-run-comparison-engine">CLM-010 — Specification: DEL-14-04 Analysis-run comparison engine</h3>
+<blockquote><h4 id="specification-del-14-04-analysis-run-comparison-engine">Specification: DEL-14-04 Analysis-run comparison engine</h4></blockquote>
+<h3 id="clm-011-d-41-r5-t7-pdu-055-current-declaration">CLM-011 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-04-DECL-001</code>.</p>
+<p><strong>Generated:</strong> 2026-05-03</p>
+<p><strong>Document Role:</strong> Normative draft</p>
+<p><strong>Source Basis:</strong> <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>Dependencies.csv</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/IP_AND_DATA_BOUNDARY.md</code></p></blockquote>
+<h3 id="clm-012-scope">CLM-012 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-14-04 covers the backend feature slice for an analysis-run comparison engine. It compares two analysis runs, and where applicable their bound model states, using stable IDs, manual mappings where required, unit-normalized result deltas, diagnostics, settings, and tolerance profiles.</p>
+<p>DEL-14-04 excludes comprehensive commercial-prover result ingestion, external validation, professional approval, certification, sealing, authentication, automatic code-compliance determination, and protected standards-data content.</p></blockquote>
+<h3 id="clm-013-requirements">CLM-013 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ReqID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>R-14-04-001</td><td>The engine shall compare analysis runs deterministically using stable IDs and manual mappings where required. Automatic matching is bounded to unique identical result IDs whose family, object ref, basis ref, and dimension also match; all different, duplicate, ambiguous, or semantically inconsistent IDs require explicit caller-supplied mapping.</td><td>SOW-073 in <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>; DEL-14-05 mapping contract; PDU-030</td><td>Focused tests validate the produced <code>MappingRecord</code>, JSON-round-trip automatic and manual mappings, deterministic deltas, and the no-heuristic boundary.</td></tr>
+<tr><td>R-14-04-002</td><td>The engine shall treat analysis-run records as bound to exact model states, solver versions, settings, units, load cases, diagnostics, results, rule-pack references, library references, and result hashes.</td><td>SOW-072 in <code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>Tests assert comparison input metadata is preserved or surfaced; schema/API field names <code>TBD</code>.</td></tr>
+<tr><td>R-14-04-003</td><td>The engine shall compute unit-normalized result deltas only where unit and dimension metadata allow valid comparison.</td><td>SOW-073; <code>docs/SPEC.md</code> unit contract</td><td>Unit-normalization tests; missing/ambiguous unit metadata produces diagnostics rather than silent defaults.</td></tr>
+<tr><td>R-14-04-004</td><td>The engine shall include mapped nodes, elements, supports, terminals, stress/result locations, diagnostics, and settings within the comparison scope where the upstream result records expose them.</td><td>DEL-14-04 decomposition row</td><td>Coverage tests by result/entity category; exact category enum <code>TBD</code>.</td></tr>
+<tr><td>R-14-04-005</td><td>The engine shall use tolerance profiles for comparison classification.</td><td>SOW-073; dependency row for DEL-14-05; OI-014</td><td>Tolerance-profile tests after DEL-14-05 contracts are available; defaults and mapping workflows remain <code>TBD</code>.</td></tr>
+<tr><td>R-14-04-006</td><td>The engine shall preserve professional-boundary language: comparison output is diagnostic/audit evidence and must not claim external validation or engineering acceptance.</td><td>SOW-073 notes; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1/OPS-K-MECH-2; <code>docs/SPEC.md</code> analysis boundary</td><td>Protected wording/status tests; report/export assertions when applicable.</td></tr>
+<tr><td>R-14-04-007</td><td>The engine shall remain compatible with schema-first result/export envelopes rather than creating an ad hoc comparison result surface.</td><td><code>_CONTEXT.md</code> architecture basis; <code>docs/SPEC.md</code> result export and runner output text</td><td>Contract tests against accepted result/export schema once available; concrete schema path <code>TBD</code>.</td></tr>
+<tr><td>R-14-04-008</td><td>The engine shall not introduce protected standards text, protected tables, proprietary values, private rule-pack payloads, or invented engineering defaults into public artifacts.</td><td><code>docs/CONTRACT.md</code> OPS-K-IP-1/OPS-K-DATA-1/OPS-K-AGENT-1; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Protected-content/provenance checks; review of examples and fixtures.</td></tr>
+<tr><td>R-14-04-009</td><td>The deliverable shall include result delta tests as an anticipated artifact.</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code></td><td>Test presence and execution through the applicable test gate; command <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-standards">CLM-014 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<p>No external engineering standard text is locally present for this deliverable, and no clause-level engineering requirements are asserted here.</p>
+<p>Project-governing references for this draft are:</p>
+<ul>
+<li>- <code>docs/CONTRACT.md</code> for invariants.</li>
+<li>- <code>docs/SPEC.md</code> for unit, analysis-boundary, persistence/hash, result-export, runner-output, and validation mechanics.</li>
+<li>- <code>docs/TYPES.md</code> for vocabulary and boundary notes.</li>
+<li>- <code>docs/IP_AND_DATA_BOUNDARY.md</code> for protected-content/private-data limits.</li>
+<li>- <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> for accepted revision 0.7 scope and open issues.</li>
+</ul></blockquote>
+<h3 id="clm-015-verification">CLM-015 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification Item</td><td>Required Evidence</td><td>Current Status</td></tr>
+<tr><td>Determinism</td><td>Same input pair produces identical ordered comparison output.</td><td><code>TBD</code> fixture/API shape.</td></tr>
+<tr><td>Stable-ID/mapping behavior</td><td>Exact stable-ID production and manual-mapping paths are both exercised through JSON round trip.</td><td>Implemented for unique exact result IDs using the DEL-14-05 <code>MappingRecord</code>; non-identical/ambiguous IDs remain manual-only.</td></tr>
+<tr><td>Unit-normalized deltas</td><td>Same-dimension values compare after accepted unit normalization; incompatible/missing units emit diagnostics.</td><td><code>TBD</code>; depends on DEL-02-02 unit contract maturity.</td></tr>
+<tr><td>Diagnostics/settings deltas</td><td>Diagnostic and settings differences are surfaced without compliance claims.</td><td><code>TBD</code>; depends on result/run record schema.</td></tr>
+<tr><td>Tolerance profiles</td><td>Tolerance profile affects classification without changing raw delta evidence.</td><td><code>TBD</code>; OI-014 open.</td></tr>
+<tr><td>Boundary wording</td><td>Output statuses avoid human approval, certification, sealing, authentication, and automatic code-compliance labels.</td><td>Required by governance; concrete assertions <code>TBD</code>.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-016-documentation">CLM-016 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>The implementation brief or later production work should document:</p>
+<ul>
+<li>- comparison input contract;</li>
+<li>- mapping/tolerance profile dependency points;</li>
+<li>- delta output structure;</li>
+<li>- diagnostic/status behavior;</li>
+<li>- unit-normalization behavior and failure diagnostics;</li>
+<li>- deterministic ordering/hash basis;</li>
+<li>- result delta test fixture provenance;</li>
+<li>- limitations and professional-boundary notice.</li>
+</ul></blockquote>
+<h3 id="clm-017-d-41-r5-t2b-pdu-011-pdu-047-evidence-disposition-2026-07-12">CLM-017 — D-41 R5 T2B PDU-011/PDU-047 Evidence Disposition (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-011-pdu-047-evidence-disposition-2026-07-12">D-41 R5 T2B PDU-011/PDU-047 Evidence Disposition (2026-07-12)</h5>
+<ul>
+<li>- PDU-011 remains held because no canonical analysis-run comparison-result/export schema exists in the current accepted schema set. <code>comparison_mapping.schema.json</code> and <code>comparison_tolerance.schema.json</code> govern inputs, not <code>AnalysisRunComparison.to_dict()</code> output. A positive/negative output-conformance test would therefore invent a contract.</li>
+<li>- PDU-047 remains held at the engineering-validation/suitability grain. The existing section-property oracle is not a validation basis for unit-normalized comparison mechanics, and <code>section_property</code> is not among the engine&#x27;s current supported result families. No result family, conversion, tolerance, or outcome is added here.</li>
+</ul></blockquote>
+<h3 id="clm-018-d-41-r5-t2c-pdu-030-mapping-boundary-2026-07-12">CLM-018 — D-41 R5 T2C PDU-030 Mapping Boundary (2026-07-12)</h3>
+<blockquote><h5 id="d-41-r5-t2c-pdu-030-mapping-boundary-2026-07-12">D-41 R5 T2C PDU-030 Mapping Boundary (2026-07-12)</h5>
+<p>PDU-030 is completed at the current comparison grain: the engine now produces</p>
+<p>automatic DEL-14-05-shaped mappings only for unambiguous exact result IDs with</p>
+<p>matching identity metadata, while explicit manual mappings remain the only</p>
+<p>path for different or ambiguous IDs. Round-trip tests preserve mapping ID and</p>
+<p>left/right result identity into comparison deltas. This does not select</p>
+<p>heuristics, manual-review workflow policy, normalization thresholds,</p>
+<p>engineering outcomes, or a comparison-output schema.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves exact run/model-state basis, automatic mapping only for unique identical IDs with matching identity metadata, manual-only handling for different or ambiguous IDs, raw evidence before tolerance interpretation, explicit unit/dimension diagnostics, schema-first envelope intent, output-schema and engineering-validation holds, source-labeled assumptions, public-safe fixture boundaries, and no external-validation or professional-approval claims.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-019-procedure-del-14-04-analysis-run-comparison-engine">CLM-019 — Procedure: DEL-14-04 Analysis-run comparison engine</h3>
+<blockquote><h4 id="procedure-del-14-04-analysis-run-comparison-engine">Procedure: DEL-14-04 Analysis-run comparison engine</h4></blockquote>
+<h3 id="clm-020-d-41-r5-t7-pdu-055-current-declaration">CLM-020 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-04-DECL-004</code>.</p>
+<p><strong>Generated:</strong> 2026-05-03</p>
+<p><strong>Document Role:</strong> Operational draft</p>
+<p><strong>Source Basis:</strong> <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>Dependencies.csv</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/IP_AND_DATA_BOUNDARY.md</code></p></blockquote>
+<h3 id="clm-021-purpose">CLM-021 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Describe the conservative production procedure for creating and verifying the DEL-14-04 analysis-run comparison engine artifact without inventing implementation details or engineering values.</p></blockquote>
+<h3 id="clm-022-prerequisites">CLM-022 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<ul>
+<li>- Read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, and the current deliverable-local dependency mirror before implementation work.</li>
+<li>- Confirm the applicable scope items are SOW-072 and SOW-073, and that OBJ-016 is the objective context.</li>
+<li>- Treat all existing approved DAG-006 rows in <code>Dependencies.csv</code> as ACTIVE evidence rows, not as rows to rewrite during this setup workflow.</li>
+<li>- Confirm upstream contract availability before implementing dependent behavior:</li>
+<li>- DEL-14-02 analysis run records;</li>
+<li>- DEL-14-05 comparison mapping, tolerance, and export contracts;</li>
+<li>- DEL-08-04 result export format;</li>
+<li>- DEL-02-02 unit system and dimensional-analysis core contract;</li>
+<li>- architecture-basis rows AB-00-01, AB-00-02, AB-00-03, AB-00-04, AB-00-06, AB-00-07, and AB-00-08.</li>
+<li>- Keep unsupported implementation choices as <code>TBD</code> until accepted by the appropriate upstream deliverable or human decision.</li>
+</ul></blockquote>
+<h3 id="clm-023-steps">CLM-023 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Establish the comparison input pair from exact analysis-run records.</p>
+<ul>
+<li>- Required evidence includes exact model-state basis, solver version, settings, units, load cases, diagnostics, results, rule-pack references, library references, and result hashes.</li>
+<li>- Concrete schema/API field names are <code>TBD</code>.</li>
+</ul>
+<p>2. Resolve comparison mapping.</p>
+<ul>
+<li>- Produce <code>automatic_match</code> only when a result ID is unique on each side and the ID, family, object ref, basis ref, and dimension all match.</li>
+<li>- Use explicit caller-supplied <code>manual_match</code> records for different or ambiguous IDs as required by SOW-073.</li>
+<li>- Validate the produced automatic record against the DEL-14-05 mapping contract; do not add heuristic matching or manual-review workflow semantics.</li>
+</ul>
+<p>3. Validate unit comparability before computing deltas.</p>
+<ul>
+<li>- Compare only same-dimension unit-bearing values after accepted normalization.</li>
+<li>- Emit diagnostics for missing, ambiguous, or unsupported unit metadata; do not silently supply dimensionless or default units.</li>
+</ul>
+<p>4. Compute result deltas for mapped comparison subjects.</p>
+<ul>
+<li>- Include mapped nodes, elements, supports, terminals, stress/result locations, diagnostics, and settings where represented by the accepted upstream result/run records.</li>
+<li>- Preserve raw delta evidence before tolerance-based classification.</li>
+</ul>
+<p>5. Apply tolerance profiles.</p>
+<ul>
+<li>- Use accepted tolerance profile contracts.</li>
+<li>- Defaults and mapping workflows remain <code>TBD</code> under OI-014.</li>
+</ul>
+<p>6. Produce deterministic comparison output.</p>
+<ul>
+<li>- Use stable ordering and schema-first envelopes consistent with the accepted architecture basis.</li>
+<li>- Preserve diagnostics, provenance, units, hashes/status boundaries, and professional-boundary notices.</li>
+</ul>
+<p>7. Create result delta tests.</p>
+<ul>
+<li>- Cover deterministic repeatability, stable-ID matching, manual mapping, unit-normalized deltas, missing-unit diagnostics, settings deltas, diagnostic deltas, and tolerance classification.</li>
+<li>- Use invented/public/permissive fixtures only; fixture set and command are <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-024-verification">CLM-024 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Evidence</td></tr>
+<tr><td>Inputs preserve exact run basis</td><td>Test or contract assertion that run metadata is available to comparison logic.</td></tr>
+<tr><td>Determinism</td><td>Repeated comparison of identical input pair yields identical ordered output.</td></tr>
+<tr><td>Mapping behavior</td><td>DEL-14-05-shaped exact stable-ID mapping and caller-supplied manual mapping both survive JSON round trip with mapping/left/right result IDs preserved; ambiguous IDs do not auto-map.</td></tr>
+<tr><td>Unit normalization</td><td>Same-dimension conversion path and missing/incompatible-unit diagnostic path both exercised.</td></tr>
+<tr><td>Scope coverage</td><td>Mapped result locations, diagnostics, and settings are represented where upstream records expose them.</td></tr>
+<tr><td>Tolerance behavior</td><td>Raw deltas remain available while tolerance classification changes with profile.</td></tr>
+<tr><td>Governance boundary</td><td>Output avoids professional approval, certification, sealing, authentication, and automatic code-compliance labels.</td></tr>
+<tr><td>Protected-content boundary</td><td>Fixtures and examples contain no protected standards text/tables, proprietary values, private project data, or private rule-pack payloads.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-025-records">CLM-025 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<ul>
+<li>- Run comparison engine implementation artifact (<code>TBD</code> path).</li>
+<li>- Result delta tests (<code>TBD</code> path/command).</li>
+<li>- Fixture provenance notes for any public examples.</li>
+<li>- Diagnostics/status assertions.</li>
+<li>- Mapping/tolerance contract references.</li>
+<li>- Any unresolved implementation decisions carried forward as <code>TBD</code>.</li>
+</ul></blockquote>
+<h3 id="clm-026-d-41-r5-t2b-pdu-011-pdu-047-check">CLM-026 — D-41 R5 T2B PDU-011/PDU-047 Check</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-011-pdu-047-check">D-41 R5 T2B PDU-011/PDU-047 Check</h5>
+<p>Do not claim comparison-output schema conformance until an accepted output schema exists; input mapping/tolerance schema validation is not a substitute. Do not route section-property evidence through the comparison engine or choose conversion/tolerance behavior in this evidence-only tranche. Preserve both gaps explicitly.</p></blockquote>
+<h3 id="clm-027-d-41-r5-t2c-pdu-030-check">CLM-027 — D-41 R5 T2C PDU-030 Check</h3>
+<blockquote><h5 id="d-41-r5-t2c-pdu-030-check">D-41 R5 T2C PDU-030 Check</h5>
+<p>Run the focused exact-ID and manual-mapping round-trip tests. Treat the</p>
+<p>automatic producer as a bounded DEL-14-05 mapping-record path, not as authority</p>
+<p>to infer entities, create heuristic matches, select mapping workflow policy,</p>
+<p>or claim output-schema conformance.</p></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, exact-ID and manual mapping paths, all named comparison categories, deterministic ordering, raw-delta/tolerance separation, unit-normalization diagnostics, retained PDU-011/PDU-047 and OI-014 holds, schema and fixture boundaries, and professional-authority limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-028-guidance-del-14-04-analysis-run-comparison-engine">CLM-028 — Guidance: DEL-14-04 Analysis-run comparison engine</h3>
+<blockquote><h4 id="guidance-del-14-04-analysis-run-comparison-engine">Guidance: DEL-14-04 Analysis-run comparison engine</h4></blockquote>
+<h3 id="clm-029-d-41-r5-t7-pdu-055-current-declaration">CLM-029 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-04-DECL-003</code>.</p>
+<p><strong>Generated:</strong> 2026-05-03</p>
+<p><strong>Document Role:</strong> Directional draft</p>
+<p><strong>Source Basis:</strong> <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>Dependencies.csv</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, <code>docs/CONTRACT.md</code>, <code>docs/SPEC.md</code>, <code>docs/TYPES.md</code>, <code>docs/IP_AND_DATA_BOUNDARY.md</code></p></blockquote>
+<h3 id="clm-030-purpose">CLM-030 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>DEL-14-04 exists to make analysis-run comparisons deterministic, unit-aware, traceable, and suitable for diagnostic/audit review. Its output supports design iteration and review; it does not decide external validation or professional reliance.</p></blockquote>
+<h3 id="clm-031-principles">CLM-031 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<ul>
+<li>- Keep comparison evidence tied to exact run/model-state basis, solver version, settings, units, load cases, diagnostics, result hashes, and relevant rule/library references.</li>
+<li>- Produce automatic mappings only for unique identical result IDs whose family, object ref, basis ref, and dimension also match; use explicit manual mappings for every different or ambiguous identity relationship.</li>
+<li>- Treat unit-bearing values as comparable only when unit and dimension metadata support the comparison. Missing or ambiguous unit metadata is a diagnostic.</li>
+<li>- Preserve raw delta evidence separately from tolerance-based classification. <code>ASSUMPTION</code>: this separation is needed so tolerance profiles can change without rewriting source evidence; the exact output structure is <code>TBD</code>.</li>
+<li>- Keep diagnostics and settings in scope because the decomposition names them explicitly for DEL-14-04.</li>
+<li>- Preserve the professional boundary: comparison output is review evidence, not approval, certification, sealing, authentication, or code compliance.</li>
+</ul></blockquote>
+<h3 id="clm-032-considerations">CLM-032 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Guidance</td></tr>
+<tr><td>Mapping</td><td>DEL-14-05 owns mapping/tolerance/export contracts. DEL-14-04 produces the existing <code>automatic_match</code>/<code>stable_id_alignment</code> record shape only for exact unambiguous IDs and consumes explicit <code>manual_match</code> records otherwise; it does not invent heuristics.</td></tr>
+<tr><td>Tolerances</td><td>OI-014 records comparison tolerance defaults and mapping workflows as <code>TBD</code>; do not hard-code defaults without human/product approval.</td></tr>
+<tr><td>Units</td><td>Unit normalization depends on accepted unit metadata and conversion governance. Unsupported conversion semantics should remain <code>TBD</code> or become diagnostics.</td></tr>
+<tr><td>Result scope</td><td>Result export envelopes are the intended review/regression/report-consumption surface. Avoid ad hoc result shapes once the schema contract is available.</td></tr>
+<tr><td>Hashes</td><td>JSON payload hashes use the accepted JCS-compatible basis where JSON payloads are hashed. Non-JSON and binary partitioning remains <code>TBD</code> in the broader architecture.</td></tr>
+<tr><td>Protected content</td><td>Fixtures, examples, and report sections must not embed protected standards text, protected tables, proprietary values, private project data, or private rule-pack payloads.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-033-trade-offs">CLM-033 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Trade-off</td><td>Direction</td></tr>
+<tr><td>Early implementation vs. contract maturity</td><td>Keep unresolved mapping, tolerance, and result-schema choices as <code>TBD</code> until upstream contracts are accepted.</td></tr>
+<tr><td>Raw deltas vs. classified outcomes</td><td>Preserve raw evidence and expose tolerance-classified outcomes as derived interpretation.</td></tr>
+<tr><td>Diagnostic detail vs. professional-boundary risk</td><td>Include enough diagnostics for review and audit while avoiding compliance/approval language.</td></tr>
+<tr><td>Broad comparison scope vs. deliverable boundary</td><td>Cover mapped result entities, diagnostics, and settings; defer export semantics and mapping/tolerance contract definition to DEL-14-05.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-034-examples">CLM-034 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>Concrete examples are <code>TBD</code>. Future examples should use invented or otherwise permitted data, documented provenance, explicit units, and no protected standards text/tables or proprietary values.</p></blockquote>
+<h3 id="clm-035-open-questions">CLM-035 — Open Questions</h3>
+<blockquote><h5 id="open-questions">Open Questions</h5>
+<table><tbody>
+<tr><td>Question ID</td><td>Question</td><td>Source</td></tr>
+<tr><td>OQ-14-04-001</td><td>What are the accepted default tolerance profiles and mapping workflows for comparison classification?</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> OI-014</td></tr>
+<tr><td>OQ-14-04-002</td><td>What is the final comparison output schema/API shape?</td><td><code>docs/SPEC.md</code> result export baseline; DEL-14-05 dependency</td></tr>
+<tr><td>OQ-14-04-003</td><td>What fixture set proves deterministic ordering, unit-normalized delta behavior, and diagnostic/settings comparison without protected or private data?</td><td><code>_CONTEXT.md</code> anticipated artifact; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-036-conflict-table-for-human-ruling">CLM-036 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<p>No source conflicts were identified in the accessible source set. Open questions above are missing-decision gaps, not contradictions.</p></blockquote>
+<h3 id="clm-037-d-41-r5-t2b-pdu-011-pdu-047-boundary">CLM-037 — D-41 R5 T2B PDU-011/PDU-047 Boundary</h3>
+<blockquote><h5 id="d-41-r5-t2b-pdu-011-pdu-047-boundary">D-41 R5 T2B PDU-011/PDU-047 Boundary</h5>
+<p>Schema conformance requires an accepted output contract, not a test-authored shape. Likewise, a section-property oracle cannot validate comparison normalization or tolerance suitability. Keep current deterministic behavior, input-contract tests, and diagnostic boundaries separate from those unresolved validation claims.</p></blockquote>
+<h3 id="clm-038-d-41-r5-t2c-pdu-030-boundary">CLM-038 — D-41 R5 T2C PDU-030 Boundary</h3>
+<blockquote><h5 id="d-41-r5-t2c-pdu-030-boundary">D-41 R5 T2C PDU-030 Boundary</h5>
+<p>Stable-ID production is deliberately exact, not fuzzy: equality of a unique</p>
+<p>result ID plus matching family/object/basis/dimension is required. JSON</p>
+<p>round-trip evidence covers both that automatic record and caller-supplied</p>
+<p>manual mappings. No automatic entity inference, heuristic candidate,</p>
+<p>normalization policy, or acceptance judgment follows from this mapping step.</p></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-073 SOW-072 OBJ-016</td><td>CLM-010</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>

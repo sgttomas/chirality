@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chirality-canonical-schema" content="chirality-deliverable-sow/v1">
+<meta name="chirality-canonical-sha256" content="79efc63f3e76fdd63131ec725420bd17288a542945fcd723926f574cc9e9c4ce">
+<meta name="chirality-renderer-version" content="chirality-sow-renderer/v1">
+<title>Scope of Work — DEL-14-02</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:72rem;margin:auto;padding:2rem}table{border-collapse:collapse;width:100%}td{border:1px solid #bbb;padding:.4rem;vertical-align:top}code{background:#eee;padding:.1rem .2rem}blockquote{border-left:.25rem solid #bbb;margin:1rem 0;padding:.25rem 1rem;color:#333}</style>
+</head>
+<body>
+<p><strong>Derivative view.</strong> Canonical source: <code>ScopeOfWork.md</code>; SHA-256: <code>79efc63f3e76fdd63131ec725420bd17288a542945fcd723926f574cc9e9c4ce</code>.</p>
+<h1 id="scope-of-work-del-14-02">Scope of Work — DEL-14-02</h1>
+<h2 id="purpose-and-objective-traceability">Purpose and Objective Traceability</h2>
+<p>This Scope of Work defines <code>DEL-14-02</code> in service of project scope [SOW-072] and package objectives [OBJ-016].</p>
+<ul>
+<li>- <strong>OUT-001</strong> — An immutable analysis-run record contract binding results to exact model states, solver versions and settings, units, load cases, diagnostics, references, results, and hashes is produced.</li>
+</ul>
+<h2 id="deliverable-definition-ontology">Deliverable Definition — Ontology</h2>
+<h3 id="clm-001-datasheet-del-14-02-analysis-run-records">CLM-001 — Datasheet: DEL-14-02 Analysis run records</h3>
+<blockquote><h4 id="datasheet-del-14-02-analysis-run-records">Datasheet: DEL-14-02 Analysis run records</h4></blockquote>
+<h3 id="clm-002-d-41-r5-t7-pdu-055-current-declaration">CLM-002 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-02-DECL-002</code>.</p></blockquote>
+<h3 id="clm-003-identification">CLM-003 — Identification</h3>
+<blockquote><h5 id="identification">Identification</h5>
+<table><tbody>
+<tr><td>Field</td><td>Value</td><td>Source</td></tr>
+<tr><td>Deliverable ID</td><td>DEL-14-02</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Name</td><td>Analysis run records</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package ID</td><td>PKG-14</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Package name</td><td>Model States, Analysis Runs, and Comparison</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Deliverable type</td><td>DATA_MODEL_CHANGE</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> PKG-14 table</td></tr>
+<tr><td>Scope item</td><td>SOW-072</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/ScopeLedger.csv</code> row SOW-072</td></tr>
+<tr><td>Objective support</td><td>OBJ-016</td><td><code>_CONTEXT.md</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> objective mapping</td></tr>
+<tr><td>Anticipated artifacts</td><td><code>schemas/analysis_run.schema.json</code>; run reproducibility tests</td><td><code>_CONTEXT.md</code>; <code>docs/_Registers/Deliverables.csv</code> row DEL-14-02</td></tr>
+<tr><td>Lifecycle role</td><td>Draft production-unit document; not implementation evidence</td><td><code>_CONTEXT.md</code> PREPARATION notes; <code>docs/CONTRACT.md</code> OPS-K-AGENT-4</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-004-attributes">CLM-004 — Attributes</h3>
+<blockquote><h5 id="attributes">Attributes</h5>
+<table><tbody>
+<tr><td>Attribute</td><td>Value</td><td>Source</td></tr>
+<tr><td>Required product behavior</td><td>Save analysis runs bound to exact model states, solver versions, settings, units, load cases, diagnostics, results, rule-pack references, library references, and result hashes.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-072; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> SOW-072</td></tr>
+<tr><td>Record immutability intent</td><td>Results attach to immutable analysis runs rather than a mutable current model only.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-072; <code>_CONTEXT.md</code> envelope notes</td></tr>
+<tr><td>Package boundary</td><td>PKG-14 implements immutable model-state records, analysis-run records, deterministic state/run comparison, mappings, tolerances, and comparison exports.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> package table</td></tr>
+<tr><td>Package exclusion</td><td>PKG-14 does not ingest commercial prover outputs comprehensively or determine external validation.</td><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> package table</td></tr>
+<tr><td>Architecture basis</td><td>Rust core/application services; JSON Schema 2020-12 contracts; schema-first command/query/job result envelopes. The accepted architecture names a canonical JSON/JCS-compatible objective, while DEL-14-02 currently implements and precisely labels sorted-key compact JSON rather than claiming RFC 8785/JCS conformance.</td><td><code>_CONTEXT.md</code> Architecture Basis Injection; <code>DEC-074</code> E1</td></tr>
+<tr><td>Unit boundary</td><td>Unit-bearing physical values crossing schema, service, solver, import/export, report, or rule-evaluation boundaries must carry explicit unit metadata unless explicitly dimensionless or equivalent.</td><td><code>docs/SPEC.md</code> section 4</td></tr>
+<tr><td>Hash boundary</td><td>DEL-14-02 hashes UTF-8 bytes from Python sorted-key compact JSON with ASCII escaping and emits <code>SORTED_COMPACT_JSON</code>; full RFC 8785/JCS conformance and non-JSON/binary partitioning are not claimed.</td><td><code>docs/SPEC.md</code> section 4.4; <code>DEC-074</code> E1 / PDU-003</td></tr>
+<tr><td>Result-envelope relationship</td><td>Result export envelopes must identify result set, model/run basis, solver version, unit-system reference, load-case or combination basis, diagnostics, provenance, reproducibility hashes or audit-manifest reference, analysis statuses, rule-pack references where present, and professional-boundary notice.</td><td><code>docs/SPEC.md</code> result export section</td></tr>
+<tr><td>Professional boundary</td><td>Software must not emit automatic human approval, certification, sealing, authentication, or code-compliance labels.</td><td><code>docs/SPEC.md</code> analysis boundary section; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1</td></tr>
+<tr><td>Protected/private data boundary</td><td>Public artifacts must not copy private formulas, protected standards text, protected tables, proprietary values, or private rule-pack payloads.</td><td><code>docs/SPEC.md</code> result export section; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-005-conditions">CLM-005 — Conditions</h3>
+<blockquote><h5 id="conditions">Conditions</h5>
+<table><tbody>
+<tr><td>Condition</td><td>Status</td><td>Source</td></tr>
+<tr><td>Exact analysis-run schema fields</td><td>TBD pending implementation design. Only the required binding categories are source-supported here.</td><td><code>_CONTEXT.md</code>; SOW-072</td></tr>
+<tr><td>Analysis run identifier format</td><td>TBD. No deliverable-local source defines the field name, format, or namespace.</td><td><code>_CONTEXT.md</code>; <code>docs/TYPES.md</code> general identifier guidance only</td></tr>
+<tr><td>Model-state reference semantics</td><td>Must bind to exact model states; detailed state-record schema is upstream and outside this folder.</td><td>SOW-072; <code>Dependencies.csv</code> DAG-002-E0783</td></tr>
+<tr><td>Solver version and settings representation</td><td>Required as part of the saved run record; exact object shape is TBD.</td><td>SOW-072</td></tr>
+<tr><td>Unit-system representation</td><td>Required as part of the saved run record; missing unit metadata for unit-bearing physical values must be diagnostic rather than silently supplied.</td><td>SOW-072; <code>docs/SPEC.md</code> section 4</td></tr>
+<tr><td>Load-case or combination basis</td><td>Required as part of the saved run record; exact references and cardinality are TBD.</td><td>SOW-072; <code>docs/SPEC.md</code> result export section</td></tr>
+<tr><td>Diagnostics and analysis statuses</td><td>Required as part of the saved run record; must preserve the professional-boundary status model.</td><td>SOW-072; <code>docs/SPEC.md</code> analysis boundary section</td></tr>
+<tr><td>Rule-pack and library references</td><td>Required as references/checksum/provenance surfaces; private payloads and protected content are not public artifact content.</td><td>SOW-072; <code>docs/SPEC.md</code> rule-pack/result export sections</td></tr>
+<tr><td>Result hashes</td><td>Implemented with explicit payload scope and <code>SORTED_COMPACT_JSON</code> metadata; deterministic bytes/hash and mutation sensitivity are tested. No RFC 8785/JCS claim is emitted.</td><td>SOW-072; <code>docs/SPEC.md</code> section 4.4; PDU-003</td></tr>
+<tr><td>Reproducibility tests</td><td>Required artifact class; exact test harness, fixtures, and assertions are TBD.</td><td><code>_CONTEXT.md</code> anticipated artifacts</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-006-construction">CLM-006 — Construction</h3>
+<blockquote><h5 id="construction">Construction</h5>
+<p>This deliverable is a data-model change. The conservative construction surface is:</p>
+<p>1. Define <code>schemas/analysis_run.schema.json</code> as the canonical analysis-run record contract.</p>
+<p>2. Include fields or referenced sub-objects sufficient to bind each analysis run to the source-supported categories in SOW-072: model state, solver version, settings, units, load cases, diagnostics, results, rule-pack references, library references, and result hashes.</p>
+<p>3. Treat result attachment as immutable run-record evidence, not as mutable &quot;current model&quot; state.</p>
+<p>4. Preserve unit metadata and dimensional diagnostics across run records wherever unit-bearing values are included or referenced.</p>
+<p>5. Record reproducibility hash metadata using the precise <code>SORTED_COMPACT_JSON</code> label for the current Python sorted-key compact serializer. Do not label it JCS absent RFC 8785 conformance evidence; mark broader JCS and non-JSON/binary partitioning as unresolved outside this bounded repair.</p>
+<p>6. Preserve professional-boundary and protected/private-data controls in schema shape, diagnostics, tests, and examples.</p>
+<p>Implementation evidence, committed product code, and passing tests are not present in this folder at setup time.</p></blockquote>
+<h3 id="clm-007-references">CLM-007 — References</h3>
+<blockquote><h5 id="references">References</h5>
+<table><tbody>
+<tr><td>Reference</td><td>Use in this datasheet</td></tr>
+<tr><td><code>_CONTEXT.md</code></td><td>Deliverable identity, scope, artifact expectations, architecture-basis injection</td></tr>
+<tr><td><code>_REFERENCES.md</code></td><td>Reference inventory and authority boundary</td></tr>
+<tr><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code></td><td>Approved DAG-002 local mirror/evidence surface</td></tr>
+<tr><td><code>execution/_Decomposition/SOFTWARE_DECOMP.md</code></td><td>SOW-072, OBJ-016, PKG-14, DEL-14-02 decomposition basis</td></tr>
+<tr><td><code>docs/_Registers/Deliverables.csv</code></td><td>Deliverable row and anticipated artifacts</td></tr>
+<tr><td><code>docs/_Registers/ScopeLedger.csv</code></td><td>Scope item SOW-072 wording</td></tr>
+<tr><td><code>docs/CONTRACT.md</code></td><td>Agent, data, unit, report, privacy, and professional-boundary invariants</td></tr>
+<tr><td><code>docs/SPEC.md</code></td><td>Unit, persistence/hash, analysis-boundary, result-export, runner/result-envelope guidance</td></tr>
+<tr><td><code>docs/TYPES.md</code></td><td>Canonical model/schema vocabulary and boundary notes</td></tr>
+<tr><td><code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Public/private and protected-content constraints</td></tr>
+</tbody></table></blockquote>
+<h2 id="completion-and-reliance-basis-epistemology">Completion and Reliance Basis — Epistemology</h2>
+<h3 id="clm-008-specification-del-14-02-analysis-run-records">CLM-008 — Specification: DEL-14-02 Analysis run records</h3>
+<blockquote><h4 id="specification-del-14-02-analysis-run-records">Specification: DEL-14-02 Analysis run records</h4></blockquote>
+<h3 id="clm-009-d-41-r5-t7-pdu-055-current-declaration">CLM-009 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-02-DECL-001</code>.</p></blockquote>
+<h3 id="clm-010-scope">CLM-010 — Scope</h3>
+<blockquote><h5 id="scope">Scope</h5>
+<p>DEL-14-02 defines the analysis-run record data model and the supporting reproducibility test surface for saving analysis runs as immutable, traceable product records.</p>
+<p>In scope:</p>
+<ul>
+<li>- <code>schemas/analysis_run.schema.json</code>.</li>
+<li>- Run reproducibility tests.</li>
+<li>- Data-model coverage for the SOW-072 binding categories: exact model states, solver versions, settings, units, load cases, diagnostics, results, rule-pack references, library references, and result hashes.</li>
+<li>- Professional-boundary, unit, hash, provenance, protected-content, and private-data constraints that apply to persisted run records.</li>
+</ul>
+<p>Out of scope:</p>
+<ul>
+<li>- Comprehensive commercial prover output ingestion.</li>
+<li>- External validation or professional acceptance decisions.</li>
+<li>- Exact implementation code, storage container choice, dependency versions, solver numerical library, rule expression grammar/library, and public API transport.</li>
+<li>- Field-level schema design beyond source-supported categories; unsupported details remain TBD.</li>
+</ul></blockquote>
+<h3 id="clm-011-requirements">CLM-011 — Requirements</h3>
+<blockquote><h5 id="requirements">Requirements</h5>
+<table><tbody>
+<tr><td>ID</td><td>Requirement</td><td>Source</td><td>Verification</td></tr>
+<tr><td>DEL-14-02-R001</td><td>The deliverable shall produce or define <code>schemas/analysis_run.schema.json</code> as the analysis-run record schema artifact.</td><td><code>_CONTEXT.md</code> anticipated artifacts; <code>docs/_Registers/Deliverables.csv</code> row DEL-14-02</td><td>Artifact exists and is schema-validated once implementation occurs.</td></tr>
+<tr><td>DEL-14-02-R002</td><td>The analysis-run record shall bind each saved run to an exact model state reference.</td><td>SOW-072 in <code>docs/_Registers/ScopeLedger.csv</code>; <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> DEL-14-02 row</td><td>Schema contains a required model-state reference or equivalent validated binding.</td></tr>
+<tr><td>DEL-14-02-R003</td><td>The analysis-run record shall preserve solver version, solver/settings basis, units, load-case basis, diagnostics, results, rule-pack references, library references, and result hashes.</td><td>SOW-072; <code>_CONTEXT.md</code> scope detail</td><td>Schema inspection and reproducibility tests confirm the categories are present or explicitly referenced.</td></tr>
+<tr><td>DEL-14-02-R004</td><td>Results shall attach to immutable analysis-run records rather than only to mutable current model state.</td><td><code>docs/_Registers/ScopeLedger.csv</code> row SOW-072; <code>_CONTEXT.md</code> envelope notes</td><td>Mutation/round-trip test demonstrates stored run evidence remains associated with the original run basis.</td></tr>
+<tr><td>DEL-14-02-R005</td><td>Unit-bearing physical values included or referenced by run records shall carry explicit unit metadata unless explicitly classified as dimensionless, ratio, percentage, or coefficient.</td><td><code>docs/SPEC.md</code> section 4; <code>docs/CONTRACT.md</code> OPS-K-UNIT-1</td><td>Schema validation and negative tests reject or diagnose missing unit metadata where required.</td></tr>
+<tr><td>DEL-14-02-R006</td><td>Missing solve-required or rule-check-required values shall be explicit findings with diagnostics and provenance, not silent defaults.</td><td><code>docs/SPEC.md</code> analysis boundary section; <code>docs/CONTRACT.md</code> OPS-K-DATA-2</td><td>Tests confirm missing required values produce structured diagnostics.</td></tr>
+<tr><td>DEL-14-02-R007</td><td>Hash records shall identify payload scope and label the implemented JSON serialization precisely. DEL-14-02 uses deterministic sorted-key compact JSON with ASCII escaping; it does not claim RFC 8785/JCS conformance.</td><td><code>_CONTEXT.md</code> architecture basis; <code>docs/SPEC.md</code> section 4.4; <code>DEC-074</code> E1 / PDU-003</td><td>Reproducibility tests prove the exact emitted label and bytes, stable hashes, payload-mutation sensitivity, and absence of an emitted JCS claim.</td></tr>
+<tr><td>DEL-14-02-R008</td><td>The record shall preserve the software authority boundary: solver results and diagnostics are software outputs; human acceptance is external and hash-bound.</td><td><code>docs/SPEC.md</code> analysis boundary section; <code>docs/CONTRACT.md</code> OPS-K-AUTH-1 and OPS-K-AUTH-2</td><td>Schema/status tests ensure automatic approval, certification, sealing, authentication, or code-compliance labels are not emitted.</td></tr>
+<tr><td>DEL-14-02-R009</td><td>Rule-pack and library references shall expose identity/provenance/checksum-style metadata where source-supported, without embedding protected standards text, protected tables, proprietary values, private formulas, or private payloads in public artifacts.</td><td>SOW-072; <code>docs/SPEC.md</code> result export section; <code>docs/IP_AND_DATA_BOUNDARY.md</code></td><td>Protected-content/private-data tests inspect examples and fixtures before acceptance.</td></tr>
+<tr><td>DEL-14-02-R010</td><td>Run reproducibility tests shall be part of the deliverable output surface.</td><td><code>_CONTEXT.md</code> anticipated artifacts</td><td>Test files exist and exercise stable run-record/hash behavior once implementation occurs.</td></tr>
+<tr><td>DEL-14-02-R011</td><td>The schema and tests shall remain compatible with schema-first command/query/job result-envelope architecture.</td><td><code>_CONTEXT.md</code> architecture basis; <code>docs/SPEC.md</code> runner/result-envelope sections</td><td>Service/result-envelope integration tests or contract tests are added when implementation scope reaches that boundary.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-012-standards">CLM-012 — Standards</h3>
+<blockquote><h5 id="standards">Standards</h5>
+<table><tbody>
+<tr><td>Standard or governing basis</td><td>Status in this folder</td><td>Notes</td></tr>
+<tr><td>JSON Schema 2020-12 contracts</td><td>Applicable architecture basis</td><td><code>_CONTEXT.md</code> identifies JSON Schema 2020-12 contracts. Exact <code>$schema</code>, <code>$id</code>, and schema-module placement remain implementation TBD.</td></tr>
+<tr><td>Deterministic sorted compact JSON hash basis</td><td>Implemented for DEL-14-02 JSON payload hashes</td><td>Python <code>json.dumps</code> uses sorted keys, compact separators, and ASCII escaping. This preserves existing deterministic hash bytes but is not a demonstrated RFC 8785/JCS implementation. A broader JCS basis remains outside this bounded owner repair.</td></tr>
+<tr><td>PRD v0.2 sections 8.7 and 15.2 / FR-CMP-002</td><td>Referenced but not locally accessible as primary source text</td><td>Decomposition and registers cite these references. Do not derive clause-level requirements beyond the accessible SOW-072 wording.</td></tr>
+<tr><td>Protected-content and private-data governance</td><td>Applicable</td><td><code>docs/CONTRACT.md</code> and <code>docs/IP_AND_DATA_BOUNDARY.md</code> govern public/private data handling.</td></tr>
+<tr><td>Professional responsibility boundary</td><td>Applicable</td><td><code>docs/CONTRACT.md</code> and <code>docs/SPEC.md</code> prohibit software-generated professional approval/compliance claims.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-013-verification">CLM-013 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Verification target</td><td>Method</td><td>Acceptance signal</td></tr>
+<tr><td>Schema artifact</td><td>JSON Schema validation and repository schema gate</td><td><code>schemas/analysis_run.schema.json</code> parses and satisfies local schema conventions once implemented.</td></tr>
+<tr><td>Required binding categories</td><td>Schema review plus tests</td><td>Model state, solver version/settings, units, load-case basis, diagnostics, results, rule-pack/library references, and result hashes are represented or explicitly referenced.</td></tr>
+<tr><td>Immutability of run evidence</td><td>Round-trip/persistence test</td><td>A saved run remains bound to the original model-state/run basis after unrelated model changes.</td></tr>
+<tr><td>Hash reproducibility</td><td>Deterministic serialization and mutation tests</td><td>Equivalent supported JSON payloads produce exact stable sorted-compact bytes and hashes; changed values change hashes; payload scope and <code>SORTED_COMPACT_JSON</code> are recorded; no JCS claim is emitted.</td></tr>
+<tr><td>Unit safety</td><td>Negative and positive unit tests</td><td>Unit-bearing values include unit metadata or produce blocking diagnostics.</td></tr>
+<tr><td>Professional boundary</td><td>Status/label tests</td><td>No automatic human approval, certification, sealing, authentication, or code-compliance label is emitted.</td></tr>
+<tr><td>Protected/private data boundary</td><td>Protected-content and fixture review</td><td>Public examples do not embed private/protected rule, library, standards, or proprietary payload content.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-014-documentation">CLM-014 — Documentation</h3>
+<blockquote><h5 id="documentation">Documentation</h5>
+<p>Required or expected records for later implementation:</p>
+<ul>
+<li>- <code>schemas/analysis_run.schema.json</code>.</li>
+<li>- Run reproducibility tests.</li>
+<li>- Schema-source notes for each binding category.</li>
+<li>- Hash/reproducibility test notes, including payload scope.</li>
+<li>- Unit and diagnostic test notes.</li>
+<li>- Protected-content/private-data review notes for any public examples or fixtures.</li>
+</ul>
+<p>All exact field names, object identities, schema <code>$id</code> values, migration behavior, and fixture values are TBD until supported by implementation work or human-approved design decisions.</p></blockquote>
+<ul>
+<li>- <strong>AC-001</strong> — The contract preserves schema-first run-record categories, immutable run evidence, explicit unit and dimension diagnostics, precisely labeled SORTED_COMPACT_JSON serialization rather than an unsupported JCS claim, payload scope, rule-pack/library provenance boundaries, professional-status exclusions, and visible producer diagnostic, unit/dimension, schema-field, and implementation TBDs.</li>
+</ul>
+<h2 id="production-and-verification-method-praxeology">Production and Verification Method — Praxeology</h2>
+<h3 id="clm-015-procedure-del-14-02-analysis-run-records">CLM-015 — Procedure: DEL-14-02 Analysis run records</h3>
+<blockquote><h4 id="procedure-del-14-02-analysis-run-records">Procedure: DEL-14-02 Analysis run records</h4></blockquote>
+<h3 id="clm-016-d-41-r5-t7-pdu-055-current-declaration">CLM-016 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-02-DECL-004</code>.</p></blockquote>
+<h3 id="clm-017-purpose">CLM-017 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>This procedure describes how later Type 2 implementation work should produce and verify the DEL-14-02 analysis-run record artifacts from the current setup-stage sources. It is a production workflow guide, not evidence that implementation has already occurred.</p></blockquote>
+<h3 id="clm-018-prerequisites">CLM-018 — Prerequisites</h3>
+<blockquote><h5 id="prerequisites">Prerequisites</h5>
+<table><tbody>
+<tr><td>Prerequisite</td><td>Status</td><td>Source</td></tr>
+<tr><td>Accepted decomposition basis</td><td>Available: <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.7</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Deliverable identity and scope</td><td>Available: DEL-14-02, SOW-072, OBJ-016</td><td><code>_CONTEXT.md</code>; registers</td></tr>
+<tr><td>Approved dependency evidence</td><td>Available as local DAG-002 mirror in <code>Dependencies.csv</code></td><td><code>_DEPENDENCIES.md</code>; <code>Dependencies.csv</code></td></tr>
+<tr><td>Architecture basis constraints</td><td>Available in <code>_CONTEXT.md</code>; exact package-specific implementation choices remain decision-gated</td><td><code>_CONTEXT.md</code></td></tr>
+<tr><td>Field-level schema design</td><td>TBD</td><td>No accessible source defines final field names/cardinality.</td></tr>
+<tr><td>Implementation code and tests</td><td>TBD</td><td>PREPARATION notes say no Type 2 implementation artifacts were drafted.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-019-steps">CLM-019 — Steps</h3>
+<blockquote><h5 id="steps">Steps</h5>
+<p>1. Re-read <code>_CONTEXT.md</code>, <code>_REFERENCES.md</code>, <code>Dependencies.csv</code>, and the DEL-14-02 rows in the decomposition and registers.</p>
+<p>2. Confirm that the work remains limited to DEL-14-02 and does not require protected standards text, private project data, or sibling deliverable edits.</p>
+<p>3. Draft or update <code>schemas/analysis_run.schema.json</code> using JSON Schema 2020-12 conventions, subject to repository schema patterns available at implementation time.</p>
+<p>4. Represent the SOW-072 binding categories: exact model state, solver version, solver/settings basis, units, load-case basis, diagnostics, results, rule-pack references, library references, and result hashes.</p>
+<p>5. Mark unsupported field-level choices as TBD until a source, accepted architecture decision, or human ruling supports them.</p>
+<p>6. Ensure unit-bearing values are unit-aware or produce explicit diagnostics for missing/ambiguous units.</p>
+<p>7. Ensure hash records identify payload scope and the implemented serialization basis. For DEL-14-02, emit <code>SORTED_COMPACT_JSON</code> for Python sorted-key compact JSON with ASCII escaping; preserve deterministic hash bytes and do not claim RFC 8785/JCS conformance without conformance-vector evidence.</p>
+<p>8. Preserve professional-boundary constraints: do not generate approval, certification, sealing, authentication, or code-compliance labels as software statuses.</p>
+<p>9. Preserve protected/private-data constraints: do not embed private formulas, protected standards text, protected tables, proprietary values, or private rule-pack/library payloads in public fixtures or examples.</p>
+<p>10. Add run reproducibility tests covering stable serialization/hash behavior, binding to model-state/run basis, unit diagnostics, and professional-boundary status behavior.</p>
+<p>11. Record remaining TBDs and assumptions in implementation notes or tests rather than silently defaulting engineering behavior.</p></blockquote>
+<h3 id="clm-020-verification">CLM-020 — Verification</h3>
+<blockquote><h5 id="verification">Verification</h5>
+<table><tbody>
+<tr><td>Check</td><td>Expected result</td></tr>
+<tr><td>Source traceability</td><td>Requirements and tests cite accessible sources or mark unsupported details as TBD/ASSUMPTION.</td></tr>
+<tr><td>Schema parse</td><td><code>schemas/analysis_run.schema.json</code> parses and satisfies repository schema validation once implemented.</td></tr>
+<tr><td>Binding coverage</td><td>Tests or schema review confirm all SOW-072 categories are present or explicitly referenced.</td></tr>
+<tr><td>Reproducibility</td><td>Equivalent supported run-record payloads produce exact stable sorted-compact bytes/hashes, mutations change hashes, and emitted metadata contains <code>SORTED_COMPACT_JSON</code> with no JCS claim.</td></tr>
+<tr><td>Unit handling</td><td>Missing unit metadata for unit-bearing values produces diagnostics rather than silent defaults.</td></tr>
+<tr><td>Boundary controls</td><td>Statuses and examples avoid automatic professional approval/compliance claims and protected/private data leakage.</td></tr>
+<tr><td>Dependency preservation</td><td>Existing DAG-002 mirror rows remain ACTIVE unless later CHANGE/RECONCILIATION authority changes them.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-021-records">CLM-021 — Records</h3>
+<blockquote><h5 id="records">Records</h5>
+<p>The implementation pass should leave:</p>
+<ul>
+<li>- <code>schemas/analysis_run.schema.json</code>.</li>
+<li>- Run reproducibility tests.</li>
+<li>- Validation output for schema and tests.</li>
+<li>- Notes for any TBD schema fields, hash partitions, migration behavior, or fixture policies.</li>
+<li>- Protected-content/private-data review notes for public examples.</li>
+<li>- Any dependency-register changes only if they preserve approved DAG-006 rows or have explicit human/change authority.</li>
+</ul></blockquote>
+<ul>
+<li>- <strong>VER-001</strong> — Validate the contract and review source parity, every SOW-072 binding category, immutable run association, exact serialization-label and hash boundaries, unit/dimension and missing-data diagnostics, private/protected reference handling, retained residuals and TBDs, and professional-authority limits.</li>
+</ul>
+<h2 id="governing-values-and-decisions-axiology">Governing Values and Decisions — Axiology</h2>
+<h3 id="clm-022-guidance-del-14-02-analysis-run-records">CLM-022 — Guidance: DEL-14-02 Analysis run records</h3>
+<blockquote><h4 id="guidance-del-14-02-analysis-run-records">Guidance: DEL-14-02 Analysis run records</h4></blockquote>
+<h3 id="clm-023-d-41-r5-t7-pdu-055-current-declaration">CLM-023 — D-41 R5 T7 PDU-055 current declaration</h3>
+<blockquote><h5 id="d-41-r5-t7-pdu-055-current-declaration">D-41 R5 T7 PDU-055 current declaration</h5>
+<p>Current authority is <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code> revision 0.8, approved <code>execution/_DAG/DAG-007/</code> graph context, and D-41/<code>DEC-074</code> through the completed T1-T6 bounded records. The implemented working-tree slice and its evidence supersede this surface&#x27;s setup-only, future-only, or overtaken TBD wording as a current declaration; that earlier wording remains historical setup context only.</p>
+<p>Surviving deliverable-local residuals and gates are those recorded in <code>_STATUS.md ## Remaining</code>; dated MEMORY and formal-review history remain unchanged. This refresh does not imply lifecycle, review, validation, release, professional-reliance, or code-compliance closure.</p>
+<p>PDU-055 cited claim(s): <code>DEL-14-02-DECL-003</code>.</p></blockquote>
+<h3 id="clm-024-purpose">CLM-024 — Purpose</h3>
+<blockquote><h5 id="purpose">Purpose</h5>
+<p>Analysis run records exist so solver outputs can be reviewed as reproducible records bound to the exact model state, execution context, diagnostics, references, and hashes that produced them. The record is a traceability surface for design iteration and review; it is not an automatic professional approval or external validation state.</p></blockquote>
+<h3 id="clm-025-principles">CLM-025 — Principles</h3>
+<blockquote><h5 id="principles">Principles</h5>
+<table><tbody>
+<tr><td>Principle</td><td>Guidance</td><td>Source</td></tr>
+<tr><td>Bind results to their run basis</td><td>Treat the run record as the durable home for result evidence, not as a transient view of the current model.</td><td>SOW-072; <code>_CONTEXT.md</code> envelope notes</td></tr>
+<tr><td>Preserve exact upstream references</td><td>Model state, solver version, settings, units, load-case basis, diagnostics, rule packs, libraries, and result hashes are binding categories, not optional narrative notes.</td><td>SOW-072</td></tr>
+<tr><td>Keep units explicit</td><td>Unit-bearing physical values need unit metadata; missing or ambiguous units become diagnostics rather than inferred defaults.</td><td><code>docs/SPEC.md</code> section 4</td></tr>
+<tr><td>Make hashes scoped and reproducible</td><td>Hash records say what was hashed and label the actual DEL-14-02 serializer as <code>SORTED_COMPACT_JSON</code>: Python sorted keys, compact separators, and ASCII escaping. Do not infer RFC 8785/JCS conformance from deterministic output alone.</td><td><code>docs/SPEC.md</code> section 4.4; <code>DEC-074</code> E1 / PDU-003</td></tr>
+<tr><td>Keep authority domains separate</td><td>Solver results and diagnostics are software outputs. User-rule checks use user-supplied rule-pack data. Human acceptance, if used, is external and hash-bound.</td><td><code>docs/SPEC.md</code> analysis boundary section</td></tr>
+<tr><td>Protect private/protected payloads</td><td>Rule-pack and library references may carry identity, version, checksum, provenance, privacy, and review metadata, but public artifacts must not copy private/protected content.</td><td><code>docs/IP_AND_DATA_BOUNDARY.md</code>; <code>docs/SPEC.md</code> result export section</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-026-considerations">CLM-026 — Considerations</h3>
+<blockquote><h5 id="considerations">Considerations</h5>
+<ul>
+<li>- The folder is a setup-stage production unit. It contains no implementation evidence yet; statements about passing behavior, field names, storage APIs, or committed tests must remain TBD until produced by later Type 2 work.</li>
+<li>- SOW-072 is sufficient to identify required binding categories, but it is not sufficient to define exact schema field names, cardinality, or migration behavior.</li>
+<li>- The dependency mirror records approved DAG-006 predecessor evidence for architecture basis, immutable model state records, analysis status semantics, audit manifest/hash conventions, result export format, and persistence/round-trip support. Those rows are an evidence surface, not independent graph authority.</li>
+<li>- The deliverable should align with <code>schemas/results.schema.yaml</code> and result-export envelopes where run records include or point to result payloads, but this folder does not define the final result export schema.</li>
+<li>- <code>PRD v0.2</code> references are cited by decomposition/register rows but the PRD source text was not locally read in this task. Requirements must not exceed accessible SOW/decomposition wording.</li>
+</ul></blockquote>
+<h3 id="clm-027-trade-offs">CLM-027 — Trade-offs</h3>
+<blockquote><h5 id="trade-offs">Trade-offs</h5>
+<table><tbody>
+<tr><td>Topic</td><td>Conservative posture</td></tr>
+<tr><td>Embedded results vs references</td><td>Use the source-supported term &quot;results&quot; without deciding whether the schema embeds result payloads, references result envelopes, or supports both. Exact representation is TBD.</td></tr>
+<tr><td>Hash granularity</td><td>Require explicit payload scope. Do not decide final partitioning for non-JSON or binary payloads; <code>docs/SPEC.md</code> leaves that TBD.</td></tr>
+<tr><td>Rule-pack/library metadata depth</td><td>Preserve identity/provenance/checksum/reference metadata without copying private formulas, protected tables, proprietary values, or private payloads.</td></tr>
+<tr><td>Status vocabulary</td><td>Use software status/diagnostic categories only within the professional-boundary model. Do not introduce automatic human approval or code-compliance statuses.</td></tr>
+<tr><td>Comparison readiness</td><td>DEL-14-02 should not pre-solve DEL-14-04 comparison semantics. It should preserve enough run basis and result hash evidence to support deterministic comparison later.</td></tr>
+</tbody></table></blockquote>
+<h3 id="clm-028-examples">CLM-028 — Examples</h3>
+<blockquote><h5 id="examples">Examples</h5>
+<p>TBD. No approved example analysis-run payloads or fixture values are present in the accessible sources. Public examples must be invented or otherwise cleared for redistribution before use.</p></blockquote>
+<h3 id="clm-029-conflict-table-for-human-ruling">CLM-029 — Conflict Table (for human ruling)</h3>
+<blockquote><h5 id="conflict-table-for-human-ruling">Conflict Table (for human ruling)</h5>
+<table><tbody>
+<tr><td>Conflict ID</td><td>Conflict</td><td>Source A (file + section)</td><td>Source B (file + section)</td><td>Impacted sections</td><td>Proposed authority (PROPOSAL)</td><td>Human ruling</td></tr>
+<tr><td>None identified</td><td>No direct source conflict was identified in the accessible source slices. Several details remain TBD because source text is absent or implementation-specific.</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</tbody></table></blockquote>
+<h2 id="output-and-evaluation-matrix">Output and Evaluation Matrix</h2>
+<table><tbody>
+<tr><td>Output</td><td>Objective refs</td><td>Requirement/claim refs</td><td>Acceptance refs</td><td>Verification refs</td><td>Evidence expectation</td></tr>
+<tr><td>OUT-001</td><td>SOW-072 OBJ-016</td><td>CLM-008</td><td>AC-001</td><td>VER-001</td><td>Claim map, parity report, and applicable verification evidence</td></tr>
+</tbody></table>
+</body>
+</html>
