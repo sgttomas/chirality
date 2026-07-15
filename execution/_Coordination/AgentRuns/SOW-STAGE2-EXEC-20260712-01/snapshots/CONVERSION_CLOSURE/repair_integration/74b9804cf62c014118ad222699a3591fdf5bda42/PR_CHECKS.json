@@ -1,0 +1,32 @@
+{
+  "headRefOid": "bd9b163f8e967697d1abe15f572b9c3740dd5c49",
+  "mergeCommit": {
+    "oid": "74b9804cf62c014118ad222699a3591fdf5bda42"
+  },
+  "mergedAt": "2026-07-15T04:53:51Z",
+  "number": 237,
+  "state": "MERGED",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-07-15T04:53:37Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/29389924852/job/87270885670",
+      "name": "Harness pre-merge",
+      "startedAt": "2026-07-15T04:50:15Z",
+      "status": "COMPLETED",
+      "workflowName": "Harness Pre-merge Validation"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-07-15T04:51:47Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/sgttomas/chirality/actions/runs/29389924840/job/87270885604",
+      "name": "harness",
+      "startedAt": "2026-07-15T04:50:15Z",
+      "status": "COMPLETED",
+      "workflowName": "governance-harness"
+    }
+  ],
+  "url": "https://github.com/sgttomas/chirality/pull/237"
+}

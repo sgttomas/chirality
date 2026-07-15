@@ -1,0 +1,16 @@
+{
+  "forbidden_production_residue": 0,
+  "h2_approved": false,
+  "legacy_retirement_implemented": false,
+  "lifecycle": {
+    "IN_PROGRESS": 153,
+    "ISSUED": 1
+  },
+  "merge_commit": "74b9804cf62c014118ad222699a3591fdf5bda42",
+  "pkg00_legacy_exemptions": 8,
+  "project_hashes": 57,
+  "schema": "chirality-sow-clean-repair-postmerge/v1",
+  "source_head": "bd9b163f8e967697d1abe15f572b9c3740dd5c49",
+  "sow_v1": 146,
+  "verdict": "PASS"
+}
