@@ -5,7 +5,7 @@
   "closure": "CONVERSION_CLOSED — LEGACY_RETIREMENT_RULING_REQUIRED",
   "h2": "UNAPPROVED",
   "legacy_retirement": "PARKED_HUMAN_GATE",
-  "local_checks": "PENDING_EXACT_HEAD",
-  "state": "READY_TO_COMMIT_AND_VALIDATE",
-  "verdict": "PENDING"
+  "local_checks": "PASS",
+  "state": "READY_FOR_REMOTE_CHECKS",
+  "verdict": "PASS_PREMERGE"
 }

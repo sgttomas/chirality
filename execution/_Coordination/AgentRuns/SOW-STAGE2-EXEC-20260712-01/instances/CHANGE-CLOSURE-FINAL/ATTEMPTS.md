@@ -10,6 +10,13 @@ All operations remained inside the sealed closure-integration boundary.
 2. The sealed brief names the SHA-256 values of the two self-excluding
    `MANIFEST.tsv` files. No separate `MANIFEST.sha256` files exist; direct
    SHA-256 calculation of the TSVs reproduced both sealed values exactly.
+3. Whole-tranche `git diff --cached --check` reported only whitespace retained
+   inside immutable, manifest-bound manager check logs. No warning occurs in a
+   mutable root binding or CHANGE-owned file. The upstream evidence was not
+   rewritten because doing so would invalidate both accepted manifest hashes.
+4. The first focused validator looked for the H2 record under a generic
+   `gates` key. The accepted graph uses `human_gates`; the validator was
+   corrected without changing governed state and rerun on the next exact head.
 
 No project, skill, tool, caller, lifecycle, rollback, H2-ruling, compatibility,
 or retirement state was changed.

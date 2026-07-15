@@ -46,7 +46,7 @@ def main() -> None:
     assert nodes["CONVERSION-CLOSURE"]["status"] == "PASS_ACCEPTED"
     assert nodes["CONVERSION-CLOSURE"]["basis"] == BASIS
     assert nodes["CONVERSION-CLOSURE-CHANGE"]["status"] == "RELEASED"
-    h2 = next(item for item in graph["gates"] if item["id"] == "H2")
+    h2 = next(item for item in graph["human_gates"] if item["id"] == "H2")
     assert h2["state"] == "UNAPPROVED"
     assert nodes["LEGACY_RETIREMENT"]["status"] == "PARKED_HUMAN_GATE"
 
