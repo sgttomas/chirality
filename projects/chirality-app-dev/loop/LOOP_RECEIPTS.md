@@ -1671,3 +1671,12 @@
     register row D-APP-57.
   - Gate outcome: awaiting serialization — O-A was selected in-session, but
     implementation waits for the packet and a ruling-only record to land.
+
+- **2026-07-15 — Receipt 52** (D-APP-57 O-A ruling recorded).
+  - Start: packet merge `ef0333932be75ac4c666eb28d23e0ba417912a7b`;
+    parent handoff Receipt 51.
+  - Pointers: `D-APP-57_RULING_2026-07-15.md`; D-APP-57 register row.
+  - Checks: ruling-text hash and packet-commit binding pass; app-dev
+    practitioner self-check passes with pre-existing REVIEW findings only.
+  - Gate outcome: executed — O-A is recorded; implementation starts only
+    after this ruling-only change lands on `main`.

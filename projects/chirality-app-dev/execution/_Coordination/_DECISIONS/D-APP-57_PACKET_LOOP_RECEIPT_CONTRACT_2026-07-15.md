@@ -1,6 +1,6 @@
 # D-APP-57 — App-Dev Loop Receipt Contract and Enforcement
 
-**Status:** PROPOSAL — owner selection not recorded until a ruling record lands
+**Status:** RULED — O-A selected; see `D-APP-57_RULING_2026-07-15.md`
 
 **Date prepared:** 2026-07-15
 
