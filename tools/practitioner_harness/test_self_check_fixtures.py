@@ -576,3 +576,20 @@ def test_gen5_pec_project_relative_refs_resolve(tmp_path):
             if f.source_path.endswith("_REGISTER.md")]
 
     assert all("docs/STATUS.md" not in hit.message for hit in hits)
+
+
+def test_gen11_piping_receipt_validator_failure_is_blocking(tmp_path):
+    repo = tmp_path / "repo"
+    piping = repo / "projects" / "chirality-piping"
+    _write(piping / "loop" / "LOOP_RECEIPTS.md", "# fixture ledger\n")
+    _write(
+        repo / "tools" / "validation" / "validate_piping_loop_receipts.py",
+        "print('INVALID FIXTURE: receipt contract failed')\n"
+        "raise SystemExit(1)\n",
+    )
+
+    report, _ = cmd_self_check.run_self_check(repo, root_filter=piping)
+    hits = _findings(report, "PIPING_RECEIPT_CONTRACT")
+    assert len(hits) == 1
+    assert hits[0].severity == Severity.BLOCK
+    assert "INVALID FIXTURE" in hits[0].message
