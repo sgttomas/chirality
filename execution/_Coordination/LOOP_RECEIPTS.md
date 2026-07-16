@@ -443,3 +443,19 @@
 - State: `CLOSED_CURRENT_STATE_ALIGNED`; future compatibility retirement, DAG
   successor publication, PDU-007, and TP-SEAM-WASM-001 remain parked at their
   named authority gates.
+
+### Receipt 28 — 2026-07-15 — Pilot source references retired
+
+- Owner direction, verbatim: “I'm not really bothered about retaining pilot
+  evidence, so long as the actual work isn't missing without them. Just change
+  the record to explain the evidence wasn't preserved but the human approved
+  its removal or something like that.”
+- Verification: all six App PKG-07 and four Piping PKG-13 production members
+  match the accepted conversion-closure status/contract hashes, validate as
+  `SOW_V1`, and contain no legacy four-document files on
+  `main@c7e88216baf32acd27e34f3e64851b0918c33a75`.
+- Disposition: local-only pilot refs `fb83ffca8...` and `31c35ea97...` were
+  owner-approved for removal; their branch-resident evidence is not durably
+  retained. The evidence-package index records the resulting rerun boundary.
+- Boundary: no production, lifecycle, semantic, closure-snapshot, or
+  historical run-record content changed.
