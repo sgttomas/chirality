@@ -1661,3 +1661,13 @@
     typecheck; full Vitest 680 passed / 4 skipped; owned-server premerge gate
     Section 8 PASS (8) and Section 9 PASS (16, report-only); `git diff
     --check` and app-dev-only scope fence.
+
+- **2026-07-15 — Receipt 51** (D-APP-57 receipt-contract packet prepared).
+  - Start: clean `main` at `8088dd1f1c66c53c91958b85dba96962b78f18c8`;
+    parent handoff Receipt 50.
+  - Owner direction (2026-07-15, in-session, Ryan Tufts): "Create the decision
+    packet accordingly. Record my ruling of O-A and then proceed."
+  - Pointer: `execution/_Coordination/_DECISIONS/D-APP-57_PACKET_LOOP_RECEIPT_CONTRACT_2026-07-15.md`;
+    register row D-APP-57.
+  - Gate outcome: awaiting serialization — O-A was selected in-session, but
+    implementation waits for the packet and a ruling-only record to land.
