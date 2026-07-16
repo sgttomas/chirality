@@ -6,6 +6,17 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-15 - DEL-10-04 open-dependency state repair and D-APP-58 gateway
+
+Removed DEL-10-04's stale DEP-10-04-008 Remaining item because the live
+register already records D-APP-56 R5 P45 UPD-157 satisfaction against accepted
+D53A FULL_GRAPH evidence. DEP-10-04-007 remains ACTIVE/PENDING: existing tests
+do not supply the missing adapter-manifest location. D-APP-58 presents the
+owner-shaped disposition without creating a manifest, schema, runtime change,
+domain-engine authority, lifecycle transition, or release/professional claim.
+
+Validation is recorded in the deliverable-local loop run and PR checks.
+
 ## 2026-07-12 - D-APP-55 concordance R5/R6 closeout
 
 D-APP-56's ruled R5 work landed through PR #215, with the R6-discovered
