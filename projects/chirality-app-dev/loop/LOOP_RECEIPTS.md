@@ -2,7 +2,7 @@
 
 > **Epistemic status: derivative handoff ledger — not authority.** Append-only.
 > Current state is always re-derived from the live tree, the decision register,
-> the owner-adopted queue plans, git history, and the deterministic checks; on
+> deliverable-local state, git history, and deterministic checks; on
 > any disagreement those sources govern (K-AUTH-1). A receipt records only what
 > tools cannot re-derive: owner directions given outside governed artifacts,
 > gate outcomes and their rationale, deltas found in dated maps (which are never
@@ -25,8 +25,27 @@
 5. **Gate outcomes with reason.** stopped / executed / awaiting owner — and
    why, especially no-op outcomes ("all remaining work is owner-shaped"), so
    the next loop neither rediscovers the stop nor invents work around it.
-6. **Capped.** Roughly 6–12 lines per receipt. If it wants more, the detail
-   belongs in a decision packet, PR description, or project-local record.
+6. **Capped.** Roughly 6–12 lines per legacy receipt. Beginning with Receipt
+   53, the versioned contract permits at most 12 top-level records and 4,096
+   UTF-8 bytes excluding the heading. If it wants more, the detail belongs in
+   a decision packet, PR description, AgentRuns record, or project-local
+   record.
+7. **Exact cursor.** Every versioned receipt has exactly one `Receipt-ID`,
+   `Examined-Through`, and `Parent-Receipt` record. `Examined-Through` is the
+   full commit SHA examined at the end of Step 0 before mutation;
+   `Parent-Receipt` is the actual handoff basis and need not be the physically
+   preceding entry when concurrent sessions share a parent.
+8. **Admissible records only.** A versioned receipt also has exactly one
+   `Gate-Outcome` and may contain only `Owner-Direction`, `Stale-Map-Delta`,
+   `Pointers`, `Checks`, and `Model-Attribution` records. Chat-only directions
+   carry `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING`; recoverable history,
+   measurements, dispositions, status, and orchestration details stay in
+   their owning artifacts and are represented here only by pointers.
+9. **Deterministic closeout gate.** Run
+   `python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .`
+   before using the latest cursor and again after appending a receipt. D-APP-57
+   freezes the ledger prefix through Receipt 52; later entries use the
+   versioned grammar below. Validator PASS is structural evidence only.
 
 ## Receipts
 
@@ -1680,3 +1699,17 @@
     practitioner self-check passes with pre-existing REVIEW findings only.
   - Gate outcome: executed — O-A is recorded; implementation starts only
     after this ruling-only change lands on `main`.
+
+<!-- receipt-contract-v2 project=chirality-app-dev frozen-through=Receipt-52 prefix-bytes=114344 prefix-sha256=d67fbb7e5c58427eb22af95c81ae7be7e0b9d86f2ceb07b10ed8dbf08b0be0a7 -->
+
+- **2026-07-15 — Receipt 53** (D-APP-57 O-A implementation).
+  - Receipt-ID: `Receipt-53`
+  - Examined-Through: `8384fbc4bfd102ef3f793decdc3717259c01c10b`
+  - Parent-Receipt: `Receipt-52`
+  - Pointers: `D-APP-57_RULING_2026-07-15.md`;
+    `tools/validation/loop_receipt_contract.py`;
+    `tools/validation/validate_app_dev_loop_receipts.py`; `LOOP_INIT.md`;
+    `WORKPLAN_2026-07-10_app_dev_loop.md`
+  - Checks: receipt validators, self-check, and governance tests pass.
+  - Gate-Outcome: `EXECUTED` — O-A implementation applied; validation and
+    authorized PR closeout remain.

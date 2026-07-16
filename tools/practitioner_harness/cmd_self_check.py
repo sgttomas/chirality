@@ -18,7 +18,8 @@ on instruction-class project surfaces; detect, never rewrite), and
 (j) agent-registry currency (K-AGENTS-1: `AGENTS.md` file tokens vs live
 `agents/` files, both directions), (k) bridge-receipt structure /
 parked-lane carry-forward checks for the bridge loop (GEN-10), and (l) the
-D-44 / DEC-075 piping-loop receipt contract (GEN-11).
+D-44 / DEC-075 piping-loop receipt contract (GEN-11), and (m) the D-APP-57
+app-dev-loop receipt contract (GEN-12).
 
 All checks are read-only observations. Which surface is right is a human
 call; findings are REVIEW/WARN/INFO by these checks' own severity design
@@ -237,7 +238,7 @@ def run_self_check(
 
     identity_refusal: str | None = None
 
-    _add_piping_receipt_contract_findings(report, repo_root, scope)
+    _add_loop_receipt_contract_findings(report, repo_root, scope)
 
     # ----- Domain-engine control-area checks (DE-1..7) -----
     if de_in_scope:
@@ -854,74 +855,99 @@ def run_self_check(
         "GEN-9 (agent-registry currency: AGENTS.md file tokens vs live "
         "agents/ files, both directions), "
         "GEN-10 (bridge receipt labels + parked-lane carry-forward), "
-        "GEN-11 (D-44 piping receipt contract)")
+        "GEN-11 (D-44 piping receipt contract), "
+        "GEN-12 (D-APP-57 app-dev receipt contract)")
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
 
 
-def _add_piping_receipt_contract_findings(
+def _add_loop_receipt_contract_findings(
     report: Report,
     repo_root: Path,
     scope: list[Path],
 ) -> None:
-    piping_root = repo_root / "projects" / "chirality-piping"
-    receipts = piping_root / "loop" / "LOOP_RECEIPTS.md"
-    if not receipts.is_file() or _narrow(piping_root, scope) is None:
-        return
+    contracts = (
+        {
+            "project_root": repo_root / "projects" / "chirality-piping",
+            "validator": "validate_piping_loop_receipts.py",
+            "missing_code": "PIPING_RECEIPT_VALIDATOR_MISSING",
+            "invalid_code": "PIPING_RECEIPT_CONTRACT",
+            "operational_code": "PIPING_RECEIPT_VALIDATOR_OPERATIONAL",
+            "basis": "D-44 / DEC-075",
+            "invariant": "DEC-075",
+        },
+        {
+            "project_root": repo_root / "projects" / "chirality-app-dev",
+            "validator": "validate_app_dev_loop_receipts.py",
+            "missing_code": "APP_DEV_RECEIPT_VALIDATOR_MISSING",
+            "invalid_code": "APP_DEV_RECEIPT_CONTRACT",
+            "operational_code": "APP_DEV_RECEIPT_VALIDATOR_OPERATIONAL",
+            "basis": "D-APP-57",
+            "invariant": "D-APP-57",
+        },
+    )
 
-    validator = repo_root / "tools" / "validation" / "validate_piping_loop_receipts.py"
-    rel_receipts = _rel(receipts, repo_root)
-    if not validator.is_file():
+    for config in contracts:
+        project_root = config["project_root"]
+        receipts = project_root / "loop" / "LOOP_RECEIPTS.md"
+        if not receipts.is_file() or _narrow(project_root, scope) is None:
+            continue
+
+        validator = (
+            repo_root / "tools" / "validation" / config["validator"]
+        )
+        rel_receipts = _rel(receipts, repo_root)
+        if not validator.is_file():
+            report.add_finding(make_finding(
+                Severity.BLOCK,
+                config["missing_code"],
+                "receipt-contract",
+                f"{config['basis']} receipt ledger exists but its "
+                "deterministic validator is absent.",
+                rel_receipts,
+                None,
+                invariant=config["invariant"],
+            ))
+            continue
+
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(validator),
+                "--repo-root",
+                str(repo_root),
+                "--receipts",
+                str(receipts),
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if completed.returncode == 0:
+            continue
+
+        output = " ".join(
+            part.strip()
+            for part in (completed.stdout, completed.stderr)
+            if part.strip()
+        )
+        if len(output) > 1200:
+            output = output[:1200] + " …[truncated]"
+        code = (
+            config["invalid_code"]
+            if completed.returncode == 1
+            else config["operational_code"]
+        )
         report.add_finding(make_finding(
             Severity.BLOCK,
-            "PIPING_RECEIPT_VALIDATOR_MISSING",
+            code,
             "receipt-contract",
-            "D-44 / DEC-075 receipt ledger exists but its deterministic "
-            "validator is absent.",
+            output or f"receipt validator exited {completed.returncode}",
             rel_receipts,
             None,
-            invariant="DEC-075",
+            invariant=config["invariant"],
         ))
-        return
-
-    completed = subprocess.run(
-        [
-            sys.executable,
-            str(validator),
-            "--repo-root",
-            str(repo_root),
-            "--receipts",
-            str(receipts),
-        ],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if completed.returncode == 0:
-        return
-
-    output = " ".join(
-        part.strip()
-        for part in (completed.stdout, completed.stderr)
-        if part.strip()
-    )
-    if len(output) > 1200:
-        output = output[:1200] + " …[truncated]"
-    code = (
-        "PIPING_RECEIPT_CONTRACT"
-        if completed.returncode == 1
-        else "PIPING_RECEIPT_VALIDATOR_OPERATIONAL"
-    )
-    report.add_finding(make_finding(
-        Severity.BLOCK,
-        code,
-        "receipt-contract",
-        output or f"receipt validator exited {completed.returncode}",
-        rel_receipts,
-        None,
-        invariant="DEC-075",
-    ))
 
 
 def _add_live_binding_gate_findings(report: Report, repo_root: Path) -> None:

@@ -593,3 +593,20 @@ def test_gen11_piping_receipt_validator_failure_is_blocking(tmp_path):
     assert len(hits) == 1
     assert hits[0].severity == Severity.BLOCK
     assert "INVALID FIXTURE" in hits[0].message
+
+
+def test_gen12_app_dev_receipt_validator_failure_is_blocking(tmp_path):
+    repo = tmp_path / "repo"
+    app_dev = repo / "projects" / "chirality-app-dev"
+    _write(app_dev / "loop" / "LOOP_RECEIPTS.md", "# fixture ledger\n")
+    _write(
+        repo / "tools" / "validation" / "validate_app_dev_loop_receipts.py",
+        "print('INVALID FIXTURE: app-dev receipt contract failed')\n"
+        "raise SystemExit(1)\n",
+    )
+
+    report, _ = cmd_self_check.run_self_check(repo, root_filter=app_dev)
+    hits = _findings(report, "APP_DEV_RECEIPT_CONTRACT")
+    assert len(hits) == 1
+    assert hits[0].severity == Severity.BLOCK
+    assert "INVALID FIXTURE" in hits[0].message
