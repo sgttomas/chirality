@@ -75,3 +75,27 @@ candidate, source, `_STATUS.md`, frozen parser/catalog/tool, checklist
 contract, or commit invalidates affected evidence and requires scoped
 validation, mapping, parity, HTML, checklist, verifier, and RECONCILIATION
 fan-in before implementation or a renewed ruling basis.
+
+## Post-closure source-ref disposition — 2026-07-15
+
+After Stage-2 conversion and rollback closure, the human owner approved
+removal of the two local-only pilot branch references. The branch-resident
+pilot candidates at `fb83ffca8a7f674db13c6cda775ca7b7d7c8ef26` and
+`31c35ea9798c29cd0af16b7089186f3942dcfcb1` were intentionally not retained
+as durable Git references.
+
+Before removal, current `main` at
+`c7e88216baf32acd27e34f3e64851b0918c33a75` was checked against the accepted
+conversion-closure corpus. All six App PKG-07 and four Piping PKG-13
+production members matched their accepted `_STATUS.md` and `ScopeOfWork.md`
+hashes, validated as `SOW_V1`, and contained no legacy four-document files.
+The integrated production work is therefore present independently of the
+pilot branches.
+
+Historical records above continue to identify the basis actually evaluated
+at Stage 1, but direct reproduction from those two source commits is no longer
+guaranteed. Mainline Stage-1 fan-in records, Stage-2 successor evidence,
+conversion-closure snapshots, and current production contracts remain
+tracked. This owner-approved evidence-retention reduction does not change
+production scope, lifecycle, semantic acceptance, or the Stage-2 closure
+verdict.
