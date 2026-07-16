@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the D-44 / DEC-075 chirality-piping receipt contract.
+"""Validate the D-APP-57 chirality-app-dev receipt contract.
 
 The tool is read-only. Exit 0 means structural conformance, exit 1 means one
 or more contract violations, and exit 2 means an operational/input failure.
@@ -19,20 +19,20 @@ from loop_receipt_contract import (
 )
 
 
-RECEIPTS_RELPATH = Path("projects/chirality-piping/loop/LOOP_RECEIPTS.md")
-FROZEN_THROUGH = 44
-FROZEN_PREFIX_BYTES = 74168
+RECEIPTS_RELPATH = Path("projects/chirality-app-dev/loop/LOOP_RECEIPTS.md")
+FROZEN_THROUGH = 52
+FROZEN_PREFIX_BYTES = 114344
 FROZEN_PREFIX_SHA256 = (
-    "671a1f722a56d98bbc52bb5a3062d0bf7c25bc37312384fc63526bc43c2ca59f"
+    "d67fbb7e5c58427eb22af95c81ae7be7e0b9d86f2ceb07b10ed8dbf08b0be0a7"
 )
 MARKER = (
-    "<!-- receipt-contract-v2 frozen-through=Receipt-44 "
-    "prefix-bytes=74168 "
-    "prefix-sha256=671a1f722a56d98bbc52bb5a3062d0bf7c25bc37312384fc63526bc43c2ca59f -->"
+    "<!-- receipt-contract-v2 project=chirality-app-dev "
+    "frozen-through=Receipt-52 prefix-bytes=114344 "
+    "prefix-sha256=d67fbb7e5c58427eb22af95c81ae7be7e0b9d86f2ceb07b10ed8dbf08b0be0a7 -->"
 )
 
 CONTRACT = ReceiptContract(
-    contract_id="D-44",
+    contract_id="D-APP-57",
     receipts_relpath=RECEIPTS_RELPATH,
     frozen_through=FROZEN_THROUGH,
     frozen_prefix_bytes=FROZEN_PREFIX_BYTES,
@@ -46,7 +46,6 @@ def validate_receipts(
     repo_root: Path,
     validation_commit: str = "HEAD",
 ) -> list[ReceiptIssue]:
-    """Preserve the original project-wrapper API for callers and tests."""
     return validate_contract_receipts(
         receipts_path=receipts_path,
         repo_root=repo_root,

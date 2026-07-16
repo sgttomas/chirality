@@ -40,8 +40,11 @@ runtime scope, as far as live authority permits — stopping at every owner gate
 0. **Discover (mandatory core).** Clean `git` state and branch awareness (log since the
    last receipt; concurrent loops may be live in this monorepo — keep write scopes
    disjoint from `_DomainEngines/**`, `projects/chirality-piping/**`, `projects/pec/**`,
-   and treat unrelated dirty files as external state). Read the latest receipt(s) in
-   `LOOP_RECEIPTS.md`. Check `execution/_Coordination/_DECISIONS/_REGISTER.md` for
+   and treat unrelated dirty files as external state). Run
+   `python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .` and only
+   then read the latest applicable receipt(s) in `LOOP_RECEIPTS.md`; a validator
+   failure blocks use of the cursor. Check
+   `execution/_Coordination/_DECISIONS/_REGISTER.md` for
    rulings newer than the last receipt — new rulings are how work unlocks, look every
    time. Enumerate the work surface from deliverable folders:
    `grep -l '^## Remaining' 'execution/PKG-'*/1_Working/DEL-*/_STATUS.md` for open
@@ -71,9 +74,11 @@ runtime scope, as far as live authority permits — stopping at every owner gate
    design forks are resolved with recorded agent decision latitude — decide, proceed,
    note the call.
 3. **Gate.** STOP at the hard fences and at owner-shaped acts; adoption/ruling/direction
-   is the owner's (K-AUTH-1; D-GOV-04). In-session directions/rulings are quoted
-   verbatim in the receipt and recorded in their governed artifact as part of execution.
-   Record every gate outcome — including no-ops and their reason.
+   is the owner's (K-AUTH-1; D-GOV-04). In-session directions/rulings are recorded
+   verbatim in their governed artifact; only chat-only directions with no governed home
+   are transcribed into the receipt, labeled as evidence rather than ruling. Directions
+   fully recoverable from Git/PR history need no receipt transcription. Record every
+   gate outcome — including no-ops and their reason.
 4. **Execute + check.** Branch-first + PR is the default; never self-merge; write scope
    stays inside `projects/chirality-app-dev/**` unless the owner grants wider scope.
    *Multi-agent execution:* derive the current work graph under `LOOP_INIT.md` §7.
@@ -95,8 +100,10 @@ runtime scope, as far as live authority permits — stopping at every owner gate
    `_STATUS.md` (`Remaining` updated to reflect what landed — landed scope removed,
    newly named residuals added; lifecycle transitions only through their ruled gates,
    `**Checking Approval SHA**` discipline intact), `MEMORY.md`, `_run_records/**`;
-   landed narrative goes to `plans/PLAN_COMPLETION_LOG.md`. Append a minimal receipt to
-   `LOOP_RECEIPTS.md` per its local rules. Next iteration starts at 0.
+   landed narrative goes to `plans/PLAN_COMPLETION_LOG.md`. Append one versioned minimal
+   receipt to `LOOP_RECEIPTS.md` per its local rules, then rerun
+   `python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .`; receipt
+   validation is a mandatory pre-commit and closeout gate. Next iteration starts at 0.
 
 ## Standing constraints — hard fences (all iterations; always stop for a human ruling)
 
