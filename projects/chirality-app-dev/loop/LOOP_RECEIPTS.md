@@ -1726,3 +1726,42 @@
     subagents or model substitution.
   - Gate-Outcome: `AWAITING_OWNER` — authorized DEP-10-04-008 state repair
     executed; DEP-10-04-007 stops at D-APP-58 and no gated continuation ran.
+
+- **2026-07-16 — Receipt 55** (D-APP-58 ruled and executed).
+  - Receipt-ID: `Receipt-55`
+  - Examined-Through: `9e8e49202de261804aea09043d9379d4607c44ff`
+  - Parent-Receipt: `Receipt-54`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING TEXT ALONE
+    (2026-07-16, Ryan Tufts, in-session; full verbatim text and hash live in
+    the ruling record): "…it is a \"type\" and that helps guide the decision
+    process here.  This is something to deal with now.  …Plan and execute
+    with subagents."; structured selections "Just pick one for me"
+    (delegation of location/schema choice to agent latitude) and "Merge #254
+    now"; then "Merge PR #254 here." (agent executed the merge as the
+    owner's instrument); plan containing the agent selection approved.
+  - Stale-Map-Delta: authority-corpus v8 was stale on `main` — CONTRACT,
+    TYPES, PRD, AGENT_SOFTWARE_DECOMP, AGENT_DOMAIN_ENGINE drifted via the
+    PR #188 merge `a0dc7be32` (branch commits `de20b4ea5`, `d22f80bf5`,
+    `ee35409f5`) and concordance-integration merge `66a52643d`, all landed
+    after the v8 mint; reconciled in the v9 bump alongside the D-APP-58
+    SPEC change.
+  - Pointers: `D-APP-58_RULING_2026-07-16.md`; D-APP-58 register row;
+    `docs/SPEC.md` §18; DEL-10-04 `Dependencies.csv` row DEP-10-04-007,
+    `_STATUS.md`, `_DEPENDENCIES.md`; corpus v9
+    (`AUTHORITY_CORPUS.json`); `plans/PLAN_COMPLETION_LOG.md` 2026-07-16
+    entry.
+  - Checks: receipt validator pass (before/after); dependency schema
+    validator pass; corpus v9 apply/audit/status zero drift; practitioner
+    self-check exit 0 (pre-existing findings only, none touching this
+    tranche); practitioner-harness pytest pass; frontend gates skipped —
+    no runtime source changed.
+  - Model-Attribution: Claude Fable 5 primary orchestrator (gates, register,
+    receipt, merge, PR); Fable 5 governed-artifact executor subagent (ruling
+    record, SPEC, DEL-10-04 kit); Fable 5 adversarial verifier subagent
+    (pre-commit diff review); Fable 5 Explore/Plan subagents for discovery
+    and design. No silent model substitution.
+  - Gate-Outcome: `EXECUTED` — owner delegation exercised; agent selection
+    `_DomainEngines/profiles/<profileId>.adapter.yaml` +
+    `domain-engine-adapter-manifest/v1` recorded (declarative only; no
+    manifest instance authored); DEP-10-04-007 SATISFIED; PR closeout
+    remains for owner merge.

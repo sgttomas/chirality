@@ -901,6 +901,8 @@ Candidate endpoint families:
 
 Future profiles MUST define protected paths, proposal paths, operations, artifact types, deterministic adapter manifests, and boundary notices. Applying a domain operation requires explicit human acceptance.
 
+The deterministic adapter manifest for a registered profile is assigned the fixed conventional path `_DomainEngines/profiles/<profileId>.adapter.yaml` with versioned schema id `domain-engine-adapter-manifest/v1` (D-APP-58; agent selection under owner-delegated latitude). The assignment is declarative: manifest instances, their loader, and deterministic validation are authored under engine-side/bridge authority in a fresh governed tranche, and this project never writes `_DomainEngines/**`.
+
 ---
 
 ## 19. Validation Checklist
