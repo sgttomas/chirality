@@ -11,3 +11,4 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-153, UPD-154, UPD-155, UPD-156, UPD-157: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-10-04; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-07-15 - Live-state reconciliation removed the stale DEP-10-04-008 Remaining item: D-APP-56 R5 P45 UPD-157 already closed it against the accepted D53A FULL_GRAPH snapshot. DEP-10-04-007 remains PENDING because no accepted source assigns an adapter-manifest location; D-APP-58 now carries the owner decision gateway. No manifest, schema, runtime, or lifecycle change occurred.

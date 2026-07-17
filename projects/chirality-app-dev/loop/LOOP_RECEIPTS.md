@@ -1713,3 +1713,16 @@
   - Checks: receipt validators, self-check, and governance tests pass.
   - Gate-Outcome: `EXECUTED` — O-A implementation applied; validation and
     authorized PR closeout remain.
+
+- **2026-07-15 — Receipt 54** (open-dependency evaluation and gateway).
+  - Receipt-ID: `Receipt-54`
+  - Examined-Through: `34d8e1002ed85bf5acef4c72f10d45fb0b514ed5`
+  - Parent-Receipt: `Receipt-53`
+  - Pointers: `D-APP-58_PACKET_DEL10_04_ADAPTER_MANIFEST_DISPOSITION_2026-07-15.md`;
+    `DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_run_records/LOOP_RUN_2026-07-15_OPEN_DEP_GATEWAY.md`
+  - Checks: receipt validation, dependency state, practitioner status and
+    self-check, and governance checks pass.
+  - Model-Attribution: GPT-5 highest-capability single-agent operator; no
+    subagents or model substitution.
+  - Gate-Outcome: `AWAITING_OWNER` — authorized DEP-10-04-008 state repair
+    executed; DEP-10-04-007 stops at D-APP-58 and no gated continuation ran.
