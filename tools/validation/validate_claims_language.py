@@ -130,10 +130,13 @@ DOC_EXCLUDED_PREFIX = "governance"
 # DEC-081 two-wave activation. Wave 1 aligns product surfaces (desktop UI,
 # the named user-facing docs). Wave 2 extends the scan to the live
 # ScopeOfWork.md surfaces and the remaining docs (spec/governance-adjacent
-# pages) after their alignment lands. Flip to True with the Wave-2 tranche.
-WAVE2_SURFACES_ACTIVE = False
+# pages) after their alignment lands. Flipped to True with the D-48 Wave-2
+# tranche (2026-07-16): the full live doc tree and all live ScopeOfWork.md
+# files are now in scope.
+WAVE2_SURFACES_ACTIVE = True
 
 # Docs scanned during Wave 1 (relative to projects/chirality-piping/docs/).
+# Retained for the gate's False mode (exercised in tests only).
 WAVE1_DOC_RELPATHS = frozenset({
     "README.md",
     "BUILD_AND_RELEASE.md",

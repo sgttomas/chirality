@@ -90,3 +90,91 @@ NOTES_TEMPLATE §21.2 citation added; two doc passages re-wrapped/aligned.
 shim test passes.
 
 **Phase B:** W1-TESTS dispatched with the merged old→new maps (in flight).
+
+## Wave 2 — dispatch plan (2026-07-16, post-Wave-1 merge `c99e36963`)
+
+Live-tree enumeration (lint with Wave-2 scope active): 494 findings — 374
+across 82 `ScopeOfWork.md` files (larger than the E2 estimate of 45/77
+because the deterministic litany threshold catches more than literal
+restatements; same shapes, same rules, within the ruled O-A scope), 63
+identical validation-manual case-page boilerplate sentences (parent-fixed
+mechanically before dispatch: BS-VALID-derived replacement across 64 files),
+and 57 judgment-requiring doc findings in 21 files.
+
+Fan-out (7 nodes, concurrent, disjoint writes, file-tools-only, sealed
+briefs with exact `path:line:text` inventories frozen in the dispatch
+prompts):
+
+| Node | Scope | Findings/files |
+|---|---|---|
+| W2-SOW-1 | PKG-01..04 SOWs + own `_STATUS` History appends | 74/18 |
+| W2-SOW-2 | PKG-05..08 SOWs + appends | 86/22 |
+| W2-SOW-3 | PKG-09..12 SOWs + appends | 97/20 |
+| W2-SOW-4 | PKG-13..15 SOWs + appends | 73/13 |
+| W2-SOW-5 | PKG-16..17 SOWs + appends | 44/9 |
+| W2-DOCS-1 | SPEC, TYPES, DIRECTIVE, INTENT, RELEASE_QUALITY_GATES, AGENTIC_DEVELOPMENT_WORKFLOW, VALIDATION_STRATEGY | 37/7 |
+| W2-DOCS-2 | architecture/, security/, adr, contributor_guide, local_analysis, _Examples | 20/14 |
+
+Disposition rules (all briefs): (a) litany table cells / whole bullets →
+GF-TOKEN sentence; (b) claims-tails in prose/steps/ACs → surgical excision
+preserving deliverable-specific scope exclusions, GF-TOKEN or registry short
+variant where a boundary statement is genuinely needed; (c) structured
+metadata identifiers and enum values never renamed — prose around them
+aligned; legitimate prohibited-vocabulary enumerations keep their text with
+a "(PRD §21.2)" authority citation; (d) `## History` in `_STATUS.md` never
+edited; one dated History append per edited deliverable citing DEC-081.
+
+Parent (serialized, after fan-in): validator `WAVE2_SURFACES_ACTIVE=True`
+flip + test updates; authoring-directive note beside F-PIP-2 in the loop
+workplan (fence text unchanged); cross-project residuals recorded
+(`agents/AGENT_DOMAIN_ENGINE.md`, `skills/software-bounded-implementation/`
+`QA_CHECKS.md` — outside the piping fence, not edited); lint green over the
+full live tree; self-check; harness pytest; Receipt-51; PR; session-
+authorized merge. Docs-only wave → no DEC-025 sweep (per plan).
+
+## Wave 2 — returns (fan-in log, 2026-07-17)
+
+**All seven nodes COMPLETED; returns valid at fan-in (374 SOW + 57 doc
+findings dispositioned; 82 `_STATUS.md` History appends, one line each,
+no existing History line modified):**
+
+- **W2-SOW-1 (PKG-01..04):** 74/74 — 15 GF-TOKEN, 14 tail excisions, 45
+  §21.2 citations; 18 appends; identifiers/enums untouched.
+- **W2-SOW-2 (PKG-05..08):** 86/86 — 21/23/42; 22 appends; DEL-08-05 (the
+  report linter deliverable) kept all enforcement rules verbatim + citation.
+- **W2-SOW-3 (PKG-09..12):** 97/97 — 8/18/71; 20 appends; PKG-12 security
+  prohibitions preserved verbatim with citations per the brief's caution.
+- **W2-SOW-4 (PKG-13..15):** 73/73 — 14/10/49; 13 appends; disclosed
+  deviation accepted: repaired an evident pre-existing typo in DEL-13-01
+  ("require false … claims" → "prohibit … claims (PRD §21.2)"), restoring
+  the intended prohibition (strengthens, never weakens).
+- **W2-SOW-5 (PKG-16..17):** 44/44 — 7/13/24; 9 appends; DEL-16-04
+  boundary-control definitions kept with citations (registry/lint home).
+- **W2-DOCS-1 (spec/governance docs):** 37/37 — 4 registry rewrites, 33
+  normative prohibitions kept verbatim + on-line §21.2 citation; TYPES.md
+  enum vocabulary and schema identifiers untouched.
+- **W2-DOCS-2 (architecture/security/misc docs):** 20/20 — 8 registry
+  rewrites, 12 citation-suppressed; zero security rules weakened.
+
+**Parent integration (serialized):** 64 validation-manual case pages
+mechanically aligned (identical boilerplate → BS-VALID-derived sentence,
+pre-dispatch); one residual quoted verification row in DEL-15-01
+citation-suppressed at fan-in; `tests/test_local_fea_handoff_contract.py`
+guidance-wording assertions updated to the registry text; validator
+`WAVE2_SURFACES_ACTIVE=True` (full doc tree + all live SOWs in scope;
+Wave-1 gate retained for tests) with tests updated (16/16); F-PIP-2
+authoring note added to the loop workplan (fence text unchanged).
+
+**Dispositioned residual classes (recorded, not edited):** (1) hyphenated
+"non-authoritative" as an evidence-status qualifier on external-run /
+handoff / fixture evidence (e.g. DEL-17-01/-05/-09, DEL-15-02/-04) — a
+source-basis standing label, not the retired product-surface hedge;
+lint-clean. (2) Cross-project litany sources outside the piping fence:
+`agents/AGENT_DOMAIN_ENGINE.md`, `skills/software-bounded-implementation/QA_CHECKS.md`
+— not edited (write-scope fence).
+
+**Verification (Wave 2):** claims lint VALID (262 files, exit 0) over the
+full live tree with Wave-2 scope active; repo-wide self-check exit 0 incl.
+GEN-13 (WARN baseline pin holds); repo-root validation+harness pytest pass;
+full project pytest pass; `git diff --check` and receipt validator run at
+closeout. Docs-only tranche — DEC-025 sweep not triggered (per plan).
