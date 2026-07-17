@@ -1791,3 +1791,28 @@
     rulings are not the accepted PKG-10 amendment; row held as the truthful
     future-activation gate); DEP-10-04-006 and the standing-delegation
     adoption presented to the owner as a slate; PR closeout remains.
+
+- **2026-07-17 — Receipt 57** (D-APP-59: standing delegation adopted; DEL-10-04 ResponsibleParty confirmed).
+  - Receipt-ID: `Receipt-57`
+  - Examined-Through: `78a959b0c81dd02a146c6750cc9cd5f0bcc0fd40`
+  - Parent-Receipt: `Receipt-56`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-17, Ryan Tufts, in-session; canonical verbatim text and hash
+    live in the ruling record): "Merge the PR and S1 I adopt and S2 I
+    confirm." — PR #260 merged at owner direction; S1 standing delegation
+    adopted; S2 ResponsibleParty Ryan Tufts confirmed (owner self-binding
+    act, agent-proposed).
+  - Pointers: `D-APP-59_RULING_2026-07-17.md`; D-APP-59 register row;
+    DEL-10-04 `Dependencies.csv` row DEP-10-04-006, `_STATUS.md`,
+    `_CONTEXT.md`, `ScopeOfWork.md`, `_DEPENDENCIES.md`;
+    `plans/PLAN_COMPLETION_LOG.md` 2026-07-17 entry.
+  - Checks: dependency schema validator pass; receipt validator pass
+    (before/after); practitioner self-check exit 0 (pre-existing findings
+    only); documentation/kit-only tranche — frontend gates skipped, no
+    authority doc edited so no corpus bump; no lifecycle change.
+  - Model-Attribution: Claude Fable 5 single-agent orchestrator/executor;
+    no subagents; no model substitution.
+  - Gate-Outcome: `EXECUTED` — slate ruled by owner; D-APP-59 recorded;
+    DEP-10-04-006 closed on the owner's confirmation; DEL-10-04 Remaining
+    reduces to the deferred CQ-F1 concordance item; DEP-10-04-004 stays the
+    held future-activation gate; PR closeout remains.

@@ -9,7 +9,6 @@
 
 ## Remaining
 - CQ-F1 PEC-fixture affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/scripts/pec-scratch-server.mjs` and `frontend/scripts/run-pec-bridge-rehearsal.ts`. No ownership or mapping is asserted (revisit: next concordance pass).
-- Assign DEP-10-04-006 ResponsibleParty (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; DEP-10-04-004 judgment discharged 2026-07-16 under owner-delegated latitude — row stays PENDING as the future-activation gate) (gated: owner act)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents; P1/P2 complete, four documents non-empty)
@@ -29,3 +28,4 @@
 - 2026-07-15 - Removed the stale DEP-10-04-008 Remaining item because D-APP-56 R5 P45 UPD-157 already records the row SATISFIED against accepted D53A FULL_GRAPH evidence; registered the owner-shaped DEP-10-04-007 disposition as D-APP-58. State remains IN_PROGRESS; no manifest, schema, runtime, or domain-engine change.
 - 2026-07-16 - DEP-10-04-007 closed SATISFIED under D-APP-58: adapter-manifest location convention assigned in docs/SPEC.md §18 (agent selection under owner-delegated latitude; ruling record D-APP-58_RULING_2026-07-16.md); Remaining item removed; no state change.
 - 2026-07-16 - DEP-10-04-004 amendment judgment discharged (agent decision under owner-delegated latitude, loop Receipt-56): D-APP-50/51/52 and D-T0-06 are not the accepted PKG-10 amendment; row stays PENDING as the truthful future-activation gate; Remaining item narrowed to the DEP-10-04-006 owner act; no state change.
+- 2026-07-17 - DEP-10-04-006 closed SATISFIED under D-APP-59: owner confirmed ResponsibleParty Ryan Tufts (including validation-evidence-owner role; owner self-binding act, agent-proposed slate item); identification surfaces updated in _CONTEXT.md and ScopeOfWork.md; Remaining item removed; no state change.

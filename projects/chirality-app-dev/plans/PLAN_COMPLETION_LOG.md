@@ -6,6 +6,23 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-17 - D-APP-59: standing delegation adopted; DEL-10-04 ResponsibleParty confirmed
+
+The owner ruled the two-item slate in one act ("Merge the PR and S1 I adopt
+and S2 I confirm."). S1 adopts the standing decision-latitude delegation
+("decide ensuring consistency and coherence in ontology, epistemology,
+praxeology, and axiology of this project") with recorded reach (design-shaped,
+evidence-against-criteria, and hold-as-truthful-gap judgments), recorded
+limits (no reliance/acceptance acts, accountability assignments, lifecycle
+issuance, hard-fence crossings, new-scope creation, or owner acts), and the
+truthful-attribution rule. S2 confirms ResponsibleParty Ryan Tufts for
+DEL-10-04 including the validation-evidence-owner role — an owner
+self-binding act, agent-proposed. DEP-10-04-006 closed SATISFIED; DEL-10-04
+Remaining reduces to the deferred CQ-F1 concordance item; DEP-10-04-004 stays
+the held future-activation gate. Evidence: ruling record
+`execution/_Coordination/_DECISIONS/D-APP-59_RULING_2026-07-17.md`, register
+row D-APP-59, loop Receipt-57.
+
 ## 2026-07-16 - DEP-10-04-004 amendment judgment discharged under owner-delegated latitude
 
 The owner delegated in-session ("decide ensuring consistency and coherence in

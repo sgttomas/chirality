@@ -36,13 +36,13 @@ This Scope of Work defines `DEL-10-04` in service of project scope [SOW-070] and
 > | PackageName | Domain Engine Future Boundary |
 > | DecompositionVariant | SOFTWARE_DECOMP |
 > | DecompositionRevision | v3.2 |
-> | ResponsibleParty | TBD |
+> | ResponsibleParty | Ryan Tufts (owner confirmation 2026-07-17; D-APP-59) |
 > | Type | TEST_SUITE |
 > | ContextEnvelope | M |
 > | ScopeItem | SOW-070 |
 > | Objective | OBJ-010 |
 > | Source posture | Future-boundary/gated scope; not current-release domain operation execution |
-> | Validation evidence owner | TBD - no human owner is assigned for interpreting future fixture pass/fail evidence |
+> | Validation evidence owner | Ryan Tufts — human owner interpreting future fixture pass/fail evidence (owner confirmation 2026-07-17; D-APP-59) |
 >
 
 ### CLM-003 — Attributes
@@ -125,7 +125,7 @@ This Scope of Work defines `DEL-10-04` in service of project scope [SOW-070] and
 >
 > The deliverable excludes current-release activation of domain-engine endpoints, domain-operation application, protected-model writes, solver integration, and any claim that Chirality approves or owns domain-engine solver truth. This exclusion is required by `docs/SPEC.md` Section 18, `docs/PLAN.md` R7, and `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 2.2.
 >
-> ResponsibleParty remains TBD.
+> ResponsibleParty: Ryan Tufts (owner confirmation 2026-07-17; D-APP-59).
 >
 > Current fixture implementation authority remains TBD. Before this deliverable can become executable implementation work, a human-approved PKG-10 amendment or explicit authorization must identify the ResponsibleParty, concrete test path, adapter manifest location, evidence-record format, and expected-failure fixtures.
 >
@@ -242,7 +242,7 @@ This Scope of Work defines `DEL-10-04` in service of project scope [SOW-070] and
 >
 > - Accepted PKG-10 amendment or explicit human authorization for future domain-engine work. Current sources keep domain profiles and operation proposals in future scope.
 > - Accessible source corpus for `docs/PRD.md`, `docs/TYPES.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/PLAN.md`.
-> - ResponsibleParty assignment: TBD.
+> - ResponsibleParty assignment: Ryan Tufts (owner confirmation 2026-07-17; D-APP-59).
 > - Concrete future test path and adapter manifest location: TBD.
 > - Dependency posture: `_DEPENDENCIES.md` now contains extracted ACTIVE rows, but all satisfaction remains `PENDING`; accepted declared upstream/downstream closure and project graph validation remain TBD.
 > - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
