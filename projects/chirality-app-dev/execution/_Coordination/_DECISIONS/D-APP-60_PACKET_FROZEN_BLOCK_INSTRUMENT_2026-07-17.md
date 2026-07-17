@@ -1,8 +1,7 @@
 # D-APP-60 — Frozen Shared Delegation Block (v1) and Loop Integration
 
-**Status:** PROPOSAL — DRAFT (block section reserved pending cross-project
-verification; packet becomes AWAITING_RULING when staged with the verified
-block embedded)
+**Status:** PROPOSAL — AWAITING_RULING (staged 2026-07-17 with the verified
+frozen block v1 embedded; block freeze record in S1.1a)
 
 **Date prepared:** 2026-07-17
 
@@ -33,32 +32,152 @@ supersession get new rows.)
 
 ## S1 — Adopt the frozen shared block v1 (instrument layer)
 
-### S1.1 The block (reserved — embedded only after cross-project verification)
+### S1.1 The block (frozen 2026-07-17 after cross-project verification)
 
-The canonical block text is authored by the piping loop and verified by this
-loop's independent refutation pass (manifest completeness, hash-convention
-conformance, genericity, semantic fidelity) before embedding. Per the
-staged-empty/staged-filled discipline, the section below remains empty and
-the hash field unrecorded until the verified text exists.
+The canonical block text was authored by the piping loop and delivered
+through the owner on 2026-07-17. This loop's independent refutation verifier
+(fresh context, sealed four-check brief: manifest completeness,
+hash-convention conformance, genericity, semantic fidelity) returned
+**FREEZE-SAFE** with five enumerated notes (freeze record, S1.1a below); the
+block was embedded and its hash recorded only after that verdict existed.
 
-<!-- BEGIN FROZEN DELEGATION BLOCK v1 -->
-*(reserved — verified canonical text embedded at freeze)*
-<!-- END FROZEN DELEGATION BLOCK v1 -->
+<!-- BEGIN SHARED BLOCK v1 -->
+Shared-Block v1 — standing decision-latitude delegation, shared normative
+core. This block is adopted verbatim by more than one project. Each
+adopting project binds it locally through its own delegation instrument as
+recorded in its decision register; the block itself names no project,
+instrument, date, or artifact path. Terms resolved by each adopting
+project's local bindings: "the instrument" (the adopting project's ruled
+delegation record), "the limits" (that instrument's recorded non-delegable
+acts), "the register" (that project's decision register), "the
+governed-artifact enumeration" (that project's recorded list of governed
+writing surfaces), "the rationale artifact" (a durable record in one of
+that project's recorded rationale homes), "the receipt" (an entry in that
+project's loop handoff ledger).
 
-**Block SHA-256:** *(recorded at freeze, recomputed after writing; SHA-256
-over the UTF-8 bytes between the markers, excluding the marker lines and
-delimiter newlines)*
+1. Criterion. A delegated judgment is decided ensuring consistency and
+coherence in the ontology, epistemology, praxeology, and axiology of the
+project: (i) keep the project's categories referring to real, distinct
+things; (ii) preserve what the record can warrant — never manufacture or
+destroy evidence standing; (iii) leave future operators a workable,
+drift-resistant rule of action; (iv) apply only values the project has
+already ruled — create none.
 
-Agreed block manifest (six items, fixed by the exchange): the criterion; the
-three-part class test with fast-reject ordering (limits screen before
-lenses); the method binding (live-tree grounding, adversarial self-test with
-recorded failure mode, artifact-grounded lenses, calibrated verifier scope,
-staged-empty/staged-filled, verdicts-after-events); the attribution form; the
-rejection-recording convention including "recorded rejections and near-miss
-entries are superseded, never edited"; the paired-amendment rule including
-the embedded hash convention and version identifier. Block text is
-citation-neutral and date-free; each project's local frame resolves "the
-adopting instrument" and "the project's decision register" to concrete IDs.
+2. Class test (every candidate item; fast-reject ordering). First screen
+the limits: an item that touches any recorded limit is owner-class
+immediately — no criterion analysis is required, and the referral names
+the touched limit. Only items passing the screen receive the full test,
+applied adversarially. A judgment is disposition-class only if ALL hold:
+(a) applies authority, creates none — every premise needed to decide it is
+already ruled, codified, or recorded, and the decision adds no scope,
+stage, spend, accountability, or normative content; (b) deterministic
+under the criterion — if two defensible outcomes survive, the item returns
+to the owner; (c) reversible and bounded — a recorded, revertible change
+(or recorded no-change) within existing write fences, triggering no ruled
+gate. The error asymmetry governs the default: over-referral costs owner
+attention; over-deciding silently converts owner authority; only the
+first is cheap to recover from.
+
+3. Method binding. Every exercise: (a) decides from the live tree — every
+cited source is opened and confirmed before reliance; derivative
+statements (summaries, pointers, prior tasking) are maps, not authority;
+(b) runs the class test as a skeptic and records the attempted failure
+mode in the rationale artifact; (c) grounds each criterion argument in
+recorded project artifacts cited by identifier — an argument that cannot
+name an artifact is evidence the item is not disposition-class;
+(d) calibrates verification by consequence: verification of factual
+claims against the live tree is unconditional everywhere; a full
+independent adversarial verifier — fresh context, sealed refutation-only
+brief carrying the claims to refute rather than the reasoning that
+produced them, no shared authorship with the work it checks, sole
+deliverable COMMIT-SAFE or BLOCK — is required for delegation exercises,
+for writes to governed artifacts, and for packets staging executable
+mechanics; nothing lands on BLOCK; (e) distinguishes staged-empty from
+staged-filled: reserved structure (sections, markers, placeholders) may
+exist before the event it awaits; values — verdicts, hashes, commit
+identifiers, ruling text — are written only after the event they record;
+in particular, a verifier's verdict is recorded only after the verifier
+has returned it.
+
+4. Attribution. Every exercised judgment is recorded as the agent's
+decision under owner-delegated latitude, citing the instrument — never as
+an owner selection or ruling. The receipt for the tranche names the
+rationale artifact. Truthful attribution is the firm limit of the model:
+a delegated disposition ever represented as an owner act is a violation.
+
+5. Rejection recording. Rationale artifacts record rejections alongside
+exercises. Items referred to the owner arrive pre-triaged in near-miss
+form: each names the limit or class-test gate it fails. A sustained run
+of exercise-only receipts with empty referral slates is itself a signal
+for an owner look; the ratio of exercises to rejections is derivable from
+the pointed-to artifacts and is never tallied in receipts.
+
+6. Near-miss permanence. Recorded near-miss entries and rejections are
+superseded by new entries when circumstances change; they are never
+edited.
+
+7. Paired amendment. This block changes only by paired owner acts
+recorded in every adopting project's register, minting the next version
+in all of them. The canonical hash of the block is SHA-256 over the UTF-8
+bytes between its BEGIN and END marker lines, excluding the marker lines
+and the newline delimiters adjacent to them; each adopting record carries
+the block between such markers together with its hash. A change adopted
+in one project alone is declared divergence, not amendment; a hash
+mismatch between adopting records is the tripwire that detects it.
+<!-- END SHARED BLOCK v1 -->
+
+**Block SHA-256 (v1, recorded at freeze 2026-07-17, recomputed after
+embedding):**
+`76438ab0e00dc70e5f6db751a32d0ff07b681c7b7fb12eeda338157c5ebe7668`
+(5,108 UTF-8 bytes between the marker lines under the resolved
+**no-trailing-newline reading**: the canonical span is the lines strictly
+between the BEGIN and END marker lines joined by LF, with no leading or
+trailing newline — the reading confirmed against the D-APP-59 precedent
+hash by computation.)
+
+Block structure as frozen: a local-bindings resolution preamble plus seven
+numbered items — criterion; class test (three parts, fast-reject ordering,
+error-asymmetry rationale); method binding (live-tree grounding, adversarial
+self-test with recorded failure mode, artifact-grounded lenses, calibrated
+verifier scope, staged-empty/staged-filled, verdicts-after-events);
+attribution form; rejection recording; near-miss permanence; paired
+amendment including the embedded hash convention and version identifier.
+The exchange had fixed a six-item manifest with near-miss permanence folded
+into rejection recording; the frozen block carries it as standalone item 6 —
+a structural-numbering deviation with no semantic divergence, verified and
+recorded as freeze-record note 1. Block text is citation-neutral and
+date-free; each project's local frame resolves "the instrument" and "the
+register" to concrete IDs.
+
+### S1.1a Freeze record (verifier verdict of 2026-07-17, recorded after it existed)
+
+Verdict: **FREEZE-SAFE**; all four checks PASS or PASS-WITH-NOTES; canonical
+hash independently computed by the verifier and recomputed by the
+orchestrator after embedding — both equal the recorded value. Notes:
+
+1. **Structure (N1):** near-miss permanence is standalone block item 6
+   (seven items total), not the agreed fold into rejection recording.
+   Semantics fully preserved; deviation accepted at freeze as
+   disposition-class (structure only; bouncing the block for numbering had
+   no defensible benefit) and recorded here; this packet's description
+   above reflects the actual structure.
+2. **Hash reading (H1):** the block's hash rule admits two readings at the
+   final newline; the operative reading is **no-trailing-newline**
+   (confirmed against the D-APP-59 precedent hash by computation; the
+   alternative reading yields a different value). The resolved reading is
+   recorded beside the hash above; both adopting records should carry it.
+3. **Lens glosses (A2):** block item 1's operational glosses (i)–(iii) are
+   normative content beyond the exchange-fixed four-lens-plus-ruled-values
+   criterion; consistent with intent, adopted by the owners as ruled text
+   at ruling, not exchange-fixed text.
+4. **N-ary generalization:** the block's "every adopting project" phrasing
+   is benign at the current two adopters; the block does not govern
+   accession of a new adopter (which would enlarge the amendment-consent
+   set without a byte change) — a future accession is owner-class in every
+   adopting project by construction.
+5. **Minor:** item 6's "when circumstances change" qualifier; the
+   "over-referral" (block) vs "over-slating" (Appendix W) terminology fork
+   — same referent, block genericity-driven; no action.
 
 ### S1.2 Local bindings (app-dev)
 
@@ -118,7 +237,11 @@ delegation adoptions. Everything else carries forward unchanged.
 `WORKPLAN_2026-07-10` against Appendix W clause-by-clause with the sole brief
 of refuting "nothing changed except the enumerated set"; `BLOCK` on any
 unexplained delta; the verdict is recorded in this packet only after it
-exists. **Filename pre-flight (completed 2026-07-17):** a repo-wide grep for
+exists. **Verdict (returned 2026-07-17, recorded after it existed):
+COMMIT-SAFE** — eleven normalized deltas, all within the enumerated set;
+one judgment call flagged for the ruler: the Step-2 latitude clause is a
+replacement (not a pure append) whose resulting text matches the enumerated
+set verbatim and whose replaced gloss's semantics survive intact. **Filename pre-flight (completed 2026-07-17):** a repo-wide grep for
 `WORKPLAN_2026-07-10` found references only in dated history (receipts,
 superseded plans, decision packets, review records, piping surfaces); no
 standing app-dev selection surface hardcodes the filename — `LOOP_INIT.md`
@@ -178,8 +301,12 @@ standing practice.
 
 ## Congruence note (fields reserved until the events that fill them)
 
-- **Shared-block hash:** *(recorded at freeze; must equal the hash recorded
-  in the piping packet)*
+- **Shared-block hash (v1, frozen 2026-07-17):**
+  `76438ab0e00dc70e5f6db751a32d0ff07b681c7b7fb12eeda338157c5ebe7668`
+  under the no-trailing-newline reading (freeze-record note 2) — must equal
+  the hash recorded in the piping packet; a mismatch means a transcription
+  error in one adopting record, resolved against the piping original as
+  template source.
 - **Sibling instrument:** piping decision register row D-49 and its DEC-082
   superseding-adoption packet *(packet path recorded when the owner confirms
   its staged location; commit SHAs exchanged at receipt time)*
@@ -211,10 +338,15 @@ Each item is separately rulable; the recommended ruling adopts all five.
 2. If S1 adopted: the block (already embedded and verified at staging) and
    local bindings become the D-APP-60 instrument; D-APP-59 remains
    byte-stable history, superseded by reference.
-3. If S2 adopted: mint Appendix W verbatim into
-   `loop/WORKPLAN_2026-07-17_app_dev_loop.md`; re-run the carry-forward
-   verifier against the minted file; `WORKPLAN_2026-07-10` becomes dated
-   history in place (never edited).
+3. If S2 adopted: mint Appendix W into
+   `loop/WORKPLAN_2026-07-17_app_dev_loop.md` — verbatim, except that if
+   the owner's ruling date differs from 2026-07-17, the actual ruling date
+   is substituted in the minted file's epistemic header, owner-intent
+   bullet, and filename, and the substitution is recorded in the closeout
+   receipt (Appendix W's dates are staged text and must not misdate the
+   owner's adoption); re-run the carry-forward verifier against the minted
+   file; `WORKPLAN_2026-07-10` becomes dated history in place (never
+   edited).
 4. If S3/S4 adopted: conventions take effect from the next receipt/iteration.
 5. If S5 adopted: mirror-adoption is recorded in both registers by the owner;
    this loop takes no cross-project action itself.

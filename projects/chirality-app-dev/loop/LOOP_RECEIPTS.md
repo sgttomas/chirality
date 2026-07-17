@@ -1816,3 +1816,34 @@
     DEP-10-04-006 closed on the owner's confirmation; DEL-10-04 Remaining
     reduces to the deferred CQ-F1 concordance item; DEP-10-04-004 stays the
     held future-activation gate; PR closeout remains.
+
+- **2026-07-17 — Receipt 58** (D-APP-60 packet staged: frozen shared block v1).
+  - Receipt-ID: `Receipt-58`
+  - Examined-Through: `963aff35900fec171dc7d14c7ad074971494e7d9`
+  - Parent-Receipt: `Receipt-57`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-17, Ryan Tufts, in-session): approved the D-APP-60 execution
+    plan (frozen-block verification, packet, workplan re-mint as packet
+    appendix) and delivered the piping loop's canonical shared block v1
+    for verification. Packet staging only; no delegation instrument,
+    workplan, or convention changes until the owner rules.
+  - Pointers: `D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md`
+    (block embedded with freeze record S1.1a; workplan re-mint as Appendix
+    W, minted only on ruling); D-APP-60 register row.
+  - Checks: independent block refutation verifier returned FREEZE-SAFE
+    (four checks; five recorded notes; canonical hash recomputed twice,
+    equal); independent carry-forward verifier returned COMMIT-SAFE (all
+    deltas within the enumerated set); receipt validator pass
+    (before/after); practitioner self-check exit 0 baseline; corpus v9
+    status zero drift; scratch-ledger pre-test of the S3 receipt wording
+    VALID. Frontend gates skipped — no runtime source changed.
+  - Model-Attribution: Claude Fable 5 primary orchestrator (drafting,
+    embedding, register, receipt); two independent Fable 5 verifier
+    subagents (block refutation; workplan carry-forward); a third
+    independent pre-commit adversarial verifier runs on the full staged
+    diff after this receipt is written, its verdict recorded in the PR
+    only after it exists.
+  - Gate-Outcome: `AWAITING_OWNER` — packet staged with the verified
+    block; adoption of any slate item is the owner's act; the sibling
+    piping packet stages in parallel per the agreed
+    both-staged-before-either-ruled sequence.
