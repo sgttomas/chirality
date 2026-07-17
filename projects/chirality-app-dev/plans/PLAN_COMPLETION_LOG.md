@@ -6,6 +6,25 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-16 - D-APP-58 ruled: adapter-manifest location assigned, DEP-10-04-007 satisfied
+
+The owner directed in-session that the DEL-10-04 adapter-manifest location
+question be resolved now, endorsed `projects/chirality-piping/_harness/adapter.yaml`
+as a guiding "type" (not a template), and explicitly delegated the concrete
+location/schema selection to agent decision latitude with recorded rationale.
+The agent selected `_DomainEngines/profiles/<profileId>.adapter.yaml` with
+versioned schema id `domain-engine-adapter-manifest/v1`; the assignment is
+declarative only — no manifest instance, loader, or validator was created
+(F-APP-3; K-ENGINE-6). Ruling record
+`execution/_Coordination/_DECISIONS/D-APP-58_RULING_2026-07-16.md` binds to
+approved packet commit `9e8e49202` (owner-directed merge of PR #254); SPEC §18
+carries the assignment; D-APP-38 corpus minted v9 (also reconciling drift
+landed on `main` after v8 via prior governance merges); DEP-10-04-007 flipped
+SATISFIED with the manifest-instance residual preserved as engine-side/bridge
+future scope. DEL-10-04 remains IN_PROGRESS.
+
+Validation details are not restated here; use the commit, the ruling record, and the receipt as evidence pointers.
+
 ## 2026-07-15 - DEL-10-04 open-dependency state repair and D-APP-58 gateway
 
 Removed DEL-10-04's stale DEP-10-04-008 Remaining item because the live

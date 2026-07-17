@@ -83,3 +83,4 @@ Closure state update (2026-07-10, D-APP-53 reconciliation; previously `PENDING` 
 - **Current counts:** ACTIVE 8; RETIRED 0; PENDING=3; SATISFIED=5.
 - **Correction:** DEP-10-04-008 is SATISFIED against D53A; four prior PENDING rows are now three.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+- **2026-07-16 (D-APP-58):** DEP-10-04-007 is SATISFIED — docs/SPEC.md §18 now assigns the adapter-manifest location convention `_DomainEngines/profiles/<profileId>.adapter.yaml` / `domain-engine-adapter-manifest/v1` (agent selection under owner-delegated latitude; ruling record `execution/_Coordination/_DECISIONS/D-APP-58_RULING_2026-07-16.md`); the four test paths stand per D-APP-53. Manifest instances do not yet exist and remain engine-side/bridge future scope. Three prior PENDING rows are now two (DEP-10-04-004, DEP-10-04-006 — both owner acts).
