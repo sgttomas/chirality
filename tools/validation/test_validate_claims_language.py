@@ -58,8 +58,7 @@ def test_clean_tree_passes(tmp_path, capsys):
     assert capsys.readouterr().out.startswith("VALID ")
 
 
-def test_litany_line_in_scope_of_work_is_flagged(tmp_path, monkeypatch):
-    monkeypatch.setattr(validator, "WAVE2_SURFACES_ACTIVE", True)
+def test_litany_line_in_scope_of_work_is_flagged(tmp_path):
     repo = _repo(tmp_path)
     _write(
         repo,
@@ -186,7 +185,8 @@ def test_enforcement_vocab_line_is_not_flagged(tmp_path):
     assert _codes(repo) == []
 
 
-def test_scope_of_work_not_scanned_before_wave2(tmp_path):
+def test_scope_of_work_not_scanned_when_wave2_gate_off(tmp_path, monkeypatch):
+    monkeypatch.setattr(validator, "WAVE2_SURFACES_ACTIVE", False)
     repo = _repo(tmp_path)
     _write(
         repo,
