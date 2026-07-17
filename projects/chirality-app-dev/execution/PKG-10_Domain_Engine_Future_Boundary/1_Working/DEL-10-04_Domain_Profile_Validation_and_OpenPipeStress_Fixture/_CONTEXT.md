@@ -11,7 +11,7 @@
 | PackageName | Domain Engine Future Boundary |
 | DeliverableID | DEL-10-04 |
 | DeliverableName | Domain Profile Validation and OpenPipeStress Fixture |
-| ResponsibleParty | TBD |
+| ResponsibleParty | Ryan Tufts (owner confirmation 2026-07-17; D-APP-59) |
 | Type | TEST_SUITE |
 | ContextEnvelope | M |
 
@@ -41,7 +41,7 @@ Future fixture profile; validation tests; adapter assumptions note
 
 ## Source Authority
 
-This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership.
+This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Ownership was assigned by the owner on 2026-07-17 (D-APP-59); the prior instruction to preserve `ResponsibleParty: TBD` until a human assigns ownership is discharged.
 
 ## SCA-APP-001 Context Alignment
 
