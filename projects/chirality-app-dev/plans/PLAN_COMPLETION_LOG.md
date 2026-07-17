@@ -6,6 +6,19 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-16 - DEP-10-04-004 amendment judgment discharged under owner-delegated latitude
+
+The owner delegated in-session ("decide ensuring consistency and coherence in
+ontology, epistemology, praxeology, and axiology of this project"; activation:
+"Yes — execute 004 under that delegation"). The agent judged that
+D-APP-50/D-APP-51/D-APP-52 and D-T0-06 do not constitute the accepted PKG-10
+amendment — each expressly excludes fixture implementation and tier-0
+authoring — and that no current activation need requires creating one. The row
+remains PENDING/ACTIVE as the truthful future-activation gate; affirmative
+closure requires a future owner act. Annotation-only: DEL-10-04 remains
+IN_PROGRESS and its Remaining scope narrows to the DEP-10-04-006
+ResponsibleParty owner act. Evidence: loop Receipt-56 and the DEL-10-04 kit.
+
 ## 2026-07-16 - D-APP-58 ruled: adapter-manifest location assigned, DEP-10-04-007 satisfied
 
 The owner directed in-session that the DEL-10-04 adapter-manifest location
