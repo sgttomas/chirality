@@ -239,6 +239,7 @@ def run_self_check(
     identity_refusal: str | None = None
 
     _add_loop_receipt_contract_findings(report, repo_root, scope)
+    _add_claims_language_findings(report, repo_root, scope)
 
     # ----- Domain-engine control-area checks (DE-1..7) -----
     if de_in_scope:
@@ -856,7 +857,8 @@ def run_self_check(
         "agents/ files, both directions), "
         "GEN-10 (bridge receipt labels + parked-lane carry-forward), "
         "GEN-11 (D-44 piping receipt contract), "
-        "GEN-12 (D-APP-57 app-dev receipt contract)")
+        "GEN-12 (D-APP-57 app-dev receipt contract), "
+        "GEN-13 (claims-language DEC-081)")
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
@@ -948,6 +950,71 @@ def _add_loop_receipt_contract_findings(
             None,
             invariant=config["invariant"],
         ))
+
+
+def _add_claims_language_findings(
+    report: Report,
+    repo_root: Path,
+    scope: list[Path],
+) -> None:
+    project_root = repo_root / "projects" / "chirality-piping"
+    registry = project_root / "docs" / "claims_registry.md"
+    if not registry.is_file() or _narrow(project_root, scope) is None:
+        return
+
+    validator = (
+        repo_root / "tools" / "validation" / "validate_claims_language.py"
+    )
+    rel_registry = _rel(registry, repo_root)
+    if not validator.is_file():
+        report.add_finding(make_finding(
+            Severity.REVIEW,
+            "CLAIMS_LANGUAGE_VALIDATOR_MISSING",
+            "claims-language",
+            "D-48 / DEC-081 claims registry exists but its deterministic "
+            "validator is absent.",
+            rel_registry,
+            None,
+            invariant="DEC-081",
+        ))
+        return
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(validator),
+            "--repo-root",
+            str(repo_root),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode == 0:
+        return
+
+    output = " ".join(
+        part.strip()
+        for part in (completed.stdout, completed.stderr)
+        if part.strip()
+    )
+    if len(output) > 1200:
+        output = output[:1200] + " …[truncated]"
+    if completed.returncode == 1:
+        severity = Severity.WARN
+        code = "CLAIMS_LANGUAGE_TAXONOMY"
+    else:
+        severity = Severity.REVIEW
+        code = "CLAIMS_LANGUAGE_VALIDATOR_OPERATIONAL"
+    report.add_finding(make_finding(
+        severity,
+        code,
+        "claims-language",
+        output or f"claims-language validator exited {completed.returncode}",
+        rel_registry,
+        None,
+        invariant="DEC-081",
+    ))
 
 
 def _add_live_binding_gate_findings(report: Report, repo_root: Path) -> None:
