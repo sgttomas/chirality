@@ -39,13 +39,15 @@ An owner-revision backlog for the thesis is catalogued in `plans/consistency_aud
 
 *Revision note dated 2026-07-02 (positioning pass).* A second owner-directed pass stated the whole-system category — a governed application environment for agent-assisted professional work — in Chapters 1, 4, and 10; added §9.3.6 on the relationship to the AI alignment problem (align the system of use, not the model); named Smith and Polanyi as the principal philosophical pair (§3.6.3); added an Author's Note and Appendix D §D.8 recording the origin of the conjecture; added glossary entries for reckoning, judgment, chirality of knowledge, and knowledge gap; and repaired stale `PLAN.md` section pointers in Chapters 8 and 9. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
+*Revision note dated 2026-07-18.* Owner-directed maintenance pass under the architecture-evaluation remediation program: the workflow-requirement range was corrected from R1–R12 to R1–R17 in this README and Chapter 4 (Appendix A already cataloged R1–R17; narrative had drifted behind the live registry, and per K-AGENTS-1 the registry governs on disagreement). The thesis remains CITED/REVIEWED, not AUTHENTICATED.
+
 ## Five Novel Contributions
 
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem
 2. **Regulatory mapping** — APEGA "Relying on the Work of Others" maps directly to AI agent governance; AI agents are "others" whose work the professional relies on
 3. **Four-pillar philosophical framework** — ontology/epistemology/praxiology/axiology with fractal instantiation through the document kit
 4. **Fault containment through write scope** — Agent 0/1/2 runtime hierarchy with formal blast radius containment
-5. **Three-layer invariant system** — R1–R12, I1–I10, K-* with four-layer enforcement map
+5. **Three-layer invariant system** — R1–R17, I1–I10, K-* with four-layer enforcement map
 
 ## Source Material
 

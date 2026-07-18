@@ -1,6 +1,9 @@
 # PLAN_INDEX — Governance Harness Planning Artifacts
 
-Status: ACTIVE/RULED: D-GOV-01..07 ruled by owner 2026-07-01; index published
+Status: ACTIVE/RULED: D-GOV-01..07 ruled by owner 2026-07-01 (the scope this
+index was published against — historical; the decision family has since
+grown, and `_DECISIONS/_REGISTER.md` is the live authority for the current
+D-GOV inventory); index published
 under `docs/governance_harness/`. Purpose: one navigable record of which plan
 governs, so no successor session or agent re-litigates a settled fork or
 builds from a superseded document. Maintained under `docs/governance_harness/`;

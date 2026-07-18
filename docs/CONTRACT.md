@@ -99,7 +99,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 |---|---|---|
 | **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | ORCHESTRATOR (gate map); human configuration |
 
-*Note:* D-GOV-02 (docs/governance_harness/_DECISIONS/), ruled 2026-07-01, derives from K-GATE-1 that no machine BLOCK on the CHECKING→ISSUED judgment may be non-overridable — BLOCKs apply to objective preconditions and hygiene only, and BLOCK override is human-only and recorded.
+*Note:* D-GOV-02 (docs/governance_harness/_DECISIONS/), ruled 2026-07-01, derives from K-GATE-1 that no machine BLOCK on the CHECKING→ISSUED judgment may be non-overridable — BLOCKs apply to objective preconditions and hygiene only, and BLOCK override is human-only and recorded. Per D-GOV-17 (ruled 2026-07-18), a validator finding may never mechanically reject content the owner has adopted or ruled — where ruled text trips a validator, the validator is defective and is corrected under review, never the ruled text; other instruction-surface validator boundary cases are handled by D-GOV-17's recorded-exception correction protocol rather than anticipatory enumeration.
 
 ### 1.8 Merge and Publication
 

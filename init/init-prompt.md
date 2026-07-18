@@ -161,7 +161,7 @@ Steer (this run): <none>
 </init-prompt>
 
 Same thin-launcher rationale as §3: the goal, protocol, fences, and pointer
-index live in `projects/chirality-app-dev/loop/LOOP_INIT.md` →
-`WORKPLAN_2026-07-04_app_dev_loop.md` → its receipts. This supersedes the older
+index live in `projects/chirality-app-dev/loop/LOOP_INIT.md` → the newest
+standing `WORKPLAN_*.md` beside it → its receipts. This supersedes the older
 status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
 remains as a historical map.
