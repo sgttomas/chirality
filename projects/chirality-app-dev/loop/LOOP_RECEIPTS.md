@@ -1902,3 +1902,26 @@
     from live-tree facts); rationale artifact named in Pointers; no items
     referred to the owner this tranche and the empty referral slate is
     stated in the rationale artifact.
+
+- **2026-07-17 — Receipt 61** (second D-APP-60 exercise: NM-4 import).
+  - Receipt-ID: `Receipt-61`
+  - Examined-Through: `86e44805c5dbf806141bb7f4399e6f1c8ba49e16`
+  - Parent-Receipt: `Receipt-60`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-17, Ryan Tufts, in-session): relayed the piping operator's
+    offer of its command-chaining near-miss for cross-import; source
+    verified against the live PR #265 review comment before import.
+  - Pointers: rationale artifact
+    `execution/_Coordination/AgentRuns/D-APP-60_NM4_IMPORT_2026-07-17/RUN_RECORD.md`
+    (NM-4 entry with provenance, class test, attempted failure mode,
+    empty referral slate stated).
+  - Checks: source comment verified live; receipt validator pass
+    (before/after); `git diff --check` clean. Frontend gates skipped —
+    no runtime source changed.
+  - Model-Attribution: Claude Fable 5 single-agent orchestrator/executor;
+    the tranche's independent pre-commit adversarial verifier verdict is
+    recorded in the PR after it exists.
+  - Gate-Outcome: `EXECUTED` — disposition-class judgment exercised under
+    the D-APP-60 instrument (import the sibling-offered mandatory-gate
+    chaining near-miss as NM-4 with verified provenance); rationale
+    artifact named in Pointers.
