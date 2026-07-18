@@ -113,3 +113,14 @@ No downstream handoff section was added because `CONSUMER_CONTEXT=NONE`.
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
 REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+---
+
+**Addendum (2026-07-18 — D-APP-62 scoped interpretation):** Under the
+D-APP-62 ruling (O-A, 2026-07-18), the assertion above that `_SEMANTIC.md`
+is invalid evidence / was not read or consumed is scoped to
+dependency-extraction evidence: it bars `_SEMANTIC.md` from serving as
+evidence for dependency rows. Its recorded consumption as the primary input
+to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
+consistent with it. See
+`execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.

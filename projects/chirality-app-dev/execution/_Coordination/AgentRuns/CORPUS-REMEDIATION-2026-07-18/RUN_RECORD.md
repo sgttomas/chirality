@@ -57,6 +57,12 @@ caught it, and this corrected text supersedes that claim.
   gate (a) — construing a recorded ruling creates interpretive normative
   content, which is owner-class. Pre-triage names the gate; options O-A/O-B/
   O-C staged in the packet. The 10 addenda execute only on an O-A ruling.
+  **Resolution:** the owner ruled O-A in-session (2026-07-18; verbatim and
+  hash in the packet §Human Ruling). The 10 addenda were appended in this
+  tranche; the underlying assertion sentences carry three phrasing variants
+  ("is invalid evidence and was not read or consumed" / "was not read or
+  consumed as evidence" / "was not read and was not consumed as evidence"),
+  all covered by the addendum's combined phrasing.
 
 No other referral candidates arose; the slate is otherwise empty.
 
@@ -95,3 +101,18 @@ recomputation of the transition distribution (52 → 2026-07-12; DEL-10-04 →
 2026-07-17) and a fairness check on the Return-1 summary above. The
 staging-scope pre-commit gate is satisfied; the D-APP-62 addenda remain
 gated on the owner ruling.
+
+**Return 3 — COMMIT-SAFE (2026-07-18, recorded after return; post-ruling
+delta).** Five sealed claims on the post-ruling delta all held: exact delta
+inventory vs the staging commit (packet flip + §Human Ruling fill with
+independently recomputed hash match, register row flip with same hash, 10
+byte-exact prefix-append addenda in the named set, RUN_RECORD Resolution
+note, Receipt-66 pure append with frozen prefix intact); owner-act
+attribution with agent transcription throughout; Examined-Through commit and
+Parent-Receipt reproduced; receipt validator VALID and validation pytest 122
+passed re-run independently; path containment (no piping, root, or ruled
+records touched). Non-blocking caveats: the Return-2 transcription itself is
+part of the working delta under the recorded-after-return protocol, and this
+Return-3 entry is the post-ruling return that Receipt-66's Checks line
+points to — recorded here before commit so the pointer is true at commit
+time.

@@ -1,6 +1,6 @@
 # D-APP-62 — Scope of the recorded `_SEMANTIC.md` invalidity assertion
 
-Status: AWAITING_RULING
+Status: RULED — O-A (2026-07-18)
 Date staged: 2026-07-18
 Parent authority: owner-directed architecture-evaluation remediation program (2026-07-18); D-APP-60 instrument (limits screen: interpretation of a recorded ruling is owner-class)
 
@@ -35,8 +35,19 @@ under any option.
 
 ## Human Ruling
 
+Ruled in-session by Ryan Tufts (owner, K-AUTH-1), 2026-07-18, transcribed by
+the agent at owner direction. The source message also contains D-GOV-17
+direction (M1/M2 steering and M3/M4 selections); the sentence bearing on this
+packet is transcribed verbatim below, and the same message is transcribed in
+the D-GOV-17 decision record when that slate completes.
+
 <!-- BEGIN OWNER RULING VERBATIM -->
-AWAITING_RULING
+For M3 I rule "M3-A". For M4 I rule "M4-A", and last I rule "O-A" for D-APP-62.
 <!-- END OWNER RULING VERBATIM -->
 
-Canonical ruling-text SHA-256: `TBD_AFTER_OWNER_ACT`
+Canonical ruling-text SHA-256 (UTF-8 bytes between the markers, excluding the
+marker lines and the newline delimiters adjacent to them):
+`0ae525c85c02c16f37d020f9024d632fd44ac7b91f7183a7bd4b4b6249ddca51`
+
+O-A is operative for this packet: the scoped interpretation governs; the 10
+clarification addenda are executed in the same tranche.

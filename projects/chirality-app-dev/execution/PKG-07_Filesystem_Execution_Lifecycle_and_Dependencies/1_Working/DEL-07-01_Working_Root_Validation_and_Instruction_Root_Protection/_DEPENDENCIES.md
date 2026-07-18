@@ -68,3 +68,14 @@ REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated R
 - **Current counts:** ACTIVE 4; RETIRED 1; NOT_APPLICABLE=4; SATISFIED=1.
 - **Correction:** DEP-07-01-005 resolves to landed implementation modules and is SATISFIED.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+
+---
+
+**Addendum (2026-07-18 — D-APP-62 scoped interpretation):** Under the
+D-APP-62 ruling (O-A, 2026-07-18), the assertion above that `_SEMANTIC.md`
+is invalid evidence / was not read or consumed is scoped to
+dependency-extraction evidence: it bars `_SEMANTIC.md` from serving as
+evidence for dependency rows. Its recorded consumption as the primary input
+to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
+consistent with it. See
+`execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.

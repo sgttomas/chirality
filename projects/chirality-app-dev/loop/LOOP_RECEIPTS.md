@@ -2018,3 +2018,28 @@
     app-dev NM-4 ↔ piping N5 and app-dev NM-5 ↔ piping N6 without importing,
     adopting, amending, or writing piping state; piping accession remains
     governed by piping authority and owner merge remains the terminal act.
+
+- **2026-07-18 — Receipt 66** (corpus remediation tranche).
+  - Receipt-ID: `Receipt-66`
+  - Examined-Through: `dde5c65b2c57e77dff4cd36e171a11d64a84b630`
+  - Parent-Receipt: `Receipt-65`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-18, Ryan Tufts, in-session): "Returning back to your findings,
+    I want remediation plans for all of them." Plan approved in-session; the
+    D-APP-62 ruling itself is recorded verbatim in its packet, not here.
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`
+    (§Human Ruling carries the transcription and hash);
+    `execution/_Coordination/AgentRuns/CORPUS-REMEDIATION-2026-07-18/RUN_RECORD.md`
+    (class tests for the two exercised judgments, referral pre-triage,
+    verifier returns); ten `_DEPENDENCIES.md` addenda citing D-APP-62; six
+    `Assessment_INSP-03_*` identifier-qualification notes; fifty-three
+    `_STATUS.md` Last-Updated line syncs.
+  - Checks: receipt validator pass; validation pytest pass; git
+    whitespace check clean; independent adversarial verifier COMMIT-SAFE
+    after one accepted BLOCK/remediation cycle (staging scope), post-ruling
+    verifier return recorded in the run record.
+  - Gate-Outcome: `EXECUTED` — two disposition-class exercises under the
+    D-APP-60 instrument (identifier-qualification notes; Last-Updated sync)
+    plus the owner-ruled D-APP-62 scoped interpretation applied through ten
+    dated addenda; referral slate otherwise empty; no piping write; owner
+    merge remains the terminal act.
