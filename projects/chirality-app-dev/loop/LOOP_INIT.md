@@ -89,63 +89,13 @@ beside this file (per its local rules: exact cursor, claim-calibrated chat
 transcriptions only when needed, pointers, gate outcome, pass/fail-only check
 summary), and rerun the receipt validator so the next iteration starts clean.
 
-## 7. Multi-agent orchestration
+## 7. Per-run steer
 
-Root `AGENTS.md` and D-GOV-12 govern multi-agent work. The standing workplan
-records owner intent, constraints, authorities, and gates; it is not the
-current execution graph. At each turn:
-
-1. HELP_HUMAN, when invoked, derives or applies the human-prescribed
-   cross-package graph and launches one WORKING_ITEMS instance per activated
-   package. A directly invoked WORKING_ITEMS instance derives only its one
-   package graph.
-2. Record selection authority (`HUMAN | AGENT_0 | AGENT_1`), posture
-   (`TERMINAL_FAN_OUT_IN | SUPERVISED_MANY_TO_MANY | MIXED`), nodes,
-   dependencies, concurrency, read/write ownership, expected returns, fan-in
-   gates, and human decision points before dispatch.
-3. Use terminal fan-out/fan-in when terminal child returns are sufficient.
-   Use supervised parent-mediated notices when active findings may affect
-   siblings. Arbitrary dependency-valid mixed stages need no additional name.
-4. Preserve claim status and minimum sufficient evidence in every relay.
-   Version objective, basis, scope, ownership, risk, or acceptance changes;
-   consequential amendments return to the owner.
-5. Shared reads are allowed. Concurrent writes must be disjoint. Serialize
-   overlaps or assign one integration owner. Hold only declared dependants
-   when a node fails.
-6. Persist the actual graph, child sessions, notices, amendments,
-   acknowledgments, returns, and handoff under
-   `execution/_Coordination/AgentRuns/<RunID>/`. If managed delegation is
-   unavailable, defer the multi-agent stage; a receipt may preserve the
-   blocker but may not represent brief-only work as an executing child run.
-
-Agent 1 siblings do not delegate or message directly. Agent 2 reports to its
-WORKING_ITEMS parent; WORKING_ITEMS reports cross-package notices to
-HELP_HUMAN or, in direct mode, to the human.
-
-## 8. Session conventions, constraints, and any per-run steer (formerly §7)
-
-Immutable receipts that say a steer overrides “LOOP_INIT §7 defaults” refer to
-this conventions section as numbered when those steers were recorded.
+Historical receipts that say a steer overrides “LOOP_INIT §7 defaults” refer
+to the former session-conventions section quoted verbatim in D-APP-61.
 
 Standing constraints and the loop protocol live in the plan — follow them as
-written. The session conventions are:
-
-- Subagent capability assignments (owner-revised 2026-07-12: MODEL-AGNOSTIC —
-  no named-model conventions; this section is the convention's home and a
-  per-run steer may override; earlier named-model steers, including the
-  2026-07-05 convention and loop Receipt 18, are rescinded going forward and
-  survive only as historical record): use the session's available models by
-  capability tier, not by name. Standard-capability agents for discovery,
-  research, summaries, running deterministic checks, and breadth
-  verification; highest-capability agents (at high reasoning effort where the
-  harness supports it) for planning, for adversarial verification of anything
-  that will be recorded as fact, and for execution that touches governed
-  artifacts, fences, or rulings; reduced effort only for mechanical execution
-  of fully specified changes. Record which model actually ran each dispatched
-  role in the governed AgentRuns record and point to it from the receipt;
-  when no AgentRuns record exists, the receipt may carry the minimum model
-  attribution directly. Never silently substitute mid-wave — a capability-
-  tier change within a wave is a receipt-worthy event.
+written.
 
 If the owner appended a steer for this run (the launcher's `Steer` line, their
 message, or a line below), honor it on top of the plan and over §5's defaults;

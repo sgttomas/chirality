@@ -1947,3 +1947,26 @@
     verdicts; no model substitution recorded.
   - Gate-Outcome: `AWAITING_OWNER` — five D-APP-61 matters are separable;
     no option selected, no implementation, no merge, and no piping write.
+
+- **2026-07-18 — Receipt 63** (D-APP-61 ruled implementation).
+  - Receipt-ID: `Receipt-63`
+  - Examined-Through: `07d49007aa55327058fff0aaae19d5225d0889a5`
+  - Parent-Receipt: `Receipt-62`
+  - Pointers: D-APP-61 packet §Human Ruling and register row; minted
+    `loop/WORKPLAN_2026-07-18_app_dev_loop.md`; implementation run record and
+    sealed verifier brief in
+    `execution/_Coordination/AgentRuns/D-APP-61_INSTRUCTION_SEPARATION_GATEWAY_2026-07-18/`;
+    held piping PR #269 (read-only cross-project validation basis).
+  - Checks: ruling/Q2/Appendix-I/Appendix-W hashes and byte parity pass;
+    instruction-entrypoint tests and live whole-repo validator pass; receipt
+    validator pass before/after; corpus v9 no drift; self-check and full
+    practitioner-harness pytest pass; independent verifier returned six BLOCKs,
+    all remediated, then COMMIT-SAFE; recording-only recheck COMMIT-SAFE.
+    Frontend gates skipped — no runtime source changed.
+  - Model-Attribution: Codex primary agent (runtime exposed no more-specific
+    model identifier); one independent read-only adversarial verifier (same
+    runtime identifier disclosure) returned six BLOCKs then two COMMIT-SAFE
+    verdicts; no model substitution recorded.
+  - Gate-Outcome: `EXECUTED` — M1-A/M2-A/M3-C/M4-A/M5-A implemented on a
+    branch; no self-merge, piping write, NM-5 import, or piping launcher swap;
+    owner merge remains the terminal act.
