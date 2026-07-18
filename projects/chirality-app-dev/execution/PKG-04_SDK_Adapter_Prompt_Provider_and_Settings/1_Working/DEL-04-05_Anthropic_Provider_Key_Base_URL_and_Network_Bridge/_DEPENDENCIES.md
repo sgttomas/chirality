@@ -26,6 +26,8 @@ TBD - no accepted dependency edges have been extracted yet.
 - Human ruling applied: semantic lensing and P3 enrichment are skipped; `_SEMANTIC.md` was not read or consumed.
 - Strictness: CONSERVATIVE. Unknown implementation paths, SDK error shapes, and Node/SDK network enforcement mechanisms remain `TBD`.
 - [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
+- 2026-07-18 WI-PKG04-01 handover-evidence pass (annotate-only): `DEP-04-05-007` stays `TBD` — partial upstream delivery is evidenced (`anthropic-agent-sdk-manager.ts` error classification and bounded base-URL posture with tests; ADQ-15/ADQ-16 scripted no-live packaged and network proofs), while live-confirmed exact SDK error object shapes and packaged live behavior remain owner-gated (D-APP-52; this deliverable's RQ-011 four-class assertion gap). Citation note: the row's `Procedure.md#Prerequisites` source now lives at `ScopeOfWork.md` CLM-017 Prerequisites per owner commit `036e0769c` (2026-07-13 ScopeOfWork-v1 migration). See DEL-04-01 `Evidence_HANDOVER_CONSUMPTION_2026-07-18.md` section D.
+- 2026-07-18 WI-PKG04-01 stale-table correction: the per-row table below listed `DEP-04-05-011` as `ACTIVE` and the counts line claimed "12 ACTIVE rows", but `Dependencies.csv` records `DEP-04-05-011` as `RETIRED / NOT_APPLICABLE` (the Lifecycle Summary ACTIVE 10 / RETIRED 2 was already correct). Table row and counts line corrected in this pass; this note records the prior stale values.
 
 ## Extracted Dependency Register
 
@@ -41,10 +43,10 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-04-05-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | ACTIVE | `Specification.md` |
 | DEP-04-05-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-03 | ACTIVE | `Specification.md` |
 | DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05 | ACTIVE | `Specification.md` |
-| DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | ACTIVE | `Specification.md` |
+| DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | RETIRED | `Specification.md` |
 | DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | `Procedure.md` |
 
-Counts: 12 ACTIVE rows; 6 ANCHOR, 6 EXECUTION.
+Counts: 12 rows total (10 ACTIVE, 2 RETIRED); 6 ANCHOR, 6 EXECUTION. (Corrected 2026-07-18; see Run Notes.)
 
 ## Lifecycle Summary
 

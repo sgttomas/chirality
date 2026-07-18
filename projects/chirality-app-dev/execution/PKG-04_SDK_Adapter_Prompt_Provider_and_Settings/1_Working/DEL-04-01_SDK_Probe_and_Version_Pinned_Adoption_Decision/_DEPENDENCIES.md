@@ -40,7 +40,7 @@ Structured register: `Dependencies.csv` v3.1
 | DEP-04-01-007 | EXECUTION | UPSTREAM | PREREQUISITE | first-adapter probe environment | ACTIVE | TBD |
 | DEP-04-01-008 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-03-01 | RETIRED | NOT_APPLICABLE |
 | DEP-04-01-009 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-01-02 | ACTIVE | SATISFIED |
-| DEP-04-01-010 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-02 | ACTIVE | TBD |
+| DEP-04-01-010 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-02 | ACTIVE | SATISFIED |
 | DEP-04-01-011 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-03 | ACTIVE | TBD |
 | DEP-04-01-012 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-04 | ACTIVE | TBD |
 | DEP-04-01-013 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-05 | ACTIVE | TBD |
@@ -64,6 +64,7 @@ Structured register: `Dependencies.csv` v3.1
 - 2026-07-10 D-APP-53 reconciliation correction: the `[WARNING] SOURCE_STATE` note above is resolved — `_REFERENCES.md` now records REF-006 `docs/PRD.md` as `MATCH` under the D-APP-38 authority corpus (live sha256 verified 2026-07-10); `DEP-04-01-006` closed `SATISFIED` and its stale HASH_MISMATCH note corrected. The warning text is retained above as history.
 - 2026-07-10 D-APP-53 reconciliation correction: the `[WARNING] TBD_PROBE_ENVIRONMENT` note above is partially stale — SDK package pins (`@anthropic-ai/claude-agent-sdk@0.3.150`, `@anthropic-ai/sdk@0.93.0`), the deterministic test harness, and Electron packaging posture (PKG-09 `Evidence_ADQ-15_Packaging_Instruction_Root_Refresh.md`) are now recorded. Still open: live Claude Code subprocess version (`BLOCKED_TBD`; live-LLM demonstration owner-gated per D-APP-52) and the adoption-verdict residuals; `DEP-04-01-007` therefore stays `TBD` (annotate-only per plan section 3.5).
 - 2026-07-10 D-APP-53 reconciliation (PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md, DRQ-04): closed `DEP-04-01-006` and `DEP-04-01-009` as `SATISFIED`; annotated `DEP-04-01-007` (owner-gated residual) and `DEP-04-01-010..013` (handover not verifiably consumed by DEL-04-02..05) as left OPEN; synced the summary tables with the CSV (`DEP-04-01-008` was retired by RUL-SCC-001-TRANCHE-001 on 2026-05-24 but this file's tables had not been updated). See `Evidence_D53A_Dependency_Reconciliation_2026-07-10.md`.
+- 2026-07-18 WI-PKG04-01 handover-evidence pass under the D-APP-60 instrument (agent decisions under owner-delegated latitude, never owner acts): `DEP-04-01-010` closed `SATISFIED` (mirror `DEP-04-02-006` closed in the same pass); `DEP-04-01-011` and `DEP-04-01-013` annotated and left OPEN solely on the owner-gated live-probe residual (D-APP-52; same residual as `DEP-04-01-007`); `DEP-04-01-012` not decided — referred to the owner in near-miss form (retire-vs-keep both defensible). The rows' stale `Procedure.md#Steps` citations now resolve to `ScopeOfWork.md` CLM-018 step 13 per owner commit `548caa731` (2026-07-13). See `Evidence_HANDOVER_CONSUMPTION_2026-07-18.md` and `_run_records/TASK_RUN_2026-07-18_DEP-04-01-010-013_handover_evidence.md`.
 
 ## Run History
 
@@ -80,8 +81,8 @@ Structured register: `Dependencies.csv` v3.1
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 7 |
-| TBD | 5 |
+| SATISFIED | 8 |
+| TBD | 4 |
 | NOT_APPLICABLE | 1 |
 
 | DependencyType | Count |
