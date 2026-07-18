@@ -1333,3 +1333,40 @@
     owner. No lifecycle, stage, release, prover-activation, or
     reproduction-acceptance change. Standard claim fence applies
     (F-PIP-2; claims taxonomy per DEC-081).
+
+- **2026-07-17 — Receipt 54** (owner-directed standing-loop instruction separation).
+  - Receipt-ID: `Receipt-54`
+  - Examined-Through: `b495fe19b470b68a87a791708c1b21bf75951900`
+  - Parent-Receipt: `Receipt-53`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — owner
+    direction 2026-07-18 restores mandatory-or-pointer executor/model
+    provenance now, forbids silent substitution, and routes the generic
+    model-selection doctrine through a separate canonical proposal.
+  - Stale-Map-Delta: central PR #268 closed unmerged on 2026-07-18; the
+    replacement central dependency was then satisfied by D-APP-61
+    implementation PR #271 (merge `d3ad7fd23`) and by validator-conformance
+    PR #272 (merge `51c719310`), and the root §5 launcher swap was folded
+    into this PR under a named owner grant recorded in the run record.
+  - Pointers: verbatim owner direction, classification, validation, named
+    root-catalog grant, and closeout execution in
+    `execution/_Coordination/AgentRuns/INSTRUCTION-SEPARATION-20260717/RUN_RECORD.md`;
+    revised project `AGENTS.md`, `init/init-prompt.md`, `loop/LOOP_INIT.md`,
+    `loop/LOOP_RECEIPTS.md`, and `loop/WORKPLAN_2026-07-17_piping_loop.md`;
+    root `init/init-prompt.md` §5 block and rationale under the named grant.
+  - Checks: path-anchor, claims-language, receipt, targeted validation, full
+    piping pytest, self-check, `git diff --check`, and instruction-entrypoint
+    validator pass.
+  - Model-Attribution: separation session parent plus depth probe
+    `/root/depth2_probe_manager` and nested executor
+    `/root/depth2_probe_manager/depth2_probe_executor`, all on the
+    harness-assigned session model without override or substitution (probes
+    made no project writes); closeout session (grant exercise, N6 relabel,
+    final validation) executed by Claude Fable 5 with no child sessions and
+    no mid-task substitution.
+  - Gate-Outcome: `EXECUTED` — default piping entry is HELP_HUMAN and generic
+    runtime hierarchy/orchestration text is removed from active piping loop surfaces;
+    piping-specific discovery, authority, fences, validation, evidence, receipts,
+    and closeout rules remain. Root §5 and the project launcher flipped as one
+    byte-identical pair under the named grant; the live Appendix V validator
+    passes. PR ready for owner review and merge; no product behavior, lifecycle,
+    stage, release, or claims posture changed.
