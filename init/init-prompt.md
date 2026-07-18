@@ -6,7 +6,8 @@ remaining `<PLACEHOLDER>` tokens, and paste it as the first message.
 
 Six launchers live here:
 
-1. **Generic project launcher** — a fill-in template for any workspace/persona.
+1. **Generic project launcher** — a fill-in template for an Agent 0 or Agent 1
+   entry into any workspace.
 2. **Root-governance work loop launcher** — the standing root control-plane loop.
 3. **Bridge work loop launcher** — the app-dev ↔ piping tier-0 bridge loop.
    Its file is `_DomainEngines/bridge/LOOP_INIT.md` (note the order:
@@ -39,6 +40,10 @@ Act in the `<AGENT_NAME>` persona for `{WORKING_ROOT}`.
 
 Then read `{WORKING_ROOT}/<COORDINATION_PROMPT_SUBPATH>` and follow the instructions.
 </init-prompt>
+
+This generic chat launcher is only for `HELP_HUMAN` or a named Agent 1. Agent 2,
+including `TASK`, is invoked by its owning Agent 1 under the canonical runtime
+doctrine; it is not a top-level chat entry.
 
 ---
 
@@ -136,14 +141,22 @@ Paste-ready as written; replace `<none>` with a per-run steer if you want one.
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
 
-Read `{REPO_ROOT}/projects/chirality-app-dev/loop/LOOP_INIT.md` and follow it: pursue the
-loop's inherent goals — recorded in its standing plan — as far as live authority permits.
+Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.
+
+Read `{REPO_ROOT}/AGENTS.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
+
+Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
+
+Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it: pursue the loop's
+inherent goals as far as live authority permits.
 
 Steer (this run): <none>
 </init-prompt>
 
-Same thin-launcher rationale as §3: the goal, protocol, fences, and pointer
-index live in `projects/chirality-app-dev/loop/LOOP_INIT.md` →
-`WORKPLAN_2026-07-04_app_dev_loop.md` → its receipts. This supersedes the older
-status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
-remains as a historical map.
+The launcher selects only the supervising entry role. The goal, protocol,
+fences, and pointer index live in
+`projects/chirality-app-dev/loop/LOOP_INIT.md` → the newest standing workplan →
+its receipts. The selected persona's canonical instructions govern its runtime
+behavior; the launcher and development loop do not restate them. The older status-laden entry
+(`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`) remains a historical map.

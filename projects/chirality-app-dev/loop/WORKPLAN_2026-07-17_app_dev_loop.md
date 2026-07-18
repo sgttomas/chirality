@@ -100,13 +100,6 @@ runtime scope, as far as live authority permits — stopping at every owner gate
    no-ops and their reason.
 4. **Execute + check.** Branch-first + PR is the default; never self-merge; write scope
    stays inside `projects/chirality-app-dev/**` unless the owner grants wider scope.
-   *Multi-agent execution:* derive the current work graph under `LOOP_INIT.md` §7.
-   HELP_HUMAN may activate one WORKING_ITEMS instance per package; a directly invoked
-   WORKING_ITEMS instance remains within one package. WORKING_ITEMS may dispatch TASK,
-   an allowed ephemeral generalist, or an approved dedicated Agent 2 with sealed briefs
-   and declared read/write bounds. Use terminal or supervised many-to-many coordination
-   as the graph requires. After package returns and cross-package fan-in validate,
-   HELP_HUMAN or the human invokes CHANGE as a separate Agent 1 for Git closeout.
    *Checks per the work type:* typecheck + vitest + build/premerge gates
    (`docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`,
    `docs/BUILD_AND_RELEASE.md`); the D-APP-36 render bar for UI work; D-APP-38 corpus
@@ -115,13 +108,9 @@ runtime scope, as far as live authority permits — stopping at every owner gate
    source changed; stop the local dev server before build/package/premerge commands
    unless the command owns the server lifecycle; plus repo-wide `self-check` exit 0 and
    full practitioner-harness pytest at closeout. CI green; owner merges.
-   *Adversarial pre-commit verification (D-APP-60 calibrated scope):* delegation
-   exercises, governed-artifact writes (the decision register, packets/rulings,
-   receipts, `AUTHORITY_CORPUS.json` and its `_REFERENCES.md` propagation, authority
-   docs, kit `_STATUS.md`/`Dependencies.csv` files), and packets staging executable
-   mechanics receive an independent verifier with a refutation-only brief — fresh
-   context, no shared authorship of the artifacts it checks; verdicts recorded only
-   after they exist; deliverable `COMMIT-SAFE` or `BLOCK`; nothing lands on `BLOCK`.
+   *D-APP-60 verification:* every scope named by the instrument's calibrated
+   verification requirement must satisfy that requirement before commit; verdicts are
+   recorded only after they exist, and nothing lands on `BLOCK`.
 5. **Update deliverable state + receipt.** Closeout writes deliverable-local state:
    `_STATUS.md` (`Remaining` updated to reflect what landed — landed scope removed,
    newly named residuals added; lifecycle transitions only through their ruled gates,

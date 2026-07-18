@@ -6,6 +6,22 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-17 - Development-loop entry role and instruction boundaries aligned
+
+The app-dev standing launcher now enters through `HELP_HUMAN` without
+preselecting downstream managers or specialist execution. Generic runtime
+hierarchy, agent selection, work-graph mechanics, and model assignment were
+removed from the current loop surfaces and remain governed by root `AGENTS.md`
+and the canonical agent instructions. The current standing workplan retains
+the project-specific D-APP-60 verification obligation by reference. The root
+launcher catalog and project-local launcher carry the same paste-ready app-dev
+prompt, and the generic root launcher is explicitly limited to Agent 0 or
+Agent 1 chat entry.
+
+This instruction-only tranche changes no runtime source, authority corpus,
+deliverable lifecycle, decision ruling, dependency state, provider/network
+posture, domain-engine boundary, issuance, or release claim.
+
 ## 2026-07-17 - D-APP-60 ruled O-A with S5: frozen shared block v1 adopted, workplan re-minted
 
 The owner ruled "O-A with S5 in." — all five slate items adopted. The frozen

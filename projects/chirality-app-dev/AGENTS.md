@@ -32,7 +32,7 @@ Executable prompts and TASK briefs must derive paths from the active checkout:
 
 | Agent | Type | Role in this project |
 |---|---:|---|
-| `HELP_HUMAN` | 0 | Optional supervising entry; derives the current cross-package work graph, launches package managers, brokers notices, and validates cross-package fan-in. |
+| `HELP_HUMAN` | 0 | Default supervising entry for the open-ended standing development loop; derives the current cross-package work graph, launches package managers, brokers notices, and validates cross-package fan-in. Direct Agent 1 entry remains lawful for a matter already bounded to one manager. |
 | `WORKING_ITEMS` | 1 | One package-scoped instance per activated package; derives the intra-package graph, dispatches Agent 2 work across deliverables, validates fan-in, and returns package closure evidence. |
 | `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
 | `CHANGE` | 1 | Performs final Git/file-state closeout for validated tranches: scoped status review, staging, commit, and fast-forward-safe push. |

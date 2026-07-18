@@ -1925,3 +1925,30 @@
     the D-APP-60 instrument (import the sibling-offered mandatory-gate
     chaining near-miss as NM-4 with verified provenance); rationale
     artifact named in Pointers.
+
+- **2026-07-17 — Receipt 62** (development-loop entry and instruction separation).
+  - Receipt-ID: `Receipt-62`
+  - Examined-Through: `b495fe19b470b68a87a791708c1b21bf75951900`
+  - Parent-Receipt: `Receipt-61`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-17, Ryan Tufts, in-session): "I agree with your
+    recommendations." Then: "Confirm you are working from the local main
+    branch and the git state is clean. Then proceed with your own changes
+    now."
+  - Pointers: root and app-dev `init/init-prompt.md`; app-dev `AGENTS.md`;
+    current `loop/LOOP_INIT.md` and `WORKPLAN_2026-07-17_app_dev_loop.md`;
+    `tools/validation/validate_instruction_entrypoints.py` and tests;
+    `execution/_Coordination/AgentRuns/APPDEV_LOOP_ENTRY_ROLE_CLEANUP_2026-07-17/`;
+    `plans/PLAN_COMPLETION_LOG.md` 2026-07-17 entry.
+  - Checks: instruction-entrypoint, path-anchor, and agent-instruction
+    validators pass; validation pytest pass; practitioner-harness pytest
+    pass; launcher-equivalence and orchestration-duplication checks pass;
+    receipt validator pass; corpus v9 status no drift; strict app-dev status
+    pass; practitioner self-check exit 0 with the pre-existing finding
+    baseline; independent verifier `COMMIT-SAFE` after two accepted
+    `BLOCK`/remediation cycles; `git diff --check` clean. Frontend gates
+    skipped — no runtime source changed.
+  - Gate-Outcome: `EXECUTED` — the open-ended app-dev loop now enters through
+    HELP_HUMAN; downstream agent topology remains in canonical agent
+    instructions, not the launcher or current development-loop surfaces;
+    D-APP-60 verification remains binding by reference.
