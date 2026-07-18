@@ -1,9 +1,9 @@
 # D-GOV-17 — Canonical model-capability doctrine and related dispositions
 
-Status:       PROPOSED — AWAITING OWNER RULING
-HumanRuling:  TBD
-Ruling SHA:   TBD (conditional per the D-GOV-02 caveat: this record self-declares bind-at-publish; the SHA is recorded at ruling publication)
-Date:         2026-07-18 (proposed)
+Status:       RULED
+HumanRuling:  M1-D (owner-formulated: no durable model/capability doctrine; per-session steering supplies it; attribution evidence rules survive), M2 floor-plus-corrections (owner-selected), M3-A, M4-A — Ryan Tufts, 2026-07-18, in-session
+Ruling SHA:   bind-at-publish per the D-GOV-02 caveat; the publication commit of this RULED state is the ruling SHA
+Date:         2026-07-18
 FramedBy:     Owner-directed architecture-evaluation remediation program (2026-07-18); D-APP-61 M3-C precedent (project-local re-home of the runtime capability convention)
 
 ## Decision to make
@@ -117,12 +117,72 @@ template the outlier.
 - A machine PASS from any validator referenced here remains structural
   evidence only, never approval (K-DOMAIN-4 analogue; D-GOV-02).
 
-## Ruling format
+## Human Ruling
 
-Reply with a separable selection, for example: `M1-A; M2-A; M3-A; M4-A`.
+Ruled in-session by Ryan Tufts (owner, K-AUTH-1), 2026-07-18, transcribed by
+the agent at owner direction. The same message rules D-APP-62 O-A; that
+sentence is also transcribed in the D-APP-62 packet with the same
+canonicalization.
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-AWAITING_RULING
+For M1, I want to go even further than option C to say there should be no mention of canonical models or even model capability types as all of that should be given in per-session steering instructions.  For M2 it's going to be hard to cover all possible cases in a deterministic validator, so instead of trying to anticipate them there should be an allowance for failures and then corrections as a means of finding exceptions that need to be included - perhaps, or do you see a better way?  For M3 I rule "M3-A". For M4 I rule "M4-A", and last I rule "O-A" for D-APP-62.
 <!-- END OWNER RULING VERBATIM -->
 
-Canonical ruling-text SHA-256: `TBD_AFTER_OWNER_ACT`
+Canonical ruling-text SHA-256 (UTF-8 bytes between the markers, excluding the
+marker lines and the newline delimiters adjacent to them):
+`411a5956d97ee94365fbfc92d931a51aa0f24870f6243208dd004247bf15e12b`
+
+**Recorded owner selections (structured follow-up, same session,
+2026-07-18)** resolving the two matters the message left open:
+
+- M1-D scope: "Keep attribution rules (Recommended)" — all capability-tier
+  and model-assignment doctrine is removed from durable instruction
+  surfaces and supplied per-session; recording which model actually ran,
+  and recording mid-wave substitutions, survive as minimal model-agnostic
+  evidence rules.
+- M2 shape: "Floor + corrections (Recommended)" — one anticipatory floor
+  invariant plus the recorded-exception correction protocol.
+
+## Ruled outcome
+
+- **M1-D (supersedes options A–C).** No durable instruction surface carries
+  canonical-model or model-capability-type doctrine; capability and model
+  direction is given in per-session steering. The proposed doctrine text is
+  NOT placed in any home; the package remains a historical record. The
+  app-dev "Runtime capability convention" section is replaced, in a
+  project-fenced follow-up, by a minimal model-agnostic **execution
+  attribution** note: record which model actually ran each dispatched role
+  in the governed run record (pointed to from the handoff-ledger entry;
+  minimum attribution in the entry when no run record exists), and record
+  any mid-wave substitution where the wave's execution is recorded. The
+  2026-07-12 capability-tier prescriptions are rescinded going forward and
+  survive as historical record (verbatim preserved in D-APP-61 Appendix Q2
+  and Git history).
+- **M2 (floor + corrections; supersedes the staged M2-A enumeration).**
+  One anticipatory rule only: **a validator finding may never mechanically
+  reject content the owner has adopted or ruled; where ruled text trips a
+  validator, the validator is defective and is corrected under review —
+  never the ruled text.** All other instruction-surface validator boundary
+  cases are discovered empirically: a wrong block or wrong pass is recorded
+  as a dated, supersede-never-edit exception entry (in the affected
+  project's near-miss corpus, or this record's supersession chain for
+  root-scoped validators) and the correction rides PR review. No exhaustive
+  anticipatory enumeration is attempted.
+- **M3-A.** The centralized conversion closure record
+  (`SOW-STAGE2-EXEC-20260712-01`, `PROJECT_MANIFEST.tsv` binding each
+  production `ScopeOfWork.md` SHA-256 to its integration merge commit) is
+  the canonical provenance for the four-document → SOW conversions;
+  deliverable-local conversion records are not required.
+- **M4-A.** `docs/templates/MEMORY_TEMPLATE.md` is revised to codify actual
+  corpus practice.
+
+## Implementation notes (recorded at ruling execution)
+
+- Same-branch implementation: CONTRACT.md pointer beside the D-GOV-02 note
+  (M2 floor); MEMORY_TEMPLATE.md revision (M4-A); proposal-package README
+  status updated to the M1-D outcome. M3-A requires no file change beyond
+  this record.
+- The app-dev `AGENTS.md` attribution rewrite (M1-D follow-up) is
+  project-fenced and serializes behind the open corpus-remediation tranche
+  on the shared app-dev surfaces; it executes as a micro-tranche with its
+  own receipt after that tranche merges.

@@ -1,12 +1,14 @@
 # D-GOV-17 Proposed Exact-Bytes Package
 
-Status: `PROPOSED — AWAITING OWNER RULING`
+Status: `RULED — M1-D: NOT ADOPTED AS A DURABLE SURFACE; HISTORICAL RECORD`
 
-This package stages the canonical model-capability doctrine for the D-GOV-17
-ruling. The doctrine bytes are inactive until ruled; on an M1-A or M1-B
-ruling, a controlled implementation places the exact proposed bytes in the
-ruled home and verifies them against the pin below. The decision record
-(M1–M4 slate) is
+The owner ruled D-GOV-17 M1 as an owner-formulated option D (2026-07-18): no
+durable instruction surface carries canonical-model or model-capability-type
+doctrine; capability and model direction is given in per-session steering,
+and only minimal model-agnostic attribution evidence rules survive in the
+project follow-up. The doctrine bytes below were therefore never placed in
+any home and remain a non-authoritative historical record of what was
+staged. The ruled decision is
 `docs/governance_harness/_DECISIONS/D-GOV-17_model_capability_doctrine.md`.
 
 | File | Role | SHA-256 |
