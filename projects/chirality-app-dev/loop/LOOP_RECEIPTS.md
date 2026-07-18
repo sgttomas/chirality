@@ -1995,3 +1995,26 @@
     three obsolete pre-D-APP-61 project-AGENTS phrase requirements, retained
     the software-profile pointer, and added regressions; no piping write or PR
     advance; owner merge remains the terminal act.
+
+- **2026-07-18 — Receipt 65** (one-time app-dev NM-5 offer to piping).
+  - Receipt-ID: `Receipt-65`
+  - Examined-Through: `2cc415cffe87469df809c3e7656cc2bfde7dffe0`
+  - Parent-Receipt: `Receipt-64`
+  - Pointers: D-APP-61 §Piping hold and one-time port/on-ruling mechanic 7;
+    `NM5_PIPING_OFFER_2026-07-18.md`, sealed verifier brief, and terminal
+    return in the existing D-APP-61 AgentRuns directory; merged piping
+    `INSTRUCTION-SEPARATION-20260717/RUN_RECORD.md` N6 candidate.
+  - Checks: receipt and instruction-entrypoint validators pass; corpus v9 no
+    drift; self-check exit 0 with unchanged baseline; 266
+    practitioner-harness tests pass; Shared-Block v1 hash/bytes unchanged;
+    diff hygiene and piping-path containment pass; independent verifier
+    returned COMMIT-SAFE and the recording-only recheck returned COMMIT-SAFE.
+    Frontend gates skipped — no runtime source changed.
+  - Model-Attribution: Codex primary agent (runtime exposed no more-specific
+    model identifier); one independent read-only adversarial verifier (same
+    runtime identifier disclosure) returned two COMMIT-SAFE verdicts; no model
+    substitution recorded.
+  - Gate-Outcome: `EXECUTED` — the D-APP-61-authorized one-time offer maps
+    app-dev NM-4 ↔ piping N5 and app-dev NM-5 ↔ piping N6 without importing,
+    adopting, amending, or writing piping state; piping accession remains
+    governed by piping authority and owner merge remains the terminal act.
