@@ -1847,3 +1847,32 @@
     block; adoption of any slate item is the owner's act; the sibling
     piping packet stages in parallel per the agreed
     both-staged-before-either-ruled sequence.
+
+- **2026-07-17 — Receipt 59** (D-APP-60 ruled and executed: O-A with S5 in).
+  - Receipt-ID: `Receipt-59`
+  - Examined-Through: `ecd9e13607942e51f8f550ac239e6f3ee4dfe0aa`
+  - Parent-Receipt: `Receipt-58`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-17, Ryan Tufts, in-session; canonical verbatim text and hash
+    live in the packet's §Human Ruling): "O-A with S5 in." — all five slate
+    items adopted; the packet transcription is the governed home.
+  - Pointers: `D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md`
+    (§Human Ruling; freeze record S1.1a); D-APP-60 register row;
+    `loop/WORKPLAN_2026-07-17_app_dev_loop.md` (minted from Appendix W);
+    `plans/PLAN_COMPLETION_LOG.md` 2026-07-17 D-APP-60 entry.
+  - Checks: ruling-text hash recorded and verified by recomputation; minted
+    workplan byte-identical to the carry-forward-verified Appendix W span
+    at the staging merge (deterministic discharge of the re-run gate; no
+    date substitution needed — ruling date matched staged dates); newest-
+    file resolution picks the minted plan; receipt validator pass
+    (before/after); practitioner self-check exit 0; full harness pytest
+    pass; corpus v9 status zero drift; `git diff --check` clean. Frontend
+    gates skipped — no runtime source changed. Congruence sibling commit
+    fields remain reserved until the owner relays the piping packet commit.
+  - Model-Attribution: Claude Fable 5 primary orchestrator (transcription,
+    register, mint, receipt); an independent Fable 5 pre-commit adversarial
+    verifier runs on the full staged diff after this receipt is written,
+    its verdict recorded in the PR only after it exists.
+  - Gate-Outcome: `EXECUTED` — D-APP-60 is the delegation instrument;
+    WORKPLAN_2026-07-17 governs on merge; S3/S4/S5 conventions in effect
+    from the next iteration; PR closeout remains for the owner's merge.

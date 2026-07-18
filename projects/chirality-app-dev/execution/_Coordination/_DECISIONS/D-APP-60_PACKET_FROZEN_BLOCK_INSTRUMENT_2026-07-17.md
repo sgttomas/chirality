@@ -1,7 +1,8 @@
 # D-APP-60 — Frozen Shared Delegation Block (v1) and Loop Integration
 
-**Status:** PROPOSAL — AWAITING_RULING (staged 2026-07-17 with the verified
-frozen block v1 embedded; block freeze record in S1.1a)
+**Status:** RULED — O-A with S5 in (owner ruling 2026-07-17, transcribed in
+§Human Ruling; staged 2026-07-17 with the verified frozen block v1 embedded;
+block freeze record in S1.1a)
 
 **Date prepared:** 2026-07-17
 
@@ -357,11 +358,20 @@ Each item is separately rulable; the recommended ruling adopts all five.
 ## Human Ruling and Disposition
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-*(reserved for the owner's verbatim ruling)*
+O-A with S5 in.
 <!-- END OWNER RULING VERBATIM -->
 
-**Canonical ruling-text SHA-256:** *(recorded on ruling and verified by
-recomputation)*
+**Canonical ruling-text SHA-256:**
+`ff691539efeaa11e5483a7bf5e4433f8d1f4918a14e57f810b9df3f510cbe755`
+(UTF-8 text between the verbatim markers, excluding the markers and
+delimiter newlines; recorded 2026-07-17 and verified by recomputation
+after writing)
+
+**Ruling context:** ruled in-session by Ryan Tufts on 2026-07-17, after the
+staging merge `ecd9e13607942e51f8f550ac239e6f3ee4dfe0aa` and after the
+sibling piping packet was staged with the block verdict processed. O-A
+adopts S1–S4; "with S5 in" adopts S5. The ruling date equals the staged
+2026-07-17 dates, so the S2 mint required no date substitution (checked).
 
 ---
 
