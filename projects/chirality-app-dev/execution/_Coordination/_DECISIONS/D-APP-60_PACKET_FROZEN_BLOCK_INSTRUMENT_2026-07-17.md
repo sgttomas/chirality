@@ -308,9 +308,16 @@ standing practice.
   the hash recorded in the piping packet; a mismatch means a transcription
   error in one adopting record, resolved against the piping original as
   template source.
-- **Sibling instrument:** piping decision register row D-49 and its DEC-082
-  superseding-adoption packet *(packet path recorded when the owner confirms
-  its staged location; commit SHAs exchanged at receipt time)*
+- **Sibling instrument:** piping decision register row **D-50** (RULED;
+  instrument codified as DEC-083, layered over D-49/DEC-082), packet
+  `projects/chirality-piping/execution/_Coordination/_DECISIONS/D-50_shared_block_adoption.md`,
+  adopted via PR #265 merge commit
+  `c70582d3342c8aaab1f20961831b86c003497ae2`. Fields filled 2026-07-17
+  after both adoptions existed (first disposition-class exercise under
+  this instrument; rationale artifact
+  `execution/_Coordination/AgentRuns/D-APP-60_CONGRUENCE_2026-07-17/RUN_RECORD.md`);
+  congruence verified by recomputation — sibling block byte-identical,
+  same hash, same resolved reading.
 - **Declared divergences:** (1) amendment mechanism — piping
   surgery-with-thresholds vs app-dev re-mint-with-carry-forward-verifier,
   stated local reasons on both sides; (2) citation locality — each project's

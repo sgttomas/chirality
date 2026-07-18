@@ -1876,3 +1876,52 @@
   - Gate-Outcome: `EXECUTED` — D-APP-60 is the delegation instrument;
     WORKPLAN_2026-07-17 governs on merge; S3/S4/S5 conventions in effect
     from the next iteration; PR closeout remains for the owner's merge.
+
+- **2026-07-17 — Receipt 60** (first D-APP-60 exercise: congruence fields filled).
+  - Receipt-ID: `Receipt-60`
+  - Examined-Through: `86e44805c5dbf806141bb7f4399e6f1c8ba49e16`
+  - Parent-Receipt: `Receipt-59`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-17, Ryan Tufts, in-session): confirmed the piping side
+    complete via PR #265 merge with the S5 mirror adopted, and asked
+    whether anything was needed from the sibling agent. Nothing was —
+    values were derived from the live tree, not relay.
+  - Pointers: rationale artifact
+    `execution/_Coordination/AgentRuns/D-APP-60_CONGRUENCE_2026-07-17/RUN_RECORD.md`
+    (class test, attempted failure mode, empty rejection list stated);
+    D-APP-60 packet congruence note (sibling fields filled).
+  - Checks: sibling block recomputed byte-identical with equal hash and
+    same resolved reading; receipt validator pass (before/after);
+    practitioner self-check exit 0; `git diff --check` clean. Frontend
+    gates skipped — no runtime source changed.
+  - Model-Attribution: Claude Fable 5 single-agent orchestrator/executor;
+    one independent Fable 5 pre-commit adversarial verifier runs after
+    this receipt is written, verdict recorded in the PR after it exists.
+  - Gate-Outcome: `EXECUTED` — disposition-class judgment exercised under
+    the D-APP-60 instrument (fill the reserved congruence sibling fields
+    from live-tree facts); rationale artifact named in Pointers; no items
+    referred to the owner this tranche and the empty referral slate is
+    stated in the rationale artifact.
+
+- **2026-07-17 — Receipt 61** (second D-APP-60 exercise: NM-4 import).
+  - Receipt-ID: `Receipt-61`
+  - Examined-Through: `86e44805c5dbf806141bb7f4399e6f1c8ba49e16`
+  - Parent-Receipt: `Receipt-60`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-17, Ryan Tufts, in-session): relayed the piping operator's
+    offer of its command-chaining near-miss for cross-import; source
+    verified against the live PR #265 review comment before import.
+  - Pointers: rationale artifact
+    `execution/_Coordination/AgentRuns/D-APP-60_NM4_IMPORT_2026-07-17/RUN_RECORD.md`
+    (NM-4 entry with provenance, class test, attempted failure mode,
+    empty referral slate stated).
+  - Checks: source comment verified live; receipt validator pass
+    (before/after); `git diff --check` clean. Frontend gates skipped —
+    no runtime source changed.
+  - Model-Attribution: Claude Fable 5 single-agent orchestrator/executor;
+    the tranche's independent pre-commit adversarial verifier verdict is
+    recorded in the PR after it exists.
+  - Gate-Outcome: `EXECUTED` — disposition-class judgment exercised under
+    the D-APP-60 instrument (import the sibling-offered mandatory-gate
+    chaining near-miss as NM-4 with verified provenance); rationale
+    artifact named in Pointers.
