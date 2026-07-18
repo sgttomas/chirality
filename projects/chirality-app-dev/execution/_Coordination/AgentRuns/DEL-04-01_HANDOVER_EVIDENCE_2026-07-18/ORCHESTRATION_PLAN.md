@@ -164,3 +164,106 @@ this plan) after the receipt append, its verdict recorded in the PR only
 after it exists. Terminus slate to the owner: (1) DEP-04-01-012 referral —
 retire NOT_APPLICABLE vs keep/re-scope (near-miss: class-test gate (b));
 (2) PR merge (owner act; never self-merged).
+
+N3 completed 2026-07-18: recheck verifier (VER-02) returned COMMIT-SAFE
+(verdict recorded in the PR #279 body after it existed); PR #279 merged by
+owner direction at `460ebd9399ba6e1d03909ef60720fff1310e091f`
+(2026-07-18T21:27:17Z).
+
+## Plan version 2 (amendment; recorded before N4 dispatch)
+
+**Amendment authority:** owner ruling of 2026-07-18, in-session (Ryan
+Tufts), on the DEP-04-01-012 referral: "Option A with the rider." —
+verbatim transcription and canonical hash live in the D-APP-63 packet
+(§Human Ruling), the ruling's governed home; this record carries only the
+pointer. The amendment is consequential (it resolves an owner-gated
+referral) and is authorized by that same ruling.
+
+**Graph delta:** append node N4 (ruling execution) and N5 (verifier +
+closeout), same serial chain, same integration owner.
+
+| Node | Instance | Scope | Depends on | Return gate |
+|---|---|---|---|---|
+| N4 | WI-PKG04-01 (continued; brief amendment v2) | D-APP-63 mint + DEP-04-01-012 retirement + kit sync | N3 | structured return; validator PASS |
+| N5 | VER-03 (independent adversarial verifier) + closeout | read-only over N4's diff; then Receipt-69, checks, commit, PR | N4 | COMMIT-SAFE; receipt validator PASS; owner merges |
+
+### Brief amendment v2 — WI-PKG04-01 (sealed at dispatch)
+
+Execute the owner's ruling on the DEP-04-01-012 referral. The ruling grants
+coordination-surface writes beyond the v1 package scope, limited to the
+exact targets below.
+
+- **Write targets (exact; nothing else):**
+  - `execution/_Coordination/_DECISIONS/D-APP-63_PACKET_DEP-04-01-012_RETIREMENT_2026-07-18.md`
+    (new packet: context, the two options as presented — cite PR #279 body
+    and the tranche rationale artifact as the durable options record —
+    non-binding recommendation as given, §Human Ruling with the verbatim
+    text between BEGIN/END OWNER RULING VERBATIM markers, canonical
+    SHA-256 `d6398afa4c500cff304a8bcaabf28224a5efcbc4083976b686bc822123a53279`
+    (UTF-8 text between markers, excluding marker lines and delimiter
+    newlines — verify by recomputation before writing it), ruling context,
+    on-ruling mechanics as executed)
+  - `execution/_Coordination/_DECISIONS/_REGISTER.md` (append one row:
+    `| D-APP-63 | ... | ... | RULED (Option A with rider) | <packet> |
+    <packet §Human Ruling> |` matching the existing column contract; ruled
+    rows above it are immutable)
+  - DEL-04-01 `Dependencies.csv` (row 012 only: Status `ACTIVE`→`RETIRED`,
+    SatisfactionStatus `TBD`→`NOT_APPLICABLE`, LastSeen bump, appended
+    dated FACT note citing D-APP-63 and carrying the rider verbatim: any
+    DEL-04-04-relevant output from the future D-APP-52 live probe mints a
+    new row — revival by new recorded basis; prior note text retained)
+  - DEL-04-01 `_DEPENDENCIES.md` (summary/count sync + dated note)
+  - DEL-04-01 `_STATUS.md` (remove the DEP-04-01-012 referral item from
+    `## Remaining`; one dated History line citing D-APP-63; state and
+    Checking Approval SHA untouched)
+  - DEL-04-01 `MEMORY.md` (short dated note)
+  - DEL-04-01 `_run_records/TASK_RUN_2026-07-18_DEP-04-01-012_ruling_execution.md`
+    (run record: mechanics executed, truthful attribution — the retirement
+    executes an owner ruling; the agent decided nothing here beyond
+    mechanical conformance)
+- **Constraints:** unchanged from v1 (fences F-APP-1..5; dated notes,
+  never silent rewrites; no lifecycle transition; no commits/git; no
+  DEL-04-04 write; no receipt append).
+- **Checks before return:** `validate_dependencies.py` PASS on the touched
+  CSV; recompute the ruling hash from the packet's marker span and confirm
+  it equals the recorded value.
+- **Return contract:** files written; hash recomputation result; validator
+  output; confirmation the register row appended cleanly under the column
+  contract; any deltas found.
+
+### N4 return (WI-PKG04-01 continued, received 2026-07-18; recorded after it existed)
+
+Terminal return received and validated at fan-in against the live tree:
+eight write targets exactly as briefed (D-APP-63 packet; one register row
+under the six-column contract with prior rows byte-untouched; row 012
+`RETIRED`/`NOT_APPLICABLE` with the rider verbatim in a dated FACT note;
+`_DEPENDENCIES.md` three-table sync; `_STATUS.md` referral item removed
+with one dated History line, state and Checking Approval SHA untouched;
+`MEMORY.md` note; ruling-execution run record). Ruling hash recomputed
+pre-write from the ruling text and post-write from the packet marker span —
+both equal the recorded value. `validate_dependencies.py` PASS (0 errors).
+Attribution: retirement recorded as the owner's act (D-APP-63) throughout;
+executor role recorded as mechanical conformance; no delegated judgment
+exercised, no class test run. No third-party drift found since the v1
+pass. Fan-in verdict: return ACCEPTED. N5 (VER-03) dispatch authorized.
+
+### N5 return and closeout (recorded after the events)
+
+VER-03 verdict: **COMMIT-SAFE** (received 2026-07-18, recorded after it
+existed). All seven sealed refutation claims PASS: scope containment,
+register integrity (pure single-row append under the column contract),
+ruling fidelity (hash recomputed independently both ways, provenance
+citations resolve), row-012 execution correctness (single-row change,
+prior notes retained verbatim, validator PASS), kit consistency
+(independently recounted), attribution truthfulness (owner act throughout;
+executor recorded as mechanical conformance; no pre-recorded verdicts),
+and fence conformance. Three non-blocking notes recorded in the verifier's
+return (packet "LastSeen bumped" wording slightly overstates an unchanged
+value that the run record states accurately; CSV note renders the rider's
+em dash as an ASCII hyphen; the plan's N3 back-fill matches the verified
+merge).
+
+Closeout: Receipt-69 appended after the VER-03 verdict existed; a
+recording-only recheck verifier runs on the full staged diff after the
+receipt append, its verdict recorded in the PR only after it exists; owner
+merge remains the terminal act. This run (v1 + v2 amendment) then closes.

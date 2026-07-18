@@ -2101,3 +2101,37 @@
     near-miss form (DEP-04-01-012, class-test gate (b): retire vs
     keep/re-scope both defensible); terminus slate is that referral plus
     owner merge of the PR.
+
+- **2026-07-18 — Receipt 69** (D-APP-63 ruled: DEP-04-01-012 retirement executed).
+  - Receipt-ID: `Receipt-69`
+  - Examined-Through: `460ebd9399ba6e1d03909ef60720fff1310e091f`
+  - Parent-Receipt: `Receipt-68`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-18, Ryan Tufts, in-session): the owner directed the PR #279
+    merge (recoverable from PR history) and ruled the DEP-04-01-012
+    referral; the ruling text and canonical hash are recorded verbatim in
+    the D-APP-63 packet §Human Ruling, its governed home, not here.
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-63_PACKET_DEP-04-01-012_RETIREMENT_2026-07-18.md`
+    (§Human Ruling; on-ruling mechanics); D-APP-63 register row;
+    DEL-04-01 `Dependencies.csv` row DEP-04-01-012 (retired with the
+    rider) and `_run_records/TASK_RUN_2026-07-18_DEP-04-01-012_ruling_execution.md`;
+    `execution/_Coordination/AgentRuns/DEL-04-01_HANDOVER_EVIDENCE_2026-07-18/ORCHESTRATION_PLAN.md`
+    (plan v2 amendment, N4/N5 returns).
+  - Checks: dependency validator pass on the touched register; ruling-hash
+    recomputation pass (executor and verifier, independently); receipt
+    validator pass; corpus v9 status no drift; repo-wide self-check pass
+    with unchanged baseline; validation pytest pass; full
+    practitioner-harness pytest pass; git whitespace check clean;
+    independent adversarial verifier COMMIT-SAFE on seven sealed
+    refutation claims (recorded here after the return existed); frontend
+    gates skipped — no runtime source changed.
+  - Model-Attribution: Claude Fable 5 Agent-0 orchestrator (HELP_HUMAN
+    posture) with the continued Fable 5 WORKING_ITEMS executor (mechanical
+    conformance only; no delegated judgment exercised) and one independent
+    Fable 5 read-only adversarial verifier; a recording-only recheck
+    verifier runs on the full staged diff after this receipt is written,
+    its verdict recorded in the PR only after it exists.
+  - Gate-Outcome: `EXECUTED` — the owner-ruled D-APP-63 (Option A with
+    rider) applied: DEP-04-01-012 retired NOT_APPLICABLE with the
+    new-row-minting rider; referral item discharged from Remaining; owner
+    merge remains the terminal act.
