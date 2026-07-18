@@ -1970,3 +1970,28 @@
   - Gate-Outcome: `EXECUTED` — M1-A/M2-A/M3-C/M4-A/M5-A implemented on a
     branch; no self-merge, piping write, NM-5 import, or piping launcher swap;
     owner merge remains the terminal act.
+
+- **2026-07-18 — Receipt 64** (D-APP-61 validator conformance correction).
+  - Receipt-ID: `Receipt-64`
+  - Examined-Through: `d3ad7fd2326dd32093aadf24ef32f0f8a9aff24a`
+  - Parent-Receipt: `Receipt-63`
+  - Pointers: D-APP-61 Appendix V and M5-A ruling; validator-conformance run
+    record, NM-6, sealed brief, and terminal verifier return under
+    `execution/_Coordination/AgentRuns/D-APP-61_INSTRUCTION_SEPARATION_GATEWAY_2026-07-18/`;
+    held piping PR #269 at
+    `8295211d26fa486683842a1e479bd465b962fea5` (read-only cross-project
+    reproduction basis).
+  - Checks: 22 focused instruction-entrypoint tests pass; live whole-repo and
+    exact prospective piping validation pass; receipt validator pass
+    before/after; corpus v9 no drift; self-check exit 0 with unchanged
+    baseline; 266 practitioner-harness tests pass; diff hygiene pass;
+    independent verifier returned COMMIT-SAFE and the recording-only recheck
+    returned COMMIT-SAFE. Frontend gates skipped — no runtime source changed.
+  - Model-Attribution: Codex primary agent (runtime exposed no more-specific
+    model identifier); one independent read-only adversarial verifier (same
+    runtime identifier disclosure) returned two COMMIT-SAFE verdicts; no model
+    substitution recorded.
+  - Gate-Outcome: `EXECUTED` — the app-dev integration owner removed only the
+    three obsolete pre-D-APP-61 project-AGENTS phrase requirements, retained
+    the software-profile pointer, and added regressions; no piping write or PR
+    advance; owner merge remains the terminal act.

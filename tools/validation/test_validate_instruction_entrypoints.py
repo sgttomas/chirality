@@ -25,6 +25,10 @@ def _write_project(
     *,
     project_name: str = "chirality-app-dev",
     entry_role: str = "HELP_HUMAN",
+    project_agents_text: str = (
+        "one package-scoped instance\nTerminal fan-out/fan-in\n"
+        "supervised many-to-many\nSOFTWARE_WORKFLOW_PROFILE.md\n"
+    ),
     loop_text: str = "# Loop\n\n## 7. Per-run steer\n",
     workplan_text: str = "# Standing workplan\n",
 ) -> Path:
@@ -33,11 +37,7 @@ def _write_project(
     project = tmp_path / "projects" / project_name
     (project / "init").mkdir(parents=True)
     (project / "loop").mkdir()
-    (project / "AGENTS.md").write_text(
-        "one package-scoped instance\nTerminal fan-out/fan-in\n"
-        "supervised many-to-many\nSOFTWARE_WORKFLOW_PROFILE.md\n",
-        encoding="utf-8",
-    )
+    (project / "AGENTS.md").write_text(project_agents_text, encoding="utf-8")
     prompt = (
         "<init-prompt>\n"
         "Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.\n\n"
@@ -66,6 +66,38 @@ def _write_project(
 def test_accepts_help_human_entry_with_separated_loop(tmp_path: Path) -> None:
     _write_project(tmp_path)
     assert validator.validate(tmp_path) == []
+
+
+def test_accepts_thin_project_agents_with_canonical_runtime_reference(
+    tmp_path: Path,
+) -> None:
+    _write_project(
+        tmp_path,
+        project_name="chirality-piping",
+        entry_role="WORKING_ITEMS",
+        project_agents_text=(
+            "Root `AGENTS.md` and canonical `agents/AGENT_*.md` packages govern "
+            "runtime roles, selection, delegation, and orchestration.\n"
+            "Software work follows `docs/SOFTWARE_WORKFLOW_PROFILE.md`.\n"
+        ),
+    )
+    assert validator.validate(tmp_path) == []
+
+
+def test_rejects_project_agents_without_software_profile_reference(
+    tmp_path: Path,
+) -> None:
+    project = _write_project(
+        tmp_path,
+        project_agents_text=(
+            "Root `AGENTS.md` and canonical agent packages govern runtime "
+            "roles and orchestration.\n"
+        ),
+    )
+    assert validator.validate(tmp_path) == [
+        f"{project.relative_to(tmp_path)}/AGENTS.md is missing "
+        "'software_workflow_profile.md'"
+    ]
 
 
 def test_rejects_root_project_launcher_drift(tmp_path: Path) -> None:

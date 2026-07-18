@@ -209,12 +209,7 @@ def validate(repo_root: Path) -> list[str]:
 
         if project_agents.is_file():
             text = project_agents.read_text(encoding="utf-8").lower()
-            for phrase in (
-                "one package-scoped instance",
-                "terminal fan-out/fan-in",
-                "supervised many-to-many",
-                "software_workflow_profile.md",
-            ):
+            for phrase in ("software_workflow_profile.md",):
                 if phrase not in text:
                     findings.append(
                         f"{project_agents.relative_to(repo_root)} is missing '{phrase}'"
