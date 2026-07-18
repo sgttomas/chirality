@@ -89,3 +89,14 @@ TBD - no declared dependency edges have been accepted by a human.
 | OTHER | 6 |
 | PREREQUISITE | 5 |
 | INTERFACE | 2 |
+
+---
+
+**Addendum (2026-07-18 — D-APP-62 scoped interpretation):** Under the
+D-APP-62 ruling (O-A, 2026-07-18), the assertion above that `_SEMANTIC.md`
+is invalid evidence / was not read or consumed is scoped to
+dependency-extraction evidence: it bars `_SEMANTIC.md` from serving as
+evidence for dependency rows. Its recorded consumption as the primary input
+to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
+consistent with it. See
+`execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.

@@ -76,3 +76,14 @@ Closure state: dependency register schema-valid and all 13 rows `SATISFIED` unde
 |---|---|---|---|---|---|
 | 2026-05-20T19:24:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH at extraction time, later reconciled by D-APP-38 corpus `v1`; HUMAN_RULING_TBD | ANCHOR=6; EXECUTION=7; TOTAL=13 |
 | 2026-07-10 (D-APP-53 reconciliation) | RECONCILE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` re-verified | none; `validate_dependencies.py` PASS (13 rows, 0 errors, 0 warnings) | ANCHOR=6; EXECUTION=7; TOTAL=13 |
+
+---
+
+**Addendum (2026-07-18 — D-APP-62 scoped interpretation):** Under the
+D-APP-62 ruling (O-A, 2026-07-18), the assertion above that `_SEMANTIC.md`
+is invalid evidence / was not read or consumed is scoped to
+dependency-extraction evidence: it bars `_SEMANTIC.md` from serving as
+evidence for dependency rows. Its recorded consumption as the primary input
+to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
+consistent with it. See
+`execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
