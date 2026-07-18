@@ -30,9 +30,10 @@ with no project-local references.
   is then converted, in a project-fenced follow-up, to a local binding that
   cites the canonical section and retains only its historical rescission
   note.
-- **M1-B: standalone `docs/MODEL_CAPABILITY_DOCTRINE.md`** carrying the
-  proposed text verbatim, referenced from root `AGENTS.md` by one citation
-  line. Same app-dev follow-up as M1-A.
+- **M1-B: a standalone doctrine document in the docs directory** carrying
+  the proposed text verbatim, referenced from root `AGENTS.md` by one
+  citation line. Same app-dev follow-up as M1-A. (Not selected; no such
+  file was created.)
 - **M1-C: decline.** The doctrine stays project-local; the app-dev section
   remains its sole home; this proposal package remains a non-authoritative
   record.
