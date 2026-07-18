@@ -2068,3 +2068,36 @@
     execution-attribution note; capability and model direction is
     per-session steering only; no other file changed; owner merge remains
     the terminal act.
+
+- **2026-07-18 — Receipt 68** (DEL-04-01 handover-consumption evidence tranche).
+  - Receipt-ID: `Receipt-68`
+  - Examined-Through: `35b93dde4e74746e7db39b120a5a28e4903ee90d`
+  - Parent-Receipt: `Receipt-67`
+  - Stale-Map-Delta: register rows DEP-04-01-010..013 and their consumer
+    mirrors cited kit files deleted by the 2026-07-13 ScopeOfWork-v1
+    migrations; corrected by dated notes citing the migration commits — see
+    `Evidence_HANDOVER_CONSUMPTION_2026-07-18.md` §Source-Citation Migration
+    Note.
+  - Pointers: `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/Evidence_HANDOVER_CONSUMPTION_2026-07-18.md`
+    (per-row dispositions); rationale artifact
+    `.../DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/_run_records/TASK_RUN_2026-07-18_DEP-04-01-010-013_handover_evidence.md`;
+    control-plane record
+    `execution/_Coordination/AgentRuns/DEL-04-01_HANDOVER_EVIDENCE_2026-07-18/ORCHESTRATION_PLAN.md`
+    (work graph v1, sealed briefs, validated returns).
+  - Checks: dependency validator pass on all four touched registers; receipt
+    validator pass; corpus v9 status no drift; repo-wide self-check pass with
+    unchanged baseline; full practitioner-harness pytest pass; validation
+    pytest pass; git whitespace check clean; independent adversarial verifier
+    COMMIT-SAFE on nine sealed refutation claims (recorded here after the
+    return existed); frontend gates skipped — no runtime source changed.
+  - Model-Attribution: Claude Fable 5 Agent-0 orchestrator (HELP_HUMAN
+    posture) with one Fable 5 WORKING_ITEMS child executor and one
+    independent Fable 5 read-only adversarial verifier; a recording-only
+    recheck verifier runs on the full staged diff after this receipt is
+    written, its verdict recorded in the PR only after it exists.
+  - Gate-Outcome: `EXECUTED` — three disposition-class exercises under the
+    D-APP-60 instrument (close DEP-04-01-010 with mirror DEP-04-02-006;
+    annotate-only holds on DEP-04-01-011/-013) plus one owner referral in
+    near-miss form (DEP-04-01-012, class-test gate (b): retire vs
+    keep/re-scope both defensible); terminus slate is that referral plus
+    owner merge of the PR.
