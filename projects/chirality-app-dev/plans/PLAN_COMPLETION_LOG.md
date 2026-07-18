@@ -6,6 +6,22 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-17 - D-APP-60 ruled O-A with S5: frozen shared block v1 adopted, workplan re-minted
+
+The owner ruled "O-A with S5 in." — all five slate items adopted. The frozen
+shared delegation block v1 (hash 76438ab0…7668, verified FREEZE-SAFE,
+byte-identical with the chirality-piping loop's instrument) is now the
+D-APP-60 delegation instrument, superseding D-APP-59's reach/method by
+reference with the D-APP-59 record byte-stable. WORKPLAN_2026-07-17 was
+minted verbatim from packet Appendix W (byte-identity to the
+carry-forward-verified span confirmed; ruling date matched staged dates so
+no substitution was needed) and now governs by newest-file resolution. The
+receipt exercise-citation convention, Step-0 corpus check, and the standing
+cross-project instrument-review convention (owner-mediated, amendment-time
+only) are in effect; S5 mirror-adoption in the piping register is the
+owner's act there. Evidence: D-APP-60 packet §Human Ruling, register row,
+loop Receipt-59.
+
 ## 2026-07-17 - D-APP-59: standing delegation adopted; DEL-10-04 ResponsibleParty confirmed
 
 The owner ruled the two-item slate in one act ("Merge the PR and S1 I adopt
