@@ -56,3 +56,12 @@ This ADQ-12 supersession does not advance lifecycle state. DEL-08-05 no longer h
 ## Lifecycle-Gate-Process Observations
 
 ADQ-12 closes the child-output artifact proof residual. D-APP-40 and ADQ-05 remain the accepted basis for child-run naming, event taxonomy, and denied-allocation boundaries.
+
+---
+
+**Correction note (2026-07-18 — identifier qualification):** The requirement
+identifiers in this assessment use the reversed qualification form
+`REQ-08-05-NNN`. The canonical qualified form under the Deliverable
+Scope-of-Work Standard §4 is `DEL-08-05-REQ-NNN`. Each `REQ-08-05-NNN` above maps
+to `DEL-08-05-REQ-NNN` with the same three-digit NNN. Recorded assessment rows
+are unchanged; this appended note governs interpretation of the identifiers.

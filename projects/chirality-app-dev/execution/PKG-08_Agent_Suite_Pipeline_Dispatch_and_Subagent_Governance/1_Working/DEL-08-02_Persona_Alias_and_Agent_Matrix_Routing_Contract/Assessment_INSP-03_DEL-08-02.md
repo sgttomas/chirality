@@ -64,3 +64,12 @@ This ADQ-12 supersession updates current evidence and local dependency notes but
 ## Lifecycle-Gate-Process Observations
 
 ADQ-12 reconciles the older alias specification with the safer Type 0/1 top-level persona boundary. No lifecycle state is advanced by this assessment.
+
+---
+
+**Correction note (2026-07-18 — identifier qualification):** The requirement
+identifiers in this assessment use the reversed qualification form
+`REQ-08-02-NNN`. The canonical qualified form under the Deliverable
+Scope-of-Work Standard §4 is `DEL-08-02-REQ-NNN`. Each `REQ-08-02-NNN` above maps
+to `DEL-08-02-REQ-NNN` with the same three-digit NNN. Recorded assessment rows
+are unchanged; this appended note governs interpretation of the identifiers.

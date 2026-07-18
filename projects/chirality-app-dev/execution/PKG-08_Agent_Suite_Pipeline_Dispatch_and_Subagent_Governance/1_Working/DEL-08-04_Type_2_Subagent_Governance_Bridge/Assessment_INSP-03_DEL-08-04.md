@@ -58,3 +58,12 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-08-04
 ## Lifecycle-Gate-Process Observations
 
 DEL-08-04 has strong fail-closed runtime evidence, and ADQ-12 closes the package-level child-output artifact evidence residual through DEL-08-05. No additional executable subagent capability is introduced.
+
+---
+
+**Correction note (2026-07-18 — identifier qualification):** The requirement
+identifiers in this assessment use the reversed qualification form
+`REQ-08-04-NNN`. The canonical qualified form under the Deliverable
+Scope-of-Work Standard §4 is `DEL-08-04-REQ-NNN`. Each `REQ-08-04-NNN` above maps
+to `DEL-08-04-REQ-NNN` with the same three-digit NNN. Recorded assessment rows
+are unchanged; this appended note governs interpretation of the identifiers.
