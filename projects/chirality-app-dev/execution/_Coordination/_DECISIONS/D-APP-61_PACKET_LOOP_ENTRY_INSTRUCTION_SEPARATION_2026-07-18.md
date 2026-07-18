@@ -1,6 +1,7 @@
 # D-APP-61 — Development-loop entry and instruction separation recovery
 
-**Status:** PROPOSAL — AWAITING_RULING
+**Status:** RULED — M1-A; M2-A; M3-C; M4-A; M5-A (owner ruling
+2026-07-18; transcribed and hash-bound below)
 **Date prepared:** 2026-07-18
 **Prepared by:** app-dev loop operator (agent) at the owner's direction below.
 Packet preparation is authorized; adoption, ruling, and every implementation
@@ -205,10 +206,31 @@ Reply with a separable selection such as:
 `M1-A; M2-A; M3-C; M4-A; M5-A`.
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-AWAITING_RULING
+My rulings:  `M1-A; M2-A; M3-C; M4-A; M5-A`
 <!-- END OWNER RULING VERBATIM -->
 
-Canonical ruling-text SHA-256: `TBD_AFTER_OWNER_ACT`
+Canonical ruling-text SHA-256:
+`1d3a19ddfbc2449f28740cbd309c25aacbead1936adb0d9faa3d1bb424ec923c`
+(UTF-8 text between the verbatim markers, excluding the marker lines and
+delimiter newlines; computed and independently recomputed 2026-07-18)
+
+**Ruling context:** ruled in-session by Ryan Tufts on 2026-07-18 after PR
+#270 merged at `07d49007aa55327058fff0aaae19d5225d0889a5`. M1-A, M2-A,
+M3-C, M4-A, and M5-A are selected. Unselected alternatives produce no byte
+change. The ruling date equals Appendix W's staged date, so its three resolved
+date/lineage tokens require no textual date substitution; exact equality to
+the Appendix W span remains the mint criterion.
+
+### Post-ruling implementation direction — verbatim owner evidence
+
+This direction binds implementation mechanics and cross-project containment;
+it is not an additional slate selection.
+
+<!-- BEGIN OWNER IMPLEMENTATION DIRECTION VERBATIM -->
+PR #270 is merged (merge commit `07d49007a`); the staging is durable on `main`. Execute the on-ruling mechanics: transcribe this ruling verbatim, hash it, flip D-APP-61 to RULED, and derive the implementation delta only from the selected matters. For M2-A, mint Appendix W under the actual ruling date with the three token substitutions verified. For M3-C, move the Q2 convention text verbatim into `projects/chirality-app-dev/AGENTS.md` under a `Runtime capability convention` section, deleting the LOOP_INIT source copy in the same ruled implementation.
+
+New cross-project facts binding your implementation: piping has a held separation PR (#269) fenced to `projects/chirality-piping/**`, and its loop was redirected away from staging its own validator changes — **your implementation is the integration owner of `validate\_instruction\_entrypoints.py`**, and the Appendix V contract is the ruled design for both projects. Therefore add an explicit verifier claim: the new validator passes the *entire current `main`*, including piping's state (its local launcher byte-matches the root §5 catalog block; the structural checks must remain dormant for a project whose launcher does not select HELP_HUMAN). After your implementation PR lands and the owner merges it, piping performs its own root §5 launcher swap and #269 merges — no app-dev action there, and the piping hold and NM-5 offer terms in the packet remain as written. Never self-merge; the owner merges your implementation PR.
+<!-- END OWNER IMPLEMENTATION DIRECTION VERBATIM -->
 
 ---
 
