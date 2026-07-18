@@ -22,7 +22,7 @@ The thesis presented five novel contributions:
 
 **4. A fault containment architecture through write scope quarantine (Chapter 4, §4.6).** The Agent 0/1/2 runtime hierarchy combined with declared write scopes creates formal fault containment zones. Under the declared write-scope contract, a Type 2 agent failure is contained away from source truth. Cross-deliverable operations are explicit, opt-in, and write to isolated tool roots. This adapts classical SE fault containment to the specific challenge of governing probabilistic agents.
 
-**5. A three-layer invariant system with four-layer enforcement (Chapter 4, §4.7; Chapter 7).** The workflow design requirements (R1–R12), the decomposition invariants (I1–I10), and the system-wide K-* catalog maintained in `CONTRACT.md` are enforced through agent instructions, runtime orchestration, human gates, and deterministic tooling. The invariant system constitutes a formal specification of agent behavior constraints applied to a domain — LLM agent governance — where formal methods have not previously been deployed.
+**5. A three-layer invariant system with four-layer enforcement (Chapter 4, §4.7; Chapter 7).** The workflow design requirements (R1–R17), the decomposition invariants (I1–I10), and the system-wide K-* catalog maintained in `CONTRACT.md` are enforced through agent instructions, runtime orchestration, human gates, and deterministic tooling. The invariant system constitutes a formal specification of agent behavior constraints applied to a domain — LLM agent governance — where formal methods have not previously been deployed.
 
 ---
 

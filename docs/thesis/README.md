@@ -41,6 +41,8 @@ An owner-revision backlog for the thesis is catalogued in `plans/consistency_aud
 
 *Revision note dated 2026-07-18.* Owner-directed maintenance pass under the architecture-evaluation remediation program: the workflow-requirement range was corrected from R1–R12 to R1–R17 in this README and Chapter 4 (Appendix A already cataloged R1–R17; narrative had drifted behind the live registry, and per K-AGENTS-1 the registry governs on disagreement). The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
+*Revision note dated 2026-07-18 (completion pass).* Owner-directed follow-up extending the range correction to the remaining chapters: R1–R12 → R1–R17 in Chapter 1 (two occurrences), Chapter 2, Chapter 9, and Chapter 10. In the same Chapter 2 sentence, the series names "Runtime Invariants" and "Interaction Invariants" were corrected to the catalog's canonical "Workflow Design Requirements" and "Decomposition Invariants" (Appendix A §A.1–A.2) — the same narrative-behind-registry drift class. No other content changed. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
+
 ## Five Novel Contributions
 
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem
