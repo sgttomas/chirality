@@ -42,24 +42,22 @@ Executable prompts and TASK briefs must derive paths from the active checkout:
 | `RESEARCH` | 1 | Evidence-grounded, read-only inquiry over accepted decompositions, governance/source docs, and retrieval indexes; returns cited findings without changing project state. |
 | `AUDIT_*` | 2 | Runs bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
 
-## Runtime capability convention
+## Execution attribution
 
-- Subagent capability assignments (owner-revised 2026-07-12: MODEL-AGNOSTIC —
-  no named-model conventions; this section is the convention's home and a
-  per-run steer may override; earlier named-model steers, including the
-  2026-07-05 convention and loop Receipt 18, are rescinded going forward and
-  survive only as historical record): use the session's available models by
-  capability tier, not by name. Standard-capability agents for discovery,
-  research, summaries, running deterministic checks, and breadth
-  verification; highest-capability agents (at high reasoning effort where the
-  harness supports it) for planning, for adversarial verification of anything
-  that will be recorded as fact, and for execution that touches governed
-  artifacts, fences, or rulings; reduced effort only for mechanical execution
-  of fully specified changes. Record which model actually ran each dispatched
-  role in the governed AgentRuns record and point to it from the receipt;
-  when no AgentRuns record exists, the receipt may carry the minimum model
-  attribution directly. Never silently substitute mid-wave — a capability-
-  tier change within a wave is a receipt-worthy event.
+- Capability and model direction is supplied per-session by the owner's
+  steering (D-GOV-17 M1-D, ruled 2026-07-18,
+  `../../docs/governance_harness/_DECISIONS/D-GOV-17_model_capability_doctrine.md`):
+  no durable surface in this project prescribes canonical models or model
+  capability types. The owner-revised 2026-07-12 capability-tier convention
+  formerly in this section is rescinded going forward and survives as
+  historical record (verbatim in D-APP-61 Appendix Q2 and Git history),
+  alongside the earlier named-model steers it had itself rescinded.
+- Two model-agnostic evidence rules survive under the same ruling: record
+  which model actually ran each dispatched role in the governed AgentRuns
+  record and point to it from the receipt (when no AgentRuns record exists,
+  the receipt may carry the minimum model attribution directly); and record
+  any mid-wave substitution where the wave's execution is recorded — never
+  substitute silently.
 
 ## Project-Wide Execution Discipline
 
