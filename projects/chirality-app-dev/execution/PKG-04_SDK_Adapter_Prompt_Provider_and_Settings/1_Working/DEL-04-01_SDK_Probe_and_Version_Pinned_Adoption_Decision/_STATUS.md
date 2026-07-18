@@ -8,7 +8,6 @@
 
 ## Remaining
 - Adoption-verdict approving role remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
-- Resolve the DEP-04-01-012 referral (DEL-04-04 handover row): retire as NOT_APPLICABLE vs keep/re-scope both remain defensible after the 2026-07-18 evidence pass, so the row was referred in near-miss form rather than decided (source: Evidence_HANDOVER_CONSUMPTION_2026-07-18.md section C; _run_records/TASK_RUN_2026-07-18_DEP-04-01-010-013_handover_evidence.md referral slate) (gated: owner ruling)
 - Close DEP-04-01-011 and DEP-04-01-013 (and consumer mirrors DEP-04-03-007 / DEP-04-05-007), which stay open solely on the live-probe residual — exact observed query() message sequence; live-confirmed SDK error object shapes and packaged live behavior; consumption of all currently deliverable handover content is evidenced in Evidence_HANDOVER_CONSUMPTION_2026-07-18.md (rows 010 / DEP-04-02-006 closed 2026-07-18) (gated: D-APP-52 owner act — live-LLM demonstration)
 - Close the CODEV-001 live-environment residuals — live subprocess version, payload sequence, session/transcript placement (DEP-04-01-007) (source: ORN-13 disposition; Evidence_D53A record) (gated: D-APP-52 owner act — live-LLM demonstration)
 
@@ -27,3 +26,4 @@
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-118; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-18 - Handover-consumption evidence tranche executed under the D-APP-60 instrument (WI-PKG04-01, agent decisions under owner-delegated latitude): DEP-04-01-010 closed SATISFIED with mirror DEP-04-02-006; rows 011/013 annotated open on the D-APP-52-gated live-probe residual; row 012 referred to owner in near-miss form; Remaining updated to the residuals; see Evidence_HANDOVER_CONSUMPTION_2026-07-18.md; no state change.
+- 2026-07-18 - D-APP-63 owner ruling ("Option A with the rider.") resolved the DEP-04-01-012 referral: row retired RETIRED/NOT_APPLICABLE; rider: any DEL-04-04-relevant output from the future D-APP-52 live probe mints a NEW row (revival by new recorded basis); referral item removed from Remaining; mechanics executed by WI-PKG04-01 as mechanical conformance (see _run_records/TASK_RUN_2026-07-18_DEP-04-01-012_ruling_execution.md); no state change.
