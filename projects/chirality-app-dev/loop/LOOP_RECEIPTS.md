@@ -2043,3 +2043,28 @@
     plus the owner-ruled D-APP-62 scoped interpretation applied through ten
     dated addenda; referral slate otherwise empty; no piping write; owner
     merge remains the terminal act.
+
+- **2026-07-18 — Receipt 67** (D-GOV-17 M1-D project follow-up).
+  - Receipt-ID: `Receipt-67`
+  - Examined-Through: `5c7022523544b37d35d33aaf764f4dc00f46b7a2`
+  - Parent-Receipt: `Receipt-66`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-18, Ryan Tufts, in-session): "Merge PR #275 and PR #276." The
+    M1-D ruling governing this tranche is recorded verbatim with its hash
+    in the root D-GOV-17 decision record, not here.
+  - Pointers: `AGENTS.md` (project index) — the former runtime capability
+    convention section replaced by the execution-attribution note per
+    D-GOV-17 M1-D;
+    `docs/governance_harness/_DECISIONS/D-GOV-17_model_capability_doctrine.md`
+    (repo root) — ruling verbatim, hash, and the two recorded owner
+    selections; D-APP-61 packet Appendix Q2 — historical verbatim of the
+    rescinded convention.
+  - Checks: instruction-entrypoint validator pass; receipt validator pass;
+    validation pytest pass; git whitespace check clean; independent
+    adversarial verifier COMMIT-SAFE (five sealed claims incl. ruling
+    fidelity, Appendix Q2 recoverability, and pure-append ledger check;
+    recorded here after the return existed).
+  - Gate-Outcome: `EXECUTED` — the project-fenced M1-D follow-up lands the
+    execution-attribution note; capability and model direction is
+    per-session steering only; no other file changed; owner merge remains
+    the terminal act.
