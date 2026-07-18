@@ -32,7 +32,7 @@ Executable prompts and TASK briefs must derive paths from the active checkout:
 
 | Agent | Type | Role in this project |
 |---|---:|---|
-| `HELP_HUMAN` | 0 | Optional supervising entry; derives the current cross-package work graph, launches package managers, brokers notices, and validates cross-package fan-in. |
+| `HELP_HUMAN` | 0 | Default supervising entry for the open-ended standing development loop; aligns the human and workflow, supervises discovery and the selected Agent 1 managers, and validates cross-manager fan-in. Direct Agent 1 entry remains lawful for a matter already bounded to one manager. |
 | `WORKING_ITEMS` | 1 | One package-scoped instance per activated package; derives the intra-package graph, dispatches Agent 2 work across deliverables, validates fan-in, and returns package closure evidence. |
 | `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
 | `CHANGE` | 1 | Performs final Git/file-state closeout for validated tranches: scoped status review, staging, commit, and fast-forward-safe push. |
@@ -41,6 +41,25 @@ Executable prompts and TASK briefs must derive paths from the active checkout:
 | `REVIEW` | 1 | Reviews project outputs against scope, validation evidence, product boundaries, and acceptance criteria. |
 | `RESEARCH` | 1 | Evidence-grounded, read-only inquiry over accepted decompositions, governance/source docs, and retrieval indexes; returns cited findings without changing project state. |
 | `AUDIT_*` | 2 | Runs bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
+
+## Runtime capability convention
+
+- Subagent capability assignments (owner-revised 2026-07-12: MODEL-AGNOSTIC —
+  no named-model conventions; this section is the convention's home and a
+  per-run steer may override; earlier named-model steers, including the
+  2026-07-05 convention and loop Receipt 18, are rescinded going forward and
+  survive only as historical record): use the session's available models by
+  capability tier, not by name. Standard-capability agents for discovery,
+  research, summaries, running deterministic checks, and breadth
+  verification; highest-capability agents (at high reasoning effort where the
+  harness supports it) for planning, for adversarial verification of anything
+  that will be recorded as fact, and for execution that touches governed
+  artifacts, fences, or rulings; reduced effort only for mechanical execution
+  of fully specified changes. Record which model actually ran each dispatched
+  role in the governed AgentRuns record and point to it from the receipt;
+  when no AgentRuns record exists, the receipt may carry the minimum model
+  attribution directly. Never silently substitute mid-wave — a capability-
+  tier change within a wave is a receipt-worthy event.
 
 ## Project-Wide Execution Discipline
 
