@@ -56,3 +56,7 @@ This package-local refresh does not change runtime source, package manifests, lo
 ## D-APP-56 approving-role deferral (2026-07-12)
 
 R4-P47 explicitly defers assignment of the adoption-verdict approving role. The field remains `TBD` until an accountable human assigns it; no agent role is inferred.
+
+## D-APP-65 approving-role assignment (2026-07-18)
+
+D-APP-65 assigned the adoption-verdict approving role (`ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`) to Ryan Tufts (K-AUTH-1), scoped to the demonstrator context of this repository. This supersedes the D-APP-56 R4-P47 deferral above prospectively; the deferral remains preserved as dated history. The assignment names the accountable human only — no adoption verdict, acceptance, or issuance is rendered by it; the verdict itself remains a separate future owner act.

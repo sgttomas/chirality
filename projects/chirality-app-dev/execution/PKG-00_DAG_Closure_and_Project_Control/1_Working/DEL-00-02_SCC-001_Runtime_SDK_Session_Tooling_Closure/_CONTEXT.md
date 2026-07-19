@@ -11,7 +11,7 @@
 | PackageName | DAG Closure and Project Control |
 | DeliverableID | DEL-00-02 |
 | DeliverableName | SCC-001 Runtime SDK Session Tooling Closure |
-| ResponsibleParty | TBD |
+| ResponsibleParty | Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope) |
 | Type | CONTROL_RECONCILIATION |
 | ContextEnvelope | M |
 

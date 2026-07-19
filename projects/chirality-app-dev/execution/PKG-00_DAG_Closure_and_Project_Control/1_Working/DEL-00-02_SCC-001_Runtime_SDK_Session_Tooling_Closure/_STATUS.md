@@ -7,7 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- ResponsibleParty and related owner-authority `TBD` fields remain explicitly deferred under D-APP-56 R4-P47 until an accountable owner assigns them, including issuance-gate sign-off coordination with DEL-01-03 (source: insp05 addendum §5 / D-APP-53 Option C; gated: new owner ruling).
+- None.
 
 ## History
 - 2026-05-24 - State set to OPEN (ORCHESTRATOR / PKG-00 control-package scaffold)
@@ -25,3 +25,4 @@
 - 2026-07-12 - D-APP-56 R5 P42 applied UPD-083; D53A/current-snapshot repair complete; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-084 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-18 - D-APP-65 assigned ResponsibleParty to Ryan Tufts (K-AUTH-1), demonstrator scope, superseding the D-APP-56 R4-P47 deferral; the assignment names the accountable human only — issuance-gate sign-off coordination with DEL-01-03 remains a future act. No state or lifecycle change.
