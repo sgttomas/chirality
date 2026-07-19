@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -67,3 +68,28 @@ def test_cli_returns_nonzero_for_findings(tmp_path: Path) -> None:
     assert result.returncode == 1
     assert "FAIL:" in result.stdout
     assert "init/init-prompt.md:1" in result.stdout
+
+
+def test_shared_roles_allow_evidence_and_fail_unknown_agentruns(tmp_path: Path) -> None:
+    project = tmp_path / "projects/example"
+    write(project / "validation/portability_policy.json", json.dumps({
+        "schema_version": 1,
+        "project_root": "projects/example",
+        "historical_role_overrides": [],
+        "control_path_exceptions": [],
+    }) + "\n")
+    run = project / "execution/_Coordination/AgentRuns/R10"
+    write(run / "LAUNCH_BRIEF.md", "Root: {REPO_ROOT}\n")
+    write(run / "RETURN.md", "Ran at /Users/example/repo\n")
+    write(run / "CAPTURE.json", '{"cwd":"/Users/example/repo"}\n')
+
+    report = validator.scan(tmp_path)
+
+    assert report["finding_count"] == 1
+    assert report["findings"][0]["path"].endswith("CAPTURE.json")
+    assert report["semantic_invariants"] == {
+        "unacknowledged_control": 0,
+        "active_unclassified": 1,
+        "policy_issues": 0,
+        "acknowledged_control": 0,
+    }

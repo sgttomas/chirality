@@ -363,37 +363,41 @@ live pin in `test_live_baseline.py` carries the matching conscious update.
 ## Project-tree abs-path lint (GEN-8) and agent-registry currency (GEN-9)
 
 **GEN-8 (SPEC §0.2.4).** GEN-1 stays control-area per-line; GEN-8 extends the
-machine-absolute-path audit to the pilot project trees with a labeled
-three-way FILE classification, precedence order: evidence-marker paths
-(`_validation/`, `_run_records/`, `Assessment_`, `.validation.json`) lawfully
-carry absolute paths and are counted into a per-root fact; instruction-class
-files (a `plans`/`docs`/`_Coordination`/`_DECISIONS` path segment, or an
-`_STATUS.md`/`_CONTEXT.md`/`_LATEST*`/`README*`/`PLAN*.md`/`*_INDEX.md`/
-`AGENT_*.md` filename) yield ONE `ABS_PATH_IN_PROJECT_SURFACE` REVIEW finding
-per file; everything else is not mechanically classifiable in v1 and is
-counted into a separate per-root fact — labeled, never guessed, human triage.
-Per-file granularity rationale: the worst live file carries 21 hit lines;
-per-line findings would flood human triage without adding information.
+machine-absolute-path audit through the shared `surface_roles.py` policy.
+Active managed-run and live-entry surfaces have one structural role:
+`CONTROL`, `EVIDENCE`, or `UNCLASSIFIED`. Control classification takes
+precedence. Evidence is limited to exact registered names (`RETURN.md`,
+`RETURN_V<n>.md`, `HANDOFF_STATE.md`, `STATUS.json`, `STATUS_V<n>.json`,
+`RUN_RECORD.md`, `INTERRUPTION_RECORD.md`, and `TOOL_ERROR_RECORD.md`) or the
+structural `_run_records/` directory. Token-bearing near matches never inherit
+evidence status; unknown AgentRuns artifacts fail closed.
+Historical and non-active project files remain aggregate observability facts,
+not an exact path baseline and not implicit evidence.
+
+Projects may declare `validation/portability_policy.json`. Its migration
+overrides and historical control exceptions are bound to normalized
+repo-relative paths, whole-file SHA-256, non-empty reason, and authority.
+Missing targets, hash drift, duplicates, role mismatch, or entries whose path
+has disappeared are actionable policy findings. Valid control exceptions stay
+visible as sourced facts. Acceptance is semantic: zero unacknowledged active
+control paths, zero active unclassified paths, and zero policy issues.
 GEN-8 audits **git-tracked files only**: gitignored build output (`dist/`,
 `target/`, `.next/`, packaged `.app` bundles) is not authored governance
-truth (D-GOV-01) and is excluded, so the 19-file baseline is stable whether
-or not the working tree has been built. Outside a git working tree (the
-tmp-repo fixtures) the walk is unrestricted.
-Disposition is detect-never-rewrite: relativization when a file is next
-touched is a human/maintenance call. The live baseline is the 19-file
-instruction-class finding set pinned in `test_live_baseline.py` — a drift
-metric that should trend DOWN as files are relativized when next touched,
-with a conscious pin update accompanying each reduction. Relationship to
-prior art: `tools/validation/validate_path_anchors.py` lints the repo-level
-live instruction surfaces (`agents/`, `skills/`, `tools/`, `init/`, root
-`AGENTS.md`, active coordination files) and deliberately excludes `plans/`
-and most project-tree content — the surfaces GEN-8 now audits.
+truth (D-GOV-01) and is excluded. Outside a Git worktree the fixture walk is
+unrestricted. No aggregate severity total or full-tree path set is pinned.
+`validate_path_anchors.py` consumes the same role policy for managed project
+records while retaining its narrower repo-level live-entry boundary.
 HB-10 closes the same class at the pre-commit seam: `coord-check --diff`
-reuses `ABS_PATH_RE` and the evidence-marker exemption (imported from
-`cmd_self_check`, never duplicated) to flag machine-absolute paths on lines
-a diff ADDS to changed coordination artifacts (`COORD_ABS_PATH_ADDED`,
-REVIEW, per added line — the D-05b:54 class is caught before commit instead
-of at self-check/CI time).
+uses the same role classifier to flag machine-absolute paths on lines a diff
+ADDS to controls or unknown coordination artifacts (`COORD_ABS_PATH_ADDED`).
+Thus newly changed coordination remains fail-closed even when an older record
+is outside the active self-check boundary.
+
+Raw reproduction `stdout/*.txt` and `stderr/*.txt` are a separate storage
+concern. The piping project marks only those checksum-governed files
+`-diff -merge -text`; this preserves exact bytes and prevents raw output from
+being treated as authored text. Markdown, JSON, briefs, and all other authored
+surfaces remain subject to normal Git whitespace checks.
 
 **GEN-9 (K-AGENTS-1).** Runs once per invocation against the repo-root
 `AGENTS.md` + `agents/` regardless of `--root` (same posture as GEN-4);

@@ -1421,3 +1421,21 @@
     noted without a repeat piping S5 event; registered sweep prerequisites
     repaired and proven locally/offline. DEL-09-04 was not rerun or accepted,
     remains `IN_PROGRESS`, and requires a fresh run ID in a new session.
+
+- **2026-07-19 — Receipt 57** (systematic portability repair R10).
+  - Receipt-ID: `Receipt-57`
+  - Examined-Through: `dca98da8527fc118d9bbdcc1e88ccdc7c96b863d`
+  - Parent-Receipt: `Receipt-56`
+  - Pointers: `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260719-SYSTEMATIC-PORTABILITY-REPAIR-R10/` (preserved verifier v1 BLOCK, Amendments 001–003, author v2 remediation, verifier v2 `COMMIT-SAFE`, terminal handoff); `validation/portability_policy.json`; admitted sweep `validation/evidence/sweeps/SWEEP_20260719T195631Z_dca98da8527f-dirty.json`; earlier R10 sweep preserved as superseded/non-admitted.
+  - Checks: focused/full harness, full piping pytest, semantic portability invariants, claims/path/receipt/instruction-entrypoint/JSON/JSONL/containment/Git-diff checks, raw-evidence Git regression, and admitted five-surface sweep pass.
+  - Model-Attribution: HELP_HUMAN parent, HELPS_HUMANS manager, and the two serialized Agent 2 identities used inherited Codex runtime capability without override or mid-task substitution; exact model strings were not exposed.
+  - Gate-Outcome: `EXECUTED` — systematic portability repair is `COMMIT-SAFE` and locally commit-ready; DEL-09-04 remains `IN_PROGRESS` with clean reproduction open. No reproduction acceptance, lifecycle/stage change, evidence promotion, release, publication, push, merge, or external effect.
+
+- **2026-07-19 — Receipt 58** (DEL-09-04 clean-checkout reproduction R11).
+  - Receipt-ID: `Receipt-58`
+  - Examined-Through: `23eeaabc904064e2297690e391df153dea116ff0`
+  - Parent-Receipt: `Receipt-57`
+  - Pointers: `validation/evidence/reproduction/REPRO_DEL0904_20260719T202023Z_23eeaabc9040/`; `validation/evidence/sweeps/SWEEP_20260719T202805Z_23eeaabc9040-dirty.json`; DEL-09-04 `_STATUS.md`, `MEMORY.md`, and `_run_records/WORKING_ITEMS_RUN_2026-07-19_DEL0904_CLEAN_REPRO_R11.md`; `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260719-DEL0904-CLEAN-REPRO-R11/`.
+  - Checks: clean detached reproduction, documented review checks, piping pytest, exactly one evidence sweep, harness pytest, harness self-check, receipt and closeout validators pass.
+  - Model-Attribution: WORKING_ITEMS manager and its single serialized non-delegating Agent 2 executor used inherited Codex runtime capability without override or mid-task substitution; exact model strings were not exposed.
+  - Gate-Outcome: `EXECUTED` — the adopted actor-neutral clean-checkout reproduction is `INTERNALLY_VERIFIED`; only its named Remaining item was closed and DEL-09-04 remains `IN_PROGRESS`. No lifecycle/stage advancement, owner acceptance, evidence promotion, release, publication, push, merge, professional reliance, or external effect.

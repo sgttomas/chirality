@@ -15,10 +15,15 @@ from pathlib import Path
 from cmd_scope_check import _changed_paths, _run_git, _validate_diff_range
 from cmd_self_check import (
     ABS_PATH_RE,
-    EVIDENCE_PATH_MARKERS,
     _candidate_refs,
     _is_declared_generated_root_ref,
     _resolve_ref_path,
+)
+from surface_roles import (
+    SurfaceRole,
+    effective_role,
+    has_control_exception,
+    load_project_policy,
 )
 from harness_common import (
     HarnessOperationalError,
@@ -190,10 +195,24 @@ def _added_lines(
 
 
 def _check_added_abs_paths(
-        report: Report, relpath: str,
+        report: Report, repo_root: Path, relpath: str,
         added_lines: list[tuple[int, str]]) -> int:
-    if any(marker in relpath for marker in EVIDENCE_PATH_MARKERS):
-        return 0  # evidence artifacts lawfully carry absolute paths
+    parts = Path(relpath).parts
+    if len(parts) >= 2 and parts[0] in {"projects", "domains"}:
+        project_root = repo_root / parts[0] / parts[1]
+        policy = load_project_policy(repo_root, project_root)
+    else:
+        policy = load_project_policy(repo_root, repo_root)
+    classification = effective_role(relpath, policy)
+    if classification.role is SurfaceRole.UNCLASSIFIED and not classification.active:
+        # Every changed coordination artifact is an active control even when
+        # it is outside the managed AgentRuns structural vocabulary.
+        from surface_roles import classify_surface
+        classification = classify_surface(relpath, live_entry=True)
+    if classification.role is SurfaceRole.EVIDENCE:
+        return 0
+    if has_control_exception(relpath, policy):
+        return 0
     finding_count = 0
     for line_no, line in added_lines:
         if not ABS_PATH_RE.search(line):
@@ -201,11 +220,12 @@ def _check_added_abs_paths(
         report.add_finding(make_finding(
             Severity.REVIEW, "COORD_ABS_PATH_ADDED", "coordination",
             "Line added by this diff range embeds a machine-absolute path "
-            "on a coordination/control artifact; SPEC §0.2.4 requires "
-            "repo-relative anchoring on instruction/coordination surfaces "
-            "(run-record/evidence artifacts lawfully carry absolute paths). "
-            "Detect, never rewrite: relativize before commit or record the "
-            "human disposition — human review required.",
+            f"on an active {classification.role.value} coordination artifact "
+            f"({classification.reason}); SPEC §0.2.4 requires repo-relative "
+            "anchoring on controls; unknown active artifacts are actionable "
+            "by default. "
+            "Relativize before commit or add an explicit hash-bound historical "
+            "disposition under governing authority.",
             relpath, line_no, invariant="SPEC-0.2.4"))
         finding_count += 1
     return finding_count
@@ -256,7 +276,8 @@ def run_coord_check(repo_root: Path, diff_range: str) -> Report:
         # renames-away (no current file) are still inspected — they simply
         # contribute no added lines.
         row["abs_path_findings"] = _check_added_abs_paths(
-            report, relpath, _added_lines(repo_root, diff_range, relpath))
+            report, repo_root, relpath,
+            _added_lines(repo_root, diff_range, relpath))
         if not path.is_file():
             continue
         text = path.read_text(encoding="utf-8")
