@@ -116,70 +116,53 @@ def test_abs_path_regex_matches_supported_machine_roots_without_privacy_false_po
         assert cmd_self_check.ABS_PATH_RE.search(value) is None, value
 
 
-# --- (a) plans/ file: ONE per-file REVIEW finding, count + first line -------------
+# --- (a) non-active historical surfaces are telemetry, not path pins --------------
 
-def test_plans_file_yields_one_finding_with_count_and_first_line(tmp_path):
+def test_plans_file_is_historical_telemetry_not_active_control(tmp_path):
     repo = build_mini_repo(tmp_path)
     _write(repo.joinpath(*APP_DEV, "plans", "fixture_assessment.md"),
            PLAN_THREE_HITS_MD)
     report, _ = cmd_self_check.run_self_check(repo)
-    hits = _gen8(report)
-    assert [(f.source_path, f.source_line) for f in hits] == [
-        ("projects/chirality-app-dev/plans/fixture_assessment.md",
-         PLAN_HIT_LINES[0])]  # ONE finding per FILE, anchored at the first hit
-    f = hits[0]
-    assert f.severity is Severity.REVIEW
-    assert f.invariant == "SPEC-0.2.4"
-    assert f.dimension == "path-anchoring"
-    assert "path segment `plans/`" in f.message  # the classification reason
-    assert f"{len(PLAN_HIT_LINES)} machine-absolute-path hit line(s)" in f.message
-    assert f"first hit at line {PLAN_HIT_LINES[0]}" in f.message
-    assert "repo-relative anchoring" in f.message
-    assert "lawfully carry absolute paths" in f.message
-    assert "never rewrite" in f.message
-    assert "human review required" in f.message
-    assert find_claim_language(f.message) == []
+    assert _gen8(report) == []
+    fact = _fact(report, "abs_path_lint.chirality-app-dev.historical")
+    assert fact.value == "files=1; hit_lines=3"
+    assert "not a path pin" in fact.caveat
 
 
-def test_plans_file_detects_non_users_machine_roots(tmp_path):
+def test_historical_telemetry_counts_non_users_machine_roots(tmp_path):
     repo = build_mini_repo(tmp_path)
     _write(repo.joinpath(*APP_DEV, "plans", "broader_roots.md"),
            NON_USERS_ROOTS_PLAN_MD)
     report, _ = cmd_self_check.run_self_check(repo)
-    f = _has(report, "ABS_PATH_IN_PROJECT_SURFACE",
-             "projects/chirality-app-dev/plans/broader_roots.md", line=3,
-             severity=Severity.REVIEW)
-    assert "4 machine-absolute-path hit line(s)" in f.message
-    assert "public/private/protected-content" not in f.message
+    assert _gen8(report) == []
+    fact = _fact(report, "abs_path_lint.chirality-app-dev.historical")
+    assert fact.value == "files=1; hit_lines=4"
 
 
 # --- (b) _Coordination/_DECISIONS record -> REVIEW --------------------------------
 
-def test_coordination_decision_record_is_instruction_class(tmp_path):
+def test_historical_decision_is_observability_not_active_control(tmp_path):
     repo = build_mini_repo(tmp_path)
     _write(repo / "projects" / "chirality-piping" / "execution"
            / "_Coordination" / "_DECISIONS" / "D-99_fixture_ruling.md",
            DECISION_ONE_HIT_MD)
     report, _ = cmd_self_check.run_self_check(repo)
-    f = _has(report, "ABS_PATH_IN_PROJECT_SURFACE",
-             "_DECISIONS/D-99_fixture_ruling.md", line=3,
-             severity=Severity.REVIEW)
-    assert "path segment `_Coordination/`" in f.message
+    assert _gen8(report) == []
+    assert _fact(report, "abs_path_lint.chirality-piping.historical").value == (
+        "files=1; hit_lines=1")
 
 
 # --- (c) _STATUS.md filename pattern -> REVIEW -------------------------------------
 
-def test_status_file_is_instruction_class_by_filename(tmp_path):
+def test_non_entry_status_is_historical_observability(tmp_path):
     repo = build_mini_repo(tmp_path)
     _write(repo.joinpath(*APP_DEV, "execution", "PKG-09_Fixture",
                          "1_Working", "DEL-09-01_Abs anchor", "_STATUS.md"),
            STATUS_ONE_HIT_MD)
     report, _ = cmd_self_check.run_self_check(repo)
-    f = _has(report, "ABS_PATH_IN_PROJECT_SURFACE",
-             "DEL-09-01_Abs anchor/_STATUS.md", line=4,
-             severity=Severity.REVIEW)
-    # No marked segment on this path: the FILENAME pattern is the reason.
-    assert "filename pattern match on `_STATUS.md`" in f.message
+    assert _gen8(report) == []
+    assert _fact(report, "abs_path_lint.chirality-app-dev.historical").value == (
+        "files=1; hit_lines=1")
 
 
 # --- (d) evidence-marker file: NO finding; counted in the evidence fact -----------
@@ -192,26 +175,22 @@ def test_run_record_is_counted_as_evidence_not_finding(tmp_path):
     assert _gen8(report) == []
     fact = _fact(report, "abs_path_lint.chirality-app-dev.evidence")
     assert fact.value == "files=1; hit_lines=2"
-    assert "permitted by SPEC §0.2.4" in fact.caveat
+    assert "permitted as exact provenance" in fact.caveat
     assert find_claim_language(fact.caveat) == []
 
 
 # --- (e) unclassified working surface: NO finding; counted in its fact -------------
 
-def test_working_content_is_counted_as_unclassified_not_finding(tmp_path):
+def test_working_content_is_counted_as_historical_not_active_unclassified(tmp_path):
     repo = build_mini_repo(tmp_path)
     _write(repo.joinpath(*APP_DEV, "execution", "PKG-01_Fixture Pkg",
                          "1_Working", "DEL-02-01_Match one",
                          "content_notes.md"), WORKING_CONTENT_ONE_HIT_MD)
     report, _ = cmd_self_check.run_self_check(repo)
     assert _gen8(report) == []
-    fact = _fact(report, "abs_path_lint.chirality-app-dev.unclassified")
+    fact = _fact(report, "abs_path_lint.chirality-app-dev.historical")
     assert fact.value == "files=1; hit_lines=1"
-    # The honest caveat: the v1 split and the human-triage posture.
-    assert "instruction/coordination/plan" in fact.caveat
-    assert "not mechanically classifiable in v1" in fact.caveat
-    assert "labeled, never guessed" in fact.caveat
-    assert "human triage" in fact.caveat
+    assert "not active execution controls" in fact.caveat
     assert find_claim_language(fact.caveat) == []
 
 
@@ -290,7 +269,7 @@ def test_gitignored_build_output_is_not_audited(tmp_path):
     # by 2. Untracked artifacts are not governed surfaces (D-GOV-01); GEN-8
     # now audits git-tracked files only.
     repo = build_mini_repo(tmp_path)
-    # A TRACKED instruction-class surface carrying an abs path -> one finding.
+    # A tracked historical surface remains telemetry.
     _write(repo.joinpath(*APP_DEV, "plans", "tracked_assessment.md"),
            DECISION_ONE_HIT_MD)
     # A gitignored build artifact carrying an abs path -> must NOT be audited.
@@ -301,7 +280,6 @@ def test_gitignored_build_output_is_not_audited(tmp_path):
     _git(repo, "add", "-A")           # respects .gitignore: dist/ stays untracked
     _git(repo, "commit", "-q", "-m", "fixture tree")
     report, _ = cmd_self_check.run_self_check(repo)
-    hits = _gen8(report)
-    assert [f.source_path for f in hits] == [
-        "projects/chirality-app-dev/plans/tracked_assessment.md"]
-    assert not any("dist" in f.source_path for f in hits)
+    assert _gen8(report) == []
+    assert _fact(report, "abs_path_lint.chirality-app-dev.historical").value == (
+        "files=1; hit_lines=1")

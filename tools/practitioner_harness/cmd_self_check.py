@@ -31,12 +31,11 @@ Scope notes (v1):
 - GEN-1 (absolute-path leak) and GEN-2 audit the control areas
   (`_DomainEngines/` + `docs/governance_harness/`); GEN-1 stays per-line
   there. GEN-8 extends the abs-path audit to the pilot project trees with a
-  labeled three-way FILE classification: evidence-marker surfaces lawfully
-  carry absolute paths per SPEC §0.2.4 and are counted as facts;
-  instruction-class surfaces yield one per-file finding; everything else is
-  not mechanically classifiable in v1 and is counted as facts — labeled,
-  never guessed. GEN-2 keeps the control-area boundary (same v1 boundary as
-  GEN-5).
+  shared active-surface classification: CONTROL paths are portable, EVIDENCE
+  may preserve exact provenance, and active UNCLASSIFIED artifacts fail
+  closed. Hash-bound historical exceptions are validated and visible;
+  non-active project material is telemetry rather than a path baseline.
+  GEN-2 keeps the control-area boundary (same v1 boundary as GEN-5).
 - GEN-9 observation boundary (v1): file tokens only (backticked
   `AGENT_*.md` spans in `AGENTS.md`); role-name narrative mentions (e.g. a
   bare DELIVERABLE_TASK word in prose) are outside the boundary.
@@ -58,6 +57,14 @@ from pathlib import Path
 
 import adapter_domain_engines
 import cmd_bridge_status
+from surface_roles import (
+    MACHINE_ABS_PATH_RE,
+    SurfaceRole,
+    effective_role,
+    has_control_exception,
+    iter_machine_path_lines,
+    load_project_policy,
+)
 from harness_common import (
     Finding,
     GENERATED_ROOT_NAME,
@@ -73,8 +80,7 @@ from harness_common import (
 
 STALE_ANNOTATION_RE = re.compile(r"PROPOSAL; HumanRuling\s*[:=]\s*TBD")
 STALE_DRAFT_DIRECTIVE_RE = re.compile(r"Update the DRAFT profile")
-ABS_PATH_RE = re.compile(
-    r"(?<![A-Za-z0-9_.-])/(?:Users|private|home|tmp|var/folders)/[^\s)\"'`<>]+")
+ABS_PATH_RE = MACHINE_ABS_PATH_RE
 RULING_SHA_TBD_RE = re.compile(r"Ruling SHA:(?:\*\*)?\s*TBD")
 BIND_AT_PUBLISH_RE = re.compile(
     r"binds? (?:at|to a git SHA when) (?:CHANGE )?publish", re.IGNORECASE)
@@ -143,15 +149,6 @@ POINTER_TICK_RE = re.compile(r"`([^`]+)`")
 POINTER_HISTORY_NOTE_RE = re.compile(
     r"\b(?:exhausted|superseded|historical|retired|predecessor)\b",
     re.IGNORECASE)
-
-# GEN-8 project-tree machine-absolute-path lint (SPEC §0.2.4). A file is
-# INSTRUCTION-CLASS when any path segment or its filename marks it as an
-# instruction/coordination/plan/status surface; evidence classification
-# reuses the shared EVIDENCE_PATH_MARKERS (precedence: evidence first).
-PROJECT_INSTRUCTION_SEGMENTS = ("plans", "docs", "_Coordination", "_DECISIONS")
-PROJECT_INSTRUCTION_FILENAME_RE = re.compile(
-    r"^(_STATUS\.md|_CONTEXT\.md|_LATEST.*|README.*|PLAN.*\.md"
-    r"|.*_INDEX\.md|AGENT_.*\.md)$")
 
 # GEN-9 agent-registry currency (K-AGENTS-1). File tokens are read from
 # backtick-delimited spans only (v1 observation boundary; role-name
@@ -724,12 +721,10 @@ def run_self_check(
                         _rel(pfile, repo_root), line_no, invariant="K-STALE-2"))
 
     # ----- GEN-8 project-tree machine-absolute-path lint (SPEC §0.2.4) -----
-    # GEN-1 stays control-area per-line; GEN-8 extends the audit to the
-    # project scope roots (scope entries that are not control roots) with a
-    # labeled three-way FILE classification. Per-file, not per-line: the
-    # worst live file carries 21 hit lines, and per-line findings would
-    # flood human triage without adding information. Detect, never rewrite:
-    # relativization when a file is next touched is a human/maintenance call.
+    # GEN-1 stays control-area per-line. GEN-8 enforces the shared portability
+    # policy on ACTIVE managed-run and live-entry surfaces. Historical and
+    # non-active project material remains counted telemetry; it is not an
+    # ever-growing path baseline. Per-file findings keep triage bounded.
     for proot in (p for p in scope if p not in control_roots):
         # Only git-tracked files are governed surfaces (D-GOV-01); gitignored
         # build output (dist/, target/, .next/, packaged .app bundles) is not
@@ -737,56 +732,114 @@ def run_self_check(
         # git working tree (the tmp-repo fixtures) — then the walk is
         # unrestricted, exactly as before.
         tracked = _git_tracked_paths(repo_root, proot)
-        ev_files = ev_lines = un_files = un_lines = 0
+        try:
+            project_parts = proot.relative_to(repo_root).parts[:2]
+            project_root = repo_root.joinpath(*project_parts)
+        except ValueError:
+            project_root = proot
+        policy = load_project_policy(repo_root, project_root)
+        for issue in policy.issues:
+            report.add_finding(make_finding(
+                Severity.REVIEW, issue.code, "path-anchoring", issue.message,
+                issue.source_path, invariant="SPEC-0.2.4"))
+        ev_files = ev_lines = active_un_files = active_un_lines = 0
+        historical_files = historical_lines = control_violations = 0
+        acknowledged = 0
         for path in _iter_files(proot, (".md", ".yaml", ".yml", ".json")):
-            if tracked is not None and path.resolve() not in tracked:
-                continue
             rel = _rel(path, repo_root)
+            if tracked is not None and path.resolve() not in tracked:
+                candidate = effective_role(rel, policy)
+                if not (
+                    policy.enabled
+                    and candidate.active
+                    and "/execution/_Coordination/AgentRuns/" in rel
+                ):
+                    continue
             try:
                 lines = path.read_text(encoding="utf-8").splitlines()
             except (UnicodeDecodeError, OSError):
                 continue
-            hits = [idx for idx, line in enumerate(lines, start=1)
-                    if ABS_PATH_RE.search(line)]
+            hits = list(iter_machine_path_lines("\n".join(lines)))
             if not hits:
                 continue
-            if any(marker in rel for marker in EVIDENCE_PATH_MARKERS):
+            classification = effective_role(rel, policy)
+            if (not policy.enabled
+                    and "/execution/_Coordination/AgentRuns/" in rel):
+                historical_files += 1
+                historical_lines += len(hits)
+                continue
+            if not classification.active:
+                historical_files += 1
+                historical_lines += len(hits)
+                continue
+            if classification.role is SurfaceRole.EVIDENCE:
                 ev_files += 1
                 ev_lines += len(hits)
                 continue
-            reason = _instruction_class_reason(rel, path.name)
-            if reason is None:
-                un_files += 1
-                un_lines += len(hits)
+            if classification.role is SurfaceRole.CONTROL and has_control_exception(rel, policy):
+                acknowledged += 1
+                entry = policy.exceptions[rel]
+                report.add_fact(SourcedFact(
+                    fact_id=f"abs_path_lint.{proot.name}.acknowledged.{acknowledged}",
+                    value=f"path={rel}; sha256={entry.sha256}",
+                    source_path=rel,
+                    authority_status="explicit-historical-exception",
+                    caveat=f"{entry.reason} Authority: {entry.authority}"))
                 continue
+            if classification.role is SurfaceRole.UNCLASSIFIED:
+                active_un_files += 1
+                active_un_lines += len(hits)
+                report.add_finding(make_finding(
+                    Severity.REVIEW, "ABS_PATH_IN_UNCLASSIFIED_SURFACE",
+                    "path-anchoring",
+                    f"Active surface ({classification.reason}) carries "
+                    f"{len(hits)} machine-absolute-path hit line(s); first hit "
+                    f"at line {hits[0]}. Unknown managed artifacts fail closed: "
+                    "define a structural role or remove the machine-local path.",
+                    rel, hits[0], invariant="SPEC-0.2.4"))
+                continue
+            control_violations += 1
             report.add_finding(make_finding(
                 Severity.REVIEW, "ABS_PATH_IN_PROJECT_SURFACE", "path-anchoring",
-                f"Instruction-class project surface ({reason}) carries "
+                f"Active CONTROL surface ({classification.reason}) carries "
                 f"{len(hits)} machine-absolute-path hit line(s); first hit at "
                 f"line {hits[0]}. SPEC §0.2.4 requires repo-relative anchoring "
-                "on instruction/coordination/plan surfaces, while run records "
-                "and evidence artifacts lawfully carry absolute paths. Detect, "
-                "never rewrite: relativization when the file is next touched "
-                "is a human/maintenance call — human review required.",
+                "on active controls. Use `{REPO_ROOT}`, `{WORKING_ROOT}`, or a "
+                "repo-relative path; only a hash-bound historical exception can "
+                "acknowledge immutable control history.",
                 rel, hits[0], invariant="SPEC-0.2.4"))
         report.add_fact(SourcedFact(
             fact_id=f"abs_path_lint.{proot.name}.evidence",
             value=f"files={ev_files}; hit_lines={ev_lines}",
             source_path=_rel(proot, repo_root),
             authority_status="observed",
-            caveat="Machine-absolute paths on run-record/evidence surfaces "
-                   "(evidence path markers) are permitted by SPEC §0.2.4; "
-                   "counted for portability awareness, never findings."))
+            caveat="Machine-absolute paths on structurally classified managed "
+                   "evidence are permitted as exact provenance; counted for "
+                   "portability awareness, never actionable findings."))
         report.add_fact(SourcedFact(
             fact_id=f"abs_path_lint.{proot.name}.unclassified",
-            value=f"files={un_files}; hit_lines={un_lines}",
+            value=f"files={active_un_files}; hit_lines={active_un_lines}",
             source_path=_rel(proot, repo_root),
             authority_status="observed",
-            caveat="SPEC §0.2.4 divides instruction/coordination/plan "
-                   "surfaces (must not embed machine-absolute paths) from "
-                   "run-record/evidence surfaces (permitted); these working "
-                   "surfaces are not mechanically classifiable in v1 — "
-                   "labeled, never guessed; human triage."))
+            caveat="Unknown ACTIVE managed artifacts fail closed; this fact "
+                   "counts only active UNCLASSIFIED surfaces."))
+        report.add_fact(SourcedFact(
+            fact_id=f"abs_path_lint.{proot.name}.historical",
+            value=f"files={historical_files}; hit_lines={historical_lines}",
+            source_path=_rel(proot, repo_root),
+            authority_status="observed",
+            caveat="Historical/non-active project surfaces are observability "
+                   "telemetry, not active execution controls and not a path pin."))
+        report.add_fact(SourcedFact(
+            fact_id=f"abs_path_lint.{proot.name}.semantic_invariants",
+            value=(f"unacknowledged_control={control_violations}; "
+                   f"active_unclassified={active_un_files}; "
+                   f"policy_issues={len(policy.issues)}; "
+                   f"acknowledged_control={acknowledged}"),
+            source_path=policy.policy_path,
+            authority_status="observed",
+            caveat="Acceptance requires zero unacknowledged CONTROL paths, "
+                   "zero active UNCLASSIFIED paths, and zero policy issues."))
 
     # ----- GEN-9 agent-registry currency (K-AGENTS-1) -----
     # Runs once per invocation against the repo-root registry regardless of
@@ -851,8 +904,8 @@ def run_self_check(
         "GEN-6 (draft-basis-used-as-binding; control files only in v1), "
         "GEN-7 (_LATEST pointer currency: target resolution outside .archive "
         "+ newest-same-class-sibling by date-in-filename), "
-        "GEN-8 (project-tree abs-path lint: per-file, three-way "
-        "classification, detect-never-rewrite), "
+        "GEN-8 (active-surface portability: structural roles + hash-bound "
+        "historical exceptions + semantic invariants), "
         "GEN-9 (agent-registry currency: AGENTS.md file tokens vs live "
         "agents/ files, both directions), "
         "GEN-10 (bridge receipt labels + parked-lane carry-forward), "
@@ -1435,18 +1488,6 @@ def _git_tracked_paths(repo_root: Path, root: Path) -> set[Path] | None:
         return None
     return {(repo_root / name).resolve()
             for name in proc.stdout.split("\0") if name}
-
-
-def _instruction_class_reason(rel: str, name: str) -> str | None:
-    """The classification reason when a project file is instruction-class
-    per SPEC §0.2.4 (a marked path segment, else a filename pattern), or
-    None when the file is an unclassified working surface."""
-    for seg in Path(rel).parts[:-1]:
-        if seg in PROJECT_INSTRUCTION_SEGMENTS:
-            return f"path segment `{seg}/`"
-    if PROJECT_INSTRUCTION_FILENAME_RE.match(name):
-        return f"filename pattern match on `{name}`"
-    return None
 
 
 # --- GEN-9 agent-registry helpers ------------------------------------------------

@@ -144,20 +144,20 @@ def test_parse_added_lines_reproduces_d05b_hunk_and_check_fires():
 
     report = Report(command="coord-check")
     assert cmd_coord_check._check_added_abs_paths(
-        report, D05B_RELPATH, added) == 1
+        report, Path.cwd(), D05B_RELPATH, added) == 1
     f = report.findings[0]
     assert f.code == "COORD_ABS_PATH_ADDED"
     assert f.severity is Severity.REVIEW
     assert (f.source_path, f.source_line) == (D05B_RELPATH, 54)
     assert f.invariant == "SPEC-0.2.4"
-    assert "never rewrite" in f.message
+    assert "actionable by default" in f.message
     assert find_claim_language(f.message) == []
 
     # The same added lines on an evidence-class relpath are exempt (evidence
     # artifacts lawfully carry absolute paths per SPEC §0.2.4).
     evidence = Report(command="coord-check")
     assert cmd_coord_check._check_added_abs_paths(
-        evidence, "projects/chirality-piping/execution/_Coordination/"
+        evidence, Path.cwd(), "projects/chirality-piping/execution/_Coordination/"
         "_run_records/run_2026-07-04.md", added) == 0
     assert evidence.findings == []
 

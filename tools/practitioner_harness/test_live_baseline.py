@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
-"""LIVE-tree baseline tests (skippable when the live roots are absent or when
+"""LIVE-tree invariant tests (skippable when the live roots are absent or when
 CHIRALITY_SKIP_LIVE_TESTS=1). Pins the ruled drift baseline (piping 0/101,
 app-dev 0/53 — conscious pin update 2026-07-02: the original 92/101 class was
 resolved by the owner's class-wide K-CONFLICT-1 ruling, header IN_PROGRESS
 authoritative, recorded at projects/chirality-piping/execution/_Reconciliation/
 LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md),
-the current aggregate self-check severity totals, the three deliberately
-retained stale surfaces (owner ruling
+the three deliberately retained stale surfaces (owner ruling
 2026-07-01; post-cleanup exact counts pinned per the D-T0 clean + backfill
 owner ruling, 2026-07-02) that self-check MUST catch, the retired piping
 reconciliation pointer (the GEN-7 pointer-currency check's first detection
-target), the
-GEN-8 25-file instruction-class abs-path baseline (a drift metric: it trends
-DOWN as files are relativized when next touched, and a conscious pin update
-accompanies each reduction), and the GEN-9 registry zero-drift state (its
+target), the GEN-8 semantic portability invariants (without aggregate count or
+path-set pins), and the GEN-9 registry zero-drift state (its
 first detection target, the AGENTS.md DELIVERABLE_TASK row, was removed at
 owner direction 2026-07-01)."""
 
@@ -104,67 +101,6 @@ def test_live_self_check_catches_the_three_retained_surfaces():
     assert counts.get("TITLE_CONTRADICTS_RULING", 0) == 1
     assert counts.get("STALE_DRAFT_DIRECTIVE", 0) == 1
     assert counts.get("RULING_SHA_TBD", 0) == 0
-
-
-@live
-def test_live_self_check_severity_totals_are_recorded_loop_anchors():
-    # HB-1/HB-4 conscious baseline: loop receipts carry pass/fail only, so
-    # exact aggregate self-check totals live here as the harness-recorded
-    # comparison anchor. Legitimate movement gets a conscious pin update in
-    # the same PR.
-    # INFO 12->14 on 2026-07-03: owner adopted a third governed brief
-    # (TRB-chirality-app-dev-DEL-03-01-2026-07-03), which carries two
-    # evidence_targets refs into the declared _harness_generated/ root — an
-    # environment-independent generated-root INFO pair (HB-4 classification).
-    # REVIEW 28->29 on 2026-07-04: HB-8 added the detect-never-rewrite
-    # live-binding gate check; the profile line still names cleared
-    # tier-0-adoption and piping D-21 gates while the profile/register sources
-    # report them resolved.
-    # REVIEW 29->28 on 2026-07-04 (later the same day): the owner-delegated
-    # tier-0 CHANGE (CHANGE_PREP_2026-07-04_live_binding_gate_destale.md)
-    # rewrote the profile live-binding line to the single genuinely open gate
-    # (app-dev F3), so the HB-8 STALE_LIVE_BINDING_GATE finding cleared.
-    # INFO 14->15 on 2026-07-04: the PEC registration package added a staged
-    # profile validation report under _DomainEngines/pec/profile/_validation/.
-    # D-T0-16 moved the PEC profile into _DomainEngines/profiles/pec.yaml,
-    # updated DOMAIN_ENGINE_INDEX.md, and added projects/pec to scoped
-    # self-checks. Net baseline movement: stale index REVIEW cleared; PEC
-    # PILOT.md adds one project-surface REVIEW; old profile-path historical
-    # refs in D-T0-11/D-T0-12 add three WARNs; projects/pec adds one pointer
-    # NOT_APPLICABLE row.
-    # D-PEC-23 (2026-07-07): the TOU West Doe packet + Receipt 54 quote the
-    # owner's launcher steer, whose one machine-absolute input path is
-    # transcribed `~`-prefixed per the loop's abs-path convention (Receipt-50
-    # precedent) — so NO new ABS_PATH_IN_PROJECT_SURFACE hit; the baseline
-    # holds at 28. (An earlier draft left the raw absolute path in and pinned
-    # 29; normalizing to `~` restored the baseline.)
-    # WARN 5->6 on 2026-07-08: the superseded PEC workplan was retired into
-    # `_DomainEngines/pec/.archive/` at owner direction (Receipt 58), so the
-    # ruled D-T0-15 packet's historical citation of
-    # `_DomainEngines/pec/WORKPLAN_2026-07-04_pec_loop.md` no longer resolves
-    # — retained unedited in the packet per the D-T0-11/D-T0-12 historical-ref
-    # precedent above; the archived copy carries the forward pointer.
-    # REVIEW 28->27 on 2026-07-10: the app-dev loop consolidation (Receipt 5)
-    # rewrote docs/README.md's Coordination Pointers entry list to the loop
-    # session entry, relativizing that file's one machine-absolute path — its
-    # GEN8 ABS_PATH_IN_PROJECT_SURFACE finding cleared (the SPEC §0.2.4
-    # message routes relativization to the next touch of the file).
-    # REVIEW 27->30 on 2026-07-18: the D-APP-64 tranche (Receipt 70) landed
-    # the owner standing-direction verbatim span, whose text cites the piping
-    # precedent worktree by machine-absolute path; the packet (its governed
-    # home) and the two sealed control-plane briefs that carry the span
-    # therefore each gain one GEN8 ABS_PATH_IN_PROJECT_SURFACE finding.
-    # Verbatim owner text and sealed briefs are detect-never-rewrite, so the
-    # findings are retained and pinned, not relativized.
-    # Pin updates here are conscious, never silent.
-    report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
-    assert refusal is None
-    assert report.severity_counts() == {
-            "INFO": 15,
-        "NOT_APPLICABLE": 2,
-        "REVIEW": 30,
-        "WARN": 6,
-    }
 
 
 @live
@@ -282,76 +218,22 @@ def test_live_pointer_currency_first_detection_target():
     assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
 
 
-# The GEN-8 live baseline (conscious pin update 2026-07-03, HB-3): broadening
-# the detector beyond /Users to /private, /home, /tmp, and /var/folders moved
-# the instruction-class project-file set from 19 to 24. D-T0-16 then added
-# projects/pec to scoped self-checks, moving 24->25 via projects/pec/docs/PILOT.md.
-# This set is a drift metric — it should trend DOWN as files are relativized
-# when next touched; each reduction is a conscious pin update, never a silent one.
-GEN8_BASELINE_PATHS = {
-    "projects/chirality-app-dev/plans/pi-agent-harness-assessment.md",
-    "projects/chirality-app-dev/plans/pi-assessment/01_core_session_primitives.md",
-    "projects/chirality-app-dev/plans/pi-assessment/02_backend_adapter_feasibility.md",
-    "projects/chirality-app-dev/plans/pi-assessment/03_security_governance_fit.md",
-    "projects/chirality-app-dev/plans/pi-assessment/04_domain_harness_fit.md",
-    "projects/chirality-app-dev/plans/pi-assessment/05_license_maintenance.md",
-    "projects/chirality-app-dev/plans/artifacts/insp03_assessment_index_2026-06-20.md",
-    "projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md",
-    "projects/chirality-app-dev/plans/agent-harness-patterns-from-claw-code-assessment.md",
-    "projects/chirality-app-dev/plans/"
-    "ASSESSMENT_2026-06-18_pi_rust_sdk_correction_and_harness_posture.md",
-    "projects/chirality-app-dev/plans/artifacts/dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md",
-    "projects/chirality-app-dev/plans/artifacts/insp02_control_plane_truth_fix_2026-06-20.md",
-    "projects/chirality-app-dev/plans/artifacts/bridge_appdev_contribution_for_tier0_2026-06-21.md",
-    "projects/chirality-app-dev/plans/artifacts/lp02_live_packaged_agentsdk_read_tool_procedure.md",
-    "projects/chirality-app-dev/plans/artifacts/lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md",
-    "projects/chirality-app-dev/plans/R5_EXECUTABLE_IMPLEMENTATION_DESIGN_PACKAGE_2026-06-16.md",
-    "projects/chirality-app-dev/plans/PLAN_2026-06-16_six_node_scc_resolution.md",
-    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-08_RULING_2026-06-16.md",
-    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-16_RULING_2026-06-18.md",
-    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-17_RULING_2026-06-18.md",
-    "projects/chirality-app-dev/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md",
-    "projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md",
-    "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-05_ci_provider_workflow.md",
-    "projects/pec/docs/PILOT.md",
-    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/"
-    "D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
-    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/"
-    "D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/LAUNCH_BRIEF_GOVERNED_WRITES.md",
-    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/"
-    "D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/VERIFIER_BRIEF_INVARIANTS.md",
-}
-
-
 @live
-def test_live_gen8_abs_path_24_file_baseline():
-    # 25->24 on 2026-07-10: app-dev docs/README.md relativized on touch
-    # (loop consolidation, Receipt 5) — see the severity-totals pin note.
-    # 24->27 on 2026-07-18: the three D-APP-64 records carrying the owner
-    # standing-direction verbatim span (Receipt 70) — see the severity-totals
-    # pin note; detect-never-rewrite.
-    from harness_common import Severity
+def test_live_gen8_semantic_portability_invariants():
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
-    hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
-    assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
-    assert len(hits) == 27  # exactly one finding per FILE
-    assert all(f.severity is Severity.REVIEW for f in hits)
-    # The worst file (the per-file granularity rationale): 21 hit lines.
-    counts = {f.source_path:
-              int(re.search(r"carries (\d+) machine-absolute-path", f.message)
-                  .group(1))
-              for f in hits}
-    worst = "projects/chirality-app-dev/plans/pi-agent-harness-assessment.md"
-    assert counts[worst] == 21
-    assert counts[worst] == max(counts.values())
-    # Both aggregate facts exist per project root with files > 0. Counts are
-    # NOT pinned exactly: working content churns; the finding set is the
-    # baseline, the facts are context.
-    for project in ("chirality-app-dev", "chirality-piping"):
-        for cls in ("evidence", "unclassified"):
-            fact = _fact(report, f"abs_path_lint.{project}.{cls}")
-            m = re.fullmatch(r"files=(\d+); hit_lines=(\d+)", fact.value)
-            assert m and int(m.group(1)) > 0, (project, cls, fact.value)
+    assert [f for f in report.findings if f.code in {
+        "ABS_PATH_IN_PROJECT_SURFACE",
+        "ABS_PATH_IN_UNCLASSIFIED_SURFACE",
+    }] == []
+    assert [f for f in report.findings
+            if f.code.startswith("PORTABILITY_POLICY_")] == []
+    piping = _fact(report, "abs_path_lint.chirality-piping.semantic_invariants")
+    assert piping.value == (
+        "unacknowledged_control=0; active_unclassified=0; "
+        "policy_issues=0; acknowledged_control=3")
+    # Growth is telemetry only: no exact finding count or path set is pinned.
+    historical = _fact(report, "abs_path_lint.chirality-piping.historical")
+    assert re.fullmatch(r"files=\d+; hit_lines=\d+", historical.value)
 
 
 @live
