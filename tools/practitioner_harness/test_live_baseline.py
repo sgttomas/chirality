@@ -156,13 +156,19 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # therefore each gain one GEN8 ABS_PATH_IN_PROJECT_SURFACE finding.
     # Verbatim owner text and sealed briefs are detect-never-rewrite, so the
     # findings are retained and pinned, not relativized.
+    # REVIEW 30->33 on 2026-07-18 (second pass, Receipt 71): (a) the merged
+    # chirality-piping D-54 governance record carries its owner-direction
+    # worktree citations by machine-absolute path (pre-existed this tranche at
+    # its base; detect-never-rewrite); (b) the two D-APP-52 live-demonstration
+    # sealed briefs cite their session-temp evidence sources by
+    # machine-absolute path (sealed run records; detect-never-rewrite).
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
             "INFO": 15,
         "NOT_APPLICABLE": 2,
-        "REVIEW": 30,
+        "REVIEW": 33,
         "WARN": 6,
     }
 
@@ -320,6 +326,12 @@ GEN8_BASELINE_PATHS = {
     "D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/LAUNCH_BRIEF_GOVERNED_WRITES.md",
     "projects/chirality-app-dev/execution/_Coordination/AgentRuns/"
     "D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/VERIFIER_BRIEF_INVARIANTS.md",
+    "projects/chirality-piping/execution/_Coordination/_DECISIONS/"
+    "D-54_reasoned_discretion_standing_approval_refinement.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/"
+    "DAPP52_LIVE_DEMONSTRATION_2026-07-18/LAUNCH_BRIEF_GOVERNED_WRITES.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/"
+    "DAPP52_LIVE_DEMONSTRATION_2026-07-18/VERIFIER_BRIEF_GOVERNED_DIFF.md",
 }
 
 
@@ -330,11 +342,14 @@ def test_live_gen8_abs_path_24_file_baseline():
     # 24->27 on 2026-07-18: the three D-APP-64 records carrying the owner
     # standing-direction verbatim span (Receipt 70) — see the severity-totals
     # pin note; detect-never-rewrite.
+    # 27->30 on 2026-07-18 (Receipt 71): merged piping D-54 record + the two
+    # D-APP-52 live-demonstration sealed briefs — see the severity-totals pin
+    # note; detect-never-rewrite.
     from harness_common import Severity
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
     assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
-    assert len(hits) == 27  # exactly one finding per FILE
+    assert len(hits) == 30  # exactly one finding per FILE
     assert all(f.severity is Severity.REVIEW for f in hits)
     # The worst file (the per-file granularity rationale): 21 hit lines.
     counts = {f.source_path:

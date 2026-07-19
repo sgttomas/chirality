@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-07-19T02:26:35.512Z",
+  "startedAt": "2026-07-19T02:26:31.462Z",
+  "status": "pass",
+  "proofMode": "live-packaged-read-tool",
+  "oneRunScope": "D-APP-15 Option A permits one bounded live packaged provider proof run only.",
+  "bundleRoot": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/help-human-agent-setup-b9bff5/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources",
+  "sdkPackage": {
+    "root": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/help-human-agent-setup-b9bff5/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk",
+    "module": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/help-human-agent-setup-b9bff5/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs",
+    "name": "@anthropic-ai/claude-agent-sdk",
+    "version": "0.3.150",
+    "claudeCodeVersion": "2.1.150",
+    "platformPackageName": "@anthropic-ai/claude-agent-sdk-darwin-arm64"
+  },
+  "expectedPackagedCommand": {
+    "platformPackageName": "@anthropic-ai/claude-agent-sdk-darwin-arm64",
+    "command": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/help-human-agent-setup-b9bff5/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/claude",
+    "commandRealpath": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/help-human-agent-setup-b9bff5/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/claude",
+    "exists": true,
+    "isFile": true,
+    "executableBitSet": true,
+    "sizeBytes": 213070752,
+    "unpackedNodeModulesRoot": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/help-human-agent-setup-b9bff5/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar.unpacked/node_modules",
+    "commandUnderUnpackedNodeModules": true
+  },
+  "apiKey": {
+    "source": "api-key-file",
+    "sourcePath": "/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-help-human-agent-setup-b9bff5/fb6fcf91-eadf-42ba-bf6b-7921bf796aa0/scratchpad/dapp52.key",
+    "redacted": true
+  },
+  "environment": {
+    "projectRoot": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-live-packaged-agent-sdk-proof-48faqC/project-root",
+    "claudeConfigDir": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-live-packaged-agent-sdk-proof-48faqC/claude-config",
+    "homeDir": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-live-packaged-agent-sdk-proof-48faqC/home",
+    "claudeConfigDirHash": "efc5d4aa10a066dafc057b6a55b489f1877a3347136668ca8942f4a4170d0ee5",
+    "homeDirHash": "ce34837c496e7a2377f18cca8838e765b267976d3115ee6501f429d1f778c70d",
+    "policy": "CLAUDE_CONFIG_DIR and HOME are controlled proof paths. API key is supplied only through SDK env."
+  },
+  "liveRun": {
+    "model": "claude-sonnet-5",
+    "maxTurns": 3,
+    "timeoutMs": 180000,
+    "permissionMode": "dontAsk",
+    "allowedTools": [
+      "Read"
+    ],
+    "disallowedTools": [
+      "Bash",
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "NotebookEdit",
+      "WebFetch",
+      "WebSearch",
+      "Agent",
+      "Task"
+    ],
+    "settingSources": [],
+    "promptHash": "71b5067aacf98d64e27c6e5a9148817f7d3575f9d231146db6595e3a4d005b29",
+    "proofTarget": {
+      "relativePath": "proof-read-target.txt",
+      "path": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-live-packaged-agent-sdk-proof-48faqC/project-root/proof-read-target.txt",
+      "proofTokenHash": "d804a647bf9d20fbf9556e7e95a9af8e158c72de52339b5ec71fbc81db6d9635"
+    }
+  },
+  "observations": {
+    "messageCount": 5,
+    "readToolObserved": true,
+    "proofTokenObserved": true,
+    "sdkReportedError": false
+  },
+  "sdkMessages": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "session_id": "6b084cd6-87cb-4ece-a2d0-3e1d38844cb0",
+      "uuid": "fb4a166a-afe3-4972-9c57-62f0007ad450",
+      "toolNames": [],
+      "containsProofToken": false,
+      "rawSizeBytes": 1314
+    },
+    {
+      "type": "assistant",
+      "session_id": "6b084cd6-87cb-4ece-a2d0-3e1d38844cb0",
+      "uuid": "ed4c02fa-c019-4233-93e9-6fa44a7018a0",
+      "toolNames": [
+        "Read"
+      ],
+      "containsProofToken": false,
+      "rawSizeBytes": 804
+    },
+    {
+      "type": "user",
+      "session_id": "6b084cd6-87cb-4ece-a2d0-3e1d38844cb0",
+      "uuid": "e9bd3390-591c-4c6c-94c9-8de08b1a3263",
+      "toolNames": [],
+      "containsProofToken": true,
+      "rawSizeBytes": 789
+    },
+    {
+      "type": "assistant",
+      "session_id": "6b084cd6-87cb-4ece-a2d0-3e1d38844cb0",
+      "uuid": "7cebc399-6b65-4d79-92cb-17055a40f5ce",
+      "toolNames": [],
+      "containsProofToken": true,
+      "rawSizeBytes": 766
+    },
+    {
+      "type": "result",
+      "subtype": "success",
+      "session_id": "6b084cd6-87cb-4ece-a2d0-3e1d38844cb0",
+      "uuid": "d16d00d0-1873-48ac-8ed1-5674a2f1be33",
+      "is_error": false,
+      "toolNames": [],
+      "containsProofToken": true,
+      "rawSizeBytes": 1450
+    }
+  ],
+  "failures": [],
+  "redaction": {
+    "passed": true,
+    "findings": [],
+    "skipped": [],
+    "scannedRoots": [
+      "/private/tmp/claude-501/-Users-ryan-ai-env-projects-chirality--claude-worktrees-help-human-agent-setup-b9bff5/fb6fcf91-eadf-42ba-bf6b-7921bf796aa0/scratchpad/dapp52-packaged-live-proof",
+      "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-live-packaged-agent-sdk-proof-48faqC/project-root",
+      "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-live-packaged-agent-sdk-proof-48faqC/claude-config",
+      "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-live-packaged-agent-sdk-proof-48faqC/home"
+    ]
+  }
+}
