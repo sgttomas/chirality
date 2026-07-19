@@ -10,7 +10,6 @@
 ## Remaining
 - Resolve DEP-10-03-004 — whether the D-APP-50/51/52 rulings constitute the accepted amendment authorizing operation-workflow implementation (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed the other 7 rows) (gated: owner ruling — F-APP-3-adjacent)
 - Land the open_pipe_stress-scoped proposal transport (domain_proposal_validate live via operation_applier.validate) — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping-side operation_applier.validate transport soundness)
-- Run the D-APP-52 live-LLM demonstration of the pec transport/proposal tools — explicitly deferred, key-absent at ruling (source: D-APP-53 packet §4 / D-APP-52 packet) (gated: D-APP-52 owner act — owner-at-screen, live key)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents non-empty)
@@ -29,3 +28,4 @@
 
 - 2026-07-12 - D-APP-56 R4-P46 reaffirmed DEP-10-03-004 as D-APP-53 Option-C-gated, open, and unselectable; UNKNOWN/gated posture preserved and no state change occurred.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-18 - D-APP-52 live-LLM demonstration executed as the owner's in-session act (owner at screen, short-lived key never persisted): a live claude-sonnet-5 harness session called domain_propose_operation (propose + refresh) and domain_proposal_validate (twice) against a D-PEC-06-guarded scratch pec server; no accept/screen/apply, force never used; scratch DB deleted after capture. Evidence: Evidence_DAPP52_LIVE_LLM_DEMO_2026-07-18.md + Evidence_DAPP52_LIVE_LLM_DEMO_2026-07-18_summary.json. The "Run the D-APP-52 live-LLM demonstration" Remaining item is discharged and removed; DEP-10-03-004 ruling and open_pipe_stress transport items unchanged. Mechanics by run DAPP52_LIVE_DEMONSTRATION_2026-07-18; no state change.

@@ -2177,3 +2177,50 @@
     re-minted and plan discovery moves to committed-HEAD selection;
     activation at the atomic landing commit; owner merge remains the
     terminal integration act.
+
+- **2026-07-18 — Receipt 71** (D-APP-52 live demonstration executed; live-probe closures).
+  - Receipt-ID: `Receipt-71`
+  - Examined-Through: `a91f72b19aeb6dbca7e565fe336c91ce7e841421`
+  - Parent-Receipt: `Receipt-70`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-18, Ryan Tufts, in-session): "Proceed with the D-APP-52 live
+    demonstration; I am at the screen." — the owner then supplied a
+    short-lived API key for the demonstration; the key was held only in a
+    permission-restricted session-temp file, reached the SDK solely through
+    its env option, and appears in no repo file or artifact (secret-scanned).
+  - Pointers: DEL-04-01 Evidence_DAPP52_LIVE_PROBE_2026-07-18.md (+ probe and
+    packaged-proof summary artifacts, SHA-anchored) and
+    _run_records/TASK_RUN_2026-07-18_DAPP52_live_demonstration_closures.md
+    (rider check; two D-APP-64 attribution blocks; remediation addendum);
+    DEL-10-03 Evidence_DAPP52_LIVE_LLM_DEMO_2026-07-18.md (+ summary
+    artifact); dependency closures DEP-04-01-007, DEP-04-01-011, and DEP-04-01-013 with consumer
+    mirrors DEP-04-03-007 and DEP-04-05-007;
+    execution/_Coordination/AgentRuns/DAPP52_LIVE_DEMONSTRATION_2026-07-18/
+    (orchestration plan, sealed briefs, four preserved verifier returns).
+  - Stale-Map-Delta: practitioner-harness live-baseline pins consciously
+    updated again (dated in-file notes): the merged chirality-piping D-54
+    record pre-existed this tranche at its base and exceeded the GEN8 pin;
+    the two sealed briefs of this run carry session-temp absolute paths
+    (detect-never-rewrite).
+  - Checks: receipt validator pass; corpus status no drift; repo-wide
+    self-check exit zero at the re-pinned anchor; validation pytest pass;
+    full practitioner-harness pytest pass; frontend typecheck pass; frontend
+    secret scan pass with zero blocked findings; dependency validator pass on
+    each touched register; git whitespace check clean; independent
+    adversarial verifier chain terminal COMMIT-SAFE (BLOCK findings
+    remediated with disclosed notes; all four returns preserved; each
+    verdict recorded after its return existed); frontend unit gates beyond
+    typecheck skipped — no runtime source changed (driver scripts only).
+  - Model-Attribution: Claude Fable 5 Agent-0 orchestrator (HELP_HUMAN
+    posture) executed the live packs at the owner's screen with claude-sonnet-5
+    as the demonstrated live model; one Fable 5 WORKING_ITEMS-posture
+    authoring child (mechanical conformance); four independent Fable 5
+    read-only adversarial verifiers.
+  - Gate-Outcome: `EXECUTED` — the owner act discharged the D-APP-52 deferred
+    live-LLM demonstration (model-driven pec propose/validate/refresh on a
+    torn-down scratch basis; no accept/apply act; force never used) and the
+    DEL-04-01 live-probe residuals (subprocess version, live message
+    sequence, live error shapes, packaged live behavior, interrupt); five
+    dependency rows closed on that evidence; adoption-verdict role,
+    DEP-10-03-004, and all other gates unchanged; owner merge remains the
+    terminal act.

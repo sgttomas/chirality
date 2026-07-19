@@ -32,6 +32,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - [WARNING] `tools/validation/validate_id_format.sh` expects legacy `PKG-000` / `DEL-000-00` forms and rejects authoritative v3.2 IDs such as `PKG-04` and `DEL-04-03`; decomposition-authoritative IDs were preserved.
 - 2026-06-16 SCC-SAFE-MOVES-001 decomposed `DEP-04-03-008`, `DEP-04-03-009`, and `DEP-04-03-010` from coarse deliverable edges into document-scoped runtime-contract, SSE/UIEvent, and mapper-handoff evidence; the rows remain active and in objective.
 - 2026-07-18 WI-PKG04-01 correction of the `[WARNING] OI-001 / DEL-04-01 probe evidence is still TBD` note above: partially stale — deterministic DEL-04-01 probe evidence now exists (pinned `@anthropic-ai/claude-agent-sdk@0.3.150`; `sdk-message-mapper.ts` and `sdk-message-mapper.test.ts` deterministic fixture provenance; `Evidence_CODEV-001_SDK_Probe_Record.md` 2026-07-10 refresh). Still open: the exact observed live `query()` message sequence, which remains `BLOCKED_TBD` and owner-gated (D-APP-52); `DEP-04-03-007` therefore stays `TBD` (annotate-only). The original warning text is retained above as history. Citation note: the row's `Datasheet.md#Attributes` source now lives at `ScopeOfWork.md` CLM-003 Attributes per owner commit `603384787` (2026-07-13 ScopeOfWork-v1 migration). See DEL-04-01 `Evidence_HANDOVER_CONSUMPTION_2026-07-18.md` section B.
+- 2026-07-18 D-APP-52 live-demonstration closure (owner's in-session act 2026-07-18; mechanical conformance by run `DAPP52_LIVE_DEMONSTRATION_2026-07-18`): `DEP-04-03-007` closed `SATISFIED` — the exact observed live `query()` message sequence this row depended on is now recorded in DEL-04-01 `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md` (PACK1 artifact SHA-256 `be155013371f51c1a52a364d19d9f164f9f2509bd921ca4d1af7b00b25a11686`); producer row `DEP-04-01-011` closed in the same pass. Lifecycle Summary synced (SATISFIED 1 / TBD 10).
 
 ## Extracted Dependency Register
 
@@ -72,4 +73,5 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | SatisfactionStatus | Count |
 |---|---:|
-| TBD | 11 |
+| SATISFIED | 1 |
+| TBD | 10 |

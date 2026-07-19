@@ -1,0 +1,844 @@
+{
+  "generatedAt": "2026-07-19T02:19:52.977Z",
+  "status": "pass",
+  "probeMode": "dapp52-live-dev-sdk-probe",
+  "authority": "D-APP-52 ruling O-A (riders 1-11), live-LLM demonstration owner act 2026-07-18 (owner at screen, short-lived owner-supplied key)",
+  "sdkPackage": {
+    "root": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/help-human-agent-setup-b9bff5/projects/chirality-app-dev/frontend/node_modules/@anthropic-ai/claude-agent-sdk",
+    "name": "@anthropic-ai/claude-agent-sdk",
+    "version": "0.3.150",
+    "claudeCodeVersion": "2.1.150"
+  },
+  "runtime": {
+    "node": "v24.5.0",
+    "platform": "darwin:arm64"
+  },
+  "apiKey": {
+    "source": "api-key-file",
+    "sourcePathHash": "c4a11facfaaef112c0ba451703d8d883c9a267902f27a23ab1e8636cb0273019",
+    "redacted": true
+  },
+  "environment": {
+    "projectRootHash": "451cce30352e8d33c511c20395572ef50dee7cdc451f68d2ae646c70c7dfef96",
+    "claudeConfigDirHash": "91b5c12982d40fe9fbac9676d3572b4c10d6485d459748dde409f7af9fb65c1c",
+    "homeDirHash": "c5f267db464e54bf1013f7535f4ed3bba752059f71cec04b39dffc28e3546f36",
+    "policy": "CLAUDE_CONFIG_DIR and HOME are controlled temp probe paths; the key is supplied only through the SDK env option; temp roots are secret-scanned and then left to OS tmp cleanup."
+  },
+  "liveRun": {
+    "model": "claude-sonnet-5",
+    "baseOptions": {
+      "cwd": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/project-root",
+      "model": "claude-sonnet-5",
+      "maxTurns": 3,
+      "permissionMode": "dontAsk",
+      "allowedTools": [
+        "Read"
+      ],
+      "disallowedTools": [
+        "Bash",
+        "Write",
+        "Edit",
+        "MultiEdit",
+        "NotebookEdit",
+        "WebFetch",
+        "WebSearch",
+        "Agent",
+        "Task"
+      ],
+      "settingSources": []
+    },
+    "promptHash": "86a4187e92c19ef7a8a5d0f3b17e5ab62b3577d26edf77e354194330c39ccadd",
+    "proofTokenHash": "ce54f912c6d41104eb9955d683e7ed128644f5bac6df5c8af4f733e3cb1a9fba"
+  },
+  "phases": [
+    {
+      "name": "live-message-sequence",
+      "startedAt": "2026-07-19T02:15:42.055Z",
+      "finishedAt": "2026-07-19T02:15:47.274Z",
+      "messages": [
+        {
+          "index": 0,
+          "type": "system",
+          "subtype": "init",
+          "session_id": "1a17d728-5b21-4a18-9918-878be159a4a2",
+          "uuid": "1a84dc0e-cd51-46a1-8dbe-af6055799742",
+          "toolNames": [],
+          "topLevelKeys": [
+            "agents",
+            "analytics_disabled",
+            "apiKeySource",
+            "claude_code_version",
+            "cwd",
+            "fast_mode_state",
+            "mcp_servers",
+            "memory_paths",
+            "model",
+            "output_style",
+            "permissionMode",
+            "plugins",
+            "product_feedback_disabled",
+            "session_id",
+            "skills",
+            "slash_commands",
+            "subtype",
+            "tools",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 1530,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/project-root\",\"session_id\":\"1a17d728-5b21-4a18-9918-878be159a4a2\",\"tools\":[\"AskUserQuestion\",\"CronCreate\",\"CronDelete\",\"CronList\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"Monitor\",\"PushNotification\",\"Read\",\"ScheduleWakeup\",\"Skill\",\"TaskCreate\",\"TaskGet\",\"TaskList\",\"TaskOutput\",\"TaskStop\",\"TaskUpdate\",\"ToolSearch\"],\"mcp_servers\":[],\"model\":\"claude-sonnet-5\",\"permissionMode\":\"dontAsk\",\"slash_commands\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"usage\",\"insights\",\"goal\",\"team-onboarding\"],\"apiKeySource\":\"ANTHROPIC_API_KEY\",\"claude_code_version\":\"2.1.150\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\"],\"plugins\":[],\"analytics_disabled\":false,\"product_feedback_disabled\":false,\"uuid\":\"1a84dc0e-cd51-46a1-8dbe-af6055799742\",\"memory_paths\":{\"auto\":\"/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/claude-config/projects/-private-var-folders-0s-50y7rb796d1bqdxmpcz6qg800000gn-T-chirality-dapp52-live-sdk-probe-ix6mE0-project-root/memory/\"},\"fast_mode_state\":\"off\"}"
+        },
+        {
+          "index": 1,
+          "type": "assistant",
+          "session_id": "1a17d728-5b21-4a18-9918-878be159a4a2",
+          "uuid": "196f1034-74d6-4490-abc0-ec004d2496a9",
+          "contentBlockTypes": [
+            "thinking"
+          ],
+          "toolNames": [],
+          "topLevelKeys": [
+            "message",
+            "parent_tool_use_id",
+            "request_id",
+            "session_id",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 1053,
+          "rawRedacted": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-sonnet-5\",\"id\":\"msg_011CdAcNffZamk8QLR28aAmq\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"\",\"signature\":\"Ev8BCokBCA8YAipApsTEua32X89gwgiqljVi32SoxLDdv4JgVA+JzXBPcCnc6QFvkg3ncStwoaWq0pjepYNwxu1+9czxzoK3at53JjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ0ZDcwMjljYi1lMjVjLTQ0NmQtYjM2ZS1lMzNmZGI5MTUwZDUSDGpaA3tEQcwIQFKB9BoMs6oqitqFD3jYQgrmIjCEvl24l8J9By2oWeZ6fuR/luio/RAbUvfqGPpgv5XjvElhz/H9FghIOBrjDKRuuucqI6Kufaq31QgocbIZCBY7Be2F8aT4X9SOnGR2aEtVVg4ru7T5GAE=\"}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":8701,\"cache_read_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":8701,\"ephemeral_1h_input_tokens\":0},\"output_tokens\":2,\"service_tier\":\"standard\",\"inference_geo\":\"global\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"1a17d728-5b21-4a18-9918-878be159a4a2\",\"uuid\":\"196f1034-74d6-4490-abc0-ec004d2496a9\",\"request_id\":\"req_011CdAcNeqxHCmFrb8VHXATZ\"}"
+        },
+        {
+          "index": 2,
+          "type": "assistant",
+          "session_id": "1a17d728-5b21-4a18-9918-878be159a4a2",
+          "uuid": "ada337a0-3da9-442f-98fc-016f33c17080",
+          "contentBlockTypes": [
+            "tool_use"
+          ],
+          "toolNames": [
+            "Read"
+          ],
+          "topLevelKeys": [
+            "message",
+            "parent_tool_use_id",
+            "request_id",
+            "session_id",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 803,
+          "rawRedacted": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-sonnet-5\",\"id\":\"msg_011CdAcNffZamk8QLR28aAmq\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_015Ty4QKVVpGanKhsdNv25NS\",\"name\":\"Read\",\"input\":{\"file_path\":\"./probe-read-target.txt\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":8701,\"cache_read_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":8701,\"ephemeral_1h_input_tokens\":0},\"output_tokens\":2,\"service_tier\":\"standard\",\"inference_geo\":\"global\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"1a17d728-5b21-4a18-9918-878be159a4a2\",\"uuid\":\"ada337a0-3da9-442f-98fc-016f33c17080\",\"request_id\":\"req_011CdAcNeqxHCmFrb8VHXATZ\"}"
+        },
+        {
+          "index": 3,
+          "type": "user",
+          "session_id": "1a17d728-5b21-4a18-9918-878be159a4a2",
+          "uuid": "8f370c0e-58c7-4cb3-af99-3027fefb7910",
+          "contentBlockTypes": [
+            "tool_result"
+          ],
+          "toolNames": [],
+          "topLevelKeys": [
+            "message",
+            "parent_tool_use_id",
+            "session_id",
+            "timestamp",
+            "tool_use_result",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 671,
+          "rawRedacted": "{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_015Ty4QKVVpGanKhsdNv25NS\",\"type\":\"tool_result\",\"content\":\"1\\tD-APP-52 live probe read target (synthetic).\\n2\\tPROOF_TOKEN=dapp52-live-probe-2d374e1e-d545-402a-8f84-67209b3aece3\\n3\\t\"}]},\"parent_tool_use_id\":null,\"session_id\":\"1a17d728-5b21-4a18-9918-878be159a4a2\",\"uuid\":\"8f370c0e-58c7-4cb3-af99-3027fefb7910\",\"timestamp\":\"2026-07-19T02:15:44.851Z\",\"tool_use_result\":{\"type\":\"text\",\"file\":{\"filePath\":\"./probe-read-target.txt\",\"content\":\"D-APP-52 live probe read target (synthetic).\\nPROOF_TOKEN=dapp52-live-probe-2d374e1e-d545-402a-8f84-67209b3aece3\\n\",\"numLines\":3,\"startLine\":1,\"totalLines\":3}}}"
+        },
+        {
+          "index": 4,
+          "type": "assistant",
+          "session_id": "1a17d728-5b21-4a18-9918-878be159a4a2",
+          "uuid": "e5691817-43aa-4d57-b822-255009028936",
+          "contentBlockTypes": [
+            "text"
+          ],
+          "toolNames": [],
+          "topLevelKeys": [
+            "message",
+            "parent_tool_use_id",
+            "request_id",
+            "session_id",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 749,
+          "rawRedacted": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-sonnet-5\",\"id\":\"msg_011CdAcNo9mWEerZUN36GG13\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"text\",\"text\":\"PROOF_TOKEN=dapp52-live-probe-2d374e1e-d545-402a-8f84-67209b3aece3\"}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":142,\"cache_read_input_tokens\":8701,\"cache_creation\":{\"ephemeral_5m_input_tokens\":142,\"ephemeral_1h_input_tokens\":0},\"output_tokens\":1,\"service_tier\":\"standard\",\"inference_geo\":\"global\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"1a17d728-5b21-4a18-9918-878be159a4a2\",\"uuid\":\"e5691817-43aa-4d57-b822-255009028936\",\"request_id\":\"req_011CdAcNnFgs56zQvPm2N2kb\"}"
+        },
+        {
+          "index": 5,
+          "type": "result",
+          "subtype": "success",
+          "session_id": "1a17d728-5b21-4a18-9918-878be159a4a2",
+          "uuid": "36820988-e64e-4128-a76c-42b124ed0179",
+          "is_error": false,
+          "toolNames": [],
+          "topLevelKeys": [
+            "api_error_status",
+            "duration_api_ms",
+            "duration_ms",
+            "fast_mode_state",
+            "is_error",
+            "modelUsage",
+            "num_turns",
+            "permission_denials",
+            "result",
+            "session_id",
+            "stop_reason",
+            "subtype",
+            "terminal_reason",
+            "total_cost_usd",
+            "ttft_ms",
+            "type",
+            "usage",
+            "uuid"
+          ],
+          "rawSizeBytes": 1458,
+          "rawRedacted": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":false,\"api_error_status\":null,\"duration_ms\":3400,\"duration_api_ms\":4736,\"ttft_ms\":1580,\"num_turns\":2,\"result\":\"PROOF_TOKEN=dapp52-live-probe-2d374e1e-d545-402a-8f84-67209b3aece3\",\"stop_reason\":\"end_turn\",\"session_id\":\"1a17d728-5b21-4a18-9918-878be159a4a2\",\"total_cost_usd\":0.06301925000000001,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":8843,\"cache_read_input_tokens\":8701,\"output_tokens\":113,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":8843},\"inference_geo\":\"\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":47,\"cache_read_input_tokens\":8701,\"cache_creation_input_tokens\":142,\"cache_creation\":{\"ephemeral_5m_input_tokens\":142,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":490,\"outputTokens\":13,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.0005549999999999999,\"contextWindow\":200000,\"maxOutputTokens\":32000},\"claude-sonnet-5\":{\"inputTokens\":4,\"outputTokens\":113,\"cacheReadInputTokens\":8701,\"cacheCreationInputTokens\":8843,\"webSearchRequests\":0,\"costUSD\":0.062464250000000006,\"contextWindow\":200000,\"maxOutputTokens\":32000}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"36820988-e64e-4128-a76c-42b124ed0179\"}"
+        }
+      ],
+      "caughtError": null,
+      "failures": []
+    },
+    {
+      "name": "error-shape-invalid-key",
+      "startedAt": "2026-07-19T02:15:47.288Z",
+      "finishedAt": "2026-07-19T02:18:48.743Z",
+      "messages": [
+        {
+          "index": 0,
+          "type": "system",
+          "subtype": "init",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "053dbff3-4198-409f-8e2c-4a1c4355acac",
+          "toolNames": [],
+          "topLevelKeys": [
+            "agents",
+            "analytics_disabled",
+            "apiKeySource",
+            "claude_code_version",
+            "cwd",
+            "fast_mode_state",
+            "mcp_servers",
+            "memory_paths",
+            "model",
+            "output_style",
+            "permissionMode",
+            "plugins",
+            "product_feedback_disabled",
+            "session_id",
+            "skills",
+            "slash_commands",
+            "subtype",
+            "tools",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 1530,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/project-root\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"tools\":[\"AskUserQuestion\",\"CronCreate\",\"CronDelete\",\"CronList\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"Monitor\",\"PushNotification\",\"Read\",\"ScheduleWakeup\",\"Skill\",\"TaskCreate\",\"TaskGet\",\"TaskList\",\"TaskOutput\",\"TaskStop\",\"TaskUpdate\",\"ToolSearch\"],\"mcp_servers\":[],\"model\":\"claude-sonnet-5\",\"permissionMode\":\"dontAsk\",\"slash_commands\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"usage\",\"insights\",\"goal\",\"team-onboarding\"],\"apiKeySource\":\"ANTHROPIC_API_KEY\",\"claude_code_version\":\"2.1.150\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\"],\"plugins\":[],\"analytics_disabled\":false,\"product_feedback_disabled\":false,\"uuid\":\"053dbff3-4198-409f-8e2c-4a1c4355acac\",\"memory_paths\":{\"auto\":\"/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/claude-config/projects/-private-var-folders-0s-50y7rb796d1bqdxmpcz6qg800000gn-T-chirality-dapp52-live-sdk-probe-ix6mE0-project-root/memory/\"},\"fast_mode_state\":\"off\"}"
+        },
+        {
+          "index": 1,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "5650c3f7-d9dd-4840-9282-fe854ea35a00",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 252,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":1,\"max_retries\":10,\"retry_delay_ms\":609.5595629763612,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"5650c3f7-d9dd-4840-9282-fe854ea35a00\"}"
+        },
+        {
+          "index": 2,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "04440911-f185-4455-9bcc-a612f50eb4d8",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 253,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":2,\"max_retries\":10,\"retry_delay_ms\":1243.7440200142642,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"04440911-f185-4455-9bcc-a612f50eb4d8\"}"
+        },
+        {
+          "index": 3,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "40e7c9f8-534f-422b-9204-56ecb90111fa",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 253,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":3,\"max_retries\":10,\"retry_delay_ms\":2302.3900618730772,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"40e7c9f8-534f-422b-9204-56ecb90111fa\"}"
+        },
+        {
+          "index": 4,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "d47fbd8a-bd3c-4a29-ab76-5e5d567bb759",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 253,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":4,\"max_retries\":10,\"retry_delay_ms\":4045.8039113773716,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"d47fbd8a-bd3c-4a29-ab76-5e5d567bb759\"}"
+        },
+        {
+          "index": 5,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "1b4e77b7-0af4-47c7-979f-44790b0d37b9",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 252,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":5,\"max_retries\":10,\"retry_delay_ms\":8343.719221424617,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"1b4e77b7-0af4-47c7-979f-44790b0d37b9\"}"
+        },
+        {
+          "index": 6,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "c944d064-c9fb-49fe-a378-d0d2a32183df",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 253,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":6,\"max_retries\":10,\"retry_delay_ms\":17783.893625118926,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"c944d064-c9fb-49fe-a378-d0d2a32183df\"}"
+        },
+        {
+          "index": 7,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "b465a260-be2e-452c-ac1a-c068d8e58f8e",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 252,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":7,\"max_retries\":10,\"retry_delay_ms\":35282.77411234814,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"b465a260-be2e-452c-ac1a-c068d8e58f8e\"}"
+        },
+        {
+          "index": 8,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "73765bdf-198a-47e4-9ceb-9079eff19c0d",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 252,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":8,\"max_retries\":10,\"retry_delay_ms\":33916.46464725547,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"73765bdf-198a-47e4-9ceb-9079eff19c0d\"}"
+        },
+        {
+          "index": 9,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "e969d71e-336d-4425-b3b7-23176b3d3b6a",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 252,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":9,\"max_retries\":10,\"retry_delay_ms\":39670.19459477273,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"e969d71e-336d-4425-b3b7-23176b3d3b6a\"}"
+        },
+        {
+          "index": 10,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "65a01beb-c4e6-4556-a7ca-307a73455e15",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 253,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":10,\"max_retries\":10,\"retry_delay_ms\":35791.59269316939,\"error_status\":401,\"error\":\"authentication_failed\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"65a01beb-c4e6-4556-a7ca-307a73455e15\"}"
+        },
+        {
+          "index": 11,
+          "type": "assistant",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "0d59f4af-2bf8-411f-9f39-859f1857639c",
+          "stop_reason": "stop_sequence",
+          "contentBlockTypes": [
+            "text"
+          ],
+          "toolNames": [],
+          "topLevelKeys": [
+            "error",
+            "message",
+            "parent_tool_use_id",
+            "session_id",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 821,
+          "rawRedacted": "{\"type\":\"assistant\",\"message\":{\"id\":\"90513bf2-2d5c-4931-8f01-4cdb60ee2c1e\",\"container\":null,\"model\":\"<synthetic>\",\"role\":\"assistant\",\"stop_details\":null,\"stop_reason\":\"stop_sequence\",\"stop_sequence\":\"\",\"type\":\"message\",\"usage\":{\"input_tokens\":0,\"output_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":null,\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":null,\"iterations\":null,\"speed\":null},\"content\":[{\"type\":\"text\",\"text\":\"Failed to authenticate. API Error: 401 API key is invalid.\"}],\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"uuid\":\"0d59f4af-2bf8-411f-9f39-859f1857639c\",\"error\":\"authentication_failed\"}"
+        },
+        {
+          "index": 12,
+          "type": "result",
+          "subtype": "success",
+          "session_id": "83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4",
+          "uuid": "90bfbf04-6eac-4b96-b576-5822bf81d1e9",
+          "is_error": true,
+          "toolNames": [],
+          "topLevelKeys": [
+            "api_error_status",
+            "duration_api_ms",
+            "duration_ms",
+            "fast_mode_state",
+            "is_error",
+            "modelUsage",
+            "num_turns",
+            "permission_denials",
+            "result",
+            "session_id",
+            "stop_reason",
+            "subtype",
+            "terminal_reason",
+            "total_cost_usd",
+            "type",
+            "usage",
+            "uuid"
+          ],
+          "rawSizeBytes": 773,
+          "rawRedacted": "{\"type\":\"result\",\"subtype\":\"success\",\"is_error\":true,\"api_error_status\":401,\"duration_ms\":180737,\"duration_api_ms\":0,\"num_turns\":1,\"result\":\"Failed to authenticate. API Error: 401 API key is invalid.\",\"stop_reason\":\"stop_sequence\",\"session_id\":\"83f2f8c4-1ade-4fe9-87ca-cc8587c1bbe4\",\"total_cost_usd\":0,\"usage\":{\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"uuid\":\"90bfbf04-6eac-4b96-b576-5822bf81d1e9\"}"
+        }
+      ],
+      "caughtError": {
+        "name": "Error",
+        "constructorName": "W6",
+        "messageRedacted": "Operation aborted",
+        "ownKeys": [
+          "message",
+          "stack"
+        ],
+        "stackPresent": true
+      },
+      "failures": []
+    },
+    {
+      "name": "error-shape-network-unreachable",
+      "startedAt": "2026-07-19T02:18:48.743Z",
+      "finishedAt": "2026-07-19T02:19:50.746Z",
+      "messages": [
+        {
+          "index": 0,
+          "type": "system",
+          "subtype": "init",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "3acbde88-c7da-4c70-ab88-bb43a8940331",
+          "toolNames": [],
+          "topLevelKeys": [
+            "agents",
+            "analytics_disabled",
+            "apiKeySource",
+            "claude_code_version",
+            "cwd",
+            "fast_mode_state",
+            "mcp_servers",
+            "memory_paths",
+            "model",
+            "output_style",
+            "permissionMode",
+            "plugins",
+            "product_feedback_disabled",
+            "session_id",
+            "skills",
+            "slash_commands",
+            "subtype",
+            "tools",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 1517,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/project-root\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"tools\":[\"AskUserQuestion\",\"CronCreate\",\"CronDelete\",\"CronList\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"Monitor\",\"PushNotification\",\"Read\",\"ScheduleWakeup\",\"Skill\",\"TaskCreate\",\"TaskGet\",\"TaskList\",\"TaskOutput\",\"TaskStop\",\"TaskUpdate\"],\"mcp_servers\":[],\"model\":\"claude-sonnet-5\",\"permissionMode\":\"dontAsk\",\"slash_commands\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"usage\",\"insights\",\"goal\",\"team-onboarding\"],\"apiKeySource\":\"ANTHROPIC_API_KEY\",\"claude_code_version\":\"2.1.150\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\"],\"plugins\":[],\"analytics_disabled\":false,\"product_feedback_disabled\":false,\"uuid\":\"3acbde88-c7da-4c70-ab88-bb43a8940331\",\"memory_paths\":{\"auto\":\"/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/claude-config/projects/-private-var-folders-0s-50y7rb796d1bqdxmpcz6qg800000gn-T-chirality-dapp52-live-sdk-probe-ix6mE0-project-root/memory/\"},\"fast_mode_state\":\"off\"}"
+        },
+        {
+          "index": 1,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "cb6c10f8-4dcf-4332-9277-c2e71355e8a9",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 239,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":1,\"max_retries\":10,\"retry_delay_ms\":558.5572608968723,\"error_status\":null,\"error\":\"unknown\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"uuid\":\"cb6c10f8-4dcf-4332-9277-c2e71355e8a9\"}"
+        },
+        {
+          "index": 2,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "06817f77-13d9-4588-8d02-6d94496d0522",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 240,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":2,\"max_retries\":10,\"retry_delay_ms\":1215.2012880504822,\"error_status\":null,\"error\":\"unknown\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"uuid\":\"06817f77-13d9-4588-8d02-6d94496d0522\"}"
+        },
+        {
+          "index": 3,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "7b5c30d9-7447-46d9-b659-a7d27fb52689",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 240,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":3,\"max_retries\":10,\"retry_delay_ms\":2415.2726187038834,\"error_status\":null,\"error\":\"unknown\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"uuid\":\"7b5c30d9-7447-46d9-b659-a7d27fb52689\"}"
+        },
+        {
+          "index": 4,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "84b1306a-13b9-4be9-8417-1423d7bffb33",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 240,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":4,\"max_retries\":10,\"retry_delay_ms\":4566.7168730744215,\"error_status\":null,\"error\":\"unknown\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"uuid\":\"84b1306a-13b9-4be9-8417-1423d7bffb33\"}"
+        },
+        {
+          "index": 5,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "4a5ae940-be90-45f1-b76b-65a1fb9bbae0",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 239,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":5,\"max_retries\":10,\"retry_delay_ms\":8708.529530481072,\"error_status\":null,\"error\":\"unknown\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"uuid\":\"4a5ae940-be90-45f1-b76b-65a1fb9bbae0\"}"
+        },
+        {
+          "index": 6,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "03a82626-d5d2-4f75-b8a9-678d73ed3013",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 240,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":6,\"max_retries\":10,\"retry_delay_ms\":17648.258960532232,\"error_status\":null,\"error\":\"unknown\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"uuid\":\"03a82626-d5d2-4f75-b8a9-678d73ed3013\"}"
+        },
+        {
+          "index": 7,
+          "type": "system",
+          "subtype": "api_retry",
+          "session_id": "e05bad2c-d7d8-4bbe-9f49-6c650f6e6424",
+          "uuid": "55b1f5d3-4935-426c-88ff-a27fd8497d8f",
+          "toolNames": [],
+          "topLevelKeys": [
+            "attempt",
+            "error",
+            "error_status",
+            "max_retries",
+            "retry_delay_ms",
+            "session_id",
+            "subtype",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 239,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"api_retry\",\"attempt\":7,\"max_retries\":10,\"retry_delay_ms\":36790.52281842498,\"error_status\":null,\"error\":\"unknown\",\"session_id\":\"e05bad2c-d7d8-4bbe-9f49-6c650f6e6424\",\"uuid\":\"55b1f5d3-4935-426c-88ff-a27fd8497d8f\"}"
+        }
+      ],
+      "caughtError": {
+        "name": "Error",
+        "constructorName": "W6",
+        "messageRedacted": "Claude Code process aborted by user",
+        "ownKeys": [
+          "message",
+          "stack"
+        ],
+        "stackPresent": true
+      },
+      "failures": []
+    },
+    {
+      "name": "interrupt-terminal-behavior",
+      "startedAt": "2026-07-19T02:19:50.746Z",
+      "finishedAt": "2026-07-19T02:19:52.965Z",
+      "messages": [
+        {
+          "index": 0,
+          "type": "system",
+          "subtype": "init",
+          "session_id": "5fb85c3c-97e0-410f-b25c-2c6b8d3fa71f",
+          "uuid": "12055cf3-80aa-4709-92c8-370e13ecda0b",
+          "toolNames": [],
+          "topLevelKeys": [
+            "agents",
+            "analytics_disabled",
+            "apiKeySource",
+            "claude_code_version",
+            "cwd",
+            "fast_mode_state",
+            "mcp_servers",
+            "memory_paths",
+            "model",
+            "output_style",
+            "permissionMode",
+            "plugins",
+            "product_feedback_disabled",
+            "session_id",
+            "skills",
+            "slash_commands",
+            "subtype",
+            "tools",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 1530,
+          "rawRedacted": "{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/project-root\",\"session_id\":\"5fb85c3c-97e0-410f-b25c-2c6b8d3fa71f\",\"tools\":[\"AskUserQuestion\",\"CronCreate\",\"CronDelete\",\"CronList\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"Monitor\",\"PushNotification\",\"Read\",\"ScheduleWakeup\",\"Skill\",\"TaskCreate\",\"TaskGet\",\"TaskList\",\"TaskOutput\",\"TaskStop\",\"TaskUpdate\",\"ToolSearch\"],\"mcp_servers\":[],\"model\":\"claude-sonnet-5\",\"permissionMode\":\"dontAsk\",\"slash_commands\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"usage\",\"insights\",\"goal\",\"team-onboarding\"],\"apiKeySource\":\"ANTHROPIC_API_KEY\",\"claude_code_version\":\"2.1.150\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"verify\",\"debug\",\"code-review\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"claude-api\",\"run\",\"run-skill-generator\"],\"plugins\":[],\"analytics_disabled\":false,\"product_feedback_disabled\":false,\"uuid\":\"12055cf3-80aa-4709-92c8-370e13ecda0b\",\"memory_paths\":{\"auto\":\"/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-dapp52-live-sdk-probe-ix6mE0/claude-config/projects/-private-var-folders-0s-50y7rb796d1bqdxmpcz6qg800000gn-T-chirality-dapp52-live-sdk-probe-ix6mE0-project-root/memory/\"},\"fast_mode_state\":\"off\"}"
+        },
+        {
+          "index": 1,
+          "type": "assistant",
+          "session_id": "5fb85c3c-97e0-410f-b25c-2c6b8d3fa71f",
+          "uuid": "b716406b-60d7-47cb-8fc1-a58f2302f84f",
+          "contentBlockTypes": [
+            "tool_use"
+          ],
+          "toolNames": [
+            "Read"
+          ],
+          "topLevelKeys": [
+            "message",
+            "parent_tool_use_id",
+            "request_id",
+            "session_id",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 807,
+          "rawRedacted": "{\"type\":\"assistant\",\"message\":{\"model\":\"claude-sonnet-5\",\"id\":\"msg_011CdAcgw7kKpaRX8T9HtdPv\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_0176oJjKZxWPuqgutFrifQwh\",\"name\":\"Read\",\"input\":{\"file_path\":\"./probe-read-target.txt\"},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":1660,\"cache_read_input_tokens\":7048,\"cache_creation\":{\"ephemeral_5m_input_tokens\":1660,\"ephemeral_1h_input_tokens\":0},\"output_tokens\":57,\"service_tier\":\"standard\",\"inference_geo\":\"global\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"5fb85c3c-97e0-410f-b25c-2c6b8d3fa71f\",\"uuid\":\"b716406b-60d7-47cb-8fc1-a58f2302f84f\",\"request_id\":\"req_011CdAcgvbVcjGpvkB2sJ8YS\"}"
+        },
+        {
+          "index": 2,
+          "type": "user",
+          "session_id": "5fb85c3c-97e0-410f-b25c-2c6b8d3fa71f",
+          "uuid": "f04a13f0-2096-48db-a01d-9680bbef56e3",
+          "contentBlockTypes": [
+            "tool_result"
+          ],
+          "toolNames": [],
+          "topLevelKeys": [
+            "message",
+            "parent_tool_use_id",
+            "session_id",
+            "timestamp",
+            "tool_use_result",
+            "type",
+            "uuid"
+          ],
+          "rawSizeBytes": 671,
+          "rawRedacted": "{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_0176oJjKZxWPuqgutFrifQwh\",\"type\":\"tool_result\",\"content\":\"1\\tD-APP-52 live probe read target (synthetic).\\n2\\tPROOF_TOKEN=dapp52-live-probe-2d374e1e-d545-402a-8f84-67209b3aece3\\n3\\t\"}]},\"parent_tool_use_id\":null,\"session_id\":\"5fb85c3c-97e0-410f-b25c-2c6b8d3fa71f\",\"uuid\":\"f04a13f0-2096-48db-a01d-9680bbef56e3\",\"timestamp\":\"2026-07-19T02:19:52.494Z\",\"tool_use_result\":{\"type\":\"text\",\"file\":{\"filePath\":\"./probe-read-target.txt\",\"content\":\"D-APP-52 live probe read target (synthetic).\\nPROOF_TOKEN=dapp52-live-probe-2d374e1e-d545-402a-8f84-67209b3aece3\\n\",\"numLines\":3,\"startLine\":1,\"totalLines\":3}}}"
+        }
+      ],
+      "caughtError": {
+        "name": "Error",
+        "constructorName": "W6",
+        "messageRedacted": "Claude Code process aborted by user",
+        "ownKeys": [
+          "message",
+          "stack"
+        ],
+        "stackPresent": true
+      },
+      "failures": []
+    }
+  ],
+  "placement": {
+    "configDirFiles": [
+      {
+        "path": ".claude.json",
+        "sizeBytes": 28230
+      },
+      {
+        "path": "backups/.claude.json.backup.1784427342198",
+        "sizeBytes": 50
+      },
+      {
+        "path": "policy-limits.json",
+        "sizeBytes": 359
+      },
+      {
+        "path": "projects/-private-var-folders-0s-50y7rb796d1bqdxmpcz6qg800000gn-T-chirality-dapp52-live-sdk-probe-ix6mE0-project-root/1a17d728-5b21-4a18-9918-878be159a4a2.jsonl",
+        "sizeBytes": 11851
+      }
+    ],
+    "homeDirFiles": [],
+    "projectRootFiles": [
+      {
+        "path": "probe-read-target.txt",
+        "sizeBytes": 112
+      }
+    ]
+  },
+  "failures": [],
+  "redaction": {
+    "passed": true,
+    "findings": [],
+    "scannedRoots": 4
+  }
+}

@@ -28,6 +28,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - [RESOLVED 2026-07-12] REF-006 docs/PRD.md is MATCH under D-APP-38; the mismatch warning remains only in dated 2026-05-20 run history.
 - 2026-07-18 WI-PKG04-01 handover-evidence pass (annotate-only): `DEP-04-05-007` stays `TBD` — partial upstream delivery is evidenced (`anthropic-agent-sdk-manager.ts` error classification and bounded base-URL posture with tests; ADQ-15/ADQ-16 scripted no-live packaged and network proofs), while live-confirmed exact SDK error object shapes and packaged live behavior remain owner-gated (D-APP-52; this deliverable's RQ-011 four-class assertion gap). Citation note: the row's `Procedure.md#Prerequisites` source now lives at `ScopeOfWork.md` CLM-017 Prerequisites per owner commit `036e0769c` (2026-07-13 ScopeOfWork-v1 migration). See DEL-04-01 `Evidence_HANDOVER_CONSUMPTION_2026-07-18.md` section D.
 - 2026-07-18 WI-PKG04-01 stale-table correction: the per-row table below listed `DEP-04-05-011` as `ACTIVE` and the counts line claimed "12 ACTIVE rows", but `Dependencies.csv` records `DEP-04-05-011` as `RETIRED / NOT_APPLICABLE` (the Lifecycle Summary ACTIVE 10 / RETIRED 2 was already correct). Table row and counts line corrected in this pass; this note records the prior stale values.
+- 2026-07-18 D-APP-52 live-demonstration closure (owner's in-session act 2026-07-18; mechanical conformance by run `DAPP52_LIVE_DEMONSTRATION_2026-07-18`): `DEP-04-05-007` closed `SATISFIED` — live-confirmed SDK error object shapes and packaged live behavior are now recorded in DEL-04-01 `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md` (PACK1 SHA-256 `be155013371f51c1a52a364d19d9f164f9f2509bd921ca4d1af7b00b25a11686`) and `Evidence_DAPP52_PACKAGED_LIVE_PROOF_2026-07-18_summary.json` (PACK3 SHA-256 `ac3507b043e5470a7ec16afebdf205e59f6b631b6ada552e44941fd603945e78`); RATE_LIMITED not live-triggered and this deliverable's RQ-011 four-class assertion gap remains its own gated Remaining item; producer row `DEP-04-01-013` closed in the same pass. Lifecycle Summary synced (SATISFIED 7 / TBD 3).
 
 ## Extracted Dependency Register
 
@@ -57,8 +58,8 @@ Counts: 12 rows total (10 ACTIVE, 2 RETIRED); 6 ANCHOR, 6 EXECUTION. (Corrected 
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 6 |
-| TBD | 4 |
+| SATISFIED | 7 |
+| TBD | 3 |
 
 ## Run History
 
