@@ -1,26 +1,30 @@
-# Piping Work Loop — standing plan (development loop instructions)
+# Piping Work Loop — candidate successor plan (development loop instructions)
 
-> **Epistemic status: agent-authored plan — not authority.** Written at owner adoption
-> (Ryan Tufts, K-AUTH-1) on 2026-07-10 and re-minted at owner adoption on 2026-07-17
-> (`DEC-083`, D-50 sub-choice (b)); supersedes `WORKPLAN_2026-07-10_piping_loop.md`
-> in this directory. This re-mint carries the 2026-07-10 plan forward verbatim except
-> for the clauses marked `*(DEC-083)*`, and was gated by an independent carry-forward
-> verifier (clause-by-clause diff; BLOCK on any unexplained delta). Amendment
-> convention *(DEC-083)*: in-place surgical amendment with inline markers is lawful
-> only while an amendment touches at most two of the six protocol steps and the
-> amendment lineage holds at most two entries; beyond either, the change is executed
-> as a re-mint with an independent carry-forward verifier. This plan never authorizes work: owner-adopted briefs, decision
-> rulings, and directions do. Sources govern on any disagreement. This file is the
-> project's single development-loop instruction surface — PROTOCOL plus pointer
-> indexes; it carries NO status, NO work history, and NO measurements. Each iteration
-> re-derives state from the live tree; loop closes append a minimal receipt to
-> `LOOP_RECEIPTS.md` beside this file (rules live at the top of that file).
-> The owner-directed instruction-separation amendment on 2026-07-17 touches only
-> protocol Step 4 and is the first post-re-mint surgical amendment.
-> The owner-directed standing-approval overlay on 2026-07-18 (`DEC-085`) touches
-> only protocol Step 2 and is the second post-re-mint surgical amendment; clauses
-> marked `*(DEC-085)*` were added by that owner direction. Shared-Block v1 remains
-> unchanged.
+> **Epistemic status: agent-authored candidate — not authority and not a live
+> instruction surface.** Written at owner adoption
+> (Ryan Tufts, K-AUTH-1) on 2026-07-10, re-minted at owner adoption on 2026-07-17
+> (`DEC-083`, D-50 sub-choice (b)), and re-minted under the owner-directed
+> reasoned-discretion refinement on 2026-07-18 (`DEC-087`). This file is outside
+> `loop/WORKPLAN_*.md` and is never selectable. Only after repeat actual S5
+> `COMMIT-SAFE` may CHANGE materialize these exact bytes at
+> `loop/WORKPLAN_2026-07-18_piping_loop.md`; HEAD-only discovery makes that copy
+> active only when the same commit lands. This candidate re-mint carries the
+> 2026-07-17 plan forward exactly/semantically except for this re-mint metadata and
+> the Step-2 clauses marked `*(DEC-087)*`, and is gated by an independent
+> carry-forward verifier (clause-by-clause diff; BLOCK on any unexplained delta).
+> Amendment convention *(DEC-083)*: in-place surgical amendment with inline markers
+> is lawful only while an amendment touches at most two of the six protocol steps
+> and the amendment lineage holds at most two entries; beyond either, the change is
+> executed as a re-mint with an independent carry-forward verifier. This third
+> post-re-mint lineage entry therefore uses a re-mint. This plan never authorizes
+> work: owner-adopted briefs, decision rulings, and directions do. Sources govern on
+> any disagreement. When byte-identically materialized and durably landed at the
+> active path, it is the project's single development-loop instruction surface —
+> PROTOCOL plus pointer indexes; it carries NO status, NO work history, and NO
+> measurements. Each iteration re-derives state from the live tree; loop closes
+> append a minimal receipt to `loop/LOOP_RECEIPTS.md` (rules live at the top of that
+> file). The 2026-07-17 instruction-separation and 2026-07-18
+> standing-approval clauses are carried forward. Shared-Block v1 remains unchanged.
 
 ## Owner intent
 
@@ -88,24 +92,30 @@ authority permits — stopping at every owner gate.
    limit-touching item is owner-class with no criterion analysis. A clearly
    disposition-class item is decided under the delegation with a recorded rationale
    artifact (deliverable-scoped → that deliverable's `_run_records/**`; cross-cutting
-   → the tranche's AgentRuns record) cited from the receipt. Items that fail the
-   test, or where two defensible outcomes survive, are slated in near-miss form
-   naming the failed gate or limit. Over-referral costs owner attention;
+   → the tranche's AgentRuns record) cited from the receipt. Items that fail an
+   applicable fast-reject boundary are slated in near-miss form naming the
+   failed gate or limit; surviving alternatives are handled by the DEC-087
+   refinement below. *(DEC-087)* Over-referral costs owner attention;
    over-deciding silently converts owner authority — borderline defaults to the
    owner.
-   *Standing-approval overlay (DEC-085):* an owner-gated matter may be
-   classified `CLASSIFY_ELIGIBLE` and activate the owner's conditional
-   class-level standing approval only after the D-52 fast-reject boundary
-   passes and live, artifact-grounded ontology, epistemology, praxeology, and
-   axiology converge on exactly one defensible bounded/reversible outcome. The
-   adoption or ruling is always the owner's act under the standing rule; the
-   agent only classifies and records `ACTIVATE_OWNER_STANDING_APPROVAL`, never
-   adopts or rules. `OwnerCaseSelection=NONE` records that no separate
-   case-specific choice occurred. Each exercise records a rationale and requires
-   independent refutation before effect. Preference, accountability,
-   scope/normative change, lifecycle/stage/release/acceptance, external or
-   destructive action, protected data, unavailable evidence, and every other
-   D-52 fast-reject class still stop for the owner. *(DEC-085)*
+   *Reasoned-selection standing-approval refinement (DEC-087):* prospectively
+   apply D-54 after its fast-reject boundary passes. Several viable or
+   defensible alternatives may remain; that fact alone is not a stop or
+   referral condition. Ground the matter in live accepted artifacts, analyze
+   ontology, epistemology, praxeology, and axiology, identify materially
+   important alternatives, and exercise bounded discretion to select and
+   advance the one project-grounded outcome judged most consistent and
+   coherent. Record the selection as agent judgment under owner standing
+   approval, `OwnerCaseSelection=NONE`, with a concise rationale and material
+   rejected alternatives; obtain independent refutation before effect.
+   Irreducible personal preference, material purpose/scope change, new
+   normative/acceptance criteria, professional/safety/legal/fiduciary/
+   residual-risk accountability, spending/external commitments,
+   publication/release, protected-data exposure, destructive/irreversible
+   action, and every other applicable D-54/D-52/D-49 fast-reject class still
+   stop for the owner. Governed-brief adoption remains the human owner's
+   conditional act; the agent selects/classifies but does not author adoption.
+   *(DEC-087)*
 3. **Gate.** STOP; adoption/ruling/direction is the owner's act (K-AUTH-1; D-GOV-04).
    In-session directions/rulings are recorded verbatim in their governed artifact;
    only chat-only directions with no governed home are transcribed into the receipt,
