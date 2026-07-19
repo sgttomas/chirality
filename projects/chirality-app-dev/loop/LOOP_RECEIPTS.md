@@ -2135,3 +2135,45 @@
     rider) applied: DEP-04-01-012 retired NOT_APPLICABLE with the
     new-row-minting rider; referral item discharged from Remaining; owner
     merge remains the terminal act.
+
+- **2026-07-18 — Receipt 70** (D-APP-64: reasoned-selection overlay adopted).
+  - Receipt-ID: `Receipt-70`
+  - Examined-Through: `34774f5795936fa07d5c13b3d52d5f69eb63bf4f`
+  - Parent-Receipt: `Receipt-69`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-18, Ryan Tufts, in-session): the owner granted the standing
+    reasoned-selection approval and directed its governed adoption as an
+    app-dev-local refining overlay; the direction text and canonical hash
+    live verbatim in the D-APP-64 packet §3, its governed home, not here.
+  - Pointers: execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md
+    (§3 owner direction; §5 reasoned-selection contract; §12 Appendix W);
+    D-APP-64 register row; loop/WORKPLAN_2026-07-18b_app_dev_loop.md
+    (re-minted governing plan); loop/LOOP_INIT.md §2 (committed-HEAD
+    loader); execution/_Coordination/AgentRuns/D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/
+    (orchestration plan, sealed briefs, rationale artifact, invariant
+    matrix, landing manifest and its amendment v2, choreography, verifier
+    returns).
+  - Stale-Map-Delta: the practitioner-harness live-baseline pins were
+    consciously updated for the three D-APP-64 records that carry the owner
+    direction's machine-absolute precedent-worktree citation
+    (detect-never-rewrite); dated notes live in
+    tools/practitioner_harness/test_live_baseline.py.
+  - Checks: receipt validator pass; corpus status no drift; repo-wide
+    self-check exit zero at the consciously re-pinned severity anchor;
+    validation pytest pass; full practitioner-harness pytest pass after the
+    re-pin; instruction-entrypoint validator pass; git whitespace check
+    clean; carry-forward verifier COMMIT-SAFE; invariant-matrix verifier
+    COMMIT-SAFE (each verdict recorded after its return existed); the
+    governed-diff adversarial verifier runs on the full staged tranche
+    after this receipt is written, its verdict recorded in the PR only
+    after it exists; frontend gates skipped — no runtime source changed.
+  - Model-Attribution: Claude Fable 5 Agent-0 orchestrator (HELP_HUMAN
+    posture) with one Fable 5 HELPS_HUMANS-posture authoring child
+    (mechanical conformance to the sealed brief; no delegated judgment) and
+    three independent Fable 5 read-only adversarial verifiers.
+  - Gate-Outcome: `EXECUTED` — the owner-directed D-APP-64 overlay
+    recorded: inside the fast-reject boundary, plurality of defensible
+    outcomes ceases to be a referral condition; the governing plan is
+    re-minted and plan discovery moves to committed-HEAD selection;
+    activation at the atomic landing commit; owner merge remains the
+    terminal integration act.
