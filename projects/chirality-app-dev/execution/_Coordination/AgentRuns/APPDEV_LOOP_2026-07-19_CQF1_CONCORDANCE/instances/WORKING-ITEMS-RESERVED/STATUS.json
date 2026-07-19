@@ -1,0 +1,17 @@
+{
+  "instance_id": "WORKING-ITEMS-RESERVED",
+  "role": "WORKING_ITEMS",
+  "parent": "HELP_HUMAN",
+  "status": "BLOCKED_PENDING_CLASSIFICATION_OR_OWNER_RULING",
+  "accepted": false,
+  "terminal": false,
+  "depends_on_any": [
+    "D1_DISPOSITION_CLASS_WITH_EXISTING_AUTHORIZATION_ACCEPTED",
+    "H1_EXPLICIT_OWNER_RULING_ACCEPTED"
+  ],
+  "write_scope": "NONE",
+  "release_brief": "NOT_MINTED",
+  "frontend_runtime_writes": false,
+  "lifecycle_transition": false,
+  "hard_fence_crossing": false
+}

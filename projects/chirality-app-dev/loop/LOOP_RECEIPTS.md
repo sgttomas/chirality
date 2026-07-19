@@ -2332,3 +2332,13 @@
   - Checks: receipt validator pass; authority corpus v9 no drift; repository self-check pass; 123-test validation suite pass; 311-test practitioner-harness suite pass; 17-SoW census pass; 4-register dependency validation pass; diff hygiene pass; frontend skipped because no frontend/runtime source changed.
   - Model-Attribution: Codex HELP_HUMAN Agent 0 with named CHANGE, ORCHESTRATOR, RECONCILIATION, five WORKING_ITEMS managers, and EVALUATION with two read-only children; interrupted R1 rejected; R1A, R1B, five package returns, and V1 accepted.
   - Gate-Outcome: `EXECUTED` — recommendations 1–8 executed with the Pipeline and child-threshold no-ops; all lifecycle state remains unchanged; unrelated gated lanes remain parked; owner merge is terminal.
+
+- **2026-07-19 — Receipt 76** (CQ-F1 concordance activation gap routed).
+  - Receipt-ID: `Receipt-76`
+  - Examined-Through: `be4be0dfcc18a34995db61429a2342c2758a5d00`
+  - Parent-Receipt: `Receipt-75`
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md`; control run `execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/`; R1 blocked-input derivative `execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/`.
+  - Stale-Map-Delta: D-APP-65 disposition 7 was consumed by the scoped pass closed in Receipt-73; D-APP-68 authorizes its own exact repair graph and does not activate this CQ-F1 rerun. R1 therefore stopped before discovery with all 22 manifest rows `BLOCKED_INPUT`.
+  - Checks: receipt validator pass; authority corpus v9 no drift; repository self-check exit zero; exact R1 path/count/hash/CSV/JSON/containment checks pass; exact eight-file format-only amendment removed one terminal LF per file with byte prefixes identical, and final no-index/diff hygiene passes; frontend gates skipped because no runtime source changed.
+  - Model-Attribution: Codex ORCHESTRATOR under HELP_HUMAN; no subagents dispatched because activation-before-dispatch failed.
+  - Gate-Outcome: `AWAITING_OWNER` — D-APP-69 asks the owner to activate the exact read-only pass (Option A, agent-recommended) or defer it unchanged (Option B); no owner text, discovery, mapping, repair, V1 release, W1 release, lifecycle change, or runtime write exists.
