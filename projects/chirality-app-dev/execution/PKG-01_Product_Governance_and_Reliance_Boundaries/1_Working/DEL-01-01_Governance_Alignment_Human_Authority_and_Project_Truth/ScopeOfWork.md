@@ -35,7 +35,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | PackageName | Product Governance and Reliance Boundaries |
 > | DeliverableID | DEL-01-01 |
 > | DeliverableName | Governance Alignment, Human Authority, and Project Truth |
-> | ResponsibleParty | TBD |
+> | ResponsibleParty | Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope) |
 > | Type | DOC_UPDATE |
 > | ContextEnvelope | M |
 > | CurrentLifecycleState | Read from `_STATUS.md` (currently `IN_PROGRESS`; prior states remain historical evidence) |
@@ -210,7 +210,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Authoritative references are locally accessible | Accessible; the current D-APP-38 corpus snapshot records REF-006 `docs/PRD.md` as `MATCH`. |
 > | Upstream dependencies | See derivative `Dependencies.csv`; rows remain pending unless separately disposed. |
 > | Downstream dependencies | No downstream deliverable edges are accepted in this reconciliation. |
-> | Human owner | `ResponsibleParty: TBD`. |
+> | Human owner | `ResponsibleParty`: Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope). |
 >
 
 ### CLM-016 — Steps
@@ -272,7 +272,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | Four-doc kit | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist and are non-empty. |
 > | Lifecycle | `_STATUS.md` remains the sole lifecycle authority; no transition is performed. |
 > | Reference integrity | REF-006 `docs/PRD.md` is `MATCH` in `_REFERENCES.md`; historical PRD hash-warning prose is not carried forward as an active blocker. |
-> | Responsible party | `ResponsibleParty` remains `TBD`. |
+> | Responsible party | `ResponsibleParty` is Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope). |
 > | Dependency-register handling | Existing `Dependencies.csv` rows are not satisfied, retired, or otherwise mutated. |
 > | No invention | Unsupported facts are `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, source warning, or human-ruling-needed. |
 > | Boundary posture | Human authority, project truth, and runtime-audit boundaries are not weakened by the drafted artifacts. |
@@ -383,8 +383,8 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > |---|---|
 > | DEL-01-01-R001 | Closed by the current D-APP-38 corpus snapshot; rerun authority-corpus status if an authority document changes. |
 > | DEL-01-01-R002 | Resolved by D-APP-56 R4-P48 on 2026-07-12: preserve stable IDs and the live package path; no obsolete dispatch label is needed to discover or execute remaining work. |
-> | DEL-01-01-R003 | `ResponsibleParty` assignment explicitly deferred by D-APP-56 R4-P47 on 2026-07-12; retain `TBD` until an accountable human assigns it. |
-> | DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. |
+> | DEL-01-01-R003 | `ResponsibleParty` assignment explicitly deferred by D-APP-56 R4-P47 on 2026-07-12; retain `TBD` until an accountable human assigns it. Assigned 2026-07-18 by D-APP-65 to Ryan Tufts (K-AUTH-1), demonstrator scope. |
+> | DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. Resolved 2026-07-18 under D-APP-65 disposition 4: final filenames/destinations selected by reasoned agent judgment (D-APP-64) — see TASK_RUN_2026-07-18_DAPP65_docs_production.md; artifacts live in the deliverable folder. |
 
 ## Output and Evaluation Matrix
 

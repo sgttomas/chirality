@@ -7,10 +7,10 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- The route-adapter test index and SSE compatibility fixture README are deferred on 2026-07-12 under D-APP-56 R4-P48 until the next governed documentation-production tranche (gate: new owner-authorized production tranche).
 - CQ-F1 working-root route affinity: `frontend/src/app/api/working-root/deliverable/content/route.ts` is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48; no ownership or mapping is asserted (revisit: next concordance pass).
 
 ## History
+- 2026-07-18 - D-APP-65 disposition 4 unlocked the R4-P48 documentation-production deferral; the route-adapter test index and SSE compatibility fixture README were produced in the deliverable folder. Content is agent findings; no acceptance or issuance is rendered. The CQ-F1 route-affinity item remains open for the next concordance pass. No state or lifecycle change.
 - 2026-07-12 - R6 backcheck corrected the omitted UPD-045/P30 authority half: the three live routes are now cataloged in SPEC §17.1 through the D-APP-56 P06/D-APP-38 corpus procedure; the landed Remaining item was removed. State remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)

@@ -7,7 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Adoption-verdict approving role remains `TBD`; assignment is explicitly deferred on 2026-07-12 under D-APP-56 R4-P47 until an accountable owner assigns the field (gated: owner ruling).
+- None.
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -26,3 +26,4 @@
 - 2026-07-18 - Handover-consumption evidence tranche executed under the D-APP-60 instrument (WI-PKG04-01, agent decisions under owner-delegated latitude): DEP-04-01-010 closed SATISFIED with mirror DEP-04-02-006; rows 011/013 annotated open on the D-APP-52-gated live-probe residual; row 012 referred to owner in near-miss form; Remaining updated to the residuals; see Evidence_HANDOVER_CONSUMPTION_2026-07-18.md; no state change.
 - 2026-07-18 - D-APP-63 owner ruling ("Option A with the rider.") resolved the DEP-04-01-012 referral: row retired RETIRED/NOT_APPLICABLE; rider: any DEL-04-04-relevant output from the future D-APP-52 live probe mints a NEW row (revival by new recorded basis); referral item removed from Remaining; mechanics executed by WI-PKG04-01 as mechanical conformance (see _run_records/TASK_RUN_2026-07-18_DEP-04-01-012_ruling_execution.md); no state change.
 - 2026-07-18 - D-APP-52 live demonstration executed as the owner's in-session act (owner at screen, short-lived key never persisted): PACK1 dev SDK probe, PACK2 live-LLM pec demo, PACK3 packaged live proof, all status pass. Rows DEP-04-01-007/011/013 closed SATISFIED (mirrors DEP-04-03-007 / DEP-04-05-007 in the same pass) on Evidence_DAPP52_LIVE_PROBE_2026-07-18.md and Evidence_DAPP52_PACKAGED_LIVE_PROOF_2026-07-18_summary.json; the two D-APP-52-gated Remaining items (rows 011/013 closure; CODEV-001 live-environment residuals) discharged and removed. D-APP-63 rider check: no DEL-04-04-relevant output from any pack; no new row minted. Mechanics by run DAPP52_LIVE_DEMONSTRATION_2026-07-18 (see _run_records/TASK_RUN_2026-07-18_DAPP52_live_demonstration_closures.md); no state change.
+- 2026-07-18 - D-APP-65 assigned the adoption-verdict approving role to Ryan Tufts (K-AUTH-1), demonstrator scope, superseding the D-APP-56 R4-P47 deferral; the adoption verdict itself remains a separate future owner act. No state or lifecycle change.

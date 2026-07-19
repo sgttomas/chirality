@@ -7,7 +7,6 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Define and land the arbitrary-secret-registry redaction taxonomy (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
@@ -25,3 +24,4 @@
 
 - 2026-07-12 - D-APP-56 R4-P46 reaffirmed the D-APP-53 Option-C-gated arbitrary configured-secret registry as open and unselectable; no gate was unlocked and no state change occurred.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-67 ruled Option B (owner, in-session): the committed-secret redaction taxonomy and verifier-quoting rule are ratified in Taxonomy_Committed_Secret_Redaction_DEL-05-03.md; the runtime helper remains API-key-specific by ruling. No state or lifecycle change.

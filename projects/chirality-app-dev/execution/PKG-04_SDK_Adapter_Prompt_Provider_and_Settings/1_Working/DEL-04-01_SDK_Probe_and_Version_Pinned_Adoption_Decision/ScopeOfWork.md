@@ -175,7 +175,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > | Terminal outcomes | Success, failure, interruption, and cancellation evidence, including persisted terminal events and route/session cleanup behavior. | Production default use remains blocked until all required terminal outcomes persist or are explicitly carried as residual risk. | `docs/SPEC.md` Sections 10.1 and 11; `docs/PLAN.md` R1 acceptance |
 > | API key handoff and redaction | Active-turn SDK environment handoff; redaction checks for logs, events, SDK transcripts if avoidable, provider errors, and tool artifacts. | Any persisted key material in project files, runtime events, logs, or artifacts is a blocker. | `docs/SPEC.md` Section 12.3; `docs/CONTRACT.md` K-KEY-1 |
 > | Packaging | Packaged Electron app SDK turn result; subprocess/binary path behavior; `asarUnpack` or equivalent need; signing posture; environment handling; transcript/storage effect. | Packaging failure is fallback-blocking unless a human accepts a bounded residual-risk posture. | `docs/PLAN.md` Section 6.4; `docs/SPEC.md` Section 19.4 |
-> | Decision authority | Human approver for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`. | TBD until a responsible party or approving role is assigned; `ResponsibleParty` remains TBD. | `_CONTEXT.md` Identity; `docs/DIRECTIVE.md` Section 2.4 |
+> | Decision authority | Human approver for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`. | Approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act); `ResponsibleParty` remains TBD. | `_CONTEXT.md` Identity; `docs/DIRECTIVE.md` Section 2.4 |
 >
 
 ### CLM-012 — Standards
@@ -231,7 +231,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > - Exact package manifest and lockfile evidence location.
 > - Exact transcript storage decision: `SessionStore`, `CLAUDE_CONFIG_DIR`, both, or cross-reference default path as residual risk.
 > - Exact packaging requirements discovered by the probe.
-> - Exact human approver or approving role for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`.
+> - Human approver or approving role for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act).
 
 - **AC-001** — The DEL-04-01 evidence package records the first-adapter probe results and a version-pinned adoption decision, including provider/SDK message mapping, SDK session link and transcript placement, fallback triggers, future-provider criteria, and residual-risk notes, for SOW-018, SOW-044, SOW-046 and OBJ-004.
 
@@ -331,7 +331,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 >
 > 11. Draft the version-pinned adoption decision.
 >     - State `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`.
->     - Name the human approver or approving role; keep this field `TBD` until ownership is assigned.
+>     - Name the human approver or approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act).
 >     - Cite probe evidence for each P0 reliance boundary.
 >     - Keep the SDK privileged as implementation substrate, not product identity or governance authority.
 >     - Source: `docs/DIRECTIVE.md` Sections 2.8 through 2.11.
@@ -363,7 +363,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > | Interrupts | Success, failure, interruption, and cancellation terminal behavior is evidenced or flagged. |
 > | Packaging | Packaged app SDK turn is proven or recorded as fallback/residual risk. |
 > | Fallback criteria | Any unverifiable P0 reliance boundary has an explicit fallback trigger. |
-> | Adoption authority | `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK` has a named human approver or approving role, or remains `TBD`. |
+> | Adoption authority | `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK` has a named human approver or approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act). |
 >
 
 ### CLM-020 — Records
@@ -387,7 +387,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > - Exact transcript/store decision.
 > - Exact Electron packaging result.
 > - Exact adoption verdict.
-> - Exact human approver or approving role.
+> - Exact human approver or approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act).
 >
 
 ### CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)

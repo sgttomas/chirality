@@ -7,7 +7,6 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Add content-change SHA revalidation to the status-transition surface (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
 
 ## History
 - 2026-07-12 - D-APP-56 R4-P19 replaced HUMAN-prefix authorization with exact HUMAN/USER/OPERATOR aliases and denial coverage; approval-SHA gate preserved; state remains IN_PROGRESS.
@@ -25,3 +24,4 @@
 
 - 2026-07-12 - D-APP-56 R4-P46 reaffirmed the D-APP-53 Option-C-gated content-SHA revalidation items as open and unselectable; no gate was unlocked and no state change occurred.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-66 ruled Option C (owner, in-session): content-change SHA revalidation remains a governance checklist concern; no code authorized; the deferred item is closed by ruling. No state or lifecycle change.

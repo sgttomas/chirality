@@ -33,7 +33,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | DeliverableID | DEL-00-02 |
 > | DeliverableName | SCC-001 Runtime SDK Session Tooling Closure |
 > | Type | CONTROL_RECONCILIATION |
-> | ResponsibleParty | TBD - HumanRuling required for the owning human/agent authorized to accept SCC-001 rulings. |
+> | ResponsibleParty | Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope; the assignment names the accountable human only and renders no acceptance, issuance, or sign-off). |
 > | DecompositionVariant | CONTROL_PACKAGE |
 > | DecompositionRevision | PKG-00 overlay |
 > | CurrentLifecycleState | Read from `_STATUS.md` (currently `IN_PROGRESS`) |
@@ -392,6 +392,8 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > ##### D-APP-56 owner-field deferral (2026-07-12)
 >
 > R4-P47 explicitly defers assignment of this deliverable's `ResponsibleParty`. The field remains honestly `TBD` until an accountable human assigns it; this agent record assigns no role.
+>
+> D-APP-65 assigned this field on 2026-07-18 to Ryan Tufts (K-AUTH-1), demonstrator scope; the deferral record above is preserved as dated history.
 
 ## Output and Evaluation Matrix
 

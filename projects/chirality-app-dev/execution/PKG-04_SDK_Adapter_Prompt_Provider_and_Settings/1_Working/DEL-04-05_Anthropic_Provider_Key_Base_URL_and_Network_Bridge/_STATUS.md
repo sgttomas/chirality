@@ -7,7 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Add explicit RQ-011 category assertions for `REQUEST_TIMEOUT`, `RATE_LIMITED`, `NETWORK_ERROR`, and `API_RESPONSE_ERROR`; D-APP-56 R4-P17 keeps this four-class verification gap visible without changing the accepted ALIGNED disposition (gate: future owner-authorized test tranche).
+- None.
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
@@ -22,3 +22,4 @@
 - 2026-07-12 - D-APP-56 R5 P40 applied UPD-069, UPD-079; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P44 assessment-pointer rider applied as a forward annotation; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-18 - D-APP-65 disposition 2 accepted the RQ-011 criterion (three-of-four live basis from the D-APP-52 packs plus unit-level simulated assertions) and authorized this tranche; explicit category assertions for REQUEST_TIMEOUT, RATE_LIMITED, NETWORK_ERROR, and API_RESPONSE_ERROR added to harness-anthropic-agent-sdk-manager.test.ts. No state or lifecycle change.

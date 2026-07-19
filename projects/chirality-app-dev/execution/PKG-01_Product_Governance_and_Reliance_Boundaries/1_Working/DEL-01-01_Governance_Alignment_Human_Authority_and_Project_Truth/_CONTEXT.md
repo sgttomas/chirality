@@ -11,7 +11,7 @@
 | PackageName | Product Governance and Reliance Boundaries |
 | DeliverableID | DEL-01-01 |
 | DeliverableName | Governance Alignment, Human Authority, and Project Truth |
-| ResponsibleParty | TBD |
+| ResponsibleParty | Ryan Tufts (K-AUTH-1) — assigned 2026-07-18 by D-APP-65 (demonstrator scope) |
 | Type | DOC_UPDATE |
 | ContextEnvelope | M |
 
