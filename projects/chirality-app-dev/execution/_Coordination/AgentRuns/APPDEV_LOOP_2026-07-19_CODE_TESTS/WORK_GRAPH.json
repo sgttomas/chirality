@@ -1,0 +1,157 @@
+{
+  "run_id": "APPDEV_LOOP_2026-07-19_CODE_TESTS",
+  "version": 1,
+  "record_provenance": "reconstructed from platform-native sealed briefs and returns, repository evidence, and Agent-0 fan-in; not a byte-verbatim runtime export",
+  "selection_authority": "HELP_HUMAN under owner loop direction and subagent-use steer",
+  "posture": "MIXED",
+  "git_basis": {
+    "branch": "codex/app-dev-authorized-code-tests-20260719",
+    "head": "ad7f5c891a17ba1f98b33b1b2072572afbf51bce",
+    "implementation_paths": 9,
+    "committed": false,
+    "pushed": false
+  },
+  "coordination": {
+    "read_only_concurrency": ["N2", "N3"],
+    "serialized_integration_order": ["N4", "N5"],
+    "sibling_messaging": false,
+    "coordination_route": "hierarchical parent-mediated returns and amendments"
+  },
+  "nodes": [
+    {
+      "id": "N0",
+      "instance": "HELP_HUMAN",
+      "role": "HELP_HUMAN",
+      "activity": "discover live authority, Git state, obligations, and gates",
+      "depends_on": [],
+      "status": "COMPLETE",
+      "accepted": true
+    },
+    {
+      "id": "N1",
+      "instance": "CHANGE-BRANCH-1",
+      "role": "CHANGE",
+      "activity": "create and switch routine branch at exact clean base",
+      "depends_on": ["N0"],
+      "status": "COMPLETE_AFTER_CLARIFICATION",
+      "accepted": true,
+      "deviations": [
+        {
+          "status": "BLOCKED_REJECTED",
+          "reason": "ordinary branch creation was initially overclassified as a human-approved non-routine Git action",
+          "resolution": "owner clarification plus Agent-0 versioned follow-up; objective and scope unchanged"
+        }
+      ]
+    },
+    {
+      "id": "N2",
+      "instance": "WI-PKG02-1",
+      "role": "WORKING_ITEMS",
+      "activity": "read-only DEL-02-02 reconnaissance and implementation-brief freeze",
+      "depends_on": ["N1"],
+      "status": "COMPLETE_MANAGER_FREEZE",
+      "accepted": true,
+      "child_returns": [
+        {
+          "child": "READ_ONLY_TASK_PLANNER",
+          "status": "INTERRUPTED",
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "id": "N3",
+      "instance": "WI-PKG05-1",
+      "role": "WORKING_ITEMS",
+      "activity": "read-only DEL-05-01 reconnaissance and implementation-brief freeze",
+      "depends_on": ["N1"],
+      "status": "COMPLETE_MANAGER_FREEZE",
+      "accepted": true,
+      "child_returns": [
+        {
+          "child": "READ_ONLY_TASK_PLANNER",
+          "status": "INTERRUPTED",
+          "accepted": false
+        }
+      ]
+    },
+    {
+      "id": "N4",
+      "instance": "WI-PKG05-1",
+      "role": "WORKING_ITEMS",
+      "activity": "serialized PKG05 implementation and validation",
+      "depends_on": ["N1", "N3"],
+      "status": "SUCCESS",
+      "accepted": true,
+      "writes": 4,
+      "child_returns": [
+        {
+          "child": "TASK_SOFTWARE_BOUNDED_IMPLEMENTATION",
+          "status": "FAILED_INPUTS",
+          "accepted": false,
+          "edits": 0
+        }
+      ],
+      "accepted_basis": "manager direct bounded implementation plus manager validation"
+    },
+    {
+      "id": "N5",
+      "instance": "WI-PKG02-1",
+      "role": "WORKING_ITEMS",
+      "activity": "serialized PKG02 implementation, independent review, and combined validation",
+      "depends_on": ["N2", "N4"],
+      "status": "SUCCESS",
+      "accepted": true,
+      "writes": 5,
+      "child_returns": [
+        {
+          "child": "EPHEMERAL_IMPLEMENTATION_GENERALIST",
+          "status": "SUCCESS",
+          "accepted": true
+        },
+        {
+          "child": "READ_ONLY_SOFTWARE_CODE_REVIEW",
+          "status": "ACCEPT",
+          "accepted": true
+        }
+      ],
+      "accepted_basis": "accepted implementation child, accepted reviewer, and manager combined-state validation"
+    },
+    {
+      "id": "N6",
+      "instance": "ORCH-CLOSEOUT-1",
+      "role": "ORCHESTRATOR",
+      "activity": "materialize mandatory durable coordination record",
+      "depends_on": ["N5"],
+      "status": "COMPLETE",
+      "accepted": true,
+      "writes": "this run root only"
+    },
+    {
+      "id": "N7",
+      "instance": "CHANGE-CLOSEOUT",
+      "role": "CHANGE",
+      "activity": "shared-surface closeout, coherent commit, and push",
+      "depends_on": ["N6"],
+      "status": "PENDING",
+      "accepted": false
+    },
+    {
+      "id": "N8",
+      "instance": "OWNER-MERGE",
+      "role": "HUMAN",
+      "activity": "review and merge",
+      "depends_on": ["N7"],
+      "status": "PENDING_OWNER_ACT",
+      "accepted": false
+    }
+  ],
+  "fan_in": {
+    "package_returns": "PASS",
+    "combined_gates": "PASS",
+    "implementation_write_scope": "PASS_9_EXACT_PATHS",
+    "lifecycle_transition": false,
+    "blockers": []
+  },
+  "rerun_if": "the nine-path implementation diff or this closeout evidence changes before CHANGE closeout"
+}

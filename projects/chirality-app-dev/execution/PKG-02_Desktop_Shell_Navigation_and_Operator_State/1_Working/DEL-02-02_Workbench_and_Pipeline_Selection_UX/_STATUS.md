@@ -2,13 +2,12 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-19
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Add the D-APP-36-bar PIPELINE lifecycle-transition render test recorded by D-APP-56 R4-P28 (gate: code-test tranche authorized for this obligation).
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -22,3 +21,4 @@
 - 2026-07-12 - D-APP-56 R5 P40 applied UPD-068; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-107; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-56 R4-P28 PIPELINE lifecycle-transition component-render coverage added and validated at the D-APP-36 bar; the deliverable-local Remaining item was removed. State remains IN_PROGRESS; Checking Approval SHA preserved.

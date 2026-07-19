@@ -2310,3 +2310,14 @@
     (census and slate in SCOPED_SUMMARY.md); proposal-only — no
     repairs, register, kit, lifecycle, or Remaining edits; STOPPED at the
     9-item owner decision slate; owner merge remains the terminal act.
+
+- **2026-07-19 — Receipt 74** (authorized D-APP-56 code-test obligations executed).
+  - Receipt-ID: `Receipt-74`
+  - Examined-Through: `ad7f5c891a17ba1f98b33b1b2072572afbf51bce`
+  - Parent-Receipt: `Receipt-73`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD (2026-07-19, Ryan Tufts, in-session): “I have no intention of making branch creation a human-approved non-routine Git action.  That's about as far away from what I want as you can get.  That's a completely routine matter.  how did you reach that conclusion?” This corrected the mistaken classification; simple branch creation from a verified clean exact basis remained routine.
+  - Pointers: `execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CODE_TESTS/`; DEL-02-02 `_run_records/TASK_RUN_2026-07-19_DAPP56_R4_P28_pipeline_transition_render.md`; DEL-05-01 `_run_records/TASK_RUN_2026-07-19_DAPP56_R4_P31_session_id_guard_test.md`.
+  - Stale-Map-Delta: DEL-02-02 `ScopeOfWork.md` records the SOW-007 split `RULED`, while `_DEPENDENCIES.md` and `Dependencies.csv` retain owner-ruling-TBD wording; held for separate reconciliation and not repaired here.
+  - Checks: receipt validator pass; authority corpus v9 no drift; repository self-check pass; full practitioner-harness pytest pass; focused and full frontend tests, typecheck, production build, and owned-server release-quality/premerge pass without skips; diff/scope checks pass; owned server stopped.
+  - Model-Attribution: Codex HELP_HUMAN Agent 0 with named CHANGE, ORCHESTRATOR, and WORKING_ITEMS managers for both packages; both accepted PKG02 implementation/review children; both interrupted planning children and the PKG05 `FAILED_INPUTS` child rejected and not used.
+  - Gate-Outcome: `EXECUTED` — discharged DEL-02-02 R4-P28 and DEL-05-01 R4-P31 Remaining items; both stay `IN_PROGRESS` with Approval SHA unchanged; the nine-item concordance slate and other named gated lanes remain parked; owner merge is terminal.

@@ -1,0 +1,33 @@
+{
+  "run_id": "APPDEV_LOOP_2026-07-19_CODE_TESTS",
+  "instance_id": "WI-PKG02-1",
+  "role": "WORKING_ITEMS",
+  "parent": "HELP_HUMAN",
+  "package_id": "PKG-02",
+  "deliverable_id": "DEL-02-02",
+  "brief_version": 2,
+  "status": "SUCCESS",
+  "terminal": true,
+  "accepted": true,
+  "writes": 5,
+  "planning_child": {
+    "status": "INTERRUPTED",
+    "accepted": false
+  },
+  "implementation_child": {
+    "kind": "ephemeral bounded generalist",
+    "status": "SUCCESS",
+    "accepted": true
+  },
+  "review_child": {
+    "kind": "read-only software-code-review",
+    "status": "ACCEPT",
+    "accepted": true,
+    "blocking_findings": 0
+  },
+  "accepted_basis": "accepted implementation child, accepted reviewer, and WORKING_ITEMS manager combined-state validation",
+  "combined_gates": "PASS",
+  "preserved_predecessor": "four accepted PKG05 paths byte-preserved",
+  "blockers": [],
+  "return": "RETURN.md"
+}

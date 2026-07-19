@@ -1,0 +1,22 @@
+{
+  "run_id": "APPDEV_LOOP_2026-07-19_CODE_TESTS",
+  "instance_id": "CHANGE-BRANCH-1",
+  "role": "CHANGE",
+  "parent": "HELP_HUMAN",
+  "brief_version": 2,
+  "status": "COMPLETE",
+  "terminal": true,
+  "accepted": true,
+  "initial_return": {
+    "status": "BLOCKED",
+    "accepted": false,
+    "classification": "REJECTED_MISCLASSIFICATION"
+  },
+  "final_return": {
+    "branch": "codex/app-dev-authorized-code-tests-20260719",
+    "head": "ad7f5c891a17ba1f98b33b1b2072572afbf51bce",
+    "clean_at_return": true
+  },
+  "prohibited_actions_performed": [],
+  "return": "RETURN.md"
+}
