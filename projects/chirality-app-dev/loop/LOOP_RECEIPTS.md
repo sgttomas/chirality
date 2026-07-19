@@ -2224,3 +2224,53 @@
     dependency rows closed on that evidence; adoption-verdict role,
     DEP-10-03-004, and all other gates unchanged; owner merge remains the
     terminal act.
+
+- **2026-07-19 — Receipt 72** (D-APP-65 accepted-recommendations program executed; D-APP-66 and D-APP-67 ruled).
+  - Receipt-ID: `Receipt-72`
+  - Examined-Through: `24dc7bfb291996936de7a8af04b9cb9e74c6485a`
+  - Parent-Receipt: `Receipt-71`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-18/19, Ryan Tufts, in-session): "I accept your
+    recommendations.  Proceed accordingly." over the agent-presented
+    recommendations for the parked owner-gated surface, with
+    structured-question selections (R4-P47 assignment covers all three
+    fields; the hardening packets ruled in-session; D-APP-66 Option C;
+    D-APP-67 Option B). Governed homes are the D-APP-65, D-APP-66, and
+    D-APP-67 packets, each binding its owner text verbatim with a canonical
+    hash.
+  - Pointers: D-APP-65 packet and register row; role-field assignments in
+    DEL-04-01, DEL-00-02, and DEL-01-01 (K-AUTH-1, demonstrator scope; no
+    verdict rendered); DEL-10-03 DEP-10-03-004 precursors-not-amendment
+    annotation (row stays PENDING; F-APP-3 reaffirmed); DEL-04-05 RQ-011
+    category assertions with run record; DEL-01-01 seven governed
+    verification artifacts with R004 resolved; DEL-03-03 route-adapter test
+    index and SSE compatibility fixture README; D-APP-66 packet (ruled
+    Option C — no code); D-APP-67 packet (ruled Option B) with
+    Taxonomy_Committed_Secret_Redaction_DEL-05-03.md; run directory
+    execution/_Coordination/AgentRuns/D-APP-65_ACCEPTED_RECOMMENDATIONS_2026-07-18/
+    (orchestration plan, sealed briefs, per-tranche verifier returns).
+  - Stale-Map-Delta: none — no baseline pin changed; the self-check held the
+    Receipt-71 anchor throughout the program.
+  - Checks: receipt validator pass; corpus status no drift; repo-wide
+    self-check exit zero at the pinned anchor; frontend typecheck pass; full
+    frontend unit suite green including the new four-class category
+    assertions (additive only); frontend secret scan zero blocked findings;
+    dependency validator pass on the touched register; validation pytest
+    pass; practitioner-harness pytest pass; git whitespace check clean; an
+    independent adversarial verifier per tranche, every verdict COMMIT-SAFE
+    on first pass and recorded only after its return existed.
+  - Model-Attribution: Claude Fable 5 Agent-0 orchestrator (HELP_HUMAN
+    posture); six Fable 5 authoring children under sealed briefs (governed
+    writes, code-test, two parallel docs authors, packet author, on-ruling
+    writes); four independent Fable 5 read-only adversarial verifiers.
+  - Gate-Outcome: `EXECUTED` — the owner's acceptance was bound and executed
+    across four atomic commits: the R4-P47 residue is closed by assignment,
+    the RQ-011 four-class gap is closed under the accepted criterion, the
+    DEP-10-03-004 question is ruled with the future-amendment gate kept
+    PENDING, the R4-P48 docs deferrals for DEL-01-01 and DEL-03-03 are
+    produced, D-APP-66 closes its deferred item with no code by ruling, and
+    D-APP-67 ratifies the committed-secret taxonomy with the runtime helper
+    unchanged; the tool-result audit policy, subagent decision-replay,
+    PKG-09 release-prep, and piping transport items remain parked; a scoped
+    concordance pass is scheduled for a post-merge session; owner merge
+    remains the terminal integration act.
