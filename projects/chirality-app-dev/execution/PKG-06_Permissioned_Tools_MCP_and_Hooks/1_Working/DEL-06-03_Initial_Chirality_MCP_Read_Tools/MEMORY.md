@@ -8,3 +8,4 @@
 - 2026-07-12 - D-APP-56 R5 P40 executed UPD-071: REF-006 current-state kit/register wording now agrees with D-APP-38 MATCH; dated source-warning and assessment history is preserved. No lifecycle transition.
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-128: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
+- 2026-07-19 - D-APP-68 chronology item 3 assigned DEL-06-03 co-location/composition of the four coordination tools on the in-process Chirality MCP server. DEL-06-02 retains descriptor/name/catalog/validation ownership, and the legacy read-tool slice was not expanded. No runtime or lifecycle change occurred.

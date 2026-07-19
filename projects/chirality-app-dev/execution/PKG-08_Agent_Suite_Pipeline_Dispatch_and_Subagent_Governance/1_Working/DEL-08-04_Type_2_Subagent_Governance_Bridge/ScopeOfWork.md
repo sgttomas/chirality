@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-005, OBJ-007]
 
 This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and package objectives [OBJ-005, OBJ-007].
 
-- **OUT-001** — The Type 2 subagent governance bridge for DEL-08-04, including evaluateSubagentGovernance bridge behavior, allowed Type 2 SDK agent definitions, Agent hook tests, restricted child tools/cwd, and the DEL-08-05 handoff interface.
+- **OUT-001** — The managed-delegation admission bridge for DEL-08-04, including `delegate_agent`, fail-closed governance evaluation, parent-relative hierarchy checks, restricted child tools/cwd, and the DEL-08-05 handoff interface.
 
 ## Deliverable Definition — Ontology
 
@@ -47,13 +47,13 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > | Attribute | Value | Source |
 > |---|---|---|
-> | Primary function | Bridge fail-closed subagent governance to SDK agents with allowlists, sealed context, approval refs, and restricted child tools/cwd. | `_CONTEXT.md`; decomposition DEL-08-04 |
+> | Primary function | Admit managed child sessions through `delegate_agent` with sealed context, approval refs, parent-relative hierarchy checks, and restricted child tools/cwd. | D-GOV-14 item 7; D-APP-68 disposition 4; root `AGENTS.md` |
 > | Governance gate | `evaluateSubagentGovernance` is the authoritative fail-closed gate for delegation. | `docs/TYPES.md` Section 10; `docs/PLAN.md` R5 |
-> | SDK integration point | SDK `agents` definitions generated from allowed Type 2 task-agent instructions. | `docs/PLAN.md` R5; `docs/PRD.md` Section 8.15 |
-> | Hook integration point | `Agent` tool hook calls `evaluateSubagentGovernance` and fails closed. | `docs/PLAN.md` R5; `docs/SPEC.md` Section 15.2 |
-> | Child execution constraints | Child tool lists and working directory are restricted; child runs must not inherit or expand parent capabilities. | `docs/CONTRACT.md` K-SUBAGENT-2 |
-> | Required governance inputs | Environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 eligibility. | `docs/CONTRACT.md` K-SUBAGENT-1; `docs/PRD.md` Section 8.15 |
-> | Acceptance denials | Delegation without governance metadata is denied; delegation to a non-allowlisted or non-Type-2 candidate is denied. | `docs/PLAN.md` R5; `docs/PRD.md` Section 8.15 |
+> | Executable integration point | `delegate_agent` managed child sessions are the sole executable app-harness delegation path. The record-less SDK `Agent` bridge is retired, disabled, and not model-visible. | D-GOV-14 item 7; D-APP-68 disposition 4 |
+> | Hierarchy integration point | A direct child must match the caller-relative root hierarchy: Agent 0 → named Agent 1; Agent 1 → allowed Agent 2; Agent 2 → no delegation. | root `AGENTS.md`; D-APP-68 disposition 4 |
+> | Child execution constraints | Child tools, cwd, declared context, and write targets are explicit; child runs must not inherit or expand parent capabilities or authority. | `docs/CONTRACT.md` K-SUBAGENT-2; root `AGENTS.md` |
+> | Required governance inputs | Parent identity/type, child-kind eligibility, context sealing, pipeline approval, approval reference, declared context, tools, write targets, dependencies, expected output, and acceptance criteria. | D-APP-68 disposition 4; root `AGENTS.md` |
+> | Acceptance denials | Delegation without complete governance metadata is denied; a child that is ineligible relative to its direct parent is denied. | D-APP-68 disposition 4; root `AGENTS.md` |
 > | Related child-record behavior | Parent session records child lifecycle and output reference when execution support exists. | `docs/PLAN.md` R5; decomposition DEL-08-05 |
 >
 
@@ -65,8 +65,8 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > |---|---|
 > | PRD source status | `docs/PRD.md` is current under the D-APP-38 authority corpus; PRD-derived subagent governance details are accepted for this tranche. |
 > | Sequencing | PLAN R5 places governed subagent runtime after earlier runtime, permission, hook, and tool-governance work. |
-> | Scope boundary | This deliverable covers the governance bridge, SDK agent definitions, and `Agent` hook tests. Persistent parent-child run records are primarily DEL-08-05. |
-> | Authority boundary | SDK subagent mechanics are an implementation substrate; Chirality-owned governance, permission, audit, and runtime contracts control product semantics. |
+> | Scope boundary | This deliverable covers `delegate_agent` admission, fail-closed governance, parent-relative hierarchy eligibility, and the disabled legacy-bridge boundary. Persistent parent-child run records are DEL-08-05. |
+> | Authority boundary | D-GOV-14 item 7 retires the record-less SDK `Agent` bridge. Chirality-owned managed sessions, governance, permission, audit, and runtime contracts control executable delegation. |
 > | Dependency boundary | Declared upstream/downstream dependency lists remain `TBD`; the current extracted register records ACTIVE execution prerequisites for the source corpus, `evaluateSubagentGovernance` contract, permission/hook infrastructure, DEL-04-01 SDK probe, and DEL-08-05 handoff. Source: `_DEPENDENCIES.md`. |
 >
 
@@ -76,12 +76,12 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > | Component | Expected artifact/status |
 > |---|---|
-> | Governance bridge | `evaluateSubagentGovernance` bridge that consumes explicit governance metadata and returns fail-closed allow/deny outcomes. |
-> | SDK agent definitions | Definitions generated only for allowed Type 2 task-agent candidates, with deterministic restricted tool lists and cwd. |
-> | Agent hook | PreToolUse or equivalent `Agent` hook that invokes the bridge before SDK subagent execution. |
-> | Tests | `Agent` hook tests for missing metadata, non-allowlisted candidates, non-Type-2 candidates, unsealed context, missing approval reference, and restricted child tools/cwd. |
+> | Governance bridge | `delegate_agent` admission that consumes explicit governance metadata and returns fail-closed allow/deny outcomes. |
+> | Child resolution | Parent-relative resolution of named Agent 1, TASK/dedicated Agent 2, or allowed ephemeral-generalist Agent 2 candidates. |
+> | Legacy bridge fence | The SDK `Agent` tool is disabled and not model-visible; it cannot serve as a record-less fallback. |
+> | Tests | Managed-delegation tests for missing metadata, caller/child hierarchy mismatch, unsealed context, missing approval reference, and restricted child tools/cwd. |
 > | Events/records handoff | Interface with DEL-08-05 for child lifecycle and artifact-path persistence. |
-> | Implementation paths | TBD until the coding task identifies the bridge module, SDK agent-definition builder, `Agent` hook module, fixture files, and runnable test command. |
+> | Implementation paths | Live evidence is `frontend/src/lib/harness/managed-delegation.ts`, `subagent-bridge.ts`, coordination tool registration, and their managed-delegation/tool-surface tests. |
 >
 
 ### CLM-006 — References
@@ -116,17 +116,18 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 
 > ##### Scope
 >
-> This deliverable specifies a backend feature slice that connects Chirality's fail-closed Type 2 subagent governance to SDK-backed subagent execution. It covers:
+> This deliverable specifies the admission slice that connects Chirality's fail-closed governance to managed child-session execution. It covers:
 >
-> - generation or assembly of SDK `agents` definitions from allowed Type 2 task-agent instructions;
+> - `delegate_agent` as the sole executable app-harness delegation mechanism;
 > - the `evaluateSubagentGovernance` bridge used as the authoritative delegation gate;
-> - `Agent` tool hook behavior that fails closed before SDK subagent execution;
+> - parent-relative child eligibility under root `AGENTS.md`;
+> - the retired, disabled, non-model-visible SDK `Agent` boundary;
 > - restrictions on child tool lists and child working directory;
 > - tests proving denial and restriction behavior.
 >
 > This deliverable excludes:
 >
-> - general SDK adapter mechanics outside the subagent bridge;
+> - general SDK adapter mechanics and record-less SDK `Agent` execution;
 > - persistence of full parent-child runtime records and output artifact paths, except for interface handoff points to DEL-08-05;
 > - dependency extraction and `Dependencies.csv` creation.
 >
@@ -137,14 +138,14 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > | ID | Requirement | Source |
 > |---|---|---|
-> | DEL-08-04-R01 | The bridge MUST call `evaluateSubagentGovernance` as the authoritative fail-closed gate before SDK `Agent` subagent execution. | `docs/TYPES.md` Section 10; `docs/SPEC.md` Section 15.2; `docs/PLAN.md` R5 |
-> | DEL-08-04-R02 | Delegation MUST be denied unless environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 eligibility all pass. | `docs/CONTRACT.md` K-SUBAGENT-1; `docs/PRD.md` Section 8.15 |
+> | DEL-08-04-R01 | `delegate_agent` MUST call the Chirality governance/admission logic before any managed child session is created and MUST fail closed on rejection or error. | D-GOV-14 item 7; D-APP-68 disposition 4 |
+> | DEL-08-04-R02 | Delegation MUST be denied unless the direct parent and proposed direct child satisfy the root hierarchy, the context is sealed, the pipeline run is approved, the approval reference is present, and all declared execution fields pass admission. | root `AGENTS.md`; D-APP-68 disposition 4 |
 > | DEL-08-04-R03 | Delegation without governance metadata MUST be denied. | `docs/PLAN.md` R5; `docs/PRD.md` Section 8.15 |
 > | DEL-08-04-R04 | Delegation to a non-allowlisted candidate MUST be denied. | `docs/PLAN.md` R5; `docs/PRD.md` Section 8.15 |
-> | DEL-08-04-R05 | Delegation to a non-Type-2 candidate MUST be denied. | `docs/PLAN.md` R5; `docs/PRD.md` Section 8.15 |
-> | DEL-08-04-R06 | SDK `agents` definitions MUST be generated or selected only from allowed Type 2 task-agent instructions. | `docs/PLAN.md` R5; `docs/PRD.md` Section 8.15 |
-> | DEL-08-04-R07 | Child subagents MUST use restricted tool lists and restricted cwd; they MUST NOT inherit or expand capabilities beyond parent governance. | `docs/CONTRACT.md` K-SUBAGENT-2; `docs/PLAN.md` R5 |
-> | DEL-08-04-R08 | Hook failures for subagent actions MUST fail closed. | `docs/CONTRACT.md` K-HOOK-1; `docs/SPEC.md` Section 15.2 |
+> | DEL-08-04-R05 | A proposed child MUST be denied when its type is ineligible relative to the direct parent: Agent 0 admits only named Agent 1; Agent 1 admits only allowed Agent 2; Agent 2 cannot delegate. | root `AGENTS.md`; D-APP-68 disposition 4 |
+> | DEL-08-04-R06 | Managed child sessions invoked through `delegate_agent` MUST be the sole executable app-harness delegation path; the record-less SDK `Agent` bridge MUST remain disabled and not model-visible. | D-GOV-14 item 7; D-APP-68 disposition 4 |
+> | DEL-08-04-R07 | Managed children MUST use explicit restricted tools, cwd, declared context, and write targets; they MUST NOT inherit or expand capabilities or authority beyond the direct parent and sealed brief. | `docs/CONTRACT.md` K-SUBAGENT-2; root `AGENTS.md` |
+> | DEL-08-04-R08 | Admission, policy, path, or managed-child launch failures MUST fail closed. | D-GOV-14 item 7; root `AGENTS.md` |
 > | DEL-08-04-R09 | The bridge MUST preserve Chirality-owned runtime semantics rather than treating SDK defaults, SDK transcript shape, SDK tool names, or SDK permission modes as product authority. | `docs/DIRECTIVE.md` Sections 7-8; `docs/PRD.md` Principles 9-10 |
 > | DEL-08-04-R10 | Unknown values or unsupported facts in governance metadata MUST produce `TBD`, denial, or human-ruling-needed behavior rather than guessed allow decisions. | `docs/CONTRACT.md` K-INVENT-1; `docs/CONTRACT.md` K-CONFLICT-1 |
 > | DEL-08-04-R11 | The bridge SHOULD expose a clear interface for DEL-08-05 to persist parent-child lifecycle records and output artifact references when execution is enabled. | `docs/CONTRACT.md` K-SUBAGENT-3; decomposition DEL-08-05 |
@@ -186,19 +187,19 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > | Requirement | Verification approach |
 > |---|---|
-> | DEL-08-04-R01 | Unit or integration test proves `Agent` hook invokes `evaluateSubagentGovernance` before execution and denies on gate failure. |
-> | DEL-08-04-R02 | Table-driven tests cover each missing governance condition: environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 eligibility. |
+> | DEL-08-04-R01 | Unit or integration test proves `delegate_agent` performs governance/admission before child creation and denies on gate failure. |
+> | DEL-08-04-R02 | Table-driven tests cover caller-relative hierarchy, context sealing, pipeline approval, approval reference, declared scope, and child-kind eligibility. |
 > | DEL-08-04-R03 | Test missing/empty governance metadata produces denial and no child execution. |
 > | DEL-08-04-R04 | Test non-allowlisted candidate produces denial. |
-> | DEL-08-04-R05 | Test candidate without `AGENT_TYPE: 2` or acceptable Type 2 task metadata produces denial. |
-> | DEL-08-04-R06 | Fixture test proves SDK `agents` definitions are limited to allowed Type 2 task-agent instructions. |
+> | DEL-08-04-R05 | Tests prove Agent 0 → Agent 2, Agent 1 → Agent 1, and any Agent 2 delegation are denied while eligible direct-parent/direct-child pairs are admitted. |
+> | DEL-08-04-R06 | Tool-surface and bridge tests prove the SDK `Agent` tool is not model-visible and the legacy bridge remains fail-closed. |
 > | DEL-08-04-R07 | Fixture or integration test proves child tool list and cwd are restricted and cannot broaden parent governance. |
 > | DEL-08-04-R08 | Hook failure test proves fail-closed denial. |
 > | DEL-08-04-R09 | Contract test verifies bridge inputs/outputs use Chirality-owned types and do not expose SDK-specific state as product authority. |
 > | DEL-08-04-R10 | Negative tests prove missing or unknown governance values deny or require human ruling. |
 > | DEL-08-04-R11 | Interface test or type test verifies handoff fields needed by DEL-08-05 are available without this deliverable owning persistence. |
 >
-> The concrete fixture paths, passing test names, and local/CI commands are `TBD` until the implementation task selects module paths. Before implementation closure, verification evidence must name fixtures for missing metadata, missing approval reference, unsealed context, non-allowlisted candidate, non-Type-2 candidate, hook error, broad child capability request, allowed restricted execution, audit-safe denial reasons, and DEL-08-05 handoff fields.
+> Before implementation closure, verification evidence must name fixtures for missing metadata, missing approval reference, unsealed context, non-allowlisted candidate, direct-parent/child hierarchy mismatch, launch error, broad child capability request, allowed restricted execution, audit-safe denial reasons, and DEL-08-05 handoff fields.
 >
 
 ### CLM-014 — Documentation
@@ -208,11 +209,11 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > Required artifacts for this deliverable:
 >
 > - `evaluateSubagentGovernance` bridge;
-> - SDK agent definitions or deterministic definition builder;
-> - `Agent` hook tests;
+> - managed-child resolution and admission logic;
+> - `delegate_agent` tool-surface and legacy-bridge retirement tests;
 > - denial/restriction fixtures;
 > - handoff notes or typed interface for DEL-08-05 child-run persistence.
-> - implementation path record naming the bridge module, SDK agent-definition builder, `Agent` hook module, fixture directory, runnable test command, and output evidence location, or an explicit blocking `TBD` if any path is not yet selected.
+> - implementation path record naming managed delegation, legacy bridge, coordination registration, fixtures, runnable tests, and output evidence.
 >
 
 ### CLM-015 — Conflict Table (for human ruling)
@@ -230,7 +231,7 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > UPD-135/136 record the landed `SubagentGovernanceDecision`, preflight `safeMetadata`, and `ChildRunRecord` shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.
 
-- **AC-001** — The DEL-08-04 bridge is accepted when the complete preserved legacy source's denial, restriction, allowed-path, audit-safety, and DEL-08-05 handoff checks demonstrate fail-closed Type 2 delegation for SOW-063 and OBJ-005, OBJ-007.
+- **AC-001** — The DEL-08-04 bridge is accepted when the complete preserved legacy source's denial, restriction, allowed-path, audit-safety, and DEL-08-05 handoff checks demonstrate fail-closed parent-relative managed delegation for SOW-063 and OBJ-005, OBJ-007.
 
 ## Production and Verification Method — Praxeology
 
@@ -243,7 +244,7 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 
 > ##### Purpose
 >
-> Define the operational steps to produce and verify the Type 2 subagent governance bridge for SDK-backed subagent execution.
+> Define the operational steps to produce and verify managed child-session admission through `delegate_agent`.
 >
 
 ### CLM-019 — Prerequisites
@@ -256,7 +257,7 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > | Current deliverable status permits authoring | INITIALIZED; P3 enrichment is allowed by the four-documents skill, and `_STATUS.md` remains read-only under `NO_STATUS_TOUCH`. |
 > | Existing `evaluateSubagentGovernance` behavior or target contract | TBD at implementation time; source docs identify it as authoritative but do not provide the code shape. |
 > | Permission overlay and hook infrastructure | Required by source sequencing; implementation readiness TBD. |
-> | SDK `agents` capability verified by R0/R1 probes | Required by PLAN/PRD sequencing; current accepted probe reference is TBD and blocks executable runtime-sufficiency claims. |
+> | D-GOV-14 item 7 managed-delegation posture | RULED: the record-less SDK `Agent` bridge is retired and managed child sessions are the sole executable app-harness path. |
 > | Declared upstream dependencies | TBD; no declared upstream edges have been accepted outside the extracted register. Current extracted ACTIVE prerequisites are source corpus, `evaluateSubagentGovernance` contract, permission/hook infrastructure, DEL-04-01 SDK probe, and DEL-08-05 handoff. |
 >
 
@@ -267,11 +268,11 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > 1. Locate the existing `evaluateSubagentGovernance` implementation or define the narrow adapter contract that will call it.
 > 2. Define the governance input required by the bridge: parent session identity, requested candidate agent, requested task scope, context-sealed indicator, pipeline approval indicator, approval reference, persona allowlist result, environment enablement, and requested child tool/cwd constraints.
 > 3. Ensure every required input has a fail-closed default. Missing, malformed, or unknown values must deny or require human ruling.
-> 4. Record the selected implementation paths for the bridge module, SDK agent-definition builder, `Agent` hook module, fixture directory, runnable test command, and output evidence location; if any path is not selected, keep it as a blocking `TBD`.
-> 5. Build or configure SDK `agents` definitions only from allowed Type 2 task-agent instructions.
-> 6. Apply explicit child restrictions to each SDK agent definition, including restricted tools and working directory.
-> 7. Add the SDK `Agent` tool hook or equivalent pre-execution guard.
-> 8. In the hook, call the bridge before SDK subagent execution.
+> 4. Record the managed-delegation, legacy-bridge, coordination-registration, fixture, runnable-test, and evidence paths.
+> 5. Resolve child eligibility relative to the direct parent: Agent 0 → named Agent 1; Agent 1 → allowed Agent 2; Agent 2 → none.
+> 6. Apply explicit child restrictions, including declared context, tools, write targets, dependencies, output contract, and working directory.
+> 7. Keep the record-less SDK `Agent` bridge disabled and absent from the model-visible tool surface.
+> 8. Invoke the governance/admission bridge before managed child-session creation.
 > 9. Deny execution when the bridge returns denial, when hook execution fails, or when the candidate/tool/cwd configuration cannot be verified.
 > 10. Return structured denial reasons suitable for tests and audit records, with stable reason vocabulary and without sensitive prompt or environment leakage.
 > 11. Provide handoff fields or callback points for DEL-08-05 to persist parent-child lifecycle records and output artifact paths when execution is enabled.
@@ -285,14 +286,15 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > | Check | Expected result |
 > |---|---|
-> | Missing governance metadata | Denied; no SDK subagent execution. |
-> | Missing approval reference | Denied; no SDK subagent execution. |
+> | Missing governance metadata | Denied; no managed child session. |
+> | Missing approval reference | Denied; no managed child session. |
 > | Unsealed context | Denied or human-ruling-needed; no ghost-input execution. |
 > | Non-allowlisted candidate | Denied. |
-> | Non-Type-2 candidate | Denied. |
+> | Child type ineligible relative to direct parent | Denied. |
 > | Hook error | Denied fail-closed. |
 > | Child requests broad tools/cwd | Denied or narrowed to explicit approved restrictions before execution. |
-> | Allowed governed request | SDK `Agent` execution may proceed only with restricted child tools/cwd and handoff data for child record persistence. |
+> | Allowed governed request | `delegate_agent` may create a managed child only with a hierarchy-eligible child, sealed context, restricted tools/cwd, declared write targets, and handoff data for child-record persistence. |
+> | Legacy SDK `Agent` bridge | Disabled and not model-visible; cannot execute or bypass managed-session records. |
 > | Denial reason audit safety | Denial reason uses stable reason vocabulary and safe metadata; it preserves enough detail for review without prompt or environment leakage. |
 > | Event/persistence handoff | DEL-08-05 can consume bridge/hook result metadata without DEL-08-04 owning full persistence. |
 >
@@ -304,17 +306,16 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > The implementation should produce or update these records/artifacts:
 >
 > - bridge module or adapter for `evaluateSubagentGovernance`;
-> - SDK agent-definition builder or definitions;
-> - `Agent` hook tests;
-> - denial fixtures for missing metadata, non-allowlisted candidate, non-Type-2 candidate, unsealed context, missing approval reference, hook error, and broad child capability request;
+> - managed child resolver and admission bridge;
+> - `delegate_agent` and legacy-bridge retirement tests;
+> - denial fixtures for missing metadata, non-allowlisted candidate, direct-parent/child hierarchy mismatch, unsealed context, missing approval reference, launch error, and broad child capability request;
 > - allowed-path fixture showing restricted tools/cwd;
 > - handoff/interface note for DEL-08-05 child run record persistence.
-> - implementation path record naming the bridge module, SDK agent-definition builder, `Agent` hook module, fixture directory, runnable test command, and output evidence location, with any unresolved path retained as a blocking `TBD`.
-> - SDK probe evidence reference for the accepted `agents` capability probe, or an explicit blocking `TBD`.
+> - implementation path record naming managed delegation, legacy bridge, coordination registration, fixtures, runnable tests, and evidence.
 >
 > Do not create or modify `Dependencies.csv` during this procedure. Use `_DEPENDENCIES.md` only as current dependency context until declared edges are accepted.
 
-- **VER-001** — Review the complete preserved legacy source and execute its specified missing-metadata, approval-reference, unsealed-context, non-allowlisted, non-Type-2, hook-error, broad-capability, allowed-restricted-execution, audit-safety, and DEL-08-05 handoff checks; record concrete evidence.
+- **VER-001** — Review the complete preserved legacy source and execute its specified missing-metadata, approval-reference, unsealed-context, non-allowlisted, parent/child-hierarchy, launch-error, broad-capability, allowed-restricted-execution, audit-safety, and DEL-08-05 handoff checks; record concrete evidence.
 
 ## Governing Values and Decisions — Axiology
 
@@ -327,7 +328,7 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 
 > ##### Purpose
 >
-> This deliverable exists to let Chirality use SDK subagent mechanics while keeping Type 2 delegation under Chirality governance. The bridge should make delegation possible only when the product-owned gate says the request is allowed, the child context is sealed, the candidate is eligible, approvals are traceable, and child capabilities are narrower than or equal to the permitted boundary.
+> This deliverable exists to admit managed child sessions while keeping delegation under Chirality governance. `delegate_agent` may create a child only when the product-owned gate allows the request, the child is eligible relative to its direct parent, context is sealed, approvals are traceable, and capabilities are bounded by the declared scope. The SDK `Agent` bridge is not an executable fallback.
 >
 
 ### CLM-025 — Principles
@@ -337,9 +338,10 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > | Principle | Guidance |
 > |---|---|
 > | Deny first | Treat any missing governance metadata, unknown candidate status, hook error, unsealed context, missing approval reference, or unsupported state as denial or human-ruling-needed. Do not infer permission from SDK defaults. |
-> | Chirality owns semantics | SDK `agents`, `Agent` tool behavior, permission modes, and transcripts are implementation details. Public runtime contracts, audit events, and governance decisions remain Chirality-owned. |
-> | No capability inheritance by accident | A child subagent should receive an explicit restricted tool list and cwd. It should not inherit parent capabilities implicitly, and it should not broaden parent authority. |
-> | Sealed context only | Type 2 task-agent context is limited to folder contents and declared references. Avoid "ghost inputs" that are not in the sealed brief or declared sources. |
+> | Chirality owns semantics | `delegate_agent`, managed-session records, public runtime contracts, audit events, and governance decisions remain Chirality-owned; the SDK `Agent` tool is not model-visible. |
+> | Parent-relative hierarchy | Agent 0 delegates only to named Agent 1; Agent 1 delegates only to allowed Agent 2; Agent 2 does not delegate. Eligibility is relative to the direct parent, not a universal Type-2-only rule. |
+> | No capability inheritance by accident | A managed child receives explicit declared context, tools, write targets, and cwd. It does not inherit parent capabilities implicitly or broaden parent authority. |
+> | Sealed context only | Managed child context is limited to the sealed brief and declared references. Avoid "ghost inputs" that are not in the sealed brief or declared sources. |
 > | Approval is evidence, not vibes | The approval reference must be non-empty and traceable to human/gate evidence. Until the accepted format is selected, the bridge should treat absent, ambiguous, mutable, or SDK-only approval data as denial or human-ruling-needed. |
 > | Separate gate from record persistence | This slice owns bridge and hook behavior. Full parent-child record persistence and output artifact-path storage should be handed to DEL-08-05 through a clear interface. |
 >
@@ -364,7 +366,7 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > | Trade-off | Preferred direction |
 > |---|---|
 > | Convenience vs. safety | Prefer denial over opportunistic delegation when governance metadata is incomplete. |
-> | SDK-native shape vs. product contract | Wrap SDK-native fields behind Chirality types so later SDK changes do not redefine product behavior. |
+> | Provider-native shape vs. product contract | Keep provider fields behind Chirality types so adapter changes do not redefine managed-delegation behavior. |
 > | Broad child capability vs. bounded execution | Prefer narrow child tool/cwd definitions generated from the approved Type 2 task scope. |
 > | Bridge-only scope vs. record persistence | Keep this deliverable focused on gate/hook/definition behavior and expose a minimal handoff to DEL-08-05 for lifecycle records. |
 >
@@ -375,10 +377,11 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > | Scenario | Expected outcome |
 > |---|---|
-> | Delegation request lacks approval reference | Denied before SDK `Agent` execution. |
+> | Delegation request lacks approval reference | Denied before managed child creation. |
 > | Delegation request includes only an SDK transcript path or mutable UI label as approval evidence | Denied or human-ruling-needed until the accepted approval-reference format is selected. |
-> | Candidate agent is not on the persona allowlist | Denied before SDK `Agent` execution. |
-> | Candidate instruction is Type 1 or lacks `AGENT_TYPE: 2` | Denied as non-Type-2 candidate. |
+> | Agent 0 requests an Agent 2 child directly | Denied; Agent 0 delegates only to named Agent 1. |
+> | Agent 1 requests an allowed TASK or ephemeral-generalist Agent 2 | Eligible for further sealed-brief and policy checks. |
+> | Agent 2 requests any child | Denied; Agent 2 cannot delegate. |
 > | Context is not sealed or includes undeclared references | Denied or human-ruling-needed; do not execute with ghost inputs. |
 > | Child tool list requests write/bash beyond approved scope | Denied or reduced to explicit approved tools; do not inherit parent capability. |
 > | Hook throws during governance evaluation | Denied with fail-closed hook outcome. |
@@ -399,10 +402,10 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > | Item | Status |
 > |---|---|
-> | Exact TypeScript module/file names for the bridge and SDK agent-definition builder | TBD |
+> | Managed-delegation implementation paths | Resolved: `frontend/src/lib/harness/managed-delegation.ts`, `subagent-bridge.ts`, coordination tool registration, and their tests. |
 > | Exact serialized shape of the governance decision object | TBD; must include allow/deny or human-ruling-needed behavior, stable denial reason vocabulary, decision source, safe metadata, approval reference, candidate/scope facts, and DEL-08-05 handoff fields. |
 > | Exact approval reference format | TBD; must be non-empty, traceable to human/gate evidence, and stable enough for audit and tests. |
-> | SDK R0/R1 probe readiness evidence | TBD; treat missing accepted probe evidence as a blocking prerequisite, not as runtime sufficiency. |
+> | Legacy bridge posture | Resolved by D-GOV-14 item 7: disabled and non-model-visible; no SDK Agent probe can reactivate it. |
 > | Exact interface boundary with DEL-08-05 | TBD; should carry child lifecycle metadata and output artifact-path hooks without duplicating persistence ownership. |
 >
 
@@ -411,6 +414,12 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-135/136 record the landed `SubagentGovernanceDecision`, preflight `safeMetadata`, and `ChildRunRecord` shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.
+
+### CLM-032 — D-APP-68 managed-delegation refresh (2026-07-19)
+
+> ##### D-APP-68 managed-delegation refresh (2026-07-19)
+>
+> D-GOV-14 item 7 retires the record-less SDK `Agent` bridge after managed-delegation acceptance. `delegate_agent` managed child sessions are the sole executable app-harness delegation path, and the SDK `Agent` tool is disabled and not model-visible. Child eligibility is parent-relative under root `AGENTS.md`: Agent 0 → named Agent 1; Agent 1 → allowed Agent 2; Agent 2 → no delegation. DEL-08-04 owns admission and delegation; DEL-08-05 owns the resulting managed-child lifecycle, parent/scope linkage, records, and artifacts. The separately gated per-attempt decision-replay artifact remains gated and is not authorized by D-APP-68.
 
 ## Output and Evaluation Matrix
 

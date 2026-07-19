@@ -69,7 +69,7 @@ This Scope of Work defines `DEL-06-05` in service of project scope [SOW-062] and
 > | PRD source state | `docs/PRD.md` is accessible but has MATCH in `_REFERENCES.md`; PRD-derived details are treated as source-state evidence, not as unqualified accepted truth. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
 > | Bash before R4 readiness | Bash must not be exposed before governance, hooks, event logging, result storage, timeout, audit logging, and packaging checks are reliable. | `docs/DIRECTIVE.md` Section 4.2; `docs/PLAN.md` R4 |
 > | Denied execution | Denied Bash must not spawn. | `docs/PLAN.md` R4 acceptance; `docs/PRD.md` FR-100, MATCH status — reconciled under D-APP-38 |
-> | Timeout value | Exact default timeout and override semantics are TBD; source material requires a timeout but does not provide a Bash-specific value. | `docs/CONTRACT.md` Section 1.6 K-BASH-1; `docs/PLAN.md` R4 |
+> | Timeout value | Default `120000` ms; maximum override `600000` ms. | D-APP-68 chronology item 6; D-APP-56 R4-P09; `frontend/src/lib/harness/tool-shell-policy.ts` |
 > | Output channels | Allowed Bash captures stdout and stderr separately. | `docs/PLAN.md` R4 implementation targets; `docs/PRD.md` FR-100, MATCH status — reconciled under D-APP-38 |
 > | Interrupt behavior | Allowed Bash can be interrupted when possible; exact SDK/process mechanics are TBD. | `docs/PLAN.md` R4 acceptance; `docs/PRD.md` FR-100, MATCH status — reconciled under D-APP-38 |
 >
@@ -201,7 +201,7 @@ This Scope of Work defines `DEL-06-05` in service of project scope [SOW-062] and
 > Required implementation evidence:
 >
 > - Bash governance policy or options-builder slice showing default denial and explicit enablement rules.
-> - Timeout/capture policy with explicit default and override constraints once human-approved or source-defined.
+> - Timeout/capture policy with the ratified `120000` ms default and `600000` ms maximum override.
 > - Output metadata schema or fixture for stdout/stderr preview and artifact storage, including PRD-derived artifact metadata fields only while the REF-006 MATCH status remains visible. (reconciled under D-APP-38).
 > - Denied-never-spawns test evidence.
 > - Timeout/capture and interruption test evidence.
@@ -252,7 +252,7 @@ This Scope of Work defines `DEL-06-05` in service of project scope [SOW-062] and
 > | Declared upstream dependencies | Extracted ACTIVE upstream rows exist in `_DEPENDENCIES.md`; declared upstream remains TBD until dependency satisfaction is accepted. |
 > | Exact implementation file paths | TBD |
 > | Exact test fixture paths | TBD |
-> | Bash-specific numeric timeout default and maximum | TBD - required by policy but not specified in accessible sources |
+> | Bash-specific numeric timeout default and maximum | Accepted: default `120000` ms; maximum `600000` ms under D-APP-68 chronology item 6 |
 >
 
 ### CLM-017 — Steps
@@ -331,7 +331,7 @@ This Scope of Work defines `DEL-06-05` in service of project scope [SOW-062] and
 >
 > - Bash governance policy or options-builder slice: TBD.
 > - Bash preflight hook or equivalent enforcement point: TBD.
-> - Timeout default and override policy: TBD.
+> - Timeout default and override policy: default `120000` ms; maximum override `600000` ms, implemented in `frontend/src/lib/harness/tool-shell-policy.ts` and ratified by D-APP-68 chronology item 6.
 > - stdout/stderr capture evidence: TBD.
 > - Tool output artifact metadata fixture: TBD.
 > - Denied-never-spawns test evidence: TBD.
@@ -393,7 +393,10 @@ This Scope of Work defines `DEL-06-05` in service of project scope [SOW-062] and
 
 > ###### Timeout And Capture Policy
 >
-> The accessible sources require a timeout but do not provide a Bash-specific numeric default or maximum. Keep numeric values as `TBD` until accepted source or human ruling supplies them. The implementation should nevertheless require a timeout field or resolved timeout policy before a command can start.
+> Bash uses a default timeout of `120000` ms and rejects an override above the
+> `600000` ms maximum. D-APP-68 chronology item 6 ratifies these live,
+> test-pinned values. A missing request timeout resolves to the default; a
+> non-positive, non-integer, or over-maximum timeout denies before execution.
 >
 > Stdout and stderr should be captured separately so users and replay tooling can distinguish normal command output from warnings/errors. Large output should be stored under session artifacts and represented by safe metadata, not streamed unbounded into chat or model context.
 >
@@ -419,7 +422,7 @@ This Scope of Work defines `DEL-06-05` in service of project scope [SOW-062] and
 > | Trade-off | Guidance |
 > |---|---|
 > | Omit Bash vs expose and deny | Prefer omission where possible to reduce accidental model attempts, but still enforce runtime denial because tool visibility is not enough. |
-> | Single global timeout vs command-class timeout | A single default is simpler, but command-class overrides may be needed. Source material does not decide this; mark numeric policy as TBD. |
+> | Single global timeout vs command-class timeout | Use the ratified `120000` ms default and permit an explicit positive-integer override only through the `600000` ms maximum; any future command-class policy requires a governed amendment. |
 > | Inline output vs artifact storage | Inline small output for usability; preview/store medium or large output so chat and model context remain bounded. |
 > | User approval vs policy denial | Do not ask the user to approve a command that fails policy preflight. Approval should only mediate commands that are otherwise governable. |
 > | SDK transcript vs Chirality events | Use SDK transcript linkage for resume/debugging, but rely on Chirality events for accepted-turn, permission, tool, artifact, and terminal outcome audit. |
@@ -447,10 +450,38 @@ This Scope of Work defines `DEL-06-05` in service of project scope [SOW-062] and
 > | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 > |---|---|---|---|---|---|---|
 > | TBD | No direct source conflict identified during P1/P2. PRD has a MATCH source state. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections used above | All PRD-cited requirements and guidance | Treat PRD as a current MATCH source under the reconciled D-APP-38 source state. | TBD — reconciled under D-APP-38 |
-> | DEL-06-05-TIMEOUT-001 | Bash timeout values were formerly TBD. | `docs/CONTRACT.md` Section 1.6 K-BASH-1; D-APP-56 R4-P09 | Live policy enforces default `120000` ms and maximum `600000` ms. | `Specification.md` REQ-006; `frontend/src/lib/harness/tool-shell-policy.ts` | Ratified by D-APP-56; preserve this row as resolved history. | RESOLVED 2026-07-12 |
+> | DEL-06-05-TIMEOUT-001 | Bash timeout values were formerly TBD. | `docs/CONTRACT.md` Section 1.6 K-BASH-1; D-APP-56 R4-P09 | Live policy enforces default `120000` ms and maximum `600000` ms. | `ScopeOfWork.md` REQ-006; `frontend/src/lib/harness/tool-shell-policy.ts` | Ratified by D-APP-56 and reaffirmed by D-APP-68 chronology item 6; preserve this row as resolved history. | RESOLVED 2026-07-12; REAFFIRMED 2026-07-19 |
+
+### CLM-031 — D-APP-68 Managed-Child Bash Gate and Timeout Ratification (2026-07-19)
+
+> ##### D-APP-68 Managed-Child Bash Gate and Timeout Ratification (2026-07-19)
+>
+> DEL-06-05 owns the managed-child Bash admission rule. Because arbitrary Bash
+> cannot be proven package-bounded by lexical command inspection, a Bash-bearing
+> managed child is admitted only when both its declared read scope and declared
+> write scope explicitly cover the full active project root. Otherwise Bash
+> hard-denies and the caller must use bounded file tools or a deterministic
+> registered tool. An admitted Bash-bearing child is the serialized integration
+> owner for that stage; this rule does not weaken DEL-06-04's path policy for
+> bounded file tools.
+>
+> D-APP-68 chronology item 6 ratifies the live timeout constants: default
+> `120000` ms and maximum `600000` ms. These values replace former numeric-TBD
+> wording throughout this live Scope of Work; genuinely unrelated TBDs remain.
+>
+> Evidence: D-APP-68 chronology items 3 and 6; root `AGENTS.md` managed-Bash
+> rule; `frontend/src/lib/harness/tool-shell-policy.ts`;
+> `frontend/src/__tests__/lib/chirality-hooks.test.ts`.
+
+- **AC-002** — Managed-child Bash requires explicit full-project-root read and
+  write scope, remains serialized, defaults to `120000` ms, and rejects timeout
+  overrides above `600000` ms.
+- **VER-002** — Inspect shell-policy scope and timeout tests, confirm all live
+  numeric-timeout TBD assertions are removed, and verify unrelated TBDs are
+  preserved.
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-062 OBJ-005 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-062 OBJ-005 | CLM-007 CLM-031 | AC-001 AC-002 | VER-001 VER-002 | Claim map, parity report, and applicable verification evidence |

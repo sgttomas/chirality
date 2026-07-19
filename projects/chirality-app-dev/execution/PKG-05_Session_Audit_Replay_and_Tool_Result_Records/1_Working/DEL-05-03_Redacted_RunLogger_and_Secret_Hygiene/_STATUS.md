@@ -25,3 +25,4 @@
 - 2026-07-12 - D-APP-56 R4-P46 reaffirmed the D-APP-53 Option-C-gated arbitrary configured-secret registry as open and unselectable; no gate was unlocked and no state change occurred.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-19 - D-APP-67 ruled Option B (owner, in-session): the committed-secret redaction taxonomy and verifier-quoting rule are ratified in Taxonomy_Committed_Secret_Redaction_DEL-05-03.md; the runtime helper remains API-key-specific by ruling. No state or lifecycle change.
+- 2026-07-19 - D-APP-68 ruling 7 PEC credential/cookie envelope-hygiene ownership and D-APP-52/D-APP-67 Option-B limits recorded; state remains IN_PROGRESS and Checking Approval SHA is preserved.

@@ -85,7 +85,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | Component | Status | Notes |
 > |---|---|---|
 > | Control package scaffold | Present | PKG-00 owns DAG/SCC closure workflow notes and SCC closure control deliverables. |
-> | Current evidence pointer | Present | `_REFERENCES.md` points to the accepted 2026-06-16 safe-moves DepClosure snapshot. |
+> | Current evidence pointer | Present | `_REFERENCES.md` points to `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` as current; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical SCC-001-closing first-proof evidence. |
 > | SCC-001 node set | Closed | Current `Evidence/scc_summary.csv` contains only the header row. |
 > | Initial bidirectional-pair evidence | Historical | Earlier evidence remains as triage history; current snapshot reports bidirectional pair count `0`. |
 > | Initial triage directive | Historical | Earlier triage is superseded by accepted safe-moves closure evidence. |
@@ -100,7 +100,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 >
 > | ItemID | Disposition | Evidence |
 > |---|---|---|
-> | A-001 | Converted to TBD / HumanRuling. | ResponsibleParty remains unresolved because `_CONTEXT.md` lists `ResponsibleParty` as TBD and no authoritative owner is named in `DAG_CLOSURE_CONTROL.md` or the DepClosure snapshot. |
+> | A-001 | Resolved by D-APP-65. | ResponsibleParty is Ryan Tufts (K-AUTH-1), demonstrator scope, assigned 2026-07-18; this assignment renders no acceptance, issuance, or sign-off. |
 >
 
 ### CLM-007 — References
@@ -136,7 +136,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > Out of scope:
 >
 > - Creating `Dependencies.csv` for this DEL-00 control deliverable.
-> - Mutating dependency rows as part of this four-document generation task.
+> - Mutating dependency rows as part of this SOW-v1 contract-reconciliation task.
 > - Inventing new dependency types or edge semantics.
 > - Treating dependency-closure discovery as lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 >
@@ -158,7 +158,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | REQ-DEL-00-02-007 | Closure MUST be evidenced by a follow-up DepClosure scan showing strict `scc_count = 0` and strict FULL_GRAPH acyclic for dependency-closure discovery. | `DAG_CLOSURE_CONTROL.md` (Acceptance Condition); `Dependency_Closure_Report.md` (Ruling) |
 > | REQ-DEL-00-02-008 | Historical SCC-001 dependency decisions remain evidence records, not pending current closure blockers, after accepted safe moves close the strict graph. | INIT-TASK CustomInstructions; `SCC_Triage_Workbook.csv` (RecommendedAction); `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Dependency_Closure_Report.md` |
 > | REQ-DEL-00-02-009 | Historical focused workbook material MUST be retained as archive evidence and not used to reopen SCC-001 unless a later accepted DepClosure snapshot introduces a new SCC. | `Evidence/scc_summary.csv`; `Evidence/bidirectional_pairs.csv`; `SCC_Triage_Workbook.csv` (SCC-001 row) |
-> | REQ-DEL-00-02-010 | The handoff record MUST name the accepted upstream snapshot, derivative-package status, closure verdict, rerun requirements, and remaining blockers. | `AGENTS.md` (Handoff-state rule, Closure rule); `Procedure.md` (Records) |
+> | REQ-DEL-00-02-010 | The handoff record MUST name the accepted upstream snapshot, derivative-package status, closure verdict, rerun requirements, and remaining blockers. | `AGENTS.md` (Handoff-state rule, Closure rule); this `ScopeOfWork.md` CLM-020 (Records) |
 >
 
 ### CLM-011 — Standards
@@ -199,7 +199,8 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > - Historical focused SCC-001 ruling workbook.
 > - Historical per-row decision records citing owning product registers and source evidence.
 > - Historical product `Dependencies.csv` row changes where evidence supported change.
-> - Current follow-up DepClosure snapshot and closure report: `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
+> - Current DepClosure snapshot and closure report: `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`.
+> - Historical SCC-001-closing first-proof snapshot and closure report: `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
 > - Handoff state naming accepted upstream snapshot, derivative status, closure verdict, rerun requirements, and remaining blockers.
 >
 
@@ -226,14 +227,15 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 
 > ##### Purpose
 >
-> Define the operational workflow for producing SCC-001 control records from the accepted DepClosure snapshot without mutating dependency edges during this four-document generation task.
+> Define the operational workflow for producing SCC-001 control records from the accepted DepClosure snapshot without mutating dependency edges during this SOW-v1 contract-reconciliation task.
 >
 
 ### CLM-017 — Prerequisites
 
 > ##### Prerequisites
 >
-> - Current accepted upstream snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`.
+> - Current accepted upstream snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/`.
+> - Historical SCC-001-closing first-proof snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`.
 > - Required evidence files:
 >   - `Dependency_Closure_Report.md`
 >   - `Closure_Acceptance_Audit.md`
@@ -302,7 +304,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 
 > ##### Purpose
 >
-> DEL-00-02 exists to keep SCC-001 closure work visible as a governed PKG-00 control deliverable while preserving the boundary between control-plane reconciliation and product dependency data. The current accepted DepClosure evidence says the strict graph is acyclic for dependency-closure discovery: `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` reports strict `scc_count = 0`, bidirectional pair count `0`, and schema-invalid register count `0`.
+> DEL-00-02 exists to keep SCC-001 closure work visible as a governed PKG-00 control deliverable while preserving the boundary between control-plane reconciliation and product dependency data. The current accepted DepClosure evidence says the strict graph is acyclic for dependency-closure discovery: `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` reports strict `scc_count = 0`, bidirectional pair count `0`, and schema-invalid register count `0`; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical first-proof evidence.
 >
 > Sources: `_CONTEXT.md` (Deliverable Scope), `README.md` (Purpose, Boundary), `DAG_CLOSURE_CONTROL.md` (Control Status, Current Queue), `Dependency_Closure_Report.md` (Verdict, Ruling).
 >
@@ -368,8 +370,9 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > workflow for that product package. No active SCC-001 row-decision workbook remains pending from this
 > PKG-00 control deliverable.
 >
-> `ResponsibleParty` remains `TBD` as a governance/issue-readiness concern, not as a blocker to the
-> accepted dependency-closure discovery posture.
+> `ResponsibleParty` is Ryan Tufts (K-AUTH-1), demonstrator scope, assigned by D-APP-65 on
+> 2026-07-18. The assignment does not alter the accepted dependency-closure discovery posture and
+> renders no acceptance, issuance, or sign-off.
 >
 
 ### CLM-029 — References

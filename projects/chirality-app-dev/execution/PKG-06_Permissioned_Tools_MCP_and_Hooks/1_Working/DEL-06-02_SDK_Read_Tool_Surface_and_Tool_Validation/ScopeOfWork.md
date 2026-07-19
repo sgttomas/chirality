@@ -498,8 +498,35 @@ This Scope of Work defines `DEL-06-02` in service of project scope [SOW-047, SOW
 >
 > R4-P27 reconciles the former unsupported/TBD domain-tool roster wording: PKG-10 owns the ruled domain-profile registry and proposal-tool roster. DEL-06-02 remains the SDK read-tool and validation owner and does not duplicate that ownership.
 
+### CLM-035 — D-APP-68 Coordination-Descriptor Ownership (2026-07-19)
+
+> ##### D-APP-68 Coordination-Descriptor Ownership (2026-07-19)
+>
+> DEL-06-02 owns the registered descriptor, canonical-name, allowed-name
+> catalog, alias, schema, and registry-validation surface for the four
+> coordination MCP tools: `delegate_agent`, `report_coordination_notice`,
+> `send_agent_update`, and `ack_agent_update` (SDK-facing names
+> `mcp__chirality__delegate_agent`,
+> `mcp__chirality__report_coordination_notice`,
+> `mcp__chirality__send_agent_update`, and
+> `mcp__chirality__ack_agent_update`). Unknown names continue to fail closed
+> through the deterministic registry. DEL-06-03 separately owns their
+> co-location and composition on the in-process Chirality MCP server; this
+> mapping does not duplicate that composition boundary.
+>
+> Evidence: D-APP-68 chronology item 3;
+> `frontend/packages/harness-contract/src/mcp/tool-names.ts`;
+> `frontend/packages/harness-contract/src/tool-descriptor.ts`;
+> `frontend/src/__tests__/lib/tool-descriptor.test.ts`.
+
+- **AC-002** — The four coordination names resolve through registered
+  descriptors and deterministic catalog validation without absorbing MCP
+  server composition ownership.
+- **VER-002** — Inspect the coordination name roster, descriptor registry, and
+  registry-validation evidence; verify exactly four unique mapped names.
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-047 SOW-049 SOW-050 OBJ-005 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-047 SOW-049 SOW-050 OBJ-005 | CLM-008 CLM-035 | AC-001 AC-002 | VER-001 VER-002 | Claim map, parity report, and applicable verification evidence |

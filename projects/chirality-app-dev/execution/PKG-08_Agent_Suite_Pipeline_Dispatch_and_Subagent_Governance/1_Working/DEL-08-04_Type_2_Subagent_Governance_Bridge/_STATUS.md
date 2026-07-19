@@ -23,3 +23,4 @@
 
 - 2026-07-12 - D-APP-56 R4-P46 reaffirmed the D-APP-53 Option-C-gated per-attempt decision-replay artifact as open and unselectable; no gate was unlocked and no state change occurred.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-68 dispositions 3-4 refreshed managed-delegation admission, parent-relative hierarchy, and DEL-08-05 handoff ownership; the gated decision-replay Remaining item is unchanged; state remains IN_PROGRESS and Checking Approval SHA is preserved.

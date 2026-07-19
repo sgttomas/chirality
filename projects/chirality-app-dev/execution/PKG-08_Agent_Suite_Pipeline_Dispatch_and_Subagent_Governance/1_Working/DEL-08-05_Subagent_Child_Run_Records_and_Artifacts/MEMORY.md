@@ -8,3 +8,4 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-138, UPD-139: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-08-05; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-07-19 - D-APP-68 dispositions 3 and 5 confirmed DEL-08-05 as the sole owner of managed-child lifecycle, direct-parent and declared-scope linkage, coordination-aware child persistence, and `artifacts/subagents/` output storage. The already-normative D-APP-56 R4-P32 limits remain unchanged at 16 KiB inline and 512 KiB artifact-backed; DEL-05-05 retains only distinct ordinary tool-result semantics. No lifecycle state or Checking Approval SHA changed.

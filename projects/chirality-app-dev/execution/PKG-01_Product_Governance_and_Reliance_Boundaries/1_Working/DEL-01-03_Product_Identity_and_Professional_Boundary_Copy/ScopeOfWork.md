@@ -84,10 +84,10 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 >
 > | Artifact | Current location in this deliverable | Final destination path | Source |
 > |---|---|---|---|
-> | UI copy guidelines | `Guidance.md` Principles, Considerations, Trade-offs, and Examples | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Professional Boundary Checklist and Boundary Notice Examples | `_CONTEXT.md` Anticipated Artifacts; decomposition DEL-01-03 AnticipatedArtifacts |
-> | Release review checklist | `Procedure.md` Verification and Release Review Evidence Template | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Review Evidence Template | `_CONTEXT.md` Anticipated Artifacts; `docs/DIRECTIVE.md` Sections 2.4 and 3.2 |
-> | Boundary notice examples | `Guidance.md` Examples | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Boundary Notice Examples | `_CONTEXT.md` Anticipated Artifacts; `docs/CONTRACT.md` K-AUTH-1 and K-DOMAIN-4 |
-> | Review notes | `Procedure.md` Review Note Record Template | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Finding Template | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
+> | UI copy guidelines | This `ScopeOfWork.md` CLM-025–029 | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Professional Boundary Checklist and Boundary Notice Examples | `_CONTEXT.md` Anticipated Artifacts; decomposition DEL-01-03 AnticipatedArtifacts |
+> | Release review checklist | This `ScopeOfWork.md` CLM-018/020 | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Review Evidence Template | `_CONTEXT.md` Anticipated Artifacts; `docs/DIRECTIVE.md` Sections 2.4 and 3.2 |
+> | Boundary notice examples | This `ScopeOfWork.md` CLM-029 | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Boundary Notice Examples | `_CONTEXT.md` Anticipated Artifacts; `docs/CONTRACT.md` K-AUTH-1 and K-DOMAIN-4 |
+> | Review notes | This `ScopeOfWork.md` CLM-021 | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` Finding Template | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
 >
 
 ### CLM-006 — References
@@ -102,7 +102,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > | REF-004 | `docs/TYPES.md` | Stable identifiers, project truth, artifact vocabulary, human approval authority |
 > | REF-005 | `docs/PLAN.md` | Product identity and release/local-check posture |
 > | REF-006 | `docs/PRD.md` | Product requirements and accepted vNext runtime direction; the current D-APP-38 corpus snapshot records a matching authority-doc hash |
-> | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no copy requirements extracted |
+> | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no copy requirements extracted |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -253,7 +253,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > 2. Establish source authority.
 >    - Use `docs/DIRECTIVE.md` for intent, product identity, professional responsibility, evidence posture, and source hierarchy.
 >    - Use `docs/CONTRACT.md` for binding invariants.
->    - Use `docs/PRD.md` for accepted vNext product requirements under the current the current D-APP-38 corpus snapshot reference state.
+>    - Use `docs/PRD.md` for accepted vNext product requirements under the current D-APP-38 corpus snapshot reference state.
 >
 > 3. Draft or review product identity copy.
 >    - Confirm the surface names Chirality as the product.
@@ -277,7 +277,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > 7. Preserve uncertainty.
 >    - Mark missing target paths, owner assignments, and unsupported implementation details as `TBD`.
 >    - Mark inferred guidance as `ASSUMPTION`.
->    - Add conflicts requiring judgment to the Conflict Table in `Guidance.md`.
+>    - Add conflicts requiring judgment to the Conflict Table in this `ScopeOfWork.md` CLM-030.
 >
 > 8. Prepare release review evidence.
 >    - Record the surfaces checked.
@@ -314,10 +314,10 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 >
 > Create or maintain these records as applicable:
 >
-> - UI copy guidelines: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
-> - Release review checklist: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
-> - Boundary notice examples: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
-> - Review notes with checked surfaces and source sections: `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+> - UI copy guidelines: this `ScopeOfWork.md` CLM-025–029, materialized in `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+> - Release review checklist: this `ScopeOfWork.md` CLM-018/020, materialized in `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+> - Boundary notice examples: this `ScopeOfWork.md` CLM-029, materialized in `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
+> - Review notes with checked surfaces and source sections: this `ScopeOfWork.md` CLM-021, materialized in `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
 > - Human rulings for Conflict Table entries: TBD.
 > - `Dependencies.csv` satisfaction closure notes: TBD.
 >

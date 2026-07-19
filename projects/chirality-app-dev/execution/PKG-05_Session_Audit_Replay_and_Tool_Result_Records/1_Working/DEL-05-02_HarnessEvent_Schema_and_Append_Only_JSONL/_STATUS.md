@@ -21,3 +21,4 @@
 - 2026-07-12 - D-APP-56 R5 P44 assessment-pointer rider applied as a forward annotation; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-124, UPD-125; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-68 ruling 3 `coordination.*` HarnessEvent vocabulary ownership mapping recorded; state remains IN_PROGRESS and Checking Approval SHA is preserved.

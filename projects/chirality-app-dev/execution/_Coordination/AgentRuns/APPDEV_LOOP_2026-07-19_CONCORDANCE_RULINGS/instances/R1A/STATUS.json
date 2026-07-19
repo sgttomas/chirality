@@ -1,0 +1,24 @@
+{
+  "instance_id": "R1A",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "amendment": "v2",
+  "status": "COMPLETE",
+  "outcome": "ACCEPT",
+  "accepted": true,
+  "terminal": true,
+  "depends_on": ["C0_ACCEPTED"],
+  "shared_write_owner": true,
+  "writes_disjoint_from": ["R1B"],
+  "package_release_sufficient_alone": false,
+  "accepted_by": "HELP_HUMAN",
+  "fan_in_record": "../../FAN_IN_R1A_R1B.md",
+  "basis": "96563e8e09b89908e13e6b2f1f1139aca3283855",
+  "owner_ruling_sha256": "0b4e3c7e32d09fe0230595d98141ed70b8cd41ebc2162292442155f702384218",
+  "outputs": [
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CONCORDANCE_RULINGS/instances/R1A/RETURN.md"
+  ],
+  "blockers": []
+}

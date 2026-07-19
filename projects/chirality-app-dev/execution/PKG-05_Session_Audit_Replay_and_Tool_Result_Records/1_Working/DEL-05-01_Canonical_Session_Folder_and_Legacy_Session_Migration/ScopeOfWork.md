@@ -562,6 +562,28 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 > - `_REFERENCES.md` reports MATCH for the active authority corpus after the D-APP-38 corpus v2 refresh.
 > - ADQ-08 code inspection identifies `frontend/src/lib/harness/session-manager.ts` as the storage implementation path and `frontend/src/__tests__/lib/session-manager.test.ts` as the focused migration fixture path.
 
+### CLM-031 — D-APP-68 managed-delegation SessionRecord ownership (2026-07-19)
+
+> ##### D-APP-68 managed-delegation SessionRecord ownership (2026-07-19)
+>
+> D-APP-68 ruling 3 assigns the optional managed-delegation fields persisted in
+> `SessionRecord` to DEL-05-01. The owned optional metadata fields are:
+> `orchestrationRunId`, `executionRoot`, `agentInstanceId`, `parentSessionId`,
+> `parentInstanceId`, `parentAgentType`, `agentType`, `childKind`, `planVersion`,
+> `approvalRef`, `instructionPath`, `instructionHash`, `briefHash`,
+> `declaredContext`, `declaredTools`, `allowedWriteTargets`, `outputArtifact`,
+> and `childRunStatus`.
+>
+> These fields record product-owned orchestration linkage alongside the existing
+> session metadata. They are optional and do not redefine `sessionId`, canonical
+> `.chirality/sessions/<sessionId>/session.json` placement, the Chirality audit
+> mirror, legacy-flat-record conversion, or canonical-over-legacy merge
+> precedence. Managed-child lifecycle and replayable child-run-record semantics
+> remain owned by DEL-08-05; path enforcement remains owned by DEL-06-04.
+>
+> Source: D-APP-68 ruling 3; live contract evidence at
+> `frontend/packages/harness-contract/src/types.ts` (`SessionRecord`).
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |

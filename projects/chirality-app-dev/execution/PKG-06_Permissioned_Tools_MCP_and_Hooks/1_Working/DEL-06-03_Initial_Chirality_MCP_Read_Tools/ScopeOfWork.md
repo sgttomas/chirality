@@ -511,8 +511,31 @@ This Scope of Work defines `DEL-06-03` in service of project scope [SOW-048, SOW
 > | X-001 | Incorporated as source-state posture | PRD MATCH handling is now explicit before PRD-only policy detail can be used for closure. Source reread: `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.13; `docs/CONTRACT.md` Section 1.6. — reconciled under D-APP-38 |
 > | E-002 | Incorporated | Scaffold preview rationale now explains why preview/dry-run is in scope while write-capable scaffold execution remains gated. Source reread: `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2. |
 
+### CLM-035 — D-APP-68 In-Process Coordination Composition (2026-07-19)
+
+> ##### D-APP-68 In-Process Coordination Composition (2026-07-19)
+>
+> DEL-06-03 owns co-location and composition of `delegate_agent`,
+> `report_coordination_notice`, `send_agent_update`, and `ack_agent_update` on
+> the in-process Chirality MCP server. The four tools share the existing
+> product-owned MCP transport and permission/evidence wrapper; this
+> composition duty does not make them part of the legacy read-tool slice and
+> does not duplicate DEL-06-02 ownership of their descriptors, canonical
+> names, catalog entries, schemas, aliases, or registry validation. Handler
+> semantics and managed-child lifecycle remain with their mapped owners.
+>
+> Evidence: D-APP-68 chronology item 3;
+> `frontend/src/lib/harness/sdk-options-builder.ts`;
+> `frontend/src/lib/harness/mcp/coordination-tools.ts`.
+
+- **AC-002** — The four coordination tools are composed on the in-process
+  Chirality MCP server while descriptor/catalog ownership remains with
+  DEL-06-02.
+- **VER-002** — Inspect the in-process server assembly and coordination-tool
+  factory, then verify the DEL-06-02/DEL-06-03 boundary against D-APP-68.
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-048 SOW-050 OBJ-005 OBJ-006 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-048 SOW-050 OBJ-005 OBJ-006 | CLM-008 CLM-035 | AC-001 AC-002 | VER-001 VER-002 | Claim map, parity report, and applicable verification evidence |

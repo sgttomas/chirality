@@ -84,3 +84,11 @@ Structured register: `Dependencies.csv` v3.1
 ## Downstream Handoff Notes
 
 Not populated because `CONSUMER_CONTEXT=NONE`.
+
+## Current Source Migration Annotation
+
+2026-07-19 — D-GOV-16/D-APP-68: the four-document source names above describe
+the 2026-05-20 extraction and remain historical. Current live evidence pointers
+are maintained in `Dependencies.csv` against consolidated `ScopeOfWork.md` CLM
+anchors. This migration changed no dependency identity, status, satisfaction,
+or lifecycle meaning.

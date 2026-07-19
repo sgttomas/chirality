@@ -6,6 +6,31 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-19 - D-APP-68 recommendations 1–8 executed
+
+The owner-approved D-APP-68 chronology was executed across the exact 79-path
+package scope: live CLM and current-source repairs, consolidated managed-
+orchestration ownership, the active DEL-08-04 delegation path, DEL-06-05 Bash
+timeouts, DEL-05-03 PEC envelope hygiene, and DEL-04-01's version-pinned
+adoption decision. The earlier Pipeline-owner suggestion was a chronology-
+correct no-op because D-APP-56 R4-P28 already assigns that surface to
+DEL-02-02; the child-output threshold item was likewise a no-op because
+D-APP-56 R4-P32 already assigns it solely to DEL-08-05.
+
+All affected lifecycle states, Checking Approval SHAs, and unrelated Remaining
+items were preserved. Governed authority is the D-APP-68 packet; execution and
+verification evidence is in
+`execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_RULING_EXECUTION_2026-07-19/`,
+`execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CONCORDANCE_RULINGS/`,
+and `execution/_Evaluation/DAPP68_CONCORDANCE_RULINGS_2026-07-19/`.
+
+Receipt, corpus-v9, repository self-check, 123-test validation, 311-test
+practitioner-harness, 17-SoW, four dependency-register, and diff/scope checks
+passed. Frontend gates were skipped because no frontend or runtime source
+changed. This is documentary execution evidence only; it is not lifecycle
+acceptance, release approval, issuance, certification, professional
+acceptance, or merge authority.
+
 ## 2026-07-19 - D-APP-56 R4-P28/R4-P31 authorized code-test obligations completed
 
 The authorized tranche added a behavior-neutral pure

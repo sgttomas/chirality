@@ -87,3 +87,11 @@ evidence for dependency rows. Its recorded consumption as the primary input
 to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
 consistent with it. See
 `execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
+
+## Current Source Migration Annotation
+
+2026-07-19 — D-GOV-16/D-APP-68: the four-document source names above describe
+the 2026-05-20 extraction and remain historical. Current live evidence pointers
+are maintained in `Dependencies.csv` against consolidated `ScopeOfWork.md` CLM
+anchors. This migration changed no dependency identity, status, satisfaction,
+or lifecycle meaning.

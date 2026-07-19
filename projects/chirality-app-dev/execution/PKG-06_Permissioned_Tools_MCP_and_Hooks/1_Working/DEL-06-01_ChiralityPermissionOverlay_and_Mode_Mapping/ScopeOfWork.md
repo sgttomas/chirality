@@ -467,8 +467,31 @@ This Scope of Work defines `DEL-06-01` in service of project scope [SOW-054, SOW
 > |---|---|---|
 > | X-001 | Incorporated as an explicit PRD MATCH disposition. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
 
+### CLM-034 — D-APP-68 Managed-Orchestration Ownership Mapping (2026-07-19)
+
+> ##### D-APP-68 Managed-Orchestration Ownership Mapping (2026-07-19)
+>
+> DEL-06-01 owns the `coordination` descriptor permission class and the
+> `harness-permission.v7.coordination-mode` mode-policy behavior. Coordination
+> tools mutate the orchestration control plane and therefore hard-deny in every
+> mode except `workspaceWrite`; in `workspaceWrite` they are admitted only to
+> their handler-level hierarchy, seal, parentage, capability, and project-path
+> validation. This permission-class mapping does not transfer descriptor,
+> in-process MCP composition, child path-policy, Bash-policy, or child-record
+> ownership from DEL-06-02, DEL-06-03, DEL-06-04, DEL-06-05, or DEL-08-05.
+>
+> Evidence: D-APP-68 chronology item 3;
+> `frontend/src/lib/harness/permission-overlay.ts`;
+> `frontend/packages/harness-contract/src/tool-descriptor.ts`.
+
+- **AC-002** — Documentary and runtime evidence agree that the coordination
+  class is hard-denied outside `workspaceWrite` and remains subject to
+  handler-level managed-delegation validation when admitted.
+- **VER-002** — Inspect the permission overlay's v7 policy constant and
+  coordination branch, then verify the ownership boundary against D-APP-68.
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-054 SOW-055 SOW-056 SOW-058 OBJ-005 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-054 SOW-055 SOW-056 SOW-058 OBJ-005 | CLM-007 CLM-034 | AC-001 AC-002 | VER-001 VER-002 | Claim map, parity report, and applicable verification evidence |

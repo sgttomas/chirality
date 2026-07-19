@@ -1,0 +1,19 @@
+{
+  "instance_id": "CHANGE-PUBLISH",
+  "role": "CHANGE",
+  "parent": "HELP_HUMAN",
+  "status": "READY_RELEASED_FOR_RESTAGE_AND_PUBLICATION",
+  "accepted": false,
+  "terminal": false,
+  "depends_on": ["C1_ACCEPTED", "WI_PKG06_HYGIENE_ACCEPTED"],
+  "dependency_gate_satisfied": true,
+  "released_by": "HELP_HUMAN_P06H_FAN_IN",
+  "fan_in_record": "../../FAN_IN_P06H.md",
+  "index_state": "INTENTIONALLY_STALE_PENDING_CHANGE_RESTAGE",
+  "repair_amendment": "../../amendments/WI-PKG06/v2.md",
+  "required_prepublication_checks": ["git diff --cached --check", "git diff --check"],
+  "release_condition": "restage accepted repairs and control records; both cached and worktree diff checks pass",
+  "blockers_after_authorized_restage_and_passing_checks": 0,
+  "v1_semantic_rerun": "NOT_REQUIRED",
+  "next": "RESTAGE_CHECK_COMMIT_PUSH_PR"
+}

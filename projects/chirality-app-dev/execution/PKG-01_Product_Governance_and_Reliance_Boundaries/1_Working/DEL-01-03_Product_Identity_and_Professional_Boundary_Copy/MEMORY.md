@@ -11,3 +11,4 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-103: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-01-03; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-07-19 - D-APP-68 rulings 1–2 reconciled live copy/checklist/record locations, rendered REF-007 repository-relative, and repointed operative dependency citations to consolidated CLM anchors. Historical extraction prose remains unchanged; no lifecycle transition occurred.
