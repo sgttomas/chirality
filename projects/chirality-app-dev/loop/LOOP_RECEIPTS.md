@@ -2274,3 +2274,39 @@
     PKG-09 release-prep, and piping transport items remain parked; a scoped
     concordance pass is scheduled for a post-merge session; owner merge
     remains the terminal integration act.
+
+- **2026-07-19 — Receipt 73** (D-APP-65 disposition-7 scoped concordance pass executed).
+  - Receipt-ID: `Receipt-73`
+  - Examined-Through: `ff2f68c82dc2cf10269c0a2d149718cf9ca897c9`
+  - Parent-Receipt: `Receipt-72`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-07-19,
+    Ryan Tufts, launcher steer): "consider the use of subagents when planning
+    your execution of work."
+  - Pointers: derivative run folder
+    execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_CONCORDANCE_2026-07-19/
+    (MANIFESTS, 11 package ledgers, SCOPED_VERIFICATION.md, SCOPED_SUMMARY.md
+    with the 9-item owner decision slate, HANDOFF.md); control-plane record
+    execution/_Coordination/AgentRuns/SCOPED_CONCORDANCE_2026-07-19/
+    (orchestration plan, sealed briefs, seven preserved returns, fan-in
+    disposition).
+  - Stale-Map-Delta: V1 F-3 — two G6 ledger rows and one G1 note premised on a
+    missing conversion record are refuted (D-GOV-16 at
+    docs/governance_harness/_DECISIONS/ authorizes the kit→SOW conversion);
+    surviving narrower question is slate item 2. V1 F-1/F-2 prior-disposition
+    transcription slips corrected in-ledger with notes.
+  - Checks: receipt validator pass (pre and post); corpus status no drift;
+    repo-wide self-check exit zero; validation pytest pass;
+    practitioner-harness pytest pass; git whitespace check clean; V1
+    adversarial fan-in verdict FAN_IN_SAFE recorded after its return existed;
+    frontend gates skipped — no runtime source changed (read-only
+    governance/derivative tranche).
+  - Model-Attribution: Claude Fable 5 Agent-0 orchestrator (HELP_HUMAN
+    posture); six Fable 5 read-scoped discovery children under sealed briefs
+    with disjoint write targets; one Fable 5 read-only adversarial verifier.
+    Tool-fence note: the child harness exposed no Grep/Glob tools; deviations
+    disclosed per return, amendment v2 recorded in BRIEF_V1_VERIFIER.md.
+  - Gate-Outcome: `EXECUTED` — the owner-scheduled post-merge scoped
+    concordance pass ran claim-scoped over drift window c313325b7..ff2f68c82
+    (census and slate in SCOPED_SUMMARY.md); proposal-only — no
+    repairs, register, kit, lifecycle, or Remaining edits; STOPPED at the
+    9-item owner decision slate; owner merge remains the terminal act.
