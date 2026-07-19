@@ -569,6 +569,234 @@ describe('AnthropicAgentSdkManager', () => {
     });
   });
 
+  it('maps SDK 429 status errors to typed rate-limited failures', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const createMock = vi.fn().mockRejectedValue({
+      status: 429,
+      error: {
+        type: 'rate_limit_error',
+        message: 'rate limit reached for key test-key'
+      }
+    });
+    const clientFactory = vi.fn(() => ({
+      messages: {
+        create: createMock
+      }
+    }));
+    const manager = new AnthropicAgentSdkManager(clientFactory as never);
+    const events: UIEvent[] = [];
+    let thrown: unknown;
+
+    try {
+      for await (const event of manager.startTurn(session, 'hello', opts, [{ type: 'text', text: 'hello' }])) {
+        events.push(event);
+      }
+    } catch (error) {
+      thrown = error;
+    }
+
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
+    expect(thrown).toMatchObject({
+      type: 'SDK_FAILURE',
+      status: 429,
+      details: expect.objectContaining({
+        category: 'RATE_LIMITED'
+      })
+    });
+    expect((thrown as Error).message).toContain('[REDACTED_API_KEY]');
+    expect((thrown as Error).message).not.toContain('test-key');
+  });
+
+  it('maps named RateLimitError SDK errors without status to typed rate-limited failures', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const rateLimitError = new Error('rate limit reached for key test-key');
+    rateLimitError.name = 'RateLimitError';
+    const createMock = vi.fn().mockRejectedValue(rateLimitError);
+    const clientFactory = vi.fn(() => ({
+      messages: {
+        create: createMock
+      }
+    }));
+    const manager = new AnthropicAgentSdkManager(clientFactory as never);
+    const events: UIEvent[] = [];
+    let thrown: unknown;
+
+    try {
+      for await (const event of manager.startTurn(session, 'hello', opts, [{ type: 'text', text: 'hello' }])) {
+        events.push(event);
+      }
+    } catch (error) {
+      thrown = error;
+    }
+
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
+    expect(thrown).toMatchObject({
+      type: 'SDK_FAILURE',
+      status: 429,
+      details: expect.objectContaining({
+        category: 'RATE_LIMITED'
+      })
+    });
+    expect((thrown as Error).message).toContain('[REDACTED_API_KEY]');
+    expect((thrown as Error).message).not.toContain('test-key');
+  });
+
+  it('maps SDK 5xx status errors to typed API response failures', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const createMock = vi.fn().mockRejectedValue({
+      status: 529,
+      error: {
+        type: 'overloaded_error',
+        message: 'upstream overloaded while serving key test-key'
+      }
+    });
+    const clientFactory = vi.fn(() => ({
+      messages: {
+        create: createMock
+      }
+    }));
+    const manager = new AnthropicAgentSdkManager(clientFactory as never);
+    const events: UIEvent[] = [];
+    let thrown: unknown;
+
+    try {
+      for await (const event of manager.startTurn(session, 'hello', opts, [{ type: 'text', text: 'hello' }])) {
+        events.push(event);
+      }
+    } catch (error) {
+      thrown = error;
+    }
+
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
+    expect(thrown).toMatchObject({
+      type: 'SDK_FAILURE',
+      status: 529,
+      details: expect.objectContaining({
+        category: 'API_RESPONSE_ERROR'
+      })
+    });
+    expect((thrown as Error).message).toContain('[REDACTED_API_KEY]');
+    expect((thrown as Error).message).not.toContain('test-key');
+  });
+
+  it('maps unreachable-endpoint failures to typed 503 network errors', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const createMock = vi.fn().mockRejectedValue(new Error('socket hang up while sending key test-key'));
+    const clientFactory = vi.fn(() => ({
+      messages: {
+        create: createMock
+      }
+    }));
+    const manager = new AnthropicAgentSdkManager(clientFactory as never);
+    const events: UIEvent[] = [];
+    let thrown: unknown;
+
+    try {
+      for await (const event of manager.startTurn(session, 'hello', opts, [{ type: 'text', text: 'hello' }])) {
+        events.push(event);
+      }
+    } catch (error) {
+      thrown = error;
+    }
+
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
+    expect(thrown).toMatchObject({
+      type: 'SDK_FAILURE',
+      status: 503,
+      details: expect.objectContaining({
+        category: 'NETWORK_ERROR',
+        cause: expect.stringContaining('[REDACTED_API_KEY]')
+      })
+    });
+    expect(thrown).toMatchObject({
+      details: expect.objectContaining({
+        cause: expect.not.stringContaining('test-key')
+      })
+    });
+  });
+
+  it('maps stream timeouts to typed 504 request-timeout failures', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    process.env.CHIRALITY_ANTHROPIC_STREAM_TIMEOUT_MS = '25';
+    const createMock = vi.fn(
+      (_request: unknown, options: { signal: AbortSignal }) =>
+        new Promise((_resolve, reject) => {
+          options.signal.addEventListener('abort', () => {
+            const abortError = new Error('Request aborted');
+            abortError.name = 'AbortError';
+            reject(abortError);
+          });
+        })
+    );
+    const clientFactory = vi.fn(() => ({
+      messages: {
+        create: createMock
+      }
+    }));
+    const manager = new AnthropicAgentSdkManager(clientFactory as never);
+    const events: UIEvent[] = [];
+    let thrown: unknown;
+
+    try {
+      for await (const event of manager.startTurn(session, 'hello', opts, [{ type: 'text', text: 'hello' }])) {
+        events.push(event);
+      }
+    } catch (error) {
+      thrown = error;
+    }
+
+    expect(events.map((event) => event.type)).toEqual([
+      'session:init',
+      'harness:event',
+      'harness:event'
+    ]);
+    expect(events.slice(1).map((event) => (event as { data: { type: string } }).data.type)).toEqual([
+      'turn.accepted',
+      'turn.failed'
+    ]);
+    expect(thrown).toMatchObject({
+      type: 'SDK_FAILURE',
+      status: 504,
+      details: expect.objectContaining({
+        category: 'REQUEST_TIMEOUT'
+      })
+    });
+    expect((thrown as Error).message).toContain('Anthropic request timed out');
+    expect((thrown as Error).message).not.toContain('test-key');
+  });
+
   it('redacts configured API key material from SDK error messages', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const createMock = vi.fn().mockRejectedValue({
