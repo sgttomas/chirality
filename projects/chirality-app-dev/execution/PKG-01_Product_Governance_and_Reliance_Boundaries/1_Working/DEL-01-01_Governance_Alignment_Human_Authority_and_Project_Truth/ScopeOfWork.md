@@ -384,7 +384,7 @@ This Scope of Work defines `DEL-01-01` in service of project scope [SOW-074, SOW
 > | DEL-01-01-R001 | Closed by the current D-APP-38 corpus snapshot; rerun authority-corpus status if an authority document changes. |
 > | DEL-01-01-R002 | Resolved by D-APP-56 R4-P48 on 2026-07-12: preserve stable IDs and the live package path; no obsolete dispatch label is needed to discover or execute remaining work. |
 > | DEL-01-01-R003 | `ResponsibleParty` assignment explicitly deferred by D-APP-56 R4-P47 on 2026-07-12; retain `TBD` until an accountable human assigns it. Assigned 2026-07-18 by D-APP-65 to Ryan Tufts (K-AUTH-1), demonstrator scope. |
-> | DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. |
+> | DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. Resolved 2026-07-18 under D-APP-65 disposition 4: final filenames/destinations selected by reasoned agent judgment (D-APP-64) — see TASK_RUN_2026-07-18_DAPP65_docs_production.md; artifacts live in the deliverable folder. |
 
 ## Output and Evaluation Matrix
 

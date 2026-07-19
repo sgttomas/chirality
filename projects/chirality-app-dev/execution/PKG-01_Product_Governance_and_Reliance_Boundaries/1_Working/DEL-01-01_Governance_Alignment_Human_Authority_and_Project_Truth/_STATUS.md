@@ -7,7 +7,6 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- The standalone governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document-diff checklist, acceptance checklist, and conflict/source-warning table are deferred on 2026-07-12 under D-APP-56 R4-P48 until the next governed documentation-production tranche (gate: new owner-authorized production tranche; destinations remain governed by DEL-01-01-R004).
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1_P2)
@@ -23,3 +22,4 @@
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-085 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-18 - D-APP-65 assigned ResponsibleParty to Ryan Tufts (K-AUTH-1), demonstrator scope, superseding the D-APP-56 R4-P47 deferral; the assignment names the accountable human only and renders no acceptance or sign-off. The R4-P48 docs-tranche Remaining item stays open pending its authorized production tranche. No state or lifecycle change.
+- 2026-07-18 - D-APP-65 disposition 4 unlocked the R4-P48 documentation-production deferral; the seven governed artifacts were produced in the deliverable folder and R004 (filenames/destinations) was resolved by reasoned selection under D-APP-64. Verdicts in the artifacts are agent findings; no acceptance or issuance is rendered. No state or lifecycle change.
