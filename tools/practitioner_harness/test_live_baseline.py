@@ -149,13 +149,20 @@ def test_live_self_check_severity_totals_are_recorded_loop_anchors():
     # session entry, relativizing that file's one machine-absolute path — its
     # GEN8 ABS_PATH_IN_PROJECT_SURFACE finding cleared (the SPEC §0.2.4
     # message routes relativization to the next touch of the file).
+    # REVIEW 27->30 on 2026-07-18: the D-APP-64 tranche (Receipt 70) landed
+    # the owner standing-direction verbatim span, whose text cites the piping
+    # precedent worktree by machine-absolute path; the packet (its governed
+    # home) and the two sealed control-plane briefs that carry the span
+    # therefore each gain one GEN8 ABS_PATH_IN_PROJECT_SURFACE finding.
+    # Verbatim owner text and sealed briefs are detect-never-rewrite, so the
+    # findings are retained and pinned, not relativized.
     # Pin updates here are conscious, never silent.
     report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
     assert refusal is None
     assert report.severity_counts() == {
             "INFO": 15,
         "NOT_APPLICABLE": 2,
-        "REVIEW": 27,
+        "REVIEW": 30,
         "WARN": 6,
     }
 
@@ -307,6 +314,12 @@ GEN8_BASELINE_PATHS = {
     "projects/chirality-piping/plans/INIT_2026-06-18_workspace_and_agent_design_resume.md",
     "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-05_ci_provider_workflow.md",
     "projects/pec/docs/PILOT.md",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/"
+    "D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/"
+    "D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/LAUNCH_BRIEF_GOVERNED_WRITES.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/"
+    "D-APP-64_REASONED_SELECTION_OVERLAY_2026-07-18/VERIFIER_BRIEF_INVARIANTS.md",
 }
 
 
@@ -314,11 +327,14 @@ GEN8_BASELINE_PATHS = {
 def test_live_gen8_abs_path_24_file_baseline():
     # 25->24 on 2026-07-10: app-dev docs/README.md relativized on touch
     # (loop consolidation, Receipt 5) — see the severity-totals pin note.
+    # 24->27 on 2026-07-18: the three D-APP-64 records carrying the owner
+    # standing-direction verbatim span (Receipt 70) — see the severity-totals
+    # pin note; detect-never-rewrite.
     from harness_common import Severity
     report, _ = cmd_self_check.run_self_check(LIVE_REPO)
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_PROJECT_SURFACE"]
     assert {f.source_path for f in hits} == GEN8_BASELINE_PATHS
-    assert len(hits) == 24  # exactly one finding per FILE
+    assert len(hits) == 27  # exactly one finding per FILE
     assert all(f.severity is Severity.REVIEW for f in hits)
     # The worst file (the per-file granularity rationale): 21 hit lines.
     counts = {f.source_path:

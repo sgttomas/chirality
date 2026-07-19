@@ -1,0 +1,20 @@
+# Closed Invariant Matrix — D-APP-64 Landing (I1–I12)
+
+Fixed, finite verifier contract for this landing. Each row: invariant +
+required evidence. V2 checks every row against the staged tranche;
+commit-dependent cells are staged-empty until the atomic commit exists.
+
+| ID | Fixed invariant | Required evidence |
+|---|---|---|
+| I1 | **Candidate isolation.** Before the atomic commit, no file named `WORKPLAN_2026-07-18b_app_dev_loop.md` exists under `projects/chirality-app-dev/loop/` in `HEAD`; the ruled bytes live only in packet Appendix W and the run-dir candidate. | `git ls-tree HEAD projects/chirality-app-dev/loop/` output; worktree listing at check time (the materialized copy may exist in worktree/index only during the choreography's final window, per I7). |
+| I2 | **HEAD-only discovery.** The amended `LOOP_INIT.md` §2 selects the plan only from committed `HEAD` (`git show HEAD:<path>`), fail-closed; an untracked, staged-only, or worktree-only filename is never selectable. | The staged LOOP_INIT §2 text. |
+| I3 | **Deterministic selection.** Under bytewise `LC_ALL=C` ordering over the loop directory's `WORKPLAN_*.md` basenames, `WORKPLAN_2026-07-18b_app_dev_loop.md` sorts last (after `WORKPLAN_2026-07-18_app_dev_loop.md`; `b` = 0x62 > `_` = 0x5F). | Sort evidence over the actual basename set. |
+| I4 | **Unique regular blob.** The selected plan path resolves to exactly one tree entry, mode `100644`, type blob (post-commit). | `git ls-tree` on the landing commit (staged-empty pre-commit). |
+| I5 | **Carry-forward.** The candidate differs from `WORKPLAN_2026-07-18_app_dev_loop.md` only by the six enumerated Task A edits; no fence, stop, non-negotiable, or check obligation weakened. | V1 return `RETURN_CARRY_FORWARD_1.md` (`COMMIT-SAFE`) plus independent spot-diff. |
+| I6 | **Byte-identical materialization.** Appendix W span ⇄ run-dir candidate ⇄ materialized `loop/WORKPLAN_2026-07-18b_app_dev_loop.md`: three-way byte equality (span + one trailing LF for the files); `cmp -s` and equal `git hash-object` (`5f01938c92b719426e9c0716a5d5a3980cf78566`). | Independent extraction, `cmp`, `git hash-object`. |
+| I7 | **Atomic landing.** One commit carries the entire declared scope (packet, register row, minted plan, LOOP_INIT, Receipt-70, run dir) and nothing else; pre-commit `HEAD` discovery still selects `WORKPLAN_2026-07-18_app_dev_loop.md`; the landing-commit `HEAD` selects `WORKPLAN_2026-07-18b_app_dev_loop.md`. | Staged-file list vs `LANDING_MANIFEST.md`; discovery run against pre- and post-commit `HEAD` (post cell staged-empty pre-commit). |
+| I8 | **Shared-Block v1 byte-identity.** The D-APP-60 packet's block span recomputes to SHA-256 `76438ab0e00dc70e5f6db751a32d0ff07b681c7b7fb12eeda338157c5ebe7668` (5,108 bytes) and equals the piping D-50 record's recorded hash; no staged change touches those bytes. | Independent span hash; staged diff inspection. |
+| I9 | **Immutable history.** D-APP-59..D-APP-63 records, all ruled register rows, prior workplans, and receipts through Receipt-69 are byte-unchanged; the register diff is a pure one-row append. | Staged diff inspection. |
+| I10 | **Effect fence.** No merge, push, release, product, lifecycle, issuance, protected-data, domain-engine, provider/network, or other external effect in the tranche; no D-APP-64 reasoned-selection exercise occurs before the atomic landing commit. | Staged diff scope; rationale artifact attribution (pre-overlay selections recorded under per-instance latitude, not as overlay exercises). |
+| I11 | **Verbatim transcription.** The owner-direction span in packet §3 hashes to `1bba870869e096ebd975ba503ce4afbc69de3b1b2360508bc6e8b680fb502e39` (3,081 bytes), computed before recording and recomputed after writing. | Independent span hash from the packet's markers. |
+| I12 | **Staged-empty → staged-filled.** No verdict, hash, or commit id is recorded anywhere before it exists; V2/V3 and commit-dependent cells are empty at V2 check time. | Text inspection of packet §10, receipts, run records. |
