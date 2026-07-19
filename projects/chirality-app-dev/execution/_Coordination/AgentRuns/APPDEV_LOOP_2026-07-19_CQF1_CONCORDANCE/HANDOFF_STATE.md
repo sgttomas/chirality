@@ -97,3 +97,25 @@ lifecycle state, or runtime source changed. Frontend gates remain skipped.
 The sole remaining blocker is the D-APP-69 owner ruling and, if Option A is
 selected, its truthfully transcribed activation committed and merged to
 shared `main` before R1 restarts from preflight. See `updates/v3.md`.
+
+## Live update v4 — D-APP-69 Option A ruled, shared-main merge pending
+
+The owner selected Option A in-session. The exact ruling is transcribed in
+the governed D-APP-69 packet with canonical SHA-256
+`68167d09be80f7e4156b85b732982bf08817a072ab07dbaaeb0085bec1f21870`;
+the receipt points to that home without duplicating the text. The existing
+register row is `RULED (Option A)`.
+
+Only the exact RunID, five Remaining containers, ordered 22-path
+manifest/hash, pinned method identity, read-only discovery/output bounds, and
+existing V1/owner gates are activated. No ownership or mapping is accepted;
+no repair, runtime/deliverable edit, lifecycle/Approval-SHA change, hard-fence
+crossing, release, issuance, publication, push, or merge is authorized.
+
+Plan v1, `WORK_GRAPH.json`, the blocked R1 return/package/status, and V1/W1
+states remain unchanged. R1, V1, and W1 stay blocked while the ruled record is
+unmerged. After the ruled packet/register activation is committed and merged
+to shared `main`, R1 must restart from a fresh activation preflight bound to
+the resulting shared-main commit. It must not resume from the earlier
+blocked-input preflight or reuse that package as path evidence. See
+`updates/v4.md` and Receipt-77.

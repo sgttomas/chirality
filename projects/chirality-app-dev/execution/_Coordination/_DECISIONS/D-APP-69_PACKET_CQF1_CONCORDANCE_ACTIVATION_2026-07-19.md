@@ -1,6 +1,6 @@
 # D-APP-69 — CQ-F1 Concordance Activation
 
-**Status:** PROPOSAL — AWAITING OWNER RULING
+**Status:** RULED — Option A; activation pending commit and shared-main merge
 
 **Decision ID:** D-APP-69
 
@@ -11,15 +11,20 @@
 **Committed evidence basis:**
 `be4be0dfcc18a34995db61429a2342c2758a5d00`
 
+**Ruling recording basis:**
+`d31c6ca4ec6d7553514ea6504eec9d9a4861bf5b` (PR #289)
+
 ## Decision requested
 
 Whether to activate the exact read-only CQ-F1 concordance pass identified as
 `APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE`, or defer it while leaving the five
 live CQ-F1 Remaining entries unchanged.
 
-This packet is a proposal. No owner selection or ruling text exists yet. It
-must not be read as adoption, direction, ownership assignment, mapping
-acceptance, or repair authorization.
+This packet was prepared as a proposal and is now the governed home of the
+owner's exact Option-A ruling transcribed below. The ruling activates only the
+bounded read-only concordance pass after its record is committed and merged
+to shared main. It is not an ownership assignment, mapping acceptance, or
+repair authorization.
 
 ## Why a fresh activation is required
 
@@ -106,7 +111,8 @@ repair proposal returns through independent EVALUATION and the existing
 HELP_HUMAN/owner gates; activation supplies no answer to it.
 
 No discovery, source inspection, mapping analysis, or child dispatch has
-started under this proposed activation. V1 and W1 remain blocked.
+started under this ruled-but-unmerged activation. R1, V1, and W1 remain
+blocked pending shared-main merge and R1's fresh activation preflight.
 
 ## Classification and truthful attribution
 
@@ -115,8 +121,9 @@ D-APP-60 fast-reject ordering, as refined by D-APP-64, makes this
 D-GOV-04 limit, and the contemplated pass may expose consequential ownership
 mapping. D-APP-64 reasoned selection cannot create the missing authority.
 
-Option A is recommended by the agent, not selected by the owner. No owner
-case selection or owner ruling text is attributed in this packet.
+Option A was recommended by the agent. The owner has now selected Option A in
+the exact words transcribed in the Owner ruling section. No broader selection
+or meaning is attributed to the owner.
 
 ## Options
 
@@ -124,9 +131,10 @@ case selection or owner ruling text is attributed in this packet.
 
 Activate the RunID, manifest/hash, five Remaining containers, accepted method
 identity, read-only discovery boundary, derivative output root, and downstream
-decision gates stated above. After the ruling is transcribed, committed, and
-merged to shared main, R1 restarts from activation preflight on the new shared
-basis. It may then perform discovery and permitted read-only analysis fan-out.
+decision gates stated above. The ruling is now transcribed. Only after this
+ruled record is committed and merged to shared main may R1 restart from
+activation preflight on the new shared basis and, if that fresh preflight
+passes, perform discovery and permitted read-only analysis fan-out.
 
 This option is **not** an ownership ruling or repair authorization. It merely
 authorizes the evidence-producing concordance pass. Any consequential mapping
@@ -159,9 +167,8 @@ decision gate.
 
 ## On-ruling mechanism
 
-The owner must select A or B in their own words. The exact ruling must be
-transcribed truthfully into the governed decision record; no agent may infer
-or paraphrase a selection as the owner's act.
+The owner selected A in their own words, transcribed exactly below. No agent
+inference or paraphrase supplies the selection.
 
 For Option A, the ruled packet/register activation, exact RunID, scope
 manifest/hash, method identity, and run pointer must be committed and merged
@@ -171,4 +178,34 @@ Remaining entries untouched and the run blocked.
 
 ## Owner ruling
 
-**AWAITING OWNER RULING — no owner text recorded.**
+On 2026-07-19, the owner, Ryan Tufts (K-AUTH-1), replied in-session:
+
+<!-- BEGIN OWNER RULING VERBATIM -->
+APPROVE: D-APP-69 Option A
+<!-- END OWNER RULING VERBATIM -->
+
+**Canonical ruling-text SHA-256:**
+`68167d09be80f7e4156b85b732982bf08817a072ab07dbaaeb0085bec1f21870`
+(26 UTF-8 bytes: the exact text between the markers, excluding marker lines
+and delimiter newlines; no trailing newline in the hashed span).
+
+## Ruled effect and current gate
+
+Option A activates only RunID
+`APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE`, the five named Remaining
+containers, the exact ordered 22-path manifest/hash, the pinned accepted
+method identity, the read-only discovery/output boundaries, and the existing
+independent V1 and owner decision gates stated in this packet.
+
+It does not accept or assign ownership, accept any mapping, authorize repair,
+frontend/runtime or deliverable edits, lifecycle or Approval-SHA changes,
+hard-fence crossing, release, issuance, publication, push, or merge. Any
+consequential mapping returns separately through V1 and the applicable owner
+gate.
+
+The ruling is recorded on the PR #289 branch but is not yet effective for R1
+dispatch. R1, V1, and W1 remain blocked until this ruled packet/register
+activation is committed and merged to shared `main`. R1 then restarts from a
+fresh activation preflight bound to the resulting shared-main commit; it does
+not resume from the earlier blocked-input preflight or reuse that package as
+path evidence.
