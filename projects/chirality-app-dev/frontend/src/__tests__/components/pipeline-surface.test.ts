@@ -143,3 +143,74 @@ describe('PipelineSurface rendering', () => {
     expect(html).not.toContain('target <code>');
   });
 });
+
+describe('PipelineLifecycleTransitionForm rendering', () => {
+  const noop = () => {};
+
+  it('requires approval SHA and locks actor choice to HUMAN for human-gated transitions', async () => {
+    const { PipelineLifecycleTransitionForm } = await import(
+      '../../components/pipeline/pipeline-surface'
+    );
+    const html = renderToStaticMarkup(
+      createElement(PipelineLifecycleTransitionForm, {
+        availableTransitionTargets: ['CHECKING'],
+        canSubmitTransition: false,
+        requiresApprovalSha: true,
+        transitionActor: 'HUMAN',
+        transitionApprovalSha: '',
+        transitionDate: '2026-07-19',
+        transitionError: null,
+        transitionSubmitting: false,
+        transitionTarget: 'CHECKING',
+        onActorChange: noop,
+        onApprovalShaChange: noop,
+        onDateChange: noop,
+        onSubmit: noop,
+        onTargetChange: noop
+      })
+    );
+
+    expect(html).toContain('<option value="HUMAN" selected="">HUMAN</option>');
+    expect(html).toContain('<option value="WORKING_ITEMS" disabled="">WORKING_ITEMS</option>');
+    expect(html).toContain(
+      '<option value="CHIRALITY_FRAMEWORK" disabled="">CHIRALITY_FRAMEWORK</option>'
+    );
+    expect(html).toContain('<option value="4_DOCUMENTS" disabled="">4_DOCUMENTS</option>');
+    expect(html).toContain('Approval SHA (required)');
+    expect(html).toContain('required=""');
+    expect(html).toContain('<button type="submit" disabled="">Apply Transition</button>');
+  });
+
+  it('keeps approval SHA optional and submission active for ordinary transitions', async () => {
+    const { PipelineLifecycleTransitionForm } = await import(
+      '../../components/pipeline/pipeline-surface'
+    );
+    const html = renderToStaticMarkup(
+      createElement(PipelineLifecycleTransitionForm, {
+        availableTransitionTargets: ['IN_PROGRESS'],
+        canSubmitTransition: true,
+        requiresApprovalSha: false,
+        transitionActor: 'WORKING_ITEMS',
+        transitionApprovalSha: '',
+        transitionDate: '2026-07-19',
+        transitionError: null,
+        transitionSubmitting: false,
+        transitionTarget: 'IN_PROGRESS',
+        onActorChange: noop,
+        onApprovalShaChange: noop,
+        onDateChange: noop,
+        onSubmit: noop,
+        onTargetChange: noop
+      })
+    );
+
+    expect(html).toContain(
+      '<option value="WORKING_ITEMS" selected="">WORKING_ITEMS</option>'
+    );
+    expect(html).not.toContain('value="WORKING_ITEMS" disabled');
+    expect(html).toContain('Approval SHA (optional)');
+    expect(html).not.toContain('required=""');
+    expect(html).not.toContain('<button type="submit" disabled="">');
+    expect(html).toContain('<button type="submit">Apply Transition</button>');
+  });
+});

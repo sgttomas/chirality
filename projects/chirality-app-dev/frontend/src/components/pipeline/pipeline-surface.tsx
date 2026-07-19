@@ -33,6 +33,23 @@ type Option = {
   enabled: boolean;
 };
 
+type PipelineLifecycleTransitionFormProps = {
+  availableTransitionTargets: readonly string[];
+  canSubmitTransition: boolean;
+  requiresApprovalSha: boolean;
+  transitionActor: string;
+  transitionApprovalSha: string;
+  transitionDate: string;
+  transitionError: string | null;
+  transitionSubmitting: boolean;
+  transitionTarget: string;
+  onActorChange: (value: string) => void;
+  onApprovalShaChange: (value: string) => void;
+  onDateChange: (value: string) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onTargetChange: (value: string) => void;
+};
+
 const CATEGORY_ORDER: OperativeCategory[] = ['DECOMP', 'PREP', 'TASK', 'AUDIT'];
 const SATISFACTION_DISPLAY_ORDER = [
   'TBD',
@@ -104,6 +121,110 @@ function normalizeCategory(rawValue: string | null): OperativeCategory {
 
 function renderOptionLabel(option: Option): string {
   return option.enabled ? option.label : `${option.label} (coming soon)`;
+}
+
+export function PipelineLifecycleTransitionForm({
+  availableTransitionTargets,
+  canSubmitTransition,
+  requiresApprovalSha,
+  transitionActor,
+  transitionApprovalSha,
+  transitionDate,
+  transitionError,
+  transitionSubmitting,
+  transitionTarget,
+  onActorChange,
+  onApprovalShaChange,
+  onDateChange,
+  onSubmit,
+  onTargetChange
+}: PipelineLifecycleTransitionFormProps): JSX.Element {
+  return (
+    <form
+      className="pipeline-transition-form"
+      onSubmit={(event) => {
+        onSubmit(event);
+      }}
+    >
+      <h4>Lifecycle Transition</h4>
+      <div className="pipeline-transition-grid">
+        <label>
+          Target state
+          <select
+            value={transitionTarget}
+            onChange={(event) => {
+              onTargetChange(event.target.value);
+            }}
+            disabled={availableTransitionTargets.length === 0}
+          >
+            {availableTransitionTargets.length === 0 ? (
+              <option value="">No forward transition available</option>
+            ) : null}
+            {availableTransitionTargets.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          Actor
+          <select
+            value={transitionActor}
+            onChange={(event) => {
+              onActorChange(event.target.value);
+            }}
+          >
+            {TRANSITION_ACTOR_OPTIONS.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+                disabled={requiresApprovalSha && option.value !== 'HUMAN'}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          Transition date
+          <input
+            type="date"
+            value={transitionDate}
+            onChange={(event) => {
+              onDateChange(event.target.value);
+            }}
+          />
+        </label>
+
+        <label>
+          {requiresApprovalSha ? 'Approval SHA (required)' : 'Approval SHA (optional)'}
+          <input
+            value={transitionApprovalSha}
+            onChange={(event) => {
+              onApprovalShaChange(event.target.value);
+            }}
+            placeholder={
+              requiresApprovalSha
+                ? 'required: commit SHA for human gate transition'
+                : 'optional: commit SHA for approval evidence'
+            }
+            required={requiresApprovalSha}
+          />
+        </label>
+      </div>
+
+      {transitionError ? <p className="panel-error">{transitionError}</p> : null}
+
+      <div className="pipeline-transition-actions">
+        <button type="submit" disabled={!canSubmitTransition}>
+          {transitionSubmitting ? 'Applying...' : 'Apply Transition'}
+        </button>
+      </div>
+    </form>
+  );
 }
 
 export function PipelineSurface(): JSX.Element {
@@ -965,102 +1086,44 @@ export function PipelineSurface(): JSX.Element {
                 </div>
               ) : null}
 
-              <form
-                className="pipeline-transition-form"
+              <PipelineLifecycleTransitionForm
+                availableTransitionTargets={availableTransitionTargets}
+                canSubmitTransition={canSubmitTransition}
+                requiresApprovalSha={requiresApprovalSha}
+                transitionActor={transitionActor}
+                transitionApprovalSha={transitionApprovalSha}
+                transitionDate={transitionDate}
+                transitionError={transitionError}
+                transitionSubmitting={transitionSubmitting}
+                transitionTarget={transitionTarget}
+                onActorChange={(value) => {
+                  setTransitionActor(value);
+                  if (transitionError) {
+                    setTransitionError(null);
+                  }
+                }}
+                onApprovalShaChange={(value) => {
+                  setTransitionApprovalSha(value);
+                  if (transitionError) {
+                    setTransitionError(null);
+                  }
+                }}
+                onDateChange={(value) => {
+                  setTransitionDate(value);
+                  if (transitionError) {
+                    setTransitionError(null);
+                  }
+                }}
                 onSubmit={(event) => {
                   void submitTransition(event);
                 }}
-              >
-                <h4>Lifecycle Transition</h4>
-                <div className="pipeline-transition-grid">
-                  <label>
-                    Target state
-                    <select
-                      value={transitionTarget}
-                      onChange={(event) => {
-                        setTransitionTarget(event.target.value);
-                        if (transitionError) {
-                          setTransitionError(null);
-                        }
-                      }}
-                      disabled={availableTransitionTargets.length === 0}
-                    >
-                      {availableTransitionTargets.length === 0 ? (
-                        <option value="">No forward transition available</option>
-                      ) : null}
-                      {availableTransitionTargets.map((state) => (
-                        <option key={state} value={state}>
-                          {state}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-
-                  <label>
-                    Actor
-                    <select
-                      value={transitionActor}
-                      onChange={(event) => {
-                        setTransitionActor(event.target.value);
-                        if (transitionError) {
-                          setTransitionError(null);
-                        }
-                      }}
-                    >
-                      {TRANSITION_ACTOR_OPTIONS.map((option) => (
-                        <option
-                          key={option.value}
-                          value={option.value}
-                          disabled={requiresApprovalSha && option.value !== 'HUMAN'}
-                        >
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-
-                  <label>
-                    Transition date
-                    <input
-                      type="date"
-                      value={transitionDate}
-                      onChange={(event) => {
-                        setTransitionDate(event.target.value);
-                        if (transitionError) {
-                          setTransitionError(null);
-                        }
-                      }}
-                    />
-                  </label>
-
-                  <label>
-                    {requiresApprovalSha ? 'Approval SHA (required)' : 'Approval SHA (optional)'}
-                    <input
-                      value={transitionApprovalSha}
-                      onChange={(event) => {
-                        setTransitionApprovalSha(event.target.value);
-                        if (transitionError) {
-                          setTransitionError(null);
-                        }
-                      }}
-                      placeholder={
-                        requiresApprovalSha
-                          ? 'required: commit SHA for human gate transition'
-                          : 'optional: commit SHA for approval evidence'
-                      }
-                      required={requiresApprovalSha}
-                    />
-                  </label>
-                </div>
-
-                {transitionError ? <p className="panel-error">{transitionError}</p> : null}
-
-                <div className="pipeline-transition-actions">
-                  <button type="submit" disabled={!canSubmitTransition}>
-                    {transitionSubmitting ? 'Applying...' : 'Apply Transition'}
-                  </button>
-                </div>
-              </form>
+                onTargetChange={(value) => {
+                  setTransitionTarget(value);
+                  if (transitionError) {
+                    setTransitionError(null);
+                  }
+                }}
+              />
             </>
           )}
         </article>

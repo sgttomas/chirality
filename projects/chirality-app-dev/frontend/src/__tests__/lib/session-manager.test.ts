@@ -70,6 +70,32 @@ describe('FileSessionManager canonical session storage', () => {
     });
   });
 
+  it.each([
+    ['empty', ''],
+    ['whitespace-only', '   '],
+    ['dot segment', '.'],
+    ['parent segment', '..'],
+    ['forward-slash traversal', '../escaped'],
+    ['forward-slash nesting', 'nested/session'],
+    ['backslash traversal', '..\\escaped'],
+    ['backslash nesting', 'nested\\session']
+  ])('rejects an unsafe session ID before resolving paths: %s', async (_caseName, sessionId) => {
+    const manager = new FileSessionManager();
+    const wouldBeLegacyPath = path.join(sessionRoot, `${sessionId}.json`);
+    const wouldBeCanonicalPath = path.join(sessionRoot, sessionId, 'session.json');
+    const seededLegacyRecord = `${JSON.stringify(sessionRecord(sessionId), null, 2)}\n`;
+    await mkdir(path.dirname(wouldBeLegacyPath), { recursive: true });
+    await writeFile(wouldBeLegacyPath, seededLegacyRecord, 'utf8');
+
+    await expect(manager.getById(sessionId)).rejects.toMatchObject({
+      type: 'SESSION_NOT_FOUND',
+      status: 404,
+      details: { sessionId }
+    });
+    await expect(readFile(wouldBeLegacyPath, 'utf8')).resolves.toBe(seededLegacyRecord);
+    await expect(access(wouldBeCanonicalPath)).rejects.toThrow();
+  });
+
   it('migrates legacy flat records to canonical folders on resume', async () => {
     const manager = new FileSessionManager();
     const sessionId = 'sess_legacy';

@@ -6,6 +6,25 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-19 - D-APP-56 R4-P28/R4-P31 authorized code-test obligations completed
+
+The authorized tranche added a behavior-neutral pure
+`PipelineLifecycleTransitionForm` seam with static-render cases for the
+PIPELINE `CHECKING` and `IN_PROGRESS` lifecycle paths, and added
+migration-resistant guard cases showing that unsafe session IDs are rejected
+before canonical lookup or legacy-record migration. The corresponding
+Remaining item was removed from DEL-02-02 and DEL-05-01 while both deliverable
+states and their Checking Approval SHAs remained unchanged. Evidence is in the
+DEL-02-02 and DEL-05-01 2026-07-19 run records and
+`execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CODE_TESTS/`.
+
+Validation passed the receipt contract, corpus-v9 no-drift check, repository
+self-check, full practitioner-harness pytest, focused and full frontend tests,
+typecheck, production build, owned-server release-quality and premerge gates
+without skips, diff/scope checks, and server-stop verification. This records
+implementation evidence only; it is not lifecycle acceptance, owner merge,
+issuance, or release-readiness evidence.
+
 ## 2026-07-17 - D-APP-60 ruled O-A with S5: frozen shared block v1 adopted, workplan re-minted
 
 The owner ruled "O-A with S5 in." — all five slate items adopted. The frozen

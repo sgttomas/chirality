@@ -1,0 +1,28 @@
+{
+  "run_id": "APPDEV_LOOP_2026-07-19_CODE_TESTS",
+  "instance_id": "WI-PKG05-1",
+  "role": "WORKING_ITEMS",
+  "parent": "HELP_HUMAN",
+  "package_id": "PKG-05",
+  "deliverable_id": "DEL-05-01",
+  "brief_version": 2,
+  "status": "SUCCESS",
+  "terminal": true,
+  "accepted": true,
+  "writes": 4,
+  "planning_child": {
+    "status": "INTERRUPTED",
+    "accepted": false
+  },
+  "implementation_child": {
+    "skill": "software-bounded-implementation",
+    "status": "FAILED_INPUTS",
+    "accepted": false,
+    "edits": 0,
+    "reason": "TASK shell run-record and Git/tool needs conflicted with the sealed write/tool fence"
+  },
+  "accepted_basis": "WORKING_ITEMS manager direct bounded implementation and validation",
+  "combined_gates": "PASS",
+  "blockers": [],
+  "return": "RETURN.md"
+}
