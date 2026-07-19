@@ -1,0 +1,11 @@
+{
+  "instance_id": "C0",
+  "role": "CHANGE",
+  "parent": "HELP_HUMAN",
+  "status": "COMPLETE",
+  "accepted": true,
+  "terminal": true,
+  "branch": "codex/app-dev-concordance-rulings-20260719",
+  "head": "96563e8e09b89908e13e6b2f1f1139aca3283855",
+  "next": "R1"
+}

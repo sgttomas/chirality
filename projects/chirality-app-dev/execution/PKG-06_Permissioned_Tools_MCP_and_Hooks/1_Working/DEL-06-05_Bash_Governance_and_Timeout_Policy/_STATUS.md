@@ -21,3 +21,4 @@
 - 2026-07-12 - D-APP-56 R5 P40 applied UPD-071, UPD-072; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-129; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-68 items 3 and 6 managed-child Bash gate and `120000`/`600000` ms timeout policy recorded; no lifecycle, Approval SHA, or Remaining change; state remains IN_PROGRESS.

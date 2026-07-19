@@ -19,3 +19,4 @@
 - 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-138, UPD-139; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-68 dispositions 3 and 5 recorded managed-child lifecycle/parent/scope ownership and confirmed the existing 16 KiB/512 KiB child-output policy without changing values or transferring ownership; state remains IN_PROGRESS and Checking Approval SHA is preserved.

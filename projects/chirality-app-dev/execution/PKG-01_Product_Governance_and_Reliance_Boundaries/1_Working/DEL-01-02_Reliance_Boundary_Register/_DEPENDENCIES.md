@@ -91,3 +91,11 @@ Structured register: `Dependencies.csv` (`v3.1`)
 |---|---|---|---|---|---:|
 | 2026-05-20T19:24:25-0600 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (found) | SOURCE_HASH_MISMATCH at extraction time; later reconciled by D-APP-38 corpus `v1`; OPEN_BLOCKERS; ID_FORMAT_VALIDATOR_PATTERN_MISMATCH | 24 |
 | 2026-07-10 (D-APP-53 reconciliation) | RECONCILE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (re-verified) | none; `validate_dependencies.py` PASS (24 rows, 0 errors, 0 warnings) | 24 |
+
+## Current Source Migration Annotation
+
+2026-07-19 — D-GOV-16/D-APP-68: the four-document source names above describe
+the 2026-05-20 extraction and remain historical. Current live evidence pointers
+are maintained in `Dependencies.csv` against consolidated `ScopeOfWork.md` CLM
+anchors. This migration changed no dependency identity, status, satisfaction,
+or lifecycle meaning.

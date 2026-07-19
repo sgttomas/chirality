@@ -1,0 +1,24 @@
+{
+  "instance_id": "V1",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "COMPLETE",
+  "outcome": "ACCEPT",
+  "accepted": true,
+  "terminal": true,
+  "depends_on": ["WI-PKG00-01_ACCEPTED", "WI-PKG04_ACCEPTED", "WI-PKG05_ACCEPTED", "WI-PKG06_ACCEPTED", "WI-PKG08_ACCEPTED"],
+  "dependency_gate_satisfied": true,
+  "released_by": "HELP_HUMAN_PACKAGE_FAN_IN",
+  "fan_in_record": "../../FAN_IN_V1.md",
+  "source_write_scope": "READ_ONLY",
+  "accepted_by": "HELP_HUMAN",
+  "evaluation_package": "projects/chirality-app-dev/execution/_Evaluation/DAPP68_CONCORDANCE_RULINGS_2026-07-19/",
+  "evaluation_artifact_count": 4,
+  "read_only_audit_returns": [
+    "PKG-00/01_32_PATH_AUDIT_ACCEPT",
+    "PKG-04/05/06/08_47_PATH_AUDIT_ACCEPT"
+  ],
+  "blockers": [],
+  "waivers": [],
+  "releases": ["C1"]
+}

@@ -25,3 +25,4 @@
 - 2026-07-12 - D-APP-56 R4-P39 lifecycle-wording repair applied; concordance bootstrap remains open pending R6; no state change.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-104; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-68 rulings 1–2 reconciled live SOW-v1, lifecycle, and dependency-source CLM locations; no Remaining, approval SHA, or lifecycle change; state remains IN_PROGRESS.

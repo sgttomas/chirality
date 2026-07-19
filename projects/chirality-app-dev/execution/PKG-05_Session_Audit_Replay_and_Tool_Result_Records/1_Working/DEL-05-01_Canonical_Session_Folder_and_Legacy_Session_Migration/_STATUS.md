@@ -20,3 +20,4 @@
 - 2026-07-12 - D-APP-56 R5 P44 assessment-pointer rider applied as a forward annotation; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-19 - D-APP-56 R4-P31 dedicated unsafe/session-ID traversal guard coverage added and validated; the deliverable-local Remaining item was removed. State remains IN_PROGRESS; Checking Approval SHA preserved.
+- 2026-07-19 - D-APP-68 ruling 3 managed-delegation `SessionRecord` ownership mapping recorded; state remains IN_PROGRESS and Checking Approval SHA is preserved.

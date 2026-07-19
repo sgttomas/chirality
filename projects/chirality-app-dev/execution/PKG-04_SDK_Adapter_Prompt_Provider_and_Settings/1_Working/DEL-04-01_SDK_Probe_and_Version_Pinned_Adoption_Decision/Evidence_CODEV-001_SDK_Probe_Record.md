@@ -93,3 +93,24 @@ posture, but it is retained to preserve the original run record.
 This record does not mark any `Dependencies.csv` row satisfied, waived, retired, or not
 applicable. Dependency-row mutation and hard closure are excluded from this evidence refresh.
 Follow-up dependency closure remains required through its owning governed workflow.
+
+## D-APP-52 Live-Evidence Supersession Note — 2026-07-19
+
+The 2026-05-24 and 2026-07-10 observations above remain historical evidence
+and are not rewritten. Two current-looking `BLOCKED_TBD`/`PARTIAL` cells are
+prospectively superseded by
+`Evidence_DAPP52_LIVE_PROBE_2026-07-18.md` and its SHA-bound summaries:
+
+- The Claude Code subprocess version is now live-observed as `2.1.150` with
+  `@anthropic-ai/claude-agent-sdk@0.3.150` on `darwin:arm64`.
+- Live interrupt behavior was observed: abort after init ended the stream
+  after three messages with `Error("Claude Code process aborted by user")`
+  and no partial result message.
+- The live SDK sequence, session IDs, controlled transcript placement under
+  `CLAUDE_CONFIG_DIR/projects/`, and a packaged SDK-backed Read turn using the
+  binary under `app.asar.unpacked` are recorded in the D-APP-52 evidence.
+
+D-APP-68 recommendation 8 consumes that evidence for the demonstrator-scoped
+`ADOPT_WITH_RESIDUAL_RISK` record. The result remains version-pinned and does
+not add a release, issuance, certification, professional acceptance, signing,
+notarization, publication, distribution, or other-platform claim.

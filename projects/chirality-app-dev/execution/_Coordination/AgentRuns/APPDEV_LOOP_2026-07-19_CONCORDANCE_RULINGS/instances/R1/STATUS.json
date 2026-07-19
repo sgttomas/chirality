@@ -1,0 +1,12 @@
+{
+  "instance_id": "R1",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "INTERRUPTED_AFTER_EXTENDED_READ",
+  "accepted": false,
+  "terminal": true,
+  "depends_on": ["C0_ACCEPTED"],
+  "repository_changes_outside_run_root": false,
+  "accepted_outputs": [],
+  "superseded_execution_by": ["R1A", "R1B"]
+}

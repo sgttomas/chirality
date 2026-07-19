@@ -63,7 +63,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > | Condition | Value | Source |
 > |---|---|---|
-> | Reference integrity | `docs/PRD.md` is REF-006 and matches the current the current D-APP-38 corpus snapshot in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
+> | Reference integrity | `docs/PRD.md` is REF-006 and matches the current D-APP-38 corpus snapshot in `_REFERENCES.md`. | `_REFERENCES.md` REF-006; D-APP-38 |
 > | Dependency extraction | Existing derivative `Dependencies.csv` is owned by the separate dependency-extract workflow; this checklist normalization does not create, edit, satisfy, or retire rows. | `_DEPENDENCIES.md`; `Dependencies.csv` |
 > | Human authority | Agents and tools may draft and organize records, but humans approve, issue, sign, seal, and accept reliance. | `docs/TYPES.md` §3.3; `docs/DIRECTIVE.md` §3 |
 > | Unknown values | Unknown values remain `TBD`; agents and tools must not invent scope items, dependency targets, parameters, or professional conclusions. | `docs/CONTRACT.md` §1.7 K-INVENT-1 |
@@ -88,7 +88,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 
 > ###### Boundary Register Rows
 >
-> For this four-document kit, the concrete register-row artifact is this `Datasheet.md` section. Later publication may move these rows into a dedicated register file, but until amended this table is the inspection surface for boundary-row verification.
+> In the SOW-v1 production set, the concrete register-row artifact is this `ScopeOfWork.md` CLM-006 section. Later publication may move these rows into a dedicated register file, but until amended this table is the inspection surface for boundary-row verification.
 >
 > ADQ-03 also materialized `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized review checklist for
 > scope-boundary and professional-boundary checks. The human ruling fields below remain `TBD` until an
@@ -166,7 +166,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > | DEL-01-04-REQ-008 | Domain-engine operation execution must remain future-amendment scope; domain operations require proposal records and explicit human acceptance before application. | Confirm domain boundary row cites future-amendment status and human gate. | `docs/PRD.md` §6.4 and R7; `docs/CONTRACT.md` §1.10 K-DOMAIN-3 |
 > | DEL-01-04-REQ-009 | The register must not imply automated professional approval, code compliance, external validation, or solver truth owned by Chirality. | Review copy for professional-boundary language. | `docs/DIRECTIVE.md` §3; `docs/CONTRACT.md` §1.2 K-AUTH-1 and K-PROF-1 |
 > | DEL-01-04-REQ-010 | Unknown or unsupported scope facts must remain `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed entries rather than invented content. | Inspect rows and notes for unsupported facts. | `docs/CONTRACT.md` §1.7 K-INVENT-1 and K-CONFLICT-1 |
-> | DEL-01-04-REQ-011 | The concrete boundary rows for this four-document kit must be inspectable in `Datasheet.md` under `Boundary Register Rows` until a governed amendment or publication step moves them into a dedicated register artifact. | Inspect `Datasheet.md` `Boundary Register Rows` for RowID, boundary item, source reference, amendment trigger, current status, and human ruling fields. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04; `docs/DIRECTIVE.md` §7; `docs/CONTRACT.md` §1.7 K-INVENT-1 |
+> | DEL-01-04-REQ-011 | The concrete boundary rows for this SOW-v1 production set must be inspectable in `ScopeOfWork.md` CLM-006 until a governed amendment or publication step moves them into a dedicated register artifact. | Inspect `ScopeOfWork.md` CLM-006 for RowID, boundary item, source reference, amendment trigger, current status, and human ruling fields. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04; `docs/DIRECTIVE.md` §7; `docs/CONTRACT.md` §1.7 K-INVENT-1 |
 >
 
 ### CLM-011 — Standards
@@ -177,7 +177,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 > |---|---|
 > | `docs/DIRECTIVE.md` | Governs founding intent, professional responsibility, out-of-scope posture, and change discipline. |
 > | `docs/CONTRACT.md` | Governs binding invariants for scope boundaries, settings, permissions, retired scope, and human authority. |
-> | `docs/PRD.md` | Governs current vNext product requirements and explicit non-goals; source hash warning applies. |
+> | `docs/PRD.md` | Governs current vNext product requirements and explicit non-goals; the current D-APP-38 corpus snapshot records REF-006 as matching. |
 > | `docs/PLAN.md` | Governs roadmap sequencing and retired PKG-08 interpretation. |
 > | `docs/TYPES.md` | Governs agent authority vocabulary and domain proposal vocabulary. |
 > | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Governs DEL-01-04 identity, scope item mapping, and objective mapping. |
@@ -191,11 +191,11 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > | Verification Item | Method |
 > |---|---|
-> | Four-doc kit completeness | Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist and are non-empty. |
+> | SOW-v1 production-set completeness | Confirm `ScopeOfWork.md`, `docs/BOUNDARY_REVIEW_CHECKLISTS.md`, and applicable deliverable-local run records exist and are non-empty. |
 > | Boundary coverage | Trace SOW-065, SOW-076, SOW-077, and SOW-078 from decomposition to register requirements. |
 > | Source fidelity | Confirm non-trivial requirements cite source files and sections. |
 > | Conservative drafting | Confirm unsupported facts are marked `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed. |
-> | Boundary-row inspection | Confirm the concrete register rows are present in `Datasheet.md` under `Boundary Register Rows` and include source reference, amendment trigger, current status, and human ruling fields. |
+> | Boundary-row inspection | Confirm the concrete register rows are present in this `ScopeOfWork.md` CLM-006 and include source reference, amendment trigger, current status, and human ruling fields. |
 > | Boundary review checklist | Confirm `docs/BOUNDARY_REVIEW_CHECKLISTS.md` covers scope-boundary and professional-boundary review without treating checklist completion as approval. |
 > | Scope containment | Confirm this run does not satisfy or mutate dependency rows and does not modify files outside the authorized tranche scope. |
 > | Status transition | Read current state from `_STATUS.md`; this work makes no transition, and any future human-gate transition requires governed approval evidence. |
@@ -207,13 +207,10 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > Required artifacts for this deliverable:
 >
-> - `Datasheet.md`
-> - `Specification.md`
-> - `Guidance.md`
-> - `Procedure.md`
+> - `ScopeOfWork.md`
 > - `_STATUS.md`
 > - `_run_records/TASK_RUN_*.md`
-> - `Datasheet.md` `Boundary Register Rows` section as the concrete inspection surface for this kit
+> - `ScopeOfWork.md` CLM-006 as the concrete inspection surface for the SOW-v1 production set
 > - `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized review checklist and evidence template
 >
 > Existing derivative artifact:
@@ -266,7 +263,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >    - Confirm REF-006 `docs/PRD.md` matches the current D-APP-38 corpus version.
 >
 > 4. Build the out-of-scope register content.
->    - Materialize the concrete register-row artifact in `Datasheet.md` under `Boundary Register Rows` unless a governed publication step moves the rows to a dedicated register file.
+>    - Maintain the concrete register-row artifact in this `ScopeOfWork.md` CLM-006 unless a governed publication step moves the rows to a dedicated register file.
 >    - Include SOW-065 for remote MCP, plugins, remote execution, marketplace extension, and broad tool search before mature governance.
 >    - Include SOW-076 for ambient Claude settings and shipped/ordinary `bypassPermissions`.
 >    - Include SOW-078 for Windows/Linux release packaging.
@@ -286,18 +283,18 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >    - Use `TBD`, `ASSUMPTION`, `PROPOSAL`, or conflict-table entries for unsupported facts.
 >    - Do not create new scope items or assign ResponsibleParty.
 >
-> 8. Cross-check the four documents.
->    - Confirm the same boundary items and terminology appear consistently in `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`.
->    - Confirm requirements in `Specification.md` have corresponding production and verification hooks here.
+> 8. Cross-check the SOW-v1 production set.
+>    - Confirm the ontology, epistemology, praxeology, and axiology CLM blocks use consistent boundary items and terminology.
+>    - Confirm requirements in CLM-010 have corresponding production and verification hooks here.
 >    - Use `docs/BOUNDARY_REVIEW_CHECKLISTS.md` as the normalized scope-boundary/professional-boundary review checklist.
 >
 > 9. Preserve current lifecycle state.
->    - Current lifecycle state is `CHECKING`.
+>    - Read the current lifecycle state only from `_STATUS.md`; it is `IN_PROGRESS` as of this reconciliation.
 >    - Do not perform a state regression or human-gate transition.
 >    - Any future human-gate transition requires the governed status workflow and its required human approval evidence.
 >
 > 10. Defer dependency extraction.
->    - Do not create or edit `Dependencies.csv` during this four-documents run.
+>    - Do not create or edit `Dependencies.csv` during this SOW-v1 contract-reconciliation run.
 >    - Treat any existing `Dependencies.csv` as output of the separate `TASK + dependency-extract` workflow described in `_DEPENDENCIES.md`.
 >
 
@@ -307,11 +304,11 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > | Check | Expected Result |
 > |---|---|
-> | Document existence | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` exist and are non-empty. |
+> | Document existence | `ScopeOfWork.md`, `docs/BOUNDARY_REVIEW_CHECKLISTS.md`, and applicable deliverable-local run records exist and are non-empty. |
 > | Boundary coverage | SOW-065, SOW-076, SOW-077, and SOW-078 are represented. |
 > | Source grounding | Non-trivial boundary statements cite source files and sections. |
 > | ResponsibleParty | Remains `TBD`. |
-> | Boundary-row artifact | `Datasheet.md` includes concrete `Boundary Register Rows` with source reference, amendment trigger, current status, and human ruling fields. |
+> | Boundary-row artifact | `ScopeOfWork.md` CLM-006 includes concrete boundary-register rows with source reference, amendment trigger, current status, and human ruling fields. |
 > | Boundary review checklist | `docs/BOUNDARY_REVIEW_CHECKLISTS.md` exists and preserves checklist completion as evidence only. |
 > | Dependency extraction | This run does not create or edit `Dependencies.csv`; if present, it remains owned by the separate dependency-extract workflow. |
 > | Status | Current state is read from `_STATUS.md`; no lifecycle transition occurs in this checklist normalization. |
@@ -324,10 +321,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > Records produced or updated by this procedure:
 >
-> - `Datasheet.md`
-> - `Specification.md`
-> - `Guidance.md`
-> - `Procedure.md`
+> - `ScopeOfWork.md`
 > - `_STATUS.md` (read-only lifecycle evidence for this checklist normalization)
 > - `docs/BOUNDARY_REVIEW_CHECKLISTS.md`
 > - `_run_records/TASK_RUN_*.md`
@@ -387,7 +381,7 @@ This Scope of Work defines `DEL-01-04` in service of project scope [SOW-065, SOW
 >
 > | Topic | Guidance | Source |
 > |---|---|---|
-> | Boundary-row placement | Inspect the concrete boundary rows in `Datasheet.md` under `Boundary Register Rows`; that section is the current register-row artifact unless a governed publication step moves the rows elsewhere. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04; `docs/DIRECTIVE.md` §7 |
+> | Boundary-row placement | Inspect the concrete boundary rows in `ScopeOfWork.md` CLM-006; that section is the current register-row artifact unless a governed publication step moves the rows elsewhere. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04; `docs/DIRECTIVE.md` §7 |
 > | Remote MCP and plugins | Keep as out of current scope until local/in-process SDK integration, permission policy, hooks, event logging, and result storage are stable and a governed amendment permits expansion. | `docs/PRD.md` §3.2, §6.4; `docs/PLAN.md` §11 |
 > | Broad tool search | Treat as deferred; if later introduced, it must reveal only currently allowed tools and never denied tools. | `docs/PRD.md` §8.14 FR-103 |
 > | Shipped settings | Do not allow shipped builds to load ambient Claude settings. A change attempt should trigger governance review before implementation. | `docs/PRD.md` §3.2; `docs/CONTRACT.md` §1.4 K-SDK-1 |

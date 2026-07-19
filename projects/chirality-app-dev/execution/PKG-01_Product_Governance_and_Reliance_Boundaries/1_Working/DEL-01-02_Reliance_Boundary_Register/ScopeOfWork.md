@@ -285,7 +285,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 >
 > | Check | Expected evidence |
 > |---|---|
-> | Schema completeness | Every register row includes the fields listed in `Datasheet.md` "Minimum Register Fields." |
+> | Schema completeness | Every register row includes the fields listed in this `ScopeOfWork.md` CLM-009, "Minimum Register Fields." |
 > | Coverage completeness | Rows exist for audit, permission, filesystem, lifecycle, transcript, settings, subagent, human-gate, runtime-engine, tool-surface, hooks, redaction, and fallback boundaries. |
 > | Source traceability | Each row cites at least one governance/source reference and uses `location TBD` where exact implementation files are unavailable. |
 > | P0 enforcement posture | P0 rows have `PromptOnlyAllowed=NO` and `SDKDefaultOnlyAllowed=NO`. |
@@ -479,7 +479,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 
 > ###### 7. Produce Artifacts
 >
-> 1. Draft or update `docs/harness/reliance_boundary_register.md` from the schema and requirements in the four-document kit.
+> 1. Draft or update `docs/harness/reliance_boundary_register.md` from the schema and requirements in this `ScopeOfWork.md`, principally CLM-009 and CLM-018.
 > 2. Create an enforcement matrix view suitable for implementation review.
 > 3. Create a test index keyed by validation ID and boundary ID.
 > 4. Carry forward:
@@ -526,10 +526,10 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 >
 > | Record | Purpose |
 > |---|---|
-> | `Datasheet.md` | Boundary taxonomy, source state, minimum fields, candidate validation index. |
-> | `Specification.md` | Normative requirements and verification expectations. |
-> | `Guidance.md` | Drafting principles, trade-offs, examples, conflict/source-warning table. |
-> | `Procedure.md` | Workflow for producing and maintaining the register. |
+> | `ScopeOfWork.md` CLM-001–013 | Boundary taxonomy, source state, minimum fields, candidate validation index, and current-state reconciliation. |
+> | `ScopeOfWork.md` CLM-014–023 | Normative requirements, verification expectations, documentation, and open-item posture. |
+> | `ScopeOfWork.md` CLM-024–038 | Workflow for producing, validating, and maintaining the register. |
+> | `ScopeOfWork.md` CLM-039–060 | Drafting principles, trade-offs, examples, source-state notes, and current implementation guidance. |
 > | `docs/harness/reliance_boundary_register.md` | ADQ-02 generated register artifact with embedded enforcement matrix and test index. |
 > | Enforcement matrix | Reviewable mapping of boundaries to owners/surfaces. |
 > | Test index | Validation ID to boundary coverage map. |

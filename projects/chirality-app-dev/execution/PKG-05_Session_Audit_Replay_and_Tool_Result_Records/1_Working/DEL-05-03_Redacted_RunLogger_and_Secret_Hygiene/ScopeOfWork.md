@@ -160,7 +160,7 @@ This Scope of Work defines `DEL-05-03` in service of project scope [SOW-021, SOW
 > | DEL-05-03-R11 | Every runtime record or diagnostic write/display path that can carry provider, SDK, tool, run-log, event, or artifact payload data MUST pass through redaction before persistence and before user-visible diagnostic display where the value could reveal configured secrets. | P0 | `docs/CONTRACT.md` K-EVENT-6, K-KEY-1; `docs/PLAN.md` Section 6.3 |
 > | DEL-05-03-R12 | The shared redaction helper contract MUST remain TBD until implementation records the final module path, public API, configured-secret schema, supported encoded variants, overlap handling, and accepted replacement token. | P0 | `docs/PRD.md` FR-075; current code context; `docs/CONTRACT.md` K-EVENT-6 |
 > | DEL-05-03-R13 | Tool-result hygiene verification MUST cover inline, preview, artifact, redacted, and withheld payload paths before sensitive raw values may be accepted into persisted records. | P0 | `docs/CONTRACT.md` K-EVENT-7; `docs/PRD.md` Section 10.5 |
-> | DEL-05-03-R14 | Domain-proposal transport must apply the same credential, cookie, and configured-secret hygiene as other governed runtime transport lanes. | P0 | D-APP-52; D-APP-56 R4-P27 |
+> | DEL-05-03-R14 | PEC domain-proposal transport credentials and the `pec_session` cookie MUST remain outside returned envelopes, HarnessEvents, error details, logs, artifacts, and model context by construction; the cookie remains in memory only. This documentary ownership does not broaden the API-key-specific runtime logger into a generic secret registry. | P0 | D-APP-52; D-APP-56 R4-P27; D-APP-67 Option B; D-APP-68 ruling 7 |
 >
 
 ### CLM-011 — Standards
@@ -224,6 +224,16 @@ This Scope of Work defines `DEL-05-03` in service of project scope [SOW-021, SOW
 > ##### D-APP-56 domain-proposal transport amendment (2026-07-12)
 >
 > R4-P27 adds domain-proposal transport credential and cookie hygiene to this deliverable's redaction scope under the D-APP-52 lane. This does not unlock the separately gated arbitrary configured-secret registry item reaffirmed by R4-P46.
+>
+> **D-APP-68 ruling 7 current-state clarification (2026-07-19):** DEL-05-03
+> owns the documentary PEC credential/cookie envelope-hygiene boundary.
+> `CHIRALITY_PEC_AGENT_EMAIL`, `CHIRALITY_PEC_AGENT_PASSWORD`, login-response
+> identity, and the in-memory `pec_session` cookie stay out of tool-result and
+> evidence envelopes, HarnessEvents, errors, logs, artifacts, and model context
+> by the D-APP-52 allowlisted transport construction. D-APP-67 Option B remains
+> binding: the runtime helper is API-key-specific, no generic configured-secret
+> registry or `[REDACTED_SECRET]` token is authorized, and PEC password safety
+> continues to depend on envelope construction rather than registry coverage.
 
 - **AC-001** — Every legacy source line is preserved exactly and traceably in the migrated ScopeOfWork contract.
 
@@ -429,6 +439,25 @@ This Scope of Work defines `DEL-05-03` in service of project scope [SOW-021, SOW
 > | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 > |---|---|---|---|---|---|---|
 > | None | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` | Human runtime instruction | All documents using PRD evidence | Use PRD as accessible source with warning; do not derive unsupported details from it alone. | TBD — reconciled under D-APP-38 |
+
+### CLM-028 — D-APP-68 PEC envelope-hygiene ownership (2026-07-19)
+
+> ##### D-APP-68 PEC envelope-hygiene ownership (2026-07-19)
+>
+> DEL-05-03 is the sole documentary owner for PEC credential/cookie hygiene at
+> the app-harness transport-envelope boundary. The accepted posture is
+> construction-based exclusion, not generic runtime redaction: credentials are
+> read locally only for login, the login body is discarded, the session cookie
+> remains private and in memory, and none of those values is returned or
+> persisted through governed envelopes.
+>
+> D-APP-67 Option B is a hard fence on this mapping. The committed-file taxonomy
+> and verifier-quoting rule are ratified, while `readConfiguredApiKeyVariants`
+> remains limited to its accepted API-key sources. This section authorizes no
+> registry, helper, transport, descriptor, provider, tool, or runtime-source
+> expansion.
+>
+> Sources: D-APP-52; D-APP-67 Option B; D-APP-68 ruling 7.
 
 ## Output and Evaluation Matrix
 

@@ -2321,3 +2321,14 @@
   - Checks: receipt validator pass; authority corpus v9 no drift; repository self-check pass; full practitioner-harness pytest pass; focused and full frontend tests, typecheck, production build, and owned-server release-quality/premerge pass without skips; diff/scope checks pass; owned server stopped.
   - Model-Attribution: Codex HELP_HUMAN Agent 0 with named CHANGE, ORCHESTRATOR, and WORKING_ITEMS managers for both packages; both accepted PKG02 implementation/review children; both interrupted planning children and the PKG05 `FAILED_INPUTS` child rejected and not used.
   - Gate-Outcome: `EXECUTED` — discharged DEL-02-02 R4-P28 and DEL-05-01 R4-P31 Remaining items; both stay `IN_PROGRESS` with Approval SHA unchanged; the nine-item concordance slate and other named gated lanes remain parked; owner merge is terminal.
+
+- **2026-07-19 — Receipt 75** (D-APP-68 recommendations 1–8 executed).
+  - Receipt-ID: `Receipt-75`
+  - Examined-Through: `96563e8e09b89908e13e6b2f1f1139aca3283855`
+  - Parent-Receipt: `Receipt-74`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-07-19, Ryan Tufts, in-session): `I approve recommendations 1–8.` The governed ruling home is the D-APP-68 packet; this receipt does not substitute for it.
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md`; derivative package `execution/_Reconciliation/DeliverableConcordance/SCOPED_D65_RULING_EXECUTION_2026-07-19/`; control run `execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CONCORDANCE_RULINGS/`; DEL-04-01 `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`; V1 package `execution/_Evaluation/DAPP68_CONCORDANCE_RULINGS_2026-07-19/`.
+  - Stale-Map-Delta: the derivative Pipeline-owner suggestion is refuted/no-op because D-APP-56 R4-P28 already assigns the surface to DEL-02-02; recommendation 5 is corrected/no-op because D-APP-56 R4-P32 already assigns child-output thresholds solely to DEL-08-05.
+  - Checks: receipt validator pass; authority corpus v9 no drift; repository self-check pass; 123-test validation suite pass; 311-test practitioner-harness suite pass; 17-SoW census pass; 4-register dependency validation pass; diff hygiene pass; frontend skipped because no frontend/runtime source changed.
+  - Model-Attribution: Codex HELP_HUMAN Agent 0 with named CHANGE, ORCHESTRATOR, RECONCILIATION, five WORKING_ITEMS managers, and EVALUATION with two read-only children; interrupted R1 rejected; R1A, R1B, five package returns, and V1 accepted.
+  - Gate-Outcome: `EXECUTED` — recommendations 1–8 executed with the Pipeline and child-threshold no-ops; all lifecycle state remains unchanged; unrelated gated lanes remain parked; owner merge is terminal.

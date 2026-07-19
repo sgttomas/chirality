@@ -53,7 +53,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > | Probe purpose | Validate SDK assumptions before R1 implementation details harden and make adoption a replaceable engine choice, not product identity. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
 > | Required probe topics | Package version, `query()` message sequence, `settingSources`, permission mapping, `canUseTool`, hooks, in-process MCP, agents, resume, `SessionStore`, `CLAUDE_CONFIG_DIR`, interrupt behavior, Electron packaging, API key environment handling, branding constraints, and fallback triggers. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
 > | Required metadata to capture | SDK package version; Claude Code subprocess version when knowable; SDK permission mode; visible tool list; MCP server names; settings-source posture; SDK session ID and resume mode; transcript/store linkage. | `docs/SPEC.md` Section 12.4 |
-> | Adoption decision state | TBD: no probe result or pinned SDK version is present in the accessible source corpus. | Source gap from `_REFERENCES.md` corpus |
+> | Adoption decision state | `ADOPT_WITH_RESIDUAL_RISK` for the repository demonstrator, pinned to `@anthropic-ai/claude-agent-sdk@0.3.150` and observed Claude Code `2.1.150`; see `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`. | D-APP-68 recommendation 8; D-APP-52 live evidence |
 >
 
 ### CLM-004 — Conditions
@@ -82,7 +82,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > 3. Fallback criteria that preserve the custom-runtime roadmap if a product-critical boundary cannot be satisfied or verified.
 > 4. Residual-risk notes for SDK API drift, settings leakage, transcript location, packaging, permissions, subagents, and product-identity drift.
 >
-> ASSUMPTION: The final artifact format may be Markdown under `docs/harness/` because R0 deliverables named in `docs/PLAN.md` and `docs/PRD.md` are documentation artifacts, but the exact file name for this probe decision is TBD.
+> The final adoption record is the deliverable-local `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`. The earlier assumption that the location might be under `docs/harness/` is superseded by D-APP-68 and retained in repository history as pre-ruling drafting context.
 >
 
 ### CLM-006 — References
@@ -175,7 +175,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > | Terminal outcomes | Success, failure, interruption, and cancellation evidence, including persisted terminal events and route/session cleanup behavior. | Production default use remains blocked until all required terminal outcomes persist or are explicitly carried as residual risk. | `docs/SPEC.md` Sections 10.1 and 11; `docs/PLAN.md` R1 acceptance |
 > | API key handoff and redaction | Active-turn SDK environment handoff; redaction checks for logs, events, SDK transcripts if avoidable, provider errors, and tool artifacts. | Any persisted key material in project files, runtime events, logs, or artifacts is a blocker. | `docs/SPEC.md` Section 12.3; `docs/CONTRACT.md` K-KEY-1 |
 > | Packaging | Packaged Electron app SDK turn result; subprocess/binary path behavior; `asarUnpack` or equivalent need; signing posture; environment handling; transcript/storage effect. | Packaging failure is fallback-blocking unless a human accepts a bounded residual-risk posture. | `docs/PLAN.md` Section 6.4; `docs/SPEC.md` Section 19.4 |
-> | Decision authority | Human approver for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`. | Approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act); `ResponsibleParty` remains TBD. | `_CONTEXT.md` Identity; `docs/DIRECTIVE.md` Section 2.4 |
+> | Decision authority | Human approver for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`. | Ryan Tufts (K-AUTH-1) rendered `ADOPT_WITH_RESIDUAL_RISK` on 2026-07-19 through D-APP-68, demonstrator scope; `ResponsibleParty` remains TBD. | D-APP-65; D-APP-68 recommendation 8; `_CONTEXT.md` Identity |
 >
 
 ### CLM-012 — Standards
@@ -224,14 +224,14 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > - Source-state note for REF-006 `docs/PRD.md` hash status: MATCH. (reconciled under D-APP-38).
 > - Traceability to SOW-018, SOW-044, SOW-046, OBJ-004, OI-001, and OI-002.
 >
-> TBD:
+> Current records (D-APP-68 recommendation 8):
 >
-> - Final document file path for the first-adapter probe decision.
-> - Exact SDK version and subprocess version.
-> - Exact package manifest and lockfile evidence location.
-> - Exact transcript storage decision: `SessionStore`, `CLAUDE_CONFIG_DIR`, both, or cross-reference default path as residual risk.
-> - Exact packaging requirements discovered by the probe.
-> - Human approver or approving role for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act).
+> - Decision: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` records `ADOPT_WITH_RESIDUAL_RISK`.
+> - Versions: `@anthropic-ai/claude-agent-sdk@0.3.150`; observed Claude Code `2.1.150`.
+> - Package evidence: `frontend/package.json` and `frontend/package-lock.json`.
+> - Transcript treatment: SDK data under controlled `CLAUDE_CONFIG_DIR/projects/` is secondary adapter metadata; Chirality JSONL remains canonical.
+> - Packaging treatment: unsigned local `darwin:arm64` proof under `app.asar.unpacked`; signing, notarization, distribution, release, and other platforms remain outside the evidence.
+> - Approver/verdict: Ryan Tufts (K-AUTH-1), `ADOPT_WITH_RESIDUAL_RISK`, demonstrator scope, rendered through D-APP-68 on 2026-07-19. The D-APP-65 pre-ruling state—role assigned while the verdict remained a future owner act—is retained as dated history in `_CONTEXT.md` and `_STATUS.md`.
 
 - **AC-001** — The DEL-04-01 evidence package records the first-adapter probe results and a version-pinned adoption decision, including provider/SDK message mapping, SDK session link and transcript placement, fallback triggers, future-provider criteria, and residual-risk notes, for SOW-018, SOW-044, SOW-046 and OBJ-004.
 
@@ -262,7 +262,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > | Accepted decomposition row for DEL-04-01 | Present in SOFTWARE_DECOMP v3.2. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
 > | Source corpus | Accessible; `docs/PRD.md` has REF-006 `MATCH`. | `_REFERENCES.md` — reconciled under D-APP-38 |
 > | Upstream dependencies | TBD: no accepted dependency edges have been extracted yet. | `_DEPENDENCIES.md` |
-> | first-adapter probe environment | TBD: package version, subprocess availability, Electron packaging posture, and test harness are not yet recorded. | Source gap |
+> | first-adapter probe environment | SDK `0.3.150`, Claude Code `2.1.150`, live development probe, and unsigned local `darwin:arm64` packaged Read proof are recorded; signing, notarization, distribution, release, and other platforms remain outside the evidence. | `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; D-APP-68 recommendation 8 |
 > | Runtime contract expectations | Required before SDK adapter production default. | `docs/SPEC.md` Section 10; `docs/PLAN.md` R1 |
 > | Reliance-boundary expectations | Required for P0 boundaries and fallback decisions. | `docs/DIRECTIVE.md` Section 2.9; `docs/CONTRACT.md` K-RELIANCE-1 |
 >
@@ -331,7 +331,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 >
 > 11. Draft the version-pinned adoption decision.
 >     - State `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`.
->     - Name the human approver or approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act).
+>     - Current result: Ryan Tufts (K-AUTH-1) rendered `ADOPT_WITH_RESIDUAL_RISK` for the demonstrator through D-APP-68 on 2026-07-19; see `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`.
 >     - Cite probe evidence for each P0 reliance boundary.
 >     - Keep the SDK privileged as implementation substrate, not product identity or governance authority.
 >     - Source: `docs/DIRECTIVE.md` Sections 2.8 through 2.11.
@@ -363,7 +363,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > | Interrupts | Success, failure, interruption, and cancellation terminal behavior is evidenced or flagged. |
 > | Packaging | Packaged app SDK turn is proven or recorded as fallback/residual risk. |
 > | Fallback criteria | Any unverifiable P0 reliance boundary has an explicit fallback trigger. |
-> | Adoption authority | `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK` has a named human approver or approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act). |
+> | Adoption authority | PASS for the documentary decision: Ryan Tufts (K-AUTH-1) rendered `ADOPT_WITH_RESIDUAL_RISK` through D-APP-68 on 2026-07-19, demonstrator scope. This is not release, issuance, certification, professional acceptance, signing, notarization, publication, or external distribution. |
 >
 
 ### CLM-020 — Records
@@ -379,15 +379,15 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > - Source-state warning or resolution for REF-006.
 > - Traceability to SOW-018, SOW-044, SOW-046, OBJ-004, OI-001, and OI-002.
 >
-> TBD records:
+> Current decision records:
 >
-> - Exact SDK version.
-> - Exact Claude Code subprocess version, if knowable.
-> - Exact package manifest and lockfile evidence location.
-> - Exact transcript/store decision.
-> - Exact Electron packaging result.
-> - Exact adoption verdict.
-> - Exact human approver or approving role: Ryan Tufts (K-AUTH-1) (assigned 2026-07-18 by D-APP-65; demonstrator scope; verdict itself remains a future owner act).
+> - SDK version: `@anthropic-ai/claude-agent-sdk@0.3.150`.
+> - Observed Claude Code version: `2.1.150`.
+> - Package/lock evidence: `frontend/package.json`; `frontend/package-lock.json`.
+> - Transcript/store treatment: controlled SDK transcript linkage is secondary adapter metadata; Chirality JSONL is canonical.
+> - Electron result: live unsigned local `darwin:arm64` packaged Read proof with the binary under `app.asar.unpacked`; no release/distribution claim.
+> - Verdict: `ADOPT_WITH_RESIDUAL_RISK` in `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`.
+> - Approver: Ryan Tufts (K-AUTH-1), demonstrator scope, D-APP-68 recommendation 8.
 >
 
 ### CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
@@ -445,10 +445,10 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 >
 > - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
 > - The decomposition marks this as a documentation/probe slice with no new user tool exposure. Keep implementation changes out of this deliverable and route code work to downstream DEL-04-02 through DEL-04-05.
-> - Open issue OI-001 makes SDK viability, message categories, settings behavior, hooks, permissions, MCP, sessions, and packaging empirical questions. Do not convert unknown probe results into requirements that pretend the answer is already known.
-> - Open issue OI-002 leaves transcript placement unresolved. The acceptable outcomes are project-controlled `SessionStore`, `CLAUDE_CONFIG_DIR`, both, or cross-reference to default path with residual risk, per the decomposition and source corpus.
+> - OI-001's empirical questions now have bounded D-APP-52 live and deterministic evidence; remaining limitations are carried explicitly in the twelve-area D-APP-68 residual-risk appraisal rather than treated as unknown results.
+> - OI-002 is resolved for the demonstrator as cross-referenced SDK transcript placement under controlled `CLAUDE_CONFIG_DIR/projects/`, carried as secondary adapter metadata while Chirality JSONL remains canonical.
 > - Packaging risk is not limited to the SDK package dependency. The probe must consider SDK subprocess/binary execution in Electron and any built-app path constraints.
-> - Fallback threshold is a human-governed TBD: if a product-critical reliance boundary cannot be observed, enforced, and recorded in Chirality terms, the adoption decision should either select `FALLBACK` or explicitly assign `ADOPT_WITH_RESIDUAL_RISK` to an accountable approver.
+> - D-APP-68 selected `ADOPT_WITH_RESIDUAL_RISK` for the demonstrator. If a product-critical reliance boundary cannot be observed, enforced, and recorded in Chirality terms, the fallback triggers in `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md` apply.
 >
 
 ### CLM-026 — Trade-offs
@@ -482,7 +482,7 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 
 > ##### Examples
 >
-> TBD: no completed first-adapter probe notes are available in the accessible source corpus.
+> Completed live probe observations are recorded in `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; the adopted assessment is recorded in `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`. The table below remains the evidence-row pattern used to evaluate the result.
 >
 > Example evidence rows the final probe notes should contain:
 >
@@ -510,6 +510,19 @@ This Scope of Work defines `DEL-04-01` in service of project scope [SOW-018, SOW
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-118 supersedes setup-era probe TBDs: the probe record, version/package pins, dependency register, and governed environment are landed.
+
+### CLM-031 — D-APP-68 version-pinned adoption verdict (2026-07-19)
+
+> ##### D-APP-68 version-pinned adoption verdict (2026-07-19)
+>
+> Ryan Tufts (K-AUTH-1) rendered `ADOPT_WITH_RESIDUAL_RISK` for this
+> repository's demonstrator, pinned to `@anthropic-ai/claude-agent-sdk@0.3.150`
+> and observed Claude Code `2.1.150`. The decision and its twelve residual-risk
+> assessments are in `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`.
+> The D-APP-65 state in which the approving role was assigned but the verdict
+> remained a future owner act is dated pre-ruling history. The verdict grants
+> no release approval, issuance, certification, professional acceptance,
+> signing, notarization, publication, or external distribution.
 
 ## Output and Evaluation Matrix
 

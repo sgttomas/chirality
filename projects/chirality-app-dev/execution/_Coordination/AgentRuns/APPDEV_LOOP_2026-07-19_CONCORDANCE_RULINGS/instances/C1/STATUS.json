@@ -1,0 +1,30 @@
+{
+  "instance_id": "C1",
+  "role": "ORCHESTRATOR",
+  "parent": "HELP_HUMAN",
+  "status": "COMPLETE",
+  "outcome": "ACCEPT",
+  "accepted": true,
+  "terminal": true,
+  "depends_on": ["V1_ACCEPTED"],
+  "dependency_gate_satisfied": true,
+  "released_by": "HELP_HUMAN_V1_FAN_IN",
+  "fan_in_record": "../../FAN_IN_C1.md",
+  "shared_write_owner": true,
+  "accepted_by": "HELP_HUMAN",
+  "shared_writes": {
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md": "+11 lines",
+    "projects/chirality-app-dev/plans/PLAN_COMPLETION_LOG.md": "+25 lines"
+  },
+  "other_shared_writes": [],
+  "checks": {
+    "receipt_validator": "PASS",
+    "authority_corpus": "PASS",
+    "diff_hygiene": "PASS",
+    "runtime_source_exclusion": "PASS"
+  },
+  "blockers": [],
+  "waivers": [],
+  "return": "RETURN.md",
+  "releases": ["CHANGE-PUBLISH"]
+}

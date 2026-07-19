@@ -115,7 +115,7 @@ This Scope of Work defines `DEL-00-01` in service of project scope [CONTROL-SCC-
 >
 > Out of scope:
 >
-> - Editing dependency rows during this four-documents run.
+> - Editing dependency rows during this SOW-v1 contract-reconciliation run.
 > - Creating `Dependencies.csv` for this PKG-00 control deliverable.
 > - Treating PKG-00 as an upstream product dependency.
 > - Treating dependency-closure discovery as lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.
@@ -203,7 +203,8 @@ This Scope of Work defines `DEL-00-01` in service of project scope [CONTROL-SCC-
 
 > ##### Prerequisites
 >
-> - Current accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`.
+> - Current accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/`.
+> - Historical first-proof DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`.
 > - Historical SCC-002 row-change evidence: `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/`.
 > - Historical SCC triage workbook and notes from `CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431`.
 > - Owning PKG-10 dependency registers:
@@ -218,7 +219,7 @@ This Scope of Work defines `DEL-00-01` in service of project scope [CONTROL-SCC-
 
 > ##### Steps
 >
-> 1. Confirm the active evidence baseline is the latest accepted snapshot named in `_REFERENCES.md` and `DAG_CLOSURE_CONTROL.md`: `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
+> 1. Confirm the active evidence baseline is the latest accepted snapshot named in `_REFERENCES.md` and `DAG_CLOSURE_CONTROL.md`: `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`. Preserve `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` as historical first-proof evidence.
 > 2. Confirm the historical SCC-002 row-change evidence is `CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020`.
 > 3. Read `DEP-10-02-004` in the `DEL-10-02` dependency register. Record its class, dependency type, target, evidence file, source reference, maturity, satisfaction status, confidence, and notes.
 > 4. Read `DEP-10-03-006` in the `DEL-10-03` dependency register. Record its class, dependency type, target, evidence file, source reference, maturity, satisfaction status, confidence, and notes.
@@ -252,7 +253,7 @@ This Scope of Work defines `DEL-00-01` in service of project scope [CONTROL-SCC-
 >
 > - The ruling package cites the source snapshot, triage workbook, triage notes, and both owning dependency-register rows.
 > - No `Dependencies.csv` exists in this control deliverable.
-> - No dependency rows are changed by this four-documents task.
+> - No dependency rows are changed by this SOW-v1 contract-reconciliation task.
 > - Any later dependency row mutation is accompanied by source citation and owning-register path.
 > - Follow-up DepClosure evidence is immutable and shows strict `scc_count = 0` for dependency-closure discovery before control-plane closure is claimed.
 >
@@ -300,7 +301,7 @@ This Scope of Work defines `DEL-00-01` in service of project scope [CONTROL-SCC-
 
 > ##### Considerations
 >
-> The current accepted DepClosure snapshot `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` reports strict FULL_GRAPH as `ACYCLIC` with `scc_count = 0`. Earlier SCC-002 evidence remains historical support for the row treatment that removed the PKG-10 policy/proposal pair from the SCC set.
+> The current accepted DepClosure snapshot `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` reports strict FULL_GRAPH as `ACYCLIC` with `scc_count = 0`. `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical first-proof support for the row treatment that removed the PKG-10 policy/proposal pair from the SCC set.
 >
 > The two source rows differ in reading:
 >

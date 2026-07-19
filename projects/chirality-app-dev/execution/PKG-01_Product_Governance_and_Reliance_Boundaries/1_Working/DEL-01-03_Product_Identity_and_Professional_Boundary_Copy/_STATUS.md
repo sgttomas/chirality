@@ -24,3 +24,4 @@
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-087 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-103; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-19 - D-APP-68 rulings 1–2 reconciled live SOW-v1/REF-007 and dependency-source CLM locations; no Remaining, approval SHA, or lifecycle change; state remains IN_PROGRESS.

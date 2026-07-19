@@ -448,6 +448,27 @@ This Scope of Work defines `DEL-05-02` in service of project scope [SOW-014, SOW
 >
 > UPD-124 replaces provider-shaped kit wording with the corpus-current provider-neutral HarnessEvent names. UPD-125 records DEP-05-02-007 retired and the 11 ACTIVE / 1 RETIRED register state.
 
+### CLM-028 — D-APP-68 coordination-event ownership (2026-07-19)
+
+> ##### D-APP-68 coordination-event ownership (2026-07-19)
+>
+> D-APP-68 ruling 3 assigns the provider-neutral event vocabulary
+> `coordination.notice`, `coordination.update`, and
+> `coordination.acknowledged` to DEL-05-02. Each name is a versioned
+> `HarnessEvent.type` value persisted through the same append-only
+> `.chirality/sessions/<sessionId>/events.jsonl` contract, ordering rule,
+> stable identifier requirements, malformed-tail tolerance, and secret-exclusion
+> boundary as the other event categories.
+>
+> This ownership is limited to the canonical event vocabulary and append-only
+> event schema. It does not assign coordination-tool descriptors or permissions,
+> execute relays or acknowledgments, own managed-child lifecycle/records, or own
+> child-output artifact persistence; those surfaces remain with DEL-06-01/02/03
+> and DEL-08-05 under the consolidated D-APP-68 mapping.
+>
+> Source: D-APP-68 ruling 3; live contract evidence at
+> `frontend/packages/harness-contract/src/event-schema.ts`.
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |

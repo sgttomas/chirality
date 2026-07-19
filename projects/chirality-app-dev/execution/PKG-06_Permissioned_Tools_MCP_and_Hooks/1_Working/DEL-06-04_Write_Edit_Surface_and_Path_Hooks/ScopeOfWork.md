@@ -458,8 +458,32 @@ This Scope of Work defines `DEL-06-04` in service of project scope [SOW-027, SOW
 > | DEL-06-04-CONFLICT-001 | Root terminology differs between "project root" in decomposition wording and "working root" in governance docs. | `_CONTEXT.md` and decomposition row DEL-06-04 | `docs/CONTRACT.md` K-PATH-2; `docs/PRD.md` Section 7.9 | Datasheet Conditions; Specification Scope and REQ-002; Procedure Steps | Treat both as the active runtime containment root and settle canonical naming during implementation. | TBD |
 > | DEL-06-04-CONFLICT-002 | PRD is content-accessible but current and MATCH. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 7.9 and R3 | PRD-cited requirements and guidance | Use PRD as warning-qualified source until reference hash state is reconciled. | TBD — reconciled under D-APP-38 |
 
+### CLM-032 — D-APP-68 Managed-Child Path Enforcement (2026-07-19)
+
+> ##### D-APP-68 Managed-Child Path Enforcement (2026-07-19)
+>
+> DEL-06-04 owns enforcement of each managed child's declared read scopes and
+> declared write targets. Path admission is access-specific, bounded by the
+> active project root, fail-closed for missing or out-of-scope paths, and
+> symlink-safe: the initial policy rejects a symlink encountered in the
+> requested path rather than treating lexical containment as sufficient.
+> This mapping covers bounded file-tool path policy. DEL-06-05 separately owns
+> the stronger project-root read-plus-write admission gate required before an
+> arbitrary Bash-bearing child can run.
+>
+> Evidence: D-APP-68 chronology item 3;
+> `frontend/src/lib/harness/tool-path-policy.ts`;
+> `frontend/src/lib/harness/managed-delegation.ts`.
+
+- **AC-002** — Managed-child reads and writes are checked against their
+  declared access-specific scopes with project-root containment and symlink
+  rejection before access or mutation.
+- **VER-002** — Inspect managed-child scope propagation and path-policy tests
+  for out-of-scope and symlink denials; verify the Bash boundary remains with
+  DEL-06-05.
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-027 SOW-057 SOW-060 OBJ-005 OBJ-006 | CLM-007 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-027 SOW-057 SOW-060 OBJ-005 OBJ-006 | CLM-007 CLM-032 | AC-001 AC-002 | VER-001 VER-002 | Claim map, parity report, and applicable verification evidence |

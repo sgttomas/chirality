@@ -26,3 +26,4 @@
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-084 as an append-only INSP-03 superseding annotation; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-18 - D-APP-65 assigned ResponsibleParty to Ryan Tufts (K-AUTH-1), demonstrator scope, superseding the D-APP-56 R4-P47 deferral; the assignment names the accountable human only — issuance-gate sign-off coordination with DEL-01-03 remains a future act. No state or lifecycle change.
+- 2026-07-19 - D-APP-68 ruling 1 reconciled live D53A/SAFE_MOVES, ResponsibleParty, and Records-source CLM wording; no Remaining, approval SHA, or lifecycle change; state remains IN_PROGRESS.
