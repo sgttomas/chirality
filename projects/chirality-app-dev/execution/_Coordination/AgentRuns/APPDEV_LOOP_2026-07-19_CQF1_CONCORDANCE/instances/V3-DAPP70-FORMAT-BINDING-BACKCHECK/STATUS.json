@@ -1,0 +1,106 @@
+{
+  "instance_id": "V3-DAPP70-FORMAT-BINDING-BACKCHECK",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "ACCEPT",
+  "verdict": "ACCEPT",
+  "terminal": true,
+  "accepted": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "phase": "FRESH_INDEPENDENT_POST_REPAIR_BACKCHECK",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "delegation": "PROHIBITED",
+  "depends_on": {
+    "instance_id": "R4-DAPP70-FORMAT-BINDING-REPAIR",
+    "terminal_status": "FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3",
+    "return_sha256": "3f466b9d95a9967dc8e1eac81defb884c4d6ee6821f74dd1df7c1099d759bf84",
+    "status_sha256": "568f71392021ed1353b4bcff5c17a29763f75b0430230a5ea2d8362ba1c6fba6",
+    "handoff_sha256": "f520e4fe67dcab28561ee2c22c23204adfc2aeae9fdd1ace5c05d9b608ba12e1"
+  },
+  "repair_accounting": {
+    "diagnostic_locations": 13,
+    "direct_files": 10,
+    "terminal_lf_locations": 9,
+    "d_app_71_two_space_locations": 4,
+    "whitespace_bytes_deleted": 17,
+    "hash_transitions": 17,
+    "hash_token_occurrences": 50,
+    "prior_change_reported_count": 14,
+    "prior_change_discrepancy": "PRESERVED_UNRESOLVED"
+  },
+  "population": {
+    "pre_v17_count": 42,
+    "pre_v17_path_hash": "d2365880b7639a9c6465b38468d4787c3c1b33bc416705b96913fbb174d27438",
+    "pre_v18_count": 48,
+    "pre_v18_path_hash": "2b735dadd409ff52ed45ef1b211fc1e59c6a32447c8ba6e58440853901b0c10f",
+    "v3_launch_count": 52,
+    "v3_launch_path_hash": "1d2ce8386d8cba1d691f7bbbb3c7ce9a56e808ea26a7cb74029a51bd1999431c",
+    "v3_launch_content_aggregate": "6ec2b18ba4a44fe8b33dd9a63264d2a8fec79621009eb71b01b06a8d90d48281"
+  },
+  "coverage": {
+    "reconstructed_direct_preimages": 10,
+    "reconstructed_transitive_preimages": 7,
+    "source_files_preserved": 22,
+    "scope_of_work_files_preserved": 5,
+    "dependency_files_preserved": 10,
+    "status_files_preserved": 5,
+    "local_records_preserved": 5,
+    "upstream_derivative_files_preserved": 14,
+    "r3_surfaces_preserved": 4,
+    "accepted_v1_surfaces_preserved": 2,
+    "origin_advance_paths_disjoint": 90
+  },
+  "current_anchors": {
+    "w1_return_sha256": "4228184e5eadcced8de6d261f87c42918c72c075002728fba2565366c803ed38",
+    "w1_status_sha256": "fdf1e9a2052fed915607696706eb24aeced275cf8cd9885e17322929463eb655",
+    "v2_return_sha256": "8bd93871ef167c283204e135b5a88e7106de279f498a11c4138406eecd043874",
+    "v2_status_sha256": "d1c54e2276129cc4930dd6433b556a26ed7041147294ed92662701a85d92a5c3",
+    "applied_manifest_sha256": "40c1ff5e7a0f9befb1e4b6c728fcebf66777211b059403e27fff92472ed2ee3e",
+    "applied_handoff_sha256": "388effec0ce63d606d2707dc59ba4a52d68efcff18553bc7043fcd2787c01c94",
+    "d_app_71_packet_sha256": "711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c",
+    "decision_register_sha256": "3eb0a430bc98c43b4b7f2b6603d1f186ec679bc44685cb80ea1350aed96828c5",
+    "receipt_ledger_sha256": "7e5b6baa046fac24bebbf3990378bd596647410b2c974eab7cd91166392eebc4"
+  },
+  "d_app_71": {
+    "state": "AWAITING_RULING",
+    "selection": null,
+    "ruling_count": 0,
+    "neutral_options": ["DEL-02-03", "DEL-02-05", "DEL-09-06", "DEFER"]
+  },
+  "findings": {
+    "total": 0,
+    "blocking": 0,
+    "unknowns": 0,
+    "conflicts": 0,
+    "waivers": 0,
+    "reruns": 0
+  },
+  "checks": {
+    "reverse_reconstruction": "PASS_17_OF_17",
+    "stale_current_cluster_hashes": "PASS_ZERO",
+    "individual_no_index": "PASS",
+    "actual_worktree_diff": "PASS",
+    "actual_cached_diff": "PASS",
+    "staged_equivalent_diff": "PASS",
+    "strict_recursive_json": "PASS",
+    "csv_schemas": "PASS",
+    "receipt_validator": "PASS",
+    "authority_corpus_v9": "PASS_NO_DRIFT",
+    "repository_self_check": "PASS_EXISTING_3_REVIEW_6_WARN",
+    "origin_disjointness": "PASS_90_OF_90_PIPING_ONLY",
+    "write_containment": "PASS"
+  },
+  "outputs": {
+    "evaluation_protocol_sha256": "7ff4d5433bc20fd5b280832ba36830c11a1ec79a990ecaa65d8a564c4e42ecda",
+    "evaluation_report_sha256": "03d99cafe3df387b4bc86ff67b4b30521c56dd0b5199ff05a19c7f02ead86856",
+    "findings_sha256": "621f3f6665cd97a573058112de8c4848342470b1b289f24e48ff5f4511bbc97c",
+    "handoff_sha256": "0534f473632006e2fc4332ac5864444e769c45cb91b85f0546971da7e2a206ad",
+    "return_sha256": "5d2f5cd16439a707938c73d17f9f6df9b05c38416f450c8068e46b72a80db8ee"
+  },
+  "subject_write_access": false,
+  "repair_authority": false,
+  "downstream_release_authority": false,
+  "git_authority": false,
+  "waivers": [],
+  "next_gate": "HELP_HUMAN_MAY_CONSIDER_SEPARATELY_RELEASED_CHANGE_HANDOFF"
+}

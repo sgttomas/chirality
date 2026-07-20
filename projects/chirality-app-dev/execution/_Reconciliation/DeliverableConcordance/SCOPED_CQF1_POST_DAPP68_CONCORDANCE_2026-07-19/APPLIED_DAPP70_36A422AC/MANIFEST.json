@@ -1,0 +1,48 @@
+{
+  "schema_version": "cqf1-dapp70-applied-derivative/v1",
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "instance_id": "W1-DAPP70-MAPPING-APPLICATION",
+  "verdict": "APPLICATION_COMPLETE_AWAITING_V2",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "basis_manifest_sha256": "f874e1bc8e6c116fd4499b9f3a4f63d3cd8495a56c1902530e8436004b4b9587",
+  "upstream_derivative": "execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1",
+  "d_app_70_ruling_sha256": "1428294b9af34a97b19b7284860a5fdefc7fdb6157cce8c9516f4b54b064638a",
+  "accounting": {
+    "path_count": 22,
+    "group_count": 9,
+    "group_populations": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+    "physical_or_primary_treatments": 21,
+    "shared_boundary_only_treatments": 1,
+    "unresolved_physical_leads": 1,
+    "unresolved_path": "projects/chirality-app-dev/frontend/electron/preload.ts"
+  },
+  "files": {
+    "RUN_BASIS.md": "1e8a10e34ab3b5d8d1d9bda03e7302d4b1d579fdf220fb8a7e2ce5d732db19f9",
+    "APPLIED_MAPPING.csv": "87f9de7cb755696ab430e31c74655555f317a78c39388b24c1d589e3df5efdb7",
+    "RETAINED_BOUNDARIES.md": "84e6bf3dff8328342e296a81c28f694d223abbab207db57492627b2cd6bb91a4",
+    "REMAINING_DISPOSITION.csv": "001248aa030e4983d2ce5776ab6b05c429ab170967f79c457eedec0de6908c8d",
+    "QA.md": "b93dfd640e34d55d4d7db3c09475a6ffbad40d8428d98c9c0bd664b6569a800b",
+    "HANDOFF.md": "388effec0ce63d606d2707dc59ba4a52d68efcff18553bc7043fcd2787c01c94"
+  },
+  "status_after_sha256": {
+    "DEL-02-01": "3679b7f14ff36d35ee82f52e493f3f05b80f7fe9e864bb63d7ab08fe00354bae",
+    "DEL-03-03": "fbbebf92ea8fe58ea75e663f7ae2493865cf23b7320b524f2b5c48082a0cb7d9",
+    "DEL-06-02": "2a1bcc40e75614f4859922b206ce6d971c5ddf3924c23f80cc89c560de7f626b",
+    "DEL-09-04": "e571ae16bc62800f6d14ce33630a6d7b1414fdebcccc35b6bb11c0be93c476f3",
+    "DEL-10-04": "9d0a185d5ba691239e2109b668ca6fc59e90fc8aea326b9a3787dcc279bd247a"
+  },
+  "local_record_sha256": {
+    "DEL-02-01": "1410a40bc864c4de73ce4eda77543b5079504ac7df2176077635c306e6266103",
+    "DEL-03-03": "1c92f0e4c377bd0d1dcb2ca59178a185c4257efb7948f08b79d49d1918a0f438",
+    "DEL-06-02": "b18c0dd1b6bef01e497e27b1264e60ace694f17543b6ea71513d080190129b51",
+    "DEL-09-04": "5628f2a3a378ce5eb46b8a9cd3d0c10bbcb046a1964b360f019e5a575f6f759c",
+    "DEL-10-04": "22338f36f68722bb44e82e84498724310f910e642ab9fd018e9b58e5c97fbb4b"
+  },
+  "d_app_71": {
+    "state": "AWAITING_RULING",
+    "packet_sha256": "711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c",
+    "register_after_sha256": "3eb0a430bc98c43b4b7f2b6603d1f186ec679bc44685cb80ea1350aed96828c5",
+    "selection": null
+  },
+  "waivers": []
+}

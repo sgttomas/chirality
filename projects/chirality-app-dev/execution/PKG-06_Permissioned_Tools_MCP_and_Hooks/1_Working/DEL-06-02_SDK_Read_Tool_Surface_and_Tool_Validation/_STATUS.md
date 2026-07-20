@@ -7,9 +7,9 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- CQ-F1 catalog-generator affinity: `frontend/scripts/generate-tool-catalog.mjs` is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48; no ownership or mapping is asserted (revisit: next concordance pass).
 
 ## History
+- 2026-07-20 - D-APP-70 Option A mapped `frontend/scripts/generate-tool-catalog.mjs` to DEL-06-02 for the deterministic generator/check mechanism only, with catalog semantics retained by their ruled capability owners; the CQ-F1 Remaining entry was closed; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

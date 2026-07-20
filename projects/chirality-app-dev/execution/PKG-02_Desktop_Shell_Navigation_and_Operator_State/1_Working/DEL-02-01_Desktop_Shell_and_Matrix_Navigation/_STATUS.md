@@ -8,9 +8,9 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- CQ-F1 residue is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48, preserving the accepted affinity classifications exactly: `frontend/src/app/globals.css` — PKG-02 shell styling (R0-vintage granularity; R4-P29 family); `frontend/src/app/page.tsx` — PKG-02 root redirect wrapper (R4-P29 family); `frontend/src/components/shell/chat-markdown.tsx`, `frontend/src/components/shell/document-view.tsx`, `frontend/src/components/shell/file-picker.tsx`, and `frontend/src/components/shell/session-list-view.tsx` — shell view component (DEL-02-01 family); `frontend/src/components/shell/subagent-stream-view.tsx` and `frontend/src/components/shell/tool-stream-view.tsx` — shell event-view (DEL-05-04 transcript-stream-view sibling family); `frontend/src/components/workspace/harness-events-provider.tsx` — workspace event plumbing (DEL-02-01/PKG-02 family); `frontend/src/lib/shell/ansi.ts` and `frontend/src/lib/shell/document-view-state.ts` — shell helper; `frontend/src/lib/shell/harness-event-buffer.ts` and `frontend/src/lib/shell/harness-event-views.ts` — shell event plumbing; `frontend/src/lib/workspace/navigation-intent.ts` — workspace navigation helper. No ownership or mapping is asserted (revisit: next concordance pass).
 
 ## History
+- 2026-07-20 - D-APP-70 Option A CQ-F1 mappings applied through R5; the CQ-F1 Remaining entry was closed with retained boundaries preserved in the additive applied derivative; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-07-12 - D-APP-56 final code tranche implemented UPD-106 PORTAL active-link render coverage; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2; four required documents written and non-empty)
 - 2026-05-20 - State set to OPEN (PREPARATION)

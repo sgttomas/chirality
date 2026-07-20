@@ -1,0 +1,69 @@
+{
+  "instance_id": "W1-DAPP70-MAPPING-APPLICATION",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "APPLICATION_COMPLETE_AWAITING_V2",
+  "verdict": "APPLICATION_COMPLETE_AWAITING_V2",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "basis_manifest_sha256": "f874e1bc8e6c116fd4499b9f3a4f63d3cd8495a56c1902530e8436004b4b9587",
+  "authority": [
+    "D-APP-70_OPTION_A",
+    "D-APP-60",
+    "D-APP-64",
+    "R3_RULED_CAPTURED_POST_MAIN"
+  ],
+  "phase": "R5_AUTHORIZED_REPAIR",
+  "integration_owner": true,
+  "delegated": false,
+  "scope_result": {
+    "path_count": 22,
+    "group_count": 9,
+    "group_populations": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+    "physical_or_primary_treatments": 21,
+    "shared_boundary_only_treatments": 1,
+    "unresolved_physical_leads": 1,
+    "status_closures": 4,
+    "status_narrowed_residuals": 1,
+    "local_records": 5
+  },
+  "outputs": {
+    "applied_derivative_manifest_sha256": "40c1ff5e7a0f9befb1e4b6c728fcebf66777211b059403e27fff92472ed2ee3e",
+    "d_app_71_packet_sha256": "711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c",
+    "decision_register_sha256": "3eb0a430bc98c43b4b7f2b6603d1f186ec679bc44685cb80ea1350aed96828c5",
+    "receipt_ledger_sha256": "7e5b6baa046fac24bebbf3990378bd596647410b2c974eab7cd91166392eebc4"
+  },
+  "d_app_71": {
+    "state": "AWAITING_RULING",
+    "selection": null,
+    "neutral_options": ["DEL-02-03", "DEL-02-05", "DEL-09-06", "DEFER"]
+  },
+  "immutability": {
+    "source_paths_unchanged": 22,
+    "activated_derivative_files_unchanged": 14,
+    "scope_of_work_files_unchanged": 5,
+    "dependency_files_unchanged": 10,
+    "lifecycle_unchanged": true,
+    "approval_sha_unchanged": true,
+    "memory_unchanged": true
+  },
+  "validation": {
+    "content_and_schema": "PASS",
+    "receipt_validator": "PASS",
+    "authority_corpus_v9": "PASS_NO_DRIFT",
+    "repository_self_check": "PASS_EXISTING_3_REVIEW_6_WARN",
+    "diff_check": "PASS",
+    "write_containment": "PASS",
+    "frontend": "SKIPPED_NO_FRONTEND_OR_RUNTIME_SOURCE_CHANGE"
+  },
+  "next_node": {
+    "instance_id": "V2-DAPP70-MAPPING-BACKCHECK",
+    "role": "EVALUATION",
+    "status": "PLANNED_HELD_NOT_RELEASED",
+    "release_condition": "W1_TERMINAL_APPLICATION_COMPLETE_AWAITING_V2_ACCEPTED_BY_HELP_HUMAN"
+  },
+  "waivers": [],
+  "next_action": "HELP_HUMAN_ACCEPT_W1_AND_SEPARATELY_RELEASE_V2"
+}

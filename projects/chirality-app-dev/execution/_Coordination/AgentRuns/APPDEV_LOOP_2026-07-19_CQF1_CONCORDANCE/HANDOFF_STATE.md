@@ -448,3 +448,137 @@ write targets, integration ownership, and V2 backcheck. No mapping
 application, package/subject repair, W1, EVALUATION, lifecycle, release,
 publication, hard-fence, or Git action is released here. Plan v1 and
 `WORK_GRAPH.json` remain unchanged. Waivers: none. See `updates/v14.md`.
+
+## Live update v15 — post-main D-APP-70 application graph frozen; W1 released
+
+The D-APP-70 ruling capture is committed on shared main at
+`36a422ac5568a02ecf120c214f8e1fc96fd6ab45`. Exact post-main preflight
+reproduces Receipt-79, D-APP-70 packet/ruling, terminal R3, accepted V1, the
+unchanged 14-file proposal derivative, all 22 source paths, five Remaining
+containers, and their dependency surfaces. The additive basis is
+`POST_MAIN_BASIS_v1.json`; the versioned graph is
+`POST_MAIN_WORK_GRAPH_v2.json`.
+
+Exactly one serialized RECONCILIATION R5 integration-owner node,
+`instances/W1-DAPP70-MAPPING-APPLICATION/`, is released under
+`amendments/W1/v1.md`. It may create a new applied derivative; correct only the
+five CQ-F1 status containers plus one provenance record each; prepare/register
+D-APP-71 as a neutral proposal at register state `AWAITING_RULING`; append
+Receipt-80; and write its own terminal return. WORKING_ITEMS is not required
+because no package production, SOW,
+dependency, or runtime implementation is authorized.
+
+Group 6's shared-boundary annotation is procedurally applicable now. Its exact
+residual remains the owner-class physical lead for `preload.ts`, held in
+DEL-09-04 `Remaining` as `(gated: D-APP-71)` with DEL-02-03, DEL-02-05,
+DEL-09-06, and deferral options. No path-level ownership or source repair is
+authorized.
+
+V2 EVALUATION is planned in the graph but held until W1 returns terminal
+`APPLICATION_COMPLETE_AWAITING_V2` and HELP_HUMAN accepts its exact outputs.
+No frontend/runtime source, dependency, lifecycle, release/publication,
+hard-fence, EVALUATION, or Git action is released. Waivers: none. See
+`updates/v15.md`.
+
+## Live update v16 — W1 terminal fanned in; independent V2 released
+
+W1 returned terminal `APPLICATION_COMPLETE_AWAITING_V2`. HELP_HUMAN
+reproduces and freezes its return/status SHA-256 as
+`5811a5a94b39596f9e8244cc4c8ac631de87438a8e940c2b9f66d9985df4cc98` /
+`19d56061817027452a46b97ac143b0b6d24a241d0b4e4c1c33ee334ac0cff566`
+and the applied derivative manifest as
+`eac0ec145d33e55c0ce5dbfe066223812a790183ae33ef7e4c33c27bd408e39c`.
+That fan-in establishes evaluation-subject eligibility only; W1's claims are
+not accepted without fresh independent confirmation.
+
+The exact pre-v16 W1 change population is 29 paths with ordered-list SHA-256
+`3a40c42bf979a502077320e4423df6343760cb7cde9c789c0ce545c1304e1005`.
+Because this file is an append-only shared control surface, the W1/v15 prefix
+is frozen at 27,671 bytes with SHA-256
+`bc332225643ae9a51855bef5e02b30c4167d0e28d23b7d9154eb2b69d593dc26`.
+
+Exactly one fresh EVALUATION manager instance,
+`instances/V2-DAPP70-MAPPING-BACKCHECK/`, is released under
+`amendments/V2/v1.md`. It writes only to additive evaluation root
+`execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/`
+and its own instance directory, may use at most two fresh disjoint read-only
+Agent-2 audits, and returns exactly `ACCEPT | BLOCK`.
+
+V2 independently audits the exact 29-path population; 22 rows/nine groups and
+the 21-plus-one application split; all retained boundaries; four closures and
+one D-APP-71-gated residual; five local records; D-APP-71/Receipt-80
+neutrality; unchanged source/SOW/dependencies/upstream/R3/V1; concurrent-origin
+disjointness; authority; containment; and diff hygiene. No W1 output, repair,
+downstream action, owner choice, lifecycle/release/hard-fence effect, or Git
+action is authorized. D-APP-71 remains `AWAITING_RULING`; silence selects
+nothing. Waivers: none. See `updates/v16.md`.
+
+## Live update v17 — format-binding closeout repair released; V3 held
+
+The accepted W1/V2 tranche has a publication-hygiene closeout blocker. Current
+exhaustive per-file no-index reproduction yields exactly 13 diagnostics across
+ten hash-bound files: nine excess EOF blank lines and four trailing two-space
+hard breaks on D-APP-71 packet lines 3–6. Prior CHANGE reported 14 diagnostics.
+The discrepancy is preserved unresolved; no fourteenth location or eleventh
+file is inferred.
+
+Exactly one serialized RECONCILIATION integration owner,
+`instances/R4-DAPP70-FORMAT-BINDING-REPAIR/`, is released under
+`amendments/R4/FORMAT_BINDING_REPAIR_GRAPH_v1.json`. The graph and launch brief
+SHA-256 values are respectively
+`78a492ec999d48615e6e200d60d386f7aeb000d2cbd16ca016e1a96d7344774e` and
+`f70dea4e753a962b9617bcbc302b9a085c4a121df16f74b8083a021009f4ba73`;
+`updates/v17.md` is
+`2b3c4f19b63c2496f712762467cc4fb0697c943dcb4afe3465b1a590c8181dee`.
+
+R4 may delete only the 13 exact whitespace occurrences and refresh only the
+transitively affected packet/applied-manifest/Receipt-80/W1/V2 hash bindings
+needed for current-byte consistency. It must preserve semantics, verdicts,
+state, D-APP-71 `AWAITING_RULING` neutrality and options, deliverable
+lifecycle/status, source/SOW/dependency/authority bytes, and every other byte.
+No delegation is authorized.
+
+Per-file no-index checks, actual post-repair worktree and cached
+`git diff --check`, recursive duplicate-key JSON, old/new hash closure,
+receipt, authority corpus v9, repository self-check, applied-manifest/W1/V2
+corpus validation, and exact containment are mandatory. Fresh V3 EVALUATION
+is planned but held until HELP_HUMAN accepts R4 terminal
+`FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3`. No repair or V3 execution,
+semantic/status/source/D-APP-71-option change, lifecycle/release/publication,
+hard-fence effect, waiver, or Git action is released here. See
+`updates/v17.md`.
+
+## Live update v18 — R4 terminal fanned in; fresh V3 released
+
+R4 returned terminal `FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3`. HELP_HUMAN
+reproduces its RETURN/STATUS SHA-256 as
+`3f466b9d95a9967dc8e1eac81defb884c4d6ee6821f74dd1df7c1099d759bf84` /
+`568f71392021ed1353b4bcff5c17a29763f75b0430230a5ea2d8362ba1c6fba6`,
+strictly parses its terminal JSON, reproduces all 17 post-repair hashes, and
+confirms actual worktree and cached diff checks exit zero. The exact repaired
+scope is 13 diagnostics across ten files; prior CHANGE count 14 remains
+preserved unresolved. Fan-in establishes V3 subject eligibility only.
+
+The exact pre-v17 tranche is 42 paths with sorted path-list SHA-256
+`d2365880b7639a9c6465b38468d4787c3c1b33bc416705b96913fbb174d27438`.
+The six v17/R4 repair controls bring the pre-v18 basis to 48 paths with hash
+`2b735dadd409ff52ed45ef1b211fc1e59c6a32447c8ba6e58440853901b0c10f`.
+
+Exactly one fresh EVALUATION instance,
+`instances/V3-DAPP70-FORMAT-BINDING-BACKCHECK/`, is released under
+`amendments/V3/v1.md`. The amendment, launch brief, and update-v18 SHA-256 are
+`6c290cacff3a208707034ae70fc28f8f0ded8c0b8e330b2989161cd145a55152`,
+`7802cda9c7e998d4ce959cf196f6e3c7332d36eaf6ef4761ef81fbcd983895e0`,
+and `50bd2771108636aaa892c0285a324371754ad0b287929809c41303f0b89d7212`.
+
+V3 independently reconstructs all ten direct and seven transitive preimages,
+audits exact byte/hash transitions, current W1/V2/applied/D-APP-71/Receipt-80
+anchors, semantic/status/source/SOW/dependency neutrality, complete
+42-plus-repair/v18 containment, individual no-index hygiene for every new file,
+actual and staged-equivalent diff hygiene, strict JSON, receipt/corpus/
+self-check, and origin disjointness. It returns only `ACCEPT | BLOCK`.
+
+V3 is read-only on the repaired tranche. No delegation, repair, subject/control
+mutation, downstream release, D-APP-71 ruling or option change,
+lifecycle/status/source/SOW/dependency action, publication, hard-fence effect,
+waiver, or Git action is authorized. See `updates/v18.md`.
