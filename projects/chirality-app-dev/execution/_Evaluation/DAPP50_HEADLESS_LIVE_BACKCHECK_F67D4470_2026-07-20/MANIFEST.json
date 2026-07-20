@@ -1,0 +1,19 @@
+{
+  "schema_version": "appdev-evaluation-manifest/v1",
+  "evaluation_id": "DAPP50_HEADLESS_LIVE_BACKCHECK_F67D4470_2026-07-20",
+  "basis_commit": "f67d44706f4b2b5495833f809cb0bc714d2bbc18",
+  "verdict": "BLOCK",
+  "finding_count": 2,
+  "blocker_count": 2,
+  "unknown_count": 0,
+  "conflict_count": 0,
+  "waiver_count": 0,
+  "files": {
+    "EVALUATION_PROTOCOL.md": "515d4524190da36b823ea6f312461eae26f985a49075ccc72525c55b64e4453a",
+    "FINDINGS.csv": "dbb8bb8aa455dbf76ffc37a3e31998f24fec95d0278e44aa9612797eb3ad1adf",
+    "EVALUATION_REPORT.md": "571614ff13d8e247e916e1d6721afe08051bfcf349803cb3799a1bdcf95a1b05",
+    "HANDOFF.md": "9da5c44f87e532e864e328cbaf9afc9982100243d48e71524f1d9fd18d845174"
+  },
+  "subject_preserved": true,
+  "final_change_released": false
+}

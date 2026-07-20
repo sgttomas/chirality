@@ -2420,3 +2420,32 @@
   - Checks: strict JSON pass; exact hashes, schemas, and accounting pass; receipt validator pass; authority corpus v9 no drift; repository self-check pass; diff and per-new-file no-index hygiene pass; tracked, untracked, and ignored-path containment pass. Frontend gates skipped because every runtime source is frozen and unchanged.
   - Model-Attribution: Codex RECONCILIATION under HELP_HUMAN as sole serialized integration owner; no delegation.
   - Gate-Outcome: `EXECUTED` — D-APP-71 Option 2 applied DEL-02-05 as coordination-only physical lead; DEL-02-03 `selectDirectory`, DEL-02-05 `apiKey`, and DEL-09-06 `safeStorage`/security remain distinct; the D-APP-71 residual is closed; packaging/release Remaining is preserved; V1 is held; no source, lifecycle, release/publication, hard-fence, waiver, or Git effect.
+
+- **2026-07-20 — Receipt 83** (D-APP-50 headless-preview transport repin and closeout).
+  - Receipt-ID: `Receipt-83`
+  - Examined-Through: `bc35e3b0049d990f494dd3610603be285c7aa9ed`
+  - Parent-Receipt: `Receipt-82`
+  - Pointers: DEL-10-01 `WORKING_ITEMS_RUN_2026-07-20_DAPP50_HEADLESS_PREVIEW_LIVE.md`; D-APP-48 pull contract; G0 implementation commit `f67d44706f4b2b5495833f809cb0bc714d2bbc18`; control run `execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP50_HEADLESS_LIVE/`.
+  - Checks: PASS — strict JSON; pull-contract and dependency validation; focused transport and generated-catalog tests; typecheck; receipt contract; authority corpus; repository self-check; validation and practitioner-harness baselines; diff and containment checks.
+  - Model-Attribution: Codex WORKING_ITEMS under ORCHESTRATOR for HELP_HUMAN; no delegation.
+  - Gate-Outcome: `EXECUTED` — the D-APP-50 `open_pipe_stress` headless-preview read transport is bound to the reachable implementation commit, D-APP-48 is repinned to byte-current exports, the exact DEL-10-01 residual is closed, and the separate new-owner-ruling item remains; no lifecycle transition or boundary expansion.
+
+- **2026-07-20 — Receipt 84** (D-APP-50 result-contract repair repin correction).
+  - Receipt-ID: `Receipt-84`
+  - Examined-Through: `fcf152bdae1e1764b11dfabf3f87d50c5680213d`
+  - Parent-Receipt: `Receipt-83`
+  - Pointers: DEL-10-01 `WORKING_ITEMS_RUN_2026-07-20_DAPP50_RESULT_CONTRACT_REPAIR.md`; V1 evaluation `execution/_Evaluation/DAPP50_HEADLESS_LIVE_BACKCHECK_F67D4470_2026-07-20/`; W3 and G1 terminal instances; corrected D-APP-48 pull contract.
+  - Stale-Map-Delta: V1's failed backcheck evidence remains preserved; W3 records the bounded result-contract repair and exact ignored-output cleanup, and G1 makes the repair reachable without rewriting W2 history.
+  - Checks: PASS — strict JSON; pull-contract and dependency validation; focused repaired-runner tests; receipt contract; authority corpus; repository self-check; validation and practitioner-harness baselines; dist-absence, diff, and containment checks.
+  - Model-Attribution: Codex WORKING_ITEMS under ORCHESTRATOR for HELP_HUMAN; no delegation.
+  - Gate-Outcome: `EXECUTED` — the failed V1 evidence is retained, the W3 repair and ignored packaging-output cleanup are durably recorded, D-APP-48 is repinned to the G1 repair commit, and Receipt-83 remains unchanged; fresh V2 EVALUATION and final publication remain held.
+
+- **2026-07-20 — Receipt 85** (D-APP-50 checksum-correlation repair repin correction).
+  - Receipt-ID: `Receipt-85`
+  - Examined-Through: `55a066fdff6877d8aa2a49ce08a545ac98872848`
+  - Parent-Receipt: `Receipt-84`
+  - Pointers: DEL-10-01 `WORKING_ITEMS_RUN_2026-07-20_DAPP50_CHECKSUM_CORRELATION_REPAIR.md`; V2 evaluation `execution/_Evaluation/DAPP50_HEADLESS_LIVE_REPAIR_BACKCHECK_FCF152B_2026-07-20/`; W5 and G2 terminal instances; corrected D-APP-48 pull contract.
+  - Stale-Map-Delta: V2's failed backcheck evidence remains preserved; W5 records the bounded result-envelope checksum-correlation repair, and G2 makes the repair reachable without rewriting Receipts 83–84 or either earlier D-APP-50 run record.
+  - Checks: PASS — strict JSON; pull-contract and dependency validation; focused 51-test repaired-runner suite; receipt contract before and after Receipt-85; authority corpus; repository self-check; validation and practitioner-harness baselines; dist-absence, diff, and containment checks.
+  - Model-Attribution: Codex WORKING_ITEMS under ORCHESTRATOR for HELP_HUMAN; no delegation.
+  - Gate-Outcome: `EXECUTED` — the failed V2 evidence is retained, the W5 checksum-correlation repair is reachable at G2, D-APP-48 is repinned to G2, and Receipts 83–84 remain unchanged; fresh V3 EVALUATION and final publication remain held.

@@ -1,0 +1,34 @@
+{
+  "schema_version": "appdev-dapp50-w6-status/v1",
+  "instance_id": "W6-DAPP50-CHECKSUM-REPIN-CORRECTION",
+  "role": "WORKING_ITEMS",
+  "parent": "ORCHESTRATOR",
+  "status": "BLOCK",
+  "terminal": true,
+  "basis_commit": "55a066fdff6877d8aa2a49ce08a545ac98872848",
+  "delegation": false,
+  "git_action": false,
+  "candidate_project_surface_count": 4,
+  "pull_contract_sha256": "ad10f6e5808754c4acf2e9114f189c892dbec2231a3059d3717e9689e7807040",
+  "deliverable_status_sha256": "3b5c7a7e1ebe2c15fcd59e3a9a92c9b16ab6371a553dfa0492ddee2f791bd020",
+  "run_record_sha256": "fbdbc50ad0d8e324799f702e5a821a19a5227b54f804ddc5cfbd23da98a11823",
+  "receipt_ledger_sha256": "c8a7ab466fc694b6743310a8a5cd6f75c4280c49fb67baac1c6717da442bb0e8",
+  "receipt84_prefix_sha256": "819be78ee30629d5ef1b54814d6d4f849cd5816e675b8fc79899bb97cb12e2e8",
+  "focused_tests_passed": 51,
+  "validation_pytest_passed": 123,
+  "practitioner_harness_pytest_status": "UNKNOWN_TERMINAL_EXIT_NOT_RETAINED",
+  "index_empty": true,
+  "frontend_dist_absent": true,
+  "candidate_accepted": false,
+  "v3_released": false,
+  "blockers": [
+    "required practitioner-harness pytest terminal exit code and summary were not retained"
+  ],
+  "unknowns": [
+    "practitioner-harness pytest terminal result"
+  ],
+  "conflicts": [],
+  "waivers": [],
+  "next_gate": "W6_VALIDATION_RETRY_ONLY"
+}
+

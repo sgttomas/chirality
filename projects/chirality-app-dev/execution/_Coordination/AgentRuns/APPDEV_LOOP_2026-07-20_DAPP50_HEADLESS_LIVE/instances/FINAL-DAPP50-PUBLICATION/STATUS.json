@@ -1,0 +1,15 @@
+{
+  "schema_version": "appdev-dapp50-final-change-status/v1",
+  "instance_id": "FINAL-DAPP50-PUBLICATION",
+  "role": "CHANGE",
+  "parent": "ORCHESTRATOR",
+  "status": "READY_RELEASED",
+  "terminal": false,
+  "basis_commit": "55a066fdff6877d8aa2a49ce08a545ac98872848",
+  "expected_path_count": 109,
+  "push_authorized": true,
+  "pr_authorized": true,
+  "merge_authorized": true,
+  "merge_method": "merge_commit",
+  "waivers": []
+}

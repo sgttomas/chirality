@@ -1,0 +1,20 @@
+{
+  "schema_version": "appdev-dapp50-w6r-status/v1",
+  "instance_id": "W6R-DAPP50-BASELINE-FANIN",
+  "role": "ORCHESTRATOR",
+  "parent": "HELP_HUMAN",
+  "status": "ACCEPT_AWAITING_V3",
+  "terminal": true,
+  "basis_commit": "55a066fdff6877d8aa2a49ce08a545ac98872848",
+  "original_w6_terminal": "BLOCK_PRESERVED",
+  "missing_baseline_exit_code": 0,
+  "missing_baseline_passed": 311,
+  "candidate_accepted": true,
+  "project_content_write": false,
+  "git_action": false,
+  "blockers": [],
+  "unknowns": [],
+  "conflicts": [],
+  "waivers": [],
+  "next_gate": "V3"
+}

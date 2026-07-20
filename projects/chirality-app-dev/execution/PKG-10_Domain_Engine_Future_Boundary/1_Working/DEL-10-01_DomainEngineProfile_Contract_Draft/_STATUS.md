@@ -9,7 +9,6 @@
 
 ## Remaining
 - Advance the domain engine beyond the currently authorized staged, read-only boundary only through a new owner ruling that names the next tier-0 capability and its verification evidence. Preserve the F-APP-3 stepwise lane, keep apply-class exposure excluded unless separately ruled, and coordinate the bounded contracts in DEL-10-02..DEL-10-05 (governed by D-APP-50 and D-APP-53; gated: new owner ruling).
-- Flip mcp__chirality__domain_headless_preview_run from descriptor-only to live — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping DEC-064 / TP-RUNNER-014 headless_preview_runner entrypoint + transport soundness)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents present and non-empty)
@@ -27,3 +26,6 @@
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-091 as an append-only INSP-03 superseding annotation; genuine future-boundary TBDs remain; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-148; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-20 - D-APP-50 headless-preview closeout bound implementation commit `f67d44706f4b2b5495833f809cb0bc714d2bbc18`: `mcp__chirality__domain_headless_preview_run` is live only for `open_pipe_stress` through the read-only DEC-065 configured-local-process transport, and D-APP-48 is repinned to that commit; no lifecycle change and the Checking Approval SHA is unchanged.
+- 2026-07-20 - V1 findings F-001/F-002 were repaired and the ignored-output cleanup was evidenced by W3, the exact repair was committed at `fcf152bdae1e1764b11dfabf3f87d50c5680213d`, and D-APP-48 was repinned to that repair commit; the complete Remaining section, lifecycle state, and Checking Approval SHA are unchanged.
+- 2026-07-20 - V2 finding V2-F-001 was repaired by W5, the exact checksum-correlation repair was committed at `55a066fdff6877d8aa2a49ce08a545ac98872848`, and D-APP-48 was repinned to that G2 commit; the complete Remaining section, lifecycle state, and Checking Approval SHA are unchanged.

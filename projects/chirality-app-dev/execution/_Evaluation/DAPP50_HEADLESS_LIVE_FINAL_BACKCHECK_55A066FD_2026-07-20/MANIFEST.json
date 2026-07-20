@@ -1,0 +1,33 @@
+{
+  "schema_version": "appdev-evaluation-manifest/v1",
+  "evaluation_id": "DAPP50_HEADLESS_LIVE_FINAL_BACKCHECK_55A066FD_2026-07-20",
+  "basis_commit": "55a066fdff6877d8aa2a49ce08a545ac98872848",
+  "verdict": "BLOCK",
+  "finding_count": 1,
+  "blocker_count": 1,
+  "product_nonconformance_count": 0,
+  "unknown_count": 0,
+  "conflict_count": 0,
+  "waiver_count": 0,
+  "completed_fresh_checks": {
+    "focused_frontend": "51/51",
+    "full_frontend": "779 passed / 4 skipped",
+    "generated_catalog_within_full_suite": "2/2",
+    "pull_contract": "PASS",
+    "dependency_lint": "PASS",
+    "receipt_validator": "PASS",
+    "authority_corpus": "v9 8/8 no drift",
+    "repository_self_check": "exit 0; 3 REVIEW / 6 WARN"
+  },
+  "omitted_fresh_checks": [
+    "frontend typecheck",
+    "production build",
+    "managed premerge",
+    "tools/validation pytest",
+    "tools/practitioner_harness pytest"
+  ],
+  "files": {},
+  "subject_preserved": true,
+  "prior_findings_cured_in_completed_coverage": true,
+  "final_change_released": false
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "appdev-dapp50-v3-status/v1",
+  "instance_id": "V3-DAPP50-FINAL-BACKCHECK",
+  "role": "EVALUATION",
+  "parent": "ORCHESTRATOR",
+  "status": "BLOCK",
+  "terminal": true,
+  "basis_commit": "55a066fdff6877d8aa2a49ce08a545ac98872848",
+  "delegation": false,
+  "subject_read_only": true,
+  "focused_tests_passed": 51,
+  "full_frontend_tests_passed": 779,
+  "full_frontend_tests_skipped": 4,
+  "product_nonconformance_count": 0,
+  "procedural_coverage_blocker_count": 1,
+  "omitted_fresh_commands": [
+    "frontend typecheck",
+    "frontend production build",
+    "managed premerge",
+    "tools/validation pytest",
+    "tools/practitioner_harness pytest"
+  ],
+  "blockers": ["five-command fresh coverage incomplete"],
+  "unknowns": [],
+  "conflicts": [],
+  "waivers": [],
+  "next_gate": "V4_EXACT_FIVE_COMMANDS"
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "appdev-dapp50-headless-live-basis/v1",
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP50_HEADLESS_LIVE",
+  "basis_commit": "bc35e3b0049d990f494dd3610603be285c7aa9ed",
+  "required_branch": "codex/app-dev-dapp50-headless-live-20260720",
+  "authority": "D-APP-50 Option A, read-first per-operation exposure",
+  "selection": "domain_headless_preview_run only",
+  "transport_basis": "piping DEC-065 / TP-RUNNER-015 openpipestress-runner solve over stdin/stdout",
+  "latest_receipt": "Receipt-82",
+  "direct_file_sha256": {
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-50_PACKET_F3_DOMAIN_MCP_TOOLS_2026-07-04.md": "b1555a9cc3911d561e9b88b6fd476ad39551f05ba5ba0094585fa83b65626b5d",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-50_RULING_2026-07-04.md": "cd0994922c86463039592dc760df1eb55db1c820b984144c9a4444f9865e814f",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-53_PACKET_SUCCESSOR_QUEUE_SELECTION_2026-07-10.md": "d57b795dd3938e6f6532f9bb680cd0f2e4a3a03c0fb162f439409b3b8c75f5e6",
+    "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/_STATUS.md": "6f38cf1167d8a840d74bd0e50417ea4797489e9bc2e9d3c14441e27ae8d591df",
+    "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-33_headless_runner_cli_process_policy.md": "a4b7ed917041f8857804a7b7c2b0dff35cdb9f172027c210f01e3a8f4688a30f",
+    "projects/chirality-piping/execution/PKG-10_Build, Packaging, API, and Interoperability/1_Working/DEL-10-05_Headless CLI and structured I-O analysis runner/_run_records/WORKING_ITEMS_RUN_2026-07-05_TP-RUNNER-015.md": "70a8864f36a0a7fb91fc367ef2ca319a40f1c80b3c969ab334c4d03c13f73213",
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md": "8eabef4042ee83e44403fffead019748109c76c66013c050f45b431bcfb0b520",
+    "AGENTS.md": "98aa403e0f638a25e09e4ae0117eb6e18b0fc01b477aaabcd965690245ea73de",
+    "agents/AGENT_ORCHESTRATOR.md": "93909e5e0be50735d4f3cc52d888e82c80614d03dae4b7caacf4e52c6b8c51da",
+    "agents/AGENT_WORKING_ITEMS.md": "48cc09f466f42feec17ffa5c3a25ee4fc153bc426bb47f642ec5a8e157f00fdc",
+    "projects/chirality-app-dev/loop/WORKPLAN_2026-07-18b_app_dev_loop.md": "d94a01911365773c6d2423880d949738e96f9afd31373bd24c57f1960ebf8ee8"
+  },
+  "held": [
+    "domain_proposal_validate open_pipe_stress transport",
+    "operation_applier.apply and every apply-class capability",
+    "piping or tier-0 edits",
+    "release, packaging, publication, issuance, and professional claims"
+  ],
+  "waivers": []
+}

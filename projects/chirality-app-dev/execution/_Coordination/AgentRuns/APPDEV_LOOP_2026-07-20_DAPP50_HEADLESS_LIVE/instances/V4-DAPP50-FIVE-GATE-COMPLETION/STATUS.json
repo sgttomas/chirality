@@ -1,0 +1,60 @@
+{
+  "schema_version": "appdev-dapp50-v4-status/v1",
+  "instance_id": "V4-DAPP50-FIVE-GATE-COMPLETION",
+  "role": "EVALUATION",
+  "parent": "ORCHESTRATOR",
+  "status": "ACCEPT",
+  "terminal": true,
+  "basis_commit": "55a066fdff6877d8aa2a49ce08a545ac98872848",
+  "command_count": 5,
+  "verdict": "ACCEPT",
+  "command_results": [
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "result": "PASS; Next static pages 23/23; Electron TypeScript build PASS"
+    },
+    {
+      "command": "npm run harness:validate:premerge",
+      "exit_code": 0,
+      "result": "PASS; Section 8 8/8; Section 9 16/16 report-only"
+    },
+    {
+      "command": "python3 -m pytest -q tools/validation",
+      "exit_code": 0,
+      "passed": 123,
+      "duration_seconds": 1.24
+    },
+    {
+      "command": "python3 -m pytest -q tools/practitioner_harness",
+      "exit_code": 0,
+      "passed": 311,
+      "duration_seconds": 46.38
+    }
+  ],
+  "delegation": false,
+  "subject_read_only": true,
+  "subject_preserved": true,
+  "index_empty": true,
+  "frontend_dist_absent": true,
+  "owned_server_stopped": true,
+  "v3_finding_resolved": "V3-F-001",
+  "evaluation_hashes": {
+    "protocol": "95c7c79aeae499fd55e4c208fd028d475686e8a05e6ea54a2f684a90cb5d9401",
+    "findings": "5d2232ec0b3b8c3a088ccb636820bcb5d9d57fa8f3718cc3b182012731a78cbd",
+    "report": "cdd2bc7e2fe8847c56a44f2545b70933f12e3fafa7c6af79428022d5e0819def",
+    "handoff": "bbfdb6b54fff6cb8d37f78686ac594f95361f8f115bd5314385a2b74b135a667",
+    "manifest": "8fe97074fd69176188b8f3a7eb497febc574a29eea2c2e7109d0fc845716e7d4"
+  },
+  "blockers": [],
+  "unknowns": [],
+  "conflicts": [],
+  "reruns_required": [],
+  "next_gate_on_accept": "FINAL_CHANGE",
+  "waivers": []
+}

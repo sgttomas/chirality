@@ -1,0 +1,47 @@
+{
+  "schema_version": "appdev-evaluation-manifest/v1",
+  "evaluation_id": "DAPP50_HEADLESS_LIVE_FIVE_GATE_COMPLETION_55A066FD_2026-07-20",
+  "basis_commit": "55a066fdff6877d8aa2a49ce08a545ac98872848",
+  "verdict": "ACCEPT",
+  "resolved_finding_count": 1,
+  "open_finding_count": 0,
+  "blocker_count": 0,
+  "product_nonconformance_count": 0,
+  "unknown_count": 0,
+  "conflict_count": 0,
+  "waiver_count": 0,
+  "fresh_commands": [
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "result": "PASS; Next static pages 23/23; Electron TypeScript build PASS"
+    },
+    {
+      "command": "npm run harness:validate:premerge",
+      "exit_code": 0,
+      "result": "PASS; Section 8 8/8; Section 9 16/16 report-only"
+    },
+    {
+      "command": "python3 -m pytest -q tools/validation",
+      "exit_code": 0,
+      "result": "PASS; 123 passed in 1.24s"
+    },
+    {
+      "command": "python3 -m pytest -q tools/practitioner_harness",
+      "exit_code": 0,
+      "result": "PASS; 311 passed in 46.38s"
+    }
+  ],
+  "subject_preserved": true,
+  "index_empty": true,
+  "frontend_dist_absent": true,
+  "owned_server_stopped": true,
+  "prior_v3_block_preserved": true,
+  "final_change_released": true,
+  "files": {}
+}
