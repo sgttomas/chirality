@@ -1,0 +1,179 @@
+{
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "plan_version": 1,
+  "selection_authority": "AGENT_0",
+  "descriptive_posture": "MIXED",
+  "branch": "codex/app-dev-cqf1-concordance-20260719",
+  "basis": "be4be0dfcc18a34995db61429a2342c2758a5d00",
+  "parent_receipt": "Receipt-75",
+  "state_revision": "V1_FROZEN_R1_ONLY_RELEASED",
+  "scope": {
+    "manifest": "CQF1_SCOPE.csv",
+    "path_count": 22,
+    "unique_path_count": 22,
+    "ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+    "remaining_container_count": 5,
+    "container_counts": {
+      "DEL-02-01": 14,
+      "DEL-03-03": 1,
+      "DEL-06-02": 1,
+      "DEL-09-04": 4,
+      "DEL-10-04": 2
+    }
+  },
+  "invariants": {
+    "frontend_runtime_writes": false,
+    "lifecycle_transition": false,
+    "hard_fence_crossing": false,
+    "prior_derivative_packages_mutable": false,
+    "concurrent_writes_disjoint": true,
+    "candidate_mapping_is_authority": false,
+    "prior_affinity_is_ownership": false,
+    "owner_merge_terminal": true
+  },
+  "nodes": [
+    {
+      "id": "R1",
+      "instance": "R1",
+      "role": "RECONCILIATION",
+      "parent": "HELP_HUMAN",
+      "function": "read-only subject concordance over 22 CQ-F1 paths; integrate a new derivative evidence, affinity, proposed-mapping, and decision-classification package",
+      "depends_on": [],
+      "status": "READY_RELEASED",
+      "accepted": false,
+      "subject_write_access": false,
+      "integration_owner": true,
+      "may_delegate_read_only_analysis": true,
+      "max_preferred_analysis_slices": 5,
+      "write_roots": [
+        "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1/"
+      ],
+      "return": "instances/R1/RETURN.md",
+      "fan_in_gate": "HELP_HUMAN_R1_STRUCTURAL_PROVENANCE_CONTAINMENT_ACCEPTANCE"
+    },
+    {
+      "id": "V1",
+      "instance": "V1",
+      "role": "EVALUATION",
+      "parent": "HELP_HUMAN",
+      "function": "fresh independent read-only-subject refutation audit of R1 evidence, affinity, mapping, classification, and any candidate slate",
+      "depends_on": ["R1_FAN_IN_ACCEPTED"],
+      "status": "PENDING",
+      "accepted": false,
+      "subject_write_access": false,
+      "integration_owner": true,
+      "write_roots": [
+        "projects/chirality-app-dev/execution/_Evaluation/CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V1/"
+      ],
+      "return": "instances/V1/RETURN.md",
+      "fan_in_gate": "HELP_HUMAN_V1_EVIDENCE_MAPPING_CLASSIFICATION_ACCEPTANCE"
+    },
+    {
+      "id": "D1",
+      "instance": "CLASSIFICATION-FAN-IN",
+      "role": "HELP_HUMAN",
+      "function": "accept verified findings and route disposition-class, owner-class, no-repair closure, or rerun",
+      "depends_on": ["V1_ACCEPTED"],
+      "status": "PENDING",
+      "accepted": false,
+      "human_decision_point": true
+    },
+    {
+      "id": "H1",
+      "instance": "OWNER-RULING",
+      "role": "HUMAN",
+      "function": "rule only any V1-sustained owner-class near-miss slate",
+      "depends_on": ["D1_OWNER_CLASS_ROUTE"],
+      "status": "CONDITIONAL",
+      "accepted": false
+    },
+    {
+      "id": "W1",
+      "instance": "WORKING-ITEMS-RESERVED",
+      "role": "WORKING_ITEMS",
+      "parent": "HELP_HUMAN",
+      "function": "conditional exact documentary repair integration; no current authorization",
+      "depends_on_any": [
+        "D1_DISPOSITION_CLASS_WITH_EXISTING_AUTHORIZATION_ACCEPTED",
+        "H1_EXPLICIT_OWNER_RULING_ACCEPTED"
+      ],
+      "status": "BLOCKED_PENDING_CLASSIFICATION_OR_OWNER_RULING",
+      "accepted": false,
+      "write_scope": "UNRESOLVED_UNTIL_VERSIONED_RELEASE_BRIEF"
+    },
+    {
+      "id": "V2",
+      "instance": "V2",
+      "role": "EVALUATION",
+      "parent": "HELP_HUMAN",
+      "function": "conditional independent read-only-subject repair and closure backcheck",
+      "depends_on": ["W1_FAN_IN_ACCEPTED"],
+      "status": "CONDITIONAL",
+      "accepted": false
+    },
+    {
+      "id": "C1",
+      "instance": "C1",
+      "role": "ORCHESTRATOR",
+      "parent": "HELP_HUMAN",
+      "function": "serialized handoff closeout after accepted no-repair route or V2",
+      "depends_on_any": ["D1_NO_REPAIR_CLOSURE_ACCEPTED", "V2_ACCEPTED"],
+      "status": "PENDING",
+      "accepted": false,
+      "shared_writes": "NOT_AUTHORIZED_BY_PLAN"
+    },
+    {
+      "id": "G1",
+      "instance": "CHANGE-PUBLISH",
+      "role": "CHANGE",
+      "parent": "HELP_HUMAN",
+      "function": "Git closeout only after accepted fan-in and checks",
+      "depends_on": ["C1_ACCEPTED"],
+      "status": "PENDING",
+      "accepted": false,
+      "content_repair_authority": false
+    },
+    {
+      "id": "H2",
+      "instance": "OWNER-MERGE",
+      "role": "HUMAN",
+      "function": "review and merge",
+      "depends_on": ["G1_COMPLETE"],
+      "status": "PENDING",
+      "accepted": false
+    }
+  ],
+  "fan_in_gates": {
+    "R1_to_V1": "HELP_HUMAN validates terminal schema, 22-of-22 coverage, source binding, child returns, provenance, conflicts, and containment; this does not accept a candidate slate or closure",
+    "V1_to_D1": "HELP_HUMAN accepts only V1-sustained evidence, mapping, classification, and slate completeness; BLOCK returns to R1",
+    "D1_to_W1": "release only existing-authority disposition-class action or explicit owner ruling",
+    "W1_to_V2": "validate exact authorized path containment and all package returns",
+    "V2_to_C1": "accept independent repair/backcheck closure",
+    "C1_to_G1": "accept closeout evidence and mandatory checks before Git publication"
+  },
+  "human_decision_points": [
+    "H1 only if D1 classifies a V1-sustained outcome as owner-class or fast-reject ambiguity remains",
+    "H2 owner review and merge is terminal"
+  ],
+  "blockers": {
+    "R1": [],
+    "V1": ["R1_FAN_IN_ACCEPTED"],
+    "D1": ["V1_ACCEPTED"],
+    "W1": ["D1_CLASSIFICATION_AND_AUTHORITY_ROUTE"],
+    "C1": ["ACCEPTED_NO_REPAIR_ROUTE_OR_V2_ACCEPTED"],
+    "G1": ["C1_ACCEPTED"]
+  },
+  "waivers": [],
+  "rerun_rules": [
+    "basis SHA changes",
+    "any of the 22 CQ-F1 source paths changes",
+    "any of the five live Remaining entries changes",
+    "D-APP-56, D-APP-60, D-APP-64, D-APP-65, or D-APP-68 changes or is superseded",
+    "a required return is invalid, incomplete, conflicting, or BLOCK",
+    "a derivative claim disagrees with the live tree"
+  ],
+  "derivative_status": "R1, V1, and any V2 outputs are derivative evidence only and never substitute for authority, decomposition, deliverable, lifecycle, or runtime truth",
+  "dispatch_gate": "R1_ONLY_RELEASED"
+}

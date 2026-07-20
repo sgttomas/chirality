@@ -1,0 +1,14 @@
+{
+  "instance_id": "V1",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "PENDING_R1_FAN_IN",
+  "accepted": false,
+  "terminal": false,
+  "depends_on": ["R1_FAN_IN_ACCEPTED"],
+  "basis": "be4be0dfcc18a34995db61429a2342c2758a5d00",
+  "subject_write_access": false,
+  "independent_from_r1_authorship": true,
+  "launch_brief": "LAUNCH_BRIEF.md",
+  "return": "RETURN.md"
+}
