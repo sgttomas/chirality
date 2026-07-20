@@ -1,0 +1,78 @@
+{
+  "schema_version": "appdev-dapp71-application-basis/v1",
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION",
+  "basis_commit": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "required_branch": "codex/app-dev-dapp71-application-20260720",
+  "required_shared_main": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "latest_receipt": "Receipt-81",
+  "authority_corpus": {
+    "version": "v9",
+    "required_status": "NO_DRIFT",
+    "manifest_path": "projects/chirality-app-dev/execution/_Reconciliation/References/AUTHORITY_CORPUS.json",
+    "manifest_sha256": "ae40877dc99b24d5d7bd4a9b0410507d081fc23ba7a504ed8079e3b1846ec828",
+    "validator_path": "projects/chirality-app-dev/execution/_Reconciliation/References/reconcile_authority_corpus.py",
+    "validator_sha256": "35ac74f2da6f7022303b52c62cce702f08b4bc3cfa2d4ea3c868d2703d2ccdd0"
+  },
+  "direct_file_sha256": {
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-71_RULING_2026-07-20.md": "153de2b988eee9eb99c4c6996cf4045b9e553fccd76cc6c0791f4fc32d71de4e",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-71_PACKET_PRELOAD_PHYSICAL_INTEGRATION_LEAD_2026-07-20.md": "711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c",
+    "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md": "af1a6dec6f30e81fc19a1aab4ecf2f99874c35c97e8d83aafadeb18ebcb33920",
+    "projects/chirality-app-dev/frontend/electron/preload.ts": "189b0d30bd8f6daf84862e14cfc3ec68c2c211b5c123283c7108c50c3b750ba0",
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md": "599e12e2606530be853ff0ac600f7f4377413f4e165e343bcc127ee2bef6f2b1",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md": "bcb26d3e17e3ac278846a1a3a94ec376b555272ffaff904e9335bdea5fdc548e",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md": "3517a2bfd5807682c24ed265f989628a57a4c2eb5b950a9762aef68537db5ef7",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_DEPENDENCIES.md": "85b9322cf8f690c6cfd37c37571b02a2a6e43d4722e01d6047d81c180f122922",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv": "1004a810777042d47123fe469dee4bf949b9851416613f0dc0f2edcd5d93b47e",
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/MEMORY.md": "6a0e9722b39c299d6e7a2bda034ba767571cf1770c337df9f2cf044d5902bf75",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md": "e571ae16bc62800f6d14ce33630a6d7b1414fdebcccc35b6bb11c0be93c476f3",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md": "6692a81799558f3999f52db8cdf9c5382eec33c0e389ed3ae327790accccccd3",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_DEPENDENCIES.md": "20f8f5e35713d0f0bb1ffd629e75156c71321615f125a3e2ad5c04881fd0c7df",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Dependencies.csv": "27b30fb0fb729b9194912094731d22d301fe7f3dcf5408e3211b7c35011c0cbe",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/MEMORY.md": "47cc15ea8503d5ba1d83d6fd7bfff2dc62103c5512905e79140f4a562568c95a",
+    "AGENTS.md": "98aa403e0f638a25e09e4ae0117eb6e18b0fc01b477aaabcd965690245ea73de",
+    "agents/AGENT_ORCHESTRATOR.md": "93909e5e0be50735d4f3cc52d888e82c80614d03dae4b7caacf4e52c6b8c51da",
+    "agents/AGENT_RECONCILIATION.md": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+    "agents/AGENT_EVALUATION.md": "46f03e10641aa2ccdb3d884249e5011dbc5ed5947c68e311a9be247f8ab1cd1f",
+    "projects/chirality-app-dev/loop/WORKPLAN_2026-07-18b_app_dev_loop.md": "d94a01911365773c6d2423880d949738e96f9afd31373bd24c57f1960ebf8ee8"
+  },
+  "frozen_trees": [
+    {
+      "purpose": "immutable_upstream_applied_dapp70_derivative",
+      "root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC",
+      "file_count": 7,
+      "sorted_paths_sha256": "bdbf139da07a5a00ef90bf0b78b00c24bb48e64e4a6f8433026fe5c14f1fa9bd",
+      "sorted_shasum_manifest_sha256": "82d585a2a22aac4a27dbee39461917077f80a7b5b9f4cbff75750332f930df16",
+      "manifest_sha256": "40c1ff5e7a0f9befb1e4b6c728fcebf66777211b059403e27fff92472ed2ee3e"
+    },
+    {
+      "purpose": "del_02_05_preexisting_run_records",
+      "root": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records",
+      "file_count": 9,
+      "sorted_paths_sha256": "70ac6264ddc0e3399b55f4e4e3a9c6708c6053222ba874f65daefd64af562721",
+      "sorted_shasum_manifest_sha256": "1fa84aef91e67cbd5bbdae4a12ba04b59cc8a4523a48eca4ceafee6f0502a2de"
+    },
+    {
+      "purpose": "del_09_04_preexisting_run_records",
+      "root": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records",
+      "file_count": 9,
+      "sorted_paths_sha256": "545d2f853d1fa1ac78c33ecd1d561d9d85526d962ad618a85eeeeb602abd4930",
+      "sorted_shasum_manifest_sha256": "cd2a846b792f324fce24f366b53107d9a67b745cc879cdb9e5ffe811d85082dc"
+    }
+  ],
+  "tree_hash_algorithm": {
+    "paths": "SHA-256 of newline-terminated LC_ALL=C sorted repo-relative file paths",
+    "content_manifest": "SHA-256 of concatenated shasum -a 256 lines for those paths in identical order"
+  },
+  "ruled_selection": {
+    "physical_lead": "DEL-02-05",
+    "lead_meaning": "COORDINATION_ONLY",
+    "retained_semantics": {
+      "DEL-02-03": "selectDirectory",
+      "DEL-02-05": "apiKey",
+      "DEL-09-06": "safeStorage/security"
+    }
+  },
+  "new_derivative_target": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP71_3346120C",
+  "evaluation_target": "projects/chirality-app-dev/execution/_Evaluation/DAPP71_APPLICATION_BACKCHECK_2026-07-20",
+  "waivers": []
+}

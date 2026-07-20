@@ -2410,3 +2410,13 @@
     `apiKey`, and DEL-09-06 `safeStorage`/security semantics remain distinct;
     all application, repair, lifecycle, release/publication, hard-fence,
     waiver, and Git effects remain separately gated.
+
+- **2026-07-20 — Receipt 82** (D-APP-71 Option-2 physical-lead application completed).
+  - Receipt-ID: `Receipt-82`
+  - Examined-Through: `3346120cb7c765aa7a230ee4c579ecd14f2cb022`
+  - Parent-Receipt: `Receipt-81`
+  - Pointers: derivative manifest `execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP71_3346120C/MANIFEST.json`; R1 terminal instance `execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION/instances/R1-DAPP71-APPLICATION/`; local records `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/R1_DAPP71_PRELOAD_PHYSICAL_LEAD_APPLICATION_2026-07-20.md` and `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R1_DAPP71_PRELOAD_PHYSICAL_LEAD_APPLICATION_2026-07-20.md`; ruled home `execution/_Coordination/_DECISIONS/D-APP-71_RULING_2026-07-20.md`.
+  - Stale-Map-Delta: none.
+  - Checks: strict JSON pass; exact hashes, schemas, and accounting pass; receipt validator pass; authority corpus v9 no drift; repository self-check pass; diff and per-new-file no-index hygiene pass; tracked, untracked, and ignored-path containment pass. Frontend gates skipped because every runtime source is frozen and unchanged.
+  - Model-Attribution: Codex RECONCILIATION under HELP_HUMAN as sole serialized integration owner; no delegation.
+  - Gate-Outcome: `EXECUTED` — D-APP-71 Option 2 applied DEL-02-05 as coordination-only physical lead; DEL-02-03 `selectDirectory`, DEL-02-05 `apiKey`, and DEL-09-06 `safeStorage`/security remain distinct; the D-APP-71 residual is closed; packaging/release Remaining is preserved; V1 is held; no source, lifecycle, release/publication, hard-fence, waiver, or Git effect.
