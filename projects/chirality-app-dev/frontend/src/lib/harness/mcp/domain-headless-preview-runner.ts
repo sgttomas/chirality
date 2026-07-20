@@ -325,6 +325,27 @@ function isResultEnvelopeRef(value: unknown): value is Record<string, unknown> {
   );
 }
 
+function hasResultEnvelopeChecksum(
+  checksums: unknown,
+  resultEnvelopeRef: unknown,
+): boolean {
+  if (!Array.isArray(checksums) || !isResultEnvelopeRef(resultEnvelopeRef)) {
+    return false;
+  }
+
+  const envelopeRef = resultEnvelopeRef.envelope_ref;
+  return (
+    isReference(envelopeRef) &&
+    checksums.some(
+      (checksum) =>
+        isChecksum(checksum) &&
+        isReference(checksum.payload_ref) &&
+        checksum.payload_ref.ref_type === "result_envelope" &&
+        checksum.payload_ref.ref_id === envelopeRef.ref_id,
+    )
+  );
+}
+
 function isRunnerResult(value: unknown): value is Record<string, unknown> {
   if (
     !isRecord(value) ||
@@ -348,6 +369,7 @@ function isRunnerResult(value: unknown): value is Record<string, unknown> {
     Array.isArray(value.checksums) &&
     value.checksums.length > 0 &&
     value.checksums.every(isChecksum) &&
+    hasResultEnvelopeChecksum(value.checksums, value.result_envelope_ref) &&
     isDiagnosticArray(value.diagnostics) &&
     isPrivacy(value.privacy) &&
     isProvenance(value.provenance) &&

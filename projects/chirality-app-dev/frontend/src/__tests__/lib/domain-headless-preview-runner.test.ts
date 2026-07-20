@@ -146,6 +146,15 @@ function resultObject(
           payload_ref: { ref_type: "runner_request", ref_id: "request-1" },
           value: "0".repeat(64),
         },
+        {
+          algorithm: "sha256",
+          canonicalization: "rfc8785_jcs",
+          payload_ref: {
+            ref_type: "result_envelope",
+            ref_id: "result-envelope:invented-app-transport",
+          },
+          value: "1".repeat(64),
+        },
       ],
       diagnostics: [],
       privacy: { ...PRIVACY },
@@ -273,6 +282,36 @@ const RESULT_SCHEMA_MUTATIONS: ResultSchemaMutation[] = [
         unknown
       >[];
       checksums[0].canonicalization = "ad_hoc";
+    },
+  },
+  {
+    name: "only unrelated complete checksums",
+    mutate: (value) => {
+      const runnerResult = asRecord(value.runner_result);
+      runnerResult.checksums = [
+        (runnerResult.checksums as Record<string, unknown>[])[0],
+      ];
+    },
+  },
+  {
+    name: "result-envelope checksum with mismatched reference id",
+    mutate: (value) => {
+      const checksums = asRecord(value.runner_result).checksums as Record<
+        string,
+        unknown
+      >[];
+      asRecord(checksums[1].payload_ref).ref_id =
+        "result-envelope:different-result";
+    },
+  },
+  {
+    name: "checksum with matching reference id but wrong reference type",
+    mutate: (value) => {
+      const checksums = asRecord(value.runner_result).checksums as Record<
+        string,
+        unknown
+      >[];
+      asRecord(checksums[1].payload_ref).ref_type = "runner_request";
     },
   },
   {
@@ -407,7 +446,7 @@ afterEach(async () => {
 });
 
 describe("configured DEC-065 headless runner transport", () => {
-  it("delivers the exact complete input bytes to solve and accepts exit 0 JSON", async () => {
+  it("delivers the exact input and accepts a correlated checksum alongside unrelated checksums", async () => {
     const runner = await makeJsonRunner({ verifyInput: true });
     await expect(
       runConfiguredHeadlessPreview({
