@@ -1,7 +1,7 @@
 # Harness Tool Catalog
 
 **Status:** Generated governance/runtime support artifact
-**Registry version:** `harness-tools.v13.atomic-coordination`
+**Registry version:** `harness-tools.v14.headless-preview-live`
 **Source:** `frontend/packages/harness-contract/src/tool-descriptor.ts`
 **Regenerate:** `npm run harness:generate-tool-catalog`
 
@@ -22,8 +22,18 @@ any further profileId requires its own D-APP ruling (no filesystem discovery,
 no dynamic registration). Their handlers return live DEC-041 in-process
 read-transport evidence envelopes only: no domain verdict, no live-binding
 claim, no professional conclusion, and no piping write.
-`mcp__chirality__domain_headless_preview_run` remains descriptor-only because
-the DEC-064 / TP-RUNNER-014 CLI entrypoint is provisional/TBD.
+`mcp__chirality__domain_headless_preview_run` is live only for
+`open_pipe_stress` under D-APP-50 using the final DEC-065 local
+`openpipestress-runner solve` transport. The caller must configure an absolute
+runner path in `CHIRALITY_OPEN_PIPE_STRESS_RUNNER_PATH` plus its exact lowercase
+SHA-256 in `CHIRALITY_OPEN_PIPE_STRESS_RUNNER_SHA256`; the adapter resolves and verifies
+the executable immediately before one foreground spawn, passes the exact bytes
+of a project-root-contained `runnerInputRef` on stdin, and accepts structured
+JSON only from bounded stdout. It performs no PATH lookup, shell invocation,
+network access, daemon work, telemetry, output-path write, proposal, acceptance,
+or apply operation. The provisional `modelInputPath` concept is retired because
+DEC-065 requires the complete schema-first request envelope rather than the
+TP-RUNNER-014 model-only fixture.
 `mcp__chirality__domain_propose_operation` and
 `mcp__chirality__domain_proposal_validate` are live pec-scoped exposures per
 D-APP-52: both handlers resolve only the registry's `pec` entry and ride a
@@ -64,7 +74,7 @@ present and explicitly allows executable delegation.
 | dependency_write | mcp__chirality__deps_write | Write a governed Dependencies.csv register using v3.1 dependency writer semantics. | chirality-mcp | workspace-write | project-root-write | workspaceWrite | mutating | serialized-by-path | interactive-confirmation: Dependency register writes require workspaceWrite mode and governed row validation. | Handler-level permission/evidence wrapper; project-root path policy; redaction; event logging. SDK canUseTool and hooks do not auto-fire for raw in-process MCP calls. | yes: Mutating Chirality MCP tools are exposed only when requested in workspaceWrite mode and enforced by the handler-level permission/evidence wrapper. |
 | domain_completeness_check | mcp__chirality__domain_completeness_check | Registry-gated domain MCP read wrapper for completeness_checker transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec). | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | idempotent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-50 tranche-1 read-only domain wrappers are exposed through DEC-041 in-process MCP transport. |
 | domain_rule_check_run | mcp__chirality__domain_rule_check_run | Registry-gated domain MCP read wrapper for rule_check_runner transport evidence (D-APP-50 tranche-1 open_pipe_stress; D-APP-51 P1 pec). | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | idempotent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-50 tranche-1 read-only domain wrappers are exposed through DEC-041 in-process MCP transport. |
-| domain_headless_preview_run | mcp__chirality__domain_headless_preview_run | Reserved D-APP-50 domain MCP descriptor for the proven-L2 headless_runner preview wrapper. | reserved | read | project-root-read | reserved / future policy | input-dependent | exclusive | future-policy: DEC-064 / TP-RUNNER-014 keeps the headless_preview_runner CLI entrypoint provisional/TBD; live transport is not sound enough for model exposure. | Not exposed; future policy must define permission, hook, path, redaction, and event requirements before activation. | no: D-APP-50 descriptor-only park: DEC-064 / TP-RUNNER-014 keeps the headless_preview_runner CLI entrypoint provisional/TBD; live transport is not sound enough for model exposure. |
+| domain_headless_preview_run | mcp__chirality__domain_headless_preview_run | Run one complete DEC-065 open_pipe_stress solve request through an explicitly configured, absolute, executable, SHA-256-pinned local openpipestress-runner process. | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | input-dependent | exclusive | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-50 read-side live exposure through the DEC-065 configured local openpipestress-runner solve transport; requires an absolute executable path and exact SHA-256 in local process configuration. |
 | domain_propose_operation | mcp__chirality__domain_propose_operation | Create (mode propose) or refresh (mode refresh) a pec import-proposal dry-run record over the D-APP-52 loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport, acting as the owner-provisioned pec agent person; refresh mutates and voids any prior acceptance. The domain human gate — acceptance and application — lives in pec behind admin-only RBAC and is not tool-reachable (K-DOMAIN-3). | chirality-mcp | workspace-write | project-root-read | workspaceWrite | mutating | serialized-by-path | interactive-confirmation: pec proposal-record mutations require workspaceWrite mode; domain acceptance/application remain human in-app acts behind pec admin-only RBAC (K-DOMAIN-3). | Handler-level permission/evidence wrapper; project-root path policy; redaction; event logging. SDK canUseTool and hooks do not auto-fire for raw in-process MCP calls. | yes: D-APP-52 exposes the pec proposal write wrapper in workspaceWrite mode over the loopback-only endpoint-allowlisted HTTP transport with handler-level permission/evidence checks. |
 | domain_proposal_validate | mcp__chirality__domain_proposal_validate | Read a pec import-proposal record and its stored dry-run report over the D-APP-52 loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport. GET only: never issues a POST, never recomputes, never mutates; staleness is inspectable via the stored dryRunAt/basisHistoryId. | chirality-mcp | read | project-root-read | readOnly, workspaceWrite | input-dependent | safe | none | Descriptor allow-list; project-root containment in handler; result budget; redaction; event logging. | yes: D-APP-52 exposes the pec proposal read wrapper (GET-only, never recomputes) over the loopback-only endpoint-allowlisted HTTP transport. |
 | write_file | Write | Write a project-root-contained file after policy approval. | claude-agent-sdk-builtin | workspace-write | project-root-write | workspaceWrite | mutating | serialized-by-path | interactive-confirmation: Workspace writes require an accepted permission policy and human gate. | canUseTool permission overlay; PreToolUse and PostToolUse hooks; project-root path policy; redaction; diff/evidence logging. | yes: Write/Edit SDK built-ins are exposed only in workspaceWrite mode after descriptor resolution, permission overlay, and Chirality write hooks. |

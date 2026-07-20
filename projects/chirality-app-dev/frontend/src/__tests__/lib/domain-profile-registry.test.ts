@@ -53,7 +53,7 @@ async function findMonorepoProfilesDirectory(): Promise<string | null> {
 }
 
 describe('D-APP-51 domain engine profile registry', () => {
-  it('is closed to exactly the two ruled profileIds with the single P1 transport binding', () => {
+  it('is closed to exactly the two ruled profileIds and records the separate headless binding', () => {
     expect(listRegisteredDomainProfileIds()).toEqual(['open_pipe_stress', 'pec']);
     expect(DOMAIN_ENGINE_PROFILE_REGISTRY).toHaveLength(2);
     for (const entry of DOMAIN_ENGINE_PROFILE_REGISTRY) {
@@ -62,6 +62,7 @@ describe('D-APP-51 domain engine profile registry', () => {
     expect(resolveDomainEngineProfile('open_pipe_stress')).toMatchObject({
       profileRelativePath: '_DomainEngines/profiles/open_pipe_stress.yaml',
       engineKind: 'deterministic-cli',
+      headlessPreviewTransportBinding: 'configured-local-process',
       identityMarker: 'id: "open_pipe_stress"',
       toolGate: {
         completeness_checker: {
@@ -71,6 +72,10 @@ describe('D-APP-51 domain engine profile registry', () => {
         rule_check_runner: {
           requiredMarker: '- id: "rule_check_runner"',
           declaredDeterministicToolId: 'rule_check_runner'
+        },
+        headless_runner: {
+          requiredMarker: '- id: "headless_runner"',
+          declaredDeterministicToolId: 'headless_runner'
         }
       }
     });
@@ -84,6 +89,10 @@ describe('D-APP-51 domain engine profile registry', () => {
           declaredDeterministicToolId: null
         },
         rule_check_runner: {
+          requiredMarker: null,
+          declaredDeterministicToolId: null
+        },
+        headless_runner: {
           requiredMarker: null,
           declaredDeterministicToolId: null
         }

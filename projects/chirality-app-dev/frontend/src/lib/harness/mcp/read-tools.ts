@@ -7,7 +7,7 @@ import {
 } from '@anthropic-ai/claude-agent-sdk';
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { createHash } from 'node:crypto';
-import { readFile, realpath } from 'node:fs/promises';
+import { readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod/v4';
 import { previewScaffoldExecutionRoot } from '../scaffold';
@@ -60,6 +60,7 @@ import {
   type DomainProposeOperationArgs
 } from './domain-proposal-tools';
 import { buildCoordinationMcpTools } from './coordination-tools';
+import { runConfiguredHeadlessPreview } from './domain-headless-preview-runner';
 
 export type ChiralityReadMcpContext = {
   projectRoot: string;
@@ -99,6 +100,11 @@ export type DomainRuleCheckRunArgs = {
   profileId: string;
   rulePackRef: string;
   valueBindingsRef: string;
+};
+
+export type DomainHeadlessPreviewRunArgs = {
+  profileId: string;
+  runnerInputRef: string;
 };
 
 export type StatusTransitionArgs = {
@@ -216,6 +222,45 @@ async function runReadMcpToolWithEvidence(input: {
     }
     throw error;
   }
+}
+
+async function assertReadMcpPermission(input: {
+  context: ChiralityReadMcpContext;
+  toolName: ChiralityMcpDomainToolName;
+  args: unknown;
+}): Promise<Record<string, unknown>> {
+  const descriptor = getHarnessToolDescriptor(input.toolName);
+  const pathPolicy = await evaluateToolPathPolicy({
+    descriptor,
+    projectRoot: input.context.projectRoot,
+    toolInput: input.args
+  });
+  const decision = resolveHarnessPermissionDecision({
+    sessionId: input.context.sessionId,
+    mode: input.context.mode ?? 'readOnly',
+    toolName: toChiralityMcpAllowedToolName(input.toolName),
+    descriptor,
+    source: 'chirality-policy',
+    toolInput: asRecord(input.args),
+    explicitDeny: !pathPolicy.allowed,
+    explicitDenyReason: pathPolicy.allowed ? undefined : pathPolicy.reason,
+    safeMetadata: {
+      inputMetadata: summarizeToolInput(input.args),
+      pathMetadata: pathPolicy.metadata
+    }
+  });
+  await appendHarnessPermissionDecisionEvent({ decision, descriptor });
+  if (decision.decision !== 'allow') {
+    throw new HarnessError('INVALID_REQUEST', 403, decision.reason, {
+      decisionId: decision.decisionId,
+      decision: decision.decision,
+      safeMetadata: decision.safeMetadata
+    });
+  }
+  return {
+    decisionId: decision.decisionId,
+    pathMetadata: pathPolicy.metadata
+  };
 }
 
 function resolveProjectPath(projectRoot: string, candidatePath: string): string {
@@ -511,6 +556,52 @@ async function readProjectTextReference(input: {
   };
 }
 
+async function readProjectBinaryReference(input: {
+  projectRoot: string;
+  reference: string;
+  field: string;
+}): Promise<{
+  content: Buffer;
+  evidence: {
+    relativePath: string;
+    sha256: string;
+    byteLength: number;
+  };
+}> {
+  const projectRoot = await realpath(path.resolve(input.projectRoot));
+  let filePath: string;
+  try {
+    filePath = await assertExistingPathWithinProjectRoot({
+      projectRoot,
+      candidatePath: resolveProjectPath(projectRoot, input.reference),
+      field: input.field
+    });
+  } catch (error) {
+    if (error instanceof HarnessError) {
+      throw error;
+    }
+    throw new HarnessError('INVALID_REQUEST', 400, `${input.field} is not an accessible file`, {
+      field: input.field,
+      errorCode: 'HEADLESS_RUNNER_INPUT_REF_INVALID'
+    });
+  }
+  const fileStat = await stat(filePath);
+  if (!fileStat.isFile()) {
+    throw new HarnessError('INVALID_REQUEST', 400, `${input.field} must reference a regular file`, {
+      field: input.field
+    });
+  }
+  const content = await readFile(filePath);
+  return {
+    content,
+    evidence: {
+      relativePath: path.relative(projectRoot, filePath),
+      sha256: createHash('sha256').update(content).digest('hex'),
+      byteLength: content.byteLength
+    }
+  };
+}
+
 async function readProjectJsonReference(input: {
   projectRoot: string;
   reference: string;
@@ -755,6 +846,78 @@ export async function domainRuleCheckRunTool(
         profile,
         inputs: [rulePack, valueBindings]
       });
+    }
+  });
+}
+
+export async function domainHeadlessPreviewRunTool(
+  context: ChiralityReadMcpContext,
+  args: DomainHeadlessPreviewRunArgs
+): Promise<CallToolResult> {
+  return runReadMcpToolWithEvidence({
+    context,
+    toolName: 'domain_headless_preview_run',
+    args,
+    execute: async () => {
+      if (!args || typeof args.runnerInputRef !== 'string' || !args.runnerInputRef.trim()) {
+        throw new HarnessError('INVALID_REQUEST', 400, 'runnerInputRef is required', {
+          errorCode: 'HEADLESS_RUNNER_INPUT_REF_MISSING'
+        });
+      }
+      await assertReadMcpPermission({
+        context,
+        toolName: 'domain_headless_preview_run',
+        args
+      });
+      if (args.profileId !== 'open_pipe_stress') {
+        throw new HarnessError(
+          'INVALID_REQUEST',
+          400,
+          'domain_headless_preview_run supports only profileId open_pipe_stress',
+          {
+            errorCode: 'HEADLESS_RUNNER_PROFILE_REFUSED',
+            profileId: args.profileId || '(missing)'
+          }
+        );
+      }
+      await readRegisteredDomainProfile({
+        projectRoot: context.projectRoot,
+        profileId: args.profileId,
+        toolId: 'headless_runner'
+      });
+      const runnerInput = await readProjectBinaryReference({
+        projectRoot: context.projectRoot,
+        reference: args.runnerInputRef,
+        field: 'runnerInputRef'
+      });
+      const runner = await runConfiguredHeadlessPreview({
+        requestBytes: runnerInput.content
+      });
+      const value = {
+        profileId: args.profileId,
+        toolId: 'headless_runner',
+        transportStatus: {
+          status: runner.exitCode === 0 ? 'completed' : 'blocking',
+          policyRef: 'DEC-065',
+          transport: 'configured-local-process',
+          executableIdentity: 'caller-configured absolute realpath plus pinned SHA-256',
+          command: 'solve',
+          stdin: 'exact validated runnerInputRef bytes',
+          stdout: 'sole structured result channel',
+          stderr: 'bounded and never model-visible',
+          writes: false,
+          network: false,
+          daemon: false,
+          telemetry: false,
+          exitCode: runner.exitCode
+        },
+        inputEvidence: runnerInput.evidence,
+        result: runner.result
+      };
+      return {
+        ...jsonToolResult(value),
+        ...(runner.exitCode === 1 ? { isError: true } : {})
+      };
     }
   });
 }
@@ -1024,6 +1187,20 @@ export function buildChiralityMcpTools(input: {
     );
   }
 
+  if (allowed.has('mcp__chirality__domain_headless_preview_run')) {
+    tools.push(
+      tool(
+        'domain_headless_preview_run',
+        'Run one open_pipe_stress DEC-065 solve request through a configured, hash-pinned local openpipestress-runner process. Read-only; no network, apply, proposal, or filesystem output path.',
+        {
+          profileId: z.literal('open_pipe_stress'),
+          runnerInputRef: z.string().min(1)
+        },
+        (args) => domainHeadlessPreviewRunTool(input.context, args)
+      )
+    );
+  }
+
   if (allowed.has('mcp__chirality__domain_propose_operation')) {
     tools.push(
       tool(
@@ -1083,7 +1260,7 @@ export function createChiralityMcpServers(input: {
       name: CHIRALITY_MCP_SERVER_NAME,
       version: CHIRALITY_MCP_SERVER_VERSION,
       instructions:
-        'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, read-only domain transport evidence, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands. The two pec domain proposal tools (domain_propose_operation, domain_proposal_validate) use a loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport to the local pec engine seam (D-APP-52); every other tool accesses no network.',
+        'Chirality MCP tools expose explicitly requested local project status, dependency, scope, scaffold-preview, read-only domain transport evidence, and governed write operations. Mutating tools require workspaceWrite mode and handler-level permission/evidence checks. These tools do not run shell commands. domain_headless_preview_run is open_pipe_stress-only and directly spawns one explicitly configured absolute, executable, SHA-256-pinned local openpipestress-runner with argv solve, exact project-contained request bytes on stdin, bounded stdout/stderr, a minimal environment, and no network, output path, proposal, or apply behavior. The two pec domain proposal tools (domain_propose_operation, domain_proposal_validate) use a loopback-only (127.0.0.1) endpoint-allowlisted HTTP transport to the local pec engine seam (D-APP-52); every other tool accesses no network.',
       tools
     })
   };

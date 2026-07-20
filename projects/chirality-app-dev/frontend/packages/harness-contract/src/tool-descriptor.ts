@@ -8,7 +8,7 @@ import {
   type ChiralityMcpReadToolName
 } from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v13.atomic-coordination';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v14.headless-preview-live';
 
 export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
@@ -313,6 +313,9 @@ function chiralityDomainReadMcpDescriptor(input: {
   mcpToolName: ChiralityMcpDomainToolName;
   inputSchema: Record<string, unknown>;
   outputSchema?: Record<string, unknown>;
+  idempotence?: HarnessToolIdempotence;
+  concurrency?: HarnessToolConcurrency;
+  runtimeReason?: string;
 }): HarnessToolDescriptor {
   return {
     name: input.name,
@@ -325,8 +328,8 @@ function chiralityDomainReadMcpDescriptor(input: {
     surface: 'chirality-mcp',
     permissions: ['read'],
     pathScope: 'project-root-read',
-    idempotence: 'idempotent',
-    concurrency: 'safe',
+    idempotence: input.idempotence ?? 'idempotent',
+    concurrency: input.concurrency ?? 'safe',
     interruptBehavior: 'cancel',
     resultBudget: READ_RESULT_BUDGET,
     provenance: {
@@ -345,7 +348,9 @@ function chiralityDomainReadMcpDescriptor(input: {
     },
     inputSchema: input.inputSchema,
     outputSchema: input.outputSchema,
-    runtime: CHIRALITY_DOMAIN_READ_MCP_RUNTIME
+    runtime: input.runtimeReason
+      ? { exposedToModel: true, reason: input.runtimeReason }
+      : CHIRALITY_DOMAIN_READ_MCP_RUNTIME
   };
 }
 
@@ -797,25 +802,24 @@ export const HARNESS_TOOL_DESCRIPTORS = [
       required: ['profileId', 'toolId', 'transportStatus']
     }
   }),
-  chiralityDomainDescriptorOnly({
+  chiralityDomainReadMcpDescriptor({
     name: 'domain_headless_preview_run',
     aliases: ['mcp.domain_headless_preview_run'],
     description:
-      'Reserved D-APP-50 domain MCP descriptor for the proven-L2 headless_runner preview wrapper.',
+      'Run one complete DEC-065 open_pipe_stress solve request through an explicitly configured, absolute, executable, SHA-256-pinned local openpipestress-runner process.',
     mcpToolName: 'domain_headless_preview_run',
-    permissions: ['read'],
-    pathScope: 'project-root-read',
     idempotence: 'input-dependent',
     concurrency: 'exclusive',
-    resultBudget: READ_RESULT_BUDGET,
     inputSchema: {
       type: 'object',
-      required: ['profileId', 'modelInputPath'],
+      additionalProperties: false,
+      required: ['profileId', 'runnerInputRef'],
       properties: {
         profileId: {
-          type: 'string'
+          type: 'string',
+          const: 'open_pipe_stress'
         },
-        modelInputPath: {
+        runnerInputRef: {
           type: 'string'
         }
       }
@@ -824,8 +828,8 @@ export const HARNESS_TOOL_DESCRIPTORS = [
       type: 'object',
       required: ['profileId', 'toolId', 'transportStatus']
     },
-    gateReason:
-      'DEC-064 / TP-RUNNER-014 keeps the headless_preview_runner CLI entrypoint provisional/TBD; live transport is not sound enough for model exposure.'
+    runtimeReason:
+      'D-APP-50 read-side live exposure through the DEC-065 configured local openpipestress-runner solve transport; requires an absolute executable path and exact SHA-256 in local process configuration.'
   }),
   {
     name: 'domain_propose_operation',

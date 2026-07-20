@@ -118,8 +118,18 @@ any further profileId requires its own D-APP ruling (no filesystem discovery,
 no dynamic registration). Their handlers return live DEC-041 in-process
 read-transport evidence envelopes only: no domain verdict, no live-binding
 claim, no professional conclusion, and no piping write.
-\`mcp__chirality__domain_headless_preview_run\` remains descriptor-only because
-the DEC-064 / TP-RUNNER-014 CLI entrypoint is provisional/TBD.
+\`mcp__chirality__domain_headless_preview_run\` is live only for
+\`open_pipe_stress\` under D-APP-50 using the final DEC-065 local
+\`openpipestress-runner solve\` transport. The caller must configure an absolute
+runner path in \`CHIRALITY_OPEN_PIPE_STRESS_RUNNER_PATH\` plus its exact lowercase
+SHA-256 in \`CHIRALITY_OPEN_PIPE_STRESS_RUNNER_SHA256\`; the adapter resolves and verifies
+the executable immediately before one foreground spawn, passes the exact bytes
+of a project-root-contained \`runnerInputRef\` on stdin, and accepts structured
+JSON only from bounded stdout. It performs no PATH lookup, shell invocation,
+network access, daemon work, telemetry, output-path write, proposal, acceptance,
+or apply operation. The provisional \`modelInputPath\` concept is retired because
+DEC-065 requires the complete schema-first request envelope rather than the
+TP-RUNNER-014 model-only fixture.
 \`mcp__chirality__domain_propose_operation\` and
 \`mcp__chirality__domain_proposal_validate\` are live pec-scoped exposures per
 D-APP-52: both handlers resolve only the registry's \`pec\` entry and ride a

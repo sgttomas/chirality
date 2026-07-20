@@ -8,6 +8,7 @@ const SAFE_PATH_FIELD_NAMES = [
   'deliverablePath',
   'executionRoot',
   'decompositionPath',
+  'runnerInputRef',
   'projectRoot'
 ] as const;
 
