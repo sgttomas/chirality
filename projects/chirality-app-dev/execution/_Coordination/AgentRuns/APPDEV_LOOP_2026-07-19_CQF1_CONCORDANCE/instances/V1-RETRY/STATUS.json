@@ -1,0 +1,55 @@
+{
+  "instance_id": "V1-RETRY",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "BLOCK",
+  "accepted": false,
+  "terminal": true,
+  "verdict": "BLOCK",
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "depends_on": [
+    "R1-RETRY_TERMINAL_PRELIMINARY_FAN_IN_ACCEPTED_FOR_EVALUATION"
+  ],
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "scope_manifest": "../../CQF1_SCOPE.csv",
+  "scope_path_count": 22,
+  "scope_unique_path_count": 22,
+  "scope_ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+  "r1_subject_root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/",
+  "r1_terminal_return_sha256": "5afcca6497e7cee440114d4ee8fb7e4c169e6d23a7cbe20f361341c9d480339a",
+  "r1_row_count": 22,
+  "r1_child_return_count": 5,
+  "r1_owner_class_count": 22,
+  "r1_proposal_group_count": 9,
+  "evaluation_output_root": "projects/chirality-app-dev/execution/_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/",
+  "subject_write_access": false,
+  "independent_from_r1_authorship": true,
+  "may_delegate_read_only_audits": true,
+  "max_read_only_audit_slices": 2,
+  "integration_owner": true,
+  "launch_brief": "LAUNCH_BRIEF.md",
+  "expected_return": "RETURN.md",
+  "expected_verdicts": [
+    "ACCEPT",
+    "BLOCK"
+  ],
+  "released_by": "HELP_HUMAN_R1_RETRY_PRELIMINARY_FAN_IN",
+  "candidate_owner_slate_accepted": false,
+  "downstream_release": false,
+  "evaluation_child_return_count": 2,
+  "finding_count": 5,
+  "blocking_finding_count": 4,
+  "substantive_blocking_row_count": 3,
+  "substantive_accepted_row_count": 19,
+  "blocked_owner_slate_groups": [
+    1,
+    3
+  ],
+  "required_owner": "RECONCILIATION_UNDER_VERSIONED_PARENT_AMENDMENT",
+  "required_rerun": "REISSUE_AFFECTED_R1_ROWS_AND_GROUPS_REPAIR_EOF_REFRESH_BINDINGS_THEN_RERUN_V1",
+  "evaluation_report": "projects/chirality-app-dev/execution/_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/EVALUATION_REPORT.md",
+  "terminal_return": "RETURN.md",
+  "blocked_nodes": [
+    "W1"
+  ]
+}

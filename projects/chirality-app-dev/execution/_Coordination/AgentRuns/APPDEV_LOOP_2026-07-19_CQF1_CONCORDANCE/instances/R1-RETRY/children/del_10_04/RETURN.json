@@ -1,0 +1,198 @@
+{
+  "basis": {
+    "frozen_commit": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+    "head_observed": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+    "inspection_mode": "read-only subjects; no tests or services run",
+    "activation_authority": "D-APP-69 Option A",
+    "method": "docs/DELIVERABLE_CONCORDANCE_METHOD.md Revision 1 plus D-APP-55 MR-1..MR-11 and R2_METHOD_ADDENDUM",
+    "source_bindings_verified": true
+  },
+  "container": "DEL-10-04",
+  "expected_count": 2,
+  "rows": [
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/pec-scratch-server.mjs",
+      "source_blob": "2a5b3ab7946890b20a0dcc762e65e887bb2720f9",
+      "source_sha256": "289ea0bc8b2ed85cc0efe55dae08f8b53e1e4ab6a7b7c9e80c7ccbc853bb35f5",
+      "implementation_summary": "Hermetic PEC scratch-fixture support module. It resolves the repository root, enforces Node >=23.6, hashes a runtime-only PEC agent password, invokes PEC's D-PEC-06-guarded seed, provisions synthetic rehearsal actors/project data, starts and stops a loopback-only PEC server, and deletes the scratch DB plus WAL/SHM companions. It is not shipped runtime code; it is used by the opt-in PEC bridge integration test, the direct-handler bridge rehearsal, and the later live-LLM demonstration driver.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/scripts/pec-scratch-server.mjs:1-10",
+        "projects/chirality-app-dev/frontend/scripts/pec-scratch-server.mjs:23-64",
+        "projects/chirality-app-dev/frontend/scripts/pec-scratch-server.mjs:66-113",
+        "projects/chirality-app-dev/frontend/scripts/pec-scratch-server.mjs:115-180",
+        "projects/chirality-app-dev/frontend/src/__tests__/integration/pec-bridge.integration.test.ts:37-98",
+        "projects/chirality-app-dev/frontend/scripts/run-dapp52-live-llm-demo.ts:30-38"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/integration/pec-bridge.integration.test.ts:37-98 imports the helper, creates only a temporary scratch basis, starts the loopback server, and tears down the DB; lines 100-204 exercise propose/validate/refresh and structured 403/409 behavior through that seam. The suite is opt-in via PEC_BRIDGE_IT=1 at lines 20 and 207-212.",
+        "_DomainEngines/pec/PEC_2026-07-06_BRIDGE-evidence-01/MANIFEST.md:18-22 records the scratch instance and deletion; lines 94-99 record teardown; lines 101-123 bind immutable artifact SHA-256 values.",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-52_PACKET_PEC_TRANSPORT_PROPOSAL_TOOLS_2026-07-06.md:127 records that the live scratch-server integration path is opt-in while default tests stay PEC-independent; lines 146-159 define the integration/rehearsal and final-SHA verification posture.",
+        "No tests or services were run in this child, as prohibited by the sealed brief; verification evidence is committed evidence and current test/caller inspection only."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:69-71 and 87-88",
+        "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/PROPOSED_DECISION_FINDINGS.md:250-264",
+        "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/ScopeOfWork.md:215-221",
+        "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/ScopeOfWork.md:221-225",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-89 and 533-536",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:68-115 and 422-425",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:90-111 and 192-204"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P27 adopted the surface-vs-fixture-use partition: DEL-10-03 owns proposal-tool registration/envelopes/gates; PEC-profile-scoped fixture interaction is evidence for DEL-10-04.",
+        "DEL-10-04 ScopeOfWork CLM-016 records ownership of the PEC fixture profile, v1 validation record, PEC registry-entry content, and evidence from PEC-profile-scoped fixture interaction, while retaining the generic proposal-tool surface in DEL-10-03.",
+        "D-APP-52 O-A riders authorize only the bounded scratch/demo rehearsal lane and explicitly preserve zero PEC source change, scratch-only data, and the evidence capture surfaces.",
+        "D-APP-69 activates analysis only and expressly does not accept or assign ownership or authorize repair."
+      ],
+      "lifecycle_state": "DEL-10-04 is IN_PROGRESS; no lifecycle or Checking Approval SHA change is authorized or implied.",
+      "remaining_evidence": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_STATUS.md:10-11 names this exact path among the two CQ-F1 PEC-fixture-affinity files, explicitly says no ownership or mapping is asserted, and requires revisit in the next concordance pass.",
+      "prior_affinity": "PEC fixture affinity; R3A-016 / R4-P27 staged-surface partition. This is preserved as prior agent evidence only, from COVERAGE_AND_QA.md:141-172 and the live DEL-10-04 Remaining entry.",
+      "candidate_mapping": "PROPOSAL: DEL-10-04 as the primary existing deliverable for the file's PEC-profile-scoped scratch-fixture and interaction-evidence function, with a recorded DEL-10-03 verification-consumer interest because the helper also supports the proposal-tool integration test and live-LLM demonstration.",
+      "mapping_status": "PROPOSAL_ONLY_OWNER_GATE_REQUIRED",
+      "competing_candidates": [
+        "DEL-10-03 is the strongest competing owner because the helper exists to exercise propose/refresh/validate handlers and is imported by the DEL-10-03-housed live-LLM evidence driver; however, R4-P27 assigns only the generic tool surface to DEL-10-03 and assigns PEC-profile-scoped fixture interaction evidence to DEL-10-04.",
+        "DEL-05-03 has a limited documentary interest in PEC credential/cookie envelope hygiene under D-APP-68 item 7, but that ruling does not transfer the scratch-fixture lifecycle, actor provisioning, or server helper.",
+        "DEL-10-01 owns the shared profile/registry mechanism and gate, not the PEC-specific fixture interaction helper.",
+        "Ruled-program/no-deliverable ownership was R4-P27 Option B, but D-APP-56 adopted the recommended four-way deliverable partition; reviving Option B would require new owner authority."
+      ],
+      "rejected_alternatives": [
+        "Map solely to DEL-10-03: rejected as the primary proposal because it erases the accepted mechanism-vs-PEC-fixture-use boundary and the helper's synthetic PEC fixture lifecycle.",
+        "Map solely to DEL-05-03: rejected because D-APP-68 item 7 is documentary envelope-hygiene ownership only, not scratch-server or fixture ownership.",
+        "Treat the file as generic unowned test infrastructure: rejected because the code and all direct callers are PEC-specific and D-APP-56 already supplies a nearer domain partition.",
+        "No-repair/implicit mapping: rejected because the live DEL-10-04 Remaining entry expressly says no ownership or mapping is asserted for this exact file."
+      ],
+      "evidence_strength": "HIGH for implementation identity, callers, and committed scratch-evidence use; MEDIUM for the single-primary-owner proposal because DEL-10-03 remains a material verification consumer.",
+      "concordance_disposition": "IMPLEMENTED_UNDOCUMENTED",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "Accepting the exact-path mapping would create an accepted ownership/mapping result where the live Remaining entry expressly records none.",
+        "The file operates at the F-APP-3 domain-engine boundary by spawning the PEC engine on a scratch basis; D-APP-60/D-APP-64 make any domain-engine-boundary touch owner-class.",
+        "D-APP-69 permits candidate analysis only and reserves consequential mapping for independent evaluation and the owner gate."
+      ],
+      "rationale": "The helper's dominant functionality is a PEC-specific synthetic fixture and interaction-evidence substrate, making DEL-10-04 the nearest existing mapping under the accepted R4-P27 partition. Its reuse by DEL-10-03 verification is material and must be preserved as an interface/evidence interest, not converted into duplicate ownership. Because the exact file is expressly unmapped and the decision touches F-APP-3, this row can only propose the mapping and must return OWNER_CLASS.",
+      "rerun_triggers": [
+        "the file blob or SHA-256 changes",
+        "the DEL-10-04 or DEL-10-03 ownership amendments or Remaining entries change",
+        "D-APP-56, D-APP-60, D-APP-64, D-APP-65, D-APP-68, or D-APP-69 is amended or superseded",
+        "an owner ruling accepts a primary/shared mapping or changes the F-APP-3 fence",
+        "independent V1 rejects the implementation, boundary, mapping, or classification evidence"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts",
+      "source_blob": "48db66c32fb60b8fe2178c1a5682deb148c0a4e2",
+      "source_sha256": "9f199797542c48512c010d17906354ce25556050a1493b09918c8f8b693f8fea",
+      "implementation_summary": "D-APP-52 direct-handler PEC bridge rehearsal driver. It creates a synthetic MDL input and scratch PEC basis, invokes the exact propose/refresh/validate handler functions registered by the Chirality MCP server, captures stored-report invariance and structured error taxonomy, and demo-casts owner-role accept/screen/apply acts over loopback HTTP with force hard-coded false. It writes an immutable PEC evidence pack and non-authoritative proposal mirror under the ruled PEC capture surfaces, records artifact hashes and boundary disclosures, then tears down the server and scratch DB. It is evidence tooling, not shipped runtime and not a live-LLM session.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts:1-21",
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts:70-125",
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts:163-205",
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts:207-336",
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts:338-438",
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts:440-470",
+        "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts:472-603"
+      ],
+      "verification_evidence": [
+        "_DomainEngines/pec/PEC_2026-07-06_BRIDGE-evidence-01/MANIFEST.md:7-34 binds the authority, historical code-under-test SHA, scratch basis, direct-handler mechanism, and synthetic data; lines 47-70 enumerate the recorded propose/validate/refresh, demo-cast, taxonomy, history, and network-error results.",
+        "_DomainEngines/pec/PEC_2026-07-06_BRIDGE-evidence-01/MANIFEST.md:72-99 records every owner-role act, force=false, deferred live-LLM status, and teardown; lines 101-123 bind artifact SHA-256 values; lines 125-134 preserve mirror and boundary status.",
+        "projects/chirality-app-dev/frontend/src/__tests__/integration/pec-bridge.integration.test.ts:100-204 independently defines the opt-in scratch-seam assertions for propose/validate/no-recompute/refresh and 403/409 taxonomy, but does not itself cover the driver's demo-cast accept/apply sequence.",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-52_PACKET_PEC_TRANSPORT_PROPOSAL_TOOLS_2026-07-06.md:107-118 states the binding scratch/demo, no-real-DB, no-PEC-source-change, loopback, no-live-LLM, and capture-surface boundaries; lines 123-127 name staleness and test-coupling risks; lines 146-171 define the opt-in rehearsal and evidence surfaces.",
+        "No tests or services were run in this child, as prohibited by the sealed brief; the evidence snapshot is historical to its recorded code SHA and is used only as verification evidence, not proof that current code was rerun."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:69-71 and 87-88",
+        "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/PROPOSED_DECISION_FINDINGS.md:250-264",
+        "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/ScopeOfWork.md:215-221",
+        "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/ScopeOfWork.md:239-291",
+        "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/ScopeOfWork.md:221-225",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-89 and 533-536",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:68-115 and 422-425",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-65_PACKET_ACCEPTED_RECOMMENDATIONS_2026-07-18.md:115-118 and 129-135",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md:103-108 and 153-163",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:90-111 and 192-204"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P27 assigns the generic proposal-tool surface to DEL-10-03 and only PEC-profile-scoped fixture interaction evidence to DEL-10-04.",
+        "DEL-10-04 ScopeOfWork CLM-016 owns evidence from PEC-profile-scoped fixture interaction but excludes endpoint activation, operation-apply workflow scope, protected writes, and solver truth claims.",
+        "DEL-10-03 ScopeOfWork CLM-015 owns propose/refresh/validate registration, envelopes, and gates, while treating PEC-profile-scoped fixture interaction only as DEL-10-04 evidence.",
+        "D-APP-65 confirms D-APP-50/51/52 are precursors rather than the accepted amendment for domain-engine operation-workflow implementation; the future amendment remains an owner act.",
+        "D-APP-52 is the narrow historical authority for this scratch rehearsal, including the disclosed demo-cast acts and ruled evidence capture surfaces; it does not itself decide the CQ-F1 exact-path deliverable mapping.",
+        "D-APP-69 activates analysis only and expressly does not accept mapping, authorize repair, or cross the hard fence."
+      ],
+      "lifecycle_state": "DEL-10-04 is IN_PROGRESS; DEL-10-03 is also IN_PROGRESS. No lifecycle, issuance, or Checking Approval SHA change is authorized or implied.",
+      "remaining_evidence": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_STATUS.md:10-11 names this exact path among the two CQ-F1 PEC-fixture-affinity files and expressly says no ownership or mapping is asserted. DEL-10-03 _STATUS.md:10-11 retains a different open_pipe_stress-scoped transport item, while lines 30-31 preserve the later D-APP-52 live-LLM evidence and D-APP-65 future-amendment gate.",
+      "prior_affinity": "PEC rehearsal affinity; same R3A-016 / R4-P27 staged-surface family as the scratch helper. This is preserved as prior agent evidence only, from COVERAGE_AND_QA.md:141-172 and the live DEL-10-04 Remaining entry.",
+      "candidate_mapping": "PROPOSAL: shared recorded boundary with DEL-10-04 as the primary exact-path mapping for the PEC-profile-scoped fixture-interaction evidence driver and DEL-10-03 retaining the proposal-tool workflow verification interest. If one file owner must be selected, DEL-10-04 is the nearer candidate under R4-P27; the generic handler implementation remains DEL-10-03 and is not transferred.",
+      "mapping_status": "PROPOSAL_ONLY_OWNER_GATE_REQUIRED",
+      "competing_candidates": [
+        "DEL-10-03 is a near-peer candidate because the script directly invokes and verifies the DEL-10-03-owned propose/refresh/validate handlers, their envelopes, stored-report semantics, staleness recovery, and error taxonomy.",
+        "DEL-10-04 is the primary proposal because the script is a PEC-specific fixture-interaction evidence driver, writes the ruled PEC evidence snapshot and mirror, and is named in DEL-10-04's exact Remaining entry.",
+        "A function-split/shared-boundary record could place the fixture/evidence portions with DEL-10-04 and the handler-workflow assertions with DEL-10-03 without pretending the single file has two independent implementation owners.",
+        "DEL-05-03 has only the D-APP-68 documentary credential/cookie-envelope hygiene interest; it is not a credible owner for the rehearsal workflow as a whole.",
+        "Ruled-program/no-deliverable ownership was R4-P27 Option B, but D-APP-56 adopted the deliverable partition and reviving Option B would require new owner authority."
+      ],
+      "rejected_alternatives": [
+        "Map solely to DEL-10-03: rejected as the preferred proposal because it would treat the PEC-specific fixture interaction and `_DomainEngines/pec` evidence capture merely as generic tool-surface implementation, contrary to the accepted R4-P27 split.",
+        "Map solely to DEL-10-04 without recording DEL-10-03's interest: rejected because most executable assertions directly verify DEL-10-03-owned propose/refresh/validate handlers and envelopes.",
+        "Map to DEL-05-03: rejected because credential/cookie envelope hygiene is only one narrow documentary concern in the script.",
+        "No-repair/implicit mapping: rejected because the live Remaining entry explicitly denies an asserted ownership/mapping, and the script's demo-cast accept/apply sequence makes silent inference especially unsafe.",
+        "Treat demo-cast apply as active DEL-10-04 or DEL-10-03 operation-workflow scope: rejected because D-APP-65 keeps the operation-workflow amendment future-owner-gated and both deliverable kits retain apply-class limits. The existing script remains historical ruled rehearsal evidence only."
+      ],
+      "evidence_strength": "HIGH for implementation behavior, committed historical evidence, and the DEL-10-03/DEL-10-04 functional split; MEDIUM for selecting DEL-10-04 as the single primary owner because the file intentionally spans both sides of that split.",
+      "concordance_disposition": "IMPLEMENTED_UNDOCUMENTED",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "Accepting an exact-path mapping creates an accepted ownership result where the live Remaining entry explicitly records none.",
+        "The driver writes ruled evidence under `_DomainEngines/pec/**` and `_DomainEngines/proposals/pec/**`, touching the recorded F-APP-3/domain-engine write boundary even though the historical D-APP-52 run had a narrow capture authorization.",
+        "The driver demo-casts accept and apply calls; mapping it into deliverable scope risks altering or appearing to alter the recorded operation-apply exclusion and D-APP-65 future-amendment gate.",
+        "D-APP-69 authorizes candidate analysis only; consequential mapping and any repair remain behind independent evaluation and the owner gate."
+      ],
+      "rationale": "The accepted R4-P27 partition was designed for exactly this overlap: DEL-10-03 owns the generic proposal-tool surface, while PEC-profile-scoped fixture interaction is evidence for DEL-10-04. This script is the concrete overlap artifact. Its evidence-driver identity makes DEL-10-04 the nearest primary mapping, while its direct handler assertions require an explicit DEL-10-03 verification-interest boundary. The demo-cast apply sequence and `_DomainEngines` capture writes make any accepted mapping owner-class; the row therefore records only a proposal and preserves the disagreement for V1/owner review.",
+      "rerun_triggers": [
+        "the file blob or SHA-256 changes",
+        "the committed PEC evidence manifest or direct caller/test surface changes materially",
+        "the DEL-10-04 or DEL-10-03 ownership amendments or Remaining entries change",
+        "D-APP-56, D-APP-60, D-APP-64, D-APP-65, D-APP-68, or D-APP-69 is amended or superseded",
+        "an owner ruling accepts a primary/shared mapping, authorizes operation-workflow implementation, or changes F-APP-3",
+        "independent V1 rejects the implementation, evidence, boundary, mapping, or classification claims"
+      ]
+    }
+  ],
+  "slice_findings": [
+    "2/2 exact paths exist at the frozen basis, are unique, retain the sealed order, and match both frozen Git blob IDs; current SHA-256 values are recorded per row.",
+    "Both files are PEC-specific evidence/test tooling and are not shipped runtime code. The helper is also reused by the later live-LLM demo and the opt-in integration test; the rehearsal driver is the source of the committed direct-handler evidence snapshot.",
+    "The accepted D-APP-56 R4-P27 partition is the nearest current mapping: generic propose/refresh/validate surface to DEL-10-03; PEC-profile-scoped fixture interaction evidence to DEL-10-04.",
+    "At exact-path granularity both rows remain IMPLEMENTED_UNDOCUMENTED because the live DEL-10-04 Remaining entry expressly says no ownership or mapping is asserted for the two files.",
+    "The proposed primary mapping is DEL-10-04 for both paths, with a material DEL-10-03 verification-consumer/interest boundary. This is a proposal, not authority.",
+    "Both rows fast-reject to OWNER_CLASS. The helper touches the domain-engine boundary; the rehearsal driver additionally writes ruled `_DomainEngines` evidence and demo-casts apply-class acts whose scope remains future-owner-gated outside the narrow historical D-APP-52 rehearsal authority."
+  ],
+  "disagreements": [
+    "Primary-owner ambiguity remains material: DEL-10-04 is nearer for PEC fixture-interaction evidence, while DEL-10-03 is nearer for direct verification of proposal-tool handlers. A single-owner selection and a shared-boundary record are both defensible, so neither may be silently accepted.",
+    "The committed rehearsal manifest describes the pack as evidence of transport, handlers, taxonomy, and actor model rather than profile-schema validation. That description supports DEL-10-03, while R4-P27's explicit PEC-profile-scoped fixture-interaction clause and the DEL-10-04 Remaining entry support DEL-10-04.",
+    "The rehearsal driver's demo-cast accept/apply acts were lawful only within D-APP-52's narrow scratch evidence authority. Mapping the file must not be read as activating apply-class workflow scope in either deliverable.",
+    "D-APP-68 assigns PEC credential/cookie envelope hygiene to DEL-05-03 only as documentary ownership; whether future mapping records should note that cross-cutting interest is secondary and cannot displace the PKG-10 primary boundary."
+  ],
+  "blockers": [
+    "OWNER_RULING_REQUIRED: accepting either exact-path ownership mapping, or accepting a formal shared-boundary mapping, is consequential ownership/mapping and cannot be performed by this child or by D-APP-69 activation.",
+    "F_APP_3_BOUNDARY: no repair or scope adoption may proceed from this return because the slice touches PEC engine execution, `_DomainEngines` capture paths, and apply-class rehearsal acts.",
+    "V1_GATE: the implementation, evidence, alternative analysis, mapping proposal, and OWNER_CLASS classification require independent evaluation before any candidate slate can reach the owner.",
+    "No evidence-execution blocker affected this read-only analysis; tests and services were intentionally not run under the sealed brief."
+  ],
+  "containment": {
+    "declared_read_population": 2,
+    "returned_unique_rows": 2,
+    "exact_order_preserved": true,
+    "subject_files_modified": [],
+    "tests_run": false,
+    "services_started": false,
+    "delegation_used": false,
+    "sole_write": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-RETRY/children/del_10_04/RETURN.json",
+    "ownership_asserted": false,
+    "accepted_mapping_asserted": false,
+    "repair_authorized_or_performed": false,
+    "lifecycle_or_approval_sha_changed": false,
+    "domain_engine_or_pec_state_changed": false,
+    "git_state_changed_by_child": false,
+    "declaration": "Inspection remained read-only outside this RETURN.json. All mappings are explicitly PROPOSAL-only, all fast-reject contacts are preserved, and no subject, deliverable, authority, evidence, Git, lifecycle, PEC, or domain-engine state was modified."
+  }
+}

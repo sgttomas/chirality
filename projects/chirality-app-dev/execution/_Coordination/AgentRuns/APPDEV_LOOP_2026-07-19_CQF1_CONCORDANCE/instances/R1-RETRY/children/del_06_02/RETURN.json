@@ -1,0 +1,146 @@
+{
+  "basis": {
+    "commit": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+    "basis_status": "FROZEN_BASIS_CONFIRMED",
+    "subject_blob_confirmed": true,
+    "analysis_status": "COMPLETE_READ_ONLY_DISCOVERY",
+    "method": "docs/DELIVERABLE_CONCORDANCE_METHOD.md Revision 1; Git blob 137209cb37e8d8204a7f2bd78114b4b5753c6c2e; D-APP-55 project-plan revision 551f84ef6 with MR-1..MR-11 and R2 addendum",
+    "activation": "D-APP-69 Option A"
+  },
+  "container": "DEL-06-02",
+  "expected_count": 1,
+  "rows": [
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs",
+      "source_blob": "c2f2d675175c3639bdb5e5ccb0cf08d57ff72877",
+      "source_sha256": "17dd24702b1ba30b9209f85310514ada8ef168b8858cc2da1aea44bd62ce6e9e",
+      "implementation_summary": "Node entrypoint for the descriptor-derived Markdown tool catalog. It installs a local TypeScript require hook, loads renderHarnessToolCatalog from the harness-contract package, renders from the descriptor registry, and either (a) byte-compares the committed docs/harness/tool_catalog.md under --check and fails closed on drift or (b) creates the output directory and writes the rendered catalog. It reports a concise success message and converts thrown errors to stderr plus exitCode 1. The script is generation/consistency plumbing only: descriptor semantics and ordering come from the imported renderer/registry, and the generated catalog expressly remains a derivative support artifact that does not expose capability or change provider, release, or professional authority.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L3-L25",
+        "projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L27-L60",
+        "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-catalog.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L1-L7",
+        "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-catalog.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L76-L107",
+        "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-catalog.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L143-L148",
+        "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L11-L12",
+        "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L484-L489",
+        "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L1317-L1368",
+        "projects/chirality-app-dev/frontend/docs/harness/tool_catalog.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L3-L11"
+      ],
+      "verification_evidence": [
+        "Static source-state verification: package.json binds npm run harness:generate-tool-catalog to this exact entrypoint (projects/chirality-app-dev/frontend/package.json@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L17-L28).",
+        "A focused test independently reads the committed catalog, compares it byte-for-byte with renderHarnessToolCatalog(), and asserts every descriptor appears exactly once (projects/chirality-app-dev/frontend/src/__tests__/lib/tool-catalog.test.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L1-L18).",
+        "The contributor guide makes catalog regeneration part of the tool-change sequence and names the catalog/descriptor tests as drift and collision gates (projects/chirality-app-dev/frontend/docs/harness/adding_a_tool.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L17-L32; projects/chirality-app-dev/frontend/docs/harness/adding_a_tool.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L126-L138).",
+        "The runtime contract records that the generated catalog lists descriptor identity, adapter, permissions, path, mode, gate, hook, and exposure metadata, with drift gated by tool-catalog.test.ts (projects/chirality-app-dev/frontend/docs/harness/runtime_engine_contract.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L259-L275).",
+        "No tests or generators were run under this sealed brief; evidence is inspection-only and does not assert a fresh executed-pass result."
+      ],
+      "normative_sources": [
+        "DEL-06-02 defines the deterministic registered SDK/Chirality tool surface and validation output (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L14-L16).",
+        "DEL-06-02 construction expressly includes an explicit tool registry and tests, while exact paths were initially TBD (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L82-L90).",
+        "DEL-06-02 scope covers registered-name resolution, deterministic exposure, unknown-name rejection, and related tests, while permission policy, MCP implementation, write hooks, and Bash are adjacent owners (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L126-L170).",
+        "DEL-06-02 requires the registry and concrete implementation/verification evidence but still says concrete evidence locations remain TBD (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L187-L228).",
+        "D-APP-68 rules registered coordination descriptors/catalog entries to DEL-06-02 and separately preserves DEL-06-03's composition boundary (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L72-L86).",
+        "The live DEL-06-02 kit transcribes that D-APP-68 ownership and defines catalog/registry validation without absorbing server composition (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L501-L526)."
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48 deferred all 22 CQ-F1 surfaces to the next concordance pass without producing them or accepting mapping (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L73-L88).",
+        "D-APP-60 requires fast rejection of recorded-limit touches and permits disposition-class only when authority is applied without creating scope/accountability/normative content (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L67-L88).",
+        "D-APP-60 local limits include accountability assignments and creation or acceptance of authorized scope (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L184-L200).",
+        "D-APP-64 preserves owner gates for scope/boundary amendment, new acceptance criteria, stale evidence, authority conflict, or overclaim, while allowing reasoned selection only after that fast-reject screen (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L81-L133).",
+        "D-APP-65 scheduled a scoped post-merge concordance pass but did not itself accept this path mapping (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-65_PACKET_ACCEPTED_RECOMMENDATIONS_2026-07-18.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L127-L135).",
+        "D-APP-69 activates read-only discovery while explicitly withholding ownership creation/transfer, accepted mapping, repair, and lifecycle acts; consequential mapping must return through V1 and the owner gate (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L90-L111; projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L192-L204)."
+      ],
+      "lifecycle_state": "IN_PROGRESS; no lifecycle change proposed or authorized (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L1-L10; history records the D-APP-68 catalog ownership addition without lifecycle/Approval-SHA/Remaining change at #L23).",
+      "remaining_evidence": "The sole DEL-06-02 Remaining item names this exact path as CQ-F1 catalog-generator affinity, explicitly says no ownership or mapping is asserted, and requests revisit at the next concordance pass (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L9-L10). The current ScopeOfWork still leaves concrete implementation/evidence locations TBD (#L219-L228). Dependencies anchor DEL-06-02 to SOW-047/049/050 and preserve DEL-06-01 policy and DEL-06-03 MCP interfaces as adjacent inputs (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_DEPENDENCIES.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L53-L64); dependency closure remains project-level open (#L73-L85) but does not block this read-only affinity analysis.",
+      "prior_affinity": "DEL-06-02 / catalog generator, PRIOR_AGENT_AFFINITY, UNASSERTED (projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/CQF1_SCOPE.csv@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L21), consistent with but not elevated above the live Remaining entry.",
+      "candidate_mapping": "PROPOSAL: map projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs to DEL-06-02 as the deterministic descriptor-catalog generation and drift-check entrypoint. Boundary: this maps the generator mechanism, not semantic ownership of every generated row; ruled permission policy remains DEL-06-01, MCP server implementation/composition remains DEL-06-03, write/Bash behavior remains DEL-06-04/05, and domain-profile/proposal-tool roster semantics remain under their ruled PKG-10 boundary.",
+      "mapping_status": "PROPOSAL_OWNER_GATE_REQUIRED",
+      "competing_candidates": [
+        {
+          "candidate": "DEL-06-03",
+          "strength": "LOW_TO_MODERATE",
+          "basis": "The catalog includes Chirality MCP entries, and DEL-06-03 supplies MCP tool definitions/implementation interfaces."
+        },
+        {
+          "candidate": "DEL-06-01",
+          "strength": "LOW",
+          "basis": "Catalog rows summarize permission classes, modes, and human gates supplied by the permission-policy surface."
+        },
+        {
+          "candidate": "DEL-09-04",
+          "strength": "LOW",
+          "basis": "The subject is an npm-invoked validation/generation script, superficially resembling build or release tooling."
+        },
+        {
+          "candidate": "SHARED PKG-06 SUPPORT SURFACE",
+          "strength": "MODERATE_AS_CONTENT_BOUNDARY_NOT_FILE_OWNER",
+          "basis": "The rendered catalog spans descriptor metadata whose underlying behaviors have several ruled owners, so generated-content semantics remain distributed even if the generator mechanism maps to one deliverable."
+        }
+      ],
+      "rejected_alternatives": [
+        "Reject DEL-06-03 as the primary path mapping: D-APP-68 and DEL-06-02 CLM-035 expressly split descriptor/catalog ownership to DEL-06-02 from DEL-06-03 server co-location/composition; DEL-06-03 itself says general SDK resolver behavior is owned by DEL-06-02 (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L123-L143).",
+        "Reject DEL-06-01 as the primary path mapping: it owns permission/mode decisions consumed and summarized by the catalog, but expressly excludes resolver, deterministic ordering, and unknown-tool validation except as inputs (projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L113-L131).",
+        "Reject DEL-09-04 as the primary path mapping: its scope is macOS arm64 DMG/app packaging and instruction-root/SDK package-layout evidence, and it excludes feature implementation unrelated to packaging glue, integrity, or probes (projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L104-L124). This generator is a registry/catalog support surface, is not in desktop:pack/dist, and does not produce release evidence.",
+        "Reject accepting a fully shared/unowned file boundary: the rendered content is semantically distributed, but the executable mechanism has a single dominant function matching DEL-06-02's registered catalog/validation scope. Preserve distribution as a generated-content boundary rather than leaving the file unmapped.",
+        "Reject NO_REPAIR as the current route: the live Remaining record expressly states that no exact mapping is asserted, and the ScopeOfWork still leaves concrete evidence locations TBD. A downstream governed kit/status update would be needed if the owner accepts the proposed mapping; this run cannot perform it.",
+        "Reject DISPOSITION_CLASS for accepting the mapping: even though the selection is strongly grounded, D-APP-69 explicitly withholds accepted mapping and sends consequential mapping through V1 and the owner gate. D-APP-64 cannot cross that fast-reject boundary."
+      ],
+      "evidence_strength": "HIGH for implementation function and DEL-06-02 affinity; HIGH for the ruled functional boundary between DEL-06-02 and DEL-06-03; MODERATE-HIGH for the exact file mapping because no authority expressly names this path and no tests were run in this slice.",
+      "concordance_disposition": "IMPLEMENTED_UNDOCUMENTED",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "Accepted file-to-deliverable mapping is an ownership/scope-recording act; D-APP-69 lines 97-111 and 200-204 expressly withhold it and require V1 plus the owner gate.",
+        "Any repair to ScopeOfWork.md or _STATUS.md is outside the read-only activation and is separately prohibited by D-APP-69.",
+        "D-APP-64 §5.1 preserves the owner gate for accepted scope/boundary amendment and for claims stronger than their warrant; the explicit Remaining statement that no mapping exists prevents treating affinity as acceptance."
+      ],
+      "rationale": "Ontology: the script's object is the descriptor-derived tool catalog, directly matching DEL-06-02's registered-name, catalog, and validation concepts. Epistemology: the exact frozen blob, renderer, generated output, test, package script, live kit, dependencies, and D-APP-68 mapping all independently converge, while prior affinity is used only as corroboration. Praxeology: one DEL-06-02 mapping gives future operators the clearest evidence location and preserves the already-ruled DEL-06-03 composition and DEL-06-01 permission boundaries. Axiology: the proposal preserves fail-closed validation, traceability, and minimal authority creation. The selected candidate is therefore DEL-06-02, but accepting that file mapping is OWNER_CLASS under D-APP-69 and remains a PROPOSAL. The generated catalog's row-level policy meanings remain with their ruled functional owners; mapping this generator must not be used to absorb those scopes.",
+      "rerun_triggers": [
+        "The subject path or blob changes from c2f2d675175c3639bdb5e5ccb0cf08d57ff72877.",
+        "tool-catalog.ts, tool-descriptor.ts, package.json, tool-catalog.test.ts, or the generated tool_catalog.md changes in a way material to the generator's role or evidence.",
+        "DEL-06-02 ScopeOfWork.md, _STATUS.md, Dependencies.csv/_DEPENDENCIES.md, or the DEL-06-01/03/09-04 competing-boundary sources change materially.",
+        "D-APP-56, D-APP-60, D-APP-64, D-APP-65, D-APP-68, or D-APP-69 is superseded or amended for this scope.",
+        "V1 rejects the evidence/boundary analysis or the owner accepts, rejects, or modifies the proposed mapping; any authorized repair/backcheck must bind to the resulting source state."
+      ]
+    }
+  ],
+  "slice_findings": [
+    "1/1 exact path inspected at the frozen basis; blob and SHA-256 recorded.",
+    "The generator is a thin deterministic catalog generation/check adapter over harness-contract registry data; it neither owns nor exposes runtime capability by execution.",
+    "DEL-06-02 is the nearest existing mapping with high functional and authority affinity, strengthened by D-APP-68's ruled descriptor/catalog boundary.",
+    "The exact file mapping is not already accepted: the live Remaining item expressly preserves it as affinity-only and D-APP-69 withholds accepted mapping. Route is OWNER_CLASS with candidate mapping PROPOSAL only.",
+    "Generated catalog content crosses ruled functional owners; mapping the generator mechanism to DEL-06-02 must preserve those semantic boundaries."
+  ],
+  "disagreements": [
+    {
+      "issue": "The contributor guide cites pre-package-move implementation paths frontend/src/lib/harness/tool-descriptor.ts and frontend/src/lib/harness/mcp/tool-names.ts, whereas the frozen implementation consumed by the generator is under frontend/packages/harness-contract/src/.",
+      "evidence": "projects/chirality-app-dev/frontend/docs/harness/adding_a_tool.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L19-L24 versus projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L35-L37 and projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-catalog.ts@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L1-L5",
+      "effect": "Documentation drift weakens the guide as a current source-location citation but does not change the generator's observed function or the proposed DEL-06-02 mapping. No repair is authorized in this run."
+    },
+    {
+      "issue": "DEL-06-02's live kit owns catalog/registry validation at the functional level but still says concrete implementation/evidence paths are TBD, while _STATUS.md says this exact path has affinity only and no asserted mapping.",
+      "evidence": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L219-L228; projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md@57652ba1cd0905e8f47131e4c4ebf518272f7c16#L9-L10",
+      "effect": "This is the precise IMPLEMENTED_UNDOCUMENTED/OWNER_CLASS gap evaluated by the slice, not an authority conflict and not permission to repair."
+    }
+  ],
+  "blockers": [
+    {
+      "class": "OWNER_GATE_REQUIRED",
+      "description": "Independent V1 and the applicable owner gate are required before the proposed DEL-06-02 mapping can be accepted or used to close/update the Remaining item."
+    },
+    {
+      "class": "REPAIR_NOT_AUTHORIZED",
+      "description": "D-APP-69 authorizes read-only discovery only; no frontend, deliverable-kit, status, lifecycle, decision, or register write may follow from this child return."
+    }
+  ],
+  "containment": {
+    "expected_paths": 1,
+    "inspected_paths": 1,
+    "unique_rows": 1,
+    "subject_writes": 0,
+    "tests_run": 0,
+    "generators_run": 0,
+    "network_calls": 0,
+    "delegation": 0,
+    "sole_write": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-RETRY/children/del_06_02/RETURN.json",
+    "write_boundary_respected": true
+  }
+}

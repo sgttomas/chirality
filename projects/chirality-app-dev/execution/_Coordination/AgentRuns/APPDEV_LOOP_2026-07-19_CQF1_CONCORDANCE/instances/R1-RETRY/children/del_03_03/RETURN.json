@@ -1,0 +1,184 @@
+{
+  "basis": {
+    "frozen_commit": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+    "subject_blob_verified": true,
+    "method_posture": "Read-only CQ-F1 discovery under D-APP-69 Option A; prior affinity is evidence only, code is not authority, and any mapping is PROPOSAL only.",
+    "citations": [
+      "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:19-27",
+      "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:194-204",
+      "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-88",
+      "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:83-115"
+    ]
+  },
+  "container": "DEL-03-03",
+  "expected_count": 1,
+  "rows": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/content/route.ts",
+      "source_blob": "8fc6cf4f30524ed8b1bfae56e1a016253c716854",
+      "source_sha256": "9622de7572e74101bab75dafe8368b64620b33734891b010efea4339df4e2af1",
+      "implementation_summary": "A GET-only Next.js workspace API route parses projectRoot, deliverablePath, and optional file, delegates to readDeliverableContent, returns the successful content result as JSON, and translates thrown workspace errors into typed status/body responses. The helper defaults file to _STATUS.md, normalizes and canonicalizes the project/deliverable roots, rejects absolute and lexical traversal paths, rechecks containment after realpath to block symlink escape, requires a regular file, then returns its content and canonical relative path.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/content/route.ts:1-23",
+        "projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts:235-268",
+        "projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts:269-309",
+        "projects/chirality-app-dev/frontend/src/lib/workspace/deliverable-contracts.ts:311-346",
+        "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:120-164"
+      ],
+      "verification_evidence": [
+        "Static test evidence: projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts:557-584 covers the default _STATUS.md and explicit relative-file success paths.",
+        "Static test evidence: projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts:586-637 covers traversal, absolute-path, missing-file, and escaping-leaf-symlink responses.",
+        "Static test evidence: projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts:639-700 covers escaping directory-component symlinks, valid nested documents, and directory/non-file rejection.",
+        "No tests were run, as prohibited by the sealed child brief."
+      ],
+      "normative_sources": [
+        "D-APP-20 rules this exact endpoint as a read-only batch GET with a validated relative file confined to the deliverable, and explicitly excludes writes, SSE, editing, and lifecycle changes: projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-20_RULING_2026-06-19.md:7-20.",
+        "D-APP-21 limits the current surface to a read-only viewer and defers any editor/write authority: projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-21_RULING_2026-06-19.md:7-20.",
+        "D-APP-26 reaffirms DocumentView plus this GET-only route as the shipped document surface and leaves content writing unauthorized: projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-26_RULING_2026-06-19.md:7-20.",
+        "The accepted product route catalogs classify working-root routes as Workspace APIs but omit this live endpoint: projects/chirality-app-dev/docs/SPEC.md:875-885 and projects/chirality-app-dev/docs/PRD.md:759-769.",
+        "The accepted decomposition defines DEL-02-03 as presentation-focused working-root/file-tree/scope-scan UI and DEL-07-03 as the backend deliverable-metadata/document-kit contract slice: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:291 and projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:341."
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P30 ratifies capability-owner mapping for uncataloged /api/harness/* routes, but does not assign this /api/working-root route; R4-P48 defers the 22 CQ-F1 surfaces as affinity-only residue: projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:69-71 and projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:73-88.",
+        "D-APP-65 unlocks only DEL-03-03 documentation production and schedules scoped concordance; it does not map this route: projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-65_PACKET_ACCEPTED_RECOMMENDATIONS_2026-07-18.md:119-130.",
+        "D-APP-68 supplies a capability-owner precedent for distributed surfaces but freezes frontend runtime and authorizes no ownership change outside its exact managed-orchestration map: projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md:72-86 and projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md:154-163.",
+        "D-APP-69 activates discovery only and expressly withholds ownership assignment, mapping acceptance, and repair authority: projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:130-148 and projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:194-204."
+      ],
+      "lifecycle_state": {
+        "container": "DEL-03-03",
+        "state": "IN_PROGRESS",
+        "citation": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md:1-5"
+      },
+      "remaining_evidence": {
+        "status": "OPEN",
+        "citation": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md:9-13",
+        "finding": "The live Remaining row names this exact path, preserves the D-APP-56 R4-P48 deferral, asserts no ownership or mapping, and requires this concordance revisit."
+      },
+      "prior_affinity": {
+        "value": "working-root API family / route-catalog R4-P30; stored under DEL-03-03 only as an affinity-class Remaining container",
+        "status": "PRIOR_AGENT_AFFINITY_UNASSERTED",
+        "citations": [
+          "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/CQF1_SCOPE.csv:4",
+          "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/COVERAGE_AND_QA.md:141-153",
+          "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md:9-10"
+        ]
+      },
+      "candidate_mapping": {
+        "status": "PROPOSAL",
+        "mapping": "UNRESOLVED_SHARED_BOUNDARY: lead backend affinity DEL-07-03 (deliverable metadata/document-kit contracts); security/containment boundary DEL-07-01; UI consumer boundary DEL-02-03, with DocumentView shell composition adjacent to DEL-02-01.",
+        "nearest_existing_mapping": "DEL-07-03",
+        "basis": "The endpoint reads a document inside a recognized deliverable folder, making DEL-07-03 the closest backend feature slice; however, DEL-07-03 currently covers scanning/validation and document-kit detection rather than content serving. Its helper also applies DEL-07-01 root/containment controls, while the route exists to serve DEL-02-03-style read-only deliverable inspection through a shell DocumentView. No accepted artifact resolves which deliverable owns the route contract itself.",
+        "citations": [
+          "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/ScopeOfWork.md:44-58",
+          "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/ScopeOfWork.md:110-129",
+          "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/ScopeOfWork.md:46-58",
+          "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:105-124"
+        ]
+      },
+      "mapping_status": "PROPOSAL_OWNER_DECISION_REQUIRED",
+      "competing_candidates": [
+        {
+          "candidate": "DEL-02-03",
+          "strength": "MEDIUM",
+          "basis": "It owns presentation of deliverable summaries sufficient for read-only inspection and is the closest UI consumer, but its recorded API list omits content and its authority boundary is presentation-focused.",
+          "citations": [
+            "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:48-69",
+            "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:109-124"
+          ]
+        },
+        {
+          "candidate": "DEL-07-01",
+          "strength": "MEDIUM_FOR_CONTROL_BOUNDARY_LOW_FOR_FEATURE_OWNERSHIP",
+          "basis": "It owns working-root validation and path containment reused by the helper, but its accepted scope is a security control rather than document-content serving.",
+          "citations": [
+            "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/ScopeOfWork.md:124-143",
+            "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/ScopeOfWork.md:159-175"
+          ]
+        },
+        {
+          "candidate": "DEL-02-01",
+          "strength": "LOW_FOR_ROUTE_MEDIUM_FOR_VIEW_COMPOSITION",
+          "basis": "DocumentView is a shell component, but DEL-02-01's accepted scope is shell navigation and matrix routing, not the working-root document API or filesystem contract.",
+          "citations": [
+            "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:117-138",
+            "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:120-164"
+          ]
+        },
+        {
+          "candidate": "DEL-03-03",
+          "strength": "LOW",
+          "basis": "The file is an API route, but DEL-03-03 is specifically the /api/harness/* and browser SSE compatibility adapter; this route is a non-SSE /api/working-root document-read surface.",
+          "citations": [
+            "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/ScopeOfWork.md:46-58",
+            "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/ScopeOfWork.md:107-127",
+            "projects/chirality-app-dev/docs/SPEC.md:858-885"
+          ]
+        }
+      ],
+      "rejected_alternatives": [
+        {
+          "alternative": "Accept DEL-03-03 ownership from the Remaining container or prior R4-P30 affinity.",
+          "reason": "Rejected: the Remaining row explicitly asserts no mapping, R4-P30 governs /api/harness/* capability routes, and DEL-03-03's scope excludes this workspace document-read function. Container placement and prior affinity are not authority."
+        },
+        {
+          "alternative": "Assign the route solely to DEL-02-03.",
+          "reason": "Rejected as an accepted result: DEL-02-03 is presentation-focused, its four named Workspace APIs omit this endpoint, and accepting backend API ownership would amend recorded scope. It remains a material consumer-side candidate."
+        },
+        {
+          "alternative": "Assign the route solely to DEL-07-03.",
+          "reason": "Rejected as an accepted result: DEL-07-03 is the nearest backend fit but its current scope stops at scan/validation and document-kit detection; content-serving ownership would be a scope inclusion requiring an owner act."
+        },
+        {
+          "alternative": "Assign the route solely to DEL-07-01 because its helper enforces containment.",
+          "reason": "Rejected: security-control reuse does not by itself transfer ownership of document-content semantics; D-APP-68's capability-owner precedent supports preserving such a control boundary."
+        },
+        {
+          "alternative": "NO_REPAIR / leave the implementation deliberately unmapped.",
+          "reason": "Rejected for this pass: the live Remaining row specifically requires mapping reconsideration, the accepted Workspace API catalogs omit the live route, and no ruled artifact declares it intentionally unowned or immaterial. Runtime code repair is not indicated, but ownership/catalog disposition remains unresolved."
+        }
+      ],
+      "evidence_strength": {
+        "implementation": "HIGH",
+        "verification": "HIGH_STATIC_EVIDENCE_NO_TEST_EXECUTION",
+        "functional_affinity": "MEDIUM_HIGH",
+        "accepted_ownership": "INSUFFICIENT",
+        "explanation": "The route behavior, caller, path controls, and source tests are explicit. Existing deliverable scopes identify a stable three-way capability boundary but do not authorize one owner for the route contract."
+      },
+      "concordance_disposition": "IMPLEMENTED_UNDOCUMENTED_OWNERSHIP_UNRESOLVED",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-60 class test: accepting any candidate would touch deliverable ownership/scope rather than merely apply an already-recorded mapping (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-80).",
+        "D-APP-64 fast-reject items 2 and 10: mapping acceptance would be a scope inclusion/boundary amendment, and the accepted record is insufficient to resolve the shared boundary without a stronger claim than its warrant (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:83-112).",
+        "D-APP-69 holds any consequential mapping behind independent V1 and an applicable owner gate (projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:139-148)."
+      ],
+      "rationale": "Ontology: the route is a Workspace API for read-only deliverable document access, not a Harness API/SSE adapter. Epistemology: implementation and tests prove behavior, while the accepted catalogs omit the route and no live kit assigns its feature ownership. Praxeology: a distributed capability boundary best matches the code—DEL-07-03 document contract, DEL-07-01 containment, DEL-02-03 read-only UI consumption—while avoiding false transfer of control ownership. Axiology: preserving least authority and explicit uncertainty is preferable to silently treating the affinity container as owner. Because choosing or accepting the lead owner changes recorded scope/ownership, the only lawful classification is OWNER_CLASS and the mapping remains PROPOSAL.",
+      "rerun_triggers": [
+        "An owner ruling accepts a lead owner or explicit shared partition for GET /api/working-root/deliverable/content.",
+        "A governed amendment adds the route to SPEC 17.2/PRD 9.2 and binds it to an existing deliverable requirement.",
+        "Any change to the subject blob, readDeliverableContent helper, DocumentView caller, focused tests, or relevant DEL-02-03/DEL-07-01/DEL-07-03 scope boundaries.",
+        "Any superseding D-APP-56/60/64/65/68/69 authority or independent V1 rejection of this evidence package."
+      ]
+    }
+  ],
+  "slice_findings": [
+    "1/1 frozen subject path was inspected and its Git blob matched the sealed brief.",
+    "The route is implemented and statically covered as a read-only, symlink-safe in-deliverable document reader; no runtime repair need was found.",
+    "DEL-03-03 is only the affinity container, not a supportable owner: its live scope is /api/harness/* route and SSE compatibility, while this route is catalog-classified as a Workspace API family member.",
+    "The nearest honest mapping is an unresolved shared boundary led by DEL-07-03, with DEL-07-01 retaining containment controls and DEL-02-03 consuming the endpoint for read-only inspection. Acceptance requires an owner ruling."
+  ],
+  "disagreements": [
+    "Prior CQ-F1 affinity associates the path with the R4-P30 route-catalog family and stores it under DEL-03-03. Fresh source review disagrees with any inference of DEL-03-03 ownership because R4-P30 and the DEL-03-03 kit are expressly /api/harness/*-specific.",
+    "DEL-07-03 is the nearest backend candidate, but its accepted scope does not yet include document content serving; therefore the evidence supports only a proposal, not an accepted mapping."
+  ],
+  "blockers": [
+    "Accepted ownership/mapping is blocked on an owner-class scope/boundary ruling after independent V1. No blocker prevents recording the implementation evidence or proposal."
+  ],
+  "containment": {
+    "subject_writes": 0,
+    "tests_run": 0,
+    "delegations": 0,
+    "sole_write": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-RETRY/children/del_03_03/RETURN.json",
+    "write_boundary_respected": true,
+    "scope_accounting": "1/1 unique row in exact sealed path order"
+  }
+}

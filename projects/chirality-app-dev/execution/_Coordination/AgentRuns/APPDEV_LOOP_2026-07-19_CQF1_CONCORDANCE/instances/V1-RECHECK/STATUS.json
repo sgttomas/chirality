@@ -1,0 +1,100 @@
+{
+  "instance_id": "V1-RECHECK",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "BLOCK",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "depends_on": [
+    "R1-REPAIR_TERMINAL_RETURN_PRELIMINARILY_ACCEPTED_FOR_V1_RECHECK"
+  ],
+  "scope_manifest": "../../CQF1_SCOPE.csv",
+  "scope_path_count": 22,
+  "scope_unique_path_count": 22,
+  "scope_ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+  "scope_remaining_container_count": 5,
+  "reconciliation_subject_root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/",
+  "additive_evaluation_root": "projects/chirality-app-dev/execution/_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/RECHECK_R1_REPAIR/",
+  "r1_repair_bindings": {
+    "return_sha256": "d9cd30ad941b74a53e0d8b9de448b43b104336c53127b3091edf44a9dc42157e",
+    "status_sha256": "ad5087ac431fef72c9ac25cfaa0302808ca867dfd307c9ca9af92f75f0bf0ebb",
+    "fresh_child_return_sha256": "b9bfb2923ec3853c4373923a61bca7e340963251e40fab94f3dbf5bdc56480c0",
+    "ledger_sha256": "c4425242ca66736a793a611ad936219c8e700c0cf8e2c1011b4ff60fe9c62054",
+    "proposed_mapping_sha256": "447b129e3aa21289d5681b9df208b83a20f1ad1cbcc64e85c398f05f266300a3",
+    "candidate_slate_sha256": "7545cb34f7a34b9a8743e52ff1f3885f6acc6ca21550eca507965d0da739f812"
+  },
+  "original_v1_evaluation_bindings": {
+    "protocol_sha256": "bc18cd34135f791c9ff272a237a1202a3c5ce44061859619f0edc91183cd352a",
+    "report_sha256": "2157d8adec075451fb23a79fb769248571e9f93c58cf87ff05cbb2b8947d52b0",
+    "findings_sha256": "ea9d926613b2b753a7e3552d028f1628bd1ed809dabe3302ac0f85558c74010c",
+    "handoff_sha256": "a82b2b27a1a0b3e54db0475d32014319c08790750dc9bc351da194b46fbb3ea9"
+  },
+  "required_v1_findings_recheck": [
+    "V1-001",
+    "V1-002",
+    "V1-003",
+    "V1-004"
+  ],
+  "control_label_erratum": {
+    "classification": "NON_CONSEQUENTIAL_CONTROL_LABEL_ERRATUM_SUSTAINED",
+    "incorrect_to_correct": {
+      "frontend/src/styles/globals.css": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "frontend/src/lib/ansi.ts": "projects/chirality-app-dev/frontend/src/lib/shell/ansi.ts"
+    },
+    "block_if_execution_target_differs": true
+  },
+  "expected_owner_class_rows": 22,
+  "expected_proposal_groups": 9,
+  "original_v1_mutable": false,
+  "r1_repair_mutable": false,
+  "subject_write_access": false,
+  "integration_owner": true,
+  "may_delegate_read_only_audits": true,
+  "max_audit_slices": 2,
+  "launch_brief": "LAUNCH_BRIEF.md",
+  "expected_return": "RETURN.md",
+  "terminal_verdict_contract": [
+    "ACCEPT",
+    "BLOCK"
+  ],
+  "repair_authority": false,
+  "owner_slate_accepted": false,
+  "verdict": "BLOCK",
+  "resolved_v1_findings": [
+    "V1-001",
+    "V1-002",
+    "V1-003",
+    "V1-004"
+  ],
+  "finding_count": 4,
+  "blocking_finding_count": 2,
+  "blocked_rows": [
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx",
+    "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx",
+    "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts"
+  ],
+  "blocked_groups": [
+    1,
+    2,
+    3
+  ],
+  "child_count": 2,
+  "child_return_sha256": {
+    "technical_recheck": "0ecdef2e1859c623616d3220a022e6606d99471e056ee8f10705a0b39d1eea94",
+    "governance_package_recheck": "5b5ae9218be706964847f94183a13d10070c0d5ff7fe9358a4faabe35f47cdbe"
+  },
+  "evaluation_report": "../../../../../_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/RECHECK_R1_REPAIR/EVALUATION_REPORT.md",
+  "required_owner": "RECONCILIATION",
+  "required_rerun": "VERSIONED_RECONCILIATION_REPAIR_THEN_FRESH_V1_RECHECK",
+  "released_by": "HELP_HUMAN_R1_REPAIR_PRELIMINARY_FAN_IN_V1_AMENDMENT_V2",
+  "downstream_release": false,
+  "blocked_nodes": [
+    "OWNER_SLATE_ROUTING",
+    "W1"
+  ],
+  "waivers": [],
+  "next_gate": "HELP_HUMAN_ACCEPTS_V1_RECHECK_TERMINAL_RETURN"
+}

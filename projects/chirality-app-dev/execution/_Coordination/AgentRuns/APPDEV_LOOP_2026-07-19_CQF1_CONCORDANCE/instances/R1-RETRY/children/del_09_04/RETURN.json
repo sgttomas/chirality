@@ -1,0 +1,469 @@
+{
+  "basis": {
+    "commit": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+    "basis_status": "MATCH",
+    "inspection_mode": "read-only source, caller, test, packaging/build-record, deliverable-kit, dependency, and authority inspection; no tests, builds, or packages executed",
+    "authority_boundary": "Derivative Agent-2 analysis only. Code and prior affinity are evidence, not authority. Every candidate mapping below is PROPOSAL-only and cannot accept or transfer ownership."
+  },
+  "container": "DEL-09-04",
+  "expected_count": 4,
+  "rows": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/types/chirality-window.d.ts",
+      "source_blob": "243bb5f5498067404dd68203a209838dd346c93e",
+      "source_sha256": "974c070a0a0d02e43c7a0b477a6d0934bc8755b34d0a4c2dbc699ea4453bb1cd",
+      "implementation_summary": "Ambient renderer typing defines an optional Window.chirality bridge with platform/version metadata and one selectDirectory operation returning cancelled/path/error state. It does not type the apiKey object exposed by the same runtime preload bridge; the API-key UI therefore declares and casts a separate local ChiralityWindow shape.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/types/chirality-window.d.ts:1-23",
+        "projects/chirality-app-dev/frontend/src/components/workspace/workspace-provider.tsx:51-54",
+        "projects/chirality-app-dev/frontend/src/components/workspace/workspace-provider.tsx:105-124",
+        "projects/chirality-app-dev/frontend/electron/preload.ts:8-20",
+        "projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx:30-47"
+      ],
+      "verification_evidence": {
+        "direct": [],
+        "indirect": [
+          "projects/chirality-app-dev/frontend/package.json:18 — the declared typecheck compiles both frontend and Electron TypeScript",
+          "projects/chirality-app-dev/frontend/src/components/workspace/workspace-provider.tsx:105-124 — the typed operation is consumed by the working-root chooser"
+        ],
+        "limitations": [
+          "No direct test of the ambient Window bridge declaration was found.",
+          "The declared global bridge is narrower than preload.ts because apiKey is locally retyped by api-key-settings.tsx.",
+          "No verification command was run under this sealed brief."
+        ]
+      },
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:78 — working-root selection includes Electron folder selection",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:109 — DEL-02-03 connects the shell to working-root selection",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:135 — REQ-001 expressly includes Electron folder selection",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md:108-124 — DEL-09-04 covers package evidence and excludes unrelated feature implementation",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md:244-252 — packaged validation checks selector availability but does not thereby own the selector"
+      ],
+      "authority_anchors": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:87 — R4-P48 defers CQ-F1 affinity only, with no mapping",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-80 — fast-reject class test",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:83-115 — scope/mapping and ambiguity remain owner-gated",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:90-111 — read-only analysis is authorized but accepted mapping is not",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:194-204 — consequential mapping returns through V1 and owner gate"
+      ],
+      "lifecycle_state": "DEL-09-04 IN_PROGRESS; Last Updated 2026-07-12",
+      "remaining_evidence": "DEL-09-04 _STATUS.md:9-12 retains the exact Electron bridge pair as CQ-F1 affinity-only residue and separately retains release-preparation/package-proof work. DEL-09-04 _DEPENDENCIES.md:45-60 records six ACTIVE TBD dependencies, including package validation and SDK/network constraints.",
+      "prior_affinity": {
+        "deliverable": "DEL-09-04",
+        "label": "Electron bridge typing / PKG-09 packaging family",
+        "status": "PRIOR_AGENT_AFFINITY_UNASSERTED",
+        "citation": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/CQF1_SCOPE.csv:17"
+      },
+      "candidate_mapping": {
+        "status": "PROPOSAL_ONLY",
+        "primary": "DEL-02-03",
+        "boundary": "Working-root selector renderer contract. DEL-09-04 remains a packaged-verification consumer interested in selector availability, not the functional owner of selection typing."
+      },
+      "mapping_status": "PROPOSAL_PENDING_V1_AND_OWNER_GATE",
+      "competing_candidates": [
+        {
+          "candidate": "DEL-09-04",
+          "basis": "Its packaged guardrail procedure checks that the working-root selector is available."
+        },
+        {
+          "candidate": "DEL-02-01",
+          "basis": "The declaration is a desktop-shell ambient type, but DEL-02-01 is scoped to shell/matrix navigation rather than working-root selection."
+        }
+      ],
+      "rejected_alternatives": [
+        {
+          "candidate": "DEL-09-04 as primary",
+          "reason": "DEL-09-04 ScopeOfWork.md:120-124 excludes unrelated feature implementation, while DEL-02-03 REQ-001 expressly owns Electron folder selection. Verification interest does not establish implementation ownership."
+        },
+        {
+          "candidate": "DEL-02-01 as primary",
+          "reason": "DEL-02-01 ScopeOfWork.md:121-155 limits its accepted surface to loop-first shell/matrix navigation; DEL-02-03 is the more specific accepted category."
+        }
+      ],
+      "evidence_strength": "HIGH for functional affinity; MEDIUM for verification completeness because no direct declaration test exists",
+      "concordance_disposition": "IMPLEMENTED_UNDOCUMENTED_PATH_MAPPING; retain the apiKey typing mismatch as a separate implementation observation, not an inferred scope amendment",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "Accepting this previously unasserted path-to-deliverable mapping would be a new accepted mapping (D-APP-69:97-111,194-204).",
+        "Any adoption of the apiKey member into this ambient contract would touch scope and possibly acceptance criteria; this analysis does not propose or authorize that repair (D-APP-64 §5.1 items 2-3)."
+      ],
+      "rationale": "Ontology: the file describes a renderer working-root-selection interface, not package production. Epistemology: its only direct consumer is WorkspaceProvider and DEL-02-03 expressly names Electron folder selection; DEL-09-04 names selector availability only as packaged verification. Praxeology: mapping the functional contract to DEL-02-03 and retaining DEL-09-04 as verifier interest avoids confusing test obligation with feature ownership. Axiology: this preserves the narrower established scopes and leaves the incomplete apiKey typing visible. The proposal still requires owner disposition because no accepted CQ-F1 mapping exists.",
+      "rerun_triggers": [
+        "An owner ruling accepts or rejects a CQ-F1 mapping.",
+        "The file, its WorkspaceProvider consumer, DEL-02-03 scope, DEL-09-04 Remaining, or governing authority changes.",
+        "A separate accepted Electron bridge integration-owner rule is recorded."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "source_blob": "9f5a17be4cb577361327a3bf5309ca175f464e13",
+      "source_sha256": "189b0d30bd8f6daf84862e14cfc3ec68c2c211b5c123283c7108c50c3b750ba0",
+      "implementation_summary": "Electron preload exposes one context-isolated renderer bridge containing platform/version metadata, a working-root directory-picker IPC call, and API-key store/remove/status IPC calls. The main process registers the matching directory and API-key handlers; therefore this physical file composes at least two distinct accepted feature concerns.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/electron/preload.ts:1-20",
+        "projects/chirality-app-dev/frontend/electron/main.ts:253-286",
+        "projects/chirality-app-dev/frontend/electron/main.ts:343-350",
+        "projects/chirality-app-dev/frontend/electron/main.ts:371-372",
+        "projects/chirality-app-dev/frontend/electron/api-key-ipc.ts:9-17",
+        "projects/chirality-app-dev/frontend/electron/api-key-ipc.ts:24-69",
+        "projects/chirality-app-dev/frontend/src/components/workspace/workspace-provider.tsx:105-124",
+        "projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx:42-47",
+        "projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx:57-67",
+        "projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx:77-102"
+      ],
+      "verification_evidence": {
+        "direct": [],
+        "indirect": [
+          "projects/chirality-app-dev/frontend/src/__tests__/electron/api-key-ipc.test.ts:65 — focused handler suite exists for the API-key IPC backend",
+          "projects/chirality-app-dev/frontend/src/__tests__/components/api-key-settings.test.ts — focused UI suite exists for the renderer API-key consumer",
+          "projects/chirality-app-dev/frontend/package.json:16-18 — Electron compilation is part of build/typecheck",
+          "projects/chirality-app-dev/frontend/package.json:32-33,63-78 — desktop pack/dist build the preload output into the packaged Electron file set"
+        ],
+        "limitations": [
+          "No direct preload bridge contract test was found.",
+          "The working-root directory-picker bridge lacks a focused IPC/preload test in the inspected test inventory.",
+          "Backend and UI tests do not by themselves prove contextBridge exposure or packaged preload loading.",
+          "No verification command was run under this sealed brief."
+        ]
+      },
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:78,109,135 — Electron folder selection belongs to the working-root UI slice",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md:79 — API-key panel uses Electron IPC",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md:149-151 — key storage/status UI contract",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md:355 — actual key storage/provider/redaction/network behavior stays with adjacent runtime/security deliverables",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md:50-55 — DEL-09-06 validates key storage/resolution and renderer security",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md:144-148 — key resolution, safeStorage, and renderer guard requirements",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md:108-124 — DEL-09-04 is package/evidence scope, with unrelated feature implementation excluded"
+      ],
+      "authority_anchors": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:69-71 — owner-ratified mapping partitions establish that shared surfaces may need explicit boundary splits",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:87 — this CQ-F1 residue was deferred without mapping",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-80",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:83-115",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:90-111,194-204"
+      ],
+      "lifecycle_state": "DEL-09-04 IN_PROGRESS; candidate sibling deliverable lifecycle states were read only as context and are not changed",
+      "remaining_evidence": "DEL-09-04 _STATUS.md:9-12 retains preload.ts in the exact Electron bridge CQ-F1 residue and separately holds packaging evidence. DEL-09-04 _DEPENDENCIES.md:45-60 remains open on six ACTIVE TBD rows; this mapping analysis cannot satisfy them.",
+      "prior_affinity": {
+        "deliverable": "DEL-09-04",
+        "label": "Electron bridge / PKG-09 packaging family",
+        "status": "PRIOR_AGENT_AFFINITY_UNASSERTED",
+        "citation": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/CQF1_SCOPE.csv:18"
+      },
+      "candidate_mapping": {
+        "status": "PROPOSAL_ONLY_SHARED_BOUNDARY",
+        "primary": "UNRESOLVED_PHYSICAL_FILE_INTEGRATION_OWNER",
+        "partitions": [
+          "DEL-02-03 — selectDirectory renderer bridge for working-root selection",
+          "DEL-02-05 — apiKey renderer control/status IPC surface",
+          "DEL-09-06 — safeStorage/key-resolution and renderer-security implementation/verification interest"
+        ],
+        "boundary": "DEL-09-04 consumes the packaged preload as build evidence but has no basis to absorb the two feature contracts. A case-specific integration-owner or co-location ruling is required before assigning the whole physical file."
+      },
+      "mapping_status": "PROPOSAL_SHARED_BOUNDARY_PENDING_V1_AND_OWNER_GATE",
+      "competing_candidates": [
+        {
+          "candidate": "DEL-02-03 as whole-file owner",
+          "basis": "selectDirectory is one of two feature families and is expressly in its scope."
+        },
+        {
+          "candidate": "DEL-02-05 as whole-file owner",
+          "basis": "apiKey is the other feature family and its UI requirement explicitly calls for Electron IPC."
+        },
+        {
+          "candidate": "DEL-09-06 as whole-file owner",
+          "basis": "It is the primary package for key-storage and renderer-security validation but does not own working-root selection."
+        },
+        {
+          "candidate": "DEL-09-04 as whole-file owner",
+          "basis": "preload.js is compiled and included in the desktop package and selector availability is a package check."
+        }
+      ],
+      "rejected_alternatives": [
+        {
+          "candidate": "DEL-09-04 as primary whole-file owner",
+          "reason": "Package inclusion and verification interest do not supersede the specific DEL-02-03 and DEL-02-05 feature requirements; DEL-09-04 excludes unrelated feature implementation."
+        },
+        {
+          "candidate": "Any single functional sibling as whole-file owner without a recorded boundary",
+          "reason": "Each single-owner choice would silently absorb a distinct accepted sibling concern. The current record supports a shared boundary but does not choose the integration owner."
+        }
+      ],
+      "evidence_strength": "HIGH for the functional split; MEDIUM for whole-file ownership because no accepted integration-owner rule or direct preload contract test was found",
+      "concordance_disposition": "SHARED_IMPLEMENTATION_BOUNDARY_UNRESOLVED",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "Selecting a whole-file owner or accepting the proposed member-level partition creates a new accepted mapping (D-APP-69:97-111,194-204).",
+        "The unresolved physical-file integration-owner boundary is ambiguity about scope/ownership and therefore a fast-reject hit (D-APP-64 §5.1 items 2 and 10)."
+      ],
+      "rationale": "Ontology: preload.ts is a composition point, not one indivisible feature. Epistemology: current code and callers prove two independent member families, while accepted kits separately name working-root selection, API-key UI/IPC, and key-security validation. Praxeology: retaining a member-level shared boundary prevents a packaging deliverable from absorbing feature semantics and prevents one PKG-02 sibling from swallowing the other. Axiology: explicit overlap is safer than false singular ownership. The material single-owner alternatives remain plausible enough that the integration owner cannot be selected without an owner gate.",
+      "rerun_triggers": [
+        "An owner ruling records a whole-file integration owner or accepts a member-level shared mapping.",
+        "preload.ts is split into feature-specific modules.",
+        "The preload/main/consumer surfaces, candidate deliverable scopes, DEL-09-04 Remaining, or governing authority changes.",
+        "A direct preload bridge contract test is added or accepted evidence is recorded."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/scripted-agent-sdk-proof.ts",
+      "source_blob": "432ee4da36a0c362ab47b53064540f29a3f85e63",
+      "source_sha256": "ebbe4240fd373cb916bec5611e716c1c2500bb674347b6b50f588dff384d7c87",
+      "implementation_summary": "A deterministic fake SpawnedProcess emits a scripted Claude Agent SDK system/init, stream text delta, and successful result sequence. buildSdkOptions installs it as spawnClaudeCodeProcess only when CHIRALITY_AGENTSDK_SCRIPTED_PROOF=1 and NODE_ENV is development or test. The current network-policy proof opts into that mode for agentSdk runs; production and unset NODE_ENV deliberately receive no scripted spawn.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/lib/harness/scripted-agent-sdk-proof.ts:1-40",
+        "projects/chirality-app-dev/frontend/src/lib/harness/scripted-agent-sdk-proof.ts:47-96",
+        "projects/chirality-app-dev/frontend/src/lib/harness/scripted-agent-sdk-proof.ts:99-133",
+        "projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts:16",
+        "projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts:105",
+        "projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts:162-164",
+        "projects/chirality-app-dev/frontend/scripts/run-network-policy-proof.mjs:57-115",
+        "projects/chirality-app-dev/frontend/scripts/run-network-policy-proof.mjs:479-495",
+        "projects/chirality-app-dev/frontend/scripts/run-network-policy-proof.mjs:690-705"
+      ],
+      "verification_evidence": {
+        "direct": [
+          "projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-options-builder.test.ts:334-372 — asserts attachment only for explicit test/development proof and absence when NODE_ENV is unset/production"
+        ],
+        "indirect": [
+          "projects/chirality-app-dev/frontend/src/__tests__/scripts/build-network-policy.test.ts:57-66 — asserts the proof runner carries the explicit scripted agentSdk mode without broadening endpoint classification",
+          "projects/chirality-app-dev/frontend/scripts/run-network-policy-proof.mjs:479-495,690-705 — records whether scripted SDK proof was selected in each proof summary"
+        ],
+        "limitations": [
+          "The source simulates SDK messages and subprocess behavior; it is not live-provider or packaged-production evidence.",
+          "The proof runner's DELIVERABLE_ROOT at lines 11-14 names a historical PKG-03_Harness_Runtime_Core/DEL-03-06 path that is absent from the current execution tree, so that path constant is historical/stale mapping evidence rather than current authority.",
+          "No verification command was run under this sealed brief."
+        ]
+      },
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md:50-55 — renderer/network/key security validation scope",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md:144-150 — provider and renderer network-policy requirements",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md:179-181 — unit/integration evidence for provider and renderer policy",
+        "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/ScopeOfWork.md:122-127 — SDK probe/adoption evidence scope",
+        "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/ScopeOfWork.md:147-160 — required SDK probe topics and adoption gates",
+        "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/ScopeOfWork.md:130-134 — SDK probe details are excluded to DEL-04-01",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md:140,171,174 — DEL-09-04 requires real package-layout executability evidence and treats failure as a blocker"
+      ],
+      "authority_anchors": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:87",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-88",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:83-133",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md:109-125 — adopted SDK decision consumes live development and packaged evidence with preserved limits",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-68_PACKET_CONCORDANCE_RULINGS_2026-07-19.md:129-142 — packaged/security residual-risk boundaries remain explicit",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:90-111,194-204"
+      ],
+      "lifecycle_state": "DEL-09-04 IN_PROGRESS; its release-preparation evidence family remains explicitly open",
+      "remaining_evidence": "DEL-09-04 _STATUS.md:11 retains this file in the proof/build affinity residue, while line 12 separately retains PARTIAL/package-proof gates. ScopeOfWork.md:174 says failed package-layout proof blocks packaging evidence; this dev/test fixture cannot discharge that requirement.",
+      "prior_affinity": {
+        "deliverable": "DEL-09-04",
+        "label": "D-APP-18 proof harness / PKG-03 and PKG-09 affinity",
+        "status": "PRIOR_AGENT_AFFINITY_UNASSERTED",
+        "citation": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/CQF1_SCOPE.csv:19"
+      },
+      "candidate_mapping": {
+        "status": "PROPOSAL_ONLY_SHARED_EVIDENCE_BOUNDARY",
+        "primary": "DEL-09-06",
+        "secondary": "DEL-04-01",
+        "boundary": "DEL-09-06 is the nearest current functional home because the fixture is activated by the network-policy proof and validates provider/renderer guardrails. DEL-04-01 retains SDK-probe provenance and evidence interest. DEL-09-04 may consume real packaged proof, but this development/test-only fixture is not package-layout evidence."
+      },
+      "mapping_status": "PROPOSAL_PENDING_V1_AND_OWNER_GATE",
+      "competing_candidates": [
+        {
+          "candidate": "DEL-04-01",
+          "basis": "The file simulates SDK message/spawn behavior used in the historical D-APP-18 adoption-proof program."
+        },
+        {
+          "candidate": "DEL-03-01",
+          "basis": "It is a deterministic SDK-backed fixture adjacent to engine conformance, but it is not used by the accepted conformance suite and that kit excludes probe details to DEL-04-01."
+        },
+        {
+          "candidate": "DEL-09-04",
+          "basis": "The prior residue grouped it with packaged SDK proof, but the source explicitly refuses production activation."
+        }
+      ],
+      "rejected_alternatives": [
+        {
+          "candidate": "DEL-09-04 as primary",
+          "reason": "The source gate at lines 99-110 and its focused test at sdk-options-builder.test.ts:334-372 prove it is disabled outside development/test. It cannot establish package-layout subprocess executability required by DEL-09-04 REQ-008."
+        },
+        {
+          "candidate": "DEL-03-01 as primary",
+          "reason": "No conformance-suite caller was found; DEL-03-01 ScopeOfWork.md:130-134 explicitly sends SDK probe/version details to DEL-04-01."
+        },
+        {
+          "candidate": "DEL-04-01 as sole owner",
+          "reason": "Probe provenance is material, but the current executable consumer is the network-policy proof and DEL-09-06 specifically owns provider/renderer policy evidence. A secondary evidence interest is more coherent than sole ownership."
+        }
+      ],
+      "evidence_strength": "HIGH for implementation behavior and non-production limit; MEDIUM-HIGH for DEL-09-06 primary affinity because the current runner retains a stale historical deliverable-root constant",
+      "concordance_disposition": "PRIOR_DEL_09_04_AFFINITY_OVERTAKEN_BY_CURRENT_CALL_GRAPH; shared DEL-09-06/DEL-04-01 proposal",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "Moving the residue from DEL-09-04 affinity to an accepted DEL-09-06/DEL-04-01 mapping is a new accepted mapping and ownership partition (D-APP-69:97-111,194-204).",
+        "The stale historical proof output path and surviving secondary DEL-04-01 alternative make any ambiguity about the exact partition an owner-gated hit (D-APP-64 §5.1 item 10)."
+      ],
+      "rationale": "Ontology: this is a deterministic development/test proof fixture, not the packaged SDK subprocess. Epistemology: the environment gate, focused test, and current caller all support that distinction. Praxeology: DEL-09-06 is the current network-policy evidence home, while DEL-04-01 retains the adoption-probe interpretation; DEL-09-04 should continue to demand real packaged evidence. Axiology: preserving evidence-strength labels prevents simulated behavior from being elevated into release/package proof. The resulting ownership partition is consequential and remains proposal-only.",
+      "rerun_triggers": [
+        "An owner accepts a DEL-09-06/DEL-04-01 mapping or selects a different owner.",
+        "The fixture becomes usable in production or packaged proof, or the network proof stops consuming it.",
+        "The stale DELIVERABLE_ROOT constant is governed and corrected.",
+        "Relevant source, tests, kit scopes, Remaining state, or authority changes."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+      "source_blob": "07568f4e0e11aebd14bdb441b29e1174a1256ca3",
+      "source_sha256": "ee310bee0f74f519c43c18d98c556b9f1b2fbdd72b4db539acf8edc05865f8e8",
+      "implementation_summary": "A standalone dependency lint recursively scans TypeScript under packages/harness-contract/src, extracts static/dynamic import specifiers, and rejects Node, React, Next, Electron, Anthropic SDK, external-package, and relative-import escape dependencies. package.json exposes it as harness:validate:contract-deps and invokes it first in validate:release-quality.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs:1-17",
+        "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs:19-52",
+        "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs:54-82",
+        "projects/chirality-app-dev/frontend/package.json:26-28",
+        "projects/chirality-app-dev/frontend/packages/harness-contract/package.json:1-20"
+      ],
+      "verification_evidence": {
+        "direct": [
+          "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_PACKET_HARNESS_CONTRACT_PACKAGE_EXTRACTION_2026-06-24.md:99-108 — owner-adopted packet requires a dependency lint over the package import graph",
+          "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Evidence_CODEV-002_Harness_Contract_Package_Consumption_Readiness.md:20-30 — DEL-03-01 evidence records this exact lint and command",
+          "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_FLOW_A_PULL_CONTRACT_2026-07-04.json:12-26 — the private package pull contract records this command as dependencyLintCommand"
+        ],
+        "indirect": [
+          "projects/chirality-app-dev/frontend/package.json:28 — release-quality orchestration consumes the lint",
+          "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-49_RULING_2026-07-04.md:43-50 — later package work retains contract-deps green as execution hygiene and treats harness-contract as the ruled package home"
+        ],
+        "limitations": [
+          "No focused unit test for import parsing, extension resolution, directory traversal, or false positives/negatives was found.",
+          "The lint scans only .ts files, and its simple regex/parser behavior was not dynamically verified in this brief.",
+          "No current command result artifact was found and no verification command was run under this sealed brief."
+        ]
+      },
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_RULING_2026-07-02.md:20-31 — owner authorizes the dependency-free internal contract-spine extraction",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_PACKET_HARNESS_CONTRACT_PACKAGE_EXTRACTION_2026-06-24.md:44-68 — defines contract versus runtime material",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_PACKET_HARNESS_CONTRACT_PACKAGE_EXTRACTION_2026-06-24.md:99-116 — dependency-lint validation and affected internal package surfaces",
+        "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/ScopeOfWork.md:16,54,85-91 — DEL-03-01 owns the product runtime contract and accepted package location",
+        "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/ScopeOfWork.md:121-134 — contract/tests in scope, SDK probe and other runtime details outside",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/ScopeOfWork.md:123-136 — DEL-09-05 owns validation orchestration, while detailed validation belongs to siblings",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md:108-124 — DEL-09-04 is specific to package/instruction-root/SDK layout evidence"
+      ],
+      "authority_anchors": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-46_RULING_2026-07-02.md:22-47",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md:87",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md:67-88",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md:83-133",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-69_PACKET_CQF1_CONCORDANCE_ACTIVATION_2026-07-19.md:90-111,194-204"
+      ],
+      "lifecycle_state": "DEL-09-04 IN_PROGRESS; no lifecycle state is changed by the stronger DEL-03-01 affinity evidence",
+      "remaining_evidence": "DEL-09-04 _STATUS.md:11 groups this script with proof/build affinity and explicitly says no mapping was asserted. DEL-09-04's open package-evidence and dependency blockers remain distinct. DEL-03-01 Evidence_CODEV-002:7-9 also explicitly limits its record from publishing, accepting, satisfying dependencies, or advancing lifecycle.",
+      "prior_affinity": {
+        "deliverable": "DEL-09-04",
+        "label": "build and validation tooling / PKG-09 family",
+        "status": "PRIOR_AGENT_AFFINITY_UNASSERTED",
+        "citation": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/CQF1_SCOPE.csv:20"
+      },
+      "candidate_mapping": {
+        "status": "PROPOSAL_ONLY",
+        "primary": "DEL-03-01",
+        "secondary": "DEL-09-05 validation-orchestration consumer",
+        "boundary": "DEL-03-01 is the nearest semantic owner because the lint enforces the owner-ruled dependency-free harness-contract boundary and is recorded in DEL-03-01 evidence. DEL-09-05 invokes it through release-quality but does not own the rule. DEL-09-04 has no package-layout-specific relationship to this lint."
+      },
+      "mapping_status": "PROPOSAL_PENDING_V1_AND_OWNER_GATE",
+      "competing_candidates": [
+        {
+          "candidate": "DEL-09-05",
+          "basis": "validate:release-quality invokes the lint and DEL-09-05 owns CI/release validation orchestration."
+        },
+        {
+          "candidate": "DEL-09-04",
+          "basis": "Prior affinity categorized it as build/validation tooling in the PKG-09 family."
+        },
+        {
+          "candidate": "Deliverable-less D-APP-46/D-APP-48 program tooling",
+          "basis": "The script was created by an owner-ruled extraction tranche and is also a cross-repository pull-contract gate."
+        }
+      ],
+      "rejected_alternatives": [
+        {
+          "candidate": "DEL-09-04 as primary",
+          "reason": "The lint does not inspect the app bundle, DMG, instruction root, or packaged SDK layout. Its target is packages/harness-contract/src and its forbidden dependency boundary comes directly from D-APP-46."
+        },
+        {
+          "candidate": "DEL-09-05 as primary",
+          "reason": "DEL-09-05 owns orchestration and explicitly leaves detailed validation implementation to siblings; invoking a semantic guard does not transfer that guard's rule ownership."
+        },
+        {
+          "candidate": "Deliberately deliverable-less",
+          "reason": "DEL-03-01's accepted package-location scope and Evidence_CODEV-002 explicitly record this exact lint, providing a nearer existing mapping than leaving the surface orphaned."
+        }
+      ],
+      "evidence_strength": "HIGH for DEL-03-01 semantic affinity; MEDIUM for current executable verification because the lint has no focused test or fresh result artifact in this slice",
+      "concordance_disposition": "PRIOR_DEL_09_04_AFFINITY_OVERTAKEN_BY_OWNER_RULED_CONTRACT_PACKAGE_BOUNDARY",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "Although D-APP-46 supplies the rule, accepting this previously unasserted path mapping as DEL-03-01 ownership is still a new accepted mapping under D-APP-69:97-111,194-204.",
+        "The cross-cutting DEL-09-05 invocation interest must be recorded without silently transferring the semantic rule; that boundary is consequential ownership/mapping content."
+      ],
+      "rationale": "Ontology: the script is a contract-package dependency guard, not generic packaging. Epistemology: D-APP-46 explicitly requires this kind of lint, D-APP-48 names this exact command, and DEL-03-01 evidence names the exact script. Praxeology: assign semantic affinity to DEL-03-01 while retaining DEL-09-05 as orchestration consumer. Axiology: this keeps rule ownership with the contract boundary it protects and avoids treating all build scripts as PKG-09 property. Despite unusually strong evidence, accepting the new path mapping remains owner-class because R4-P48 left it explicitly unasserted.",
+      "rerun_triggers": [
+        "An owner accepts the DEL-03-01 mapping or instead assigns the script to DEL-09-05/program tooling.",
+        "The harness-contract package, lint semantics, invocation graph, DEL-03-01 evidence/scope, DEL-09-04 Remaining, or governing authority changes.",
+        "Focused lint tests or a new accepted current-result artifact materially change verification strength."
+      ]
+    }
+  ],
+  "slice_findings": [
+    "4/4 frozen paths exist and match the brief's Git blobs at basis 57652ba1cd0905e8f47131e4c4ebf518272f7c16.",
+    "All four resulting mappings are OWNER_CLASS proposals because R4-P48 left them expressly unasserted and D-APP-69 forbids accepting a new mapping in R1.",
+    "Neither Electron bridge file is best modeled as DEL-09-04 feature ownership: chirality-window.d.ts is specifically a DEL-02-03 working-root selector contract, while preload.ts composes DEL-02-03 selection with DEL-02-05 API-key IPC and DEL-09-06 security interests.",
+    "scripted-agent-sdk-proof.ts is explicitly development/test-only; it cannot satisfy DEL-09-04's real packaged SDK subprocess/package-layout proof. Current functional affinity is DEL-09-06 network-policy evidence with secondary DEL-04-01 probe provenance.",
+    "assert-harness-contract-deps.mjs directly enforces the D-APP-46 dependency-free contract package and is named by DEL-03-01 evidence and the D-APP-48 pull contract. DEL-09-05 is an orchestration consumer; DEL-09-04 is not the nearest mapping.",
+    "No source, test, build, package, deliverable, decision, register, lifecycle, or prior derivative file was modified."
+  ],
+  "disagreements": [
+    {
+      "subject": "Prior DEL-09-04 affinity",
+      "finding": "The prior classification is useful discovery provenance but is not the nearest functional mapping for any of the four rows.",
+      "disposition": "Preserved as PRIOR_AGENT_AFFINITY_UNASSERTED; not promoted to ownership."
+    },
+    {
+      "subject": "Electron global bridge contract",
+      "finding": "chirality-window.d.ts types selectDirectory but omits preload.ts's apiKey member; api-key-settings.tsx duplicates a local bridge type.",
+      "disposition": "Recorded as implementation evidence only. Any contract consolidation or repair would require separately authorized scope."
+    },
+    {
+      "subject": "preload.ts singular ownership",
+      "finding": "The live file is a co-location/composition boundary spanning working-root and API-key controls, and the current record does not identify a whole-file integration owner.",
+      "disposition": "Owner-class shared-boundary proposal; no inferred winner."
+    },
+    {
+      "subject": "scripted proof versus packaged proof",
+      "finding": "The source and focused test disable scripted spawn in production, while DEL-09-04 requires package-layout subprocess executability.",
+      "disposition": "Do not count this fixture as packaged SDK evidence or as satisfying DEL-09-04 dependency/Remaining gates."
+    },
+    {
+      "subject": "Network proof output home",
+      "finding": "run-network-policy-proof.mjs:11-14 points at a historical PKG-03_Harness_Runtime_Core/DEL-03-06 path absent from the current execution tree.",
+      "disposition": "Treated as stale implementation metadata, not authority; correction is outside this read-only brief."
+    }
+  ],
+  "blockers": [
+    "V1 independent audit and HELP_HUMAN/owner disposition are required before any candidate mapping can be accepted.",
+    "preload.ts lacks an accepted physical-file integration-owner boundary across DEL-02-03, DEL-02-05, and DEL-09-06.",
+    "No direct preload contract test, ambient-window declaration test, or contract-lint unit test was found; no test/build/package execution was authorized.",
+    "DEL-09-04 remains IN_PROGRESS with its release-preparation evidence family open and six ACTIVE dependencies at SatisfactionStatus=TBD; none is closed by this analysis."
+  ],
+  "containment": {
+    "subject_reads": "Read-only; exact four scoped source paths plus callers/tests/package/build records, candidate deliverable kits, dependencies, and governing authority.",
+    "subject_writes": [],
+    "write_targets": [
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-RETRY/children/del_09_04/RETURN.json"
+    ],
+    "tests_run": [],
+    "builds_run": [],
+    "packages_run": [],
+    "delegation": "NONE; Agent 2 did not delegate.",
+    "scope_complete": true,
+    "unique_rows": 4,
+    "row_order_matches_brief": true
+  }
+}
