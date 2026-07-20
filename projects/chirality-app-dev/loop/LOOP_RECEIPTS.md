@@ -2381,3 +2381,32 @@
   - Checks: strict JSON duplicate-key rejection; exact basis/package/source/SOW/dependency hashes; mapping, disposition, record, retained-boundary, and manifest schema checks; receipt validator; authority corpus v9 no drift; repository self-check exit zero at the existing 3 REVIEW / 6 WARN baseline; `git diff --check`; exact write containment. Frontend gates skipped because no frontend/runtime source changed.
   - Model-Attribution: Codex RECONCILIATION under HELP_HUMAN as the serialized integration owner; no delegation, source repair, V2, or Git action.
   - Gate-Outcome: `EXECUTED` — `APPLICATION_COMPLETE_AWAITING_V2_AND_DAPP71_OWNER`: D-APP-70 recommendations 1–5 and 7–9 are applied, recommendation 6's shared boundary is applied without selecting a physical lead, D-APP-71 is neutrally registered `AWAITING_RULING`, and fresh V2 remains held for HELP_HUMAN release.
+
+- **2026-07-20 — Receipt 81** (D-APP-71 Option-2 owner ruling captured).
+  - Receipt-ID: `Receipt-81`
+  - Examined-Through: `f4d065f3b9bd685077efb66d7fa5d59bba57b1a6`
+  - Parent-Receipt: `Receipt-80`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD
+    (2026-07-20, Ryan Tufts, in-session): `APPROVE: D-APP-71 Option 2 — DEL-02-05 physical lead`; exact UTF-8/no-final-LF SHA-256
+    `fba4d3ab1daa3e1421bfdde283796eecdebb067bedd17aff2a35af927e6f5ac7`;
+    governed home is the separate D-APP-71 ruling record.
+  - Pointers: ruling `execution/_Coordination/_DECISIONS/D-APP-71_RULING_2026-07-20.md`
+    SHA-256 `153de2b988eee9eb99c4c6996cf4045b9e553fccd76cc6c0791f4fc32d71de4e`;
+    packet `execution/_Coordination/_DECISIONS/D-APP-71_PACKET_PRELOAD_PHYSICAL_INTEGRATION_LEAD_2026-07-20.md`
+    SHA-256 `711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c`;
+    bound `frontend/electron/preload.ts` SHA-256
+    `189b0d30bd8f6daf84862e14cfc3ec68c2c211b5c123283c7108c50c3b750ba0`;
+    D-APP-71 register-after SHA-256
+    `af1a6dec6f30e81fc19a1aab4ecf2f99874c35c97e8d83aafadeb18ebcb33920`.
+  - Checks: exact owner-text hash; packet and source current-hash checks;
+    D-APP-71-row-only register transition; receipt validator; authority corpus
+    v9 status; practitioner self-check; exact write containment; git diff
+    hygiene. Frontend gates skipped because no runtime source changed.
+  - Model-Attribution: Codex ORCHESTRATOR under HELP_HUMAN; no delegation,
+    source repair, path application, lifecycle action, or Git action.
+  - Gate-Outcome: `EXECUTED` —
+    `RULED_CAPTURED_AWAITING_SEPARATE_APPLICATION`: Option 2 records DEL-02-05
+    as physical coordination lead only; DEL-02-03 `selectDirectory`, DEL-02-05
+    `apiKey`, and DEL-09-06 `safeStorage`/security semantics remain distinct;
+    all application, repair, lifecycle, release/publication, hard-fence,
+    waiver, and Git effects remain separately gated.
