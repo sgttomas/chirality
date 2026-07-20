@@ -8,9 +8,9 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- CQ-F1 PEC-fixture affinity (2 files) is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48: `frontend/scripts/pec-scratch-server.mjs` and `frontend/scripts/run-pec-bridge-rehearsal.ts`. No ownership or mapping is asserted (revisit: next concordance pass).
 
 ## History
+- 2026-07-20 - D-APP-70 Option A mapped the two CQ-F1 PEC evidence-driver paths to DEL-10-04 primary while retaining DEL-10-03's proposal-tool verification interest and F-APP-3; the CQ-F1 Remaining entry was closed without authorizing an apply surface or hard-fence crossing; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents; P1/P2 complete, four documents non-empty)
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

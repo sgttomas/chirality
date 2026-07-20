@@ -1,0 +1,81 @@
+{
+  "schema_version": "post-main-work-graph/v1",
+  "graph_version": 2,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "selection_authority": [
+    "D-APP-70 Option A",
+    "D-APP-60",
+    "D-APP-64",
+    "R3-DAPP70-RULING-CAPTURE terminal RULED_CAPTURED"
+  ],
+  "posture": "SERIALIZED_RECONCILIATION_INTEGRATION_THEN_INDEPENDENT_EVALUATION",
+  "manager_assignment": {
+    "integration_owner": "RECONCILIATION",
+    "working_items_required": false,
+    "reason": "The authorized change is one cross-package concordance R5 application with five narrow status corrections, not package production; one integration owner prevents overlapping mapping, register, receipt, and residual-state writes."
+  },
+  "nodes": [
+    {
+      "node_id": "W1-DAPP70-MAPPING-APPLICATION",
+      "role": "RECONCILIATION",
+      "phase": "R5_AUTHORIZED_REPAIR",
+      "status": "READY_RELEASED",
+      "depends_on": [
+        "D_APP_70_RULED_CAPTURE_COMMITTED_ON_SHARED_MAIN"
+      ],
+      "objective": "Apply the ruled CQ-F1 mappings without source changes, apply only the group-6 shared-boundary annotation, preserve its unnamed physical lead as the sole CQ-F1 residual, and prepare/register D-APP-71 for that owner choice.",
+      "write_ownership": "SERIALIZED_PROJECT_INTEGRATION_OWNER",
+      "launch_brief": "instances/W1-DAPP70-MAPPING-APPLICATION/LAUNCH_BRIEF.md",
+      "terminal_contract": [
+        "APPLICATION_COMPLETE_AWAITING_V2",
+        "BLOCK"
+      ]
+    },
+    {
+      "node_id": "V2-DAPP70-MAPPING-BACKCHECK",
+      "role": "EVALUATION",
+      "phase": "INDEPENDENT_POST_WRITE_BACKCHECK",
+      "status": "PLANNED_HELD_NOT_RELEASED",
+      "depends_on": [
+        "W1-DAPP70-MAPPING-APPLICATION terminal APPLICATION_COMPLETE_AWAITING_V2 accepted by HELP_HUMAN"
+      ],
+      "objective": "Independently re-extract all 22 mapping dispositions, retained boundaries, five status outcomes, D-APP-71 neutrality, source/dependency immutability, and write containment.",
+      "write_ownership": "FRESH_EVALUATION_DERIVATIVE_AND_INSTANCE_ONLY",
+      "terminal_contract": [
+        "ACCEPT",
+        "BLOCK"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "W1-DAPP70-MAPPING-APPLICATION",
+      "to": "V2-DAPP70-MAPPING-BACKCHECK",
+      "gate": "TERMINAL_RETURN_ACCEPTED_AND_EXACT_OUTPUT_HASHES_FROZEN"
+    }
+  ],
+  "concurrency": {
+    "eligible_pairs": [],
+    "reason": "V2 consumes W1 final bytes; W1 owns all shared application surfaces and is serialized."
+  },
+  "application_accounting": {
+    "path_count": 22,
+    "group_count": 9,
+    "group_populations": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+    "physical_or_primary_mapping_paths": 21,
+    "shared_boundary_only_paths": 1,
+    "unresolved_physical_lead_paths": 1,
+    "unresolved_path": "projects/chirality-app-dev/frontend/electron/preload.ts"
+  },
+  "continuing_prohibitions": [
+    "frontend_or_runtime_source_write",
+    "scope_or_dependency_change",
+    "preload_physical_lead_selection",
+    "preload_path_level_ownership_or_repair",
+    "lifecycle_transition",
+    "release_or_publication",
+    "hard_fence_crossing",
+    "git_action"
+  ]
+}

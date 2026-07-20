@@ -7,9 +7,9 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- CQ-F1 working-root route affinity: `frontend/src/app/api/working-root/deliverable/content/route.ts` is explicitly deferred on 2026-07-12 under D-APP-56 R4-P48; no ownership or mapping is asserted (revisit: next concordance pass).
 
 ## History
+- 2026-07-20 - D-APP-70 Option A mapped the CQ-F1 working-root content route to DEL-07-03 as physical route-contract owner while retaining DEL-07-01 containment and DEL-02-03 consumption; the CQ-F1 Remaining entry was closed; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-07-18 - D-APP-65 disposition 4 unlocked the R4-P48 documentation-production deferral; the route-adapter test index and SSE compatibility fixture README were produced in the deliverable folder. Content is agent findings; no acceptance or issuance is rendered. The CQ-F1 route-affinity item remains open for the next concordance pass. No state or lifecycle change.
 - 2026-07-12 - R6 backcheck corrected the omitted UPD-045/P30 authority half: the three live routes are now cataloged in SPEC §17.1 through the D-APP-56 P06/D-APP-38 corpus procedure; the landed Remaining item was removed. State remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)

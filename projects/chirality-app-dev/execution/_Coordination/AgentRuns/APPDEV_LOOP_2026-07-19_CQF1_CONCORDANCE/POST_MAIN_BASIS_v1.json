@@ -1,0 +1,101 @@
+{
+  "schema_version": "cqf1-post-main-basis/v1",
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "branch": "codex/app-dev-dapp70-mapping-application-20260720",
+  "owner_text_sha256": "2cadfff68d2aafc381cd82178d635a706587d07f1dfd6b9888b6c547754f1014",
+  "decision_bindings": {
+    "packet_sha256": "94b01c68e0611c6f2b0a13f6e1087830876d62aab4bfcda2c386aceb721f4b16",
+    "ruling_sha256": "1428294b9af34a97b19b7284860a5fdefc7fdb6157cce8c9516f4b54b064638a",
+    "register_sha256": "b4abb3cf9f46f04844293624bef91e7ce3c7a91fdcd3f8be37fb3159cfbb7408",
+    "receipt_ledger_sha256": "796577ee6199bc2563927abf26f7bf35875c6eff2d077c5ed81913f38a0e951c"
+  },
+  "r3_bindings": {
+    "next_gate_analysis_sha256": "a0ef7b6a55c0e72176a121f53a0fa574b18df767bc119c2491df8e97bee1390c",
+    "handoff_sha256": "f05343fef8e634a68c2c96dbaca012fbac9505fa1cae7bee4d63361e734205be",
+    "return_sha256": "3a6e0a30a294ab48f85df49e98f88d8920e2495f9aa3e2e0d1c71d96f32a6f0f",
+    "status_sha256": "99ffc1bad03cb45eb6275682a89e6277e96aa116a8511ab6f2cebd20c135b6de"
+  },
+  "accepted_v1": {
+    "return_sha256": "28fd98d46a160016d6fd875ea0281c07ee85971054b4e7de45fbe9af83b62936",
+    "status_sha256": "9f71e6d7604439f69d94c78cea66bbe0f1feb2924b06adfcc37e0b25e3274460"
+  },
+  "scope": {
+    "ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+    "path_count": 22,
+    "group_count": 9,
+    "group_populations": [5, 4, 6, 1, 1, 1, 1, 1, 2]
+  },
+  "source_sha256": {
+    "projects/chirality-app-dev/frontend/src/app/globals.css": "1218ddd28db9a5a3b88d552b2e3172198937fc4968d7ce1c84a6ac16a61efd5d",
+    "projects/chirality-app-dev/frontend/src/app/page.tsx": "a07d91b4054dd08c426175ed56757b12d57815cff9460677bbbfd70f38b6ee19",
+    "projects/chirality-app-dev/frontend/src/app/api/working-root/deliverable/content/route.ts": "9622de7572e74101bab75dafe8368b64620b33734891b010efea4339df4e2af1",
+    "projects/chirality-app-dev/frontend/src/components/shell/chat-markdown.tsx": "29c20cf50db177ae19df466781685624a7d2ed62ed46e47113e96167b2a5f139",
+    "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx": "9dfe17e734a6f76d5470792ef4d62daeea51d8005dfaa5e6fe7341b8cd0120b1",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx": "55525623688d48ee03367f07415f42ad3e3fca4a99fc3e8c5a91d8fb6b3a931c",
+    "projects/chirality-app-dev/frontend/src/components/shell/session-list-view.tsx": "4d3c04463c0e6fdc5f700c44cd4f5f5014bf03110a47522addaa397316fed697",
+    "projects/chirality-app-dev/frontend/src/components/shell/subagent-stream-view.tsx": "5eb7fff19c7b155217125f38a84482b532ceb23411e0713d94219bf10674b119",
+    "projects/chirality-app-dev/frontend/src/components/shell/tool-stream-view.tsx": "18a59883752231989a13294d883e9badbd9d538bebc1c3c26cf7ac0fdf7cfa4a",
+    "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx": "be0f9dd11e7ee8eeb15c27c21fad70e923fad9c578ee12b2e6f8383ebf964092",
+    "projects/chirality-app-dev/frontend/src/lib/shell/ansi.ts": "777a846021e6c075c75d0a89a233ff86c0669bc202f7b18aa7d9eaf1ec6e2dd9",
+    "projects/chirality-app-dev/frontend/src/lib/shell/document-view-state.ts": "613183d168a67802296a58c138af90a2df2523986ac352c424b7ccce09d1f96b",
+    "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-buffer.ts": "525234a73d942c13442e6d2b1f14b11c96fcbc9c09b2326ce55ffc08383fe865",
+    "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts": "85dede60c0cb267b7b821b2ebea31c44e502e36889f34a709f86adbc1366c7e0",
+    "projects/chirality-app-dev/frontend/src/lib/workspace/navigation-intent.ts": "3e59b6bf0807dbf254096405eda45d7b3992289b8970fb586bdb32b7d0cda779",
+    "projects/chirality-app-dev/frontend/src/types/chirality-window.d.ts": "974c070a0a0d02e43c7a0b477a6d0934bc8755b34d0a4c2dbc699ea4453bb1cd",
+    "projects/chirality-app-dev/frontend/electron/preload.ts": "189b0d30bd8f6daf84862e14cfc3ec68c2c211b5c123283c7108c50c3b750ba0",
+    "projects/chirality-app-dev/frontend/src/lib/harness/scripted-agent-sdk-proof.ts": "ebbe4240fd373cb916bec5611e716c1c2500bb674347b6b50f588dff384d7c87",
+    "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs": "ee310bee0f74f519c43c18d98c556b9f1b2fbdd72b4db539acf8edc05865f8e8",
+    "projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs": "17dd24702b1ba30b9209f85310514ada8ef168b8858cc2da1aea44bd62ce6e9e",
+    "projects/chirality-app-dev/frontend/scripts/pec-scratch-server.mjs": "289ea0bc8b2ed85cc0efe55dae08f8b53e1e4ab6a7b7c9e80c7ccbc853bb35f5",
+    "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts": "9f199797542c48512c010d17906354ce25556050a1493b09918c8f8b693f8fea"
+  },
+  "remaining_and_dependency_sha256": {
+    "DEL-02-01": {
+      "status": "095fdd18e562532a2376e6e55cad894a492926c8902999bb1c6b34fafcbdbd47",
+      "scope_of_work": "8aa2ae4a77c9692a10f4a9dc6ae09722dc12eac2f8e103ecf43e811af6298b16",
+      "dependencies_md": "f60ddd1687e169bf3c0904f361d09601f4c9e7fa6a0966f939a92e90f8c83109",
+      "dependencies_csv": "5ca2d96b48ac962d4a9f9afef8bc07957fcac81889fc1ba441b94d899bcacd99"
+    },
+    "DEL-03-03": {
+      "status": "fc283765cc5b233d88438190dada7c73e64ae5f20b676a78f174b3434db56930",
+      "scope_of_work": "dc2088fe093f5c11cac138d779eacc4e335fc33dedfbd4c2466b8cd14c9da118",
+      "dependencies_md": "5ba376e5a1fb4cd12cb9aa17bad5f31d0550268c6e780803a4ab4b2d24598a32",
+      "dependencies_csv": "9463cd422f31946ac4fbc6b4ee22f3e57e2808d686ddc692c212ba80a8cf298e"
+    },
+    "DEL-06-02": {
+      "status": "1f5a488c605f7f6ff7019066960f58102b0e65d30ee2abf043b0189a1bfe8ef1",
+      "scope_of_work": "b4c8355eea70d84c6e23a8ec03a5d4beb4a9750d79c61e84560cc2c0e6011879",
+      "dependencies_md": "c8d408926a11dd60ea4454918675e737009e6b39c5dc340eb03c8962c74cb471",
+      "dependencies_csv": "2311bd4f7aeb72588f03e9e7feef9790b00a1b6171139d40d4b80f7339b946a5"
+    },
+    "DEL-09-04": {
+      "status": "f733bf5c4cb14e760bc5e0dadc39cdedc1ffabeb536893078df5f6c3a2415382",
+      "scope_of_work": "6692a81799558f3999f52db8cdf9c5382eec33c0e389ed3ae327790accccccd3",
+      "dependencies_md": "20f8f5e35713d0f0bb1ffd629e75156c71321615f125a3e2ad5c04881fd0c7df",
+      "dependencies_csv": "27b30fb0fb729b9194912094731d22d301fe7f3dcf5408e3211b7c35011c0cbe"
+    },
+    "DEL-10-04": {
+      "status": "17c6847e0475f7baadb95f20f8db2bf8d5db57d7c817cbdfdbacd49f1b2ab518",
+      "scope_of_work": "c6efc57494f37eb1f8a75eb1eb74b849b7a820945a1dc00c1db318792e6822d9",
+      "dependencies_md": "b06013c36a8f0e98812e3b9f34cb648688b73bd0db24c5547e584eea3d55b207",
+      "dependencies_csv": "f1ea4a2b083ee7f7ef2439ac7a2f52cee45572699646f8e64bd1988f60880004"
+    }
+  },
+  "activated_package_sha256": {
+    "AFFINITY_AND_MAPPING_ANALYSIS.md": "1e825d797ddf5c4a9757bb1984ae63be0bf6b053736fe1bd5a8f932d415d4035",
+    "CANDIDATE_OWNER_SLATE.md": "f6e630e9294c4779f87a0f7734667f565113127769cdaed3ab20b32cd099ce93",
+    "CQF1_PATH_LEDGER.csv": "b56f87731920765279639d528393bae212403fe49ffb5de6c27065ddd4095288",
+    "DECISION_CLASSIFICATION.md": "4f7d8d41b344daafd7f4533dcaaec5dc4859fa44561133181ce744006ed285fd",
+    "DEL02_01_CHILD_PACKAGE_FIDELITY.csv": "100445dd4e2054440776a60e1be36e53d7cdb0bf6cbe94b9e21555f420f1706c",
+    "HANDOFF.md": "9af95a170fa77149fac4cbe5bae7320e5abe357b39434a5c083a200ba80dbc75",
+    "PACKAGE_NOTES/DEL-02-01.md": "0045d350a15c5fae07d0a0958096477c8fc057aedb8227cc433947feb3e6dafa",
+    "PACKAGE_NOTES/DEL-03-03.md": "1ae7d3e728093a853e79240da5eaa91ce6407dc0c67a3b4c10a3cd3c656f6935",
+    "PACKAGE_NOTES/DEL-06-02.md": "cd0b5b206c3ede37fb1eb3130b5a12cfece15ed1a1b498159ece87aed619f299",
+    "PACKAGE_NOTES/DEL-09-04.md": "946d03791ae296397b39c8322dd6c48d6daf21bd65489ba07f24558045cb8a48",
+    "PACKAGE_NOTES/DEL-10-04.md": "9a5e5291e30d3deb9a04992080c406c1499489b1696ee6fd361c4d27385fb59e",
+    "PROPOSED_MAPPING.csv": "a01651fb49883d2f15971cbc8a85c5cff4c5039eeffb2500be6a78fd62378e86",
+    "QA.md": "8cf4c42184a1ccd73577e11180562e2b9a576a9063728f4fd3c410227e92dbfd",
+    "RUN_BASIS.md": "f752abe6d078ec3f485621a9b1f15476db0667642bfb591ed20420d97c2e537d"
+  }
+}

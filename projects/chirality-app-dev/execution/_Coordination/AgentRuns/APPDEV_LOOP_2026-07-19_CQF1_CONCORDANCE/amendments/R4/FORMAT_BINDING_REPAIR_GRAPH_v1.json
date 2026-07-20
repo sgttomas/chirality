@@ -1,0 +1,121 @@
+{
+  "schema_version": "format-binding-repair-graph/v1",
+  "graph_version": 1,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "classification": "NONSEMANTIC_FORMAT_AND_TRANSITIVE_HASH_BINDING_REPAIR",
+  "posture": "SERIALIZED_RECONCILIATION_THEN_FRESH_INDEPENDENT_EVALUATION",
+  "observed_diagnostic_discrepancy": {
+    "current_reproduction_count": 13,
+    "current_reproduction_file_count": 10,
+    "prior_change_reported_count": 14,
+    "disposition": "PRESERVE_UNRESOLVED_NO_INVENTED_FOURTEENTH_LOCATION"
+  },
+  "direct_defects": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/RETURN.md",
+      "sha256": "d7a469edf8e96a15d035ea5453be53df3ba52d0f0c0945c706e7821cafdf5160",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/application-content/BRIEF.md",
+      "sha256": "aef7d7b87df7ea61c71ce69171dd6e633a0c0b53178ac69e8e00a3a33ec4c0ed",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/application-content/RETURN.md",
+      "sha256": "625c1dbfe05560178070863e18464946f2c2e8447332cbaab8b16d0a2630f896",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/governance-preservation/BRIEF.md",
+      "sha256": "bf066469b86ab43c1521a0ec998294a089b13b98dd47d6fa9417a833807d7ab7",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/governance-preservation/RETURN.md",
+      "sha256": "25ee7c56e438b34ea1e02fbffcc75937b5fa44775e12baf4700af97b00f20cd3",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-71_PACKET_PRELOAD_PHYSICAL_INTEGRATION_LEAD_2026-07-20.md",
+      "sha256": "b0c5f227be6c87b11fe280a4912fc1a0d6efb3500f6488691ef3214a497e2eb6",
+      "repair": "remove_exactly_two_trailing_spaces_from_each_of_lines_3_4_5_6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/EVALUATION_PROTOCOL.md",
+      "sha256": "eee60bc8e5d78809228fc771bd73cb5368d6c17b3f517609f87140a470511a8c",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/EVALUATION_REPORT.md",
+      "sha256": "46d26d9818d8a026fc8d52edb93fcf44e268ef997eb3d99eff9244a120911772",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/FINDINGS.csv",
+      "sha256": "451044943ffd5b56c340b6bf271592b84747285bb84272820a1b3c734e61a528",
+      "repair": "remove_one_excess_terminal_lf"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/HANDOFF.md",
+      "sha256": "957cce6026fdbf6a3d32291bb65fad0048bc72ae25ac3436164bf320c6be3078",
+      "repair": "remove_one_excess_terminal_lf"
+    }
+  ],
+  "transitive_reference_write_scope": [
+    "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/HANDOFF.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/MANIFEST.json",
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/W1-DAPP70-MAPPING-APPLICATION/HANDOFF.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/W1-DAPP70-MAPPING-APPLICATION/RETURN.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/W1-DAPP70-MAPPING-APPLICATION/STATUS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/STATUS.json"
+  ],
+  "historical_control_bindings_preserved": [
+    "updates/v16.md",
+    "amendments/V2/v1.md",
+    "instances/V2-DAPP70-MAPPING-BACKCHECK/LAUNCH_BRIEF.md",
+    "HANDOFF_STATE.md pre-v17 prefix"
+  ],
+  "nodes": [
+    {
+      "node_id": "R4-DAPP70-FORMAT-BINDING-REPAIR",
+      "role": "RECONCILIATION",
+      "status": "READY_RELEASED",
+      "depends_on": [
+        "V2-DAPP70-MAPPING-BACKCHECK terminal ACCEPT",
+        "current 13-location reproduction across exact 10-file set"
+      ],
+      "delegation": "PROHIBITED",
+      "terminal_contract": ["FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3", "BLOCK"]
+    },
+    {
+      "node_id": "V3-DAPP70-FORMAT-BINDING-BACKCHECK",
+      "role": "EVALUATION",
+      "status": "PLANNED_HELD_NOT_RELEASED",
+      "depends_on": [
+        "R4-DAPP70-FORMAT-BINDING-REPAIR terminal FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3 accepted by HELP_HUMAN"
+      ],
+      "terminal_contract": ["ACCEPT", "BLOCK"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "R4-DAPP70-FORMAT-BINDING-REPAIR",
+      "to": "V3-DAPP70-FORMAT-BINDING-BACKCHECK",
+      "gate": "TERMINAL_RETURN_ACCEPTED_AND_POST_REPAIR_HASH_MAP_FROZEN"
+    }
+  ],
+  "continuing_prohibitions": [
+    "delegation",
+    "semantic_change",
+    "deliverable_status_or_lifecycle_change",
+    "frontend_or_runtime_source_change",
+    "d_app_71_option_or_ruling_change",
+    "new_receipt_append_or_receipt_semantic_change",
+    "fresh_v3_execution",
+    "git_index_ref_commit_push_pr_or_merge_action"
+  ],
+  "waivers": []
+}

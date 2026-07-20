@@ -1,0 +1,102 @@
+{
+  "instance_id": "R4-DAPP70-FORMAT-BINDING-REPAIR",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3",
+  "verdict": "FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3",
+  "terminal": true,
+  "accepted": false,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "phase": "NONSEMANTIC_FORMAT_AND_TRANSITIVE_HASH_BINDING_REPAIR",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "integration_owner": true,
+  "delegation": "PROHIBITED",
+  "repair_executed": true,
+  "diagnostics": {
+    "reproduced_count": 13,
+    "reproduced_file_count": 10,
+    "extra_eof_blank_lines": 9,
+    "d_app_71_trailing_two_space_locations": 4,
+    "prior_change_reported_count": 14,
+    "discrepancy": "PRESERVED_UNRESOLVED"
+  },
+  "release_bindings": {
+    "repair_graph_sha256": "78a492ec999d48615e6e200d60d386f7aeb000d2cbd16ca016e1a96d7344774e",
+    "launch_brief_sha256": "f70dea4e753a962b9617bcbc302b9a085c4a121df16f74b8083a021009f4ba73",
+    "update_v17_sha256": "2b3c4f19b63c2496f712762467cc4fb0697c943dcb4afe3465b1a590c8181dee",
+    "handoff_state_pre_v17_bytes": 29528,
+    "handoff_state_pre_v17_sha256": "52b7ff05c492010f78a58fe7e60951a981fcf6562719d956102a2f2885839da3",
+    "handoff_state_v17_sha256": "22832c54250ad2281a3fbbfb45bf3f1772f54489bb956dc43fcbb6df2b0b5d81"
+  },
+  "write_scope": {
+    "direct_defect_paths": 10,
+    "transitive_reference_paths": 7,
+    "instance_terminal_paths": ["RETURN.md", "HANDOFF.md", "STATUS.json"]
+  },
+  "hash_map": {
+    "direct": {
+      "instances/V2-DAPP70-MAPPING-BACKCHECK/RETURN.md": ["d7a469edf8e96a15d035ea5453be53df3ba52d0f0c0945c706e7821cafdf5160", "8bd93871ef167c283204e135b5a88e7106de279f498a11c4138406eecd043874"],
+      "instances/V2-DAPP70-MAPPING-BACKCHECK/children/application-content/BRIEF.md": ["aef7d7b87df7ea61c71ce69171dd6e633a0c0b53178ac69e8e00a3a33ec4c0ed", "47e12e5dcd517d12086cbea9b3594c0ca248c5d7bb46369b1cb9d21ca0bbb78d"],
+      "instances/V2-DAPP70-MAPPING-BACKCHECK/children/application-content/RETURN.md": ["625c1dbfe05560178070863e18464946f2c2e8447332cbaab8b16d0a2630f896", "63041440b1745061f779293c1e9f305046268366304de1d1ae3c68572e04194d"],
+      "instances/V2-DAPP70-MAPPING-BACKCHECK/children/governance-preservation/BRIEF.md": ["bf066469b86ab43c1521a0ec998294a089b13b98dd47d6fa9417a833807d7ab7", "1751f7b9da0b5f9e179760ae0b321e885213e42cee9b00ff1b190da53390883a"],
+      "instances/V2-DAPP70-MAPPING-BACKCHECK/children/governance-preservation/RETURN.md": ["25ee7c56e438b34ea1e02fbffcc75937b5fa44775e12baf4700af97b00f20cd3", "1bf0849b6e2b12604135d1493130f9156611b77a69b9ecadad1ba2f9d1e87952"],
+      "D-APP-71 packet": ["b0c5f227be6c87b11fe280a4912fc1a0d6efb3500f6488691ef3214a497e2eb6", "711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c"],
+      "EVALUATION_PROTOCOL.md": ["eee60bc8e5d78809228fc771bd73cb5368d6c17b3f517609f87140a470511a8c", "c756daae95042bbcad832593d23f0b0db88442a11dd418626b2f0aa2dee94054"],
+      "EVALUATION_REPORT.md": ["46d26d9818d8a026fc8d52edb93fcf44e268ef997eb3d99eff9244a120911772", "7bcc83e4d88434933177b8958305cbae94b1f26c769b03afbc351021b7efbd17"],
+      "FINDINGS.csv": ["451044943ffd5b56c340b6bf271592b84747285bb84272820a1b3c734e61a528", "621f3f6665cd97a573058112de8c4848342470b1b289f24e48ff5f4511bbc97c"],
+      "evaluation/HANDOFF.md": ["957cce6026fdbf6a3d32291bb65fad0048bc72ae25ac3436164bf320c6be3078", "5edc7a9e042abd300033687742e749a42a5a0525e4e5a369fc6928519e4f436b"]
+    },
+    "transitive": {
+      "applied/HANDOFF.md": ["41540480d8011942668ae4fa9976482cb30fd2814852b5e74d9b8ec5b2e86cec", "388effec0ce63d606d2707dc59ba4a52d68efcff18553bc7043fcd2787c01c94"],
+      "applied/MANIFEST.json": ["eac0ec145d33e55c0ce5dbfe066223812a790183ae33ef7e4c33c27bd408e39c", "40c1ff5e7a0f9befb1e4b6c728fcebf66777211b059403e27fff92472ed2ee3e"],
+      "LOOP_RECEIPTS.md": ["4b0eb0dc88c02e0c856a225fccf5f00385258cfc567e8adbc8ba0140e91740eb", "7e5b6baa046fac24bebbf3990378bd596647410b2c974eab7cd91166392eebc4"],
+      "W1/HANDOFF.md": ["19c2593e2202782d3d62e4987f5e3ea0bc9bf53fb2026a987c6f2663a09908f1", "097b0744eeda3414e31914f682a810d2716567eb4ffb432c2ddbe2ad2974b363"],
+      "W1/RETURN.md": ["5811a5a94b39596f9e8244cc4c8ac631de87438a8e940c2b9f66d9985df4cc98", "4228184e5eadcced8de6d261f87c42918c72c075002728fba2565366c803ed38"],
+      "W1/STATUS.json": ["19d56061817027452a46b97ac143b0b6d24a241d0b4e4c1c33ee334ac0cff566", "fdf1e9a2052fed915607696706eb24aeced275cf8cd9885e17322929463eb655"],
+      "V2/STATUS.json": ["2293506289ce27637a673680902555fb6f0139573299fe8ac79f3618eacdf22d", "d1c54e2276129cc4930dd6433b556a26ed7041147294ed92662701a85d92a5c3"]
+    }
+  },
+  "required_checks": [
+    "PER_FILE_NO_INDEX_WHITESPACE",
+    "ACTUAL_GIT_DIFF_CHECK",
+    "CACHED_GIT_DIFF_CHECK",
+    "STRICT_RECURSIVE_DUPLICATE_KEY_JSON",
+    "OLD_TO_NEW_HASH_CLOSURE",
+    "RECEIPT_VALIDATION",
+    "AUTHORITY_CORPUS_V9",
+    "REPOSITORY_SELF_CHECK",
+    "APPLIED_MANIFEST_W1_V2_CORPUS",
+    "EXACT_WRITE_CONTAINMENT"
+  ],
+  "preserved_state": {
+    "w1_terminal": "APPLICATION_COMPLETE_AWAITING_V2",
+    "v2_terminal": "ACCEPT",
+    "d_app_71_state": "AWAITING_RULING",
+    "d_app_71_selection": null,
+    "semantic_change": false,
+    "deliverable_status_or_lifecycle_change": false,
+    "source_change": false,
+    "git_action": false,
+    "waivers": []
+  },
+  "checks": {
+    "per_file_no_index": "PASS_17_TEXT_FILES_ZERO_DIAGNOSTICS",
+    "actual_git_diff_check": "PASS",
+    "cached_git_diff_check": "PASS",
+    "strict_recursive_duplicate_key_json": "PASS",
+    "byte_reconstruction": "PASS_13_WHITESPACE_DELETIONS_PLUS_EXACT_HASH_TOKENS",
+    "old_to_new_hash_closure": "PASS",
+    "receipt_validation": "PASS",
+    "authority_corpus_v9": "PASS_NO_DRIFT",
+    "repository_self_check": "PASS_EXISTING_3_REVIEW_6_WARN",
+    "applied_manifest_w1_v2_corpus": "PASS",
+    "exact_write_containment": "PASS"
+  },
+  "v3": {
+    "instance_id": "V3-DAPP70-FORMAT-BINDING-BACKCHECK",
+    "role": "EVALUATION",
+    "status": "PLANNED_HELD_NOT_RELEASED",
+    "release_condition": "R4_TERMINAL_FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3_ACCEPTED_BY_HELP_HUMAN"
+  },
+  "terminal_contract": ["FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3", "BLOCK"]
+}

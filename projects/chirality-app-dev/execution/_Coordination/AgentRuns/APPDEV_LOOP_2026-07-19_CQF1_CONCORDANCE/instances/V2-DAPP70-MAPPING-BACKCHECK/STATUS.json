@@ -1,0 +1,89 @@
+{
+  "instance_id": "V2-DAPP70-MAPPING-BACKCHECK",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "ACCEPT",
+  "verdict": "ACCEPT",
+  "accepted": true,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "phase": "INDEPENDENT_POST_WRITE_BACKCHECK",
+  "basis_commit": "36a422ac5568a02ecf120c214f8e1fc96fd6ab45",
+  "depends_on": {
+    "instance_id": "W1-DAPP70-MAPPING-APPLICATION",
+    "terminal_status": "APPLICATION_COMPLETE_AWAITING_V2",
+    "return_sha256": "4228184e5eadcced8de6d261f87c42918c72c075002728fba2565366c803ed38",
+    "status_sha256": "fdf1e9a2052fed915607696706eb24aeced275cf8cd9885e17322929463eb655",
+    "applied_manifest_sha256": "40c1ff5e7a0f9befb1e4b6c728fcebf66777211b059403e27fff92472ed2ee3e"
+  },
+  "coverage": {
+    "w1_changed_path_count": 29,
+    "mapping_path_count": 22,
+    "mapping_group_count": 9,
+    "group_populations": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+    "physical_or_primary_treatments": 21,
+    "shared_boundary_only_treatments": 1,
+    "status_closures": 4,
+    "status_narrowed_residuals": 1,
+    "local_record_count": 5,
+    "source_files_preserved": 22,
+    "scope_of_work_files_preserved": 5,
+    "dependency_files_preserved": 10,
+    "upstream_derivative_files_preserved": 14,
+    "r3_surfaces_preserved": 4,
+    "accepted_v1_surfaces_preserved": 2,
+    "origin_advance_paths_disjoint": 58
+  },
+  "findings": {
+    "total": 0,
+    "blocking": 0,
+    "unknowns": 0,
+    "conflicts": 0,
+    "waivers": 0,
+    "reruns": 0
+  },
+  "children": {
+    "expected": 2,
+    "validated": 2,
+    "application_content": {
+      "verdict": "PASS",
+      "return_sha256": "63041440b1745061f779293c1e9f305046268366304de1d1ae3c68572e04194d"
+    },
+    "governance_preservation": {
+      "verdict": "PASS",
+      "return_sha256": "1bf0849b6e2b12604135d1493130f9156611b77a69b9ecadad1ba2f9d1e87952"
+    }
+  },
+  "d_app_71": {
+    "register_state": "AWAITING_RULING",
+    "selection": null,
+    "ruling_count": 0,
+    "neutral_options": ["DEL-02-03", "DEL-02-05", "DEL-09-06", "DEFER"]
+  },
+  "checks": {
+    "strict_bound_json": "PASS",
+    "authority_corpus_v9": "PASS_NO_DRIFT",
+    "receipt_validator": "PASS",
+    "repository_self_check": "PASS_EXISTING_3_REVIEW_6_WARN",
+    "diff_check": "PASS",
+    "write_containment": "PASS",
+    "frontend": "SKIPPED_SOURCE_BYTES_IDENTICAL"
+  },
+  "outputs": {
+    "evaluation_protocol_sha256": "c756daae95042bbcad832593d23f0b0db88442a11dd418626b2f0aa2dee94054",
+    "evaluation_report_sha256": "7bcc83e4d88434933177b8958305cbae94b1f26c769b03afbc351021b7efbd17",
+    "findings_sha256": "621f3f6665cd97a573058112de8c4848342470b1b289f24e48ff5f4511bbc97c",
+    "handoff_sha256": "5edc7a9e042abd300033687742e749a42a5a0525e4e5a369fc6928519e4f436b",
+    "application_content_brief_sha256": "47e12e5dcd517d12086cbea9b3594c0ca248c5d7bb46369b1cb9d21ca0bbb78d",
+    "application_content_return_sha256": "63041440b1745061f779293c1e9f305046268366304de1d1ae3c68572e04194d",
+    "governance_preservation_brief_sha256": "1751f7b9da0b5f9e179760ae0b321e885213e42cee9b00ff1b190da53390883a",
+    "governance_preservation_return_sha256": "1bf0849b6e2b12604135d1493130f9156611b77a69b9ecadad1ba2f9d1e87952",
+    "return_sha256": "8bd93871ef167c283204e135b5a88e7106de279f498a11c4138406eecd043874"
+  },
+  "subject_write_access": false,
+  "repair_authority": false,
+  "downstream_release_authority": false,
+  "git_authority": false,
+  "next_gate": "HELP_HUMAN_MAY_CONSIDER_SEPARATELY_RELEASED_CHANGE_HANDOFF",
+  "waivers": []
+}

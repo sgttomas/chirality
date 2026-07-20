@@ -1,0 +1,107 @@
+# V3 D-APP-70 Format-Binding Evaluation Protocol
+
+## Frozen basis and decision
+
+- Instance: `V3-DAPP70-FORMAT-BINDING-BACKCHECK`
+- Basis/HEAD: `36a422ac5568a02ecf120c214f8e1fc96fd6ab45`
+- Branch: `codex/app-dev-dapp70-mapping-application-20260720`
+- Accepted subject: terminal R4 `FORMAT_BINDING_REPAIR_COMPLETE_AWAITING_V3`
+- Decision: `ACCEPT | BLOCK`; no score
+- Delegation: prohibited
+
+The evaluation independently attempts to refute the graph-bound nonsemantic
+format and transitive hash-binding repair. It uses deterministic byte
+reconstruction, strict parsing, Git read-only inspection, per-file hygiene,
+staged-equivalent patch checking, current-anchor validation, preservation
+hashes, repository controls, origin disjointness, and exact containment.
+
+## Fail-closed preflight
+
+Before this output was created, the manager reproduced the release amendment,
+R4 graph/launch/handoff/return/status hashes; strict terminal R4 accounting
+`13 / 10 / 9 / 4`; the unresolved prior CHANGE count of 14; all 17 current
+post hashes; exact 42-, 48-, and 52-path populations; v18 handoff prefix/current
+hashes; nine current W1/V2/applied/D-APP-71/register/Receipt anchors; strict
+bound JSON; and an absent/empty evaluation root.
+
+The exact pre-write population has 52 paths, sorted path-list SHA-256
+`1d2ce8386d8cba1d691f7bbbb3c7ce9a56e808ea26a7cb74029a51bd1999431c`
+and path-plus-content aggregate SHA-256
+`6ec2b18ba4a44fe8b33dd9a63264d2a8fec79621009eb71b01b06a8d90d48281`.
+The complete per-file pre-write manifest is:
+
+```text
+3679b7f14ff36d35ee82f52e493f3f05b80f7fe9e864bb63d7ab08fe00354bae  projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_STATUS.md
+1410a40bc864c4de73ce4eda77543b5079504ac7df2176077635c306e6266103  projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_run_records/R5_DAPP70_CQF1_MAPPING_APPLICATION_2026-07-20.md
+fbbebf92ea8fe58ea75e663f7ae2493865cf23b7320b524f2b5c48082a0cb7d9  projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md
+1c92f0e4c377bd0d1dcb2ca59178a185c4257efb7948f08b79d49d1918a0f438  projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_run_records/R5_DAPP70_CQF1_MAPPING_APPLICATION_2026-07-20.md
+2a1bcc40e75614f4859922b206ce6d971c5ddf3924c23f80cc89c560de7f626b  projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_STATUS.md
+b18c0dd1b6bef01e497e27b1264e60ace694f17543b6ea71513d080190129b51  projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_run_records/R5_DAPP70_CQF1_MAPPING_APPLICATION_2026-07-20.md
+e571ae16bc62800f6d14ce33630a6d7b1414fdebcccc35b6bb11c0be93c476f3  projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md
+5628f2a3a378ce5eb46b8a9cd3d0c10bbcb046a1964b360f019e5a575f6f759c  projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R5_DAPP70_CQF1_MAPPING_APPLICATION_2026-07-20.md
+9d0a185d5ba691239e2109b668ca6fc59e90fc8aea326b9a3787dcc279bd247a  projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_STATUS.md
+22338f36f68722bb44e82e84498724310f910e642ab9fd018e9b58e5c97fbb4b  projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_run_records/R5_DAPP70_CQF1_MAPPING_APPLICATION_2026-07-20.md
+f9c42f8360c1d0888c80b728d779497b0f7f227907adafcb5db97d40760d2715  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/HANDOFF_STATE.md
+f874e1bc8e6c116fd4499b9f3a4f63d3cd8495a56c1902530e8436004b4b9587  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/POST_MAIN_BASIS_v1.json
+9baf590177eed964150df97286c4c46b8f558f5aef86c9768263d9666a65417f  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/POST_MAIN_WORK_GRAPH_v2.json
+78a492ec999d48615e6e200d60d386f7aeb000d2cbd16ca016e1a96d7344774e  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/amendments/R4/FORMAT_BINDING_REPAIR_GRAPH_v1.json
+bcb9cfbb11c092a54b751aa6078a8b8338a458df50c995f606acf55cee9ba67b  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/amendments/V2/v1.md
+6c290cacff3a208707034ae70fc28f8f0ded8c0b8e330b2989161cd145a55152  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/amendments/V3/v1.md
+fe274d57243d08004703578ede70fe10828cdb866452708c7cc08332054668b2  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/amendments/W1/v1.md
+f520e4fe67dcab28561ee2c22c23204adfc2aeae9fdd1ace5c05d9b608ba12e1  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R4-DAPP70-FORMAT-BINDING-REPAIR/HANDOFF.md
+f70dea4e753a962b9617bcbc302b9a085c4a121df16f74b8083a021009f4ba73  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R4-DAPP70-FORMAT-BINDING-REPAIR/LAUNCH_BRIEF.md
+3f466b9d95a9967dc8e1eac81defb884c4d6ee6821f74dd1df7c1099d759bf84  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R4-DAPP70-FORMAT-BINDING-REPAIR/RETURN.md
+568f71392021ed1353b4bcff5c17a29763f75b0430230a5ea2d8362ba1c6fba6  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R4-DAPP70-FORMAT-BINDING-REPAIR/STATUS.json
+0e8b7ec791ee698314b1dfddb178982aee2cf1c120b1881ad05fe25b64853337  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/LAUNCH_BRIEF.md
+8bd93871ef167c283204e135b5a88e7106de279f498a11c4138406eecd043874  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/RETURN.md
+d1c54e2276129cc4930dd6433b556a26ed7041147294ed92662701a85d92a5c3  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/STATUS.json
+47e12e5dcd517d12086cbea9b3594c0ca248c5d7bb46369b1cb9d21ca0bbb78d  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/application-content/BRIEF.md
+63041440b1745061f779293c1e9f305046268366304de1d1ae3c68572e04194d  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/application-content/RETURN.md
+1751f7b9da0b5f9e179760ae0b321e885213e42cee9b00ff1b190da53390883a  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/governance-preservation/BRIEF.md
+1bf0849b6e2b12604135d1493130f9156611b77a69b9ecadad1ba2f9d1e87952  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V2-DAPP70-MAPPING-BACKCHECK/children/governance-preservation/RETURN.md
+7802cda9c7e998d4ce959cf196f6e3c7332d36eaf6ef4761ef81fbcd983895e0  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V3-DAPP70-FORMAT-BINDING-BACKCHECK/LAUNCH_BRIEF.md
+86d719a54726495dce0586f80e86dab0563dc47de753c23404f5c3379e4c71bd  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/V3-DAPP70-FORMAT-BINDING-BACKCHECK/STATUS.json
+097b0744eeda3414e31914f682a810d2716567eb4ffb432c2ddbe2ad2974b363  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/W1-DAPP70-MAPPING-APPLICATION/HANDOFF.md
+f585225dea8b8061b725c97e3b0412b03b2ab0583db04014c0222529d6dceeb4  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/W1-DAPP70-MAPPING-APPLICATION/LAUNCH_BRIEF.md
+4228184e5eadcced8de6d261f87c42918c72c075002728fba2565366c803ed38  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/W1-DAPP70-MAPPING-APPLICATION/RETURN.md
+fdf1e9a2052fed915607696706eb24aeced275cf8cd9885e17322929463eb655  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/W1-DAPP70-MAPPING-APPLICATION/STATUS.json
+8a9406aa981b959cb6d218c068869033e5f315d27f2f2f387f73f970ca719bbb  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/updates/v15.md
+4ed684986097943b2306592b422ed45022f998215ae1c25832a82a451b345925  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/updates/v16.md
+2b3c4f19b63c2496f712762467cc4fb0697c943dcb4afe3465b1a590c8181dee  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/updates/v17.md
+50bd2771108636aaa892c0285a324371754ad0b287929809c41303f0b89d7212  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/updates/v18.md
+711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c  projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-71_PACKET_PRELOAD_PHYSICAL_INTEGRATION_LEAD_2026-07-20.md
+3eb0a430bc98c43b4b7f2b6603d1f186ec679bc44685cb80ea1350aed96828c5  projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
+c756daae95042bbcad832593d23f0b0db88442a11dd418626b2f0aa2dee94054  projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/EVALUATION_PROTOCOL.md
+7bcc83e4d88434933177b8958305cbae94b1f26c769b03afbc351021b7efbd17  projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/EVALUATION_REPORT.md
+621f3f6665cd97a573058112de8c4848342470b1b289f24e48ff5f4511bbc97c  projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/FINDINGS.csv
+5edc7a9e042abd300033687742e749a42a5a0525e4e5a369fc6928519e4f436b  projects/chirality-app-dev/execution/_Evaluation/CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20/HANDOFF.md
+87f9de7cb755696ab430e31c74655555f317a78c39388b24c1d589e3df5efdb7  projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/APPLIED_MAPPING.csv
+388effec0ce63d606d2707dc59ba4a52d68efcff18553bc7043fcd2787c01c94  projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/HANDOFF.md
+40c1ff5e7a0f9befb1e4b6c728fcebf66777211b059403e27fff92472ed2ee3e  projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/MANIFEST.json
+b93dfd640e34d55d4d7db3c09475a6ffbad40d8428d98c9c0bd664b6569a800b  projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/QA.md
+001248aa030e4983d2ce5776ab6b05c429ab170967f79c457eedec0de6908c8d  projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/REMAINING_DISPOSITION.csv
+84e6bf3dff8328342e296a81c28f694d223abbab207db57492627b2cd6bb91a4  projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/RETAINED_BOUNDARIES.md
+1e8a10e34ab3b5d8d1d9bda03e7302d4b1d579fdf220fb8a7e2ce5d732db19f9  projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/RUN_BASIS.md
+7e5b6baa046fac24bebbf3990378bd596647410b2c974eab7cd91166392eebc4  projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+```
+
+## Acceptance method
+
+Acceptance requires:
+
+1. exact current hashes and reverse reconstruction of all ten direct and seven
+   transitive preimages;
+2. exactly nine one-LF deletions, four two-space deletion locations, and only
+   authorized old/new 64-hex substitutions;
+3. current-cluster stale-hash closure, allowing only explicit historical
+   controls, including the HANDOFF_STATE v16 section;
+4. exact W1/V2/applied/D-APP-71/Receipt-80 closure and complete semantic,
+   status, source, SOW, dependency, R3, V1, and upstream preservation;
+5. zero diagnostics from every individual no-index check, actual worktree and
+   cached checks, and a non-mutating staged-equivalent patch check;
+6. strict JSON/CSV, receipt, corpus, self-check, origin disjointness, and final
+   write containment.
+
+Any mismatch, unknown mandatory evidence, conflict, waiver, subject mutation,
+or unauthorized path produces `BLOCK`. V3 writes only this additive
+evaluation root and its instance RETURN/STATUS.
