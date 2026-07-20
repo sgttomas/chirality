@@ -1,0 +1,99 @@
+{
+  "instance_id": "R2-OWNER-PACKET",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "AWAITING_RULING",
+  "verdict": "READY_FOR_OWNER_RULING",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "depends_on": [
+    "V1_RECHECK3_TERMINAL_ACCEPT_ACCEPTED_BY_HELP_HUMAN_FOR_OWNER_DECISION_ROUTING_ONLY"
+  ],
+  "preflight": "PASS_EXACT",
+  "decision_id": "D-APP-70",
+  "decision_state": "AWAITING_RULING",
+  "decision_packet": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-70_PACKET_CQF1_CANDIDATE_OWNER_RULING_2026-07-19.md",
+  "owner_ruling_present": false,
+  "ruling_record_present": false,
+  "accepted_v1": {
+    "return_sha256": "28fd98d46a160016d6fd875ea0281c07ee85971054b4e7de45fbe9af83b62936",
+    "status_sha256": "9f71e6d7604439f69d94c78cea66bbe0f1feb2924b06adfcc37e0b25e3274460",
+    "terminal_verdict": "ACCEPT",
+    "blocking_findings": 0,
+    "unknowns": 0,
+    "waivers": 0,
+    "control_child_return_sha256": "072d816045939e345a10ad837905b49153e6321d660bc72d153e5c2ca2f0d4fb",
+    "substantive_child_return_sha256": "fa2572ce449004e846bf6684328db54a18affe23eef16c100df0aa7a041d93b3"
+  },
+  "scope": {
+    "ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+    "proposal_rows": 22,
+    "unique_rows": 22,
+    "decision_classification": "OWNER_CLASS",
+    "mapping_posture": "PROPOSAL_UNACCEPTED",
+    "group_count": 9,
+    "group_populations": [5, 4, 6, 1, 1, 1, 1, 1, 2]
+  },
+  "activated_package_sha256": {
+    "AFFINITY_AND_MAPPING_ANALYSIS.md": "1e825d797ddf5c4a9757bb1984ae63be0bf6b053736fe1bd5a8f932d415d4035",
+    "CANDIDATE_OWNER_SLATE.md": "f6e630e9294c4779f87a0f7734667f565113127769cdaed3ab20b32cd099ce93",
+    "CQF1_PATH_LEDGER.csv": "b56f87731920765279639d528393bae212403fe49ffb5de6c27065ddd4095288",
+    "DECISION_CLASSIFICATION.md": "4f7d8d41b344daafd7f4533dcaaec5dc4859fa44561133181ce744006ed285fd",
+    "DEL02_01_CHILD_PACKAGE_FIDELITY.csv": "100445dd4e2054440776a60e1be36e53d7cdb0bf6cbe94b9e21555f420f1706c",
+    "HANDOFF.md": "9af95a170fa77149fac4cbe5bae7320e5abe357b39434a5c083a200ba80dbc75",
+    "PACKAGE_NOTES/DEL-02-01.md": "0045d350a15c5fae07d0a0958096477c8fc057aedb8227cc433947feb3e6dafa",
+    "PACKAGE_NOTES/DEL-03-03.md": "1ae7d3e728093a853e79240da5eaa91ce6407dc0c67a3b4c10a3cd3c656f6935",
+    "PACKAGE_NOTES/DEL-06-02.md": "cd0b5b206c3ede37fb1eb3130b5a12cfece15ed1a1b498159ece87aed619f299",
+    "PACKAGE_NOTES/DEL-09-04.md": "946d03791ae296397b39c8322dd6c48d6daf21bd65489ba07f24558045cb8a48",
+    "PACKAGE_NOTES/DEL-10-04.md": "9a5e5291e30d3deb9a04992080c406c1499489b1696ee6fd361c4d27385fb59e",
+    "PROPOSED_MAPPING.csv": "a01651fb49883d2f15971cbc8a85c5cff4c5039eeffb2500be6a78fd62378e86",
+    "QA.md": "8cf4c42184a1ccd73577e11180562e2b9a576a9063728f4fd3c410227e92dbfd",
+    "RUN_BASIS.md": "f752abe6d078ec3f485621a9b1f15476db0667642bfb591ed20420d97c2e537d"
+  },
+  "fidelity_matrix": {
+    "rows": 14,
+    "columns": 19,
+    "EXACT": 5,
+    "FAITHFUL_COMPRESSION": 5,
+    "REPAIRED_MATERIAL_LOSS": 4,
+    "EXPLICITLY_REASONED_REJECTION": 0,
+    "UNEXPLAINED": 0
+  },
+  "outputs": {
+    "packet_sha256": "94b01c68e0611c6f2b0a13f6e1087830876d62aab4bfcda2c386aceb721f4b16",
+    "register_sha256": "c6f8722cbb792785ddd1ec7f918c8613238b28a26340eec6b8c45871b4c31f32",
+    "receipt_ledger_sha256": "d8c4032519453d3e7e6c9778c08b0af0547b5b19f6c632660ab42cfc8c7ca0c7",
+    "handoff_sha256": "2bbbed251da9e1ef6889e9665bca5473e8d0994261bf33f03160d7ba4003fb22"
+  },
+  "receipt": {
+    "receipt_id": "Receipt-78",
+    "parent_receipt": "Receipt-77",
+    "gate_outcome": "AWAITING_OWNER"
+  },
+  "owner_response_options": [
+    "APPROVE: D-APP-70 Option A",
+    "APPROVE: D-APP-70 Option B — G1=RECOMMENDATION; G2=DEFER; ...",
+    "APPROVE: D-APP-70 Option C"
+  ],
+  "owner_selection_made": false,
+  "mappings_accepted": false,
+  "mapping_applied": false,
+  "subject_writes": 0,
+  "derivative_package_writes": 0,
+  "w1_released": false,
+  "lifecycle_transition": false,
+  "hard_fence_crossed": false,
+  "release_or_publication": false,
+  "git_action": false,
+  "waivers": [],
+  "write_containment": "PASS_EXACT_AUTHORIZED_SIX_PATHS",
+  "blocked_nodes": [
+    "D_APP_70_OWNER_RULING",
+    "MAPPING_APPLICATION",
+    "W1",
+    "LIFECYCLE_RELEASE_PUBLICATION"
+  ],
+  "next_gate": "OWNER_RULES_D_APP_70_OR_LEAVES_ALL_OR_NAMED_GROUPS_AWAITING_RULING"
+}

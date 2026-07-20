@@ -1,0 +1,94 @@
+{
+  "instance_id": "V1-RECHECK2",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "BLOCK",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "depends_on": [
+    "R1-REPAIR2_TERMINAL_RETURN_PRELIMINARILY_ACCEPTED_FOR_V1_RECHECK2"
+  ],
+  "scope_manifest": "../../CQF1_SCOPE.csv",
+  "scope_path_count": 22,
+  "scope_unique_path_count": 22,
+  "scope_ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+  "scope_remaining_container_count": 5,
+  "reconciliation_subject_root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/",
+  "additive_evaluation_root": "projects/chirality-app-dev/execution/_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/RECHECK_R1_REPAIR2/",
+  "r1_repair2_bindings": {
+    "return_sha256": "bb520447e5923a36fca6533379ff49458dbb0fbbfcefe6edbfaf7ae4f2f4a12a",
+    "raw_status_sha256": "a48d9a634f279726f9c3cc4b23fb8e558b58f34502cd03ae6c87c5f6f4537a44",
+    "sealed_child_return_sha256": "b9bfb2923ec3853c4373923a61bca7e340963251e40fab94f3dbf5bdc56480c0",
+    "ledger_sha256": "b56f87731920765279639d528393bae212403fe49ffb5de6c27065ddd4095288",
+    "proposed_mapping_sha256": "a01651fb49883d2f15971cbc8a85c5cff4c5039eeffb2500be6a78fd62378e86",
+    "candidate_slate_sha256": "f6e630e9294c4779f87a0f7734667f565113127769cdaed3ab20b32cd099ce93",
+    "fidelity_matrix_sha256": "100445dd4e2054440776a60e1be36e53d7cdb0bf6cbe94b9e21555f420f1706c"
+  },
+  "expected_fidelity_matrix": {
+    "rows": 14,
+    "columns": 19,
+    "EXACT": 5,
+    "FAITHFUL_COMPRESSION": 5,
+    "REPAIRED_MATERIAL_LOSS": 4,
+    "EXPLICITLY_REASONED_REJECTION": 0,
+    "UNEXPLAINED": 0
+  },
+  "expected_owner_class_rows": 22,
+  "expected_proposal_groups": 9,
+  "required_repair_findings_recheck": [
+    "V1R-001",
+    "V1R-002"
+  ],
+  "duplicate_key_erratum": {
+    "classification": "REFUTED_BLOCKING_MACHINE_READABLE_PROVENANCE_LOSS",
+    "source": "../R1-REPAIR2/STATUS.json",
+    "duplicate_member": "control_label_erratum",
+    "occurrence_count": 2,
+    "block_on_semantic_or_provenance_loss": true
+  },
+  "prior_control_label_erratum": "NON_CONSEQUENTIAL_CONTROL_LABEL_ERRATUM_SUSTAINED",
+  "subject_write_access": false,
+  "repair_authority": false,
+  "integration_owner": true,
+  "may_delegate_read_only_audits": true,
+  "max_audit_slices": 2,
+  "launch_brief": "LAUNCH_BRIEF.md",
+  "expected_return": "RETURN.md",
+  "terminal_verdict_contract": [
+    "ACCEPT",
+    "BLOCK"
+  ],
+  "owner_slate_accepted": false,
+  "verdict": "BLOCK",
+  "substantive_package_result": "PASS_UNACCEPTED",
+  "fidelity_recheck_result": "PASS_5_EXACT_5_FAITHFUL_COMPRESSION_4_REPAIRED_MATERIAL_LOSS_0_UNEXPLAINED",
+  "row_recheck_result": "PASS_22_OWNER_CLASS_PROPOSALS_UNACCEPTED",
+  "group_recheck_result": "PASS_9_GROUPS_5_4_6_1_1_1_1_1_2_UNACCEPTED",
+  "finding_count": 3,
+  "blocking_finding_count": 1,
+  "blocking_findings": [
+    "V1R2-001"
+  ],
+  "blocked_scope": [
+    "R1-REPAIR2_TERMINAL_STATUS_CONTROL_RECORD"
+  ],
+  "child_count": 2,
+  "child_return_sha256": {
+    "technical_fidelity_recheck": "32474f641ac1de6ba55ad521466bad375ff3280c0951bc1d4e636927c655682d",
+    "governance_package_erratum_recheck": "f67c7707e7e705717339374d36c4469fce7aae2f37e8845d6f24088dae2aedb3"
+  },
+  "evaluation_report": "../../../../../_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/RECHECK_R1_REPAIR2/EVALUATION_REPORT.md",
+  "required_owner": "COORDINATION_WORKFLOW_UNDER_HELP_HUMAN_VERSIONED_AMENDMENT",
+  "required_repair": "ADDITIVE_UNIQUE_KEY_R1_CONTROL_RECORD_ONLY",
+  "required_rerun": "FRESH_V1_FROM_CORRECTED_CONTROL_BINDING",
+  "released_by": "HELP_HUMAN_R1_REPAIR2_PRELIMINARY_FAN_IN_V1_AMENDMENT_V3",
+  "downstream_release": false,
+  "blocked_nodes": [
+    "OWNER_SLATE_ROUTING",
+    "W1"
+  ],
+  "waivers": [],
+  "next_gate": "HELP_HUMAN_ACCEPTS_V1_RECHECK2_TERMINAL_RETURN"
+}

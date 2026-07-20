@@ -1,0 +1,109 @@
+{
+  "instance_id": "R1-REPAIR2",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "COMPLETE_FIDELITY_REPAIRED_OWNER_CLASS_PROPOSAL",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "routing_classification": "NON_CONSEQUENTIAL_VERIFIER_DIRECTED_FANIN_REPAIR",
+  "depends_on": [
+    "V1-RECHECK_TERMINAL_BLOCK_ACCEPTED_FOR_REPAIR_ROUTING"
+  ],
+  "scope_manifest": "../../CQF1_SCOPE.csv",
+  "scope_path_count": 22,
+  "scope_unique_path_count": 22,
+  "scope_ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+  "scope_remaining_container_count": 5,
+  "activated_derivative_root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/",
+  "v1_recheck_bindings": {
+    "return_sha256": "041bb263a2ac65b0172d0d796429da266167983b93fe5bcb9c5b500af85ed5c8",
+    "status_sha256": "19d2f4f54326842b98dc9d2c398342783a246deeb4166f8de39c130974db05b4",
+    "protocol_sha256": "f3becf8c0c6e592bfa06470fb933f3f2a8256c7d244984c05ee291af6eabfa3a",
+    "report_sha256": "1e526efdb53f14ca2a443e71e97e881bfc4cff6ea5b78ff4ca82b0e85dce8422",
+    "findings_sha256": "bf4d69fd1b0f4022246dda38959b4b2d8d959c7fa6b118abd848a66536eb9e54",
+    "handoff_sha256": "bea8bb4f3608b05f74975129afe6fc84924d7c7180c779bf7324cb4b98051904",
+    "technical_return_sha256": "0ecdef2e1859c623616d3220a022e6606d99471e056ee8f10705a0b39d1eea94",
+    "governance_return_sha256": "5b5ae9218be706964847f94183a13d10070c0d5ff7fe9358a4faabe35f47cdbe"
+  },
+  "accepted_for_repair_findings": [
+    "V1R-001",
+    "V1R-002"
+  ],
+  "affected_rows": [
+    "projects/chirality-app-dev/frontend/src/app/globals.css",
+    "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx",
+    "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx",
+    "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts"
+  ],
+  "affected_groups": [
+    1,
+    2,
+    3
+  ],
+  "sealed_child_reuse": {
+    "permitted_only_after_exact_validation": true,
+    "return_sha256": "b9bfb2923ec3853c4373923a61bca7e340963251e40fab94f3dbf5bdc56480c0",
+    "expected_rows": 14,
+    "new_child_required_if_exact": false,
+    "reuse_permitted_on_mismatch": false,
+    "fresh_child_if_mismatch_max": 1
+  },
+  "required_fidelity_matrix_rows": 14,
+  "expected_owner_class_proposals": 22,
+  "expected_proposal_groups": 9,
+  "control_label_erratum": {
+    "classification": "NON_CONSEQUENTIAL_CONTROL_LABEL_ERRATUM_SUSTAINED",
+    "correct_paths": [
+      "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "projects/chirality-app-dev/frontend/src/lib/shell/ansi.ts"
+    ]
+  },
+  "historical_r1_v1_mutable": false,
+  "evaluation_packages_mutable": false,
+  "subject_write_access": false,
+  "integration_owner": true,
+  "launch_brief": "LAUNCH_BRIEF.md",
+  "expected_return": "RETURN.md",
+  "released_by": "HELP_HUMAN_V1_RECHECK_BLOCK_ROUTING_R1_AMENDMENT_V4",
+  "downstream_release": false,
+  "blocked_nodes": [
+    "FRESH_V1_RECHECK",
+    "OWNER_SLATE_ROUTING",
+    "W1"
+  ],
+  "waivers": [],
+  "next_gate": "R1-REPAIR2_TERMINAL_RETURN_THEN_FRESH_V1_RECHECK",
+  "preflight": "PASS",
+  "sealed_child_reused": true,
+  "sealed_child_reuse_validation": "PASS_EXACT",
+  "replacement_child_dispatched": 0,
+  "fidelity_matrix_rows": 14,
+  "fidelity_totals": {
+    "EXACT": 5,
+    "FAITHFUL_COMPRESSION": 5,
+    "EXPLICITLY_REASONED_REJECTION": 0,
+    "REPAIRED_MATERIAL_LOSS": 4,
+    "UNEXPLAINED": 0
+  },
+  "classification_totals": {
+    "OWNER_CLASS": 22,
+    "DISPOSITION_CLASS": 0,
+    "NO_REPAIR": 0,
+    "BLOCKED_INPUT": 0,
+    "STALE_INPUT": 0
+  },
+  "proposal_group_count": 9,
+  "proposal_group_population": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+  "v1r_findings_repaired": ["V1R-001", "V1R-002"],
+  "v1r_findings_preserved": ["V1R-003"],
+  "prior_v1_findings_sustained": ["V1-001", "V1-002", "V1-003", "V1-004"],
+  "prior_observations_preserved_unrepaired": ["V1-005"],
+  "control_label_erratum": "NON_CONSEQUENTIAL_CONTROL_LABEL_ERRATUM_SUSTAINED",
+  "package_file_count": 14,
+  "subject_writes": 0,
+  "owner_slate_released": false,
+  "w1_released": false,
+  "fresh_v1_recheck_released": false
+}

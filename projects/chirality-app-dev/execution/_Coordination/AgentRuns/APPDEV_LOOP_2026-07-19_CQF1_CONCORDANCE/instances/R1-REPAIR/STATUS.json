@@ -1,0 +1,83 @@
+{
+  "instance_id": "R1-REPAIR",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "COMPLETE_REPAIRED_OWNER_CLASS_PROPOSAL",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "activation": "D-APP-69_OPTION_A_MERGED_ON_SHARED_MAIN",
+  "routing_classification": "NON_CONSEQUENTIAL_VERIFIER_DIRECTED_DERIVATIVE_REPAIR",
+  "depends_on": [
+    "V1-RETRY_TERMINAL_BLOCK_ACCEPTED_FOR_ROUTING"
+  ],
+  "scope_manifest": "../../CQF1_SCOPE.csv",
+  "scope_path_count": 22,
+  "scope_unique_path_count": 22,
+  "scope_ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+  "scope_remaining_container_count": 5,
+  "activated_derivative_root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/",
+  "predecessor_bindings": {
+    "r1_retry_return_sha256": "5afcca6497e7cee440114d4ee8fb7e4c169e6d23a7cbe20f361341c9d480339a",
+    "ledger_sha256": "22894dd5f7900765c765ad7da532b28907f3aba8e32ab5d44f3ed5f04e8b08b5",
+    "proposed_mapping_sha256": "5e3a08d0765dc3ee79e2829178eac859a6d86f9ef982370e4e567bc72ce97ce3",
+    "candidate_slate_sha256": "e130c68185d828cf2c3c9f023f7550f052af2d1b447a8b2c12bf2f75ec3844c7"
+  },
+  "accepted_for_repair_findings": [
+    "V1-001",
+    "V1-002",
+    "V1-003",
+    "V1-004"
+  ],
+  "affected_subject_paths": [
+    "frontend/src/styles/globals.css",
+    "frontend/src/components/shell/chat-markdown.tsx",
+    "frontend/src/lib/ansi.ts"
+  ],
+  "required_fresh_child": {
+    "count": 1,
+    "scope": "ALL_14_DEL-02-01_ROWS",
+    "read_only": true,
+    "return_root": "children/del_02_01_evidence/"
+  },
+  "historical_r1_attempts_mutable": false,
+  "prior_child_returns_mutable": false,
+  "evaluation_package_mutable": false,
+  "subject_write_access": false,
+  "integration_owner": true,
+  "expected_owner_class_proposals": 22,
+  "expected_proposal_groups": 9,
+  "launch_brief": "LAUNCH_BRIEF.md",
+  "expected_return": "RETURN.md",
+  "released_by": "HELP_HUMAN_V1_RETRY_BLOCK_ROUTING_AMENDMENT_V3",
+  "downstream_release": false,
+  "blocked_nodes": [
+    "V1_RECHECK",
+    "W1"
+  ],
+  "subject_writes": 0,
+  "waivers": [],
+  "next_gate": "FRESH_V1_RECHECK",
+  "preflight": "PASS",
+  "fresh_child_dispatched": 1,
+  "fresh_child_accepted": 1,
+  "fresh_child_rows": 14,
+  "fresh_child_return_sha256": "b9bfb2923ec3853c4373923a61bca7e340963251e40fab94f3dbf5bdc56480c0",
+  "subject_paths_inspected": 22,
+  "classification_totals": {
+    "OWNER_CLASS": 22,
+    "DISPOSITION_CLASS": 0,
+    "NO_REPAIR": 0,
+    "BLOCKED_INPUT": 0,
+    "STALE_INPUT": 0
+  },
+  "proposal_group_count": 9,
+  "proposal_group_population": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+  "v1_findings_repaired": ["V1-001", "V1-002", "V1-003", "V1-004"],
+  "v1_findings_preserved_unrepaired": ["V1-005"],
+  "eof_files_normalized": 10,
+  "requested_next_gate": "ONE_FRESH_INDEPENDENT_V1_RECHECK",
+  "owner_slate_released": false,
+  "w1_released": false
+}

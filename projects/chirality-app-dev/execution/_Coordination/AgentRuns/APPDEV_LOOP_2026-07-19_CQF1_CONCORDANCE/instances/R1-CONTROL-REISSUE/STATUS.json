@@ -1,0 +1,135 @@
+{
+  "instance_id": "R1-CONTROL-REISSUE",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "COMPLETE_UNIQUE_MEMBER_CONTROL_REISSUE",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "routing_classification": "NONCONSEQUENTIAL_UNIQUE_MEMBER_CONTROL_REISSUE",
+  "depends_on": [
+    "V1-RECHECK2_TERMINAL_BLOCK_ACCEPTED_FOR_CONTROL_REPAIR_ROUTING"
+  ],
+  "scope": "R1_TERMINAL_CONTROL_RECORD_ONLY",
+  "preflight": "PASS_EXACT",
+  "repair_finding": "V1R2-001",
+  "repair_disposition": "REPAIRED_BY_ADDITIVE_CONTROL_REISSUE",
+  "immutable_predecessor_defect_reproduced": {
+    "source": "../R1-REPAIR2/STATUS.json",
+    "raw_status_sha256": "a48d9a634f279726f9c3cc4b23fb8e558b58f34502cd03ae6c87c5f6f4537a44",
+    "top_level_occurrences": 2,
+    "values": "UNEQUAL_STRUCTURED_OBJECT_AND_STRING",
+    "ordinary_parse_result": "LAST_MEMBER_PATH_LOSS",
+    "strict_parse_result": "DUPLICATE_REJECTED"
+  },
+  "r1_repair2_bindings": {
+    "return_sha256": "bb520447e5923a36fca6533379ff49458dbb0fbbfcefe6edbfaf7ae4f2f4a12a",
+    "raw_status_sha256": "a48d9a634f279726f9c3cc4b23fb8e558b58f34502cd03ae6c87c5f6f4537a44"
+  },
+  "sealed_child_bindings": {
+    "launch_sha256": "7ee27d1f464460bc8e9fb39c87aebdc044e1440eddb8ddd735c3bb0667b5b3fa",
+    "return_sha256": "b9bfb2923ec3853c4373923a61bca7e340963251e40fab94f3dbf5bdc56480c0"
+  },
+  "v1_recheck2_bindings": {
+    "return_sha256": "cfb858139539f038629d06279f2c259c6948dff7ede772dad48ea1b12515820e",
+    "status_sha256": "af250ce853165152321c993fe3065f2df2b36ab774c1f67e8057e493875c0fe4",
+    "protocol_sha256": "4e835f298071d92b7e18a449538143256174622ffe0903963c5197e5ddbbd50f",
+    "report_sha256": "81cf1298e32e7a263fd6f01136fe29857102ac5a21d26fb25efa622a0855a0ea",
+    "findings_sha256": "43ba5e391b2a867cda1d2cea098859b757c140ff125762ef4210dd4932025f05",
+    "handoff_sha256": "428afe00ead5b6130f18f9c5bea9c9986270c8203323ba8976c6181d79fbd4a0",
+    "technical_launch_sha256": "ab2cd7ebbeffc0b9d17e5e06fb0ac644d16d7d3cd9dd2ff628af62291d35d278",
+    "technical_return_sha256": "32474f641ac1de6ba55ad521466bad375ff3280c0951bc1d4e636927c655682d",
+    "governance_launch_sha256": "f234f799f8797b23f1f68275d79874e25f22d9f6ca8116da9b824b6f38e220fb",
+    "governance_return_sha256": "f67c7707e7e705717339374d36c4469fce7aae2f37e8845d6f24088dae2aedb3"
+  },
+  "scope_binding": {
+    "manifest_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+    "path_count": 22,
+    "unique_path_count": 22,
+    "remaining_container_count": 5,
+    "remaining_populations": {
+      "DEL-02-01": 14,
+      "DEL-03-03": 1,
+      "DEL-06-02": 1,
+      "DEL-09-04": 4,
+      "DEL-10-04": 2
+    },
+    "remaining_status": "IN_PROGRESS_UNCHANGED"
+  },
+  "package_bindings": {
+    "file_count": 14,
+    "AFFINITY_AND_MAPPING_ANALYSIS.md": "1e825d797ddf5c4a9757bb1984ae63be0bf6b053736fe1bd5a8f932d415d4035",
+    "CANDIDATE_OWNER_SLATE.md": "f6e630e9294c4779f87a0f7734667f565113127769cdaed3ab20b32cd099ce93",
+    "CQF1_PATH_LEDGER.csv": "b56f87731920765279639d528393bae212403fe49ffb5de6c27065ddd4095288",
+    "DECISION_CLASSIFICATION.md": "4f7d8d41b344daafd7f4533dcaaec5dc4859fa44561133181ce744006ed285fd",
+    "DEL02_01_CHILD_PACKAGE_FIDELITY.csv": "100445dd4e2054440776a60e1be36e53d7cdb0bf6cbe94b9e21555f420f1706c",
+    "HANDOFF.md": "9af95a170fa77149fac4cbe5bae7320e5abe357b39434a5c083a200ba80dbc75",
+    "PACKAGE_NOTES/DEL-02-01.md": "0045d350a15c5fae07d0a0958096477c8fc057aedb8227cc433947feb3e6dafa",
+    "PACKAGE_NOTES/DEL-03-03.md": "1ae7d3e728093a853e79240da5eaa91ce6407dc0c67a3b4c10a3cd3c656f6935",
+    "PACKAGE_NOTES/DEL-06-02.md": "cd0b5b206c3ede37fb1eb3130b5a12cfece15ed1a1b498159ece87aed619f299",
+    "PACKAGE_NOTES/DEL-09-04.md": "946d03791ae296397b39c8322dd6c48d6daf21bd65489ba07f24558045cb8a48",
+    "PACKAGE_NOTES/DEL-10-04.md": "9a5e5291e30d3deb9a04992080c406c1499489b1696ee6fd361c4d27385fb59e",
+    "PROPOSED_MAPPING.csv": "a01651fb49883d2f15971cbc8a85c5cff4c5039eeffb2500be6a78fd62378e86",
+    "QA.md": "8cf4c42184a1ccd73577e11180562e2b9a576a9063728f4fd3c410227e92dbfd",
+    "RUN_BASIS.md": "f752abe6d078ec3f485621a9b1f15476db0667642bfb591ed20420d97c2e537d"
+  },
+  "substantive_results": {
+    "ledger_schema": "22x13",
+    "mapping_schema": "22x7",
+    "owner_class_rows": 22,
+    "proposal_group_count": 9,
+    "proposal_group_population": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+    "fidelity_matrix_schema": "14x19",
+    "fidelity_totals": {
+      "EXACT": 5,
+      "FAITHFUL_COMPRESSION": 5,
+      "REPAIRED_MATERIAL_LOSS": 4,
+      "EXPLICITLY_REASONED_REJECTION": 0,
+      "UNEXPLAINED": 0
+    }
+  },
+  "finding_state": {
+    "v1_001_through_v1_004": "SUSTAINED",
+    "v1r_001_and_v1r_002": "REPAIRED_AND_SUSTAINED",
+    "v1r2_002_wrong_label_erratum": "SUSTAINED",
+    "v1_005": "NONBLOCKING_UNREPAIRED_OBSERVATION"
+  },
+  "control_label_erratum": {
+    "classification": "NON_CONSEQUENTIAL_CONTROL_LABEL_ERRATUM_SUSTAINED",
+    "correct_paths": [
+      "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "projects/chirality-app-dev/frontend/src/lib/shell/ansi.ts"
+    ]
+  },
+  "parser_validation": {
+    "duplicate_rejecting_parser": "PASS_UNIQUE_AT_EVERY_OBJECT_DEPTH",
+    "python_json_load": "PASS_EQUIVALENT",
+    "node_json_parse": "PASS_EQUIVALENT",
+    "jq_parse": "PASS_EQUIVALENT",
+    "raw_top_level_occurrence_count": 1,
+    "python_version": "3.13.7",
+    "node_version": "v24.5.0",
+    "jq_version": "jq-1.7.1-apple"
+  },
+  "subject_writes": 0,
+  "derivative_package_writes": 0,
+  "owner_acceptance": false,
+  "owner_slate_released": false,
+  "w1_released": false,
+  "fresh_v1_released": false,
+  "lifecycle_transition": false,
+  "publication_or_issuance": false,
+  "git_action": false,
+  "waivers": [],
+  "blocked_nodes": [
+    "FRESH_V1_RECHECK",
+    "OWNER_SLATE_ROUTING",
+    "W1"
+  ],
+  "changed_paths": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-CONTROL-REISSUE/STATUS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-CONTROL-REISSUE/RETURN.md"
+  ],
+  "next_gate": "HELP_HUMAN_ACCEPTS_CONTROL_REISSUE_THEN_SEPARATELY_RELEASES_ONE_FRESH_V1"
+}

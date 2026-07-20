@@ -1,0 +1,827 @@
+{
+  "basis": {
+    "frozen_commit": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+    "activation": "D-APP-69 Option A",
+    "prior_affinity_authority": "D-APP-56 R4-P48 affinity-only deferral",
+    "classification_authority": "D-APP-60 fast-reject ordering as refined by D-APP-64",
+    "method_note": "Read-only source-bound analysis. Code and prior affinity are evidence, not scope authority."
+  },
+  "container": "DEL-02-01",
+  "expected_count": 14,
+  "rows": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "source_blob": "6eb6d932410368d2163208fa40ec08061a4c9bb8",
+      "source_sha256": "1218ddd28db9a5a3b88d552b2e3172198937fc4968d7ce1c84a6ac16a61efd5d",
+      "implementation_summary": "Application-global stylesheet loaded by RootLayout. It styles the shell/header/navigation, loop/persona/portal, session list, chat/Markdown/ANSI/attachments/file picker, matrix, workspace sidebar, tool/subagent streams, and permission cards, so the file is physically indivisible while its rules serve several accepted capability owners.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/app/layout.tsx:1-6",
+        "projects/chirality-app-dev/frontend/src/app/globals.css:42-142",
+        "projects/chirality-app-dev/frontend/src/app/globals.css:302-458",
+        "projects/chirality-app-dev/frontend/src/app/globals.css:609-757",
+        "projects/chirality-app-dev/frontend/src/app/globals.css:953-1050",
+        "projects/chirality-app-dev/frontend/src/app/globals.css:1757-2094"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/components/shell-frame.test.tsx:23-38 statically asserts the active shell-navigation class hook.",
+        "projects/chirality-app-dev/frontend/src/__tests__/components/harness-stream-views.test.ts:30-185 statically renders several class-bearing consumers.",
+        "No visual/CSS test was run under this brief; the cited tests were inspected only."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:51-60",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md:50-56",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161"
+      ],
+      "authority_anchors": [
+        "D-APP-56:69-87 (R4-P29 surface ownership; R4-P48 affinity-only deferral)",
+        "D-APP-60:67-101 (fast-reject, live-tree, attribution and verification rules)",
+        "D-APP-64:83-133 (scope/ownership fast reject and reasoned-selection duties)",
+        "D-APP-69:90-111 (read-only discovery; no ownership creation or accepted mapping)"
+      ],
+      "lifecycle_state": "DEL-02-01 is IN_PROGRESS; no lifecycle change is proposed or implied.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:10-11 names globals.css as PKG-02 shell styling / R4-P29 family and expressly says no ownership or mapping is asserted.",
+      "prior_affinity": "PKG-02 shell styling / R4-P29 family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: shared implementation boundary, with DEL-02-01 as the nearest shell-integration owner and explicit evidence links to DEL-02-03, DEL-02-04, DEL-05-04, DEL-06-01, and DEL-08-05 for their own styled capabilities.",
+      "mapping_status": "PROPOSAL_SHARED_BOUNDARY_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-02-04 because it owns pane layout and professional shell UI quality.",
+        "DEL-05-04 because the same file styles transcript/tool/subagent/session projections.",
+        "Pure SHARED with no integration owner because the stylesheet is monolithic."
+      ],
+      "rejected_alternatives": [
+        "Sole DEL-02-04 mapping is too narrow: most rules are not local-state/pane-layout rules.",
+        "Sole DEL-05-04 mapping is too narrow: portal, matrix, file-picker, and shell navigation rules are outside replay projection.",
+        "Treating every CSS rule as independently owned is not a path-level mapping and would obscure integration responsibility."
+      ],
+      "evidence_strength": "MEDIUM",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): accepting the proposed path boundary would set an ownership/scope mapping.",
+        "D-APP-69:99-110: this run may not create ownership or accept a mapping."
+      ],
+      "rationale": "The ontology is a shared styling substrate, not one capability. Praxeologically, one integration owner plus explicit evidence edges is more workable than pretending the file is single-purpose. Because even that integration-owner choice is a new recorded ownership boundary, it cannot be disposition-class.",
+      "rerun_triggers": [
+        "Source blob changes from 6eb6d932410368d2163208fa40ec08061a4c9bb8.",
+        "The stylesheet is split into capability-local modules.",
+        "Any cited deliverable scope/status or D-APP-56/60/64/69 authority changes.",
+        "Independent V1 refutes the shared-boundary analysis or an owner rules a mapping."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/page.tsx",
+      "source_blob": "cd6f59518b286a5608a7437e5ff589dc784d6c6d",
+      "source_sha256": "a07d91b4054dd08c426175ed56757b12d57815cff9460677bbbfd70f38b6ee19",
+      "implementation_summary": "Next.js root page that wraps PortalLoopShell in Suspense and renders the live-loop portal at the root route. The frozen implementation is not a redirect wrapper.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/app/page.tsx:1-10",
+        "projects/chirality-app-dev/frontend/src/components/shell/portal-loop-shell.tsx:18-36"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/components/shell-frame.test.tsx:23-38 statically verifies the root PORTAL link and active class.",
+        "No direct PortalPage/PortalLoopShell test was located in the frozen test tree; no test was run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:51-60",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:146-156",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:211-211"
+      ],
+      "authority_anchors": [
+        "D-APP-56:69-87 (R4-P29 and R4-P48)",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01 is IN_PROGRESS; the route mapping proposal is lifecycle-neutral.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:10-11 lists page.tsx as a PKG-02 root redirect wrapper / R4-P29 family, but with no ownership or mapping asserted.",
+      "prior_affinity": "PKG-02 root redirect wrapper / R4-P29 family (PRIOR_AGENT_AFFINITY only; implementation label is stale)",
+      "candidate_mapping": "PROPOSAL: DEL-02-01 Desktop Shell and Matrix Navigation.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-02-03 because the portal consumes deliverable summaries and working-root state.",
+        "A route-only shared shell boundary with no deliverable owner."
+      ],
+      "rejected_alternatives": [
+        "DEL-02-03 owns working-root file-tree/scope-scan presentation, not the root live-loop portal composition.",
+        "Leaving the route shared understates DEL-02-01's explicit PORTAL/root-navigation requirements."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): path-to-deliverable mapping is an accepted-scope/ownership boundary.",
+        "D-APP-69:99-110 prohibits accepting that mapping in this pass."
+      ],
+      "rationale": "The route directly renders PortalLoopShell and DEL-02-01 expressly owns PORTAL/root shell navigation. The old 'redirect wrapper' label is contradicted by the frozen source but does not change the nearest owner. Acceptance remains owner-class.",
+      "rerun_triggers": [
+        "Source blob changes from cd6f59518b286a5608a7437e5ff589dc784d6c6d.",
+        "Root routing changes to redirect or another shell surface.",
+        "DEL-02-01 scope/status or governing authority changes.",
+        "V1 refutes or an owner rules the proposal."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-markdown.tsx",
+      "source_blob": "432a818cfbd7ddba0cb47ba6cf80bdfd807cec97",
+      "source_sha256": "29c20cf50db177ae19df466781685624a7d2ed62ed46e47113e96167b2a5f139",
+      "implementation_summary": "Reusable GFM renderer for assistant chat and deliverable-document content. It opens links safely, renders fenced code, and delegates ANSI blocks to the shell ANSI helper.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/components/shell/chat-markdown.tsx:3-60",
+        "projects/chirality-app-dev/frontend/src/components/shell/chat-markdown.tsx:62-74",
+        "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx:497-506",
+        "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:179-205"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/components/chat-markdown.test.ts:6-42 defines static-render coverage for GFM and ANSI fallback.",
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/ansi.test.ts:4-14 covers the delegated ANSI helper.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:121-156",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:211-211",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P29/R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01 and DEL-05-04 are IN_PROGRESS; no transition is proposed.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records chat-markdown.tsx as a DEL-02-01-family shell view component without asserting mapping.",
+      "prior_affinity": "shell view component / DEL-02-01 family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-02-01 as primary shell-view owner, with DEL-05-04 and DEL-02-03 recorded as consumers/evidence edges rather than co-owners.",
+      "mapping_status": "PROPOSAL_PRIMARY_WITH_SHARED_EVIDENCE_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-05-04 because Markdown/ANSI contributes transcript presentation.",
+        "DEL-02-03 because DocumentView uses it to preview deliverable files.",
+        "Shared utility with no primary deliverable."
+      ],
+      "rejected_alternatives": [
+        "DEL-05-04 alone is too narrow because the live direct-chat shell is an independent primary consumer.",
+        "DEL-02-03 alone is too narrow because document preview is only one consumer.",
+        "No primary owner weakens maintenance accountability for a shell-located UI helper."
+      ],
+      "evidence_strength": "MEDIUM_HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): selecting a primary owner is an ownership boundary.",
+        "D-APP-69:99-110: accepted mapping is forbidden here."
+      ],
+      "rationale": "The component is located in and primarily serves the direct-chat shell already assigned to DEL-02-01 by R4-P29, while reuse by document and replay views is material but does not make those consumers owners. That primary/consumer split is a proposal, not existing path authority.",
+      "rerun_triggers": [
+        "Source blob changes from 432a818cfbd7ddba0cb47ba6cf80bdfd807cec97.",
+        "Consumers change or the renderer moves into a package-specific module.",
+        "Relevant DEL-02-01/02-03/05-04 scope changes.",
+        "V1 refutes or an owner rules the split."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "source_blob": "6661e9bf29ef9d0f6bce7e9cf1f3273cd4eb2580",
+      "source_sha256": "9dfe17e734a6f76d5470792ef4d62daeea51d8005dfaa5e6fe7341b8cd0120b1",
+      "implementation_summary": "Workspace-sidebar Document view. It loads the selected Working Root's deliverable roster, selects canonical/control-plane document files, fetches document content, resolves loading/error/empty states, and renders Markdown.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:31-60",
+        "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:61-118",
+        "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:120-177",
+        "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:179-254",
+        "projects/chirality-app-dev/frontend/src/components/shell/workspace-sidebar.tsx:197-205"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/document-view-state.test.ts:20-72 covers the extracted render-state precedence.",
+        "No direct DocumentView fetch/render integration test was located; no tests were run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:50-55",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:107-145",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:358-384"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P29/R4-P48",
+        "D-APP-56 R4-P30 capability-owner precedent",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01 and candidate DEL-02-03 are IN_PROGRESS; mapping is lifecycle-neutral.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records document-view.tsx only as a DEL-02-01-family shell view, expressly without mapping.",
+      "prior_affinity": "shell view component / DEL-02-01 family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-02-03 Working Root File Tree and Scope Scan UI, with DEL-03-03 as the content-route dependency owner and DEL-02-01 as shell host.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-02-01 because the view is hosted in the shell sidebar.",
+        "DEL-03-03 because the view calls the deliverable-content API route.",
+        "DEL-01 governance deliverables because it exposes control-plane documents."
+      ],
+      "rejected_alternatives": [
+        "Shell hosting alone is weaker than DEL-02-03's explicit responsibility for selected-root deliverable summaries and read-only contract snapshots.",
+        "DEL-03-03 owns route/API shape, not the operator-facing consuming view.",
+        "Displayed content authority does not transfer UI implementation ownership to the governance deliverables whose files are viewed."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): moving this path from affinity-only DEL-02-01 residue to DEL-02-03 is a scope/ownership mapping.",
+        "D-APP-69:99-110 prohibits accepting it in this run."
+      ],
+      "rationale": "The file's dominant behavior is Working Root deliverable discovery and read-only document presentation, which is closer to DEL-02-03 than generic shell composition. Route ownership and content authority remain separate. This differs from prior affinity and therefore must be preserved as an owner-gated proposal.",
+      "rerun_triggers": [
+        "Source blob changes from 6661e9bf29ef9d0f6bce7e9cf1f3273cd4eb2580.",
+        "The view stops consuming Working Root/deliverable APIs or receives an explicit owner.",
+        "DEL-02-03 or DEL-03-03 scope/authority changes.",
+        "V1 refutes or an owner rules the mapping."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx",
+      "source_blob": "38ecfb7e6f5f9c07c14c2bc879cef151e27f0dd9",
+      "source_sha256": "55525623688d48ee03367f07415f42ad3e3fca4a99fc3e8c5a91d8fb6b3a931c",
+      "implementation_summary": "Modal, Working-Root-bounded file browser for chat attachments. It loads one-level tree data, prevents UI navigation above the selected root, filters supported attachment extensions, tracks selections, and emits attachment metadata to ChatPanel.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx:3-57",
+        "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx:64-117",
+        "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx:136-174",
+        "projects/chirality-app-dev/frontend/src/components/shell/file-picker.tsx:180-299",
+        "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx:533-581",
+        "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx:635-645"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-ui-attachments.test.ts:10-74 covers attachment extension/filter/build/sanitization helpers.",
+        "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-failed-send.test.ts:47-78 mocks FilePicker and lines 99-159 verify attachment retention through failed send.",
+        "No direct FilePicker navigation/modal test was located; no tests were run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:50-55",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:107-145",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md:116-149",
+        "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/ScopeOfWork.md:120-162"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01, DEL-02-03, and DEL-02-04 are IN_PROGRESS; no lifecycle act is proposed.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 gives file-picker.tsx DEL-02-01-family shell-view affinity only and withholds mapping.",
+      "prior_affinity": "shell view component / DEL-02-01 family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-02-03 as the bounded Working Root file-browser owner; DEL-02-04 owns attachment-selection persistence and DEL-06-04 owns enforceable path policy, both as boundaries rather than this component's owner.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-02-04 because attachment selections are part of local UI state.",
+        "DEL-02-01 because the modal is launched by the shell chat panel.",
+        "DEL-06-04 because the component performs root-containment checks."
+      ],
+      "rejected_alternatives": [
+        "DEL-02-04 governs persistence/guards, but this component performs no persistence and is primarily a tree browser.",
+        "DEL-02-01 hosting is less specific than DEL-02-03's bounded file-tree responsibility.",
+        "The client containment check is not the enforceable write/edit/path-hook boundary owned by DEL-06-04."
+      ],
+      "evidence_strength": "MEDIUM_HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): the proposed capability-owner partition is a scope/ownership boundary.",
+        "D-APP-69:99-110 forbids accepting the mapping."
+      ],
+      "rationale": "The dominant implementation is bounded Working Root tree browsing, matching DEL-02-03. Attachment persistence and server-side path enforcement remain distinct capability boundaries. Because the prior affinity did not assert mapping, the clearer split still needs owner acceptance.",
+      "rerun_triggers": [
+        "Source blob changes from 38ecfb7e6f5f9c07c14c2bc879cef151e27f0dd9.",
+        "Attachment persistence or enforceable filesystem policy moves into the component.",
+        "DEL-02-03/02-04/06-04 scope changes.",
+        "V1 refutes or an owner rules the split."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/session-list-view.tsx",
+      "source_blob": "f95349110f975b7ce8126bc7318538774a9daafe",
+      "source_sha256": "4d3c04463c0e6fdc5f700c44cd4f5f5014bf03110a47522addaa397316fed697",
+      "implementation_summary": "Workspace-sidebar session discovery and replay-control view. It lists sessions for the Working Root, blocks hydrate while streaming, replays a selected session, rejects stale cross-root results, replaces the shared bounded event buffer, and exposes loaded history to Transcript/Tools/Subagents views.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/components/shell/session-list-view.tsx:3-25",
+        "projects/chirality-app-dev/frontend/src/components/shell/session-list-view.tsx:28-111",
+        "projects/chirality-app-dev/frontend/src/components/shell/session-list-view.tsx:113-173",
+        "projects/chirality-app-dev/frontend/src/components/shell/session-list-view.tsx:175-233",
+        "projects/chirality-app-dev/frontend/src/components/shell/workspace-sidebar.tsx:197-205"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/components/harness-stream-views.test.ts:127-185 statically covers no-root, idle/open, streaming block, and replay notice rendering.",
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-buffer.test.ts:41-77 defines live-vs-hydrate parity checks.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:184-207",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/ScopeOfWork.md:189-207"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01, DEL-05-01, and DEL-05-04 are IN_PROGRESS; the proposal changes none of them.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records session-list-view.tsx as DEL-02-01-family shell-view affinity only.",
+      "prior_affinity": "shell view component / DEL-02-01 family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-05-04 Runtime Replay and Transcript View; DEL-05-01 remains the session-list/storage dependency and DEL-02-01 remains the sidebar host.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-05-01 because it owns list/session CRUD and canonical storage.",
+        "DEL-02-01 because the component is a shell sidebar view.",
+        "DEL-05-02 because hydrate consumes canonical HarnessEvents."
+      ],
+      "rejected_alternatives": [
+        "DEL-05-01 explicitly excludes replay UI/diagnostics to DEL-05-04.",
+        "Shell hosting does not outweigh the component's replay/read/projection purpose.",
+        "DEL-05-02 owns schema/append/replay-safe semantics, while runtime replay/transcript view implementation is explicitly assigned to DEL-05-04."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): proposed transfer from affinity-only shell residue to a replay owner is an ownership mapping.",
+        "D-APP-69:99-110 keeps that mapping proposal held."
+      ],
+      "rationale": "The component's decisive behavior is replay discovery/hydration, not generic shell layout. DEL-05-04 is the explicit replay/view owner; DEL-05-01 and DEL-05-02 are dependencies with clear exclusions. Accepting the path mapping remains owner-class.",
+      "rerun_triggers": [
+        "Source blob changes from f95349110f975b7ce8126bc7318538774a9daafe.",
+        "Replay/hydrate responsibilities move out of the component.",
+        "DEL-05-01/05-02/05-04 scope changes.",
+        "V1 refutes or an owner rules the mapping."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/subagent-stream-view.tsx",
+      "source_blob": "c2dbe2ee7ece4d0e6485cf42c94c0c73b1c70d96",
+      "source_sha256": "5eb7fff19c7b155217125f38a84482b532ceb23411e0713d94219bf10674b119",
+      "implementation_summary": "Read-only workspace-sidebar projection of derived subagent lifecycle rows. It displays agent identity, status, description, summary, last tool, output-presence, and event counts from the shared HarnessEvent stream.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/components/shell/subagent-stream-view.tsx:3-30",
+        "projects/chirality-app-dev/frontend/src/components/shell/subagent-stream-view.tsx:32-65",
+        "projects/chirality-app-dev/frontend/src/components/shell/workspace-sidebar.tsx:201-205"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/components/harness-stream-views.test.ts:57-82 defines empty and populated static-render cases.",
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-views.test.ts:112-185 defines lifecycle-collapse behavior.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:184-207",
+        "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/ScopeOfWork.md:162-201"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-68:72-86 (managed-child record/lifecycle ownership to DEL-08-05)",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01, DEL-05-04, and DEL-08-05 are IN_PROGRESS; no transition is proposed.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 already recognizes DEL-05-04 transcript-stream-view sibling affinity for this path but asserts no mapping.",
+      "prior_affinity": "shell event-view / DEL-05-04 transcript-stream-view sibling family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-05-04 as projection/view owner; DEL-08-05 retains subagent child-run record, lifecycle, artifact, and replay semantics.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-08-05 because the displayed rows are subagent child-run records/artifacts.",
+        "DEL-02-01 because the component is hosted in its shell sidebar."
+      ],
+      "rejected_alternatives": [
+        "DEL-08-05 owns record/lifecycle semantics, while this file is only a read-only projection over events.",
+        "DEL-02-01 shell hosting is weaker than the explicit replay/transcript projection boundary."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): selecting the view-vs-record owner partition is an ownership boundary.",
+        "D-APP-69:99-110 prohibits acceptance here."
+      ],
+      "rationale": "The accepted architecture separates durable child-run semantics (DEL-08-05) from runtime replay/view projection (DEL-05-04). This component performs only the latter, matching its prior sibling affinity. Path acceptance is still a new mapping.",
+      "rerun_triggers": [
+        "Source blob changes from c2dbe2ee7ece4d0e6485cf42c94c0c73b1c70d96.",
+        "The component begins mutating child-run records or artifacts.",
+        "D-APP-68 or DEL-05-04/08-05 scope changes.",
+        "V1 refutes or an owner rules the partition."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/tool-stream-view.tsx",
+      "source_blob": "d2551728e384695c40be1382ed9e55e059f6a5b1",
+      "source_sha256": "18a59883752231989a13294d883e9badbd9d538bebc1c3c26cf7ac0fdf7cfa4a",
+      "implementation_summary": "Read-only workspace-sidebar projection of derived tool lifecycle rows. It displays tool name, status, safe path fields, source/surface, and event count from the shared HarnessEvent stream.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/components/shell/tool-stream-view.tsx:3-37",
+        "projects/chirality-app-dev/frontend/src/components/shell/tool-stream-view.tsx:39-72",
+        "projects/chirality-app-dev/frontend/src/components/shell/workspace-sidebar.tsx:201-205"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/components/harness-stream-views.test.ts:30-55 defines empty and populated static-render cases.",
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-views.test.ts:28-110 defines tool lifecycle derivation behavior.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:184-207",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/ScopeOfWork.md:120-170"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01 and candidate DEL-05-04 are IN_PROGRESS; no lifecycle change is proposed.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 already records DEL-05-04 transcript-stream-view sibling affinity for this path, without mapping.",
+      "prior_affinity": "shell event-view / DEL-05-04 transcript-stream-view sibling family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-05-04 as tool-activity projection/view owner; DEL-05-05 retains ToolResultStore and artifact semantics, and DEL-06 owns permission/execution policy.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-05-05 because tool results and artifacts are shown in adjacent replay surfaces.",
+        "DEL-06 tool/permission deliverables because tool names and statuses are displayed.",
+        "DEL-02-01 because the component is hosted in the shell sidebar."
+      ],
+      "rejected_alternatives": [
+        "This component does not store tool results/artifacts, so DEL-05-05 is a data dependency rather than view owner.",
+        "It does not decide permissions or execute tools, so PKG-06 is not the UI projection owner.",
+        "Shell hosting is less specific than DEL-05-04 replay/view scope."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): capability-owner partition and path mapping are owner-class.",
+        "D-APP-69:99-110 prohibits acceptance in this pass."
+      ],
+      "rationale": "The file projects tool activity from HarnessEvents and does not own tool execution, permission, or artifact storage. DEL-05-04 is the closest accepted projection owner. The proposal coheres with the prior sibling affinity but still needs an owner act to become a mapping.",
+      "rerun_triggers": [
+        "Source blob changes from d2551728e384695c40be1382ed9e55e059f6a5b1.",
+        "The file takes on tool execution, permission, or artifact-store behavior.",
+        "DEL-05-04/05-05 or PKG-06 scope changes.",
+        "V1 refutes or an owner rules the partition."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx",
+      "source_blob": "b6cfd4af376a0cd6a606e55f1c0fa368ce0e61d3",
+      "source_sha256": "be0f9dd11e7ee8eeb15c27c21fad70e923fad9c578ee12b2e6f8383ebf964092",
+      "implementation_summary": "Application-level React contexts for the live/hydrated HarnessEvent buffer and streaming state. It exposes stable append/clear/hydrate/setStreaming actions, bounds both live and replay buffers to 2,000 events, and supplies data/actions/streaming hooks to chat, matrix, session, permission, transcript, tool, and subagent consumers.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx:11-48",
+        "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx:50-84",
+        "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx:86-111",
+        "projects/chirality-app-dev/frontend/src/app/layout.tsx:3-6",
+        "projects/chirality-app-dev/frontend/src/app/layout.tsx:19-27"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-buffer.test.ts:19-77 covers the bound helper and live/hydrate equivalence used by the provider.",
+        "Consumer tests mock or consume provider hooks, but no direct provider/context lifecycle test was located; no tests were run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/ScopeOfWork.md:136-145",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:121-156"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01, DEL-05-02, and DEL-05-04 are IN_PROGRESS; no transition is proposed.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records mixed DEL-02-01/PKG-02 workspace-event-plumbing affinity and expressly withholds ownership/mapping.",
+      "prior_affinity": "workspace event plumbing / DEL-02-01 and PKG-02 family (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-05-04 as live/replay view-buffer owner; DEL-05-02 owns the HarnessEvent schema/persistence contract and DEL-02-01 owns shell composition consuming the provider.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-05-02 because the context stores HarnessEvent values.",
+        "DEL-02-01 because RootLayout and shell consumers depend on the provider.",
+        "Shared application infrastructure with no deliverable owner."
+      ],
+      "rejected_alternatives": [
+        "DEL-05-02 explicitly assigns runtime replay/transcript view implementation to DEL-05-04; this provider is an in-memory view buffer, not the append-only store.",
+        "DEL-02-01 composition is a consumer boundary and does not explain hydrate/replay parity.",
+        "Leaving infrastructure ownerless would preserve the exact CQ-F1 ambiguity rather than resolve it."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): selecting which deliverable owns the shared provider is an ownership decision.",
+        "D-APP-69:99-110 prohibits accepting it."
+      ],
+      "rationale": "The provider implements bounded live/replay projection state, not canonical event persistence. DEL-05-04 is therefore nearer than DEL-05-02 or generic shell composition. The shared application scope makes acceptance consequential and owner-class.",
+      "rerun_triggers": [
+        "Source blob changes from b6cfd4af376a0cd6a606e55f1c0fa368ce0e61d3.",
+        "The provider begins persisting canonical events or moves out of view infrastructure.",
+        "DEL-05-02/05-04 or DEL-02-01 scope changes.",
+        "V1 refutes or an owner rules the mapping."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/shell/ansi.ts",
+      "source_blob": "53500f33e066567f39f03978fd7f59f6b8ade9e0",
+      "source_sha256": "777a846021e6c075c75d0a89a233ff86c0669bc202f7b18aa7d9eaf1ec6e2dd9",
+      "implementation_summary": "Small presentation helper that detects SGR ANSI escape sequences and converts ANSI text to class-based HTML for ChatMarkdown.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/lib/shell/ansi.ts:1-14",
+        "projects/chirality-app-dev/frontend/src/components/shell/chat-markdown.tsx:30-50"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/ansi.test.ts:4-14 directly defines detection and conversion cases.",
+        "projects/chirality-app-dev/frontend/src/__tests__/components/chat-markdown.test.ts:35-42 defines the consuming ANSI-block render case.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:121-156"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01 and candidate DEL-05-04 are IN_PROGRESS; mapping is lifecycle-neutral.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records ansi.ts only as a shell-helper affinity, with no mapping.",
+      "prior_affinity": "shell helper (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-05-04 as transcript/replay presentation helper owner, with DEL-02-01 live-chat consumption recorded as an evidence edge.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-02-01 because the only direct production consumer is ChatMarkdown in the live shell.",
+        "Shared shell utility with no deliverable owner."
+      ],
+      "rejected_alternatives": [
+        "DEL-02-01 is a plausible consumer owner, but ANSI rendering is semantically transcript/output projection and aligns with DEL-05-04's view boundary.",
+        "Ownerless utility treatment leaves a tested behavior without a capability owner."
+      ],
+      "evidence_strength": "MEDIUM",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): choosing between two plausible owners is still an ownership mapping.",
+        "D-APP-69:99-110 prohibits accepting it."
+      ],
+      "rationale": "ANSI-to-HTML is output/transcript presentation rather than navigation. DEL-05-04 is semantically nearest, though the single current consumer makes DEL-02-01 a material alternative. The evidence supports a proposal, not ownerless closure.",
+      "rerun_triggers": [
+        "Source blob changes from 53500f33e066567f39f03978fd7f59f6b8ade9e0.",
+        "Consumers or output-rendering scope change.",
+        "DEL-02-01/05-04 authority changes.",
+        "V1 refutes or an owner rules the mapping."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/shell/document-view-state.ts",
+      "source_blob": "48282f1728ca102bfabe2cd2e35d3d3733bcb923",
+      "source_sha256": "613183d168a67802296a58c138af90a2df2523986ac352c424b7ccce09d1f96b",
+      "implementation_summary": "Pure render-state resolver for the Document sidebar. It orders no-root, roster error/loading/empty, content loading/error/content, and idle states so a transient empty state does not flash during Working Root deliverable discovery.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/lib/shell/document-view-state.ts:1-26",
+        "projects/chirality-app-dev/frontend/src/lib/shell/document-view-state.ts:28-53",
+        "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx:179-209"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/document-view-state.test.ts:20-72 directly defines all branches and precedence cases.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:50-55",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md:135-180"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01 and candidate DEL-02-03 are IN_PROGRESS; no lifecycle effect.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records document-view-state.ts only as a shell-helper affinity and withholds mapping.",
+      "prior_affinity": "shell helper (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-02-03, following its sole production consumer DocumentView and its selected-root deliverable discovery/error-presentation responsibility.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-02-01 because the helper sits under lib/shell and supports a shell panel.",
+        "DEL-03-03 because content-route errors contribute states."
+      ],
+      "rejected_alternatives": [
+        "Directory location and shell hosting are weaker than the helper's sole consumer and behavior.",
+        "DEL-03-03 owns the route surface, not consumer UI state across both roster and content fetches."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): path mapping to DEL-02-03 is an ownership boundary.",
+        "D-APP-69:99-110 prohibits accepting it."
+      ],
+      "rationale": "The pure helper is inseparable from DocumentView's Working Root deliverable/document presentation, making DEL-02-03 the strongest functional mapping. It is not generic enough to justify DEL-02-01 ownership solely from its directory.",
+      "rerun_triggers": [
+        "Source blob changes from 48282f1728ca102bfabe2cd2e35d3d3733bcb923.",
+        "The helper gains other consumers or DocumentView ownership changes.",
+        "DEL-02-03 or DEL-03-03 scope changes.",
+        "V1 refutes or an owner rules the mapping."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-buffer.ts",
+      "source_blob": "130cd4eb120ed1db6a6617c43f0f6547e8f56118",
+      "source_sha256": "525234a73d942c13442e6d2b1f14b11c96fcbc9c09b2326ce55ffc08383fe865",
+      "implementation_summary": "Pure buffer bound shared by live append and replay hydration. It keeps the newest max events in order and supports replace-not-append replay parity so hydrated history does not double-count live events.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-buffer.ts:1-19",
+        "projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx:47-64"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-buffer.test.ts:19-39 directly covers copy, truncation/order, and empty input.",
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-buffer.test.ts:41-77 defines live/hydrate parity including truncation.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/ScopeOfWork.md:136-145"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01, DEL-05-02, and candidate DEL-05-04 are IN_PROGRESS; no lifecycle effect.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records harness-event-buffer.ts as shell event plumbing only, with no mapping.",
+      "prior_affinity": "shell event plumbing (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-05-04, because the helper governs the live/replay view buffer; DEL-05-02 retains canonical append-only JSONL and HarnessEvent schema ownership.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-05-02 because the values are HarnessEvents and replay-safe ordering matters.",
+        "DEL-02-01 because the buffer is used by application shell contexts."
+      ],
+      "rejected_alternatives": [
+        "The helper never writes canonical JSONL, so DEL-05-02 is a contract dependency rather than implementation owner.",
+        "Shell composition does not explain its explicit hydrate/replay semantics."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): view-buffer vs persistence-owner partition is an ownership boundary.",
+        "D-APP-69:99-110 prohibits acceptance."
+      ],
+      "rationale": "DEL-05-02 expressly leaves runtime replay/transcript view implementation to DEL-05-04. This helper is in-memory view-buffer mechanics and has direct hydrate parity tests, so DEL-05-04 is the nearest owner proposal.",
+      "rerun_triggers": [
+        "Source blob changes from 130cd4eb120ed1db6a6617c43f0f6547e8f56118.",
+        "The helper begins canonical persistence or loses replay/hydrate use.",
+        "DEL-05-02/05-04 scope changes.",
+        "V1 refutes or an owner rules the partition."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts",
+      "source_blob": "d55600739abd324041f187aea24077c6edb729e8",
+      "source_sha256": "85dede60c0cb267b7b821b2ebea31c44e502e36889f34a709f86adbc1366c7e0",
+      "implementation_summary": "Pure view-model derivations over HarnessEvents. It collapses tool lifecycles, pending/resolved permission requests, and subagent lifecycles into stable display rows, preserving safe path fields, owning session identity for permission cards, completion folding, and first-seen order.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts:1-75",
+        "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts:105-188",
+        "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts:190-277",
+        "projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts:279-324"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-views.test.ts:28-110 defines tool derivation cases.",
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-views.test.ts:112-185 defines subagent derivation cases.",
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-views.test.ts:187-283 defines permission derivation and active-pending selection cases.",
+        "projects/chirality-app-dev/frontend/src/__tests__/components/harness-stream-views.test.ts:30-82 statically renders tool/subagent consumers.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md:124-161",
+        "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md:140-180",
+        "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/ScopeOfWork.md:162-201"
+      ],
+      "authority_anchors": [
+        "D-APP-56 R4-P48",
+        "D-APP-68:72-86 (managed orchestration semantic owners)",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "All candidate deliverables remain IN_PROGRESS; the proposed projection-owner boundary is lifecycle-neutral.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records harness-event-views.ts as shell event plumbing only and expressly withholds mapping.",
+      "prior_affinity": "shell event plumbing (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-05-04 as the shared view-model/projection owner, with DEL-06-01 retaining permission policy semantics, DEL-08-05 retaining child-run record/lifecycle semantics, and DEL-05-05 retaining tool-result/artifact semantics.",
+      "mapping_status": "PROPOSAL_SHARED_SEMANTIC_BOUNDARY_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-06-01 for permission rows.",
+        "DEL-08-05 for subagent rows.",
+        "DEL-05-05 for tool rows.",
+        "Split the source into three capability-local owners."
+      ],
+      "rejected_alternatives": [
+        "Semantic owners govern the input meanings, but this file only derives UI rows and does not decide policy, persist child runs, or store tool results.",
+        "A three-owner mapping for one current path is operationally ambiguous; a future physical split would justify separate mappings after source change."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): the proposed projection-vs-semantic-owner partition is an ownership boundary.",
+        "D-APP-69:99-110 prohibits accepting it."
+      ],
+      "rationale": "The three derivations share one stable role: read-only projection of canonical events into operator-facing rows. DEL-05-04 is the nearest existing projection owner; the capability owners retain their semantics. This is a consequential cross-package boundary and must be owner-gated.",
+      "rerun_triggers": [
+        "Source blob changes from d55600739abd324041f187aea24077c6edb729e8.",
+        "The file is split by capability or begins enforcing policy/persistence.",
+        "D-APP-68 or DEL-05-04/06-01/08-05/05-05 scope changes.",
+        "V1 refutes or an owner rules the partition."
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/workspace/navigation-intent.ts",
+      "source_blob": "81046ec9480496bea79a7ee2ae148815a48bdd43",
+      "source_sha256": "3e59b6bf0807dbf254096405eda45d7b3992289b8970fb586bdb32b7d0cda779",
+      "implementation_summary": "Pure microtask navigation-intent scheduler used by AgentMatrix. It trims targets, coalesces same-turn requests to the newest destination, supports cancellation across unmount/generation changes, and then calls the supplied router navigation function.",
+      "implementation_citations": [
+        "projects/chirality-app-dev/frontend/src/lib/workspace/navigation-intent.ts:1-54",
+        "projects/chirality-app-dev/frontend/src/components/portal/agent-matrix.tsx:166-188"
+      ],
+      "verification_evidence": [
+        "projects/chirality-app-dev/frontend/src/__tests__/lib/navigation-intent.test.ts:8-54 directly defines coalescing, separate-turn, cancellation, and rescheduling cases.",
+        "Tests were inspected but not run."
+      ],
+      "normative_sources": [
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:146-156",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md:211-211",
+        "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/ScopeOfWork.md:140-190"
+      ],
+      "authority_anchors": [
+        "D-APP-56:69-87 (R4-P29 and R4-P48)",
+        "D-APP-60:67-101",
+        "D-APP-64:83-133",
+        "D-APP-69:90-111"
+      ],
+      "lifecycle_state": "DEL-02-01 and DEL-08-02 are IN_PROGRESS; no lifecycle effect.",
+      "remaining_evidence": "DEL-02-01 _STATUS.md:11 records navigation-intent.ts as a workspace navigation helper, without ownership/mapping.",
+      "prior_affinity": "workspace navigation helper (PRIOR_AGENT_AFFINITY only)",
+      "candidate_mapping": "PROPOSAL: DEL-02-01 Desktop Shell and Matrix Navigation; DEL-08-02 retains persona-alias resolution and the streaming launch guard, which this helper does not implement.",
+      "mapping_status": "PROPOSAL_HELD_OWNER_CLASS",
+      "competing_candidates": [
+        "DEL-08-02 because AgentMatrix consumes the helper during persona/matrix routing.",
+        "DEL-02-02 because targets include Workbench/Pipeline tertiary routes."
+      ],
+      "rejected_alternatives": [
+        "DEL-08-02 owns persona resolution and the streaming guard, while this helper is generic route scheduling with no persona semantics.",
+        "DEL-02-02 owns Workbench/Pipeline UX surfaces, but this scheduler is created and controlled by the DEL-02-01 matrix launcher."
+      ],
+      "evidence_strength": "HIGH",
+      "concordance_disposition": "OWNER_CLASS_PROPOSAL",
+      "action_class": "OWNER_CLASS",
+      "fast_reject_limits": [
+        "D-APP-64 §5.1(2): accepting the helper under DEL-02-01 is a path ownership mapping.",
+        "D-APP-69:99-110 prohibits that acceptance here."
+      ],
+      "rationale": "The helper is instantiated only by AgentMatrix to implement route-launch mechanics. DEL-02-01 owns matrix navigation; DEL-08-02's retained persona/guard boundary remains untouched. This is the clearest mapping but still owner-class.",
+      "rerun_triggers": [
+        "Source blob changes from 81046ec9480496bea79a7ee2ae148815a48bdd43.",
+        "The helper gains other consumers or persona/pipeline-specific semantics.",
+        "DEL-02-01/02-02/08-02 scope changes.",
+        "V1 refutes or an owner rules the mapping."
+      ]
+    }
+  ],
+  "slice_findings": [
+    "Exact accounting is 14/14 in manifest order; every frozen blob matches the launch brief and the live worktree copy at basis 57652ba1cd0905e8f47131e4c4ebf518272f7c16.",
+    "Classification totals: OWNER_CLASS 14; DISPOSITION_CLASS 0; NO_REPAIR 0; BLOCKED_INPUT 0.",
+    "Proposed nearest-owner distribution: DEL-02-01 = 3 paths (page.tsx, chat-markdown.tsx, navigation-intent.ts); DEL-02-03 = 3 paths (document-view.tsx, file-picker.tsx, document-view-state.ts); DEL-05-04 = 7 paths (session-list-view.tsx, subagent-stream-view.tsx, tool-stream-view.tsx, harness-events-provider.tsx, ansi.ts, harness-event-buffer.ts, harness-event-views.ts); shared boundary with proposed DEL-02-01 integration owner = 1 path (globals.css).",
+    "The strongest accepted functional boundary is the DEL-05-02/DEL-05-04 split: canonical HarnessEvent schema/append-only storage stays DEL-05-02, while runtime replay and operator-facing projections are explicitly DEL-05-04.",
+    "No path is safe for disposition-class acceptance because the live Remaining entry expressly says no ownership or mapping is asserted, and accepting any proposed mapping would touch the D-APP-64 scope/ownership fast-reject boundary."
+  ],
+  "disagreements": [
+    "The prior page.tsx label says 'root redirect wrapper'; the frozen source renders PortalLoopShell directly and contains no redirect. The DEL-02-01 candidate remains, but the implementation description must be corrected.",
+    "Prior DEL-02-01-family affinity for document-view.tsx, file-picker.tsx, document-view-state.ts, and session-list-view.tsx is weaker than current functional evidence. The first three align more closely with DEL-02-03 Working Root UI; session-list-view aligns more closely with DEL-05-04 replay/view scope.",
+    "Prior mixed DEL-02-01/PKG-02 affinity for harness-events-provider.tsx understates its explicit live/replay buffer behavior; DEL-05-04 is the nearer capability owner, with DEL-05-02 retaining schema/persistence.",
+    "globals.css cannot honestly be treated as a single-capability file. A shared boundary with one integration owner is proposed; a sole DEL-02-01 mapping without evidence edges would overstate exclusivity.",
+    "ansi.ts remains the least decisive row: its only direct production consumer is DEL-02-01's ChatMarkdown, while its semantics are transcript/output projection aligned to DEL-05-04. The DEL-05-04 proposal is medium-strength and should receive focused V1 refutation."
+  ],
+  "blockers": [
+    "All 14 proposed path mappings are held behind independent V1 and the applicable owner gate; this child return cannot accept, create, or transfer ownership.",
+    "No runtime/deliverable repair is authorized. The DEL-02-01 Remaining item cannot be closed from this return alone.",
+    "No tests were run by design, so cited test files establish frozen verification intent/coverage only, not a fresh passing result."
+  ],
+  "containment": {
+    "subject_access": "READ_ONLY",
+    "subject_writes": 0,
+    "tests_run": 0,
+    "network_or_provider_expansion": false,
+    "git_state_changed": false,
+    "sole_write": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE/instances/R1-RETRY/children/del_02_01/RETURN.json",
+    "row_count": 14,
+    "unique_path_count": 14,
+    "exact_order": true,
+    "frozen_blob_matches": 14,
+    "live_blob_matches_frozen_basis": 14,
+    "derivative_status": "PROPOSAL_ONLY_CHILD_RETURN",
+    "downstream_release": "NONE"
+  }
+}

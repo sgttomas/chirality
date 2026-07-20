@@ -1,0 +1,81 @@
+{
+  "instance_id": "V1-RECHECK3",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "status": "ACCEPT",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "basis": "57652ba1cd0905e8f47131e4c4ebf518272f7c16",
+  "depends_on": [
+    "R1-CONTROL-REISSUE_TERMINAL_PRELIMINARILY_ACCEPTED_FOR_FRESH_V1"
+  ],
+  "corrected_control_bindings": {
+    "status_sha256": "0a6e4d600d26d1c71c1cb1c7f442c767f00f6ff4be854ce519fdb374800f17c0",
+    "return_sha256": "f94081cf3848b387deb6e9edf74f6c104c706f014697ff14b67f2f440c6d76b6"
+  },
+  "scope_manifest": "../../CQF1_SCOPE.csv",
+  "scope_path_count": 22,
+  "scope_unique_path_count": 22,
+  "scope_ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+  "reconciliation_subject_root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/ACTIVATED_57652BA1/",
+  "additive_evaluation_root": "projects/chirality-app-dev/execution/_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/RECHECK_R1_CONTROL_REISSUE/",
+  "expected_package_file_count": 14,
+  "expected_owner_class_rows": 22,
+  "expected_proposal_groups": 9,
+  "expected_fidelity": {
+    "rows": 14,
+    "columns": 19,
+    "EXACT": 5,
+    "FAITHFUL_COMPRESSION": 5,
+    "REPAIRED_MATERIAL_LOSS": 4,
+    "EXPLICITLY_REASONED_REJECTION": 0,
+    "UNEXPLAINED": 0
+  },
+  "required_control_confirmation": {
+    "unique_member": "control_label_erratum",
+    "occurrence_count": 1,
+    "strict_parse": true,
+    "python_node_jq_equivalence": true,
+    "repair_finding": "V1R2-001"
+  },
+  "subject_write_access": false,
+  "repair_authority": false,
+  "integration_owner": true,
+  "may_delegate_read_only_audits": true,
+  "max_audit_slices": 2,
+  "launch_brief": "LAUNCH_BRIEF.md",
+  "expected_return": "RETURN.md",
+  "terminal_verdict_contract": [
+    "ACCEPT",
+    "BLOCK"
+  ],
+  "owner_slate_accepted": false,
+  "verdict": "ACCEPT",
+  "control_confirmation": "PASS_UNIQUE_STRUCTURED_STRICT_PYTHON_NODE_JQ_EQUIVALENT",
+  "resolved_findings": [
+    "V1R2-001"
+  ],
+  "substantive_package_result": "PASS_UNACCEPTED",
+  "fidelity_result": "PASS_5_EXACT_5_FAITHFUL_COMPRESSION_4_REPAIRED_MATERIAL_LOSS_0_UNEXPLAINED",
+  "row_result": "PASS_22_OWNER_CLASS_PROPOSALS_UNACCEPTED",
+  "group_result": "PASS_9_GROUPS_5_4_6_1_1_1_1_1_2_UNACCEPTED",
+  "finding_count": 3,
+  "blocking_finding_count": 0,
+  "child_count": 2,
+  "child_return_sha256": {
+    "control_parser_confirmation": "072d816045939e345a10ad837905b49153e6321d660bc72d153e5c2ca2f0d4fb",
+    "substantive_preservation_confirmation": "fa2572ce449004e846bf6684328db54a18affe23eef16c100df0aa7a041d93b3"
+  },
+  "evaluation_report": "../../../../../_Evaluation/CQF1_CONCORDANCE_57652BA1_2026-07-20/RECHECK_R1_CONTROL_REISSUE/EVALUATION_REPORT.md",
+  "next_owner": "HELP_HUMAN",
+  "next_action": "MAY_CONSIDER_OWNER_SLATE_ROUTING_AFTER_ACCEPTING_THIS_RETURN",
+  "released_by": "HELP_HUMAN_CONTROL_REISSUE_PRELIMINARY_FAN_IN_V1_AMENDMENT_V4",
+  "downstream_release": false,
+  "blocked_nodes": [
+    "OWNER_SLATE_ROUTING",
+    "W1"
+  ],
+  "waivers": [],
+  "next_gate": "HELP_HUMAN_ACCEPTS_V1_RECHECK3_TERMINAL_RETURN"
+}
