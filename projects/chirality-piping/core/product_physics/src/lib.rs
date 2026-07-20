@@ -816,6 +816,7 @@ pub fn run_linear_static_preview_with_mode(
         return blocked_envelope(model, diagnostics);
     }
     let built = built.expect("build_model returns Some when no blocking diagnostics were added");
+    append_constant_effort_consumption_diagnostics(&model, &mut diagnostics);
 
     let boundary = prepare_boundary(built.nodes.len(), &built.supports);
     if boundary.restrained_dofs.is_empty() && boundary.springs.is_empty() {
@@ -1136,16 +1137,28 @@ fn solve_load_case(
         &load_case.id,
         diagnostics,
     );
-    // Pressure thrust keeps the straight-element treatment on macro spans:
-    // equal/opposite axial end forces along the chord direction (decision
-    // recorded in the curved-bend review-row basis).
-    add_pressure_thrust_loads(&mut force, &pressure_thrust_loads, &built.pipes);
+    // Pressure thrust on macro-realized bend spans applies the complete
+    // self-equilibrated arc system: end-cap forces along the validated arc
+    // end tangents plus the exact work-equivalent consistent nodal vector of
+    // the outward radial wall load (decision recorded in the curved-bend
+    // review-row basis). Straight spans keep the equal/opposite chord-axial
+    // end forces unchanged.
+    add_pressure_thrust_loads(
+        &mut force,
+        &pressure_thrust_loads,
+        &built.pipes,
+        &curved_bends_by_pipe,
+    );
     add_thermal_equivalent_loads(
         &mut force,
         &thermal_loads,
         &built.pipes,
         &curved_bends_by_pipe,
     );
+    // DEC-049 constant-effort consumption enters here — the one assembled
+    // force-vector seam shared by the dense, sparse, and nonlinear
+    // active-set solve paths.
+    add_constant_effort_support_loads(&mut force, model);
 
     let reduced = reduce_system(stiffness, &force, restrained_dofs)?;
     let linear_solve = solve_preview_reduced_system(
@@ -1255,6 +1268,14 @@ fn solve_load_case(
         }
     }
 
+    append_constant_effort_support_results(
+        &mut results,
+        diagnostics,
+        model,
+        &displacements,
+        load_case,
+    );
+
     append_nonlinear_support_loop_results(
         &mut results,
         diagnostics,
@@ -1331,6 +1352,7 @@ fn solve_load_case(
                 pipe,
                 &corrected_local_forces,
                 uniform_intensity,
+                pressure_thrust_for_pipe(pipe_index, &pressure_thrust_loads),
             ) {
                 Ok(stations) => stations.to_vec(),
                 Err(message) => {
@@ -5682,8 +5704,13 @@ fn add_pressure_thrust_loads(
     force: &mut [f64],
     pressure_loads: &[PressureThrustLoad],
     pipes: &[StraightPipeElement],
+    curved_bends_by_pipe: &HashMap<usize, &CurvedBendMacroBuild>,
 ) {
     for load in pressure_loads {
+        if let Some(bend) = curved_bends_by_pipe.get(&load.element_index) {
+            add_curved_bend_pressure_thrust_load(force, bend, load.axial_load);
+            continue;
+        }
         let Some(pipe) = pipes.get(load.element_index) else {
             continue;
         };
@@ -5700,6 +5727,44 @@ fn add_pressure_thrust_loads(
             force[i_base + axis] -= load.axial_load * local_x[axis];
             force[j_base + axis] += load.axial_load * local_x[axis];
         }
+    }
+}
+
+// Complete self-equilibrated arc pressure system for a macro-realized bend
+// span: end-cap forces -pA t_i at node i and +pA t_j at node j (unit end
+// tangents from the build-time validated macro element, the single geometry
+// source) PLUS the exact work-equivalent consistent nodal vector of the
+// outward radial wall load q(theta) = (pA / R) n(theta) (closed form in the
+// curved-bend crate). The cap pair and wall load together carry zero net
+// force and zero net moment, and segment equilibrium of the completely
+// loaded arc yields wall tension +pA along the local tangent at every
+// station (see validation/hand_calcs/mechanics/
+// curved_bend_pressure_thrust_arc.md). The build-time validated geometry
+// makes the crate calls infallible on this path; a failure would only
+// repeat a validation already enforced at model build.
+fn add_curved_bend_pressure_thrust_load(
+    force: &mut [f64],
+    bend: &CurvedBendMacroBuild,
+    axial_load: f64,
+) {
+    let Ok([tangent_i, tangent_j]) = bend.macro_element.end_tangents() else {
+        return;
+    };
+    let Ok(wall_loads) = bend
+        .macro_element
+        .consistent_radial_pressure_nodal_loads(axial_load)
+    else {
+        return;
+    };
+    let i_base = bend.node_i * DOF_PER_NODE;
+    let j_base = bend.node_j * DOF_PER_NODE;
+    for axis in 0..3 {
+        force[i_base + axis] -= axial_load * tangent_i[axis];
+        force[j_base + axis] += axial_load * tangent_j[axis];
+    }
+    let dof_map = element_dof_map(bend.node_i, bend.node_j);
+    for (local_slot, &global_slot) in dof_map.iter().enumerate() {
+        force[global_slot] += wall_loads[local_slot];
     }
 }
 
@@ -5790,14 +5855,18 @@ fn corrected_local_forces_for_axial_effects(
 }
 
 // Macro-span recovery: end forces are K_macro * (d - u_free) minus the
-// arc-consistent distributed equivalent loads, in global coordinates — the
-// exact free-expansion correction mirrors
+// arc-consistent distributed equivalent loads and minus the consistent
+// radial pressure wall-load vector, in global coordinates — the exact
+// free-expansion correction mirrors
 // `corrected_local_forces_for_axial_effects` so recovered forces exclude the
-// self-equilibrated thermal part, and the equivalent-load subtraction turns
+// self-equilibrated thermal part, and the equivalent-load subtractions turn
 // the nodal solve response into the true node-on-element end forces of the
 // continuously loaded arc — then rotated to the chord frame of the replaced
 // straight span so the existing result rows keep their convention. Pressure
-// thrust keeps the straight-element equal/opposite chord-axial correction.
+// thrust is the complete arc system (cap pair + consistent wall vector), so
+// the closed-end wall tension pA emerges along the local tangent through
+// equilibrium with no ad-hoc chord correction; the former straight-element
+// chord-UX correction is retired for macro spans.
 fn recover_curved_bend_local_forces(
     bend: &CurvedBendMacroBuild,
     pipe: &StraightPipeElement,
@@ -5848,6 +5917,16 @@ fn recover_curved_bend_local_forces(
             *force -= load;
         }
     }
+    let pressure_axial_load = pressure_thrust_for_pipe(bend.pipe_index, pressure_loads);
+    if pressure_axial_load != 0.0 {
+        let equivalent = bend
+            .macro_element
+            .consistent_radial_pressure_nodal_loads(pressure_axial_load)
+            .map_err(|error| error.to_string())?;
+        for (force, load) in global_forces.iter_mut().zip(equivalent.iter()) {
+            *force -= load;
+        }
+    }
 
     let frame_element = pipe.frame_element().map_err(|error| error.to_string())?;
     let orientation = frame_element
@@ -5859,12 +5938,6 @@ fn recover_curved_bend_local_forces(
         for (col, global_force) in global_forces.iter().enumerate() {
             *local_force += transform[row][col] * global_force;
         }
-    }
-
-    let pressure_axial_load = pressure_thrust_for_pipe(bend.pipe_index, pressure_loads);
-    if pressure_axial_load != 0.0 {
-        local_forces[UX] += pressure_axial_load;
-        local_forces[DOF_PER_NODE + UX] -= pressure_axial_load;
     }
     Ok(local_forces)
 }
@@ -5908,15 +5981,19 @@ fn curved_bend_uniform_intensity_by_pipe(
 // Arc interior stations from the assembled macro-element: rotate the
 // recovered chord-frame end-j force back to global and evaluate section
 // resultants along the arc by segment equilibrium (closed form in the
-// curved-bend crate). The recovered end forces already exclude the
-// self-equilibrated thermal free-expansion part and carry the recorded
-// chord-axial pressure-thrust treatment, so the stations inherit both
-// recovery decisions; the station grid mirrors the straight-span fractions.
+// curved-bend crate), treating the radial pressure wall load like the other
+// distributed loads: its far-segment actions enter the station equilibrium
+// directly, so the completely pressure-loaded arc reports wall tension +pA
+// along the local tangent with zero shear and zero moment at every station.
+// The recovered end forces already exclude the self-equilibrated thermal
+// free-expansion part and the distributed equivalent loads; the station
+// grid mirrors the straight-span fractions.
 fn curved_bend_station_resultants(
     bend: &CurvedBendMacroBuild,
     pipe: &StraightPipeElement,
     corrected_local_forces: &[f64],
     uniform_intensity: [f64; 3],
+    pressure_thrust: f64,
 ) -> Result<[StationResultants; 3], String> {
     if corrected_local_forces.len() < ELEMENT_DOF {
         return Err(format!(
@@ -5963,7 +6040,12 @@ fn curved_bend_station_resultants(
         station.location = location;
         station.resultants = bend
             .macro_element
-            .arc_section_resultants(fraction, node_j_force, uniform_intensity)
+            .arc_section_resultants_with_radial_pressure(
+                fraction,
+                node_j_force,
+                uniform_intensity,
+                pressure_thrust,
+            )
             .map_err(|error| error.to_string())?;
     }
     Ok(stations)
@@ -6880,7 +6962,7 @@ fn append_curved_bend_macro_element_results(
                 coordinate_system: "component_local_preview".to_string(),
                 location: element.pipe_id.clone(),
                 basis: format!(
-                    "component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};arc_plane=chord_and_pipe_y_reference;arc_side=bows_toward_positive_pipe_y_reference;source={};solver_consumption={};macro_element_solve=assembled_curved_bend_stiffness;thermal_load_treatment=exact_free_expansion_identity;distributed_load_treatment=arc_consistent_fixed_end_integration;pressure_thrust_treatment=straight_chord_axial_end_forces;recovery=end_forces_from_assembled_stiffness_in_chord_frame;interior_stations=arc_section_equilibrium_stations",
+                    "component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};arc_plane=chord_and_pipe_y_reference;arc_side=bows_toward_positive_pipe_y_reference;source={};solver_consumption={};macro_element_solve=assembled_curved_bend_stiffness;thermal_load_treatment=exact_free_expansion_identity;distributed_load_treatment=arc_consistent_fixed_end_integration;pressure_thrust_treatment=arc_end_cap_tangent_pair_plus_consistent_radial_wall_load;recovery=end_forces_from_assembled_stiffness_in_chord_frame;interior_stations=arc_section_equilibrium_stations",
                     rounded_scalar(element.flexibility_factor),
                     rounded_scalar(element.bend_radius),
                     rounded_scalar(element.included_angle),
@@ -7030,7 +7112,7 @@ fn append_spring_hanger_user_input_results(
                     &format!(
                         "support_family=constant_effort_support;field={field};source={source_reference};manufacturer={manufacturer_reference};load_side_review={load_side_review};mechanics_consumption={mechanics_consumption};dec_ref=DEC-049"
                     ),
-                    "positive value is user-entered constant-effort support input evidence; no global constant-effort load or nonlinear behavior is claimed by this preview row",
+                    "positive value is user-entered constant-effort support input evidence; a support meeting the DEC-049 consumption conditions (exactly one declared translational restraint DOF and a finite positive constant load) is consumed by the assembled solve as a constant nodal force along the positive axis of that DOF, recorded per load case in constant_effort_support_applied_load rows; a support not meeting those conditions stays review-only with a non-blocking warning; no nonlinear behavior and no catalog/default value is claimed by this preview row",
                 );
                 appended += 1;
             }
@@ -7135,6 +7217,264 @@ pub(crate) fn support_stiffness_input(support: &PreviewSupport) -> Option<&Suppo
 
 fn positive_finite(value: f64) -> bool {
     value.is_finite() && value > 0.0
+}
+
+/// Verbatim direction convention for the DEC-049 constant-effort
+/// assembled-solve consumption. Recorded identically in the applied-load
+/// result rows and in the hand-calc witness
+/// `validation/hand_calcs/mechanics/constant_effort_support_applied_load.md`.
+const CONSTANT_EFFORT_APPLIED_SIGN_CONVENTION: &str = "positive value is the user-entered constant support force applied along the positive axis of the single declared translational restraint DOF in every solved load case; the ideal constant-effort element contributes zero stiffness and adds no solve restraint row; no gravity coupling, catalog/default value, or inferred direction is supplied";
+
+/// One consuming constant-effort support resolved against the preview model
+/// (DEC-049 assembled-solve consumption; ideal constant-effort element).
+#[derive(Debug, Clone)]
+struct ConstantEffortApplication {
+    node_index: usize,
+    dof: FrameDof,
+    force_newtons: f64,
+}
+
+/// Why a constant-effort support stays review-only (data-driven opt-in:
+/// consumption requires exactly one declared translational restraint DOF and
+/// a positive user-entered `hanger.constant_load`; nothing is defaulted or
+/// inferred, and no previously-accepted input shape becomes blocking).
+#[derive(Debug, Clone, PartialEq)]
+enum ConstantEffortNonConsumption {
+    MissingConstantLoad,
+    NonPositiveConstantLoad,
+    UnparseableRestraintDof(String),
+    NoTranslationalRestraintDof,
+    MultipleTranslationalRestraintDofs(usize),
+    UnknownNode,
+}
+
+impl ConstantEffortNonConsumption {
+    fn unmet_condition(&self) -> String {
+        match self {
+            Self::MissingConstantLoad => {
+                "no user-entered hanger.constant_load is present".to_string()
+            }
+            Self::NonPositiveConstantLoad => {
+                "the user-entered hanger.constant_load is not a finite positive force".to_string()
+            }
+            Self::UnparseableRestraintDof(raw) => format!(
+                "declared restraint DOF {raw} is not a recognized frame DOF, so the single acting translational DOF cannot be determined"
+            ),
+            Self::NoTranslationalRestraintDof => {
+                "no translational restraint DOF is declared, so no acting direction is user-entered"
+                    .to_string()
+            }
+            Self::MultipleTranslationalRestraintDofs(count) => format!(
+                "{count} translational restraint DOFs are declared where exactly one acting DOF is required"
+            ),
+            Self::UnknownNode => "the support node is not present in the preview model".to_string(),
+        }
+    }
+}
+
+/// Classify one constant-effort support (caller guarantees
+/// `is_constant_effort_support` and `nonlinear.is_none()`) against the
+/// DEC-049 consumption conditions. No default, catalog value, or direction
+/// inference: every ambiguous shape stays review-only.
+fn classify_constant_effort_consumption(
+    model: &PreviewModel,
+    support: &PreviewSupport,
+) -> Result<ConstantEffortApplication, ConstantEffortNonConsumption> {
+    let constant_load = support
+        .hanger
+        .as_ref()
+        .and_then(|hanger| hanger.constant_load.as_ref())
+        .ok_or(ConstantEffortNonConsumption::MissingConstantLoad)?;
+    if !positive_finite(constant_load.value) {
+        return Err(ConstantEffortNonConsumption::NonPositiveConstantLoad);
+    }
+    let mut translational = Vec::new();
+    for raw in &support.restraints {
+        match parse_dof(raw) {
+            Ok(dof) => {
+                if dof.is_translational() {
+                    translational.push(dof);
+                }
+            }
+            Err(_) => {
+                return Err(ConstantEffortNonConsumption::UnparseableRestraintDof(
+                    raw.clone(),
+                ))
+            }
+        }
+    }
+    match translational.as_slice() {
+        [] => Err(ConstantEffortNonConsumption::NoTranslationalRestraintDof),
+        [dof] => {
+            let Some(node_index) = node_index(model, &support.node) else {
+                return Err(ConstantEffortNonConsumption::UnknownNode);
+            };
+            Ok(ConstantEffortApplication {
+                node_index,
+                dof: *dof,
+                force_newtons: constant_load.value,
+            })
+        }
+        many => Err(ConstantEffortNonConsumption::MultipleTranslationalRestraintDofs(many.len())),
+    }
+}
+
+/// Every solve-relevant constant-effort support with its consumption
+/// disposition. A support carrying a `nonlinear` field keeps the existing
+/// nonlinear-path handling and is not classified here.
+fn constant_effort_solve_dispositions<'a>(
+    model: &'a PreviewModel,
+) -> Vec<(
+    &'a PreviewSupport,
+    Result<ConstantEffortApplication, ConstantEffortNonConsumption>,
+)> {
+    model
+        .supports
+        .iter()
+        .filter(|support| support.nonlinear.is_none() && is_constant_effort_support(support))
+        .map(|support| {
+            (
+                support,
+                classify_constant_effort_consumption(model, support),
+            )
+        })
+        .collect()
+}
+
+/// One non-blocking warning per non-consuming constant-effort support,
+/// naming the unmet consumption condition. Emitted once per solve.
+fn append_constant_effort_consumption_diagnostics(
+    model: &PreviewModel,
+    diagnostics: &mut Vec<Diagnostic>,
+) {
+    for (support, disposition) in constant_effort_solve_dispositions(model) {
+        if let Err(reason) = disposition {
+            diagnostics.push(diag(
+                &format!(
+                    "diagnostic:constant-effort-support:{}:not-consumed",
+                    stable_suffix(&support.id)
+                ),
+                "SUPPORT_CONSTANT_EFFORT_NOT_CONSUMED",
+                "warning",
+                format!(
+                    "constant-effort support is not consumed by the assembled solve and remains user-entered review evidence: {}; assembled-solve consumption requires exactly one declared translational restraint DOF and a finite positive user-entered hanger.constant_load (DEC-049; no default, catalog value, or inferred direction is supplied)",
+                    reason.unmet_condition()
+                ),
+                vec![support.id.clone(), support.node.clone()],
+            ));
+        }
+    }
+}
+
+/// Single seam for the DEC-049 constant-effort consumption: each consuming
+/// support contributes its constant nodal force to the per-load-case
+/// assembled force vector, before `reduce_system`, so dense, sparse, and
+/// nonlinear active-set solves consume it identically.
+fn add_constant_effort_support_loads(force: &mut [f64], model: &PreviewModel) {
+    for (_, disposition) in constant_effort_solve_dispositions(model) {
+        if let Ok(application) = disposition {
+            force[application.node_index * DOF_PER_NODE + dof_index(application.dof)] +=
+                application.force_newtons;
+        }
+    }
+}
+
+/// Per-load-case applied-load evidence rows for consuming constant-effort
+/// supports, plus non-blocking user-limit comparison warnings against the
+/// user's own `movement_limit` / `travel_range` entries (user-data-derived
+/// comparison only; no software threshold, tolerance, or acceptance
+/// criterion is introduced).
+fn append_constant_effort_support_results(
+    results: &mut Vec<ResultItem>,
+    diagnostics: &mut Vec<Diagnostic>,
+    model: &PreviewModel,
+    displacements: &[f64],
+    load_case: &PreviewLoadCase,
+) {
+    for (support, disposition) in constant_effort_solve_dispositions(model) {
+        let Ok(application) = disposition else {
+            continue;
+        };
+        let hanger = support
+            .hanger
+            .as_ref()
+            .expect("classified consuming constant-effort support carries hanger data");
+        let source_reference = hanger
+            .source_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("source_reference_missing");
+        let manufacturer_reference = hanger
+            .manufacturer_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("manufacturer_reference_missing");
+        let load_side_review = hanger
+            .load_side_review_reference
+            .as_deref()
+            .filter(|value| !value.trim().is_empty())
+            .unwrap_or("load_side_review_reference_missing");
+        let suffix = stable_suffix(&support.id);
+        let acting_dof = dof_name(application.dof);
+        results.push(ResultItem {
+            id: format!("result:constant-effort-support:{suffix}:applied-load"),
+            kind: "constant_effort_support_applied_load".to_string(),
+            value: round6(application.force_newtons),
+            unit: "N".to_string(),
+            entity_ref: support.id.clone(),
+            basis_ref: None,
+            source_result_refs: Vec::new(),
+            metadata: Some(ResultMetadata {
+                component: "constant_effort_support_applied_load".to_string(),
+                coordinate_system: "global".to_string(),
+                location: format!("{}:{acting_dof} applied load", support.node),
+                basis: format!(
+                    "support_family=constant_effort_support;consumed_dof={acting_dof};source={source_reference};manufacturer={manufacturer_reference};load_side_review={load_side_review};mechanics_consumption=assembled_solve;dec_ref=DEC-049"
+                ),
+                sign_convention: CONSTANT_EFFORT_APPLIED_SIGN_CONVENTION.to_string(),
+            }),
+        });
+
+        let computed =
+            displacements[application.node_index * DOF_PER_NODE + dof_index(application.dof)];
+        for (field_suffix, field_label, quantity) in [
+            (
+                "movement-limit",
+                "movement_limit",
+                hanger.movement_limit.as_ref(),
+            ),
+            ("travel-range", "travel_range", hanger.travel_range.as_ref()),
+        ] {
+            let Some(limit) = quantity else {
+                continue;
+            };
+            if !positive_finite(limit.value) {
+                continue;
+            }
+            if computed.abs() > limit.value {
+                diagnostics.push(diag(
+                    &format!(
+                        "diagnostic:constant-effort-support:{suffix}:{field_suffix}:{}",
+                        stable_suffix(&load_case.id)
+                    ),
+                    "SUPPORT_CONSTANT_EFFORT_USER_LIMIT_EXCEEDED",
+                    "warning",
+                    format!(
+                        "computed displacement magnitude {} m at node {} along {acting_dof} exceeds the user-entered hanger.{field_label} value {} m in load case {}; this compares user-entered values only and introduces no software threshold, tolerance, or acceptance criterion",
+                        round6(computed.abs()),
+                        support.node,
+                        round6(limit.value),
+                        load_case.id
+                    ),
+                    vec![
+                        support.id.clone(),
+                        load_case.id.clone(),
+                        format!("hanger.{field_label}"),
+                    ],
+                ));
+            }
+        }
+    }
 }
 
 fn rounded_scalar(value: f64) -> String {
@@ -8190,6 +8530,75 @@ fn round6(value: f64) -> f64 {
         0.0
     } else {
         rounded
+    }
+}
+
+/// Crate-constant identity of this product-physics preview solver, for
+/// producer-path metadata binding (R14 W1 T1). Derived from the crate
+/// manifest, never hardcoded by consumers.
+pub fn solver_component_name() -> &'static str {
+    env!("CARGO_PKG_NAME")
+}
+
+/// Crate-constant version of this product-physics preview solver. See
+/// [`solver_component_name`].
+pub fn solver_component_version() -> &'static str {
+    env!("CARGO_PKG_VERSION")
+}
+
+/// Assembled nonlinear active-set loop context for producer consumption
+/// (additive pass-through; R14 W1 T1). Carries the loop component's
+/// crate-constant identity/version and the loop's own assumptions and
+/// limitations text, unchanged, so the governed analysis-run producer can
+/// bind nonlinear metadata without depending on the solver crate directly.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct NonlinearAssembledLoopContext {
+    pub component_name: &'static str,
+    pub component_version: &'static str,
+    pub assumptions: Vec<String>,
+    pub limitations: Vec<String>,
+}
+
+/// Pass-through of `core/solver/nonlinear_integration`'s assembled-loop
+/// context. Text and identity come from that crate's public surface; this
+/// function adds nothing and rewrites nothing.
+pub fn nonlinear_assembled_loop_context() -> NonlinearAssembledLoopContext {
+    NonlinearAssembledLoopContext {
+        component_name: open_pipe_stress_nonlinear_integration::assembled_loop_component_name(),
+        component_version: open_pipe_stress_nonlinear_integration::assembled_loop_component_version(
+        ),
+        assumptions: open_pipe_stress_nonlinear_integration::assembled_loop_assumptions(),
+        limitations: open_pipe_stress_nonlinear_integration::assembled_loop_limitations(),
+    }
+}
+
+#[cfg(test)]
+mod nonlinear_context_passthrough_tests {
+    use super::nonlinear_assembled_loop_context;
+
+    #[test]
+    fn assembled_loop_context_is_a_pure_passthrough() {
+        let context = nonlinear_assembled_loop_context();
+        assert_eq!(
+            context.component_name,
+            open_pipe_stress_nonlinear_integration::assembled_loop_component_name()
+        );
+        assert_eq!(
+            context.component_version,
+            open_pipe_stress_nonlinear_integration::assembled_loop_component_version()
+        );
+        assert_eq!(
+            context.assumptions,
+            open_pipe_stress_nonlinear_integration::assembled_loop_assumptions()
+        );
+        assert_eq!(
+            context.limitations,
+            open_pipe_stress_nonlinear_integration::assembled_loop_limitations()
+        );
+        assert!(!context.assumptions.is_empty());
+        assert!(!context.limitations.is_empty());
+        assert!(!context.component_name.trim().is_empty());
+        assert!(!context.component_version.trim().is_empty());
     }
 }
 
@@ -10222,6 +10631,12 @@ mod tests {
             .contains("mechanics_consumption=load_side_review_only_no_global_solve_consumption"));
         assert!(constant_metadata
             .sign_convention
+            .contains("consumed by the assembled solve as a constant nodal force"));
+        assert!(constant_metadata
+            .sign_convention
+            .contains("stays review-only with a non-blocking warning"));
+        assert!(!constant_metadata
+            .sign_convention
             .contains("no global constant-effort load"));
         assert!(result
             .diagnostics
@@ -10231,6 +10646,26 @@ mod tests {
             .diagnostics
             .iter()
             .any(|diagnostic| diagnostic.code == "CONSTANT_EFFORT_USER_DATA_REVIEWED"));
+        // The fixture's constant-effort support declares no restraints, so it
+        // stays review-only under the DEC-049 data-driven opt-in rule and the
+        // solve records one non-blocking warning naming the unmet condition.
+        let not_consumed = result
+            .diagnostics
+            .iter()
+            .find(|diagnostic| diagnostic.code == "SUPPORT_CONSTANT_EFFORT_NOT_CONSUMED")
+            .expect("non-consuming constant-effort support records a warning");
+        assert_eq!(not_consumed.severity, "warning");
+        assert!(not_consumed
+            .message
+            .contains("no translational restraint DOF is declared"));
+        assert!(not_consumed
+            .affected_refs
+            .contains(&"support:CE-120".to_string()));
+        assert!(!result
+            .results
+            .iter()
+            .any(|item| item.kind == "constant_effort_support_applied_load"));
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
     }
 
     #[test]
@@ -10257,6 +10692,500 @@ mod tests {
             .diagnostics
             .iter()
             .any(|diagnostic| diagnostic.code == "SPRING_HANGER_STIFFNESS_MISSING"));
+    }
+
+    /// Two-node cantilever along global X (anchor at `node:N-100`, free tip
+    /// at `node:N-110`) reusing the invented fixture's pipe section and
+    /// material, with the fixture's constant-effort support re-homed to the
+    /// tip for DEC-049 assembled-solve consumption tests.
+    fn cantilever_constant_effort_request(
+        restraints: &[&str],
+        include_constant_effort: bool,
+        tip_load_newtons: Option<f64>,
+    ) -> LinearStaticPreviewRequest {
+        let mut request = request();
+        let constant_effort_template = request
+            .model
+            .supports
+            .iter()
+            .find(|support| support.id == "support:CE-120")
+            .expect("fixture carries a constant-effort support")
+            .clone();
+        request.model.nodes.truncate(2);
+        request.model.nodes[0].id = "node:N-100".to_string();
+        request.model.nodes[0].position = Vec3 {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+        };
+        request.model.nodes[1].id = "node:N-110".to_string();
+        request.model.nodes[1].position = Vec3 {
+            x: 2.0,
+            y: 0.0,
+            z: 0.0,
+        };
+        request.model.pipe_segments.truncate(1);
+        request.model.pipe_segments[0].id = "pipe:P-100".to_string();
+        request.model.pipe_segments[0].from = "node:N-100".to_string();
+        request.model.pipe_segments[0].to = "node:N-110".to_string();
+        request.model.pipe_segments[0].y_reference = Some(Vec3 {
+            x: 0.0,
+            y: 1.0,
+            z: 0.0,
+        });
+        request.model.supports.truncate(1);
+        request.model.supports[0].id = "support:S-100".to_string();
+        request.model.supports[0].node = "node:N-100".to_string();
+        request.model.supports[0].restraints = vec![
+            "UX".to_string(),
+            "UY".to_string(),
+            "UZ".to_string(),
+            "RX".to_string(),
+            "RY".to_string(),
+            "RZ".to_string(),
+        ];
+        if include_constant_effort {
+            let mut support = constant_effort_template;
+            support.id = "support:CE-110".to_string();
+            support.node = "node:N-110".to_string();
+            support.restraints = restraints.iter().map(|dof| dof.to_string()).collect();
+            request.model.supports.push(support);
+        }
+        request.model.load_cases.truncate(1);
+        request.model.combinations.clear();
+        request.model.load_cases[0].primitive_loads = match tip_load_newtons {
+            Some(value) => vec![PreviewPrimitiveLoad {
+                id: "load:L-TIP".to_string(),
+                category: "occasional".to_string(),
+                target: LoadTargetInput::Node {
+                    node: "node:N-110".to_string(),
+                },
+                direction: "global_y".to_string(),
+                magnitude: Quantity {
+                    value,
+                    unit: "N".to_string(),
+                },
+                dimension: "force".to_string(),
+                provenance: Some("invented_example_user_input".to_string()),
+            }],
+            None => Vec::new(),
+        };
+        request
+    }
+
+    /// Classical cantilever tip deflection `F L^3 / (3 E I)` in metres for
+    /// the fixture pipe section (outside diameter 0.168 m, wall 0.007 m,
+    /// length 2.0 m, invented E = 200 GPa).
+    fn cantilever_tip_point_load_deflection_m(force_newtons: f64) -> f64 {
+        let od: f64 = 0.168;
+        let wall: f64 = 0.007;
+        let length: f64 = 2.0;
+        let elastic_modulus: f64 = 200_000_000_000.0;
+        let inner = od - 2.0 * wall;
+        let second_moment = PI * (od.powi(4) - inner.powi(4)) / 64.0;
+        force_newtons * length.powi(3) / (3.0 * elastic_modulus * second_moment)
+    }
+
+    #[test]
+    fn constant_effort_consumption_matches_superposition_identity() {
+        let tip_load = -350.0;
+        let without = run_linear_static_preview(cantilever_constant_effort_request(
+            &[],
+            false,
+            Some(tip_load),
+        ));
+        let with = run_linear_static_preview(cantilever_constant_effort_request(
+            &["UY"],
+            true,
+            Some(tip_load),
+        ));
+        assert_eq!(without.status.mechanics, "MECHANICS_SOLVED");
+        assert_eq!(with.status.mechanics, "MECHANICS_SOLVED");
+
+        // Applied-load evidence row for the consuming support.
+        let applied = with
+            .results
+            .iter()
+            .find(|item| item.id == "result:constant-effort-support:support-CE-110:applied-load")
+            .expect("consuming constant-effort support emits an applied-load row");
+        assert_eq!(applied.kind, "constant_effort_support_applied_load");
+        assert_eq!(applied.value, 375.0);
+        assert_eq!(applied.unit, "N");
+        assert_eq!(applied.entity_ref, "support:CE-110");
+        let metadata = applied.metadata.as_ref().expect("applied row metadata");
+        assert!(metadata.basis.contains("dec_ref=DEC-049"));
+        assert!(metadata
+            .basis
+            .contains("mechanics_consumption=assembled_solve"));
+        assert!(metadata.basis.contains("consumed_dof=UY"));
+        assert_eq!(
+            metadata.sign_convention,
+            CONSTANT_EFFORT_APPLIED_SIGN_CONVENTION
+        );
+        assert!(!with
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "SUPPORT_CONSTANT_EFFORT_NOT_CONSUMED"));
+
+        // Superposition identity: the solve with the constant-effort support
+        // equals the solve without it plus the classical closed-form solution
+        // for the equivalent point force at the tip, along +UY.
+        let uy_without = result_value(&without, "result:disp:node-N-110:uy");
+        let uy_with = result_value(&with, "result:disp:node-N-110:uy");
+        let expected_delta_mm = cantilever_tip_point_load_deflection_m(375.0) * 1000.0;
+        assert!(expected_delta_mm > 0.0);
+        assert!(
+            ((uy_with - uy_without) - expected_delta_mm).abs() <= 1.0e-4,
+            "superposition identity failed: {uy_with} - {uy_without} != {expected_delta_mm}"
+        );
+    }
+
+    #[test]
+    fn constant_effort_direction_follows_declared_translational_dof_positive_axis() {
+        let tip_load = -350.0;
+        let with = run_linear_static_preview(cantilever_constant_effort_request(
+            &["UZ"],
+            true,
+            Some(tip_load),
+        ));
+        assert_eq!(with.status.mechanics, "MECHANICS_SOLVED");
+        let applied = with
+            .results
+            .iter()
+            .find(|item| item.id == "result:constant-effort-support:support-CE-110:applied-load")
+            .expect("consuming constant-effort support emits an applied-load row");
+        let metadata = applied.metadata.as_ref().expect("applied row metadata");
+        assert!(metadata.basis.contains("consumed_dof=UZ"));
+        assert!(metadata.location.contains("node:N-110:UZ"));
+        // No Z-direction primitive load exists, so the tip UZ displacement is
+        // exactly the classical point-force deflection along +UZ.
+        let uz_with = result_value(&with, "result:disp:node-N-110:uz");
+        let expected_mm = cantilever_tip_point_load_deflection_m(375.0) * 1000.0;
+        assert!(
+            (uz_with - expected_mm).abs() <= 1.0e-4,
+            "direction convention failed: {uz_with} != {expected_mm}"
+        );
+    }
+
+    #[test]
+    fn constant_effort_applies_in_every_solved_load_case() {
+        let mut request = cantilever_constant_effort_request(&["UY"], true, Some(-350.0));
+        let mut second_case = request.model.load_cases[0].clone();
+        second_case.id = "load:L-200".to_string();
+        second_case.primitive_loads[0].id = "load:L-TIP-ALT".to_string();
+        second_case.primitive_loads[0].magnitude = Quantity {
+            value: -150.0,
+            unit: "N".to_string(),
+        };
+        request.model.load_cases.push(second_case);
+        let result = run_linear_static_preview(request);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+
+        let base = result
+            .results
+            .iter()
+            .find(|item| item.id == "result:constant-effort-support:support-CE-110:applied-load")
+            .expect("default load case applied-load row");
+        let alternate = result
+            .results
+            .iter()
+            .find(|item| {
+                item.id
+                    == "result:loadcase:load-L-200:constant-effort-support:support-CE-110:applied-load"
+            })
+            .expect("second load case applied-load row");
+        assert_eq!(base.value, 375.0);
+        assert_eq!(alternate.value, 375.0);
+        assert_eq!(
+            base.basis_ref.as_ref().map(|basis| basis.ref_id.as_str()),
+            Some("load:L-100")
+        );
+        assert_eq!(
+            alternate
+                .basis_ref
+                .as_ref()
+                .map(|basis| basis.ref_id.as_str()),
+            Some("load:L-200")
+        );
+        // The constant force enters both load cases identically: each case's
+        // tip UY displacement carries the same +F L^3/(3EI) contribution.
+        let delta_mm = cantilever_tip_point_load_deflection_m(375.0) * 1000.0;
+        let case_one = result_value(&result, "result:disp:node-N-110:uy")
+            - cantilever_tip_point_load_deflection_m(-350.0) * 1000.0;
+        let case_two = result_value(&result, "result:loadcase:load-L-200:disp:node-N-110:uy")
+            - cantilever_tip_point_load_deflection_m(-150.0) * 1000.0;
+        assert!((case_one - delta_mm).abs() <= 1.0e-4);
+        assert!((case_two - delta_mm).abs() <= 1.0e-4);
+    }
+
+    #[test]
+    fn constant_effort_non_consuming_shapes_warn_without_force_or_blocking() {
+        let tip_load = -350.0;
+        let baseline = run_linear_static_preview(cantilever_constant_effort_request(
+            &[],
+            false,
+            Some(tip_load),
+        ));
+        assert_eq!(baseline.status.mechanics, "MECHANICS_SOLVED");
+
+        let cases: &[(&[&str], &str)] = &[
+            (&[], "no translational restraint DOF is declared"),
+            (&["RX"], "no translational restraint DOF is declared"),
+            (&["UY", "UZ"], "2 translational restraint DOFs are declared"),
+            (
+                &["UQ"],
+                "declared restraint DOF UQ is not a recognized frame DOF",
+            ),
+        ];
+        for (restraints, expected_condition) in cases {
+            let result = run_linear_static_preview(cantilever_constant_effort_request(
+                restraints,
+                true,
+                Some(tip_load),
+            ));
+            assert_eq!(
+                result.status.mechanics, "MECHANICS_SOLVED",
+                "non-consuming shape {restraints:?} must not block"
+            );
+            let warning = result
+                .diagnostics
+                .iter()
+                .find(|diagnostic| diagnostic.code == "SUPPORT_CONSTANT_EFFORT_NOT_CONSUMED")
+                .unwrap_or_else(|| panic!("missing warning for {restraints:?}"));
+            assert_eq!(warning.severity, "warning");
+            assert!(
+                warning.message.contains(expected_condition),
+                "warning for {restraints:?} names the unmet condition: {}",
+                warning.message
+            );
+            assert!(!result
+                .results
+                .iter()
+                .any(|item| item.kind == "constant_effort_support_applied_load"));
+            // No force entered the solve: every tip displacement/rotation
+            // component matches the model without the support.
+            for tail in ["ux", "uy", "uz", "rx", "ry", "rz"] {
+                let id = format!("result:disp:node-N-110:{tail}");
+                assert_eq!(
+                    result_value(&result, &id),
+                    result_value(&baseline, &id),
+                    "non-consuming shape {restraints:?} changed {id}"
+                );
+            }
+            // The DEC-049 review rows remain.
+            assert!(result
+                .results
+                .iter()
+                .any(|item| item.kind == "constant_effort_user_input_review"));
+        }
+
+        // Unknown support node: data conditions met but the node cannot be
+        // resolved, so the support stays review-only with a warning.
+        let mut unknown_node = cantilever_constant_effort_request(&["UY"], true, Some(tip_load));
+        unknown_node
+            .model
+            .supports
+            .iter_mut()
+            .find(|support| support.id == "support:CE-110")
+            .expect("constant-effort support present")
+            .node = "node:MISSING".to_string();
+        let result = run_linear_static_preview(unknown_node);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        let warning = result
+            .diagnostics
+            .iter()
+            .find(|diagnostic| diagnostic.code == "SUPPORT_CONSTANT_EFFORT_NOT_CONSUMED")
+            .expect("unknown-node constant-effort support records a warning");
+        assert!(warning
+            .message
+            .contains("the support node is not present in the preview model"));
+        assert!(!result
+            .results
+            .iter()
+            .any(|item| item.kind == "constant_effort_support_applied_load"));
+    }
+
+    #[test]
+    fn constant_effort_missing_or_nonpositive_load_keeps_existing_blocking_and_no_defaults() {
+        // The landed DEC-049 validation slice already blocks a constant-effort
+        // support without a finite positive constant load; that behavior is
+        // unchanged and nothing is defaulted.
+        let mut request = cantilever_constant_effort_request(&["UY"], true, Some(-350.0));
+        request
+            .model
+            .supports
+            .iter_mut()
+            .find(|support| support.id == "support:CE-110")
+            .expect("constant-effort support present")
+            .hanger
+            .as_mut()
+            .expect("constant-effort support carries hanger data")
+            .constant_load = None;
+        let result = run_linear_static_preview(request);
+        assert_eq!(result.status.mechanics, "MODEL_INCOMPLETE");
+        assert!(result.diagnostics.iter().any(|diagnostic| diagnostic.code
+            == "CONSTANT_EFFORT_LOAD_MISSING"
+            && diagnostic.severity == "blocking"));
+        assert!(!result
+            .results
+            .iter()
+            .any(|item| item.kind == "constant_effort_support_applied_load"));
+
+        // The classifier itself treats missing and non-positive loads as
+        // non-consumption reasons (no default, no direction inference).
+        let request = cantilever_constant_effort_request(&["UY"], true, Some(-350.0));
+        let model = request.model;
+        let mut support = model
+            .supports
+            .iter()
+            .find(|support| support.id == "support:CE-110")
+            .expect("constant-effort support present")
+            .clone();
+        support.hanger.as_mut().unwrap().constant_load = None;
+        assert_eq!(
+            classify_constant_effort_consumption(&model, &support).unwrap_err(),
+            ConstantEffortNonConsumption::MissingConstantLoad
+        );
+        support.hanger.as_mut().unwrap().constant_load = Some(Quantity {
+            value: -5.0,
+            unit: "N".to_string(),
+        });
+        assert_eq!(
+            classify_constant_effort_consumption(&model, &support).unwrap_err(),
+            ConstantEffortNonConsumption::NonPositiveConstantLoad
+        );
+    }
+
+    #[test]
+    fn constant_effort_user_limit_comparison_warns_from_user_data_only() {
+        let mut request = cantilever_constant_effort_request(&["UY"], true, Some(-350.0));
+        let hanger = request
+            .model
+            .supports
+            .iter_mut()
+            .find(|support| support.id == "support:CE-110")
+            .expect("constant-effort support present")
+            .hanger
+            .as_mut()
+            .expect("constant-effort support carries hanger data");
+        // Net tip force is +25 N, so |uy| at the tip is about 2.9e-5 m: the
+        // user's own 1e-5 m movement limit is exceeded while the user's
+        // 0.04 m travel range is not.
+        hanger.movement_limit = Some(Quantity {
+            value: 0.00001,
+            unit: "m".to_string(),
+        });
+        let result = run_linear_static_preview(request);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        let warning = result
+            .diagnostics
+            .iter()
+            .find(|diagnostic| {
+                diagnostic.code == "SUPPORT_CONSTANT_EFFORT_USER_LIMIT_EXCEEDED"
+                    && diagnostic.id
+                        == "diagnostic:constant-effort-support:support-CE-110:movement-limit:load-L-100"
+            })
+            .expect("user movement-limit exceedance records a warning");
+        assert_eq!(warning.severity, "warning");
+        assert!(warning.message.contains("hanger.movement_limit"));
+        assert!(warning
+            .message
+            .contains("no software threshold, tolerance, or acceptance criterion"));
+        assert!(!result.diagnostics.iter().any(|diagnostic| {
+            diagnostic.code == "SUPPORT_CONSTANT_EFFORT_USER_LIMIT_EXCEEDED"
+                && diagnostic.id.contains("travel-range")
+        }));
+
+        // With no user limit exceeded, no warning is emitted.
+        let quiet = run_linear_static_preview(cantilever_constant_effort_request(
+            &["UY"],
+            true,
+            Some(-350.0),
+        ));
+        assert!(!quiet
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "SUPPORT_CONSTANT_EFFORT_USER_LIMIT_EXCEEDED"));
+    }
+
+    #[test]
+    fn constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence() {
+        // Consuming constant-effort support in a model whose solve also runs
+        // the nonlinear active-set loop: both consume the same assembled
+        // force vector.
+        let mut request = request();
+        request
+            .model
+            .supports
+            .iter_mut()
+            .find(|support| support.id == "support:CE-120")
+            .expect("fixture carries a constant-effort support")
+            .restraints = vec!["UY".to_string()];
+        let result = run_linear_static_preview(request);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(result
+            .results
+            .iter()
+            .any(|item| item.id == "result:constant-effort-support:support-CE-120:applied-load"));
+        assert!(result
+            .results
+            .iter()
+            .any(|item| item.kind == "nonlinear_support_active_set_iteration_count"));
+        assert!(!result
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "SUPPORT_CONSTANT_EFFORT_NOT_CONSUMED"));
+
+        // A constant-effort support carrying a nonlinear field keeps the
+        // existing nonlinear-path handling: it is neither classified for
+        // constant-force consumption nor warned about.
+        let mut precedence_request = super::tests::request();
+        let nonlinear_template = precedence_request
+            .model
+            .supports
+            .iter()
+            .find(|support| support.id == "support:NL-140")
+            .expect("fixture carries a nonlinear support")
+            .nonlinear
+            .clone();
+        precedence_request
+            .model
+            .supports
+            .iter_mut()
+            .find(|support| support.id == "support:CE-120")
+            .expect("fixture carries a constant-effort support")
+            .nonlinear = nonlinear_template;
+        let result = run_linear_static_preview(precedence_request);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(!result
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code == "SUPPORT_CONSTANT_EFFORT_NOT_CONSUMED"));
+        assert!(!result
+            .results
+            .iter()
+            .any(|item| item.id == "result:constant-effort-support:support-CE-120:applied-load"));
+    }
+
+    #[test]
+    fn models_without_constant_effort_supports_are_untouched_by_the_consumption_path() {
+        let mut request = request();
+        request
+            .model
+            .supports
+            .retain(|support| support.id != "support:CE-120");
+        let result = run_linear_static_preview(request);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(!result
+            .diagnostics
+            .iter()
+            .any(|diagnostic| diagnostic.code.starts_with("SUPPORT_CONSTANT_EFFORT")));
+        assert!(!result
+            .results
+            .iter()
+            .any(|item| item.kind.starts_with("constant_effort_")));
+        // Only the variable-spring-hanger review rows remain.
+        assert_eq!(result.summary.spring_hanger_user_input_count, 5);
     }
 
     #[test]
@@ -12087,7 +13016,10 @@ mod tests {
         assert!(metadata
             .basis
             .contains("distributed_load_treatment=arc_consistent_fixed_end_integration"));
-        assert!(metadata
+        assert!(metadata.basis.contains(
+            "pressure_thrust_treatment=arc_end_cap_tangent_pair_plus_consistent_radial_wall_load"
+        ));
+        assert!(!metadata
             .basis
             .contains("pressure_thrust_treatment=straight_chord_axial_end_forces"));
         assert!(metadata
@@ -12552,6 +13484,356 @@ mod tests {
         assert!(
             (nonlinear_uy_mm - round6(expected_tip[UY] * 1000.0)).abs() <= 1.0e-6,
             "nonlinear loop tip displacement {nonlinear_uy_mm} mm must match the direct macro-element solve"
+        );
+    }
+
+    fn curved_bend_pressure_load() -> PreviewPrimitiveLoad {
+        PreviewPrimitiveLoad {
+            id: "load:L-100-P".to_string(),
+            category: "pressure".to_string(),
+            target: LoadTargetInput::Element {
+                pipe: "pipe:P-100".to_string(),
+            },
+            direction: "global_x".to_string(),
+            magnitude: Quantity {
+                value: 2.0e6,
+                unit: "Pa".to_string(),
+            },
+            dimension: "pressure".to_string(),
+            provenance: Some("invented_example_user_input".to_string()),
+        }
+    }
+
+    // The invented arc as a CurvedBendMacroBuild, mirroring the assembly of
+    // `build_curved_bend_macro_elements` for the direct oracle element.
+    fn curved_bend_direct_build() -> CurvedBendMacroBuild {
+        let element = curved_bend_direct_element();
+        let geometry = element.geometry().unwrap();
+        CurvedBendMacroBuild {
+            component_id: "component:C-110".to_string(),
+            pipe_id: "pipe:P-100".to_string(),
+            pipe_index: 0,
+            node_i: 0,
+            node_j: 1,
+            chord: [CURVED_BEND_TEST_CHORD_M, 0.0, 0.0],
+            global_stiffness: element.global_stiffness().unwrap(),
+            arc_length: geometry.radius * geometry.included_angle,
+            included_angle: geometry.included_angle,
+            bend_radius: geometry.radius,
+            flexibility_factor: CURVED_BEND_TEST_FLEXIBILITY,
+            source_reference: "invented_example_user_input".to_string(),
+            macro_element: element,
+        }
+    }
+
+    // Predicate: the pressure-thrust contribution assembled for a
+    // macro-realized span is the complete self-equilibrated arc system —
+    // end-cap forces along the validated end tangents plus the exact
+    // consistent radial wall-load vector — for the pipe-internal-area and
+    // expansion-joint effective-area sources alike, with zero net force and
+    // zero net moment about an arbitrary point at floating-point precision.
+    #[test]
+    fn pressure_thrust_on_macro_span_assembles_complete_self_equilibrated_arc_system() {
+        let build = curved_bend_direct_build();
+        let pipe_thrust = 4321.0;
+        let joint_thrust = 1234.5;
+        let loads = vec![
+            PressureThrustLoad {
+                element_index: 0,
+                axial_load: pipe_thrust,
+                source_load_id: "load:L-100-P".to_string(),
+                source: PressureThrustSource::PipeInternalArea,
+            },
+            PressureThrustLoad {
+                element_index: 0,
+                axial_load: joint_thrust,
+                source_load_id: "load:L-100-P".to_string(),
+                source: PressureThrustSource::ExpansionJointEffectiveArea(
+                    ExpansionJointPressureThrustInput {
+                        component_id: "component:EJ-1".to_string(),
+                        pipe_id: "pipe:P-100".to_string(),
+                        effective_area: 6.0e-4,
+                        pressure_thrust_reference: "invented".to_string(),
+                        source_reference: "invented".to_string(),
+                        solver_consumption: "mechanics_geometry_and_user_flexibility".to_string(),
+                    },
+                ),
+            },
+        ];
+        let bends_by_pipe: HashMap<usize, &CurvedBendMacroBuild> =
+            [(0usize, &build)].into_iter().collect();
+        let mut force = vec![0.0; 2 * DOF_PER_NODE];
+        add_pressure_thrust_loads(&mut force, &loads, &[], &bends_by_pipe);
+
+        // Both sources receive the identical arc treatment: the assembled
+        // vector is linear in the thrust, so it equals cap pair plus
+        // consistent wall vector at the summed thrust.
+        let total_thrust = pipe_thrust + joint_thrust;
+        let [tangent_i, tangent_j] = build.macro_element.end_tangents().unwrap();
+        let wall = build
+            .macro_element
+            .consistent_radial_pressure_nodal_loads(total_thrust)
+            .unwrap();
+        for axis in 0..3 {
+            let expected_i = -total_thrust * tangent_i[axis] + wall[axis];
+            let expected_j = total_thrust * tangent_j[axis] + wall[DOF_PER_NODE + axis];
+            assert!((force[axis] - expected_i).abs() <= 1.0e-9 * total_thrust);
+            assert!((force[DOF_PER_NODE + axis] - expected_j).abs() <= 1.0e-9 * total_thrust);
+            let expected_moment_i = wall[3 + axis];
+            let expected_moment_j = wall[DOF_PER_NODE + 3 + axis];
+            assert!((force[3 + axis] - expected_moment_i).abs() <= 1.0e-9 * total_thrust);
+            assert!(
+                (force[DOF_PER_NODE + 3 + axis] - expected_moment_j).abs() <= 1.0e-9 * total_thrust
+            );
+        }
+
+        // Self-equilibrium of the assembled system: zero net force, zero net
+        // moment about an arbitrary off-arc point.
+        let positions = [[0.0, 0.0, 0.0], [CURVED_BEND_TEST_CHORD_M, 0.0, 0.0]];
+        let reference_point = [0.7, -1.3, 0.4];
+        let force_scale = total_thrust;
+        let moment_scale = total_thrust * CURVED_BEND_TEST_RADIUS_M;
+        for axis in 0..3 {
+            let net = force[axis] + force[DOF_PER_NODE + axis];
+            assert!(
+                net.abs() <= 1.0e-12 * force_scale,
+                "net pressure force component {axis} is {net}, expected zero"
+            );
+        }
+        let mut net_moment = [0.0; 3];
+        for (node_slot, position) in positions.iter().enumerate() {
+            let base = node_slot * DOF_PER_NODE;
+            let arm = [
+                position[0] - reference_point[0],
+                position[1] - reference_point[1],
+                position[2] - reference_point[2],
+            ];
+            let nodal_force = [force[base], force[base + 1], force[base + 2]];
+            net_moment[0] += force[base + 3] + arm[1] * nodal_force[2] - arm[2] * nodal_force[1];
+            net_moment[1] += force[base + 4] + arm[2] * nodal_force[0] - arm[0] * nodal_force[2];
+            net_moment[2] += force[base + 5] + arm[0] * nodal_force[1] - arm[1] * nodal_force[0];
+        }
+        for (axis, net) in net_moment.iter().enumerate() {
+            assert!(
+                net.abs() <= 1.0e-12 * moment_scale,
+                "net pressure moment component {axis} is {net}, expected zero"
+            );
+        }
+
+        // No-pressure invariance: an empty pressure-load list leaves the
+        // assembled vector untouched on the same macro span.
+        let mut untouched = vec![0.0; 2 * DOF_PER_NODE];
+        add_pressure_thrust_loads(&mut untouched, &[], &[], &bends_by_pipe);
+        assert!(untouched.iter().all(|value| *value == 0.0));
+    }
+
+    // THE SHARP CHECK (brief predicate 3): an invented end-supported
+    // pressurized arc with no other load is in the pure membrane state — at
+    // every tested interior station the recovered axial force equals +pA
+    // along the local tangent with zero shear and zero internal moment, the
+    // recovered end forces are the cap forces themselves, and the tip
+    // displacement matches the closed-form membrane stretch, all within the
+    // recorded DEC-026 analytic tier. The `include_pressure_longitudinal`
+    // gating semantics are preserved on the macro span.
+    #[test]
+    fn curved_bend_macro_span_pressure_shows_membrane_station_state() {
+        let mut request = curved_bend_span_request();
+        request.model.load_cases[0].primitive_loads = vec![curved_bend_pressure_load()];
+        let section = derive_pipe_section(
+            &request.model.pipe_segments[0].section,
+            "pipe:P-100",
+            &mut Vec::new(),
+        )
+        .unwrap();
+        let thrust = 2.0e6 * section.internal_area;
+        let result = run_linear_static_preview(request);
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+
+        // Membrane end forces: -pA t_i at end i and +pA t_j at end j. The
+        // replaced chord frame coincides with the global frame in this
+        // fixture, so the chord-frame rows carry the tangent components
+        // directly.
+        let element = curved_bend_direct_element();
+        let [tangent_i, tangent_j] = element.end_tangents().unwrap();
+        let force_rows = [
+            ("result:force:pipe-P-100:axial", -thrust * tangent_i[0]),
+            ("result:force:pipe-P-100:shear-y", -thrust * tangent_i[1]),
+            ("result:force:pipe-P-100:shear-z", -thrust * tangent_i[2]),
+            ("result:force:pipe-P-100:axial:end-j", thrust * tangent_j[0]),
+            (
+                "result:force:pipe-P-100:shear-y:end-j",
+                thrust * tangent_j[1],
+            ),
+            (
+                "result:force:pipe-P-100:shear-z:end-j",
+                thrust * tangent_j[2],
+            ),
+            ("result:moment:pipe-P-100:torsion", 0.0),
+            ("result:moment:pipe-P-100:bending-y", 0.0),
+            ("result:moment:pipe-P-100:bending-z", 0.0),
+            ("result:moment:pipe-P-100:torsion:end-j", 0.0),
+            ("result:moment:pipe-P-100:bending-y:end-j", 0.0),
+            ("result:moment:pipe-P-100:bending-z:end-j", 0.0),
+        ];
+        for (row_id, expected) in force_rows {
+            let value = result_value(&result, row_id);
+            assert!(
+                (value - round6(expected)).abs() <= 1.0e-9 * thrust.max(1.0),
+                "end-force row {row_id} value {value} must match the membrane cap force {expected}"
+            );
+        }
+
+        // Interior stations: axial +pA along the local tangent, zero shear,
+        // zero torsion, zero bending at every tested station.
+        for station in ["quarter-1", "midspan", "quarter-3"] {
+            let axial = result_value(&result, &format!("result:force:pipe-P-100:{station}:axial"));
+            assert!(
+                (axial - round6(thrust)).abs() <= 1.0e-9 * thrust,
+                "station {station} axial {axial} must equal the wall tension {thrust}"
+            );
+            for row_id in [
+                format!("result:force:pipe-P-100:{station}:shear-y"),
+                format!("result:force:pipe-P-100:{station}:shear-z"),
+                format!("result:moment:pipe-P-100:{station}:torsion"),
+                format!("result:moment:pipe-P-100:{station}:bending-y"),
+                format!("result:moment:pipe-P-100:{station}:bending-z"),
+            ] {
+                let value = result_value(&result, &row_id);
+                assert!(
+                    value.abs() <= 1.0e-9 * thrust,
+                    "membrane station row {row_id} must vanish, got {value}"
+                );
+            }
+            let station_stress = result_value(
+                &result,
+                &format!("result:stress:pipe-P-100:{station}:axial-normal"),
+            );
+            let expected_stress = round6(thrust / section.area / 1_000_000.0);
+            assert!(
+                (station_stress - expected_stress).abs() <= 1.0e-6,
+                "station {station} axial stress {station_stress} must equal pA / A_s = {expected_stress}"
+            );
+        }
+
+        // Tip displacement: closed-form membrane stretch (independent of the
+        // flexibility factor) and the direct macro-element oracle under the
+        // same complete load system agree with the assembled solve.
+        let material = &invented_materials()[0];
+        let stretch = thrust / (material.elastic_modulus.value * section.area);
+        let expected_ux_mm = round6(stretch * CURVED_BEND_TEST_CHORD_M * 1000.0);
+        let ux_mm = result_value(&result, "result:disp:node-N-110:ux");
+        let uy_mm = result_value(&result, "result:disp:node-N-110:uy");
+        assert!(
+            (ux_mm - expected_ux_mm).abs() <= 1.0e-6,
+            "membrane tip stretch {ux_mm} mm must match the closed form {expected_ux_mm} mm"
+        );
+        assert!(
+            uy_mm.abs() <= 1.0e-6,
+            "membrane state produces no transverse tip displacement, got {uy_mm} mm"
+        );
+        let wall = element
+            .consistent_radial_pressure_nodal_loads(thrust)
+            .unwrap();
+        let mut complete = wall;
+        for axis in 0..3 {
+            complete[axis] -= thrust * tangent_i[axis];
+            complete[DOF_PER_NODE + axis] += thrust * tangent_j[axis];
+        }
+        let oracle = curved_bend_direct_solution(&complete);
+        assert!(
+            (ux_mm - round6(oracle[DOF_PER_NODE + UX] * 1000.0)).abs() <= 1.0e-6,
+            "assembled tip displacement must match the direct oracle under the complete system"
+        );
+
+        // Pressure gating semantics preserved: the active thrust suppresses
+        // the separate longitudinal-pressure stress row while the hoop row
+        // remains.
+        let result_ids = result
+            .results
+            .iter()
+            .map(|item| item.id.as_str())
+            .collect::<HashSet<_>>();
+        assert!(result_ids.contains("result:stress:pipe-P-100:end-i:pressure-hoop"));
+        assert!(!result_ids.contains("result:stress:pipe-P-100:end-i:pressure-longitudinal"));
+        assert!(!result
+            .diagnostics
+            .iter()
+            .any(|item| item.code == "PRESSURE_LOAD_NOT_APPLIED_TO_FRAME_VECTOR"));
+    }
+
+    // Nonlinear parity: the same assembled force vector (complete arc
+    // pressure system included) reaches the active-set loop, so the
+    // released nonlinear solve reproduces the linear macro-span solve of
+    // the identical pressurized model exactly.
+    #[test]
+    fn curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector() {
+        let mut request = curved_bend_span_request();
+        request.model.load_cases[0]
+            .primitive_loads
+            .push(curved_bend_pressure_load());
+        request.model.supports.push({
+            let mut support = request.model.supports[0].clone();
+            support.id = "support:S-110".to_string();
+            support.node = "node:N-110".to_string();
+            support.restraints = vec![];
+            support.nonlinear = Some(NonlinearSupportInput {
+                behavior: "one_way".to_string(),
+                dof: "UY".to_string(),
+                initial_state: Some("inactive".to_string()),
+                active_when: Some("positive".to_string()),
+                contact_when: None,
+                closes_when: None,
+                gap: None,
+                friction_coefficient: None,
+                normal_reaction: None,
+                normal_reaction_source: None,
+            });
+            support
+        });
+        let result = run_linear_static_preview(request);
+
+        assert_eq!(result.status.mechanics, "MECHANICS_SOLVED");
+        assert!(result
+            .diagnostics
+            .iter()
+            .any(|item| item.code == "NONLINEAR_SUPPORT_LOOP_CONVERGED"));
+        assert_eq!(
+            result_value(&result, "result:nonlinear-support:converged-flag"),
+            1.0
+        );
+        let linear_uy_mm = result_value(&result, "result:disp:node-N-110:uy");
+        let nonlinear_uy_mm = result_value(
+            &result,
+            "result:nonlinear-support:support-S-110:uy-displacement",
+        );
+        assert!(
+            (nonlinear_uy_mm - linear_uy_mm).abs() <= 1.0e-6,
+            "nonlinear loop tip displacement {nonlinear_uy_mm} mm must match the linear pressurized macro-span solve {linear_uy_mm} mm"
+        );
+
+        // Independent oracle for the combined tip force + complete pressure
+        // system on the direct macro element.
+        let section = derive_pipe_section(
+            &curved_bend_span_request().model.pipe_segments[0].section,
+            "pipe:P-100",
+            &mut Vec::new(),
+        )
+        .unwrap();
+        let thrust = 2.0e6 * section.internal_area;
+        let element = curved_bend_direct_element();
+        let [tangent_i, tangent_j] = element.end_tangents().unwrap();
+        let mut complete = element
+            .consistent_radial_pressure_nodal_loads(thrust)
+            .unwrap();
+        for axis in 0..3 {
+            complete[axis] -= thrust * tangent_i[axis];
+            complete[DOF_PER_NODE + axis] += thrust * tangent_j[axis];
+        }
+        complete[DOF_PER_NODE + UY] += 1000.0;
+        let oracle = curved_bend_direct_solution(&complete);
+        assert!(
+            (linear_uy_mm - round6(oracle[DOF_PER_NODE + UY] * 1000.0)).abs() <= 1.0e-6,
+            "pressurized macro-span solve must match the direct oracle"
         );
     }
 
