@@ -33,7 +33,8 @@ const PRIMARY_PATH_FIELDS = [
   'notebook_path',
   'deliverablePath',
   'executionRoot',
-  'decompositionPath'
+  'decompositionPath',
+  'runnerInputRef'
 ] as const;
 
 function isRecord(value: unknown): value is Record<string, unknown> {

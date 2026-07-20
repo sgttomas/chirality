@@ -1,0 +1,21 @@
+{
+  "schema_version": "appdev-evaluation-manifest/v1",
+  "evaluation_id": "DAPP50_HEADLESS_LIVE_REPAIR_BACKCHECK_FCF152B_2026-07-20",
+  "basis_commit": "fcf152bdae1e1764b11dfabf3f87d50c5680213d",
+  "verdict": "BLOCK",
+  "finding_count": 1,
+  "blocker_count": 1,
+  "unknown_count": 0,
+  "conflict_count": 0,
+  "waiver_count": 0,
+  "files": {
+    "EVALUATION_PROTOCOL.md": "17ebed9265abfbfab7efc4dab31f2bc6409aa2327d8ab476ab15532f356b5b09",
+    "FINDINGS.csv": "5d8e60f86ff322689cb4656ff55f0c8f0d2fa23e0176fb31935b6f74e0d4e3b0",
+    "EVALUATION_REPORT.md": "3f87aa81f4916352d05486be9de3ac68a595965a7d447fbbbc518d4453871b14",
+    "HANDOFF.md": "17f06993ed87090431e6300b72bf9d9eb0eeefcaa396402a181f7f9e65a0cad4"
+  },
+  "subject_preserved": true,
+  "v1_f001_cured": false,
+  "v1_f002_cured": true,
+  "final_change_released": false
+}

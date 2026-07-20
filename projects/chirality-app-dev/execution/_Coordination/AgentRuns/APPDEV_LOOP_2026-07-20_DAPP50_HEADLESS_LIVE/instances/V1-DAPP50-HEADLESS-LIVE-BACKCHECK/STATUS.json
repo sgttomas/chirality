@@ -1,0 +1,26 @@
+{
+  "schema_version": "appdev-dapp50-v1-status/v1",
+  "instance_id": "V1-DAPP50-HEADLESS-LIVE-BACKCHECK",
+  "role": "EVALUATION",
+  "parent": "HELP_HUMAN",
+  "released_by": "ORCHESTRATOR_V4_FAN_IN",
+  "status": "BLOCKED_REPAIR_AND_CLEANUP_REQUIRED",
+  "terminal": true,
+  "basis_commit": "f67d44706f4b2b5495833f809cb0bc714d2bbc18",
+  "subject_read_only": true,
+  "delegation": false,
+  "git": false,
+  "verdict": "BLOCK",
+  "accepted": false,
+  "finding_ids": ["F-001", "F-002"],
+  "blockers": [
+    "DEC-065 result-schema mismatches do not fully fail closed",
+    "839496166 bytes of material ignored frontend/dist packaging residue remain"
+  ],
+  "unknowns": [],
+  "conflicts": [],
+  "waivers": [],
+  "subject_preserved": true,
+  "final_change_released": false,
+  "next_action": "WORKING_ITEMS_REPAIR_NEW_COMMIT_REPIN_EXPLICIT_DIST_CLEANUP_THEN_NEW_EVALUATION"
+}

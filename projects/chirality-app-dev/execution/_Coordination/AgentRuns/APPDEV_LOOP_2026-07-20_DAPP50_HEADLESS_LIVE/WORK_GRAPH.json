@@ -1,0 +1,18 @@
+{
+  "schema_version": "appdev-work-graph/v1",
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP50_HEADLESS_LIVE",
+  "strategy": "SERIALIZED_SINGLE_INTEGRATION_OWNER",
+  "nodes": [
+    {
+      "id": "W1-DAPP50-HEADLESS-LIVE",
+      "role": "WORKING_ITEMS",
+      "status": "READY_RELEASED",
+      "depends_on": [],
+      "may_delegate": false,
+      "terminal_return": "ACCEPT_OR_BLOCK"
+    }
+  ],
+  "held_nodes": ["EVALUATION", "CHANGE"],
+  "shared_writes": [],
+  "waivers": []
+}

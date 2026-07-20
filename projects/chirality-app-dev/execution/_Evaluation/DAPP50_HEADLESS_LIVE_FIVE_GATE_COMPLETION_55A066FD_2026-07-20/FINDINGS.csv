@@ -1,0 +1,2 @@
+FindingID,Concern,Classification,Severity,Scope,Claim,EvidenceRefs,Status,RecommendedOwner,RerunRequirement
+V3-F-001,Fresh deterministic coverage,RESOLVED_INCOMPLETE_COVERAGE,INFO,V3/V4 final backcheck,"V4 freshly executed exactly the five commands omitted by V3; all exited zero, managed premerge retained Section 8 8/8 and Section 9 16/16 report-only, and final containment passed.","V3 FINDINGS.csv and preserved BLOCK terminals; V4 EVALUATION_PROTOCOL.md; V4 EVALUATION_REPORT.md",RESOLVED,CHANGE,NONE

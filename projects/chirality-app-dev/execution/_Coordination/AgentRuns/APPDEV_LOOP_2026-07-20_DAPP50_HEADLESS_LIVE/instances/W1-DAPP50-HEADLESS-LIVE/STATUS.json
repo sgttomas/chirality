@@ -1,0 +1,20 @@
+{
+  "schema_version": "appdev-dapp50-headless-live-w1-status/v1",
+  "instance_id": "W1-DAPP50-HEADLESS-LIVE",
+  "role": "WORKING_ITEMS",
+  "parent": "ORCHESTRATOR_FOR_HELP_HUMAN",
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP50_HEADLESS_LIVE",
+  "basis_commit": "bc35e3b0049d990f494dd3610603be285c7aa9ed",
+  "status": "IMPLEMENTED_AWAITING_COMMIT_BOUND_REPIN",
+  "terminal": true,
+  "integration_owner": true,
+  "delegation": false,
+  "git": false,
+  "verdict": "BLOCK",
+  "implementation_complete": true,
+  "next_gate": "G0_CHANGE_IMPLEMENTATION_CONTENT_COMMIT",
+  "blocker": "D-APP-48 binds export bytes to a reachable commit; W1 Git authority is prohibited, so staged closeout requires G0 then W2",
+  "receipt": "NOT_APPENDED",
+  "del_10_01_closeout": "DEFERRED_TO_W2",
+  "waivers": []
+}

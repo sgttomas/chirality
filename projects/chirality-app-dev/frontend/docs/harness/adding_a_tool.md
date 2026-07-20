@@ -103,9 +103,19 @@ D-APP-50 tranche-1 exposes only the read-side domain transport wrappers
 `mcp__chirality__domain_rule_check_run`. They must remain read-only DEC-041
 in-process transport/evidence-envelope tools and must not claim a domain verdict,
 live binding, professional conclusion, shell execution, network access, or piping write.
-`mcp__chirality__domain_headless_preview_run` stays descriptor-only while the
-DEC-064 / TP-RUNNER-014 CLI entrypoint is provisional/TBD. Proposal/write names
-stay descriptor-only until the K-DOMAIN-2 proposal-write quarantine is implemented.
+`mcp__chirality__domain_headless_preview_run` is the narrow D-APP-50 exception:
+it is live only for `open_pipe_stress` through the final DEC-065 local
+`openpipestress-runner solve` contract. Local configuration must provide an
+absolute executable path in `CHIRALITY_OPEN_PIPE_STRESS_RUNNER_PATH` and exact
+lowercase SHA-256 in `CHIRALITY_OPEN_PIPE_STRESS_RUNNER_SHA256`; the adapter verifies the
+resolved regular executable immediately before direct foreground spawn, passes
+the exact complete schema-first `runnerInputRef` bytes on stdin, and parses one
+bounded stdout JSON result. It does not search PATH, invoke a shell, inherit the
+ambient environment, use network/daemon/telemetry, name an output path, or expose
+proposal/apply behavior. The former `modelInputPath` descriptor field was retired
+because it described the provisional TP-RUNNER-014 model-only fixture, not the
+final DEC-065 request envelope. Proposal/write names retain their separate profile
+and transport rules.
 Do not add placeholder domain handlers, broad tool search, remote MCP servers,
 plugin marketplace hooks, remote execution, provider-network expansion, or apply-capable
 domain tools as part of ordinary local tool work.

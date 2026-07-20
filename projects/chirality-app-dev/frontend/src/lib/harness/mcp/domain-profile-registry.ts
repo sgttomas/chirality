@@ -8,8 +8,9 @@ import { HarnessError } from '@chirality/harness-contract/errors';
  * is no filesystem discovery and no dynamic registration; adding any third
  * engine is a source change under its own D-APP ruling (registration IS the
  * gate). The single read-transport binding literal in P1 is
- * `'in-process-read-evidence'`; no network, exec, or HTTP transport exists or
- * is bound here (rider 3).
+ * `'in-process-read-evidence'`. The separately ruled D-APP-50 headless tool
+ * carries its own configured-local-process binding on the open_pipe_stress
+ * entry; no filesystem discovery or fallback transport exists.
  */
 
 export type DomainEngineKind = 'deterministic-cli' | 'http-api';
@@ -17,13 +18,17 @@ export type DomainEngineKind = 'deterministic-cli' | 'http-api';
 /** The ONLY read-transport binding literal in P1 (D-APP-51 rider 3). */
 export type DomainReadTransportBinding = 'in-process-read-evidence';
 
-export type DomainReadToolId = 'completeness_checker' | 'rule_check_runner';
+export type DomainReadToolId =
+  | 'completeness_checker'
+  | 'rule_check_runner'
+  | 'headless_runner';
 
 export type DomainEngineProfileRegistryEntry = {
   profileId: string;
   profileRelativePath: string;
   engineKind: DomainEngineKind;
   readTransportBinding: DomainReadTransportBinding;
+  headlessPreviewTransportBinding?: 'configured-local-process';
   /** Exact live-file bytes (quoted YAML form — V-9 fix). */
   identityMarker: string;
   toolGate: Record<
@@ -51,6 +56,7 @@ export const DOMAIN_ENGINE_PROFILE_REGISTRY: readonly DomainEngineProfileRegistr
     profileRelativePath: '_DomainEngines/profiles/open_pipe_stress.yaml',
     engineKind: 'deterministic-cli',
     readTransportBinding: 'in-process-read-evidence',
+    headlessPreviewTransportBinding: 'configured-local-process',
     identityMarker: 'id: "open_pipe_stress"',
     toolGate: {
       completeness_checker: {
@@ -60,6 +66,10 @@ export const DOMAIN_ENGINE_PROFILE_REGISTRY: readonly DomainEngineProfileRegistr
       rule_check_runner: {
         requiredMarker: '- id: "rule_check_runner"',
         declaredDeterministicToolId: 'rule_check_runner'
+      },
+      headless_runner: {
+        requiredMarker: '- id: "headless_runner"',
+        declaredDeterministicToolId: 'headless_runner'
       }
     },
     transportStatus: {
@@ -84,6 +94,10 @@ export const DOMAIN_ENGINE_PROFILE_REGISTRY: readonly DomainEngineProfileRegistr
         declaredDeterministicToolId: null
       },
       rule_check_runner: {
+        requiredMarker: null,
+        declaredDeterministicToolId: null
+      },
+      headless_runner: {
         requiredMarker: null,
         declaredDeterministicToolId: null
       }

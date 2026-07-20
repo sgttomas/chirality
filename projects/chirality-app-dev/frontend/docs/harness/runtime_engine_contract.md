@@ -238,12 +238,19 @@ in-process read-transport evidence envelopes only and do not produce domain
 verdicts, live-binding claims, professional conclusions, shell execution, network
 access, or piping writes. The current mutating Chirality MCP tools are
 `mcp__chirality__status_transition` and `mcp__chirality__deps_write`.
-D-APP-50 keeps `mcp__chirality__domain_headless_preview_run` descriptor-only
-because DEC-064 / TP-RUNNER-014 leaves the headless preview CLI entrypoint
-provisional/TBD, and keeps `mcp__chirality__domain_propose_operation` plus
-`mcp__chirality__domain_proposal_validate` descriptor-only until the K-DOMAIN-2
-proposal-write quarantine is implemented. `operation_applier.apply` remains
-unregistered and unexposed.
+D-APP-50 exposes `mcp__chirality__domain_headless_preview_run` only for the
+registered `open_pipe_stress` profile through the final DEC-065 configured-local
+`openpipestress-runner solve` process. The handler requires an absolute local
+runner path in `CHIRALITY_OPEN_PIPE_STRESS_RUNNER_PATH` and exact lowercase
+SHA-256 in `CHIRALITY_OPEN_PIPE_STRESS_RUNNER_SHA256`, verifies the resolved regular executable
+immediately before direct foreground spawn, sends the exact complete
+project-root-contained `runnerInputRef` bytes to stdin, caps stdout and stderr
+independently, and parses one stdout JSON result. The child gets a deliberately
+minimal environment; no PATH lookup, shell, network, daemon, telemetry, output
+path, SQL/SQLite, proposal, acceptance, or apply path is introduced. The old
+`modelInputPath` concept is retired because it represented the provisional
+TP-RUNNER-014 model-only fixture rather than the complete DEC-065 request envelope.
+`operation_applier.apply` remains unregistered and unexposed.
 
 The SDK options builder passes requested and allowed names through both `tools` and
 `allowedTools`, keeps denied and unrequested tool names in `disallowedTools`, attaches
@@ -275,9 +282,10 @@ alias, or adapter tool name. Same-descriptor canonical/adapter equivalence is pe
 only when it resolves to the same descriptor.
 
 Chirality-owned in-process MCP tools use `mcp__chirality__*` adapter names.
-Only the two D-APP-50 tranche-1 read-side domain transport wrappers are model
-exposed. Parked domain names do not expose handlers, apply domain operations,
-write piping paths, or advance live binding. Remote MCP, plugins, broad tool
+The D-APP-50 read-side wrappers include the two in-process evidence envelopes
+and the separately constrained DEC-065 local headless process above. None applies
+domain operations, writes piping paths, or advances the tier-0 integration level.
+Remote MCP, plugins, broad tool
 search, remote execution, provider/network expansion, concrete non-Anthropic
 providers, further default/provider semantics changes, and release/professional-boundary
 changes remain out of scope until a future human ruling authorizes them.
