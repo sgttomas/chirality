@@ -1,0 +1,114 @@
+{
+  "instance_id": "R3-DAPP70-RULING-CAPTURE",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "RULED_CAPTURED",
+  "verdict": "RULED_CAPTURED",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-19_CQF1_CONCORDANCE",
+  "live_basis": "9783e9ac6108dfd8738f0815fe8271af464dcaf1",
+  "preflight": "PASS_EXACT",
+  "decision_id": "D-APP-70",
+  "decision_state": "RULED_OPTION_A",
+  "owner_text": "APPROVE: D-APP-70 Option A",
+  "owner_text_sha256": "2cadfff68d2aafc381cd82178d635a706587d07f1dfd6b9888b6c547754f1014",
+  "ruling_selection": "OPTION_A_RECOMMENDATIONS_1_THROUGH_9_EXACTLY",
+  "owner_attribution": "OWNER_ONLY_AGENT_TRANSCRIPTION",
+  "packet": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-70_PACKET_CQF1_CANDIDATE_OWNER_RULING_2026-07-19.md",
+    "sha256": "94b01c68e0611c6f2b0a13f6e1087830876d62aab4bfcda2c386aceb721f4b16",
+    "mutated": false
+  },
+  "ruling_record": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-70_RULING_2026-07-20.md",
+    "sha256": "1428294b9af34a97b19b7284860a5fdefc7fdb6157cce8c9516f4b54b064638a"
+  },
+  "r2_bindings": {
+    "handoff_sha256": "2bbbed251da9e1ef6889e9665bca5473e8d0994261bf33f03160d7ba4003fb22",
+    "return_sha256": "686e2432bdaefe210481e6df242408c5e281952b3ae4a25f6fb48a81e5d803de",
+    "status_sha256": "330f051d32f7a06fc7a81c2e82ebe21b3acbc4769c39f90baa5fc5ff88e9d12b"
+  },
+  "accepted_v1": {
+    "return_sha256": "28fd98d46a160016d6fd875ea0281c07ee85971054b4e7de45fbe9af83b62936",
+    "status_sha256": "9f71e6d7604439f69d94c78cea66bbe0f1feb2924b06adfcc37e0b25e3274460",
+    "control_child_return_sha256": "072d816045939e345a10ad837905b49153e6321d660bc72d153e5c2ca2f0d4fb",
+    "substantive_child_return_sha256": "fa2572ce449004e846bf6684328db54a18affe23eef16c100df0aa7a041d93b3"
+  },
+  "scope": {
+    "ordered_path_list_sha256": "2e314f3f601350736032ace2730492c2afa6ab5b21fe26465d799470a195fc36",
+    "path_count": 22,
+    "group_count": 9,
+    "group_populations": [5, 4, 6, 1, 1, 1, 1, 1, 2],
+    "boundaries_preserved": true
+  },
+  "activated_package_sha256": {
+    "AFFINITY_AND_MAPPING_ANALYSIS.md": "1e825d797ddf5c4a9757bb1984ae63be0bf6b053736fe1bd5a8f932d415d4035",
+    "CANDIDATE_OWNER_SLATE.md": "f6e630e9294c4779f87a0f7734667f565113127769cdaed3ab20b32cd099ce93",
+    "CQF1_PATH_LEDGER.csv": "b56f87731920765279639d528393bae212403fe49ffb5de6c27065ddd4095288",
+    "DECISION_CLASSIFICATION.md": "4f7d8d41b344daafd7f4533dcaaec5dc4859fa44561133181ce744006ed285fd",
+    "DEL02_01_CHILD_PACKAGE_FIDELITY.csv": "100445dd4e2054440776a60e1be36e53d7cdb0bf6cbe94b9e21555f420f1706c",
+    "HANDOFF.md": "9af95a170fa77149fac4cbe5bae7320e5abe357b39434a5c083a200ba80dbc75",
+    "PACKAGE_NOTES/DEL-02-01.md": "0045d350a15c5fae07d0a0958096477c8fc057aedb8227cc433947feb3e6dafa",
+    "PACKAGE_NOTES/DEL-03-03.md": "1ae7d3e728093a853e79240da5eaa91ce6407dc0c67a3b4c10a3cd3c656f6935",
+    "PACKAGE_NOTES/DEL-06-02.md": "cd0b5b206c3ede37fb1eb3130b5a12cfece15ed1a1b498159ece87aed619f299",
+    "PACKAGE_NOTES/DEL-09-04.md": "946d03791ae296397b39c8322dd6c48d6daf21bd65489ba07f24558045cb8a48",
+    "PACKAGE_NOTES/DEL-10-04.md": "9a5e5291e30d3deb9a04992080c406c1499489b1696ee6fd361c4d27385fb59e",
+    "PROPOSED_MAPPING.csv": "a01651fb49883d2f15971cbc8a85c5cff4c5039eeffb2500be6a78fd62378e86",
+    "QA.md": "8cf4c42184a1ccd73577e11180562e2b9a576a9063728f4fd3c410227e92dbfd",
+    "RUN_BASIS.md": "f752abe6d078ec3f485621a9b1f15476db0667642bfb591ed20420d97c2e537d"
+  },
+  "remaining_container_sha256": {
+    "DEL-02-01": "095fdd18e562532a2376e6e55cad894a492926c8902999bb1c6b34fafcbdbd47",
+    "DEL-03-03": "fc283765cc5b233d88438190dada7c73e64ae5f20b676a78f174b3434db56930",
+    "DEL-06-02": "1f5a488c605f7f6ff7019066960f58102b0e65d30ee2abf043b0189a1bfe8ef1",
+    "DEL-09-04": "f733bf5c4cb14e760bc5e0dadc39cdedc1ffabeb536893078df5f6c3a2415382",
+    "DEL-10-04": "17c6847e0475f7baadb95f20f8db2bf8d5db57d7c817cbdfdbacd49f1b2ab518"
+  },
+  "outputs": {
+    "register_sha256": "b4abb3cf9f46f04844293624bef91e7ce3c7a91fdcd3f8be37fb3159cfbb7408",
+    "receipt_ledger_sha256": "796577ee6199bc2563927abf26f7bf35875c6eff2d077c5ed81913f38a0e951c",
+    "next_gate_analysis_sha256": "a0ef7b6a55c0e72176a121f53a0fa574b18df767bc119c2491df8e97bee1390c",
+    "handoff_sha256": "f05343fef8e634a68c2c96dbaca012fbac9505fa1cae7bee4d63361e734205be"
+  },
+  "receipt": {
+    "receipt_id": "Receipt-79",
+    "parent_receipt": "Receipt-78",
+    "contract_gate_outcome": "EXECUTED",
+    "bounded_gate_label": "RULED_CAPTURED_AWAITING_SEPARATE_APPLICATION_GATES"
+  },
+  "procedural_later_application": {
+    "recommendations": [1, 2, 3, 4, 5, 7, 8, 9],
+    "recommendation_6_shared_boundary_annotation": true,
+    "requires_shared_main": true,
+    "requires_separate_w1_release": true,
+    "requires_fresh_v2_backcheck": true,
+    "released_here": false
+  },
+  "preload_physical_lead": {
+    "named": false,
+    "classification": "OWNER_CLASS",
+    "future_options": ["DEL-02-03", "DEL-02-05", "DEL-09-06", "DEFER"],
+    "path_level_application_blocked": true
+  },
+  "d_app_71": {
+    "future_routed": true,
+    "packet_created": false,
+    "register_row_created": false,
+    "preparation_authorized_here": false,
+    "lead_selected": false
+  },
+  "mapping_application": false,
+  "mappings_applied": false,
+  "subject_writes": 0,
+  "derivative_package_writes": 0,
+  "w1_released": false,
+  "evaluation_released": false,
+  "lifecycle_transition": false,
+  "release_or_publication": false,
+  "hard_fence_effect": false,
+  "git_action": false,
+  "waivers": [],
+  "write_containment": "PASS_EXACT_AUTHORIZED_SEVEN_PATHS",
+  "next_gate": "LAND_RULING_CAPTURE_ON_SHARED_MAIN_THEN_SEPARATELY_ROUTE_PROCEDURAL_APPLICATION_AND_FUTURE_D_APP_71_PACKET_PREPARATION"
+}
