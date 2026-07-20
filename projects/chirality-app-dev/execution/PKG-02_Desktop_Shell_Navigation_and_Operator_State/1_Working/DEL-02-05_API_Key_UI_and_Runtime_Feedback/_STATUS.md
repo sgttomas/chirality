@@ -9,6 +9,7 @@
 ## Remaining
 
 ## History
+- 2026-07-20 - D-APP-71 Option 2 applied DEL-02-05 as the physical coordination lead for `frontend/electron/preload.ts`; DEL-02-03 `selectDirectory`, DEL-02-05 `apiKey`, and DEL-09-06 `safeStorage`/security remain distinct semantic boundaries; no source, SOW, dependency, lifecycle, or Approval-SHA change.
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-20 - State set to OPEN (PREPARATION)

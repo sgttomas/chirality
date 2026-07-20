@@ -1,0 +1,124 @@
+{
+  "schema_version": "appdev-dapp71-application-work-graph/v1",
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION",
+  "plan_version": 1,
+  "selection_authority": "HELP_HUMAN",
+  "posture": "SERIALIZED_R5_APPLICATION",
+  "branch": "codex/app-dev-dapp71-application-20260720",
+  "basis_commit": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "shared_main_basis": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "parent_receipt": "Receipt-81",
+  "basis_manifest": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION/BASIS.json",
+    "sha256": "3ef9c6e03fe6d58e1db67227c5826b87426033fef44bae732279b1de82df372e",
+    "strict_json_required": true
+  },
+  "authority": {
+    "decision": "D-APP-71",
+    "selection": "OPTION_2_DEL_02_05_PHYSICAL_LEAD",
+    "lead_meaning": "COORDINATION_ONLY",
+    "retained_semantics": {
+      "DEL-02-03": "selectDirectory",
+      "DEL-02-05": "apiKey",
+      "DEL-09-06": "safeStorage/security"
+    }
+  },
+  "frozen_bindings": {
+    "ruling_sha256": "153de2b988eee9eb99c4c6996cf4045b9e553fccd76cc6c0791f4fc32d71de4e",
+    "packet_sha256": "711cd2e238362819f601c838c807f729e873c4a05ce478a3de4615ce6985f18c",
+    "register_sha256": "af1a6dec6f30e81fc19a1aab4ecf2f99874c35c97e8d83aafadeb18ebcb33920",
+    "preload_sha256": "189b0d30bd8f6daf84862e14cfc3ec68c2c211b5c123283c7108c50c3b750ba0",
+    "receipt_ledger_through_81_sha256": "599e12e2606530be853ff0ac600f7f4377413f4e165e343bcc127ee2bef6f2b1",
+    "del_02_05_status_sha256": "bcb26d3e17e3ac278846a1a3a94ec376b555272ffaff904e9335bdea5fdc548e",
+    "del_09_04_status_sha256": "e571ae16bc62800f6d14ce33630a6d7b1414fdebcccc35b6bb11c0be93c476f3",
+    "prior_derivative": {
+      "root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC",
+      "file_count": 7,
+      "sorted_paths_sha256": "bdbf139da07a5a00ef90bf0b78b00c24bb48e64e4a6f8433026fe5c14f1fa9bd",
+      "sorted_shasum_manifest_sha256": "82d585a2a22aac4a27dbee39461917077f80a7b5b9f4cbff75750332f930df16",
+      "files": {
+        "APPLIED_MAPPING.csv": "87f9de7cb755696ab430e31c74655555f317a78c39388b24c1d589e3df5efdb7",
+        "HANDOFF.md": "388effec0ce63d606d2707dc59ba4a52d68efcff18553bc7043fcd2787c01c94",
+        "MANIFEST.json": "40c1ff5e7a0f9befb1e4b6c728fcebf66777211b059403e27fff92472ed2ee3e",
+        "QA.md": "b93dfd640e34d55d4d7db3c09475a6ffbad40d8428d98c9c0bd664b6569a800b",
+        "REMAINING_DISPOSITION.csv": "001248aa030e4983d2ce5776ab6b05c429ab170967f79c457eedec0de6908c8d",
+        "RETAINED_BOUNDARIES.md": "84e6bf3dff8328342e296a81c28f694d223abbab207db57492627b2cd6bb91a4",
+        "RUN_BASIS.md": "1e8a10e34ab3b5d8d1d9bda03e7302d4b1d579fdf220fb8a7e2ce5d732db19f9"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "R1-DAPP71-APPLICATION",
+      "role": "RECONCILIATION",
+      "parent": "HELP_HUMAN",
+      "function": "apply ruled D-APP-71 Option 2 as documentary physical-coordination leadership while retaining all three semantic boundaries",
+      "depends_on": [],
+      "status": "READY_RELEASED",
+      "accepted": false,
+      "terminal_verdicts": [
+        "ACCEPT",
+        "BLOCK"
+      ],
+      "integration_owner": true,
+      "delegation_allowed": false,
+      "write_paths": [
+        "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP71_3346120C/",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+        "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/R1_DAPP71_PRELOAD_PHYSICAL_LEAD_APPLICATION_2026-07-20.md",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R1_DAPP71_PRELOAD_PHYSICAL_LEAD_APPLICATION_2026-07-20.md",
+        "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION/instances/R1-DAPP71-APPLICATION/RETURN.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION/instances/R1-DAPP71-APPLICATION/HANDOFF.md",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION/instances/R1-DAPP71-APPLICATION/STATUS.json"
+      ],
+      "return": "instances/R1-DAPP71-APPLICATION/RETURN.md",
+      "handoff": "instances/R1-DAPP71-APPLICATION/HANDOFF.md",
+      "status_file": "instances/R1-DAPP71-APPLICATION/STATUS.json",
+      "fan_in_gate": "HELP_HUMAN_R1_DAPP71_APPLICATION_ACCEPTANCE"
+    },
+    {
+      "id": "V1-DAPP71-APPLICATION-BACKCHECK",
+      "role": "EVALUATION",
+      "parent": "HELP_HUMAN",
+      "function": "fresh independent backcheck of the applied derivative, status/Remaining edits, local records, Receipt-82, preservation, and containment",
+      "depends_on": [
+        "HELP_HUMAN_R1_DAPP71_APPLICATION_ACCEPTANCE"
+      ],
+      "status": "PLANNED_HELD_NOT_RELEASED",
+      "accepted": false,
+      "release_requires_versioned_control_update": true
+    },
+    {
+      "id": "G1-DAPP71-PUBLISH",
+      "role": "CHANGE",
+      "parent": "HELP_HUMAN",
+      "function": "Git validation and publication only after accepted V1 and separate release",
+      "depends_on": [
+        "HELP_HUMAN_V1_DAPP71_BACKCHECK_ACCEPTANCE"
+      ],
+      "status": "PLANNED_HELD_NOT_RELEASED",
+      "accepted": false,
+      "release_requires_versioned_control_update": true
+    }
+  ],
+  "fan_in_gates": {
+    "R1_to_V1": "HELP_HUMAN independently validates terminal schema, exact hashes, application accounting, retained boundaries, status and Remaining delta, Receipt-82, validation evidence, and write containment before any V1 release",
+    "V1_to_G1": "a separately released fresh EVALUATION must return ACCEPT and be accepted by HELP_HUMAN before any CHANGE release"
+  },
+  "invariants": {
+    "preload_or_runtime_source_writes": false,
+    "scope_of_work_writes": false,
+    "dependency_writes": false,
+    "lifecycle_transition": false,
+    "release_or_publication_effect": false,
+    "hard_fence_crossing": false,
+    "waiver": false,
+    "prior_derivative_mutable": false,
+    "git_effect": false,
+    "physical_lead_transfers_semantics": false
+  },
+  "waivers": [],
+  "dispatch_gate": "R1_ONLY_RELEASED"
+}

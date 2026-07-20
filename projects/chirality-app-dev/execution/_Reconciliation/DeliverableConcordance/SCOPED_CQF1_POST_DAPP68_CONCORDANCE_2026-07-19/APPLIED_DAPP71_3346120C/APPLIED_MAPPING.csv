@@ -1,0 +1,2 @@
+"Path","Group","PhysicalOrPrimaryOwner","RuledTreatment","RetainedBoundaries","ApplicationStatus","Authority","RulingRecord","SourceSHA256"
+"projects/chirality-app-dev/frontend/electron/preload.ts","6","DEL-02-05","Physical integration lead (coordination only)","DEL-02-03 selectDirectory; DEL-02-05 apiKey; DEL-09-06 safeStorage/security","APPLIED_PHYSICAL_COORDINATION_LEAD","D-APP-71 Option 2","projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-71_RULING_2026-07-20.md","189b0d30bd8f6daf84862e14cfc3ec68c2c211b5c123283c7108c50c3b750ba0"

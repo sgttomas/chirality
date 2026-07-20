@@ -1,0 +1,58 @@
+{
+  "schema_version": "appdev-dapp71-g1-status/v1",
+  "instance_id": "G1-DAPP71-PUBLISH",
+  "role": "CHANGE",
+  "parent": "HELP_HUMAN",
+  "status": "READY_RELEASED",
+  "verdict": null,
+  "accepted": false,
+  "terminal": false,
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION",
+  "branch": "codex/app-dev-dapp71-application-20260720",
+  "basis_commit": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "integration_branch": "main",
+  "release_update_sha256": "0f5c9e81dc31c82f53ce7c87e31f9d31dcda0cdcbfd9270457d225d8665fee55",
+  "authority": "USER_STANDING_SESSION_APPROVAL_SELF_MERGE_NORMAL_MERGE_COMMIT",
+  "frozen_pre_release_population": {
+    "path_count": 30,
+    "modified": 3,
+    "untracked_non_ignored": 27,
+    "staged": 0,
+    "sorted_paths_sha256": "cdf529b2034c3474028a2f8e62ea7ece861523a8b0ee813fff130a1f8c286710",
+    "sorted_content_manifest_sha256": "4d20cedd3edd8bd7982eeb6a1aa8779c69a545ce976dc658ce925286f23d83eb",
+    "ignored_or_generated_publish_paths": 0
+  },
+  "v1_terminal": {
+    "return_sha256": "845a9fff090b1e480b1acd3670ed040f6079bad2690768b5757b1ba52ed5ec9a",
+    "handoff_sha256": "356a2d6a31089ddb62ea09b15022346b10ed82ddbedff96fc7524ad471835086",
+    "status_sha256": "3904c445bd6e2adca6452fbe3106d1f8c530c69e7293ef43329626849b35dd89",
+    "evaluation_manifest_sha256": "e26270e685857ba55af05a7f369712ea3dcde9e4def5957e122fada48debef85"
+  },
+  "final_publication_population": {
+    "path_count": 33,
+    "subject_paths": 30,
+    "v3_release_control_paths": 3
+  },
+  "allowed_actions": [
+    "FETCH_AND_RECHECK_ORIGIN_MAIN",
+    "STAGE_EXACT_FROZEN_33_PATHS",
+    "COMMIT_CURRENT_BRANCH",
+    "PUSH_CURRENT_BRANCH",
+    "CREATE_READY_PR_TO_MAIN",
+    "WAIT_ALL_REQUIRED_CHECKS",
+    "MERGE_GREEN_CONFLICT_SAFE_PR_WITH_NORMAL_MERGE_COMMIT",
+    "VERIFY_REMOTE_MAIN_AND_MERGE_PARENTS"
+  ],
+  "forbidden_actions": [
+    "CONTENT_REPAIR",
+    "NEW_RECEIPT",
+    "SQUASH",
+    "REBASE",
+    "FORCE_PUSH",
+    "BRANCH_DELETE",
+    "CLEANUP",
+    "HISTORY_REWRITE"
+  ],
+  "waivers": [],
+  "next_action": "HELP_HUMAN_DISPATCH_EXACTLY_ONE_G1_CHANGE_INSTANCE"
+}

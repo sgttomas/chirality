@@ -1,0 +1,80 @@
+{
+  "schema_version": "appdev-dapp71-instance-status/v1",
+  "instance_id": "R1-DAPP71-APPLICATION",
+  "role": "RECONCILIATION",
+  "parent": "HELP_HUMAN",
+  "status": "ACCEPT",
+  "verdict": "ACCEPT",
+  "accepted": false,
+  "terminal": true,
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION",
+  "basis_commit": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "basis_manifest_sha256": "3ef9c6e03fe6d58e1db67227c5826b87426033fef44bae732279b1de82df372e",
+  "authority": "D-APP-71 Option 2 — DEL-02-05 physical lead (coordination only)",
+  "phase": "R5_AUTHORIZED_DOCUMENTARY_APPLICATION",
+  "integration_owner": true,
+  "delegated": false,
+  "outputs": {
+    "derivative_root": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP71_3346120C",
+    "derivative_sha256": {
+      "RUN_BASIS.md": "1af232efc520cefd4c9537678b0a179c4ee8838d4e9b444fe957fa4ba21e84db",
+      "APPLIED_MAPPING.csv": "e22af22f9886a660da74e851511f6d0d9eaca0d2560ca85c4da6e5b157e87805",
+      "RETAINED_BOUNDARIES.md": "be28c460de1bacdb21f24e00318f02de01335589396a291672a5e4a7d68a5e44",
+      "REMAINING_DISPOSITION.csv": "f64a0b84fe9c3c686b9ee8c23b6a8ebbaecd369b5aa527cfe6744512c1be9d66",
+      "QA.md": "d58856e5075f950e0221859b2e15dff87a3d0f4b90c0f93320e33f14efa4b61f",
+      "HANDOFF.md": "4986335fd79e8fab5acdf060f2ac9552bc2a0a715df30da6e504c2e809321255",
+      "MANIFEST.json": "3f8d5cd16d932dce37dee2b73df1079f15eca843d1f22d2ca98b6f23e7a54c21"
+    },
+    "status_after_sha256": {
+      "DEL-02-05": "18b67eb473d012d6634804198c4e2c3e3b8d89b52970480836ee9373f9f887ac",
+      "DEL-09-04": "d8cc8a536141f4cba2805d575ad1bcb873c825c07fed9d0fb049b07589c69472"
+    },
+    "local_record_sha256": {
+      "DEL-02-05": "cc9c5a220561989e68068a4f1acefcce5effa1dde6e80e383bc0cf1907105e20",
+      "DEL-09-04": "d057870537410318ace07c7788ad87f2621ceb51da1498a17344877b078d0561"
+    },
+    "receipt_82_ledger_sha256": "8eabef4042ee83e44403fffead019748109c76c66013c050f45b431bcfb0b520",
+    "return_sha256": "f7f2578dfb9fdd0cd15a5eca7141205d9fd5491b92b5494a1337a9a43bfa401c",
+    "handoff_sha256": "57402fe7be6a2ebb46a55366c61c9e614c09d78d543b64c89c48ce47151f7ac3"
+  },
+  "application": {
+    "mapped_paths": 1,
+    "physical_coordination_leads": 1,
+    "retained_semantic_boundaries": 3,
+    "status_history_edits": 2,
+    "local_records_added": 2,
+    "closed_d_app_71_residuals": 1,
+    "byte_preserved_non_cqf1_remaining_items": 1,
+    "source_changes": 0,
+    "sow_changes": 0,
+    "dependency_changes": 0,
+    "lifecycle_changes": 0,
+    "release_changes": 0
+  },
+  "immutability": {
+    "prior_derivative_file_count": 7,
+    "prior_derivative_sorted_paths_sha256": "bdbf139da07a5a00ef90bf0b78b00c24bb48e64e4a6f8433026fe5c14f1fa9bd",
+    "prior_derivative_sorted_manifest_sha256": "82d585a2a22aac4a27dbee39461917077f80a7b5b9f4cbff75750332f930df16",
+    "preload_sha256": "189b0d30bd8f6daf84862e14cfc3ec68c2c211b5c123283c7108c50c3b750ba0",
+    "source_sow_dependency_memory_decision_lifecycle_release_git_unchanged": true
+  },
+  "validation": {
+    "strict_json": "PASS",
+    "basis_hashes_and_frozen_trees": "PASS",
+    "csv_schemas_values_order": "PASS",
+    "status_remaining_and_local_records": "PASS",
+    "prior_and_new_derivative_populations": "PASS",
+    "receipt_validator": "PASS",
+    "authority_corpus_v9": "PASS_NO_DRIFT",
+    "repository_self_check": "PASS_3_REVIEW_6_WARN_BASELINE",
+    "diff_and_no_index_hygiene": "PASS",
+    "tracked_untracked_ignored_containment": "PASS",
+    "frontend_gates": "SKIPPED_RUNTIME_SOURCE_FROZEN_UNCHANGED",
+    "findings": [],
+    "unknowns": [],
+    "conflicts": [],
+    "reruns": []
+  },
+  "waivers": [],
+  "next_action": "HELP_HUMAN_VALIDATE_R1_FAN_IN_THEN_SEPARATELY_RELEASE_FRESH_V1_EVALUATION"
+}

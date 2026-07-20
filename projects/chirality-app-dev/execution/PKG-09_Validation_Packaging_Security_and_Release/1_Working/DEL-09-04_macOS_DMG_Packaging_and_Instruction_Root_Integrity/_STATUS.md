@@ -7,10 +7,10 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- (gated: D-APP-71) D-APP-70's shared implementation boundary for `frontend/electron/preload.ts` is applied across DEL-02-03 `selectDirectory`, DEL-02-05 `apiKey`, and DEL-09-06 `safeStorage`/security; the physical integration lead remains to be selected among DEL-02-03, DEL-02-05, DEL-09-06, or deferral. No path-level owner is applied and no source repair is authorized.
 - Packaging/release evidence for DEL-09-04's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged-SDK proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
 
 ## History
+- 2026-07-20 - D-APP-71 Option 2 closed the preload physical-lead residual by applying DEL-02-05 as coordination-only lead; DEL-09-06 retains `safeStorage`/security semantics, the packaging/release Remaining item is byte-preserved, and no source, SOW, dependency, lifecycle, or Approval-SHA change occurred.
 - 2026-07-20 - D-APP-70 Option A closed the `chirality-window.d.ts`, scripted SDK proof, and contract-lint CQ-F1 residuals and applied only the shared-boundary annotation for `preload.ts`; its unnamed physical lead remains the sole CQ-F1 residual gated by D-APP-71; unrelated packaging/release Remaining is unchanged; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2)

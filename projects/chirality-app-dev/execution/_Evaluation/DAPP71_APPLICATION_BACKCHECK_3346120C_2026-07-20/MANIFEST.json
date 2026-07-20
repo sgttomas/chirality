@@ -1,0 +1,51 @@
+{
+  "schema_version": "appdev-dapp71-application-evaluation-manifest/v1",
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION",
+  "instance_id": "V1-DAPP71-APPLICATION-BACKCHECK",
+  "verdict": "ACCEPT",
+  "basis_commit": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "basis_manifest_sha256": "3ef9c6e03fe6d58e1db67227c5826b87426033fef44bae732279b1de82df372e",
+  "release_update_sha256": "324bdc82a90ac34122768cb176255803b58599d3db34095ac0c927e6053b0a68",
+  "frozen_subject": {
+    "r1_return_sha256": "f7f2578dfb9fdd0cd15a5eca7141205d9fd5491b92b5494a1337a9a43bfa401c",
+    "r1_handoff_sha256": "57402fe7be6a2ebb46a55366c61c9e614c09d78d543b64c89c48ce47151f7ac3",
+    "r1_status_sha256": "2ea858329fdf7f3bfb7631b1682b5cd6775c81e6907ded306a4e0c0792cad45c",
+    "applied_manifest_sha256": "3f8d5cd16d932dce37dee2b73df1079f15eca843d1f22d2ca98b6f23e7a54c21",
+    "receipt_82_ledger_sha256": "8eabef4042ee83e44403fffead019748109c76c66013c050f45b431bcfb0b520"
+  },
+  "evaluation_files": {
+    "EVALUATION_PROTOCOL.md": "0c1d95f24cffd2f1a20e12a5ac3032720c9226debac82a7ded97a7e0ae273b3d",
+    "FINDINGS.csv": "621f3f6665cd97a573058112de8c4848342470b1b289f24e48ff5f4511bbc97c",
+    "EVALUATION_REPORT.md": "a90d61d4d01794de64fce0f625668bbe6b09b541ef8f94ae3f8f0ec925158070",
+    "HANDOFF.md": "b2de03eeae3b3a9fd72122bdf3db7d8982a338f6e2f8447eb89997d7f9071004"
+  },
+  "hash_topology": {
+    "manifest_self_hashed": false,
+    "instance_outputs": "DOWNSTREAM_TERMINAL_CHAIN",
+    "rationale": "RETURN and HANDOFF bind this manifest; terminal STATUS binds those outputs, avoiding circular or self-referential hashes."
+  },
+  "validation": {
+    "direct_file_hashes": "PASS_20_OF_20",
+    "frozen_trees": "PASS_3_OF_3",
+    "old_and_new_derivative_files": "PASS_7_AND_7",
+    "status_transformations": "PASS_2_OF_2",
+    "local_record_additions": "PASS_2_OF_2",
+    "receipt_validator": "PASS",
+    "authority_corpus_v9": "PASS_NO_DRIFT_8_OF_8",
+    "repository_self_check": "PASS_EXISTING_3_REVIEW_6_WARN",
+    "diff_and_no_index_hygiene": "PASS",
+    "write_containment": "PASS",
+    "frontend_gates": "SKIPPED_RUNTIME_SOURCE_FROZEN_UNCHANGED"
+  },
+  "findings": {
+    "total": 0,
+    "blockers": 0,
+    "unknowns": 0,
+    "conflicts": 0,
+    "waivers": 0,
+    "reruns": 0
+  },
+  "subject_read_only": true,
+  "delegated": false,
+  "waivers": []
+}

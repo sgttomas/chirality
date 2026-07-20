@@ -1,0 +1,51 @@
+{
+  "schema_version": "cqf1-dapp71-applied-derivative/v1",
+  "run_id": "APPDEV_LOOP_2026-07-20_DAPP71_APPLICATION",
+  "instance_id": "R1-DAPP71-APPLICATION",
+  "verdict": "ACCEPT",
+  "basis_commit": "3346120cb7c765aa7a230ee4c579ecd14f2cb022",
+  "basis_manifest_sha256": "3ef9c6e03fe6d58e1db67227c5826b87426033fef44bae732279b1de82df372e",
+  "upstream_derivative": "execution/_Reconciliation/DeliverableConcordance/SCOPED_CQF1_POST_DAPP68_CONCORDANCE_2026-07-19/APPLIED_DAPP70_36A422AC/",
+  "d_app_71_ruling_sha256": "153de2b988eee9eb99c4c6996cf4045b9e553fccd76cc6c0791f4fc32d71de4e",
+  "accounting": {
+    "mapped_paths": 1,
+    "physical_coordination_leads": 1,
+    "retained_semantic_boundaries": 3,
+    "status_history_edits": 2,
+    "local_records_added": 2,
+    "closed_d_app_71_residuals": 1,
+    "byte_preserved_non_cqf1_remaining_items": 1,
+    "source_changes": 0,
+    "sow_changes": 0,
+    "dependency_changes": 0,
+    "lifecycle_changes": 0,
+    "release_changes": 0
+  },
+  "files": {
+    "RUN_BASIS.md": "1af232efc520cefd4c9537678b0a179c4ee8838d4e9b444fe957fa4ba21e84db",
+    "APPLIED_MAPPING.csv": "e22af22f9886a660da74e851511f6d0d9eaca0d2560ca85c4da6e5b157e87805",
+    "RETAINED_BOUNDARIES.md": "be28c460de1bacdb21f24e00318f02de01335589396a291672a5e4a7d68a5e44",
+    "REMAINING_DISPOSITION.csv": "f64a0b84fe9c3c686b9ee8c23b6a8ebbaecd369b5aa527cfe6744512c1be9d66",
+    "QA.md": "d58856e5075f950e0221859b2e15dff87a3d0f4b90c0f93320e33f14efa4b61f",
+    "HANDOFF.md": "4986335fd79e8fab5acdf060f2ac9552bc2a0a715df30da6e504c2e809321255"
+  },
+  "status_after_sha256": {
+    "DEL-02-05": "18b67eb473d012d6634804198c4e2c3e3b8d89b52970480836ee9373f9f887ac",
+    "DEL-09-04": "d8cc8a536141f4cba2805d575ad1bcb873c825c07fed9d0fb049b07589c69472"
+  },
+  "local_record_sha256": {
+    "DEL-02-05": "cc9c5a220561989e68068a4f1acefcce5effa1dde6e80e383bc0cf1907105e20",
+    "DEL-09-04": "d057870537410318ace07c7788ad87f2621ceb51da1498a17344877b078d0561"
+  },
+  "receipt_82": {
+    "ledger_sha256": "8eabef4042ee83e44403fffead019748109c76c66013c050f45b431bcfb0b520",
+    "parent": "Receipt-81",
+    "examined_through": "3346120cb7c765aa7a230ee4c579ecd14f2cb022"
+  },
+  "retained_semantics": {
+    "DEL-02-03": "selectDirectory",
+    "DEL-02-05": "apiKey",
+    "DEL-09-06": "safeStorage/security"
+  },
+  "waivers": []
+}
