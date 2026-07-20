@@ -2360,3 +2360,14 @@
   - Checks: receipt validator pass before append; exact V1/child/package hash checks; 22-row owner-class/proposal and nine-group partition checks; packet 22-path/9-recommendation/alternative/boundary coverage; register append-only cursor and diff-hygiene checks.
   - Model-Attribution: Codex RECONCILIATION under HELP_HUMAN; no delegation or subject investigation.
   - Gate-Outcome: `AWAITING_OWNER` — D-APP-70 is `AWAITING_RULING`; all scoped rows remain unaccepted proposals, and silence selects nothing; no owner selection, mapping application, repair, W1, lifecycle, release, publication, hard-fence crossing, or Git action occurred.
+
+- **2026-07-20 — Receipt 79** (D-APP-70 Option-A owner ruling captured).
+  - Receipt-ID: `Receipt-79`
+  - Examined-Through: `9783e9ac6108dfd8738f0815fe8271af464dcaf1`
+  - Parent-Receipt: `Receipt-78`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD (2026-07-20, Ryan Tufts, in-session): `APPROVE: D-APP-70 Option A`; exact UTF-8/no-final-LF SHA-256 `2cadfff68d2aafc381cd82178d635a706587d07f1dfd6b9888b6c547754f1014`; governed home is the separate D-APP-70 ruling record.
+  - Pointers: ruling `execution/_Coordination/_DECISIONS/D-APP-70_RULING_2026-07-20.md` SHA-256 `1428294b9af34a97b19b7284860a5fdefc7fdb6157cce8c9516f4b54b064638a`; packet `execution/_Coordination/_DECISIONS/D-APP-70_PACKET_CQF1_CANDIDATE_OWNER_RULING_2026-07-19.md` SHA-256 `94b01c68e0611c6f2b0a13f6e1087830876d62aab4bfcda2c386aceb721f4b16`; accepted R2 handoff/return/status SHA-256 `2bbbed251da9e1ef6889e9665bca5473e8d0994261bf33f03160d7ba4003fb22` / `686e2432bdaefe210481e6df242408c5e281952b3ae4a25f6fb48a81e5d803de` / `330f051d32f7a06fc7a81c2e82ebe21b3acbc4769c39f90baa5fc5ff88e9d12b`; accepted V1 return/status SHA-256 `28fd98d46a160016d6fd875ea0281c07ee85971054b4e7de45fbe9af83b62936` / `9f71e6d7604439f69d94c78cea66bbe0f1feb2924b06adfcc37e0b25e3274460`; unchanged activated package and its complete hash map remain bound through the released R3 status.
+  - Stale-Map-Delta: none — authority corpus v9, source/Remaining, accepted V1/R2, and the unchanged activated package reproduced at the live basis.
+  - Checks: exact owner-text hash; packet/ruling path-and-boundary coverage; register D-APP-70-row-only transition; receipt validator and authority-corpus status before append; package/source/Remaining hashes; containment and diff hygiene.
+  - Model-Attribution: Codex RECONCILIATION under HELP_HUMAN; no delegation or mapping/subject investigation.
+  - Gate-Outcome: `EXECUTED` — `RULED_CAPTURED_AWAITING_SEPARATE_APPLICATION_GATES`: Option A is recorded in its governed ruling home; procedural application remains held for a later post-shared-main release, the preload physical lead remains unnamed owner-class, and future D-APP-71 packet preparation is routed but not created or authorized here.

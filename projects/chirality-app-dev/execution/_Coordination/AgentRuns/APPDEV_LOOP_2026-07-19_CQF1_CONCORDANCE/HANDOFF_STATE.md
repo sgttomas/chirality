@@ -415,3 +415,36 @@ publication, hard-fence effect, and Git action remain blocked. A later
 explicit owner ruling must be captured verbatim in an additive ruling record,
 then HELP_HUMAN must release a separate exact repair brief. Plan v1 and
 `WORK_GRAPH.json` remain unchanged. Waivers: none. See `updates/v13.md`.
+
+## Live update v14 — D-APP-70 Option-A owner act received; capture released
+
+At exact shared-main basis `9783e9ac6108dfd8738f0815fe8271af464dcaf1`,
+the owner supplied `APPROVE: D-APP-70 Option A` (canonical SHA-256
+`2cadfff68d2aafc381cd82178d635a706587d07f1dfd6b9888b6c547754f1014`).
+Exact preflight reproduces Receipt-78, the packet, R2, accepted V1 and both
+children, all 14 package files, 22 source paths, nine groups, five Remaining
+containers, corpus v9, and the clean receipt cursor.
+
+Exactly one RECONCILIATION instance,
+`instances/R3-DAPP70-RULING-CAPTURE/`, is released under
+`amendments/R3/v1.md`. It may add only the separate D-APP-70 ruling record,
+update the existing register row to `RULED (Option A)`, append Receipt-79,
+and write its own next-gate analysis/handoff/return/status. It must quote the
+owner verbatim, preserve all recommendation boundaries, and distinguish
+selection from later application.
+
+Recommendation 6 is expressly unresolved at the physical-lead layer. Option
+A accepts the shared `preload.ts` implementation boundary across DEL-02-03,
+DEL-02-05, and DEL-09-06; it does not choose a physical integration lead.
+Preload repair/path-level ownership application remains owner-class. The next
+owner route is a decision-ready D-APP-71 proposal packet; R3 may route that
+work but may not create or register the packet.
+
+After the ruling capture is committed and merged to shared main, exact
+application of recommendations 1–5 and 7–9, plus only the already-selected
+recommendation-6 shared-boundary annotation, is procedural under D-APP-70 and
+D-APP-60/D-APP-64. It still requires a separately versioned W1 brief, exact
+write targets, integration ownership, and V2 backcheck. No mapping
+application, package/subject repair, W1, EVALUATION, lifecycle, release,
+publication, hard-fence, or Git action is released here. Plan v1 and
+`WORK_GRAPH.json` remain unchanged. Waivers: none. See `updates/v14.md`.
