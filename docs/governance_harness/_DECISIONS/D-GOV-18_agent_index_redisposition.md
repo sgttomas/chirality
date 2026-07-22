@@ -1,20 +1,20 @@
 # D-GOV-18 — Agent-index re-disposition (ORCHESTRATOR, EVALUATION, CHANGE, control-loop functions)
 
-Status:       PROPOSED — AWAITING OWNER RULING
-HumanRuling:  (none — proposed; no owner verbatim ruling exists yet)
-Ruling SHA:   TBD
+Status:       RULED
+HumanRuling:  "I APPROVE D-GOV-18 items 1–8 at commit 9a900b3b76dda415cc4d41185350eb2e5a436302" (owner, 2026-07-21)
+Ruling SHA:   9a900b3b76dda415cc4d41185350eb2e5a436302
 Date:         2026-07-21
 FramedBy:     D-GOV-11 runtime role ownership and Agent-2 construction forms; owner in-session direction, 2026-07-21; run `AGENT-INDEX-REDISPOSITION-20260721`
 AcceptedBasis: `main@0c066652cd527eb1559f715e914262d2bda42602`
 
 ## Status note
 
-This record is PROPOSED. The eight ruling items below transcribe owner
-direction given in-session 2026-07-21 as proposed disposition text framed by
-D-GOV-11. No item has operative effect before the owner's verbatim ruling and
-SHA-binding. Nothing here modifies a live role, retires machinery, or executes
-a lifecycle act. The matrix and register annotations added with this record
-are explicitly marked as taking effect only on ruling.
+This record is RULED. The eight items below were proposed at commit
+`9a900b3b76dda415cc4d41185350eb2e5a436302` and approved by the owner's
+verbatim ruling on 2026-07-21. The ruling itself modifies no live role,
+retires no machinery, and executes no lifecycle act; implementation applies
+only the ruled items' enumerated edits through the Item 8 PR sequence, each
+merge separately human-approved.
 
 ## Decision to make
 
@@ -124,25 +124,22 @@ is the sole Git closeout. The human approves every merge.
 - The App Dev follow-up (Item 6) is offer-only through the App Dev project's
   own instruments; this ruling writes no app-dev surface.
 
-## Proposed ruling for owner signature
+## Recorded ruling
 
-The owner's verbatim ruling is not yet given. On approval, the owner supplies a
-signable sentence of the form:
-
-> I APPROVE D-GOV-18 items 1–8 at commit <SHA-TBD>.
-
-Placeholders until the owner rules:
-
-- Ruling SHA: TBD
-- Status: PROPOSED — AWAITING OWNER RULING
+The owner ruled in-session on 2026-07-21, binding to the proposal commit:
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-(awaiting owner ruling — do not fabricate)
+I APPROVE D-GOV-18 items 1–8 at commit 9a900b3b76dda415cc4d41185350eb2e5a436302
 <!-- END OWNER RULING VERBATIM -->
 
-## Supersession (effective on ruling)
+- Ruling SHA: `9a900b3b76dda415cc4d41185350eb2e5a436302` (the PROPOSED-state
+  publication commit on branch `codex/agent-index-pr0-dgov18`, basis
+  `main@0c066652cd527eb1559f715e914262d2bda42602`)
+- Recorded by: HELP_HUMAN, run `AGENT-INDEX-REDISPOSITION-20260721`
 
-On ruling, this record supersedes the D-GOV-11 agent-disposition-matrix rows
+## Supersession (effective)
+
+This record supersedes the D-GOV-11 agent-disposition-matrix rows
 "ORCHESTRATOR | RETAIN / EXPAND" (→ PROJECT_SETUP, RENAME / NARROW) and
 "EVALUATION | EXPAND" (→ SLIM-TO-SHELL plus `evaluation-protocol` skill), and
 records the concrete first CHANGE slim tranche of the

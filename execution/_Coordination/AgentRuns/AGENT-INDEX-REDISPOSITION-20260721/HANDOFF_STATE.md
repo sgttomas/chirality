@@ -1,17 +1,17 @@
 # Agent-Index Re-disposition Handoff State
 
-Status: `AGENT-INDEX-REDISPOSITION_PR0_DRAFTED_AWAITING_OWNER_RULING`
+Status: `AGENT-INDEX-REDISPOSITION_DGOV18_RULED_PR0_AWAITING_MERGE`
 Run: `AGENT-INDEX-REDISPOSITION-20260721`
 
 ## Current status
 
-PR-0 is drafted. The D-GOV-18 decision record exists as
-`docs/governance_harness/_DECISIONS/D-GOV-18_agent_index_redisposition.md` with
-Status `PROPOSED — AWAITING OWNER RULING`; the register carries one PROPOSED
-row; the disposition matrix ORCHESTRATOR and EVALUATION rows are annotated as
-superseded-on-ruling and the CHANGE row notes the D-GOV-18 slim tranche. No
-role file, validator, skill, or lifecycle state has changed. No owner ruling,
-approval, or SHA-binding has been recorded or fabricated.
+D-GOV-18 is RULED. The owner ruled verbatim on 2026-07-21:
+"I APPROVE D-GOV-18 items 1–8 at commit
+9a900b3b76dda415cc4d41185350eb2e5a436302" (the PROPOSED-state publication
+commit on `codex/agent-index-pr0-dgov18`). The decision record, register row,
+and disposition-matrix annotations are updated to RULED/effective. No role
+file, validator, skill, or lifecycle state has changed; implementation lands
+via the Item 8 PR sequence (PR-1..PR-4), each merge separately human-approved.
 
 ## Accepted upstream state
 
@@ -28,17 +28,19 @@ record; on any disagreement the decision record governs.
 
 ## Closure verdict
 
-PR-0 is not closed. Files were written, but closure requires the owner's
-verbatim ruling and its SHA-binding. Until then the record is PROPOSED and no
-downstream PR (PR-1..PR-4) may execute.
+The ruling gate is closed: D-GOV-18 is RULED and SHA-bound to
+`9a900b3b76dda415cc4d41185350eb2e5a436302`. PR-0 closure completes when the
+human approves the PR-0 merge to `main`. PR-1..PR-4 execute only after PR-0
+merges, sequentially, each from the then-current `main`.
 
 ## Blockers
 
-- **Owner ruling of D-GOV-18** (primary blocker). No item has operative effect
-  before it. The owner supplies a signable sentence of the form
-  "I APPROVE D-GOV-18 items 1–8 at commit <SHA-TBD>." Ruling SHA: TBD.
-- **PR-2 additionally blocked** by closure of the App Dev in-flight EVALUATION
-  fan-in.
+- **PR-0 merge approval** (human act; CHANGE executes the approved merge).
+- **PR-2 additionally gated** on the App Dev held EVALUATION dispatch:
+  evidence as of 2026-07-21 (App Dev Receipt 85, 2026-07-20) records "fresh V3
+  EVALUATION and final publication remain held" — held-not-running is the safe
+  case; PR-2 lands shell + skill in one atomic commit, leaving no
+  discoverability window. Re-verify the hold immediately before PR-2 opens.
 
 ## Coordination handoff notice (to the App Dev project loop)
 
@@ -54,13 +56,12 @@ through its own instruments.
 
 ## Rerun requirements
 
-- If the accepted basis (`main@0c066652cd…`) changes before the owner rules,
-  re-derive the D-GOV-18 `AcceptedBasis` line and re-verify the cited file/line
-  references before publishing the ruling.
-- On ruling, CHANGE publishes and SHA-binds; the Ruling SHA backfills into the
+- The ruling is SHA-bound (done 2026-07-21); the Ruling SHA is recorded in the
   D-GOV-18 record, the register row, and this handoff.
 - Any validator or evidence surface whose basis changes before PR-1..PR-4
   executes must be rerun.
+- If `main` moves before a PR opens, that PR branches from the new `main` and
+  re-verifies its cited file/line references.
 
 ## Recorded follow-on candidates (not in this run)
 
