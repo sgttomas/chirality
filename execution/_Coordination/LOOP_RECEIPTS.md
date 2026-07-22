@@ -497,3 +497,28 @@
   (renamed/narrowed), EVALUATION (thin shell + skill), CHANGE (slimmed),
   REVIEW/SCOPE_CHANGE (ruled SAFE), Function 5 owned by HELPS_HUMANS. No
   lifecycle act, specialist removal, or historical rewrite occurred.
+
+### Receipt 30 — 2026-07-22 — Deviation corrections directed; follow-ons extended
+
+- Owner direction, verbatim: "Apply the branch protection and fold in #2 plus
+  the flaky-test note into the existing follow-on list."
+- Branch protection: a required-status-checks rule on `main` (contexts
+  `harness` and `Harness pre-merge`, enforce_admins true) was directed;
+  application from the executing session was blocked by local tool
+  permissions, so the exact `gh api` command was returned to the owner for
+  direct application. Until it is applied, red-check merges remain
+  mechanically possible and are barred only by the recorded
+  explicit-verdict-gate discipline.
+- Follow-on list (Receipt 29) extended with two items: (a) a one-line
+  standing rule in `agents/AGENT_CHANGE.md` merge semantics — inspect check
+  verdicts explicitly before executing any merge; never chain a merge behind
+  a watch — a governed agent-instruction edit for a future small tranche;
+  (b) App Dev `frontend/src/__tests__/lib/managed-delegation.test.ts`
+  ("atomically reserves concurrent sibling write targets") is
+  concurrency-flaky under CI load and should be deflaked by the App Dev loop,
+  especially once required status checks make every flake a merge blocker.
+- Discoverability note: root LOOP_INIT step 2 mandates reading the newest
+  LOOP_RECEIPTS.md entry each session, so this list is guaranteed surfaced to
+  the next root loop. The App Dev items reach the App Dev loop by root relay
+  (Agent 0 notice routing), not by App Dev's own bootstrap; the root loop's
+  first return should carry them forward until the App Dev loop records them.
