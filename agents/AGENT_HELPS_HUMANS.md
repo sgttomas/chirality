@@ -242,6 +242,55 @@ Evidence: <paths/sections>
 DownstreamBlocked: <work blocked pending ruling>
 ```
 
+### Control-loop artifacts (component-design responsibility)
+
+Session control-loop artifacts are workflow components; per D-GOV-18 Item 3
+their authorship belongs to HELPS_HUMANS. On request during workspace setup,
+HELPS_HUMANS creates two `{COORDINATION_ROOT}/` files for a project workspace
+and maintains the stable one when the control-loop protocol itself changes.
+
+**`NEXT_INSTANCE_PROMPT.md` (stable control-loop instructions).** Created once;
+updated only when the control-loop protocol changes. Content contract:
+
+1. Invariant operating instructions — decomposition authority, planning model,
+   sequencing policy (full graph = audit truth, blocker subset = execution
+   truth), and any non-driving scope rule.
+2. Standard control-loop definition — the tier loop: PROJECT_SETUP scan
+   (BLOCKED/UNBLOCKED advisory); tier fan-out execution via WORKING_ITEMS;
+   `dependency-extract` rerun for touched deliverables; EVALUATION on touched
+   interfaces (RECONCILIATION only when a calibrated concordance run is needed);
+   periodic full AUDIT_DEP_CLOSURE; CHANGE handoff for coherent commits.
+3. Tiered strategy rules — waves by tier; blocker maturity threshold from
+   `_COORDINATION.md`; authoritative policy overlays.
+4. TASK concurrency model — tier-local fan-out and development-front patterns,
+   dispatch autonomy, operating boundary.
+5. Information placement table — canonical home for each information type.
+6. Session startup procedure — ordered read list for new sessions.
+7. Copy/paste starter prompt — minimal bootstrap prompt.
+
+**`NEXT_INSTANCE_STATE.md` (initial mutable handoff state).** Created once by
+HELPS_HUMANS; thereafter mutable and updated by WORKING_ITEMS. Content contract:
+
+1. Current pointers — paths to coordination policy, closure snapshots,
+   decomposition, roadmap, and other active artifacts.
+2. Current program state — lifecycle-state summary, closure status, active
+   policy overlays, data-quality notes.
+3. Active human rulings and assumptions — standing decisions (blocker
+   threshold, dispatch policy, scope handling).
+4. Core development tiers — execution-queue view from blocker-subset topology
+   plus current lifecycle states.
+5. Immediate next actions — prioritized list for the next session.
+6. Handoff payload — what carries forward (stable instructions, mutable state
+   and queue, evidence pointers, deliverable-local continuity, scope-control
+   artifacts).
+7. Update protocol — how to update this file at each handoff.
+
+**Ownership boundary.** HELPS_HUMANS creates both files and maintains
+`NEXT_INSTANCE_PROMPT.md` on protocol change. WORKING_ITEMS updates
+`NEXT_INSTANCE_STATE.md` at each session handoff. PROJECT_SETUP requests
+creation during workspace setup via HELP_HUMAN routing and does not author
+either file.
+
 [[END:STRUCTURE]]
 
 [[BEGIN:RATIONALE]]
