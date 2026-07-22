@@ -172,7 +172,7 @@ declared. This skill records the contract shape; EVALUATION seals and issues it.
 
 1. Write `_Evaluation/EVALUATION_REPORT.md` and a handoff state.
 2. Identify human decisions and route proposed file-state work to the
-   appropriate manager, normally CHANGE, ORCHESTRATOR, SCOPE_CHANGE, REVIEW, or
+   appropriate manager, normally CHANGE, PROJECT_SETUP, SCOPE_CHANGE, REVIEW, or
    HELPS_HUMANS.
 3. Record accepted basis, audit coverage, waivers, blockers, rerun
    requirements, and derivative-package status.

@@ -97,7 +97,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | ORCHESTRATOR (gate map); human configuration |
+| **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | PROJECT_SETUP (gate map); human configuration |
 
 *Note:* D-GOV-02 (docs/governance_harness/_DECISIONS/), ruled 2026-07-01, derives from K-GATE-1 that no machine BLOCK on the CHECKING→ISSUED judgment may be non-overridable — BLOCKs apply to objective preconditions and hygiene only, and BLOCK override is human-only and recorded. Per D-GOV-17 (ruled 2026-07-18), a validator finding may never mechanically reject content the owner has adopted or ruled — where ruled text trips a validator, the validator is defective and is corrected under review, never the ruled text; other instruction-surface validator boundary cases are handled by D-GOV-17's recorded-exception correction protocol rather than anticipatory enumeration.
 
@@ -150,7 +150,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 | **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
 | **TASK shell / tool path policy** (runtime) | K-WRITE-2 (ScopePath containment, `SPEC.md` §0.2.3) |
 | **DOMAIN_ENGINE** (profile and operation governance) | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
-| **ORCHESTRATOR** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
+| **PROJECT_SETUP** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
 | **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
 | **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4 |
 | **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |

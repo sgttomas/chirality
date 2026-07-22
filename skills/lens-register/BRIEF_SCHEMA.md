@@ -2,9 +2,9 @@
 
 ## Dispatch role
 
-`lens-register` is the normal ORCHESTRATOR Phase 2.4 setup-pipeline skill for PROJECT / SOFTWARE semantic lensing. It is dispatched through TASK as a bounded method pack. It reads one deliverable folder, parses `_SEMANTIC.md`, scans production documents, and writes `_SEMANTIC_LENSING.md`.
+`lens-register` is the normal PROJECT_SETUP Phase 2.4 setup-pipeline skill for PROJECT / SOFTWARE semantic lensing. It is dispatched through TASK as a bounded method pack. It reads one deliverable folder, parses `_SEMANTIC.md`, scans production documents, and writes `_SEMANTIC_LENSING.md`.
 
-Use TASK generic shell for normal ORCHESTRATOR dispatch. This skill supplies its own method contract and write-boundary requirements, and the brief must authorize `_SEMANTIC_LENSING.md` writes.
+Use TASK generic shell for normal PROJECT_SETUP dispatch. This skill supplies its own method contract and write-boundary requirements, and the brief must authorize `_SEMANTIC_LENSING.md` writes.
 
 ## Required
 
@@ -37,11 +37,11 @@ Use TASK generic shell for normal ORCHESTRATOR dispatch. This skill supplies its
 - Cross-deliverable scanning is not accepted.
 - Following external references from `_REFERENCES.md` is not accepted unless a separate explicitly authorized task provides those sources as in-scope inputs.
 
-## Canonical ORCHESTRATOR Phase 2.4 brief
+## Canonical PROJECT_SETUP Phase 2.4 brief
 
 ```markdown
 PURPOSE: Generate the deliverable-local semantic lensing register for one production unit.
-RequestedBy: ORCHESTRATOR
+RequestedBy: PROJECT_SETUP
 
 ScopePath: {DELIVERABLE_PATH}
 TaskSkill: lens-register

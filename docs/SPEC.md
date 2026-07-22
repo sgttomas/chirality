@@ -152,12 +152,12 @@ Tool roots are workspace-level directories for derived outputs, resolved `{EXECU
 |---|---|---|
 | `_Aggregation/` | Aggregation snapshots and templates | AGGREGATION |
 | `_Change/` | Change management records | CHANGE |
-| `_Coordination/` | Coordination representation | ORCHESTRATOR |
+| `_Coordination/` | Coordination representation | PROJECT_SETUP |
 | `_Decomposition/` | Project/domain decomposition document(s) and companions | PROJECT_DECOMP / SOFTWARE_DECOMP / DOMAIN_DECOMP |
 | `_Estimates/` | Cost estimate snapshots | TASK + estimate skills |
 | `_Evaluation/` | Current evaluation reports plus structural, dependency, epistemic, governance, agent, coherence, and review snapshots | EVALUATION / EVALUATION_* / REVIEW / AUDIT_* |
 | `_Reconciliation/` | Calibrated deliverable-corpus concordance runs and historical immutable generic-audit artifacts | RECONCILIATION |
-| `_Schedule/` | Schedule snapshots generated from the dependency graph | ORCHESTRATOR scheduling workflow |
+| `_Schedule/` | Schedule snapshots generated from the dependency graph | PROJECT_SETUP scheduling workflow |
 | `_ScopeChange/` | Change-impact assessments and decomposition amendment snapshots | SCOPE_CHANGE |
 | `_Sources/` | Shared source/reference documents | Human / source-extraction pipelines |
 | `_LocalIndexes/` | Derived source-catalog and retrieval snapshots (domain packs) | DOMAIN_DECOMP / retrieval tools |
@@ -361,7 +361,7 @@ Distinctness: the `IN_PROGRESS` token also appears as a `SatisfactionStatus` enu
 
 `_DEPENDENCIES.md` is a hybrid container with two ownership zones:
 
-**Human-owned sections** (PREPARATION creates; human/ORCHESTRATOR maintains):
+**Human-owned sections** (PREPARATION creates; human/PROJECT_SETUP maintains):
 - Dependency Tracking Mode
 - Declared Upstream
 - Declared Downstream
@@ -636,7 +636,7 @@ Rows are never deleted. Rows no longer observed in source text are marked `RETIR
 
 - References are listed as relative paths (preferred) or absolute paths to source documents.
 - Each reference includes a brief relevance statement.
-- `_REFERENCES.md` is created by PREPARATION and MAY be updated by human or ORCHESTRATOR.
+- `_REFERENCES.md` is created by PREPARATION and MAY be updated by human or PROJECT_SETUP.
 - TASK+dependency-extract reads `_REFERENCES.md` but MUST NOT modify it.
 
 ---
@@ -869,7 +869,7 @@ Records the project's chosen coordination representation:
 
 The coordination representation is chosen per project instance and recorded once. It does not change the dependency tracking mechanics (which always maintain the full DAG), only how teams use the graph for scheduling.
 
-The coordination root also holds the session control-plane handoff files (`NEXT_INSTANCE_PROMPT.md` and, where used, `NEXT_INSTANCE_STATE.md`); see `AGENT_ORCHESTRATOR.md`.
+The coordination root also holds the session control-plane handoff files (`NEXT_INSTANCE_PROMPT.md` and, where used, `NEXT_INSTANCE_STATE.md`); see `AGENT_PROJECT_SETUP.md`.
 
 ---
 

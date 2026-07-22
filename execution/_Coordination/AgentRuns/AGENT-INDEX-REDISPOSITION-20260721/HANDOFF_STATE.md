@@ -33,6 +33,19 @@ The ruling gate is closed: D-GOV-18 is RULED and SHA-bound to
 human approves the PR-0 merge to `main`. PR-1..PR-4 execute only after PR-0
 merges, sequentially, each from the then-current `main`.
 
+## Process deviation recorded (PR-2 merge, 2026-07-21)
+
+PR #304 was merged while its `Harness pre-merge` check was red: the merge
+command was chained unconditionally after the checks-watch instead of gating
+on the verdict — an executor error against the green-checks condition of the
+owner's self-merge grant. Post-merge diagnosis: the failure was
+`managed-delegation.test.ts > atomically reserves concurrent sibling write
+targets`, a concurrency-timing flake unrelated to the markdown-only PR-2 diff;
+the full test file passed 5/5 local reruns on the merged tree and the CI job
+was re-run for a green record. Corrective rule adopted for the remainder of
+the run: check verdicts are inspected and gated explicitly before any merge
+command is issued; no chained merge.
+
 ## Owner directions recorded in-session (2026-07-21)
 
 - PR-0 merged as owner-directed: "merge PR #302" → merged to `main` as

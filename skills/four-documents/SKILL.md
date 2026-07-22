@@ -1,7 +1,7 @@
 ---
 name: four-documents
 description: Maintain and enrich an existing transitional LEGACY_FOUR_DOC kit for a PROJECT or SOFTWARE deliverable through rollback. Never initialize a new production contract.
-compatibility: Chirality TASK; dispatched by ORCHESTRATOR setup pipeline (Phases 2.2 and 2.5).
+compatibility: Chirality TASK; dispatched by PROJECT_SETUP setup pipeline (Phases 2.2 and 2.5).
 metadata:
   chirality-skill-version: "1"
   chirality-task-profile: NONE
@@ -28,7 +28,7 @@ This skill runs up to three passes within a single invocation, selected by the `
 2. **Pass 2** — cross-reference consistency check; Conflict Table where needed.
 3. **Pass 3** — semantic lensing enrichment using `_SEMANTIC_LENSING.md` as a candidate worklist.
 
-The ORCHESTRATOR setup pipeline dispatches this skill twice via TASK:
+The PROJECT_SETUP setup pipeline dispatches this skill twice via TASK:
 - Legacy compatibility maintenance with `RUN_PASSES: P1_P2` only when the
   complete kit already exists.
 - Legacy enrichment with `RUN_PASSES: P3_ONLY` after `lens-register`.

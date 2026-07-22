@@ -1,7 +1,7 @@
 ---
 name: semantic-matrix-build
 description: Generate one deliverable-local semantic lens (_SEMANTIC.md) by adopting canonical matrices A and B and deriving C, F, D, K, G, X, T, and E with explicit semantic-algebra working.
-compatibility: Chirality TASK generic shell; normally dispatched by ORCHESTRATOR setup pipeline Phase 2.3 with ScopePath set to one deliverable folder.
+compatibility: Chirality TASK generic shell; normally dispatched by PROJECT_SETUP setup pipeline Phase 2.3 with ScopePath set to one deliverable folder.
 metadata:
   chirality-skill-version: "2"
   chirality-task-profile: NONE
@@ -79,7 +79,7 @@ If absent, default to `PROJECT`, but report the default in the run report.
 
 | Value | Meaning |
 |---|---|
-| `PRESERVE_CURRENT` | Default for ORCHESTRATOR Phase 2.3. Do not change lifecycle state. Record the ruling in `_SEMANTIC.md` and the run report. |
+| `PRESERVE_CURRENT` | Default for PROJECT_SETUP Phase 2.3. Do not change lifecycle state. Record the ruling in `_SEMANTIC.md` and the run report. |
 | `ADVANCE_ON_PASS` | On audit PASS, set or verify `Current State: SEMANTIC_READY`, but only if TASK write authorization allows `_STATUS.md` edits. |
 | `NO_STATUS_TOUCH` | Do not edit `_STATUS.md` at all. Record status untouched in `_SEMANTIC.md` and the run report. |
 
@@ -478,4 +478,4 @@ If the validator is unavailable, do not claim validator PASS. Report `validator 
 
 ## DOMAIN variant note
 
-The skill can run on `DOMAIN` folders only when explicitly dispatched. Standard ORCHESTRATOR DOMAIN setup may skip semantic lensing entirely. If invoked for DOMAIN, read the Knowledge Type's non-metadata markdown documents and use DOMAIN terminology in the header and perspective. The matrix algebra remains unchanged.
+The skill can run on `DOMAIN` folders only when explicitly dispatched. Standard PROJECT_SETUP DOMAIN setup may skip semantic lensing entirely. If invoked for DOMAIN, read the Knowledge Type's non-metadata markdown documents and use DOMAIN terminology in the header and perspective. The matrix algebra remains unchanged.

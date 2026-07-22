@@ -143,7 +143,7 @@ Reads workspace folder structure and metadata stubs (`_CONTEXT.md`, `_REFERENCES
 
 Reads the structural hypergraph (produced by DOMAIN_HYPERGRAPH) and validates structural integrity, referential integrity, and completeness.
 
-### ORCHESTRATOR
+### PROJECT_SETUP
 
 Coordinates the pipeline. Responsible for invoking the PDF2MD agent at Step 0 and sub-agents at Steps 1–7. May also assist the human with ad hoc entity extraction work when directed.
 
@@ -210,7 +210,7 @@ Once trained, zingg's model is deterministic and scalable. The LLM's judgment is
 pip install pymupdf
 ```
 
-No VLM API key required — uses Claude Code's built-in multimodal vision. Invoke with `--agent PDF2MD` or let ORCHESTRATOR spawn it.
+No VLM API key required — uses Claude Code's built-in multimodal vision. Invoke with `--agent PDF2MD` or let PROJECT_SETUP spawn it.
 
 **Drawing extraction support utilities**:
 
