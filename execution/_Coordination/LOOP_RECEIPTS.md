@@ -459,3 +459,41 @@
   retained. The evidence-package index records the resulting rerun boundary.
 - Boundary: no production, lifecycle, semantic, closure-snapshot, or
   historical run-record content changed.
+
+### Receipt 29 — 2026-07-22 — D-GOV-18 agent-index re-disposition executed
+
+- Owner ruling, verbatim: "I APPROVE D-GOV-18 items 1–8 at commit
+  `9a900b3b76dda415cc4d41185350eb2e5a436302`" (2026-07-21). Owner directions
+  recorded in-run: PR #302 merge; session-scoped self-merge grant for
+  subsequent PRs on green checks; path-bounded variance, verbatim: "I grant
+  the variance: PR-3 may edit persona-resolution.ts and its test to map
+  ORCHESTRATE to PROJECT_SETUP."
+- Execution: five sequential PRs under run
+  `execution/_Coordination/AgentRuns/AGENT-INDEX-REDISPOSITION-20260721/`.
+  PR #302 (D-GOV-18 ruling, register, matrix, run scaffold); PR #303
+  (AGENT_CHANGE.md slim 477→151, authority semantics retained); PR #304
+  (EVALUATION shell 155→112 + new `evaluation-protocol` skill, frontmatter
+  byte-identical); PR #305 (atomic ORCHESTRATOR→PROJECT_SETUP rename: 43+3
+  files, validator delegation-edge key, OWNER_WORKFLOWS legacy shim, plus the
+  two-file App Dev variance edit); PR-4 (this closeout: Function 5 moved
+  PROJECT_SETUP→HELPS_HUMANS remove+add atomically, App Dev handoff notice).
+- Deviations recorded: PR #304 was merged while `Harness pre-merge` was red
+  (chained merge command; the failure was a `managed-delegation.test.ts`
+  concurrency flake, 5/5 local passes, CI re-run green); corrective
+  explicit-verdict-gate rule adopted and held for PR #305 and PR-4. D-GOV-18
+  Item 6's no-CI-breakage premise was falsified by the App Dev matrix guard
+  and resolved by the owner variance above.
+- Checks at each merge: validate_agent_instructions 33/0/0;
+  validate_skill_metadata 45/0; practitioner harness 311/311 (incl. GEN-9);
+  harness self-check exit 0; App Dev `Harness pre-merge` green at final states.
+- Open follow-ons (recorded, unscheduled): App Dev doc-alias updates
+  (TYPES.md:132, PRD.md:519/134) per
+  `AgentRuns/AGENT-INDEX-REDISPOSITION-20260721/notices/APPDEV-ORCHESTRATOR-RENAME-HANDOFF.md`;
+  AUDIT_DECOMP undeclared-caller hygiene (REVIEW/SCOPE_CHANGE frontmatter);
+  tools/decomp gate-seed old-name refresh; optional AGENT_REVIEW.md legacy
+  Reviews note; AGENT_WORKING_ITEMS.md does not name NEXT_INSTANCE_STATE.md
+  though two files assert it updates that file (pre-existing gap).
+- State: `AGENT-INDEX-REDISPOSITION_CLOSED` — index now: PROJECT_SETUP
+  (renamed/narrowed), EVALUATION (thin shell + skill), CHANGE (slimmed),
+  REVIEW/SCOPE_CHANGE (ruled SAFE), Function 5 owned by HELPS_HUMANS. No
+  lifecycle act, specialist removal, or historical rewrite occurred.

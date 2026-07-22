@@ -1,6 +1,14 @@
 # Agent-Index Re-disposition Handoff State
 
-Status: `AGENT-INDEX-REDISPOSITION_PR0_MERGED_PR1_IN_PROGRESS`
+Status: `AGENT-INDEX-REDISPOSITION_CLOSED`
+
+Terminal state (2026-07-22): all ruled items implemented. PR #302 (ruling),
+PR #303 (CHANGE slim), PR #304 (EVALUATION shell + skill), PR #305 (atomic
+rename + owner-varianced App Dev alias), PR-4 (F5 move + closeout) — each
+merged green on `main`. Closure verdict: CLOSED; rerun requirements: none for
+this run; remaining blockers: none. Open follow-ons are enumerated in
+LOOP_RECEIPTS.md Receipt 29 and the notices/ handoff; they are owned by
+future tranches (App Dev loop for the doc aliases), not this run.
 Run: `AGENT-INDEX-REDISPOSITION-20260721`
 
 ## Current status
