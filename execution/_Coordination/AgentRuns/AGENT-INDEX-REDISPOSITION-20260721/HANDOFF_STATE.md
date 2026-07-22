@@ -1,6 +1,6 @@
 # Agent-Index Re-disposition Handoff State
 
-Status: `AGENT-INDEX-REDISPOSITION_DGOV18_RULED_PR0_AWAITING_MERGE`
+Status: `AGENT-INDEX-REDISPOSITION_PR0_MERGED_PR1_IN_PROGRESS`
 Run: `AGENT-INDEX-REDISPOSITION-20260721`
 
 ## Current status
@@ -33,9 +33,20 @@ The ruling gate is closed: D-GOV-18 is RULED and SHA-bound to
 human approves the PR-0 merge to `main`. PR-1..PR-4 execute only after PR-0
 merges, sequentially, each from the then-current `main`.
 
+## Owner directions recorded in-session (2026-07-21)
+
+- PR-0 merged as owner-directed: "merge PR #302" → merged to `main` as
+  `36774173c7acdb3786fb63df8740f897772ad2e2`.
+- Owner grant, verbatim scope: "you may self-merge subsequent PRs in this
+  session only." Interpretation of record: for PR-1..PR-4 of this run, within
+  this session, the executing agent may merge each PR after its checks pass
+  green; every other gate (ruled scope, sealed briefs, validation, receipts)
+  is unchanged. The grant expires with the session and does not amend
+  LOOP_INIT or any standing doctrine.
+
 ## Blockers
 
-- **PR-0 merge approval** (human act; CHANGE executes the approved merge).
+- **PR-0 merge approval** — CLOSED (merged `36774173c`, 2026-07-21).
 - **PR-2 additionally gated** on the App Dev held EVALUATION dispatch:
   evidence as of 2026-07-21 (App Dev Receipt 85, 2026-07-20) records "fresh V3
   EVALUATION and final publication remain held" — held-not-running is the safe
