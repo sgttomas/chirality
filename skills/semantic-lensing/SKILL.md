@@ -15,7 +15,7 @@ Apply semantic lensing analysis to deliverable-local production documents using 
 
 This skill provides the structured method for interactive semantic lensing analysis. When loaded, it supplies the matrix interpretation, tagging conventions, and proposal workflow.
 
-This skill is the **optional interactive proposal/review tool**, not the regular ORCHESTRATOR enrichment step. In the regular PROJECT/SOFTWARE setup workflow:
+This skill is the **optional interactive proposal/review tool**, not the regular PROJECT_SETUP enrichment step. In the regular PROJECT/SOFTWARE setup workflow:
 
 - `skills/lens-register/` is the pipeline producer of `_SEMANTIC_LENSING.md`.
 - The resolver-selected production skill applies `_SEMANTIC_LENSING.md` as an enrichment worklist.

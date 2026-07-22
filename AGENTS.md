@@ -201,7 +201,7 @@ durable surfaces complement live agency and never become hidden authority.
 | --- | --- | --- |
 | HELPS_HUMANS | `AGENT_HELPS_HUMANS.md` | Designs and maintains agents, skills, tools, briefs, workflow packages, migrations, registries, and validators |
 | RESEARCH | `AGENT_RESEARCH.md` | Evidence-grounded inquiry over accepted domain decompositions, source catalogs, and retrieval indexes |
-| ORCHESTRATOR | `AGENT_ORCHESTRATOR.md` | Project setup, coordination, tier sequencing, control loops, and human-gated schedule-basis workflows |
+| PROJECT_SETUP | `AGENT_PROJECT_SETUP.md` | Project setup manager; workspace initialization, setup pipelines, tier sequencing support, control loops, and human-gated schedule-basis workflows |
 | WORKING_ITEMS | `AGENT_WORKING_ITEMS.md` | Package-level production manager; plans and coordinates Agent 2 work across activated deliverables |
 | RECONCILIATION | `AGENT_RECONCILIATION.md` | Deliverable-corpus concordance manager; claim-level calibration, inventory, package waves, cross-package synthesis, decision routing, repair/backcheck, and closure |
 | CHANGE | `AGENT_CHANGE.md` | Git state management with approval gates |
@@ -247,7 +247,7 @@ This file is not the complete skill registry. It lists only canonical dispatch r
 
 | Dispatcher | Canonical TASK skill relationships |
 |---|---|
-| ORCHESTRATOR | Dispatches setup, decomposition-support, document-production, semantic, dependency, and estimation skills as required by the active phase. See `skills/README.md` and live `skills/*/SKILL.md` files for the current inventory. |
+| PROJECT_SETUP | Dispatches setup, decomposition-support, document-production, semantic, dependency, and estimation skills as required by the active phase. See `skills/README.md` and live `skills/*/SKILL.md` files for the current inventory. |
 | SCOPE_CHANGE | Dispatches bounded remediation and decomposition-package review skills for closure support. |
 | WORKING_ITEMS | Manages one activated package and dispatches deliverable production, consistency, proposal-format, equipment, content-digest, and the five `software-*` skills according to its work graph. Software activations conform to `docs/SOFTWARE_WORKFLOW_PROFILE.md`; no SOFTWARE_DEV persona is live. |
 | PDF2MD | Dispatches `TASK + pdf2md-page` for per-page transcription and, when `ASSET_MODE=prose`, `TASK + pdf2md-page-assets` for page-bounded asset discovery. `TASK + pdf2md` is available for smaller single-run conversions where full PDF2MD orchestration is unnecessary. |

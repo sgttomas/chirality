@@ -1,7 +1,7 @@
 ---
 name: research-orchestration
 description: Caller-side method pack for a disciplined research fan-out — triage, light anchoring, an adversarial live critic, retry-on-API-500, and scout-then-decide sequencing — dispatching RESEARCHER streams into one immutable evidence packet with surfaced coverage-gaps.
-compatibility: A Type-1 orchestrating persona (RESEARCH, ORCHESTRATOR, or a session acting as orchestrator) running a research fan-out, or TASK dispatched for a bounded "conduct a research fan-out" job. Subordinate to the caller's write authority.
+compatibility: A Type-1 orchestrating persona (RESEARCH, PROJECT_SETUP, or a session acting as orchestrator) running a research fan-out, or TASK dispatched for a bounded "conduct a research fan-out" job. Subordinate to the caller's write authority.
 metadata:
   chirality-skill-version: "1"
   chirality-task-profile: NONE
@@ -20,7 +20,7 @@ persona: it is loaded by whoever orchestrates; it does not become the orchestrat
 
 ## Suitable agent shells
 
-- A Type-1 persona running a fan-out (`RESEARCH`, `ORCHESTRATOR`, or an orchestrating session).
+- A Type-1 persona running a fan-out (`RESEARCH`, `PROJECT_SETUP`, or an orchestrating session).
 - `TASK`, dispatched with this skill for a bounded "conduct a research fan-out → packet" job.
 
 ## Inputs

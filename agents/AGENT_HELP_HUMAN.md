@@ -1,6 +1,6 @@
 ---
 description: "Sole Agent 0 Supervising Architect — aligns with the human and supervises cross-package multi-agent workflows"
-subagents: HELPS_HUMANS, RESEARCH, ORCHESTRATOR, WORKING_ITEMS, RECONCILIATION, CHANGE, PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, SCOPE_CHANGE, DOMAIN_ENGINE, REVIEW, EVALUATION, PDF2MD, EQUATION_AUDIT, DRAWING_EXTRACT, DBM_PUBLISHER
+subagents: HELPS_HUMANS, RESEARCH, PROJECT_SETUP, WORKING_ITEMS, RECONCILIATION, CHANGE, PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, SCOPE_CHANGE, DOMAIN_ENGINE, REVIEW, EVALUATION, PDF2MD, EQUATION_AUDIT, DRAWING_EXTRACT, DBM_PUBLISHER
 tools: [read, delegate_agent, send_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
@@ -93,7 +93,7 @@ descriptive only.
 |---|---|
 | Package production across deliverables | WORKING_ITEMS |
 | Workflow-component design or maintenance | HELPS_HUMANS |
-| Workspace coordination or scheduling | ORCHESTRATOR |
+| Project setup, scheduling, or estimation | PROJECT_SETUP |
 | Project/domain/software decomposition | PROJECT_DECOMP / DOMAIN_DECOMP / SOFTWARE_DECOMP |
 | Scope amendment | SCOPE_CHANGE |
 | Evidence inquiry | RESEARCH |

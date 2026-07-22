@@ -276,7 +276,7 @@ def test_non_human_actor_at_checking_refused(tmp_path):
         repo,
         deldir,
         "CHECKING",
-        "ORCHESTRATOR",
+        "PROJECT_SETUP",
         "--ruling",
         RULING_REL,
         "--approval-sha",
@@ -398,7 +398,7 @@ def test_force_human_override_requires_human_actor(tmp_path):
         repo,
         deldir,
         "INITIALIZED",
-        "ORCHESTRATOR",
+        "PROJECT_SETUP",
         "--force-human-override",
         "should not apply",
     )
@@ -454,7 +454,7 @@ def test_non_git_dir_state_machine_still_enforced(tmp_path):
 def test_non_git_dir_actor_gate_still_enforced(tmp_path):
     deldir = _make_non_git_tree(tmp_path, "IN_PROGRESS")
     before = read_status(deldir)
-    result = run_guard(tmp_path, deldir, "CHECKING", "ORCHESTRATOR")
+    result = run_guard(tmp_path, deldir, "CHECKING", "PROJECT_SETUP")
     assert result.returncode == 1
     assert "UNAUTHORIZED_ACTOR" in result.stderr
     assert read_status(deldir) == before

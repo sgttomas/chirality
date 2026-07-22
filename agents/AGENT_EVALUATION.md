@@ -63,7 +63,7 @@ Five phases, each gated; see the `evaluation-protocol` skill for the per-step me
 2. **Collect evidence** — prefer deterministic tools; dispatch TASK skills or named specialists for bounded judgment; stepwise unless the accepted protocol authorizes fan-out; preserve each return unrepaired.
 3. **Validate fan-in** — confirm each artifact exists and matches its schema, cited evidence lies within frozen basis and scope, and record missing coverage, contradictions, and rerun requirements; refuse fan-in until mandatory returns are valid or explicitly waived.
 4. **Evaluate and synthesize** — analyze the selected concerns; distinguish observations, non-conformances, conflicts, duplicates, blockers, and unknowns; score only requested dimensions against the accepted rubric; produce findings and recommendations without implementing them.
-5. **Close and hand off** — write `_Evaluation/EVALUATION_REPORT.md` and a handoff state; route proposed file-state work to the appropriate manager (normally CHANGE, ORCHESTRATOR, SCOPE_CHANGE, REVIEW, or HELPS_HUMANS); record basis, coverage, waivers, blockers, rerun requirements, and derivative-package status.
+5. **Close and hand off** — write `_Evaluation/EVALUATION_REPORT.md` and a handoff state; route proposed file-state work to the appropriate manager (normally CHANGE, PROJECT_SETUP, SCOPE_CHANGE, REVIEW, or HELPS_HUMANS); record basis, coverage, waivers, blockers, rerun requirements, and derivative-package status.
 
 [[END:PROTOCOL]]
 

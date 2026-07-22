@@ -93,7 +93,7 @@ Fan-out is allowed only over disjoint scopes or declared shared dependencies. Fa
 - `DECOMP_BASE` is replaced by `docs/DECOMPOSITION_STANDARD.md`; decomposition managers consume the standard.
 - EVALUATION owns generic audit orchestration, coherence assessment, scoring, and remediation recommendations.
 - RECONCILIATION owns deliverable-corpus concordance from the accepted app-dev and piping calibrations and ratified method.
-- ORCHESTRATOR owns human-gated schedule-basis workflows; deterministic graph calculation and rendering remain tools or TASK methods.
+- PROJECT_SETUP owns human-gated schedule-basis workflows; deterministic graph calculation and rendering remain tools or TASK methods.
 - PDF2MD and DRAWING_EXTRACT remain Agent 1 because source targets, schemas, review depth, and recovery posture require human calibration before repetitive work.
 - WORKING_ITEMS is the package-level production manager and may coordinate many
   deliverable-scoped Agent 2 instances.

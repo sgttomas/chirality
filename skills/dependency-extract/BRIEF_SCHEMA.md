@@ -1,6 +1,6 @@
 # dependency-extract — Brief Schema
 
-This skill is dispatched by ORCHESTRATOR (or other personas) via TASK with `TaskSkill: dependency-extract`. The following fields describe the brief expected by a single invocation.
+This skill is dispatched by PROJECT_SETUP (or other personas) via TASK with `TaskSkill: dependency-extract`. The following fields describe the brief expected by a single invocation.
 
 ## Required
 

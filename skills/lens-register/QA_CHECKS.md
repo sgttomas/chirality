@@ -95,7 +95,7 @@ Valid examples:
 
 ## Failure reporting
 
-- If `_SEMANTIC.md` is missing: write `_SEMANTIC_LENSING.md` with a blocking header: `Missing _SEMANTIC.md; run semantic-matrix-build first (ORCHESTRATOR Phase 2.3)` and stop. Report `RUN_STATUS=BLOCKED`.
+- If `_SEMANTIC.md` is missing: write `_SEMANTIC_LENSING.md` with a blocking header: `Missing _SEMANTIC.md; run semantic-matrix-build first (PROJECT_SETUP Phase 2.3)` and stop. Report `RUN_STATUS=BLOCKED`.
 - If `{deliverable_folder}` does not exist or is not readable: report `RUN_STATUS=FAILED_INPUTS`; do not write.
 - If a production document is missing: record `[WARNING] MISSING_DOC: <filename>` in the output header and continue.
 - If a matrix cell is empty or malformed: set `CoverageStatus=MATRIX_ERROR`, add a `Type=MatrixError` item, and continue.

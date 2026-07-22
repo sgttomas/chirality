@@ -1,7 +1,7 @@
 ---
 name: lens-register
 description: Generate a matrix-organized, coverage-complete semantic lensing register (_SEMANTIC_LENSING.md) from _SEMANTIC.md + production documents. Setup-pipeline companion to the interactive semantic-lensing skill.
-compatibility: Chirality TASK; dispatched by ORCHESTRATOR setup pipeline (Phase 2.4).
+compatibility: Chirality TASK; dispatched by PROJECT_SETUP setup pipeline (Phase 2.4).
 metadata:
   chirality-skill-version: "2"
   chirality-task-profile: NONE
@@ -17,13 +17,13 @@ Produce a **matrix-organized lensing register** (`_SEMANTIC_LENSING.md`) that:
 2. Applies each lens to the deliverable-local production documents, and
 3. Records only warranted enrichment inputs with provenance, without rewriting the documents.
 
-This is the **setup-pipeline, coverage-complete** contract in the semantic-lensing family. It is the normal ORCHESTRATOR Phase 2.4 skill. Its interactive counterpart is `semantic-lensing`, which produces human-facing proposals or reviews existing register entries. `lens-register` creates the register; `four-documents` Pass 3 consumes the register.
+This is the **setup-pipeline, coverage-complete** contract in the semantic-lensing family. It is the normal PROJECT_SETUP Phase 2.4 skill. Its interactive counterpart is `semantic-lensing`, which produces human-facing proposals or reviews existing register entries. `lens-register` creates the register; `four-documents` Pass 3 consumes the register.
 
 ## Suitable agent shells
 
 - `TASK` generic shell, no profile.
 
-Typical dispatcher: ORCHESTRATOR Phase 2.4 dispatches TASK with `TaskSkill: lens-register`, `ScopePath={DELIVERABLE_PATH}`, `RuntimeOverrides.deliverable_folder={DELIVERABLE_PATH}`, and write authorization for `_SEMANTIC_LENSING.md`.
+Typical dispatcher: PROJECT_SETUP Phase 2.4 dispatches TASK with `TaskSkill: lens-register`, `ScopePath={DELIVERABLE_PATH}`, `RuntimeOverrides.deliverable_folder={DELIVERABLE_PATH}`, and write authorization for `_SEMANTIC_LENSING.md`.
 
 ## Inputs
 
@@ -214,7 +214,7 @@ Write or overwrite `{deliverable_folder}/_SEMANTIC_LENSING.md` using the STRUCTU
 2. Confirm coverage completeness and schema compliance.
 3. Run `validate_lens_register.py` if available and permitted.
 4. Report validator status as `PASS`, `FAILED`, or `NOT_RUN`.
-5. Return run report to TASK/ORCHESTRATOR.
+5. Return run report to TASK/PROJECT_SETUP.
 
 ---
 
@@ -396,4 +396,4 @@ See `QA_CHECKS.md`.
 - `skills/semantic-matrix-build/SKILL.md` — produces `_SEMANTIC.md`
 - `skills/semantic-lensing/SKILL.md` — interactive proposal workflow consuming this register
 - `skills/four-documents/SKILL.md` — Pass 3 consumer of `_SEMANTIC_LENSING.md`
-- `agents/AGENT_ORCHESTRATOR.md` — dispatches this skill via TASK in Phase 2.4
+- `agents/AGENT_PROJECT_SETUP.md` — dispatches this skill via TASK in Phase 2.4

@@ -21,7 +21,7 @@ describe('resolvePersona', () => {
 
   it('maps display-label aliases to persona ids', () => {
     expect(resolvePersona('HELP')).toBe('HELP_HUMAN');
-    expect(resolvePersona('ORCHESTRATE')).toBe('ORCHESTRATOR');
+    expect(resolvePersona('ORCHESTRATE')).toBe('PROJECT_SETUP');
     expect(resolvePersona('AGENTS')).toBe('HELPS_HUMANS');
   });
 

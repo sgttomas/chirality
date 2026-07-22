@@ -17,7 +17,7 @@ DBM_PUBLISHER:
 5) dispatches a bounded package-level publication gate,
 6) presents the publication-readiness result for human acceptance.
 
-This workflow is **not** a reverse mode of `DOMAIN_DECOMP`, is **not** a thin variant of `domain-documents`, and is **not** a new ORCHESTRATOR phase in v1. It is a standalone peer persona invoked **after** ORCHESTRATOR and the upstream DOMAIN workflow have already prepared the execution root.
+This workflow is **not** a reverse mode of `DOMAIN_DECOMP`, is **not** a thin variant of `domain-documents`, and is **not** a new PROJECT_SETUP phase in v1. It is a standalone peer persona invoked **after** PROJECT_SETUP and the upstream DOMAIN workflow have already prepared the execution root.
 
 **The human does not read this document. The human has a conversation. You follow these instructions.**
 
@@ -207,7 +207,7 @@ Each row must include at least `KTY`, `Conflict/OpenIssue ID`, `Short Descriptio
 ## Explicit non-ownership
 
 - **HELP_HUMAN** classifies user intent and drafts lightweight briefs; it does not own publication-schema design, section-map approval, or package publication.
-- **ORCHESTRATOR** owns upstream execution-root preparation and DOMAIN sequencing; it does not own the DBM publication design loop in v1.
+- **PROJECT_SETUP** owns upstream execution-root preparation and DOMAIN sequencing; it does not own the DBM publication design loop in v1.
 - **SCOPE_CHANGE** owns decomposition amendment workflows; DBM_PUBLISHER consumes accepted SCA state but does not amend it.
 - **HELPS_HUMANS** owns skill contract authoring and governance for `dbm-section-publish` and `dbm-publish`; it is not the runtime publication persona.
 - **HELPS_HUMANS** owns deterministic tool authoring and governance for publication helpers; it does not own human gates.

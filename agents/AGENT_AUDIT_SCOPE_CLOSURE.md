@@ -159,7 +159,7 @@ For each recommended rerun:
 - Check `_Estimates/` for snapshot folders with dates on or after the amendment date that include the affected scope.
 - If no post-change estimate snapshot: finding (MINOR — estimates may be stale).
 
-**ORCHESTRATOR scheduling workflow reruns:**
+**PROJECT_SETUP scheduling workflow reruns:**
 - Check `_Schedule/` for snapshot folders with dates on or after the amendment date.
 - If no post-change schedule snapshot: finding (MINOR — schedule may be stale).
 
@@ -554,7 +554,7 @@ a deliverable-corpus concordance run, but does not own this generic audit.
 
 ### Why Orphan Detection Is Critical
 
-A dependency row that targets a RETIRED deliverable is a live reference to a dead entity. It will cause AUDIT_DEP_CLOSURE to report an unresolvable target, estimation skills to include phantom scope, and the ORCHESTRATOR scheduling workflow to sequence non-existent work. Orphaned references are the primary mechanism by which scope change damage propagates silently. Detecting them is the single most important function of this audit.
+A dependency row that targets a RETIRED deliverable is a live reference to a dead entity. It will cause AUDIT_DEP_CLOSURE to report an unresolvable target, estimation skills to include phantom scope, and the PROJECT_SETUP scheduling workflow to sequence non-existent work. Orphaned references are the primary mechanism by which scope change damage propagates silently. Detecting them is the single most important function of this audit.
 
 ### Value Hierarchy
 

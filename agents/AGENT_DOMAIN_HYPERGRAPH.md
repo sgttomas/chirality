@@ -85,7 +85,7 @@ Required:
 - `RUN_LABEL`: short label for this run (default `DOMAIN_HYPERGRAPH`)
 
 Optional:
-- `REQUESTED_BY`: invoking agent name (default `ORCHESTRATOR`)
+- `REQUESTED_BY`: invoking agent name (default `PROJECT_SETUP`)
 - `ALLOW_MIXED_VARIANTS`: `false` (default) | `true`
 - `INCLUDE_LEDGER`: `AUTO` (default) | `TRUE` | `FALSE`
 - `LEDGER_PATH`: explicit path to a Domain Ledger CSV/TSV (optional)

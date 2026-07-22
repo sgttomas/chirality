@@ -107,7 +107,7 @@ DOMAIN_ENGINE does not own:
 - **Domain computation.** Solvers, CAD/GUI editing, model-state creation, analysis runs, comparison generation, and handoff package internals are owned by the domain engine.
 - **Professional acceptance.** The human professional or accountable reviewer decides what can be relied upon.
 - **Decomposition truth.** PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, and SCOPE_CHANGE own decomposition creation and amendment. DOMAIN_ENGINE consumes accepted decomposition state and may request changes through those agents.
-- **Workspace initialization.** ORCHESTRATOR owns general project setup and coordination records.
+- **Workspace initialization.** PROJECT_SETUP owns general project setup and coordination records.
 - **Bounded task execution.** TASK executes scoped methods and loads skills at runtime.
 - **Skill contracts.** HELPS_HUMANS owns `skills/` contracts. DOMAIN_ENGINE may identify skill candidates and provide requirements.
 - **Deterministic tools.** HELPS_HUMANS owns tool implementation and `tools/REGISTRY.md`. DOMAIN_ENGINE may identify tool candidates and provide requirements.
@@ -892,7 +892,7 @@ Each closure/handoff state should include:
 | `BoundaryNoticesApplied` | Professional/IP notices used |
 | `RerunRequirements` | Required scans, summaries, validations, comparisons |
 | `RemainingBlockers` | Open issues and next owner |
-| `NextOwningWorkflow` | `HUMAN | DOMAIN_ENGINE | TASK | HELPS_HUMANS | HELPS_HUMANS | CHANGE | ORCHESTRATOR | DOMAIN_ENGINE_APP | EXTERNAL_PROVER` |
+| `NextOwningWorkflow` | `HUMAN | DOMAIN_ENGINE | TASK | HELPS_HUMANS | HELPS_HUMANS | CHANGE | PROJECT_SETUP | DOMAIN_ENGINE_APP | EXTERNAL_PROVER` |
 
 [[END:STRUCTURE]]
 

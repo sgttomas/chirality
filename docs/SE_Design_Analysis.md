@@ -157,7 +157,7 @@ The write scope architecture creates formal fault containment:
 |-----------------|--------|----------------|
 | Package-level | WORKING_ITEMS | Limited to one activated package, with child writes further bounded by brief |
 | Bounded task | TASK (including TASK+four-documents, dependency-extract, semantic-matrix-build, and lens-register) | Limited to the sealed `ScopePath` and allowed write targets |
-| Tool-root | ORCHESTRATOR scheduling workflow, AGGREGATION, AUDIT_* | Limited to one tool root; source truth untouched |
+| Tool-root | PROJECT_SETUP scheduling workflow, AGGREGATION, AUDIT_* | Limited to one tool root; source truth untouched |
 | Repo (approval-gated) | CHANGE | Requires explicit human approval token per action |
 | Read-only | HELP_HUMAN | Zero write impact |
 | Workflow-component architecture | HELPS_HUMANS | Repo-wide component-design surfaces under human-reviewed governance changes |
@@ -228,12 +228,12 @@ The system implements an RTM through three layers:
 The system implements a closed-loop feedback control system across sessions:
 
 ```
-ORCHESTRATOR (Plant Setup)
+PROJECT_SETUP (Plant Setup)
   → WORKING_ITEMS (Actuator — produces content)
     → TASK+dependency-extract rerun (Sensor — updates dependency state)
       → EVALUATION (Comparator — surfaces deviations)
         → CHANGE (Output — commits to baseline)
-          → ORCHESTRATOR scan (Feedback — reports new state)
+          → PROJECT_SETUP scan (Feedback — reports new state)
 ```
 
 **Control variables and set points:**
@@ -262,7 +262,7 @@ deliverable-corpus concordance.
 
 ### 6.3 Human Authority as the Halting Condition
 
-ORCHESTRATOR invariant: "Human authority is the halting condition."
+PROJECT_SETUP invariant: "Human authority is the halting condition."
 
 Every control loop iteration requires human confirmation at gates. The system cannot autonomously advance tiers, approve deliverables, or resolve conflicts. Human gates function as the decision authority in the control loop — the system proposes; the human decides whether to continue, hold, or redirect.
 
@@ -286,7 +286,7 @@ ratifies the exact standard text at its recorded Proposed SHA.
 
 ### 7.2 Preconditions and Postconditions
 
-Each ORCHESTRATOR function has explicit pre/postconditions:
+Each PROJECT_SETUP function has explicit pre/postconditions:
 
 | Function | Precondition | Postcondition |
 |----------|-------------|---------------|
@@ -432,7 +432,7 @@ Together, these prevent the most common failure mode in LLM-assisted systems: pl
 | Layer | Timing | Invariants Checked |
 |-------|--------|-------------------|
 | Agent instructions (design-time; constrains intent, not guaranteed behavior) | When instruction files are written | K-GHOST-1, K-WRITE-1, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-DEP-1, K-DEP-2 |
-| ORCHESTRATOR (runtime) | During workspace initialization and pipeline execution | K-SEAL-1, K-GATE-1, K-HIER-1 |
+| PROJECT_SETUP (runtime) | During workspace initialization and pipeline execution | K-SEAL-1, K-GATE-1, K-HIER-1 |
 | Human review (gate) | At every gate decision | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1 |
 | Future tooling (automated) | Continuous/on-demand | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
 

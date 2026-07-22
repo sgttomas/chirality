@@ -89,6 +89,8 @@ OWNER_WORKFLOWS = {
     "SCOPE_CHANGE",
     "RECONCILIATION",
     "DEPCLOSURE",
+    "PROJECT_SETUP",
+    # legacy value retained because immutable historical SCC artifacts carry it; new cases use PROJECT_SETUP (D-GOV-18)
     "ORCHESTRATOR",
     "CHANGE",
     "TBD",

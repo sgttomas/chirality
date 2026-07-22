@@ -33,6 +33,35 @@ The ruling gate is closed: D-GOV-18 is RULED and SHA-bound to
 human approves the PR-0 merge to `main`. PR-1..PR-4 execute only after PR-0
 merges, sequentially, each from the then-current `main`.
 
+## Process deviation recorded (PR-2 merge, 2026-07-21)
+
+PR #304 was merged while its `Harness pre-merge` check was red: the merge
+command was chained unconditionally after the checks-watch instead of gating
+on the verdict — an executor error against the green-checks condition of the
+owner's self-merge grant. Post-merge diagnosis: the failure was
+`managed-delegation.test.ts > atomically reserves concurrent sibling write
+targets`, a concurrency-timing flake unrelated to the markdown-only PR-2 diff;
+the full test file passed 5/5 local reruns on the merged tree and the CI job
+was re-run for a green record. Corrective rule adopted for the remainder of
+the run: check verdicts are inspected and gated explicitly before any merge
+command is issued; no chained merge.
+
+## Item 6 premise correction and owner variance (PR-3, 2026-07-21)
+
+The D-GOV-18 Item 6 deferral premise ("no root-PR CI breakage") was falsified
+in PR-3 CI: App Dev's `agent-matrix-cells.test.ts` guard resolves the
+ORCHESTRATE matrix cell through the persona map to an on-disk
+`agents/AGENT_<persona>.md` check, so the root rename hard-fails
+`Harness pre-merge`. The delta was surfaced to the owner as a new decision
+request, not absorbed. Owner variance, verbatim: "I grant the variance: PR-3
+may edit persona-resolution.ts and its test to map ORCHESTRATE to
+PROJECT_SETUP." Scope applied, exactly two files:
+`projects/chirality-app-dev/frontend/src/lib/shell/persona-resolution.ts`
+(`ORCHESTRATE: 'PROJECT_SETUP'`) and
+`projects/chirality-app-dev/frontend/src/__tests__/lib/persona-resolution.test.ts`
+(matching expectation). The ruled D-GOV-18 record is not rewritten; the App
+Dev AGENTS.md-wording follow-on remains with the App Dev loop.
+
 ## Owner directions recorded in-session (2026-07-21)
 
 - PR-0 merged as owner-directed: "merge PR #302" → merged to `main` as
