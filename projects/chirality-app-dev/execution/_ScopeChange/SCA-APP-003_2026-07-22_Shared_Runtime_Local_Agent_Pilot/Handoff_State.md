@@ -17,7 +17,7 @@ open.
 |---|---|---|
 | Owner authority | Owner instruction dated 2026-07-22 to implement the shared-runtime and local-agent pilot | ACCEPTED |
 | Root governance | D-GOV-20 and its registered root downstream amendments | ACCEPTED |
-| App governance | D-APP-73, DEC-019, OI-007, and authority corpus v14 | ACCEPTED |
+| App governance | D-APP-73, DEC-019, OI-007, and authority corpus v15 | ACCEPTED |
 | Tier-0 domain governance | D-T0-23 and its registered profile/bridge amendments | ACCEPTED |
 | PEC governance | D-PEC-56, with D-PEC-49 still open and production claims prohibited | ACCEPTED_WITH_OPEN_GATE |
 
@@ -37,7 +37,7 @@ open.
 
 | Package | Owner | Status | Evidence | Next required action |
 |---|---|---|---|---|
-| App authority corpus and 51 deliverable `_REFERENCES.md` files | D-APP-38 reconciliation workflow | CURRENT at v14 | `AUTHORITY_CORPUS.json`; status/audit reports | Reconcile again if a registered authority source changes during implementation. |
+| App authority corpus and 51 deliverable `_REFERENCES.md` files | D-APP-38 reconciliation workflow | CURRENT at v15 | `AUTHORITY_CORPUS.json`; status/audit reports | Reconcile again if a registered authority source changes during implementation. |
 | SCA-APP-003 coverage, supersession, impact, and action records | G0 integration owner | CURRENT for Gate 4 | This accepted snapshot; 11-row cumulative map with zero findings | Preserve as the immutable governance input to G1-G5. |
 | Affected app deliverable `_STATUS.md` records | Existing package managers | CURRENT for governance | `Execution_Deliverable_Impact.csv`; dated Remaining entries | Add only dated, validated implementation evidence; do not advance lifecycle state. |
 | Root/app/domain/PEC narrative and decision surfaces | Root integration owner and project managers | CURRENT for accepted governance scope | Registered rulings and `Amendment_Actions.csv` | Re-audit after implementation fan-in for accidental authority drift. |
@@ -48,7 +48,7 @@ open.
 
 | Surface | Classification | Status | Evidence |
 |---|---|---|---|
-| App authority corpus and governed `_REFERENCES.md` | RECOMPUTE | CURRENT at v14 | Corpus status/audit pass with all eight sources matched. |
+| App authority corpus and governed `_REFERENCES.md` | RECOMPUTE | CURRENT at v15 | Corpus status/audit pass with all eight sources matched. |
 | App decomposition and affected `_STATUS.md` records | DIRECT_EDIT | CURRENT_FOR_GOVERNANCE | DEC-019, OI-007, and the impact register preserve topology/lifecycle state. |
 | Root/app/domain/PEC decision and narrative surfaces | DIRECT_EDIT | CURRENT_FOR_GOVERNANCE | D-GOV-20, D-APP-73, D-T0-23, D-PEC-56, and registered propagation edits. |
 | `runtime/` and Desktop/PEC implementation | DIRECT_EDIT | IMPLEMENTED_AND_VALIDATED | Root runtime, daemon clients, Desktop settings/proxies, and PEC adapter/client seam. |

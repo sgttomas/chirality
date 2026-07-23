@@ -87,7 +87,7 @@ describe("RuntimeClient Unix-socket transport", () => {
       manifestPath: "/projects/project-a/chirality.project.json",
       manifestHash: "abc",
       registeredAt: "2026-07-22T00:00:00.000Z",
-      approval: { approvedBy: "owner", approvalReference: "D-GOV-19" },
+      approval: { approvedBy: "owner", approvalReference: "D-GOV-20" },
       clientId: "project-project-a",
       enabledAdapterIds: ["claude-agent-sdk"],
       legacySessionRoots: []

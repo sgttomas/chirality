@@ -9,12 +9,13 @@ governance effects across root export policy, app authority/decomposition,
 tier-0 domain surfaces, PEC governance/docs, and 20 affected app deliverable
 Remaining records.
 
-D-APP-38 authority corpus v14 now matches all eight registered sources; 306
+D-APP-38 authority corpus v15 now matches all eight registered sources; 306
 reference rows across 51 deliverable `_REFERENCES.md` files were mechanically
 reconciled and the registered audit passes.
 
-The v14 reconciliation incorporates the G0A remediation that preserves the
-accepted LaunchAgent lifecycle and complete initial CLI command/input contract.
+The v15 reconciliation preserves the v14 G0A remediation for the accepted
+LaunchAgent lifecycle and complete initial CLI command/input contract while
+recording the post-rebase D-GOV-20 next-free-ID reconciliation.
 
 Historical D-APP-41 and D-APP-72 records remain unchanged. Their active
 semantics are prospectively extended only for lazy non-destructive cross-store

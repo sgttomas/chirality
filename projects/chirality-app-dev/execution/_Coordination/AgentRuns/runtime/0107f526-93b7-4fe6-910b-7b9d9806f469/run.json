@@ -12,7 +12,7 @@
   "sealedBrief": "Delegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.",
   "briefHash": "3486d8d9b64b203bc369374bb6badfe4e659078c227dcb4337a3ee01d84b1c0f",
   "status": "completed",
-  "approvalReference": "D-GOV-19-live-proof-retry",
+  "approvalReference": "D-GOV-20-live-proof-retry",
   "createdAt": "2026-07-23T05:44:55.482Z",
   "completedAt": "2026-07-23T05:45:05.439Z",
   "child": {

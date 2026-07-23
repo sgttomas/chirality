@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v14",
+  "current_version": "v15",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -229,6 +229,22 @@
         "docs/TYPES.md": "7ced6ce4157e2c11e6a82e581d96b7f59e91b3fff98e456ccb61c0d318874511",
         "docs/PLAN.md": "20bcf55a0a588b8875ad7d278b8e15a42e5f474e35553a9613ba72ee14aba35b",
         "docs/PRD.md": "60c9ace0a792d8bbbd6f80eabc7d51013565cdfb5021a29d2138cc224a3d5fb9",
+        "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+        "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
+      }
+    },
+    {
+      "version": "v15",
+      "date": "2026-07-23",
+      "binding_commit": "c6133dab150cd395c8acdd99e39754079c6b9170",
+      "reason": "Reconcile shared-runtime root authority from provisional D-GOV-19 to next-free D-GOV-20 after origin/main adopted D-GOV-19 for the framework knower/accountability ruling.",
+      "hashes": {
+        "docs/DIRECTIVE.md": "d01a61b69e7c8a577c882b5e8391379900d825bb5f2f29438823d466de8edc6d",
+        "docs/CONTRACT.md": "ec5fe07c43c11a1b7d1f2e3da38655c7db717081687984c064122172fc1abdf2",
+        "docs/SPEC.md": "db5cd5b3c371d2223fc544cedebc8e86adbf99c1e5b54bdd853cb80084645867",
+        "docs/TYPES.md": "7ced6ce4157e2c11e6a82e581d96b7f59e91b3fff98e456ccb61c0d318874511",
+        "docs/PLAN.md": "20bcf55a0a588b8875ad7d278b8e15a42e5f474e35553a9613ba72ee14aba35b",
+        "docs/PRD.md": "d2db92f4c9ae5cf103ea24a76a46b166a7955b6c77bafa7f9cd0b943ab5f63ec",
         "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
         "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
       }

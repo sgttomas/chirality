@@ -26,7 +26,7 @@
     "cumulative_map_rows": 11
   },
   "authority_corpus": {
-    "version": "v14",
+    "version": "v15",
     "status": "MATCH",
     "registered_sources": 8,
     "reconciled_reference_rows": 306,
