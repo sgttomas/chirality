@@ -1,14 +1,18 @@
 # Status: DEL-01-02
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
+- Implement and validate SCA-APP-003 daemon, control-socket, central-store, residency, role-attribution, PEC-adapter, and export reliance boundaries (gated: G1-G5).
+
 ## History
+- 2026-07-22 - D-APP-72 / SCA-APP-002 reliance-boundary reconciliation completed and independently backchecked; implementation and redacted proof are recorded in the Pi/oMLX AgentRuns G5 closeout return. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 added the bounded Pi/oMLX reliance-boundary reconciliation to Remaining; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 final code tranche implemented UPD-097/RBR-025 cited-enforcement-path existence coverage; full-repository gate remains tranche-level evidence; state remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)

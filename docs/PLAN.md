@@ -155,3 +155,25 @@ applicability register (deferred).
 Completed roadmap slices are historical and are not tracked as active surface
 here; they live in git history, release records, and per-project completion
 logs.
+
+---
+
+## 6. Shared Runtime Execution Order
+
+D-GOV-20 activates the following bounded sequence:
+
+1. close and preserve the D-APP-72 Pi/oMLX tranche;
+2. reconcile root, app-dev, domain-engine, and PEC authority;
+3. promote provider-neutral contracts and orchestration into `runtime/`
+   without behavioral change;
+4. establish the authenticated Unix-socket daemon, client, and bundled CLI;
+5. convert Desktop into a daemon client and add explicit residency controls;
+6. prove one direct Agent 1 → read-only local Agent 2 workflow in app-dev;
+7. migrate PEC’s model/session/delegation ownership to the daemon while
+   retaining deterministic PEC acts and RBAC in its project adapter;
+8. include only generic runtime surfaces in the public export.
+
+Each compatibility stage reruns the existing app baseline. Fake providers
+cover automated residency and protocol tests; downloaded local models are used
+only in an opt-in live proof. Automatic scheduling, multiple resident primary
+LLMs, local Agent 1, piping, and production PEC remain later owner decisions.

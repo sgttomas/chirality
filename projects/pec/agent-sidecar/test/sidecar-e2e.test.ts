@@ -16,8 +16,8 @@ import type { TestEnv } from '../../server/test/harness.ts'
 import { hashPassword } from '../../server/src/auth.ts'
 import { withTx } from '../../server/src/db.ts'
 import { nowIso } from '../../server/src/repo.ts'
-import { startSidecar } from '../src/index.ts'
-import type { RunningSidecar } from '../src/index.ts'
+import { startLegacyAgentLoopForTests } from '../src/legacy-agent-test-harness.ts'
+import type { RunningLegacyAgentLoop } from '../src/legacy-agent-test-harness.ts'
 import type { AgentEvent } from '../src/engine/port.ts'
 import { KEY_ABSENT_MSG, SDK_ABSENT_MSG } from '../src/engine/sdk.ts'
 
@@ -25,7 +25,7 @@ const AGENT_EMAIL = 'pec-agent@rehearsal.demo'
 const AGENT_PASSWORD = 'agent-pilot'
 
 let env: TestEnv
-let sidecar: RunningSidecar
+let sidecar: RunningLegacyAgentLoop
 let agentPersonId = 0
 let P = ''
 
@@ -48,7 +48,7 @@ before(async () => {
     env.db.prepare('INSERT INTO project_role (project_id, person_id, role) VALUES (?, ?, ?)')
       .run(env.projectId, agentPersonId, 'coordinator')
   })
-  sidecar = await startSidecar({
+  sidecar = await startLegacyAgentLoopForTests({
     engine: 'stub', access: 'enumerated', session: 'hermetic', pecBaseUrl: env.base, port: 0,
     agentEmail: AGENT_EMAIL, agentPassword: AGENT_PASSWORD,
   })
@@ -208,7 +208,7 @@ test('RBAC pin: the agent\'s direct accept attempt is refused 403 by the server 
 })
 
 test('unconfigured sidecar starts, reports unconfigured, and refuses messages with 503 AGENT_NOT_CONFIGURED', async () => {
-  const bare = await startSidecar({
+  const bare = await startLegacyAgentLoopForTests({
     engine: 'stub', access: 'enumerated', session: 'hermetic', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null,
   })
   try {
@@ -236,7 +236,7 @@ test('engine sdk without its prerequisites fails at startup with a documented dr
   delete process.env.ANTHROPIC_API_KEY
   try {
     await assert.rejects(
-      startSidecar({ engine: 'sdk', access: 'enumerated', session: 'hermetic', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null }),
+      startLegacyAgentLoopForTests({ engine: 'sdk', access: 'enumerated', session: 'hermetic', pecBaseUrl: env.base, port: 0, agentEmail: null, agentPassword: null }),
       (e: unknown) => e instanceof Error && (e.message === SDK_ABSENT_MSG || e.message === KEY_ABSENT_MSG),
     )
   } finally {

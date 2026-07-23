@@ -115,7 +115,7 @@ The instruction root defines how agents should behave. The working root contains
 
 Chirality should use a provider-adapter runtime architecture for generic agent-loop mechanics where an external provider or SDK satisfies Chirality requirements behind product-owned contracts. The Claude Agent SDK / Anthropic path is the first concrete adapter and, per the human-gated D-APP-18 ruling (Option A), the key-aware default provider — the real `agentSdk` path when an Anthropic key is configured, else `stub`. Provider/SDK adapters may provide the model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages.
 
-Chirality builds the **governance, UI, audit, lifecycle, and adapter layer over** those provider harness mechanics. It does **not** build a standalone general agent harness, and it does **not** chase Claude Code / Pi / Codex feature parity — generic harness primitives the current adapter provides well are governed, not reimplemented. Pi remains reference-only. Any other provider or harness path requires a fresh governed tranche (D-APP-01/02/03). This boundary is invariant K-ENGINE-6.
+Chirality builds the **governance, UI, audit, lifecycle, and adapter layer over** those provider harness mechanics. It does **not** build a standalone general agent harness, and it does **not** chase Claude Code / Pi / Codex feature parity — generic harness primitives are reused only behind Chirality-owned contracts. D-APP-72 / SCA-APP-002 prospectively supersedes the D-APP-01/02 reference-only prohibition only for one bounded path: after the Electron `43.1.1` prerequisite passes, Pi `0.80.10` may run in-process as an opt-in second adapter over authenticated `127.0.0.1` oMLX for a governed read-only Agent 2 child. Claude remains the default and supervisor. Pi-native tools, subagents, extensions, skills, ambient discovery, remote providers, automatic fallback, direct Pi supervisors, write/shell/network tools, release, issuance, and lifecycle advancement remain out of scope. Every other provider or harness path requires a fresh governed tranche. This boundary is invariant K-ENGINE-6.
 
 Provider/SDK adapters do not own Chirality’s product contract. Chirality owns:
 
@@ -274,3 +274,24 @@ Users and maintainers must:
 Changes that alter scope, release target, data contracts, professional-boundary posture, runtime engine semantics, permission behavior, transcript canonicality, or retired/active execution scope must be handled as governed product changes.
 
 A change is not complete until it is reflected in the appropriate combination of PRD, directive, contract, specification, type vocabulary, plan, tests, runbooks, and implementation artifacts.
+
+---
+
+## 8. Shared Runtime Direction (D-GOV-20 / D-APP-73)
+
+Chirality’s executable harness is a root-owned shared runtime used by
+registered projects. One opt-in per-user daemon owns engines, credentials,
+sessions, delegation, tools, turn locks, interruption, and model residency.
+Desktop, CLI, and embedded project surfaces are clients; they do not create
+competing runtime owners.
+
+Daemon user-data state is convenience and execution state, not project
+authority. Governed truth remains in checkout-contained manifests,
+instructions, decisions, execution trees, AgentRuns, evidence, and Git.
+Agent 0/1/2 roles remain authority contracts independent of models.
+
+The initial local-agent pilot permits one explicitly resident authenticated
+loopback oMLX model and one required read-only Pi Agent 2 child under a real
+Agent 1 manager. It does not authorize automatic scheduling, multiple primary
+local models, local Agent 1, remote oMLX, fallback, production PEC mutation,
+release, publication, issuance, or professional reliance.

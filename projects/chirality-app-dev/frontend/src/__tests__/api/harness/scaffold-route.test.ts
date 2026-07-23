@@ -37,7 +37,14 @@ describe('POST /api/harness/scaffold', () => {
     await writeFile(decompositionPath, DECOMPOSITION_FIXTURE, 'utf8');
 
     vi.resetModules();
-    const route = await import('../../../app/api/harness/scaffold/route');
+    const [route, daemonPortModule, fakeDaemonPortModule] = await Promise.all([
+      import('../../../app/api/harness/scaffold/route'),
+      import('../../../lib/runtime-client/daemon-harness-port'),
+      import('./fake-daemon-harness-port')
+    ]);
+    daemonPortModule.installDaemonHarnessPort(
+      fakeDaemonPortModule.createFakeDaemonHarnessPort()
+    );
 
     const response = await route.POST(
       new Request('http://localhost/api/harness/scaffold', {
@@ -85,7 +92,14 @@ describe('POST /api/harness/scaffold', () => {
 
   it('returns INVALID_REQUEST when required fields are missing', async () => {
     vi.resetModules();
-    const route = await import('../../../app/api/harness/scaffold/route');
+    const [route, daemonPortModule, fakeDaemonPortModule] = await Promise.all([
+      import('../../../app/api/harness/scaffold/route'),
+      import('../../../lib/runtime-client/daemon-harness-port'),
+      import('./fake-daemon-harness-port')
+    ]);
+    daemonPortModule.installDaemonHarnessPort(
+      fakeDaemonPortModule.createFakeDaemonHarnessPort()
+    );
 
     const response = await route.POST(
       new Request('http://localhost/api/harness/scaffold', {
@@ -114,7 +128,14 @@ describe('POST /api/harness/scaffold', () => {
     await writeFile(decompositionPath, DECOMPOSITION_FIXTURE, 'utf8');
 
     vi.resetModules();
-    const route = await import('../../../app/api/harness/scaffold/route');
+    const [route, daemonPortModule, fakeDaemonPortModule] = await Promise.all([
+      import('../../../app/api/harness/scaffold/route'),
+      import('../../../lib/runtime-client/daemon-harness-port'),
+      import('./fake-daemon-harness-port')
+    ]);
+    daemonPortModule.installDaemonHarnessPort(
+      fakeDaemonPortModule.createFakeDaemonHarnessPort()
+    );
 
     const response = await route.POST(
       new Request('http://localhost/api/harness/scaffold', {

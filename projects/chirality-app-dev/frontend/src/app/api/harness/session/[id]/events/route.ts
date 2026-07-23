@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import { HarnessError } from '@chirality/harness-contract/errors';
 import { errorResponse, requireNonEmptyString } from '../../../../../../lib/harness/http';
-import { getHarnessRuntime } from '../../../../../../lib/harness/runtime';
-import { replayHarnessEvents } from '../../../../../../lib/harness/session-events';
-import { deriveTranscriptView } from '@chirality/harness-contract/transcript-replay';
+import { getDaemonHarnessPort } from '../../../../../../lib/runtime-client/daemon-harness-port';
 
 type RouteContext = {
   params: {
@@ -17,7 +15,7 @@ type RouteContext = {
  * honest `malformedLineCount` and a summary; reuses `replayHarnessEvents` (no
  * forked parser). A missing log yields an empty replay, not an error.
  */
-export async function GET(_request: Request, context: RouteContext): Promise<Response> {
+export async function GET(request: Request, context: RouteContext): Promise<Response> {
   try {
     const sessionId = requireNonEmptyString(context.params.id, 'id');
     // The id is joined into an on-disk events path; reject separators / `..`
@@ -26,11 +24,10 @@ export async function GET(_request: Request, context: RouteContext): Promise<Res
       throw new HarnessError('INVALID_REQUEST', 400, `Invalid session id '${sessionId}'`);
     }
 
-    const runtime = getHarnessRuntime();
-    const session = await runtime.sessionManager.getById(sessionId);
-    const replay = await replayHarnessEvents(sessionId);
-    const transcript = deriveTranscriptView(replay.events, session);
-    return NextResponse.json({ ...replay, session, transcript }, { status: 200 });
+    const replay = await getDaemonHarnessPort().replaySession(sessionId, {
+      signal: request.signal
+    });
+    return NextResponse.json(replay, { status: 200 });
   } catch (error) {
     return errorResponse(error);
   }

@@ -15,6 +15,7 @@ const forbiddenSpecifiers = [
   /^electron($|\/)/,
   /^@anthropic-ai\//
 ];
+const allowedFacadeSpecifiers = [/^@chirality\/runtime-contracts(?:$|\/)/];
 
 async function listSourceFiles(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -66,6 +67,9 @@ for (const filePath of await listSourceFiles(contractSrc)) {
           `${path.relative(frontendRoot, filePath)} escapes contract package via ${specifier}`
         );
       }
+      continue;
+    }
+    if (allowedFacadeSpecifiers.some((pattern) => pattern.test(specifier))) {
       continue;
     }
     failures.push(`${path.relative(frontendRoot, filePath)} imports external package ${specifier}`);

@@ -1,34 +1,62 @@
-/**
- * Server-side API key store accessor — DEL-02-06
- *
- * Reads the UI-provided API key from the process-global variable set by the
- * Electron main process storage adapter. In packaged builds, the Electron
- * main process and the Next.js server share the same Node.js process, so
- * this global is directly available.
- *
- * Key material MUST NOT be logged by any function in this module.
- */
+/** Server-side access to Electron-owned provider credentials. */
 
-const GLOBAL_KEY = '__CHIRALITY_UI_API_KEY__';
+export type ProviderCredentialId = 'anthropic' | 'omlx';
+
+const LEGACY_ANTHROPIC_GLOBAL_KEY = '__CHIRALITY_UI_API_KEY__';
+const PROVIDER_GLOBAL_KEY = '__CHIRALITY_PROVIDER_API_KEYS__';
 
 type ApiKeyGlobal = typeof globalThis & {
-  [key: string]: string | undefined;
+  [LEGACY_ANTHROPIC_GLOBAL_KEY]?: string;
+  [PROVIDER_GLOBAL_KEY]?: Partial<Record<ProviderCredentialId, string>>;
 };
 
 const apiKeyGlobal = globalThis as ApiKeyGlobal;
 
-/**
- * Get the UI-provided API key (set by Electron main process via safeStorage).
- * Returns undefined if no UI key is stored or if running outside Electron.
- */
-export function getUiApiKey(): string | undefined {
-  const value = apiKeyGlobal[GLOBAL_KEY];
-  return typeof value === 'string' && value.trim().length > 0 ? value : undefined;
+function asNonEmptyString(value: string | undefined): string | undefined {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
 }
 
-/**
- * Check whether a UI-provided API key is available in the process global.
- */
+export function getProviderUiApiKey(providerId: ProviderCredentialId): string | undefined {
+  const providerValue = asNonEmptyString(apiKeyGlobal[PROVIDER_GLOBAL_KEY]?.[providerId]);
+  if (providerValue) {
+    return providerValue;
+  }
+  return providerId === 'anthropic'
+    ? asNonEmptyString(apiKeyGlobal[LEGACY_ANTHROPIC_GLOBAL_KEY])
+    : undefined;
+}
+
+export function getProviderApiKey(providerId: ProviderCredentialId): string | undefined {
+  const uiKey = getProviderUiApiKey(providerId);
+  if (uiKey) {
+    return uiKey;
+  }
+  if (providerId === 'omlx') {
+    return asNonEmptyString(process.env.CHIRALITY_OMLX_API_KEY);
+  }
+  return (
+    asNonEmptyString(process.env.ANTHROPIC_API_KEY) ??
+    asNonEmptyString(process.env.CHIRALITY_ANTHROPIC_API_KEY)
+  );
+}
+
+export function hasProviderApiKey(providerId: ProviderCredentialId): boolean {
+  return getProviderApiKey(providerId) !== undefined;
+}
+
+// Anthropic compatibility helpers retain their existing UI-only semantics.
+export function getUiApiKey(): string | undefined {
+  return getProviderUiApiKey('anthropic');
+}
+
 export function hasUiApiKey(): boolean {
   return getUiApiKey() !== undefined;
+}
+
+export function getOmlxApiKey(): string | undefined {
+  return getProviderApiKey('omlx');
 }

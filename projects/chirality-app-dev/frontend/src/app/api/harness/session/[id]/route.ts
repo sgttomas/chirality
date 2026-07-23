@@ -3,7 +3,7 @@ import {
   errorResponse,
   requireNonEmptyString
 } from '../../../../../lib/harness/http';
-import { getHarnessRuntime } from '../../../../../lib/harness/runtime';
+import { getDaemonHarnessPort } from '../../../../../lib/runtime-client/daemon-harness-port';
 
 type RouteContext = {
   params: {
@@ -11,23 +11,25 @@ type RouteContext = {
   };
 };
 
-export async function GET(_request: Request, context: RouteContext): Promise<Response> {
+export async function GET(request: Request, context: RouteContext): Promise<Response> {
   try {
     const sessionId = requireNonEmptyString(context.params.id, 'id');
-    const runtime = getHarnessRuntime();
-    const session = await runtime.sessionManager.getById(sessionId);
-    return NextResponse.json({ session }, { status: 200 });
+    const result = await getDaemonHarnessPort().getSession(sessionId, {
+      signal: request.signal
+    });
+    return NextResponse.json(result, { status: 200 });
   } catch (error) {
     return errorResponse(error);
   }
 }
 
-export async function DELETE(_request: Request, context: RouteContext): Promise<Response> {
+export async function DELETE(request: Request, context: RouteContext): Promise<Response> {
   try {
     const sessionId = requireNonEmptyString(context.params.id, 'id');
-    const runtime = getHarnessRuntime();
-    await runtime.sessionManager.delete(sessionId);
-    return NextResponse.json({ ok: true }, { status: 200 });
+    const result = await getDaemonHarnessPort().deleteSession(sessionId, {
+      signal: request.signal
+    });
+    return NextResponse.json(result, { status: 200 });
   } catch (error) {
     return errorResponse(error);
   }

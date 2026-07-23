@@ -3,7 +3,12 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/harness-contract/agent-engine-port';
+import type {
+  AgentEnginePort,
+  AgentEngineRunInput,
+  EngineDescriptor
+} from '@chirality/harness-contract/agent-engine-port';
+import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
 import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manager';
 import {
   runEngineConformance,
@@ -44,6 +49,7 @@ function createRunInput(overrides: Partial<AgentEngineRunInput> = {}): AgentEngi
     session,
     message: 'hello',
     opts,
+    turnId: 'turn_conformance',
     ...overrides
   };
 }
@@ -200,8 +206,29 @@ function createInterruptibleQuery(eventsBeforeInterrupt: SDKMessage[]) {
 
 class ScriptedEnginePort implements AgentEnginePort {
   readonly subject = 'stub' as const;
+  readonly descriptor: EngineDescriptor;
 
-  constructor(private readonly script: Array<UIEvent | { type: string; data: unknown }>) {}
+  constructor(
+    private readonly script: Array<UIEvent | { type: string; data: unknown }>,
+    descriptor: EngineDescriptor = {
+    adapterId: 'stub',
+    providerId: 'stub',
+    capabilities: {
+      credentials: false,
+      tools: false,
+      attachments: false,
+      interruption: true,
+      durableResume: false,
+      compaction: false
+    }
+    }
+  ) {
+    this.descriptor = descriptor;
+  }
+
+  async preflight(_input: AgentEngineRunInput): Promise<void> {
+    return undefined;
+  }
 
   async *startTurn(_input: AgentEngineRunInput): AsyncIterable<UIEvent> {
     for (const event of this.script) {
@@ -217,6 +244,26 @@ class ScriptedEnginePort implements AgentEnginePort {
 async function useTempSessionRoot(): Promise<void> {
   tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-engine-conformance-'));
   process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+}
+
+function harnessEvent(
+  eventId: string,
+  type: HarnessEventType,
+  data: Record<string, unknown> = {}
+): HarnessEvent {
+  return {
+    schemaVersion: 1,
+    eventId,
+    sessionId: session.sessionId,
+    turnId: 'turn_conformance',
+    timestamp: '2026-06-13T00:00:00.000Z',
+    type,
+    data
+  };
+}
+
+function harnessUi(event: HarnessEvent): UIEvent {
+  return { type: 'harness:event', data: event };
 }
 
 describe('engine conformance fixtures', () => {
@@ -454,6 +501,8 @@ describe('engine conformance fixtures', () => {
         type: 'session:init',
         data: {
           engineSessionId: 'engine_1',
+          adapterId: 'stub',
+          providerId: 'stub',
           claudeSessionId: 'claude_1',
           model: 'claude-test'
         }
@@ -481,6 +530,8 @@ describe('engine conformance fixtures', () => {
         type: 'session:init',
         data: {
           engineSessionId: 'engine_1',
+          adapterId: 'stub',
+          providerId: 'stub',
           claudeSessionId: 'claude_1',
           model: 'claude-test'
         }
@@ -499,5 +550,171 @@ describe('engine conformance fixtures', () => {
         code: 'MISSING_PROCESS_EXIT'
       })
     ]);
+  });
+
+  it('strictly validates declared capabilities, tool pairing, compaction, persistence, and redaction', async () => {
+    const persisted = [
+      harnessEvent('evt_permission', 'tool.permission', {
+        toolUseId: 'tool_read_1',
+        decision: 'allow'
+      }),
+      harnessEvent('evt_started', 'tool.started', { toolCallId: 'tool_read_1' }),
+      harnessEvent('evt_completed', 'tool.completed', { toolCallId: 'tool_read_1' }),
+      harnessEvent('evt_compaction_start', 'context.compaction.started'),
+      harnessEvent('evt_compaction_end', 'context.compacted'),
+      harnessEvent('evt_terminal', 'turn.completed')
+    ];
+    const port = new ScriptedEnginePort(
+      [
+        {
+          type: 'session:init',
+          data: {
+            engineSessionId: 'engine_strict',
+            adapterId: 'stub',
+            providerId: 'stub',
+            model: 'claude-test'
+          }
+        },
+        ...persisted.map(harnessUi),
+        { type: 'session:complete', data: {} },
+        { type: 'process:exit', data: { exitCode: 0 } }
+      ],
+      {
+        adapterId: 'stub',
+        providerId: 'stub',
+        capabilities: {
+          credentials: false,
+          tools: true,
+          attachments: false,
+          interruption: true,
+          durableResume: false,
+          compaction: true
+        }
+      }
+    );
+
+    const report = await runEngineConformance(
+      port,
+      createRunInput({ opts: { ...opts, tools: ['read_file'] } }),
+      {
+        requireEngineSessionId: true,
+        requireHarnessTerminal: true,
+        requireToolPermissionEvidence: true,
+        forbiddenEvidenceValues: ['super-secret'],
+        readPersistedEvents: async () => persisted
+      }
+    );
+
+    expect(report.passed).toBe(true);
+    expect(report.issues).toEqual([]);
+  });
+
+  it('reports ordering, attribution, capability, lifecycle, persistence, and redaction violations', async () => {
+    const secret = 'unredacted-api-key';
+    const completed = harnessEvent('evt_completed_bad', 'tool.completed', {
+      toolCallId: 'tool_bad'
+    });
+    const latePermission = harnessEvent('evt_permission_late', 'tool.permission', {
+      toolUseId: 'tool_bad'
+    });
+    const compaction = harnessEvent('evt_compaction_bad', 'context.compacted');
+    const successTerminal = harnessEvent('evt_terminal_success', 'turn.completed');
+    const failureTerminal = harnessEvent('evt_terminal_failure', 'turn.failed');
+    const notPersisted = harnessEvent('evt_not_persisted', 'turn.started');
+    const port = new ScriptedEnginePort([
+      { type: 'chat:delta', data: { text: secret } },
+      {
+        type: 'session:init',
+        data: {
+          engineSessionId: 'engine_bad',
+          adapterId: 'different-adapter',
+          providerId: 'different-provider',
+          model: 'claude-test'
+        }
+      },
+      harnessUi(notPersisted),
+      harnessUi(completed),
+      harnessUi(latePermission),
+      harnessUi(compaction),
+      harnessUi(successTerminal),
+      harnessUi(failureTerminal),
+      { type: 'process:exit', data: { exitCode: 1 } }
+    ]);
+
+    const report = await runEngineConformance(
+      port,
+      createRunInput({
+        opts: { ...opts, tools: ['read_file'] },
+        contentBlocks: [{ type: 'file', path: '/tmp/project/input.txt', mimeType: 'text/plain' }]
+      }),
+      {
+        requireHarnessTerminal: true,
+        requireToolPermissionEvidence: true,
+        forbiddenEvidenceValues: [secret],
+        readPersistedEvents: async () => [
+          completed,
+          latePermission,
+          compaction,
+          successTerminal,
+          failureTerminal
+        ]
+      }
+    );
+
+    expect(report.passed).toBe(false);
+    expect(report.issues.map((issue) => issue.code)).toEqual(
+      expect.arrayContaining([
+        'TOOLS_NOT_DECLARED',
+        'ATTACHMENTS_NOT_DECLARED',
+        'SESSION_INIT_NOT_FIRST',
+        'SESSION_INIT_ADAPTER_MISMATCH',
+        'SESSION_INIT_PROVIDER_MISMATCH',
+        'MULTIPLE_HARNESS_TERMINAL',
+        'HARNESS_TERMINAL_MISMATCH',
+        'TOOL_RESULT_WITHOUT_START',
+        'TOOL_PERMISSION_AFTER_RESULT',
+        'COMPACTION_NOT_DECLARED',
+        'COMPACTION_RESULT_WITHOUT_START',
+        'MISSING_PERSISTED_EVENT',
+        'UNREDACTED_EVIDENCE'
+      ])
+    );
+  });
+
+  it('rejects interrupted conformance when interruption is not a declared capability', async () => {
+    const port = new ScriptedEnginePort(
+      [
+        {
+          type: 'session:init',
+          data: {
+            engineSessionId: 'engine_no_interrupt',
+            adapterId: 'stub',
+            providerId: 'stub',
+            model: 'claude-test'
+          }
+        },
+        { type: 'process:exit', data: { exitCode: 0 } }
+      ],
+      {
+        adapterId: 'stub',
+        providerId: 'stub',
+        capabilities: {
+          credentials: false,
+          tools: false,
+          attachments: false,
+          interruption: false,
+          durableResume: false,
+          compaction: false
+        }
+      }
+    );
+
+    const report = await runEngineConformance(port, createRunInput(), {
+      requireInterruptedProcessExit: true
+    });
+
+    expect(report.issues.map((issue) => issue.code)).toEqual(
+      expect.arrayContaining(['INTERRUPTION_NOT_DECLARED', 'MISSING_INTERRUPTED_PROCESS_EXIT'])
+    );
   });
 });

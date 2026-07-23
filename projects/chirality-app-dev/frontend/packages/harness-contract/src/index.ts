@@ -1,12 +1,7 @@
-export * from './agent-engine-port';
-export * from './domain-profile';
-export * from './engine-conformance';
-export * from './errors';
-export * from './event-schema';
-export * from './mcp/tool-names';
-export * from './operation-proposal';
-export * from './sdk-version';
-export * from './tool-catalog';
-export * from './tool-descriptor';
-export * from './transcript-replay';
-export * from './types';
+/**
+ * @deprecated Import from `@chirality/runtime-contracts`.
+ *
+ * This package remains only as a source-compatible facade for one migration
+ * cycle. Runtime contract ownership moved to the repository-root workspace.
+ */
+export * from '@chirality/runtime-contracts';

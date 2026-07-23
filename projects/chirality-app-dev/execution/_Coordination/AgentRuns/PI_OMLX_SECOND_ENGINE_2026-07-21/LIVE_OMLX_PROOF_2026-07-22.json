@@ -1,0 +1,118 @@
+{
+  "schema": "chirality.live-omlx-proof.v1",
+  "status": "PASS",
+  "localDate": "2026-07-22",
+  "observedAtUtc": "2026-07-23T01:58:42.844Z",
+  "selectionAuthority": "owner loaded and selected the local model; D-APP-72 governs the child boundary",
+  "runtime": {
+    "adapterId": "pi",
+    "providerId": "omlx",
+    "model": "Qwen3.6-35B-A3B-8bit",
+    "packageName": "@earendil-works/pi-coding-agent",
+    "packageVersion": "0.80.10",
+    "endpoint": {
+      "protocol": "http",
+      "host": "127.0.0.1",
+      "port": 8000,
+      "apiPath": "/v1"
+    },
+    "credentialSource": "electron-safeStorage",
+    "credentialCaptured": false
+  },
+  "session": {
+    "sessionId": "sess_live_pi_qwen36",
+    "engineSessionId": "pi_c5084bd5-96d4-43ad-8098-6491a0762ea8",
+    "parentSessionId": "sess_live_claude_supervisor",
+    "agentType": 2,
+    "approvalRef": "D-APP-72-LIVE-PROOF-2026-07-22",
+    "declaredTools": [
+      "read_file"
+    ],
+    "writeTargets": []
+  },
+  "fixture": {
+    "kind": "temporary-read-only-project",
+    "fileSha256": "3359d489ba081d383fd0ee9b2dace4cbde61435e417890929b4bfa3add6fe471",
+    "rawContentCapturedInReceipt": false
+  },
+  "discovery": {
+    "huggingFaceRepositoryId": "mlx-community/Qwen3.6-35B-A3B-8bit",
+    "exactApiModelId": "Qwen3.6-35B-A3B-8bit",
+    "ownerQualifiedIdRejectedAsUnavailable": true,
+    "exactApiIdAccepted": true
+  },
+  "scenarios": [
+    {
+      "name": "governed-read-success",
+      "status": "PASS",
+      "turnId": "turn_e33e0ade-fd1b-4205-9bbd-1ffa4dbb6dc7",
+      "durationMs": 9426,
+      "permission": "allow",
+      "toolUseId": "call_9c562c97",
+      "toolStarted": true,
+      "toolCompleted": true,
+      "responseMatchedFixture": true,
+      "terminal": "turn.completed",
+      "processExitCode": 0,
+      "usage": {
+        "input": 1782,
+        "output": 69,
+        "cacheRead": 12288,
+        "totalTokens": 14139
+      }
+    },
+    {
+      "name": "targeted-interruption",
+      "status": "PASS",
+      "turnId": "turn_75c62112-5616-4126-8358-464a553cb920",
+      "durationMs": 10581,
+      "interruptionRequested": true,
+      "interruptionCompleted": true,
+      "terminal": "turn.interrupted",
+      "processExitCode": 130
+    },
+    {
+      "name": "path-containment-denial",
+      "status": "PASS",
+      "turnId": "turn_2b553c90-e51b-463e-b615-1d2c4813cd50",
+      "durationMs": 2515,
+      "permission": "deny",
+      "hardDeny": true,
+      "denyClass": "path-containment",
+      "toolUseId": "call_c0870447",
+      "handlerSucceeded": false,
+      "terminal": "turn.completed",
+      "processExitCode": 0
+    },
+    {
+      "name": "offline-provider",
+      "status": "PASS",
+      "syntheticUnusedLoopbackPort": true,
+      "httpStatus": 503,
+      "errorType": "ENGINE_UNAVAILABLE",
+      "category": "OMLX_OFFLINE",
+      "automaticFallbackObserved": false
+    },
+    {
+      "name": "bad-authentication",
+      "status": "PASS",
+      "isolatedTemporaryElectronProfile": true,
+      "syntheticInvalidCredential": true,
+      "httpStatus": 503,
+      "errorType": "PROVIDER_AUTH_FAILURE",
+      "category": "OMLX_AUTHENTICATION",
+      "automaticFallbackObserved": false
+    }
+  ],
+  "assertions": {
+    "canonicalEventOrdering": true,
+    "pairedToolIds": true,
+    "permissionEvidencePersisted": true,
+    "parentagePersisted": true,
+    "adapterProviderModelAttributionPersisted": true,
+    "interruptionPersisted": true,
+    "laterTurnAfterInterruptionSucceeded": true,
+    "credentialAbsentFromReceipt": true,
+    "latencyThresholdApplied": false
+  }
+}

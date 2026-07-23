@@ -1,12 +1,14 @@
 # Status: DEL-03-03
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Add the versioned authenticated Unix-socket API and convert `/api/harness/*` into thin daemon proxies while preserving renderer routes, SSE names, and replay semantics (gated: daemon/client implementation).
 
 ## History
 - 2026-07-20 - D-APP-70 Option A mapped the CQ-F1 working-root content route to DEL-07-03 as physical route-contract owner while retaining DEL-07-01 containment and DEL-02-03 consumption; the CQ-F1 Remaining entry was closed; no source, lifecycle, Approval SHA, SOW, or dependency change.

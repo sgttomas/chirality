@@ -24,6 +24,7 @@ type RouteModules = {
   idRoute: typeof import('../../../app/api/harness/session/[id]/route');
   turnRoute: typeof import('../../../app/api/harness/turn/route');
   runtimeModule: typeof import('../../../lib/harness/runtime');
+  daemonPortModule: typeof import('../../../lib/runtime-client/daemon-harness-port');
 };
 
 type SdkOptionsBuilderModule = typeof import('../../../lib/harness/sdk-options-builder');
@@ -183,19 +184,32 @@ async function importRouteModules(): Promise<RouteModules> {
     };
   });
 
-  const [createRoute, idRoute, turnRoute, runtimeModule] = await Promise.all([
+  const [
+    createRoute,
+    idRoute,
+    turnRoute,
+    runtimeModule,
+    daemonPortModule,
+    fakeDaemonPortModule
+  ] = await Promise.all([
     import('../../../app/api/harness/session/create/route'),
     import('../../../app/api/harness/session/[id]/route'),
     import('../../../app/api/harness/turn/route'),
-    import('../../../lib/harness/runtime')
+    import('../../../lib/harness/runtime'),
+    import('../../../lib/runtime-client/daemon-harness-port'),
+    import('./fake-daemon-harness-port')
   ]);
   runtimeModule.resetHarnessRuntimeForTests();
+  daemonPortModule.installDaemonHarnessPort(
+    fakeDaemonPortModule.createFakeDaemonHarnessPort()
+  );
 
   return {
     createRoute,
     idRoute,
     turnRoute,
-    runtimeModule
+    runtimeModule,
+    daemonPortModule
   };
 }
 

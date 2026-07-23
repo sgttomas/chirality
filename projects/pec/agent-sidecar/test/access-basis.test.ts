@@ -28,7 +28,7 @@ import { assertReadInsideEnumeration, bindActs } from '../src/acts.ts'
 import type { ActContext } from '../src/acts.ts'
 import { createStubEngine } from '../src/engine/stub.ts'
 import type { ActResult, BoundActs } from '../src/engine/port.ts'
-import { startSidecar } from '../src/index.ts'
+import { startLegacyAgentLoopForTests } from '../src/legacy-agent-test-harness.ts'
 
 // ---------- programmable fake pec server (loopback), pec-client.test pattern ----------
 
@@ -262,7 +262,7 @@ test('boundary pins under broad: withdraw of another person\'s proposal still re
 
 test('/agent/health states the active access basis (enumerated and broad)', async () => {
   for (const access of ['enumerated', 'broad'] as const) {
-    const s = await startSidecar(cfg({ access, agentEmail: null, agentPassword: null }))
+    const s = await startLegacyAgentLoopForTests(cfg({ access, agentEmail: null, agentPassword: null }))
     try {
       const health = await fetch(`http://127.0.0.1:${s.port}/agent/health`)
       const h = await health.json() as Record<string, unknown>

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "chirality.agent-run/v1",
+  "runId": "b75c9ecb-2be1-4730-a20c-b7cbc2c67ea9",
+  "projectId": "chirality-app-dev",
+  "managerSessionId": "67e39707-e75a-4097-abf4-23f886775f9c",
+  "managerAgentId": "WORKING_ITEMS",
+  "managerSelection": {
+    "adapterId": "stub",
+    "providerId": "stub",
+    "model": "haiku"
+  },
+  "sealedBrief": "Delegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.",
+  "briefHash": "3486d8d9b64b203bc369374bb6badfe4e659078c227dcb4337a3ee01d84b1c0f",
+  "status": "completed",
+  "approvalReference": "D-GOV-20-final-live-proof-retry",
+  "createdAt": "2026-07-23T05:57:53.091Z",
+  "completedAt": "2026-07-23T05:58:07.805Z",
+  "child": {
+    "sessionId": "9de76d12-c243-48e1-b6ce-47501ae9eeae",
+    "role": "agent2",
+    "selection": {
+      "adapterId": "pi",
+      "providerId": "omlx",
+      "model": "Qwen3.6-35B-A3B-8bit"
+    },
+    "residencyEpoch": "78770294-da23-49c0-b913-d3c1d268d527",
+    "sealedBrief": "You are the bounded Agent 2 worker for a governed Chirality run.\nCall the available read_file tool exactly once before answering.\nThe tool is already bound to chirality.project.json and accepts an empty JSON object: {}.\nAfter the tool succeeds, report only the facts needed to answer the original request.\nDo not delegate and do not claim to have read the file without using the tool.\n\nOriginal request:\nDelegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.\n\nAgent 1 preparation (advisory only):\nYou are the governed Agent 1 manager.\nPrepare a concise sealed brief for one read-only Agent 2 worker.\nThe worker has exactly one read_file tool and cannot delegate.\nReturn only the brief.\n\nDelegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.",
+    "sealedBriefHash": "e94e04f978318bbad35e0f4d9761c00be3e72e2d6465dab1f9f4cbb4b2e77a45",
+    "returnHash": "a4ad2ced9eec335497ef127b04c3685531a03b607fd66aee3bbc38bddd37c6bb",
+    "evidenceReference": {
+      "projectId": "chirality-app-dev",
+      "sessionId": "9de76d12-c243-48e1-b6ce-47501ae9eeae",
+      "source": "canonical-session-events"
+    },
+    "acceptance": {
+      "decision": "rejected",
+      "rationaleHash": "5aa8a52e4e9de69cb63e31ad280dcf197908a97d19961e618e3d61f51ec4d033"
+    },
+    "permissions": [
+      "read"
+    ],
+    "tool": "read_file",
+    "status": "completed"
+  },
+  "review": {
+    "decision": "rejected",
+    "rationaleHash": "5aa8a52e4e9de69cb63e31ad280dcf197908a97d19961e618e3d61f51ec4d033"
+  }
+}

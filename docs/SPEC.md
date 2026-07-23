@@ -876,3 +876,87 @@ The coordination root also holds the session control-plane handoff files (`NEXT_
 ## Deferred to working-root / runtime docs
 
 The prior root SPEC carried desktop-frontend UI navigation and `/api/project/deliverables` response contracts. Those are deployment-specific runtime contracts, not framework-root structures, and are owned by the runtime project's docs (`projects/chirality-app-dev/docs/`). They are intentionally not reproduced here.
+
+---
+
+## 14. Root-Owned Shared Runtime
+
+The root `runtime/` workspace contains versioned contracts, provider-neutral
+orchestration, a daemon, a Unix-socket client, a CLI, and safe engine/provider
+adapters. It is an independent Node workspace with its own lockfile. Project
+applications consume its public packages; private project adapters do not
+become generic runtime dependencies.
+
+### 14.1 Local control plane
+
+The packaged Chirality application may run in `--runtime-daemon` mode without
+a window. Its only control listener is
+`{userData}/runtime/control.sock`. The parent directory is mode `0700`; the
+socket and owner/auth records are mode `0600`. Stale-socket recovery verifies
+current-user ownership and absence of a live recorded process before removal.
+
+Installation is opt-in through the bundled CLI. The installed macOS
+LaunchAgent has label `com.chirality.runtime`, starts at login, restarts after
+failure, writes logs and mutable state beneath Chirality user data, and does
+not load any local model automatically.
+
+HTTP/1.1 JSON requests and canonical SSE responses cover health, project
+registration/status, session create/list/boot/replay/turn/interrupt,
+high-level Agent 1 runs, provider credentials, and explicit oMLX model
+status/activation. Tokens are hashed at rest, scoped to a client and optional
+project, and compared in constant time. Browser code never receives a runtime
+credential.
+
+### 14.2 Project manifests and sessions
+
+Each registered checkout supplies `chirality.project.json` with schema
+`chirality.project/v1`, a stable project ID and display name, relative
+working/instruction/AGENTS/execution references, profile references, enabled
+adapter IDs, and an embedded-UI declaration. Registration containment-checks
+the resolved paths and records the manifest hash and approval outside the
+checkout. Privileged execution stops on manifest drift until re-registration.
+
+Canonical runtime sessions live beneath
+`{userData}/runtime/projects/<projectId>/sessions`. A legacy project-local
+session may be copied and validated lazily on access, with migration evidence;
+the source remains untouched for the migration cycle. JSON/JSONL stays the
+runtime evidence format.
+
+### 14.3 Local-model residency
+
+The first managed provider is authenticated literal-loopback oMLX. Discovery
+uses `GET /v1/models/status`; explicit transitions use the exact model ID with
+`POST /v1/models/{id}/unload` and `POST /v1/models/{id}/load`. Redirects,
+embedded URL credentials, remote hosts, and aliases are rejected.
+
+One primary local LLM may be managed at a time. Activation rejects new local
+turns, drains active Pi turns for at most ten minutes, and completes the whole
+transition within twenty minutes. Drain timeout retains the current model.
+Load failure after unload enters `NO_MODEL`. Unknown helper, embedding, and
+reranking models are never automatically unloaded. Redacted transition
+evidence assigns an epoch referenced by local sessions and AgentRuns.
+
+### 14.4 Initial governed run
+
+`chirality run --project <id> --agent <Agent1Role> --brief-file <path>
+--local-model <exact-id>` creates a real Agent 1 session. The exact local model
+must already be resident. The run authorizes at most one Pi/oMLX Agent 2 child
+with one declared read-only Chirality tool and requires the Agent 1 to review
+its return. Missing compliant delegation terminates with
+`REQUIRED_DELEGATION_MISSING`. Agent 2 cannot delegate.
+
+The complete initial CLI surface is:
+
+```text
+chirality daemon install|start|stop|status|uninstall
+chirality project register|list|status
+chirality models list|activate
+chirality session create|list|replay|turn|interrupt
+chirality run --project <id> --agent <role> --brief-file <path>
+              [--local-model <exact-id>] [--json]
+```
+
+Run requests may also arrive through standard input or a request file. Human
+output is the default; `--json` emits newline-delimited canonical events.
+Credential values remain Desktop-managed and are neither accepted nor
+displayed by this initial CLI.

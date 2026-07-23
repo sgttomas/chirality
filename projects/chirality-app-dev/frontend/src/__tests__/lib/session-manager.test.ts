@@ -96,7 +96,7 @@ describe('FileSessionManager canonical session storage', () => {
     await expect(access(wouldBeCanonicalPath)).rejects.toThrow();
   });
 
-  it('migrates legacy flat records to canonical folders on resume', async () => {
+  it('migrates ambiguous legacy stub records without pinning them to Anthropic', async () => {
     const manager = new FileSessionManager();
     const sessionId = 'sess_legacy';
     await mkdir(sessionRoot, { recursive: true });
@@ -105,7 +105,6 @@ describe('FileSessionManager canonical session storage', () => {
       `${JSON.stringify(
         sessionRecord(sessionId, {
           claudeSessionId: 'claude_legacy',
-          sdkTranscriptPath: '/tmp/transcript.jsonl',
           legacyOnly: 'preserved'
         }),
         null,
@@ -119,14 +118,119 @@ describe('FileSessionManager canonical session storage', () => {
     expect(session).toMatchObject({
       sessionId,
       claudeSessionId: 'claude_legacy',
-      sdkTranscriptPath: '/tmp/transcript.jsonl',
       legacyOnly: 'preserved'
     });
+    expect(session.engineSelection).toBeUndefined();
+    expect(session.adapterSession).toBeUndefined();
     await expect(access(legacyPath(sessionId))).rejects.toThrow();
-    await expect(readPersistedSession(sessionId)).resolves.toMatchObject({
+    const persisted = await readPersistedSession(sessionId);
+    expect(persisted).toMatchObject({
       claudeSessionId: 'claude_legacy',
-      sdkTranscriptPath: '/tmp/transcript.jsonl',
       legacyOnly: 'preserved'
+    });
+    expect(persisted.engineSelection).toBeUndefined();
+    expect(persisted.adapterSession).toBeUndefined();
+  });
+
+  it('migrates a legacy direct-Anthropic record when package attribution is explicit', async () => {
+    const manager = new FileSessionManager();
+    const sessionId = 'sess_legacy_direct';
+    await mkdir(sessionRoot, { recursive: true });
+    await writeFile(
+      legacyPath(sessionId),
+      `${JSON.stringify(
+        sessionRecord(sessionId, {
+          engineSessionId: 'claude_direct',
+          claudeSessionId: 'claude_direct',
+          model: 'claude-direct-model',
+          adapterSession: {
+            engineSessionId: 'claude_direct',
+            packageName: '@anthropic-ai/sdk',
+            packageVersion: '1.2.3'
+          }
+        }),
+        null,
+        2
+      )}\n`,
+      'utf8'
+    );
+
+    const session = await manager.resume(sessionId);
+
+    expect(session.engineSelection).toEqual({
+      adapterId: 'anthropic-direct',
+      providerId: 'anthropic',
+      model: 'claude-direct-model'
+    });
+    expect(session.adapterSession).toEqual({
+      engineSessionId: 'claude_direct',
+      packageName: '@anthropic-ai/sdk',
+      packageVersion: '1.2.3'
+    });
+  });
+
+  it('does not treat the SDK version once dual-written by stub boot as Claude attribution', async () => {
+    const manager = new FileSessionManager();
+    const sessionId = 'sess_legacy_stub_boot';
+    await mkdir(sessionRoot, { recursive: true });
+    await writeFile(
+      legacyPath(sessionId),
+      `${JSON.stringify(
+        sessionRecord(sessionId, {
+          engineSessionId: 'claude_shaped_stub_id',
+          claudeSessionId: 'claude_shaped_stub_id',
+          sdkPackageVersion: '0.3.150'
+        }),
+        null,
+        2
+      )}\n`,
+      'utf8'
+    );
+
+    const session = await manager.resume(sessionId);
+
+    expect(session.engineSelection).toBeUndefined();
+    expect(session.adapterSession).toBeUndefined();
+    expect(session).toMatchObject({
+      engineSessionId: 'claude_shaped_stub_id',
+      claudeSessionId: 'claude_shaped_stub_id',
+      sdkPackageVersion: '0.3.150'
+    });
+  });
+
+  it('migrates SDK-specific legacy linkage to the Claude Agent SDK adapter', async () => {
+    const manager = new FileSessionManager();
+    const sessionId = 'sess_legacy_sdk';
+    await mkdir(sessionRoot, { recursive: true });
+    await writeFile(
+      legacyPath(sessionId),
+      `${JSON.stringify(
+        sessionRecord(sessionId, {
+          claudeSessionId: 'claude_legacy',
+          sdkSessionId: 'sdk_legacy',
+          sdkTranscriptPath: '/tmp/transcript.jsonl',
+          sdkSessionStoreKey: 'sdk-store-key',
+          sdkPackageVersion: '0.3.150'
+        }),
+        null,
+        2
+      )}\n`,
+      'utf8'
+    );
+
+    const session = await manager.resume(sessionId);
+
+    expect(session.engineSelection).toEqual({
+      adapterId: 'claude-agent-sdk',
+      providerId: 'anthropic',
+      model: ''
+    });
+    expect(session.adapterSession).toEqual({
+      engineSessionId: 'sdk_legacy',
+      transcriptPath: '/tmp/transcript.jsonl',
+      storeKey: 'sdk-store-key',
+      packageName: '@anthropic-ai/claude-agent-sdk',
+      packageVersion: '0.3.150'
     });
   });
 
@@ -220,11 +324,14 @@ describe('FileSessionManager canonical session storage', () => {
       claudeSessionId: 'claude_legacy',
       model: 'claude-opus-4'
     });
+    expect(saved.engineSelection).toBeUndefined();
     await expect(access(legacyPath(sessionId))).rejects.toThrow();
-    await expect(readPersistedSession(sessionId)).resolves.toMatchObject({
+    const persisted = await readPersistedSession(sessionId);
+    expect(persisted).toMatchObject({
       claudeSessionId: 'claude_legacy',
       model: 'claude-opus-4'
     });
+    expect(persisted.engineSelection).toBeUndefined();
   });
 
   it('removes canonical folders and stray flat files when deleting a session', async () => {

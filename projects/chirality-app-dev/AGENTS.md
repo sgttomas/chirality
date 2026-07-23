@@ -129,3 +129,22 @@ development loop, project governance, agents, or skills, record them in at
 most one timestamped plan under `{WORKING_ROOT}/plans/` for the session. Do
 not create a plan merely to satisfy this instruction when no actionable issue
 was found.
+
+## Shared Runtime Boundary
+
+D-GOV-20 and D-APP-73 authorize migration of the executable harness into the
+root-owned `runtime/` workspace. After migration, the per-user runtime daemon
+is the sole owner of engines, credentials, sessions, delegation, tools, turn
+locks, interruption, and model residency. The normal Desktop process, CLI,
+and app-dev HTTP routes are clients of that daemon and must not construct an
+independent runtime.
+
+Daemon user-data state is operational and non-authoritative. This checkout
+retains authority for project identity, instructions, execution records,
+AgentRuns, permissions, approvals, and acceptance evidence. The tracked
+`chirality.project.json` manifest contains no secret or machine-specific
+absolute path; authority-affecting changes require explicit re-registration.
+
+Agent roles remain authority contracts independent of engines and models.
+Every governed run records the actual engine, provider, and model, including
+substitutions, without establishing a durable model-to-role preference.

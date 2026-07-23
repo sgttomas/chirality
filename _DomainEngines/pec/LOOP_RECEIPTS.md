@@ -1102,3 +1102,9 @@
   - Owner direction (verbatim): “adopt the v1.0 candidate PRD now and deprecate the v0.4 PRD in the manner intended.” D-PEC-55 records the adoption act and its documentation-only fence.
   - Executed pointers: `docs/PRD.md` header flipped to Adopted 2026-07-10 with the v0.4 supersession stated; historical-basis notices updated in `SPEC.md`, `TRACEABILITY.md`, `STATUS.md`, and `README.md`; D-PEC-55 packet + register row; standing-plan gate 1 marked satisfied with T0 named as the next owner gate.
   - Gate outcome: the D-PEC-54 adoption gate is closed. The v0.4 catalogue remains preserved at `7e8312172:projects/pec/docs/PRD.md`. SPEC/TRACEABILITY remain the prototype baseline with no v1.0-conformance claim; the T0 rebaseline and all runtime implementation remain owner-gated. No source code, dependency, database, demo input, or report changed.
+
+- **2026-07-22 — Receipt 98** (shared-runtime governance convergence).
+  - Owner explicitly instructed the complete Shared Runtime and Local-Agent Pilot.
+  - D-GOV-20, D-APP-73, D-T0-23, D-PEC-56, and SCA-APP-003 govern the tranche.
+  - PEC retains deterministic acts, RBAC, reporting, human-only acts, visibility, and data boundaries; independent LLM/session/delegation ownership retires prospectively. The legacy endpoint is a one-cycle proxy only.
+  - Scratch/demo-only pilot; D-PEC-49, T0 rebaseline, and production authority remain open. No source, dependency, database, data, lifecycle, or release state changed.

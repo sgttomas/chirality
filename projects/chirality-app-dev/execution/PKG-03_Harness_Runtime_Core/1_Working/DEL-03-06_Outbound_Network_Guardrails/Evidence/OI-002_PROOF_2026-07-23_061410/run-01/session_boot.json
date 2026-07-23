@@ -1,0 +1,71 @@
+{
+  "status": 200,
+  "ok": true,
+  "raw": "{\"session\":{\"schemaVersion\":\"chirality.session/v2\",\"projectId\":\"chirality-app-dev\",\"projectRoot\":\"/Users/ryan/dev/chirality/projects/chirality-app-dev\",\"sessionId\":\"65a22eda-b81c-4869-9a12-37a814272faf\",\"createdAt\":\"2026-07-23T06:14:15.677Z\",\"updatedAt\":\"2026-07-23T06:14:15.677Z\",\"persona\":\"CHANGE\",\"mode\":\"ask\",\"agentType\":1,\"role\":\"agent1\",\"engineSelection\":{\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"},\"status\":\"idle\",\"engineSessionId\":\"stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e\",\"adapterSession\":{\"engineSessionId\":\"stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e\"},\"bootFingerprint\":\"ddc829f5ec89aee0b97976ada5f113c3ec7b17882a906ed09cb56ee52f5f79bf\",\"runtimeFingerprint\":{\"schemaVersion\":\"chirality.runtime-fingerprint/v2\",\"personaComposerVersion\":\"shared-runtime/v1\",\"permissionPolicyVersion\":\"shared-runtime/v1\",\"managedDelegationPolicyVersion\":\"shared-runtime/v1\",\"subagentPolicyVersion\":\"shared-runtime/v1\",\"toolRegistryVersion\":\"shared-runtime/v1\",\"sdkPackageVersion\":\"embedded\",\"engineAdapter\":{\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"},\"mcpServers\":[],\"fingerprintSha256\":\"d30233ffc0954e88b90a10aa2d82120ae680d2be57c1e1bb266310d6d9ff98d7\"},\"bootedAt\":\"2026-07-23T06:14:15.814Z\"},\"boot\":{\"engineSessionId\":\"stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e\",\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\",\"bootFingerprint\":\"ddc829f5ec89aee0b97976ada5f113c3ec7b17882a906ed09cb56ee52f5f79bf\",\"runtimeFingerprint\":{\"schemaVersion\":\"chirality.runtime-fingerprint/v2\",\"personaComposerVersion\":\"shared-runtime/v1\",\"permissionPolicyVersion\":\"shared-runtime/v1\",\"managedDelegationPolicyVersion\":\"shared-runtime/v1\",\"subagentPolicyVersion\":\"shared-runtime/v1\",\"toolRegistryVersion\":\"shared-runtime/v1\",\"sdkPackageVersion\":\"embedded\",\"engineAdapter\":{\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"},\"mcpServers\":[],\"fingerprintSha256\":\"d30233ffc0954e88b90a10aa2d82120ae680d2be57c1e1bb266310d6d9ff98d7\"},\"bootedAt\":\"2026-07-23T06:14:15.814Z\"}}",
+  "parsed": {
+    "session": {
+      "schemaVersion": "chirality.session/v2",
+      "projectId": "chirality-app-dev",
+      "projectRoot": "/Users/ryan/dev/chirality/projects/chirality-app-dev",
+      "sessionId": "65a22eda-b81c-4869-9a12-37a814272faf",
+      "createdAt": "2026-07-23T06:14:15.677Z",
+      "updatedAt": "2026-07-23T06:14:15.677Z",
+      "persona": "CHANGE",
+      "mode": "ask",
+      "agentType": 1,
+      "role": "agent1",
+      "engineSelection": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "model": "haiku"
+      },
+      "status": "idle",
+      "engineSessionId": "stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e",
+      "adapterSession": {
+        "engineSessionId": "stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e"
+      },
+      "bootFingerprint": "ddc829f5ec89aee0b97976ada5f113c3ec7b17882a906ed09cb56ee52f5f79bf",
+      "runtimeFingerprint": {
+        "schemaVersion": "chirality.runtime-fingerprint/v2",
+        "personaComposerVersion": "shared-runtime/v1",
+        "permissionPolicyVersion": "shared-runtime/v1",
+        "managedDelegationPolicyVersion": "shared-runtime/v1",
+        "subagentPolicyVersion": "shared-runtime/v1",
+        "toolRegistryVersion": "shared-runtime/v1",
+        "sdkPackageVersion": "embedded",
+        "engineAdapter": {
+          "adapterId": "stub",
+          "providerId": "stub",
+          "model": "haiku"
+        },
+        "mcpServers": [],
+        "fingerprintSha256": "d30233ffc0954e88b90a10aa2d82120ae680d2be57c1e1bb266310d6d9ff98d7"
+      },
+      "bootedAt": "2026-07-23T06:14:15.814Z"
+    },
+    "boot": {
+      "engineSessionId": "stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e",
+      "adapterId": "stub",
+      "providerId": "stub",
+      "model": "haiku",
+      "bootFingerprint": "ddc829f5ec89aee0b97976ada5f113c3ec7b17882a906ed09cb56ee52f5f79bf",
+      "runtimeFingerprint": {
+        "schemaVersion": "chirality.runtime-fingerprint/v2",
+        "personaComposerVersion": "shared-runtime/v1",
+        "permissionPolicyVersion": "shared-runtime/v1",
+        "managedDelegationPolicyVersion": "shared-runtime/v1",
+        "subagentPolicyVersion": "shared-runtime/v1",
+        "toolRegistryVersion": "shared-runtime/v1",
+        "sdkPackageVersion": "embedded",
+        "engineAdapter": {
+          "adapterId": "stub",
+          "providerId": "stub",
+          "model": "haiku"
+        },
+        "mcpServers": [],
+        "fingerprintSha256": "d30233ffc0954e88b90a10aa2d82120ae680d2be57c1e1bb266310d6d9ff98d7"
+      },
+      "bootedAt": "2026-07-23T06:14:15.814Z"
+    }
+  }
+}

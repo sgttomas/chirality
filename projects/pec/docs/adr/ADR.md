@@ -197,3 +197,11 @@ deliverables, capacity-change audit events, and served-merged threshold defaults
 migrate in place via `ensureColumn` (notification.severity, work_item.commit_source). PEC-AHL-008
 (duplicate suggestion) and PEC-NFR-006 (SSO) remain the P2 items deliberately not built here: the
 first wants pilot vocabulary to tune matching against, the second an IdP to integrate with.
+
+### ADR-014 — Shared runtime agent ownership (2026-07-22)
+
+**Decision:** Under D-T0-23/D-PEC-56, root daemon owns LLM, credentials,
+sessions, delegation, interruption, and residency. PEC retains deterministic
+acts, RBAC, reporting, human-only acts, visibility, and data boundaries in a
+project adapter. The legacy endpoint is a one-cycle proxy; no production dual
+loop. Validation is scratch/demo-only.

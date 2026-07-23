@@ -1,12 +1,14 @@
 # Status: DEL-01-01
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Implement D-APP-73 / SCA-APP-003 project-manifest registration while preserving checkout-contained authority and treating daemon user data as non-authoritative (gated: G1-G5 implementation and validation).
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1_P2)

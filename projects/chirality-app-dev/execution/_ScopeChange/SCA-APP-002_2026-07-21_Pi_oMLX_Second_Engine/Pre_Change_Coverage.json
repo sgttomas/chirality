@@ -1,0 +1,56 @@
+{
+  "amendment_id": "SCA-APP-002",
+  "status": "PRE_CHANGE_BASELINE_RECORDED",
+  "decomp_variant": "SOFTWARE",
+  "decomposition_path": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "snapshot_path": "execution/_ScopeChange/SCA-APP-002_2026-07-21_Pi_oMLX_Second_Engine",
+  "baseline_date": "2026-07-21",
+  "baseline_authority_corpus_version": "v9",
+  "baseline_posture": "SCA-APP-001 provider-general architecture with Pi retained as reference only and concrete non-Anthropic providers gated to a future bounded tranche",
+  "counts": {
+    "packages": 10,
+    "deliverables": 51,
+    "scope_items": 78,
+    "objectives": 10,
+    "context_envelope_s": 9,
+    "context_envelope_m": 40,
+    "context_envelope_l": 2,
+    "context_envelope_xl": 0
+  },
+  "affected_packages": [
+    "PKG-01",
+    "PKG-02",
+    "PKG-03",
+    "PKG-04",
+    "PKG-05",
+    "PKG-06",
+    "PKG-08",
+    "PKG-09"
+  ],
+  "affected_execution_deliverables": [
+    "DEL-01-02",
+    "DEL-02-05",
+    "DEL-03-01",
+    "DEL-03-02",
+    "DEL-04-01",
+    "DEL-04-03",
+    "DEL-04-05",
+    "DEL-05-01",
+    "DEL-06-03",
+    "DEL-08-04",
+    "DEL-08-05",
+    "DEL-09-02",
+    "DEL-09-03",
+    "DEL-09-04",
+    "DEL-09-06"
+  ],
+  "topology_change_expected": false,
+  "lifecycle_change_expected": false,
+  "release_authorized": false,
+  "gate5_executed": false,
+  "notes": [
+    "D-APP-72 authorizes only the explicitly bounded prospective Pi/oMLX exception.",
+    "Historical D-APP-01, D-APP-02, D-APP-03, and SCA-APP-001 records remain unchanged.",
+    "The affected-deliverable set is fixed by Execution_Deliverable_Impact.csv."
+  ]
+}

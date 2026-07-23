@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "chirality.project/v1",
+  "projectId": "chirality-app-dev",
+  "displayName": "Chirality App Development",
+  "workingRoot": ".",
+  "instructionRoot": "../..",
+  "agentsOverlay": "AGENTS.md",
+  "defaultExecutionRoot": "execution",
+  "profiles": {
+    "domain": [],
+    "capability": [],
+    "dataBoundary": []
+  },
+  "enabledAdapterIds": [
+    "stub",
+    "anthropic-direct",
+    "claude-agent-sdk",
+    "pi"
+  ],
+  "embeddedUi": {
+    "declared": true,
+    "path": "frontend"
+  },
+  "legacySessionRoots": [
+    "frontend/.chirality/sessions"
+  ]
+}

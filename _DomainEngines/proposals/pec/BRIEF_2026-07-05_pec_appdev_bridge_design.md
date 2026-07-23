@@ -186,3 +186,11 @@ the D-T0-19 packet). The companion rulings landed the same direction:
 the standing bound; mutation basis unchanged, scratch/demo only) and
 `D-PEC-16` O-A with runtime RT-B (sibling brief adopted). No implementation
 is authorized by this adoption.
+
+## 2026-07-22 shared-runtime migration note
+
+D-T0-23/D-PEC-56 replace the historical two-host runtime ownership with one
+shared daemon. This brief’s deterministic PEC API/RBAC seam remains an adapter
+input; app-dev and embedded PEC are clients of the same runtime. The legacy
+PEC endpoint may proxy for one migration cycle, never as a second production
+loop.

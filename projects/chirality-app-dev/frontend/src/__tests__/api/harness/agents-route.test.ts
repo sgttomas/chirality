@@ -3,6 +3,11 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import * as agentsRoute from '../../../app/api/harness/agents/route';
+import {
+  installDaemonHarnessPort,
+  resetDaemonHarnessPortForTests
+} from '../../../lib/runtime-client/daemon-harness-port';
+import { createFakeDaemonHarnessPort } from './fake-daemon-harness-port';
 
 type RosterEntry = { name: string; type: number | undefined; class: string | undefined };
 
@@ -45,9 +50,11 @@ beforeEach(async () => {
   instructionRoot = path.join(tmpRoot, 'instruction-root');
   await writeInstructionRootFixture(instructionRoot);
   process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
+  installDaemonHarnessPort(createFakeDaemonHarnessPort());
 });
 
 afterEach(async () => {
+  resetDaemonHarnessPortForTests();
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
   if (tmpRoot) {
     await rm(tmpRoot, { recursive: true, force: true });

@@ -10,6 +10,9 @@ export type ApiKeyStatus = {
 };
 
 export type ApiKeySettingsViewProps = {
+  title?: string;
+  environmentVariable?: string;
+  placeholder?: string;
   keyInput: string;
   revealed: boolean;
   status: ApiKeyStatus | null;
@@ -33,20 +36,68 @@ type ChiralityApiKeyBridge = {
   status: () => Promise<ApiKeyStatus>;
 };
 
+type ProviderCredentialId = 'anthropic' | 'omlx';
+
+type ChiralityProviderApiKeyBridge = {
+  store: (providerId: ProviderCredentialId, key: string) => Promise<ApiKeyStoreResult>;
+  remove: (providerId: ProviderCredentialId) => Promise<ApiKeyStoreResult>;
+  status: (providerId: ProviderCredentialId) => Promise<ApiKeyStatus>;
+};
+
 type ChiralityWindow = typeof window & {
   chirality?: {
     apiKey?: ChiralityApiKeyBridge;
+    providerApiKey?: ChiralityProviderApiKeyBridge;
   };
 };
 
-function getApiKeyBridge(): ChiralityApiKeyBridge | undefined {
+function getApiKeyBridge(providerId: ProviderCredentialId): ChiralityApiKeyBridge | undefined {
   if (typeof window === 'undefined') {
     return undefined;
   }
-  return (window as ChiralityWindow).chirality?.apiKey;
+  const chirality = (window as ChiralityWindow).chirality;
+  if (chirality?.providerApiKey) {
+    return {
+      store: (key) => chirality.providerApiKey!.store(providerId, key),
+      remove: () => chirality.providerApiKey!.remove(providerId),
+      status: () => chirality.providerApiKey!.status(providerId)
+    };
+  }
+  return providerId === 'anthropic' ? chirality?.apiKey : undefined;
 }
 
 export function ApiKeySettings(): JSX.Element {
+  return (
+    <>
+      <ProviderApiKeySettings
+        providerId="anthropic"
+        title="Anthropic API Key"
+        environmentVariable="ANTHROPIC_API_KEY"
+        placeholder="sk-ant-..."
+      />
+      <ProviderApiKeySettings
+        providerId="omlx"
+        title="oMLX API Key"
+        environmentVariable="CHIRALITY_OMLX_API_KEY"
+        placeholder="Enter the key configured in oMLX"
+      />
+    </>
+  );
+}
+
+type ProviderApiKeySettingsProps = {
+  providerId: ProviderCredentialId;
+  title: string;
+  environmentVariable: string;
+  placeholder: string;
+};
+
+function ProviderApiKeySettings({
+  providerId,
+  title,
+  environmentVariable,
+  placeholder
+}: ProviderApiKeySettingsProps): JSX.Element {
   const [keyInput, setKeyInput] = useState('');
   const [revealed, setRevealed] = useState(false);
   const [status, setStatus] = useState<ApiKeyStatus | null>(null);
@@ -55,7 +106,7 @@ export function ApiKeySettings(): JSX.Element {
   const [bridgeAvailable, setBridgeAvailable] = useState(false);
 
   const refreshStatus = useCallback(async () => {
-    const bridge = getApiKeyBridge();
+    const bridge = getApiKeyBridge(providerId);
     if (!bridge) {
       setBridgeAvailable(false);
       return;
@@ -68,14 +119,14 @@ export function ApiKeySettings(): JSX.Element {
     } catch {
       setStatus(null);
     }
-  }, []);
+  }, [providerId]);
 
   useEffect(() => {
     void refreshStatus();
   }, [refreshStatus]);
 
   async function handleSave(): Promise<void> {
-    const bridge = getApiKeyBridge();
+    const bridge = getApiKeyBridge(providerId);
     if (!bridge) {
       setError('Secure storage is not available (not running in Electron)');
       return;
@@ -108,7 +159,7 @@ export function ApiKeySettings(): JSX.Element {
   }
 
   async function handleRemove(): Promise<void> {
-    const bridge = getApiKeyBridge();
+    const bridge = getApiKeyBridge(providerId);
     if (!bridge) {
       return;
     }
@@ -130,6 +181,9 @@ export function ApiKeySettings(): JSX.Element {
 
   return (
     <ApiKeySettingsView
+      title={title}
+      environmentVariable={environmentVariable}
+      placeholder={placeholder}
       keyInput={keyInput}
       revealed={revealed}
       status={status}
@@ -152,6 +206,9 @@ export function ApiKeySettings(): JSX.Element {
 }
 
 export function ApiKeySettingsView({
+  title = 'Anthropic API Key',
+  environmentVariable = 'ANTHROPIC_API_KEY',
+  placeholder = 'sk-ant-...',
   keyInput,
   revealed,
   status,
@@ -172,12 +229,12 @@ export function ApiKeySettingsView({
 
   const encryptionWarning =
     status && !status.encryptionAvailable
-      ? 'Secure storage is not available on this platform. Use the ANTHROPIC_API_KEY environment variable instead.'
+      ? `Secure storage is not available on this platform. Use the ${environmentVariable} environment variable instead.`
       : null;
 
   return (
     <div className="api-key-settings">
-      <h3 className="api-key-settings-title">Anthropic API Key</h3>
+      <h3 className="api-key-settings-title">{title}</h3>
 
       <p className="api-key-status" data-source={status?.source ?? 'unknown'}>
         {status ? sourceLabel : 'Checking...'}
@@ -197,7 +254,7 @@ export function ApiKeySettingsView({
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 onKeyInputChange(event.target.value);
               }}
-              placeholder="sk-ant-..."
+              placeholder={placeholder}
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="off"
@@ -235,7 +292,7 @@ export function ApiKeySettingsView({
 
       {!bridgeAvailable ? (
         <p className="api-key-hint">
-          Running outside Electron. Set the <code>ANTHROPIC_API_KEY</code> environment variable
+          Running outside Electron. Set the <code>{environmentVariable}</code> environment variable
           to configure the API key.
         </p>
       ) : null}

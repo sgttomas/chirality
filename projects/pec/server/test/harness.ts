@@ -11,6 +11,8 @@ import { buildRouter } from '../src/api.ts'
 import { errorPayload, parseCookies, readBody, sendJson } from '../src/http.ts'
 import { hashPassword } from '../src/auth.ts'
 import { Repo, nowIso } from '../src/repo.ts'
+import type { PecSharedRuntimeClientPort } from '../src/runtime-client-port.ts'
+import type { PecProjectAdapterClientPort } from '../src/project-adapter-client.ts'
 
 export interface TestClient {
   get(path: string): Promise<{ status: number; body: any }>
@@ -46,7 +48,10 @@ export const CAST = [
   ['viewer@t.co', 'Vera Viewer', ['viewer']],
 ] as const
 
-export async function createTestEnv(): Promise<TestEnv> {
+export async function createTestEnv(options: {
+  runtimeClient?: PecSharedRuntimeClientPort
+  projectAdapterClient?: PecProjectAdapterClientPort
+} = {}): Promise<TestEnv> {
   const dbPath = join(tmpdir(), `pec-test-${randomBytes(6).toString('hex')}.db`)
   const db = openDb(dbPath)
   const repo = new Repo(db)
@@ -84,7 +89,10 @@ export async function createTestEnv(): Promise<TestEnv> {
     createdAt: nowIso(), createdBy: people['admin@t.co'],
   }))
 
-  const router = buildRouter(db)
+  const router = buildRouter(db, {
+    runtimeClient: options.runtimeClient,
+    projectAdapterClient: options.projectAdapterClient,
+  })
   const server: Server = createServer(async (req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost')
     try {
@@ -107,7 +115,10 @@ export async function createTestEnv(): Promise<TestEnv> {
       else res.end()
     }
   })
-  await new Promise<void>((resolve) => server.listen(0, resolve))
+  await new Promise<void>((resolve, reject) => {
+    server.once('error', reject)
+    server.listen(0, '127.0.0.1', resolve)
+  })
   const addr = server.address()
   const base = `http://127.0.0.1:${typeof addr === 'object' && addr ? addr.port : 0}`
 

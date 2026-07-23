@@ -525,6 +525,11 @@ CHIRALITY_SESSION_ROOT
 - `model`
 - `bootFingerprint`
 - `engineSessionId`
+- `engineSelection` (`adapterId`, `providerId`, exact actual `model`)
+- `adapterSession` (opaque provider-neutral adapter metadata)
+- `parentSessionId`, `approvalRef`, and managed-child attribution when delegated
+- `claudeSessionId` only for Claude/Anthropic sessions
+- legacy Claude SDK linkage fields, lazily migrated and dual-written only for Claude:
 - `sdkSessionId`
 - `sdkProjectKey`
 - `sdkTranscriptPath` or `sdkSessionStoreKey`
@@ -625,13 +630,36 @@ Target responsibilities:
 ### 10.2 Target Type
 
 ```ts
+type EngineSelection = {
+  adapterId: string;
+  providerId: string;
+  model: string;
+};
+
+type EngineDescriptor = {
+  adapterId: string;
+  providerId: string;
+  packageName?: string;
+  packageVersion?: string;
+  capabilities: {
+    credentials: boolean;
+    tools: boolean;
+    attachments: boolean;
+    interruption: boolean;
+    durableResume: boolean;
+    compaction: boolean;
+  };
+};
+
 interface AgentEnginePort {
+  readonly descriptor: EngineDescriptor;
+  preflight(input: AgentEngineRunInput): Promise<void>;
   startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
-  interrupt?(sessionId: string): Promise<void>;
+  interrupt(sessionId: string): Promise<void>;
 }
 ```
 
-`AgentEngineRunInput` carries the implemented adapter-port inputs: active session identity and resolved options plus content blocks. The session record and resolved options carry normalized `projectRoot`, persona, mode, and attachment summaries; interrupt and stream cancellation carry cancellation out of band. `TurnEngine.runTurn(request)` remains the route-independent product lifecycle method above this adapter port.
+`AgentEngineRunInput` carries the implemented adapter-port inputs: active session identity, unique `turnId`, resolved options, and content blocks. The session record and resolved options carry normalized `projectRoot`, persona, mode, exact selected model, and attachment summaries; interrupt and stream cancellation carry cancellation out of band. `AgentEnginePort` is the sole runtime interface. `IAgentSdkManager` remains only as a deprecated compatibility type behind `LegacyAgentEngineAdapter` for one migration cycle. `TurnEngine.runTurn(request)` remains the route-independent product lifecycle method above the port and persists accepted input plus typed preflight failure before releasing the turn lock.
 
 ### 10.3 Engine Adapter Rules
 
@@ -679,7 +707,9 @@ Rules:
 
 ### 12.1 Adapter Position
 
-Chirality uses a provider-adapter runtime architecture. Claude Agent SDK / Anthropic is the first concrete adapter and the key-aware default provider (per the D-APP-18 ruling), subject to ongoing conformance tests; further provider expansion remains human-gated. Concrete non-Anthropic providers require bounded future implementation scope. Chirality builds a governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6); Pi is reference-only.
+Chirality uses a provider-adapter runtime architecture. Claude Agent SDK / Anthropic is the first concrete adapter and key-aware default provider (D-APP-18) and remains the supervisor path. D-APP-72 / SCA-APP-002 authorizes one opt-in second adapter: in-process Pi `0.80.10` over authenticated `127.0.0.1` oMLX, initially restricted to a governed read-only Agent 2 child after Electron `43.1.1` is proven. Chirality builds a governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6). Other provider expansion remains human-gated.
+
+The bounded Pi adapter MUST use explicit Chirality-supplied resources, credentials, model selection, tools, session placement, and event mapping. It MUST disable Pi built-in tools and ambient `.pi`, `~/.pi`, `.agents`, prompt, skill, extension, settings, and credential discovery. It MUST NOT expose Pi-native delegation, direct Pi supervisor sessions, write/shell/network tools, or automatic engine fallback.
 
 ### 12.2 Shipped First-Adapter Settings Isolation
 
@@ -849,7 +879,7 @@ Rules:
 
 - Renderer outbound traffic is allowlisted for loopback and the current shipped Anthropic API path.
 - Node/provider/SDK calls must not silently broaden network policy.
-- Provider-adapter generality is approved strategically, but concrete non-Anthropic providers, remote MCP, plugins, and network-capable tools require bounded governed future implementation scope.
+- Provider-adapter generality remains governed. D-APP-72 permits authenticated oMLX only at `127.0.0.1` for the bounded Pi child path. Non-loopback oMLX, redirects, embedded URL credentials, remote providers, remote MCP, plugins, and network-capable tools require a new governed implementation tranche.
 
 ---
 
@@ -994,3 +1024,93 @@ Folder names:
 - Deliverable: `{DEL-ID}_{Sanitize(DeliverableName)}`
 
 Canonical unsanitized names are stored in `_CONTEXT.md` and decomposition records.
+
+---
+
+## 25. Shared Runtime, Local API, and Residency
+
+### 25.1 Runtime ownership
+
+The root `runtime/` workspace contains provider-neutral contracts, core
+orchestration, daemon, client, CLI, and engine adapters. The packaged Electron
+executable supports `--runtime-daemon` without creating a window. The normal
+GUI and app-dev `/api/harness/*` routes are clients and MUST NOT construct an
+engine runtime.
+
+The daemon is installed only by explicit operator action as the macOS
+LaunchAgent `com.chirality.runtime`. Once installed it starts at login and
+restarts after failure. Logs and mutable state remain beneath Chirality's
+user-data directory, and daemon startup MUST NOT load or activate a local
+model automatically.
+
+### 25.2 Local control protocol
+
+The versioned local API uses HTTP/1.1 JSON requests and canonical SSE events
+over `{userData}/runtime/control.sock`. The parent directory MUST be `0700`,
+the socket MUST be `0600`, and stale-socket recovery MUST verify that no live
+daemon owns the path. Project-scoped client authorization is mandatory. A TCP
+control listener is forbidden.
+
+The API covers health, project registration/status, session
+create/list/boot/replay/turn/interrupt, high-level Agent 1 runs, and oMLX model
+status/activation.
+
+### 25.3 Project registration
+
+Each registered checkout supplies `chirality.project.json` with schema
+`chirality.project/v1`, stable ID/display name, relative working/instruction
+roots, AGENTS overlay, default execution root, domain/capability/data-boundary
+references, enabled adapters, and embedded-UI declaration. It contains no
+secret or machine-specific absolute path. Registration stores the resolved
+root, manifest hash, client credential, and approval metadata in user data.
+Authority-affecting manifest changes require explicit re-registration before
+adapters are enabled.
+
+### 25.4 Central sessions and migration
+
+Canonical central sessions live at
+`{userData}/runtime/projects/<projectId>/sessions`. JSON/JSONL remains
+authoritative runtime evidence. Legacy project-local `.chirality/sessions`
+records are read lazily and migrated non-destructively on access. No bulk
+rewrite or destructive source move is permitted.
+
+### 25.5 CLI
+
+The bundled `chirality` CLI runs with Electron’s embedded Node runtime and
+supports this initial command surface:
+
+```text
+chirality daemon install|start|stop|status|uninstall
+chirality project register|list|status
+chirality models list|activate
+chirality session create|list|replay|turn|interrupt
+chirality run --project <id> --agent <role> --brief-file <path>
+              [--local-model <exact-id>] [--json]
+```
+
+Run requests may be supplied by `--brief-file`, by a request file, or through
+standard input. The initial CLI never accepts or displays credential values.
+Human output is default; `--json` emits newline-delimited canonical events.
+
+### 25.6 Residency
+
+Authenticated literal-loopback oMLX status/load/unload is the only initial
+managed residency provider. Exact model IDs are used without aliases. One
+primary local LLM may be managed at a time. Activation is explicit and never
+triggered by a run.
+
+A switch rejects new local turns, drains active Pi turns for at most ten
+minutes, and completes unload/load/readiness within twenty minutes. Drain
+timeout retains the current model. Load failure after unload enters
+`NO_MODEL`. Active work is not force-interrupted, and unknown helper,
+embedding, or reranking models are not unloaded automatically. Every
+transition appends redacted `model-residency.jsonl` evidence and assigns an
+epoch referenced by local sessions and AgentRuns.
+
+### 25.7 Required delegation pilot
+
+`chirality run --agent <Agent1Role> --local-model <exact-id>` creates a real
+Agent 1 session and authorizes at most one Pi/oMLX Agent 2 child with one
+declared read-only Chirality tool. The model must already be resident. Agent 1
+must review the child return; otherwise the run terminates with
+`REQUIRED_DELEGATION_MISSING`.

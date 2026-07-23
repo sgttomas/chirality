@@ -1,12 +1,22 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { POST } from '../../../app/api/harness/permission/route';
 import {
   getPermissionBroker,
   resetPermissionBrokerForTests
 } from '../../../lib/harness/permission-broker';
+import {
+  installDaemonHarnessPort,
+  resetDaemonHarnessPortForTests
+} from '../../../lib/runtime-client/daemon-harness-port';
+import { createFakeDaemonHarnessPort } from './fake-daemon-harness-port';
+
+beforeEach(() => {
+  installDaemonHarnessPort(createFakeDaemonHarnessPort());
+});
 
 afterEach(() => {
   resetPermissionBrokerForTests();
+  resetDaemonHarnessPortForTests();
 });
 
 function postPermission(body: unknown): Promise<Response> {

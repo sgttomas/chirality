@@ -1,0 +1,50 @@
+{
+  "status": 200,
+  "ok": true,
+  "raw": "event: session:init\ndata: {\"engineSessionId\":\"stub_089c8be8-41ff-4769-bac7-921c6a294f08\",\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"}\n\nevent: chat:delta\ndata: {\"text\":\"DEL-03-06 OI-002 proof r\"}\n\nevent: chat:delta\ndata: {\"text\":\"un run-02\"}\n\nevent: chat:complete\ndata: {\"text\":\"DEL-03-06 OI-002 proof run run-02\"}\n\nevent: session:complete\ndata: {}\n\nevent: process:exit\ndata: {\"exitCode\":0}\n\n",
+  "events": [
+    {
+      "event": "session:init",
+      "rawData": "{\"engineSessionId\":\"stub_089c8be8-41ff-4769-bac7-921c6a294f08\",\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"}",
+      "data": {
+        "engineSessionId": "stub_089c8be8-41ff-4769-bac7-921c6a294f08",
+        "adapterId": "stub",
+        "providerId": "stub",
+        "model": "haiku"
+      }
+    },
+    {
+      "event": "chat:delta",
+      "rawData": "{\"text\":\"DEL-03-06 OI-002 proof r\"}",
+      "data": {
+        "text": "DEL-03-06 OI-002 proof r"
+      }
+    },
+    {
+      "event": "chat:delta",
+      "rawData": "{\"text\":\"un run-02\"}",
+      "data": {
+        "text": "un run-02"
+      }
+    },
+    {
+      "event": "chat:complete",
+      "rawData": "{\"text\":\"DEL-03-06 OI-002 proof run run-02\"}",
+      "data": {
+        "text": "DEL-03-06 OI-002 proof run run-02"
+      }
+    },
+    {
+      "event": "session:complete",
+      "rawData": "{}",
+      "data": {}
+    },
+    {
+      "event": "process:exit",
+      "rawData": "{\"exitCode\":0}",
+      "data": {
+        "exitCode": 0
+      }
+    }
+  ]
+}

@@ -95,5 +95,28 @@ Evidence artifacts are derivative records. They support review and regression an
 - Hosted CI provider, workflow location, and public/private data handling remain governed future decisions.
 - Final release-label vocabulary, signing, notarization, publication, and attestation remain governed future decisions.
 - Final coverage, performance, and platform-matrix thresholds remain `TBD`.
-- Concrete provider/network implementation beyond the current shipped Anthropic path requires a bounded future implementation tranche and recorded decision evidence.
-- D-APP-01 and D-APP-02 rule Pi pattern-corpus-only: no Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, or spike work unless a future ruling explicitly reverses those boundaries.
+- D-APP-72 / SCA-APP-002 is the sole bounded provider/network exception beyond the current Anthropic path: pinned in-process Pi `0.80.10` over authenticated `127.0.0.1` oMLX for one governed read-only Agent 2 child after Electron `43.1.1` proof.
+- D-APP-01 and D-APP-02 remain historical and continue to prohibit every Pi path outside that exact exception, including fork/sidecar/native capabilities/ambient discovery, remote providers, direct supervisors, automatic fallback, and write/shell/network tools.
+
+## 7. Shared Runtime Validation Addendum
+
+SCA-APP-003 validation adds:
+
+- behavior-preserving extraction checks before daemon behavior changes;
+- Unix-socket permission, project authorization, stale recovery, and
+  no-TCP-listener tests;
+- one-daemon Desktop/CLI concurrency, turn-lock, credential-owner, interrupt,
+  and restart-recovery tests;
+- lazy cross-store session migration and replay tests;
+- fake authenticated oMLX status/load/unload/drain/failure tests with no
+  Apple Silicon or downloaded-model requirement;
+- app-dev Agent 1 required-delegation proof with parentage, manager review,
+  residency epoch, and actual-model attribution;
+- PEC scratch/demo proof through daemon, adapter, backend proxy, and embedded
+  UI while forbidden human acts remain denied;
+- packaged CLI execution without global Node and generic export-boundary
+  checks.
+
+The two-model live proof is opt-in evidence. It records redacted timing,
+memory, transition, interruption, and acceptance telemetry without creating a
+latency target or automatic ranking policy.

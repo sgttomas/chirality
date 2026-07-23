@@ -1,7 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { EngineSelection, SessionRecord } from '@chirality/harness-contract/types';
 import { HarnessError } from '@chirality/harness-contract/errors';
 import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
 import {
@@ -64,6 +64,7 @@ export type DelegateAgentInput = {
   brief: string;
   declaredContext: string[];
   tools: string[];
+  engineSelection?: EngineSelection;
   writeTargets: string[];
   dependencies: string[];
   acceptedPredecessors?: string[];
@@ -86,6 +87,7 @@ export type ManagedChildLaunch = {
   brief: string;
   declaredContext: string[];
   tools: string[];
+  engineSelection?: EngineSelection;
   writeTargets: string[];
   instructionContent?: string;
   instructionPath?: string;
@@ -204,6 +206,55 @@ function assertChildToolPolicy(
   }
 }
 
+function assertBoundedEngineSelection(input: {
+  selection?: EngineSelection;
+  selectionAuthority: SelectionAuthority;
+  child: ResolvedChild;
+  tools: readonly string[];
+  writeTargets: readonly string[];
+}): void {
+  if (!input.selection) return;
+
+  const selection = input.selection;
+  if (
+    selection.adapterId !== 'pi' ||
+    selection.providerId !== 'omlx' ||
+    !selection.model.trim()
+  ) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      'This milestone permits only adapterId pi with providerId omlx and an exact non-empty model ID'
+    );
+  }
+  if (!['HUMAN', 'AGENT_0', 'AGENT_1'].includes(input.selectionAuthority)) {
+    throw new HarnessError('INVALID_REQUEST', 403, 'Engine selection authority is not permitted');
+  }
+  if (input.child.agentType !== 2) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'Pi/oMLX is permitted only for a managed Agent 2 child');
+  }
+  if (input.writeTargets.length > 0) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'Pi/oMLX children may not declare write targets');
+  }
+  if (input.tools.length !== 1) {
+    throw new HarnessError('INVALID_REQUEST', 400, 'Pi/oMLX children require exactly one declared read-only tool');
+  }
+  const descriptor = getHarnessToolDescriptor(input.tools[0]);
+  if (
+    !descriptor ||
+    input.tools[0] !== 'read_file' ||
+    descriptor.name !== 'read_file' ||
+    descriptor.permissions.length !== 1 ||
+    descriptor.permissions[0] !== 'read'
+  ) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      'Pi/oMLX children require the exact Chirality read_file tool in this milestone'
+    );
+  }
+}
+
 async function resolveChild(
   parentPersona: string,
   input: DelegateAgentInput
@@ -317,6 +368,7 @@ function renderBrief(
     `AcceptedBasis: ${input.acceptedBasis.join('; ')}`,
     `DeclaredContext: ${declaredContext.join('; ') || 'none'}`,
     `AllowedTools: ${input.tools.join(', ')}`,
+    `EngineSelection: ${input.engineSelection ? JSON.stringify(input.engineSelection) : 'inherited/default'}`,
     `AllowedWriteTargets: ${writeTargets.join('; ') || 'none'}`,
     `Dependencies: ${input.dependencies.join(', ') || 'none'}`,
     `AcceptedPredecessors: ${(input.acceptedPredecessors ?? []).join(', ') || 'none'}`,
@@ -530,6 +582,13 @@ export class ManagedDelegationService {
     const writeTargets = input.writeTargets.map((target) =>
       contained(parent.projectRoot, target, 'writeTarget')
     );
+    assertBoundedEngineSelection({
+      selection: input.engineSelection,
+      selectionAuthority: input.selectionAuthority,
+      child,
+      tools: input.tools,
+      writeTargets
+    });
     const descriptors = input.tools
       .map((toolName) => getHarnessToolDescriptor(toolName))
       .filter((descriptor) => descriptor !== undefined);
@@ -634,6 +693,7 @@ export class ManagedDelegationService {
       briefHash,
       declaredContext,
       tools: input.tools,
+      engineSelection: input.engineSelection,
       writeTargets,
       outputArtifact: null,
       requiredReturnMarkers: input.requiredReturnMarkers
@@ -665,6 +725,7 @@ export class ManagedDelegationService {
         brief,
         declaredContext,
         tools: input.tools,
+        engineSelection: input.engineSelection,
         writeTargets,
         instructionContent: child.instructionContent,
         instructionPath: child.instructionPath,

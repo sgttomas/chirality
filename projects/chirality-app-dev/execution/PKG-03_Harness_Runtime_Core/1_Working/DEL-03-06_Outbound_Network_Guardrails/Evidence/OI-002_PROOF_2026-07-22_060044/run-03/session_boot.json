@@ -1,0 +1,111 @@
+{
+  "status": 200,
+  "ok": true,
+  "raw": "{\"session\":{\"sessionId\":\"sess_409fc8db-6e68-4ff1-b901-8834a8fd408c\",\"projectRoot\":\"/tmp/chirality-proof-run-03-2026-07-22_062101\",\"persona\":\"CHANGE\",\"mode\":\"ask\",\"createdAt\":\"2026-07-22T06:21:07.119Z\",\"updatedAt\":\"2026-07-22T06:21:07.271Z\",\"engineSessionId\":\"stub_f55d4a22-a9d2-4312-8894-bdeb2b750e5a\",\"engineSelection\":{\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"},\"adapterSession\":{\"engineSessionId\":\"stub_f55d4a22-a9d2-4312-8894-bdeb2b750e5a\"},\"bootFingerprint\":\"297a9563f5a03404f4593177709324125ce5868993a4d5f914bc1d99875cf2ea\",\"runtimeFingerprint\":{\"schemaVersion\":\"harness-runtime-fingerprint.v5.engine-attribution\",\"personaComposerVersion\":\"persona-composer.v1.instruction-root\",\"permissionPolicyVersion\":\"harness-permission.v7.coordination-mode\",\"managedDelegationPolicyVersion\":\"managed-delegation.v3.atomic-coordination\",\"subagentPolicyVersion\":\"subagent-bridge.v4.disabled-after-managed-delegation\",\"toolRegistryVersion\":\"harness-tools.v14.headless-preview-live\",\"sdkPackageVersion\":\"0.3.150\",\"engineAdapter\":{\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"},\"mcpServers\":[{\"name\":\"chirality\",\"version\":\"2.0.0\",\"toolNames\":[\"status_read\",\"deps_read\",\"scope_scan\",\"scaffold_preview\",\"status_transition\",\"deps_write\",\"domain_completeness_check\",\"domain_rule_check_run\",\"domain_headless_preview_run\",\"domain_propose_operation\",\"domain_proposal_validate\",\"delegate_agent\",\"report_coordination_notice\",\"send_agent_update\",\"ack_agent_update\"]}],\"fingerprintSha256\":\"2189a8c581305c73f8112161f54e7aa7a0baabf949f4f5dbc5729907086f598d\"},\"bootedAt\":\"2026-07-22T06:21:07.271Z\",\"model\":\"haiku\"},\"boot\":{\"engineSessionId\":\"stub_f55d4a22-a9d2-4312-8894-bdeb2b750e5a\",\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\",\"bootFingerprint\":\"297a9563f5a03404f4593177709324125ce5868993a4d5f914bc1d99875cf2ea\",\"runtimeFingerprint\":{\"schemaVersion\":\"harness-runtime-fingerprint.v5.engine-attribution\",\"personaComposerVersion\":\"persona-composer.v1.instruction-root\",\"permissionPolicyVersion\":\"harness-permission.v7.coordination-mode\",\"managedDelegationPolicyVersion\":\"managed-delegation.v3.atomic-coordination\",\"subagentPolicyVersion\":\"subagent-bridge.v4.disabled-after-managed-delegation\",\"toolRegistryVersion\":\"harness-tools.v14.headless-preview-live\",\"sdkPackageVersion\":\"0.3.150\",\"engineAdapter\":{\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"},\"mcpServers\":[{\"name\":\"chirality\",\"version\":\"2.0.0\",\"toolNames\":[\"status_read\",\"deps_read\",\"scope_scan\",\"scaffold_preview\",\"status_transition\",\"deps_write\",\"domain_completeness_check\",\"domain_rule_check_run\",\"domain_headless_preview_run\",\"domain_propose_operation\",\"domain_proposal_validate\",\"delegate_agent\",\"report_coordination_notice\",\"send_agent_update\",\"ack_agent_update\"]}],\"fingerprintSha256\":\"2189a8c581305c73f8112161f54e7aa7a0baabf949f4f5dbc5729907086f598d\"},\"bootedAt\":\"2026-07-22T06:21:07.271Z\"}}",
+  "parsed": {
+    "session": {
+      "sessionId": "sess_409fc8db-6e68-4ff1-b901-8834a8fd408c",
+      "projectRoot": "/tmp/chirality-proof-run-03-2026-07-22_062101",
+      "persona": "CHANGE",
+      "mode": "ask",
+      "createdAt": "2026-07-22T06:21:07.119Z",
+      "updatedAt": "2026-07-22T06:21:07.271Z",
+      "engineSessionId": "stub_f55d4a22-a9d2-4312-8894-bdeb2b750e5a",
+      "engineSelection": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "model": "haiku"
+      },
+      "adapterSession": {
+        "engineSessionId": "stub_f55d4a22-a9d2-4312-8894-bdeb2b750e5a"
+      },
+      "bootFingerprint": "297a9563f5a03404f4593177709324125ce5868993a4d5f914bc1d99875cf2ea",
+      "runtimeFingerprint": {
+        "schemaVersion": "harness-runtime-fingerprint.v5.engine-attribution",
+        "personaComposerVersion": "persona-composer.v1.instruction-root",
+        "permissionPolicyVersion": "harness-permission.v7.coordination-mode",
+        "managedDelegationPolicyVersion": "managed-delegation.v3.atomic-coordination",
+        "subagentPolicyVersion": "subagent-bridge.v4.disabled-after-managed-delegation",
+        "toolRegistryVersion": "harness-tools.v14.headless-preview-live",
+        "sdkPackageVersion": "0.3.150",
+        "engineAdapter": {
+          "adapterId": "stub",
+          "providerId": "stub",
+          "model": "haiku"
+        },
+        "mcpServers": [
+          {
+            "name": "chirality",
+            "version": "2.0.0",
+            "toolNames": [
+              "status_read",
+              "deps_read",
+              "scope_scan",
+              "scaffold_preview",
+              "status_transition",
+              "deps_write",
+              "domain_completeness_check",
+              "domain_rule_check_run",
+              "domain_headless_preview_run",
+              "domain_propose_operation",
+              "domain_proposal_validate",
+              "delegate_agent",
+              "report_coordination_notice",
+              "send_agent_update",
+              "ack_agent_update"
+            ]
+          }
+        ],
+        "fingerprintSha256": "2189a8c581305c73f8112161f54e7aa7a0baabf949f4f5dbc5729907086f598d"
+      },
+      "bootedAt": "2026-07-22T06:21:07.271Z",
+      "model": "haiku"
+    },
+    "boot": {
+      "engineSessionId": "stub_f55d4a22-a9d2-4312-8894-bdeb2b750e5a",
+      "adapterId": "stub",
+      "providerId": "stub",
+      "model": "haiku",
+      "bootFingerprint": "297a9563f5a03404f4593177709324125ce5868993a4d5f914bc1d99875cf2ea",
+      "runtimeFingerprint": {
+        "schemaVersion": "harness-runtime-fingerprint.v5.engine-attribution",
+        "personaComposerVersion": "persona-composer.v1.instruction-root",
+        "permissionPolicyVersion": "harness-permission.v7.coordination-mode",
+        "managedDelegationPolicyVersion": "managed-delegation.v3.atomic-coordination",
+        "subagentPolicyVersion": "subagent-bridge.v4.disabled-after-managed-delegation",
+        "toolRegistryVersion": "harness-tools.v14.headless-preview-live",
+        "sdkPackageVersion": "0.3.150",
+        "engineAdapter": {
+          "adapterId": "stub",
+          "providerId": "stub",
+          "model": "haiku"
+        },
+        "mcpServers": [
+          {
+            "name": "chirality",
+            "version": "2.0.0",
+            "toolNames": [
+              "status_read",
+              "deps_read",
+              "scope_scan",
+              "scaffold_preview",
+              "status_transition",
+              "deps_write",
+              "domain_completeness_check",
+              "domain_rule_check_run",
+              "domain_headless_preview_run",
+              "domain_propose_operation",
+              "domain_proposal_validate",
+              "delegate_agent",
+              "report_coordination_notice",
+              "send_agent_update",
+              "ack_agent_update"
+            ]
+          }
+        ],
+        "fingerprintSha256": "2189a8c581305c73f8112161f54e7aa7a0baabf949f4f5dbc5729907086f598d"
+      },
+      "bootedAt": "2026-07-22T06:21:07.271Z"
+    }
+  }
+}

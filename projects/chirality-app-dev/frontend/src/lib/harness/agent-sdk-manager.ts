@@ -79,7 +79,7 @@ export class StubAgentSdkManager implements IAgentSdkManager {
     const turnState: ActiveTurnState = { interrupted: false };
     this.activeTurns.set(session.sessionId, turnState);
 
-    const claudeSessionId = session.claudeSessionId ?? `claude_${randomUUID()}`;
+    const engineSessionId = session.adapterSession?.engineSessionId ?? `stub_${randomUUID()}`;
     let fullText = message.trim();
     if (!fullText) {
       fullText = 'Turn executed successfully.';
@@ -89,7 +89,9 @@ export class StubAgentSdkManager implements IAgentSdkManager {
       yield {
         type: 'session:init',
         data: {
-          claudeSessionId,
+          engineSessionId,
+          adapterId: 'stub',
+          providerId: 'stub',
           model: opts.model
         }
       };

@@ -74,6 +74,20 @@ function installAnthropicApiKeyForSdkTurn(): (() => void) | undefined {
 
 export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort {
   readonly subject = 'claude-agent-sdk' as const;
+  readonly descriptor = {
+    adapterId: 'claude-agent-sdk',
+    providerId: 'anthropic',
+    packageName: '@anthropic-ai/claude-agent-sdk',
+    packageVersion: CLAUDE_AGENT_SDK_PACKAGE_VERSION,
+    capabilities: {
+      credentials: true,
+      tools: true,
+      attachments: true,
+      interruption: true,
+      durableResume: true,
+      compaction: true
+    }
+  } as const;
   private readonly activeTurns = new Map<string, ActiveTurnState>();
 
   constructor(
@@ -85,6 +99,17 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       tools?: readonly string[]
     ) => Promise<string> = async () => ''
   ) {}
+
+  async preflight(_input: AgentEngineRunInput): Promise<void> {
+    if (!readSdkApiKeyForTurn()) {
+      throw new HarnessError(
+        'MISSING_API_KEY',
+        503,
+        'Anthropic API key is not configured. Enter a key in Settings or set ANTHROPIC_API_KEY.',
+        { provider: 'anthropic', category: 'MISSING_API_KEY' }
+      );
+    }
+  }
 
   async interrupt(sessionId: string): Promise<void> {
     const activeTurn = this.activeTurns.get(sessionId);
@@ -143,7 +168,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
             session: inputOrSession,
             message: message ?? '',
             opts: opts as ResolvedOpts,
-            contentBlocks
+            contentBlocks,
+            turnId: suppliedTurnId ?? `turn_${randomUUID()}`
           };
     const abortController = new AbortController();
     const activeTurn: ActiveTurnState = {
@@ -153,7 +179,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
     };
     this.activeTurns.set(input.session.sessionId, activeTurn);
     let restoreSdkApiKey: (() => void) | undefined;
-    const turnId = suppliedTurnId ?? `turn_${randomUUID()}`;
+    const turnId = input.turnId;
 
     // D-APP-25 manager-lifecycle bridging. `turn.accepted` / `turn.started` are
     // emitted before the SDK reports session:init, so we hold their bridged
@@ -198,6 +224,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
           type: 'session:init',
           data: {
             engineSessionId: bootstrapSessionId,
+            adapterId: 'claude-agent-sdk',
+            providerId: 'anthropic',
             claudeSessionId: bootstrapSessionId,
             model: input.opts.model
           }

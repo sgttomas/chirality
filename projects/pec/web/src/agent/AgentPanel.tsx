@@ -47,12 +47,19 @@ function flattenTurn(t: Turn): { who: 'you' | 'agent'; text: string } {
     ? t.text ?? ''
     : (t.events ?? []).map((e) => {
         switch (e.type) {
-          case 'message.completed': return String(e.data.text ?? '')
-          case 'tool.completed': return `[${String(e.data.act ?? e.data.toolName ?? 'tool')}] ${String(e.data.summary ?? 'completed')}`
-          case 'tool.failed': return e.data.refused
-            ? `[refused ${String(e.data.act ?? e.data.toolName ?? 'tool')}] ${String(e.data.reason ?? '')}`
-            : `[failed ${String(e.data.act ?? e.data.toolName ?? 'tool')}] ${String(e.data.summary ?? e.data.reason ?? '')}`
-          case 'turn.failed': return `[error ${String(e.data.code ?? 'TURN_FAILED')}] ${String(e.data.message ?? '')}`
+          case 'chat:complete': return String(e.data.text ?? '')
+          case 'tool:result': return `[${String(e.data.name ?? 'tool')}] ${String(e.data.output ?? (e.data.ok === true ? 'completed' : 'failed'))}`
+          case 'turn:error': return `[error ${String(e.data.errorType ?? 'TURN_FAILED')}] ${String(e.data.message ?? '')}`
+          case 'harness:event': {
+            const rich = e.data as { type?: string; data?: Record<string, unknown> }
+            if (rich.type === 'tool.completed') {
+              return `[${String(rich.data?.toolName ?? rich.data?.act ?? 'tool')}] ${String(rich.data?.summary ?? 'completed')}`
+            }
+            if (rich.type === 'tool.failed') {
+              return `[failed ${String(rich.data?.toolName ?? rich.data?.act ?? 'tool')}] ${String(rich.data?.reason ?? rich.data?.summary ?? '')}`
+            }
+            return ''
+          }
           default: return ''
         }
       }).join('\n')
@@ -175,11 +182,11 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
           const last = events.at(-1)
           // Preserve every lifecycle transition while coalescing adjacent text
           // deltas so long answers do not create thousands of React nodes.
-          if (event.type === 'model.delta' && last?.type === 'model.delta') {
+          if (event.type === 'chat:delta' && last?.type === 'chat:delta') {
             return {
               ...turn,
               events: [...events.slice(0, -1), {
-                type: 'model.delta',
+                type: 'chat:delta',
                 data: { text: String(last.data.text ?? '') + String(event.data.text ?? '') },
               }],
             }
@@ -193,7 +200,17 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
     } catch (e: any) {
       setThread((turns) => turns.map((turn) => turn.id === agentTurnId ? {
         ...turn,
-        events: [...(turn.events ?? []), { type: 'turn.failed', data: { code: e.code ?? 'SEND_FAILED', message: e.message ?? String(e) } }],
+        events: [...(turn.events ?? []), {
+          type: 'turn:error',
+          data: {
+            phase: 'mid-stream',
+            errorType: e.code ?? 'SEND_FAILED',
+            message: e.message ?? String(e),
+            status: 500,
+            severity: 'error',
+            fatal: true,
+          },
+        }],
       } : turn))
       if (e.code === 'AGENT_UNAVAILABLE' || e.code === 'AGENT_NOT_CONFIGURED') loadStatus()
     } finally {
@@ -203,11 +220,11 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
 
   const agentName = status?.agent?.name ?? 'agent'
   const agentProposals = (proposals ?? []).filter((row) => agentPersonId != null && row.createdBy === agentPersonId)
-  // D-T0-21 O-B disclosure: the sidecar health field rides the proxy verbatim
+  // Access-basis disclosure is supplied by the shared-runtime status response.
   const access = status?.access ?? null
   const latestResolvedModel = [...thread].reverse()
     .flatMap((turn) => [...(turn.events ?? [])].reverse())
-    .find((event) => event.type === 'adapter.initialized')?.data.model
+    .find((event) => event.type === 'session:init')?.data.model
   const resolvedModel = typeof latestResolvedModel === 'string' ? latestResolvedModel : status?.model
 
   return (
@@ -230,7 +247,7 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
 
       {statusError && (
         <div className="error-box">
-          The agent sidecar is not reachable: {statusError}
+          The Chirality runtime is not reachable: {statusError}
           {' '}<button className="btn small secondary" onClick={loadStatus}>retry</button>
         </div>
       )}
@@ -310,19 +327,33 @@ function AgentPanel({ onClose }: { onClose(): void }): JSX.Element {
 interface ToolSnapshot {
   key: string
   name: string
-  started?: AgentStreamEvent
-  terminal?: AgentStreamEvent
+  started?: RichHarnessEvent
+  terminal?: RichHarnessEvent
+}
+
+interface RichHarnessEvent {
+  schemaVersion?: number
+  eventId?: string
+  sessionId?: string
+  turnId?: string
+  timestamp?: string
+  type: string
+  data: Record<string, unknown>
 }
 
 function AgentTurnView({ events, pid }: { events: AgentStreamEvent[]; pid: number }): JSX.Element {
   if (events.length === 0) return <div className="agent-activity small"><span className="agent-pulse" /> connecting…</div>
 
-  const lifecycle = events.filter((event) => event.type.startsWith('turn.')).at(-1)
-  const init = events.filter((event) => event.type === 'adapter.initialized').at(-1)
-  const budgetEvent = events.filter((event) => event.type.startsWith('tool.') && event.data.actBudget != null).at(-1)
+  const rich = events
+    .filter((event) => event.type === 'harness:event')
+    .map((event) => event.data as unknown as RichHarnessEvent)
+    .filter((event) => event != null && typeof event.type === 'string' && event.data != null)
+  const lifecycle = rich.filter((event) => event.type.startsWith('turn.')).at(-1)
+  const init = events.filter((event) => event.type === 'session:init').at(-1)
+  const budgetEvent = rich.filter((event) => event.type.startsWith('tool.') && event.data.actBudget != null).at(-1)
   const budget = budgetEvent?.data.actBudget as { used?: number; max?: number; remaining?: number } | undefined
   const tools: ToolSnapshot[] = []
-  for (const event of events) {
+  for (const event of rich) {
     if (event.type !== 'tool.started' && event.type !== 'tool.completed' && event.type !== 'tool.failed') continue
     const key = String(event.data.toolUseId ?? `${event.data.toolName ?? event.data.act ?? 'tool'}-${tools.length}`)
     let tool = tools.find((row) => row.key === key)
@@ -333,12 +364,16 @@ function AgentTurnView({ events, pid }: { events: AgentStreamEvent[]; pid: numbe
     if (event.type === 'tool.started') tool.started = event
     else tool.terminal = event
   }
-  const completed = events.filter((event) => event.type === 'message.completed').at(-1)
+  const completed = events.filter((event) => event.type === 'chat:complete').at(-1)
   const response = completed
     ? String(completed.data.text ?? '')
-    : events.filter((event) => event.type === 'model.delta').map((event) => String(event.data.text ?? '')).join('')
+    : events.filter((event) => event.type === 'chat:delta').map((event) => String(event.data.text ?? '')).join('')
+  const turnError = events.filter((event) => event.type === 'turn:error').at(-1)
+  const processExit = events.filter((event) => event.type === 'process:exit').at(-1)
   const failed = lifecycle?.type === 'turn.failed'
-  const stateLabel = lifecycle?.type === 'turn.completed' ? 'completed'
+    || turnError != null
+    || (processExit != null && Number(processExit.data.exitCode ?? 1) !== 0)
+  const stateLabel = processExit && !failed ? 'completed'
     : failed ? 'failed'
       : lifecycle?.type === 'turn.started' ? 'running'
         : 'accepted'
@@ -381,7 +416,10 @@ function AgentTurnView({ events, pid }: { events: AgentStreamEvent[]; pid: numbe
           payload: event.data.payload,
         }} />
       })}
-      {failed && <div className="error-box">{String(lifecycle?.data.code ?? 'TURN_FAILED')}: {String(lifecycle?.data.message ?? 'The turn failed.')}</div>}
+      {failed && <div className="error-box">
+        {String(turnError?.data.errorType ?? processExit?.data.errorType ?? lifecycle?.data.code ?? 'TURN_FAILED')}:{' '}
+        {String(turnError?.data.message ?? processExit?.data.error ?? lifecycle?.data.message ?? 'The turn failed.')}
+      </div>}
       {response && <div className="agent-bubble agent-response-live">{response}{!completed && <span className="agent-caret" />}</div>}
     </>
   )

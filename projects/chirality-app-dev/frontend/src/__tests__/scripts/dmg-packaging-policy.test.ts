@@ -13,6 +13,10 @@ type ExtraResource = {
 };
 
 type FrontendPackageJson = {
+  devDependencies?: Record<string, string>;
+  engines?: {
+    node?: string;
+  };
   scripts?: Record<string, string>;
   build?: {
     asar?: boolean;
@@ -36,6 +40,15 @@ function parseMajor(version: string): number {
 }
 
 describe('dmg packaging policy', () => {
+  it('pins the approved Electron runtime toolchain and Node floor', async () => {
+    const pkg = await readPackageJson();
+
+    expect(pkg.devDependencies?.electron).toBe('43.1.1');
+    expect(pkg.devDependencies?.['electron-builder']).toBe('26.15.3');
+    expect(pkg.devDependencies?.['@types/node']).toBe('24.12.4');
+    expect(pkg.engines?.node).toBe('>=22.19.0');
+  });
+
   it('forces unsigned packaging in desktop build scripts', async () => {
     const pkg = await readPackageJson();
     const pack = pkg.scripts?.['desktop:pack'] ?? '';
@@ -93,7 +106,7 @@ describe('dmg packaging policy', () => {
     );
   });
 
-  it('unpacks the Claude Agent SDK and native CLI package outside app.asar', async () => {
+  it('unpacks the Claude SDK and Pi native/WASM assets outside app.asar', async () => {
     const pkg = await readPackageJson();
     const asarUnpack = pkg.build?.asarUnpack ?? [];
 
@@ -101,7 +114,28 @@ describe('dmg packaging policy', () => {
     expect(asarUnpack).toEqual(
       expect.arrayContaining([
         'node_modules/@anthropic-ai/claude-agent-sdk/**',
-        'node_modules/@anthropic-ai/claude-agent-sdk-*/**'
+        'node_modules/@anthropic-ai/claude-agent-sdk-*/**',
+        'node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.node',
+        'node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.wasm',
+        'node_modules/@earendil-works/pi-tui/**/*.node',
+        'node_modules/@mariozechner/clipboard-*/**/*.node',
+        'node_modules/@silvia-odwyer/photon-node/**/*.wasm'
+      ])
+    );
+  });
+
+  it('registers the Pi supply-chain proof and ships its notice', async () => {
+    const pkg = await readPackageJson();
+    expect(pkg.scripts?.['pi:supply-chain']).toContain('verify-pi-supply-chain.mjs');
+    expect(pkg.scripts?.['harness:validate:pi-packaged-proof']).toContain(
+      'run-packaged-pi-runtime-proof.mjs'
+    );
+    expect(pkg.build?.extraResources).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          from: 'THIRD_PARTY_NOTICES_PI.md',
+          to: 'THIRD_PARTY_NOTICES_PI.md'
+        })
       ])
     );
   });

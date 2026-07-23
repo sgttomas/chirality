@@ -10,6 +10,19 @@ type SessionRecord = {
   mode: string;
   createdAt: string;
   updatedAt: string;
+  engineSelection?: {
+    adapterId: string;
+    providerId: string;
+    model: string;
+  };
+  engineSessionId?: string;
+  adapterSession?: {
+    engineSessionId?: string;
+    transcriptPath?: string;
+    storeKey?: string;
+    packageName?: string;
+    packageVersion?: string;
+  };
   claudeSessionId?: string;
   sdkPackageVersion?: string;
   bootFingerprint?: string;
@@ -17,6 +30,11 @@ type SessionRecord = {
     schemaVersion: string;
     toolRegistryVersion: string;
     sdkPackageVersion: string;
+    engineAdapter?: {
+      adapterId: string;
+      providerId: string;
+      model: string;
+    };
     mcpServers: Array<{ name: string; version: string; toolNames: string[] }>;
     fingerprintSha256: string;
   };
@@ -33,6 +51,7 @@ type RouteModules = {
   turnRoute: typeof import('../../../app/api/harness/turn/route');
   interruptRoute: typeof import('../../../app/api/harness/interrupt/route');
   runtimeModule: typeof import('../../../lib/harness/runtime');
+  daemonPortModule: typeof import('../../../lib/runtime-client/daemon-harness-port');
 };
 
 type TestContext = {
@@ -53,6 +72,7 @@ async function loadRouteModules(): Promise<RouteModules> {
   const turnRoute = await import('../../../app/api/harness/turn/route');
   const interruptRoute = await import('../../../app/api/harness/interrupt/route');
   const runtimeModule = await import('../../../lib/harness/runtime');
+  const daemonPortModule = await import('../../../lib/runtime-client/daemon-harness-port');
 
   return {
     createRoute,
@@ -62,7 +82,8 @@ async function loadRouteModules(): Promise<RouteModules> {
     bootRoute,
     turnRoute,
     interruptRoute,
-    runtimeModule
+    runtimeModule,
+    daemonPortModule
   };
 }
 
@@ -71,6 +92,10 @@ async function importRouteModules(): Promise<RouteModules> {
     throw new Error('Route modules were not loaded before the test started');
   }
   cachedRouteModules.runtimeModule.resetHarnessRuntimeForTests();
+  const { createFakeDaemonHarnessPort } = await import('./fake-daemon-harness-port');
+  cachedRouteModules.daemonPortModule.installDaemonHarnessPort(
+    createFakeDaemonHarnessPort()
+  );
   return cachedRouteModules;
 }
 
@@ -149,6 +174,7 @@ beforeEach(async () => {
 afterEach(async () => {
   vi.restoreAllMocks();
   cachedRouteModules?.runtimeModule.resetHarnessRuntimeForTests();
+  cachedRouteModules?.daemonPortModule.resetDaemonHarnessPortForTests();
   delete process.env.CHIRALITY_SESSION_ROOT;
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
   delete process.env.CHIRALITY_ENABLE_SUBAGENTS;
@@ -160,6 +186,7 @@ afterEach(async () => {
 
 afterAll(() => {
   cachedRouteModules?.runtimeModule.resetHarnessRuntimeForTests();
+  cachedRouteModules?.daemonPortModule.resetDaemonHarnessPortForTests();
 });
 
 describe('Harness API baseline routes', () => {
@@ -266,6 +293,13 @@ describe('Harness API baseline routes', () => {
     const routes = await importRouteModules();
     const runtime = routes.runtimeModule.getHarnessRuntime();
     const { body } = await createSession(routes, context.projectRoot);
+    await runtime.sessionManager.save(body.session.sessionId, {
+      adapterSession: {
+        engineSessionId: 'stub_existing_engine',
+        transcriptPath: '/canonical/session/adapter-transcript.jsonl',
+        storeKey: 'opaque-adapter-store-key'
+      }
+    });
 
     const bootResponse = await routes.bootRoute.POST(
       new Request('http://localhost/api/harness/session/boot', {
@@ -279,14 +313,25 @@ describe('Harness API baseline routes', () => {
     const bootBody = (await bootResponse.json()) as {
       session: SessionRecord;
       boot: {
-        claudeSessionId: string;
+        engineSessionId: string;
+        adapterId: string;
+        providerId: string;
+        model: string;
+        claudeSessionId?: string;
         bootFingerprint: string;
         runtimeFingerprint: NonNullable<SessionRecord['runtimeFingerprint']>;
         bootedAt: string;
       };
     };
 
-    expect(typeof bootBody.boot.claudeSessionId).toBe('string');
+    expect(bootBody.boot).toMatchObject({
+      engineSessionId: 'stub_existing_engine',
+      adapterId: 'stub',
+      providerId: 'stub',
+      model: 'claude-test'
+    });
+    expect(bootBody.boot.claudeSessionId).toBeUndefined();
+    expect(bootBody.session.claudeSessionId).toBeUndefined();
     expect(typeof bootBody.boot.bootFingerprint).toBe('string');
     expect(bootBody.boot.bootFingerprint).toMatch(/^[a-f0-9]{64}$/);
     expect(bootBody.boot.bootFingerprint).toBe(
@@ -298,10 +343,25 @@ describe('Harness API baseline routes', () => {
     );
     expect(typeof bootBody.boot.bootedAt).toBe('string');
     expect(bootBody.session.bootFingerprint).toBe(bootBody.boot.bootFingerprint);
-    expect(bootBody.session.sdkPackageVersion).toBe('0.3.150');
+    expect(bootBody.session.sdkPackageVersion).toBeUndefined();
+    expect(bootBody.session.engineSelection).toEqual({
+      adapterId: 'stub',
+      providerId: 'stub',
+      model: expect.any(String)
+    });
+    expect(bootBody.session.adapterSession).toEqual({
+      engineSessionId: 'stub_existing_engine',
+      transcriptPath: '/canonical/session/adapter-transcript.jsonl',
+      storeKey: 'opaque-adapter-store-key'
+    });
     expect(bootBody.session.runtimeFingerprint).toEqual(bootBody.boot.runtimeFingerprint);
     expect(bootBody.boot.runtimeFingerprint).toMatchObject({
-      schemaVersion: 'harness-runtime-fingerprint.v4.atomic-coordination',
+      schemaVersion: 'harness-runtime-fingerprint.v5.engine-attribution',
+      engineAdapter: {
+        adapterId: 'stub',
+        providerId: 'stub',
+        model: 'claude-test'
+      },
       managedDelegationPolicyVersion: 'managed-delegation.v3.atomic-coordination',
       toolRegistryVersion: expect.stringMatching(/^harness-tools\./),
       sdkPackageVersion: '0.3.150',
@@ -473,10 +533,20 @@ describe('Harness API baseline routes', () => {
     await rm(path.join(context.instructionRoot, 'docs', 'PLAN.md'));
 
     vi.resetModules();
-    const [bootRouteBundleB, runtimeBundleB] = await Promise.all([
+    const [
+      bootRouteBundleB,
+      runtimeBundleB,
+      daemonPortBundleB,
+      fakeDaemonPortBundleB
+    ] = await Promise.all([
       import('../../../app/api/harness/session/boot/route'),
-      import('../../../lib/harness/runtime')
+      import('../../../lib/harness/runtime'),
+      import('../../../lib/runtime-client/daemon-harness-port'),
+      import('./fake-daemon-harness-port')
     ]);
+    daemonPortBundleB.installDaemonHarnessPort(
+      fakeDaemonPortBundleB.createFakeDaemonHarnessPort()
+    );
     expect(runtimeBundleB.getHarnessRuntime()).toBe(runtimeBeforeBundleSplit);
 
     const bootResponse = await bootRouteBundleB.POST(
@@ -1290,10 +1360,20 @@ AGENT_TYPE: 2
     }
 
     vi.resetModules();
-    const [interruptRouteBundleB, runtimeBundleB] = await Promise.all([
+    const [
+      interruptRouteBundleB,
+      runtimeBundleB,
+      daemonPortBundleB,
+      fakeDaemonPortBundleB
+    ] = await Promise.all([
       import('../../../app/api/harness/interrupt/route'),
-      import('../../../lib/harness/runtime')
+      import('../../../lib/harness/runtime'),
+      import('../../../lib/runtime-client/daemon-harness-port'),
+      import('./fake-daemon-harness-port')
     ]);
+    daemonPortBundleB.installDaemonHarnessPort(
+      fakeDaemonPortBundleB.createFakeDaemonHarnessPort()
+    );
     expect(runtimeBundleB.getHarnessRuntime()).toBe(runtimeBeforeBundleSplit);
 
     const interruptResponse = await interruptRouteBundleB.POST(

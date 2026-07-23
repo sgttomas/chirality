@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
-import {
-  listAgentRoster,
-  selectDirectChatPersonas
-} from '../../../../lib/harness/agent-roster';
 import { errorResponse } from '../../../../lib/harness/http';
+import { getDaemonHarnessPort } from '../../../../lib/runtime-client/daemon-harness-port';
 
 /**
  * GET /api/harness/agents — enumerate the agent roster (name + parsed
@@ -16,10 +13,11 @@ export async function GET(request: Request): Promise<Response> {
     const url = new URL(request.url);
     const directChatOnly = url.searchParams.get('directChat') === '1';
 
-    const roster = await listAgentRoster();
-    const agents = directChatOnly ? selectDirectChatPersonas(roster) : roster;
-
-    return NextResponse.json({ agents }, { status: 200 });
+    const result = await getDaemonHarnessPort().listAgents(
+      { directChatOnly },
+      { signal: request.signal }
+    );
+    return NextResponse.json(result, { status: 200 });
   } catch (error) {
     return errorResponse(error);
   }

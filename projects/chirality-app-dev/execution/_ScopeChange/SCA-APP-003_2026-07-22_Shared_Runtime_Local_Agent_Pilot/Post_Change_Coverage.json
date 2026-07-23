@@ -1,0 +1,36 @@
+{
+  "amendment_id": "SCA-APP-003",
+  "status": "GOVERNANCE_PROPAGATION_COMPLETE_IMPLEMENTATION_PENDING",
+  "date": "2026-07-22",
+  "authorities": [
+    "D-GOV-20",
+    "D-APP-73",
+    "D-T0-23",
+    "D-PEC-56"
+  ],
+  "decomposition_path": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "topology_counts": {
+    "packages": 10,
+    "deliverables": 51,
+    "scope_items": 78,
+    "objectives": 10
+  },
+  "topology_change_applied": false,
+  "lifecycle_change_applied": false,
+  "runtime_source_changed_by_g0": false,
+  "package_manifest_or_lockfile_changed_by_g0": false,
+  "release_authorized": false,
+  "affected_status_records": 20,
+  "supersession": {
+    "delta_rows": 4,
+    "cumulative_map_rows": 11
+  },
+  "authority_corpus": {
+    "version": "v15",
+    "status": "MATCH",
+    "registered_sources": 8,
+    "reconciled_reference_rows": 306,
+    "reconciled_deliverable_files": 51
+  },
+  "next_gate": "G1 behavior-preserving runtime promotion"
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "chirality.agent-work-graph/v1",
+  "runId": "SHARED_RUNTIME_LOCAL_AGENT_PILOT_2026-07-22",
+  "ownerApprovalReference": "Owner instruction 2026-07-22: implement Chirality Shared Runtime and Local-Agent Pilot",
+  "integrationOwner": {
+    "role": "HELP_HUMAN",
+    "runtime": "Codex",
+    "actualModel": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "writeScope": [
+      "shared contracts",
+      "package lockfiles",
+      "runtime composition",
+      "Desktop cutover",
+      "integration fan-in",
+      "Git closeout and PR"
+    ]
+  },
+  "coordinationPolicy": {
+    "pattern": "mixed sequential gates with disjoint parallel implementation",
+    "siblingCoordination": "parent-mediated only",
+    "sharedWrites": "serialized through integrationOwner",
+    "codeGate": "G0 governance and G0A authority audit must be accepted before runtime code changes"
+  },
+  "nodes": [
+    {
+      "id": "G0",
+      "role": "Agent 2 bounded governance writer",
+      "dependsOn": [],
+      "brief": "LAUNCH_BRIEF_G0_GOVERNANCE.md",
+      "actualModel": "gpt-5.6-sol",
+      "writeScope": [
+        "root governance and decision surfaces",
+        "app-dev governance, D-APP-73, and SCA-APP-003",
+        "tier-0 domain-engine governance",
+        "PEC governance and D-PEC-56"
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "id": "G0A",
+      "role": "Agent 2 independent authority auditor",
+      "dependsOn": ["G0"],
+      "brief": "LAUNCH_BRIEF_G0A_AUTHORITY_AUDIT.md",
+      "actualModel": "gpt-5.6-sol",
+      "writeScope": [],
+      "status": "COMPLETED"
+    },
+    {
+      "id": "G1",
+      "role": "Agent 2 runtime contracts/core/daemon/CLI worker",
+      "dependsOn": ["G0A"],
+      "brief": "LAUNCH_BRIEF_G1_RUNTIME.md",
+      "actualModel": "gpt-5.6-sol",
+      "writeScope": ["runtime/** excluding integration-owned lockfile fan-in"],
+      "status": "COMPLETED"
+    },
+    {
+      "id": "G2",
+      "role": "Agent 2 PEC adapter migration worker",
+      "dependsOn": ["G0A"],
+      "brief": "LAUNCH_BRIEF_G2_PEC.md",
+      "actualModel": "gpt-5.6-sol",
+      "writeScope": ["projects/pec/** implementation and tests only"],
+      "status": "COMPLETED"
+    },
+    {
+      "id": "G3",
+      "role": "HELP_HUMAN integration owner",
+      "dependsOn": ["G1", "G2"],
+      "brief": "Desktop cutover, manifests, export, lockfiles, fan-in, and vertical slice",
+      "actualModel": "gpt-5.6-sol",
+      "writeScope": [
+        "app-dev runtime compatibility and Desktop",
+        "root runtime lockfiles and integration",
+        "public export",
+        "cross-package validation"
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "id": "G4",
+      "role": "Agent 2 independent security and regression reviewers",
+      "dependsOn": ["G3"],
+      "brief": "Read-only conformance, security, Claude regression, and PEC RBAC audit",
+      "actualModel": "gpt-5.6-sol",
+      "writeScope": [],
+      "status": "COMPLETED"
+    },
+    {
+      "id": "G5",
+      "role": "HELP_HUMAN closeout",
+      "dependsOn": ["G4"],
+      "brief": "Full validation, opt-in live proof where safe, scoped commits, push, and PR",
+      "actualModel": "gpt-5.6-sol",
+      "writeScope": ["validation evidence, closeout receipts, Git branch and PR"],
+      "status": "COMPLETED"
+    }
+  ]
+}

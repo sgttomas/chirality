@@ -1,0 +1,25 @@
+{
+  "status": 200,
+  "ok": true,
+  "raw": "{\"session\":{\"schemaVersion\":\"chirality.session/v2\",\"projectId\":\"chirality-app-dev\",\"projectRoot\":\"/Users/ryan/dev/chirality/projects/chirality-app-dev\",\"sessionId\":\"65a22eda-b81c-4869-9a12-37a814272faf\",\"createdAt\":\"2026-07-23T06:14:15.677Z\",\"updatedAt\":\"2026-07-23T06:14:15.677Z\",\"persona\":\"CHANGE\",\"mode\":\"ask\",\"agentType\":1,\"role\":\"agent1\",\"engineSelection\":{\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"},\"status\":\"idle\"}}",
+  "parsed": {
+    "session": {
+      "schemaVersion": "chirality.session/v2",
+      "projectId": "chirality-app-dev",
+      "projectRoot": "/Users/ryan/dev/chirality/projects/chirality-app-dev",
+      "sessionId": "65a22eda-b81c-4869-9a12-37a814272faf",
+      "createdAt": "2026-07-23T06:14:15.677Z",
+      "updatedAt": "2026-07-23T06:14:15.677Z",
+      "persona": "CHANGE",
+      "mode": "ask",
+      "agentType": 1,
+      "role": "agent1",
+      "engineSelection": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "model": "haiku"
+      },
+      "status": "idle"
+    }
+  }
+}

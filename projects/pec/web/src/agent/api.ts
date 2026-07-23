@@ -1,21 +1,23 @@
 /**
- * Panel client for the agent proxy routes (D-PEC-17): thin wrappers over the
- * existing web transport. The AgentEvent/AgentTurnInput types are hand-copied
- * from `agent-sidecar/src/engine/port.ts` (no cross-package import from web
- * to the sidecar — keep the two in step by hand).
+ * Panel client for the one-cycle PEC compatibility routes. The server relays
+ * the shared runtime's public UIEvent SSE contract; the browser does not
+ * connect to the deterministic PEC project adapter.
  */
 
 import { api, p } from '../api.ts'
 import type { ScreenRecord } from './context.tsx'
 
-/** app-dev harness-compatible SSE event subset emitted by PEC (D-PEC-53). */
+/** Existing app-dev public UIEvent wire contract (D-PEC-53/D-PEC-56). */
 export type AgentStreamEvent = {
   type:
-    | 'turn.accepted' | 'turn.started' | 'turn.completed' | 'turn.failed'
-    | 'adapter.initialized'
-    | 'model.request.started' | 'model.delta' | 'model.completed'
-    | 'message.completed'
-    | 'tool.started' | 'tool.completed' | 'tool.failed'
+    | 'session:init'
+    | 'chat:delta'
+    | 'chat:complete'
+    | 'tool:result'
+    | 'session:complete'
+    | 'turn:error'
+    | 'process:exit'
+    | 'harness:event'
   data: Record<string, unknown>
 }
 
@@ -32,8 +34,7 @@ export interface AgentStatus {
   agent: { name: string; email: string } | null
 }
 
-// mirrors agent-sidecar/src/engine/port.ts HistoryEntry (D-PEC-21: the
-// transcript rides the request; the sidecar stores nothing between requests)
+// Compatibility transcript context only. The daemon remains the session owner.
 export interface AgentHistoryEntry {
   who: 'you' | 'agent'
   text: string
@@ -85,7 +86,7 @@ export async function agentMessage(
   let buffer = ''
   let terminal = false
   const publish = (event: AgentStreamEvent): void => {
-    if (event.type === 'turn.completed' || event.type === 'turn.failed') terminal = true
+    if (event.type === 'process:exit') terminal = true
     onEvent(event)
   }
   while (true) {

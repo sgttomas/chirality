@@ -146,5 +146,17 @@ Hosted workflows must not receive private project data, API keys, protected prof
 - Signing, notarization, checksum publication, publication destination, and attestation.
 - Release-label vocabulary and release-candidate evidence-bundle format.
 - Coverage, performance, and platform-threshold policy.
-- Concrete provider/network implementation beyond the current shipped Anthropic path.
-- Any attempt to reverse the D-APP-01/D-APP-02 Pi pattern-corpus-only ruling.
+- Provider/network implementation beyond the current Anthropic path and the exact D-APP-72 authenticated `127.0.0.1` oMLX exception.
+- Any Pi scope beyond the D-APP-72 / SCA-APP-002 pinned in-process read-only Agent 2 child tranche; D-APP-01/D-APP-02 remain historical for all other Pi scope.
+
+## 11. Shared Runtime Packaging Addendum
+
+D-APP-73 requires the packaged Electron executable to support both ordinary
+GUI startup and headless `--runtime-daemon` mode without duplicate runtime
+construction. Packaging evidence MUST cover LaunchAgent invocation, daemon
+startup/shutdown, socket placement and permissions, packaged CLI execution
+without global Node, and one offline scripted packaged turn.
+
+The bundled `chirality` launcher is installed to `~/.local/bin` only through
+the governed daemon-install workflow and executes with Electron’s embedded
+Node runtime. Installation is opt-in and is not a release/publication act.

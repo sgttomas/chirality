@@ -38,7 +38,7 @@ This suite validates the harness runtime contract for session lifecycle, turn ex
 
 ## Prerequisites
 
-- Node.js `>=20`
+- Node.js `>=22.19.0`
 - Frontend dependencies installed in `frontend/`
 - Harness API reachable at `HARNESS_BASE_URL` (defaults to `http://127.0.0.1:3000`)
 - Valid working root configured via `HARNESS_PROJECT_ROOT` (recommended: `examples/example-project`)

@@ -1,0 +1,107 @@
+{
+  "run_id": "PI_OMLX_SECOND_ENGINE_2026-07-21",
+  "version": 2,
+  "selection_authority": "Owner request in Codex: accepted Pi + oMLX execution plan and explicitly selected the Electron-upgrade runtime strategy",
+  "posture": "SEQUENTIAL_GOVERNANCE_AND_RUNTIME_PREREQUISITES_THEN_DISJOINT_IMPLEMENTATION_FAN_OUT_AND_INDEPENDENT_REVIEW",
+  "package_id": "APP-FRONTEND-RUNTIME",
+  "model_attribution": {
+    "orchestrator": "gpt-5.6-sol",
+    "children": "gpt-5.6-sol (inherited unless a return records a substitution)"
+  },
+  "nodes": [
+    {
+      "id": "G0_GOVERNANCE",
+      "owner": "WORKING_ITEMS PKG-01 governance integration writer",
+      "status": "PASS_AFTER_INDEPENDENT_BACKCHECK",
+      "depends_on": [],
+      "read_scope": ["AGENTS.md", "current authority corpus", "D-APP-01/02/03", "owner-approved plan"],
+      "write_scope": ["execution/_Coordination/_DECISIONS/**", "execution/_ScopeChange/SCA-APP-002_*/**", "docs/**", "execution/_Decomposition/**", "affected deliverable governance/status surfaces", "this run evidence"],
+      "expected_return": "D-APP-72 or next-free ruling, bounded SCA-APP-002, prospective authority reconciliation, validation evidence",
+      "fan_in_gate": "fresh read-only authority audit passes before package/runtime mutation"
+    },
+    {
+      "id": "G1_RUNTIME_PREREQUISITE",
+      "owner": "WORKING_ITEMS desktop runtime prerequisite owner",
+      "status": "PASS_WITH_RECORDED_RESIDUALS",
+      "depends_on": ["G0_GOVERNANCE"],
+      "read_scope": ["frontend package and Electron surfaces", "registered workflow", "approved ruling"],
+      "write_scope": ["frontend/package.json", "frontend/package-lock.json", "Electron compatibility fixes and tests", "this run evidence"],
+      "expected_return": "Electron 43.1.1 / Node 24 prerequisite with unchanged Claude and stub behavior",
+      "fan_in_gate": "tests, typecheck, build, and desktop:pack pass"
+    },
+    {
+      "id": "G2_CORE_CONTRACT",
+      "owner": "primary integration owner",
+      "status": "PASS",
+      "depends_on": ["G1_RUNTIME_PREREQUISITE"],
+      "read_scope": ["harness contract", "session storage", "runtime and TurnEngine", "approved ruling"],
+      "write_scope": ["frontend/packages/harness-contract/**", "frontend/src/lib/harness/runtime.ts", "frontend/src/lib/harness/turn-engine.ts", "session compatibility code/tests", "frontend/package metadata"],
+      "expected_return": "provider-neutral port, session migration, per-turn registry, Claude regression compatibility",
+      "fan_in_gate": "contract, session, runtime, TurnEngine, Claude tests and typecheck pass"
+    },
+    {
+      "id": "G3_PI_ADAPTER",
+      "owner": "TASK Pi adapter worker",
+      "status": "PASS",
+      "depends_on": ["G2_CORE_CONTRACT"],
+      "read_scope": ["accepted engine port", "Pi 0.80.10 SDK", "canonical events"],
+      "write_scope": ["new Pi adapter/mapper/provider modules", "Pi adapter tests"],
+      "expected_return": "in-process Pi/oMLX adapter with no ambient resources or native Pi tools",
+      "fan_in_gate": "adapter unit and isolation tests pass"
+    },
+    {
+      "id": "G3_TOOL_BRIDGE",
+      "owner": "TASK neutral tool bridge worker",
+      "status": "PASS",
+      "depends_on": ["G2_CORE_CONTRACT"],
+      "read_scope": ["current Chirality tools", "permission/evidence pipeline", "accepted port"],
+      "write_scope": ["new neutral tool definition and binders", "tool bridge tests"],
+      "expected_return": "shared Chirality tool definitions with Claude and Pi binders",
+      "fan_in_gate": "permission, containment, redaction and tool evidence equivalence passes"
+    },
+    {
+      "id": "G3_PROVIDER_SECURITY",
+      "owner": "TASK oMLX security and credential worker",
+      "status": "PASS",
+      "depends_on": ["G2_CORE_CONTRACT"],
+      "read_scope": ["Electron credential storage", "network policy", "provider contracts"],
+      "write_scope": ["provider-keyed credential storage/IPC", "oMLX loopback validation", "fake provider and security tests"],
+      "expected_return": "authenticated loopback-only oMLX configuration with redacted deterministic failure tests",
+      "fan_in_gate": "credential, network, secret and provider-failure tests pass"
+    },
+    {
+      "id": "G4_ROUTING_AND_FAN_IN",
+      "owner": "primary integration owner",
+      "status": "PASS_AFTER_INTEGRATION_AND_REVIEW",
+      "depends_on": ["G3_PI_ADAPTER", "G3_TOOL_BRIDGE", "G3_PROVIDER_SECURITY"],
+      "read_scope": ["all accepted G3 returns", "managed delegation", "AgentRuns attribution"],
+      "write_scope": ["managed child routing", "shared runtime integration", "package/lockfile", "integration tests"],
+      "expected_return": "Claude supervisor to governed Pi/oMLX read-only child milestone",
+      "fan_in_gate": "mixed-engine integration and complete registered validation pass"
+    },
+    {
+      "id": "G5_REVIEW_CLOSEOUT",
+      "owner": "independent EVALUATION/REVIEW then CHANGE",
+      "status": "PASS_AFTER_INDEPENDENT_BACKCHECK",
+      "depends_on": ["G4_ROUTING_AND_FAN_IN"],
+      "read_scope": ["complete scoped diff", "ruling/SCA", "validation evidence"],
+      "write_scope": ["this run review and closeout evidence only"],
+      "expected_return": "governance, security, Claude-regression and acceptance verdict",
+      "fan_in_gate": "no blocking findings; scoped clean closeout"
+    }
+  ],
+  "edges": [
+    {"from": "G0_GOVERNANCE", "to": "G1_RUNTIME_PREREQUISITE", "gate": "authority audit PASS"},
+    {"from": "G1_RUNTIME_PREREQUISITE", "to": "G2_CORE_CONTRACT", "gate": "desktop prerequisite PASS"},
+    {"from": "G2_CORE_CONTRACT", "to": "G3_PI_ADAPTER", "gate": "public contract frozen"},
+    {"from": "G2_CORE_CONTRACT", "to": "G3_TOOL_BRIDGE", "gate": "public contract frozen"},
+    {"from": "G2_CORE_CONTRACT", "to": "G3_PROVIDER_SECURITY", "gate": "public contract frozen"},
+    {"from": "G3_PI_ADAPTER", "to": "G4_ROUTING_AND_FAN_IN", "gate": "G3 adapter PASS"},
+    {"from": "G3_TOOL_BRIDGE", "to": "G4_ROUTING_AND_FAN_IN", "gate": "G3 tool bridge PASS"},
+    {"from": "G3_PROVIDER_SECURITY", "to": "G4_ROUTING_AND_FAN_IN", "gate": "G3 security PASS"},
+    {"from": "G4_ROUTING_AND_FAN_IN", "to": "G5_REVIEW_CLOSEOUT", "gate": "full validation PASS"}
+  ],
+  "concurrency": "G3 only, maximum three disjoint workers; all shared runtime and package writes serialized through the primary integration owner",
+  "integration_owner": "primary Codex session",
+  "escalation": "Any authority conflict, non-loopback provider requirement, Pi-native capability requirement, unrelated dirty-file overlap, destructive migration, or required-check failure"
+}

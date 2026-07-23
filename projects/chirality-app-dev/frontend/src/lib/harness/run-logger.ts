@@ -1,4 +1,4 @@
-import { getUiApiKey } from './api-key-store';
+import { getProviderUiApiKey } from './api-key-store';
 
 function asNonEmptyString(value: string | undefined): string | undefined {
   if (typeof value !== 'string') {
@@ -63,9 +63,11 @@ function addUrlEncodedKeyVariants(variants: Set<string>, key: string): void {
 
 export function readConfiguredApiKeyVariants(): string[] {
   const configuredKeys = [
-    getUiApiKey(),
+    getProviderUiApiKey('anthropic'),
+    getProviderUiApiKey('omlx'),
     asNonEmptyString(process.env.ANTHROPIC_API_KEY),
-    asNonEmptyString(process.env.CHIRALITY_ANTHROPIC_API_KEY)
+    asNonEmptyString(process.env.CHIRALITY_ANTHROPIC_API_KEY),
+    asNonEmptyString(process.env.CHIRALITY_OMLX_API_KEY)
   ].filter((value): value is string => Boolean(value));
   const variants = new Set<string>();
   for (const key of configuredKeys) {

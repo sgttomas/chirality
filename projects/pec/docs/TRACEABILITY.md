@@ -266,3 +266,12 @@ Honest list of what is implemented but not automatically tested (or deliberately
    (recipe: `docs/PILOT.md` §5) — record its date in STATUS when done.
 7. **PEC-NOT-002/003, PEC-CHK-004 hard block, PEC-REC-\*, dedicated interface register** are
    P2/P3 by design (SPEC §11), not gaps.
+
+## Shared Runtime Migration Trace
+
+| Boundary | Authority | Required evidence |
+|---|---|---|
+| One daemon; no production dual loop | D-GOV-20; D-T0-23; D-PEC-56 | `server/src/runtime-client-port.ts`, `server/src/shared-runtime-client.ts`, `server/src/index.ts`, `server/src/agent-proxy.ts`, production `agent-sidecar/src/index.ts`; `server/test/shared-runtime-client.test.ts`, `server/test/agent-proxy.test.ts`, `agent-sidecar/test/project-adapter.test.ts`. The server composition root binds one shared-runtime client and never constructs a PEC model loop. |
+| PEC acts/RBAC/human gates remain project-owned | D-T0-23; D-PEC-56 | `agent-sidecar/src/project-adapter*.ts`, `acts.ts`, `pec-client.ts`; production adapter and existing access/RBAC tests prove forbidden acts remain absent/denied. |
+| Canonical live events and actual-model attribution | D-PEC-53; D-PEC-56 | Backend relays exact public UIEvent SSE names/data; rich HarnessEvent rides `harness:event`; proxy tests pin `session:init` adapter/provider/model and local child model/residency attribution. Automated scratch/demo validation covers daemon/client/backend/panel protocol compatibility; production pilot remains outside the ruling. |
+| Scratch/demo-only migration pilot | D-PEC-56 | `assertScratchOrDemoDatabase()` plus temp/demo route and daemon-failure no-mutation tests. No production data authority is created. |

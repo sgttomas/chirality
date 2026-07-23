@@ -545,3 +545,12 @@ The sweep additionally emits weekly digests — one notification per person per 
 (authorities/signatories past threshold), `digest_holds` (hold owners), `digest_comments` (responders
 past threshold). All time-driven notifications carry `severity` from the §8.4 thresholds; the web
 notification inbox badges warn/red.
+
+## 15. Shared Runtime Agent Architecture
+
+D-T0-23/D-PEC-56 move LLM, credential, session, delegation, interruption, and
+residency ownership to the root daemon. PEC retains deterministic acts, RBAC,
+reporting, human-only acts, visibility, and data-boundary enforcement in a
+project adapter. Backend/panel use the daemon client/event protocol. The old
+endpoint is a one-cycle proxy only; no production dual loop. Pilot data is
+scratch/demo only.

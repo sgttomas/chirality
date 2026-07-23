@@ -13,7 +13,7 @@
     "dev:next": "NEXT_TELEMETRY_DISABLED=1 next dev --port 3000",
     "dev:electron": "npm run build:electron && wait-on tcp:3000 && electron dist-electron/main.js",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron",
-    "build:electron": "tsc -p tsconfig.electron.json",
+    "build:electron": "node ./scripts/build-electron.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false",
     "harness:validate:section8": "node ./scripts/validate-harness-section8.mjs",
@@ -23,19 +23,28 @@
     "harness:validate:agentsdk-mcp-probe": "vitest run src/__tests__/lib/agent-sdk-mcp-behavior-probe.test.ts",
     "harness:validate:agentsdk-packaged-proof": "node ./scripts/verify-packaged-agent-sdk-runtime.mjs",
     "harness:validate:agentsdk-packaged-live-read-tool": "node ./scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs",
+    "harness:validate:pi-packaged-proof": "node ./scripts/run-packaged-pi-runtime-proof.mjs",
     "harness:validate:contract-deps": "node ./scripts/assert-harness-contract-deps.mjs",
     "harness:generate-tool-catalog": "node ./scripts/generate-tool-catalog.mjs",
     "validate:release-quality": "npm run harness:validate:contract-deps && node ./scripts/validate-release-quality-evidence.mjs",
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
     "proof:secret-scan": "node ./scripts/scan-secret-evidence.mjs",
     "proof:network-policy": "node ./scripts/run-network-policy-proof.mjs",
+    "pi:supply-chain": "node ./scripts/verify-pi-supply-chain.mjs",
     "desktop:pack": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --arm64 --dir --publish never && npm run instruction-root:integrity",
     "desktop:dist": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --publish never && npm run instruction-root:integrity"
   },
   "dependencies": {
-    "@chirality/harness-contract": "file:packages/harness-contract",
     "@anthropic-ai/claude-agent-sdk": "0.3.150",
     "@anthropic-ai/sdk": "0.93.0",
+    "@chirality/engine-pi-omlx": "file:../../../runtime/packages/engine-pi-omlx",
+    "@chirality/harness-contract": "file:packages/harness-contract",
+    "@chirality/runtime-client": "file:../../../runtime/packages/client",
+    "@chirality/runtime-cli": "file:../../../runtime/packages/cli",
+    "@chirality/runtime-contracts": "file:../../../runtime/packages/contracts",
+    "@chirality/runtime-core": "file:../../../runtime/packages/core",
+    "@chirality/runtime-daemon": "file:../../../runtime/packages/daemon",
+    "@earendil-works/pi-coding-agent": "0.80.10",
     "ansi_up": "^6.0.6",
     "next": "^14.2.0",
     "react": "^18.2.0",
@@ -44,20 +53,21 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
-    "@types/node": "^22.10.1",
+    "@types/node": "24.12.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-test-renderer": "^18.3.1",
     "concurrently": "^9.0.1",
-    "electron": "^31.0.2",
-    "electron-builder": "^25.1.8",
+    "electron": "43.1.1",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.21.5",
     "react-test-renderer": "^18.3.1",
     "typescript": "^5.6.3",
     "vitest": "^2.1.8",
     "wait-on": "^8.0.1"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.19.0"
   },
   "build": {
     "appId": "com.chirality.app",
@@ -65,7 +75,12 @@
     "asar": true,
     "asarUnpack": [
       "node_modules/@anthropic-ai/claude-agent-sdk/**",
-      "node_modules/@anthropic-ai/claude-agent-sdk-*/**"
+      "node_modules/@anthropic-ai/claude-agent-sdk-*/**",
+      "node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.node",
+      "node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.wasm",
+      "node_modules/@earendil-works/pi-tui/**/*.node",
+      "node_modules/@mariozechner/clipboard-*/**/*.node",
+      "node_modules/@silvia-odwyer/photon-node/**/*.wasm"
     ],
     "directories": {
       "output": "dist"
@@ -78,6 +93,17 @@
       "next.config.mjs"
     ],
     "extraResources": [
+      {
+        "from": "THIRD_PARTY_NOTICES_PI.md",
+        "to": "THIRD_PARTY_NOTICES_PI.md"
+      },
+      {
+        "from": "dist-runtime",
+        "to": "runtime-cli",
+        "filter": [
+          "**/*"
+        ]
+      },
       {
         "from": "../../../agents",
         "to": "agents"

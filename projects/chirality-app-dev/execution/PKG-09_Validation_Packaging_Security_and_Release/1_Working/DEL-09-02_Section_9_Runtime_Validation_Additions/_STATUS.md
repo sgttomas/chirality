@@ -1,14 +1,18 @@
 # Status: DEL-09-02
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
+- Register shared-runtime contract, socket, project authorization, migration, residency, required-delegation, and PEC-adapter conformance checks (gated: G5 validation).
+
 ## History
+- 2026-07-22 - D-APP-72 multi-adapter conformance expansion completed across lifecycle, tool pairing, permission, persistence, redaction, interruption, compaction, declared capabilities, and provider failures; Section 9 and the complete suite pass. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 added Pi/oMLX Section 9 validation to Remaining; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents; P1/P2 complete, four documents non-empty)
 - 2026-05-20 - State set to OPEN (PREPARATION)

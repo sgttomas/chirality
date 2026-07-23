@@ -16,6 +16,7 @@
 - The existing `frontend/` files.
 - Anthropic Claude Agent SDK / Claude Code SDK documentation current as of 2026-05-20, including TypeScript `query()` options, permissions, hooks, MCP, sessions, `SessionStore`, system prompts, subagents, and hosting guidance for the first concrete adapter.
 - `SCA-APP-001 Provider-General Runtime and Pi Pattern-Corpus Reorientation`, accepted on 2026-06-13.
+- `SCA-APP-002 Bounded Pi/oMLX Second Engine`, accepted on 2026-07-21 under D-APP-72.
 
 ## 2. Product Summary
 
@@ -40,8 +41,10 @@ Runtime implementation direction:
 - Chirality builds the governance, UI, audit, lifecycle, and adapter layer **over** provider
   harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex
   feature parity. Generic harness primitives the adapter provides well are governed, not
-  reimplemented. Pi is reference-only; any other provider/harness path requires a fresh governed
-  tranche (CONTRACT K-ENGINE-6).
+  reimplemented. D-APP-72 / SCA-APP-002 authorizes Pi `0.80.10` only as an opt-in,
+  in-process second adapter over authenticated `127.0.0.1` oMLX for a governed read-only
+  Agent 2 child after Electron `43.1.1`; every other provider/harness path requires a fresh
+  governed tranche (CONTRACT K-ENGINE-6).
 - Chirality should not reimplement generic primitives that the current adapter provides well when they can be governed by Chirality-owned policy: model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK session transcripts, subagent invocation, and compaction messages.
 - Chirality must treat every provider/SDK as a replaceable engine behind product-owned contracts, not as the product runtime contract itself. Chirality's event schema, session canonicality, permission semantics, lifecycle authority, tool-exposure rules, professional-boundary posture, and human gates remain product-owned.
 - Chirality still owns the product-critical governance shell: instruction-root versus working-root separation, persona/system-prompt composition, working-root validation, professional-boundary posture, `_STATUS.md` lifecycle authority, `Dependencies.csv` contract behavior, subagent governance allowlists, path containment, instruction-root write blocking, runtime redaction, provenance events, UI transport compatibility, local packaging, the Chirality audit mirror, and the fallback criteria for replacing an adapter if a product-critical boundary cannot be verified.
@@ -59,7 +62,8 @@ Bash tool surfaces, governed subagent bridge, Section 9 validation, persona comp
 no-live packaged `agentSdk` resolver/HOME proof. D-APP-18 has since approved and landed the
 key-aware default: `agentSdk` is selected when an Anthropic API key is configured and no
 explicit provider override is set, while `stub` remains an explicit/keyless fallback.
-Provider expansion beyond Anthropic and release/distribution posture remain unapproved.
+Provider expansion beyond Anthropic remains unapproved except for the bounded D-APP-72 / SCA-APP-002
+Pi/oMLX child tranche. Release/distribution posture remains unapproved.
 
 Revised product direction:
 
@@ -107,7 +111,7 @@ The product must not:
 - Depend on an external project database.
 - Persist project truth in hidden app state, chats, caches, or vendor systems.
 - Treat local UI preferences, API keys, runtime logs, SDK transcripts, or chat drafts as authoritative project state.
-- Allow outbound network access beyond the current shipped Anthropic API path required for provider execution unless a governed future implementation tranche explicitly permits it.
+- Allow outbound network access beyond the current shipped Anthropic API path and authenticated `127.0.0.1` oMLX path authorized by D-APP-72 unless a later governed tranche explicitly permits it.
 - Treat prompt instructions as the only safety boundary for filesystem writes or tool execution.
 - Add `bash` as a user-enabled capability before permission, hooks, result storage, timeout, audit logging, and packaging checks exist.
 - Add remote MCP servers, plugins, remote execution, or a plugin marketplace before local/in-process SDK integration, permission policy, hooks, event logging, and result storage are stable.
@@ -117,7 +121,7 @@ The product must not:
 - Use Claude Code branding, Claude Code visual identity, or user-facing copy that makes Chirality appear to be Claude Code or an Anthropic product.
 - Load ambient user/global Claude Code settings (`~/.claude/settings.json`) or local `.claude/settings.local.json` in shipped builds.
 - Use `bypassPermissions` in shipped builds or ordinary operator workflows. Any developer-only bypass remains guarded by explicit local configuration and Chirality deny hooks.
-- Import Pi packages, fork Pi, build a Pi adapter, introduce a Node 22 Pi sidecar, raise the runtime floor for Pi, or run a Pi spike under current scope. Pi is a pattern corpus/reference only after `SCA-APP-001`.
+- Import unpinned Pi packages, fork Pi, introduce a Pi sidecar, or expose Pi-native tools, subagents, extensions, skills, ambient discovery, direct supervisors, automatic fallback, or write/shell/network capabilities. The sole current Pi implementation authority is D-APP-72 / SCA-APP-002: pinned Pi `0.80.10` in-process after Electron `43.1.1`, authenticated loopback oMLX, and one governed read-only Agent 2 child.
 - Implement concrete non-Anthropic providers under the strategic provider-adapter ruling without a bounded future implementation tranche.
 - Reopen retired execution-scope items such as unified **pipeline** run records, dependency graph generation, deliverable locks, or staleness tooling without a governed scope amendment. Harness session event logs are a runtime audit facility and do not by themselves reactivate retired pipeline deliverables.
 - Become OpenPipeStress, a pipe-stress solver, or any other domain-specific engineering solver.
@@ -233,7 +237,7 @@ New provider-adapter harness-runtime scope:
 - Store `sdkSessionId` and SDK transcript linkage in Chirality `session.json` and resume with explicit `resume` rather than ambiguous `continue`.
 - Prefer SDK transcript placement or mirroring under the working root / parent project folders by using `sessionStore`, `CLAUDE_CONFIG_DIR`, or both where empirically reliable. If unavoidable, treat default `~/.claude/projects/...` transcripts as secondary SDK state cross-referenced from Chirality metadata, not project truth.
 - Preserve the browser-facing `UIEvent` and SSE event names during the runtime pivot.
-- Maintain the current shipped loopback plus Anthropic outbound network policy; any concrete non-Anthropic provider, MCP, or tool network access outside current scope requires explicit future implementation scope.
+- Maintain the default loopback plus Anthropic outbound network policy and add only authenticated `127.0.0.1` oMLX for the D-APP-72 bounded child path; any other non-Anthropic provider, MCP, redirect, or tool network access requires explicit future implementation scope.
 - Add Electron packaging checks for the SDK-spawned Claude Code subprocess, native/bundled binaries, `asarUnpack` requirements, code-signing implications, and API-key environment handling.
 
 Future platform compatibility scope, not current-release scope:
@@ -1064,7 +1068,7 @@ Protected domain-engine paths must not be directly mutated by agents. Any accept
 |---|---:|---|---|
 | NFR-001 | P0 | No project data shall require external storage. | All authoritative state is local files under working root. |
 | NFR-002 | P0 | API keys shall not be written to project files, logs, runtime events, or tool artifacts. | Key redaction is applied to provider errors and logs; key storage stays under Electron userData. |
-| NFR-003 | P0 | Renderer outbound traffic shall be allowlisted. | Non-loopback/non-Anthropic renderer requests are canceled. |
+| NFR-003 | P0 | Renderer outbound traffic shall be allowlisted. | Loopback and the current Anthropic path are allowed; the oMLX adapter accepts only authenticated `127.0.0.1`, rejects redirects and embedded URL credentials, and does not broaden renderer egress. |
 | NFR-004 | P0 | Attachment paths shall not follow symlinks. | Symlink attachments are rejected before provider execution. |
 | NFR-005 | P0 | Working root shall not be inside instruction root. | Runtime rejects conflicting root selection. |
 | NFR-006 | P0 | Runtime tools shall enforce path containment. | Tool execution cannot read/write outside allowed roots except through explicitly approved policies. |
@@ -1132,7 +1136,7 @@ This PRD remains acceptable only if:
 - the PRD does not treat `allowedTools` alone as a security boundary;
 - the PRD does not permit shipped loading of ambient `~/.claude` user/local settings;
 - the PRD does not let Claude Code branding, provider/SDK defaults, transcript shape, or tool availability define Chirality's product identity or reliance semantics;
-- the PRD treats Pi as a pattern corpus/reference only and does not authorize Pi adapter, fork, import, sidecar, runtime-floor migration, or spike work;
+- the PRD preserves Pi as reference-only outside the exact D-APP-72 / SCA-APP-002 exception and does not authorize Pi fork/sidecar/native capabilities, ambient discovery, remote providers, direct supervisors, automatic fallback, or write/shell/network tools;
 - `git diff -- docs/PRD.md` shows the intended PRD change without unrelated file modifications.
 
 ### 12.2 Required Local Checks
@@ -1271,7 +1275,11 @@ For macOS DMG:
 
 The current execution decomposition is issued, but the harness runtime needs a forward implementation sequence. This sequence updates the product roadmap without reactivating retired PKG-08 project-level hardening deliverables.
 
-The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter and the key-aware default provider (per D-APP-18), while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility. Chirality builds the governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6); Pi is reference-only. Provider expansion beyond the Anthropic path remains human-gated and requires a fresh governed tranche.
+The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter, key-aware default provider (D-APP-18), and supervisor, while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility. Chirality builds the governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6). D-APP-72 / SCA-APP-002 activates one bounded second-engine tranche: Electron `43.1.1` first, then in-process Pi `0.80.10`, authenticated `127.0.0.1` oMLX with exact `/v1/models` identity, provider-neutral contracts and tooling, and one governed read-only Agent 2 child. All other provider expansion remains human-gated.
+
+### 13.1 Bounded Pi/oMLX milestone
+
+The first Pi milestone is a Claude-supervised managed child whose exact `adapterId`, `providerId`, and model are authorized and persisted. Chirality owns the child record, sealed brief, tool/permission decision, canonical events, interruption, audit, and terminal result. Pi receives no built-in tools or ambient resources and may invoke only one declared Chirality read-only tool. The implementation must pass mocked and fake-loopback conformance/security checks without requiring Apple Silicon, oMLX, or a downloaded model in CI; a live oMLX proof is opt-in evidence only. This milestone does not authorize release, publication, issuance, lifecycle advancement, direct Pi supervisor sessions, or broader model/tool routing.
 
 ### R0 — Runtime Scope Confirmation, First-Adapter Probe, and Reliance Boundary Register
 
@@ -1618,3 +1626,33 @@ This PRD **does** establish a revised product-development direction for the harn
 Changes to this PRD that alter scope, release targets, safety posture, data contracts, professional responsibility boundaries, or retired/active execution scope should be handled as governed product changes and traced back to stable SOW/OBJ/DEL identifiers or a new approved decomposition amendment.
 
 ---
+
+## 17. Shared Runtime and Local-Agent Pilot Amendment
+
+D-GOV-20, D-APP-73, and SCA-APP-003 make the provider-neutral runtime a
+root-owned product subsystem rather than a frontend-owned singleton. A
+per-user daemon, invoked through the packaged Electron application without a
+window, exclusively owns engines, encrypted credentials, sessions, tools,
+delegation, turn locks, interruption, and local-model residency. Desktop,
+CLI, and project integrations use one authenticated Unix-socket API and one
+canonical SSE event protocol.
+
+Tracked project manifests register stable identity and relative authority
+references. Machine-resolved paths, project client credentials, and
+registration approvals remain user-data state; authority-affecting manifest
+changes require re-registration. User-data databases or caches are never
+project truth.
+
+Central sessions remain JSON/JSONL and lazily consume legacy project-local
+records without bulk rewrite or destructive move. D-APP-41 remains historical
+while this cross-store migration becomes prospective behavior.
+
+The initial acceptance path is a direct Agent 1 run that must delegate one
+read-only task to an explicitly resident Pi/oMLX Agent 2, review the return,
+and emit parentage, permissions, canonical events, residency epoch, and actual
+engine/provider/model attribution. Missing required delegation terminates with
+`REQUIRED_DELEGATION_MISSING`.
+
+The generic runtime, CLI, contracts, and safe adapters are public-export
+eligible after validation. Credentials, machine state, and private PEC or
+Piping adapters are excluded.

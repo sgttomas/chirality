@@ -1,9 +1,9 @@
 /**
- * Sidecar configuration (D-PEC-17). Env-driven; the engine is config-selected
- * ('stub' default — the only engine exercised while no ANTHROPIC_API_KEY exists;
- * Receipt 32 item 4). The pec base URL is loopback-only BY CONSTRUCTION
- * (D-T0-19 O-2A localhost transport): a non-loopback host is refused at load
- * time, not at request time. Credentials never appear in errors or logs.
+ * PEC adapter configuration. The production entrypoint loads only
+ * ProjectAdapterConfig. SidecarConfig remains temporarily for the isolated
+ * legacy regression harness and is not a production engine-selection path.
+ * PEC transport is loopback-only by construction and credentials never appear
+ * in errors or logs.
  */
 
 export type EngineName = 'stub' | 'sdk'
@@ -51,6 +51,16 @@ export interface SidecarConfig {
   agentPassword: string | null
 }
 
+/** Production D-PEC-56 adapter configuration: no engine/session/model knobs. */
+export interface ProjectAdapterConfig {
+  access: AccessBasis
+  pecBaseUrl: string
+  port: number
+  adapterTokenFile: string
+  agentEmail: string | null
+  agentPassword: string | null
+}
+
 const LOOPBACK_HOSTNAMES = ['127.0.0.1', '::1', '[::1]', 'localhost']
 
 /** Refuse non-loopback pec hosts by construction (D-T0-19 O-2A; brief §3). */
@@ -87,4 +97,27 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
   const agentEmail = env.PEC_AGENT_EMAIL?.trim() || null
   const agentPassword = env.PEC_AGENT_PASSWORD || null
   return { engine: engineRaw, access: accessRaw, session, pecBaseUrl, port, agentEmail, agentPassword }
+}
+
+export function loadProjectAdapterConfig(
+  env: Record<string, string | undefined> = process.env,
+): ProjectAdapterConfig {
+  const accessRaw = (env.PEC_AGENT_ACCESS ?? 'enumerated').trim()
+  if (accessRaw !== 'enumerated' && accessRaw !== 'broad') {
+    throw new Error(`PEC_AGENT_ACCESS must be 'enumerated' or 'broad' — got '${accessRaw}'`)
+  }
+  const pecBaseUrl = (env.PEC_BASE_URL ?? 'http://127.0.0.1:4810').trim().replace(/\/+$/, '')
+  assertLoopbackBaseUrl(pecBaseUrl)
+  const rawPort = env.PEC_ADAPTER_PORT ?? env.PEC_AGENT_PORT
+  const port = Number(rawPort ?? 4812)
+  if (!Number.isInteger(port) || port < 0 || port > 65535) {
+    throw new Error(`PEC_ADAPTER_PORT must be a valid port number — got '${rawPort}'`)
+  }
+  const adapterTokenFile = env.PEC_ADAPTER_TOKEN_FILE?.trim()
+  if (!adapterTokenFile) {
+    throw new Error('PEC_ADAPTER_TOKEN_FILE must name a mode-0600 adapter credential file')
+  }
+  const agentEmail = env.PEC_AGENT_EMAIL?.trim() || null
+  const agentPassword = env.PEC_AGENT_PASSWORD || null
+  return { access: accessRaw, pecBaseUrl, port, adapterTokenFile, agentEmail, agentPassword }
 }

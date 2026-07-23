@@ -1,15 +1,19 @@
 # Status: DEL-09-06
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Prove `0700` runtime parent, `0600` Unix socket, project-scoped client authorization, no TCP listener, credential isolation, and fail-closed residency transport (gated: independent security review).
 - Packaging/release evidence for DEL-09-06's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged renderer/security proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
 
 ## History
+- 2026-07-22 - D-APP-72 authenticated `127.0.0.1` oMLX, redirect/credential rejection, provider-key isolation, redaction, and renderer-egress proofs completed. The unrelated D-APP-56 release-preparation item remains open. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 added bounded oMLX network/key security proof to Remaining; release fence and state remain unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents; P1/P2 complete with all four documents non-empty)
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

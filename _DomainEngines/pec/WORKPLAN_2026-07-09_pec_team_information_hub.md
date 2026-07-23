@@ -86,3 +86,11 @@ human-authorized.
   `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`
 - Profile: `_DomainEngines/profiles/pec.yaml`
 - Loop handoff: `_DomainEngines/pec/LOOP_RECEIPTS.md`
+
+## Shared runtime migration lane
+
+D-T0-23 and D-PEC-56 authorize a bounded infrastructure migration: PEC keeps
+deterministic acts/RBAC/reporting as its project adapter while the root daemon
+takes LLM/session/delegation/interruption/residency ownership. The old agent
+endpoint is a one-cycle proxy only. Validation is scratch/demo-only and does
+not resolve D-PEC-49, the T0 rebaseline, or production authority.

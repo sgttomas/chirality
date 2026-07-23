@@ -126,3 +126,11 @@ Record the date of that rehearsal in STATUS before starting the pilot.
   items in the pilot project itself (quick type `action`, log `internal`) so nothing is lost, and
   fold the themes into STATUS "What's next" — capacity thresholds, digest content, and lookahead
   cells are the P2 surfaces most likely to need pilot calibration (ADR-013).
+
+## 7. Shared Runtime Agent Pilot
+
+Register PEC with one root daemon and exercise daemon → PEC adapter → backend
+→ panel using scratch/demo data. Verify canonical events, replay,
+actual-model attribution, interruption, and RBAC denial of human-only acts.
+Do not run an independent sidecar execution loop; the legacy endpoint may
+proxy only. Passing does not authorize production data or mutation.

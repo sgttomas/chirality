@@ -82,7 +82,7 @@ v3.2 acceptance is conditional on the following invariants remaining true:
 
 Chirality App vNext is a local-first desktop agent harness for governed professional work over a selected filesystem working root. The application packages a release-managed instruction root, keeps project truth in plain files and accepted git history, and treats runtime logs as audit evidence rather than approval records.
 
-The approved runtime direction is provider-adapter-general, contract-owned, and Chirality-governed. Chirality owns the runtime contract, permission semantics, audit mirror, filesystem boundaries, persona composition, professional boundaries, and fallback criteria. External provider SDKs may supply agent-loop mechanics only behind Chirality adapters. The Claude Agent SDK / Anthropic path remains the first concrete adapter and current shipped path; concrete non-Anthropic adapters require bounded future implementation tranches and validation.
+The approved runtime direction is provider-adapter-general, contract-owned, and Chirality-governed. Chirality owns the runtime contract, permission semantics, audit mirror, filesystem boundaries, persona composition, professional boundaries, and fallback criteria. External provider SDKs may supply agent-loop mechanics only behind Chirality adapters. Claude Agent SDK / Anthropic remains the first concrete adapter, key-aware default, and supervisor. D-APP-72 / SCA-APP-002 authorizes one bounded second-engine tranche: Electron `43.1.1`, in-process Pi `0.80.10`, authenticated `127.0.0.1` oMLX, and a governed read-only Agent 2 child.
 
 The next implementation objective is to mature the existing desktop shell into a governed provider-adapter runtime by establishing `AgentEnginePort` / `RuntimeEngineContract`, adapter conformance, the first Claude Agent SDK / Anthropic-backed `TurnEngine`, append-only `HarnessEvent` JSONL, prompt/persona composition, settings isolation, run logging, and a reliance-boundary register before expanding read tools, writes, bash, subagents, concrete non-Anthropic providers, or domain-engine profiles.
 
@@ -104,7 +104,7 @@ The next implementation objective is to mature the existing desktop shell into a
 - Runtime events explain work; they do not approve work or make deliverables professionally reliable.
 - Unknowns become `TBD`; assumptions and proposals must remain labeled until human acceptance.
 - P0 reliance boundaries must be enforced by Chirality code, verified adapter callbacks/hooks, deterministic tools, release checks, or human gates; prompt text alone is insufficient.
-- Pi is a pattern corpus / reference source only. No Pi adapter, fork, package import, Node 22 sidecar, runtime-floor change, or immediate Pi spike is authorized.
+- Pi remains a pattern corpus/reference outside the exact D-APP-72 / SCA-APP-002 exception. The exception permits only pinned Pi `0.80.10` in-process after Electron `43.1.1`, authenticated loopback oMLX, provider-neutral contracts/tools, and one governed read-only Agent 2 child. Pi fork/sidecar/native capabilities/ambient discovery, remote providers, direct supervisors, automatic fallback, and write/shell/network tools remain out.
 - Permission governance is capability-forward and policy-mediated. Useful agent tool use is enabled when allowed by mode, boundary policy, evidence capture, and human gates. Explicit hard denies override allows at reliance boundaries, secrets, protected paths, release/professional claims, destructive actions, and unvalidated provider/network expansion.
 - CONTRACT `K-*` invariant coverage must be reviewable through the decomposition package or companion register.
 - PLAN sequencing is a blocker overlay, not a package architecture: work-domain packages are not phases.
@@ -124,7 +124,9 @@ The next implementation objective is to mature the existing desktop shell into a
 | AgentEnginePort | RuntimeEngineContract boundary | Product-owned engine adapter contract. |
 | EngineAdapter | SDK adapter, provider adapter | Provider/SDK-specific translator behind Chirality contracts. |
 | Provider Adapter | engine adapter, provider integration | Concrete integration layer for an external agent provider or SDK. Claude Agent SDK / Anthropic is the first concrete/current adapter. |
-| Pi Pattern Corpus | Pi reference, pattern source | Stable agentic patterns observed in Pi packages and behavior. Not a runtime dependency, adapter target, fork target, package import path, or spike authorization. |
+| Pi Pattern Corpus | Pi reference, pattern source | Stable patterns remain reference material; D-APP-72 adds one bounded runtime exception without authorizing general Pi adoption. |
+| Pi Adapter | bounded second engine | In-process Pi `0.80.10` behind `AgentEnginePort`, opt-in and initially restricted to a governed read-only Agent 2 child. |
+| oMLX Provider | local model provider | Authenticated OpenAI-compatible endpoint restricted to `127.0.0.1`; exact model identity is discovered from `/v1/models`. |
 | Capability Policy | permission policy, tool policy | Decides which tools/capabilities are exposed and executable for a session, persona, mode, provider adapter, and validation state. |
 | Explicit Deny Precedence | hard deny, deny-overrides-allow | Overrides allows at defined reliance, secret, protected-path, professional, destructive-action, or unvalidated expansion boundaries. |
 | TurnEngine | turn lifecycle owner | Thin runtime service outside HTTP route. |
@@ -173,9 +175,9 @@ The next implementation objective is to mature the existing desktop shell into a
 | SOW-015 | IN | REF-006 Section 8.3, Section 8.12 | Persist terminal success, failure, cancellation, or interruption events. | Every accepted turn must terminate durably. |
 | SOW-016 | IN | REF-006 Section 8.4, REF-003 Section 13 | Runtime option fallback chains must be deterministic and warn on unknown keys. | Model, tools, max turns, mode, persona. |
 | SOW-017 | IN | REF-006 Section 8.4, REF-003 Section 13 | Resolve personas and aliases to instruction-root `AGENT_*.md` files and compose real prompt context. | Replaces stub persona prompt. |
-| SOW-018 | IN | REF-006 Section 8.4, Section 13 | Support provider-adapter runtime path with Claude Agent SDK / Anthropic as first concrete adapter behind Chirality runtime contract. | Open issue until R0/R1 first-adapter probe passes. |
+| SOW-018 | IN | REF-006 Section 8.4, Section 13 | Support provider-adapter runtime paths behind Chirality contracts: Claude Agent SDK / Anthropic as first/default/supervisor and the D-APP-72-bounded Pi/oMLX child adapter. | Pi path remains opt-in and gated by Electron, conformance, and security proof. |
 | SOW-019 | IN | REF-006 Section 8.5, REF-003 Section 16 | Resolve Anthropic API key from UI safeStorage then environment without project writes. | Key material is never project truth. |
-| SOW-020 | IN | REF-006 Section 8.5, REF-003 Section 16 | Enforce provider endpoint and renderer network allowlist for the current shipped Anthropic path. | Concrete provider expansion requires bounded future tranche. |
+| SOW-020 | IN | REF-006 Section 8.5, REF-003 Section 16 | Enforce provider endpoint and renderer network policy for Anthropic plus authenticated `127.0.0.1` oMLX under D-APP-72. | All other provider expansion requires a bounded future tranche. |
 | SOW-021 | IN | REF-006 Section 8.5 | Classify provider and SDK errors with redaction. | Auth, rate limit, timeout, API, network, policy. |
 | SOW-022 | IN | REF-006 Section 8.6, REF-003 Section 16 | Server-side attachment resolver validates paths, type, symlink status, and budgets. | Client metadata is non-authoritative. |
 | SOW-023 | IN | REF-006 Section 8.6 | UI supports attachment selection, preview, remove, and failure recovery. | Provider maps supported files to content blocks. |
@@ -199,8 +201,8 @@ The next implementation objective is to mature the existing desktop shell into a
 | SOW-041 | IN | REF-006 Section 8.12, REF-003 Section 9 | Redact secrets from runtime logs, provider errors, event data, and tool artifacts. | P0 privacy boundary. |
 | SOW-042 | IN | REF-006 Section 8.12, REF-003 Section 8-9 | Replay runtime events into transcript views and diagnostics. | Valid prior JSONL survives malformed tail. |
 | SOW-043 | IN | REF-006 Section 8.12, REF-003 Section 8 | Keep legacy session records readable during migration to folder layout. | Existing `.json` sessions remain usable. |
-| SOW-044 | IN | REF-006 Section 8.12, Section 9.4 | Map provider/SDK messages deterministically into UI events and `HarnessEvent`s. | Open issue until first-adapter message probe confirms categories. |
-| SOW-045 | IN | REF-006 Section 8.12, REF-003 Section 12 | Enforce provider/SDK settings isolation, with Claude Agent SDK `settingSources: []` required in shipped builds. | User/local settings forbidden in shipped builds. |
+| SOW-044 | IN | REF-006 Section 8.12, Section 9.4 | Map each provider/SDK deterministically into UI events and `HarnessEvent`s through adapter-specific mappers. | Pi mapping is independently conformance-tested; the Claude mapper remains adapter-specific. |
+| SOW-045 | IN | REF-006 Section 8.12, REF-003 Section 12 | Enforce provider/SDK settings isolation: Claude uses `settingSources: []`; Pi receives a Chirality resource loader with all ambient `.pi`, `~/.pi`, `.agents`, settings, skills, prompts, extensions, and credentials disabled. | Ambient user/local settings are forbidden. |
 | SOW-046 | IN | REF-006 Section 8.12, Section 10.3 | Persist SDK session ID, transcript/store linkage, and resume metadata without making SDK transcript canonical. | Transcript placement remains an R1 decision. |
 | SOW-047 | IN | REF-006 Section 8.13 | Map `opts.tools` only to registered SDK built-ins or Chirality MCP tools. | Unknown names error. |
 | SOW-048 | IN | REF-006 Section 8.13, REF-003 Section 14 | Chirality MCP tools declare schema, permissions, execution, and summarization behavior. | In-process tools pass same policy as SDK built-ins. |
@@ -554,7 +556,8 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 | OI-003 | PACKAGING | SOW-072 | First-adapter subprocess and macOS DMG packaging must be verified after adapter adoption. | R1 packaging probe and `desktop:dist` validation. |
 | OI-004 | SOURCE_COMPLETENESS | SOW-030, SOW-073 | Required instruction-root assets may be missing in the current source or packaging state. | Complete source tree or amend integrity requirements and code paths. |
 | OI-005 | DOMAIN_FUTURE | SOW-066-SOW-071 | Domain engine profile work is future platform scope and requires amendment before implementation. | Keep domain deliverables as future-boundary package until core harness stability. |
-| OI-006 | PROVIDER_EXPANSION | SOW-020, SOW-021, SOW-037 | Concrete non-Anthropic adapters require bounded implementation tranches, provider-network policy, conformance fixtures, error classification, security/redaction checks, and release validation. | Treat provider-adapter generality as approved strategy only; do not implement new providers without future bounded tranche. |
+| OI-006 | PROVIDER_EXPANSION | SOW-020, SOW-021, SOW-037 | D-APP-72 / SCA-APP-002 activates the bounded Pi `0.80.10` / authenticated loopback oMLX child adapter and requires provider-network policy, conformance fixtures, error classification, security/redaction, and packaging validation. | Implement only the authorized read-only Agent 2 milestone; every other provider/harness expansion remains gated. |
+| OI-007 | SHARED_RUNTIME | SOW-009-SOW-011, SOW-037, SOW-043, SOW-046, SOW-063, SOW-072 | D-GOV-20 / D-APP-73 / SCA-APP-003 promote the executable harness into a root-owned runtime and add one daemon, authenticated Unix-socket clients, project registration, central lazy-migrating sessions, explicit residency, CLI, app-dev pilot, PEC migration, and generic export. | Execute in the ruled sequence with one integration owner for contracts/lockfiles; preserve behavior before daemon conversion; prove one runtime owner and both pilots before export. |
 
 ---
 
@@ -579,6 +582,8 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 | DEC-015 | 2026-05-20 | `contract_invariant_coverage_register.csv` is a planned required companion register until the artifact exists. | REVIEW should require invariant coverage, but this decomposition should not claim an authoritative companion CSV has already been created. |
 | DEC-016 | 2026-05-20 | PRD Section 16 package traceability is updated to point to v3.2. | The active decomposition has 10 packages and 51 deliverables; the PRD now identifies this v3.2 SOFTWARE_DECOMP snapshot as the authority for scaffolding and downstream execution. |
 | DEC-017 | 2026-06-13 | SCA-APP-001 reorients runtime strategy to provider-adapter generality, keeps Claude Agent SDK / Anthropic as first concrete adapter, treats Pi as a pattern corpus only, and reframes permission governance as capability-forward with explicit deny precedence. | Human ruled D-APP-01/02/03 and requested formal SCOPE_CHANGE before project-truth mutation. |
+| DEC-018 | 2026-07-21 | D-APP-72 / SCA-APP-002 prospectively authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche after Electron `43.1.1`, initially for one governed read-only Agent 2 child. | Owner accepted the recommendation and explicitly ordered implementation of the decision-complete plan; topology and lifecycle state remain unchanged. |
+| DEC-019 | 2026-07-22 | D-GOV-20 / D-APP-73 / D-T0-23 / D-PEC-56 / SCA-APP-003 establish a root-owned shared runtime, one per-user daemon, authenticated Unix-socket clients, explicit one-primary-model residency, app-dev Agent 1 → local Agent 2 pilot, and PEC client migration. | Owner explicitly ordered implementation of the decision-complete plan; existing package/deliverable topology is reused and lifecycle state remains unchanged. |
 
 ### Change Log
 
@@ -588,6 +593,8 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 - 2026-05-20: v3.1 source-governed proposal reviewed: accepted as the better basis because it adds source authority, non-PRD control coverage, acceptance checks, and companion-register posture.
 - 2026-05-20: v3.2 issued: adopted v3.1 topology, anchored references to active local docs and SOFTWARE_DECOMP, corrected companion-register status, updated source-completeness wording, incorporated v3's human-authority/project-truth emphasis into DEL-01-01, and aligned PRD Section 16 to the v3.2 decomposition authority.
 - 2026-06-13: SCA-APP-001 landed provider-adapter-general runtime strategy, Pi pattern-corpus-only posture, and capability-policy / explicit-hard-deny permission governance without changing package/deliverable topology.
+- 2026-07-21: SCA-APP-002 prospectively activated the D-APP-72 bounded Pi/oMLX second-engine tranche without changing package/deliverable topology or lifecycle state.
+- 2026-07-22: SCA-APP-003 prospectively activated the shared-runtime extraction, daemon/client/CLI, explicit residency, app-dev pilot, PEC migration, and generic export sequence without changing package/deliverable topology or lifecycle state.
 
 ---
 
@@ -597,6 +604,8 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 - TASK / Type 2 agents should execute one deliverable at a time, preserve the `ResponsibleParty: TBD` field until a human assigns ownership, and treat `ContextEnvelope` as a work-sizing constraint.
 - R0/R1 runtime deliverables should execute before R2+ capability expansion: engine contract, first-adapter probe, settings isolation, TurnEngine, event log, prompt composer, run logger, and conformance suite come first.
 - Read tools and read MCP exposure precede write/edit and bash capability.
-- Concrete non-Anthropic providers, domain engine, remote MCP, plugin, shipped bypass, non-macOS packaging, and retired PKG-08 work require governed amendment before implementation.
+- The D-APP-72 Pi/oMLX read-only child tranche is the sole active non-Anthropic exception. Other concrete providers, domain engine execution, remote MCP, plugins, shipped bypass, non-macOS packaging, and retired PKG-08 work require governed amendment before implementation.
+- D-APP-73 extends that exception only to authenticated loopback oMLX status/load/unload and explicit one-primary-model residency. Runs never switch models automatically; local Agent 1, automatic scheduling, multiple primary local models, and piping remain future-gated.
+- Shared runtime promotion preserves this decomposition's existing package/deliverable topology. Root `runtime/` ownership is an implementation-location change; app-dev deliverables retain semantic ownership and acceptance evidence through the SCA-APP-003 impact map.
 - REVIEW should check package flatness, scope ledger coverage, context-envelope posture, no automated professional approval claims, provider/SDK settings isolation, no unauthorized provider/network expansion, and no domain solver ownership claims.
 - REVIEW should also check CONTRACT invariant-family coverage, the companion invariant register, SPEC/TYPES conformance, PLAN sequencing, PRD traceability, and SOFTWARE_DECOMP method conformance before accepting implementation or scaffold outputs.

@@ -9,6 +9,10 @@
     "test": "node --disable-warning=ExperimentalWarning --test test/*.test.ts",
     "typecheck": "tsc -p tsconfig.json"
   },
+  "dependencies": {
+    "@chirality/runtime-client": "file:../../../runtime/packages/client",
+    "@chirality/runtime-contracts": "file:../../../runtime/packages/contracts"
+  },
   "devDependencies": {
     "typescript": "^5.8.3",
     "@types/node": "^24.0.0"

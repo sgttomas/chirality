@@ -1723,6 +1723,52 @@ button:disabled {
   font-weight: 600;
 }
 
+.runtime-settings {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.runtime-status,
+.runtime-model-status {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+}
+
+.runtime-status[data-running="true"] {
+  color: #1a7f37;
+}
+
+.runtime-control-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.runtime-control-row select {
+  min-width: 220px;
+  max-width: 360px;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel-muted);
+  color: var(--text-primary);
+}
+
+.runtime-model-controls {
+  margin-top: 0.75rem;
+}
+
+.runtime-model-controls .api-key-hint {
+  margin-top: 0.45rem;
+}
+
+.runtime-uninstall {
+  color: var(--error);
+}
+
 @media (max-width: 900px) {
   .working-root-bar {
     flex-direction: column;

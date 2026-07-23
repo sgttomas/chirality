@@ -291,7 +291,7 @@ These constraints are hard to change later. They define the boundaries of the sy
 | Constraint | Rationale |
 |---|---|
 | No external database dependency | Filesystem is the single source of authoritative truth; rebuildable gitignored projections permitted, never authoritative — per D-GOV-01 (`docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md`); eliminates sync burden |
-| No server requirement | Desktop-first; works offline; no infrastructure to manage |
+| No external server requirement | Desktop-first and offline-capable; the opt-in per-user Chirality runtime daemon is a local process over a Unix-domain socket, not remote infrastructure or a source of authoritative project truth |
 | All state as plain files | Human-readable, git-trackable, tool-agnostic |
 | Git-trackable artifacts only | Auditability, reproducibility, rollback, diff-based review |
 | Flat package hierarchy | No nesting; simplifies automation, coverage checking, and scope assignment |
@@ -310,3 +310,26 @@ This framework is designed to support professional responsibility, not replace i
 - Treat agent outputs as drafts and structured assistance.
 - Keep human review and sign-off as the decision gate for safety, compliance, and contractual commitments.
 - Do not rely on agent outputs without independent verification appropriate to the stakes.
+
+---
+
+## 7. Shared Runtime Direction
+
+Under D-GOV-20, Chirality’s executable agent harness is a root-owned
+`runtime/` workspace. One opt-in per-user daemon owns engines, credentials,
+sessions, delegation, tools, interruption, turn admission, and local-model
+residency. Desktop, CLI, and registered project surfaces are clients of that
+single owner.
+
+The daemon’s user-data files are operational state, not project authority.
+Governed truth remains in checkout-contained manifests, instructions,
+decisions, execution trees, AgentRuns, evidence, and Git. Agent 0/1/2 roles
+remain authority contracts independent of engines and models; actual runtime
+attribution is recorded without creating durable model-to-role doctrine.
+
+Local control is authenticated HTTP/1.1 over a protected Unix-domain socket
+only. The initial local pilot permits one explicitly resident authenticated
+loopback oMLX model and one bounded read-only Pi Agent 2 child under a real
+Agent 1. It does not authorize automatic fallback or switching, multiple
+primary local models, remote oMLX, local Agent 1, production domain mutation,
+release, publication, issuance, or professional reliance.

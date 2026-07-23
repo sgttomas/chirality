@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { ApiKeySettings } from '../settings/api-key-settings';
+import { RuntimeSettings } from '../settings/runtime-settings';
 import { useWorkspace } from '../workspace/workspace-provider';
 
 export type ShellSection = 'PORTAL' | 'PIPELINE' | 'WORKBENCH' | 'CHAT';
@@ -135,6 +136,7 @@ export function ShellFrame({ section, title, subtitle, children }: ShellFramePro
           {errorMessage ? <p className="working-root-error">{errorMessage}</p> : null}
         </div>
         <div className="working-root-settings">
+          <RuntimeSettings />
           <ApiKeySettings />
         </div>
       </section>

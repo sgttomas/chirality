@@ -76,3 +76,13 @@ status (I-4) · condition-gated transitions (I-5) · Approval ≠ Check ≠ Deci
 
 Phase 1 (controlled tracker replacement) under construction in this workspace. Built directly from the
 PRD (see ADR-001 for governance posture).
+
+## Shared runtime note
+
+D-T0-23/D-PEC-56 prospectively move PEC agent engine/session/delegation
+ownership to the root Chirality daemon. PEC keeps deterministic acts, RBAC,
+human-only acts, reporting, visibility, and data boundaries as its project
+adapter. The backend agent route is a one-cycle daemon proxy and the temporary
+`agent-sidecar` package now starts only that deterministic adapter; its
+production entrypoint has no model loop or fallback. Migration validation is
+scratch/demo-only.

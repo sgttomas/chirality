@@ -1,14 +1,18 @@
 # Status: DEL-06-03
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
+- Bind exactly one declared read-only Chirality tool into the required local Agent 2 child and preserve project path containment/evidence through the daemon (gated: app-dev pilot).
+
 ## History
+- 2026-07-22 - D-APP-72 neutral tool bridge completed with separate Claude/Pi binders and exactly one governed `read_file` tool for the bounded Pi child; containment, permission, redaction, and evidence tests pass. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 added the bounded neutral read-tool bridge to Remaining; state remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

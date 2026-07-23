@@ -65,6 +65,7 @@ export async function launchManagedChild(input: ManagedChildLaunch) {
     briefHash: input.briefHash,
     declaredContext: input.declaredContext,
     declaredTools: input.tools,
+    engineSelection: input.engineSelection,
     allowedWriteTargets: input.writeTargets,
     childRunStatus: 'RUNNING'
   });
@@ -84,7 +85,12 @@ export async function launchManagedChild(input: ManagedChildLaunch) {
   ) as Record<string, unknown>;
   await writeFile(
     path.join(instanceRoot, 'STATUS.json'),
-    `${JSON.stringify({ ...runningStatus, childSessionId: child.sessionId, status: 'RUNNING' }, null, 2)}\n`,
+    `${JSON.stringify({
+      ...runningStatus,
+      childSessionId: child.sessionId,
+      engineSelection: input.engineSelection,
+      status: 'RUNNING'
+    }, null, 2)}\n`,
     'utf8'
   );
 
@@ -238,6 +244,11 @@ const delegateSchema = {
   brief: z.string().min(1),
   declaredContext: z.array(z.string()),
   tools: z.array(z.string()),
+  engineSelection: z.object({
+    adapterId: z.string().min(1),
+    providerId: z.string().min(1),
+    model: z.string().min(1)
+  }).optional(),
   writeTargets: z.array(z.string()),
   dependencies: z.array(z.string()),
   acceptedPredecessors: z.array(z.string()).optional(),
