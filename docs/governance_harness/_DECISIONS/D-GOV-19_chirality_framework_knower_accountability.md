@@ -1,23 +1,36 @@
 # D-GOV-19 — Chirality framework: knower and accountability
 
-Status:       PROPOSED
-HumanRuling:  TBD — owner approval must identify the exact PROPOSED-state commit
-Ruling SHA:   TBD — bind to the exact candidate commit named in the owner ruling
-Date:         2026-07-22
+Status:       RULED
+HumanRuling:  "I approve candidate `981149df247fb6564768f8451e3b12dd591d9197` as the basis for the framework/thesis revision." (owner, 2026-07-23)
+Ruling SHA:   981149df247fb6564768f8451e3b12dd591d9197
+Date:         2026-07-23
 FramedBy:     Owner-directed chirality-framework and thesis concordance revision, 2026-07-22
 AcceptedBasis: `main@8698b0338ac82556fee583dd3f85bb62d0b74f85`
 DecisionKey: `chirality_framework_knower_accountability`
 
 ## Status note
 
-This is a candidate decision record. It has no operative effect before an
-owner ruling that names its exact PROPOSED-state commit. Approval authorizes
-the explanatory amendment described here; it does not authenticate the
-thesis, establish any proposition as metaphysically true, or authorize a
-merge or external publication.
+This record is RULED. The owner approved its exact PROPOSED state at
+`981149df247fb6564768f8451e3b12dd591d9197`. Approval authorizes the
+explanatory amendment described here; it does not authenticate the thesis,
+establish any proposition as metaphysically true, or authorize a merge or
+external publication.
 
-No framework or thesis prose is revised in this candidate tranche. Those
-edits begin only after the owner approves this record's exact candidate SHA.
+No framework or thesis prose was revised in the candidate tranche. The owner
+ruling releases the prose-edit gate while preserving the later exact-prose,
+merge, and publication gates.
+
+## Recorded ruling
+
+The owner ruled in-session on 2026-07-23, binding the ruling to the exact
+PROPOSED-state commit:
+
+<!-- BEGIN OWNER RULING VERBATIM -->
+I approve candidate `981149df247fb6564768f8451e3b12dd591d9197` as the basis for the framework/thesis revision.
+<!-- END OWNER RULING VERBATIM -->
+
+This ruling authorizes drafting under the conditions below. It does not
+authenticate the thesis or accept the later Revision 3 and thesis prose.
 
 ## Decision to make
 
