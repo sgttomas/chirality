@@ -1,24 +1,18 @@
 # Active SCOPE_CHANGE Snapshot
 
-**Status:** `CLOSED_WITH_OBSERVATIONS`
-**Active snapshot:** `execution/_ScopeChange/SCA-APP-003_2026-07-22_Shared_Runtime_Local_Agent_Pilot/`
-**Amendment label:** `SCA-APP-003 Shared Runtime and Local-Agent Pilot`
-**Closure repair:** `execution/_ScopeChange/SCA-APP-003_2026-07-22_Shared_Runtime_Local_Agent_Pilot/Closure_Repair_001.md`
-**Initial closure audit:** `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-003_2026-07-23_1306/`
-**Accepted closure audit:** `execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-003_2026-07-23_1312/`
-**Owner acceptance:** `2026-07-23`
+**Status:** `CONCEPT_SELECTION_PENDING_OWNER`
+**Active snapshot:** `execution/_ScopeChange/SCA-APP-004_2026-07-23_Workroom_Agent_Room_IA_Redesign/`
+**Amendment label:** `SCA-APP-004 Workroom and Agent Room Information Architecture`
+**Pre-change audit:** `execution/_Evaluation/DecompCoverage/COV_SCA_APP_004_PRECHANGE_2026-07-23_1330/`
 
-The owner accepted the decision-complete plan and explicitly instructed
-implementation. D-GOV-20, D-APP-73, D-T0-23, and D-PEC-56 govern the root,
-app, cross-domain, and PEC effects. Governance propagation, G1-G5
-implementation, validation, PR review, and merge are complete for the bounded
-pilot. The additive closure repair addresses the stale implementation- and
-merge-pending state. The independent audit rerun returned
-`CLOSED_WITH_OBSERVATIONS`, and the owner accepted that verdict on 2026-07-23.
+The owner confirmed the parsed Workroom/Agent Room action envelope on
+2026-07-23. SCOPE_CHANGE verified every named stable ID and captured a scoped
+pre-change baseline. No structural blocker exists; 15 folder-local
+artifact-index warnings and the semantic drift findings are carried into
+Gate 2.
 
-SCA-APP-001 and SCA-APP-002 remain historical. D-APP-41 and D-APP-72 are
-preserved and prospectively extended only as recorded in SCA-APP-003.
+Gate 2 impact assessment is in progress. Concept work, authority edits,
+implementation, route changes, and old-UI retirement are not yet authorized.
 
-This pointer and repair do not authorize release, signing, publication,
-issuance, professional reliance, PEC production use, lifecycle advancement,
-or any future runtime capability.
+SCA-APP-001 through SCA-APP-003 remain historical. SCA-APP-003 closed with
+owner-accepted observations on 2026-07-23.
