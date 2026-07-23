@@ -1,0 +1,17 @@
+event: session:init
+data: {"engineSessionId":"stub_089c8be8-41ff-4769-bac7-921c6a294f08","adapterId":"stub","providerId":"stub","model":"haiku"}
+
+event: chat:delta
+data: {"text":"DEL-03-06 OI-002 proof r"}
+
+event: chat:delta
+data: {"text":"un run-02"}
+
+event: chat:complete
+data: {"text":"DEL-03-06 OI-002 proof run run-02"}
+
+event: session:complete
+data: {}
+
+event: process:exit
+data: {"exitCode":0}

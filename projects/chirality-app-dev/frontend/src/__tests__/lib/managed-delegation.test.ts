@@ -1,4 +1,4 @@
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -133,7 +133,7 @@ describe('managed delegation', () => {
     ).rejects.toThrow('only to Agent 2');
     const result = await service.delegate(
       parent('WORKING_ITEMS', 1),
-      ['read'],
+      ['read_file'],
       request({ runId: 'RUN-2', selectionAuthority: 'AGENT_1', childKind: 'generalist', agentName: undefined })
     );
     expect(result.status).toBe('COMPLETED');
@@ -205,6 +205,102 @@ describe('managed delegation', () => {
         request({ runId: 'RUN-A2', childKind: 'task', agentName: 'TASK' })
       )
     ).rejects.toThrow('Agent 2 may not delegate');
+  });
+
+  it('authorizes and attributes only the bounded Pi/oMLX Agent 2 shape', async () => {
+    let launchedSelection: DelegateAgentInput['engineSelection'];
+    const service = new ManagedDelegationService(async (launch) => {
+      launchedSelection = launch.engineSelection;
+      return {
+        sessionId: 'sess_pi_child',
+        status: 'COMPLETED',
+        output: '# Return\nlocal child complete'
+      };
+    });
+    const engineSelection = {
+      adapterId: 'pi',
+      providerId: 'omlx',
+      model: 'exact/local-model'
+    };
+    const result = await service.delegate(
+      parent('WORKING_ITEMS', 1),
+      ['read'],
+      request({
+        runId: 'RUN-PI',
+        selectionAuthority: 'AGENT_1',
+        childKind: 'task',
+        agentName: 'TASK',
+        engineSelection,
+        tools: ['read_file'],
+        writeTargets: []
+      })
+    );
+    expect(result.status).toBe('COMPLETED');
+    expect(launchedSelection).toEqual(engineSelection);
+    const runRoot = path.join(projectRoot, 'execution/_Coordination/AgentRuns/RUN-PI');
+    const instance = (await readdir(path.join(runRoot, 'instances')))[0];
+    const status = JSON.parse(
+      await readFile(path.join(runRoot, 'instances', instance, 'STATUS.json'), 'utf8')
+    ) as Record<string, unknown>;
+    expect(status.engineSelection).toEqual(engineSelection);
+    const brief = await readFile(path.join(runRoot, 'instances', instance, 'LAUNCH_BRIEF.md'), 'utf8');
+    expect(brief).toContain('EngineSelection: {"adapterId":"pi","providerId":"omlx","model":"exact/local-model"}');
+  });
+
+  it('fails closed on Pi/oMLX scope expansion or unsupported selection', async () => {
+    const service = new ManagedDelegationService(async () => ({
+      sessionId: 'sess_never',
+      status: 'COMPLETED',
+      output: '# Return\nnever'
+    }));
+    const base = {
+      adapterId: 'pi',
+      providerId: 'omlx',
+      model: 'exact/local-model'
+    };
+    await expect(service.delegate(
+      parent('HELP_HUMAN', 0),
+      ['read'],
+      request({ runId: 'RUN-PI-NOT-A2', engineSelection: base, writeTargets: [] })
+    )).rejects.toThrow('only for a managed Agent 2 child');
+    await expect(service.delegate(
+      parent('WORKING_ITEMS', 1),
+      ['read_file'],
+      request({
+        runId: 'RUN-PI-WRITE',
+        selectionAuthority: 'AGENT_1',
+        childKind: 'task',
+        agentName: 'TASK',
+        engineSelection: base,
+        tools: ['read_file']
+      })
+    )).rejects.toThrow('may not declare write targets');
+    await expect(service.delegate(
+      parent('WORKING_ITEMS', 1),
+      ['read_file'],
+      request({
+        runId: 'RUN-PI-MULTI-TOOL',
+        selectionAuthority: 'AGENT_1',
+        childKind: 'task',
+        agentName: 'TASK',
+        engineSelection: base,
+        tools: ['read_file', 'read_file'],
+        writeTargets: []
+      })
+    )).rejects.toThrow('exactly one declared read-only tool');
+    await expect(service.delegate(
+      parent('WORKING_ITEMS', 1),
+      ['read_file'],
+      request({
+        runId: 'RUN-PI-REMOTE',
+        selectionAuthority: 'AGENT_1',
+        childKind: 'task',
+        agentName: 'TASK',
+        engineSelection: { ...base, providerId: 'openai' },
+        tools: ['read_file'],
+        writeTargets: []
+      })
+    )).rejects.toThrow('only adapterId pi with providerId omlx');
   });
 
   it('fails closed on missing governance metadata and capability inheritance', async () => {

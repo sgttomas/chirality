@@ -648,6 +648,8 @@ export function mapSdkMessageToHarness(
           type: 'session:init',
           data: {
             engineSessionId: message.session_id,
+            adapterId: 'claude-agent-sdk',
+            providerId: 'anthropic',
             claudeSessionId: message.session_id,
             model: message.model
           }

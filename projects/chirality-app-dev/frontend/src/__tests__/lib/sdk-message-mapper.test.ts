@@ -47,6 +47,8 @@ describe('mapSdkMessageToHarness', () => {
         type: 'session:init',
         data: {
           engineSessionId: 'sdk_1',
+          adapterId: 'claude-agent-sdk',
+          providerId: 'anthropic',
           claudeSessionId: 'sdk_1',
           model: 'claude-test'
         }

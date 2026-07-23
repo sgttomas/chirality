@@ -555,49 +555,68 @@ async function main() {
 
     const firstTurn = await requestSse('/api/harness/turn', {
       sessionId,
-      message: 'First turn to initialize claudeSessionId'
+      message: 'First turn to initialize provider-neutral engine metadata'
     });
     const firstSessionInit = firstTurn.events.find((event) => event.type === 'session:init');
-    assert(firstSessionInit?.data?.claudeSessionId, 'First turn missing session:init claudeSessionId');
+    assert(firstSessionInit?.data?.engineSessionId, 'First turn missing session:init engineSessionId');
+    assert(firstSessionInit?.data?.adapterId, 'First turn missing session:init adapterId');
+    assert(firstSessionInit?.data?.providerId, 'First turn missing session:init providerId');
+    assert(firstSessionInit?.data?.model, 'First turn missing session:init model');
 
     const sessionAfterFirst = await requestJson(`/api/harness/session/${sessionId}`);
     assert(sessionAfterFirst.response.status === 200, 'Unable to read session after first turn');
-    const persistedAfterFirst = sessionAfterFirst.payload?.session?.claudeSessionId;
+    const firstRecord = sessionAfterFirst.payload?.session;
+    const persistedAfterFirst = firstRecord?.engineSessionId;
     assert(
-      persistedAfterFirst === firstSessionInit.data.claudeSessionId,
-      'Persisted claudeSessionId mismatch after first turn'
+      persistedAfterFirst === firstSessionInit.data.engineSessionId,
+      'Persisted engineSessionId mismatch after first turn'
     );
+    assert(firstRecord?.engineSelection?.adapterId === firstSessionInit.data.adapterId, 'Persisted adapterId mismatch after first turn');
+    assert(firstRecord?.engineSelection?.providerId === firstSessionInit.data.providerId, 'Persisted providerId mismatch after first turn');
+    assert(firstRecord?.engineSelection?.model === firstSessionInit.data.model, 'Persisted model mismatch after first turn');
+    assert(firstRecord?.adapterSession?.engineSessionId === firstSessionInit.data.engineSessionId, 'Persisted adapter session mismatch after first turn');
 
     const secondTurn = await requestSse('/api/harness/turn', {
       sessionId,
       message: 'Second turn should resume existing session'
     });
     const secondSessionInit = secondTurn.events.find((event) => event.type === 'session:init');
-    assert(secondSessionInit?.data?.claudeSessionId, 'Second turn missing session:init claudeSessionId');
+    assert(secondSessionInit?.data?.engineSessionId, 'Second turn missing session:init engineSessionId');
 
     const sessionAfterSecond = await requestJson(`/api/harness/session/${sessionId}`);
     assert(sessionAfterSecond.response.status === 200, 'Unable to read session after second turn');
-    const persistedAfterSecond = sessionAfterSecond.payload?.session?.claudeSessionId;
+    const secondRecord = sessionAfterSecond.payload?.session;
+    const persistedAfterSecond = secondRecord?.engineSessionId;
 
     assert(
-      persistedAfterSecond === secondSessionInit.data.claudeSessionId,
-      'Persisted claudeSessionId mismatch after second turn'
+      persistedAfterSecond === secondSessionInit.data.engineSessionId,
+      'Persisted engineSessionId mismatch after second turn'
     );
-    assert(
-      secondSessionInit.data.claudeSessionId === firstSessionInit.data.claudeSessionId,
-      'Resume continuity failed: claudeSessionId changed between turns'
-    );
+    assert(secondRecord?.engineSelection?.adapterId === secondSessionInit.data.adapterId, 'Persisted adapterId mismatch after second turn');
+    assert(secondRecord?.engineSelection?.providerId === secondSessionInit.data.providerId, 'Persisted providerId mismatch after second turn');
+    assert(secondRecord?.engineSelection?.model === secondSessionInit.data.model, 'Persisted model mismatch after second turn');
+    if (firstSessionInit.data.providerId === 'anthropic') {
+      assert(firstSessionInit.data.claudeSessionId, 'Claude first turn missing claudeSessionId');
+      assert(secondSessionInit.data.claudeSessionId, 'Claude second turn missing claudeSessionId');
+      assert(secondRecord?.claudeSessionId === secondSessionInit.data.claudeSessionId, 'Persisted Claude session mismatch');
+      assert(secondSessionInit.data.claudeSessionId === firstSessionInit.data.claudeSessionId, 'Claude durable resume continuity failed');
+    }
 
     await writeJson(path.join(OUTPUT_DIRS.api, 'section8.session_persistence_resume.json'), {
-      firstClaudesessionId: firstSessionInit.data.claudeSessionId,
-      secondClaudesessionId: secondSessionInit.data.claudeSessionId,
+      adapterId: firstSessionInit.data.adapterId,
+      providerId: firstSessionInit.data.providerId,
+      model: firstSessionInit.data.model,
+      firstEngineSessionId: firstSessionInit.data.engineSessionId,
+      secondEngineSessionId: secondSessionInit.data.engineSessionId,
       persistedAfterFirst,
       persistedAfterSecond
     });
 
     await deleteSession(sessionId);
     return {
-      claudeSessionId: firstSessionInit.data.claudeSessionId
+      adapterId: firstSessionInit.data.adapterId,
+      providerId: firstSessionInit.data.providerId,
+      engineSessionId: firstSessionInit.data.engineSessionId
     };
   });
 

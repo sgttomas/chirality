@@ -14,18 +14,28 @@ export class HarnessError extends Error {
   }
 }
 
+const HARNESS_ERROR_TYPES: Readonly<Record<HarnessErrorType, true>> = {
+  INVALID_REQUEST: true,
+  TURN_IN_PROGRESS: true,
+  MISSING_API_KEY: true,
+  SESSION_NOT_FOUND: true,
+  PERSONA_NOT_FOUND: true,
+  INSTRUCTION_ROOT_INVALID: true,
+  SDK_FAILURE: true,
+  ENGINE_UNAVAILABLE: true,
+  MODEL_UNAVAILABLE: true,
+  PROVIDER_AUTH_FAILURE: true,
+  PROVIDER_PROTOCOL_FAILURE: true,
+  CONTEXT_EXHAUSTED: true,
+  WORKING_ROOT_INACCESSIBLE: true,
+  WORKING_ROOT_CONFLICT: true,
+  ATTACHMENT_FAILURE: true
+};
+
 function isHarnessErrorType(value: unknown): value is HarnessErrorType {
   return (
-    value === 'INVALID_REQUEST' ||
-    value === 'TURN_IN_PROGRESS' ||
-    value === 'MISSING_API_KEY' ||
-    value === 'PERSONA_NOT_FOUND' ||
-    value === 'INSTRUCTION_ROOT_INVALID' ||
-    value === 'SDK_FAILURE' ||
-    value === 'SESSION_NOT_FOUND' ||
-    value === 'WORKING_ROOT_INACCESSIBLE' ||
-    value === 'WORKING_ROOT_CONFLICT' ||
-    value === 'ATTACHMENT_FAILURE'
+    typeof value === 'string' &&
+    Object.prototype.hasOwnProperty.call(HARNESS_ERROR_TYPES, value)
   );
 }
 

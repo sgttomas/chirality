@@ -8,6 +8,11 @@ export type HarnessErrorType =
   | 'PERSONA_NOT_FOUND'
   | 'INSTRUCTION_ROOT_INVALID'
   | 'SDK_FAILURE'
+  | 'ENGINE_UNAVAILABLE'
+  | 'MODEL_UNAVAILABLE'
+  | 'PROVIDER_AUTH_FAILURE'
+  | 'PROVIDER_PROTOCOL_FAILURE'
+  | 'CONTEXT_EXHAUSTED'
   | 'WORKING_ROOT_INACCESSIBLE'
   | 'WORKING_ROOT_CONFLICT'
   | 'ATTACHMENT_FAILURE';
@@ -27,6 +32,8 @@ export interface SessionRecord {
   mode: string;
   createdAt: string;
   updatedAt: string;
+  engineSelection?: EngineSelection;
+  adapterSession?: AdapterSessionMetadata;
   engineSessionId?: string;
   claudeSessionId?: string;
   sdkSessionId?: string;
@@ -58,6 +65,21 @@ export interface SessionRecord {
   allowedWriteTargets?: string[];
   outputArtifact?: string;
   childRunStatus?: 'LAUNCHED' | 'RUNNING' | 'COMPLETED' | 'FAILED' | 'BLOCKED';
+}
+
+export interface EngineSelection {
+  adapterId: string;
+  providerId: string;
+  model: string;
+}
+
+export interface AdapterSessionMetadata {
+  engineSessionId?: string;
+  transcriptPath?: string;
+  storeKey?: string;
+  configDir?: string;
+  packageName?: string;
+  packageVersion?: string;
 }
 
 export interface SessionCreateRequest {
@@ -133,8 +155,11 @@ export interface SessionListResponse {
 }
 
 export interface BootMetadata {
-  engineSessionId?: string;
-  claudeSessionId: string;
+  engineSessionId: string;
+  adapterId: string;
+  providerId: string;
+  model: string;
+  claudeSessionId?: string;
   bootFingerprint: string;
   runtimeFingerprint: HarnessRuntimeFingerprint;
   bootedAt: string;
@@ -159,6 +184,13 @@ export interface HarnessRuntimeFingerprint {
   subagentPolicyVersion: string;
   toolRegistryVersion: string;
   sdkPackageVersion: string;
+  engineAdapter?: {
+    adapterId: string;
+    providerId: string;
+    model: string;
+    packageName?: string;
+    packageVersion?: string;
+  };
   mcpServers: HarnessRuntimeFingerprintMcpServer[];
   fingerprintSha256: string;
 }
@@ -232,8 +264,10 @@ export type UIEvent =
   | {
       type: 'session:init';
       data: {
-        engineSessionId?: string;
-        claudeSessionId: string;
+        engineSessionId: string;
+        adapterId: string;
+        providerId: string;
+        claudeSessionId?: string;
         model: string;
       };
     }
@@ -326,6 +360,7 @@ export interface IAttachmentResolver {
   ): Promise<ResolvedAttachments>;
 }
 
+/** @deprecated Use AgentEnginePort for new runtime adapters. */
 export interface IAgentSdkManager {
   startTurn(
     session: SessionRecord,

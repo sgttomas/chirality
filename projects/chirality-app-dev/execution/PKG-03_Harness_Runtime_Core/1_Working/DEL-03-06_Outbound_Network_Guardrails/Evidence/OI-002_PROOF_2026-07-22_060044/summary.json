@@ -1,0 +1,313 @@
+{
+  "generatedAt": "2026-07-22T06:31:09.186Z",
+  "args": {
+    "runs": 3,
+    "idleSeconds": 600,
+    "idleSampleSeconds": 60,
+    "provider": "stub",
+    "scriptedAgentSdk": false,
+    "outputDir": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044"
+  },
+  "aggregate": {
+    "runCount": 3,
+    "failedRunCount": 0,
+    "passed": true,
+    "failedRuns": []
+  },
+  "runs": [
+    {
+      "runId": "run-01",
+      "generatedAt": "2026-07-22T06:10:52.837Z",
+      "timeline": [
+        {
+          "at": "2026-07-22T06:00:44.968Z",
+          "step": "next_start"
+        },
+        {
+          "at": "2026-07-22T06:00:46.239Z",
+          "step": "next_ready"
+        },
+        {
+          "at": "2026-07-22T06:00:46.242Z",
+          "step": "electron_start"
+        },
+        {
+          "at": "2026-07-22T06:10:52.837Z",
+          "step": "idle_window_complete"
+        }
+      ],
+      "scenario": {
+        "startup": true,
+        "providerMode": "stub",
+        "scriptedAgentSdkProof": false,
+        "workingRootPath": "/tmp/chirality-proof-run-01-2026-07-22_060044",
+        "sessionRootPath": "/tmp/chirality-proof-sessions-run-01-2026-07-22_060044",
+        "sessionCreate": true,
+        "sessionBoot": true,
+        "turnRequestStatus": 200,
+        "processExitEvents": [
+          {
+            "event": "process:exit",
+            "rawData": "{\"exitCode\":0}",
+            "data": {
+              "exitCode": 0
+            }
+          }
+        ],
+        "idleSeconds": 600,
+        "shutdown": true
+      },
+      "diagnostics": {
+        "blockedRendererDiagnosticsCount": 1,
+        "networkProbePayloadCount": 1,
+        "networkProbePayloads": [
+          {
+            "policy": "REQ-NET-001",
+            "results": [
+              {
+                "url": "https://example.com/chirality-network-policy-blocked-check",
+                "ok": false,
+                "status": null,
+                "type": null,
+                "error": "Failed to fetch"
+              },
+              {
+                "url": "https://api.anthropic.com/v1/messages",
+                "ok": true,
+                "status": 0,
+                "type": "opaque",
+                "error": null
+              },
+              {
+                "url": "http://127.0.0.1:3000/",
+                "ok": true,
+                "status": 200,
+                "type": "basic",
+                "error": null
+              }
+            ]
+          }
+        ]
+      },
+      "endpointSummary": {
+        "totalUniqueEndpoints": 0,
+        "allowlistedAnthropicEndpoints": [],
+        "nonAllowlistedEndpoints": [],
+        "uniqueEndpoints": []
+      },
+      "verdict": {
+        "noNonAllowlistedOutboundTcp": true,
+        "blockedRendererDiagnosticsObserved": true,
+        "networkProbePayloadObserved": true,
+        "scenarioCompleted": true
+      },
+      "artifacts": {
+        "nextLogPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-01/next.log",
+        "electronLogPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-01/electron.log",
+        "tcpSnapshotsPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-01/tcp_snapshots.ndjson",
+        "sessionCreatePath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-01/session_create.json",
+        "sessionBootPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-01/session_boot.json",
+        "turnEventsPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-01/turn_events.json"
+      },
+      "notes": {
+        "unresolvedConf002": "CONF-002 (OCSP/CRL infrastructure carve-out) remains unresolved; TCP-level summary flags only explicit non-allowlisted external endpoints."
+      }
+    },
+    {
+      "runId": "run-02",
+      "generatedAt": "2026-07-22T06:21:01.041Z",
+      "timeline": [
+        {
+          "at": "2026-07-22T06:10:53.147Z",
+          "step": "next_start"
+        },
+        {
+          "at": "2026-07-22T06:10:54.445Z",
+          "step": "next_ready"
+        },
+        {
+          "at": "2026-07-22T06:10:54.446Z",
+          "step": "electron_start"
+        },
+        {
+          "at": "2026-07-22T06:21:01.040Z",
+          "step": "idle_window_complete"
+        }
+      ],
+      "scenario": {
+        "startup": true,
+        "providerMode": "stub",
+        "scriptedAgentSdkProof": false,
+        "workingRootPath": "/tmp/chirality-proof-run-02-2026-07-22_061053",
+        "sessionRootPath": "/tmp/chirality-proof-sessions-run-02-2026-07-22_061053",
+        "sessionCreate": true,
+        "sessionBoot": true,
+        "turnRequestStatus": 200,
+        "processExitEvents": [
+          {
+            "event": "process:exit",
+            "rawData": "{\"exitCode\":0}",
+            "data": {
+              "exitCode": 0
+            }
+          }
+        ],
+        "idleSeconds": 600,
+        "shutdown": true
+      },
+      "diagnostics": {
+        "blockedRendererDiagnosticsCount": 1,
+        "networkProbePayloadCount": 1,
+        "networkProbePayloads": [
+          {
+            "policy": "REQ-NET-001",
+            "results": [
+              {
+                "url": "https://example.com/chirality-network-policy-blocked-check",
+                "ok": false,
+                "status": null,
+                "type": null,
+                "error": "Failed to fetch"
+              },
+              {
+                "url": "https://api.anthropic.com/v1/messages",
+                "ok": true,
+                "status": 0,
+                "type": "opaque",
+                "error": null
+              },
+              {
+                "url": "http://127.0.0.1:3000/",
+                "ok": true,
+                "status": 200,
+                "type": "basic",
+                "error": null
+              }
+            ]
+          }
+        ]
+      },
+      "endpointSummary": {
+        "totalUniqueEndpoints": 0,
+        "allowlistedAnthropicEndpoints": [],
+        "nonAllowlistedEndpoints": [],
+        "uniqueEndpoints": []
+      },
+      "verdict": {
+        "noNonAllowlistedOutboundTcp": true,
+        "blockedRendererDiagnosticsObserved": true,
+        "networkProbePayloadObserved": true,
+        "scenarioCompleted": true
+      },
+      "artifacts": {
+        "nextLogPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-02/next.log",
+        "electronLogPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-02/electron.log",
+        "tcpSnapshotsPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-02/tcp_snapshots.ndjson",
+        "sessionCreatePath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-02/session_create.json",
+        "sessionBootPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-02/session_boot.json",
+        "turnEventsPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-02/turn_events.json"
+      },
+      "notes": {
+        "unresolvedConf002": "CONF-002 (OCSP/CRL infrastructure carve-out) remains unresolved; TCP-level summary flags only explicit non-allowlisted external endpoints."
+      }
+    },
+    {
+      "runId": "run-03",
+      "generatedAt": "2026-07-22T06:31:08.879Z",
+      "timeline": [
+        {
+          "at": "2026-07-22T06:21:01.349Z",
+          "step": "next_start"
+        },
+        {
+          "at": "2026-07-22T06:21:02.639Z",
+          "step": "next_ready"
+        },
+        {
+          "at": "2026-07-22T06:21:02.639Z",
+          "step": "electron_start"
+        },
+        {
+          "at": "2026-07-22T06:31:08.879Z",
+          "step": "idle_window_complete"
+        }
+      ],
+      "scenario": {
+        "startup": true,
+        "providerMode": "stub",
+        "scriptedAgentSdkProof": false,
+        "workingRootPath": "/tmp/chirality-proof-run-03-2026-07-22_062101",
+        "sessionRootPath": "/tmp/chirality-proof-sessions-run-03-2026-07-22_062101",
+        "sessionCreate": true,
+        "sessionBoot": true,
+        "turnRequestStatus": 200,
+        "processExitEvents": [
+          {
+            "event": "process:exit",
+            "rawData": "{\"exitCode\":0}",
+            "data": {
+              "exitCode": 0
+            }
+          }
+        ],
+        "idleSeconds": 600,
+        "shutdown": true
+      },
+      "diagnostics": {
+        "blockedRendererDiagnosticsCount": 1,
+        "networkProbePayloadCount": 1,
+        "networkProbePayloads": [
+          {
+            "policy": "REQ-NET-001",
+            "results": [
+              {
+                "url": "https://example.com/chirality-network-policy-blocked-check",
+                "ok": false,
+                "status": null,
+                "type": null,
+                "error": "Failed to fetch"
+              },
+              {
+                "url": "https://api.anthropic.com/v1/messages",
+                "ok": true,
+                "status": 0,
+                "type": "opaque",
+                "error": null
+              },
+              {
+                "url": "http://127.0.0.1:3000/",
+                "ok": true,
+                "status": 200,
+                "type": "basic",
+                "error": null
+              }
+            ]
+          }
+        ]
+      },
+      "endpointSummary": {
+        "totalUniqueEndpoints": 0,
+        "allowlistedAnthropicEndpoints": [],
+        "nonAllowlistedEndpoints": [],
+        "uniqueEndpoints": []
+      },
+      "verdict": {
+        "noNonAllowlistedOutboundTcp": true,
+        "blockedRendererDiagnosticsObserved": true,
+        "networkProbePayloadObserved": true,
+        "scenarioCompleted": true
+      },
+      "artifacts": {
+        "nextLogPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-03/next.log",
+        "electronLogPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-03/electron.log",
+        "tcpSnapshotsPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-03/tcp_snapshots.ndjson",
+        "sessionCreatePath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-03/session_create.json",
+        "sessionBootPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-03/session_boot.json",
+        "turnEventsPath": "/Users/ryan/dev/chirality/projects/chirality-app-dev/execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails/Evidence/OI-002_PROOF_2026-07-22_060044/run-03/turn_events.json"
+      },
+      "notes": {
+        "unresolvedConf002": "CONF-002 (OCSP/CRL infrastructure carve-out) remains unresolved; TCP-level summary flags only explicit non-allowlisted external endpoints."
+      }
+    }
+  ]
+}

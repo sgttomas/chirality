@@ -179,7 +179,11 @@ function redactedFinding({ kind, value, relativePath, text, index, disposition, 
 
 function collectEnvironmentSecrets() {
   const inputs = [];
-  const names = ['ANTHROPIC_API_KEY', 'CHIRALITY_ANTHROPIC_API_KEY'];
+  const names = [
+    'ANTHROPIC_API_KEY',
+    'CHIRALITY_ANTHROPIC_API_KEY',
+    'CHIRALITY_OMLX_API_KEY'
+  ];
 
   for (const name of names) {
     const value = process.env[name];
@@ -216,6 +220,23 @@ function gitTrackedFiles(projectRoot) {
   }
 }
 
+function gitUntrackedFiles(projectRoot) {
+  try {
+    const output = execFileSync(
+      'git',
+      ['ls-files', '--others', '--exclude-standard', '-z'],
+      {
+        cwd: projectRoot,
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore']
+      }
+    );
+    return output.split('\0').filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
 async function walkFiles(root, baseRoot = root) {
   const results = [];
   const entries = await readdir(root, { withFileTypes: true }).catch(() => []);
@@ -242,6 +263,8 @@ async function walkFiles(root, baseRoot = root) {
 async function candidateFiles(projectRoot) {
   const tracked = gitTrackedFiles(projectRoot);
   const trackedSet = new Set(tracked);
+  const untracked = gitUntrackedFiles(projectRoot);
+  const untrackedSet = new Set(untracked);
   const generatedRoots = [
     path.join(projectRoot, 'frontend', 'artifacts', 'harness')
   ];
@@ -258,8 +281,9 @@ async function candidateFiles(projectRoot) {
 
   if (tracked.length > 0) {
     return {
-      files: Array.from(new Set([...tracked, ...generated])).sort(),
+      files: Array.from(new Set([...tracked, ...untracked, ...generated])).sort(),
       gitTrackedFileCount: trackedSet.size,
+      gitUntrackedFileCount: untrackedSet.size,
       generatedArtifactFileCount: generated.length
     };
   }
@@ -268,6 +292,7 @@ async function candidateFiles(projectRoot) {
   return {
     files: fallbackFiles.sort(),
     gitTrackedFileCount: 0,
+    gitUntrackedFileCount: 0,
     generatedArtifactFileCount: generated.length
   };
 }
@@ -405,7 +430,9 @@ async function main() {
     scannedFileCount: scannedFiles.length,
     skippedFileCount: skippedFiles.length,
     gitTrackedFileCount: candidates.gitTrackedFileCount,
+    gitUntrackedFileCount: candidates.gitUntrackedFileCount,
     generatedArtifactFileCount: candidates.generatedArtifactFileCount,
+    scannedFilePaths: scannedFiles.map((entry) => entry.path),
     environmentSecretInputs: envSecrets.map(({ variants: _variants, ...entry }) => entry),
     blockedFindings,
     allowedFixtureFindingCount: allowedFixtureFindings.length,

@@ -1,0 +1,24 @@
+[2026-07-22T06:10:53.147Z] START run-02:next: /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/node_modules/.bin/next dev --port 3000 --hostname 127.0.0.1
+  ▲ Next.js 14.2.35
+  - Local:        http://127.0.0.1:3000
+  - Network:      http://127.0.0.1:3000
+
+ ✓ Starting...
+ ✓ Ready in 715ms
+ ✓ Compiled / in 343ms (1116 modules)
+ GET / 200 in 435ms
+ GET / 200 in 12ms
+ ✓ Compiled /api/harness/agents in 52ms (602 modules)
+ GET /api/harness/agents?directChat=1 200 in 76ms
+ GET /api/harness/agents?directChat=1 200 in 5ms
+ GET / 200 in 65ms
+ ○ Compiling /api/harness/session/create ...
+ ✓ Compiled /api/harness/session/create in 686ms (837 modules)
+ POST /api/harness/session/create 200 in 761ms
+ ✓ Compiled /api/harness/session/boot in 63ms (840 modules)
+ POST /api/harness/session/boot 200 in 159ms
+ ✓ Compiled /api/harness/turn in 37ms (842 modules)
+[harness/subagent-governance] DENY persona=CHANGE gate=ENVIRONMENT evaluationMs=0.381 reason=CHIRALITY_ENABLE_SUBAGENTS is not set to "true".
+ POST /api/harness/turn 200 in 158ms
+[?25h
+[2026-07-22T06:21:01.268Z] EXIT run-02:next: code=0 signal=null

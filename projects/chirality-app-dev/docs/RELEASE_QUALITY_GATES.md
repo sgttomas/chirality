@@ -155,5 +155,5 @@ Open release-quality decisions:
 - final release matrix, signing, notarization, publication, and attestation;
 - release-label vocabulary and release-candidate evidence bundle format;
 - coverage, performance, and permitted-variance thresholds;
-- concrete provider/network implementation beyond the current shipped Anthropic path;
-- any attempt to reverse the D-APP-01/D-APP-02 Pi pattern-corpus-only ruling.
+- concrete provider/network implementation beyond the current shipped Anthropic path and the exact D-APP-72 / SCA-APP-002 authenticated `127.0.0.1` oMLX exception;
+- any Pi scope beyond the exact D-APP-72 / SCA-APP-002 pinned in-process, authenticated-loopback, read-only Agent 2 child exception; D-APP-01/D-APP-02 continue to govern all other Pi scope.

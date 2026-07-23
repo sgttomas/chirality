@@ -10,6 +10,19 @@ type SessionRecord = {
   mode: string;
   createdAt: string;
   updatedAt: string;
+  engineSelection?: {
+    adapterId: string;
+    providerId: string;
+    model: string;
+  };
+  engineSessionId?: string;
+  adapterSession?: {
+    engineSessionId?: string;
+    transcriptPath?: string;
+    storeKey?: string;
+    packageName?: string;
+    packageVersion?: string;
+  };
   claudeSessionId?: string;
   sdkPackageVersion?: string;
   bootFingerprint?: string;
@@ -17,6 +30,11 @@ type SessionRecord = {
     schemaVersion: string;
     toolRegistryVersion: string;
     sdkPackageVersion: string;
+    engineAdapter?: {
+      adapterId: string;
+      providerId: string;
+      model: string;
+    };
     mcpServers: Array<{ name: string; version: string; toolNames: string[] }>;
     fingerprintSha256: string;
   };
@@ -266,6 +284,13 @@ describe('Harness API baseline routes', () => {
     const routes = await importRouteModules();
     const runtime = routes.runtimeModule.getHarnessRuntime();
     const { body } = await createSession(routes, context.projectRoot);
+    await runtime.sessionManager.save(body.session.sessionId, {
+      adapterSession: {
+        engineSessionId: 'stub_existing_engine',
+        transcriptPath: '/canonical/session/adapter-transcript.jsonl',
+        storeKey: 'opaque-adapter-store-key'
+      }
+    });
 
     const bootResponse = await routes.bootRoute.POST(
       new Request('http://localhost/api/harness/session/boot', {
@@ -279,14 +304,25 @@ describe('Harness API baseline routes', () => {
     const bootBody = (await bootResponse.json()) as {
       session: SessionRecord;
       boot: {
-        claudeSessionId: string;
+        engineSessionId: string;
+        adapterId: string;
+        providerId: string;
+        model: string;
+        claudeSessionId?: string;
         bootFingerprint: string;
         runtimeFingerprint: NonNullable<SessionRecord['runtimeFingerprint']>;
         bootedAt: string;
       };
     };
 
-    expect(typeof bootBody.boot.claudeSessionId).toBe('string');
+    expect(bootBody.boot).toMatchObject({
+      engineSessionId: 'stub_existing_engine',
+      adapterId: 'stub',
+      providerId: 'stub',
+      model: 'claude-test'
+    });
+    expect(bootBody.boot.claudeSessionId).toBeUndefined();
+    expect(bootBody.session.claudeSessionId).toBeUndefined();
     expect(typeof bootBody.boot.bootFingerprint).toBe('string');
     expect(bootBody.boot.bootFingerprint).toMatch(/^[a-f0-9]{64}$/);
     expect(bootBody.boot.bootFingerprint).toBe(
@@ -298,10 +334,25 @@ describe('Harness API baseline routes', () => {
     );
     expect(typeof bootBody.boot.bootedAt).toBe('string');
     expect(bootBody.session.bootFingerprint).toBe(bootBody.boot.bootFingerprint);
-    expect(bootBody.session.sdkPackageVersion).toBe('0.3.150');
+    expect(bootBody.session.sdkPackageVersion).toBeUndefined();
+    expect(bootBody.session.engineSelection).toEqual({
+      adapterId: 'stub',
+      providerId: 'stub',
+      model: expect.any(String)
+    });
+    expect(bootBody.session.adapterSession).toEqual({
+      engineSessionId: 'stub_existing_engine',
+      transcriptPath: '/canonical/session/adapter-transcript.jsonl',
+      storeKey: 'opaque-adapter-store-key'
+    });
     expect(bootBody.session.runtimeFingerprint).toEqual(bootBody.boot.runtimeFingerprint);
     expect(bootBody.boot.runtimeFingerprint).toMatchObject({
-      schemaVersion: 'harness-runtime-fingerprint.v4.atomic-coordination',
+      schemaVersion: 'harness-runtime-fingerprint.v5.engine-attribution',
+      engineAdapter: {
+        adapterId: 'stub',
+        providerId: 'stub',
+        model: 'claude-test'
+      },
       managedDelegationPolicyVersion: 'managed-delegation.v3.atomic-coordination',
       toolRegistryVersion: expect.stringMatching(/^harness-tools\./),
       sdkPackageVersion: '0.3.150',

@@ -1,15 +1,16 @@
 # Status: DEL-04-01
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-18
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- None.
 
 ## History
+- 2026-07-22 - D-APP-72 bounded adoption evidence completed: Pi `0.80.10` is exact-pinned and the Electron `43.1.1` packaged production-route proof and supply-chain verifier pass. State remains IN_PROGRESS; prior adoption records, lifecycle, and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 opened the bounded second-adapter version/adoption evidence item; state remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

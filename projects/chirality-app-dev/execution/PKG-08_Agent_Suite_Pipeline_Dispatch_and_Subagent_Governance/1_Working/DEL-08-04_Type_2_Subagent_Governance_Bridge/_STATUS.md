@@ -1,7 +1,7 @@
 # Status: DEL-08-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -10,6 +10,8 @@
 - Produce the per-attempt subagent decision-replay artifact (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
 
 ## History
+- 2026-07-22 - D-APP-72 governed optional Agent 2 `EngineSelection` completed through Chirality `delegate_agent`; Pi-native delegation remains prohibited and managed-delegation tests pass. The unrelated D-APP-53-gated decision-replay item remains open. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 added bounded Pi-child engine selection to Remaining; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2)
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

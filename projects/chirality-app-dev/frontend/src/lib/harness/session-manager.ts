@@ -127,7 +127,115 @@ function mergeSessionRecords(
   }
   merged.sessionId = sessionId;
 
-  return merged as RawSessionRecord;
+  return synthesizeProviderNeutralMetadata(merged as RawSessionRecord);
+}
+
+function asRecord(value: unknown): Record<string, unknown> | undefined {
+  return value && typeof value === 'object' && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : undefined;
+}
+
+function hasSdkAttribution(session: RawSessionRecord): boolean {
+  return (
+    [
+      session.sdkSessionId,
+      session.sdkTranscriptPath,
+      session.sdkSessionStoreKey,
+      session.sdkConfigDir,
+      session.sdkClaudeCodeVersion
+    ].some((value) => typeof value === 'string' && value.trim().length > 0) ||
+    (Array.isArray(session.sdkSettingSources) && session.sdkSettingSources.length > 0)
+  );
+}
+
+function inferLegacyClaudeAdapter(
+  session: RawSessionRecord
+): 'anthropic-direct' | 'claude-agent-sdk' | undefined {
+  const explicitSelection = asRecord(session.engineSelection);
+  if (explicitSelection?.providerId === 'anthropic') {
+    if (explicitSelection.adapterId === 'anthropic-direct') {
+      return 'anthropic-direct';
+    }
+    if (explicitSelection.adapterId === 'claude-agent-sdk') {
+      return 'claude-agent-sdk';
+    }
+  }
+  if (explicitSelection) {
+    return undefined;
+  }
+
+  if (hasSdkAttribution(session)) {
+    return 'claude-agent-sdk';
+  }
+
+  const adapterSession = asRecord(session.adapterSession);
+  if (adapterSession?.packageName === '@anthropic-ai/claude-agent-sdk') {
+    return 'claude-agent-sdk';
+  }
+  if (adapterSession?.packageName === '@anthropic-ai/sdk') {
+    return 'anthropic-direct';
+  }
+
+  const runtimeFingerprint = asRecord(session.runtimeFingerprint);
+  const engineAdapter = asRecord(runtimeFingerprint?.engineAdapter);
+  if (engineAdapter?.providerId === 'anthropic') {
+    if (engineAdapter.adapterId === 'anthropic-direct') {
+      return 'anthropic-direct';
+    }
+    if (engineAdapter.adapterId === 'claude-agent-sdk') {
+      return 'claude-agent-sdk';
+    }
+  }
+
+  return undefined;
+}
+
+function synthesizeProviderNeutralMetadata(session: RawSessionRecord): RawSessionRecord {
+  const legacyEngineSessionId = [
+    session.engineSessionId,
+    session.sdkSessionId,
+    session.claudeSessionId
+  ].find((value): value is string => typeof value === 'string' && value.trim().length > 0);
+  const inferredAdapterId = inferLegacyClaudeAdapter(session);
+
+  // A claudeSessionId by itself is ambiguous: historical stub sessions used the
+  // same field. Keep it readable, but leave selection to the current key-aware
+  // runtime default instead of silently pinning the record to Anthropic.
+  if (!legacyEngineSessionId || !inferredAdapterId) {
+    return session;
+  }
+
+  const existingAdapterSession = asRecord(session.adapterSession);
+  const existingEngineSessionId = existingAdapterSession?.engineSessionId;
+
+  return {
+    ...session,
+    ...(session.engineSelection
+      ? {}
+      : {
+          engineSelection: {
+            adapterId: inferredAdapterId,
+            providerId: 'anthropic',
+            model: typeof session.model === 'string' ? session.model : ''
+          }
+        }),
+    adapterSession: {
+      transcriptPath: session.sdkTranscriptPath,
+      storeKey: session.sdkSessionStoreKey,
+      configDir: session.sdkConfigDir,
+      packageName:
+        inferredAdapterId === 'claude-agent-sdk'
+          ? '@anthropic-ai/claude-agent-sdk'
+          : '@anthropic-ai/sdk',
+      packageVersion: session.sdkPackageVersion,
+      ...existingAdapterSession,
+      engineSessionId:
+        typeof existingEngineSessionId === 'string'
+          ? existingEngineSessionId
+          : legacyEngineSessionId
+    }
+  };
 }
 
 async function writeCanonicalSession(

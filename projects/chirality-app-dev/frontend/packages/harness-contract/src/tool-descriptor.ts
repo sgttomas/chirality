@@ -636,7 +636,18 @@ export const HARNESS_TOOL_DESCRIPTORS = [
     description: 'Launch a governed direct child session under the Agent 0→1 or Agent 1→2 hierarchy and persist its work graph, brief, status, and return.',
     inputSchema: {
       type: 'object',
-      required: ['executionRoot', 'runId', 'planVersion', 'selectionAuthority', 'posture', 'acceptedBasis', 'childKind', 'purpose', 'brief', 'declaredContext', 'tools', 'writeTargets', 'dependencies', 'expectedOutput', 'acceptanceCriteria', 'requiredReturnMarkers', 'contextSealed', 'pipelineRunApproved', 'approvalRef']
+      required: ['executionRoot', 'runId', 'planVersion', 'selectionAuthority', 'posture', 'acceptedBasis', 'childKind', 'purpose', 'brief', 'declaredContext', 'tools', 'writeTargets', 'dependencies', 'expectedOutput', 'acceptanceCriteria', 'requiredReturnMarkers', 'contextSealed', 'pipelineRunApproved', 'approvalRef'],
+      properties: {
+        engineSelection: {
+          type: 'object',
+          required: ['adapterId', 'providerId', 'model'],
+          properties: {
+            adapterId: { type: 'string' },
+            providerId: { type: 'string' },
+            model: { type: 'string' }
+          }
+        }
+      }
     }
   }),
   chiralityCoordinationMcpDescriptor({

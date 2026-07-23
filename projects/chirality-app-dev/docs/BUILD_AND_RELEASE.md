@@ -146,5 +146,5 @@ Hosted workflows must not receive private project data, API keys, protected prof
 - Signing, notarization, checksum publication, publication destination, and attestation.
 - Release-label vocabulary and release-candidate evidence-bundle format.
 - Coverage, performance, and platform-threshold policy.
-- Concrete provider/network implementation beyond the current shipped Anthropic path.
-- Any attempt to reverse the D-APP-01/D-APP-02 Pi pattern-corpus-only ruling.
+- Provider/network implementation beyond the current Anthropic path and the exact D-APP-72 authenticated `127.0.0.1` oMLX exception.
+- Any Pi scope beyond the D-APP-72 / SCA-APP-002 pinned in-process read-only Agent 2 child tranche; D-APP-01/D-APP-02 remain historical for all other Pi scope.

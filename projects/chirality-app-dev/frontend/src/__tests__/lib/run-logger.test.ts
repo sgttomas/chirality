@@ -8,6 +8,10 @@ import {
 afterEach(() => {
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+  delete process.env.CHIRALITY_OMLX_API_KEY;
+  delete (globalThis as typeof globalThis & {
+    __CHIRALITY_PROVIDER_API_KEYS__?: Partial<Record<'anthropic' | 'omlx', string>>;
+  }).__CHIRALITY_PROVIDER_API_KEYS__;
 });
 
 function lowercasePercentEncoding(value: string): string {
@@ -73,5 +77,30 @@ describe('run logger redaction', () => {
       ]
     });
     expect(JSON.stringify(redacted)).not.toContain('sk-test-nested-secret');
+  });
+
+  it('redacts both secure UI and environment oMLX credentials', () => {
+    const uiKey = 'omlx-ui-secret/with space';
+    const envKey = 'omlx-env-secret?token=true';
+    (globalThis as typeof globalThis & {
+      __CHIRALITY_PROVIDER_API_KEYS__?: Partial<Record<'anthropic' | 'omlx', string>>;
+    }).__CHIRALITY_PROVIDER_API_KEYS__ = { omlx: uiKey };
+    process.env.CHIRALITY_OMLX_API_KEY = envKey;
+
+    const redacted = redactJsonLike({
+      uiDiagnostic: `Bearer ${uiKey}`,
+      encodedUiDiagnostic: encodeURIComponent(uiKey),
+      envDiagnostic: `authorization=${envKey}`,
+      encodedEnvDiagnostic: encodeURIComponent(envKey)
+    });
+
+    expect(redacted).toEqual({
+      uiDiagnostic: 'Bearer [REDACTED_API_KEY]',
+      encodedUiDiagnostic: '[REDACTED_API_KEY]',
+      envDiagnostic: 'authorization=[REDACTED_API_KEY]',
+      encodedEnvDiagnostic: '[REDACTED_API_KEY]'
+    });
+    expect(JSON.stringify(redacted)).not.toContain(uiKey);
+    expect(JSON.stringify(redacted)).not.toContain(envKey);
   });
 });

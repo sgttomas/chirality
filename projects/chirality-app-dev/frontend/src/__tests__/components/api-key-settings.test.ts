@@ -38,6 +38,9 @@ describe('ApiKeySettings rendering', () => {
     expect(html).toContain('Checking...');
     expect(html).toContain('Running outside Electron.');
     expect(html).toContain('ANTHROPIC_API_KEY');
+    expect(html).toContain('CHIRALITY_OMLX_API_KEY');
+    expect(html).toContain('Anthropic API Key');
+    expect(html).toContain('oMLX API Key');
     expect(html).not.toContain('Save Key');
     expect(html).not.toContain(SECRET_FIXTURE);
   });
@@ -87,6 +90,18 @@ describe('ApiKeySettings rendering', () => {
 
     expect(html).toContain('Saving...');
     expect(html).toContain('disabled=""');
+  });
+
+  it('renders provider-specific oMLX labels without credential material', () => {
+    const html = renderView({
+      title: 'oMLX API Key',
+      environmentVariable: 'CHIRALITY_OMLX_API_KEY',
+      placeholder: 'Enter the key configured in oMLX'
+    });
+
+    expect(html).toContain('oMLX API Key');
+    expect(html).toContain('Enter the key configured in oMLX');
+    expect(html).not.toContain(SECRET_FIXTURE);
   });
 
   it('disables save for blank input and renders actionable error text', () => {

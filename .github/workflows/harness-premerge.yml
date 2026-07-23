@@ -34,7 +34,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: npm
           cache-dependency-path: projects/chirality-app-dev/frontend/package-lock.json
 
@@ -44,6 +44,14 @@ jobs:
 
       - name: Typecheck
         run: npm run typecheck
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Pi supply-chain policy
+        run: npm run pi:supply-chain
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Secret scan
+        run: npm run proof:secret-scan
         working-directory: projects/chirality-app-dev/frontend
 
       - name: Full Vitest suite
@@ -131,7 +139,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node -e 'const fs=require("fs"); for (const [p,s] of [["projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json","pass"]]) { const value=JSON.parse(fs.readFileSync(p,"utf8")); if (value.status!==s) throw new Error(`${p}: expected ${s}, got ${value.status}`); }'
+          node -e 'const fs=require("fs"); for (const [p,s] of [["projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/security/latest/secret-scan-summary.json","pass"]]) { const value=JSON.parse(fs.readFileSync(p,"utf8")); if (value.status!==s) throw new Error(`${p}: expected ${s}, got ${value.status}`); }'
 
       - name: Upload validation summaries
         if: always()
@@ -142,6 +150,7 @@ jobs:
             projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
             projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json
             projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json
+            projects/chirality-app-dev/frontend/artifacts/harness/security/latest/secret-scan-summary.json
           if-no-files-found: warn
 
       - name: Print frontend server logs on failure

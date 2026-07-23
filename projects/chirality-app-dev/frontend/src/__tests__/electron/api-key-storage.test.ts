@@ -20,16 +20,22 @@ vi.mock('electron', () => ({
 }));
 
 import {
+  getProviderUiApiKey,
   getUiApiKey,
+  hasStoredProviderApiKey,
   hasStoredApiKey,
   loadStoredKeyIntoGlobal,
+  removeProviderApiKey,
   removeApiKey,
+  retrieveProviderApiKey,
   retrieveApiKey,
+  storeProviderApiKey,
   storeApiKey
 } from '../../../electron/api-key-storage';
 
 const GLOBAL_KEY = '__CHIRALITY_UI_API_KEY__';
-const globalState = globalThis as unknown as Record<string, string | undefined>;
+const PROVIDER_GLOBAL_KEY = '__CHIRALITY_PROVIDER_API_KEYS__';
+const globalState = globalThis as unknown as Record<string, unknown>;
 
 function getStoragePath(tmpDir: string): string {
   return path.join(tmpDir, 'credentials', 'api-key.enc');
@@ -55,6 +61,7 @@ beforeEach(async () => {
 
 afterEach(async () => {
   delete globalState[GLOBAL_KEY];
+  delete globalState[PROVIDER_GLOBAL_KEY];
   vi.clearAllMocks();
   if (tmpDir) {
     await rm(tmpDir, { recursive: true, force: true });
@@ -72,6 +79,24 @@ describe('electron/api-key-storage', () => {
     await expect(hasStoredApiKey()).resolves.toBe(true);
   });
 
+  it('keeps the legacy Anthropic blob while isolating provider blobs and globals', async () => {
+    await storeProviderApiKey('anthropic', 'anthropic-secret');
+    await storeProviderApiKey('omlx', 'omlx-secret');
+
+    await expect(readFile(getStoragePath(tmpDir), 'utf8')).resolves.toBe('enc:anthropic-secret');
+    await expect(
+      readFile(path.join(tmpDir, 'credentials', 'api-key.omlx.enc'), 'utf8')
+    ).resolves.toBe('enc:omlx-secret');
+    expect(getUiApiKey()).toBe('anthropic-secret');
+    expect(getProviderUiApiKey('omlx')).toBe('omlx-secret');
+
+    await removeProviderApiKey('omlx');
+    expect(getProviderUiApiKey('omlx')).toBeUndefined();
+    expect(getUiApiKey()).toBe('anthropic-secret');
+    await expect(hasStoredProviderApiKey('omlx')).resolves.toBe(false);
+    await expect(retrieveProviderApiKey('anthropic')).resolves.toBe('anthropic-secret');
+  });
+
   it('loads stored key into process global during startup', async () => {
     const storagePath = getStoragePath(tmpDir);
     await mkdir(path.dirname(storagePath), { recursive: true });
@@ -81,6 +106,19 @@ describe('electron/api-key-storage', () => {
 
     expect(getUiApiKey()).toBe('boot-key');
     await expect(retrieveApiKey()).resolves.toBe('boot-key');
+  });
+
+  it('loads both legacy Anthropic and oMLX blobs during startup', async () => {
+    const anthropicPath = getStoragePath(tmpDir);
+    const omlxPath = path.join(tmpDir, 'credentials', 'api-key.omlx.enc');
+    await mkdir(path.dirname(anthropicPath), { recursive: true });
+    await writeFile(anthropicPath, Buffer.from('enc:anthropic-boot', 'utf8'));
+    await writeFile(omlxPath, Buffer.from('enc:omlx-boot', 'utf8'));
+
+    await loadStoredKeyIntoGlobal();
+
+    expect(getUiApiKey()).toBe('anthropic-boot');
+    expect(getProviderUiApiKey('omlx')).toBe('omlx-boot');
   });
 
   it('returns null when decrypt fails and does not throw', async () => {

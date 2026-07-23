@@ -1,7 +1,7 @@
 # Status: DEL-08-05
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -9,6 +9,8 @@
 ## Remaining
 
 ## History
+- 2026-07-22 - D-APP-72 Pi-child parentage, exact engine/provider/model, sealed brief, declared tool, capability, approval, and terminal attribution completed and covered by managed-delegation and live-proof evidence. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 added second-engine child attribution to Remaining; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2)
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

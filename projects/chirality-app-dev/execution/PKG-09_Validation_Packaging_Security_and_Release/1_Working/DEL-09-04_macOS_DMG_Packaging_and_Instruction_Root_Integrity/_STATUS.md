@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -10,6 +10,8 @@
 - Packaging/release evidence for DEL-09-04's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged-SDK proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
 
 ## History
+- 2026-07-22 - D-APP-72 Electron `43.1.1` regression and packaged offline Pi `0.80.10` production-route proof completed. The unrelated D-APP-56 release-preparation item remains open; no release authority is created. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-07-21 - SCA-APP-002 added the Electron/Pi package prerequisite proof to Remaining; release fence and state remain unchanged.
 - 2026-07-20 - D-APP-71 Option 2 closed the preload physical-lead residual by applying DEL-02-05 as coordination-only lead; DEL-09-06 retains `safeStorage`/security semantics, the packaging/release Remaining item is byte-preserved, and no source, SOW, dependency, lifecycle, or Approval-SHA change occurred.
 - 2026-07-20 - D-APP-70 Option A closed the `chirality-window.d.ts`, scripted SDK proof, and contract-lint CQ-F1 residuals and applied only the shared-boundary annotation for `preload.ts`; its unnamed physical lead remains the sole CQ-F1 residual gated by D-APP-71; unrelated packaging/release Remaining is unchanged; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.

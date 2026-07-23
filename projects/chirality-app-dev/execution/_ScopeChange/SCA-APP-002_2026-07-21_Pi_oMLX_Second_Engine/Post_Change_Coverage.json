@@ -1,0 +1,95 @@
+{
+  "amendment_id": "SCA-APP-002",
+  "status": "GATE_5_COMPLETE_VALIDATED",
+  "decomp_variant": "SOFTWARE",
+  "decomposition_path": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "snapshot_path": "execution/_ScopeChange/SCA-APP-002_2026-07-21_Pi_oMLX_Second_Engine",
+  "closeout_date": "2026-07-22",
+  "authority": "D-APP-72",
+  "authority_corpus": {
+    "version": "v11",
+    "status": "MATCH",
+    "source_count": 8,
+    "drift_count": 0
+  },
+  "gate5_executed": true,
+  "topology_change_applied": false,
+  "lifecycle_change_applied": false,
+  "release_authorized": false,
+  "topology_counts": {
+    "scope_items": 78,
+    "packages": 10,
+    "deliverables": 51,
+    "objectives": 10
+  },
+  "authority_docs_aligned": [
+    "docs/DIRECTIVE.md",
+    "docs/CONTRACT.md",
+    "docs/SPEC.md",
+    "docs/TYPES.md",
+    "docs/PLAN.md",
+    "docs/PRD.md"
+  ],
+  "affected_execution_deliverables": [
+    "DEL-01-02",
+    "DEL-02-05",
+    "DEL-03-01",
+    "DEL-03-02",
+    "DEL-04-01",
+    "DEL-04-03",
+    "DEL-04-05",
+    "DEL-05-01",
+    "DEL-06-03",
+    "DEL-08-04",
+    "DEL-08-05",
+    "DEL-09-02",
+    "DEL-09-03",
+    "DEL-09-04",
+    "DEL-09-06"
+  ],
+  "deliverable_propagation": {
+    "affected_count": 15,
+    "completed_validated": 15,
+    "source": "Execution_Deliverable_Impact.csv"
+  },
+  "supersession": {
+    "delta_rows": 3,
+    "cumulative_map_rows": 7,
+    "accumulator_check": "PASS"
+  },
+  "changed_surface_classes": {
+    "governance_and_decomposition": true,
+    "runtime_source": true,
+    "package_manifests_and_lockfile": true,
+    "desktop_wrapper": true,
+    "execution_status_records": true
+  },
+  "validation": {
+    "vitest_files_passed": 106,
+    "vitest_files_skipped": 1,
+    "vitest_tests_passed": 854,
+    "vitest_tests_skipped": 4,
+    "section_8_passed": 8,
+    "section_8_total": 8,
+    "section_9_passed": 16,
+    "section_9_total": 16,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "desktop_pack": "PASS",
+    "packaged_pi_turn": "PASS",
+    "pi_supply_chain_artifacts_verified": 140,
+    "secret_scan_files": 2714,
+    "secret_scan_blocked_findings": 0,
+    "network_policy_proof": "PASS",
+    "live_omlx_proof": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "audit_state": "NON_BLOCKING_PASS",
+  "audit_detail": "Independent security/conformance, Claude/stub regression, authority-corpus, status, and closeout-artifact backchecks pass.",
+  "next_gate": "scoped CHANGE closeout and commit",
+  "notes": [
+    "Only completed D-APP-72 obligations were moved from affected deliverable Remaining sections to dated evidence.",
+    "Lifecycle states, Checking Approval SHAs, and unrelated Remaining work were preserved.",
+    "No release, signing, publication, issuance, or professional-reliance act is claimed."
+  ]
+}

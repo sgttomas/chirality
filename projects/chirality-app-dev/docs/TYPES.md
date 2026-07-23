@@ -273,13 +273,17 @@ Legacy `COORDINATION` and `INFORMATION` are not emitted in new extractions.
 | `EngineAdapter` | Provider/SDK-specific implementation behind `AgentEnginePort`; translates provider-specific events, sessions, permissions, and tool names into Chirality-owned contracts. |
 | `ProviderAdapter` | Concrete integration layer for an external agent provider or provider SDK. |
 | `FirstAdapter` | The current concrete Claude Agent SDK / Anthropic adapter path. It is the first shipped path, not the strategic ceiling. |
+| `EngineSelection` | Per-session or governed-child selection of `adapterId`, `providerId`, and exact `model`; it is persisted and never silently replaced after turn acceptance. |
+| `EngineDescriptor` | Adapter identity, provider identity, package attribution, and declared capabilities used by preflight and conformance. |
+| `PiAdapter` | D-APP-72-bounded in-process Pi `0.80.10` adapter. Initially valid only with authenticated `127.0.0.1` oMLX and a governed read-only Agent 2 child. |
+| `oMLXProvider` | Local OpenAI-compatible provider endpoint authorized only at authenticated `http://127.0.0.1:8000/v1` by default; exact model IDs come from `/v1/models`. |
 | `EngineConformanceSuite` | Tests proving an adapter satisfies Chirality contracts. |
 | `TurnEngine` | Runtime service that owns a single turn lifecycle and invokes the engine through the product-owned boundary. |
 | `SdkOptionsBuilder` | Deterministic constructor for first-adapter SDK options from Chirality state and policy. |
 | `SdkMessageMapper` | First-adapter mapper from SDK stream messages into browser `UIEvent`s and persisted `HarnessEvent`s. |
 | `PersonaComposer` | Builder for system prompt / appended prompt from instruction root, active persona, mode, and working-root policy. |
 | `RelianceBoundaryRegister` | Record of product-critical semantics and their enforcement surfaces. |
-| `PiPatternCorpus` | Reference corpus for stable agentic patterns observed in Pi packages and behavior. It is not a runtime dependency, adapter target, fork target, package import path, or spike authorization. |
+| `PiPatternCorpus` | Historical/reference use of Pi patterns under SCA-APP-001. D-APP-72 / SCA-APP-002 adds one prospective bounded runtime exception and does not convert the corpus into general Pi adoption or feature-parity authority. |
 
 ### 7.2 Session Terms
 
@@ -450,7 +454,7 @@ Future domain tools use `mcp__chirality__domain_*` only after a governed domain-
 | `CLAUDE_CONFIG_DIR` | Environment mechanism that may redirect SDK local config/transcript behavior if empirically reliable. |
 | `permissionMode` | SDK permission posture translated from Chirality mode plus capability policy and explicit hard-deny precedence. |
 | `bypassPermissions` | SDK mode not permitted in shipped ordinary workflows. |
-| Pi pattern corpus | Reference source for agentic patterns only. D-APP-01 and D-APP-02 rule out Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work. |
+| Pi pattern corpus / bounded adapter | D-APP-01 and D-APP-02 remain historical and govern all unamended Pi scope. D-APP-72 / SCA-APP-002 prospectively permits only Pi `0.80.10` in-process after Electron `43.1.1`, authenticated loopback oMLX, and a governed read-only Agent 2 child. |
 
 SDK terms belong at the adapter boundary. Public Chirality APIs and canonical events use Chirality terms.
 

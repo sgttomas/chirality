@@ -95,5 +95,5 @@ Evidence artifacts are derivative records. They support review and regression an
 - Hosted CI provider, workflow location, and public/private data handling remain governed future decisions.
 - Final release-label vocabulary, signing, notarization, publication, and attestation remain governed future decisions.
 - Final coverage, performance, and platform-matrix thresholds remain `TBD`.
-- Concrete provider/network implementation beyond the current shipped Anthropic path requires a bounded future implementation tranche and recorded decision evidence.
-- D-APP-01 and D-APP-02 rule Pi pattern-corpus-only: no Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, or spike work unless a future ruling explicitly reverses those boundaries.
+- D-APP-72 / SCA-APP-002 is the sole bounded provider/network exception beyond the current Anthropic path: pinned in-process Pi `0.80.10` over authenticated `127.0.0.1` oMLX for one governed read-only Agent 2 child after Electron `43.1.1` proof.
+- D-APP-01 and D-APP-02 remain historical and continue to prohibit every Pi path outside that exact exception, including fork/sidecar/native capabilities/ambient discovery, remote providers, direct supervisors, automatic fallback, and write/shell/network tools.

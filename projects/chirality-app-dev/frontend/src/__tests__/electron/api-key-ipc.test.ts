@@ -15,9 +15,13 @@ const mocks = vi.hoisted(() => {
     handlers,
     ipcMain,
     hasStoredApiKey: vi.fn<() => Promise<boolean>>(),
+    hasStoredProviderApiKey: vi.fn<(providerId: 'anthropic' | 'omlx') => Promise<boolean>>(),
     isEncryptionAvailable: vi.fn<() => boolean>(),
+    isProviderCredentialId: vi.fn((value: unknown) => value === 'anthropic' || value === 'omlx'),
     removeApiKey: vi.fn<() => Promise<void>>(),
-    storeApiKey: vi.fn<(key: string) => Promise<void>>()
+    removeProviderApiKey: vi.fn<(providerId: 'anthropic' | 'omlx') => Promise<void>>(),
+    storeApiKey: vi.fn<(key: string) => Promise<void>>(),
+    storeProviderApiKey: vi.fn<(providerId: 'anthropic' | 'omlx', key: string) => Promise<void>>()
   };
 });
 
@@ -27,15 +31,22 @@ vi.mock('electron', () => ({
 
 vi.mock('../../../electron/api-key-storage', () => ({
   hasStoredApiKey: mocks.hasStoredApiKey,
+  hasStoredProviderApiKey: mocks.hasStoredProviderApiKey,
   isEncryptionAvailable: mocks.isEncryptionAvailable,
+  isProviderCredentialId: mocks.isProviderCredentialId,
   removeApiKey: mocks.removeApiKey,
-  storeApiKey: mocks.storeApiKey
+  removeProviderApiKey: mocks.removeProviderApiKey,
+  storeApiKey: mocks.storeApiKey,
+  storeProviderApiKey: mocks.storeProviderApiKey
 }));
 
 import {
   API_KEY_REMOVE_CHANNEL,
   API_KEY_STATUS_CHANNEL,
   API_KEY_STORE_CHANNEL,
+  PROVIDER_API_KEY_REMOVE_CHANNEL,
+  PROVIDER_API_KEY_STATUS_CHANNEL,
+  PROVIDER_API_KEY_STORE_CHANNEL,
   registerApiKeyHandlers,
   unregisterApiKeyHandlers
 } from '../../../electron/api-key-ipc';
@@ -52,14 +63,17 @@ beforeEach(() => {
   mocks.handlers.clear();
   vi.clearAllMocks();
   mocks.hasStoredApiKey.mockResolvedValue(false);
+  mocks.hasStoredProviderApiKey.mockResolvedValue(false);
   mocks.isEncryptionAvailable.mockReturnValue(true);
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+  delete process.env.CHIRALITY_OMLX_API_KEY;
 });
 
 afterEach(() => {
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+  delete process.env.CHIRALITY_OMLX_API_KEY;
 });
 
 describe('electron/api-key-ipc', () => {
@@ -69,9 +83,15 @@ describe('electron/api-key-ipc', () => {
     expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(API_KEY_STORE_CHANNEL);
     expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(API_KEY_REMOVE_CHANNEL);
     expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(API_KEY_STATUS_CHANNEL);
+    expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(PROVIDER_API_KEY_STORE_CHANNEL);
+    expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(PROVIDER_API_KEY_REMOVE_CHANNEL);
+    expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(PROVIDER_API_KEY_STATUS_CHANNEL);
     expect(mocks.handlers.has(API_KEY_STORE_CHANNEL)).toBe(true);
     expect(mocks.handlers.has(API_KEY_REMOVE_CHANNEL)).toBe(true);
     expect(mocks.handlers.has(API_KEY_STATUS_CHANNEL)).toBe(true);
+    expect(mocks.handlers.has(PROVIDER_API_KEY_STORE_CHANNEL)).toBe(true);
+    expect(mocks.handlers.has(PROVIDER_API_KEY_REMOVE_CHANNEL)).toBe(true);
+    expect(mocks.handlers.has(PROVIDER_API_KEY_STATUS_CHANNEL)).toBe(true);
   });
 
   it('trims and stores key material through the store channel', async () => {
@@ -129,6 +149,50 @@ describe('electron/api-key-ipc', () => {
     await expect(handler({})).resolves.toEqual({ ok: false, error: 'remove-failed' });
   });
 
+  it('stores, reports, and removes an isolated oMLX credential', async () => {
+    registerApiKeyHandlers();
+
+    await expect(getHandler(PROVIDER_API_KEY_STORE_CHANNEL)({}, 'omlx', '  local-secret  '))
+      .resolves.toEqual({ ok: true });
+    expect(mocks.storeProviderApiKey).toHaveBeenCalledWith('omlx', 'local-secret');
+
+    mocks.hasStoredProviderApiKey.mockResolvedValueOnce(true);
+    await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'omlx')).resolves.toEqual({
+      hasKey: true,
+      encryptionAvailable: true,
+      source: 'ui'
+    });
+
+    await expect(getHandler(PROVIDER_API_KEY_REMOVE_CHANNEL)({}, 'omlx')).resolves.toEqual({
+      ok: true
+    });
+    expect(mocks.removeProviderApiKey).toHaveBeenCalledWith('omlx');
+    expect(mocks.removeApiKey).not.toHaveBeenCalled();
+  });
+
+  it('uses only CHIRALITY_OMLX_API_KEY for oMLX status and rejects unknown providers', async () => {
+    registerApiKeyHandlers();
+    process.env.ANTHROPIC_API_KEY = 'anthropic-only';
+
+    await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'omlx')).resolves.toEqual({
+      hasKey: false,
+      encryptionAvailable: true,
+      source: 'none'
+    });
+
+    process.env.CHIRALITY_OMLX_API_KEY = 'omlx-env';
+    await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'omlx')).resolves.toEqual({
+      hasKey: true,
+      encryptionAvailable: true,
+      source: 'env'
+    });
+
+    await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'other')).resolves.toEqual({
+      ok: false,
+      error: 'Unsupported credential provider'
+    });
+  });
+
   it('unregisters all handlers', () => {
     registerApiKeyHandlers();
     unregisterApiKeyHandlers();
@@ -136,5 +200,8 @@ describe('electron/api-key-ipc', () => {
     expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(API_KEY_STORE_CHANNEL);
     expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(API_KEY_REMOVE_CHANNEL);
     expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(API_KEY_STATUS_CHANNEL);
+    expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(PROVIDER_API_KEY_STORE_CHANNEL);
+    expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(PROVIDER_API_KEY_REMOVE_CHANNEL);
+    expect(mocks.ipcMain.removeHandler).toHaveBeenCalledWith(PROVIDER_API_KEY_STATUS_CHANNEL);
   });
 });

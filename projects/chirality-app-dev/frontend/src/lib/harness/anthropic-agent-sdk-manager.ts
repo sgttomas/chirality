@@ -754,6 +754,9 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
       yield {
         type: 'session:init',
         data: {
+          engineSessionId: claudeSessionId,
+          adapterId: 'anthropic-direct',
+          providerId: 'anthropic',
           claudeSessionId,
           model: opts.model || FALLBACK_MODEL
         }

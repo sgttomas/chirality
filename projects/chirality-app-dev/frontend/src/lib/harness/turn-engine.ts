@@ -1,18 +1,17 @@
-import { hasUiApiKey } from './api-key-store';
 import { randomUUID } from 'node:crypto';
 import { asHarnessError, HarnessError } from '@chirality/harness-contract/errors';
 import { resolveRuntimeOptions } from './options';
-import { CLAUDE_AGENT_SDK_PACKAGE_VERSION } from '@chirality/harness-contract/sdk-version';
 import { evaluateSubagentGovernance } from './subagent-governance';
 import { resolveHarnessToolPool } from './tool-pool';
 import { appendHarnessEvent } from './session-events';
 import { createHarnessEvent } from './event-factory';
+import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/harness-contract/agent-engine-port';
+import type { ResolvedEngine } from './engine-registry';
 import {
   AttachmentError,
   AttachmentFailureDetails,
   ContentBlock,
   HarnessOpts,
-  IAgentSdkManager,
   IAttachmentResolver,
   IPersonaManager,
   ISessionManager,
@@ -24,8 +23,6 @@ import {
 } from '@chirality/harness-contract/types';
 
 const MAX_ATTACHMENT_WARNING_DETAILS = 3;
-export type TurnEngineProviderMode = 'stub' | 'anthropic' | 'agentSdk';
-
 export type RunningHarnessTurn = {
   sessionId: string;
   events: AsyncIterable<UIEvent>;
@@ -46,43 +43,20 @@ export type TurnEngineDependencies = {
   sessionManager: ISessionManager;
   personaManager: IPersonaManager;
   attachmentResolver: IAttachmentResolver;
-  agentSdkManager: IAgentSdkManager;
-  resolveProviderMode?: () => TurnEngineProviderMode;
-  hasUiApiKey?: () => boolean;
-  env?: NodeJS.ProcessEnv;
-  sdkPackageVersion?: string;
+  resolveEngine: (session: SessionRecord, opts: ResolvedOpts) => ResolvedEngine | Promise<ResolvedEngine>;
   resolveRuntimeOptions?: RuntimeOptionsResolver;
   evaluateSubagentGovernance?: SubagentGovernanceEvaluator;
 };
 
 type StreamTurnInput = {
   session: SessionRecord;
-  providerMode: TurnEngineProviderMode;
+  engine: ResolvedEngine;
   message: string;
   opts: ResolvedOpts;
   contentBlocks?: ContentBlock[];
   releaseTurnLock: () => void;
   turnId: string;
 };
-
-type TurnEngineAgentSdkManager = IAgentSdkManager & {
-  cancel?(sessionId: string): Promise<void>;
-  startTurn(
-    session: SessionRecord,
-    message: string,
-    opts: ResolvedOpts,
-    contentBlocks?: ContentBlock[],
-    turnId?: string
-  ): AsyncIterable<UIEvent>;
-};
-
-function asNonEmptyString(value: string | undefined): string | undefined {
-  if (typeof value !== 'string') {
-    return undefined;
-  }
-  const trimmed = value.trim();
-  return trimmed.length > 0 ? trimmed : undefined;
-}
 
 function requireNonEmptyString(value: unknown, field: string): string {
   if (typeof value !== 'string' || value.trim().length === 0) {
@@ -180,18 +154,11 @@ function assertKnownAgentSdkTools(sessionId: string, opts: ResolvedOpts): void {
 
 export class TurnEngine {
   private readonly activeSessionTurns = new Set<string>();
-  private readonly resolveProviderMode: () => TurnEngineProviderMode;
-  private readonly hasUiApiKey: () => boolean;
-  private readonly env: NodeJS.ProcessEnv;
-  private readonly sdkPackageVersion: string;
+  private readonly activeSessionEngines = new Map<string, AgentEnginePort>();
   private readonly resolveRuntimeOptions: RuntimeOptionsResolver;
   private readonly evaluateSubagentGovernance: SubagentGovernanceEvaluator;
 
   constructor(private readonly dependencies: TurnEngineDependencies) {
-    this.resolveProviderMode = dependencies.resolveProviderMode ?? (() => 'stub');
-    this.hasUiApiKey = dependencies.hasUiApiKey ?? hasUiApiKey;
-    this.env = dependencies.env ?? process.env;
-    this.sdkPackageVersion = dependencies.sdkPackageVersion ?? CLAUDE_AGENT_SDK_PACKAGE_VERSION;
     this.resolveRuntimeOptions = dependencies.resolveRuntimeOptions ?? resolveRuntimeOptions;
     this.evaluateSubagentGovernance =
       dependencies.evaluateSubagentGovernance ?? evaluateSubagentGovernance;
@@ -200,22 +167,6 @@ export class TurnEngine {
   async runTurn(request: TurnRequest | unknown): Promise<RunningHarnessTurn> {
     const input = parseTurnRequest(request);
     const session = await this.dependencies.sessionManager.resume(input.sessionId);
-    const providerMode = this.resolveProviderMode();
-
-    if (
-      (providerMode === 'anthropic' || providerMode === 'agentSdk') &&
-      !this.hasAnthropicApiKeyConfigured()
-    ) {
-      throw new HarnessError(
-        'MISSING_API_KEY',
-        503,
-        'Anthropic API key is not configured. Enter a key in Settings or set ANTHROPIC_API_KEY.',
-        {
-          provider: 'anthropic',
-          category: 'MISSING_API_KEY'
-        }
-      );
-    }
 
     if (this.activeSessionTurns.has(input.sessionId)) {
       throw new HarnessError(
@@ -238,8 +189,12 @@ export class TurnEngine {
     };
 
     try {
-      const resolvedOpts = await this.resolveRuntimeOptions(session, input.opts);
-      if (providerMode === 'agentSdk') {
+      let resolvedOpts = await this.resolveRuntimeOptions(session, input.opts);
+      const engine = await this.dependencies.resolveEngine(session, resolvedOpts);
+      if (engine.selection.model && engine.selection.model !== resolvedOpts.model) {
+        resolvedOpts = { ...resolvedOpts, model: engine.selection.model };
+      }
+      if (engine.port.descriptor.capabilities.tools) {
         assertKnownAgentSdkTools(input.sessionId, resolvedOpts);
       }
 
@@ -295,11 +250,18 @@ export class TurnEngine {
           : input.message;
       const turnContentBlocks = hasExecutableAttachment ? contentBlocks : undefined;
       const turnId = `turn_${randomUUID()}`;
+      const engineInput: AgentEngineRunInput = {
+        session,
+        message: turnMessage,
+        opts: effectiveOpts,
+        contentBlocks: turnContentBlocks,
+        turnId
+      };
 
       // Acceptance belongs to the route-independent lifecycle boundary. Persist the
-      // raw user-authored text before provider iteration starts so replay can recover
-      // an accepted message even when the provider never yields. appendHarnessEvent
-      // applies the configured secret redaction policy before writing JSONL.
+      // raw user-authored text before provider preflight or iteration starts so replay
+      // can recover an accepted message even when discovery/authentication fails before
+      // a prompt is transmitted. appendHarnessEvent applies configured-key redaction.
       await appendHarnessEvent(
         createHarnessEvent({
           sessionId: input.sessionId,
@@ -313,13 +275,36 @@ export class TurnEngine {
         })
       );
 
-      const agentSdkManager = this.dependencies.agentSdkManager as TurnEngineAgentSdkManager;
+      try {
+        await engine.port.preflight(engineInput);
+      } catch (error) {
+        const failure = asHarnessError(error);
+        await appendHarnessEvent(
+          createHarnessEvent({
+            sessionId: input.sessionId,
+            turnId,
+            type: 'turn.failed',
+            data: {
+              turnId,
+              adapterId: engine.selection.adapterId,
+              providerId: engine.selection.providerId,
+              model: engine.selection.model,
+              errorType: failure.type,
+              status: failure.status,
+              message: failure.message,
+              phase: 'preflight'
+            }
+          })
+        );
+        throw failure;
+      }
+      this.activeSessionEngines.set(input.sessionId, engine.port);
 
       return {
         sessionId: input.sessionId,
         events: this.streamTurn({
           session,
-          providerMode,
+          engine,
           message: turnMessage,
           opts: effectiveOpts,
           contentBlocks: turnContentBlocks,
@@ -346,53 +331,66 @@ export class TurnEngine {
                 }
               })
             );
-            await agentSdkManager.cancel?.(input.sessionId);
+            await (engine.port as AgentEnginePort & {
+              cancel?(sessionId: string): Promise<void>;
+            }).cancel?.(input.sessionId);
           } catch {
             // Stream cancellation is best-effort; the route still needs the lock released.
           } finally {
+            this.activeSessionEngines.delete(input.sessionId);
             releaseTurnLock();
           }
         }
       };
     } catch (error) {
+      this.activeSessionEngines.delete(input.sessionId);
       releaseTurnLock();
       throw error;
     }
   }
 
   async interrupt(sessionId: string): Promise<void> {
-    await this.dependencies.agentSdkManager.interrupt(sessionId);
-  }
-
-  private hasAnthropicApiKeyConfigured(): boolean {
-    return (
-      this.hasUiApiKey() ||
-      Boolean(
-        asNonEmptyString(this.env.ANTHROPIC_API_KEY) ??
-          asNonEmptyString(this.env.CHIRALITY_ANTHROPIC_API_KEY)
-      )
-    );
+    const activeEngine = this.activeSessionEngines.get(sessionId);
+    if (activeEngine) {
+      await activeEngine.interrupt(sessionId);
+      return;
+    }
+    throw new HarnessError('SESSION_NOT_FOUND', 404, `No active turn for session '${sessionId}'`, {
+      sessionId
+    });
   }
 
   private async *streamTurn(input: StreamTurnInput): AsyncIterable<UIEvent> {
     try {
-      for await (const event of (this.dependencies.agentSdkManager as TurnEngineAgentSdkManager).startTurn(
-        input.session,
-        input.message,
-        input.opts,
-        input.contentBlocks,
-        input.turnId
-      )) {
+      for await (const event of input.engine.port.startTurn({
+        session: input.session,
+        message: input.message,
+        opts: input.opts,
+        contentBlocks: input.contentBlocks,
+        turnId: input.turnId
+      })) {
         if (event.type === 'session:init') {
-          const engineSessionId = event.data.engineSessionId ?? event.data.claudeSessionId;
+          const engineSessionId = event.data.engineSessionId;
+          const isClaude = event.data.providerId === 'anthropic';
           await this.dependencies.sessionManager.save(input.session.sessionId, {
             engineSessionId,
-            claudeSessionId: event.data.claudeSessionId,
+            engineSelection: {
+              adapterId: event.data.adapterId,
+              providerId: event.data.providerId,
+              model: event.data.model
+            },
+            adapterSession: {
+              ...input.session.adapterSession,
+              engineSessionId,
+              packageName: input.engine.port.descriptor.packageName,
+              packageVersion: input.engine.port.descriptor.packageVersion
+            },
+            ...(isClaude ? { claudeSessionId: event.data.claudeSessionId } : {}),
             model: event.data.model,
-            ...(input.providerMode === 'agentSdk'
+            ...(event.data.adapterId === 'claude-agent-sdk'
               ? {
                   sdkSessionId: engineSessionId,
-                  sdkPackageVersion: this.sdkPackageVersion
+                  sdkPackageVersion: input.engine.port.descriptor.packageVersion
                 }
               : {})
           });
@@ -429,6 +427,7 @@ export class TurnEngine {
         }
       };
     } finally {
+      this.activeSessionEngines.delete(input.session.sessionId);
       input.releaseTurnLock();
     }
   }

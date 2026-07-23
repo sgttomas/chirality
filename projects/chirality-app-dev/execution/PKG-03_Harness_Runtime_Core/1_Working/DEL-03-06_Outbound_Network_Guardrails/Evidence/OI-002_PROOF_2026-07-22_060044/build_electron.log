@@ -1,0 +1,3 @@
+
+> chirality-frontend@0.1.0 build:electron
+> tsc -p tsconfig.electron.json
