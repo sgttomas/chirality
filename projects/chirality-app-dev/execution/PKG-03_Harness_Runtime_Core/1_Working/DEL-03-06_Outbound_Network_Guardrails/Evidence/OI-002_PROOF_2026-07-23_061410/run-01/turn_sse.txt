@@ -1,0 +1,23 @@
+event: harness:event
+data: {"sessionId":"65a22eda-b81c-4869-9a12-37a814272faf","turnId":"deeb8210-c77d-4499-9b77-550757ab82d2","type":"turn.accepted","data":{"message":"DEL-03-06 OI-002 proof run run-01"},"schemaVersion":1,"eventId":"07e67124-8fa9-46f6-a3ae-ffda1a849652","timestamp":"2026-07-23T06:14:15.973Z"}
+
+event: session:init
+data: {"engineSessionId":"stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e","adapterId":"stub","providerId":"stub","model":"haiku"}
+
+event: chat:delta
+data: {"text":"DEL-03-06 OI-002 proof r"}
+
+event: chat:delta
+data: {"text":"un run-01"}
+
+event: chat:complete
+data: {"text":"DEL-03-06 OI-002 proof run run-01"}
+
+event: session:complete
+data: {}
+
+event: harness:event
+data: {"sessionId":"65a22eda-b81c-4869-9a12-37a814272faf","turnId":"deeb8210-c77d-4499-9b77-550757ab82d2","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"35857a40-62fb-43d7-b765-7761f146fc02","timestamp":"2026-07-23T06:14:16.066Z"}
+
+event: process:exit
+data: {"exitCode":0}

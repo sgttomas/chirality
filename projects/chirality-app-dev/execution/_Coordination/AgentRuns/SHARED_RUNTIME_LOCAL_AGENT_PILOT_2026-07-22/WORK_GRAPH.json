@@ -53,7 +53,7 @@
       "brief": "LAUNCH_BRIEF_G1_RUNTIME.md",
       "actualModel": "gpt-5.6-sol",
       "writeScope": ["runtime/** excluding integration-owned lockfile fan-in"],
-      "status": "READY"
+      "status": "COMPLETED"
     },
     {
       "id": "G2",
@@ -62,7 +62,7 @@
       "brief": "LAUNCH_BRIEF_G2_PEC.md",
       "actualModel": "gpt-5.6-sol",
       "writeScope": ["projects/pec/** implementation and tests only"],
-      "status": "READY"
+      "status": "COMPLETED"
     },
     {
       "id": "G3",
@@ -76,7 +76,7 @@
         "public export",
         "cross-package validation"
       ],
-      "status": "BLOCKED"
+      "status": "COMPLETED"
     },
     {
       "id": "G4",
@@ -85,7 +85,7 @@
       "brief": "Read-only conformance, security, Claude regression, and PEC RBAC audit",
       "actualModel": "gpt-5.6-sol",
       "writeScope": [],
-      "status": "BLOCKED"
+      "status": "COMPLETED"
     },
     {
       "id": "G5",
@@ -94,7 +94,7 @@
       "brief": "Full validation, opt-in live proof where safe, scoped commits, push, and PR",
       "actualModel": "gpt-5.6-sol",
       "writeScope": ["validation evidence, closeout receipts, Git branch and PR"],
-      "status": "BLOCKED"
+      "status": "COMPLETED"
     }
   ]
 }

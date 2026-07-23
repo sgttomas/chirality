@@ -35,6 +35,7 @@ ROOT_DIRS = [
     "tools",
     "docs",
     "init",
+    "runtime",
 ]
 
 EXCLUDED_PUBLIC_PATHS = {

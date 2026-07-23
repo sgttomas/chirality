@@ -1,0 +1,78 @@
+{
+  "status": 200,
+  "ok": true,
+  "raw": "event: harness:event\ndata: {\"sessionId\":\"65a22eda-b81c-4869-9a12-37a814272faf\",\"turnId\":\"deeb8210-c77d-4499-9b77-550757ab82d2\",\"type\":\"turn.accepted\",\"data\":{\"message\":\"DEL-03-06 OI-002 proof run run-01\"},\"schemaVersion\":1,\"eventId\":\"07e67124-8fa9-46f6-a3ae-ffda1a849652\",\"timestamp\":\"2026-07-23T06:14:15.973Z\"}\n\nevent: session:init\ndata: {\"engineSessionId\":\"stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e\",\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"}\n\nevent: chat:delta\ndata: {\"text\":\"DEL-03-06 OI-002 proof r\"}\n\nevent: chat:delta\ndata: {\"text\":\"un run-01\"}\n\nevent: chat:complete\ndata: {\"text\":\"DEL-03-06 OI-002 proof run run-01\"}\n\nevent: session:complete\ndata: {}\n\nevent: harness:event\ndata: {\"sessionId\":\"65a22eda-b81c-4869-9a12-37a814272faf\",\"turnId\":\"deeb8210-c77d-4499-9b77-550757ab82d2\",\"type\":\"turn.completed\",\"data\":{},\"schemaVersion\":1,\"eventId\":\"35857a40-62fb-43d7-b765-7761f146fc02\",\"timestamp\":\"2026-07-23T06:14:16.066Z\"}\n\nevent: process:exit\ndata: {\"exitCode\":0}\n\n",
+  "events": [
+    {
+      "event": "harness:event",
+      "rawData": "{\"sessionId\":\"65a22eda-b81c-4869-9a12-37a814272faf\",\"turnId\":\"deeb8210-c77d-4499-9b77-550757ab82d2\",\"type\":\"turn.accepted\",\"data\":{\"message\":\"DEL-03-06 OI-002 proof run run-01\"},\"schemaVersion\":1,\"eventId\":\"07e67124-8fa9-46f6-a3ae-ffda1a849652\",\"timestamp\":\"2026-07-23T06:14:15.973Z\"}",
+      "data": {
+        "sessionId": "65a22eda-b81c-4869-9a12-37a814272faf",
+        "turnId": "deeb8210-c77d-4499-9b77-550757ab82d2",
+        "type": "turn.accepted",
+        "data": {
+          "message": "DEL-03-06 OI-002 proof run run-01"
+        },
+        "schemaVersion": 1,
+        "eventId": "07e67124-8fa9-46f6-a3ae-ffda1a849652",
+        "timestamp": "2026-07-23T06:14:15.973Z"
+      }
+    },
+    {
+      "event": "session:init",
+      "rawData": "{\"engineSessionId\":\"stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e\",\"adapterId\":\"stub\",\"providerId\":\"stub\",\"model\":\"haiku\"}",
+      "data": {
+        "engineSessionId": "stub_eadad191-2b39-4ccf-b5dd-5f22faea8d3e",
+        "adapterId": "stub",
+        "providerId": "stub",
+        "model": "haiku"
+      }
+    },
+    {
+      "event": "chat:delta",
+      "rawData": "{\"text\":\"DEL-03-06 OI-002 proof r\"}",
+      "data": {
+        "text": "DEL-03-06 OI-002 proof r"
+      }
+    },
+    {
+      "event": "chat:delta",
+      "rawData": "{\"text\":\"un run-01\"}",
+      "data": {
+        "text": "un run-01"
+      }
+    },
+    {
+      "event": "chat:complete",
+      "rawData": "{\"text\":\"DEL-03-06 OI-002 proof run run-01\"}",
+      "data": {
+        "text": "DEL-03-06 OI-002 proof run run-01"
+      }
+    },
+    {
+      "event": "session:complete",
+      "rawData": "{}",
+      "data": {}
+    },
+    {
+      "event": "harness:event",
+      "rawData": "{\"sessionId\":\"65a22eda-b81c-4869-9a12-37a814272faf\",\"turnId\":\"deeb8210-c77d-4499-9b77-550757ab82d2\",\"type\":\"turn.completed\",\"data\":{},\"schemaVersion\":1,\"eventId\":\"35857a40-62fb-43d7-b765-7761f146fc02\",\"timestamp\":\"2026-07-23T06:14:16.066Z\"}",
+      "data": {
+        "sessionId": "65a22eda-b81c-4869-9a12-37a814272faf",
+        "turnId": "deeb8210-c77d-4499-9b77-550757ab82d2",
+        "type": "turn.completed",
+        "data": {},
+        "schemaVersion": 1,
+        "eventId": "35857a40-62fb-43d7-b765-7761f146fc02",
+        "timestamp": "2026-07-23T06:14:16.066Z"
+      }
+    },
+    {
+      "event": "process:exit",
+      "rawData": "{\"exitCode\":0}",
+      "data": {
+        "exitCode": 0
+      }
+    }
+  ]
+}

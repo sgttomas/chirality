@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "chirality.agent-run/v1",
+  "runId": "882701a0-ac8a-4521-aab0-a3b21ce94b2a",
+  "projectId": "chirality-app-dev",
+  "managerSessionId": "5f4930f5-de6d-4252-a9af-4e8c3a886860",
+  "managerAgentId": "WORKING_ITEMS",
+  "managerSelection": {
+    "adapterId": "stub",
+    "providerId": "stub",
+    "model": "haiku"
+  },
+  "sealedBrief": "Delegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.",
+  "briefHash": "3486d8d9b64b203bc369374bb6badfe4e659078c227dcb4337a3ee01d84b1c0f",
+  "status": "failed",
+  "approvalReference": "owner-accepted-live-pilot-2026-07-22",
+  "createdAt": "2026-07-23T04:56:59.495Z",
+  "completedAt": "2026-07-23T04:57:00.482Z",
+  "child": {
+    "sessionId": "fc94d91d-912a-42a4-8eb2-034c1eb8c80a",
+    "role": "agent2",
+    "selection": {
+      "adapterId": "pi",
+      "providerId": "omlx",
+      "model": "Qwen3.6-35B-A3B-8bit"
+    },
+    "residencyEpoch": "1d6ab190-b679-4510-8f90-3849cad2d5b2",
+    "sealedBrief": "You are the governed Agent 1 manager.\nPrepare a concise sealed brief for one read-only Agent 2 worker.\nThe worker has exactly one read_file tool and cannot delegate.\nReturn only the brief.\n\nDelegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.You are the governed Agent 1 manager.\nPrepare a concise sealed brief for one read-only Agent 2 worker.\nThe worker has exactly one read_file tool and cannot delegate.\nReturn only the brief.\n\nDelegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.",
+    "sealedBriefHash": "ff6948c2d1c463d1dfb5da0775a60061066efb89a33a15b53bd17d0f79aeae42",
+    "permissions": [
+      "read"
+    ],
+    "tool": "read_file",
+    "status": "failed"
+  },
+  "failureCode": "ENGINE_UNAVAILABLE"
+}

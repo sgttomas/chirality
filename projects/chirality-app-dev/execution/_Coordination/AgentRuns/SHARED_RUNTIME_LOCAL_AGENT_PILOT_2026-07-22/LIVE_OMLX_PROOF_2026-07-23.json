@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "chirality.live-proof/v1",
+  "generatedAt": "2026-07-23T06:03:30.000Z",
+  "projectId": "chirality-app-dev",
+  "credentialMaterialPersisted": false,
+  "rawAuthenticatedUrlsPersisted": false,
+  "models": [
+    {
+      "id": "Qwen3.6-35B-A3B-8bit",
+      "successfulRunIds": [
+        "2bc97f83-b784-40b7-abdf-86303668f5a4",
+        "0107f526-93b7-4fe6-910b-7b9d9806f469",
+        "b75c9ecb-2be1-4730-a20c-b7cbc2c67ea9"
+      ]
+    },
+    {
+      "id": "Qwen3.5-122B-A10B-4bit",
+      "successfulRunIds": [
+        "ff22d588-e3c8-4816-9ca4-7d1444dc5a86"
+      ],
+      "interruptedRunId": "b7685a98-5285-42d0-897b-9fe2da2d257f"
+    }
+  ],
+  "residency": {
+    "initial35bEpoch": "1d6ab190-b679-4510-8f90-3849cad2d5b2",
+    "model122bEpoch": "db2634ff-1eef-4510-8018-3b3c86346981",
+    "restored35bEpoch": "78770294-da23-49c0-b913-d3c1d268d527",
+    "finalModelId": "Qwen3.6-35B-A3B-8bit"
+  },
+  "failClosedCases": [
+    {
+      "runId": "c20be5e6-a897-4fe6-8825-e9a1365c00ac",
+      "code": "REQUIRED_DELEGATION_MISSING",
+      "basis": "model prose claimed a read without an in-process read_file completion receipt"
+    },
+    {
+      "runId": "53986da2-57b3-407f-b9be-4843a9660862",
+      "code": "INTERRUPTED",
+      "basis": "client disconnect propagated interruption and released the run"
+    }
+  ],
+  "finalPositiveRun": {
+    "runId": "b75c9ecb-2be1-4730-a20c-b7cbc2c67ea9",
+    "managerSessionId": "67e39707-e75a-4097-abf4-23f886775f9c",
+    "childSessionId": "9de76d12-c243-48e1-b6ce-47501ae9eeae",
+    "adapterId": "pi",
+    "providerId": "omlx",
+    "model": "Qwen3.6-35B-A3B-8bit",
+    "residencyEpoch": "78770294-da23-49c0-b913-d3c1d268d527",
+    "tool": "read_file",
+    "permission": "read",
+    "toolLifecycle": [
+      "tool.permission",
+      "tool.started",
+      "tool.completed"
+    ],
+    "terminal": "turn.completed",
+    "processExit": 0
+  }
+}

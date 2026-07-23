@@ -1,13 +1,15 @@
 # SCA-APP-003 Handoff State
 
 **Package role:** immutable governance-propagation snapshot / implementation handoff
-**Status:** `GOVERNANCE_PROPAGATION_CLOSED_IMPLEMENTATION_OPEN`
+**Status:** `IMPLEMENTATION_VALIDATED_PR_MERGE_PENDING`
 **Accepted snapshot:** `execution/_ScopeChange/SCA-APP-003_2026-07-22_Shared_Runtime_Local_Agent_Pilot/`
-**Closure verdict:** `OPEN_PENDING_DERIVATIVE_CLOSURE`
+**Closure verdict:** `BOUNDED_PILOT_COMPLETE_MERGE_PENDING`
 
-The closure verdict applies only to Gate 4 governance propagation. Gate 5
-implementation, validation, packaging, pilots, and export remain open and
-cannot be inferred from this handoff.
+The closure verdict covers the bounded shared-runtime implementation, automated
+validation, packaging proofs, public-export boundary, and opt-in local-model
+pilot. It does not authorize release, publication, professional reliance, PEC
+production use, or lifecycle advancement. Pull-request review and merge remain
+open.
 
 ## Accepted upstream snapshots
 
@@ -24,12 +26,12 @@ cannot be inferred from this handoff.
 | Field | Value | Evidence |
 |---|---|---|
 | `DecompositionTruthState` | COMPLETE | DEC-019 and OI-007 carry the amendment without topology change. |
-| `DerivativePackageState` | INCOMPLETE | Governance-local derivatives are in parity, but the accepted amendment explicitly requires later runtime, pilot, packaging, and export derivatives before SCOPE_CHANGE closure. |
+| `DerivativePackageState` | COMPLETE_FOR_BOUNDED_PILOT | Runtime, Desktop, CLI, PEC, packaging, pilot, and export derivatives are present and validated; release derivatives are outside this ruling. |
 | `ContentRemediationState` | NOT_REQUIRED | This is a SOFTWARE scope change; no KTY remediation applies. |
-| `DownstreamRerunState` | FROZEN | Runtime, packaging, pilot, security, regression, and export checks have not run for this amendment. |
+| `DownstreamRerunState` | PASS | Runtime, packaging, pilot, security, regression, authority, and export checks passed on the implementation branch. |
 | `MetadataAlignmentState` | NOT_REQUIRED | No DOMAIN KTY metadata transition is involved; implementation evidence is tracked as downstream work rather than KTY metadata alignment. |
-| `AuditState` | NON_BLOCKING_PASS | The independent G0A re-audit accepted the remediated packet; corpus v14 and the cumulative supersession map pass deterministically. |
-| `ReadyForNextPhase` | REGEN_ONLY | G1-G3 implementation and derivative generation may proceed; this does not authorize Phase 7, publication, release, or lifecycle advancement. |
+| `AuditState` | ACCEPTED | G0A accepted governance reconciliation and G4 independently accepted the final runtime reliability controls. |
+| `ReadyForNextPhase` | PR_REVIEW | The bounded pilot may proceed to PR review; this does not authorize publication, release, production PEC use, or lifecycle advancement. |
 
 ## Derivative-package currency
 
@@ -39,8 +41,8 @@ cannot be inferred from this handoff.
 | SCA-APP-003 coverage, supersession, impact, and action records | G0 integration owner | CURRENT for Gate 4 | This accepted snapshot; 11-row cumulative map with zero findings | Preserve as the immutable governance input to G1-G5. |
 | Affected app deliverable `_STATUS.md` records | Existing package managers | CURRENT for governance | `Execution_Deliverable_Impact.csv`; dated Remaining entries | Add only dated, validated implementation evidence; do not advance lifecycle state. |
 | Root/app/domain/PEC narrative and decision surfaces | Root integration owner and project managers | CURRENT for accepted governance scope | Registered rulings and `Amendment_Actions.csv` | Re-audit after implementation fan-in for accidental authority drift. |
-| Runtime, Desktop, CLI, PEC pilot, package, security, and regression evidence | G1-G5 owners | DEFERRED | Gate 5 remains `PENDING` | Generate and validate in G1-G5. |
-| Public exporter allowlist, generated manifest, and export report | G3/G5 integration owner | DEFERRED | D-GOV-20 and exporter README boundary | Change only after the generic runtime exists and both pilots pass. |
+| Runtime, Desktop, CLI, PEC pilot, package, security, and regression evidence | G1-G5 owners | CURRENT_FOR_BOUNDED_PILOT | Coordination returns, runtime AgentRuns, automated suites, packaged proofs, and redacted live proof | Re-run if implementation changes during PR review. |
+| Public exporter allowlist, generated manifest, and export report | G3/G5 integration owner | CURRENT | Generic runtime is exported; private PEC/Piping adapters, credentials, machine state, and project evidence remain excluded. | Re-run if the public boundary changes. |
 
 ## Active implementation surfaces
 
@@ -49,8 +51,8 @@ cannot be inferred from this handoff.
 | App authority corpus and governed `_REFERENCES.md` | RECOMPUTE | CURRENT at v14 | Corpus status/audit pass with all eight sources matched. |
 | App decomposition and affected `_STATUS.md` records | DIRECT_EDIT | CURRENT_FOR_GOVERNANCE | DEC-019, OI-007, and the impact register preserve topology/lifecycle state. |
 | Root/app/domain/PEC decision and narrative surfaces | DIRECT_EDIT | CURRENT_FOR_GOVERNANCE | D-GOV-20, D-APP-73, D-T0-23, D-PEC-56, and registered propagation edits. |
-| `runtime/` and Desktop/PEC implementation | NO_CHANGE | DEFERRED_TO_G1_G3 | G0 made no code or dependency changes; `RUN_SUMMARY.md` records the boundary. |
-| Public exporter allowlist and generated outputs | NO_CHANGE | DEFERRED_TO_G3_G5 | G0 left the exporter unchanged so it remains operational before `runtime/` exists. |
+| `runtime/` and Desktop/PEC implementation | DIRECT_EDIT | IMPLEMENTED_AND_VALIDATED | Root runtime, daemon clients, Desktop settings/proxies, and PEC adapter/client seam. |
+| Public exporter allowlist and generated outputs | RECOMPUTE | CURRENT | Exporter includes generic `runtime/`; boundary scan excludes private projects and runtime state. |
 
 ## KTY remediation and metadata alignment
 
@@ -78,20 +80,18 @@ KTY metadata alignment is likewise `NOT_REQUIRED`.
 
 ## Remaining blockers and exclusions
 
-- G1-G5 implementation and all behavioral validation remain open.
+- Pull-request review and merge remain open; source changes during review
+  require proportional reruns.
 - D-PEC-49 remains awaiting ruling; PEC production data and mutation are out of
   scope.
 - T0 product-authority rebaseline remains open.
 - Piping, automatic scheduling, local Agent 1, forced or automatic switching,
   and multiple primary local models remain future milestones.
-- Exporter allowlist and generated export artifacts remain unchanged until the
-  generic runtime exists and the prescribed pilots pass.
 
 ## Next owning workflows
 
-- G0A accepted this remediated governance packet without writes.
-- G1 owns bounded `runtime/` implementation and G2 owns bounded PEC adapter
-  migration; the integration owner serializes shared contracts, lockfiles,
-  Desktop cutover, and fan-in.
-- G4 performs independent security/regression review; G5 owns final validation,
-  scoped closeout, branch push, and pull request.
+- G0/G0A governance reconciliation is complete.
+- G1 runtime, G2 PEC migration, and G3 integration fan-in are complete.
+- G4 independent security/regression review accepted the final remediation.
+- G5 validation and scoped implementation closeout are complete; branch push,
+  pull-request review, and merge remain.

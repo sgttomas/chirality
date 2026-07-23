@@ -1,0 +1,8 @@
+{"timestamp":"2026-07-23T06:14:15.462Z","label":"startup_next","processLabel":"next","pid":94635,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-07-23T06:14:15.536Z","label":"startup_electron","processLabel":"electron","pid":94657,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-07-23T06:14:15.823Z","label":"post_boot_next","processLabel":"next","pid":94635,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-07-23T06:14:15.878Z","label":"post_boot_electron","processLabel":"electron","pid":94657,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-07-23T06:14:16.077Z","label":"post_turn_next","processLabel":"next","pid":94635,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-07-23T06:14:16.135Z","label":"post_turn_electron","processLabel":"electron","pid":94657,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-07-23T06:14:17.183Z","label":"idle_1s_next","processLabel":"next","pid":94635,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-07-23T06:14:17.258Z","label":"idle_1s_electron","processLabel":"electron","pid":94657,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}

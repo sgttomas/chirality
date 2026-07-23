@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "chirality.agent-run/v1",
+  "runId": "709c021a-f1e7-4004-81e0-6e0737f103ca",
+  "projectId": "chirality-app-dev",
+  "managerSessionId": "78f579d7-6850-4a23-8b70-0c16961549e8",
+  "managerAgentId": "WORKING_ITEMS",
+  "managerSelection": {
+    "adapterId": "stub",
+    "providerId": "stub",
+    "model": "haiku"
+  },
+  "sealedBrief": "Delegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.",
+  "briefHash": "3486d8d9b64b203bc369374bb6badfe4e659078c227dcb4337a3ee01d84b1c0f",
+  "status": "completed",
+  "approvalReference": "owner-accepted-live-pilot-2026-07-22",
+  "createdAt": "2026-07-23T05:09:51.802Z",
+  "completedAt": "2026-07-23T05:10:14.243Z",
+  "child": {
+    "sessionId": "1efcedc8-04d0-45b0-ab5e-81e8e064ef35",
+    "role": "agent2",
+    "selection": {
+      "adapterId": "pi",
+      "providerId": "omlx",
+      "model": "Qwen3.6-35B-A3B-8bit"
+    },
+    "residencyEpoch": "1d6ab190-b679-4510-8f90-3849cad2d5b2",
+    "sealedBrief": "You are the governed Agent 1 manager.\nPrepare a concise sealed brief for one read-only Agent 2 worker.\nThe worker has exactly one read_file tool and cannot delegate.\nReturn only the brief.\n\nDelegate exactly one bounded read-only child task to the explicitly authorized\nlocal model. Ask the child to read `chirality.project.json` with the supplied\nChirality tool and report the manifest schema version, project ID, and enabled\nadapter IDs. Review the child return against the tool evidence. Accept it only\nwhen those facts match the file; otherwise reject it with a concise reason.",
+    "sealedBriefHash": "27aa6c519712bde976f1ef790343e450c212980c63529c8a6d44d2e3fa0b7104",
+    "returnHash": "06a3dbb729ba9295629c4cc91bfba9f6e90a647739315138b5aeb07a56cec412",
+    "evidenceReference": {
+      "projectId": "chirality-app-dev",
+      "sessionId": "1efcedc8-04d0-45b0-ab5e-81e8e064ef35",
+      "source": "canonical-session-events"
+    },
+    "acceptance": {
+      "decision": "rejected",
+      "rationaleHash": "d04556adc20d7f76bca992589c71bc10301032e3b08eadc4745d829ce3643e83"
+    },
+    "permissions": [
+      "read"
+    ],
+    "tool": "read_file",
+    "status": "completed"
+  },
+  "review": {
+    "decision": "rejected",
+    "rationaleHash": "d04556adc20d7f76bca992589c71bc10301032e3b08eadc4745d829ce3643e83"
+  }
+}
