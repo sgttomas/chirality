@@ -1,118 +1,92 @@
-# @pec/agent-sidecar
+# @pec/agent-sidecar — deterministic project adapter
 
-The built-in pec agent (D-PEC-17; D-PEC-16 O-A, runtime RT-B): a separate
-local Node process that logs into pec as an **owner-provisioned agent person**
-and drives pec exclusively through the RBAC'd HTTP API via a bounded client.
-Zero runtime dependencies (mirrors `@pec/server`, ADR-002 posture).
+Under D-T0-23/D-PEC-56 this package no longer owns an LLM, credential-provider,
+conversation, session, delegation, interruption, or model-residency loop. Its
+production entrypoint is a loopback-only deterministic PEC project adapter for
+the root Chirality runtime.
 
-## What it can and cannot do
+The package name is retained for one migration cycle. The backend's historical
+`/api/projects/:pid/agent/*` route now proxies to the shared daemon, not to this
+process.
 
-- Can: file CSV/TSV/plain-tabular and `.xlsx` import proposals (D-PEC-42 O-A:
-  zero-dependency workbook parser in `src/xlsx.ts`; unreadable/unsupported
-  workbooks refuse with a stated basis; all sheets ride the proposal payload
-  verbatim), refresh/withdraw its own proposals, triage
-  intake items **with grounds** (`parked` / `duplicate` / `rejected` only),
-  report status, read the enumerated surfaces — and, on the owner-selected
-  `broad` access basis (D-T0-21 O-B), read everything the agent person's own
-  RBAC shows over the existing GET routes: project overview, the registers
-  (deliverables, packages, plan, my-week, holds, approvals, decisions, risks,
-  tracker, interfaces, log), record history, revision explanations, and the
-  sponsor-brief / package-pack report payloads (D-PEC-20).
-- Cannot (structurally — no method, URL denylist, payload guard, and pec RBAC;
-  **excluded regardless of access basis**): accept, apply, reject others'
-  proposals, use `force`, record approval / decision / check outcomes, or
-  create approval records via conversion (GOV MAJOR-1). Accept/apply stay
-  human acts in Admin.
+## Retained authority boundary
+
+The adapter logs in as an owner-provisioned PEC agent person and invokes PEC
+only through the existing RBAC HTTP API:
+
+- the person must be non-admin and must not hold `import.accept`;
+- all reads remain limited to that person's project membership and visibility;
+- deterministic proposal, own-withdrawal, bounded triage, report, and read acts
+  retain their previous guards;
+- accept/apply, reject-of-others, `force`, approval/decision/check outcomes,
+  waiver, issue, access change, attestation, and consequence closure are absent
+  from the adapter dispatch table;
+- the low-level client denylist, payload guards, and PEC server RBAC provide
+  independent defense in depth.
+
+The shared runtime decides which adapter acts, if any, a governed session
+receives. The first local-agent pilot remains read-only and scratch/demo-only.
+
+## HTTP surface
+
+The process listens on `127.0.0.1` only:
+
+```text
+GET  /adapter/health
+POST /adapter/execute  { "pid": 1, "act": "intake.summary", "input": {} }
+```
+
+The retired `/agent/health` and `/agent/messages` paths return
+`410 AGENT_RUNTIME_MIGRATED`; they never start a second execution loop.
+
+Declared deterministic acts:
+
+```text
+import.propose       import.refresh       import.withdraw
+import.status        intake.triage        intake.summary
+screen.read          read.overview        read.register
+read.history         read.explain         read.report
+report.draftDocx
+```
+
+Human-only acts are intentionally not declared.
 
 ## Environment
 
-```
-PEC_AGENT_ENGINE=stub|sdk      # default stub; sdk needs the package + ANTHROPIC_API_KEY
-PEC_AGENT_ACCESS=enumerated|broad   # default enumerated (D-T0-20 clamp exactly as ruled);
-                               # broad = RBAC-visible reads for model-provider engines too —
-                               # an owner act per launch (D-T0-21 O-B); disclosed in
-                               # /agent/health and the panel badge
-PEC_BASE_URL=http://127.0.0.1:4810   # loopback only — non-loopback hosts are refused
-PEC_AGENT_PORT=4812
-PEC_AGENT_EMAIL=...            # owner-provisioned agent person (is_admin=0, coordinator)
-PEC_AGENT_PASSWORD=...         # local env only; never committed, never echoed
-PEC_AGENT_URL=...              # server-side: where the proxy finds the sidecar (default http://127.0.0.1:4812)
-PEC_AGENT_MAX_ACTS=8           # per-turn act budget (owner knob, D-PEC-21 widening direction)
-PEC_AGENT_MODEL=...            # model for the SDK engine (default: the SDK's default model)
-PEC_AGENT_SESSION=hermetic|open   # default hermetic (the D-PEC-21 session exactly as ruled);
-                               # open = the harness's built-in tools + user/project/local
-                               # setting sources load — an owner act per launch for
-                               # limit-testing (D-T0-22/D-PEC-22); disclosed in /agent/health
+```text
+PEC_BASE_URL=http://127.0.0.1:4810
+PEC_ADAPTER_PORT=4812
+PEC_ADAPTER_TOKEN_FILE=/absolute/path/to/mode-0600/adapter.token
+PEC_AGENT_EMAIL=...
+PEC_AGENT_PASSWORD=...
+PEC_AGENT_ACCESS=enumerated|broad
 ```
 
-Unconfigured credentials are non-fatal: the sidecar starts, `/agent/health`
-reports `configured: false`, and messages return `503 AGENT_NOT_CONFIGURED` —
-so `npm run dev` works out of the box.
+`PEC_BASE_URL` must be loopback. Every `/adapter/*` request requires the bearer
+credential loaded from `PEC_ADAPTER_TOKEN_FILE`; the server process uses the
+same file through `PEC_PROJECT_ADAPTER_TOKEN_FILE`. The file must be a regular
+mode-`0600` file containing at least 32 non-whitespace characters. Credentials remain local environment values,
+are never returned by health, and establish the person-bound PEC session only.
+`enumerated` remains the default data-egress clamp; `broad` remains an explicit
+owner launch choice and never expands the human-act boundary.
 
-## Actor provisioning
+The historical `PEC_AGENT_ENGINE`, `PEC_AGENT_MODEL`, and `PEC_AGENT_SESSION`
+knobs are not read by the production adapter.
 
-Provision the agent as its **own person** (never a human's account, never an
-instance admin): `is_admin=0`, coordinator-class project grant
-(`import.propose` + `intake.triage`, never `import.accept`) — the
-rehearsal-01 pattern (`_DomainEngines/pec/PEC_2026-07-05_DPEC10-rehearsal-01/`).
-The sidecar refuses to operate if the logged-in person is an instance admin or
-if a `can/import.accept` probe answers allowed.
+## Run and integration
 
-## Run
+From `projects/pec`:
 
-From `projects/pec`: `npm run dev` (server + sidecar + web) or
-`npm run dev:agent` (sidecar alone).
-
-## The key-droppable seam (no source change)
-
-The engine is config-selected behind `AgentEnginePort`. The default `stub`
-engine is deterministic intent routing over the bounded acts layer — no model,
-no key, no egress. The later live-LLM enablement is dependency + key + config
-only, **zero source change**:
-
-```
-npm i @anthropic-ai/claude-agent-sdk -w agent-sidecar
-export ANTHROPIC_API_KEY=...    # never committed
-PEC_AGENT_ENGINE=sdk
+```text
+npm run dev:agent
 ```
 
-Selecting `sdk` without the package or the key fails at startup with a message
-naming exactly those steps. The SDK engine's egress class is
-`model-provider`, which arms the D-T0-20 O-B enumeration clamp in the acts
-layer (reads outside the enumerated surface are refused, never silently
-narrowed) — unless the owner selects the `broad` access basis for the launch
-(D-T0-21 O-B), in which case reads widen to the agent person's own RBAC
-visibility and any record the model reads may reach the model provider. The
-human-only acts do not move with the switch.
+Despite the temporary script name, this starts the deterministic adapter.
+The PEC backend calls the authenticated deterministic adapter first to obtain
+RBAC-filtered project context, then invokes the project-scoped shared-runtime
+client for the governed Agent 1 stream. The browser receives neither
+credential and there is no production fallback to the historical agent loop.
 
-## Turn shape (D-PEC-21)
-
-The SDK engine runs the SDK's own agentic loop: the bounded acts are exposed
-as in-process MCP tools (nothing accept/apply-shaped exists to expose), each
-handler dispatches through the same guarded acts layer, and the model reads →
-sees results → reads again (8-act budget per turn) before answering. The
-session is hermetic BY DEFAULT (`tools: []` disables every built-in tool —
-the load-bearing restrictor; `settingSources: []` keeps `~/.claude`
-settings/skills/MCP servers out; pec-tools-only `allowedTools` +
-`canUseTool` deny, belt-and-braces) — no filesystem, shell, or other tool
-reaches the model. `PEC_AGENT_SESSION=open` (owner per-launch env act,
-D-T0-22/D-PEC-22) lifts exactly those two restrictors — built-in tools and
-user/project/local setting sources load, and the model can read machine
-content as the owner's OS user, egressing to the model provider — for
-limit-testing only, never a default. The pec bounded-acts surface, act
-budget, access clamp, and human-act boundary are identical in both
-profiles.
-Conversation memory rides the REQUEST (`history: [{who, text}]`, ≤ 40 entries
-≤ 8 KiB each, sent by the panel): the sidecar stores nothing between
-requests. The stub engine keeps its deterministic single-directive routing
-and ignores `history` by design. The server proxy's message timeout defaults
-to 300 000 ms (`PEC_AGENT_MESSAGE_TIMEOUT_MS` overrides).
-
-## Shared runtime migration
-
-D-T0-23/D-PEC-56 prospectively retire this package’s independent LLM,
-credential, session, delegation, interruption, and residency ownership. Its
-durable role is the PEC project adapter for deterministic acts, RBAC,
-reporting, human-act exclusion, visibility, and data boundaries. During one
-cycle the existing endpoint may proxy to the root daemon; it must not run a
-second production loop. Proofs use scratch/demo data only.
+Historical stub/SDK loop sources and their regression harness remain isolated
+in `src/legacy-agent-test-harness.ts` for the migration cycle. The production
+entrypoint does not import that module and must never use it as fallback.

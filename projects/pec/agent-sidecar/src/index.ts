@@ -1,68 +1,72 @@
 /**
- * Sidecar entrypoint (D-PEC-17): loadConfig → engine selection ('stub'
- * default; 'sdk' via the key-droppable loader) → agent login when configured
- * (fatal on misprovisioning, rider 3) → loopback-only listen.
+ * PEC deterministic project-adapter entrypoint (D-PEC-56).
  *
- * Also exports startSidecar() for the e2e test: in-process start against a
- * harness-spawned pec server, no child processes needed.
+ * The root Chirality runtime owns models, credentials, conversations,
+ * sessions, delegation, interruption, and residency. This process owns only
+ * person-bound PEC deterministic acts and their RBAC/data-boundary guards.
  */
 
 import type { Server } from 'node:http'
+import { readFile, stat } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
-import type { SidecarConfig } from './config.ts'
-import { loadConfig } from './config.ts'
+import type { ProjectAdapterConfig } from './config.ts'
+import { loadProjectAdapterConfig } from './config.ts'
 import { PecAgentClient } from './pec-client.ts'
-import type { AgentEnginePort } from './engine/port.ts'
-import { createStubEngine } from './engine/stub.ts'
-import { createSdkEngine } from './engine/sdk.ts'
-import { createSidecarHttpServer } from './http.ts'
+import { createProjectAdapterHttpServer } from './project-adapter-http.ts'
 
-async function selectEngine(cfg: SidecarConfig): Promise<AgentEnginePort> {
-  if (cfg.engine === 'sdk') return createSdkEngine(cfg)
-  return createStubEngine()
-}
-
-export interface RunningSidecar {
+export interface RunningProjectAdapter {
   port: number
-  engine: AgentEnginePort
   client: PecAgentClient
   configured: boolean
   close(): Promise<void>
 }
 
-export async function startSidecar(cfg: SidecarConfig): Promise<RunningSidecar> {
-  const engine = await selectEngine(cfg)
+export async function startProjectAdapter(cfg: ProjectAdapterConfig): Promise<RunningProjectAdapter> {
+  const tokenStat = await stat(cfg.adapterTokenFile)
+  if (!tokenStat.isFile() || (tokenStat.mode & 0o077) !== 0) {
+    throw new Error('PEC adapter credential file must be a regular mode-0600 file')
+  }
+  const adapterToken = (await readFile(cfg.adapterTokenFile, 'utf8')).trim()
+  if (adapterToken.length < 32) {
+    throw new Error('PEC adapter credential must contain at least 32 non-whitespace characters')
+  }
   const client = new PecAgentClient(cfg)
   let configured = false
   if (cfg.agentEmail && cfg.agentPassword) {
-    // fatal on misprovisioning (AGENT_MISPROVISIONED propagates)
+    // Fatal on misprovisioning: the adapter must never impersonate a human or
+    // operate with import.accept/admin authority.
     await client.login()
     configured = true
   }
-  const server: Server = createSidecarHttpServer({ cfg, engine, client, configured })
+  const server: Server = createProjectAdapterHttpServer({
+    cfg,
+    client,
+    configured,
+    adapterToken,
+  })
   await new Promise<void>((resolve, reject) => {
     server.once('error', reject)
     server.listen(cfg.port, '127.0.0.1', resolve)
   })
-  const addr = server.address()
-  const port = typeof addr === 'object' && addr ? addr.port : cfg.port
+  const address = server.address()
+  const port = typeof address === 'object' && address ? address.port : cfg.port
   return {
-    port, engine, client, configured,
+    port,
+    client,
+    configured,
     close: () => new Promise((resolve) => server.close(() => resolve())),
   }
 }
 
-// direct execution: node src/index.ts
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const cfg = loadConfig()
-  startSidecar(cfg).then(
-    (s) => {
-      console.log(`pec agent sidecar on http://127.0.0.1:${s.port} `
-        + `(engine: ${s.engine.subject}, egress: ${s.engine.egress}, access: ${cfg.access}, `
-        + `${s.configured ? `agent: ${s.client.whoami()?.email ?? '?'}` : 'unconfigured — set PEC_AGENT_EMAIL/PEC_AGENT_PASSWORD'})`)
+  const cfg = loadProjectAdapterConfig()
+  startProjectAdapter(cfg).then(
+    (adapter) => {
+      console.log(`pec deterministic project adapter on http://127.0.0.1:${adapter.port} `
+        + `(${adapter.configured ? `agent: ${adapter.client.whoami()?.email ?? '?'}` : 'unconfigured — set PEC_AGENT_EMAIL/PEC_AGENT_PASSWORD'})`)
     },
-    (e) => {
-      console.error(`sidecar failed to start: ${e instanceof Error ? e.message : String(e)}`)
+    (error) => {
+      console.error(`project adapter failed to start: ${error instanceof Error ? error.message : String(error)}`)
       process.exit(1)
     },
   )

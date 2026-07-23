@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "chirality.project/v1",
+  "projectId": "pec",
+  "displayName": "Project Execution Coordinator",
+  "workingRoot": ".",
+  "instructionRoot": "../..",
+  "agentsOverlay": "AGENTS.md",
+  "defaultExecutionRoot": "execution",
+  "profiles": {
+    "domain": [
+      "../../_DomainEngines/profiles/pec.yaml"
+    ],
+    "capability": [],
+    "dataBoundary": []
+  },
+  "enabledAdapterIds": [
+    "claude-agent-sdk",
+    "pi"
+  ],
+  "embeddedUi": {
+    "declared": true,
+    "path": "web"
+  },
+  "legacySessionRoots": []
+}

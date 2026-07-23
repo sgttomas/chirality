@@ -82,4 +82,7 @@ PRD (see ADR-001 for governance posture).
 D-T0-23/D-PEC-56 prospectively move PEC agent engine/session/delegation
 ownership to the root Chirality daemon. PEC keeps deterministic acts, RBAC,
 human-only acts, reporting, visibility, and data boundaries as its project
-adapter. Migration validation is scratch/demo-only.
+adapter. The backend agent route is a one-cycle daemon proxy and the temporary
+`agent-sidecar` package now starts only that deterministic adapter; its
+production entrypoint has no model loop or fallback. Migration validation is
+scratch/demo-only.

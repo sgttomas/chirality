@@ -26,7 +26,13 @@ import * as plan from './services/plan.ts'
 import { exportRegister, importContract } from './import/index.ts'
 import * as proposals from './services/proposals.ts'
 import * as periods from './services/periods.ts'
-import { agentMessageStream, agentStatus, agentTargetFromEnv } from './agent-proxy.ts'
+import { agentMessageStream, agentStatus, assertScratchOrDemoDatabase, runtimeRunRequest } from './agent-proxy.ts'
+import { unavailableRuntimeClient } from './runtime-client-port.ts'
+import type { PecSharedRuntimeClientPort } from './runtime-client-port.ts'
+import {
+  unavailableProjectAdapterClient,
+  type PecProjectAdapterClientPort,
+} from './project-adapter-client.ts'
 import { sponsorBrief } from './reports/sponsor-brief.ts'
 import { packagePack } from './reports/package-pack.ts'
 import { standardReport } from './reports/standard.ts'
@@ -64,9 +70,17 @@ function isPermissionAction(action: string): action is PermissionAction {
   return (PERMISSION_ACTIONS as readonly string[]).includes(action)
 }
 
-export function buildRouter(db: Db): Router {
+export interface ApiDependencies {
+  runtimeClient?: PecSharedRuntimeClientPort
+  projectAdapterClient?: PecProjectAdapterClientPort
+}
+
+export function buildRouter(db: Db, dependencies: ApiDependencies = {}): Router {
   const r = new Router()
   const repo = new Repo(db)
+  const runtimeClient = dependencies.runtimeClient ?? unavailableRuntimeClient()
+  const projectAdapterClient =
+    dependencies.projectAdapterClient ?? unavailableProjectAdapterClient()
 
   const authed = (fn: (ctx: AuthedCtx) => unknown) => (ctx: ReqCtx) => {
     const session = requireSession(db, ctx.cookies[COOKIE_NAME])
@@ -419,21 +433,35 @@ export function buildRouter(db: Db): Router {
     return proposals.applyProposal(c.sx, idOf(c), Number(b.version), b.force === true)
   }))
 
-  // ---------- agent panel proxy (D-PEC-17: the brief's narrow "/api/agent/*" surface; exact shape /api/projects/:pid/agent/*) ----------
+  // ---------- one-cycle shared-runtime compatibility proxy ----------
   // authed (not tx): the proxy performs no local DB mutation. Project scoping comes
   // from authed's membership check plus the injected pid (the client-sent pid is
   // overwritten server-side). agent.direct gates who may DIRECT the agent; what the
   // agent can DO stays bounded by the agent person's own grant (two-key property).
   r.get('/api/projects/:pid/agent/status', authed((c) => {
     requireCan(c.sx, 'agent.direct', {})
-    return agentStatus(agentTargetFromEnv())
+    assertScratchOrDemoDatabase(db)
+    return agentStatus(runtimeClient, projectAdapterClient, c.sx.projectId)
   }))
-  r.post('/api/projects/:pid/agent/messages', authed((c) => {
+  r.post('/api/projects/:pid/agent/messages', authed(async (c) => {
     requireCan(c.sx, 'agent.direct', {})
     sameOrigin(c) // reuse the RV-21 guard on the mutation route
+    assertScratchOrDemoDatabase(db)
     const b = body(c)
-    // fresh outbound request in agent-proxy.ts: the human's cookie never reaches the sidecar
-    return agentMessageStream(agentTargetFromEnv(), { ...b, pid: c.sx.projectId }, c.res)
+    // Validate the compatibility request before invoking either external
+    // service, then rebuild it with project-owned adapter evidence.
+    runtimeRunRequest(b, c.sx.projectId, c.sx.session.personId)
+    const adapterEvidence = await projectAdapterClient.readContext(
+      c.sx.projectId,
+      b.context,
+    )
+    const request = runtimeRunRequest(
+      b,
+      c.sx.projectId,
+      c.sx.session.personId,
+      adapterEvidence,
+    )
+    return agentMessageStream(runtimeClient, request, c.res)
   }))
 
   // ---------- config ----------

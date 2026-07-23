@@ -16,7 +16,7 @@ import type { Server } from 'node:http'
 import { loadConfig, parseSessionProfile } from '../src/config.ts'
 import type { SidecarConfig } from '../src/config.ts'
 import { buildQueryOptions, PEC_TOOL_NAMES } from '../src/engine/sdk.ts'
-import { startSidecar } from '../src/index.ts'
+import { startLegacyAgentLoopForTests } from '../src/legacy-agent-test-harness.ts'
 
 type CanUseTool = (name: string, input: unknown) => Promise<{ behavior: string; message?: string }>
 
@@ -91,7 +91,7 @@ test('/agent/health states the active session profile (hermetic and open)', asyn
       engine: 'stub', access: 'enumerated', session, pecBaseUrl: base, port: 0,
       agentEmail: null, agentPassword: null,
     }
-    const s = await startSidecar(cfg)
+    const s = await startLegacyAgentLoopForTests(cfg)
     try {
       const health = await fetch(`http://127.0.0.1:${s.port}/agent/health`)
       const h = await health.json() as Record<string, unknown>

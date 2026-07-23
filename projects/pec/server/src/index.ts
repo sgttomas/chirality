@@ -12,6 +12,8 @@ import { buildRouter } from './api.ts'
 import { errorPayload, parseCookies, readBody, sendJson } from './http.ts'
 import { sweepAll } from './services/sweep.ts'
 import { withTx } from './db.ts'
+import { createPecSharedRuntimeClient } from './shared-runtime-client.ts'
+import { createPecProjectAdapterClient } from './project-adapter-client.ts'
 
 const here = fileURLToPath(new URL('.', import.meta.url))
 const DB_PATH = process.env.PEC_DB ?? join(here, '..', '..', 'pec.db')
@@ -19,7 +21,18 @@ const PORT = Number(process.env.PEC_PORT ?? 4810)
 const WEB_DIST = join(here, '..', '..', 'web', 'dist')
 
 const db = openDb(DB_PATH)
-const router = buildRouter(db)
+let runtimeClient
+let projectAdapterClient
+try {
+  runtimeClient = createPecSharedRuntimeClient()
+  projectAdapterClient = createPecProjectAdapterClient()
+} catch (error) {
+  console.warn(
+    'PEC shared runtime/project adapter is not configured; agent routes will fail closed',
+    error instanceof Error ? error.message : String(error),
+  )
+}
+const router = buildRouter(db, { runtimeClient, projectAdapterClient })
 
 const MIME: Record<string, string> = {
   '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml',

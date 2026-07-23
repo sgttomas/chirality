@@ -1,186 +1,398 @@
 /**
- * Agent proxy routes (D-PEC-17): /api/projects/:pid/agent/{status,messages}.
- * Pins: RBAC (agent.direct — 401/403/404), the RV-21 same-origin guard on the
- * mutation route, 503 AGENT_UNAVAILABLE with no sidecar listening, faithful
- * forwarding to a fake loopback sidecar with the human cookie STRIPPED and the
- * server-side pid overwriting the client-sent pid, status relay, and the
- * 6 MiB payload cap.
+ * D-PEC-56 shared-runtime compatibility proxy.
+ *
+ * Pins: PEC RBAC + same-origin boundary, one injected runtime-client path,
+ * scratch/demo-only execution, canonical SSE preservation and attribution,
+ * server-owned project/actor routing, and fail-closed daemon failures with no
+ * PEC state mutation or retired-sidecar fallback.
  */
 
 import { after, before, test } from 'node:test'
 import assert from 'node:assert/strict'
-import { createServer } from 'node:http'
-import type { Server } from 'node:http'
 import { createTestEnv } from './harness.ts'
 import type { TestEnv } from './harness.ts'
+import {
+  isScratchOrDemoDatabasePath,
+  runtimeRunRequest,
+} from '../src/agent-proxy.ts'
+import { toDaemonAgent1RunRequest } from '../src/shared-runtime-client.ts'
+import type {
+  PecHarnessEvent,
+  PecHarnessEventType,
+  PecUiEvent,
+  PecRuntimeRunRequest,
+  PecRuntimeStatusRequest,
+  PecSharedRuntimeClientPort,
+} from '../src/runtime-client-port.ts'
+import type { PecProjectAdapterClientPort } from '../src/project-adapter-client.ts'
+import { AppError } from '../src/errors.ts'
+
+const runtimeCalls: Array<
+  | { kind: 'status'; request: PecRuntimeStatusRequest }
+  | { kind: 'run'; request: PecRuntimeRunRequest }
+> = []
+let runtimeFailure: Error & { status?: number; code?: string } | null = null
+let emitted: PecUiEvent[] = []
+const adapterCalls: Array<{ kind: 'status' } | { kind: 'read'; projectId: number; context: unknown }> = []
+
+const runtimeClient: PecSharedRuntimeClientPort = {
+  async status(request) {
+    runtimeCalls.push({ kind: 'status', request })
+    if (runtimeFailure) throw runtimeFailure
+    return {
+      ok: true,
+      configured: true,
+      projectId: request.projectId,
+      daemon: { status: 'ready' },
+      engine: 'shared-runtime',
+      model: 'manager-model',
+    }
+  },
+  runAgent1(request, signal) {
+    runtimeCalls.push({ kind: 'run', request })
+    return {
+      async *[Symbol.asyncIterator]() {
+        if (runtimeFailure) throw runtimeFailure
+        for (const event of emitted) {
+          if (signal.aborted) return
+          yield event
+        }
+      },
+    }
+  },
+}
+
+const projectAdapterClient: PecProjectAdapterClientPort = {
+  async status() {
+    adapterCalls.push({ kind: 'status' })
+    return {
+      ok: true,
+      service: 'pec-project-adapter',
+      schemaVersion: 'pec.adapter/v1',
+      configured: true,
+      agent: { name: 'PEC Agent', email: 'agent@t.co' },
+    }
+  },
+  async readContext(projectId, context) {
+    adapterCalls.push({ kind: 'read', projectId, context })
+    return {
+      source: 'pec-project-adapter',
+      act: 'read.overview',
+      result: { kind: 'result', act: 'read.overview', payload: { projectId } },
+    }
+  },
+}
 
 let env: TestEnv
 let P = ''
 
-// fake loopback sidecar recording exactly what reaches it
-interface SidecarSeen { method: string; path: string; headers: Record<string, unknown>; body: unknown }
-let fake: Server
-let fakePort = 0
-const sidecarSeen: SidecarSeen[] = []
-let fakeReply: { status: number; body: unknown } = { status: 200, body: { events: [] } }
+function event(type: PecUiEvent['type'], data: Record<string, unknown> | PecHarnessEvent): PecUiEvent {
+  return {
+    type,
+    data,
+  }
+}
+
+function harnessEvent(
+  eventId: string,
+  type: PecHarnessEventType,
+  data: Record<string, unknown>,
+): PecHarnessEvent {
+  return {
+    schemaVersion: 1,
+    eventId,
+    sessionId: 'session-a1',
+    turnId: 'turn-1',
+    timestamp: '2026-07-22T00:00:00.000Z',
+    type,
+    data,
+  }
+}
 
 before(async () => {
-  env = await createTestEnv()
+  env = await createTestEnv({ runtimeClient, projectAdapterClient })
   P = `/api/projects/${env.projectId}`
-  fake = createServer(async (req, res) => {
-    const chunks: Buffer[] = []
-    for await (const c of req) chunks.push(c as Buffer)
-    let body: unknown = Buffer.concat(chunks).toString('utf8')
-    try { body = JSON.parse(body as string) } catch { /* raw */ }
-    sidecarSeen.push({ method: req.method ?? '', path: req.url ?? '', headers: { ...req.headers }, body })
-    if (fakeReply.status >= 200 && fakeReply.status < 300 && typeof fakeReply.body === 'string') {
-      res.writeHead(fakeReply.status, { 'content-type': 'text/event-stream; charset=utf-8' })
-      res.end(fakeReply.body)
-    } else {
-      res.writeHead(fakeReply.status, { 'content-type': 'application/json' })
-      res.end(JSON.stringify(fakeReply.body))
-    }
-  })
-  await new Promise<void>((resolve) => fake.listen(0, '127.0.0.1', resolve))
-  const addr = fake.address()
-  fakePort = typeof addr === 'object' && addr ? addr.port : 0
 })
+
 after(async () => {
-  delete process.env.PEC_AGENT_URL
-  await new Promise<void>((r) => fake.close(() => r()))
   await env.close()
 })
 
-const pointAtFake = () => { process.env.PEC_AGENT_URL = `http://127.0.0.1:${fakePort}` }
-const pointAtNothing = () => { process.env.PEC_AGENT_URL = 'http://127.0.0.1:1' }
+test('401 unauthenticated and 403 without agent.direct never reach the daemon client', async () => {
+  runtimeCalls.length = 0
+  adapterCalls.length = 0
+  const unauthenticated = await fetch(`${env.base}${P}/agent/status`)
+  assert.equal(unauthenticated.status, 401)
 
-test('401 unauthenticated', async () => {
-  pointAtFake()
-  const res = await fetch(`${env.base}${P}/agent/status`)
-  assert.equal(res.status, 401)
+  const contributor = await env.as('ic@t.co')
+  assert.equal((await contributor.get(`${P}/agent/status`)).status, 403)
+  assert.equal((await contributor.post(`${P}/agent/messages`, { message: 'hi' })).status, 403)
+
+  const documentController = await env.as('dc@t.co')
+  const dc = await documentController.get(`${P}/agent/status`)
+  assert.equal(dc.status, 403)
+  assert.match(dc.body.error.message, /agent.direct/)
+  assert.equal(runtimeCalls.length, 0)
+  assert.equal(adapterCalls.length, 0)
 })
 
-test('403 for members without agent.direct (contributor, document_controller); 200-path for coordinator', async () => {
-  pointAtFake()
-  const ic = await env.as('ic@t.co')
-  assert.equal((await ic.get(`${P}/agent/status`)).status, 403)
-  assert.equal((await ic.post(`${P}/agent/messages`, { message: 'hi' })).status, 403)
-  // GOV MINOR-2: document_controller proposes imports but may NOT direct the agent
-  const dc = await env.as('dc@t.co')
-  const dcRes = await dc.get(`${P}/agent/status`)
-  assert.equal(dcRes.status, 403)
-  assert.match(dcRes.body.error.message, /agent.direct/)
-  // a role that holds agent.direct passes the gate (the fake answers)
-  const coord = await env.as('coord@t.co')
-  assert.equal((await coord.get(`${P}/agent/status`)).status, 200)
-})
-
-test('404 wrong project', async () => {
-  pointAtFake()
+test('404 wrong PEC project never reaches the daemon client', async () => {
+  runtimeCalls.length = 0
+  adapterCalls.length = 0
   const admin = await env.as('admin@t.co')
-  const res = await admin.get('/api/projects/9999/agent/status')
-  assert.equal(res.status, 404)
+  const response = await admin.get('/api/projects/9999/agent/status')
+  assert.equal(response.status, 404)
+  assert.equal(runtimeCalls.length, 0)
+  assert.equal(adapterCalls.length, 0)
 })
 
-test('cross-origin POST is refused 403 (RV-21) before any forwarding', async () => {
-  pointAtFake()
-  const pm = await env.as('pm@t.co')
-  // authed cookie but a foreign Origin
+test('cross-origin POST is refused before runtime invocation', async () => {
+  runtimeCalls.length = 0
+  adapterCalls.length = 0
   const login = await fetch(`${env.base}/api/auth/login`, {
-    method: 'POST', headers: { 'content-type': 'application/json' },
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ email: 'pm@t.co', password: 'pilot' }),
   })
   const cookie = (login.headers.get('set-cookie') ?? '').split(';')[0]!
-  sidecarSeen.length = 0
-  const res = await fetch(`${env.base}${P}/agent/messages`, {
+  const response = await fetch(`${env.base}${P}/agent/messages`, {
     method: 'POST',
-    headers: { cookie, 'content-type': 'application/json', origin: 'https://evil.example.com' },
+    headers: {
+      cookie,
+      origin: 'https://evil.example.com',
+      'content-type': 'application/json',
+    },
     body: JSON.stringify({ message: 'hi' }),
   })
-  assert.equal(res.status, 403)
-  const body = await res.json() as { error: { code: string } }
-  assert.equal(body.error.code, 'CROSS_ORIGIN')
-  assert.equal(sidecarSeen.length, 0, 'nothing reached the sidecar')
-  void pm
+  assert.equal(response.status, 403)
+  assert.equal((await response.json() as { error: { code: string } }).error.code, 'CROSS_ORIGIN')
+  assert.equal(runtimeCalls.length, 0)
+  assert.equal(adapterCalls.length, 0)
 })
 
-test('503 AGENT_UNAVAILABLE when no sidecar listens', async () => {
-  pointAtNothing()
+test('status and execution use one injected runtime-client path and stable project registration', async () => {
+  runtimeFailure = null
+  runtimeCalls.length = 0
+  adapterCalls.length = 0
+  const coordinator = await env.as('coord@t.co')
+  const status = await coordinator.get(`${P}/agent/status`)
+  assert.equal(status.status, 200)
+  assert.equal(status.body.projectId, 'pec')
+  assert.equal(status.body.projectAdapter.service, 'pec-project-adapter')
+  assert.equal(status.body.configured, true)
+  assert.deepEqual(status.body.agent, { name: 'PEC Agent', email: 'agent@t.co' })
+
+  emitted = [
+    event('session:init', {
+      engineSessionId: 'manager-engine-session',
+      adapterId: 'claude-agent-sdk',
+      providerId: 'anthropic',
+      model: 'manager-model',
+    }),
+    event('harness:event', harnessEvent('evt-accepted', 'turn.accepted', { role: 'agent1' })),
+    event('harness:event', harnessEvent('evt-started', 'turn.started', { role: 'agent1' })),
+    event('chat:delta', { text: 'reviewed' }),
+    event('chat:complete', { text: 'reviewed' }),
+    event('session:complete', {}),
+    event('process:exit', { exitCode: 0 }),
+  ]
+  const response = await coordinator.post(`${P}/agent/messages`, {
+    message: 'Review the scratch PEC state',
+    pid: 424242,
+    context: { route: `/p/${env.projectId}/overview`, records: [] },
+    history: [{ who: 'you', text: 'Earlier context' }],
+  })
+  assert.equal(response.status, 200)
+
+  assert.equal(runtimeCalls.length, 2)
+  assert.deepEqual(adapterCalls, [
+    { kind: 'status' },
+    { kind: 'read', projectId: env.projectId, context: { route: `/p/${env.projectId}/overview`, records: [] } },
+  ])
+  assert.deepEqual(runtimeCalls[0], {
+    kind: 'status',
+    request: { projectId: 'pec', pecProjectId: env.projectId },
+  })
+  const run = runtimeCalls[1]
+  assert.equal(run?.kind, 'run')
+  if (run?.kind !== 'run') throw new Error('expected run')
+  assert.equal(run.request.projectId, 'pec')
+  assert.equal(run.request.role, 'agent1')
+  assert.equal(run.request.agentId, 'WORKING_ITEMS')
+  assert.deepEqual(run.request.requestedBy, {
+    pecProjectId: env.projectId,
+    personId: env.people['coord@t.co'],
+  })
+  assert.match(run.request.approvalReference, new RegExp(`^pec-ui-agent-direct:${env.projectId}:`))
+  assert.match(run.request.brief, /Review the scratch PEC state/)
+  assert.match(run.request.brief, /pec-project-adapter/)
+  assert.doesNotMatch(run.request.brief, /424242/, 'client-supplied pid is not authority')
+})
+
+test('canonical UIEvent SSE names/data and rich harness:event payloads are preserved byte-for-byte', async () => {
+  runtimeFailure = null
+  runtimeCalls.length = 0
+  emitted = [
+    event('session:init', {
+      engineSessionId: 'manager-engine-session',
+      adapterId: 'claude-agent-sdk',
+      providerId: 'anthropic',
+      model: 'manager-model',
+    }),
+    event('harness:event', harnessEvent('evt-accepted', 'turn.accepted', { role: 'agent1' })),
+    event('harness:event', harnessEvent('evt-child', 'subagent.started', {
+      childRole: 'agent2',
+      adapterId: 'pi',
+      providerId: 'omlx',
+      model: 'mlx-community/Qwen3.6-35B-A3B-8bit',
+      residencyEpoch: 'epoch-35b',
+    })),
+    event('harness:event', harnessEvent('evt-tool-start', 'tool.started', {
+      toolName: 'read_file',
+      toolUseId: 'tool-1',
+    })),
+    event('tool:result', { name: 'read_file', ok: true, output: 'fixture' }),
+    event('harness:event', harnessEvent('evt-tool-done', 'tool.completed', {
+      toolName: 'read_file',
+      toolUseId: 'tool-1',
+      ok: true,
+    })),
+    event('harness:event', harnessEvent('evt-reviewed', 'coordination.acknowledged', {
+      acceptance: 'accepted',
+    })),
+    event('chat:complete', { text: 'accepted after review' }),
+    event('harness:event', harnessEvent('evt-completed', 'turn.completed', {
+      managerText: 'accepted after review',
+    })),
+    event('session:complete', {}),
+    event('process:exit', { exitCode: 0 }),
+  ]
   const pm = await env.as('pm@t.co')
-  const res = await pm.get(`${P}/agent/status`)
-  assert.equal(res.status, 503)
-  assert.equal(res.body.error.code, 'AGENT_UNAVAILABLE')
-  const msg = await pm.post(`${P}/agent/messages`, { message: 'hi' })
-  assert.equal(msg.status, 503)
-  assert.equal(msg.body.error.code, 'AGENT_UNAVAILABLE')
-})
-
-test('forwarding: harness SSE streams, body is relayed, cookie stripped, and server pid wins', async () => {
-  pointAtFake()
-  fakeReply = { status: 200, body: 'event: turn.started\ndata: {"engine":"sdk"}\n\nevent: model.delta\ndata: {"text":"ok"}\n\nevent: turn.completed\ndata: {}\n\n' }
-  sidecarSeen.length = 0
   const login = await fetch(`${env.base}/api/auth/login`, {
-    method: 'POST', headers: { 'content-type': 'application/json' },
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ email: 'pm@t.co', password: 'pilot' }),
   })
   const cookie = (login.headers.get('set-cookie') ?? '').split(';')[0]!
-  const res = await fetch(`${env.base}${P}/agent/messages`, {
+  const response = await fetch(`${env.base}${P}/agent/messages`, {
     method: 'POST',
-    headers: { cookie, origin: env.base, 'content-type': 'application/json', accept: 'text/event-stream' },
-    body: JSON.stringify({ message: 'status', pid: 424242, context: { route: '/p/1/overview', records: [] } }),
+    headers: {
+      cookie,
+      origin: env.base,
+      accept: 'text/event-stream',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({ message: 'run the governed read-only pilot' }),
   })
-  assert.equal(res.status, 200)
-  assert.match(res.headers.get('content-type') ?? '', /^text\/event-stream/)
-  const stream = await res.text()
-  assert.match(stream, /event: turn\.started/)
-  assert.match(stream, /event: model\.delta/)
-  assert.match(stream, /event: turn\.completed/)
+  assert.equal(response.status, 200)
+  assert.match(response.headers.get('content-type') ?? '', /^text\/event-stream/)
+  const stream = await response.text()
 
-  assert.equal(sidecarSeen.length, 1)
-  const seen = sidecarSeen[0]!
-  assert.equal(seen.method, 'POST')
-  assert.equal(seen.path, '/agent/messages')
-  assert.equal((seen.body as { message: string }).message, 'status')
-  assert.deepEqual((seen.body as { context: unknown }).context, { route: '/p/1/overview', records: [] })
-  // the client-sent pid was overwritten server-side with the authed project
-  assert.equal((seen.body as { pid: number }).pid, env.projectId)
-  // NO cookie header reached the fake sidecar — the human session never leaves the server
-  assert.equal(seen.headers.cookie, undefined, 'cookie stripped')
-  assert.equal(seen.headers.authorization, undefined)
-  assert.equal(seen.headers.accept, 'text/event-stream')
-})
-
-test('sidecar non-2xx JSON is relayed with its status', async () => {
-  pointAtFake()
-  fakeReply = { status: 503, body: { error: { code: 'AGENT_NOT_CONFIGURED', message: 'set PEC_AGENT_EMAIL' } } }
-  const pm = await env.as('pm@t.co')
-  const res = await pm.post(`${P}/agent/messages`, { message: 'hi' })
-  assert.equal(res.status, 503)
-  assert.equal(res.body.error.code, 'AGENT_NOT_CONFIGURED')
-  fakeReply = { status: 200, body: { events: [] } }
-})
-
-test('payloads over the 6 MiB cap are refused, never forwarded', async () => {
-  pointAtFake()
-  sidecarSeen.length = 0
-  const pm = await env.as('pm@t.co')
-  const big = 'x'.repeat(6 * 1024 * 1024 + 1024)
-  const res = await pm.post(`${P}/agent/messages`, { message: big })
-  assert.equal(res.status, 413)
-  assert.equal(res.body.error.code, 'PAYLOAD_TOO_LARGE')
-  assert.equal(sidecarSeen.length, 0, 'nothing reached the sidecar')
-})
-
-test('message timeout (D-PEC-21): default 300 000 ms, env-overridable per request, invalid values refused', async () => {
-  const { messageTimeoutFromEnv } = await import('../src/agent-proxy.ts')
-  assert.equal(messageTimeoutFromEnv({}), 300_000)
-  assert.equal(messageTimeoutFromEnv({ PEC_AGENT_MESSAGE_TIMEOUT_MS: '120000' }), 120_000)
-  for (const bad of ['0', '-5', 'soon', '1.5']) {
-    assert.throws(
-      () => messageTimeoutFromEnv({ PEC_AGENT_MESSAGE_TIMEOUT_MS: bad }),
-      (e: unknown) => (e as { status?: number; code?: string }).status === 500
-        && (e as { code?: string }).code === 'AGENT_MISCONFIGURED',
-      `must refuse: ${bad}`,
-    )
+  const frames = stream.trim().split('\n\n')
+  assert.equal(frames.length, emitted.length)
+  for (let index = 0; index < emitted.length; index++) {
+    assert.equal(frames[index], `event: ${emitted[index]!.type}\ndata: ${JSON.stringify(emitted[index]!.data)}`)
   }
+  assert.match(stream, /"providerId":"omlx"/)
+  assert.match(stream, /"residencyEpoch":"epoch-35b"/)
+})
+
+test('buffers process exit until exhaustion and never exposes a premature success', async () => {
+  runtimeFailure = null
+  runtimeCalls.length = 0
+  emitted = [
+    event('session:init', {
+      engineSessionId: 'manager-engine-session',
+      adapterId: 'stub',
+      providerId: 'stub',
+      model: 'manager',
+    }),
+    event('process:exit', { exitCode: 0 }),
+    event('chat:complete', { text: 'illegal late event' }),
+  ]
+  const pm = await env.as('pm@t.co')
+  const response = await pm.post(`${P}/agent/messages`, {
+    message: 'exercise terminal buffering',
+  })
+  assert.equal(response.status, 200)
+  const stream = String(response.body)
+  assert.doesNotMatch(stream, /event: process:exit/)
+  assert.doesNotMatch(stream, /illegal late event/)
+})
+
+test('daemon failure fails closed with no PEC state mutation and no sidecar fallback', async () => {
+  runtimeCalls.length = 0
+  runtimeFailure = Object.assign(new Error('control socket refused'), {
+    status: 503,
+    code: 'AGENT_UNAVAILABLE',
+  })
+  const beforeHistory = Number((env.db.prepare('SELECT COUNT(*) AS n FROM history_entry').get() as { n: number }).n)
+  const beforeAudit = Number((env.db.prepare('SELECT COUNT(*) AS n FROM audit_event').get() as { n: number }).n)
+  const beforeProposals = Number((env.db.prepare('SELECT COUNT(*) AS n FROM import_proposal').get() as { n: number }).n)
+
+  const pm = await env.as('pm@t.co')
+  const response = await pm.post(`${P}/agent/messages`, { message: 'status' })
+  assert.equal(response.status, 503)
+  assert.equal(response.body.error.code, 'AGENT_UNAVAILABLE')
+  assert.match(response.body.error.message, /control socket refused/)
+  assert.equal(runtimeCalls.filter((call) => call.kind === 'run').length, 1)
+
+  assert.equal(Number((env.db.prepare('SELECT COUNT(*) AS n FROM history_entry').get() as { n: number }).n), beforeHistory)
+  assert.equal(Number((env.db.prepare('SELECT COUNT(*) AS n FROM audit_event').get() as { n: number }).n), beforeAudit)
+  assert.equal(Number((env.db.prepare('SELECT COUNT(*) AS n FROM import_proposal').get() as { n: number }).n), beforeProposals)
+  runtimeFailure = null
+})
+
+test('file proposal attachments fail closed in the read-only shared-runtime pilot', async () => {
+  runtimeCalls.length = 0
+  const pm = await env.as('pm@t.co')
+  const response = await pm.post(`${P}/agent/messages`, {
+    message: 'file this',
+    attachment: { name: 'mdl.csv', text: 'doc_no,title\nD-1,Test' },
+  })
+  assert.equal(response.status, 400)
+  assert.equal(response.body.error.code, 'AGENT_ATTACHMENT_UNSUPPORTED')
+  assert.equal(runtimeCalls.length, 0)
+})
+
+test('raw browser requests cannot select a local model or repository path', async () => {
+  runtimeCalls.length = 0
+  adapterCalls.length = 0
+  const pm = await env.as('pm@t.co')
+  const response = await pm.post(`${P}/agent/messages`, {
+    message: 'attempt hidden routing',
+    localModel: 'Qwen3.6-35B-A3B-8bit',
+    readOnlyTool: { name: 'read_file', relativePath: 'server/.env' },
+  })
+  assert.equal(response.status, 403)
+  assert.equal(response.body.error.code, 'AGENT_RUNTIME_ROUTING_FORBIDDEN')
+  assert.equal(runtimeCalls.length, 0)
+  assert.equal(adapterCalls.length, 0)
+})
+
+test('scratch/demo routing accepts OS temp and explicit demo paths but rejects production paths', () => {
+  assert.equal(isScratchOrDemoDatabasePath('/private/tmp/pec-test.db', '/private/tmp'), true)
+  assert.equal(isScratchOrDemoDatabasePath('/srv/pec/demo/pec.db', '/private/tmp'), true)
+  assert.equal(isScratchOrDemoDatabasePath('/srv/pec/pec-demo.db', '/private/tmp'), true)
+  assert.equal(isScratchOrDemoDatabasePath('/srv/pec/production/pec.db', '/private/tmp'), false)
+})
+
+test('compatibility request pins Agent 1 and rejects browser-selected runtime routing', () => {
+  const request = runtimeRunRequest({ message: 'read governed PEC context' }, 7, 11)
+  assert.equal(request.role, 'agent1')
+  assert.equal(request.agentId, 'WORKING_ITEMS')
+  assert.deepEqual(toDaemonAgent1RunRequest(request), {
+    brief: request.brief,
+    agentId: 'WORKING_ITEMS',
+    approvalReference: 'pec-ui-agent-direct:7:11',
+  })
+  assert.throws(
+    () => runtimeRunRequest({
+      message: 'read arbitrary checkout file',
+      localModel: 'mlx-community/Qwen3.6-35B-A3B-8bit',
+      readOnlyTool: { name: 'read_file', relativePath: '../../secret' },
+    }, 7, 11),
+    (error: unknown) =>
+      error instanceof AppError && error.code === 'AGENT_RUNTIME_ROUTING_FORBIDDEN',
+  )
 })

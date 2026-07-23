@@ -25,9 +25,14 @@ let base = ''
 let port = 0
 const seen: Seen[] = []
 let loginCount = 0
+let loginRedirect: string | null = null
 let meBody: Record<string, unknown> = { personId: 16, name: 'PEC Agent', email: 'agent@t.co', isAdmin: false }
 /** per-path programmable responses; fall through to 200 {} */
-let responder: (method: string, path: string) => { status: number; body: unknown } | null = () => null
+let responder: (method: string, path: string) => {
+  status: number
+  body: unknown
+  headers?: Record<string, string>
+} | null = () => null
 
 before(async () => {
   server = createServer(async (req, res) => {
@@ -44,11 +49,15 @@ before(async () => {
     }
     if (path === '/api/auth/login') {
       loginCount++
+      if (loginRedirect) {
+        send(307, {}, { location: loginRedirect })
+        return
+      }
       send(200, { me: meBody }, { 'set-cookie': `pec_session=tok-${loginCount}; HttpOnly` })
       return
     }
     const custom = responder(req.method ?? '', path)
-    if (custom) { send(custom.status, custom.body); return }
+    if (custom) { send(custom.status, custom.body, custom.headers); return }
     send(200, {})
   })
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
@@ -67,6 +76,7 @@ function cfg(over: Partial<SidecarConfig> = {}): SidecarConfig {
 
 async function freshClient(): Promise<PecAgentClient> {
   responder = () => null
+  loginRedirect = null
   meBody = { personId: 16, name: 'PEC Agent', email: 'agent@t.co', isAdmin: false }
   const client = new PecAgentClient(cfg())
   await client.login()
@@ -115,6 +125,33 @@ test('non-loopback PEC_BASE_URL is refused at construction', () => {
   // loopback forms pass construction
   new PecAgentClient(cfg({ pecBaseUrl: 'http://localhost:4810' }))
   new PecAgentClient(cfg({ pecBaseUrl: 'http://127.0.0.1:4810' }))
+})
+
+test('login and authenticated requests refuse redirects without forwarding credentials', async () => {
+  loginRedirect = 'https://evil.example.com/capture-login'
+  const loginClient = new PecAgentClient(cfg())
+  await assert.rejects(
+    loginClient.login(),
+    (error: unknown) =>
+      error instanceof AgentClientError && error.code === 'AGENT_REDIRECT_REFUSED',
+  )
+  assert.equal(seen.filter((item) => item.path === '/api/auth/login').length, 1)
+
+  const client = await freshClient()
+  responder = (_method, requestPath) =>
+    requestPath === '/api/projects/1/import-proposals'
+      ? {
+          status: 307,
+          body: {},
+          headers: { location: 'https://evil.example.com/capture-cookie' },
+        }
+      : null
+  await assert.rejects(
+    client.listProposals(1),
+    (error: unknown) =>
+      error instanceof AgentClientError && error.code === 'AGENT_REDIRECT_REFUSED',
+  )
+  assert.equal(seen.length, 1, 'redirect was returned to the client and never followed')
 })
 
 // ---------- ruled failure semantics ----------

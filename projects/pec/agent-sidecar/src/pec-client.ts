@@ -19,7 +19,7 @@
  *   results (refresh→report / report-never-escalate), never retried around.
  */
 
-import type { SidecarConfig } from './config.ts'
+import type { ProjectAdapterConfig, SidecarConfig } from './config.ts'
 import { assertLoopbackBaseUrl } from './config.ts'
 
 export class AgentClientError extends Error {
@@ -133,12 +133,12 @@ function payloadNamesForbiddenKey(value: unknown): string | null {
 }
 
 export class PecAgentClient {
-  private readonly cfg: SidecarConfig
+  private readonly cfg: ProjectAdapterConfig | SidecarConfig
   private cookie: string | null = null
   private identity: AgentIdentity | null = null
   private readonly acceptProbeDone = new Set<number>()
 
-  constructor(cfg: SidecarConfig) {
+  constructor(cfg: ProjectAdapterConfig | SidecarConfig) {
     // refused by construction, independent of loadConfig (defense in depth)
     assertLoopbackBaseUrl(cfg.pecBaseUrl)
     this.cfg = cfg
@@ -156,9 +156,16 @@ export class PecAgentClient {
     }
     const res = await fetch(`${this.cfg.pecBaseUrl}/api/auth/login`, {
       method: 'POST',
+      redirect: 'manual',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email: this.cfg.agentEmail, password: this.cfg.agentPassword }),
     })
+    if (res.status >= 300 && res.status < 400) {
+      throw new AgentClientError(
+        'AGENT_REDIRECT_REFUSED',
+        'agent login refused an HTTP redirect',
+      )
+    }
     if (res.status !== 200) {
       // credentials never echoed into errors
       throw new AgentClientError('AGENT_LOGIN_FAILED', `agent login refused (HTTP ${res.status})`)
@@ -203,6 +210,7 @@ export class PecAgentClient {
       try {
         return await fetch(`${this.cfg.pecBaseUrl}${path}`, {
           method,
+          redirect: 'manual',
           headers: {
             cookie: this.cookie!,
             ...(body !== undefined
@@ -217,10 +225,22 @@ export class PecAgentClient {
       }
     }
     let res = await doFetch()
+    if (res.status >= 300 && res.status < 400) {
+      throw new AgentClientError(
+        'AGENT_REDIRECT_REFUSED',
+        'PEC request refused an HTTP redirect',
+      )
+    }
     if (res.status === 401) {
       // session expired: one re-login, then replay — never a retry loop
       await this.login()
       res = await doFetch()
+      if (res.status >= 300 && res.status < 400) {
+        throw new AgentClientError(
+          'AGENT_REDIRECT_REFUSED',
+          'PEC request refused an HTTP redirect',
+        )
+      }
     }
     const text = await res.text()
     let parsed: unknown = text

@@ -119,7 +119,25 @@ SSO/PEC-NFR-006, PEC-CHK-004 hard block.
 
 ## Shared runtime migration status
 
-D-PEC-56 is ruled and governance-aligned; implementation is pending. PEC keeps
-acts/RBAC/reporting/human gates while root daemon owns agent execution. Legacy
-endpoint proxy only; scratch/demo validation only. D-PEC-49, T0 rebaseline,
-and production authority remain open.
+D-PEC-56 is ruled and governance-aligned. The PEC migration work package now
+provides:
+
+- one injected shared-runtime client seam in the backend;
+- a one-cycle legacy endpoint that relays the existing UIEvent SSE contract
+  (`harness:event` carries rich persisted HarnessEvent evidence) without
+  constructing a PEC engine;
+- a scratch/demo-only execution gate and fail-closed daemon failure behavior;
+- a production `agent-sidecar` entrypoint that runs only the person-bound,
+  RBAC-guarded deterministic PEC project adapter; and
+- regression coverage for one client path, canonical SSE preservation,
+  no-mutation daemon failure, retired-loop refusal, and human-only-act denial.
+
+The server composition root now binds the shared-runtime Unix-socket client and
+the deterministic project-adapter client. Automated scratch/demo validation
+proves the daemon/client/backend SSE seam, canonical event preservation,
+project-adapter boundary, fail-closed behavior, and retained human-only act
+denials. No independent PEC engine or production dual loop remains.
+
+This implementation does not claim a production PEC pilot or production data
+authority. D-PEC-49, the T0 rebaseline, the human rehearsal, and production
+authority remain open.
