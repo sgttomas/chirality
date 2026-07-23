@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { spawn } from 'node:child_process';
-import { createWriteStream, existsSync } from 'node:fs';
-import { appendFile, cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { createWriteStream } from 'node:fs';
+import { appendFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -461,19 +461,11 @@ async function runProofCycle({ runIndex, args, outputDir }) {
   const runId = `run-${String(runIndex).padStart(2, '0')}`;
   const runDir = path.resolve(outputDir, runId);
   await mkdir(runDir, { recursive: true });
-  const workingRootSource = path.resolve(REPO_ROOT, 'examples/example-project');
-  const workingRootPath = path.resolve('/tmp', `chirality-proof-${runId}-${timestampForPath()}`);
+  // The shared runtime authorizes a registered project identity, not arbitrary
+  // per-run roots. This proof therefore uses the read-only app-dev registration
+  // while keeping legacy adapter sessions in an isolated temporary directory.
+  const workingRootPath = REPO_ROOT;
   const sessionRootPath = path.resolve('/tmp', `chirality-proof-sessions-${runId}-${timestampForPath()}`);
-  if (existsSync(workingRootSource)) {
-    await cp(workingRootSource, workingRootPath, { recursive: true });
-  } else {
-    await mkdir(workingRootPath, { recursive: true });
-    await writeFile(
-      path.resolve(workingRootPath, 'README.md'),
-      '# Chirality network proof workroot\n',
-      'utf8'
-    );
-  }
   await mkdir(sessionRootPath, { recursive: true });
   const providerMode = args.provider;
   const scriptedAgentSdkProof =
@@ -750,7 +742,6 @@ async function runProofCycle({ runIndex, args, outputDir }) {
 
     await stopProcess(nextProcess.child, `${runId}:next`);
     nextProcess.stream.end();
-    await rm(workingRootPath, { recursive: true, force: true });
     await rm(sessionRootPath, { recursive: true, force: true });
   }
 }

@@ -127,7 +127,8 @@ describe("chirality CLI", () => {
     const runAgent1 = vi.fn(async () =>
       stream([
         { type: "chat:delta", data: { text: "evidence" } },
-        { type: "session:complete", data: {} }
+        { type: "session:complete", data: {} },
+        { type: "process:exit", data: { exitCode: 0 } }
       ])
     );
     const output = io();
@@ -154,11 +155,16 @@ describe("chirality CLI", () => {
       brief: "Inspect the bounded fixture.",
       agentId: "WORKING_ITEMS",
       approvalReference: "cli-agent1:WORKING_ITEMS",
-      localModel: "mlx-community/model"
+      localModel: "mlx-community/model",
+      readOnlyTool: {
+        name: "read_file",
+        relativePath: "chirality.project.json"
+      }
     });
     expect(output.stdout.map((line) => JSON.parse(line))).toEqual([
       { type: "chat:delta", data: { text: "evidence" } },
-      { type: "session:complete", data: {} }
+      { type: "session:complete", data: {} },
+      { type: "process:exit", data: { exitCode: 0 } }
     ]);
   });
 
@@ -191,6 +197,64 @@ describe("chirality CLI", () => {
     expect(output.stdout.join("")).toBe("local text[process:exit]\n");
   });
 
+  it("propagates a failed session turn process exit", async () => {
+    const turnSession = vi.fn(async () =>
+      stream([
+        {
+          type: "turn:error",
+          data: {
+            phase: "mid-stream",
+            errorType: "SDK_FAILURE",
+            message: "manager failed",
+            status: 502,
+            severity: "error",
+            fatal: true
+          }
+        },
+        { type: "process:exit", data: { exitCode: 7, error: "manager failed" } }
+      ])
+    );
+    const output = io("prompt\n");
+
+    const exitCode = await runCli(
+      [
+        "session",
+        "turn",
+        "--project",
+        "app-dev",
+        "--session",
+        "sess-failed"
+      ],
+      output.io,
+      dependencies(fakeClient({ turnSession }))
+    );
+
+    expect(exitCode).toBe(7);
+    expect(output.stderr.join("")).toContain("SDK_FAILURE: manager failed");
+    expect(output.stderr.join("")).toContain("process exited 7");
+  });
+
+  it("rejects an Agent 1 stream that ends without process:exit", async () => {
+    const runAgent1 = vi.fn(async () =>
+      stream([
+        { type: "chat:delta", data: { text: "partial" } },
+        { type: "session:complete", data: {} }
+      ])
+    );
+    const output = io("bounded brief\n");
+
+    const exitCode = await runCli(
+      ["run", "--project", "app-dev", "--agent", "WORKING_ITEMS"],
+      output.io,
+      dependencies(fakeClient({ runAgent1 }))
+    );
+
+    expect(exitCode).toBe(1);
+    expect(output.stderr.join("")).toContain(
+      "INTERNAL_FAILURE: Runtime stream ended without terminal process:exit"
+    );
+  });
+
   it("has no credential command surface", async () => {
     const output = io();
     const client = fakeClient({ listProjects: vi.fn() });
@@ -211,7 +275,9 @@ describe("chirality CLI", () => {
     temporaryDirectories.push(root);
     const briefFile = join(root, "api-key-token-analysis.md");
     await writeFile(briefFile, "Analyze naming without handling credentials.\n");
-    const runAgent1 = vi.fn(async () => stream([]));
+    const runAgent1 = vi.fn(async () =>
+      stream([{ type: "process:exit", data: { exitCode: 0 } }])
+    );
     const output = io();
 
     const exitCode = await runCli(

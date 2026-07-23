@@ -6,6 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 const HARNESS_BASE_URL = process.env.HARNESS_BASE_URL ?? 'http://127.0.0.1:3000';
+const SHARED_RUNTIME_MODE = Boolean(process.env.CHIRALITY_RUNTIME_PROJECT_ID);
 const TMP_ROOT = path.join(
   process.env.TMPDIR ?? os.tmpdir(),
   'chirality-harness-validation',
@@ -98,6 +99,15 @@ async function assertDirectoryExists(dirPath, label) {
 
 async function prepareProjectRoot(requestedProjectRoot) {
   await assertDirectoryExists(requestedProjectRoot, 'HARNESS_PROJECT_ROOT');
+
+  // A shared-runtime project is registered against its canonical root and must
+  // not be silently copied to an unregistered staging directory.
+  if (SHARED_RUNTIME_MODE) {
+    return {
+      effectiveProjectRoot: requestedProjectRoot,
+      stagedFromInstructionRoot: false
+    };
+  }
 
   const instructionRoot = resolveInstructionRoot();
   if (!isPathWithin(instructionRoot, requestedProjectRoot)) {
@@ -449,52 +459,94 @@ async function main() {
       'Missing-session boot should return SESSION_NOT_FOUND'
     );
 
-    const personaSessionId = await createSession({ persona: 'PERSONA_DOES_NOT_EXIST' });
-    const personaBoot = await requestJson('/api/harness/session/boot', {
-      method: 'POST',
-      body: { sessionId: personaSessionId }
-    });
-    assert(personaBoot.response.status === 404, 'Unknown-persona boot should return 404');
-    assert(
-      personaBoot.payload?.error?.type === 'PERSONA_NOT_FOUND',
-      'Unknown-persona boot should return PERSONA_NOT_FOUND'
-    );
-    await deleteSession(personaSessionId);
+    let personaBoundary;
+    if (SHARED_RUNTIME_MODE) {
+      personaBoundary = await requestJson('/api/harness/session/create', {
+        method: 'POST',
+        body: { projectRoot, persona: 'PERSONA_DOES_NOT_EXIST' }
+      });
+      assert(
+        personaBoundary.response.status === 400,
+        'Unknown persona should be rejected at shared-runtime session creation'
+      );
+      assert(
+        ['INVALID_REQUEST', 'SDK_FAILURE'].includes(personaBoundary.payload?.error?.type),
+        'Unknown shared-runtime persona should return a typed compatibility refusal'
+      );
+    } else {
+      const personaSessionId = await createSession({ persona: 'PERSONA_DOES_NOT_EXIST' });
+      personaBoundary = await requestJson('/api/harness/session/boot', {
+        method: 'POST',
+        body: { sessionId: personaSessionId }
+      });
+      assert(personaBoundary.response.status === 404, 'Unknown-persona boot should return 404');
+      assert(
+        personaBoundary.payload?.error?.type === 'PERSONA_NOT_FOUND',
+        'Unknown-persona boot should return PERSONA_NOT_FOUND'
+      );
+      await deleteSession(personaSessionId);
+    }
 
     const sdkFailureSessionId = await createSession();
     const sdkFailureBoot = await requestJson('/api/harness/session/boot', {
       method: 'POST',
-      body: {
-        sessionId: sdkFailureSessionId,
-        opts: {
-          model: '__BOOT_SDK_FAIL__'
-        }
-      }
+      body: SHARED_RUNTIME_MODE
+        ? { sessionId: sdkFailureSessionId }
+        : {
+            sessionId: sdkFailureSessionId,
+            opts: { model: '__BOOT_SDK_FAIL__' }
+          }
     });
-    assert(sdkFailureBoot.response.status === 500, 'SDK-failure boot should return 500');
-    assert(
-      sdkFailureBoot.payload?.error?.type === 'SDK_FAILURE',
-      'SDK-failure boot should return SDK_FAILURE'
-    );
+    if (SHARED_RUNTIME_MODE) {
+      assert(sdkFailureBoot.response.status === 200, 'Shared-runtime boot should complete');
+      assert(
+        sdkFailureBoot.payload?.boot?.engineSessionId &&
+          sdkFailureBoot.payload?.boot?.adapterId &&
+          sdkFailureBoot.payload?.boot?.providerId &&
+          sdkFailureBoot.payload?.boot?.model,
+        'Shared-runtime boot should return provider-neutral attribution'
+      );
+    } else {
+      assert(sdkFailureBoot.response.status === 500, 'SDK-failure boot should return 500');
+      assert(
+        sdkFailureBoot.payload?.error?.type === 'SDK_FAILURE',
+        'SDK-failure boot should return SDK_FAILURE'
+      );
+    }
     await deleteSession(sdkFailureSessionId);
 
-    const inaccessibleRoot = path.join(TMP_ROOT, 'workroots', `missing-${Date.now()}`);
-    await mkdir(inaccessibleRoot, { recursive: true });
-    const inaccessibleSessionId = await createSession({ projectRoot: inaccessibleRoot });
-    await rm(inaccessibleRoot, { recursive: true, force: true });
-    const inaccessibleBoot = await requestJson('/api/harness/session/boot', {
-      method: 'POST',
-      body: { sessionId: inaccessibleSessionId }
-    });
-    assert(
-      inaccessibleBoot.response.status === 404,
-      'Inaccessible-root boot should return 404'
-    );
-    assert(
-      inaccessibleBoot.payload?.error?.type === 'WORKING_ROOT_INACCESSIBLE',
-      'Inaccessible-root boot should return WORKING_ROOT_INACCESSIBLE'
-    );
-    await deleteSession(inaccessibleSessionId);
+    let rootBoundary;
+    if (SHARED_RUNTIME_MODE) {
+      const unauthorizedRoot = path.join(TMP_ROOT, 'workroots', `unauthorized-${Date.now()}`);
+      await mkdir(unauthorizedRoot, { recursive: true });
+      rootBoundary = await requestJson('/api/harness/session/create', {
+        method: 'POST',
+        body: { projectRoot: unauthorizedRoot }
+      });
+      assert(
+        [400, 403, 404].includes(rootBoundary.response.status),
+        'Unregistered shared-runtime root should fail closed'
+      );
+      assert(
+        rootBoundary.payload?.error?.type === 'WORKING_ROOT_INACCESSIBLE',
+        'Shared-runtime proxy should return WORKING_ROOT_INACCESSIBLE'
+      );
+    } else {
+      const inaccessibleRoot = path.join(TMP_ROOT, 'workroots', `missing-${Date.now()}`);
+      await mkdir(inaccessibleRoot, { recursive: true });
+      const inaccessibleSessionId = await createSession({ projectRoot: inaccessibleRoot });
+      await rm(inaccessibleRoot, { recursive: true, force: true });
+      rootBoundary = await requestJson('/api/harness/session/boot', {
+        method: 'POST',
+        body: { sessionId: inaccessibleSessionId }
+      });
+      assert(rootBoundary.response.status === 404, 'Inaccessible-root boot should return 404');
+      assert(
+        rootBoundary.payload?.error?.type === 'WORKING_ROOT_INACCESSIBLE',
+        'Inaccessible-root boot should return WORKING_ROOT_INACCESSIBLE'
+      );
+      await deleteSession(inaccessibleSessionId);
+    }
 
     await writeJson(path.join(OUTPUT_DIRS.api, 'section8.boot_error_taxonomy.json'), {
       missingSession: {
@@ -502,25 +554,31 @@ async function main() {
         type: missingSessionBoot.payload?.error?.type
       },
       unknownPersona: {
-        status: personaBoot.response.status,
-        type: personaBoot.payload?.error?.type
+        status: personaBoundary.response.status,
+        type: personaBoundary.payload?.error?.type,
+        phase: SHARED_RUNTIME_MODE ? 'create' : 'boot'
       },
       sdkFailure: {
         status: sdkFailureBoot.response.status,
-        type: sdkFailureBoot.payload?.error?.type
+        type: SHARED_RUNTIME_MODE
+          ? 'BOOT_CONFORMANT'
+          : sdkFailureBoot.payload?.error?.type
       },
-      inaccessibleRoot: {
-        status: inaccessibleBoot.response.status,
-        type: inaccessibleBoot.payload?.error?.type
+      rootBoundary: {
+        status: rootBoundary.response.status,
+        type: SHARED_RUNTIME_MODE
+          ? rootBoundary.payload?.error?.type
+          : rootBoundary.payload?.error?.type,
+        mode: SHARED_RUNTIME_MODE ? 'registered-project-containment' : 'inaccessible-root'
       }
     });
 
     return {
       checkedCodes: [
         missingSessionBoot.payload?.error?.type,
-        personaBoot.payload?.error?.type,
-        sdkFailureBoot.payload?.error?.type,
-        inaccessibleBoot.payload?.error?.type
+        personaBoundary.payload?.error?.type,
+        SHARED_RUNTIME_MODE ? 'BOOT_CONFORMANT' : sdkFailureBoot.payload?.error?.type,
+        rootBoundary.payload?.error?.type
       ]
     };
   });

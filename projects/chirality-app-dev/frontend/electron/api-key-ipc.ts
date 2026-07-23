@@ -1,15 +1,5 @@
 import { ipcMain } from 'electron';
-import {
-  hasStoredApiKey,
-  hasStoredProviderApiKey,
-  isEncryptionAvailable,
-  isProviderCredentialId,
-  removeApiKey,
-  removeProviderApiKey,
-  storeApiKey,
-  storeProviderApiKey,
-  type ProviderCredentialId
-} from './api-key-storage';
+import { isProviderCredentialId, type ProviderCredentialId } from './api-key-storage';
 
 // Existing Anthropic-only channels remain stable for renderer compatibility.
 export const API_KEY_STORE_CHANNEL = 'chirality:api-key-store';
@@ -40,21 +30,20 @@ function hasEnvironmentKey(providerId: ProviderCredentialId): boolean {
   return Boolean(process.env.CHIRALITY_OMLX_API_KEY?.trim());
 }
 
-async function getProviderStatus(providerId: ProviderCredentialId): Promise<ApiKeyStatusResult> {
-  const uiKeyStored = await hasStoredProviderApiKey(providerId);
-  const envKey = hasEnvironmentKey(providerId);
-  return {
-    hasKey: uiKeyStored || envKey,
-    encryptionAvailable: isEncryptionAvailable(),
-    source: uiKeyStored ? 'ui' : envKey ? 'env' : 'none'
-  };
+export interface DaemonCredentialClient {
+  credentialStatus(providerId: ProviderCredentialId): Promise<{ configured: boolean }>;
+  storeCredential(
+    providerId: ProviderCredentialId,
+    credential: string
+  ): Promise<{ configured: boolean }>;
+  removeCredential(providerId: ProviderCredentialId): Promise<{ configured: boolean }>;
 }
 
 function invalidProviderResult(): ApiKeyStoreResult {
   return { ok: false, error: 'Unsupported credential provider' };
 }
 
-export function registerApiKeyHandlers(): void {
+export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
   unregisterApiKeyHandlers();
 
   ipcMain.handle(API_KEY_STORE_CHANNEL, async (_event, key: unknown): Promise<ApiKeyStoreResult> => {
@@ -62,7 +51,7 @@ export function registerApiKeyHandlers(): void {
       return { ok: false, error: 'Key must be a non-empty string' };
     }
     try {
-      await storeApiKey(key.trim());
+      await client.storeCredential('anthropic', key.trim());
       return { ok: true };
     } catch (error) {
       return { ok: false, error: error instanceof Error ? error.message : 'Failed to store key' };
@@ -71,7 +60,7 @@ export function registerApiKeyHandlers(): void {
 
   ipcMain.handle(API_KEY_REMOVE_CHANNEL, async (): Promise<ApiKeyStoreResult> => {
     try {
-      await removeApiKey();
+      await client.removeCredential('anthropic');
       return { ok: true };
     } catch (error) {
       return { ok: false, error: error instanceof Error ? error.message : 'Failed to remove key' };
@@ -79,14 +68,12 @@ export function registerApiKeyHandlers(): void {
   });
 
   ipcMain.handle(API_KEY_STATUS_CHANNEL, async (): Promise<ApiKeyStatusResult> => {
-    // Use the compatibility helper so existing mocks and consumers retain the
-    // exact Anthropic behavior.
-    const uiKeyStored = await hasStoredApiKey();
+    const status = await client.credentialStatus('anthropic');
     const envKey = hasEnvironmentKey('anthropic');
     return {
-      hasKey: uiKeyStored || envKey,
-      encryptionAvailable: isEncryptionAvailable(),
-      source: uiKeyStored ? 'ui' : envKey ? 'env' : 'none'
+      hasKey: status.configured,
+      encryptionAvailable: true,
+      source: status.configured ? (envKey ? 'env' : 'ui') : 'none'
     };
   });
 
@@ -100,7 +87,7 @@ export function registerApiKeyHandlers(): void {
         return { ok: false, error: 'Key must be a non-empty string' };
       }
       try {
-        await storeProviderApiKey(providerId, key.trim());
+        await client.storeCredential(providerId, key.trim());
         return { ok: true };
       } catch (error) {
         return { ok: false, error: error instanceof Error ? error.message : 'Failed to store key' };
@@ -115,7 +102,7 @@ export function registerApiKeyHandlers(): void {
         return invalidProviderResult();
       }
       try {
-        await removeProviderApiKey(providerId);
+        await client.removeCredential(providerId);
         return { ok: true };
       } catch (error) {
         return { ok: false, error: error instanceof Error ? error.message : 'Failed to remove key' };
@@ -129,7 +116,13 @@ export function registerApiKeyHandlers(): void {
       if (!isProviderCredentialId(providerId)) {
         return invalidProviderResult();
       }
-      return getProviderStatus(providerId);
+      const status = await client.credentialStatus(providerId);
+      const envKey = hasEnvironmentKey(providerId);
+      return {
+        hasKey: status.configured,
+        encryptionAvailable: true,
+        source: status.configured ? (envKey ? 'env' : 'ui') : 'none'
+      };
     }
   );
 }

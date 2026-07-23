@@ -19,6 +19,7 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
   })
 }));
 vi.mock('../../components/settings/api-key-settings', () => ({ ApiKeySettings: () => null }));
+vi.mock('../../components/settings/runtime-settings', () => ({ RuntimeSettings: () => null }));
 
 describe('ShellFrame', () => {
   it('renders the PORTAL header link with the active class', async () => {

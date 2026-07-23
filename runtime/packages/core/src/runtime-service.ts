@@ -10,6 +10,7 @@ import {
   type Agent1EngineOutcome,
   type CreateSessionRequest,
   type EngineSelection,
+  type HarnessEvent,
   type HarnessOpts,
   type PermissionDecisionRequest,
   type ProviderCredentialPort,
@@ -46,6 +47,8 @@ export interface PermissionDecisionPort {
 
 export interface Agent1RunPort {
   run(projectId: string, request: Agent1RunRequest): AsyncIterable<UIEvent>;
+  interrupt?(projectId: string, sessionId: string): Promise<void>;
+  isActive?(projectId: string, sessionId: string): boolean;
 }
 
 export interface DefaultSessionPolicy {
@@ -82,12 +85,19 @@ export class RuntimeService {
     tokenFile: string;
     manifestHash: string;
   }> {
+    if (approvedBy.trim() === "" || approvalReference.trim() === "") {
+      throw new RuntimeError(
+        "INVALID_REQUEST",
+        "Project registration requires non-empty approval attribution"
+      );
+    }
     const clientId = `project-${randomUUID()}`;
     const project = await this.projects.register(
       manifestPath,
       { approvedBy, approvalReference },
       clientId
     );
+    await this.auth.revokeProjectClients(project.projectId);
     const scopes: RuntimeScope[] = [
       "runtime:read",
       "sessions:read",
@@ -104,7 +114,7 @@ export class RuntimeService {
   }
 
   async createSession(request: CreateSessionRequest) {
-    await this.projects.requireAuthorized(request.projectId);
+    const project = await this.projects.requireAuthorized(request.projectId);
     const persona = request.persona ?? "UNTYPED";
     const mode = request.mode ?? "direct";
     const roster = await this.listAgents(request.projectId, true);
@@ -144,6 +154,20 @@ export class RuntimeService {
       role = resolved.role;
       engineSelection = resolved.engineSelection;
     }
+    if (role === "agent2") {
+      throw new RuntimeError(
+        "DELEGATION_POLICY_VIOLATION",
+        "Agent 2 sessions may be created only by the governed Agent 1 coordinator",
+        403
+      );
+    }
+    if (!project.enabledAdapterIds.includes(engineSelection.adapterId)) {
+      throw new RuntimeError(
+        "DELEGATION_POLICY_VIOLATION",
+        `Engine adapter is not enabled for project ${request.projectId}: ${engineSelection.adapterId}`,
+        403
+      );
+    }
     const expectedRole = rosterEntry.type === 0 ? "agent0" : "agent1";
     if (role !== expectedRole) {
       throw new RuntimeError(
@@ -164,9 +188,23 @@ export class RuntimeService {
   async bootSession(
     projectId: string,
     sessionId: string,
-    opts: HarnessOpts = {}
+    opts: HarnessOpts = {},
+    expectedSelection?: EngineSelection
   ): Promise<SessionBootResponse> {
     let session = await this.sessions.get(projectId, sessionId);
+    if (
+      expectedSelection !== undefined &&
+      (expectedSelection.adapterId !== session.engineSelection.adapterId ||
+        expectedSelection.providerId !== session.engineSelection.providerId ||
+        expectedSelection.model !== session.engineSelection.model)
+    ) {
+      throw new RuntimeError(
+        "ENGINE_UNAVAILABLE",
+        "Session engine selection changed before boot",
+        409,
+        { expectedSelection, actualSelection: session.engineSelection }
+      );
+    }
     const project = await this.projects.requireAuthorized(projectId);
     const persona = opts.persona ?? session.persona;
     const mode = opts.mode ?? session.mode;
@@ -197,17 +235,78 @@ export class RuntimeService {
       turnId: randomUUID()
     };
     await engine.preflight(input);
-    let engineSessionId = session.adapterSession?.engineSessionId ?? session.engineSessionId;
-    let adapterId = engine.descriptor.adapterId;
-    let providerId = engine.descriptor.providerId;
-    let model = session.engineSelection.model;
-    let claudeSessionId = providerId === "anthropic" ? session.claudeSessionId : undefined;
-    let successfulExit = false;
+    let engineSessionId: string | undefined;
+    let adapterId: string | undefined;
+    let providerId: string | undefined;
+    let model: string | undefined;
+    let claudeSessionId: string | undefined;
+    let processExit: Extract<UIEvent, { type: "process:exit" }> | undefined;
+    let terminalHarnessEvent: HarnessEvent | undefined;
+    let fatalTurnError = false;
+    let eventIndex = 0;
+    const harnessEvents: HarnessEvent[] = [];
     for await (const event of engine.startTurn(input)) {
+      if (processExit !== undefined) {
+        throw new HarnessError(
+          "SDK_FAILURE",
+          502,
+          "Boot engine emitted an event after process:exit"
+        );
+      }
+      if (eventIndex === 0 && event.type !== "session:init") {
+        throw new HarnessError(
+          "SDK_FAILURE",
+          502,
+          "Boot engine must emit session:init first"
+        );
+      }
       if (event.type === "harness:event") {
-        await this.sessions.persistEvent(projectId, event.data);
+        if (
+          event.data.sessionId !== sessionId ||
+          (event.data.turnId !== undefined && event.data.turnId !== input.turnId)
+        ) {
+          throw new HarnessError(
+            "SDK_FAILURE",
+            502,
+            "Boot engine emitted an event outside the active session or turn"
+          );
+        }
+        if (
+          ["turn.completed", "turn.failed", "turn.cancelled", "turn.interrupted"].includes(
+            event.data.type
+          )
+        ) {
+          if (terminalHarnessEvent !== undefined) {
+            throw new HarnessError(
+              "SDK_FAILURE",
+              502,
+              "Boot engine emitted multiple terminal harness events"
+            );
+          }
+          terminalHarnessEvent = event.data;
+        }
+        harnessEvents.push(event.data);
       }
       if (event.type === "session:init") {
+        if (eventIndex !== 0 || engineSessionId !== undefined) {
+          throw new HarnessError(
+            "SDK_FAILURE",
+            502,
+            "Boot engine emitted multiple or out-of-order session:init events"
+          );
+        }
+        if (
+          event.data.engineSessionId.trim() === "" ||
+          event.data.adapterId !== engine.descriptor.adapterId ||
+          event.data.providerId !== engine.descriptor.providerId ||
+          event.data.model !== input.opts.model
+        ) {
+          throw new HarnessError(
+            "SDK_FAILURE",
+            502,
+            "Boot engine initialization attribution does not match the selected adapter"
+          );
+        }
         engineSessionId = event.data.engineSessionId;
         adapterId = event.data.adapterId;
         providerId = event.data.providerId;
@@ -215,24 +314,34 @@ export class RuntimeService {
         claudeSessionId =
           providerId === "anthropic" ? event.data.claudeSessionId : undefined;
       }
-      if (event.type === "process:exit") {
-        if (event.data.exitCode !== 0) {
-          throw new HarnessError(
-            "SDK_FAILURE",
-            500,
-            "Boot turn failed before completion",
-            { exitCode: event.data.exitCode }
-          );
-        }
-        successfulExit = true;
+      if (event.type === "turn:error" && event.data.fatal) {
+        fatalTurnError = true;
       }
+      if (event.type === "process:exit") {
+        processExit = event;
+      }
+      eventIndex += 1;
     }
-    if (!successfulExit || engineSessionId === undefined) {
+    if (
+      processExit === undefined ||
+      processExit.data.exitCode !== 0 ||
+      fatalTurnError ||
+      engineSessionId === undefined ||
+      adapterId === undefined ||
+      providerId === undefined ||
+      model === undefined ||
+      (terminalHarnessEvent !== undefined &&
+        terminalHarnessEvent.type !== "turn.completed")
+    ) {
       throw new HarnessError(
         "SDK_FAILURE",
         500,
-        "Boot turn did not initialize and complete an engine session"
+        "Boot turn did not initialize and complete a conformant engine session",
+        processExit === undefined ? undefined : { exitCode: processExit.data.exitCode }
       );
+    }
+    for (const event of harnessEvents) {
+      await this.sessions.persistEvent(projectId, event);
     }
     const bootedAt = new Date().toISOString();
     const fingerprint = {
@@ -349,6 +458,28 @@ export class RuntimeService {
       );
     }
     await this.permissions.submit(projectId, sessionId, request);
+  }
+
+  async interruptSession(projectId: string, sessionId: string): Promise<void> {
+    await Promise.all([
+      this.turns.interrupt(projectId, sessionId),
+      this.agent1Runs?.interrupt?.(projectId, sessionId) ?? Promise.resolve()
+    ]);
+  }
+
+  runSessionTurn(
+    projectId: string,
+    sessionId: string,
+    request: SessionTurnRequest
+  ): AsyncIterable<UIEvent> {
+    if (this.agent1Runs?.isActive?.(projectId, sessionId) === true) {
+      throw new RuntimeError(
+        "SESSION_TURN_IN_PROGRESS",
+        "Session is reserved by an active governed Agent 1 run",
+        409
+      );
+    }
+    return this.turns.run(projectId, sessionId, request);
   }
 
   runAgent1(projectId: string, request: Agent1RunRequest): AsyncIterable<UIEvent> {

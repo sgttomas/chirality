@@ -20,6 +20,7 @@ vi.mock('electron', () => ({
 }));
 
 import {
+  SafeStorageCredentialStore,
   getProviderUiApiKey,
   getUiApiKey,
   hasStoredProviderApiKey,
@@ -70,6 +71,20 @@ afterEach(async () => {
 });
 
 describe('electron/api-key-storage', () => {
+  it('provides the daemon credential port while preserving provider isolation', async () => {
+    const credentials = new SafeStorageCredentialStore();
+    await credentials.set('anthropic', 'daemon-anthropic');
+    await credentials.set('omlx', 'daemon-omlx');
+
+    await expect(credentials.get('anthropic')).resolves.toBe('daemon-anthropic');
+    await expect(credentials.get('omlx')).resolves.toBe('daemon-omlx');
+    await expect(credentials.status('omlx')).resolves.toEqual({ configured: true });
+
+    await credentials.remove('omlx');
+    await expect(credentials.status('omlx')).resolves.toEqual({ configured: false });
+    await expect(credentials.get('anthropic')).resolves.toBe('daemon-anthropic');
+  });
+
   it('stores encrypted key material outside projectRoot and updates process global', async () => {
     await storeApiKey('ui-key-123');
 
@@ -106,6 +121,20 @@ describe('electron/api-key-storage', () => {
 
     expect(getUiApiKey()).toBe('boot-key');
     await expect(retrieveApiKey()).resolves.toBe('boot-key');
+  });
+
+  it('rehydrates a persisted Anthropic credential for a restarted daemon process', async () => {
+    const storagePath = getStoragePath(tmpDir);
+    await mkdir(path.dirname(storagePath), { recursive: true });
+    await writeFile(storagePath, Buffer.from('enc:daemon-restart-key', 'utf8'));
+    delete globalState[GLOBAL_KEY];
+    delete globalState[PROVIDER_GLOBAL_KEY];
+
+    const credentials = new SafeStorageCredentialStore();
+    await expect(credentials.get('anthropic')).resolves.toBe('daemon-restart-key');
+
+    expect(getUiApiKey()).toBe('daemon-restart-key');
+    expect(getProviderUiApiKey('omlx')).toBeUndefined();
   });
 
   it('loads both legacy Anthropic and oMLX blobs during startup', async () => {

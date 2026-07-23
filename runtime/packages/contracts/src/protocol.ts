@@ -1,4 +1,4 @@
-import type { EngineSelection } from "./harness/types.js";
+import type { EngineSelection, HarnessOpts } from "./harness/types.js";
 import type {
   HarnessEvent,
   ScaffoldExecutionRootResponse,
@@ -83,6 +83,7 @@ export interface Agent1EngineOutcome {
 
 export interface RuntimeSessionBootRequest {
   expectedSelection?: EngineSelection;
+  opts?: HarnessOpts;
 }
 
 export interface PermissionDecisionRequest {

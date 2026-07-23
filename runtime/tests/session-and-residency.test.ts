@@ -13,6 +13,7 @@ class FakeOmlx implements OmlxControlPort {
     { id: "embed", kind: "embedding", loaded: true, loading: false }
   ];
   failLoad = false;
+  failUnloadAfterMutation = false;
   unloads: string[] = [];
 
   async listStatus() {
@@ -29,6 +30,7 @@ class FakeOmlx implements OmlxControlPort {
     this.models = this.models.map((model) =>
       model.id === modelId ? { ...model, loaded: false } : model
     );
+    if (this.failUnloadAfterMutation) throw new Error("response lost");
   }
 }
 
@@ -60,10 +62,56 @@ describe("central sessions", () => {
     expect(migrated.legacy?.sourcePath).toBe(await realpath(legacyPath));
     expect(await readFile(legacyPath, "utf8")).toBe(legacySource);
     expect(migrated.persona).toBe("HELP_HUMAN");
+    await sessions.delete("fixture", legacyId);
+    await expect(sessions.get("fixture", legacyId)).rejects.toMatchObject({
+      code: "SESSION_NOT_FOUND"
+    });
+    expect(await readFile(legacyPath, "utf8")).toBe(legacySource);
+  });
+
+  it("enters NO_MODEL when an unload outcome is ambiguous", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-residency-ambiguous-"));
+    const control = new FakeOmlx();
+    const coordinator = new ResidencyCoordinator(control, root, {
+      totalTimeoutMs: 1_000,
+      pollIntervalMs: 2
+    });
+    await coordinator.activate("model-a", "D-TEST");
+    control.failUnloadAfterMutation = true;
+    await expect(coordinator.activate("model-b", "D-TEST")).rejects.toBeDefined();
+    expect(await coordinator.status()).toMatchObject({
+      phase: "NO_MODEL",
+      acceptingLocalTurns: false
+    });
   });
 });
 
 describe("model residency", () => {
+  it("requires non-empty approval attribution", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-residency-approval-"));
+    const coordinator = new ResidencyCoordinator(new FakeOmlx(), root);
+    await expect(coordinator.activate("model-a", " ")).rejects.toMatchObject({
+      code: "INVALID_REQUEST"
+    });
+  });
+
+  it("reconciles an externally unloaded managed model before status or admission", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-residency-drift-"));
+    const control = new FakeOmlx();
+    const coordinator = new ResidencyCoordinator(control, root);
+    await coordinator.activate("model-a", "D-TEST");
+    control.models = control.models.map((model) =>
+      model.id === "model-a" ? { ...model, loaded: false } : model
+    );
+    expect(await coordinator.status()).toMatchObject({
+      phase: "NO_MODEL",
+      acceptingLocalTurns: false
+    });
+    await expect(coordinator.admitTurn("model-a")).rejects.toMatchObject({
+      code: "RESIDENCY_TRANSITION_IN_PROGRESS"
+    });
+  });
+
   it("drains without force and enters NO_MODEL after a post-unload load failure", async () => {
     const root = await mkdtemp(join(tmpdir(), "chirality-residency-"));
     const control = new FakeOmlx();
@@ -74,6 +122,7 @@ describe("model residency", () => {
     });
     const ready = await coordinator.activate("model-a", "D-TEST");
     expect(ready.managedModelId).toBe("model-a");
+    expect(ready.acceptingLocalTurns).toBe(true);
     const release = await coordinator.admitTurn("model-a");
     await expect(coordinator.activate("model-b", "D-TEST")).rejects.toMatchObject({
       code: "RESIDENCY_DRAIN_TIMEOUT"

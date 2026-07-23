@@ -3,14 +3,15 @@ import {
   formatSseEvent,
   readJsonBody
 } from '../../../../lib/harness/http';
-import { getHarnessRuntime } from '../../../../lib/harness/runtime';
+import { getDaemonHarnessPort } from '../../../../lib/runtime-client/daemon-harness-port';
 import { TurnRequest } from '@chirality/harness-contract/types';
 
 export async function POST(request: Request): Promise<Response> {
   try {
     const body = await readJsonBody<TurnRequest>(request);
-    const runtime = getHarnessRuntime();
-    const runningTurn = await runtime.turnEngine.runTurn(body);
+    const runningTurn = await getDaemonHarnessPort().turn(body, {
+      signal: request.signal
+    });
 
     const encoder = new TextEncoder();
     const stream = new ReadableStream<Uint8Array>({

@@ -1,10 +1,23 @@
 import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { existsSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import path from 'node:path';
+import { RuntimeClient } from '@chirality/runtime-client';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
-import { loadStoredKeyIntoGlobal } from './api-key-storage';
+import { installBundledCliLauncher } from './cli-launcher';
+import {
+  applyDesktopProjectBinding,
+  prepareDesktopHarnessEnvironment,
+  resolveDesktopProjectBinding
+} from './desktop-project-client';
+import { startRuntimeHost, type RuntimeHost } from './runtime-host';
+import {
+  createDesktopDaemonLifecycle,
+  registerRuntimeControlHandlers,
+  unregisterRuntimeControlHandlers
+} from './runtime-control-ipc';
 
 type RendererServer = {
   close: () => Promise<void>;
@@ -29,6 +42,9 @@ const ALLOWED_LOOPBACK_HOSTNAMES = new Set<string>(['localhost', '127.0.0.1', '[
 const RENDERER_EGRESS_FILTER_URLS = ['http://*/*', 'https://*/*', 'ws://*/*', 'wss://*/*'];
 
 let rendererServer: RendererServer | undefined;
+let runtimeHost: RuntimeHost | undefined;
+let shutdownStarted = false;
+const runtimeDaemonMode = process.argv.includes('--runtime-daemon');
 
 type RendererEgressPolicyDecision =
   | { allowed: true }
@@ -247,7 +263,26 @@ function resolveInstructionRootForProcess(): string {
     return path.resolve(process.resourcesPath);
   }
 
-  return path.resolve(__dirname, '..', '..');
+  const candidates: string[] = [];
+  for (const start of [process.cwd(), __dirname]) {
+    let candidate = path.resolve(start);
+    for (;;) {
+      candidates.push(candidate);
+      const parent = path.dirname(candidate);
+      if (parent === candidate) break;
+      candidate = parent;
+    }
+  }
+  const resolved = candidates.find(
+    (candidate) =>
+      existsSync(path.join(candidate, 'agents')) &&
+      existsSync(path.join(candidate, 'AGENTS.md')) &&
+      existsSync(path.join(candidate, 'docs', 'DIRECTIVE.md'))
+  );
+  if (resolved === undefined) {
+    throw new Error('Unable to resolve the Chirality instruction root');
+  }
+  return resolved;
 }
 
 async function registerDirectorySelectionHandler(): Promise<void> {
@@ -364,47 +399,158 @@ function createMainWindow(rendererUrl: string): BrowserWindow {
   return window;
 }
 
-app
-  .whenReady()
-  .then(async () => {
-    await registerDirectorySelectionHandler();
-    registerApiKeyHandlers();
-    await loadStoredKeyIntoGlobal();
-    process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+function runtimeControlPaths(): {
+  runtimeDirectory: string;
+  socketPath: string;
+  operatorTokenFile: string;
+} {
+  const runtimeDirectory = path.join(app.getPath('userData'), 'runtime');
+  return {
+    runtimeDirectory,
+    socketPath:
+      process.env.CHIRALITY_RUNTIME_SOCKET_PATH?.trim() ||
+      path.join(runtimeDirectory, 'control.sock'),
+    operatorTokenFile:
+      process.env.CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE?.trim() ||
+      path.join(runtimeDirectory, 'auth', 'tokens', 'operator.token')
+  };
+}
 
-    const rendererUrl = app.isPackaged
-      ? (rendererServer = await startPackagedRendererServer()).url
-      : process.env.ELECTRON_RENDERER_URL ?? 'http://localhost:3000';
+async function configureDesktopHarnessClient(
+  operatorClient: RuntimeClient,
+  control: ReturnType<typeof runtimeControlPaths>
+): Promise<void> {
+  prepareDesktopHarnessEnvironment(process.env, control.socketPath);
 
-    createMainWindow(rendererUrl);
+  const binding = await resolveDesktopProjectBinding({
+    operatorClient,
+    runtimeDirectory: control.runtimeDirectory,
+    socketPath: control.socketPath
+  });
+  applyDesktopProjectBinding(process.env, binding);
+}
 
-    app.on('activate', () => {
-      if (BrowserWindow.getAllWindows().length === 0) {
-        createMainWindow(rendererUrl);
-      }
+async function initializeGui(): Promise<void> {
+  const control = runtimeControlPaths();
+  const runtimeClient = new RuntimeClient({
+    socketPath: control.socketPath,
+    tokenFile: control.operatorTokenFile
+  });
+  registerApiKeyHandlers(runtimeClient);
+  await registerDirectorySelectionHandler();
+  process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+
+  if (app.isPackaged) {
+    await installBundledCliLauncher().catch((error) => {
+      console.error('Failed to install bundled Chirality CLI launcher', error);
     });
-  })
-  .catch((error) => {
-    console.error('Failed to initialize renderer runtime', error);
-    app.quit();
+  }
+
+  await configureDesktopHarnessClient(runtimeClient, control).catch((error) => {
+    console.warn(
+      'Desktop harness routes remain disabled until app-dev is registered without drift',
+      error instanceof Error ? error.message : 'project binding unavailable'
+    );
   });
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+  const rendererUrl = app.isPackaged
+    ? (rendererServer = await startPackagedRendererServer()).url
+    : process.env.ELECTRON_RENDERER_URL ?? 'http://localhost:3000';
 
-app.on('before-quit', async () => {
+  registerRuntimeControlHandlers({
+    client: runtimeClient,
+    lifecycle: createDesktopDaemonLifecycle(),
+    desktopExecutable: app.getPath('exe'),
+    packaged: app.isPackaged,
+    rendererOrigin: new URL(rendererUrl).origin,
+    onDaemonAvailable: async () => {
+      await configureDesktopHarnessClient(runtimeClient, control);
+    }
+  });
+
+  createMainWindow(rendererUrl);
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createMainWindow(rendererUrl);
+    }
+  });
+}
+
+async function initializeDaemon(): Promise<void> {
+  process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+  runtimeHost = await startRuntimeHost();
+  console.info('[chirality-runtime-daemon]', {
+    socketPath: runtimeHost.socketPath,
+    runtimeDirectory: runtimeHost.runtimeDirectory
+  });
+}
+
+async function shutdown(exitCode = 0): Promise<void> {
+  if (shutdownStarted) {
+    return;
+  }
+  shutdownStarted = true;
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
   unregisterApiKeyHandlers();
+  unregisterRuntimeControlHandlers();
+
+  if (runtimeHost) {
+    try {
+      await runtimeHost.stop();
+    } catch (error) {
+      exitCode = 1;
+      console.error('Failed closing shared runtime daemon', error);
+    }
+    runtimeHost = undefined;
+  }
 
   if (rendererServer) {
     try {
       await rendererServer.close();
     } catch (error) {
+      exitCode = 1;
       console.error('Failed closing packaged renderer server', error);
     }
     rendererServer = undefined;
   }
+  app.exit(exitCode);
+}
+
+app
+  .whenReady()
+  .then(async () => {
+    if (runtimeDaemonMode) {
+      await initializeDaemon();
+      return;
+    }
+    await initializeGui();
+  })
+  .catch((error) => {
+    console.error(
+      runtimeDaemonMode
+        ? 'Failed to initialize shared runtime daemon'
+        : 'Failed to initialize renderer client',
+      error
+    );
+    void shutdown(1);
+  });
+
+app.on('window-all-closed', () => {
+  if (!runtimeDaemonMode && process.platform !== 'darwin') {
+    app.quit();
+  }
 });
+
+app.on('before-quit', (event) => {
+  if (!shutdownStarted && (runtimeHost !== undefined || rendererServer !== undefined)) {
+    event.preventDefault();
+    void shutdown();
+  }
+});
+
+for (const signal of ['SIGINT', 'SIGTERM'] as const) {
+  process.once(signal, () => {
+    void shutdown(signal === 'SIGINT' ? 130 : 0);
+  });
+}

@@ -51,6 +51,7 @@ type RouteModules = {
   turnRoute: typeof import('../../../app/api/harness/turn/route');
   interruptRoute: typeof import('../../../app/api/harness/interrupt/route');
   runtimeModule: typeof import('../../../lib/harness/runtime');
+  daemonPortModule: typeof import('../../../lib/runtime-client/daemon-harness-port');
 };
 
 type TestContext = {
@@ -71,6 +72,7 @@ async function loadRouteModules(): Promise<RouteModules> {
   const turnRoute = await import('../../../app/api/harness/turn/route');
   const interruptRoute = await import('../../../app/api/harness/interrupt/route');
   const runtimeModule = await import('../../../lib/harness/runtime');
+  const daemonPortModule = await import('../../../lib/runtime-client/daemon-harness-port');
 
   return {
     createRoute,
@@ -80,7 +82,8 @@ async function loadRouteModules(): Promise<RouteModules> {
     bootRoute,
     turnRoute,
     interruptRoute,
-    runtimeModule
+    runtimeModule,
+    daemonPortModule
   };
 }
 
@@ -89,6 +92,10 @@ async function importRouteModules(): Promise<RouteModules> {
     throw new Error('Route modules were not loaded before the test started');
   }
   cachedRouteModules.runtimeModule.resetHarnessRuntimeForTests();
+  const { createFakeDaemonHarnessPort } = await import('./fake-daemon-harness-port');
+  cachedRouteModules.daemonPortModule.installDaemonHarnessPort(
+    createFakeDaemonHarnessPort()
+  );
   return cachedRouteModules;
 }
 
@@ -167,6 +174,7 @@ beforeEach(async () => {
 afterEach(async () => {
   vi.restoreAllMocks();
   cachedRouteModules?.runtimeModule.resetHarnessRuntimeForTests();
+  cachedRouteModules?.daemonPortModule.resetDaemonHarnessPortForTests();
   delete process.env.CHIRALITY_SESSION_ROOT;
   delete process.env.CHIRALITY_INSTRUCTION_ROOT;
   delete process.env.CHIRALITY_ENABLE_SUBAGENTS;
@@ -178,6 +186,7 @@ afterEach(async () => {
 
 afterAll(() => {
   cachedRouteModules?.runtimeModule.resetHarnessRuntimeForTests();
+  cachedRouteModules?.daemonPortModule.resetDaemonHarnessPortForTests();
 });
 
 describe('Harness API baseline routes', () => {
@@ -524,10 +533,20 @@ describe('Harness API baseline routes', () => {
     await rm(path.join(context.instructionRoot, 'docs', 'PLAN.md'));
 
     vi.resetModules();
-    const [bootRouteBundleB, runtimeBundleB] = await Promise.all([
+    const [
+      bootRouteBundleB,
+      runtimeBundleB,
+      daemonPortBundleB,
+      fakeDaemonPortBundleB
+    ] = await Promise.all([
       import('../../../app/api/harness/session/boot/route'),
-      import('../../../lib/harness/runtime')
+      import('../../../lib/harness/runtime'),
+      import('../../../lib/runtime-client/daemon-harness-port'),
+      import('./fake-daemon-harness-port')
     ]);
+    daemonPortBundleB.installDaemonHarnessPort(
+      fakeDaemonPortBundleB.createFakeDaemonHarnessPort()
+    );
     expect(runtimeBundleB.getHarnessRuntime()).toBe(runtimeBeforeBundleSplit);
 
     const bootResponse = await bootRouteBundleB.POST(
@@ -1341,10 +1360,20 @@ AGENT_TYPE: 2
     }
 
     vi.resetModules();
-    const [interruptRouteBundleB, runtimeBundleB] = await Promise.all([
+    const [
+      interruptRouteBundleB,
+      runtimeBundleB,
+      daemonPortBundleB,
+      fakeDaemonPortBundleB
+    ] = await Promise.all([
       import('../../../app/api/harness/interrupt/route'),
-      import('../../../lib/harness/runtime')
+      import('../../../lib/harness/runtime'),
+      import('../../../lib/runtime-client/daemon-harness-port'),
+      import('./fake-daemon-harness-port')
     ]);
+    daemonPortBundleB.installDaemonHarnessPort(
+      fakeDaemonPortBundleB.createFakeDaemonHarnessPort()
+    );
     expect(runtimeBundleB.getHarnessRuntime()).toBe(runtimeBeforeBundleSplit);
 
     const interruptResponse = await interruptRouteBundleB.POST(

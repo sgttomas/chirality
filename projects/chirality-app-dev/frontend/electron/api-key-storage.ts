@@ -139,6 +139,56 @@ export function getProviderUiApiKey(providerId: ProviderCredentialId): string | 
   return undefined;
 }
 
+/**
+ * Runtime-daemon credential port backed exclusively by Electron safeStorage.
+ *
+ * Environment credentials remain a read-only compatibility source. Mutations
+ * always target the encrypted provider blobs, and values never cross the
+ * daemon control API except on an authenticated store request.
+ */
+export class SafeStorageCredentialStore {
+  async get(providerId: string): Promise<string | undefined> {
+    if (!isProviderCredentialId(providerId)) {
+      return undefined;
+    }
+    const stored = await retrieveProviderApiKey(providerId);
+    if (stored?.trim()) {
+      setProviderGlobal(providerId, stored);
+      return stored;
+    }
+    if (providerId === 'omlx') {
+      return process.env.CHIRALITY_OMLX_API_KEY?.trim() || undefined;
+    }
+    return (
+      process.env.CHIRALITY_ANTHROPIC_API_KEY?.trim() ||
+      process.env.ANTHROPIC_API_KEY?.trim() ||
+      undefined
+    );
+  }
+
+  async status(providerId: string): Promise<{ configured: boolean }> {
+    return { configured: (await this.get(providerId)) !== undefined };
+  }
+
+  async set(providerId: string, value: string): Promise<void> {
+    if (!isProviderCredentialId(providerId)) {
+      throw new Error(`Unsupported credential provider '${providerId}'`);
+    }
+    const normalized = value.trim();
+    if (!normalized) {
+      throw new Error('Credential must be a non-empty string');
+    }
+    await storeProviderApiKey(providerId, normalized);
+  }
+
+  async remove(providerId: string): Promise<void> {
+    if (!isProviderCredentialId(providerId)) {
+      throw new Error(`Unsupported credential provider '${providerId}'`);
+    }
+    await removeProviderApiKey(providerId);
+  }
+}
+
 // Anthropic compatibility API. These deliberately retain the original
 // filename, global, signatures, and behavior.
 export const storeApiKey = (key: string): Promise<void> => storeProviderApiKey('anthropic', key);

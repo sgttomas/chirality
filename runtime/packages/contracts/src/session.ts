@@ -27,6 +27,8 @@ export interface CreateSessionRequest {
   persona?: string;
   mode?: string;
   parentSessionId?: string;
+  approvalRef?: string;
+  allowedWriteTargets?: string[];
 }
 
 export interface SessionTurnRequest {

@@ -140,15 +140,33 @@ export class OmlxClient implements OmlxControlPort {
     if (typeof id !== "string" || id.length === 0) {
       throw new RuntimeError("OMLX_PROTOCOL_FAILURE", "oMLX status omitted exact model ID", 502);
     }
-    const rawKind = item["kind"] ?? item["type"];
+    // oMLX 0.5.x exposes the discovered category as `model_type` and the
+    // implementation as `engine_type`. Keep the older `kind`/`type` aliases
+    // for fake-provider and compatibility fixtures, but never infer a
+    // generative model from its name.
+    const rawKind = item["kind"] ?? item["type"] ?? item["model_type"];
+    const engineType = item["engine_type"];
     const kind: OmlxModelKind =
-      rawKind === "llm" ||
-      rawKind === "embedding" ||
-      rawKind === "reranker" ||
-      rawKind === "helper"
-        ? rawKind
-        : "unknown";
-    const size = item["size_bytes"] ?? item["sizeBytes"];
+      item["is_helper"] === true
+        ? "helper"
+        : rawKind === "llm" ||
+            rawKind === "vlm" ||
+            engineType === "batched" ||
+            engineType === "simple" ||
+            engineType === "vlm"
+          ? "llm"
+          : rawKind === "embedding" || engineType === "embedding"
+            ? "embedding"
+            : rawKind === "reranker" || engineType === "reranker"
+              ? "reranker"
+              : rawKind === "helper"
+                ? "helper"
+                : "unknown";
+    const size =
+      item["actual_size"] ??
+      item["estimated_size"] ??
+      item["size_bytes"] ??
+      item["sizeBytes"];
     return {
       id,
       kind,

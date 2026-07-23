@@ -16,7 +16,7 @@ import {
   type ProjectRegistrationRequest,
   type RuntimeErrorBody,
   type ScaffoldRequest,
-  type SessionBootRequest,
+  type RuntimeSessionBootRequest,
   type SessionTurnRequest,
   type UIEvent
 } from "@chirality/runtime-contracts";
@@ -70,7 +70,7 @@ export class RuntimeDaemon {
       "credentials:write"
     ]);
     const server = createServer((request, response) => {
-      void this.route(request, response);
+      void this.route(request, response).catch((error) => this.error(response, error));
     });
     this.server = server;
     await new Promise<void>((resolve, reject) => {
@@ -123,8 +123,12 @@ export class RuntimeDaemon {
         return this.json(response, 200, body);
       }
       if (method === "GET" && url.pathname === "/v1/projects") {
-        await this.authorize(request, "runtime:read");
-        return this.json(response, 200, { projects: await this.options.service.projects.list() });
+        const principal = await this.authorize(request, "runtime:read");
+        const projects =
+          principal.projectId === undefined
+            ? await this.options.service.projects.list()
+            : [await this.options.service.projects.status(principal.projectId)];
+        return this.json(response, 200, { projects });
       }
       if (method === "POST" && url.pathname === "/v1/projects/register") {
         await this.authorize(request, "projects:write");
@@ -206,10 +210,28 @@ export class RuntimeDaemon {
         if (segments.length === 4 && segments[3] === "runs" && method === "POST") {
           await this.authorize(request, "sessions:write", projectId);
           const body = await this.body<Agent1RunRequest>(request);
-          return this.sse(response, this.options.service.runAgent1(projectId, body));
+          let managerSessionId: string | undefined;
+          const source = this.options.service.runAgent1(projectId, body);
+          const tracked = (async function* (): AsyncIterable<UIEvent> {
+            for await (const event of source) {
+              if (managerSessionId === undefined && event.type === "harness:event") {
+                managerSessionId = event.data.sessionId;
+              }
+              yield event;
+            }
+          })();
+          return await this.sse(
+            response,
+            tracked,
+            async () => {
+              if (managerSessionId !== undefined) {
+                await this.options.service.interruptSession(projectId, managerSessionId);
+              }
+            }
+          );
         }
         if (segments[3] === "sessions") {
-          return this.sessionRoute(request, response, method, projectId, segments);
+          return await this.sessionRoute(request, response, method, projectId, segments);
         }
       }
       throw new RuntimeError("NOT_FOUND", "Route not found", 404);
@@ -259,11 +281,16 @@ export class RuntimeDaemon {
     const action = segments[5];
     if (action === "boot" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);
-      const body = await this.body<SessionBootRequest>(request);
+      const body = await this.body<RuntimeSessionBootRequest>(request);
       return this.json(
         response,
         200,
-        await this.options.service.bootSession(projectId, sessionId, body.opts)
+        await this.options.service.bootSession(
+          projectId,
+          sessionId,
+          body.opts,
+          body.expectedSelection
+        )
       );
     }
     if (action === "replay" && method === "GET") {
@@ -279,15 +306,15 @@ export class RuntimeDaemon {
     if (action === "turn" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);
       const body = await this.body<SessionTurnRequest>(request);
-      return this.sse(
+      return await this.sse(
         response,
-        this.options.service.turns.run(projectId, sessionId, body),
-        () => this.options.service.turns.interrupt(projectId, sessionId)
+        this.options.service.runSessionTurn(projectId, sessionId, body),
+        () => this.options.service.interruptSession(projectId, sessionId)
       );
     }
     if (action === "interrupt" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);
-      await this.options.service.turns.interrupt(projectId, sessionId);
+      await this.options.service.interruptSession(projectId, sessionId);
       return this.json(response, 200, { interrupted: true, sessionId });
     }
     if (action === "permission" && method === "POST") {
@@ -363,33 +390,56 @@ export class RuntimeDaemon {
     events: AsyncIterable<UIEvent>,
     onDisconnect?: () => Promise<void>
   ): Promise<void> {
-    response.writeHead(200, {
-      "content-type": "text/event-stream",
-      "cache-control": "no-cache, no-transform",
-      connection: "keep-alive",
-      "x-accel-buffering": "no"
-    });
     const iterator = events[Symbol.asyncIterator]();
     let finished = false;
-    let disconnected = false;
+    let streamStarted = false;
+    let disconnected = response.destroyed;
+    const disconnectTasks: Promise<void>[] = [];
+    const notifyDisconnect = (): void => {
+      if (onDisconnect === undefined) return;
+      disconnectTasks.push(onDisconnect().catch(() => undefined));
+    };
     const close = (): void => {
-      if (finished || disconnected) return;
+      if (finished) return;
       disconnected = true;
-      void iterator.return?.();
-      void onDisconnect?.();
+      notifyDisconnect();
     };
     response.once("close", close);
     try {
+      const first = await iterator.next();
+      streamStarted = true;
+      if (response.destroyed && !disconnected) disconnected = true;
+      if (disconnected) {
+        // A run stream may not know its manager session until the first event.
+        // Retry the idempotent interrupt after that identity has been captured.
+        notifyDisconnect();
+      } else {
+        response.writeHead(200, {
+          "content-type": "text/event-stream",
+          "cache-control": "no-cache, no-transform",
+          connection: "keep-alive",
+          "x-accel-buffering": "no"
+        });
+      }
+      if (!first.done && !disconnected) {
+        response.write(
+          `event: ${first.value.type}\ndata: ${JSON.stringify(first.value.data)}\n\n`
+        );
+      }
       while (true) {
         const next = await iterator.next();
         if (next.done) break;
-        response.write(`event: ${next.value.type}\ndata: ${JSON.stringify(next.value.data)}\n\n`);
+        if (!disconnected) {
+          response.write(
+            `event: ${next.value.type}\ndata: ${JSON.stringify(next.value.data)}\n\n`
+          );
+        }
       }
     } finally {
       finished = true;
       response.off("close", close);
-      await iterator.return?.();
-      response.end();
+      await Promise.allSettled(disconnectTasks);
+      if (streamStarted && !response.destroyed) response.end();
     }
   }
 

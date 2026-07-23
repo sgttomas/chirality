@@ -144,6 +144,19 @@ export class AuthRegistry {
     });
   }
 
+  async revokeProjectClients(projectId: string): Promise<void> {
+    const registry = await this.read();
+    const now = new Date().toISOString();
+    await this.write({
+      ...registry,
+      clients: registry.clients.map((client) =>
+        client.projectId === projectId && client.revokedAt === undefined
+          ? { ...client, revokedAt: now }
+          : client
+      )
+    });
+  }
+
   private hash(token: string): string {
     return createHash("sha256").update(token).digest("hex");
   }

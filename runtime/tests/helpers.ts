@@ -7,7 +7,12 @@ export async function createProjectFixture(root: string, projectId = "fixture") 
   await mkdir(join(root, "legacy-sessions"), { recursive: true });
   await writeFile(
     join(root, "agents", "AGENT_HELP_HUMAN.md"),
-    "[[DOC:AGENT_INSTRUCTIONS]]\n# HELP_HUMAN\nAGENT_TYPE: 1\nAGENT_CLASS: WORKING\n",
+    "[[DOC:AGENT_INSTRUCTIONS]]\n# HELP_HUMAN\nAGENT_TYPE: 0\nAGENT_CLASS: SUPERVISING\n",
+    "utf8"
+  );
+  await writeFile(
+    join(root, "agents", "AGENT_WORKING_ITEMS.md"),
+    "[[DOC:AGENT_INSTRUCTIONS]]\n# WORKING_ITEMS\nAGENT_TYPE: 1\nAGENT_CLASS: WORKING\n",
     "utf8"
   );
   await writeFile(
@@ -21,7 +26,7 @@ export async function createProjectFixture(root: string, projectId = "fixture") 
     displayName: "Fixture",
     workingRoot: ".",
     instructionRoot: ".",
-    agentsOverlay: "agents/AGENT_HELP_HUMAN.md",
+    agentsOverlay: "agents/AGENT_WORKING_ITEMS.md",
     defaultExecutionRoot: "execution",
     profiles: { domain: [], capability: [], dataBoundary: [] },
     enabledAdapterIds: ["stub", "pi"],

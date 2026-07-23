@@ -49,7 +49,11 @@ export class SessionStore {
       role: request.role,
       engineSelection: request.engineSelection,
       status: "idle",
-      ...(request.parentSessionId === undefined ? {} : { parentSessionId: request.parentSessionId })
+      ...(request.parentSessionId === undefined ? {} : { parentSessionId: request.parentSessionId }),
+      ...(request.approvalRef === undefined ? {} : { approvalRef: request.approvalRef }),
+      ...(request.allowedWriteTargets === undefined
+        ? {}
+        : { allowedWriteTargets: [...request.allowedWriteTargets] })
     };
     await atomicWriteJson(this.sessionFile(request.projectId, sessionId), record);
     return record;
@@ -67,6 +71,7 @@ export class SessionStore {
     for (const legacyRoot of project.legacySessionRoots) {
       for (const candidate of await this.listLegacyCandidates(project.canonicalRoot, legacyRoot)) {
         if (records.has(candidate.sessionId)) continue;
+        if (await exists(this.deletedMarker(projectId, candidate.sessionId))) continue;
         const record = this.normalizeLegacy(projectId, project.canonicalRoot, candidate.sessionId, candidate.raw);
         if (record !== undefined) records.set(record.sessionId, record);
       }
@@ -77,6 +82,9 @@ export class SessionStore {
   async get(projectId: string, sessionId: string): Promise<RuntimeSessionRecord> {
     assertSafeIdentifier(sessionId, "sessionId");
     const project = await this.projects.requireAuthorized(projectId);
+    if (await exists(this.deletedMarker(projectId, sessionId))) {
+      throw new RuntimeError("SESSION_NOT_FOUND", `Unknown session: ${sessionId}`, 404);
+    }
     const central = await this.readCentral(projectId, sessionId).catch((error: unknown) => {
       if ((error as NodeJS.ErrnoException).code === "ENOENT") return undefined;
       throw error;
@@ -109,6 +117,11 @@ export class SessionStore {
   async delete(projectId: string, sessionId: string): Promise<void> {
     await this.get(projectId, sessionId);
     await rm(this.sessionDirectory(projectId, sessionId), { recursive: true, force: false });
+    await atomicWriteJson(this.deletedMarker(projectId, sessionId), {
+      schemaVersion: "chirality.session-deletion/v1",
+      sessionId,
+      deletedAt: new Date().toISOString()
+    });
   }
 
   async appendEvent(
@@ -279,6 +292,7 @@ export class SessionStore {
           : "anthropic";
     const now = new Date().toISOString();
     return {
+      ...raw,
       schemaVersion: "chirality.session/v2",
       projectId,
       projectRoot,
@@ -305,7 +319,25 @@ export class SessionStore {
               ? raw["model"]
               : ""
       },
-      status: "idle"
+      status:
+        raw["status"] === "running" ||
+        raw["status"] === "completed" ||
+        raw["status"] === "failed" ||
+        raw["status"] === "interrupted" ||
+        raw["status"] === "idle"
+          ? raw["status"]
+          : "idle",
+      ...(typeof raw["engineSessionId"] === "string"
+        ? { engineSessionId: raw["engineSessionId"] }
+        : typeof raw["sdkSessionId"] === "string"
+          ? { engineSessionId: raw["sdkSessionId"] }
+          : {}),
+      ...(typeof raw["claudeSessionId"] === "string"
+        ? { claudeSessionId: raw["claudeSessionId"] }
+        : {}),
+      ...(typeof raw["parentSessionId"] === "string"
+        ? { parentSessionId: raw["parentSessionId"] }
+        : {})
     };
   }
 
@@ -358,5 +390,10 @@ export class SessionStore {
 
   private eventsFile(projectId: string, sessionId: string): string {
     return join(this.sessionDirectory(projectId, sessionId), "events.jsonl");
+  }
+
+  private deletedMarker(projectId: string, sessionId: string): string {
+    assertSafeIdentifier(sessionId, "sessionId");
+    return join(this.sessionsDirectory(projectId), ".deleted", `${sessionId}.json`);
   }
 }

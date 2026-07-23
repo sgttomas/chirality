@@ -132,13 +132,19 @@ async function streamEvents(
   io: CliIo,
   stream: RuntimeStream,
   json: boolean
-): Promise<void> {
+): Promise<number> {
+  let processExitCode: number | undefined;
   for await (const event of stream) {
+    if (processExitCode !== undefined) {
+      throw new RuntimeError(
+        "INTERNAL_FAILURE",
+        "Runtime stream emitted data after terminal process:exit",
+        502
+      );
+    }
     if (json) {
       io.stdout(`${JSON.stringify(event)}\n`);
-      continue;
-    }
-    if (event.type === "chat:delta") {
+    } else if (event.type === "chat:delta") {
       io.stdout(event.data.text);
     } else if (event.type === "turn:error") {
       io.stderr(`${event.data.errorType}: ${event.data.message}\n`);
@@ -147,7 +153,22 @@ async function streamEvents(
     } else if (event.type !== "harness:event") {
       io.stdout(`[${event.type}]\n`);
     }
+    if (event.type === "process:exit") {
+      processExitCode = event.data.exitCode;
+    }
   }
+  if (processExitCode === undefined) {
+    throw new RuntimeError(
+      "INTERNAL_FAILURE",
+      "Runtime stream ended without terminal process:exit",
+      502
+    );
+  }
+  return Number.isInteger(processExitCode) && processExitCode > 0
+    ? processExitCode
+    : processExitCode === 0
+      ? 0
+      : 1;
 }
 
 async function readRequestFile<T>(
@@ -209,6 +230,7 @@ async function readRunRequest(
   const projectId = requiredOption(args, "project");
   const agentId = requiredOption(args, "agent");
   const briefFile = option(args, "brief-file");
+  const localModel = option(args, "local-model");
   const brief =
     briefFile === undefined
       ? (await io.readStdin()).trim()
@@ -225,9 +247,15 @@ async function readRunRequest(
       agentId,
       approvalReference:
         option(args, "approval-reference") ?? `cli-agent1:${agentId}`,
-      ...(option(args, "local-model") === undefined
+      ...(localModel === undefined
         ? {}
-        : { localModel: option(args, "local-model") })
+        : {
+            localModel,
+            readOnlyTool: {
+              name: "read_file",
+              relativePath: option(args, "read-file") ?? "chirality.project.json"
+            }
+          })
     }
   };
 }
@@ -366,7 +394,7 @@ export async function runCli(
         if (action === "replay") {
           printJson(io, await deps.client.replaySession(projectId, sessionId), json);
         } else if (action === "turn") {
-          await streamEvents(
+          return await streamEvents(
             io,
             await deps.client.turnSession(
               projectId,
@@ -392,12 +420,11 @@ export async function runCli(
 
     if (group === "run") {
       const run = await readRunRequest(args, io, deps);
-      await streamEvents(
+      return await streamEvents(
         io,
         await deps.client.runAgent1(run.projectId, run.request),
         json
       );
-      return 0;
     }
 
     throw new CliUsageError(`Unknown command: ${argv.join(" ")}`);

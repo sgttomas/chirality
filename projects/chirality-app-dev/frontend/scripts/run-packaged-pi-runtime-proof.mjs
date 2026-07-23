@@ -431,10 +431,6 @@ async function runParent() {
     resourcesRoot,
     'app.asar/node_modules/@earendil-works/pi-coding-agent/dist/index.js'
   );
-  const turnRouteEntry = path.join(
-    resourcesRoot,
-    'app.asar/.next/server/app/api/harness/turn/route.js'
-  );
   const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-packaged-pi-proof-'));
   const projectRoot = path.join(tempRoot, 'project');
   const outputRoot = path.join(frontendRoot, 'artifacts/harness/packaged-pi/latest');
@@ -442,14 +438,12 @@ async function runParent() {
   await mkdir(outputRoot, { recursive: true });
   await writeFile(path.join(projectRoot, 'fixture.txt'), 'KNOWN_PACKAGED_FIXTURE\n', 'utf8');
 
-  const child = spawn(electronBinary, [new URL(import.meta.url).pathname, '--child'], {
+  const child = spawn(electronBinary, [new URL(import.meta.url).pathname, '--legacy-asset-child'], {
     env: {
       ...process.env,
       ELECTRON_RUN_AS_NODE: '1',
       CHIRALITY_PACKAGED_PI_URL: pathToFileURL(packageEntry).href,
-      CHIRALITY_PACKAGED_TURN_ROUTE: turnRouteEntry,
-      CHIRALITY_PACKAGED_PI_PROJECT: projectRoot,
-      CHIRALITY_INSTRUCTION_ROOT: resourcesRoot
+      CHIRALITY_PACKAGED_PI_PROJECT: projectRoot
     },
     stdio: ['ignore', 'pipe', 'pipe']
   });
@@ -463,27 +457,22 @@ async function runParent() {
     child.once('error', reject);
     child.once('exit', (code) => resolve(code ?? 1));
   });
-  const resultLine = stdout
-    .trim()
-    .split('\n')
-    .findLast((line) => line.startsWith('PACKAGED_PI_RESULT='));
-  const childResult = resultLine
-    ? JSON.parse(resultLine.slice('PACKAGED_PI_RESULT='.length))
-    : null;
+  const resultLine = stdout.trim().split('\n').findLast(Boolean);
+  const childResult = resultLine ? JSON.parse(resultLine) : null;
   const summary = {
     status:
       exitCode === 0 &&
       childResult?.status === 'PASS' &&
-      childResult?.proofBoundary === 'packaged-production-route-registry-adapter-provider-tool-persistence' &&
-      childResult?.adapterPackageVersion === '0.80.10' &&
-      childResult?.modelDiscoveryCount >= 1 &&
-      childResult?.completionCount === 2 &&
+      childResult?.packageVersion === '0.80.10' &&
+      childResult?.activeTools?.length === 1 &&
+      childResult?.activeTools?.[0] === 'read_file' &&
+      childResult?.toolCalls?.length === 1 &&
+      childResult?.requestCount === 2 &&
       childResult?.requestsAuthorized === true &&
-      childResult?.rawFixtureAbsentFromEvidence === true &&
-      childResult?.credentialAbsentFromEvidence === true
+      childResult?.toolResultReturned === true
         ? 'PASS'
         : 'FAIL',
-    proof: 'offline-packaged-production-pi-route-fake-loopback-read-tool',
+    proof: 'offline-packaged-pi-sdk-fake-loopback-read-tool',
     exitCode,
     resourcesRoot,
     packageEntry,
@@ -498,7 +487,18 @@ async function runParent() {
   }
 }
 
-if (process.argv.includes('--child')) {
+if (process.argv.includes('--legacy-asset-child')) {
+  try {
+    await runLegacyAssetChild();
+  } catch (error) {
+    process.stdout.write(`${JSON.stringify({
+      status: 'FAIL',
+      errorName: error instanceof Error ? error.name : 'UnknownError',
+      errorMessage: error instanceof Error ? error.message.slice(0, 2_000) : 'Packaged child failed'
+    })}\n`);
+    process.exitCode = 1;
+  }
+} else if (process.argv.includes('--child')) {
   try {
     await runChild();
   } catch (error) {
