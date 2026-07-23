@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { SessionRecord } from '@chirality/harness-contract/types';
 import { HarnessError } from '@chirality/harness-contract/errors';
@@ -339,6 +339,27 @@ async function writeNew(filePath: string, content: string): Promise<void> {
   await writeFile(filePath, content, { encoding: 'utf8', flag: 'wx' });
 }
 
+/**
+ * Replace a file's contents atomically: write to a uniquely-named temp file in
+ * the SAME directory, then rename(2) over the target. rename is atomic on POSIX,
+ * so a concurrent reader of `filePath` always observes either the prior complete
+ * contents or the new complete contents — never the empty/partial state that a
+ * plain truncate-then-write (`writeFile`) exposes mid-transition. Used for every
+ * in-place STATUS.json overwrite so sibling overlap scans cannot read a torn record.
+ */
+async function writeAtomic(filePath: string, content: string): Promise<void> {
+  const dir = path.dirname(filePath);
+  await mkdir(dir, { recursive: true });
+  const tempPath = path.join(dir, `.${path.basename(filePath)}.${randomUUID()}.tmp`);
+  try {
+    await writeFile(tempPath, content, { encoding: 'utf8', flag: 'wx' });
+    await rename(tempPath, filePath);
+  } catch (error) {
+    await rm(tempPath, { force: true });
+    throw error;
+  }
+}
+
 async function readJson(filePath: string): Promise<Record<string, unknown>> {
   return JSON.parse(await readFile(filePath, 'utf8')) as Record<string, unknown>;
 }
@@ -622,7 +643,7 @@ export class ManagedDelegationService {
       await assertNoActiveWriteOverlap(runRoot, instanceId, writeTargets, input.dependencies);
       await writeNew(path.join(instanceRoot, 'LAUNCH_BRIEF.md'), brief);
       await writeNew(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'LAUNCHED' }, null, 2)}\n`);
-      await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'RUNNING' }, null, 2)}\n`, 'utf8');
+      await writeAtomic(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'RUNNING' }, null, 2)}\n`);
     });
     try {
       const parentForRun: SessionRecord = {
@@ -659,12 +680,12 @@ export class ManagedDelegationService {
       if (returned.status !== 'RUNNING') {
         await writeNew(path.join(instanceRoot, 'RETURN.md'), returned.output.endsWith('\n') ? returned.output : `${returned.output}\n`);
       }
-      await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, childSessionId: returned.sessionId, status: returned.status, outputArtifact: returned.status === 'RUNNING' ? null : returned.outputArtifact ?? path.join(instanceRoot, 'RETURN.md') }, null, 2)}\n`, 'utf8');
+      await writeAtomic(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, childSessionId: returned.sessionId, status: returned.status, outputArtifact: returned.status === 'RUNNING' ? null : returned.outputArtifact ?? path.join(instanceRoot, 'RETURN.md') }, null, 2)}\n`);
       await refreshOrchestrationHandoff(runRoot);
       return { runId, instanceId, ...returned, instructionHash: child.instructionHash, briefHash };
     } catch (error) {
       const message = error instanceof Error ? error.message : 'managed child failed';
-      await writeFile(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'FAILED', error: message }, null, 2)}\n`, 'utf8');
+      await writeAtomic(path.join(instanceRoot, 'STATUS.json'), `${JSON.stringify({ ...baseStatus, status: 'FAILED', error: message }, null, 2)}\n`);
       await refreshOrchestrationHandoff(runRoot);
       throw error;
     }

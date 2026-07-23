@@ -6,6 +6,28 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-22 - Managed-delegation concurrent-reservation deflake landed
+
+Executed the owner-adopted APPDEV-MANAGED-DELEGATION-DEFLAKE sealed brief.
+`STATUS.json` in-place truncate-overwrites in
+`frontend/src/lib/harness/managed-delegation.ts` could expose an empty/partial
+record to a concurrent sibling overlap scan, making the strict
+`Concurrent write overlap` assertion flake in CI and spuriously rejecting
+genuinely disjoint concurrent siblings (fail-closed availability defect, no
+safety hole). All three overwrites now route through an inline atomic
+temp-file-plus-rename helper; the initial creation stays creation-exclusive;
+the scan-side fail-closed posture is retained (rationale in the DEL-08-04 run
+record). Reservation semantics are unchanged.
+
+Test hardening added the complementary disjoint-siblings-both-succeed case
+without widening any assertion. Evidence: 300/300 consecutive green runs of
+the test file, full frontend suite 780 passed / 4 skipped, typecheck clean.
+Execution and rationale live in DEL-08-04
+`_run_records/R6_MANAGED_DELEGATION_DEFLAKE_2026-07-22.md`. This deflake is
+the recorded prerequisite for the root loop's strict branch-protection
+follow-on. This is documentary execution evidence only; it is not a lifecycle
+decision, release-readiness claim, or acceptance.
+
 ## 2026-07-22 - ORCHESTRATOR→PROJECT_SETUP doc-alias updates landed (corpus v11)
 
 On the owner-adopted notice APPDEV-ORCHESTRATOR-RENAME-HANDOFF (the root

@@ -322,6 +322,34 @@ describe('managed delegation', () => {
     expect(String((concurrent.find((result) => result.status === 'rejected') as PromiseRejectedResult).reason)).toContain('Concurrent write overlap');
   });
 
+  it('lets concurrent siblings with genuinely disjoint write targets both succeed', async () => {
+    const service = new ManagedDelegationService(async () => ({
+      sessionId: `sess_${Math.random()}`,
+      status: 'RUNNING',
+      output: 'running'
+    }));
+    await service.delegate(parent('HELP_HUMAN', 0), ['read'], request({ runId: 'RUN-DISJOINT' }));
+    const concurrent = await Promise.allSettled([
+      service.delegate(parent('HELP_HUMAN', 0), ['read'], request({
+        runId: 'RUN-DISJOINT',
+        workGraph: undefined,
+        declaredContext: ['execution/PKG-02'],
+        writeTargets: ['execution/PKG-02']
+      })),
+      service.delegate(parent('HELP_HUMAN', 0), ['read'], request({
+        runId: 'RUN-DISJOINT',
+        workGraph: undefined,
+        declaredContext: ['execution/PKG-03'],
+        writeTargets: ['execution/PKG-03']
+      }))
+    ]);
+    // Disjoint siblings must never be spuriously refused: both reservations succeed,
+    // and no rejection may carry the fail-closed "invalid status record" message.
+    const rejected = concurrent.filter((result) => result.status === 'rejected');
+    expect(rejected).toHaveLength(0);
+    expect(concurrent.filter((result) => result.status === 'fulfilled')).toHaveLength(2);
+  });
+
   it('does not bind a parent run until launch validation succeeds', async () => {
     const bound: string[] = [];
     const service = new ManagedDelegationService(
