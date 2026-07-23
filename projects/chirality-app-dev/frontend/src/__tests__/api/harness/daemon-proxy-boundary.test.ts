@@ -35,11 +35,17 @@ function daemonPort(
 
 afterEach(() => {
   resetDaemonHarnessPortForTests();
+  vi.unstubAllEnvs();
   vi.restoreAllMocks();
 });
 
 describe('Desktop daemon harness proxy boundary', () => {
   it('fails closed when the Desktop composition root has not installed a daemon client', async () => {
+    vi.stubEnv('CHIRALITY_RUNTIME_SOCKET_PATH', '');
+    vi.stubEnv('CHIRALITY_RUNTIME_TOKEN_FILE', '');
+    vi.stubEnv('CHIRALITY_RUNTIME_PROJECT_ID', '');
+    vi.stubEnv('CHIRALITY_RUNTIME_PROJECT_ROOT', '');
+
     const response = await createRoute.POST(
       new Request('http://localhost/api/harness/session/create', {
         method: 'POST',
