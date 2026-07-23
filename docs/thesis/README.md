@@ -33,11 +33,23 @@ There is no Appendix B: the agent index is maintained as the live `AGENTS.md` re
 
 Every chapter is agent-drafted (as the Status table records), directed by the owner, drawing from the cited governed sources in the Source Material table. Applying the system's own warrant lifecycle (`docs/TYPES.md` §10.4, UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) to this document set: the thesis stands at CITED/REVIEWED. It has NOT been AUTHENTICATED — that transition is a human act (the owner's double commitment: affirming the claims are warranted and binding to them) and has not occurred. Per K-CLAIM-1 the thesis therefore binds nothing and is not a governance surface; on any disagreement, the governed record (root `docs/`, decision records) governs.
 
+*Revision note dated 2026-07-23 (D-GOV-19 candidate).* The owner approved
+`D-GOV-19` at candidate commit
+`981149df247fb6564768f8451e3b12dd591d9197` as the basis for a concordant
+Revision 3 of `CHIRALITY_FRAMEWORK.md` and this thesis. The revision locates
+knowledge in a situated knower; treats authentication as an attributable,
+scoped, SHA-bound act conferring accountable-reliance status; and makes the
+permanent accountability gap the sole primary chirality of knowledge.
+Identical information may occasion different, mistaken, or revisable
+knowledge—a property termed configurational multiplicity. This prose remains
+a candidate pending separate owner review. The approval of D-GOV-19 did not
+authenticate the thesis, which remains CITED/REVIEWED and nonbinding.
+
 An owner-revision backlog for the thesis is catalogued in `plans/consistency_audit_2026-07-01.md` (2026-07-01).
 
 *Revision note dated 2026-07-02.* An owner-directed reconciliation pass was applied across the document set: Appendix A regenerated from the live `docs/CONTRACT.md` (27 K-* invariants); mutable registry counts removed from prose; APEGA and Engineers Canada AI-guidance currency updates (Chapters 2, 6, 9); claim-strength language normalized to Chapter 8's stated enforcement model; epistemic-labeling attribution aligned with D-GOV-08; Chapter 2 vocabulary and citation-binding corrections; glossary and cross-reference fixes. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
-*Revision note dated 2026-07-02 (positioning pass).* A second owner-directed pass stated the whole-system category — a governed application environment for agent-assisted professional work — in Chapters 1, 4, and 10; added §9.3.6 on the relationship to the AI alignment problem (align the system of use, not the model); named Smith and Polanyi as the principal philosophical pair (§3.6.3); added an Author's Note and Appendix D §D.8 recording the origin of the conjecture; added glossary entries for reckoning, judgment, chirality of knowledge, and knowledge gap; and repaired stale `PLAN.md` section pointers in Chapters 8 and 9. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
+*Revision note dated 2026-07-02 (positioning pass).* A second owner-directed pass stated the whole-system category — a governed application environment for agent-assisted professional work — in Chapters 1, 4, and 10; added §9.3.6 on the relationship to the AI alignment problem (align the system of use, not the model); named Smith and Polanyi as the principal philosophical pair (now recalibrated in §3.6.4); added an Author's Note and Appendix D §D.8 recording the origin of the conjecture; added glossary entries for reckoning, judgment, chirality of knowledge, and the accountability gap; and repaired stale `PLAN.md` section pointers in Chapters 8 and 9. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
 *Revision note dated 2026-07-18.* Owner-directed maintenance pass under the architecture-evaluation remediation program: the workflow-requirement range was corrected from R1–R12 to R1–R17 in this README and Chapter 4 (Appendix A already cataloged R1–R17; narrative had drifted behind the live registry, and per K-AGENTS-1 the registry governs on disagreement). The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
@@ -57,6 +69,7 @@ All thesis content draws from the Chirality project governance documents. Primar
 
 | Document | Thesis Chapters |
 |----------|----------------|
+| `CHIRALITY_FRAMEWORK.md` | 1, 3, 5, 10, Appendix D |
 | `docs/DIRECTIVE.md` | 1, 3, 5 |
 | `docs/DBM_Agent_Instruction_Architecture.md` | 4, 8 |
 | `docs/SE_Design_Analysis.md` | 7 |

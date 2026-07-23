@@ -40,7 +40,17 @@ This thesis makes five novel contributions:
 
 **2. A regulatory mapping grounding AI agent governance in existing professional obligations.** The thesis argues that APEGA's *Relying on the Work of Others and Outsourcing* standard can be interpreted to govern AI agent use because the professional's obligations are defined by what the professional must do, not by what the worker is. This interpretation shows that AI agent governance may be achievable within existing regulatory frameworks, without requiring new AI-specific regulation, though it remains jurisdiction- and regulator-dependent.
 
-**3. A four-pillar philosophical framework with fractal instantiation.** The architecture rests on ontology (what exists), epistemology (what can be known), praxiology (how work is done), and axiology (what the system values). The epistemology is identified as the load-bearing pillar, and it has its own formal ontology: six primitives (claim, warrant, status, gap, conflict, ruling) and a warrant lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) that tracks the epistemic state of claims interleaved with the deliverable lifecycle. The four pillars are presented as a compact and coherent framework for professional accountability rather than as the only possible ontology for every domain. The four-document production kit (Datasheet, Specification, Guidance, Procedure) mirrors the philosophical structure — a fractal property treated as evidence of architectural coherence within Chirality.
+**3. A four-pillar philosophical framework with fractal instantiation.** The
+architecture rests on ontology (what exists), epistemology (what is
+warranted), praxiology (how work is done), and axiology (what values govern).
+The epistemology is the load-bearing pillar and retains six operational
+primitives (claim, warrant, status, gap, conflict, ruling) and the warrant
+lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED). The framework
+locates knowledge in a situated knower and treats authentication as an
+attributable relation of accountable reliance on identified information. The
+four-document production kit mirrors the four accountability questions—a
+fractal property of the architecture, not a claim that one chiral duality
+recurs at every level.
 
 **4. A fault containment architecture through write scope quarantine.** The Agent 0/1/2 runtime hierarchy combined with declared write scopes creates formal fault containment zones. Under the declared write-scope contract, a Type 2 agent failure is contained away from source truth. This adapts classical SE fault containment to the governance of probabilistic agents.
 

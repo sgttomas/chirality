@@ -511,6 +511,11 @@ This dual-graph model prevents scope drift (the tree is stable and scope-change-
 
 The tree × DAG architecture directly serves the ontology pillar: the tree defines the stable ontological structure of the project (what entities exist and how they are organized), while the DAG defines the current epistemological and praxiological state (what is known about the relationships between entities and what must be done before each entity can be completed).
 
+Here, "knowledge architecture" and "what is known" name recorded project
+information and its governed status. The graphs are shared semantic
+scaffolding, not exhaustive representations of the situated knowledge of
+individual knowers.
+
 ### 7.10.2 Distributed Authority with On-Demand Aggregation
 
 K-DEP-1 states: "Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are authoritative for dependencies. There is no central dependency graph; aggregation is on-demand."

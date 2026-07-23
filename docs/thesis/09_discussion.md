@@ -75,11 +75,19 @@ The ontology/epistemology/praxiology/axiology framework could serve as an evalua
 
 The deeper insight — that the four pillars provide a compact and useful ontology for professional accountability (Chapter 3, §3.5) — suggests that this evaluation framework is not arbitrary. It is plausibly portable wherever a professional takes responsibility for work, because the four questions (what exists? what is warranted? how was it done? what values governed?) recur across accountable practice even if different domains instantiate them differently.
 
+The lens is deliberately non-exhaustive. It tests whether four recurring
+accountability questions have been addressed; it does not constrain every
+category through which a situated knower may understand the work.
+
 ### 9.3.4 The Epistemic Ontology and Warrant Lifecycle as Portable Concepts
 
 The six epistemic primitives (claim, warrant, status, gap, conflict, ruling) and the warrant lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) are not Chirality-specific constructs. They formalize concepts that are implicit in any professional review process. An engineer reviewing a colleague's calculation already thinks in terms of claims (what is asserted), warrants (what evidence supports it), gaps (what is missing), and conflicts (where sources disagree). The Chirality contribution is to make these implicit concepts architecturally explicit and enforceable.
 
 Any AI agent framework that aims to support professional practice could adopt the epistemic ontology without adopting the full Chirality architecture. The primitives and the warrant lifecycle are modular — they require only that the system can attach provenance to claims, label epistemic status, surface gaps, and detect conflicts. The AUDIT_EPISTEMIC agent (`AGENT_AUDIT_EPISTEMIC.md`) demonstrates that these properties can be audited systematically.
+
+This portability concerns information governance, not a portable definition
+of knowledge. The primitives expose claims, grounds, and workflow status so
+that knowers can assess them and accountable actors can record reliance.
 
 ### 9.3.5 Capability-Invariance of the Authority Boundary
 
@@ -87,9 +95,22 @@ Any AI agent framework that aims to support professional practice could adopt th
 
 The preceding subsections argued that the architecture generalizes across domains and jurisdictions. A third axis of generalization deserves explicit statement: the architecture generalizes across model capability, because the authority boundary is indexed to accountability-status, not to capability. Nothing in the invariant catalog (Appendix A) conditions on how capable a model is. Write scopes attach to roles — the Agent 0/1/2 runtime hierarchy of Chapter 4 (§4.5) — gates attach to positions in the deliverable lifecycle (`SPEC.md` §3.3), and the REVIEWED → AUTHENTICATED transition attaches to being a continuant who can be held to account, a status that no capability level confers. No capability level crosses the boundary, and no capability level renegotiates it. This distinguishes the architecture from capability-indexed governance regimes — autonomy levels, evaluation-gated permission sets, trust tiers — which must be re-litigated at every model generation and which convert each capability gain into a fresh governance argument. The invariance holds in both directions: a degraded or cheaper model requires no amendment either — the gates and the evidence trail simply catch more. The seeds of this argument are already present in the corpus: the authority typing of Chapter 4 asks what a role may write, never how capable the agent is, and the reliance standard mapped in Chapter 6 (§6.3) never conditions the professional's obligations on the competence of the relied-upon party.
 
-A monotonic-benefit implication follows. Because the gates were never justified by machine incapability — Section 9.2.5 already argued that the invariants express professional obligations, not model limitations — capability gains flow entirely into the reckoning side of the architecture: better drafting, better checking, better evidence capture, better staleness and conflict detection. None of the gain erodes the boundary, because the boundary was never resting on the deficiencies the gain removes. The architecture is improved by progress that it does not have to trust. The philosophical ground for this stability is the reckoning/judgment distinction developed in Chapter 3 (§3.6.3): judgment is not the upper end of a reckoning scale, so no amount of scaling closes the gap between them [CITE:Smith2019]. A boundary drawn at that gap is stable under improvement because improvement occurs entirely on one side of it.
+A monotonic-benefit implication follows. Because the gates were never
+justified by machine incapability — Section 9.2.5 already argued that the
+invariants express professional obligations, not model limitations —
+capability gains improve drafting, checking, evidence capture, and conflict
+detection without automatically reallocating authority. The philosophical
+resource for this stability is Smith's reckoning/judgment distinction,
+calibrated in Chapter 3 (§3.6.4) [CITE:Smith2019]. Improved information can
+change what a person knows and reduce review effort; it does not by itself
+perform an attributable act of professional reliance.
 
-The claim should be stated with its own conditional, to keep it principled rather than dogmatic. If a future artificial system were ever a genuine accountable continuant — persisting over time, bearing consequences, capable of staking itself on its commitments — the boundary's own logic would extend to it without amendment: the rule tracks accountability wherever accountability lives, and only the referent of "accountable party" could change. The architecture takes no position on whether such a system is possible; it requires only that authority follow accountability-status, whatever entities turn out to hold it.
+The thesis does not need to decide whether a future artificial system could
+be a knower or accountable continuant. The current professional and
+operational allocation is unambiguous: only authorized humans issue binding
+approval records and assume duty of care. Any future reallocation would
+require its own regulatory and governance act; it is not implied by model
+capability or by this explanatory account.
 
 One caveat is required, and it is the same caveat that runs through this thesis (§6.9.4, §9.2.4). The structure is capability-invariant; the practice at the gate is capability-stressed. As agent outputs improve, the temptation to rubber-stamp them grows, and the architecture cannot compel the professional's commitment to be real — it can only record whether its trace exists. Rising capability therefore makes drift measurement and honest accounting of review effort more important, not less: the better the drafts, the more the integrity of the gate depends on review discipline that the architecture can evidence but cannot enforce.
 
@@ -99,9 +120,28 @@ The claim is falsifiable, and the repository itself is the longitudinal test. Ca
 
 *Subsection added 2026-07-02.*
 
-The generalization argument extends to a problem usually framed at the model level. Most alignment work asks how to make a model produce behavior consistent with human values — through training, feedback, or specification [CITE:Ouyang2022] [CITE:Bai2022]. The governance problem this thesis addresses is adjacent but distinct: how to prevent machine output from being mistaken for accountable judgment. The Chirality response aligns the system of use, not the model. Whatever the model is internally — however it was trained, and however capable it becomes — its outputs enter professional practice only through provenance, epistemic labels, review, gates, and a recorded human commitment.
+The generalization argument extends to a problem usually framed at the model
+level. Most alignment work asks how to make a model produce behavior
+consistent with human values — through training, feedback, or specification
+[CITE:Ouyang2022] [CITE:Bai2022]. The governance problem this thesis
+addresses is adjacent but distinct: how to prevent machine output from being
+mistaken for accountable judgment. The Chirality response aligns the system
+of use, not the model. Whatever the model is internally — however it was
+trained, and however capable it becomes — its outputs enter professional
+practice only through provenance, epistemic labels, review, gates, and a
+recorded human commitment.
 
-The two approaches are complementary, and the architectural approach addresses only its own class of failure. Model-level alignment reduces the rate of undesirable outputs; use-level alignment ensures that no output, good or bad, acquires professional authority without a warranting act by an accountable person. Nothing in this thesis makes a model intrinsically truthful, corrigible, or safe under arbitrary deployment — §9.2.4 and §9.2.5 state those limits. What the architecture offers is a foundation that does not depend on solving model internals: rather than asking the machine to internalize values, it places machine output inside a value-bearing human structure. This avoids the confusion identified in Chapter 3 (§3.6.5) — treating the opposition between AI agency and human authority as a problem to be dissolved rather than a structure to be maintained. The load-bearing requirement is the distinction this thesis has preserved throughout: reckoning is not judgment (§3.6.3) [CITE:Smith2019]. If that distinction collapses, governance becomes confused, because machine output is treated as a candidate for the person's role. If it is preserved, AI can become extremely useful in consequential domains without becoming the locus of moral authority.
+The two approaches are complementary, and the architectural approach
+addresses only its own class of failure. Model-level alignment reduces the
+rate of undesirable outputs; use-level alignment ensures that no output,
+good or bad, acquires professional authority without an attributable act by
+an accountable person. Nothing in this thesis makes a model intrinsically
+truthful, corrigible, or safe under arbitrary deployment — §9.2.4 and §9.2.5
+state those limits. As Chapter 3 (§3.6.6) argues, integration does not erase
+the accountability gap. Smith's reckoning/judgment distinction (§3.6.4)
+[CITE:Smith2019] remains a philosophical resource for preserving the
+difference between producing information and accepting responsibility for
+reliance on it.
 
 ---
 

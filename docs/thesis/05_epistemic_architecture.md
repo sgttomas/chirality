@@ -10,6 +10,13 @@ This chapter develops the argument in full. It defines the epistemic architectur
 
 The claim is specific: the Chirality epistemic architecture does not improve LLM output quality. It makes the epistemic status of every claim transparent and auditable, so that a qualified professional can determine what to rely on. This is a fundamentally different response to the LLM reliability problem than model-level improvements, and it is complementary to them.
 
+The operational vocabulary in this chapter classifies information and its
+recorded grounds; it does not locate knowledge in the files. Knowledge
+belongs to a situated knower and may be mistaken or revised. Identical
+information may occasion different knowledge, while the architecture provides
+shared scaffolding through which those differences can be examined and
+accountable reliance can be recorded.
+
 ---
 
 ## 5.2 The Problem: Absence of Intrinsic Epistemic Warrant
@@ -20,7 +27,14 @@ The term "hallucination" is widely used for this phenomenon, but it understates 
 
 For casual use, this is a usability annoyance. For professional engineering practice, it is a fundamental obstacle. A licensed professional who authenticates a professional work product (PWP) is accepting personal responsibility for the accuracy, completeness, and fitness for purpose of that work. The authentication act, as defined by APEGA's *Authenticating Professional Work Products* standard, requires that the professional has either directly supervised and controlled the work or conducted a thorough review of it. Both mechanisms presuppose that the professional can assess the epistemic grounding of the claims in the work — that they can distinguish what is known from what is assumed, what is extracted from what is inferred, and what is supported by evidence from what is not.
 
-An LLM output, absent architectural controls, does not support this assessment. The professional faces a body of text that reads as authoritative but carries no provenance, no epistemic labels, and no indication of where the model's knowledge ends and its interpolation begins. The thorough review required by APEGA §3.1.2 becomes, in effect, a complete independent verification — the professional must verify every claim from scratch, which eliminates the productivity benefit of using AI in the first place.
+An LLM output, absent architectural controls, does not support this
+assessment. The professional faces a body of text that reads as authoritative
+but carries no provenance, no epistemic labels, and no indication of where
+retrieved or cited information ends and generated interpolation begins. The
+thorough review required by APEGA §3.1.2 becomes, in effect, a complete
+independent verification — the professional must verify every claim from
+scratch, which eliminates the productivity benefit of using AI in the first
+place.
 
 The epistemic architecture of Chirality is designed to resolve this problem. It does not make the model's output more reliable. It makes the epistemic status of every claim in the output transparent, so that the professional's review can be targeted rather than exhaustive.
 
@@ -160,7 +174,14 @@ Each claim in the deliverable occupies a position in this lifecycle independentl
 
 **CITED → REVIEWED.** A cited claim has provenance, but provenance alone is not sufficient for professional reliance. The licensed professional must review the claim: is the source authoritative? is the citation accurate? is the interpretation reasonable? The REVIEW agent's 5-gate protocol structures this assessment. A claim transitions from CITED to REVIEWED when the professional has examined it and dispositioned any findings.
 
-**REVIEWED → AUTHENTICATED.** Authentication is the professional's declaration that the aggregate warrant state of the deliverable — the totality of its reviewed claims — is sufficient for reliance under professional responsibility. This transitions not individual claims but the deliverable as a whole. Authentication binds to a specific git SHA (K-AUTH-2), making the warrant-to-content relationship mechanically verifiable.
+**REVIEWED → AUTHENTICATED.** Authentication is the professional's
+declaration that the aggregate warrant state of the deliverable — the totality
+of its reviewed claims — is sufficient for reliance under professional
+responsibility. This transitions not individual claims but the deliverable as
+a whole. Authentication binds an accountable actor to identified content or
+SHA, scope, and purpose (K-AUTH-2), making the acceptance relation
+mechanically verifiable. The status confers accountable-reliance standing in
+that relation; it does not create knowledge or establish truth.
 
 The warrant lifecycle reveals what thorough review (APEGA §3.1.2) actually is in operational terms: it is the process of auditing warrant sufficiency. The professional examines claims, checks their warrants, resolves gaps and conflicts through rulings, and ultimately decides whether the aggregate warrant state supports authentication. The epistemic architecture makes this tractable by ensuring that every claim's warrant state is visible — not hidden in the model's reasoning.
 
@@ -210,7 +231,14 @@ The epistemic architecture is what makes the regulatory mapping described in Cha
 
 **Direct supervision and control (APEGA §3.1.1.1)** requires periodic reviews to ensure that resulting PWPs are accurate and reliable. The epistemic labels and provenance fields provide the data that makes these reviews efficient and targeted. Without them, "periodic review" would mean "read everything and verify it independently." With them, it means "check the evidence trail, review the flagged uncertainties, and adjudicate the conflicts."
 
-**Authentication (APEGA §3.1)** requires that the professional has either directly supervised the work or conducted a thorough review, and then accepts professional responsibility. The epistemic architecture provides the evidentiary basis for both: the provenance trail documents what was supervised, the labels document what was reviewed, and the conflict resolutions document what was adjudicated. The authentication act is supported by a traceable record, not by trust in the tool.
+**Authentication (APEGA §3.1)** requires that the professional has either
+directly supervised the work or conducted a thorough review, and then accepts
+professional responsibility. The epistemic architecture provides the
+evidentiary basis for both: the provenance trail documents what was
+supervised, the labels document what was reviewed, and the conflict
+resolutions document what was adjudicated. The authentication act is
+attributable and bound to identified content, scope, and purpose; it supports
+accountable reliance without dictating what another knower must know.
 
 ---
 
@@ -222,4 +250,9 @@ The architecture is complementary to model-level improvements and grows more eff
 
 The epistemic architecture is the pillar that makes the regulatory mapping in Chapter 6 tractable: without it, the professional obligations of thorough review and direct supervision cannot be efficiently satisfied for AI-assisted work. With it, these obligations can be met using the same mechanisms that govern human-produced work — with the added benefit that the evidence trail is more structured, more complete, and more auditable than manual practice typically achieves.
 
-The deeper philosophical foundation for the epistemic architecture — including the claim that knowledge in professional practice is constituted by the act of warranted accountability, not by information processing — is developed in `CHIRALITY_FRAMEWORK.md` (repository root) and, within this thesis, in Chapter 3 and Appendix D.
+The explanatory basis for the epistemic architecture is developed in
+`CHIRALITY_FRAMEWORK.md` (repository root) and, within this thesis, in Chapter
+3. Knowledge is treated there as the situated, potentially mistaken or
+revisable achievement of a knower; authentication records a distinct
+accountable-reliance relation. Appendix D offers a non-foundational
+existential conjecture and bounded analogy.

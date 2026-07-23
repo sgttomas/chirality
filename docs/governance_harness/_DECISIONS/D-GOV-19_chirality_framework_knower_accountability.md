@@ -125,7 +125,12 @@ mechanical change:
   those terms; and
 - the ratified operational documents `docs/DIRECTIVE.md`,
   `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, root `AGENTS.md`, and
-  `docs/PROFESSIONAL_ENGINEERING.md`.
+  root `PROFESSIONAL_ENGINEERING.md`.
+
+*Clerical path correction recorded during implementation, 2026-07-23:* the
+approved candidate wrote `docs/PROFESSIONAL_ENGINEERING.md`; the actual
+ratified file is at repository root. This corrects the path only and does not
+change the approved preservation boundary.
 
 `AUTHENTICATED` therefore remains compatible with the governed lifecycle. The
 explanatory clarification is that the status is attributable to an

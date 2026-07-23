@@ -20,6 +20,11 @@ The graph model is formally stated as follows:
 
 - **Nodes** are deliverable folders and package folders. Each folder on the filesystem corresponds to an entity in the project domain.
 - **Edges** are rows in `Dependencies.csv` registers. Each row encodes a directed relationship between a host deliverable and a target entity, classified as either a tree edge (ANCHOR class) or a directed acyclic graph edge (EXECUTION class). The two edge classes together form a knowledge graph: the tree preserves stable definitional intent; the DAG captures execution-time couplings.
+
+`Knowledge graph` is retained as the project's operational term for this
+recorded relationship structure. The graph organizes externalizable
+information; it is not a container of a person's knowledge and does not
+exhaust what a knower may perceive in the project record.
 - **Properties** are plain markdown files within each node folder. The files `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and the four-document kit (Datasheet, Specification, Guidance, Procedure) carry the identity, lifecycle state, traceability, and technical content of each deliverable.
 
 This formulation means the project graph has no representation other than the filesystem itself. There is no translation layer, no secondary index, and no remote service. An agent, a human, and a static analysis tool all observe the same structure and parse the same files.
@@ -153,6 +158,11 @@ SPEC.md §3.3 defines transition authorization as follows:
 The pattern is significant. Forward transitions through the early automated states (`OPEN`, `INITIALIZED`, `SEMANTIC_READY`) are agent-authorized — they confirm that specific mechanical preparation has completed. Forward transitions through the consequential states (`CHECKING`, `ISSUED`) are human-only. The final two transitions — moving to external review and releasing work for reliance — cannot be performed by any agent regardless of type. This is an architectural instantiation of the axiological commitment described in Chapter 3: agent execution is bounded; human authorization gates the boundary.
 
 The `INITIALIZED → SEMANTIC_READY` transition is optional. If the semantic lensing step is omitted, deliverables may transition directly from `INITIALIZED → IN_PROGRESS`. This reflects the "least structure that works" principle (DBM §1.8): semantic enrichment is available when it adds value, but its absence does not block production.
+
+When used, a semantic lens is purpose-specific scaffolding. It directs
+attention and supports comparison without defining a closed set of everything
+that can be known from the deliverable. Its lifecycle state records that the
+artifact was generated, not that interpretation is complete.
 
 ### 4.4.3 Stage Gates vs. Lifecycle States
 

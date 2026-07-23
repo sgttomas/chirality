@@ -365,6 +365,14 @@ This is the gap Chirality fills. The agent instruction architecture is designed 
 
 The Chirality architecture makes a claim that is unusual in software systems engineering: that the epistemic status of every claim produced by the system must be architecturally explicit and auditable. This is not a quality aspiration or a style guideline. It is an invariant — K-PROV-1, K-INVENT-1, K-CONFLICT-1 — enforced uniformly across all agents. To situate this contribution, this section surveys the relevant literature in four areas: provenance standards for data and knowledge systems; foundational knowledge representation theory; ontological frameworks for information systems; and social epistemology. The section then identifies the gap that Chirality's architecture addresses: epistemic frameworks have been theorized extensively, but none has been operationalized as an architectural invariant governing LLM-based agent systems.
 
+The review distinguishes the architecture's operational treatment of
+information from the thesis's account of knowing. Provenance systems,
+knowledge representations, and epistemic labels organize information and its
+recorded grounds. They do not make an artifact a knower or exhaust what a
+situated person may know from it. Chapter 3 develops this distinction through
+Polanyi and Smith as philosophical resources rather than treating any
+physical analogy as evidence for the architecture.
+
 ---
 
 ### 2.5.1 Provenance Standards: W3C PROV

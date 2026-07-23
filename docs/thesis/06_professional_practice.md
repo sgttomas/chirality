@@ -201,6 +201,12 @@ Authentication of a PWP is the act by which a licensed professional represents t
 
 Authentication binds to a specific git SHA. This means that a licensed professional's seal and signature apply to a precisely identified version of the work. Content change after authentication voids the authentication (K-AUTH-2, `docs/CONTRACT.md` §1.2). A deliverable is considered dirty — requiring renewed review before any reliance — if any governed input has changed since its last approved SHA (K-VAL-1, `docs/CONTRACT.md` §1.6). Merge to the main branch is permitted only when branch HEAD equals the approved SHA (K-MERGE-1, `docs/CONTRACT.md` §1.8).
 
+The status is relational: it identifies the accountable actor, the content or
+SHA, the scope, and the reliance purpose. It confers accountable-reliance
+status within that relation. It does not create knowledge, guarantee that the
+professional is correct, establish metaphysical truth, or determine what
+another knower must know from the same information.
+
 The content-addressed authentication mechanism is a significant architectural contribution to professional practice governance. Traditional professional authentication — seal and signature on a paper or PDF document — binds the professional's approval to a specific physical artifact, but provides limited assurance that the artifact being approved is identical to the artifact being relied upon, particularly after transmittal or electronic distribution. SHA-based authentication provides a mechanically verifiable binding: any change to the authenticated content is detectable, and the integrity of the approval relationship does not depend on process discipline or trust. (the binding uses git's content-addressed object model)
 
 ---
