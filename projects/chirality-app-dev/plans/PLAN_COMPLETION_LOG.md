@@ -6,6 +6,23 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-22 - ORCHESTRATOR→PROJECT_SETUP doc-alias updates landed (corpus v11)
+
+On the owner-adopted notice APPDEV-ORCHESTRATOR-RENAME-HANDOFF (the root
+D-GOV-18 rename of ORCHESTRATOR to PROJECT_SETUP, root PR #305), the loop
+updated the three remaining live app-dev doc surfaces that still named the
+retired role: `docs/TYPES.md` UI-alias row (`ORCHESTRATE` target →
+`PROJECT_SETUP`), and `docs/PRD.md` FR-026 alias enumeration
+(`ORCHESTRATE -> PROJECT_SETUP`) plus the persona narrative lane list. The
+alias key `ORCHESTRATE` is unchanged; only the canonical target/name was
+renamed, no semantic change. Both docs are corpus-pinned, so D-APP-38 minted
+authority corpus v11 and `apply` reconciled 102 reference rows across 51
+deliverable files; `status` and `audit` report zero drift at v11.
+
+No authority document semantics, deliverable lifecycle state, `## Remaining`
+scope, or runtime source changed. This is documentary execution evidence
+only; it is not a lifecycle decision or acceptance.
+
 ## 2026-07-22 - Authority corpus v10 reconciliation of the D-GOV-18 rename drift
 
 The root agent-index re-disposition run (D-GOV-18 Items 1+8, root PR #305,

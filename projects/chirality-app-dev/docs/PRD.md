@@ -131,7 +131,7 @@ The primary user is a licensed professional, project lead, or accountable review
 
 ### 4.2 Project Orchestrator
 
-A user who converts a scope of work into packages, deliverables, lifecycle records, document kits, dependency registers, and coordination artifacts. They use ORCHESTRATOR, WORKING_ITEMS, RECONCILIATION, CHANGE, and PIPELINE lanes.
+A user who converts a scope of work into packages, deliverables, lifecycle records, document kits, dependency registers, and coordination artifacts. They use PROJECT_SETUP, WORKING_ITEMS, RECONCILIATION, CHANGE, and PIPELINE lanes.
 
 ### 4.3 Specialist Contributor
 
@@ -516,7 +516,7 @@ Priority:
 | FR-023 | P0 | Runtime option fallback chains shall be deterministic. | Model: `opts.model` -> `CHIRALITY_GLOBAL_MODEL` or instruction-root frontmatter -> default; tools: `opts.tools` -> persona defaults -> runtime default; max turns: `opts.maxTurns` -> persona defaults -> default. |
 | FR-024 | P0 | Unknown option keys shall be ignored with warnings. | Unknown fields do not break turns or silently mutate behavior. |
 | FR-025 | P0 | Persona names shall resolve to `agents/AGENT_*.md`. | Missing personas return `PERSONA_NOT_FOUND`. |
-| FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> ORCHESTRATOR`, `AGENTS -> HELPS_HUMANS`, `DEPENDENCIES -> EVALUATION`; re-pointed `REVIEW` and `RESEARCH` cells use canonical personas directly. |
+| FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> PROJECT_SETUP`, `AGENTS -> HELPS_HUMANS`, `DEPENDENCIES -> EVALUATION`; re-pointed `REVIEW` and `RESEARCH` cells use canonical personas directly. |
 | FR-027 | P0 | Production provider mode shall support the Claude Agent SDK-hosted Anthropic path. | With no explicit `CHIRALITY_HARNESS_PROVIDER`, the runtime selects `agentSdk` when an Anthropic API key is configured and falls back to `stub` when no key is configured; explicit `stub`, `anthropic`, and `agentSdk` overrides remain available within the approved Anthropic/stub scope. |
 | FR-028 | P0 | The runtime shall compose real agent instruction context into SDK turns. | SDK requests include selected agent instruction content, global instruction context, working-root boundaries, mode, and the configured permitted tool surface. |
 | FR-029 | P1 | Boot fingerprints shall reflect actual prompt and SDK-policy inputs. | Fingerprint includes persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. |
