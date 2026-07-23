@@ -6,6 +6,45 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-23 - SCA-APP-003 closure verdict accepted
+
+The independent scope-closure rerun at
+`execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-003_2026-07-23_1312/`
+returned `CLOSED_WITH_OBSERVATIONS`. The owner explicitly accepted that
+verdict on 2026-07-23. The mutable SCOPE_CHANGE pointer now records accepted
+closure while the original handoff remains unchanged as historical snapshot
+evidence.
+
+The nonblocking observations preserve the generic audit-schema limitation and
+the intentionally open D-PEC-49, T0 rebaseline, production, release,
+professional-reliance, and future-runtime boundaries. SCA-APP-003 closure
+does not resolve or authorize any of those matters.
+
+Validation: independent rerun with zero CRITICAL or MAJOR findings; owner
+acceptance; pointer/reference parity; merge ancestry; immutable handoff
+exclusion; audit JSON/CSV structural checks; `git diff --check`.
+
+## 2026-07-23 - SCA-APP-003 closure repair applied pending audit rerun
+
+The human-authorized `SCA-APP-003-CLOSURE-001` repair responded to the initial
+scope-closure audit at
+`execution/_Evaluation/ScopeClosureAudit/ScopeClosure_SCA-APP-003_2026-07-23_1306/`.
+All nine amendment actions were verified. The repair records that PR #317
+merged as `f090238f46a939c534f88d16aa65b67236427ed1`, adds the superseding
+closure facts in `Closure_Repair_001.md`, and updates only the mutable active
+pointer. The original SCA handoff and other immutable snapshot artifacts
+remain unchanged.
+
+Residual: an independent `AUDIT_SCOPE_CLOSURE` rerun must accept the repair
+before SCA-APP-003 is closed or SCA-APP-004 becomes active. D-PEC-49, the T0
+product-and-authority rebaseline, PEC production restrictions, future local
+runtime milestones, and all release/professional-reliance exclusions remain
+open or out of scope.
+
+Validation: merge ancestry check; immutable snapshot diff exclusion; pointer
+and artifact-reference checks; JSON and CSV structural checks for the initial
+audit; `git diff --check`.
+
 ## 2026-07-22 - Managed-delegation concurrent-reservation deflake landed
 
 Executed the owner-adopted APPDEV-MANAGED-DELEGATION-DEFLAKE sealed brief.
