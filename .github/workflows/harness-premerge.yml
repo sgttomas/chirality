@@ -130,6 +130,7 @@ jobs:
           set -euo pipefail
           mkdir -p "${CHIRALITY_RUNTIME_USER_DATA}"
           nohup xvfb-run -a ./node_modules/.bin/electron \
+            --no-sandbox \
             "--user-data-dir=${CHIRALITY_RUNTIME_USER_DATA}" \
             dist-electron/main.js --runtime-daemon \
             >/tmp/chirality-runtime-daemon.log 2>&1 &

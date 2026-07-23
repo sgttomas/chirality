@@ -25,6 +25,7 @@ describe('repo-root harness premerge workflow', () => {
     expect(workflow).toContain('working-directory: runtime');
     expect(workflow).toContain('npm run build');
     expect(workflow).toContain('dist-electron/main.js --runtime-daemon');
+    expect(workflow).toContain('--no-sandbox');
     expect(workflow).toContain('dist-runtime/chirality-cli.mjs');
     expect(workflow).toContain(
       '--manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json"'
