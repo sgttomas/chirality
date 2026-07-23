@@ -129,7 +129,7 @@ approve professional work.
 | UI Alias | Canonical Agent |
 |---|---|
 | `HELP` | `HELP_HUMAN` |
-| `ORCHESTRATE` | `ORCHESTRATOR` |
+| `ORCHESTRATE` | `PROJECT_SETUP` |
 | `AGENTS` | `HELPS_HUMANS` |
 | `DEPENDENCIES` | `EVALUATION` |
 

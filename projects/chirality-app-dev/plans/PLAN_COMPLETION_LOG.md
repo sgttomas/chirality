@@ -6,6 +6,62 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-22 - Managed-delegation concurrent-reservation deflake landed
+
+Executed the owner-adopted APPDEV-MANAGED-DELEGATION-DEFLAKE sealed brief.
+`STATUS.json` in-place truncate-overwrites in
+`frontend/src/lib/harness/managed-delegation.ts` could expose an empty/partial
+record to a concurrent sibling overlap scan, making the strict
+`Concurrent write overlap` assertion flake in CI and spuriously rejecting
+genuinely disjoint concurrent siblings (fail-closed availability defect, no
+safety hole). All three overwrites now route through an inline atomic
+temp-file-plus-rename helper; the initial creation stays creation-exclusive;
+the scan-side fail-closed posture is retained (rationale in the DEL-08-04 run
+record). Reservation semantics are unchanged.
+
+Test hardening added the complementary disjoint-siblings-both-succeed case
+without widening any assertion. Evidence: 300/300 consecutive green runs of
+the test file, full frontend suite 780 passed / 4 skipped, typecheck clean.
+Execution and rationale live in DEL-08-04
+`_run_records/R6_MANAGED_DELEGATION_DEFLAKE_2026-07-22.md`. This deflake is
+the recorded prerequisite for the root loop's strict branch-protection
+follow-on. This is documentary execution evidence only; it is not a lifecycle
+decision, release-readiness claim, or acceptance.
+
+## 2026-07-22 - ORCHESTRATOR→PROJECT_SETUP doc-alias updates landed (corpus v11)
+
+On the owner-adopted notice APPDEV-ORCHESTRATOR-RENAME-HANDOFF (the root
+D-GOV-18 rename of ORCHESTRATOR to PROJECT_SETUP, root PR #305), the loop
+updated the three remaining live app-dev doc surfaces that still named the
+retired role: `docs/TYPES.md` UI-alias row (`ORCHESTRATE` target →
+`PROJECT_SETUP`), and `docs/PRD.md` FR-026 alias enumeration
+(`ORCHESTRATE -> PROJECT_SETUP`) plus the persona narrative lane list. The
+alias key `ORCHESTRATE` is unchanged; only the canonical target/name was
+renamed, no semantic change. Both docs are corpus-pinned, so D-APP-38 minted
+authority corpus v11 and `apply` reconciled 102 reference rows across 51
+deliverable files; `status` and `audit` report zero drift at v11.
+
+No authority document semantics, deliverable lifecycle state, `## Remaining`
+scope, or runtime source changed. This is documentary execution evidence
+only; it is not a lifecycle decision or acceptance.
+
+## 2026-07-22 - Authority corpus v10 reconciliation of the D-GOV-18 rename drift
+
+The root agent-index re-disposition run (D-GOV-18 Items 1+8, root PR #305,
+commit `a58afe405`) renamed ORCHESTRATOR to PROJECT_SETUP and touched the
+corpus-pinned reference `agents/AGENT_DOMAIN_ENGINE.md` (two role-name lines,
+no semantic change to the DOMAIN_ENGINE contract). D-APP-38 `status` reported
+the drift; per the standing plan's repair-first principle the loop minted
+corpus v10 and `apply` reconciled 2 reference rows across DEL-10-01 and
+DEL-10-03. `status` and `audit` report zero drift at v10.
+
+No authority document, deliverable lifecycle state, `## Remaining` scope, or
+runtime source changed. Two new repository self-check WARNs
+(`docs/governance_harness/**` references to the deleted
+`agents/AGENT_ORCHESTRATOR.md`) are root-surface follow-ons outside this
+loop's write scope and were left to the root loop. This is documentary
+execution evidence only; it is not a lifecycle decision or acceptance.
+
 ## 2026-07-19 - D-APP-68 recommendations 1–8 executed
 
 The owner-approved D-APP-68 chronology was executed across the exact 79-path
