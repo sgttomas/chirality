@@ -551,3 +551,18 @@
   pre-merge` as well, paired with an always-run no-op reporting job in
   `harness-premerge.yml` so path-filtered PRs cannot hang; sequenced AFTER
   the deflake lands (a flaky required check is a merge blocker).
+
+### Receipt 32 — 2026-07-22 — Branch protection applied
+
+- Owner act: upgraded the account to GitHub Pro, unblocking branch
+  protection on this private repository (closes the Receipt 31 plan-gate
+  finding).
+- Applied and verified on `main`: required status check `harness`
+  (runs on every PR), `strict: false`, `enforce_admins: true` — red-check
+  merges are now mechanically refused for all tokens, including admin.
+  The PR carrying this receipt is the first merge governed by the rule.
+- Remaining in sequence (unchanged from Receipt 31): App Dev
+  managed-delegation deflake per the sealed brief, then optionally the
+  strict hardening (`Harness pre-merge` added as a required context plus an
+  always-run no-op reporting job in `harness-premerge.yml`); the CHANGE
+  merge-verdict standing rule remains a recorded governed-edit follow-on.
