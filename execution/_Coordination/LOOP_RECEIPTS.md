@@ -538,11 +538,15 @@
   disjointness scan); fix pattern: atomic temp+rename status writes plus a
   disjoint-siblings-both-succeed test; acceptance: ≥300-iteration stress
   passes under CPU constraint. Adoption remains the App Dev loop's act.
-- Branch protection: the require-only-`harness` application failed mid-run —
-  the GitHub CLI token expired (HTTP 401) after the Receipt 30 merge.
-  Re-authentication is an owner act; the exact command remains with the
-  owner. Until applied, red-check merges stay barred only by the recorded
-  explicit-verdict-gate discipline.
+- Branch protection: the require-only-`harness` application first failed on
+  an expired GitHub CLI token (HTTP 401); after owner re-authentication the
+  API returned HTTP 403 "Upgrade to GitHub Pro or make this repository
+  public to enable this feature" — branch protection and rulesets are
+  unavailable on this private free-plan repository. Mechanical enforcement
+  therefore requires an owner decision: upgrade the account to GitHub Pro or
+  make the repository public. Until one is taken, red-check merges stay
+  barred only by the recorded explicit-verdict-gate discipline and the
+  pending CHANGE standing-rule follow-on.
 - Hardening follow-on (recorded): strict protection requiring `Harness
   pre-merge` as well, paired with an always-run no-op reporting job in
   `harness-premerge.yml` so path-filtered PRs cannot hang; sequenced AFTER
