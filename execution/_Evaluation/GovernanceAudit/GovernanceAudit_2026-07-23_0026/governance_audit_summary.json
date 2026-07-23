@@ -1,0 +1,44 @@
+{
+  "run_id": "GovernanceAudit_2026-07-23_0026",
+  "run_status": "OK",
+  "date": "2026-07-23",
+  "subject_base": "8698b0338ac82556fee583dd3f85bb62d0b74f85",
+  "subject_head": "deab7a961c1a5c9fde771039497e50343b681d46",
+  "passes_executed": [1, 2, 3, 4, 5, 6, "6b"],
+  "total_issues": 0,
+  "issues_by_severity": {
+    "BLOCKER": 0,
+    "WARNING": 0,
+    "INFO": 0
+  },
+  "revision_specific_blockers": 0,
+  "pass_results": {
+    "pass_1_count_integrity": "PASS",
+    "pass_2_cross_reference": "PASS",
+    "pass_3_invariant_id": "PASS",
+    "pass_4_terminology": "PASS",
+    "pass_5_agent_inventory": "PASS",
+    "pass_6_hierarchy_coherence": "PASS",
+    "pass_6b_claim_strength": "PASS"
+  },
+  "counts": {
+    "k_invariants_defined": 27,
+    "agents_in_directory": 33,
+    "agents_in_agents_md": 33,
+    "agents_in_dbm": null,
+    "tools_in_registry": 172,
+    "xrefs_checked": 645,
+    "xrefs_unresolvable": 0,
+    "citation_keys_used": 27,
+    "citation_keys_unresolved": 0,
+    "invariant_ids_checked": 54,
+    "invariant_ids_orphaned": 0,
+    "terms_checked": 12,
+    "terms_drifted": 0
+  },
+  "limitations": [
+    "Revision-specific scope; unrelated corpus-wide count and orphan expansion was not performed.",
+    "The current DBM has no exhaustive agent inventory table, so its agent count is null.",
+    "External DOI landing pages were not independently retrieved in this specialist run."
+  ]
+}
