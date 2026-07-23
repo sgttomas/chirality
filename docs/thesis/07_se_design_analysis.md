@@ -511,6 +511,11 @@ This dual-graph model prevents scope drift (the tree is stable and scope-change-
 
 The tree × DAG architecture directly serves the ontology pillar: the tree defines the stable ontological structure of the project (what entities exist and how they are organized), while the DAG defines the current epistemological and praxiological state (what is known about the relationships between entities and what must be done before each entity can be completed).
 
+Here, "knowledge architecture" and "what is known" name recorded project
+information and its governed status. The graphs are shared semantic
+scaffolding, not exhaustive representations of the situated knowledge of
+individual knowers.
+
 ### 7.10.2 Distributed Authority with On-Demand Aggregation
 
 K-DEP-1 states: "Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are authoritative for dependencies. There is no central dependency graph; aggregation is on-demand."
@@ -527,11 +532,21 @@ This pattern directly serves both the ontology pillar (the dependency register i
 
 The epistemic controls — K-PROV-1, K-INVENT-1, and K-CONFLICT-1 — function collectively as a safety mechanism against the primary failure mode of LLM-assisted systems.
 
-K-PROV-1 (mandatory provenance) ensures that every claim can be audited back to its source. K-INVENT-1 (no invention) ensures that gaps in evidence are visible rather than papered over with plausible-sounding approximations. K-CONFLICT-1 (conflicts surfaced) ensures that disagreements between sources reach the human decision-maker rather than being silently resolved by the agent.
+K-PROV-1 requires represented claims in scope to carry auditable provenance.
+K-INVENT-1 requires missing information to be represented rather than filled
+with plausible approximations. K-CONFLICT-1 requires detected disagreements
+to be surfaced for human decision rather than silently resolved on the
+conforming path.
 
 The system does not attempt to prevent hallucination — a problem that cannot be solved by architectural means alone. Instead, it requires provenance for every claim, making unsupported claims structurally visible. A claim without provenance is not merely a concern — it is a detectable anomaly in the K-PROV-1 framework, identifiable by inspection or audit. This reframes the problem: rather than trying to produce correct LLM outputs, the system makes incorrect or unsupported outputs findable.
 
-This mechanism is the deepest expression of the epistemology pillar in the Chirality architecture. Chapter 5 (Epistemic Architecture) develops this theme at length. The observation made here, from the SE perspective, is that this epistemological commitment functions as a safety mechanism: it bounds the propagation of false information through the project record in the same way that fault containment zones bound the propagation of computational failures. Plausible-sounding but unsupported claims, like agent write-scope violations, cannot silently cross the boundary into the authoritative record.
+This mechanism is the deepest expression of the epistemology pillar in the
+Chirality architecture. Chapter 5 develops the theme at length. From the SE
+perspective, the commitment functions as a safety mechanism: its declared
+controls can detect and constrain unsupported information in the represented
+project record, much as fault-containment zones constrain computational
+failures. The architecture does not guarantee detection of every unsupported
+claim.
 
 ### 7.10.4 Multi-Layer Enforcement
 

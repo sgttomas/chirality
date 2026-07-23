@@ -3,7 +3,7 @@
 Generated from private `chirality` export profile `exports/chirality-app`.
 
 - Staging path: `exports/chirality-app/staging`
-- Manifest rows: 604
+- Manifest rows: 634
 - Text files sanitized for private absolute paths: 0
 - Boundary findings: 0
 
@@ -20,10 +20,10 @@ Generated from private `chirality` export profile `exports/chirality-app`.
 | `PROFESSIONAL_ENGINEERING.md` | 1 |
 | `README.md` | 1 |
 | `agents` | 33 |
-| `docs` | 60 |
+| `docs` | 71 |
 | `init` | 2 |
-| `skills` | 181 |
-| `tools` | 319 |
+| `skills` | 185 |
+| `tools` | 334 |
 
 ## Boundary Findings
 

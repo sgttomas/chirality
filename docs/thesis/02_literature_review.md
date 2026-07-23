@@ -365,6 +365,14 @@ This is the gap Chirality fills. The agent instruction architecture is designed 
 
 The Chirality architecture makes a claim that is unusual in software systems engineering: that the epistemic status of every claim produced by the system must be architecturally explicit and auditable. This is not a quality aspiration or a style guideline. It is an invariant — K-PROV-1, K-INVENT-1, K-CONFLICT-1 — enforced uniformly across all agents. To situate this contribution, this section surveys the relevant literature in four areas: provenance standards for data and knowledge systems; foundational knowledge representation theory; ontological frameworks for information systems; and social epistemology. The section then identifies the gap that Chirality's architecture addresses: epistemic frameworks have been theorized extensively, but none has been operationalized as an architectural invariant governing LLM-based agent systems.
 
+The review distinguishes the architecture's operational treatment of
+information from the thesis's account of knowing. Provenance systems,
+knowledge representations, and epistemic labels organize information and its
+recorded grounds. They do not make an artifact a knower or exhaust what a
+situated person may know from it. Chapter 3 develops this distinction through
+Polanyi and Smith as philosophical resources rather than treating any
+physical analogy as evidence for the architecture.
+
 ---
 
 ### 2.5.1 Provenance Standards: W3C PROV
@@ -413,9 +421,22 @@ Alvin I. Goldman's *Epistemology and Cognition* (Harvard University Press, 1986)
 
 Goldman's subsequent work *Knowledge in a Social World* (Oxford: Clarendon Press, 1999) extended the reliabilist framework to social and institutional settings [9]. Goldman articulated a "veritistic social epistemology" — a normative discipline concerned with which social practices and institutions best foster the production of true beliefs across a community. The work examines testimony, argumentation norms, information technology, legal epistemology, and democratic deliberation as sites where social institutions either enhance or impede collective epistemic performance. The central claim is that epistemic evaluation applies not only to individual believers but to social systems, and that well-designed institutions can substitute for individual epistemic competence in contexts where reliable individual judgment cannot be guaranteed.
 
-**Relation to Chirality.** Goldman's reliabilist framework is directly applicable to the problem Chirality addresses. In professional engineering practice, the licensed professional who seals a document cannot personally verify every claim in a complex deliverable. What they can verify is whether the process that produced each claim is reliable — i.e., whether it is a process that tends to produce grounded, attributable claims rather than plausible-sounding inventions. Chirality's epistemic architecture operationalizes Goldman's insight at the system level: rather than requiring the individual professional to evaluate every claim's reliability on its merits, the architecture makes the reliability of the production process structurally visible. The FACT/ASSUMPTION/PROPOSAL/TBD label system is a direct implementation of Goldman's key distinction: a claim labeled FACT carries the representation that it was produced by a reliable (source-grounded) process; a claim labeled ASSUMPTION carries the representation that it was produced by an inference process that may not be reliable for the specific value asserted.
+**Relation to Chirality.** Goldman's reliabilism provides a resource for the
+problem Chirality addresses. In a complex deliverable, a licensed
+professional evaluates both particular claims and the processes that produced
+them. Chirality likewise makes process evidence and represented claim status
+inspectable. The FACT/ASSUMPTION/PROPOSAL/TBD labels distinguish direct
+observation, inference, proposed action, and missing information; they are not
+a direct implementation of Goldman's truth-conduciveness criterion.
 
-Goldman's social epistemology also grounds the conflict surfacing mechanism (K-CONFLICT-1). Goldman's veritistic framework implies that suppressing disagreement reduces collective epistemic performance, because the community loses information about the actual state of epistemic uncertainty. Chirality's Conflict Table mechanism — which requires agents to surface disagreements between sources, label proposed resolutions as PROPOSAL, and leave the ruling to the human — is a structural implementation of this principle. The professional who reviews a Conflict Table is operating under Goldman's veritistic ideal: they have access to the competing claims, their sources, and the agent's reasoning, and they can make an informed ruling. The alternative — silent resolution by the agent — would violate the veritistic requirement by suppressing relevant epistemic information.
+Goldman's social epistemology also motivates attention to disagreement:
+suppressing conflict deprives a community of relevant uncertainty. Chirality's
+Conflict Table requires detected source disagreements to be surfaced, proposed
+resolutions to remain `PROPOSAL`, and rulings to remain human acts. The
+framework borrows process and institutional evaluation and the value of
+conflict visibility, but it does not adopt truth-conduciveness or factivity as
+its definition of knowledge. Its own account permits a situated knower to be
+mistaken or later revised.
 
 ---
 

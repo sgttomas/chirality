@@ -134,11 +134,35 @@ References are organized by category. A bibliographic verification pass was appl
 
 ---
 
+## Physical Sources for the Bounded Appendix Analogy
+
+[IUPAC_Chirality] International Union of Pure and Applied Chemistry,
+"Chirality," *Compendium of Chemical Terminology (the Gold Book)*, 5th ed.,
+online version 5.0.0, 2025. doi: 10.1351/goldbook.C01058
+
+[Stickler2021] B. A. Stickler, M. Diekmann, R. Berger, and D. Wang,
+"Enantiomer Superpositions from Matter-Wave Interference of Chiral
+Molecules," *Physical Review X*, vol. 11, no. 3, 031056, 2021.
+doi: 10.1103/PhysRevX.11.031056. (Theoretical proposal and calculations; not
+an experimental demonstration.)
+
+[Trost_Hornberger2009] J. Trost and K. Hornberger, "Hund's Paradox and the
+Collisional Stabilization of Chiral Molecules," *Physical Review Letters*,
+vol. 103, no. 2, 023202, 2009. doi: 10.1103/PhysRevLett.103.023202.
+(Theoretical decoherence analysis under stated molecular and environmental
+assumptions; not an experimental demonstration.)
+
+---
+
 ## Chirality Project Documents (Internal)
 
 The following are internal project documents filed under the Chirality project repository. They are cited as design authority documents and primary sources for system specifications described in this thesis. Paths are relative to the chirality monorepo root.
 
 [Chirality_DIRECTIVE] Chirality Project, "docs/DIRECTIVE.md — Founding Intent, Design Philosophy, and Four-Pillar Framework," Internal Document, Chirality Repository, 2024–2026.
+
+[Chirality_FRAMEWORK] Chirality Project, "CHIRALITY_FRAMEWORK.md — The
+Chirality Framework," Internal Document, Chirality Repository, Revision 3
+candidate, 2026.
 
 [Chirality_SPEC] Chirality Project, "docs/SPEC.md — Physical Structures, Schemas, and Folder Layouts," Internal Document, Chirality Repository, 2024–2026.
 
