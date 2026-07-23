@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v9",
+  "current_version": "v10",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -46,7 +46,7 @@
       "version": "v3",
       "date": "2026-06-21",
       "binding_commit": "6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45",
-      "reason": "D-APP-44: F1 residency reconciliation edits to PRD (FR-089/FR-125), PLAN (§6.3/§11), CONTRACT (K-ENGINE-3)",
+      "reason": "D-APP-44: F1 residency reconciliation edits to PRD (FR-089/FR-125), PLAN (\u00a76.3/\u00a711), CONTRACT (K-ENGINE-3)",
       "hashes": {
         "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
         "docs/CONTRACT.md": "358611f14fb32c01ea3719d085ab587aa35f8afd0e490aea9e113b7b5608bfbe",
@@ -77,7 +77,7 @@
       "version": "v5",
       "date": "2026-07-04",
       "binding_commit": "456b316b180347771353056aceb1168035377bee",
-      "reason": "D-APP-49 F3 step (a): TYPES §11 forward-note - DomainEngineProfile/OperationProposal source-type mirrors landed in @chirality/harness-contract (D-T0-10 acknowledgment recorded).",
+      "reason": "D-APP-49 F3 step (a): TYPES \u00a711 forward-note - DomainEngineProfile/OperationProposal source-type mirrors landed in @chirality/harness-contract (D-T0-10 acknowledgment recorded).",
       "hashes": {
         "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
         "docs/CONTRACT.md": "2f52a24cee9badd4ae21347195d1e7d54739bbf41929d1da535e25429d2923b4",
@@ -93,7 +93,7 @@
       "version": "v6",
       "date": "2026-07-11",
       "binding_commit": "a9fb1af4a50e681fdca64554007400e7349af783",
-      "reason": "Lifecycle-semantics amendment: SPEC §4.2-4.4 (frozen-candidate CHECKING, reversal + governed scope-change transitions, layered entry conditions, ## Remaining definition) and TYPES §5 alignment, per owner direction 2026-07-11 (loop Receipt 10)",
+      "reason": "Lifecycle-semantics amendment: SPEC \u00a74.2-4.4 (frozen-candidate CHECKING, reversal + governed scope-change transitions, layered entry conditions, ## Remaining definition) and TYPES \u00a75 alignment, per owner direction 2026-07-11 (loop Receipt 10)",
       "hashes": {
         "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
         "docs/CONTRACT.md": "2f52a24cee9badd4ae21347195d1e7d54739bbf41929d1da535e25429d2923b4",
@@ -141,7 +141,7 @@
       "version": "v9",
       "date": "2026-07-16",
       "binding_commit": "9e8e49202de261804aea09043d9379d4607c44ff",
-      "reason": "D-APP-58: SPEC §18 adapter-manifest location/schema assignment (agent selection under owner-delegated latitude). Also reconciles pre-existing drift landed on main after the v8 mint via PR #188 merge a0dc7be32 (branch commits de20b4ea5, d22f80bf5, ee35409f5) and concordance-integration merge 66a52643d (CONTRACT, TYPES, PRD, AGENT_SOFTWARE_DECOMP, AGENT_DOMAIN_ENGINE — D-GOV-14 and managed-orchestration governance edits) — stale-map delta recorded in loop receipt.",
+      "reason": "D-APP-58: SPEC \u00a718 adapter-manifest location/schema assignment (agent selection under owner-delegated latitude). Also reconciles pre-existing drift landed on main after the v8 mint via PR #188 merge a0dc7be32 (branch commits de20b4ea5, d22f80bf5, ee35409f5) and concordance-integration merge 66a52643d (CONTRACT, TYPES, PRD, AGENT_SOFTWARE_DECOMP, AGENT_DOMAIN_ENGINE \u2014 D-GOV-14 and managed-orchestration governance edits) \u2014 stale-map delta recorded in loop receipt.",
       "hashes": {
         "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
         "docs/CONTRACT.md": "6b67583097daac9d2d44153fe146d895ec370beead39b0a9714fea03b68236df",
@@ -151,6 +151,22 @@
         "docs/PRD.md": "d95d826a10b2ddf3ff375d0dc60c03d98580c0129f7cdcb4433ae29b06220808",
         "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
         "AGENT_DOMAIN_ENGINE.md": "39c4222381663551905074ec3f98dfcb2f6f41f51b4034bda3c56275ebe500fe"
+      }
+    },
+    {
+      "version": "v10",
+      "date": "2026-07-22",
+      "binding_commit": "16304158b3f05e50cb84ffb17c139af70c9516a8",
+      "reason": "Reconcile AGENT_DOMAIN_ENGINE.md drift from root D-GOV-18 Items 1+8 ORCHESTRATOR->PROJECT_SETUP rename (root PR #305, commit a58afe405); two-line role-name substitution, no semantic change to the DOMAIN_ENGINE contract",
+      "hashes": {
+        "docs/DIRECTIVE.md": "14c77480c0a010c84be2adb9a8b2066e48118cf5063987a857efd3ae3f3a1317",
+        "docs/CONTRACT.md": "6b67583097daac9d2d44153fe146d895ec370beead39b0a9714fea03b68236df",
+        "docs/SPEC.md": "083a106bdb9bd1950f84ec983cbf2a556fa354767e92c9ae7bb1ee574e89af3d",
+        "docs/TYPES.md": "e7c31db30b34a4ec72957eb31c9d73ccdcfaba14b8e38118174a112bc5cb72f6",
+        "docs/PLAN.md": "11b1e9911f0edced41a9f94674c9e0a144c696ac52143c958042f55ae9b29d51",
+        "docs/PRD.md": "d95d826a10b2ddf3ff375d0dc60c03d98580c0129f7cdcb4433ae29b06220808",
+        "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+        "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
       }
     }
   ]

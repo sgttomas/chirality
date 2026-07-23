@@ -6,6 +6,23 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-22 - Authority corpus v10 reconciliation of the D-GOV-18 rename drift
+
+The root agent-index re-disposition run (D-GOV-18 Items 1+8, root PR #305,
+commit `a58afe405`) renamed ORCHESTRATOR to PROJECT_SETUP and touched the
+corpus-pinned reference `agents/AGENT_DOMAIN_ENGINE.md` (two role-name lines,
+no semantic change to the DOMAIN_ENGINE contract). D-APP-38 `status` reported
+the drift; per the standing plan's repair-first principle the loop minted
+corpus v10 and `apply` reconciled 2 reference rows across DEL-10-01 and
+DEL-10-03. `status` and `audit` report zero drift at v10.
+
+No authority document, deliverable lifecycle state, `## Remaining` scope, or
+runtime source changed. Two new repository self-check WARNs
+(`docs/governance_harness/**` references to the deleted
+`agents/AGENT_ORCHESTRATOR.md`) are root-surface follow-ons outside this
+loop's write scope and were left to the root loop. This is documentary
+execution evidence only; it is not a lifecycle decision or acceptance.
+
 ## 2026-07-19 - D-APP-68 recommendations 1–8 executed
 
 The owner-approved D-APP-68 chronology was executed across the exact 79-path
