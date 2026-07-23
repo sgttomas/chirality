@@ -5,6 +5,8 @@ on:
     paths:
       - ".github/workflows/harness-premerge.yml"
       - "projects/chirality-app-dev/**"
+      - "runtime/**"
+      - "exports/chirality-app/**"
       - "agents/**"
       - "AGENTS.md"
       - "README.md"
@@ -29,14 +31,28 @@ jobs:
 
       - name: Initialize runner paths
         shell: bash
-        run: echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"
+        run: |
+          set -euo pipefail
+          RUNTIME_USER_DATA="${RUNNER_TEMP}/chirality-runtime-user-data"
+          echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"
+          echo "CHIRALITY_RUNTIME_USER_DATA=${RUNTIME_USER_DATA}" >> "${GITHUB_ENV}"
+          echo "CHIRALITY_RUNTIME_SOCKET_PATH=${RUNTIME_USER_DATA}/runtime/control.sock" >> "${GITHUB_ENV}"
+          echo "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=${RUNTIME_USER_DATA}/runtime/auth/tokens/operator.token" >> "${GITHUB_ENV}"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: npm
-          cache-dependency-path: projects/chirality-app-dev/frontend/package-lock.json
+          cache-dependency-path: |
+            runtime/package-lock.json
+            projects/chirality-app-dev/frontend/package-lock.json
+
+      - name: Install and build shared runtime
+        run: |
+          npm ci
+          npm run build
+        working-directory: runtime
 
       - name: Install frontend dependencies
         run: npm ci
@@ -104,6 +120,61 @@ jobs:
           --bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture"
         working-directory: projects/chirality-app-dev/frontend
 
+      - name: Build Electron runtime host
+        run: npm run build:electron
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Start shared runtime daemon
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "${CHIRALITY_RUNTIME_USER_DATA}"
+          nohup xvfb-run -a ./node_modules/.bin/electron \
+            "--user-data-dir=${CHIRALITY_RUNTIME_USER_DATA}" \
+            dist-electron/main.js --runtime-daemon \
+            >/tmp/chirality-runtime-daemon.log 2>&1 &
+          echo $! >/tmp/chirality-runtime-daemon.pid
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Register app-dev with shared runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 90); do
+            if [ -S "${CHIRALITY_RUNTIME_SOCKET_PATH}" ] \
+              && [ -f "${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" ]; then
+              break
+            fi
+            sleep 1
+          done
+
+          if [ ! -S "${CHIRALITY_RUNTIME_SOCKET_PATH}" ] \
+            || [ ! -f "${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" ]; then
+            echo "Shared runtime daemon did not become ready." >&2
+            tail -n 200 /tmp/chirality-runtime-daemon.log || true
+            exit 1
+          fi
+
+          registration="$(
+            CHIRALITY_RUNTIME_TOKEN_FILE="${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" \
+              node projects/chirality-app-dev/frontend/dist-runtime/chirality-cli.mjs \
+                project register \
+                --manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json" \
+                --approved-by github-actions \
+                --approval-reference harness-premerge-ci \
+                --json
+          )"
+          printf '%s\n' "${registration}" >/tmp/chirality-runtime-registration.json
+          project_token="$(
+            node -e 'const fs=require("fs"); const v=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); if (!v.tokenFile) process.exit(1); process.stdout.write(v.tokenFile)' \
+              /tmp/chirality-runtime-registration.json
+          )"
+
+          echo "CHIRALITY_RUNTIME_TOKEN_FILE=${project_token}" >> "${GITHUB_ENV}"
+          echo "CHIRALITY_RUNTIME_PROJECT_ID=chirality-app-dev" >> "${GITHUB_ENV}"
+          echo "CHIRALITY_RUNTIME_PROJECT_ROOT=${GITHUB_WORKSPACE}/projects/chirality-app-dev" >> "${GITHUB_ENV}"
+          echo "HARNESS_PROJECT_ROOT=${GITHUB_WORKSPACE}/projects/chirality-app-dev" >> "${GITHUB_ENV}"
+
       - name: Start frontend server
         run: |
           mkdir -p "${HARNESS_PROJECT_ROOT}"
@@ -155,11 +226,16 @@ jobs:
 
       - name: Print frontend server logs on failure
         if: failure()
-        run: tail -n 200 /tmp/chirality-harness-dev.log || true
+        run: |
+          tail -n 200 /tmp/chirality-harness-dev.log || true
+          tail -n 200 /tmp/chirality-runtime-daemon.log || true
 
       - name: Stop frontend server
         if: always()
         run: |
           if [ -f /tmp/chirality-harness-dev.pid ]; then
             kill "$(cat /tmp/chirality-harness-dev.pid)" || true
+          fi
+          if [ -f /tmp/chirality-runtime-daemon.pid ]; then
+            kill "$(cat /tmp/chirality-runtime-daemon.pid)" || true
           fi
