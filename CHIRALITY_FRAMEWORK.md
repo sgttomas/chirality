@@ -118,7 +118,14 @@ The resulting distinction is fundamental: artificial agents have bounded operati
 
 Once many agents are arranged into bounded roles, gates, dependencies, and handoffs, the system is no longer just a collection of tools. It becomes a form of project management.
 
-This is not metaphorical. The folder structure, stable identifiers, decomposition, lifecycle states, dependency records, gate reviews, and change controls are the same kinds of structures that human teams use to coordinate professional work. In Chirality, those structures are not represented in a separate management layer; they are the filesystem itself. The project structure and the epistemic structure are therefore coupled on purpose. What exists, what is being worked on, what is known, what is unresolved, and what may proceed are all made inspectable in the same project state.
+This is not metaphorical. The folder structure, stable identifiers,
+decomposition, lifecycle states, dependency records, gate reviews, and change
+controls are the same kinds of structures that human teams use to coordinate
+professional work. In Chirality, those structures are not represented in a
+separate management layer; they are the filesystem itself. The project
+structure and epistemic record are therefore coupled on purpose. What exists,
+what is being worked on, what is claimed or warranted, what is recorded as
+unresolved, and what may proceed can be inspected in the same project state.
 
 The same is true of governance. Chirality repeatedly distinguishes normative, operative, and evaluative functions. Normative functions define rules and standards. Operative functions execute within those rules. Evaluative functions assess, audit, reconcile, and judge. This pattern is structurally analogous to the differentiation seen in political governance among rule-setting, administration, and adjudication; at civic scale, these often appear as legislative, executive, and judicial branches. The analogy is useful because the underlying problem is the same: authority, execution, and review must be related, but not collapsed into one undifferentiated power.
 
@@ -143,7 +150,7 @@ The distinctions above can be kept compactly in view:
 | **Claim** | Epistemic primitive | n/a | n/a | Receives classification | No | No | No |
 | **Warrant** | Epistemic primitive | No | n/a | No | No | No | No |
 | **Ruling** | Binding human decision | No | May cite grounds | n/a | Yes | No | Yes, through the responsible human who issues it |
-| **Work product / deliverable** | Informational artifact | Contains claims | Contains warrants | Carries aggregate epistemic state | No | No, until authenticated by a human | No |
+| **Work product / deliverable** | Informational artifact | Contains claims | Contains warrants | Carries aggregate epistemic state | No | No; it is authenticated by a licensed professional | No |
 
 ---
 
@@ -226,7 +233,10 @@ The epistemic ontology is enforced through four architectural mechanisms, each m
 | **Conflict surfacing** | Whether claims disagree — contradictions are exposed with competing sources, not silently resolved |
 | **Epistemic labeling** | How certain a claim is — every claim carries FACT, ASSUMPTION, PROPOSAL, or TBD |
 
-The common thread is visibility. The system does not prevent epistemic failures. It makes them impossible to hide.
+The common thread is visibility. The system does not prevent epistemic
+failures. Its declared controls make specified omissions and nonconformance
+detectable, subject to the enforcement limits described by the operational
+governance.
 
 #### 3.3.3 The Warrant Lifecycle
 
@@ -249,9 +259,9 @@ Thorough review, in operational terms, is the process of auditing warrant suffic
 
 Within this unchanged lifecycle, `AUTHENTICATED` is relational: an
 accountable actor binds acceptance to identified content or SHA, scope, and
-purpose. The status authorizes accountable reliance within that relation; it
-does not certify metaphysical truth or dictate the knowledge of another
-knower.
+purpose. The status records accountable-reliance standing within that
+relation; it does not itself perform the separate `ISSUED` release transition,
+certify metaphysical truth, or dictate the knowledge of another knower.
 
 ### 3.4 The Fractal Property
 
@@ -293,14 +303,19 @@ cannot be the knower.
 
 No architectural completeness — no invariant system, epistemic label, or
 provenance trail — performs a person's knowing or professional commitment.
-The architecture makes responsible reliance tractable: claim states are
-visible, operational gaps are surfaced, conflicts reach a decision-maker, and
-approvals bind to identified content. The professional must still interpret,
-judge, and decide what they know and what reliance they will accept.
+The architecture makes responsible reliance tractable: represented claim
+states and grounds are inspectable; declared checks can surface operational
+gaps and conflicts for a decision-maker; and approvals bind to identified
+content. The professional must still interpret, judge, and decide what they
+know and what reliance they will accept.
 
 ### 4.2 The Irreducible Human Element
 
-AI agents can produce claims with warrants. They can classify epistemic status. They can surface gaps and conflicts. They can generate semantic structures that organize the categories of knowledge a deliverable should contain. They can audit the warrant state of every claim in a work product.
+AI agents can produce claims with warrants. They can classify epistemic
+status, surface detected gaps and conflicts, generate purpose-specific
+semantic structures, and audit represented claim states within their declared
+scope. These mechanisms do not guarantee complete detection or exhaustive
+categorization.
 
 They cannot authenticate or assume professional responsibility. They can
 occasion knowledge in a human knower, as other information can, but they do
@@ -322,7 +337,9 @@ alter the invariant.
 
 Productivity tools optimize for output quality — making the agent's output better.
 
-Professional accountability tools optimize for knowing what you can rely on — making the epistemic status of every claim transparent, so that a competent professional can determine what to warrant.
+Professional accountability tools optimize for knowing what you can rely on
+— requiring represented claim states and grounds to be inspectable so that a
+competent professional can determine what reliance to accept.
 
 Both approaches are valid and complementary. Only the second directly
 supports accountable reliance: a qualified person committing to identified

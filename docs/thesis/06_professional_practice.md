@@ -34,7 +34,15 @@ The Chirality AI Ltd. professional practice standard (`PROFESSIONAL_ENGINEERING.
 
 The EGP Act and APEGA define a professional work product (PWP) as an output of professional services containing technical information that others rely upon to make decisions or take actions. In the Chirality system, PWPs correspond to authenticated deliverables that have reached the ISSUED lifecycle state — the final and irreversible state in the deliverable lifecycle state machine. The lifecycle state machine is defined in `docs/SPEC.md` §3 and `docs/TYPES.md` §5.
 
-It is important to distinguish between deliverable outputs in earlier lifecycle states and authenticated PWPs. Agent-produced drafts in the IN_PROGRESS or CHECKING states are not PWPs — they are work in progress that has not yet been accepted by a licensed professional. A deliverable becomes a PWP only when a licensed professional has satisfied either the direct supervision and control standard or the thorough review standard, and has then authenticated the work under the *Authenticating Professional Work Products* standard. This distinction is architecturally enforced: no agent may advance a deliverable to the ISSUED state, and no agent may claim to authenticate work (K-AUTH-1, `docs/CONTRACT.md` §1.2).
+It is important to distinguish work-in-progress outputs from PWPs and
+unauthenticated PWPs from authenticated PWPs. Agent-produced drafts in the
+IN_PROGRESS or CHECKING states are not complete and final PWPs. A licensed
+professional determines when an output meets the definition of a PWP and,
+where authentication is required, applies authentication to that existing PWP
+before issuance. Authentication does not create the PWP. This distinction is
+architecturally enforced in the authority allocation: no agent may advance a
+deliverable to the ISSUED state or claim to authenticate work (K-AUTH-1,
+`docs/CONTRACT.md` §1.2).
 
 ### 6.2.3 Applicability to AI-Assisted Work
 
@@ -151,7 +159,14 @@ The significance of the git history and immutable snapshot trail deserves emphas
 
 Thorough review applies to all AI agent outputs that will be incorporated into PWPs. The Chirality professional practice standard requires that thorough review be conducted before authentication even when the licensed professional has provided direct supervision and control throughout the work (`PROFESSIONAL_ENGINEERING.md` §5.1). This requirement reflects the additional risk created by LLM failure modes — specifically, the risk that plausible-sounding outputs may contain errors, omissions, or hallucinations that a professional exercising due diligence would identify and resolve (the hallucination literature is surveyed in Chapter 2, §2.2).
 
-In terms of the epistemic ontology formalized in Chapter 3 (§3.2.2) and developed in Chapter 5 (§5.5), thorough review is the process of auditing warrant sufficiency: the professional examines the claims within the deliverable, checks their warrants (provenance, epistemic labels), resolves gaps and conflicts through rulings, and determines whether the aggregate warrant state — the distribution of claims across the warrant lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) — supports authentication. The epistemic architecture makes this assessment tractable by ensuring that every claim's warrant state is visible, enabling targeted rather than exhaustive review.
+In terms of the epistemic ontology formalized in Chapter 3 (§3.2.2) and
+developed in Chapter 5 (§5.5), thorough review audits warrant sufficiency:
+the professional examines represented claims, checks warrants, resolves
+surfaced gaps and conflicts through rulings, and determines whether the
+aggregate warrant state (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED)
+supports authentication. The architecture makes represented claim states
+inspectable within its declared coverage, enabling targeted review without
+claiming exhaustive capture.
 
 ### 6.5.2 Reliability, Accuracy, and Validity (APEGA §3.1.2.1)
 
@@ -227,7 +242,14 @@ Professional liability is personal and non-transferable. Invariant K-AUTH-1 (`do
 
 The licensed professional retains decision rights for scope and boundary decisions, selection of governing codes and standards, hazard and risk acceptance including residual risk statements, conflict adjudication where engineering judgment is required, and approval, issuance, signature, seal, and transmittal for reliance (`PROFESSIONAL_ENGINEERING.md` §3.2; `docs/DIRECTIVE.md` §3.2). These are not merely functions that the architecture routes to humans — they are functions that agents are positively prohibited from performing or claiming to perform.
 
-This prohibition is constitutive of what a professional work product is in the Chirality framework. An agent-produced deliverable in the IN_PROGRESS state is not a PWP; it is a draft. It becomes a PWP only when a licensed professional, having satisfied either the direct supervision and control standard or the thorough review standard, authenticates it under their seal and signature. Under the sanctioned workflow there is no path that skips this step, and the SHA-bound approval record makes any bypass detectable after the fact.
+This prohibition preserves the distinction between draft production and
+professional reliance. An agent-produced deliverable in the IN_PROGRESS state
+is work in progress, not a complete and final PWP. A licensed professional
+determines whether the completed output is a PWP and, after satisfying direct
+supervision and control or thorough review requirements, authenticates that
+PWP where required. Under the sanctioned workflow, only the human may perform
+that authentication and approve issuance; the SHA-bound record supports later
+verification of the act.
 
 ### 6.6.3 Competence Includes Tool Competence
 
@@ -327,7 +349,11 @@ Licensed professionals operating under the Chirality framework bear the followin
 - **Approve changes that affect deliverables.** Change impacts are assessed through the CHANGE agent, but approval of changes affecting issued or checked deliverables is a human decision. Staleness propagation (K-STALE-1) and stale triage (K-STALE-2) ensure that the human is presented with all downstream implications before approval.
 - **Perform or commission independent review where required.** For work of sufficient consequence, independent review beyond the REVIEW agent protocol may be required. This is a professional judgment call that the architecture supports but cannot make.
 - **Accept residual risk.** Residual risk statements — for hazards that have been identified but cannot be fully mitigated — are a human responsibility that no agent may assume.
-- **Authenticate PWPs for reliance.** Authentication is the exclusive human act that creates a PWP from an agent-assisted draft (K-AUTH-1, K-AUTH-2).
+- **Authenticate PWPs for reliance.** The professional determines whether a
+  completed agent-assisted output is a PWP and, where required, authenticates
+  that existing PWP. Authentication is an exclusively human, attributable act
+  under K-AUTH-1 and K-AUTH-2; it confers authenticated
+  accountable-reliance status rather than creating the PWP.
 
 ### 6.8.2 AI Agent Permitted Actions
 
@@ -411,7 +437,12 @@ First, the thesis argues that the APEGA practice standard *Relying on the Work o
 
 Second, the Chirality architecture provides a strong candidate mechanism for satisfying the direct supervision and control standard (APEGA §3.1.1) through its gate-controlled orchestration model, its three-type agent hierarchy with non-overridable authority boundaries, its structured documentation of agent scope and duties, its interactive session model for ongoing communication, its structured record-keeping in versioned files, and its git-based audit trail. The full compliance trace is in Appendix C, Table C.1.
 
-Third, the architecture provides a strong candidate mechanism for satisfying the thorough review standard (APEGA §3.1.2) through the REVIEW agent's 5-gate protocol, the epistemic labeling framework that makes assumptions structurally visible for review, the content-addressed authentication binding (K-AUTH-2, K-VAL-1, K-MERGE-1), and the provenance and conflict-surfacing mechanisms that make the evidence basis for every claim transparent and verifiable.
+Third, the architecture provides a strong candidate mechanism for satisfying
+the thorough review standard (APEGA §3.1.2) through the REVIEW agent's
+5-gate protocol, epistemic labels for represented assumptions,
+content-addressed authentication binding (K-AUTH-2, K-VAL-1, K-MERGE-1), and
+provenance and conflict-surfacing mechanisms that make represented grounds
+inspectable and verifiable within their declared coverage.
 
 Fourth, the professional obligations that remain invariantly human — public welfare as first constraint, responsible charge, competence, evidence over plausibility, hierarchy of authority — are enforced as architectural invariants, not merely recommended in policy. K-AUTH-1 prohibits any agent from authenticating work. K-INVENT-1 prohibits invention. K-CONFLICT-1 prohibits silent conflict resolution. These prohibitions are the architectural expression of the principle that professional responsibility cannot be delegated to an AI system.
 

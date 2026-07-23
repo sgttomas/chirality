@@ -1,9 +1,11 @@
 # Glossary
 
-Terms are organized alphabetically. Where a term has a specific meaning in the APEGA regulatory context, that meaning is noted.
+Terms are maintained in the table below. Where a term has a specific meaning
+in the APEGA regulatory context, that meaning is noted.
 
 | Term | Definition | Source |
 |------|-----------|--------|
+| Accountability gap | The permanent non-identity between externalizable information and accountable knowing. Distinct from `Gap` (epistemic primitive), which records a missing warrant and may be resolved. | Chapter 3 §3.6.2; Appendix D |
 | Anchor (dependency class) | A tree edge connecting a deliverable to a definition or traceability node (e.g., parent WBS, requirement); provides vertical structure to the knowledge graph. | TYPES.md §3.1 |
 | Artifact | A tangible output produced within a deliverable folder, including the standard document kit (Datasheet, Specification, Guidance, Procedure) and any additional outputs appropriate to the deliverable type. | TYPES.md §1.3 |
 | Assumption | An epistemic label designating a claim that represents a reasonable inference not directly stated in source text and that requires validation before it may be relied upon. | TYPES.md §10 |
@@ -36,13 +38,13 @@ Terms are organized alphabetically. Where a term has a specific meaning in the A
 | Hybrid posture | An agent execution pattern combining a persona interface (interactive steering) with an internal bounded pipeline, allowing human steering without requiring human decisions at each pipeline step. | AGENT_HELPS_HUMANS.md §Definitions |
 | INITIALIZED | The deliverable lifecycle state in which the document kit (Datasheet, Specification, Guidance, Procedure) has been drafted. | TYPES.md §5.1 |
 | IN_PROGRESS | The deliverable lifecycle state in which active human and agent work is underway. | TYPES.md §5.1 |
+| Information | An externalizable substrate that can be recorded, transmitted, copied, cited, compared, and organized. Information may occasion knowledge but is not itself the situated knowledge of a knower. | Chapter 3 §3.6.1; CHIRALITY_FRAMEWORK.md §2.1 |
 | Instruction root | The release-managed app bundle containing agent instruction files and framework documents; physically separated from the working root to ensure stable agent governance across projects. | DIRECTIVE.md §2.6 |
 | Invariant | A formally stated, catalogued architectural constraint — such as K-PROV-1 (mandatory provenance), K-INVENT-1 (no invention), K-CONFLICT-1 (conflict surfacing), K-CLAIM-1 (claim discipline), K-AUTH-1/2 and K-BIND-1 (authority limits), and K-WRITE-1/2 (write scope and path containment) — enforced across a layered map (agent instructions, runtime checks, human gates, audits, tooling) that makes epistemic and authority controls structural rather than advisory. The catalog is maintained in CONTRACT.md. | DIRECTIVE.md §2; CONTRACT.md |
 | ISSUED | The deliverable lifecycle state in which the deliverable has been released for use. | TYPES.md §5.1 |
 | Judgment | Committed, world-involving thought that takes responsibility for its objects; contrasted with reckoning. In the architecture, judgment is reserved to accountable humans and is exercised at gates and in the REVIEWED → AUTHENTICATED transition. | Smith, *The Promise of Artificial Intelligence* (2019); Chapter 3 §3.6.4 |
 | Knowledge decomposition marker | A signal in a decomposition document (e.g., headings containing "Knowledge Categories" or "Knowledge Types") that enables knowledge-type scope selection in TASK pipeline selectors. | TYPES.md §9.3 |
 | Knowledge | A situated achievement of a knower. Knowledge may be mistaken, incomplete, provisional, or revised; it is not a property conferred on information by authentication. | Chapter 3 §3.6.1; CHIRALITY_FRAMEWORK.md §2.1 |
-| Accountability gap | The permanent non-identity between externalizable information and accountable knowing. Distinct from `Gap` (epistemic primitive), which records a missing warrant and may be resolved. | Chapter 3 §3.6.2; Appendix D |
 | Knowledge graph | The combined structure formed by ANCHOR (tree) edges and EXECUTION (DAG) edges, in which the tree preserves stable intent and the DAG captures execution couplings. | TYPES.md §3.1 |
 | Knowledge type option | A canonical file-type bucket (Datasheet, Specification, Guidance, Procedure, Dependencies, References, Context, Status, Semantic, Memory) selectable in TASK scope mode. | TYPES.md §9.3 |
 | Licensed professional | A regulated professional holding a licence to practise (e.g., a Professional Engineer) who bears personal, non-transferable responsibility for engineering work product issued for reliance. | DIRECTIVE.md §3.2 |
@@ -57,7 +59,7 @@ Terms are organized alphabetically. Where a term has a specific meaning in the A
 | Praxiology | The philosophical pillar governing how work is done: the 0-1-2 agent authority model, gate-controlled workflows, brief-driven bounded pipelines, write quarantine, and physical separation of instruction root from working root. | DIRECTIVE.md §2 |
 | PROPOSAL | An epistemic label designating an agent suggestion that requires an explicit human decision before it becomes binding project truth. | TYPES.md §10 |
 | Provenance | File and location references (SourcePath, SectionRef) that substantiate any extracted or aggregated claim; mandatory for all agent outputs under invariant K-PROV-1. | AGENT_HELPS_HUMANS.md §Definitions; DIRECTIVE.md §2 |
-| PWP (Professional Work Product) | An output of professional services containing technical information that others rely upon to make decisions or take actions; in the Chirality system, a deliverable becomes a PWP when a licensed professional authenticates it at the ISSUED gate. | APEGA *Relying on the Work of Others and Outsourcing*; DIRECTIVE.md §3.2 |
+| PWP (Professional Work Product) | A complete and final output of professional services containing technical information on which others rely to make decisions or take actions. A licensed professional determines whether an output is a PWP and applies authentication to that PWP where required; authentication does not create the PWP. | APEGA *Authenticating Professional Work Products*; DIRECTIVE.md §3.2 |
 | Reckoning | Formal, calculative symbol manipulation — what computational systems do; contrasted with judgment. Reckoning can generate and check candidate content but cannot supply commitment or accountability. | Smith, *The Promise of Artificial Intelligence* (2019); Chapter 3 §3.6.4 |
 | Responsible member | The Licensed Professional who has accepted personal responsibility for a specific piece of engineering work product and whose seal or signature constitutes the act of authentication. | DIRECTIVE.md §3.2 |
 | Scope item | An atomic, testable scope statement (`SOW-NNN`) from the Structured Scope of Work, assigned by PROJECT_DECOMP and traceable through the dependency model. | TYPES.md §8 |

@@ -47,7 +47,12 @@ The architecture is designed for the current generation of large language models
 - If future models achieve near-zero hallucination rates, the no-invention rule (K-INVENT-1) and epistemic labeling would become less operationally important but would not become incorrect — the architecture would simply flag fewer items.
 - If future models reliably follow instructions, the instruction-level enforcement layer would become more trustworthy, but the defense-in-depth model (human gates, audit agents, write quarantine) would remain necessary for professional practice because the stakes of failure are not reduced by lower probability alone.
 
-The architecture's longevity depends on the invariant structure remaining valid regardless of model capability. The thesis claims that the invariants express professional obligations — not model limitations — and therefore remain relevant even as models improve. Better models produce fewer TBDs and fewer ASSUMPTION labels; the architecture ensures that every remaining uncertainty is visible.
+The architecture's longevity depends on the invariant structure remaining
+valid regardless of model capability. The thesis claims that the invariants
+express professional obligations—not model limitations—and therefore remain
+relevant even as models improve. Better models may produce fewer TBDs and
+ASSUMPTION labels; the architecture still requires detected uncertainty to be
+represented within its declared coverage.
 
 ---
 

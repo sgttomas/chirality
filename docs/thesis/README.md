@@ -31,7 +31,17 @@ There is no Appendix B: the agent index is maintained as the live `AGENTS.md` re
 
 *Note dated 2026-07-01.*
 
-Every chapter is agent-drafted (as the Status table records), directed by the owner, drawing from the cited governed sources in the Source Material table. Applying the system's own warrant lifecycle (`docs/TYPES.md` §10.4, UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) to this document set: the thesis stands at CITED/REVIEWED. It has NOT been AUTHENTICATED — that transition is a human act (the owner's double commitment: affirming the claims are warranted and binding to them) and has not occurred. Per K-CLAIM-1 the thesis therefore binds nothing and is not a governance surface; on any disagreement, the governed record (root `docs/`, decision records) governs.
+Every chapter is agent-drafted (as the Status table records), directed by the
+owner, drawing from the cited governed sources in the Source Material table.
+Applying the system's own warrant lifecycle (`docs/TYPES.md` §10.4,
+UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) to this document set: the
+thesis stands at CITED/REVIEWED. It has NOT been AUTHENTICATED. That transition
+would require the owner's attributable act binding acceptance to identified
+content, scope, and purpose, and it has not occurred. Appendix D offers
+"double commitment" only as a non-foundational interpretation of such an act.
+Per K-CLAIM-1 the thesis therefore binds nothing and is not a governance
+surface; on any disagreement, the governed record (root `docs/`, decision
+records) governs.
 
 *Revision note dated 2026-07-23 (D-GOV-19 candidate).* The owner approved
 `D-GOV-19` at candidate commit

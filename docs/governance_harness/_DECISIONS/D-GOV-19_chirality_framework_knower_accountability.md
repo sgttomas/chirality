@@ -7,6 +7,7 @@ Date:         2026-07-23
 FramedBy:     Owner-directed chirality-framework and thesis concordance revision, 2026-07-22
 AcceptedBasis: `main@8698b0338ac82556fee583dd3f85bb62d0b74f85`
 DecisionKey: `chirality_framework_knower_accountability`
+RecordConvention: `D-GOV-18` exact candidate-SHA ruling pattern
 
 ## Status note
 
@@ -116,21 +117,24 @@ not itself accept those later words.
 The amendment is explanatory only. It preserves without semantic or
 mechanical change:
 
-- the six primitives `Claim`, `Warrant`, `Gap`, `Conflict`, `Ruling`, and
-  `FACT`;
-- `Knowledge Type`, `knowledge graph`, and the warrant lifecycle
+- the six primitives `Claim`, `Warrant`, `Status`, `Gap`, `Conflict`, and
+  `Ruling`;
+- the `FACT` status value, `Knowledge Type`, `knowledge graph`, and the warrant lifecycle
   `UNWARRANTED → CITED → REVIEWED → AUTHENTICATED`;
 - the meanings, numbering, schemas, enums, invariants, lifecycle mechanics,
   agent packages, skills, tools, and runtime permissions already governing
   those terms; and
 - the ratified operational documents `docs/DIRECTIVE.md`,
-  `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, root `AGENTS.md`, and
-  root `PROFESSIONAL_ENGINEERING.md`.
+  `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/TYPES.md`; and
+- the protected runtime doctrine in root `AGENTS.md` and protected issued
+  professional standard `PROFESSIONAL_ENGINEERING.md`.
 
-*Clerical path correction recorded during implementation, 2026-07-23:* the
-approved candidate wrote `docs/PROFESSIONAL_ENGINEERING.md`; the actual
-ratified file is at repository root. This corrects the path only and does not
-change the approved preservation boundary.
+*Clerical corrections recorded during implementation, 2026-07-23:* the
+approved candidate substituted the `FACT` status value for the `Status`
+primitive in the six-item list and placed the professional standard under a
+nonexistent `docs/` prefix. The corrected list and root path above match the
+ratified ontology and repository. These corrections do not change the
+approved preservation boundary.
 
 `AUTHENTICATED` therefore remains compatible with the governed lifecycle. The
 explanatory clarification is that the status is attributable to an
@@ -157,13 +161,15 @@ Before the explanatory candidate is presented for owner review:
 
 ## Deferred derivative work
 
-The accepted Gate-6 domain snapshot is not amended by this decision. Domain
-decomposition refresh is deferred to a separate `DOMAIN` `SCOPE_CHANGE`
-activation covering source-manifest hashes, affected atomization and
-decomposition artifacts, thesis-source authority classification, a new
-immutable snapshot, audits, and handoff. The explanatory revision must record
-that deferral and must not represent the present domain decomposition as
-current because of this amendment.
+The accepted `domains/chirality` Gate-6 snapshot
+`domains/chirality/_Decomposition/gate_snapshots/GATE6_PUBLISH_20260615T044434Z`
+is not amended by this decision and remains the historical accepted
+decomposition truth. Current-source projection is deferred to a separate
+`DOMAIN` `SCOPE_CHANGE` activation covering source-manifest hashes, affected
+atomization and decomposition artifacts, thesis-source authority
+classification, a new immutable snapshot, audits, and handoff. The
+explanatory revision must record that deferral and must not represent the
+present domain decomposition as current because of this amendment.
 
 ## Approval and integration gates
 

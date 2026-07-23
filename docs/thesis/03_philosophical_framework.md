@@ -4,7 +4,14 @@
 
 ## 3.1 Introduction
 
-This chapter presents the philosophical framework that governs the Chirality architecture. Where Chapter 4 describes what the architecture is — its structures, mechanisms, and constraints — this chapter explains why those structures take the form they do. The argument is that the architecture rests on four foundational pillars, that these pillars form a coherent basis and evaluative lens for professional engineering governance of AI agent systems, and that one pillar — epistemology — is load-bearing in a precise sense that the chapter will define.
+This chapter presents the philosophical framework that governs the Chirality
+architecture [CITE:Chirality_FRAMEWORK]. Where Chapter 4 describes what the
+architecture is—its structures, mechanisms, and constraints—this chapter
+explains why those structures take the form they do. The argument is that the
+architecture rests on four foundational pillars, that these pillars form a
+coherent basis and evaluative lens for professional engineering governance of
+AI agent systems, and that one pillar—epistemology—is load-bearing in the
+operational sense defined below.
 
 The four pillars are not a taxonomy imposed after construction. They are the structural logic the architecture was built from, and they appear at every level of the system — from the governance documents that define the rules, through the agent instructions that enforce them, to the production documents that agents create for every deliverable. This self-similar property, termed the fractal property, is itself a sign of architectural coherence: the system practices what it produces.
 
@@ -28,19 +35,44 @@ In philosophical terms, the Chirality ontology follows the principle that Bunge 
 
 This is the system's most distinctive and load-bearing contribution, and the section that this chapter develops most fully.
 
-The fundamental problem of using large language models in professional practice is not that they produce bad outputs. It is that bad outputs are indistinguishable from good ones by inspection. LLM outputs are plausible by construction — the model optimizes for producing text that reads as though it were written by a competent author. A well-formed sentence with a specific numerical value and a plausible-sounding source citation may be entirely fabricated, and no surface feature of the text will reveal this. The term of art is "hallucination," but the underlying phenomenon is deeper: the model's output carries no intrinsic epistemic warrant. It is not self-certifying, and it cannot be assumed to be grounded in evidence merely because it reads as though it is.
+The fundamental problem of using large language models in professional
+practice is not only that they produce bad outputs. It is that incorrect and
+correct outputs may be indistinguishable by surface inspection alone. LLM
+outputs are plausible by construction—the model optimizes for producing text
+that reads as though it were written by a competent author. A well-formed
+sentence with a specific numerical value and a plausible-sounding source
+citation may be fabricated without a reliable surface signal. The model's
+output therefore carries no intrinsic epistemic warrant. It is not
+self-certifying and cannot be assumed grounded merely because it reads that
+way.
 
 Most approaches to this problem focus on improving the model: reinforcement learning from human feedback (RLHF), retrieval-augmented generation (RAG), fine-tuning on domain-specific corpora, or post-hoc factuality checking [CITE:Ji2023]. These are valuable but insufficient for professional practice. They reduce the probability of error without eliminating it, and — critically — they do not make the epistemic status of any particular claim transparent to the reviewer. A RAG-augmented model that retrieves a relevant document and generates a summary does not, by that fact alone, tell the reviewer which parts of the summary are grounded in the retrieved document and which are interpolated by the model.
 
-Chirality takes a fundamentally different approach. Rather than attempting to make the model more reliable — which cannot be guaranteed for any specific output — the architecture makes the epistemic status of every claim transparent and auditable, so that a qualified professional can determine what to rely on.
+Chirality takes a different approach. Rather than relying on a guarantee of
+model reliability for a specific output, the architecture requires
+represented claim states and grounds to be inspectable and auditable so that
+a qualified professional can determine what to rely on.
 
 Four architectural mechanisms enforce this:
 
-**Mandatory provenance (K-PROV-1).** Every extracted or aggregated claim must cite its source file and section reference, or carry an explicit `location TBD` marker. A claim without provenance is structurally visible as ungrounded. This is not a style guideline — it is an invariant enforced across all agents. The provenance fields in `Dependencies.csv` (`EvidenceFile`, `SourceRef`, `EvidenceQuote`) are required columns in the schema, not optional metadata. The effect is that the reviewer can trace any claim to its source, or observe that it has no source. The absence of evidence is itself evidence.
+**Mandatory provenance (K-PROV-1).** Every extracted or aggregated claim must
+cite its source file and section reference, or carry an explicit `location
+TBD` marker. A represented claim without provenance is detectable as
+ungrounded. This is not a style guideline; it is a declared invariant with
+specified enforcement layers. The provenance fields in `Dependencies.csv`
+(`EvidenceFile`, `SourceRef`, `EvidenceQuote`) are required columns in the
+schema, not optional metadata. A reviewer can trace a conforming represented
+claim to its source or observe the missing source.
 
 **No invention (K-INVENT-1).** When required information is missing, agents label it `TBD` and surface the gap as an open issue. They do not guess, default-fill, or silently infer. Missing data is a finding, not a problem to solve. This rule eliminates the most dangerous failure mode of LLM-assisted work: the generation of plausible-sounding values for quantities that are actually unknown. An engineer reviewing an agent's output will see `TBD` where information is missing, not a confident-looking number that happens to be fabricated.
 
-**Conflict surfacing (K-CONFLICT-1).** When sources disagree, agents produce a Conflict Table with the competing claims, pointers to their sources, a proposed resolution marked as `PROPOSAL`, and a `HumanRuling = TBD` column. Agents never silently resolve contradictions. The human owns the ruling. This is significant because LLMs, when faced with conflicting sources, will typically choose one or produce a synthesis without indicating that a conflict exists. The architectural enforcement of conflict visibility ensures that disagreements reach the decision-maker.
+**Conflict surfacing (K-CONFLICT-1).** When a conflict is detected, agents
+produce a Conflict Table with the competing claims, pointers to their sources,
+a proposed resolution marked as `PROPOSAL`, and a `HumanRuling = TBD` column.
+The conforming path does not silently resolve contradictions; the human owns
+the ruling. The declared controls are designed to route detected disagreements
+to the decision-maker, without claiming that every conflict will necessarily
+be found.
 
 **Epistemic labeling.** Every non-trivial claim is classified with one of four labels: FACT (directly observed in source text with citation), ASSUMPTION (reasonable inference not directly stated, requiring validation), PROPOSAL (agent suggestion requiring human decision), or TBD (unknown, placeholder requiring resolution). These labels are defined in `TYPES.md` §10 as a specified convention across the suite; per D-GOV-08 (ruled 2026-07-01) the labeling act is assessed at audit time, bounded by K-CLAIM-1, with the warranting function carried by the citation, SHA-binding, and attribution mechanisms. The licensed professional does not need to guess whether a value is grounded or inferred — the label tells them.
 
@@ -102,7 +134,12 @@ UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
 
 The two lifecycles are correlated but not identical. A deliverable in IN_PROGRESS contains a mixture of warranted and unwarranted claims. The transition to CHECKING requires that critical claims have been warranted — all CRITICAL findings must have non-TBD human disposition. The transition to ISSUED requires that the professional has authenticated the work: the act of declaring that the epistemic state of the claims is sufficient for reliance under professional responsibility.
 
-The warrant lifecycle reveals what thorough review (APEGA §3.1.2) actually is in operational terms: it is the process of auditing warrant sufficiency. The professional examines the claims, checks their warrants (provenance, epistemic labels), resolves gaps and conflicts through rulings, and ultimately decides whether the aggregate warrant state supports authentication. The epistemic architecture makes this process tractable by ensuring that the warrant state of every claim is visible, not hidden in the model's reasoning.
+The warrant lifecycle expresses thorough review (APEGA §3.1.2) operationally
+as auditing warrant sufficiency. The professional examines represented
+claims, checks their warrants, resolves surfaced gaps and conflicts through
+rulings, and decides whether the aggregate state supports authentication. The
+architecture makes represented warrant states inspectable within its declared
+coverage; it does not guarantee complete claim capture.
 
 The epistemic architecture is the subject of Chapter 5, which develops the argument in full with worked examples and comparison to alternative approaches. The purpose of this section is to establish that the epistemology is a coherent philosophical commitment with its own formal ontology — not merely a collection of quality rules — and that it addresses a specific, identifiable limitation of LLM-based systems that other approaches do not address at the architectural level.
 
@@ -124,7 +161,14 @@ The axiological commitment of the Chirality architecture is that professional re
 
 **Public welfare is the first constraint.** When tradeoffs exist between safety and commercial pressure, schedule, or convenience, safety prevails. This obligation is stated in `DIRECTIVE.md` §3.1 and operationalized in `PROFESSIONAL_ENGINEERING.md` §3.1.
 
-**Professional responsibility is personal and non-transferable.** A licensed professional retains decision rights for scope boundaries, governing codes and standards, hazard and risk acceptance, conflict adjudication, and approval for reliance. No AI system may claim to certify, approve, sign, seal, or issue engineering work for reliance. This is enforced by K-AUTH-1. AI agent outputs are drafts and structured assistance — human acceptance is what makes them engineering work product.
+**Professional responsibility is personal and non-transferable.** A licensed
+professional retains decision rights for scope boundaries, governing codes
+and standards, hazard and risk acceptance, conflict adjudication, and
+approval for reliance. No AI system may claim to certify, approve, sign,
+seal, or issue engineering work for reliance. This is enforced by K-AUTH-1.
+AI agent outputs are drafts and structured assistance. A licensed
+professional determines whether a completed output is a PWP and, where
+required, authenticates that PWP for accountable reliance.
 
 **Evidence is required, not plausibility.** The hierarchy of authority in technical matters — laws and regulations, codes and standards, project specifications, verified engineering analysis, professional judgment — governs all technical decisions. Agent outputs carry no professional authority. This hierarchy is stated in `DIRECTIVE.md` §3.4 and enforced through agent instruction invariants.
 
@@ -237,8 +281,9 @@ This position separates two questions that are easily conflated:
 2. **What reliance has an accountable actor accepted?** This is recorded by a
    scoped act bound to identified content.
 
-Authentication answers the second question. It can discipline and evidence
-the first, but it neither creates knowledge nor establishes reality as it
+Evidence and review may discipline what a person knows. Authentication
+answers the second question by evidencing the actor's attributable acceptance
+of reliance; it neither creates knowledge nor establishes reality as it
 ultimately is.
 
 ### 3.6.2 The Accountability Gap and Operational `Gap`

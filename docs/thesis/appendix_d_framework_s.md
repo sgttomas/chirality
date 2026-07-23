@@ -112,14 +112,21 @@ commitment, and self.
 
 ## D.5 Relationship to Polanyi's *Meaning*
 
-The conjecture is consistent with and extends the epistemology developed by Michael Polanyi, particularly as articulated in *Meaning* (1975, co-authored with Harry Prosch) [CITE:Polanyi1975].
+The conjecture reads alongside themes in Michael Polanyi's epistemology,
+particularly as articulated in *Meaning* (1975, co-authored with Harry
+Prosch) [CITE:Polanyi1975].
 
 **Premise 1 and the from-to structure.** □(S → M) — for S, meaning is already
 given — is read here alongside Polanyi's account of personal and tacit
 knowing. The comparison emphasizes that knowing is not exhausted by explicit
 data. It is a philosophical affinity, not an exact formalization of Polanyi.
 
-**N and the personal coefficient.** Polanyi insists that all knowing involves a personal contribution — the "personal coefficient" — that cannot be stripped away. The conjecture separates this cleanly: M is the meaning encountered; N is S's affirmation that this meaning is necessary. In Polanyi's terms, M is the focal integration; N is the fiduciary act that declares "I believe this integration is a genuine discovery of structure in reality, and I stake myself on it."
+**N and the personal coefficient.** Polanyi argues that knowing involves a
+personal contribution—the "personal coefficient"—that cannot simply be
+removed. In this appendix's reconstruction, M is encountered meaning and N is
+S's affirmation that the meaning is necessary. This selectively associates M
+with focal integration and N with the fiduciary stance of taking
+responsibility for an integration; it is not a quotation or exact mapping.
 
 **The fork and the drama of commitment.** Premise 3 offers one reconstruction
 of a choice emphasized in *Meaning*: a person may hold an integration
@@ -147,7 +154,10 @@ structure.
 
 ## D.6 Relationship to Smith's *On the Origin of Objects*
 
-The conjecture is consistent with and extends the registrational metaphysics developed by Brian Cantwell Smith in *On the Origin of Objects* [CITE:Smith1996], whose work directly informed the author's prior work on the nature of meaning from which this conjecture descends.
+The conjecture reads alongside themes in the registrational metaphysics
+developed by Brian Cantwell Smith in *On the Origin of Objects*
+[CITE:Smith1996], whose work informed the author's prior reflection on
+meaning.
 
 **Premise 1 and registration.** □(S → M) — for S, meaning is already given —
 can be read alongside Smith's account of registration as a situated,
@@ -173,7 +183,13 @@ complete in advance. The double turnstile selectively echoes the theme that
 a stance participates in the stabilization of a self; it does not formalize
 Smith's subject.
 
-**Reckoning and judgment.** In *The Promise of Artificial Intelligence* [CITE:Smith2019], Smith distinguishes reckoning — formal, calculative symbol manipulation, which is what computational systems do — from judgment: committed, world-involving thought that takes responsibility for its objects. His warning is that we risk accepting reckoning as if it were judgment. In the conjecture's terms, reckoning can generate candidate registrations (M); only judgment supplies N and the turnstiles. The conjecture locates precisely the remainder Smith argues computational systems lack.
+**Reckoning and judgment.** In *The Promise of Artificial Intelligence*
+[CITE:Smith2019], Smith distinguishes formal, calculative reckoning from
+committed, world-involving judgment and warns against accepting one as the
+other. The conjecture offers a limited analogy to that boundary: its
+distinction between encountered meaning and commitment can help a reader
+notice why generated information is not an accountable stance. It does not
+attribute M, N, or the turnstiles to Smith.
 
 **Where the conjecture diverges.** Smith's principal axis is subject–object:
 registration co-constitutes the registering subject and registered world. The
@@ -197,9 +213,10 @@ transparency when relying on AI-produced work.
 In chemistry, chirality names the geometric property of an arrangement that
 is not superposable on its mirror image [CITE:IUPAC_Chirality]. In molecular
 quantum mechanics, left- and right-handed configurations can be represented
-as distinct configuration states. Theoretical work describes preparation
-schemes in which a chiral molecule could occupy a quantum superposition of
-two enantiomeric configurations [CITE:Stickler2021], and model-based work
+as distinct configuration states [CITE:Stickler2021]. Theoretical work
+describes preparation schemes in which a chiral molecule could occupy a
+quantum superposition of two enantiomeric configurations [CITE:Stickler2021],
+and model-based work
 shows how environmental collisions can decohere such superpositions and
 stabilize handed configuration states relative to tunnelling under specified
 conditions [CITE:Trost_Hornberger2009]. Neither cited physics paper reports
@@ -225,6 +242,14 @@ architectural recommendation.
 
 *Note added 2026-07-02 at the author's direction.*
 
-The conjecture answers a question that precedes premise 1: what stands between perception and judgment? The framework's answer is meaning. Perception alone does not yet present anything to judge; something must first show up *as* something — a line on a drawing as a pipe, a number as a design limit, a sentence as a requirement — and as something that matters. That as-structure, together with its significance, is M: the world arriving already intelligible and already addressed to a self, before any commitment is made toward it. Judgment — N and the turnstiles — is then the response to meaning, not its manufacture. This is what □(S → M) formalizes, and it is why the architecture treats machine output as candidate registrations to be received as meaning — never as judgment to be accepted.
+The conjecture answers a question that precedes premise 1: what stands
+between perception and judgment? Its answer is meaning. Perception alone does
+not yet present anything to judge; something must first show up *as*
+something—a line as a pipe, a number as a design limit, a sentence as a
+requirement—and as something that matters. That as-structure is M in the
+author's intended reading of □(S → M). Judgment—N and the turnstiles—is then
+a response to meaning, not its manufacture. In architectural terms, machine
+output may offer information that a person registers as meaningful; it is not
+thereby the person's judgment.
 
 The conviction behind this ordering preceded the project. The author's originating insight — formed early in his first work with large language models, before the Chirality project existed, in reflection on Ayat al-Kursi (Qur'an 2:255) — is that meaning is not self-grounding: it is given and sustained, and the one who receives it encompasses only part of it. The main thesis neither depends on this conviction nor asks the reader to share it; Chapters 1 through 10 stand on regulatory, philosophical, and systems-engineering warrant. It is recorded here because it explains the architecture's most consistent refusal: at every level, the system declines to let computation manufacture warrant. That refusal was a commitment before it was a design.
