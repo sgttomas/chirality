@@ -8,6 +8,8 @@
 
 ## Remaining
 
+- Move orchestration and turn locking to the sole daemon and prove Desktop/CLI concurrency and restart recovery without duplicate runtime owners (gated: daemon/core implementation).
+
 ## History
 - 2026-07-22 - D-APP-72 per-turn adapter resolution and preflight completed; failure/recovery tests prove accepted-input persistence, lock release, and no automatic fallback. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added per-turn second-engine routing to Remaining; state remains IN_PROGRESS.

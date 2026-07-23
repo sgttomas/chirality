@@ -8,6 +8,8 @@
 
 ## Remaining
 
+- Implement and validate SCA-APP-003 daemon, control-socket, central-store, residency, role-attribution, PEC-adapter, and export reliance boundaries (gated: G1-G5).
+
 ## History
 - 2026-07-22 - D-APP-72 / SCA-APP-002 reliance-boundary reconciliation completed and independently backchecked; implementation and redacted proof are recorded in the Pi/oMLX AgentRuns G5 closeout return. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added the bounded Pi/oMLX reliance-boundary reconciliation to Remaining; state remains IN_PROGRESS.

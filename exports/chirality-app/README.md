@@ -14,6 +14,14 @@ Public governance decisions, their handoff, and `human_actors.md` remain in
 scope because authority verification depends on them; private-project TRB
 briefs and the practitioner-development backlog are explicitly excluded.
 
+D-GOV-20 adds the generic `runtime/` workspace, bundled CLI, provider-neutral
+contracts, and safe engine adapters to the intended public boundary after the
+shared-runtime pilot passes. Export policy continues to exclude credentials,
+user-data and machine-registration state, logs, downloaded models, private PEC
+or Piping adapters, and private project manifests/evidence. The exporter
+allowlist and generated manifest/report are updated only in the later
+validated export tranche, not by this governance reconciliation.
+
 Every entry in `ROOT_FILES`/`ROOT_DIRS` must exist at the repo root; the
 exporter fails with an error listing any missing entries rather than silently
 skipping them (owner ruling, 2026-07-01). When the tree is reorganized, update

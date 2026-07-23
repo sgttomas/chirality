@@ -7,6 +7,8 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Prove `0700` runtime parent, `0600` Unix socket, project-scoped client authorization, no TCP listener, credential isolation, and fail-closed residency transport (gated: independent security review).
 - Packaging/release evidence for DEL-09-06's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged renderer/security proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
 
 ## History

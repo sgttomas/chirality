@@ -164,3 +164,4 @@ domain_profile:
     - "L3 operation-proposal semantics: RESOLVED for the import scope 2026-07-05 by D-PEC-12 (with owner full-agency amendment) + D-T0-18 O-A; the in-app import_proposal record is the single record of authority. Other operation families still need their own ruling."
     - "PEC is outside the governed decomposition loop; profile adoption would not adopt or amend PEC decomposition truth."
     - "seed.demo guard: RESOLVED 2026-07-05 by PR #69; the tool now requires explicit PEC_DB and refuses non-scratch/non-demo targets."
+    - "Shared runtime migration: RULED 2026-07-22 by D-T0-23/D-PEC-56. PEC retains deterministic acts, RBAC, human-only acts, visibility, and data boundaries as a project adapter; independent LLM/session/delegation ownership retires prospectively. Pilot validation is scratch/demo-only and no production dual execution loop is allowed."

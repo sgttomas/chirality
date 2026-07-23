@@ -116,3 +116,10 @@ SSO/PEC-NFR-006, PEC-CHK-004 hard block.
 - **Runtime posture:** `core` and `server` have **zero runtime dependencies** (hand-rolled router over `node:http`, `node:sqlite`, `node:crypto`); only `web` has build-time deps. Keep it that way (ADR-002).
 - **No memory system:** this project's memory is disabled by user directive; record durable state here and in the docs above.
 - **Node ≥ 23.6** for native type-stripping (erasable-syntax-only TypeScript: no enums/namespaces/param-properties; `import type`; explicit `.ts` extensions).
+
+## Shared runtime migration status
+
+D-PEC-56 is ruled and governance-aligned; implementation is pending. PEC keeps
+acts/RBAC/reporting/human gates while root daemon owns agent execution. Legacy
+endpoint proxy only; scratch/demo validation only. D-PEC-49, T0 rebaseline,
+and production authority remain open.

@@ -274,3 +274,24 @@ Users and maintainers must:
 Changes that alter scope, release target, data contracts, professional-boundary posture, runtime engine semantics, permission behavior, transcript canonicality, or retired/active execution scope must be handled as governed product changes.
 
 A change is not complete until it is reflected in the appropriate combination of PRD, directive, contract, specification, type vocabulary, plan, tests, runbooks, and implementation artifacts.
+
+---
+
+## 8. Shared Runtime Direction (D-GOV-20 / D-APP-73)
+
+Chirality’s executable harness is a root-owned shared runtime used by
+registered projects. One opt-in per-user daemon owns engines, credentials,
+sessions, delegation, tools, turn locks, interruption, and model residency.
+Desktop, CLI, and embedded project surfaces are clients; they do not create
+competing runtime owners.
+
+Daemon user-data state is convenience and execution state, not project
+authority. Governed truth remains in checkout-contained manifests,
+instructions, decisions, execution trees, AgentRuns, evidence, and Git.
+Agent 0/1/2 roles remain authority contracts independent of models.
+
+The initial local-agent pilot permits one explicitly resident authenticated
+loopback oMLX model and one required read-only Pi Agent 2 child under a real
+Agent 1 manager. It does not authorize automatic scheduling, multiple primary
+local models, local Agent 1, remote oMLX, fallback, production PEC mutation,
+release, publication, issuance, or professional reliance.

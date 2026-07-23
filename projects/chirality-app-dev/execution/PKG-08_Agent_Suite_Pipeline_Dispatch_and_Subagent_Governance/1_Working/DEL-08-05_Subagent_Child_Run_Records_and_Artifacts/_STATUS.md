@@ -8,6 +8,8 @@
 
 ## Remaining
 
+- Record shared-daemon child parentage, sealed brief, role, engine/provider/model, residency epoch, permissions, evidence, and manager acceptance in project AgentRuns (gated: pilot integration).
+
 ## History
 - 2026-07-22 - D-APP-72 Pi-child parentage, exact engine/provider/model, sealed brief, declared tool, capability, approval, and terminal attribution completed and covered by managed-delegation and live-proof evidence. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added second-engine child attribution to Remaining; state remains IN_PROGRESS.

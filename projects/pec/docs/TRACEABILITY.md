@@ -266,3 +266,12 @@ Honest list of what is implemented but not automatically tested (or deliberately
    (recipe: `docs/PILOT.md` §5) — record its date in STATUS when done.
 7. **PEC-NOT-002/003, PEC-CHK-004 hard block, PEC-REC-\*, dedicated interface register** are
    P2/P3 by design (SPEC §11), not gaps.
+
+## Shared Runtime Migration Trace
+
+| Boundary | Authority | Required evidence |
+|---|---|---|
+| One daemon; no production dual loop | D-GOV-20; D-T0-23; D-PEC-56 | Singleton/concurrency proof; legacy endpoint proxies only |
+| PEC acts/RBAC/human gates remain project-owned | D-T0-23; D-PEC-56 | Adapter/backend tests and forbidden-act denials |
+| Canonical live events and actual-model attribution | D-PEC-53; D-PEC-56 | Daemon → adapter → backend → panel proof |
+| Scratch/demo-only migration pilot | D-PEC-56 | Fixture and no-production-data inspection |

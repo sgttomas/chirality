@@ -518,3 +518,23 @@ Harness verifiers adopt exit `0/1/2`, aligned with the newest validator class (e
 
 - This taxonomy is distinct from the epistemic labels (`FACT`, `ASSUMPTION`, `PROPOSAL`, `TBD`; §10.3): epistemic labels classify the certainty of a claim; finding severities classify verifier findings.
 - Severity `NOT_APPLICABLE` is distinct from the dependency-vocabulary enum value `NOT_APPLICABLE` (§3.2, §3.7): same token, different vocabulary.
+
+---
+
+## 12. Shared Runtime Vocabulary
+
+| Type | Meaning |
+|---|---|
+| `ChiralityProjectManifest` | Tracked `chirality.project/v1` declaration containing stable identity and relative authority/profile references, never secrets or machine-specific absolute paths. |
+| `RegisteredProject` | User-data record binding a manifest hash to a canonical local root, approval reference, adapter allowlist, and scoped client authorization. |
+| `RuntimeClientCredential` | Random per-client bearer secret stored outside the checkout; the daemon stores only its hash, scopes, project binding, and lifecycle metadata. |
+| `RuntimeDaemonStatus` | Health and ownership state for the one per-user daemon and Unix-domain control socket. |
+| `ResidencyState` | `NO_MODEL`, `READY`, `DRAINING`, `UNLOADING`, or `LOADING`; transitions are serialized and fail closed. |
+| `ResidencyEpoch` | Monotonic attribution record for one verified primary local-model residency interval. |
+| `ModelStatusRecord` | Exact oMLX model identity plus loaded/loading, type, helper, pin, size, and capability metadata returned by authenticated status discovery. |
+| `Agent1RunRequest` | Direct human/external invocation of one Agent 1 with a sealed brief and optional requirement for one exact resident local Agent 2 child. |
+| `AgentRunEvidence` | Checkout-contained record of parentage, sealed brief, role, adapter/provider/actual model, residency epoch, permissions, evidence, status, and acceptance result. |
+| `RuntimeBackend` | Provider-neutral daemon composition port for session, turn, interruption, permission, delegation, credential, and residency operations. |
+
+These types do not prescribe model capability tiers or durable model-to-role
+assignments. Runtime attribution records what actually executed.

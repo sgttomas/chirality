@@ -557,6 +557,7 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 | OI-004 | SOURCE_COMPLETENESS | SOW-030, SOW-073 | Required instruction-root assets may be missing in the current source or packaging state. | Complete source tree or amend integrity requirements and code paths. |
 | OI-005 | DOMAIN_FUTURE | SOW-066-SOW-071 | Domain engine profile work is future platform scope and requires amendment before implementation. | Keep domain deliverables as future-boundary package until core harness stability. |
 | OI-006 | PROVIDER_EXPANSION | SOW-020, SOW-021, SOW-037 | D-APP-72 / SCA-APP-002 activates the bounded Pi `0.80.10` / authenticated loopback oMLX child adapter and requires provider-network policy, conformance fixtures, error classification, security/redaction, and packaging validation. | Implement only the authorized read-only Agent 2 milestone; every other provider/harness expansion remains gated. |
+| OI-007 | SHARED_RUNTIME | SOW-009-SOW-011, SOW-037, SOW-043, SOW-046, SOW-063, SOW-072 | D-GOV-20 / D-APP-73 / SCA-APP-003 promote the executable harness into a root-owned runtime and add one daemon, authenticated Unix-socket clients, project registration, central lazy-migrating sessions, explicit residency, CLI, app-dev pilot, PEC migration, and generic export. | Execute in the ruled sequence with one integration owner for contracts/lockfiles; preserve behavior before daemon conversion; prove one runtime owner and both pilots before export. |
 
 ---
 
@@ -582,6 +583,7 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 | DEC-016 | 2026-05-20 | PRD Section 16 package traceability is updated to point to v3.2. | The active decomposition has 10 packages and 51 deliverables; the PRD now identifies this v3.2 SOFTWARE_DECOMP snapshot as the authority for scaffolding and downstream execution. |
 | DEC-017 | 2026-06-13 | SCA-APP-001 reorients runtime strategy to provider-adapter generality, keeps Claude Agent SDK / Anthropic as first concrete adapter, treats Pi as a pattern corpus only, and reframes permission governance as capability-forward with explicit deny precedence. | Human ruled D-APP-01/02/03 and requested formal SCOPE_CHANGE before project-truth mutation. |
 | DEC-018 | 2026-07-21 | D-APP-72 / SCA-APP-002 prospectively authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche after Electron `43.1.1`, initially for one governed read-only Agent 2 child. | Owner accepted the recommendation and explicitly ordered implementation of the decision-complete plan; topology and lifecycle state remain unchanged. |
+| DEC-019 | 2026-07-22 | D-GOV-20 / D-APP-73 / D-T0-23 / D-PEC-56 / SCA-APP-003 establish a root-owned shared runtime, one per-user daemon, authenticated Unix-socket clients, explicit one-primary-model residency, app-dev Agent 1 → local Agent 2 pilot, and PEC client migration. | Owner explicitly ordered implementation of the decision-complete plan; existing package/deliverable topology is reused and lifecycle state remains unchanged. |
 
 ### Change Log
 
@@ -592,6 +594,7 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 - 2026-05-20: v3.2 issued: adopted v3.1 topology, anchored references to active local docs and SOFTWARE_DECOMP, corrected companion-register status, updated source-completeness wording, incorporated v3's human-authority/project-truth emphasis into DEL-01-01, and aligned PRD Section 16 to the v3.2 decomposition authority.
 - 2026-06-13: SCA-APP-001 landed provider-adapter-general runtime strategy, Pi pattern-corpus-only posture, and capability-policy / explicit-hard-deny permission governance without changing package/deliverable topology.
 - 2026-07-21: SCA-APP-002 prospectively activated the D-APP-72 bounded Pi/oMLX second-engine tranche without changing package/deliverable topology or lifecycle state.
+- 2026-07-22: SCA-APP-003 prospectively activated the shared-runtime extraction, daemon/client/CLI, explicit residency, app-dev pilot, PEC migration, and generic export sequence without changing package/deliverable topology or lifecycle state.
 
 ---
 
@@ -602,5 +605,7 @@ Packages are work domains, not execution phases. PLAN controls near-term sequenc
 - R0/R1 runtime deliverables should execute before R2+ capability expansion: engine contract, first-adapter probe, settings isolation, TurnEngine, event log, prompt composer, run logger, and conformance suite come first.
 - Read tools and read MCP exposure precede write/edit and bash capability.
 - The D-APP-72 Pi/oMLX read-only child tranche is the sole active non-Anthropic exception. Other concrete providers, domain engine execution, remote MCP, plugins, shipped bypass, non-macOS packaging, and retired PKG-08 work require governed amendment before implementation.
+- D-APP-73 extends that exception only to authenticated loopback oMLX status/load/unload and explicit one-primary-model residency. Runs never switch models automatically; local Agent 1, automatic scheduling, multiple primary local models, and piping remain future-gated.
+- Shared runtime promotion preserves this decomposition's existing package/deliverable topology. Root `runtime/` ownership is an implementation-location change; app-dev deliverables retain semantic ownership and acceptance evidence through the SCA-APP-003 impact map.
 - REVIEW should check package flatness, scope ledger coverage, context-envelope posture, no automated professional approval claims, provider/SDK settings isolation, no unauthorized provider/network expansion, and no domain solver ownership claims.
 - REVIEW should also check CONTRACT invariant-family coverage, the companion invariant register, SPEC/TYPES conformance, PLAN sequencing, PRD traceability, and SOFTWARE_DECOMP method conformance before accepting implementation or scaffold outputs.

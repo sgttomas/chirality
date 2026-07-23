@@ -8,6 +8,8 @@
 
 ## Remaining
 
+- Register shared-runtime contract, socket, project authorization, migration, residency, required-delegation, and PEC-adapter conformance checks (gated: G5 validation).
+
 ## History
 - 2026-07-22 - D-APP-72 multi-adapter conformance expansion completed across lifecycle, tool pairing, permission, persistence, redaction, interruption, compaction, declared capabilities, and provider failures; Section 9 and the complete suite pass. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added Pi/oMLX Section 9 validation to Remaining; state remains IN_PROGRESS.

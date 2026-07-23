@@ -1,12 +1,14 @@
 # Status: DEL-03-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Centralize interrupt/cancel and terminal ownership in the daemon and prove restart recovery and model-drain behavior preserve one terminal outcome (gated: daemon/residency integration).
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.

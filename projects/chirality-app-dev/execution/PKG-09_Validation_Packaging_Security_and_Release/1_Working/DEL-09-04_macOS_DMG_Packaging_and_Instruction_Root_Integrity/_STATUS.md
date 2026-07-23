@@ -7,6 +7,8 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Package and prove headless `--runtime-daemon`, opt-in LaunchAgent, and bundled `chirality` CLI execution without global Node (gated: G5 packaging; no release authority).
 - Packaging/release evidence for DEL-09-04's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged-SDK proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
 
 ## History

@@ -1626,3 +1626,33 @@ This PRD **does** establish a revised product-development direction for the harn
 Changes to this PRD that alter scope, release targets, safety posture, data contracts, professional responsibility boundaries, or retired/active execution scope should be handled as governed product changes and traced back to stable SOW/OBJ/DEL identifiers or a new approved decomposition amendment.
 
 ---
+
+## 17. Shared Runtime and Local-Agent Pilot Amendment
+
+D-GOV-20, D-APP-73, and SCA-APP-003 make the provider-neutral runtime a
+root-owned product subsystem rather than a frontend-owned singleton. A
+per-user daemon, invoked through the packaged Electron application without a
+window, exclusively owns engines, encrypted credentials, sessions, tools,
+delegation, turn locks, interruption, and local-model residency. Desktop,
+CLI, and project integrations use one authenticated Unix-socket API and one
+canonical SSE event protocol.
+
+Tracked project manifests register stable identity and relative authority
+references. Machine-resolved paths, project client credentials, and
+registration approvals remain user-data state; authority-affecting manifest
+changes require re-registration. User-data databases or caches are never
+project truth.
+
+Central sessions remain JSON/JSONL and lazily consume legacy project-local
+records without bulk rewrite or destructive move. D-APP-41 remains historical
+while this cross-store migration becomes prospective behavior.
+
+The initial acceptance path is a direct Agent 1 run that must delegate one
+read-only task to an explicitly resident Pi/oMLX Agent 2, review the return,
+and emit parentage, permissions, canonical events, residency epoch, and actual
+engine/provider/model attribution. Missing required delegation terminates with
+`REQUIRED_DELEGATION_MISSING`.
+
+The generic runtime, CLI, contracts, and safe adapters are public-export
+eligible after validation. Credentials, machine state, and private PEC or
+Piping adapters are excluded.

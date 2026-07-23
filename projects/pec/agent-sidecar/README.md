@@ -107,3 +107,12 @@ Conversation memory rides the REQUEST (`history: [{who, text}]`, ≤ 40 entries
 requests. The stub engine keeps its deterministic single-directive routing
 and ignores `history` by design. The server proxy's message timeout defaults
 to 300 000 ms (`PEC_AGENT_MESSAGE_TIMEOUT_MS` overrides).
+
+## Shared runtime migration
+
+D-T0-23/D-PEC-56 prospectively retire this package’s independent LLM,
+credential, session, delegation, interruption, and residency ownership. Its
+durable role is the PEC project adapter for deterministic acts, RBAC,
+reporting, human-act exclusion, visibility, and data boundaries. During one
+cycle the existing endpoint may proxy to the root daemon; it must not run a
+second production loop. Proofs use scratch/demo data only.

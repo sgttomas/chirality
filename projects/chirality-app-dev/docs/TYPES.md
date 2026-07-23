@@ -659,3 +659,19 @@ The framework separates **how teams coordinate** from **how the system tracks de
 | `TBD` | Unknown value requiring resolution. |
 
 These labels help separate evidence from inference and prevent plausible invention from becoming project truth.
+
+---
+
+## 13. Shared Runtime Vocabulary
+
+| Term | Meaning |
+|---|---|
+| **Runtime Daemon** | The one per-user headless Chirality process that exclusively owns engines, credentials, sessions, delegation, tools, turn locks, interruption, and model residency. |
+| **Runtime Client** | Desktop, CLI, backend, or embedded UI using the authenticated Unix-socket API without constructing its own runtime. |
+| **Project Manifest** | Tracked `chirality.project/v1` registration declaration containing stable project identity and relative authority references, never secrets or machine-specific absolute paths. |
+| **Project Registration** | Machine-local binding of a manifest hash to its resolved checkout root, client credential, and approval metadata. It is operational state, not project authority. |
+| **Residency Epoch** | Monotonic identifier for one verified primary-local-model residency state, referenced by every local session and AgentRun. |
+| **Primary Local LLM** | The sole model the daemon currently manages for local Pi turns; helper, embedding, and reranking models are outside automatic unload authority. |
+| **NO_MODEL** | Fail-closed residency state after no model is active or a prior unload succeeded and target load failed. |
+| **Required Delegation** | A run contract requiring its Agent 1 to launch and review a specified bounded Agent 2 child; absence yields `REQUIRED_DELEGATION_MISSING`. |
+| **Actual Model Attribution** | Recorded adapter/provider/model identity observed for a run. It does not prescribe a durable model-to-role mapping. |

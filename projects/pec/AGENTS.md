@@ -99,3 +99,17 @@ development loop, project governance, agents, or skills, record them in at most
 one timestamped plan under `{WORKING_ROOT}/plans/` for the session. Do not
 create a plan merely to satisfy this instruction when no actionable issue was
 found.
+
+## Shared Runtime Boundary
+
+D-GOV-20, D-T0-23, and D-PEC-56 prospectively migrate PEC agent execution to
+the root-owned shared runtime. PEC retains its deterministic acts, RBAC,
+reporting, human-only acts, visibility rules, data boundaries, and
+project-adapter semantics. It no longer owns a separate LLM, credential,
+session, delegation, interruption, or residency loop after migration.
+
+The temporary legacy PEC agent endpoint may proxy to the shared daemon for one
+migration cycle, but no production dual execution loop is permitted. Agent
+validation remains scratch/demo-only; D-PEC-49 and production data/mutation
+authority remain open. Daemon state is operational, while PEC project truth,
+AgentRuns, decisions, and acceptance evidence remain checkout-contained.

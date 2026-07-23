@@ -51,3 +51,11 @@ _DomainEngines/
 3. `bridge/.../CONTRACT_DIRECTION.md`, `BRIEF_human_decisions.md`, `PLAN_cross_tier.md` — the OpenPipeStress bridge substance.
 4. `pec/PEC_2026-07-04_tier0-prep/BRIEF_human_decisions.md` — the PEC registration slate.
 5. `bridge/.../framework_maintenance/FM-0{1..4}_*.md` — reviewable canon diffs (gated, **not applied**).
+
+## Shared runtime convergence
+
+D-T0-23 registers app-dev and PEC as distinct clients of one root runtime.
+Execution infrastructure is shared; project/domain authority is not. PEC
+retains its profile, deterministic acts, RBAC, human-only acts, visibility and
+data boundaries, and checkout-contained evidence. Migration proof remains
+scratch/demo-only.

@@ -157,3 +157,22 @@ Open release-quality decisions:
 - coverage, performance, and permitted-variance thresholds;
 - concrete provider/network implementation beyond the current shipped Anthropic path and the exact D-APP-72 / SCA-APP-002 authenticated `127.0.0.1` oMLX exception;
 - any Pi scope beyond the exact D-APP-72 / SCA-APP-002 pinned in-process, authenticated-loopback, read-only Agent 2 child exception; D-APP-01/D-APP-02 continue to govern all other Pi scope.
+
+## 13. Shared Runtime Gate
+
+Before SCA-APP-003 closeout, prove:
+
+- runtime-package promotion preserves current Claude/stub/Pi behavior;
+- Desktop and CLI use one daemon, session store, lock system, credential
+  owner, and interruption state;
+- the control plane has correct Unix-socket permissions, project-scoped
+  authorization, stale recovery, and no TCP listener;
+- model switching obeys explicit activation, drain, timeout, no-force,
+  `NO_MODEL`, no-helper-unload, and no-fallback rules;
+- the app-dev and PEC pilot paths pass with canonical evidence and
+  actual-model attribution;
+- public export includes only generic runtime/CLI/contracts/safe adapters and
+  excludes credentials, machine state, and private adapters.
+
+This gate is validation evidence only. It grants no release, publication,
+signing, notarization, lifecycle, or professional-reliance authority.

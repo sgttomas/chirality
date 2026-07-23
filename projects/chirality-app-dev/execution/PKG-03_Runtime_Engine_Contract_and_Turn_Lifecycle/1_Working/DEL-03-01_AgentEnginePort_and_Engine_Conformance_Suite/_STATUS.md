@@ -10,6 +10,8 @@
 
 ## Remaining
 
+- Promote provider-neutral runtime contracts to root `runtime/`, preserve the deprecated app import path for one cycle, and expand conformance for daemon/client/project/residency behavior (gated: serialized core integration owner).
+
 ## History
 - 2026-07-22 - D-APP-72 provider-neutral engine/session-init contracts and expanded conformance landed with public SSE names preserved; the complete suite and G5 independent backchecks pass. State remains IN_PROGRESS; unrelated blockers, lifecycle, and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added the bounded second-engine contract/conformance tranche to Remaining; state remains IN_PROGRESS.

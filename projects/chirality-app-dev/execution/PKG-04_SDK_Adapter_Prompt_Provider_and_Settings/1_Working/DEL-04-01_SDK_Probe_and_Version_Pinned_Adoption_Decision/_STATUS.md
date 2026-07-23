@@ -8,6 +8,8 @@
 
 ## Remaining
 
+- Prove promoted adapters load from the packaged root runtime in GUI, daemon, and CLI paths with unchanged package/model attribution (gated: behavior-preserving extraction and packaged proof).
+
 ## History
 - 2026-07-22 - D-APP-72 bounded adoption evidence completed: Pi `0.80.10` is exact-pinned and the Electron `43.1.1` packaged production-route proof and supply-chain verifier pass. State remains IN_PROGRESS; prior adoption records, lifecycle, and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 opened the bounded second-adapter version/adoption evidence item; state remains IN_PROGRESS.

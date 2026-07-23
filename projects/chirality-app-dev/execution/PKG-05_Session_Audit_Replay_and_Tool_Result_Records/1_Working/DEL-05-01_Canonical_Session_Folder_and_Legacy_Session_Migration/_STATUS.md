@@ -8,6 +8,8 @@
 
 ## Remaining
 
+- Implement central daemon JSON/JSONL sessions and lazy non-destructive reads/migration of project-local legacy records under the prospective D-APP-73 extension of D-APP-41 (gated: cross-store tests).
+
 ## History
 - 2026-07-22 - D-APP-72 provider-neutral selection and opaque adapter-session metadata completed with lazy legacy-Claude migration and Chirality-owned Pi session evidence; session/replay tests and G5 backcheck pass. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added multi-adapter session compatibility to Remaining; state remains IN_PROGRESS.

@@ -141,13 +141,32 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 *Note:* Per the D-GOV-01 (docs/governance_harness/_DECISIONS/) scope note, ruled 2026-07-01, engine-owned domain stores are sanctioned authoritative domain truth under K-DOMAIN-1 and are exempt from the governance rebuildable-cache rule.
 
+### 1.13 Shared Runtime
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-RUNTIME-1** | One opt-in per-user daemon is the exclusive production owner of engines, credentials, sessions, delegation, tools, turn locks, interruption, and local-model residency. Desktop, CLI, and project proxies MUST NOT construct a competing runtime. | Runtime daemon singleton; client conformance; packaged-process inspection |
+| **K-CONTROL-1** | Runtime control uses authenticated, project-scoped HTTP/1.1 over `{userData}/runtime/control.sock` beneath a `0700` directory with a `0600` socket. A TCP control listener is forbidden. | Socket-mode, authorization, stale-owner, and listener tests |
+| **K-PROJECT-1** | A tracked `chirality.project.json` contains stable identity and relative authority references only. Secrets, resolved machine paths, client tokens, and approval metadata remain user-data state. Authority-affecting manifest drift disables adapters until explicit re-registration. | Manifest schema/hash/containment tests; secret scan |
+| **K-STORE-2** | Central runtime sessions remain JSON/JSONL and import legacy project-local sessions lazily and non-destructively. Runtime state never replaces checkout-contained governance truth. | Migration, replay, restart, and source-preservation tests |
+| **K-RESIDENCY-1** | The daemon manages at most one primary local LLM. Activation is explicit, drains rather than interrupts active Pi work, never unloads unknown helper models, records a residency epoch, and fails closed without fallback. | Fake-oMLX and opt-in live proofs |
+| **K-ROLE-2** | Agent 0/1/2 names authority and responsibility, not a durable model assignment. Every governed run records actual adapter/provider/model and substitutions. | AgentRun/session attribution; governance scan |
+| **K-EXPORT-1** | The public export may include generic runtime packages, CLI, contracts, and safe adapters. Credentials, machine state, and private project adapters are excluded. | Export allowlist/boundary checks |
+
+K-WRITE-2 continues to govern agent and tool writes to project truth. The
+daemon’s socket, encrypted credentials, client tokens, logs, residency
+evidence, and central runtime session mirrors may live beneath the application
+user-data directory because they are explicitly non-authoritative operational
+state; they do not grant an agent permission to write outside its checkout
+scope.
+
 ---
 
 ## 2. Enforcement Map Summary
 
 | Enforcement Point | Invariants Checked |
 |---|---|
-| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
+| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-ROLE-2 |
 | **TASK shell / tool path policy** (runtime) | K-WRITE-2 (ScopePath containment, `SPEC.md` §0.2.3) |
 | **DOMAIN_ENGINE** (profile and operation governance) | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
 | **PROJECT_SETUP** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
@@ -155,6 +174,8 @@ All K-* identifiers defined in this section are listed below with their definiti
 | **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4 |
 | **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
 | **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |
+| **Shared runtime daemon and clients** (runtime) | K-RUNTIME-1, K-CONTROL-1, K-PROJECT-1, K-STORE-2, K-RESIDENCY-1, K-ROLE-2 |
+| **Public export builder** (publication boundary) | K-EXPORT-1 |
 
 ---
 

@@ -1024,3 +1024,93 @@ Folder names:
 - Deliverable: `{DEL-ID}_{Sanitize(DeliverableName)}`
 
 Canonical unsanitized names are stored in `_CONTEXT.md` and decomposition records.
+
+---
+
+## 25. Shared Runtime, Local API, and Residency
+
+### 25.1 Runtime ownership
+
+The root `runtime/` workspace contains provider-neutral contracts, core
+orchestration, daemon, client, CLI, and engine adapters. The packaged Electron
+executable supports `--runtime-daemon` without creating a window. The normal
+GUI and app-dev `/api/harness/*` routes are clients and MUST NOT construct an
+engine runtime.
+
+The daemon is installed only by explicit operator action as the macOS
+LaunchAgent `com.chirality.runtime`. Once installed it starts at login and
+restarts after failure. Logs and mutable state remain beneath Chirality's
+user-data directory, and daemon startup MUST NOT load or activate a local
+model automatically.
+
+### 25.2 Local control protocol
+
+The versioned local API uses HTTP/1.1 JSON requests and canonical SSE events
+over `{userData}/runtime/control.sock`. The parent directory MUST be `0700`,
+the socket MUST be `0600`, and stale-socket recovery MUST verify that no live
+daemon owns the path. Project-scoped client authorization is mandatory. A TCP
+control listener is forbidden.
+
+The API covers health, project registration/status, session
+create/list/boot/replay/turn/interrupt, high-level Agent 1 runs, and oMLX model
+status/activation.
+
+### 25.3 Project registration
+
+Each registered checkout supplies `chirality.project.json` with schema
+`chirality.project/v1`, stable ID/display name, relative working/instruction
+roots, AGENTS overlay, default execution root, domain/capability/data-boundary
+references, enabled adapters, and embedded-UI declaration. It contains no
+secret or machine-specific absolute path. Registration stores the resolved
+root, manifest hash, client credential, and approval metadata in user data.
+Authority-affecting manifest changes require explicit re-registration before
+adapters are enabled.
+
+### 25.4 Central sessions and migration
+
+Canonical central sessions live at
+`{userData}/runtime/projects/<projectId>/sessions`. JSON/JSONL remains
+authoritative runtime evidence. Legacy project-local `.chirality/sessions`
+records are read lazily and migrated non-destructively on access. No bulk
+rewrite or destructive source move is permitted.
+
+### 25.5 CLI
+
+The bundled `chirality` CLI runs with Electron’s embedded Node runtime and
+supports this initial command surface:
+
+```text
+chirality daemon install|start|stop|status|uninstall
+chirality project register|list|status
+chirality models list|activate
+chirality session create|list|replay|turn|interrupt
+chirality run --project <id> --agent <role> --brief-file <path>
+              [--local-model <exact-id>] [--json]
+```
+
+Run requests may be supplied by `--brief-file`, by a request file, or through
+standard input. The initial CLI never accepts or displays credential values.
+Human output is default; `--json` emits newline-delimited canonical events.
+
+### 25.6 Residency
+
+Authenticated literal-loopback oMLX status/load/unload is the only initial
+managed residency provider. Exact model IDs are used without aliases. One
+primary local LLM may be managed at a time. Activation is explicit and never
+triggered by a run.
+
+A switch rejects new local turns, drains active Pi turns for at most ten
+minutes, and completes unload/load/readiness within twenty minutes. Drain
+timeout retains the current model. Load failure after unload enters
+`NO_MODEL`. Active work is not force-interrupted, and unknown helper,
+embedding, or reranking models are not unloaded automatically. Every
+transition appends redacted `model-residency.jsonl` evidence and assigns an
+epoch referenced by local sessions and AgentRuns.
+
+### 25.7 Required delegation pilot
+
+`chirality run --agent <Agent1Role> --local-model <exact-id>` creates a real
+Agent 1 session and authorizes at most one Pi/oMLX Agent 2 child with one
+declared read-only Chirality tool. The model must already be resident. Agent 1
+must review the child return; otherwise the run terminates with
+`REQUIRED_DELEGATION_MISSING`.

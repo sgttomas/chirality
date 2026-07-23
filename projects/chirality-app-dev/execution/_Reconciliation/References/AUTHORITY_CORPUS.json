@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v12",
+  "current_version": "v14",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -197,6 +197,38 @@
         "docs/TYPES.md": "973ed2a65e3cbd28b7835ce8618e6c11e92ed2b37791f59873f8df4b1927bc2f",
         "docs/PLAN.md": "ee7e4ec47ad421c784079688d59e9f015990e5ac2d61006a849b355fb09ba2ee",
         "docs/PRD.md": "9906f29c69e46ae5e819a0574c21fcf854c4b224c8e4e2612dd5fa1755bf8461",
+        "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+        "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
+      }
+    },
+    {
+      "version": "v13",
+      "date": "2026-07-22",
+      "binding_commit": "358929b367ed3156699983dbcd5d71a34459d024",
+      "reason": "D-GOV-20 / D-APP-73 / D-T0-23 / D-PEC-56 / SCA-APP-003 shared runtime and local-agent pilot governance reconciliation.",
+      "hashes": {
+        "docs/DIRECTIVE.md": "490f98c3591fbea3f317bbf43397725e85482d4b99cdb10b87325b29f884f365",
+        "docs/CONTRACT.md": "ec5fe07c43c11a1b7d1f2e3da38655c7db717081687984c064122172fc1abdf2",
+        "docs/SPEC.md": "969bfb55c92a7dc247b3d337cf107a9f68064bef1506be9a5ae6aa070b32bf06",
+        "docs/TYPES.md": "7ced6ce4157e2c11e6a82e581d96b7f59e91b3fff98e456ccb61c0d318874511",
+        "docs/PLAN.md": "20bcf55a0a588b8875ad7d278b8e15a42e5f474e35553a9613ba72ee14aba35b",
+        "docs/PRD.md": "60c9ace0a792d8bbbd6f80eabc7d51013565cdfb5021a29d2138cc224a3d5fb9",
+        "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+        "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
+      }
+    },
+    {
+      "version": "v14",
+      "date": "2026-07-22",
+      "binding_commit": "358929b367ed3156699983dbcd5d71a34459d024",
+      "reason": "G0A remediation: preserve accepted LaunchAgent and complete CLI contracts",
+      "hashes": {
+        "docs/DIRECTIVE.md": "490f98c3591fbea3f317bbf43397725e85482d4b99cdb10b87325b29f884f365",
+        "docs/CONTRACT.md": "ec5fe07c43c11a1b7d1f2e3da38655c7db717081687984c064122172fc1abdf2",
+        "docs/SPEC.md": "db5cd5b3c371d2223fc544cedebc8e86adbf99c1e5b54bdd853cb80084645867",
+        "docs/TYPES.md": "7ced6ce4157e2c11e6a82e581d96b7f59e91b3fff98e456ccb61c0d318874511",
+        "docs/PLAN.md": "20bcf55a0a588b8875ad7d278b8e15a42e5f474e35553a9613ba72ee14aba35b",
+        "docs/PRD.md": "60c9ace0a792d8bbbd6f80eabc7d51013565cdfb5021a29d2138cc224a3d5fb9",
         "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
         "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
       }

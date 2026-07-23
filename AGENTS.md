@@ -261,4 +261,21 @@ Do not infer active skill status from older narrative lists. If `AGENTS.md`, `sk
 
 ---
 
+## Shared Runtime Doctrine
+
+D-GOV-20 establishes root `runtime/` as the generic executable agent-runtime
+workspace. One opt-in per-user daemon owns engines, credentials, sessions,
+delegation, tools, turn locks, interruption, and model residency. Registered
+projects retain checkout-contained authority; daemon user-data state is
+operational only. Agent 0/1/2 roles remain authority contracts independent of
+models, while every run records its actual engine/provider/model.
+
+Project/domain adapters retain their own deterministic acts, data boundaries,
+human gates, and evidence. Generic runtime transport never grants project
+authority. Public export may include generic runtime/CLI/contracts/safe
+adapters but excludes credentials, machine state, downloaded models, and
+private project adapters/evidence.
+
+---
+
 EOF

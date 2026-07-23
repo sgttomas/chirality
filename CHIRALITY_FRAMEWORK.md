@@ -389,3 +389,18 @@ professional knows, judges, and accepts responsibility.
 | 2026-04-04 | 1 | Clarified the framework's scope and its relation to agency, project management, governance, and professional knowledge work |
 | 2026-04-04 | 2 | Normalized epistemic status semantics, added a compact normalization table, and aligned the warrant lifecycle with the formal ontology |
 | 2026-07-23 | 3 | Reframed knowledge as a situated achievement of a knower, authentication as relational accountable-reliance status, and the accountability gap as the sole primary chirality of knowledge; operational primitives and lifecycle mechanics unchanged |
+| 2026-07-23 | 4 | Added the D-GOV-20 shared-runtime boundary: one governed local daemon may execute many model-backed agent instances while authority remains role-, brief-, project-, and human-gate-defined |
+
+### Runtime as institutional machinery
+
+The shared Chirality runtime does not make a model authoritative. It provides
+the institutional machinery that binds an executing model to a role, sealed
+brief, declared tools, permissions, project boundary, evidence trail, and
+acceptance gate. A model may occupy an Agent 0, Agent 1, or Agent 2 seat for a
+run; the seat’s authority contract remains stable when the model changes.
+
+One per-user daemon owns runtime state so Desktop, CLI, cloud supervisors, and
+local workers cannot silently create competing sessions or permission
+systems. Its machine-local state is operational rather than epistemic
+authority. The relied-upon record remains inspectable in the governed project
+and its Git history.

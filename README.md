@@ -239,6 +239,26 @@ Run skill metadata validation after skill changes. Run test discovery when chang
 
 ---
 
+## Shared Agent Runtime
+
+The root `runtime/` workspace is Chirality’s reusable execution substrate. A
+single opt-in per-user daemon owns engines, credentials, sessions, delegation,
+tools, interruption, and local-model residency. Desktop, the bundled
+`chirality` CLI, and registered projects communicate with it over an
+authenticated Unix-domain socket; there is no TCP control listener.
+
+Tracked `chirality.project.json` files declare portable project identity and
+relative authority references. Machine paths, client tokens, encrypted
+credentials, central runtime sessions, logs, and residency state remain in
+application user data and do not replace checkout-contained governance truth.
+
+The initial local-agent pilot is deliberately narrow: one real Agent 1 may
+delegate one governed read-only task to one Pi Agent 2 using an exact oMLX
+model that the user explicitly made resident. Models are not permanently
+assigned to Agent 0/1/2 roles.
+
+---
+
 ## License
 
 MIT License + Professional Engineering Clause. See `LICENSE.md`.

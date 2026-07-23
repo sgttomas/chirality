@@ -1,12 +1,14 @@
 # Status: DEL-05-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Prove Desktop and CLI replay the same daemon-owned canonical session and preserve manager/child attribution across restart and lazy migration (gated: daemon/client vertical slice).
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)

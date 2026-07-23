@@ -133,3 +133,16 @@ UPD-101 supersedes the earlier flat Bash-default-deny wording. The live
 post-enablement posture is mode-gated: default mode returns `ask`, and
 workspace-write auto-allow occurs only after hooks; timeout, capture, storage,
 interrupt, and audit controls are implemented under D-APP-04/D-APP-43.
+
+## SCA-APP-003 Shared Runtime Boundary Addendum
+
+| BoundaryID | Boundary | Product-owned enforcement | Prohibited delegation/default | Required closure evidence |
+|---|---|---|---|---|
+| RB-DAEMON | Exactly one runtime owner per user. | Daemon singleton, restart recovery, Desktop/CLI/PEC clients. | GUI, route, CLI, or PEC sidecar may not construct a second engine/session loop. | Concurrent Desktop+CLI and PEC pilot proof with one lock/session owner. |
+| RB-CONTROL-SOCKET | Local control is private and project-scoped. | `0700` parent, `0600` Unix socket, project client authorization, stale recovery. | TCP control listener, ambient local-client trust, or unverified stale-socket deletion. | Permission, authorization, stale-recovery, and listener tests. |
+| RB-PROJECT-REGISTRATION | Checkout manifest declares authority identity; user data binds local resolution only. | Manifest schema/hash, explicit re-registration, adapter disable on authority drift. | Secrets, machine absolute paths, or daemon state as project truth. | Schema, hash-change, secret/path, and re-registration tests. |
+| RB-CENTRAL-STORE | Central sessions remain JSON/JSONL and preserve legacy evidence. | Lazy reads/migration, non-destructive source retention, replay/restart. | Bulk rewrite, destructive move, database-only canonical truth. | Cross-store migration and replay tests. |
+| RB-RESIDENCY | One managed primary local LLM with explicit transitions. | Exact status, drain, unload/load/readiness, epoch JSONL, `NO_MODEL`. | Run-triggered switch, aliases, fallback, force interrupt, unknown-helper unload. | Fake-provider matrix plus opt-in live two-model proof. |
+| RB-ROLE-MODEL | Authority role is independent of engine/model. | Admission policy and actual-model attribution. | Durable model-to-role preference or capability-derived authority. | AgentRun/session attribution and governance scan. |
+| RB-PEC-ADAPTER | PEC remains project authority over acts/data. | PEC adapter RBAC, human-only act exclusion, scratch/demo fence. | Generic runtime mutation bypass or production dual execution loop. | Daemon→adapter→backend→UI pilot and forbidden-act denials. |
+| RB-PUBLIC-RUNTIME | Only generic safe runtime material is exportable. | Allowlist, secret scan, private-adapter/machine-state exclusions. | Credentials, user data, downloaded models, private project adapters/evidence. | Export boundary validation after both pilots. |

@@ -477,3 +477,18 @@ This plan remains acceptable only if:
 |---|---|---|
 | `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |
 | `SCA-APP-002` | 2026-07-21 | Authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche, subject to Electron `43.1.1` prerequisite proof, provider-neutral contracts, fail-closed conformance/security validation, and a governed read-only Agent 2 child milestone. |
+| `SCA-APP-003` | 2026-07-22 | Promotes the executable harness to root `runtime/`, then adds one shared daemon, authenticated Unix-socket client/CLI, explicit local-model residency, the app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and public generic-runtime export. |
+
+### 13.1 D-APP-73 execution order
+
+1. Close and commit D-APP-72/SCA-APP-002 after validation.
+2. Reconcile root, app-dev, tier-0 domain, and PEC governance.
+3. Promote provider-neutral packages without behavior change.
+4. Introduce the daemon and convert Desktop into a client.
+5. Add the bundled CLI and explicit one-primary-model residency control.
+6. Prove the app-dev Agent 1 → read-only local Agent 2 vertical slice.
+7. Migrate PEC’s agent path without a dual execution loop.
+8. Export the generic runtime after both pilots pass.
+
+Piping, automatic scheduling, local Agent 1, multiple simultaneous primary
+local models, and production PEC use remain later governed milestones.

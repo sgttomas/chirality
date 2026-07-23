@@ -1,0 +1,18 @@
+{
+  "amendment_id": "SCA-APP-003",
+  "status": "PRE_CHANGE_BASELINE_RECORDED",
+  "baseline_date": "2026-07-22",
+  "baseline_authority_corpus_version": "v12",
+  "decomposition_path": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "counts": {
+    "packages": 10,
+    "deliverables": 51,
+    "scope_items": 78,
+    "objectives": 10
+  },
+  "baseline_posture": "Frontend-owned executable harness with D-APP-72 bounded Pi/oMLX child path; project-local canonical sessions; PEC-owned sidecar agent loop; no shared daemon or CLI.",
+  "topology_change_expected": false,
+  "lifecycle_change_expected": false,
+  "release_authorized": false,
+  "implementation_executed": false
+}

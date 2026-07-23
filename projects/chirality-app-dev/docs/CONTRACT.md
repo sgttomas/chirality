@@ -188,3 +188,16 @@ No invariants are retired in this vNext rewrite.
 |---|---|---|
 | `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |
 | `SCA-APP-002` | 2026-07-21 | Prospectively authorizes the D-APP-72 bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche after Electron `43.1.1`; preserves Claude as default/supervisor and excludes Pi-native capabilities, remote providers, automatic fallback, direct Pi supervisors, write/shell/network tools, release, issuance, and lifecycle advancement. |
+| `SCA-APP-003` | 2026-07-22 | Promotes the provider-neutral harness to a root-owned shared runtime; establishes the authenticated Unix-socket daemon/client/CLI boundary, central lazy-migrating sessions, explicit one-primary-model residency, app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and generic public-export boundary. |
+
+### 5.1 Shared Runtime Invariants
+
+| ID | Invariant | Verification |
+|---|---|---|
+| **K-RUNTIME-1** | One per-user daemon is the exclusive owner of engines, credentials, sessions, delegation, tools, turn locks, interruption, and local-model residency. Desktop, CLI, and project proxies MUST NOT construct another runtime. | Daemon singleton/restart tests; Desktop+CLI concurrency proof; no-dual-runtime inspection. |
+| **K-CONTROL-1** | Runtime control is exposed only over an authenticated project-scoped HTTP/1.1 API on a Unix-domain socket beneath a `0700` parent with a `0600` socket. No TCP control listener is permitted. | Permission/authorization tests; stale-socket recovery; listener inspection. |
+| **K-PROJECT-1** | Tracked project manifests contain stable identity and relative authority references only. Resolved roots, client credentials, and registration approvals remain user-data state. Authority-affecting changes disable adapters until explicit re-registration. | Manifest schema/hash tests; re-registration tests; secret/absolute-path scan. |
+| **K-STORE-2** | Central daemon sessions use JSON/JSONL and lazily read/migrate project-local legacy records without bulk rewrite or destructive move. Daemon state does not replace checkout-contained governance truth. | Cross-store migration, replay, persistence, and restart tests. |
+| **K-RESIDENCY-1** | The daemon manages at most one primary local LLM. Activation is explicit; switching drains active Pi turns, never force-interrupts them, never unloads unknown helper models, records a residency epoch, and fails closed to `NO_MODEL` without fallback. | Fake-oMLX load/unload/drain/failure tests; epoch evidence; live opt-in proof. |
+| **K-ROLE-2** | Agent 0/1/2 roles describe authority and responsibility, not a durable engine or model assignment. Every run records the actual adapter/provider/model and any substitution. | AgentRun/session attribution tests; governance scan for model-to-role prescriptions. |
+| **K-EXPORT-1** | Public export may include generic runtime, CLI, contracts, and safe adapters only. Credentials, machine state, and private PEC/Piping adapters are excluded. | Allowlist/export-boundary checks and secret scan. |
