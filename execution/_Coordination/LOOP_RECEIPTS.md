@@ -522,3 +522,32 @@
   the next root loop. The App Dev items reach the App Dev loop by root relay
   (Agent 0 notice routing), not by App Dev's own bootstrap; the root loop's
   first return should carry them forward until the App Dev loop records them.
+
+### Receipt 31 — 2026-07-22 — Deflake brief issued; protection application interrupted
+
+- Owner direction, verbatim: "draft the sealed brief for the App Dev tranche
+  now (diagnosis summary, suspected fix pattern, stress-verification
+  acceptance criteria) and drop it alongside the existing handoff notice.
+  Then run the 'require only harness' command now for immediate protection
+  with zero risk of stuck PRs, and treat the both-checks-plus-no-op-job setup
+  as the recorded hardening follow-on to do alongside the deflake."
+- Sealed brief issued:
+  `AgentRuns/AGENT-INDEX-REDISPOSITION-20260721/notices/APPDEV-MANAGED-DELEGATION-DEFLAKE-BRIEF.md`
+  — root cause verified in `managed-delegation.ts` (non-atomic in-place
+  STATUS.json overwrites, L624-625/L662/L667, racing the sibling
+  disjointness scan); fix pattern: atomic temp+rename status writes plus a
+  disjoint-siblings-both-succeed test; acceptance: ≥300-iteration stress
+  passes under CPU constraint. Adoption remains the App Dev loop's act.
+- Branch protection: the require-only-`harness` application first failed on
+  an expired GitHub CLI token (HTTP 401); after owner re-authentication the
+  API returned HTTP 403 "Upgrade to GitHub Pro or make this repository
+  public to enable this feature" — branch protection and rulesets are
+  unavailable on this private free-plan repository. Mechanical enforcement
+  therefore requires an owner decision: upgrade the account to GitHub Pro or
+  make the repository public. Until one is taken, red-check merges stay
+  barred only by the recorded explicit-verdict-gate discipline and the
+  pending CHANGE standing-rule follow-on.
+- Hardening follow-on (recorded): strict protection requiring `Harness
+  pre-merge` as well, paired with an always-run no-op reporting job in
+  `harness-premerge.yml` so path-filtered PRs cannot hang; sequenced AFTER
+  the deflake lands (a flaky required check is a merge blocker).
