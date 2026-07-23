@@ -1,6 +1,6 @@
 # Integration Readiness — D-GOV-19 Explanatory Revision
 
-Status: `NOT_READY_FOR_MERGE — OWNER PROSE ACCEPTANCE REQUIRED`
+Status: `READY FOR OWNER MERGE DECISION`
 
 ## Candidate identity
 
@@ -10,6 +10,7 @@ Status: `NOT_READY_FOR_MERGE — OWNER PROSE ACCEPTANCE REQUIRED`
   `981149df247fb6564768f8451e3b12dd591d9197`
 - Exact source candidate:
   `deab7a961c1a5c9fde771039497e50343b681d46`
+- Exact source acceptance: owner-approved, 2026-07-23
 
 ## Readiness evidence
 
@@ -24,12 +25,9 @@ Status: `NOT_READY_FOR_MERGE — OWNER PROSE ACCEPTANCE REQUIRED`
 
 ## Remaining gates
 
-1. Owner accepts or rejects the exact Revision 3 and thesis §3.6 source at
-   `deab7a961c1a5c9fde771039497e50343b681d46`.
-2. If accepted, record that exact-prose ruling without changing the accepted
-   source bytes.
-3. Re-run integration checks against the final branch HEAD.
-4. CHANGE requests explicit approval to merge the exact final integration SHA
-   into `main`.
+1. Re-run integration checks against the final branch HEAD after recording
+   exact-prose acceptance.
+2. CHANGE requests explicit approval to merge that exact final integration
+   SHA into `main`.
 
 No silent merge and no external-publication apply are permitted.

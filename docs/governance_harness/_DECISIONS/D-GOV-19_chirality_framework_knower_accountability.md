@@ -3,6 +3,8 @@
 Status:       RULED
 HumanRuling:  "I approve candidate `981149df247fb6564768f8451e3b12dd591d9197` as the basis for the framework/thesis revision." (owner, 2026-07-23)
 Ruling SHA:   981149df247fb6564768f8451e3b12dd591d9197
+ExactProseRuling: "I approve deab7a961c1a5c9fde771039497e50343b681d46" (owner, 2026-07-23)
+AcceptedSourceSHA: deab7a961c1a5c9fde771039497e50343b681d46
 Date:         2026-07-23
 FramedBy:     Owner-directed chirality-framework and thesis concordance revision, 2026-07-22
 AcceptedBasis: `main@8698b0338ac82556fee583dd3f85bb62d0b74f85`
@@ -17,9 +19,10 @@ explanatory amendment described here; it does not authenticate the thesis,
 establish any proposition as metaphysically true, or authorize a merge or
 external publication.
 
-No framework or thesis prose was revised in the candidate tranche. The owner
-ruling releases the prose-edit gate while preserving the later exact-prose,
-merge, and publication gates.
+The owner subsequently accepted the exact Revision 3 and thesis source at
+`deab7a961c1a5c9fde771039497e50343b681d46`. That ruling closes the
+exact-prose gate without authenticating the thesis or authorizing a merge or
+external publication. The merge and publication gates remain separate.
 
 ## Recorded ruling
 
@@ -31,7 +34,21 @@ I approve candidate `981149df247fb6564768f8451e3b12dd591d9197` as the basis for 
 <!-- END OWNER RULING VERBATIM -->
 
 This ruling authorizes drafting under the conditions below. It does not
-authenticate the thesis or accept the later Revision 3 and thesis prose.
+authenticate the thesis. The later Revision 3 and thesis prose were
+separately accepted as recorded below.
+
+## Exact-prose ruling
+
+The owner ruled in-session on 2026-07-23, binding acceptance to the exact
+framework/thesis source commit:
+
+<!-- BEGIN OWNER EXACT-PROSE RULING VERBATIM -->
+I approve deab7a961c1a5c9fde771039497e50343b681d46
+<!-- END OWNER EXACT-PROSE RULING VERBATIM -->
+
+This ruling accepts the Revision 3 formulation and revised thesis §3.6 at
+that source SHA. It does not authenticate the thesis, authorize integration
+into `main`, or authorize an external-publication apply.
 
 ## Decision to make
 

@@ -1,6 +1,6 @@
 # Chirality Framework Knower-Accountability Handoff State
 
-Status: `AWAITING_OWNER_PROSE_ACCEPTANCE`
+Status: `READY_FOR_OWNER_MERGE_APPROVAL`
 
 Run: `CHIRALITY-FRAMEWORK-KNOWER-ACCOUNTABILITY-20260723`
 
@@ -13,10 +13,13 @@ Run: `CHIRALITY-FRAMEWORK-KNOWER-ACCOUNTABILITY-20260723`
   `102aefb2ffd9064a04b575250d1c4300c1b646d4`
 - Exact framework/thesis source candidate:
   `deab7a961c1a5c9fde771039497e50343b681d46`
+- Owner exact-prose approval:
+  `"I approve deab7a961c1a5c9fde771039497e50343b681d46"`
 
-The owner ruling approved the explanatory basis and released drafting. It did
-not authenticate the thesis, accept the later wording, approve a merge, or
-authorize external publication.
+The first owner ruling approved the explanatory basis and released drafting.
+The second owner ruling accepted the exact source wording. Neither ruling
+authenticates the thesis, approves a merge, or authorizes external
+publication.
 
 ## Candidate status
 
@@ -29,9 +32,8 @@ authorize external publication.
 - Thesis warrant status: `CITED`/`REVIEWED`, **not `AUTHENTICATED`** and
   nonbinding under K-CLAIM-1.
 
-The next gate is owner review of the exact Revision 3 formulation and revised
-§3.6 at source commit
-`deab7a961c1a5c9fde771039497e50343b681d46`.
+The exact-prose gate is closed. The next gate is owner approval to merge the
+exact final integration SHA into `main`.
 
 ## Canonical result
 
@@ -116,8 +118,8 @@ governance, thesis source, or accepted decomposition truth.
 ## Unresolved findings and blockers
 
 - Revision-specific audit findings: none.
-- Source-content blocker: owner acceptance of the exact Revision 3 and §3.6
-  wording.
+- Source-content blocker: none; the owner accepted the exact Revision 3 and
+  §3.6 source at `deab7a961c1a5c9fde771039497e50343b681d46`.
 - Merge blocker: separate owner approval of the exact integration SHA after
   source acceptance and final integration-readiness verification.
 - External-publication blocker: no apply target is authorized.
@@ -126,6 +128,6 @@ governance, thesis source, or accepted decomposition truth.
 
 ## Closure verdict
 
-Drafting and validation are complete; lifecycle acceptance is not. This run
-is held at the explicit owner exact-prose gate. No merge, external publication,
-thesis authentication, or domain-snapshot replacement has occurred.
+Drafting, validation, and exact-prose acceptance are complete. This run is
+held at the explicit owner merge gate. No merge, external publication, thesis
+authentication, or domain-snapshot replacement has occurred.
