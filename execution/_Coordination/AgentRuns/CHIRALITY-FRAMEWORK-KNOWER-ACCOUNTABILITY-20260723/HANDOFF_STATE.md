@@ -88,8 +88,8 @@ Formal EVALUATION → AUDIT_GOVERNANCE fan-in:
 - `python3 tools/practitioner_harness/harness.py drift --all`: PASS,
   154/154 matched, 0 mismatches
 - `python3 tools/practitioner_harness/harness.py coord-check --diff
-  8698b0338ac82556fee583dd3f85bb62d0b74f85..HEAD`: required again after
-  derivative evidence is committed
+  8698b0338ac82556fee583dd3f85bb62d0b74f85..HEAD`: PASS at the final
+  integration-readiness stage; no findings
 - citation-key resolution: PASS, 27 used keys, 0 unresolved
 - local Markdown links: PASS
 - Appendix D numbering: PASS, D.1–D.8 unchanged
