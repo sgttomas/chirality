@@ -43,8 +43,8 @@ export function SubagentStreamList({ rows }: { rows: SubagentActivityRow[] }): J
       <div className="panel-body">
         {rows.length === 0 ? (
           <p className="panel-empty">
-            No subagent activity yet. Delegated runs appear here when the agent fans out
-            (requires the `agentSdk` provider).
+            No subagent activity yet. Governed delegated runs appear here when the
+            runtime records them.
           </p>
         ) : (
           <ul className="harness-stream-list">
