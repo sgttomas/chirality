@@ -59,12 +59,18 @@ Run commands from `frontend/` unless stated otherwise.
 | `npm run proof:secret-scan` | Scans tracked app-dev files and generated harness evidence for high-confidence secret material without writing raw secret values to the summary. |
 | `npm run proof:network-policy` | Runs the current network-policy proof. Add `-- --provider agentSdk --scripted-agent-sdk` for the non-packaged STAB-02(c) opt-in SDK network proof. |
 | `npm run build` | Builds Next.js and Electron main-process output. |
-| `npm run desktop:pack` | Builds and produces an unsigned local macOS arm64 app directory with publishing disabled, then verifies instruction-root integrity. |
-| `npm run desktop:dist` | Builds and produces an unsigned/unnotarized local-builder macOS arm64 DMG with publishing disabled, then verifies instruction-root integrity. |
+| `npm run desktop:pack` | Builds and produces an unsigned local macOS arm64 app directory with publishing disabled, verifies the packaged dependency boundary, then verifies instruction-root integrity. Monorepo-only `@chirality/*` dependency symlinks are excluded because their runtime code is bundled into the Next, Electron, and CLI outputs. |
+| `npm run desktop:dist` | Builds and produces an unsigned/unnotarized local-builder macOS arm64 DMG with publishing disabled, verifies the packaged dependency boundary, then verifies instruction-root integrity. |
 
 `npm run harness:validate:premerge` requires a running harness API. By default it targets `http://127.0.0.1:3000`; see `frontend/docs/harness/README.md` for `HARNESS_BASE_URL` and `HARNESS_PROJECT_ROOT` overrides.
 
 Stop any local Next dev server before running `npm run build`, `npm run desktop:pack`, `npm run desktop:dist`, or `npm run harness:validate:premerge` unless the command owns the server lifecycle. A dev server racing a `.next` rewrite can surface a transient module-resolution failure (e.g. `.next/server/vendor-chunks/next.js`); record such a failure as an environment sequencing failure, not a product regression — isolate the dev server, then rerun.
+
+After changing Pi dependency versions, run `npm run pi:lock-integrity` before
+`npm run pi:supply-chain`. Current npm lock generation may omit SHA-512 fields
+from nested entries that resolve to the same exact root-pinned Pi artifacts;
+the normalization command copies only matching registry artifact hashes and
+fails closed on version, URL, or integrity conflicts.
 
 ## 5. Evidence Bundles
 

@@ -43,7 +43,7 @@ describe('dmg packaging policy', () => {
   it('pins the approved Electron runtime toolchain and Node floor', async () => {
     const pkg = await readPackageJson();
 
-    expect(pkg.devDependencies?.electron).toBe('43.1.1');
+    expect(pkg.devDependencies?.electron).toBe('43.2.0');
     expect(pkg.devDependencies?.['electron-builder']).toBe('26.15.3');
     expect(pkg.devDependencies?.['@types/node']).toBe('24.12.4');
     expect(pkg.engines?.node).toBe('>=22.19.0');
@@ -56,6 +56,11 @@ describe('dmg packaging policy', () => {
 
     expect(pack).toContain('CSC_IDENTITY_AUTO_DISCOVERY=false');
     expect(dist).toContain('CSC_IDENTITY_AUTO_DISCOVERY=false');
+    expect(pack).toContain('desktop:verify-dependencies');
+    expect(dist).toContain('desktop:verify-dependencies');
+    expect(pkg.scripts?.['desktop:verify-dependencies']).toContain(
+      'verify-packaged-dependency-boundary.mjs'
+    );
   });
 
   it('exposes a no-live packaged agentSdk resolver proof command', async () => {
@@ -124,8 +129,18 @@ describe('dmg packaging policy', () => {
     );
   });
 
+  it('excludes monorepo-only local dependency symlinks from the app bundle', async () => {
+    const pkg = await readPackageJson();
+    const files = (pkg.build as { files?: string[] } | undefined)?.files ?? [];
+
+    expect(files).toContain('!node_modules/@chirality/**');
+  });
+
   it('registers the Pi supply-chain proof and ships its notice', async () => {
     const pkg = await readPackageJson();
+    expect(pkg.scripts?.['pi:lock-integrity']).toContain(
+      'normalize-pi-lock-integrity.mjs'
+    );
     expect(pkg.scripts?.['pi:supply-chain']).toContain('verify-pi-supply-chain.mjs');
     expect(pkg.scripts?.['harness:validate:pi-packaged-proof']).toContain(
       'run-packaged-pi-runtime-proof.mjs'

@@ -47,13 +47,7 @@ for (const [name, entry] of closure) {
   if (!entry.resolved.startsWith('https://registry.npmjs.org/')) {
     fail(`${name} resolves outside the approved HTTPS npm registry`);
   }
-  const isPinnedPiSibling = piPackages
-    .filter((packageName) => packageName !== '@earendil-works/pi-coding-agent')
-    .some((packageName) => packageName === name.slice(`${piRoot}/node_modules/`.length));
-  if (
-    !isPinnedPiSibling &&
-    (typeof entry.integrity !== 'string' || !entry.integrity.startsWith('sha512-'))
-  ) {
+  if (typeof entry.integrity !== 'string' || !entry.integrity.startsWith('sha512-')) {
     fail(`${name} has no lock-enforced SHA-512 integrity`);
   }
 }
